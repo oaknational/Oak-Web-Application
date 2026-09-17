@@ -89,7 +89,6 @@ const SearchDropdown: FC<
                   $textAlign="left"
                 >
                   <StyledOakLink
-                    {...props.buttonLinkProps}
                     onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                       onClick?.({ ...props, isToggleOpen });
                       e.stopPropagation();

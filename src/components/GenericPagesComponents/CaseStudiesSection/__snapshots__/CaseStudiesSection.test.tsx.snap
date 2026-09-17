@@ -4,49 +4,49 @@ exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1
 <body>
   <div>
     <div
-      class="sc-aXZVg kNKvOG"
+      class="sc-bdvwhi THUtj"
     >
       <div
-        class="sc-aXZVg bZTQLO"
+        class="sc-bdvwhi iatEdD"
       >
         <div
-          class="sc-aXZVg sc-gEvEer bkFrQJ daEtut"
+          class="sc-bdvwhi sc-gsDMPd blOvSo eChlAW"
         >
           <div
-            class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
+            class="sc-bdvwhi sc-jObTYW hPWTKU jmGxKU"
           >
             <div
-              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi cSXJqk"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex cAldUs"
             >
               <h2
-                class="sc-eldPxv dGkyUI"
+                class="sc-bkkgYE NpoJm"
               >
                 Case studies
               </h2>
             </div>
           </div>
           <ul
-            class="sc-aXZVg sc-tagGq bMQSvq jFIZYB"
+            class="sc-bdvwhi sc-jObTYW eZfdqr boCgwA"
           >
             <li
-              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi jYNrWW"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex lcZKPm"
             >
               <div
-                class="sc-aXZVg sc-jGKxIK bDPsaI efAcwU"
+                class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
               >
                 <a
-                  class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi kDjeOv"
+                  class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
                   href="/about-us/case-studies/case-study-1"
                 >
                   <div
-                    class="sc-aXZVg jPvJsJ"
+                    class="sc-bdvwhi hPWTKU"
                   >
                     <span
-                      class="sc-aXZVg kvjdhA sc-kYxDKI ZupGI"
+                      class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
                     >
                       <img
                         alt=""
-                        class="sc-iGgWBj dZvqhO"
+                        class="sc-jRQBiJ hssYEG"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -58,34 +58,34 @@ exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1
                     </span>
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-iHmpnF jPvJsJ jFNgPm"
+                    class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
                     >
                       <div
-                        class="sc-eldPxv ibGcSM"
+                        class="sc-bkkgYE jxvseu"
                       >
                         Case study 1
                       </div>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU eWbmLh"
                       >
                         <span
-                          class="sc-eqUAAy dECBeo"
+                          class="sc-dkPwfY hmZYGI"
                         >
                           Watch the video
                         </span>
                         <span
-                          class="sc-aXZVg jJQFnr"
+                          class="sc-bdvwhi cERAFe"
                         >
                           <img
                             alt=""
-                            class="sc-iGgWBj cMzyFO"
+                            class="sc-jRQBiJ eMsccW"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -100,24 +100,24 @@ exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1
               </div>
             </li>
             <li
-              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi bGCzCa"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex bfRFGW"
             >
               <div
-                class="sc-aXZVg sc-jGKxIK bDPsaI efAcwU"
+                class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
               >
                 <a
-                  class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi kDjeOv"
+                  class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
                   href="/about-us/case-studies/case-study-2"
                 >
                   <div
-                    class="sc-aXZVg jPvJsJ"
+                    class="sc-bdvwhi hPWTKU"
                   >
                     <span
-                      class="sc-aXZVg kvjdhA sc-kYxDKI ZupGI"
+                      class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
                     >
                       <img
                         alt=""
-                        class="sc-iGgWBj dZvqhO"
+                        class="sc-jRQBiJ hssYEG"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -129,34 +129,34 @@ exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1
                     </span>
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-iHmpnF jPvJsJ jFNgPm"
+                    class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
                     >
                       <div
-                        class="sc-eldPxv ibGcSM"
+                        class="sc-bkkgYE jxvseu"
                       >
                         Case study 2
                       </div>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU eWbmLh"
                       >
                         <span
-                          class="sc-eqUAAy dECBeo"
+                          class="sc-dkPwfY hmZYGI"
                         >
                           Watch the video
                         </span>
                         <span
-                          class="sc-aXZVg jJQFnr"
+                          class="sc-bdvwhi cERAFe"
                         >
                           <img
                             alt=""
-                            class="sc-iGgWBj cMzyFO"
+                            class="sc-jRQBiJ eMsccW"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -182,49 +182,49 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
 <body>
   <div>
     <div
-      class="sc-aXZVg kNKvOG"
+      class="sc-bdvwhi THUtj"
     >
       <div
-        class="sc-aXZVg bZTQLO"
+        class="sc-bdvwhi iatEdD"
       >
         <div
-          class="sc-aXZVg sc-gEvEer bkFrQJ daEtut"
+          class="sc-bdvwhi sc-gsDMPd blOvSo eChlAW"
         >
           <div
-            class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
+            class="sc-bdvwhi sc-jObTYW hPWTKU jmGxKU"
           >
             <div
-              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi bdQReA"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex jESsXg"
             >
               <h2
-                class="sc-eldPxv dGkyUI"
+                class="sc-bkkgYE NpoJm"
               >
                 Case studies
               </h2>
             </div>
           </div>
           <ul
-            class="sc-aXZVg sc-tagGq bMQSvq jFIZYB"
+            class="sc-bdvwhi sc-jObTYW eZfdqr boCgwA"
           >
             <li
-              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi fjdsDR"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
             >
               <div
-                class="sc-aXZVg sc-jGKxIK bDPsaI efAcwU"
+                class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
               >
                 <a
-                  class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi kDjeOv"
+                  class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
                   href="/about-us/case-studies/case-study-1"
                 >
                   <div
-                    class="sc-aXZVg jPvJsJ"
+                    class="sc-bdvwhi hPWTKU"
                   >
                     <span
-                      class="sc-aXZVg kvjdhA sc-kYxDKI ZupGI"
+                      class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
                     >
                       <img
                         alt=""
-                        class="sc-iGgWBj dZvqhO"
+                        class="sc-jRQBiJ hssYEG"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -236,34 +236,34 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
                     </span>
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-iHmpnF jPvJsJ jFNgPm"
+                    class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
                     >
                       <div
-                        class="sc-eldPxv ibGcSM"
+                        class="sc-bkkgYE jxvseu"
                       >
                         Case study 1
                       </div>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU eWbmLh"
                       >
                         <span
-                          class="sc-eqUAAy dECBeo"
+                          class="sc-dkPwfY hmZYGI"
                         >
                           Watch the video
                         </span>
                         <span
-                          class="sc-aXZVg jJQFnr"
+                          class="sc-bdvwhi cERAFe"
                         >
                           <img
                             alt=""
-                            class="sc-iGgWBj cMzyFO"
+                            class="sc-jRQBiJ eMsccW"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -278,24 +278,24 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
               </div>
             </li>
             <li
-              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi fjdsDR"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
             >
               <div
-                class="sc-aXZVg sc-jGKxIK bDPsaI efAcwU"
+                class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
               >
                 <a
-                  class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi kDjeOv"
+                  class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
                   href="/about-us/case-studies/case-study-2"
                 >
                   <div
-                    class="sc-aXZVg jPvJsJ"
+                    class="sc-bdvwhi hPWTKU"
                   >
                     <span
-                      class="sc-aXZVg kvjdhA sc-kYxDKI ZupGI"
+                      class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
                     >
                       <img
                         alt=""
-                        class="sc-iGgWBj dZvqhO"
+                        class="sc-jRQBiJ hssYEG"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -307,34 +307,34 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
                     </span>
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-iHmpnF jPvJsJ jFNgPm"
+                    class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
                     >
                       <div
-                        class="sc-eldPxv ibGcSM"
+                        class="sc-bkkgYE jxvseu"
                       >
                         Case study 2
                       </div>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU eWbmLh"
                       >
                         <span
-                          class="sc-eqUAAy dECBeo"
+                          class="sc-dkPwfY hmZYGI"
                         >
                           Watch the video
                         </span>
                         <span
-                          class="sc-aXZVg jJQFnr"
+                          class="sc-bdvwhi cERAFe"
                         >
                           <img
                             alt=""
-                            class="sc-iGgWBj cMzyFO"
+                            class="sc-jRQBiJ eMsccW"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -349,24 +349,24 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
               </div>
             </li>
             <li
-              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi fjdsDR"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
             >
               <div
-                class="sc-aXZVg sc-jGKxIK bDPsaI efAcwU"
+                class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
               >
                 <a
-                  class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi kDjeOv"
+                  class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
                   href="/about-us/case-studies/case-study-3"
                 >
                   <div
-                    class="sc-aXZVg jPvJsJ"
+                    class="sc-bdvwhi hPWTKU"
                   >
                     <span
-                      class="sc-aXZVg kvjdhA sc-kYxDKI ZupGI"
+                      class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
                     >
                       <img
                         alt=""
-                        class="sc-iGgWBj dZvqhO"
+                        class="sc-jRQBiJ hssYEG"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -378,34 +378,34 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
                     </span>
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-iHmpnF jPvJsJ jFNgPm"
+                    class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
                     >
                       <div
-                        class="sc-eldPxv ibGcSM"
+                        class="sc-bkkgYE jxvseu"
                       >
                         Case study 3
                       </div>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU eWbmLh"
                       >
                         <span
-                          class="sc-eqUAAy dECBeo"
+                          class="sc-dkPwfY hmZYGI"
                         >
                           Watch the video
                         </span>
                         <span
-                          class="sc-aXZVg jJQFnr"
+                          class="sc-bdvwhi cERAFe"
                         >
                           <img
                             alt=""
-                            class="sc-iGgWBj cMzyFO"
+                            class="sc-jRQBiJ eMsccW"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"

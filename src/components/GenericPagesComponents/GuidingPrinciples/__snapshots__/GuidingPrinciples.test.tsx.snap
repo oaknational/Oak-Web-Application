@@ -4,31 +4,31 @@ exports[`GuidingPrinciples renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-gEvEer sc-13f0991b-0 htOSZG bsewjB hJzjLp"
+      class="sc-bdvwhi sc-gsDMPd sc-13f0991b-0 iJhTiz fkRmVO krRTRz"
     >
       <div
-        class="sc-aXZVg sc-gEvEer jPvJsJ NeWQh"
+        class="sc-bdvwhi sc-gsDMPd hPWTKU euLVdi"
       >
         <div
-          class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+          class="sc-bdvwhi sc-gsDMPd hPWTKU cIPGhJ"
         >
           <h2
-            class="sc-eldPxv kicTwX"
+            class="sc-bkkgYE kaqcGl"
           >
             Our guiding principles
           </h2>
           <p
-            class="sc-ikkxIA kLQzFX"
+            class="sc-hGPAwl fdeVcn"
           >
             We have crafted a set of overarching principles that describe the features important to our curricula in all subjects.
           </p>
         </div>
         <div
-          class="sc-aXZVg sc-gEvEer uspvN iDBIXi"
+          class="sc-bdvwhi sc-gsDMPd dfcRJc Bakex"
         >
           <img
             alt=""
-            class="sc-ba397cd3-0 gJBvmX"
+            class="sc-ba397cd3-0 fTGOkP"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -40,29 +40,29 @@ exports[`GuidingPrinciples renders correctly 1`] = `
         </div>
       </div>
       <div
-        class="sc-aXZVg sc-gEvEer LlLMW hNVYGl"
+        class="sc-bdvwhi sc-gsDMPd BIHjj eUEpRK"
       >
         <div
-          class="sc-aXZVg dSuAiY"
+          class="sc-bdvwhi tXqkF"
           data-testid="curric-quote"
         >
           <div
-            class="sc-aXZVg sc-gEvEer gqYcxQ fYZZye"
+            class="sc-bdvwhi sc-gsDMPd eOJaet iUvfIx"
           >
             <div
-              class="sc-aXZVg sc-gEvEer jvSUxu fBjecQ"
+              class="sc-bdvwhi sc-gsDMPd kCtZtP iEFjEb"
               data-testid="decorative-bar"
             />
             <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+              class="sc-bdvwhi sc-gsDMPd hPWTKU cIPGhJ"
             >
               <h3
-                class="sc-eldPxv csMcwD"
+                class="sc-bkkgYE lnhCBR"
               >
                 Principle 1
               </h3>
               <p
-                class="sc-ikkxIA jUPyul"
+                class="sc-hGPAwl byMhet"
               >
                 Description 1
               </p>
@@ -70,26 +70,26 @@ exports[`GuidingPrinciples renders correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-aXZVg dSuAiY"
+          class="sc-bdvwhi tXqkF"
           data-testid="curric-quote"
         >
           <div
-            class="sc-aXZVg sc-gEvEer gqYcxQ fYZZye"
+            class="sc-bdvwhi sc-gsDMPd eOJaet iUvfIx"
           >
             <div
-              class="sc-aXZVg sc-gEvEer jvSUxu fBjecQ"
+              class="sc-bdvwhi sc-gsDMPd kCtZtP iEFjEb"
               data-testid="decorative-bar"
             />
             <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+              class="sc-bdvwhi sc-gsDMPd hPWTKU cIPGhJ"
             >
               <h3
-                class="sc-eldPxv csMcwD"
+                class="sc-bkkgYE lnhCBR"
               >
                 Principle 2
               </h3>
               <p
-                class="sc-ikkxIA jUPyul"
+                class="sc-hGPAwl byMhet"
               >
                 Description 2
               </p>
@@ -97,26 +97,26 @@ exports[`GuidingPrinciples renders correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-aXZVg dSuAiY"
+          class="sc-bdvwhi tXqkF"
           data-testid="curric-quote"
         >
           <div
-            class="sc-aXZVg sc-gEvEer gqYcxQ fYZZye"
+            class="sc-bdvwhi sc-gsDMPd eOJaet iUvfIx"
           >
             <div
-              class="sc-aXZVg sc-gEvEer jvSUxu fBjecQ"
+              class="sc-bdvwhi sc-gsDMPd kCtZtP iEFjEb"
               data-testid="decorative-bar"
             />
             <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+              class="sc-bdvwhi sc-gsDMPd hPWTKU cIPGhJ"
             >
               <h3
-                class="sc-eldPxv csMcwD"
+                class="sc-bkkgYE lnhCBR"
               >
                 Principle 3
               </h3>
               <p
-                class="sc-ikkxIA jUPyul"
+                class="sc-hGPAwl byMhet"
               >
                 Description 3
               </p>

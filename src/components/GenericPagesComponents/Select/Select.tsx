@@ -27,9 +27,9 @@ import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxB
 export { Item } from "react-stately";
 
 export const DropdownFocusUnderline = styled(InputFocusUnderline)<{
-  isFocusVisible: boolean;
+  $isFocusVisible: boolean;
 }>`
-  display: ${(props) => (props.isFocusVisible ? "inline" : "none")};
+  display: ${(props) => (props.$isFocusVisible ? "inline" : "none")};
 `;
 
 export type SelectItem = {
@@ -58,9 +58,9 @@ const SelectContainer = styled(OakFlex)`
 `;
 
 interface SelectButtonProps {
-  isOpen?: boolean;
-  isFocusVisible?: boolean;
-  isPlaceholder?: boolean;
+  $isOpen?: boolean;
+  $isFocusVisible?: boolean;
+  $isPlaceholder?: boolean;
 }
 
 const selectButtonStyles = css<SelectButtonProps>`
@@ -78,7 +78,7 @@ const selectButtonStyles = css<SelectButtonProps>`
   border: none;
   outline: none;
   ${(props) =>
-    props.isPlaceholder &&
+    props.$isPlaceholder &&
     css`
       font-size: 14px;
       color: ${getColorByLocation(
@@ -140,9 +140,9 @@ export function Select<
       $background="bg-primary"
       {...containerProps}
     >
-      <BoxBorders gapPosition="rightTop" hideBottom={state.isOpen} />
+      <BoxBorders $gapPosition="rightTop" hideBottom={state.isOpen} />
       <DropdownFocusUnderline
-        isFocusVisible={isFocusVisible}
+        $isFocusVisible={isFocusVisible}
         aria-hidden="true"
         name={"underline-1"}
         $font={"body-3"}
@@ -164,9 +164,9 @@ export function Select<
           aria-describedby={props["aria-describedby"]}
           aria-invalid={props["aria-invalid"]}
           ref={ref}
-          isOpen={state.isOpen}
-          isFocusVisible={isFocusVisible}
-          isPlaceholder={!state.selectedItem}
+          $isOpen={state.isOpen}
+          $isFocusVisible={isFocusVisible}
+          $isPlaceholder={!state.selectedItem}
           id={buttonId}
         >
           <SelectInner $pt={"spacing-8"} $alignItems={"center"}>

@@ -241,7 +241,7 @@ const GuidanceConversationCard = ({
 }) => (
   <ConversationCardFocus
     $background="bg-primary"
-    hoverBackground="bg-btn-secondary-hover"
+    $hoverBackground="bg-btn-secondary-hover"
     $borderRadius="border-radius-m2"
   >
     <ConversationCardLink as="a" href={card.videoUrl} $flexDirection="column">
@@ -381,7 +381,7 @@ const GuidanceBlogPostCard = ({
   return (
     <ConversationCardFocus
       $background="bg-primary"
-      hoverBackground="bg-btn-secondary-hover"
+      $hoverBackground="bg-btn-secondary-hover"
       $borderRadius="border-radius-m2"
     >
       <ConversationCardLink as="div" $flexDirection="column">

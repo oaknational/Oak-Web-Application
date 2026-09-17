@@ -50,18 +50,18 @@ const TruncatedFlex = styled(OakFlex)`
 `;
 
 const OakFocusIndicatorAlt = styled(OakFocusIndicator)<{
-  assertFocus: boolean;
+  $assertFocus: boolean;
 }>`
   box-shadow: ${(props) =>
-    props.assertFocus ? `rgb(87, 87, 87) 0px 0px 0px 0.125rem` : "none"};
-  z-index: ${(props) => (props.assertFocus ? "2" : "")};
+    props.$assertFocus ? `rgb(87, 87, 87) 0px 0px 0px 0.125rem` : "none"};
+  z-index: ${(props) => (props.$assertFocus ? "2" : "")};
 
   /*
    * Don't show a ring around the view button, because the user can't interact with it
    */
   &:has([data-testid="lot-picker-view-curriculum-button"]:focus-visible) {
     box-shadow: ${(props) =>
-      props.assertFocus ? `rgb(87, 87, 87) 0px 0px 0px 0.125rem` : "none"};
+      props.$assertFocus ? `rgb(87, 87, 87) 0px 0px 0px 0.125rem` : "none"};
   }
 `;
 
@@ -1529,9 +1529,9 @@ const SubjectPhasePicker = ({
               style={{ width: "50%" }}
             >
               <OakFocusIndicatorAlt
-                dropShadow="drop-shadow-centered-grey"
-                assertFocus={showSubjects}
-                activeDropShadow="drop-shadow-none"
+                $dropShadow="drop-shadow-centered-grey"
+                $assertFocus={showSubjects}
+                $activeDropShadow="drop-shadow-none"
                 $width="100%"
                 $bblr={["border-radius-square", "border-radius-s"]}
                 $bbrr={["border-radius-square", "border-radius-s"]}
@@ -1600,9 +1600,9 @@ const SubjectPhasePicker = ({
                 $background={showPhases ? "bg-primary" : null}
               >
                 <OakFocusIndicatorAlt
-                  dropShadow="drop-shadow-centered-grey"
-                  assertFocus={showPhases}
-                  activeDropShadow="drop-shadow-none"
+                  $dropShadow="drop-shadow-centered-grey"
+                  $assertFocus={showPhases}
+                  $activeDropShadow="drop-shadow-none"
                   $width="100%"
                   $bblr={["border-radius-square", "border-radius-s"]}
                   $bbrr={["border-radius-square", "border-radius-s"]}
