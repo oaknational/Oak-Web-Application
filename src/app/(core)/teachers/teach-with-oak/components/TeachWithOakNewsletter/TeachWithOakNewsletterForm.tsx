@@ -1,28 +1,15 @@
 "use client";
 
-import { z } from "zod";
 import { OakBox, OakFlex, OakLink, OakP } from "@oaknational/oak-components";
 
-import { createEmailSchema } from "@/common-lib/forms/emailSchema";
-import { USER_ROLES } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
 import { resolveOakHref } from "@/common-lib/urls";
-import NewsletterForm from "@/components/GenericPagesComponents/NewsletterForm";
+import NewsletterForm, {
+  NewsletterFormProps,
+} from "@/components/GenericPagesComponents/NewsletterForm";
 
-const _schema = z.object({
-  name: z
-    .string()
-    .min(1, "Enter a name")
-    .max(60, "Name must contain fewer than 60 characters"),
-  email: createEmailSchema({
-    emptyField: "Enter an email",
-    invalidField: "Enter a valid email",
-  }),
-  userRole: z.union([z.enum(USER_ROLES), z.literal("")]),
-});
-
-type FormValues = z.infer<typeof _schema>;
+type FormValues = Parameters<NewsletterFormProps["onSubmit"]>[0];
 
 type TeachWithOakNewsletterFormProps = {
   id: string;
