@@ -14,23 +14,22 @@ import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnal
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import CMSClient from "@/node-lib/cms";
-import { OaksImpactCaseStudyListPage } from "@/common-lib/cms-types/aboutPages";
+import { CaseStudyLibraryPage } from "@/common-lib/cms-types/aboutPages";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { resolveOakHref } from "@/common-lib/urls";
 import { AboutSharedHeader } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 
-export type AboutUsCaseStudyListPageProps = {
+export type AboutUsCaseStudyLibraryPageProps = {
   pageData: {
-    caseStudies: OaksImpactCaseStudyListPage;
+    caseStudies: CaseStudyLibraryPage;
   };
   topNav: TopNavProps;
 };
 
-export const AboutUsCaseStudyList: NextPage<AboutUsCaseStudyListPageProps> = ({
-  pageData: { caseStudies },
-  topNav,
-}) => {
+export const AboutUsCaseStudyLibrary: NextPage<
+  AboutUsCaseStudyLibraryPageProps
+> = ({ pageData: { caseStudies }, topNav }) => {
   const items = caseStudies.map((caseStudy) => ({
     heading: caseStudy.video.title,
     href: resolveOakHref({
@@ -102,7 +101,7 @@ export const AboutUsCaseStudyList: NextPage<AboutUsCaseStudyListPageProps> = ({
 };
 
 export const getServerSideProps: GetServerSideProps<
-  AboutUsCaseStudyListPageProps
+  AboutUsCaseStudyLibraryPageProps
 > = async (context) => {
   const isEnabled = await isFeatureFlagEnabledServer(
     context.req.cookies,
@@ -113,13 +112,13 @@ export const getServerSideProps: GetServerSideProps<
   }
 
   const isPreviewMode = context.preview === true;
-  const oaksImpactCaseStudyPage = await CMSClient.oaksImpactCaseStudyListPage({
+  const caseStudyLibraryPage = await CMSClient.caseStudyLibraryPage({
     previewMode: isPreviewMode,
   });
 
   const topNav = await curriculumApi2023.topNav();
 
-  if (!oaksImpactCaseStudyPage) {
+  if (!caseStudyLibraryPage) {
     return {
       notFound: true,
     };
@@ -128,11 +127,11 @@ export const getServerSideProps: GetServerSideProps<
   return {
     props: {
       pageData: {
-        caseStudies: oaksImpactCaseStudyPage,
+        caseStudies: caseStudyLibraryPage,
       },
       topNav,
     },
   };
 };
 
-export default AboutUsCaseStudyList;
+export default AboutUsCaseStudyLibrary;

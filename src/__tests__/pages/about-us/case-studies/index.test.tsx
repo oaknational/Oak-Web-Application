@@ -3,8 +3,8 @@ import slugify from "slugify";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
-import OaksCaseStudyList, {
-  AboutUsCaseStudyListPageProps,
+import CaseStudyLibraryPage, {
+  AboutUsCaseStudyLibraryPageProps,
   getServerSideProps,
 } from "@/pages/about-us/case-studies/index";
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
@@ -43,7 +43,7 @@ function fixtureCaseStudy(title: string) {
   };
 }
 
-const mockPageData: AboutUsCaseStudyListPageProps["pageData"] = {
+const mockPageData: AboutUsCaseStudyLibraryPageProps["pageData"] = {
   caseStudies: [
     fixtureCaseStudy(`Test 1`),
     fixtureCaseStudy(`Test 2`),
@@ -55,14 +55,14 @@ describe("pages/about-us/case-studies/index.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
-    mockCMSClient.oaksImpactCaseStudyListPage.mockResolvedValue(
+    mockCMSClient.caseStudyLibraryPage.mockResolvedValue(
       mockPageData.caseStudies,
     );
   });
 
   it("renders content", async () => {
     const { container } = renderWithProviders()(
-      <OaksCaseStudyList topNav={topNavFixture} pageData={mockPageData} />,
+      <CaseStudyLibraryPage topNav={topNavFixture} pageData={mockPageData} />,
     );
 
     expect(container).toHaveTextContent("Test 1");
