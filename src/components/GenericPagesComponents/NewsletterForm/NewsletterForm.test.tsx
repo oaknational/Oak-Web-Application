@@ -47,6 +47,14 @@ describe("NewsletterForm", () => {
       userRole: "Student",
     });
   });
+  test("role select has an accessible name", () => {
+    render(<NewsletterForm id="1" onSubmit={onSubmit} />);
+
+    const roleSelect = document.getElementById(
+      "1-newsletter-signup-userrole",
+    ) as HTMLSelectElement;
+    expect(roleSelect).toBeInTheDocument();
+  });
   test("should display error hint on submit if no name is entered", async () => {
     const { getByPlaceholderText, getByRole } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
