@@ -776,9 +776,9 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 
 .c210 {
   width: 100%;
-  max-width: 30rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  max-width: 80rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
   padding-top: 1rem;
   margin: auto;
   margin-left: auto;
@@ -786,23 +786,23 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c213 {
+.c214 {
   margin-top: 2rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c218 {
+.c219 {
   margin-top: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c219 {
+.c220 {
   padding-left: 0.25rem;
-  display: inline-block;
+  display: inline;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c223 {
+.c224 {
   position: relative;
   width: 10rem;
   height: 4rem;
@@ -811,7 +811,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c224 {
+.c225 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -819,7 +819,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c228 {
+.c229 {
   position: relative;
   width: 2rem;
   min-width: 2rem;
@@ -830,7 +830,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c229 {
+.c230 {
   position: absolute;
   top: 0rem;
   width: 100%;
@@ -841,7 +841,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c231 {
+.c232 {
   width: 100%;
   padding-top: 0.75rem;
   margin-top: 2rem;
@@ -849,12 +849,12 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c233 {
+.c234 {
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c237 {
+.c238 {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -872,25 +872,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   z-index: -1;
 }
 
-.c239 {
-  position: absolute;
-  top: 0rem;
-  right: 0rem;
-  bottom: 0rem;
-  left: 0rem;
-  width: 100%;
-  min-width: 100%;
-  height: 100%;
-  min-height: 100%;
-  display: block;
-  -webkit-transform: translate(0%,32%);
-  -ms-transform: translate(0%,32%);
-  transform: translate(0%,32%);
-  font-family: --var(google-font),Lexend,sans-serif;
-  z-index: -1;
-}
-
-.c241 {
+.c240 {
   position: fixed;
   right: 0rem;
   width: 100%;
@@ -900,7 +882,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   z-index: 300;
 }
 
-.c244 {
+.c243 {
   position: -webkit-sticky;
   position: sticky;
   bottom: 0rem;
@@ -908,7 +890,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   z-index: 299;
 }
 
-.c245 {
+.c244 {
   color: #222222;
   background: #f2f2f2;
   border-top: 0.063rem solid;
@@ -916,13 +898,13 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c246 {
+.c245 {
   margin-left: auto;
   margin-right: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c247 {
+.c246 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   margin-left: 1rem;
@@ -930,7 +912,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c249 {
+.c248 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -941,7 +923,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c252 {
+.c251 {
   font-family: --var(google-font),Lexend,sans-serif;
   white-space: nowrap;
 }
@@ -1520,7 +1502,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   flex-grow: 1;
 }
 
-.c222 {
+.c223 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1531,7 +1513,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   justify-content: left;
 }
 
-.c225 {
+.c226 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1547,7 +1529,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c232 {
+.c233 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1565,7 +1547,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   justify-content: flex-start;
 }
 
-.c234 {
+.c235 {
   display: none;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -1578,7 +1560,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c242 {
+.c241 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1593,7 +1575,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   gap: 0.75rem;
 }
 
-.c248 {
+.c247 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1608,7 +1590,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   gap: 1.5rem;
 }
 
-.c251 {
+.c250 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1701,7 +1683,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c250 {
+.c249 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
@@ -2013,15 +1995,9 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   object-fit: contain;
 }
 
-.c238 {
+.c239 {
   -webkit-filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
-  object-fit: fill;
-}
-
-.c240 {
-  -webkit-filter: brightness(0) saturate(100%) invert(95%) sepia(3%) saturate(1596%) hue-rotate(279deg) brightness(95%) contrast(87%);
-  filter: brightness(0) saturate(100%) invert(95%) sepia(3%) saturate(1596%) hue-rotate(279deg) brightness(95%) contrast(87%);
   object-fit: fill;
 }
 
@@ -2279,27 +2255,27 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   background: #222222;
 }
 
-.c226 > :first-child:focus-visible .shadow {
+.c227 > :first-child:focus-visible .shadow {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c226 > :first-child:hover .shadow {
+.c227 > :first-child:hover .shadow {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
 }
 
-.c226 > :first-child:active .shadow {
+.c227 > :first-child:active .shadow {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%), 0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
-.c226 > :first-child:disabled .icon-container {
+.c227 > :first-child:disabled .icon-container {
   background: #e4e4e4;
 }
 
-.c226 > :first-child:hover .icon-container {
+.c227 > :first-child:hover .icon-container {
   background: #ffffff;
 }
 
-.c226 > :first-child:active .icon-container {
+.c227 > :first-child:active .icon-container {
   background: #ffffff;
 }
 
@@ -2394,7 +2370,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c214 {
+.c215 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -2431,7 +2407,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   display: revert;
 }
 
-.c216 {
+.c217 {
   margin-top: 0.75rem;
   display: revert;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -2542,7 +2518,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   margin-top: 0rem;
 }
 
-.c235 {
+.c236 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
@@ -2553,7 +2529,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c236 {
+.c237 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.75rem;
@@ -2564,7 +2540,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c215 {
+.c216 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -2596,7 +2572,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   gap: 0.75rem;
 }
 
-.c221 {
+.c222 {
   width: 1.25em;
   min-width: 1.25em;
   height: 1.25em;
@@ -2605,6 +2581,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 
 .c24 {
   display: inline;
+  text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2627,7 +2604,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c24 .c220 {
+.c24 .c221 {
   -webkit-filter: invert(21%) sepia(90%) saturate(3220%) hue-rotate(232deg) brightness(71%) contrast(127%);
   filter: invert(21%) sepia(90%) saturate(3220%) hue-rotate(232deg) brightness(71%) contrast(127%);
   display: inline-block;
@@ -2642,7 +2619,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   color: #081676;
 }
 
-.c24:visited .c220 {
+.c24:visited .c221 {
   -webkit-filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
@@ -2652,7 +2629,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   outline: 1px solid #081676;
 }
 
-.c24:active .c220 {
+.c24:active .c221 {
   -webkit-filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
@@ -2662,13 +2639,14 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   color: #808080;
 }
 
-.c24[disabled] .c220 {
+.c24[disabled] .c221 {
   -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c217 {
+.c218 {
   display: inline;
+  text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2691,48 +2669,49 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c217 .c220 {
+.c218 .c221 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   display: inline-block;
   vertical-align: text-top;
 }
 
-.c217:focus-visible {
+.c218:focus-visible {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c217:visited {
+.c218:visited {
   color: #222222;
 }
 
-.c217:visited .c220 {
+.c218:visited .c221 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c217:active {
+.c218:active {
   color: #222222;
   outline: 1px solid #222222;
 }
 
-.c217:active .c220 {
+.c218:active .c221 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c217[disabled] {
+.c218[disabled] {
   cursor: not-allowed;
   color: #808080;
 }
 
-.c217[disabled] .c220 {
+.c218[disabled] .c221 {
   -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c253 {
+.c252 {
   display: inline;
+  text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2764,42 +2743,42 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c253 .c220 {
+.c252 .c221 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   display: inline-block;
   vertical-align: text-top;
 }
 
-.c253:focus-visible {
+.c252:focus-visible {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c253:visited {
+.c252:visited {
   color: #222222;
 }
 
-.c253:visited .c220 {
+.c252:visited .c221 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c253:active {
+.c252:active {
   color: #222222;
   outline: 1px solid #222222;
 }
 
-.c253:active .c220 {
+.c252:active .c221 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c253[disabled] {
+.c252[disabled] {
   cursor: not-allowed;
   color: #808080;
 }
 
-.c253[disabled] .c220 {
+.c252[disabled] .c221 {
   -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
@@ -2944,6 +2923,14 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   width: 100%;
 }
 
+.c212 {
+  display: grid;
+  grid-template-columns: repeat(12,1fr);
+  width: 100%;
+  -webkit-column-gap: 1.5rem;
+  column-gap: 1.5rem;
+}
+
 .c150 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
@@ -2972,7 +2959,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   grid-row: span 1;
 }
 
-.c212 {
+.c213 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -3202,15 +3189,15 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c243 {
+.c242 {
   top: 152px;
 }
 
-.c227 .icon-container > *:first-child {
+.c228 .icon-container > *:first-child {
   border: 0;
 }
 
-.c230 {
+.c231 {
   height: 87px;
   width: 77px;
   margin-top: 2rem;
@@ -3649,7 +3636,25 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 
 @media (min-width:750px) {
   .c210 {
-    max-width: 80rem;
+    padding-left: 2.5rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c210 {
+    padding-left: 2.5rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c210 {
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c210 {
+    padding-right: 2.5rem;
   }
 }
 
@@ -3660,31 +3665,31 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c213 {
+  .c214 {
     margin-top: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c218 {
+  .c219 {
     margin-top: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c224 {
+  .c225 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c231 {
+  .c232 {
     padding-top: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c233 {
+  .c234 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -3693,13 +3698,13 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c237 {
+  .c238 {
     display: block;
   }
 }
 
 @media (min-width:750px) {
-  .c237 {
+  .c238 {
     -webkit-transform: translate(25%,25%) scale(0.7) rotate(-10deg);
     -ms-transform: translate(25%,25%) scale(0.7) rotate(-10deg);
     transform: translate(25%,25%) scale(0.7) rotate(-10deg);
@@ -3707,7 +3712,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c237 {
+  .c238 {
     -webkit-transform: translate(25%,15%) rotate(-10deg);
     -ms-transform: translate(25%,15%) rotate(-10deg);
     transform: translate(25%,15%) rotate(-10deg);
@@ -3715,19 +3720,13 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c239 {
-    display: none;
-  }
-}
-
-@media (min-width:750px) {
-  .c241 {
+  .c240 {
     right: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c241 {
+  .c240 {
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
@@ -3735,61 +3734,61 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c241 {
+  .c240 {
     padding-left: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c241 {
+  .c240 {
     padding-right: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c247 {
+  .c246 {
     margin-left: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c247 {
+  .c246 {
     margin-left: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c247 {
+  .c246 {
     margin-right: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c247 {
+  .c246 {
     margin-right: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c249 {
+  .c248 {
     font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
-  .c249 {
+  .c248 {
     font-size: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c249 {
+  .c248 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c249 {
+  .c248 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -3957,7 +3956,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c222 {
+  .c223 {
     -webkit-box-pack: right;
     -webkit-justify-content: right;
     -ms-flex-pack: right;
@@ -3966,13 +3965,13 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c225 {
+  .c226 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c232 {
+  .c233 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -3980,7 +3979,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c232 {
+  .c233 {
     -webkit-align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -3989,7 +3988,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c232 {
+  .c233 {
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
@@ -3998,7 +3997,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c234 {
+  .c235 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -4007,7 +4006,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c242 {
+  .c241 {
     -webkit-align-items: flex-end;
     -webkit-box-align: flex-end;
     -ms-flex-align: flex-end;
@@ -4016,7 +4015,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c248 {
+  .c247 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -4024,7 +4023,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c248 {
+  .c247 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -4032,7 +4031,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c248 {
+  .c247 {
     -webkit-align-items: flex-start;
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
@@ -4041,7 +4040,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c248 {
+  .c247 {
     -webkit-align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -4050,19 +4049,19 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c248 {
+  .c247 {
     gap: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c248 {
+  .c247 {
     gap: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c251 {
+  .c250 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -4070,7 +4069,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c251 {
+  .c250 {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -4078,7 +4077,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c251 {
+  .c250 {
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
@@ -4086,7 +4085,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c251 {
+  .c250 {
     gap: 2rem;
   }
 }
@@ -4146,25 +4145,25 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c250 {
+  .c249 {
     font-weight: 500;
   }
 }
 
 @media (min-width:750px) {
-  .c250 {
+  .c249 {
     font-size: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c250 {
+  .c249 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c250 {
+  .c249 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -4590,16 +4589,16 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
     text-decoration-thickness: 18%;
   }
 
-  .c24:hover .c220,
-  .c24:visited:hover .c220 {
+  .c24:hover .c221,
+  .c24:visited:hover .c221 {
     -webkit-filter: invert(16%) sepia(72%) saturate(7176%) hue-rotate(239deg) brightness(61%) contrast(109%);
     filter: invert(16%) sepia(72%) saturate(7176%) hue-rotate(239deg) brightness(61%) contrast(109%);
   }
 }
 
 @media (hover:hover) {
-  .c217:hover,
-  .c217:visited:hover {
+  .c218:hover,
+  .c218:visited:hover {
     color: #222222;
     -webkit-text-decoration: underline;
     text-decoration: underline;
@@ -4607,16 +4606,16 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
     text-decoration-thickness: 18%;
   }
 
-  .c217:hover .c220,
-  .c217:visited:hover .c220 {
+  .c218:hover .c221,
+  .c218:visited:hover .c221 {
     -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
     filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   }
 }
 
 @media (hover:hover) {
-  .c253:hover,
-  .c253:visited:hover {
+  .c252:hover,
+  .c252:visited:hover {
     color: #222222;
     -webkit-text-decoration: underline;
     text-decoration: underline;
@@ -4624,8 +4623,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
     text-decoration-thickness: 18%;
   }
 
-  .c253:hover .c220,
-  .c253:visited:hover .c220 {
+  .c252:hover .c221,
+  .c252:visited:hover .c221 {
     -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
     filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   }
@@ -4717,7 +4716,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c212 {
+  .c213 {
     grid-column: span 3;
   }
 }
@@ -5366,48 +5365,52 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
           class="c68"
         >
           <div
-            class="c69"
+            class="c9"
           >
             <div
-              class="c70 c71"
+              class="c69"
             >
               <div
-                class="c72 c73"
+                class="c70 c71"
               >
-                <h1
-                  class="c74"
+                <div
+                  class="c72 c73"
+                >
+                  <h1
+                    class="c74"
+                  >
+                    <span
+                      class="c75"
+                      style="line-height: 1.25; box-decoration-break: clone;"
+                    >
+                      Oak's curricula
+                    </span>
+                  </h1>
+                  <p
+                    class="c76"
+                  >
+                    Oak offers complete curriculum support for clarity and coherence in every national curriculum subject.
+                  </p>
+                </div>
+                <div
+                  class="c77 c78"
                 >
                   <span
-                    class="c75"
-                    style="line-height: 1.25; box-decoration-break: clone;"
+                    class="c79"
                   >
-                    Oak's curricula
+                    <img
+                      alt=""
+                      class="c27"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      sizes="100vw"
+                      src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=3840&q=75"
+                      srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=3840&q=75 3840w"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
                   </span>
-                </h1>
-                <p
-                  class="c76"
-                >
-                  Oak offers complete curriculum support for clarity and coherence in every national curriculum subject.
-                </p>
-              </div>
-              <div
-                class="c77 c78"
-              >
-                <span
-                  class="c79"
-                >
-                  <img
-                    alt=""
-                    class="c27"
-                    data-nimg="fill"
-                    decoding="async"
-                    loading="lazy"
-                    sizes="100vw"
-                    src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=3840&q=75"
-                    srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=3840&q=75 3840w"
-                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                  />
-                </span>
+                </div>
               </div>
             </div>
           </div>
@@ -6651,30 +6654,30 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
             class="c210 c211"
           >
             <div
-              class="c9 c175"
+              class="c9 c212"
             >
               <div
-                class="c9 c46 c212"
+                class="c9 c46 c213"
               >
                 <div
-                  class="c213 c97"
+                  class="c214 c97"
                 >
                   <h2
-                    class="c214"
+                    class="c215"
                   >
                     Pupils
                   </h2>
                   <div
-                    class="c134 c215"
+                    class="c134 c216"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/pupils/years"
                           variant="secondary"
                         >
@@ -6689,27 +6692,27 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c218"
+                  class="c219"
                 />
                 <div
-                  class="c213 c97"
+                  class="c214 c97"
                 >
                   <h2
-                    class="c214"
+                    class="c215"
                   >
                     Teachers
                   </h2>
                   <div
-                    class="c134 c215"
+                    class="c134 c216"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/teachers/eyfs/maths"
                           variant="secondary"
                         >
@@ -6721,10 +6724,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/lesson-planning"
                           variant="secondary"
                         >
@@ -6736,10 +6739,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="https://labs.thenational.academy"
                           target="_blank"
                           variant="secondary"
@@ -6750,10 +6753,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                             Aila, Oak’s AI lesson assistant
                           </span>
                           <div
-                            class="c219"
+                            class="c220"
                           >
                             <span
-                              class="c171 c220 c221"
+                              class="c171 c221 c222"
                             >
                               <img
                                 alt=""
@@ -6769,10 +6772,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/blog"
                           variant="secondary"
                         >
@@ -6788,27 +6791,27 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c212"
+                class="c9 c46 c213"
               >
                 <div
-                  class="c213 c97"
+                  class="c214 c97"
                 >
                   <h2
-                    class="c214"
+                    class="c215"
                   >
                     Oak
                   </h2>
                   <div
-                    class="c134 c215"
+                    class="c134 c216"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/"
                           variant="secondary"
                         >
@@ -6820,10 +6823,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/about-us/who-we-are"
                           variant="secondary"
                         >
@@ -6835,10 +6838,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/about-us/oaks-curricula"
                           variant="secondary"
                         >
@@ -6850,10 +6853,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/about-us/oaks-impact"
                           variant="secondary"
                         >
@@ -6865,10 +6868,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/about-us/get-involved"
                           variant="secondary"
                         >
@@ -6880,10 +6883,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/about-us/meet-the-team"
                           variant="secondary"
                         >
@@ -6895,11 +6898,11 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
                           aria-label="Careers (opens in a new tab)"
-                          class="c217"
+                          class="c218"
                           href="https://jobs.thenational.academy"
                           target="_blank"
                           variant="secondary"
@@ -6910,10 +6913,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                             Careers
                           </span>
                           <div
-                            class="c219"
+                            class="c220"
                           >
                             <span
-                              class="c171 c220 c221"
+                              class="c171 c221 c222"
                             >
                               <img
                                 alt=""
@@ -6929,10 +6932,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/contact-us"
                           variant="secondary"
                         >
@@ -6944,11 +6947,11 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
                           aria-label="Help (opens in a new tab)"
-                          class="c217"
+                          class="c218"
                           href="https://support.thenational.academy"
                           target="_blank"
                           variant="secondary"
@@ -6959,10 +6962,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                             Help
                           </span>
                           <div
-                            class="c219"
+                            class="c220"
                           >
                             <span
-                              class="c171 c220 c221"
+                              class="c171 c221 c222"
                             >
                               <img
                                 alt=""
@@ -6978,10 +6981,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/webinars"
                           variant="secondary"
                         >
@@ -6993,11 +6996,11 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
                           aria-label="Status (opens in a new tab)"
-                          class="c217"
+                          class="c218"
                           href="https://status.thenational.academy"
                           target="_blank"
                           variant="secondary"
@@ -7008,10 +7011,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                             Status
                           </span>
                           <div
-                            class="c219"
+                            class="c220"
                           >
                             <span
-                              class="c171 c220 c221"
+                              class="c171 c221 c222"
                             >
                               <img
                                 alt=""
@@ -7031,27 +7034,27 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c212"
+                class="c9 c46 c213"
               >
                 <div
-                  class="c213 c97"
+                  class="c214 c97"
                 >
                   <h2
-                    class="c214"
+                    class="c215"
                   >
                     Legal
                   </h2>
                   <div
-                    class="c134 c215"
+                    class="c134 c216"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/legal/terms-and-conditions"
                           variant="secondary"
                         >
@@ -7063,10 +7066,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/legal/privacy-policy"
                           variant="secondary"
                         >
@@ -7078,10 +7081,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/legal/cookie-policy"
                           variant="secondary"
                         >
@@ -7093,10 +7096,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <button
-                          class="c217"
+                          class="c218"
                         >
                           <span
                             class="c25"
@@ -7106,10 +7109,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </button>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/legal/copyright-notice"
                           variant="secondary"
                         >
@@ -7121,10 +7124,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/legal/accessibility-statement"
                           variant="secondary"
                         >
@@ -7136,10 +7139,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/legal/safeguarding-statement"
                           variant="secondary"
                         >
@@ -7151,10 +7154,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/legal/physical-activity-disclaimer"
                           variant="secondary"
                         >
@@ -7166,10 +7169,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/legal/complaints"
                           variant="secondary"
                         >
@@ -7181,10 +7184,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c216"
+                        class="c217"
                       >
                         <a
-                          class="c217"
+                          class="c218"
                           href="/legal/freedom-of-information-requests"
                           variant="secondary"
                         >
@@ -7200,16 +7203,16 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c212"
+                class="c9 c46 c213"
               >
                 <div
-                  class="c213 c222"
+                  class="c214 c223"
                 >
                   <div
                     class="c39"
                   >
                     <span
-                      class="c223"
+                      class="c224"
                     >
                       <img
                         alt=""
@@ -7223,10 +7226,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                     </span>
                   </div>
                   <div
-                    class="c224 c225"
+                    class="c225 c226"
                   >
                     <div
-                      class="c45 c46 c226 c227"
+                      class="c45 c46 c227 c228"
                     >
                       <a
                         aria-label="instagram for Oak National Academy"
@@ -7237,10 +7240,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c228 c52 icon-container"
+                            class="c229 c52 icon-container"
                           >
                             <div
-                              class="c229 shadow"
+                              class="c230 shadow"
                             />
                             <span
                               class="c20"
@@ -7264,7 +7267,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       </a>
                     </div>
                     <div
-                      class="c45 c46 c226 c227"
+                      class="c45 c46 c227 c228"
                     >
                       <a
                         aria-label="facebook for Oak National Academy"
@@ -7275,10 +7278,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c228 c52 icon-container"
+                            class="c229 c52 icon-container"
                           >
                             <div
-                              class="c229 shadow"
+                              class="c230 shadow"
                             />
                             <span
                               class="c20"
@@ -7302,7 +7305,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       </a>
                     </div>
                     <div
-                      class="c45 c46 c226 c227"
+                      class="c45 c46 c227 c228"
                     >
                       <a
                         aria-label="linkedIn for Oak National Academy"
@@ -7313,10 +7316,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c228 c52 icon-container"
+                            class="c229 c52 icon-container"
                           >
                             <div
-                              class="c229 shadow"
+                              class="c230 shadow"
                             />
                             <span
                               class="c20"
@@ -7344,7 +7347,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
               </div>
             </div>
             <span
-              class="c156 c230"
+              class="c156 c231"
               data-percy-hide="contents"
             >
               <img
@@ -7360,13 +7363,13 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
               />
             </span>
             <div
-              class="c231 c232"
+              class="c232 c233"
             >
               <div
-                class="c233 c234"
+                class="c234 c235"
               >
                 <div
-                  class="c45 c46 c226 c227"
+                  class="c45 c46 c227 c228"
                 >
                   <a
                     aria-label="instagram for Oak National Academy"
@@ -7377,10 +7380,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c228 c52 icon-container"
+                        class="c229 c52 icon-container"
                       >
                         <div
-                          class="c229 shadow"
+                          class="c230 shadow"
                         />
                         <span
                           class="c20"
@@ -7404,7 +7407,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                   </a>
                 </div>
                 <div
-                  class="c45 c46 c226 c227"
+                  class="c45 c46 c227 c228"
                 >
                   <a
                     aria-label="facebook for Oak National Academy"
@@ -7415,10 +7418,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c228 c52 icon-container"
+                        class="c229 c52 icon-container"
                       >
                         <div
-                          class="c229 shadow"
+                          class="c230 shadow"
                         />
                         <span
                           class="c20"
@@ -7442,7 +7445,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                   </a>
                 </div>
                 <div
-                  class="c45 c46 c226 c227"
+                  class="c45 c46 c227 c228"
                 >
                   <a
                     aria-label="linkedIn for Oak National Academy"
@@ -7453,10 +7456,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c228 c52 icon-container"
+                        class="c229 c52 icon-container"
                       >
                         <div
-                          class="c229 shadow"
+                          class="c230 shadow"
                         />
                         <span
                           class="c20"
@@ -7484,7 +7487,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                 class="c56"
               >
                 <span
-                  class="c223"
+                  class="c224"
                 >
                   <img
                     alt=""
@@ -7498,15 +7501,15 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                 </span>
               </div>
               <div
-                class="c213 c97"
+                class="c214 c97"
               >
                 <p
-                  class="c235"
+                  class="c236"
                 >
                   © Oak National Academy Limited, No 14174888
                 </p>
                 <p
-                  class="c236"
+                  class="c237"
                 >
                   1 Scott Place, 2 Hardman Street, Manchester, M3 3AA
                 </p>
@@ -7515,11 +7518,11 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
           </div>
         </nav>
         <span
-          class="c237"
+          class="c238"
         >
           <img
             alt=""
-            class="c238"
+            class="c239"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -7527,44 +7530,31 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
           />
         </span>
-        <span
-          class="c239"
-        >
-          <img
-            alt=""
-            class="c240"
-            data-nimg="fill"
-            decoding="async"
-            loading="lazy"
-            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734537039/OWA/ui-graphics/looping-line-4_xtjj4r.svg"
-            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-          />
-        </span>
       </footer>
     </div>
     <div
       aria-live="polite"
-      class="c241 c242 c243"
+      class="c240 c241 c242"
     />
   </div>
   <div
-    class="c244"
+    class="c243"
   >
     <div
-      class="c245"
+      class="c244"
       data-testid="cookie-banner"
     >
       <div
-        class="c246"
+        class="c245"
       >
         <div
-          class="c247 c248"
+          class="c246 c247"
         >
           <div
-            class="c249"
+            class="c248"
           >
             <strong
-              class="c250"
+              class="c249"
             >
               This site uses cookies to store information on your computer.
             </strong>
@@ -7572,13 +7562,13 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
             Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
           </div>
           <div
-            class="c9 c251"
+            class="c9 c250"
           >
             <div
-              class="c252 c41"
+              class="c251 c41"
             >
               <button
-                class="c253"
+                class="c252"
                 data-testid="cookie-banner-reject"
                 type="button"
               >
