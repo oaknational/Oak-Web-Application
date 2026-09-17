@@ -29,7 +29,7 @@ import { OaksImpactCaseStudies } from "@/components/GenericPagesComponents/OaksI
 import { resolveOakHref } from "@/common-lib/urls";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
-import { OaksImpactCaseStudyHeader } from "@/components/GenericPagesComponents/OaksImpactCaseStudyHeader";
+import { CaseStudyHeader } from "@/components/GenericPagesComponents/CaseStudyHeader";
 import { OaksImpactCaseStudyContentLayout } from "@/components/GenericPagesComponents/OaksImpactCaseStudyContentLayout";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
@@ -101,7 +101,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                     $colStart={[0, 0, 3]}
                     $colSpan={[12, 12, 8]}
                   >
-                    <OaksImpactCaseStudyHeader
+                    <CaseStudyHeader
                       title={caseStudy.video.title}
                       publishedDate={format(
                         new Date(caseStudy.publishedAt),
