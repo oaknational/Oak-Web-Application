@@ -43,7 +43,7 @@ describe("TeachWithOakPromoSection", () => {
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute(
       "href",
-      "/teachers/teach-with-oak?returnTo=%2Ftest%2Furl",
+      "/teachers/teach-with-oak?returnTo=%2Ftest%2Furl&lessonName=Lesson+Name&unitName=Unit+Name",
     );
   });
 });

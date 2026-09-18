@@ -69,7 +69,7 @@ describe("MaybeTeachWithOakCard", () => {
 
       expect(screen.getByRole("link")).toHaveAttribute(
         "href",
-        `/teachers/teach-with-oak?returnTo=${encodeURIComponent(returnTo)}`,
+        `/teachers/teach-with-oak?returnTo=${encodeURIComponent(returnTo)}&lessonName=Lesson+Name&unitName=Unit+Name`,
       );
     });
   });

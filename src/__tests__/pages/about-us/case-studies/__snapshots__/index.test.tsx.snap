@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
+exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
 <div>
   <div
     data-overlay-container="true"
@@ -177,7 +177,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
         >
           <a
             aria-label="Home"
-            class="sc-fHjqPf bwIJQB"
+            class="sc-fHjqPf fYLNyU"
             href="/"
           >
             <span
@@ -504,7 +504,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
               </div>
               <a
                 aria-label="My library"
-                class="sc-dcJsrY sc-dGCmGc fIyhTG kNXJqf"
+                class="sc-dcJsrY sc-jOnpCo fIyhTG jkRXcZ"
                 href="/teachers/my-library"
               >
                 <div
@@ -603,7 +603,204 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
         class="sc-aXZVg sc-gEvEer bwVgbu fUxOFh"
         id="main"
       >
-        TODO: Case Study list page
+        <div
+          class="sc-aXZVg iebDQK"
+        >
+          <div
+            class="sc-aXZVg diJnZN"
+          >
+            <div
+              class="sc-aXZVg bZTQLO"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer gHbcIj cqAYHx"
+              >
+                <div
+                  class="sc-aXZVg sc-gEvEer kJbZjn hNxFkS"
+                >
+                  <h1
+                    class="sc-eldPxv kSQYKV"
+                  >
+                    <span
+                      class="sc-eqUAAy AfXps"
+                      style="line-height: 1.25; box-decoration-break: clone;"
+                    >
+                      Case studies
+                    </span>
+                  </h1>
+                  <p
+                    class="sc-ikkxIA fPezaI"
+                  >
+                    Explore how schools and trusts are using Oak to tackle their biggest challenges
+                  </p>
+                </div>
+                <div
+                  class="sc-aXZVg sc-dd122c9c-0 QBMYh dswlVp"
+                >
+                  <span
+                    class="sc-aXZVg kSyyew"
+                  >
+                    <img
+                      alt=""
+                      class="sc-iGgWBj dZvqhO"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      sizes="100vw"
+                      src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=3840&q=75"
+                      srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=3840&q=75 3840w"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-aXZVg bZTQLO"
+          >
+            <div
+              class="sc-aXZVg sc-gEvEer guaSoh jIBBQP"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer epcFtP fVNIMq"
+              >
+                <div
+                  class="sc-aXZVg sc-jGKxIK eIUCsj efAcwU"
+                >
+                  <a
+                    class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi bFbzWL"
+                    href="/about-us/case-studies/Test-1"
+                  >
+                    <div
+                      class="sc-aXZVg gZoCWt"
+                    >
+                      <span
+                        class="sc-aXZVg kvjdhA sc-kYxDKI ZupGI"
+                      >
+                        <img
+                          alt=""
+                          class="sc-iGgWBj dZvqhO"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          sizes="100vw"
+                          src="http://localhost/_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=3840&q=75"
+                          srcset="/_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=3840&q=75 3840w"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </span>
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer sc-iHmpnF jPvJsJ jFNgPm"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                      >
+                        <h3
+                          class="sc-eldPxv ibGcSM"
+                        >
+                          Test 1
+                        </h3>
+                      </div>
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                      />
+                    </div>
+                  </a>
+                </div>
+                <div
+                  class="sc-aXZVg sc-jGKxIK eIUCsj efAcwU"
+                >
+                  <a
+                    class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi bFbzWL"
+                    href="/about-us/case-studies/Test-2"
+                  >
+                    <div
+                      class="sc-aXZVg gZoCWt"
+                    >
+                      <span
+                        class="sc-aXZVg kvjdhA sc-kYxDKI ZupGI"
+                      >
+                        <img
+                          alt=""
+                          class="sc-iGgWBj dZvqhO"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          sizes="100vw"
+                          src="http://localhost/_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=3840&q=75"
+                          srcset="/_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=3840&q=75 3840w"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </span>
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer sc-iHmpnF jPvJsJ jFNgPm"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                      >
+                        <h3
+                          class="sc-eldPxv ibGcSM"
+                        >
+                          Test 2
+                        </h3>
+                      </div>
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                      />
+                    </div>
+                  </a>
+                </div>
+                <div
+                  class="sc-aXZVg sc-jGKxIK eIUCsj efAcwU"
+                >
+                  <a
+                    class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi bFbzWL"
+                    href="/about-us/case-studies/Test-3"
+                  >
+                    <div
+                      class="sc-aXZVg gZoCWt"
+                    >
+                      <span
+                        class="sc-aXZVg kvjdhA sc-kYxDKI ZupGI"
+                      >
+                        <img
+                          alt=""
+                          class="sc-iGgWBj dZvqhO"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          sizes="100vw"
+                          src="http://localhost/_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=3840&q=75"
+                          srcset="/_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=3840&q=75 3840w"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </span>
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer sc-iHmpnF jPvJsJ jFNgPm"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                      >
+                        <h3
+                          class="sc-eldPxv ibGcSM"
+                        >
+                          Test 3
+                        </h3>
+                      </div>
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                      />
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
       <footer
         class="sc-aXZVg gSjcjC"
@@ -636,10 +833,10 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
           id="site-footer"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-brPLxw leSQlB iqPJZh"
+            class="sc-aXZVg sc-gEvEer sc-cmaqmh eVqnXU iqPJZh"
           >
             <div
-              class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
+              class="sc-aXZVg sc-tagGq jPvJsJ doDwBx"
             >
               <div
                 class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi kyzhPb"
@@ -662,7 +859,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/pupils/years"
                           variant="secondary"
                         >
@@ -697,7 +894,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/teachers/eyfs/maths"
                           variant="secondary"
                         >
@@ -712,7 +909,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/lesson-planning"
                           variant="secondary"
                         >
@@ -727,7 +924,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="https://labs.thenational.academy"
                           target="_blank"
                           variant="secondary"
@@ -738,7 +935,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                             Aila, Oak’s AI lesson assistant
                           </span>
                           <div
-                            class="sc-aXZVg zBzRC"
+                            class="sc-aXZVg cbnANG"
                           >
                             <span
                               class="sc-aXZVg fjkwRj sc-fUnMCh esqnRZ"
@@ -760,7 +957,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/blog"
                           variant="secondary"
                         >
@@ -796,7 +993,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/"
                           variant="secondary"
                         >
@@ -811,7 +1008,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/about-us/who-we-are"
                           variant="secondary"
                         >
@@ -826,7 +1023,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/about-us/oaks-curricula"
                           variant="secondary"
                         >
@@ -841,7 +1038,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/about-us/oaks-impact"
                           variant="secondary"
                         >
@@ -856,7 +1053,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/about-us/get-involved"
                           variant="secondary"
                         >
@@ -871,7 +1068,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/about-us/meet-the-team"
                           variant="secondary"
                         >
@@ -887,7 +1084,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                       >
                         <a
                           aria-label="Careers (opens in a new tab)"
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="https://jobs.thenational.academy"
                           target="_blank"
                           variant="secondary"
@@ -898,7 +1095,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                             Careers
                           </span>
                           <div
-                            class="sc-aXZVg zBzRC"
+                            class="sc-aXZVg cbnANG"
                           >
                             <span
                               class="sc-aXZVg fjkwRj sc-fUnMCh esqnRZ"
@@ -920,7 +1117,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/contact-us"
                           variant="secondary"
                         >
@@ -936,7 +1133,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                       >
                         <a
                           aria-label="Help (opens in a new tab)"
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="https://support.thenational.academy"
                           target="_blank"
                           variant="secondary"
@@ -947,7 +1144,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                             Help
                           </span>
                           <div
-                            class="sc-aXZVg zBzRC"
+                            class="sc-aXZVg cbnANG"
                           >
                             <span
                               class="sc-aXZVg fjkwRj sc-fUnMCh esqnRZ"
@@ -969,7 +1166,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/webinars"
                           variant="secondary"
                         >
@@ -985,7 +1182,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                       >
                         <a
                           aria-label="Status (opens in a new tab)"
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="https://status.thenational.academy"
                           target="_blank"
                           variant="secondary"
@@ -996,7 +1193,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                             Status
                           </span>
                           <div
-                            class="sc-aXZVg zBzRC"
+                            class="sc-aXZVg cbnANG"
                           >
                             <span
                               class="sc-aXZVg fjkwRj sc-fUnMCh esqnRZ"
@@ -1039,7 +1236,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/legal/terms-and-conditions"
                           variant="secondary"
                         >
@@ -1054,7 +1251,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/legal/privacy-policy"
                           variant="secondary"
                         >
@@ -1069,7 +1266,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/legal/cookie-policy"
                           variant="secondary"
                         >
@@ -1084,7 +1281,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <button
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1097,7 +1294,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/legal/copyright-notice"
                           variant="secondary"
                         >
@@ -1112,7 +1309,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/legal/accessibility-statement"
                           variant="secondary"
                         >
@@ -1127,7 +1324,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/legal/safeguarding-statement"
                           variant="secondary"
                         >
@@ -1142,7 +1339,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/legal/physical-activity-disclaimer"
                           variant="secondary"
                         >
@@ -1157,7 +1354,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/legal/complaints"
                           variant="secondary"
                         >
@@ -1172,7 +1369,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf kEMwfg"
                           href="/legal/freedom-of-information-requests"
                           variant="secondary"
                         >
@@ -1332,7 +1529,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
               </div>
             </div>
             <span
-              class="sc-aXZVg kvjdhA sc-47b54219-0 hJhbMg"
+              class="sc-aXZVg kvjdhA sc-9e5378a8-0 gLpQrK"
               data-percy-hide="contents"
             >
               <img
@@ -1515,19 +1712,6 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
           />
         </span>
-        <span
-          class="sc-aXZVg dtaJPf"
-        >
-          <img
-            alt=""
-            class="sc-iGgWBj Ozuza"
-            data-nimg="fill"
-            decoding="async"
-            loading="lazy"
-            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734537039/OWA/ui-graphics/looping-line-4_xtjj4r.svg"
-            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-          />
-        </span>
       </footer>
     </div>
     <div
@@ -1566,7 +1750,7 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
               class="sc-aXZVg sc-gEvEer eapQdf uEMma"
             >
               <button
-                class="sc-fHjqPf kaaNKh"
+                class="sc-fHjqPf fFAulo"
                 data-testid="cookie-banner-reject"
                 type="button"
               >
