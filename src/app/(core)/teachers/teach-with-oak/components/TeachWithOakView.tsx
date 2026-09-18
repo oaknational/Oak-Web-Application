@@ -10,14 +10,10 @@ import {
   WhoAreWeExplore,
 } from "@/components/GenericPagesComponents/WhoAreWeExplore";
 
-export const TeachWithOakView = ({
-  backToLessonLink,
-}: {
-  backToLessonLink?: string;
-}) => {
+export const TeachWithOakView = () => {
   return (
     <>
-      <TeachWithOakHeader href={backToLessonLink} />
+      <TeachWithOakHeader />
       <TeachWithOakDescription />
       <ShortReads />
       <WhoAreWeExplore

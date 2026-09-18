@@ -8,12 +8,17 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
+import { useReturnToLessonProps } from "../../getReturnToLessonLink";
+
+import { extractLessonAccessedPropsFromHref } from "./extractLessonAccessedPropsFromHref";
+
 import {
   AboutSharedHeader,
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const HeaderLayout = styled(OakFlex)`
   display: flex;
@@ -31,27 +36,33 @@ const StyledAboutSharedHeaderImage = styled(AboutSharedHeaderImage)`
   }
 `;
 
-type TeachWithOakHeaderProps = {
-  href?: string;
-};
-
-export function TeachWithOakHeader({
-  href,
-}: Readonly<TeachWithOakHeaderProps>) {
+export function TeachWithOakHeader() {
   const imageUrl = getCloudinaryImageUrl(
     "v1734018546/OWA/illustrations/hero-aila_wgpmas.jpg",
   );
+
+  const { lessonAccessed } = useTeacherBrowseAnalytics((store) => store.track);
+
+  const returnToLessonProps = useReturnToLessonProps();
+
   return (
     <OakBox
       $mt={["spacing-56", "spacing-80", "spacing-56"]}
       $mb={["spacing-56", "spacing-80", "spacing-72"]}
     >
-      {href && (
+      {returnToLessonProps && (
         <NewGutterMaxWidth>
           <OakTertiaryInvertedButton
             element="a"
-            href={href}
+            href={returnToLessonProps.returnTo}
             iconName="arrow-left"
+            onClick={() => {
+              const lessonAccessedProps =
+                extractLessonAccessedPropsFromHref(returnToLessonProps);
+              if (lessonAccessedProps) {
+                lessonAccessed(lessonAccessedProps);
+              }
+            }}
           >
             Back to lesson
           </OakTertiaryInvertedButton>

@@ -9,7 +9,7 @@ describe("TeachWithOakHeader", () => {
   it("renders correctly", () => {
     const { baseElement, getByRole } = render(
       <MockedAnalyticsProvider>
-        <TeachWithOakHeader href={"/"} />
+        <TeachWithOakHeader />
       </MockedAnalyticsProvider>,
     );
 
