@@ -1,12 +1,13 @@
 "use client";
 
 import {
-  getMediaQuery,
   isValidIconName,
   OakBox,
   OakFlex,
   OakHeading,
+  OakLI,
   OakSubjectIconButton,
+  OakUL,
   parseColor,
   parseSpacing,
 } from "@oaknational/oak-components";
@@ -26,66 +27,18 @@ type Subject = NationalCurriculumInsightsRouteData["subjects"][number];
 
 type Phase = "primary" | "secondary";
 
-const SubjectList = styled(OakFlex)`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-`;
-
+// OakSubjectIconButton fixes these colours by phase and exposes no overrides.
 const SubjectNavigationMaxWidth = styled(OakBox)`
-  width: 100%;
-  max-width: 998px;
-
-  @media (${getMediaQuery("desktop")}) {
-    min-height: 176px;
-    display: flex;
-    align-items: center;
-  }
-
   a {
     background: ${parseColor("bg-primary")};
     border-color: ${parseColor("grey30")};
   }
 `;
 
-const HubSubjectItem = styled.li`
-  width: 225px;
-  height: 225px;
-
-  @media (${getMediaQuery("mobile")}) {
-    width: calc(50% - ${parseSpacing("spacing-8")});
-    height: auto;
-    aspect-ratio: 1;
-  }
-
+// The subject button exposes width, but not its outer wrapper's height.
+const HubSubjectItem = styled(OakLI)`
   > * {
-    width: 100%;
     height: 100%;
-  }
-
-  a {
-    box-sizing: border-box;
-    width: 100%;
-    padding-inline: ${parseSpacing("spacing-8")};
-  }
-`;
-
-const HubSubjectList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: ${parseSpacing("spacing-16")};
-  list-style: none;
-  margin: 0;
-  padding: 0;
-`;
-
-const HubPhaseNavigation = styled.nav`
-  width: 100%;
-
-  @media (${getMediaQuery("desktop")}) {
-    max-width: 1189px;
-    margin-inline: auto;
   }
 `;
 
@@ -122,11 +75,17 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
         $pb={["spacing-48", "spacing-64"]}
       >
         <SubjectNavigationMaxWidth
+          $width="100%"
+          $maxWidth="spacing-960"
+          $minHeight={["auto", "auto", "spacing-180"]}
+          $display={["block", "block", "flex"]}
+          $alignItems="center"
           $mh="auto"
           data-insights-module="subject-navigation"
         >
-          <SubjectList
-            as="ul"
+          <OakUL
+            $reset
+            $display="flex"
             $flexWrap="wrap"
             $justifyContent="center"
             $gap="spacing-12"
@@ -151,7 +110,7 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
                 </OakSubjectIconButton>
               </li>
             ))}
-          </SubjectList>
+          </OakUL>
         </SubjectNavigationMaxWidth>
       </OakBox>
     );
@@ -171,7 +130,9 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
               ),
             )
             .map((phase) => (
-              <HubPhaseNavigation
+              <OakBox
+                as="nav"
+                $width="100%"
                 key={phase}
                 aria-labelledby={`national-curriculum-insights-${phase}-subjects`}
               >
@@ -190,14 +151,31 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
                       ? section.primaryHeading
                       : section.secondaryHeading}
                   </OakHeading>
-                  <HubSubjectList>
+                  <OakUL
+                    $reset
+                    $display="flex"
+                    $flexWrap="wrap"
+                    $justifyContent="center"
+                    $gap="spacing-16"
+                  >
                     {data.subjects
                       .filter((subject) =>
                         subject.tabs.some(({ kind }) => kind === phase),
                       )
                       .map((subject) => (
-                        <HubSubjectItem key={`${phase}-${subject.slug}`}>
+                        <HubSubjectItem
+                          key={`${phase}-${subject.slug}`}
+                          $width={[
+                            `calc(50% - ${parseSpacing("spacing-8")})`,
+                            "spacing-240",
+                            `calc((100% - 4 * ${parseSpacing("spacing-16")}) / 5)`,
+                          ]}
+                          $aspectRatio="1"
+                        >
                           <OakSubjectIconButton
+                            width="100%"
+                            $pl="spacing-8"
+                            $pr="spacing-8"
                             variant="vertical"
                             innerWidth="100%"
                             element={Link}
@@ -212,9 +190,9 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
                           </OakSubjectIconButton>
                         </HubSubjectItem>
                       ))}
-                  </HubSubjectList>
+                  </OakUL>
                 </OakFlex>
-              </HubPhaseNavigation>
+              </OakBox>
             ))}
         </OakFlex>
       </SectionMaxWidth>

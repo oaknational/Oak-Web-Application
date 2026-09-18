@@ -2,7 +2,6 @@
 
 import { OakBox, OakFlex, OakHeading } from "@oaknational/oak-components";
 import { useId } from "react";
-import styled from "styled-components";
 
 import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "../PortableText";
 
@@ -25,7 +24,9 @@ export const NationalCurriculumInsightsRichText = ({
         $flexDirection="column"
         data-insights-module="rich-text"
       >
-        <RichTextContent
+        <OakFlex
+          $width="100%"
+          $maxWidth="spacing-800"
           $flexDirection="column"
           $gap={section.headingStyle === "detail" ? "spacing-32" : "spacing-24"}
         >
@@ -41,13 +42,8 @@ export const NationalCurriculumInsightsRichText = ({
             {section.heading}
           </OakHeading>
           <PortableTextWithDefaults value={section.contentPortableText} />
-        </RichTextContent>
+        </OakFlex>
       </InsightsContentMaxWidth>
     </OakBox>
   );
 };
-
-const RichTextContent = styled(OakFlex)`
-  width: 100%;
-  max-width: 830px;
-`;
