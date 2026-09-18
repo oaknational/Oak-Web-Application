@@ -303,14 +303,14 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 .c98 {
   width: 100%;
   height: 100%;
-  background: #ffffff;
-  border-radius: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
 .c100 {
   height: 100%;
   padding: 1rem;
+  background: #ffffff;
+  border-radius: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -2413,12 +2413,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 .c99:has(a:hover,button:hover) {
-  background-color: #f2f2f2;
   box-shadow: none;
 }
 
 .c99:has( a, button) {
-  border-radius: 0.5rem;
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
@@ -2465,6 +2463,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+}
+
+.c102:hover {
+  background: #f2f2f2;
 }
 
 .c102:hover h1,

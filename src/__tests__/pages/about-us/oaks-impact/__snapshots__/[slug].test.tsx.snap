@@ -862,10 +862,10 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title 1`] = 
                     class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi jYNrWW"
                   >
                     <div
-                      class="sc-aXZVg sc-fTFjTM gQdNNR fPhXjy"
+                      class="sc-aXZVg sc-fTFjTM bDPsaI eDCqa-D"
                     >
                       <a
-                        class="sc-aXZVg sc-gEvEer sc-kbousE eyLmQc dXoawi iNGAcO"
+                        class="sc-aXZVg sc-gEvEer sc-kbousE eKeEyp dXoawi wmwox"
                         href="/about-us/case-studies/test-slug-2"
                       >
                         <div
@@ -933,10 +933,10 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title 1`] = 
                     class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi bGCzCa"
                   >
                     <div
-                      class="sc-aXZVg sc-fTFjTM gQdNNR fPhXjy"
+                      class="sc-aXZVg sc-fTFjTM bDPsaI eDCqa-D"
                     >
                       <a
-                        class="sc-aXZVg sc-gEvEer sc-kbousE eyLmQc dXoawi iNGAcO"
+                        class="sc-aXZVg sc-gEvEer sc-kbousE eKeEyp dXoawi wmwox"
                         href="/about-us/case-studies/test-slug-3"
                       >
                         <div

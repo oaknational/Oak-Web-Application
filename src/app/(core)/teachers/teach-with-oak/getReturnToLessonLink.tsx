@@ -3,7 +3,7 @@ import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 
 export const teachWithOakParams = z.object({
-  returnTo: z.url({ hostname: /^thenational\.academy$/ }),
+  returnTo: z.string().regex(/^\/(?!\/)/),
   lessonName: z.string(),
   unitName: z.string(),
 });
