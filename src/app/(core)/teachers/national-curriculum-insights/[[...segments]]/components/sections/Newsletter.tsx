@@ -9,10 +9,9 @@ import {
   OakImage,
   OakP,
   OakPrimaryButton,
-  parseSpacing,
+  OakUL,
 } from "@oaknational/oak-components";
 import { FormEvent, useState } from "react";
-import styled from "styled-components";
 
 import { insightsAssetUrl } from "../../helpers/assets";
 import { NationalCurriculumInsightsSelect } from "../Select";
@@ -37,18 +36,6 @@ import { OakInputWithLabel } from "@/components/SharedComponents/OakInputWithLab
 import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-
-const NewsletterList = styled(OakFlex)`
-  list-style: disc;
-  margin: 0;
-  padding-left: ${parseSpacing("spacing-24")};
-`;
-
-const NewsletterForm = styled(OakGridArea)`
-  input[type="checkbox"] {
-    border-radius: 0;
-  }
-`;
 
 export const NationalCurriculumInsightsNewsletter = ({
   section,
@@ -200,7 +187,13 @@ export const NationalCurriculumInsightsNewsletter = ({
             <OakP $font={isGuidance ? "body-1" : "body-2"} $mv="spacing-0">
               {section.benefitsHeading ?? "Sign up now for:"}
             </OakP>
-            <NewsletterList as="ul" $flexDirection="column" $gap="spacing-16">
+            <OakUL
+              $display="flex"
+              $flexDirection="column"
+              $gap="spacing-16"
+              $ma="spacing-0"
+              $pl="spacing-24"
+            >
               {section.benefits.map((benefit) => (
                 <li key={benefit}>
                   <OakP
@@ -211,7 +204,7 @@ export const NationalCurriculumInsightsNewsletter = ({
                   </OakP>
                 </li>
               ))}
-            </NewsletterList>
+            </OakUL>
             <PortableTextWithDefaults
               value={section.privacyPortableText}
               components={
@@ -220,7 +213,7 @@ export const NationalCurriculumInsightsNewsletter = ({
             />
           </OakGridArea>
 
-          <NewsletterForm
+          <OakGridArea
             $colSpan={1}
             $colStart={[1, 1, 2]}
             $rowStart={[2, 3, 1]}
@@ -277,6 +270,7 @@ export const NationalCurriculumInsightsNewsletter = ({
                 placeholder="Type your school or organisation"
               />
               <OakCheckBox
+                checkboxBorderRadius="border-radius-square"
                 id="insights-newsletter-school-not-listed"
                 name="schoolNotListed"
                 value="not-listed"
@@ -333,7 +327,7 @@ export const NationalCurriculumInsightsNewsletter = ({
             >
               {successMessage}
             </OakP>
-          </NewsletterForm>
+          </OakGridArea>
         </OakGrid>
       </OakBox>
     </OakBox>

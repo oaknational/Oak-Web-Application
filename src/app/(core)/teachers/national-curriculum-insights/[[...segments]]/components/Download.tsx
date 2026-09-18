@@ -51,23 +51,13 @@ type DownloadFormValues = {
   selectedValues: string[];
 };
 
-const Section = styled(OakFlex)<{ $sticky: boolean }>`
-  ${({ $sticky }) =>
-    $sticky
-      ? "position: fixed; inset: auto 0 0; z-index: 20; max-height: 100dvh;"
-      : ""}
-`;
-
 const HeaderButton = styled(OakBox)`
   font: inherit;
   cursor: pointer;
 `;
 
 const Expanded = styled(OakBox)<{ $sticky: boolean }>`
-  ${({ $sticky }) =>
-    $sticky
-      ? "min-height: 0; overflow-y: auto; overscroll-behavior: contain;"
-      : ""}
+  ${({ $sticky }) => ($sticky ? "overscroll-behavior: contain;" : "")}
 `;
 
 const responseFilename = (response: Response) => {
@@ -347,10 +337,15 @@ export const NationalCurriculumInsightsDownload = ({
   };
 
   return (
-    <Section
+    <OakFlex
       as="section"
       data-insights-module="downloads"
-      $sticky={sticky}
+      $position={sticky ? "fixed" : undefined}
+      $bottom={sticky ? "spacing-0" : undefined}
+      $left={sticky ? "spacing-0" : undefined}
+      $right={sticky ? "spacing-0" : undefined}
+      $zIndex={sticky ? 20 : undefined}
+      $maxHeight={sticky ? "100dvh" : undefined}
       $width="100%"
       $flexDirection="column"
       $background="bg-primary"
@@ -376,6 +371,8 @@ export const NationalCurriculumInsightsDownload = ({
           onSubmit={handleSubmit(submit)}
           noValidate
           $sticky={sticky}
+          $minHeight={sticky ? "spacing-0" : undefined}
+          $overflowY={sticky ? "auto" : undefined}
         >
           <OakGrid
             $maxWidth="spacing-1280"
@@ -650,6 +647,6 @@ export const NationalCurriculumInsightsDownload = ({
           />
         </Expanded>
       ) : null}
-    </Section>
+    </OakFlex>
   );
 };

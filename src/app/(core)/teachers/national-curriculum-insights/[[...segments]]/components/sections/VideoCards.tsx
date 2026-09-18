@@ -1,15 +1,16 @@
 "use client";
 
 import {
-  getMediaQuery,
   OakBox,
   OakFlex,
   OakFocusIndicator,
   OakHeading,
   OakIcon,
   OakImage,
+  OakLI,
   OakP,
   OakSpan,
+  OakUL,
   OakVideo,
   parseColor,
   parseBorderWidth,
@@ -17,7 +18,7 @@ import {
   parseSpacing,
 } from "@oaknational/oak-components";
 import Link from "next/link";
-import { useId, useState } from "react";
+import { PropsWithChildren, useId, useState } from "react";
 import styled from "styled-components";
 
 import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "../PortableText";
@@ -32,45 +33,8 @@ import {
 
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
-const VideoCardList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: ${parseSpacing("spacing-64")};
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-  @media (${getMediaQuery("desktop")}) {
-    gap: ${parseSpacing("spacing-40")};
-  }
-`;
-
-const VideoCardItem = styled.li`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
-
-const VideoCardsSection = styled(OakBox)`
-  box-sizing: border-box;
-`;
-
-const ConversationCardFocus = styled(OakFocusIndicator)`
-  position: relative;
-  width: 100%;
-`;
-
 const ConversationCardLink = styled(OakFlex)`
-  box-sizing: border-box;
-  width: 100%;
-  min-height: 100%;
-  color: ${parseColor("text-primary")};
-  text-decoration: none;
-  border: 0;
-  background: transparent;
   font: inherit;
-  text-align: left;
   cursor: pointer;
 
   &:hover h3,
@@ -79,42 +43,25 @@ const ConversationCardLink = styled(OakFlex)`
   }
 `;
 
-const ConversationCardImage = styled(OakBox)`
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  flex: 0 0 auto;
-  align-self: flex-start;
-  overflow: hidden;
+const ConversationCardImage = ({ children }: PropsWithChildren) => (
+  <OakFlex
+    $display="block"
+    $position="relative"
+    $width={["100%", "40%", "31%"]}
+    $aspectRatio="16 / 9"
+    $flexGrow={0}
+    $flexShrink={0}
+    $flexBasis="auto"
+    $alignSelf="flex-start"
+    $overflow="hidden"
+    $borderRadius="border-radius-m2"
+  >
+    {children}
+  </OakFlex>
+);
 
-  @media ${getMediaQuery("tablet")} {
-    width: 40%;
-  }
-
-  @media (${getMediaQuery("desktop")}) {
-    width: 31%;
-    height: auto;
-  }
-`;
-
-const ThumbnailPlayButton = styled.button`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 3;
-  display: inline-flex;
-  width: ${parseSpacing("spacing-64")};
-  height: ${parseSpacing("spacing-64")};
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  border: ${parseBorderWidth("border-solid-m")} solid
-    ${parseColor("border-primary")};
-  border-radius: 50%;
-  background: ${parseColor("bg-btn-primary")};
-  color: ${parseColor("icon-inverted")};
+const ThumbnailPlayButton = styled(OakFlex)`
   cursor: pointer;
-  transform: translate(-50%, -50%);
 
   &:hover {
     background: ${parseColor("bg-btn-primary-hover")};
@@ -127,20 +74,11 @@ const ThumbnailPlayButton = styled.button`
   }
 `;
 
-const InlineVideo = styled.div`
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-
+// OakVideo does not expose a prop for its inner player's height.
+const InlineVideo = styled(OakBox)`
   > div {
     height: 100%;
   }
-`;
-
-const ConversationCardCopy = styled(OakFlex)`
-  width: 100%;
-  min-width: 0;
 `;
 
 const BlogPostTitleLink = styled(Link)`
@@ -171,6 +109,39 @@ const BlogPostTitleLink = styled(Link)`
   }
 `;
 
+const ConversationCard = ({
+  children,
+  href,
+}: PropsWithChildren<{ href?: string }>) => (
+  <OakFocusIndicator
+    $position="relative"
+    $width="100%"
+    $maxWidth="spacing-960"
+    $background="bg-primary"
+    hoverBackground="bg-btn-secondary-hover"
+    $borderRadius="border-radius-m"
+  >
+    <ConversationCardLink
+      $boxSizing="border-box"
+      $width="100%"
+      $minHeight="100%"
+      $color="text-primary"
+      $textDecoration="none"
+      $ba="border-solid-none"
+      $background="transparent"
+      $textAlign="left"
+      $pa="spacing-12"
+      $gap="spacing-12"
+      $borderRadius="border-radius-m"
+      as={href ? "a" : "div"}
+      href={href}
+      $flexDirection={["column", "row", "row"]}
+    >
+      {children}
+    </ConversationCardLink>
+  </OakFocusIndicator>
+);
+
 const GuidanceConversationCard = ({
   card,
   episode,
@@ -183,58 +154,42 @@ const GuidanceConversationCard = ({
   >[number];
   episode: number;
 }) => (
-  <ConversationCardFocus
-    $maxWidth="spacing-960"
-    $background="bg-primary"
-    hoverBackground="bg-btn-secondary-hover"
-    $borderRadius="border-radius-m"
-  >
-    <ConversationCardLink
-      $pa="spacing-12"
-      $gap="spacing-12"
-      $borderRadius="border-radius-m"
-      as="a"
-      href={card.videoUrl}
-      $flexDirection={["column", "row", "row"]}
+  <ConversationCard href={card.videoUrl}>
+    <ConversationCardImage>
+      <OakImage
+        src={imageUrl(card.image)}
+        alt={imageAlt(card.image)}
+        $width="100%"
+        $height="100%"
+        $objectFit="cover"
+      />
+    </ConversationCardImage>
+    <OakFlex
+      $width="100%"
+      $minWidth="spacing-0"
+      $flexDirection="column"
+      $justifyContent="space-between"
+      $gap="spacing-20"
     >
-      <ConversationCardImage $borderRadius="border-radius-m2">
-        <OakImage
-          src={imageUrl(card.image)}
-          alt={imageAlt(card.image)}
-          $width="100%"
-          $height="100%"
-          $objectFit="cover"
+      <OakFlex $flexDirection="column" $gap="spacing-12">
+        <OakHeading tag="h3" $font="heading-7">
+          {card.heading}
+        </OakHeading>
+        <OakP $font="body-3" $color="text-subdued" $mv="spacing-0">
+          {card.description}
+        </OakP>
+      </OakFlex>
+      <OakFlex $alignItems="center" $justifyContent="flex-end" $gap="spacing-4">
+        <OakSpan $font="body-3">Watch episode {episode}</OakSpan>
+        <OakIcon
+          iconName="arrow-right"
+          alt=""
+          $width="spacing-20"
+          $height="spacing-20"
         />
-      </ConversationCardImage>
-      <ConversationCardCopy
-        $flexDirection="column"
-        $justifyContent="space-between"
-        $gap="spacing-20"
-      >
-        <OakFlex $flexDirection="column" $gap="spacing-12">
-          <OakHeading tag="h3" $font="heading-7">
-            {card.heading}
-          </OakHeading>
-          <OakP $font="body-3" $color="text-subdued" $mv="spacing-0">
-            {card.description}
-          </OakP>
-        </OakFlex>
-        <OakFlex
-          $alignItems="center"
-          $justifyContent="flex-end"
-          $gap="spacing-4"
-        >
-          <OakSpan $font="body-3">Watch episode {episode}</OakSpan>
-          <OakIcon
-            iconName="arrow-right"
-            alt=""
-            $width="spacing-20"
-            $height="spacing-20"
-          />
-        </OakFlex>
-      </ConversationCardCopy>
-    </ConversationCardLink>
-  </ConversationCardFocus>
+      </OakFlex>
+    </OakFlex>
+  </ConversationCard>
 );
 
 const GuidanceBlogPostCard = ({
@@ -252,9 +207,15 @@ const GuidanceBlogPostCard = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const cardContent = (
     <>
-      <ConversationCardImage $borderRadius="border-radius-m2">
+      <ConversationCardImage>
         {post.video && isPlaying ? (
-          <InlineVideo data-testid="guidance-inline-video">
+          <InlineVideo
+            $position="relative"
+            $zIndex={2}
+            $width="100%"
+            $height="100%"
+            data-testid="guidance-inline-video"
+          >
             <OakVideo
               showTranscript={false}
               videoSlot={
@@ -282,6 +243,23 @@ const GuidanceBlogPostCard = ({
             />
             {post.video ? (
               <ThumbnailPlayButton
+                as="button"
+                $position="absolute"
+                $top="50%"
+                $left="50%"
+                $zIndex={3}
+                $display="inline-flex"
+                $width="spacing-64"
+                $height="spacing-64"
+                $alignItems="center"
+                $justifyContent="center"
+                $pa="spacing-0"
+                $ba="border-solid-m"
+                $borderColor="border-primary"
+                $borderRadius="border-radius-circle"
+                $background="bg-btn-primary"
+                $color="icon-inverted"
+                $transform="translate(-50%, -50%)"
                 type="button"
                 aria-label={`Play ${post.title}`}
                 onClick={() => setIsPlaying(true)}
@@ -298,7 +276,9 @@ const GuidanceBlogPostCard = ({
           </>
         )}
       </ConversationCardImage>
-      <ConversationCardCopy
+      <OakFlex
+        $width="100%"
+        $minWidth="spacing-0"
         $flexDirection="column"
         $justifyContent="space-between"
         $gap="spacing-20"
@@ -326,28 +306,11 @@ const GuidanceBlogPostCard = ({
             $height="spacing-20"
           />
         </OakFlex>
-      </ConversationCardCopy>
+      </OakFlex>
     </>
   );
 
-  return (
-    <ConversationCardFocus
-      $maxWidth="spacing-960"
-      $background="bg-primary"
-      hoverBackground="bg-btn-secondary-hover"
-      $borderRadius="border-radius-m"
-    >
-      <ConversationCardLink
-        $pa="spacing-12"
-        $gap="spacing-12"
-        $borderRadius="border-radius-m"
-        as="div"
-        $flexDirection={["column", "row", "row"]}
-      >
-        {cardContent}
-      </ConversationCardLink>
-    </ConversationCardFocus>
-  );
+  return <ConversationCard>{cardContent}</ConversationCard>;
 };
 
 export const NationalCurriculumInsightsVideoCards = ({
@@ -361,7 +324,8 @@ export const NationalCurriculumInsightsVideoCards = ({
   if (itemCount === 0) return null;
 
   return (
-    <VideoCardsSection
+    <OakBox
+      $boxSizing="border-box"
       as="section"
       $background="bg-decorative5-very-subdued"
       $ph={["spacing-16", "spacing-40"]}
@@ -418,22 +382,38 @@ export const NationalCurriculumInsightsVideoCards = ({
             ) : null}
           </OakFlex>
         </OakFlex>
-        <VideoCardList>
+        <OakUL
+          $reset
+          $display="flex"
+          $flexDirection="column"
+          $alignItems="center"
+          $gap={["spacing-64", "spacing-64", "spacing-40"]}
+        >
           {posts.map((post, index) => (
-            <VideoCardItem key={post.id}>
+            <OakLI
+              $width="100%"
+              $display="flex"
+              $justifyContent="center"
+              key={post.id}
+            >
               <GuidanceBlogPostCard post={post} episode={itemCount - index} />
-            </VideoCardItem>
+            </OakLI>
           ))}
           {legacyCards.map((card, index) => (
-            <VideoCardItem key={`${card.heading}-${card.videoUrl}`}>
+            <OakLI
+              $width="100%"
+              $display="flex"
+              $justifyContent="center"
+              key={`${card.heading}-${card.videoUrl}`}
+            >
               <GuidanceConversationCard
                 card={card}
                 episode={itemCount - index}
               />
-            </VideoCardItem>
+            </OakLI>
           ))}
-        </VideoCardList>
+        </OakUL>
       </OakFlex>
-    </VideoCardsSection>
+    </OakBox>
   );
 };

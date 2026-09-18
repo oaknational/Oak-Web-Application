@@ -486,6 +486,13 @@ describe("National Curriculum Insights sections", () => {
     const newsletterForm = screen
       .getByRole("button", { name: "Join the mailing list" })
       .closest("form")!;
+    expect(
+      screen.getByRole("checkbox", { name: "My school isn't listed" }),
+    ).toHaveStyle({
+      "border-radius": "0rem",
+      width: "1.5rem",
+      height: "1.5rem",
+    });
     // Each grid item must occupy one column, including the stacked mobile layout.
     Array.from(newsletterForm.parentElement!.children).forEach((column) => {
       expect(column).toHaveStyle({ gridColumn: "1 / span 1" });

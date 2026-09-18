@@ -48,17 +48,38 @@ const ControlledMultiSelect = ({
 
 describe("MultiSelect", () => {
   it.each([
-    ["standard", "3rem", "0.75rem 1rem"],
+    ["standard", "3rem", "0.75rem"],
     ["large", "4rem", "1rem"],
-  ] as const)("preserves %s control spacing", (size, minHeight, padding) => {
-    renderWithTheme(<ControlledMultiSelect size={size} />);
+  ] as const)(
+    "preserves %s control spacing",
+    (size, minHeight, verticalPadding) => {
+      renderWithTheme(<ControlledMultiSelect size={size} />);
 
-    expect(screen.getByTestId("multi-select-trigger")).toHaveStyle({
-      gap: "0.5rem",
-      minHeight,
-      padding,
-    });
-  });
+      expect(screen.getByTestId("multi-select-trigger")).toHaveStyle({
+        gap: "0.5rem",
+        "min-height": minHeight,
+        "padding-top": verticalPadding,
+        "padding-bottom": verticalPadding,
+        "padding-left": "1rem",
+        "padding-right": "1rem",
+      });
+    },
+  );
+
+  it.each(["up", "down"] as const)(
+    "positions the dropdown %s without changing its size",
+    (direction) => {
+      renderWithTheme(<ControlledMultiSelect dropdownDirection={direction} />);
+      fireEvent.click(screen.getByTestId("multi-select-trigger"));
+
+      expect(screen.getByTestId("multi-select-panel")).toHaveStyle({
+        position: "absolute",
+        [direction === "up" ? "bottom" : "top"]: "calc(100% + 0.25rem)",
+        "max-height": "min(60rem,70vh)",
+        "overflow-y": "auto",
+      });
+    },
+  );
 
   it("keeps an accessible legend for both selection layouts", () => {
     renderWithTheme(<ControlledMultiSelect placeholder="Choose items" />);

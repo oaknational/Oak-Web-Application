@@ -1,12 +1,13 @@
 "use client";
 
 import {
-  getMediaQuery,
   isValidIconName,
   OakBox,
   OakFlex,
   OakHeading,
+  OakLI,
   OakSubjectIconButton,
+  OakUL,
   parseColor,
   parseSpacing,
 } from "@oaknational/oak-components";
@@ -26,12 +27,7 @@ type Subject = NationalCurriculumInsightsRouteData["subjects"][number];
 
 type Phase = "primary" | "secondary";
 
-const SubjectList = styled(OakFlex)`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-`;
-
+// OakSubjectIconButton fixes these colours by phase and exposes no overrides.
 const SubjectNavigationMaxWidth = styled(OakBox)`
   a {
     background: ${parseColor("bg-primary")};
@@ -39,40 +35,11 @@ const SubjectNavigationMaxWidth = styled(OakBox)`
   }
 `;
 
-const HubSubjectItem = styled.li`
-  width: ${parseSpacing("spacing-240")};
-  aspect-ratio: 1;
-
-  @media ${getMediaQuery("desktop")} {
-    width: calc((100% - 4 * ${parseSpacing("spacing-16")}) / 5);
-  }
-
-  @media (${getMediaQuery("mobile")}) {
-    width: calc(50% - ${parseSpacing("spacing-8")});
-    height: auto;
-    aspect-ratio: 1;
-  }
-
+// The subject button exposes width, but not its outer wrapper's height.
+const HubSubjectItem = styled(OakLI)`
   > * {
-    width: 100%;
     height: 100%;
   }
-
-  a {
-    box-sizing: border-box;
-    width: 100%;
-    padding-inline: ${parseSpacing("spacing-8")};
-  }
-`;
-
-const HubSubjectList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: ${parseSpacing("spacing-16")};
-  list-style: none;
-  margin: 0;
-  padding: 0;
 `;
 
 const normaliseSubjectIcon = (subject: Subject) => {
@@ -116,8 +83,9 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
           $mh="auto"
           data-insights-module="subject-navigation"
         >
-          <SubjectList
-            as="ul"
+          <OakUL
+            $reset
+            $display="flex"
             $flexWrap="wrap"
             $justifyContent="center"
             $gap="spacing-12"
@@ -142,7 +110,7 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
                 </OakSubjectIconButton>
               </li>
             ))}
-          </SubjectList>
+          </OakUL>
         </SubjectNavigationMaxWidth>
       </OakBox>
     );
@@ -183,14 +151,31 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
                       ? section.primaryHeading
                       : section.secondaryHeading}
                   </OakHeading>
-                  <HubSubjectList>
+                  <OakUL
+                    $reset
+                    $display="flex"
+                    $flexWrap="wrap"
+                    $justifyContent="center"
+                    $gap="spacing-16"
+                  >
                     {data.subjects
                       .filter((subject) =>
                         subject.tabs.some(({ kind }) => kind === phase),
                       )
                       .map((subject) => (
-                        <HubSubjectItem key={`${phase}-${subject.slug}`}>
+                        <HubSubjectItem
+                          key={`${phase}-${subject.slug}`}
+                          $width={[
+                            `calc(50% - ${parseSpacing("spacing-8")})`,
+                            "spacing-240",
+                            `calc((100% - 4 * ${parseSpacing("spacing-16")}) / 5)`,
+                          ]}
+                          $aspectRatio="1"
+                        >
                           <OakSubjectIconButton
+                            width="100%"
+                            $pl="spacing-8"
+                            $pr="spacing-8"
                             variant="vertical"
                             innerWidth="100%"
                             element={Link}
@@ -205,7 +190,7 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
                           </OakSubjectIconButton>
                         </HubSubjectItem>
                       ))}
-                  </HubSubjectList>
+                  </OakUL>
                 </OakFlex>
               </OakBox>
             ))}
