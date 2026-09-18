@@ -20,7 +20,7 @@ const importRules = {
   // absent when lint runs on a fresh CI checkout
   "import/no-unresolved": [
     "error",
-    { ignore: ["^@/image-data/generated/.*\\.svg$"] },
+    { ignore: [String.raw`^@/image-data/generated/.*\.svg$`] },
   ],
   "import/no-named-as-default": "off",
 
