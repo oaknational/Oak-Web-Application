@@ -60,6 +60,22 @@ const Expanded = styled(OakBox)<{ $sticky: boolean }>`
   ${({ $sticky }) => ($sticky ? "overscroll-behavior: contain;" : "")}
 `;
 
+const getDownloadLayoutProps = (sticky: boolean) =>
+  sticky
+    ? ({
+        section: {
+          $position: "fixed",
+          $bottom: "spacing-0",
+          $left: "spacing-0",
+          $right: "spacing-0",
+          $zIndex: 20,
+          $maxHeight: "100dvh",
+          $dropShadow: "drop-shadow-centred-standard",
+        },
+        expanded: { $minHeight: "spacing-0", $overflowY: "auto" },
+      } as const)
+    : { section: {}, expanded: {} };
+
 const responseFilename = (response: Response) => {
   const explicitFilename = response.headers.get("x-filename");
   if (explicitFilename) return explicitFilename;
@@ -226,6 +242,7 @@ export const NationalCurriculumInsightsDownload = ({
   const expandedRef = useRef<HTMLFormElement>(null);
   const downloadInFlight = useRef(false);
   const sticky = data.route.kind === "hub";
+  const layoutProps = getDownloadLayoutProps(sticky);
   const [expanded, setExpanded] = useState(false);
   const [mobileStage, setMobileStage] = useState<"details" | "subjects">(
     "details",
@@ -340,16 +357,10 @@ export const NationalCurriculumInsightsDownload = ({
     <OakFlex
       as="section"
       data-insights-module="downloads"
-      $position={sticky ? "fixed" : undefined}
-      $bottom={sticky ? "spacing-0" : undefined}
-      $left={sticky ? "spacing-0" : undefined}
-      $right={sticky ? "spacing-0" : undefined}
-      $zIndex={sticky ? 20 : undefined}
-      $maxHeight={sticky ? "100dvh" : undefined}
+      {...layoutProps.section}
       $width="100%"
       $flexDirection="column"
       $background="bg-primary"
-      $dropShadow={sticky ? "drop-shadow-centred-standard" : undefined}
     >
       <DownloadHeader
         formId={formId}
@@ -371,8 +382,7 @@ export const NationalCurriculumInsightsDownload = ({
           onSubmit={handleSubmit(submit)}
           noValidate
           $sticky={sticky}
-          $minHeight={sticky ? "spacing-0" : undefined}
-          $overflowY={sticky ? "auto" : undefined}
+          {...layoutProps.expanded}
         >
           <OakGrid
             $maxWidth="spacing-1280"

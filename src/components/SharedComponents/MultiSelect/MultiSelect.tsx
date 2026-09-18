@@ -137,6 +137,16 @@ const ConfirmButton = styled(OakFlex)`
 
 const uniqueValues = (values: string[]) => [...new Set(values)];
 
+const triggerSizeProps = {
+  standard: { $minHeight: "spacing-48", $pv: "spacing-12" },
+  large: { $minHeight: "spacing-64", $pv: "spacing-16" },
+} as const;
+
+const dropdownPositionProps = {
+  down: { $top: `calc(100% + ${parseSpacing("spacing-4")})` },
+  up: { $bottom: `calc(100% + ${parseSpacing("spacing-4")})` },
+};
+
 export const MultiSelect = ({
   disabled = false,
   dropdownDirection = "down",
@@ -324,8 +334,7 @@ export const MultiSelect = ({
             $justifyContent="space-between"
             $gap="spacing-8"
             $width="100%"
-            $minHeight={size === "large" ? "spacing-64" : "spacing-48"}
-            $pv={size === "large" ? "spacing-16" : "spacing-12"}
+            {...triggerSizeProps[size]}
             $ph="spacing-16"
             $ba="border-solid-m"
             $borderColor="border-primary"
@@ -363,16 +372,7 @@ export const MultiSelect = ({
               $borderRadius="border-radius-s"
               $background="bg-primary"
               $pa="spacing-12"
-              $top={
-                dropdownDirection === "down"
-                  ? `calc(100% + ${parseSpacing("spacing-4")})`
-                  : undefined
-              }
-              $bottom={
-                dropdownDirection === "up"
-                  ? `calc(100% + ${parseSpacing("spacing-4")})`
-                  : undefined
-              }
+              {...dropdownPositionProps[dropdownDirection]}
               id={panelId}
               aria-label={placeholder}
               data-testid={dataTestId ? `${dataTestId}-panel` : undefined}
