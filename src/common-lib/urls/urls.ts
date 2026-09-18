@@ -3,6 +3,7 @@ import { match, compile, MatchFunction } from "path-to-regexp";
 import createQueryStringFromObject, {
   UrlQueryObject,
 } from "./createQueryStringFromObject";
+import { nationalCurriculumInsightsGuidanceHref } from "./nationalCurriculumInsights";
 
 import { PageNameValueType } from "@/browser-lib/avo/Avo";
 import isBrowser from "@/utils/isBrowser";
@@ -239,6 +240,9 @@ type PupilHelpLinkProps = { page: "pupil-help" };
 type GuideToOakLinkProps = { page: "guide-to-oak" };
 type HomeLinkProps = { page: "home" };
 type LessonPlanningLinkProps = { page: "lesson-planning" };
+type CurriculumChangeExplainedLinkProps = {
+  page: "curriculum-change-explained";
+};
 type LegalLinkProps = {
   page: "legal";
   /**
@@ -391,6 +395,7 @@ export type OakLinkProps =
   | ContactUsLinkProps
   | HomeLinkProps
   | LessonPlanningLinkProps
+  | CurriculumChangeExplainedLinkProps
   | OurTeachersLinkProps
   | OakCurriculumLinkProps
   | ClassroomLinkProps
@@ -650,6 +655,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Plan a Lesson",
     configType: "internal",
     pageType: "lesson-planning",
+  }),
+  "curriculum-change-explained": createOakPageConfig({
+    pathPattern: nationalCurriculumInsightsGuidanceHref(),
+    analyticsPageName: "Landing Page",
+    configType: "internal",
+    pageType: "curriculum-change-explained",
   }),
   legal: createOakPageConfig({
     pathPattern: "/legal/:legalSlug",

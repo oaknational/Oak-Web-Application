@@ -1,17 +1,17 @@
-import { oaksImpactCaseStudiesFixture } from "./OaksImpactCaseStudies.fixtures";
+import { caseStudiesSectionFixture } from "./CaseStudiesSection.fixtures";
 
-import { OaksImpactCaseStudies } from ".";
+import { CaseStudiesSection } from ".";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
-describe("OaksImpactCaseStudies", () => {
+describe("CaseStudiesSection", () => {
   it("renders correctly when 3 case studies are provided", () => {
     const { baseElement, getByRole, getAllByRole } = render(
-      <OaksImpactCaseStudies
+      <CaseStudiesSection
         title={"Case studies"}
-        caseStudies={oaksImpactCaseStudiesFixture}
+        caseStudies={caseStudiesSectionFixture}
       />,
     );
 
@@ -24,9 +24,9 @@ describe("OaksImpactCaseStudies", () => {
 
   it("renders correctly when 2 case studies are provided", () => {
     const { baseElement, getByRole, getAllByRole } = render(
-      <OaksImpactCaseStudies
+      <CaseStudiesSection
         title={"Case studies"}
-        caseStudies={oaksImpactCaseStudiesFixture.slice(0, 2)}
+        caseStudies={caseStudiesSectionFixture.slice(0, 2)}
       />,
     );
 
@@ -39,7 +39,7 @@ describe("OaksImpactCaseStudies", () => {
 
   it("renders only the first 3 case studies when more are provided", () => {
     const caseStudiesWithFourth = [
-      ...oaksImpactCaseStudiesFixture,
+      ...caseStudiesSectionFixture,
       {
         video: {
           title: "Case study 4",
@@ -58,7 +58,7 @@ describe("OaksImpactCaseStudies", () => {
     ];
 
     const { getAllByRole, queryByRole } = render(
-      <OaksImpactCaseStudies
+      <CaseStudiesSection
         title={"Case studies"}
         caseStudies={caseStudiesWithFourth}
       />,
