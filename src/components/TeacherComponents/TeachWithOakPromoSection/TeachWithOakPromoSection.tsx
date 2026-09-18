@@ -1,20 +1,27 @@
 import { OakBox, OakCard } from "@oaknational/oak-components";
 
 import { resolveOakHref, TeachWithOakQueryProps } from "@/common-lib/urls";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export const TeachWithOakPromoSection = (
   query: Readonly<TeachWithOakQueryProps>,
 ) => {
+  const { teachWithOakAccessed } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
+
   const href = resolveOakHref({
     page: "teach-with-oak",
     query,
   });
+
   return (
     <OakBox
       $display={"flex"}
       $maxWidth={["100%", "spacing-240"]}
       $mt={"spacing-24"}
       $mb={["spacing-24", "spacing-56"]}
+      onClick={teachWithOakAccessed}
     >
       <OakCard
         heading="Ever wondered why our lessons are structured this way?"

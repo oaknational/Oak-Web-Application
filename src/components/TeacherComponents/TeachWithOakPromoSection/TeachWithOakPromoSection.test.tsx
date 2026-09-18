@@ -1,15 +1,27 @@
 import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { TeachWithOakPromoSection } from "./TeachWithOakPromoSection";
 
-import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-const render = renderWithProvidersByName(["oakTheme"]);
+const render = renderWithProviders();
 const query = {
   returnTo: "/test/url",
   lessonName: "Lesson Name",
   unitName: "Unit Name",
 };
+
+const mockTeachWithOakAccessed = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      teachWithOakAccessed: (...args: unknown[]) =>
+        mockTeachWithOakAccessed(...args),
+    },
+  }),
+}));
 
 describe("TeachWithOakPromoSection", () => {
   it("renders correctly", () => {
@@ -45,5 +57,13 @@ describe("TeachWithOakPromoSection", () => {
       "href",
       "/teachers/teach-with-oak?returnTo=%2Ftest%2Furl&lessonName=Lesson+Name&unitName=Unit+Name",
     );
+  });
+  it("calls tracking on click", async () => {
+    render(<TeachWithOakPromoSection {...query} />);
+    const cardLink = screen.getByRole("link");
+    cardLink.addEventListener("click", (e) => e.preventDefault());
+    const user = userEvent.setup();
+    await user.click(cardLink);
+    expect(mockTeachWithOakAccessed).toHaveBeenCalled();
   });
 });
