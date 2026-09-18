@@ -17,11 +17,13 @@ const render = renderWithProvidersByName(["theme", "oakTheme"]);
 const returnTo =
   "/teachers/programmes/maths-secondary-year-7/units/adding-and-subtracting/lessons/adding-integers";
 
+const query = { returnTo, lessonName: "Lesson Name", unitName: "Unit Name" };
+
 describe("MaybeTeachWithOakCard", () => {
   it("renders nothing while the feature flag is unresolved", () => {
     mockUseFeatureFlagVariantKey.mockReturnValue(undefined);
 
-    const { container } = render(<MaybeTeachWithOakCard returnTo={returnTo} />);
+    const { container } = render(<MaybeTeachWithOakCard {...query} />);
 
     expect(container).toBeEmptyDOMElement();
   });
@@ -29,7 +31,7 @@ describe("MaybeTeachWithOakCard", () => {
   it("renders nothing when the feature flag is on another variant", () => {
     mockUseFeatureFlagVariantKey.mockReturnValue("control");
 
-    const { container } = render(<MaybeTeachWithOakCard returnTo={returnTo} />);
+    const { container } = render(<MaybeTeachWithOakCard {...query} />);
 
     expect(container).toBeEmptyDOMElement();
   });
@@ -37,7 +39,7 @@ describe("MaybeTeachWithOakCard", () => {
   it("reads the teachers-teach-with-oak feature flag", () => {
     mockUseFeatureFlagVariantKey.mockReturnValue("teacher-tip");
 
-    render(<MaybeTeachWithOakCard returnTo={returnTo} />);
+    render(<MaybeTeachWithOakCard {...query} />);
 
     expect(mockUseFeatureFlagVariantKey).toHaveBeenCalledWith(
       "teachers-teach-with-oak",
@@ -50,7 +52,7 @@ describe("MaybeTeachWithOakCard", () => {
     });
 
     it("renders the card content", () => {
-      render(<MaybeTeachWithOakCard returnTo={returnTo} />);
+      render(<MaybeTeachWithOakCard {...query} />);
 
       expect(
         screen.getByText(
@@ -63,7 +65,7 @@ describe("MaybeTeachWithOakCard", () => {
     });
 
     it("links to the teach with oak page, returning to the given path", () => {
-      render(<MaybeTeachWithOakCard returnTo={returnTo} />);
+      render(<MaybeTeachWithOakCard {...query} />);
 
       expect(screen.getByRole("link")).toHaveAttribute(
         "href",

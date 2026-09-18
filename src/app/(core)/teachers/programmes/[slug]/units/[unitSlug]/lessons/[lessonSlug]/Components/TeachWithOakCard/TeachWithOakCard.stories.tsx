@@ -24,6 +24,8 @@ const meta = {
   tags: ["autodocs"],
   decorators: [withFeatureFlagVariant("teacher-tip")],
   args: {
+    lessonName: "Lesson Name",
+    unitName: "Unit Name",
     returnTo:
       "/teachers/programmes/maths-secondary-year-7/units/adding-and-subtracting/lessons/adding-integers",
   },

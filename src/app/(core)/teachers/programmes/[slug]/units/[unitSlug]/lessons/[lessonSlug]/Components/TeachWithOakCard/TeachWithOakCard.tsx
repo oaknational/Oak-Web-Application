@@ -1,18 +1,11 @@
 import { OakCard } from "@oaknational/oak-components";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
 
-import { resolveOakHref } from "@/common-lib/urls";
+import { resolveOakHref, TeachWithOakQueryProps } from "@/common-lib/urls";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 
-type MaybeTeachWithOakCardProps = {
-  /** Path to send the teacher back to from the Teach with Oak page */
-  returnTo: string;
-};
-
 /** Renders nothing unless the `teachers-teach-with-oak` flag is on the `teacher-tip` variant. */
-export function MaybeTeachWithOakCard({
-  returnTo,
-}: Readonly<MaybeTeachWithOakCardProps>) {
+export function MaybeTeachWithOakCard(query: Readonly<TeachWithOakQueryProps>) {
   const shouldShowCard =
     useFeatureFlagVariantKey("teachers-teach-with-oak") === "teacher-tip";
 
@@ -20,9 +13,7 @@ export function MaybeTeachWithOakCard({
 
   const href = resolveOakHref({
     page: "teach-with-oak",
-    query: {
-      returnTo,
-    },
+    query,
   });
 
   return (

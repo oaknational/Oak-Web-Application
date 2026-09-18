@@ -1,19 +1,13 @@
 import { OakBox, OakCard } from "@oaknational/oak-components";
 
-import { resolveOakHref } from "@/common-lib/urls";
+import { resolveOakHref, TeachWithOakQueryProps } from "@/common-lib/urls";
 
-type TeachWithOakPromoSectionProps = {
-  returnTo: string;
-};
-
-export const TeachWithOakPromoSection = ({
-  returnTo,
-}: Readonly<TeachWithOakPromoSectionProps>) => {
+export const TeachWithOakPromoSection = (
+  query: Readonly<TeachWithOakQueryProps>,
+) => {
   const href = resolveOakHref({
     page: "teach-with-oak",
-    query: {
-      returnTo,
-    },
+    query,
   });
   return (
     <OakBox

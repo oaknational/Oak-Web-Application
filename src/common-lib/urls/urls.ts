@@ -334,11 +334,16 @@ type EyfsPageLinkProps = {
   subjectSlug: string;
 };
 
+type TeachWithOakDownloadLinkProps = { page: "teach-with-oak-download" };
+
+export type TeachWithOakQueryProps = {
+  returnTo: string;
+  lessonName: string;
+  unitName: string;
+};
 type TeachWithOakLinkProps = {
   page: "teach-with-oak";
-  query?: {
-    returnTo: string;
-  };
+  query?: TeachWithOakQueryProps;
 };
 
 type OnlyPageRequired<T> = T extends { page: string }

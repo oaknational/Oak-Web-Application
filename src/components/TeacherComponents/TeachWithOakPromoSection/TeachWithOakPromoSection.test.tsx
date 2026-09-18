@@ -5,11 +5,16 @@ import { TeachWithOakPromoSection } from "./TeachWithOakPromoSection";
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProvidersByName(["oakTheme"]);
+const query = {
+  returnTo: "/test/url",
+  lessonName: "Lesson Name",
+  unitName: "Unit Name",
+};
 
 describe("TeachWithOakPromoSection", () => {
   it("renders correctly", () => {
     const { container, getByText } = render(
-      <TeachWithOakPromoSection returnTo="/test/url" />,
+      <TeachWithOakPromoSection {...query} />,
     );
     expect(container).toMatchSnapshot();
     const heading = screen.getByRole("heading", {
@@ -31,7 +36,7 @@ describe("TeachWithOakPromoSection", () => {
   });
 
   it("renders link pointing to the correct href", () => {
-    render(<TeachWithOakPromoSection returnTo="/test/url" />);
+    render(<TeachWithOakPromoSection {...query} />);
 
     const link = screen.getByRole("link", { name: /See the thinking/i });
 
