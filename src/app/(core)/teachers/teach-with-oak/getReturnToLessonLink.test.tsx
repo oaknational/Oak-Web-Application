@@ -12,14 +12,10 @@ const createQuery = (returnTo: string) =>
 describe("getReturnToLessonLink", () => {
   test("creates a valid link", () => {
     const result = getReturnToLessonProps({
-      query: createQuery(
-        "https://thenational.academy/teachers/lessons/example",
-      ),
+      query: createQuery("/teachers/lessons/example"),
     });
 
-    expect(result?.returnTo).toEqual(
-      "https://thenational.academy/teachers/lessons/example",
-    );
+    expect(result?.returnTo).toEqual("/teachers/lessons/example");
   });
 
   test("does not pass a return link from an invalid hostname to the view", () => {
