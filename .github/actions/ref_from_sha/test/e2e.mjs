@@ -1,7 +1,7 @@
-const github = require("@actions/github");
+import * as github from "@actions/github";
 
-const prFromSha = require("../pr_from_sha");
-const branchFromSha = require("../branch_from_sha");
+import prFromSha from "../pr_from_sha.js";
+import branchFromSha from "../branch_from_sha.js";
 
 const githubToken = process.env.GITHUB_TOKEN;
 

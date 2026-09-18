@@ -2,10 +2,16 @@
  * Create a Github commit status with the provided name and conclusion values.
  */
 
-const core = require("@actions/core");
-const github = require("@actions/github");
+import * as core from "@actions/core";
+import * as github from "@actions/github";
 
-const allowedStates = ["error", "failure", "skipped", "pending", "success"];
+const allowedStates = new Set([
+  "error",
+  "failure",
+  "skipped",
+  "pending",
+  "success",
+]);
 
 async function run() {
   try {
@@ -17,7 +23,7 @@ async function run() {
       core.getInput("target_url") ||
       `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
 
-    if (!allowedStates.includes(statusValue)) {
+    if (!allowedStates.has(statusValue)) {
       throw new TypeError(`Bad state: ${statusValue}`);
     }
 
