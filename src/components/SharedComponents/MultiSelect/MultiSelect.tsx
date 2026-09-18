@@ -6,12 +6,13 @@ import {
   OakCheckBox,
   OakIcon,
   OakP,
+  OakPrimaryButton,
   OakScreenReader,
+  OakSecondaryButton,
   OakUL,
   parseFontSize,
   parseLineHeight,
   type OakUiRoleToken,
-  parseColor,
   parseDropShadow,
   parseSpacing,
 } from "@oaknational/oak-components";
@@ -52,35 +53,6 @@ export type MultiSelectProps = {
   "data-testid"?: string;
 };
 
-const Trigger = styled(OakFlex)`
-  font-family: inherit;
-  cursor: pointer;
-
-  &:hover:not(:disabled) {
-    background: ${parseColor("bg-neutral")};
-    box-shadow: ${parseDropShadow("drop-shadow-lemon")};
-  }
-
-  &:focus-visible {
-    outline: 0;
-    box-shadow: ${parseDropShadow("drop-shadow-centered-lemon")},
-      ${parseDropShadow("drop-shadow-centered-grey")};
-  }
-
-  &:active:not(:disabled) {
-    background: ${parseColor("bg-primary")};
-    box-shadow: ${parseDropShadow("drop-shadow-lemon")},
-      ${parseDropShadow("drop-shadow-grey")};
-  }
-
-  &:disabled {
-    border-color: ${parseColor("border-neutral")};
-    background: ${parseColor("bg-neutral-stronger")};
-    color: ${parseColor("text-disabled")};
-    cursor: not-allowed;
-  }
-`;
-
 // OakCheckBox does not expose a minimum-height prop for its label.
 const CheckboxStack = styled(OakFlex)`
   label {
@@ -117,29 +89,11 @@ const IconButton = styled(OakFlex)`
   }
 `;
 
-const ConfirmButton = styled(OakFlex)`
-  font-family: inherit;
-  letter-spacing: inherit;
-  cursor: pointer;
-
-  &:disabled {
-    border-color: ${parseColor("border-neutral")};
-    background: ${parseColor("bg-btn-primary-disabled")};
-    cursor: not-allowed;
-  }
-
-  &:focus-visible {
-    outline: 0;
-    box-shadow: ${parseDropShadow("drop-shadow-centered-lemon")},
-      ${parseDropShadow("drop-shadow-centered-grey")};
-  }
-`;
-
 const uniqueValues = (values: string[]) => [...new Set(values)];
 
 const triggerSizeProps = {
-  standard: { $minHeight: "spacing-48", $pv: "spacing-12" },
-  large: { $minHeight: "spacing-64", $pv: "spacing-16" },
+  standard: { pv: "spacing-12" },
+  large: { pv: "spacing-16" },
 } as const;
 
 const dropdownPositionProps = {
@@ -172,7 +126,7 @@ export const MultiSelect = ({
   const generatedId = useId();
   const id = idProp ?? `oak-multiselect-${generatedId.replace(/:/g, "")}`;
   const panelId = `${id}-panel`;
-  const triggerRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -327,37 +281,32 @@ export const MultiSelect = ({
     >
       <OakBox $display={["none", "none", "block"]}>
         <OakBox $position="relative" $width="100%">
-          <Trigger
-            as="button"
-            $boxSizing="border-box"
-            $alignItems="center"
-            $justifyContent="space-between"
-            $gap="spacing-8"
-            $width="100%"
+          <OakSecondaryButton
+            width="100%"
+            innerWidth="100%"
             {...triggerSizeProps[size]}
-            $ph="spacing-16"
-            $ba="border-solid-m"
-            $borderColor="border-primary"
-            $borderRadius="border-radius-s"
-            $background="bg-primary"
-            $color="text-primary"
-            $font="heading-7"
-            $textAlign="left"
-            ref={triggerRef}
+            hoverUnderline={false}
+            isTrailingIcon
+            iconOverride={
+              <OakIcon
+                iconName={isOpen ? "chevron-up" : "chevron-down"}
+                $color={disabled ? "icon-disabled" : "icon-primary"}
+                $ml="auto"
+              />
+            }
             id={id}
             type="button"
             data-testid={dataTestId ? `${dataTestId}-trigger` : undefined}
             aria-controls={panelId}
             aria-expanded={isOpen}
             disabled={disabled}
-            onClick={() => setIsOpen((open) => !open)}
+            onClick={(event) => {
+              triggerRef.current = event.currentTarget;
+              setIsOpen((open) => !open);
+            }}
           >
-            <span>{placeholder}</span>
-            <OakIcon
-              iconName={isOpen ? "chevron-up" : "chevron-down"}
-              $color={disabled ? "icon-disabled" : "icon-primary"}
-            />
-          </Trigger>
+            {placeholder}
+          </OakSecondaryButton>
           {isOpen ? (
             <OakBox
               $position="absolute"
@@ -498,21 +447,14 @@ export const MultiSelect = ({
           $borderColor="border-neutral-lighter"
           $background="bg-primary"
         >
-          <ConfirmButton
-            as="button"
-            $alignItems="center"
-            $justifyContent="center"
-            $gap="spacing-8"
-            $width="100%"
-            $minHeight="spacing-48"
-            $pv="spacing-12"
-            $ph="spacing-16"
-            $ba="border-solid-m"
-            $borderColor="border-primary"
-            $borderRadius="border-radius-s"
-            $background="bg-btn-primary"
-            $color="text-inverted"
-            $font="heading-7"
+          <OakPrimaryButton
+            width="100%"
+            hoverUnderline={false}
+            hoverShadow={null}
+            isTrailingIcon
+            iconOverride={
+              <OakIcon iconName="arrow-right" $color="icon-inverted" />
+            }
             type="button"
             disabled={disabled || selectedSet.size === 0}
             onClick={onMobileConfirm}
@@ -521,8 +463,7 @@ export const MultiSelect = ({
             }
           >
             {mobileConfirmLabel}
-            <OakIcon iconName="arrow-right" $color="icon-inverted" />
-          </ConfirmButton>
+          </OakPrimaryButton>
         </OakFlex>
       </OakBox>
     </OakBox>
