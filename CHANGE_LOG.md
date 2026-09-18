@@ -1,3 +1,54 @@
+## [1.1200.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1200.1...v1.1200.2) (2026-09-17)
+
+## [1.1200.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1200.0...v1.1200.1) (2026-09-17)
+
+
+### Bug Fixes
+
+* added column gap to grid in <LayoutSiteFooter/> ([134dba4](https://github.com/oaknational/Oak-Web-Application/commit/134dba41d762b40e15d42a958ff00dd6e25ffac5))
+* bumps oak-components for the following fixes ([1b0ec97](https://github.com/oaknational/Oak-Web-Application/commit/1b0ec9736fbb449d86c98c71c7a0fe7556afefce))
+* re-add, which were removed by reverted commit in another PR ([dda4555](https://github.com/oaknational/Oak-Web-Application/commit/dda4555546a96f2e1bdc14c0ca13bdcf7aee0d91))
+* snaps ([a645ce0](https://github.com/oaknational/Oak-Web-Application/commit/a645ce0df6e58ff7ead8309e758a17a8b5ced53f))
+
+# [1.1200.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1199.0...v1.1200.0) (2026-09-17)
+
+
+### Bug Fixes
+
+* decouple oaks impact from library page only - leave slug page for now ([52249d6](https://github.com/oaknational/Oak-Web-Application/commit/52249d6833b842f01f8a2e52da4be1e0476f44d4))
+* rename caseStudies to remove OaksImpact in case studies library page ([9069b7e](https://github.com/oaknational/Oak-Web-Application/commit/9069b7e5652b6ea7877c68f39ff96012a761f7d8))
+* reset lockfile to main version ([8ed158a](https://github.com/oaknational/Oak-Web-Application/commit/8ed158af9155cb2482fcf3167284327294083e15))
+* snaps ([155eaf7](https://github.com/oaknational/Oak-Web-Application/commit/155eaf7c0646176dd04e4590fccc00907b013a10))
+
+
+### Features
+
+* add to do ([debf194](https://github.com/oaknational/Oak-Web-Application/commit/debf1946f35a4d0c9069836ecaa50a6558ea4a7a))
+* added case study list page behind flag ([d4984eb](https://github.com/oaknational/Oak-Web-Application/commit/d4984eb6e50f8115b84251c155f15a144427dcdc))
+* added header to case studies list page ([5997dc9](https://github.com/oaknational/Oak-Web-Application/commit/5997dc95352b9935623795cc61dc2291fcdb9075))
+* added showImage added in https://github.com/oaknational/oak-components/pull/779 ([0a14a54](https://github.com/oaknational/Oak-Web-Application/commit/0a14a54dbf1ee3b3063be2b36f287a74136ad31a))
+
+# [1.1199.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1198.0...v1.1199.0) (2026-09-17)
+
+
+### Bug Fixes
+
+* explainer video guide alignment ([c30bb80](https://github.com/oaknational/Oak-Web-Application/commit/c30bb80f980c11c4bc4e31690c7ee50d1b911629))
+* homepage testimonials fixed height ([ce1fec9](https://github.com/oaknational/Oak-Web-Application/commit/ce1fec915e727db5e00b555387f4095abbed9336))
+* omit video border in post video ([1d79609](https://github.com/oaknational/Oak-Web-Application/commit/1d79609e5749a95856ad45d44a03b39d07a0c3c5))
+* video player legacy props typing ([21e3f51](https://github.com/oaknational/Oak-Web-Application/commit/21e3f51e56803e29f834af050d9bada7f56526be))
+
+
+### Features
+
+* add thumbnail time prop where missing ([7104e72](https://github.com/oaknational/Oak-Web-Application/commit/7104e72074d85aafb1f201dfde6e7e7bafc0c8f0))
+* add transcript to homepage video ([f05ae09](https://github.com/oaknational/Oak-Web-Application/commit/f05ae09a5d91e00c6da36c2a6eee9c64dd74af4d))
+* bump oak components ([9a7191f](https://github.com/oaknational/Oak-Web-Application/commit/9a7191fa553e34637d2fc53759836e5800205973))
+* bump oak components to use updated transcript typing ([b334687](https://github.com/oaknational/Oak-Web-Application/commit/b334687cd2baf83b774a1280cc7121dc2f63c6a8))
+* remove captions from cms video type ([8a54358](https://github.com/oaknational/Oak-Web-Application/commit/8a54358fe681e78ede0fcf91e89d98d7ffcbafc9))
+* remove cms video from nc insights ([6ed6f9a](https://github.com/oaknational/Oak-Web-Application/commit/6ed6f9a03621e0cf8aee75d03d2fe7a05be0e153))
+* remove field for captions do not use from sanity query ([85b9698](https://github.com/oaknational/Oak-Web-Application/commit/85b9698f8f0babab80b34cbd9125bea4d080b7fc))
+
 # [1.1198.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1197.0...v1.1198.0) (2026-09-16)
 
 
