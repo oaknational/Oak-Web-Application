@@ -13,6 +13,8 @@ import {
 import styled from "styled-components";
 import Link from "next/link";
 
+import { useReturnToLessonProps } from "../../getReturnToLessonLink";
+
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -60,6 +62,8 @@ export const ShortReads = () => {
 };
 
 const ShortReadsHeader = () => {
+  const returnToLessonProps = useReturnToLessonProps();
+
   return (
     <OakGrid $rg={["spacing-16", "spacing-16", "spacing-8"]}>
       <OakGridArea $colSpan={[12, 12, 8]} $order={1}>
@@ -79,7 +83,10 @@ const ShortReadsHeader = () => {
             isTrailingIcon
             aria-label={"Download all guides"}
             element={Link}
-            href={resolveOakHref({ page: "teach-with-oak-download" })}
+            href={resolveOakHref({
+              page: "teach-with-oak-download",
+              ...(returnToLessonProps && { query: returnToLessonProps }),
+            })}
           >
             Download all guides
           </OakPrimaryButton>
@@ -115,6 +122,8 @@ const ShortReadSection = ({
   assetUrl: string;
   isInitiallyVisible?: boolean;
 }) => {
+  const returnToLessonProps = useReturnToLessonProps();
+
   return (
     <OakFlex $flexDirection="column" $gap="spacing-24">
       <OakGrid $rg="spacing-8">
@@ -135,7 +144,10 @@ const ShortReadSection = ({
               isTrailingIcon
               aria-label={`Download ${shortReadType} guide (PDF)`}
               element={Link}
-              href={resolveOakHref({ page: "teach-with-oak-download" })}
+              href={resolveOakHref({
+                page: "teach-with-oak-download",
+                ...(returnToLessonProps && { query: returnToLessonProps }),
+              })}
             >
               {`Download ${shortReadType} guide (PDF)`}
             </ShortReadDownloadButton>
