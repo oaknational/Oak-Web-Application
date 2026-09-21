@@ -53,7 +53,7 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-aXZVg sc-gEvEer sc-5ce3e7c8-0 jPvJsJ iDBIXi BPWok"
+          class="sc-aXZVg sc-gEvEer sc-2195864b-0 jPvJsJ iDBIXi egEviS"
         >
           <div
             class="sc-aXZVg jPvJsJ"
@@ -87,17 +87,17 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
                   class="sc-aXZVg sc-dd122c9c-0 QBMYh MCjfq"
                 >
                   <span
-                    class="sc-aXZVg iLOJBD sc-5ce3e7c8-1 exIaJo"
+                    class="sc-aXZVg iLOJBD sc-2195864b-1 fuNoTq"
                   >
                     <img
-                      alt="Teach with Oak Image"
+                      alt=""
                       class="sc-iGgWBj dZvqhO"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
                       sizes="100vw"
-                      src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=3840&q=75"
-                      srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=3840&q=75 3840w"
+                      src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1789976818%2Fteacher-journey%2Fteach-with-oak-header-image.jpg&w=3840&q=75"
+                      srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1789976818%2Fteacher-journey%2Fteach-with-oak-header-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1789976818%2Fteacher-journey%2Fteach-with-oak-header-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1789976818%2Fteacher-journey%2Fteach-with-oak-header-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1789976818%2Fteacher-journey%2Fteach-with-oak-header-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1789976818%2Fteacher-journey%2Fteach-with-oak-header-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1789976818%2Fteacher-journey%2Fteach-with-oak-header-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1789976818%2Fteacher-journey%2Fteach-with-oak-header-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1789976818%2Fteacher-journey%2Fteach-with-oak-header-image.jpg&w=3840&q=75 3840w"
                       style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                     />
                   </span>
