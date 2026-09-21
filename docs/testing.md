@@ -51,11 +51,11 @@ Before running Playwright tests locally, install browser binaries once per machi
 
 ### Commands
 
-- `pnpm run test:e2e` runs all Playwright tests including visual tests.
-- `pnpm run test:e2e -- --project=e2e-desktop src/__tests__/e2e/teacher/lesson-page.spec.ts` runs a single spec.
+The following use `--project=e2e-desktop` and therefore do not run any visual tests, see [Visual Snapshot Tests (Playwrihgt + Chromatic)](#visual-snapshot-tests-playwright--chromatic).
+
+- `pnpm run test:e2e` runs all end to end Playwright tests.
+- `pnpm run test:e2e -- src/__tests__/e2e/teacher/lesson-page.spec.ts` runs a single spec.
 - `pnpm run test:e2e:ci` runs Playwright with the HTML report enabled.
-- `pnpm run test:e2e:visual` runs only tests tagged with `@visual`.
-- `pnpm run test:chromatic` runs visual specs and then uploads snapshots to Chromatic.
 
 ### Local Execution
 
@@ -68,10 +68,10 @@ Before running Playwright tests locally, install browser binaries once per machi
 - The shared Playwright action caches Chromium binaries (keyed by OS, architecture, and Playwright version), installs required system dependencies, and uploads the HTML report artifact.
 - Retries are configured as `1` in CI and `0` locally.
 
-### Visual Snapshot Tests (Playwright + Chromatic)
+## Visual Snapshot Tests (Playwright + Chromatic)
 
-- Visual snapshot specs live alongside E2E tests and should be tagged with `@visual`.
-- Current example: [src/tests/e2e/teacher/lesson-page.visual.spec.ts](../src/tests/e2e/teacher/lesson-page.visual.spec.ts).
+- Visual snapshot specs are executed via Playwright and should be tagged with `@visual`.
+- Current example: [src/\_\_tests\_\_/visual/pages.spec.ts](../src/__tests__/visual/pages.spec.ts).
 - Use `takeSnapshot(page, name, testInfo)` from `@chromatic-com/playwright` inside those specs.
 - `playwright.config.ts` keeps `disableAutoSnapshot: true`, so snapshots are only captured where `takeSnapshot` is called.
 
@@ -80,6 +80,11 @@ Required environment variables for Chromatic runs:
 - `CHROMATIC_PROJECT_TOKEN`
 - `BASE_URL` (target deployment URL)
 - `VERCEL_AUTOMATION_BYPASS_SECRET` (for protected Vercel previews)
+
+### Commands
+
+- `pnpm run test:visual` runs only Playwright tests tagged with `@visual`.
+- `pnpm run test:chromatic` runs visual specs and then uploads snapshots to Chromatic.
 
 ### Jest Separation
 
