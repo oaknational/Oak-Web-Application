@@ -1,14 +1,11 @@
 "use client";
 
-import { OakBox, OakFlex, OakLink, OakP } from "@oaknational/oak-components";
+import { OakBox, OakFlex } from "@oaknational/oak-components";
+import styled from "styled-components";
 
-import { NEWSLETTER_COUNT } from "@/components/GenericPagesComponents/NewsletterForm/newsletterConstants";
+import { NewsletterFormProps } from "@/components/GenericPagesComponents/NewsletterForm";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
-import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
-import { resolveOakHref } from "@/common-lib/urls";
-import NewsletterForm, {
-  NewsletterFormProps,
-} from "@/components/GenericPagesComponents/NewsletterForm";
+import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 
 type FormValues = Parameters<NewsletterFormProps["onSubmit"]>[0];
 
@@ -17,47 +14,30 @@ type TeachWithOakNewsletterFormProps = {
   onSubmit: (values: FormValues) => Promise<string | void>;
 };
 
+const NewsletterWrapper = styled(OakFlex)`
+  max-width: 100%;
+  margin: auto;
+
+  @media (min-width: 750px) {
+    max-width: 870px;
+  }
+`;
+
 const TeachWithOakNewsletterForm = ({
   id,
   onSubmit,
 }: TeachWithOakNewsletterFormProps) => {
+  const newsletterFormProps = { id, onSubmit };
   return (
     <OakBox
       $background="bg-decorative1-subdued"
       $position="relative"
-      $pa="spacing-56"
+      $pv="spacing-56"
     >
       <NewGutterMaxWidth>
-        <OakFlex
-          $flexDirection={["column", "row"]}
-          $pa="spacing-40"
-          $background="bg-primary"
-          $borderRadius="border-radius-m"
-        >
-          <OakFlex
-            $flexDirection="column"
-            $pb={["spacing-48", "spacing-0"]}
-            $pr={["spacing-0", "spacing-24"]}
-          >
-            <CardTitle icon="magic-carpet" iconSize="spacing-48" tag={"h2"}>
-              Don't miss out
-            </CardTitle>
-            <OakP>
-              Join over {NEWSLETTER_COUNT} teachers and get free resources and
-              other helpful content by email. Unsubscribe at any time. Read our{" "}
-              <OakLink
-                href={resolveOakHref({
-                  page: "legal",
-                  legalSlug: "privacy-policy",
-                })}
-              >
-                privacy policy
-              </OakLink>
-              .
-            </OakP>
-          </OakFlex>
-          <NewsletterForm id={id} onSubmit={onSubmit} />
-        </OakFlex>
+        <NewsletterWrapper>
+          <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
+        </NewsletterWrapper>
       </NewGutterMaxWidth>
     </OakBox>
   );
