@@ -7,6 +7,7 @@ import {
   OakHeading,
   OakGrid,
   OakGridArea,
+  OakSmallSecondaryButton,
   OakSubjectIconButton,
   OakUL,
   parseColor,
@@ -27,10 +28,9 @@ type Subject = NationalCurriculumInsightsRouteData["subjects"][number];
 
 type Phase = "primary" | "secondary";
 
-// OakSubjectIconButton fixes these colours by phase and exposes no overrides.
-const SubjectNavigationMaxWidth = styled(OakBox)`
+// The small secondary button does not expose its default border colour.
+const SubjectNavigationMaxWidth = styled(OakFlex)`
   a {
-    background: ${parseColor("bg-primary")};
     border-color: ${parseColor("grey30")};
   }
 `;
@@ -80,6 +80,7 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
           $minHeight={["auto", "auto", "spacing-180"]}
           $display={["block", "block", "flex"]}
           $alignItems="center"
+          $justifyContent="center"
           $mh="auto"
           data-insights-module="subject-navigation"
         >
@@ -92,11 +93,10 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
           >
             {subjects.map((subject) => (
               <li key={subject.slug}>
-                <OakSubjectIconButton
-                  variant="horizontal"
+                <OakSmallSecondaryButton
                   element={Link}
-                  phase={(phase ?? "non-curriculum") as Phase}
-                  subjectIconName={normaliseSubjectIcon(subject)}
+                  iconName={normaliseSubjectIcon(subject)}
+                  iconAriaHidden
                   href={
                     phase
                       ? nationalCurriculumInsightsSubjectPhaseHref(
@@ -107,7 +107,7 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
                   }
                 >
                   {subject.title}
-                </OakSubjectIconButton>
+                </OakSmallSecondaryButton>
               </li>
             ))}
           </OakUL>
