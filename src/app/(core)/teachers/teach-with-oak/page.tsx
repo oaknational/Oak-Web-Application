@@ -20,7 +20,8 @@ export const metadata: Metadata = {
 };
 
 const teachWithOakParams = z.object({
-  returnTo: z.url({ hostname: /^thenational\.academy$/ }),
+  // Path on this site only - rejecting a leading `//` rules out protocol-relative redirects
+  returnTo: z.string().regex(/^\/(?!\/)/),
 });
 
 const InnerTeachWithOakPage = async (props: {
