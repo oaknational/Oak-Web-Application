@@ -37,8 +37,8 @@ function hasKs(keystages: { slug: string }[], num: number) {
   return keystages.find((k) => k.slug === `ks${num}`);
 }
 
-// Types are loose coming out of the API so we cast to `KeystageSlug` to
-// do our best to map it to the correct title. Fallback if we can't map it.
+// Types are loose coming out of the API so we  do our best to map it to the correct title.
+// Fallback if we can't map it.
 export function getKeyStageTitle(ksSlug: string): KeyStageTitleValueType {
   switch (ksSlug) {
     case "ks1":
