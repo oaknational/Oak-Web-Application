@@ -10,7 +10,50 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
         class="sc-aXZVg dJqAhm"
       >
         <div
-          class="sc-aXZVg sc-gEvEer sc-a7602fea-0 jPvJsJ iDBIXi goGKbx"
+          class="sc-aXZVg bZTQLO"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer sc-jlZhew hCgIGG iDBIXi aPmvC"
+          >
+            <a
+              class="sc-dcJsrY sc-dAlyuH dAja-dp eGtIkY"
+              href="/teachers/programmes/art-primary-ks1/units/unit-slug/lessons/lesson-slug"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ gghMxj"
+              >
+                <div
+                  class="sc-aXZVg sc-gEvEer kJHaEW jMLdOa icon-container"
+                >
+                  <div
+                    class="sc-aXZVg focDaC shadow"
+                  />
+                  <span
+                    class="sc-aXZVg jJQFnr"
+                    data-icon-for="button"
+                  >
+                    <img
+                      alt=""
+                      class="sc-iGgWBj lcrpYX"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149179/icons/ejrm9dpgpzb7ddbo8z2i.svg"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
+                </div>
+                <span
+                  class="sc-eqUAAy bngpZa"
+                >
+                  Back to lesson
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div
+          class="sc-aXZVg sc-gEvEer sc-37cefa1d-0 jPvJsJ iDBIXi hTMkBF"
         >
           <div
             class="sc-aXZVg jPvJsJ"
@@ -44,7 +87,7 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
                   class="sc-aXZVg sc-dd122c9c-0 QBMYh MCjfq"
                 >
                   <span
-                    class="sc-aXZVg iLOJBD sc-a7602fea-1 egEiIB"
+                    class="sc-aXZVg iLOJBD sc-37cefa1d-1 jDbdyJ"
                   >
                     <img
                       alt="Teach with Oak Image"
