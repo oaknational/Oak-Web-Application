@@ -41,7 +41,7 @@ import { DelayedLoadingSpinner } from "@/components/TeacherComponents/SharePageL
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { doUnitsHaveNc, flatUnitsFromYearData } from "@/utils/curriculum/units";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
+import useCurriculumDownload from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useCurriculumDownload";
 import downloadDebouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
 import { ImplementationGuides } from "@/common-lib/cms-types";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
@@ -207,7 +207,7 @@ export const ProgrammeDownloads = ({
     curriculumResourcesDownloadRefined({ tierSlug, childSubjectSlug });
   };
 
-  const { onSubmit } = useResourceFormSubmit();
+  const { onSubmit } = useCurriculumDownload();
 
   const onFormSubmit = async (data: ResourceFormValues): Promise<void> => {
     setSubmitError(undefined);
@@ -218,7 +218,6 @@ export const ProgrammeDownloads = ({
         setIsAttemptingDownload: setIsSubmitting,
         setEditDetailsClicked,
         onSubmit,
-        type: "curriculum",
         mvRefreshTime,
         slugs: curriculumSelectionSlugs,
         tierSlug: tierSelected,
