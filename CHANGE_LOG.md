@@ -1,3 +1,10 @@
+# [1.1204.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1203.0...v1.1204.0) (2026-09-21)
+
+
+### Features
+
+* enable posthog autocapture on the ai-plugin page ([cdee1a7](https://github.com/oaknational/Oak-Web-Application/commit/cdee1a71b09e21d4b890dd46a362b2869cf1db25))
+
 # [1.1203.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1202.0...v1.1203.0) (2026-09-21)
 
 
