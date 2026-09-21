@@ -1,3 +1,21 @@
+# [1.1201.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1200.2...v1.1201.0) (2026-09-21)
+
+
+### Bug Fixes
+
+* lockfile change and slipped through a commit ([f3605ca](https://github.com/oaknational/Oak-Web-Application/commit/f3605cad71733d50ac13182b6fd7ed377b85b1f0))
+* padding on lesson details ([0652eaf](https://github.com/oaknational/Oak-Web-Application/commit/0652eaf2c0e498541d70f259afa98a7f4db6c26b))
+
+
+### Features
+
+* add returnTo link ([462af67](https://github.com/oaknational/Oak-Web-Application/commit/462af677e68e982bd830818504c04be454dc6311))
+* add teach with oak card ([1c6b47c](https://github.com/oaknational/Oak-Web-Application/commit/1c6b47c1f4e85f2d7f7428c079080ac7d6743ccc))
+* add useProgrammeState hook and grab lessonHref from there ([30c36a4](https://github.com/oaknational/Oak-Web-Application/commit/30c36a40c961df1af3c5bd1ed7c10b532967398c))
+* try redirect behaviour ([c76e82a](https://github.com/oaknational/Oak-Web-Application/commit/c76e82afab20176e73e880ef047d591bc6ac10b1))
+* update oak components and add bg color  and border r ([43fac12](https://github.com/oaknational/Oak-Web-Application/commit/43fac12e436a0b3a6a762c87c5f1b5ba2bbeec68))
+* update teach with oak card ([6f44811](https://github.com/oaknational/Oak-Web-Application/commit/6f448115b15b8271e0e0e21ca23326ed81a30aab))
+
 ## [1.1200.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1200.1...v1.1200.2) (2026-09-17)
 
 ## [1.1200.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1200.0...v1.1200.1) (2026-09-17)
