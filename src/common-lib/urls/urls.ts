@@ -340,6 +340,7 @@ type TeachWithOakLinkProps = {
     returnTo: string;
   };
 };
+type TeachWithOakDownloadLinkProps = { page: "teach-with-oak-download" };
 
 type OnlyPageRequired<T> = T extends { page: string }
   ? { page: T["page"] } extends T
@@ -419,7 +420,8 @@ export type OakLinkProps =
   | EyfsPageLinkProps
   | GuideToOakLinkProps
   | FontHelpLinkProps
-  | TeachWithOakLinkProps;
+  | TeachWithOakLinkProps
+  | TeachWithOakDownloadLinkProps;
 
 export type ExternalPageName =
   | "[external] Careers"
@@ -978,6 +980,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Teach With Oak",
     configType: "internal",
     pageType: "teach-with-oak",
+  }),
+  "teach-with-oak-download": createOakPageConfig({
+    pathPattern: "/teachers/teach-with-oak/downloads",
+    analyticsPageName: "Teach With Oak",
+    configType: "internal",
+    pageType: "teach-with-oak-download",
   }),
 };
 
