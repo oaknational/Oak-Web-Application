@@ -38,6 +38,9 @@ const McpAssistantCard = ({
         iconWidth="spacing-40"
         iconHeight="spacing-40"
         alt=""
+        $colorFilter={
+          assistant.background === "bg-inverted" ? "text-inverted" : undefined
+        }
       />
     </OakFlex>
     <OakFlex $flexDirection="column" $gap="spacing-16" $alignItems="flex-start">
