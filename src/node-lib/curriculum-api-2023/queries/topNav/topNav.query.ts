@@ -78,6 +78,10 @@ const topNavQuery = (sdk: Sdk) => {
               slug: "curriculum-change-explained",
             },
             {
+              title: "Teach with Oak",
+              slug: "teach-with-oak",
+            },
+            {
               title: "Plan a lesson",
               slug: "lesson-planning",
             },
