@@ -120,7 +120,7 @@ export function AboutSharedHeader({
   $background,
 }: Readonly<AboutSharedHeaderProps>) {
   return (
-    <OakBox $background={$background}>
+    <OakBox $background={$background} $width="100%" $margin="auto">
       <NewGutterMaxWidth>
         <OakFlex
           $minWidth="spacing-0"
