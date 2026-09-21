@@ -3,6 +3,8 @@
 import {
   OakBox,
   OakFlex,
+  OakGrid,
+  OakGridArea,
   OakHeading,
   OakImage,
   OakP,
@@ -25,10 +27,10 @@ import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl
 type OverviewPageKind = "hub" | "subject" | "phase" | "keyStage";
 
 const tabletIllustrationLayout = {
-  hub: { width: "60%", aspectRatio: "403 / 274" },
-  subject: { width: "60%", aspectRatio: "403 / 274" },
-  phase: { width: "65%", aspectRatio: "485 / 318" },
-  keyStage: { width: "45%", aspectRatio: "295 / 312" },
+  hub: { columns: "2fr minmax(0, 6fr) 2fr", aspectRatio: "403 / 274" },
+  subject: { columns: "2fr minmax(0, 6fr) 2fr", aspectRatio: "403 / 274" },
+  phase: { columns: "7fr minmax(0, 26fr) 7fr", aspectRatio: "485 / 318" },
+  keyStage: { columns: "11fr minmax(0, 18fr) 11fr", aspectRatio: "295 / 312" },
 };
 
 const overviewPageKind = (
@@ -75,13 +77,6 @@ export const NationalCurriculumInsightsOverview = ({
     >
       <SectionMaxWidth
         $boxSizing="border-box"
-        $flexDirection={["column", "column", "row"]}
-        $alignItems={["stretch", "stretch", "flex-start"]}
-        $gap={[
-          "spacing-24",
-          "spacing-40",
-          isKeyStage ? "spacing-80" : "spacing-40",
-        ]}
         as="section"
         $mh="auto"
         $background={presentation.overviewBackground}
@@ -90,73 +85,95 @@ export const NationalCurriculumInsightsOverview = ({
         aria-labelledby={headingId}
         data-insights-module="overview"
       >
-        <OakFlex
-          $width="100%"
-          $minWidth={["auto", "auto", "spacing-0"]}
-          $display={["flex", "contents", "flex"]}
-          $flexGrow={[0, 0, 1]}
-          $flexBasis={["auto", "auto", "0%"]}
-          $flexDirection="column"
-          $gap={isKeyStage ? "spacing-40" : "spacing-20"}
+        <OakGrid
+          $gridTemplateColumns={[
+            "minmax(0, 1fr)",
+            "minmax(0, 1fr)",
+            isKeyStage
+              ? "minmax(0, 18fr) minmax(0, 7fr)"
+              : "minmax(0, 17fr) minmax(0, 8fr)",
+          ]}
+          $rg={["spacing-24", "spacing-40", "spacing-0"]}
         >
           <OakFlex
             $width="100%"
-            $flexDirection="column"
-            $gap={[
-              isKeyStage ? "spacing-40" : "spacing-20",
-              "spacing-20",
-              isKeyStage ? "spacing-40" : "spacing-20",
+            $minWidth={["auto", "auto", "spacing-0"]}
+            $display={["flex", "contents", "flex"]}
+            $boxSizing="border-box"
+            $pr={[
+              "spacing-0",
+              "spacing-0",
+              isKeyStage ? "spacing-80" : "spacing-40",
             ]}
+            $flexDirection="column"
+            $gap={isKeyStage ? "spacing-40" : "spacing-20"}
           >
-            <OakP $font="body-2" $mv="spacing-0">
-              At a glance
-            </OakP>
-            <OakHeading
-              id={headingId}
-              tag="h2"
-              $font={["heading-4", "heading-4", "heading-3"]}
+            <OakFlex
+              $width="100%"
+              $flexDirection="column"
+              $gap={[
+                isKeyStage ? "spacing-40" : "spacing-20",
+                "spacing-20",
+                isKeyStage ? "spacing-40" : "spacing-20",
+              ]}
             >
-              {section.heading}
-            </OakHeading>
+              <OakP $font="body-2" $mv="spacing-0">
+                At a glance
+              </OakP>
+              <OakHeading
+                id={headingId}
+                tag="h2"
+                $font={["heading-4", "heading-4", "heading-3"]}
+              >
+                {section.heading}
+              </OakHeading>
+            </OakFlex>
+            <OakFlex $display="block" $order={[0, 3, 0]}>
+              <PortableTextWithDefaults
+                value={section.bodyPortableText}
+                components={portableTextComponents}
+              />
+            </OakFlex>
           </OakFlex>
-          <OakFlex $display="block" $order={[0, 3, 0]}>
-            <PortableTextWithDefaults
-              value={section.bodyPortableText}
-              components={portableTextComponents}
-            />
+          <OakFlex $alignSelf="center" $order={[0, 2, 0]}>
+            <OakGrid
+              $gridTemplateColumns={[
+                "minmax(0, 1fr)",
+                tabletIllustrationLayout[pageKind].columns,
+                "minmax(0, 1fr)",
+              ]}
+            >
+              <OakGridArea $colSpan={1} $colStart={[1, 2, 1]}>
+                <OakBox
+                  $width="100%"
+                  $maxWidth={["unset", "spacing-480", "unset"]}
+                  $mh="auto"
+                  $aspectRatio={[
+                    "332 / 259",
+                    tabletIllustrationLayout[pageKind].aspectRatio,
+                    isKeyStage ? "295 / 312" : "332 / 259",
+                  ]}
+                  $overflow="hidden"
+                  aria-hidden={illustrationIsPresentational ? true : undefined}
+                >
+                  <OakImage
+                    src={
+                      presentation.illustration ?? insightsAssetUrl("overview")
+                    }
+                    alt={
+                      illustrationIsPresentational
+                        ? ""
+                        : (subjectIllustration?.altText ?? "")
+                    }
+                    $width="100%"
+                    $height="100%"
+                    $objectFit="contain"
+                  />
+                </OakBox>
+              </OakGridArea>
+            </OakGrid>
           </OakFlex>
-        </OakFlex>
-        <OakFlex
-          $display="block"
-          $width={[
-            "100%",
-            tabletIllustrationLayout[pageKind].width,
-            isKeyStage ? "28%" : "32%",
-          ]}
-          $maxWidth={["unset", "spacing-480", "unset"]}
-          $aspectRatio={[
-            "332 / 259",
-            tabletIllustrationLayout[pageKind].aspectRatio,
-            isKeyStage ? "295 / 312" : "332 / 259",
-          ]}
-          $overflow="hidden"
-          $flexShrink={[1, 1, 0]}
-          $alignSelf={["auto", "center", "center"]}
-          $order={[0, 2, 0]}
-          aria-hidden={illustrationIsPresentational ? true : undefined}
-        >
-          <OakImage
-            src={presentation.illustration ?? insightsAssetUrl("overview")}
-            alt={
-              illustrationIsPresentational
-                ? ""
-                : (subjectIllustration?.altText ?? "")
-            }
-            $width="100%"
-            $height="100%"
-            $objectFit="contain"
-          />
-        </OakFlex>
+        </OakGrid>
       </SectionMaxWidth>
     </OakBox>
   );

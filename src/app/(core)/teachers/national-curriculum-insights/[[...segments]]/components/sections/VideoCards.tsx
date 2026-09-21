@@ -3,6 +3,7 @@
 import {
   OakBox,
   OakFlex,
+  OakGrid,
   OakFocusIndicator,
   OakHeading,
   OakIcon,
@@ -33,7 +34,7 @@ import {
 
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
-const ConversationCardLink = styled(OakFlex)`
+const ConversationCardLink = styled(OakGrid)`
   font: inherit;
   cursor: pointer;
 
@@ -47,7 +48,7 @@ const ConversationCardImage = ({ children }: PropsWithChildren) => (
   <OakFlex
     $display="block"
     $position="relative"
-    $width={["100%", "40%", "31%"]}
+    $width="100%"
     $aspectRatio="16 / 9"
     $flexGrow={0}
     $flexShrink={0}
@@ -131,11 +132,15 @@ const ConversationCard = ({
       $background="transparent"
       $textAlign="left"
       $pa="spacing-12"
-      $gap="spacing-12"
+      $rg="spacing-12"
       $borderRadius="border-radius-m"
       as={href ? "a" : "div"}
       href={href}
-      $flexDirection={["column", "row", "row"]}
+      $gridTemplateColumns={[
+        "minmax(0, 1fr)",
+        "minmax(0, 2fr) minmax(0, 3fr)",
+        "minmax(0, 31fr) minmax(0, 69fr)",
+      ]}
     >
       {children}
     </ConversationCardLink>
@@ -166,6 +171,8 @@ const GuidanceConversationCard = ({
     </ConversationCardImage>
     <OakFlex
       $width="100%"
+      $boxSizing="border-box"
+      $pl={["spacing-0", "spacing-12"]}
       $minWidth="spacing-0"
       $flexDirection="column"
       $justifyContent="space-between"
@@ -278,6 +285,8 @@ const GuidanceBlogPostCard = ({
       </ConversationCardImage>
       <OakFlex
         $width="100%"
+        $boxSizing="border-box"
+        $pl={["spacing-0", "spacing-12"]}
         $minWidth="spacing-0"
         $flexDirection="column"
         $justifyContent="space-between"

@@ -284,8 +284,13 @@ describe("National Curriculum Insights sections", () => {
     );
 
     expect(
-      screen.getByRole("region", { name: "Science overview" }),
-    ).toHaveStyle({ gap: "1.5rem" });
+      screen.getByRole("region", { name: "Science overview" })
+        .firstElementChild,
+    ).toHaveStyle({
+      display: "grid",
+      "row-gap": "1.5rem",
+      "grid-template-columns": "minmax(0,1fr)",
+    });
 
     expect(
       screen.getByRole("img", {
