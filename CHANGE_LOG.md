@@ -1,3 +1,27 @@
+# [1.1203.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1202.0...v1.1203.0) (2026-09-21)
+
+
+### Bug Fixes
+
+* render loop in useResourceFormState ([7756d08](https://github.com/oaknational/Oak-Web-Application/commit/7756d08eb3441527b0928542bb2310e84eb2aac3))
+* resource card grid layout ([b30956f](https://github.com/oaknational/Oak-Web-Application/commit/b30956fee3273c7635cb60959462973ffeecd2ee))
+* return accordion text early for teach with oak ([c591282](https://github.com/oaknational/Oak-Web-Application/commit/c591282fc9a3761478021bf8a2bd2651dafc6cc2))
+* update accordion header on TwO download page ([b4a09a8](https://github.com/oaknational/Oak-Web-Application/commit/b4a09a83f49ee13b408634f41cebe5d1c7c761b5))
+
+
+### Features
+
+* add download accordion to teach with oak ([d1d915c](https://github.com/oaknational/Oak-Web-Application/commit/d1d915c629fa5170edd79ef6eff2971ec23f96c1))
+* add download page url to url config ([bed2ebb](https://github.com/oaknational/Oak-Web-Application/commit/bed2ebbf930e0f959cad44b98e9d670ded5ca0ec))
+* add downloads view with breadcrumbs ([27c3725](https://github.com/oaknational/Oak-Web-Application/commit/27c3725ede715c971aad530c7fa9a029f45c272c))
+* add links to download page from TwO main page ([82338a6](https://github.com/oaknational/Oak-Web-Application/commit/82338a60e783c08776265922f3f7aece74a9d105))
+* add success toast on download success ([f145d6f](https://github.com/oaknational/Oak-Web-Application/commit/f145d6fc9e3cf4bc1a24d55f3fee28f65b3b1209))
+* add teach with oak to download form state and hooks ([75c0733](https://github.com/oaknational/Oak-Web-Application/commit/75c07338096acf02aee39ed61476b4492a8b0fe9))
+* add TwO download page scaffolding ([fb51221](https://github.com/oaknational/Oak-Web-Application/commit/fb51221a158fa77ffe529bb3bd626d50c3bc88a8))
+* get file size for short reads ([3c98ffc](https://github.com/oaknational/Oak-Web-Application/commit/3c98ffc2a6686ed4d8c824c1d94785dd04ee0f76))
+* hide select all on resource cards for TwO ([63b4544](https://github.com/oaknational/Oak-Web-Application/commit/63b454431f84372a7f0302e7d32762cdb7055d70))
+* hide select all on teach with oak download accordion ([9a86f61](https://github.com/oaknational/Oak-Web-Application/commit/9a86f61f1a65ef66da99b28fb74a597c9639fcbd))
+
 # [1.1202.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1201.0...v1.1202.0) (2026-09-21)
 
 
