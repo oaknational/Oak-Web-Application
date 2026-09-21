@@ -1,5 +1,6 @@
 "use client";
 import {
+  OakBox,
   OakFlex,
   OakHeading,
   OakIcon,
@@ -13,6 +14,7 @@ import { McpTryButton } from "./McpTryButton";
 
 import {
   mcpAssistants,
+  mcpMoreAssistantsNote,
   type McpAssistant,
 } from "@/app/(core)/ai-plugin/mcpContent";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
@@ -67,26 +69,33 @@ const smallPrintComponents: PortableTextComponents = {
   },
 };
 
+const McpAssistantFlow = ({
+  assistant,
+}: Readonly<{ assistant: McpAssistant }>) => (
+  <OakFlex $flexDirection="column" $gap="spacing-24">
+    <McpAssistantCard assistant={assistant} />
+    <PortableTextWithDefaults
+      value={assistant.steps}
+      components={stepComponents}
+    />
+    <PortableTextWithDefaults
+      value={assistant.pasteNote}
+      components={smallPrintComponents}
+    />
+  </OakFlex>
+);
+
 export const McpAssistants = () => (
   <McpSection title={mcpAssistants.title} id="choose-your-ai-assistant">
     <OakP $font="body-2">{mcpAssistants.body}</OakP>
-    <OakFlex
-      $flexDirection={["column", "column", "row"]}
-      $gap={["spacing-32", "spacing-24"]}
-    >
-      {mcpAssistants.items.map((assistant) => (
-        <McpAssistantCard key={assistant.name} assistant={assistant} />
-      ))}
-    </OakFlex>
-    <PortableTextWithDefaults
-      value={mcpAssistants.steps}
-      components={stepComponents}
-    />
-    <OakFlex $flexDirection="column" $gap="spacing-12">
-      <PortableTextWithDefaults
-        value={mcpAssistants.smallPrint}
-        components={smallPrintComponents}
-      />
-    </OakFlex>
+    {mcpAssistants.items.map((assistant, index) => (
+      <OakFlex key={assistant.name} $flexDirection="column" $gap="spacing-24">
+        {index > 0 && (
+          <OakBox $bt="border-solid-m" $borderColor="border-neutral-lighter" />
+        )}
+        <McpAssistantFlow assistant={assistant} />
+      </OakFlex>
+    ))}
+    <OakP $font="body-3">{mcpMoreAssistantsNote}</OakP>
   </McpSection>
 );
