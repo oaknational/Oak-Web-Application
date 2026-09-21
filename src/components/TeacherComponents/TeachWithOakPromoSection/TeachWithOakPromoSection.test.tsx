@@ -64,6 +64,8 @@ describe("TeachWithOakPromoSection", () => {
     cardLink.addEventListener("click", (e) => e.preventDefault());
     const user = userEvent.setup();
     await user.click(cardLink);
-    expect(mockTeachWithOakAccessed).toHaveBeenCalled();
+    expect(mockTeachWithOakAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({ componentType: "promo_card" }),
+    );
   });
 });

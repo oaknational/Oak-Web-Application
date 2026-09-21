@@ -28,7 +28,7 @@ jest.mock("./usePersistResourceFormDetails", () => () => ({
 }));
 
 const mockTeachWithOakDownloaded = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
+jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
