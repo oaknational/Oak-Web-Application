@@ -27,6 +27,12 @@ type Subject = NationalCurriculumInsightsRouteData["subjects"][number];
 
 type Phase = "primary" | "secondary";
 
+const getMobileColumnStart = (index: number, subjectCount: number) => {
+  if (subjectCount % 2 === 1 && index === subjectCount - 1) return 2;
+
+  return index % 2 === 0 ? 1 : 3;
+};
+
 // OakSubjectIconButton fixes these colours by phase and exposes no overrides.
 const SubjectNavigationMaxWidth = styled(OakBox)`
   a {
@@ -189,12 +195,7 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
                             key={`${phase}-${subject.slug}`}
                             $colSpan={[2, 2, 2]}
                             $colStart={[
-                              subjects.length % 2 === 1 &&
-                              index === subjects.length - 1
-                                ? 2
-                                : index % 2 === 0
-                                  ? 1
-                                  : 3,
+                              getMobileColumnStart(index, subjects.length),
                               1,
                               index >= subjects.length - lastDesktopRowLength
                                 ? desktopColumnStarts[lastDesktopRowLength]?.[
