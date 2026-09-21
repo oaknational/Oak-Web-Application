@@ -12,7 +12,7 @@ const buttonBorder = css<{ background: ButtonBackground }>`
   mask-position: center;
 `;
 
-const buttonBorderTop = css`
+const buttonBorderTop = css<{ background: ButtonBackground }>`
   ${buttonBorder}
   height: 4px;
   left: 0;
@@ -20,7 +20,7 @@ const buttonBorderTop = css`
   transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
-const buttonBorderRight = css`
+const buttonBorderRight = css<{ background: ButtonBackground }>`
   ${buttonBorder}
   width: 7px;
   top: -2px;
@@ -29,7 +29,7 @@ const buttonBorderRight = css`
   transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
-const buttonBorderBottom = css`
+const buttonBorderBottom = css<{ background: ButtonBackground }>`
   ${buttonBorder}
   height: 6px;
   top: calc(100% - 1px);
@@ -37,7 +37,7 @@ const buttonBorderBottom = css`
   transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
-const buttonBorderLeft = css`
+const buttonBorderLeft = css<{ background: ButtonBackground }>`
   ${buttonBorder}
   width: 7px;
   top: -1px;
@@ -46,16 +46,16 @@ const buttonBorderLeft = css`
   transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
-const ButtonBorderTop = styled(OakSvg)`
+const ButtonBorderTop = styled(OakSvg)<{ background: ButtonBackground }>`
   ${buttonBorderTop}
 `;
-const ButtonBorderRight = styled(OakSvg)`
+const ButtonBorderRight = styled(OakSvg)<{ background: ButtonBackground }>`
   ${buttonBorderRight}
 `;
-const ButtonBorderBottom = styled(OakSvg)`
+const ButtonBorderBottom = styled(OakSvg)<{ background: ButtonBackground }>`
   ${buttonBorderBottom}
 `;
-const ButtonBorderLeft = styled(OakSvg)`
+const ButtonBorderLeft = styled(OakSvg)<{ background: ButtonBackground }>`
   ${buttonBorderLeft}
 `;
 

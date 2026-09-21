@@ -58,8 +58,8 @@ interface OptionProps {
 }
 
 interface ListItemProps {
-  isFocused?: boolean;
-  isSelected?: boolean;
+  $isFocused?: boolean;
+  $isSelected?: boolean;
 }
 
 export function ListBox(props: Readonly<ListBoxProps>) {
@@ -105,8 +105,8 @@ function Option({ item, state }: Readonly<OptionProps>) {
     <ListItem
       {...optionProps}
       ref={ref}
-      isFocused={isFocused}
-      isSelected={isSelected}
+      $isFocused={isFocused}
+      $isSelected={isSelected}
       $font={"heading-light-7"}
       data-testid="listbox-option"
     >
