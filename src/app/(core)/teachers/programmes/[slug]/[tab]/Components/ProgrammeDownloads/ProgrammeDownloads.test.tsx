@@ -66,14 +66,6 @@ jest.mock("./useHubspotCurriculumDownloads", () => ({
 }));
 
 jest.mock(
-  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit",
-  () => ({
-    __esModule: true,
-    default: () => ({ onSubmit: jest.fn() }),
-  }),
-);
-
-jest.mock(
   "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads",
   () => ({
     __esModule: true,
