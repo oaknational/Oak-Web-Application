@@ -16,7 +16,7 @@ import Banners from "../SharedComponents/Banners";
 import { waitForLinkCallback } from "../SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 
 import useLessonDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck";
-import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
+import useLessonDownload from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownload";
 import {
   DownloadResourceType,
   ResourceFormValues,
@@ -167,7 +167,7 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
 
   const [apiError, setApiError] = useState<string | null>(null);
 
-  const { onSubmit } = useResourceFormSubmit();
+  const { onSubmit } = useLessonDownload();
 
   const { onHubspotSubmit } = useHubspotSubmit();
 
@@ -191,7 +191,6 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
         setIsAttemptingDownload,
         setEditDetailsClicked,
         onSubmit,
-        type: "download",
         isLegacyDownload,
       });
 

@@ -11,8 +11,10 @@ import {
   parseSpacing,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
+import Link from "next/link";
 
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export const ShortReads = () => {
   return (
@@ -75,7 +77,9 @@ const ShortReadsHeader = () => {
           <OakPrimaryButton
             iconName="download"
             isTrailingIcon
-            aria-label={"Download all guides, opens in a new tab"}
+            aria-label={"Download all guides"}
+            element={Link}
+            href={resolveOakHref({ page: "teach-with-oak-download" })}
           >
             Download all guides
           </OakPrimaryButton>
@@ -129,7 +133,9 @@ const ShortReadSection = ({
             <ShortReadDownloadButton
               iconName="download"
               isTrailingIcon
-              aria-label={`Download ${shortReadType} guide (PDF), opens in a new tab`}
+              aria-label={`Download ${shortReadType} guide (PDF)`}
+              element={Link}
+              href={resolveOakHref({ page: "teach-with-oak-download" })}
             >
               {`Download ${shortReadType} guide (PDF)`}
             </ShortReadDownloadButton>

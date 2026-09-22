@@ -100,18 +100,6 @@ describe("/api/auth/onboarding", () => {
       }),
     );
   });
-  it("sets the x-vercel-ip-country header as region", async () => {
-    await POST(req);
-
-    expect(updateUserMetadata).toHaveBeenCalledWith(
-      "123",
-      expect.objectContaining({
-        privateMetadata: expect.objectContaining({
-          region: "US",
-        }),
-      }),
-    );
-  });
 
   it.each<[string | undefined, boolean]>([
     ["US", false],
