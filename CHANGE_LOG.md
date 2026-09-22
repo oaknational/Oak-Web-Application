@@ -1,3 +1,35 @@
+# [1.1207.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1206.0...v1.1207.0) (2026-09-22)
+
+
+### Bug Fixes
+
+* add accessible role naming ([27306fa](https://github.com/oaknational/Oak-Web-Application/commit/27306fa8e450ef8608afbbee68dcf177616a6de3))
+* add aria label to select ([ecc9dea](https://github.com/oaknational/Oak-Web-Application/commit/ecc9dea2ffbd8126ca11ecc67226ab003f12da1d))
+
+
+### Features
+
+* add missing properties ([dec0f43](https://github.com/oaknational/Oak-Web-Application/commit/dec0f43831f6c4128d2dd969ec9b9d00c97b29b4))
+* add newsletter component to teach with oak page ([26df37a](https://github.com/oaknational/Oak-Web-Application/commit/26df37acf7655d9b75510902f24fb5b3e9e8c3ed))
+* add teach with oak newsletter component ([2a7c300](https://github.com/oaknational/Oak-Web-Application/commit/2a7c300c9883c8ad3b61ec4d61636fbb631c1614))
+* double spacing between fields ([b98a175](https://github.com/oaknational/Oak-Web-Application/commit/b98a175a681bf0df39cbec9606eabffed4d3041a))
+* update newsletter count from 100k to 200k ([f8c6fd0](https://github.com/oaknational/Oak-Web-Application/commit/f8c6fd03c00a72af8cf2e225ed590ab1bf0647fc))
+* update newsletter form for app router compatibility ([551cb89](https://github.com/oaknational/Oak-Web-Application/commit/551cb894a3fa52b43ff101859886feab8521f626))
+
+# [1.1206.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1205.0...v1.1206.0) (2026-09-22)
+
+
+### Features
+
+* filter out all legacy results from search ([b7346aa](https://github.com/oaknational/Oak-Web-Application/commit/b7346aab540bd816796d2d62b2b2dc9e9ce2932a))
+
+# [1.1205.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1204.0...v1.1205.0) (2026-09-22)
+
+
+### Features
+
+* copy link toast has close button and auto dismiss ([e7ca374](https://github.com/oaknational/Oak-Web-Application/commit/e7ca3742c740e001593df5baaa41f413f0d37b12))
+
 # [1.1204.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1203.0...v1.1204.0) (2026-09-21)
 
 
