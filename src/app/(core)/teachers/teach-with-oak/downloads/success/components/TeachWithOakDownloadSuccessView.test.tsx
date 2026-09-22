@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { TeachWithOakDownloadSuccessView } from "./TeachWithOakDownloadSuccessView";
 
@@ -12,11 +13,22 @@ jest.mock("../../../getReturnToLessonLink", () => ({
   useReturnToLessonProps: () => mockReturnToLessonProps(),
 }));
 
+const mockTrackLessonAccessed = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      lessonAccessed: (...args: unknown[]) => mockTrackLessonAccessed(...args),
+    },
+  }),
+}));
+
 const returnTo =
   "/teachers/programmes/art-primary-ks1/units/unitSlug/lessons/lessonSlug";
 
 describe("TeachWithOakDownloadSuccessView", () => {
   beforeEach(() => {
+    jest.clearAllMocks();
     mockReturnToLessonProps.mockReturnValue(undefined);
   });
 
@@ -81,5 +93,42 @@ describe("TeachWithOakDownloadSuccessView", () => {
       screen.getByRole("heading", { name: "Thanks for downloading!" }),
     ).toBeInTheDocument();
     expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
+  });
+
+  it("tracks lessonAccessed when the back to lesson link is clicked", async () => {
+    mockReturnToLessonProps.mockReturnValue({
+      returnTo,
+      lessonName: "Lesson Name",
+      unitName: "Unit Name",
+    });
+
+    render(<TeachWithOakDownloadSuccessView curriculumPhaseOptions={null} />);
+
+    await userEvent.click(screen.getByRole("link", { name: "Back to lesson" }));
+
+    expect(mockTrackLessonAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        componentType: "teach_with_oak_back_to_lesson",
+        lessonSlug: "lessonSlug",
+        lessonName: "Lesson Name",
+        unitSlug: "unitSlug",
+        unitName: "Unit Name",
+        keyStageSlug: "ks1",
+      }),
+    );
+  });
+
+  it("does not track lessonAccessed when the lesson cannot be derived from the link", async () => {
+    mockReturnToLessonProps.mockReturnValue({
+      returnTo: "/teachers",
+      lessonName: "Lesson Name",
+      unitName: "Unit Name",
+    });
+
+    render(<TeachWithOakDownloadSuccessView curriculumPhaseOptions={null} />);
+
+    await userEvent.click(screen.getByRole("link", { name: "Back to lesson" }));
+
+    expect(mockTrackLessonAccessed).not.toHaveBeenCalled();
   });
 });

@@ -1,6 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import { getByTestId, waitFor } from "@testing-library/react";
 import { useRouter } from "next/compat/router";
+import { useRouter as useAppRouter } from "next/navigation";
 import { renderToStaticMarkup } from "react-dom/server";
 
 import SubjectPhasePicker, { CurrentSelection } from "./SubjectPhasePicker";
@@ -301,6 +302,42 @@ describe("Component - subject phase picker", () => {
     await userEvent.click(viewButton);
     expect(pushMock).toHaveBeenCalledWith({
       pathname: "/teachers/programmes/english-primary/units",
+    });
+  });
+
+  describe("when rendered from the app router", () => {
+    afterEach(() => {
+      jest.mocked(useAppRouter).mockReset();
+    });
+
+    test("navigates with the app router when there is no pages router", async () => {
+      (useRouter as jest.Mock).mockReturnValue(null);
+      const appPushMock = jest.fn();
+      jest.mocked(useAppRouter).mockReturnValue({
+        push: appPushMock,
+      } as unknown as ReturnType<typeof useAppRouter>);
+
+      const { findAllByTitle, getByTitle, findByTitle, baseElement } = render(
+        <SubjectPhasePicker {...curriculumPhaseOptions} />,
+      );
+      await userEvent.click(getByTitle("Subject"));
+      const button = (await findAllByTitle("English"))[0];
+      if (!button) {
+        throw new Error("Could not find button");
+      }
+      await userEvent.click(button);
+
+      await userEvent.click(await findByTitle("Primary"));
+
+      await userEvent.click(
+        getByTestId(baseElement, "lot-picker-view-curriculum-button"),
+      );
+
+      await waitFor(() => {
+        expect(appPushMock).toHaveBeenCalledWith(
+          "/teachers/programmes/english-primary/units",
+        );
+      });
     });
   });
 
