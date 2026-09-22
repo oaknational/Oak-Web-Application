@@ -1,3 +1,14 @@
+# [1.1208.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1207.0...v1.1208.0) (2026-09-22)
+
+
+### Features
+
+* reduce spacing above cover page title ([b679275](https://github.com/oaknational/Oak-Web-Application/commit/b6792754fdb89168c13ae78611f13b30f4cc7cb2))
+* rename nc alignment filename ([52ba70f](https://github.com/oaknational/Oak-Web-Application/commit/52ba70ff49c07a3805811368402d89f72996b505))
+* update curriculum doc labels ([b1afcaa](https://github.com/oaknational/Oak-Web-Application/commit/b1afcaaacb451370e82fd4944fcceddc1b08d3af))
+* update curriculum plan cover page ([920c881](https://github.com/oaknational/Oak-Web-Application/commit/920c8812c6c58b7200689c57c4d1afeb8e96872c))
+* update curriculum plan file name ([5bb78fd](https://github.com/oaknational/Oak-Web-Application/commit/5bb78fde9d0504bae6f1edada30ec7d68540116f))
+
 # [1.1207.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1206.0...v1.1207.0) (2026-09-22)
 
 
