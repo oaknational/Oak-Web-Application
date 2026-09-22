@@ -66,11 +66,12 @@ export const DOWNLOAD_TYPE_LABELS: {
   fileExt: string;
   groupLabel?: string;
   avoResourceType: ResourceTypeValueType;
+  filenameOverride?: string; // Optional override for filename
 }[] = [
   {
     id: "curriculumPlan",
     group: "curriculum",
-    label: "Curriculum plan",
+    label: "Curriculum plan and explainer",
     subTitle: "Word (accessible)",
     icon: "curriculum-plan",
     fileExt: "DOCX",
@@ -79,7 +80,7 @@ export const DOWNLOAD_TYPE_LABELS: {
   {
     id: "nationalCurriculum",
     group: "curriculum",
-    label: "National curriculum",
+    label: "National curriculum alignment",
     subTitle: "Excel (accessible)",
     icon: "spreadsheet",
     fileExt: "XLSX",
@@ -100,13 +101,6 @@ export const DOWNLOAD_TYPE_LABELS: {
     ...implementationGuidePdfBase,
   },
   {
-    id: "assessment",
-    label: "Assessment",
-    groupLabel: "implementation toolkit",
-    avoResourceType: ResourceType.ASSESSMENT,
-    ...implementationGuidePdfBase,
-  },
-  {
     id: "commonQuestions",
     label: "Common questions",
     groupLabel: "implementation toolkit",
@@ -118,6 +112,14 @@ export const DOWNLOAD_TYPE_LABELS: {
     label: "Equipment list",
     groupLabel: "implementation toolkit",
     avoResourceType: ResourceType.EQUIPMENT_LIST,
+    ...implementationGuidePdfBase,
+  },
+  {
+    id: "assessment",
+    label: "Checking pupils' understanding in our lessons",
+    filenameOverride: "Checking-pupil-understanding",
+    groupLabel: "implementation toolkit",
+    avoResourceType: ResourceType.ASSESSMENT,
     ...implementationGuidePdfBase,
   },
 ] as const;
