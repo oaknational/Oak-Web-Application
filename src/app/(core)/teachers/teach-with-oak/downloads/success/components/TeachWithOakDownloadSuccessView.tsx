@@ -12,7 +12,7 @@ import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/Teac
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 
 export type TeachWithOakDownloadSuccessViewProps = {
-  curriculumPhaseOptions: SubjectPhasePickerData;
+  curriculumPhaseOptions: SubjectPhasePickerData | null;
 };
 
 export function TeachWithOakDownloadSuccessView({
@@ -45,7 +45,7 @@ export function TeachWithOakDownloadSuccessView({
         )}
         layoutVariant="large"
       />
-      {!returnToLessonProps && (
+      {!returnToLessonProps && curriculumPhaseOptions && (
         <OakBox
           $ph={["spacing-20", "spacing-40"]}
           $pt={["spacing-48", "spacing-72"]}

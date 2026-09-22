@@ -1,6 +1,9 @@
 import { ReadonlyURLSearchParams } from "next/navigation";
 
-import { getReturnToLessonProps } from "./getReturnToLessonLink";
+import {
+  getReturnToLessonProps,
+  parseReturnToLessonParams,
+} from "./getReturnToLessonLink";
 
 const createQuery = (returnTo: string) =>
   new URLSearchParams({
@@ -24,5 +27,36 @@ describe("getReturnToLessonLink", () => {
     });
 
     expect(result).toBeUndefined();
+  });
+});
+
+describe("parseReturnToLessonParams", () => {
+  test("parses valid search params", () => {
+    const result = parseReturnToLessonParams({
+      returnTo: "/teachers/lessons/example",
+      lessonName: "Lesson Name",
+      unitName: "Unit Name",
+      unrelated: "param",
+    });
+
+    expect(result).toEqual({
+      returnTo: "/teachers/lessons/example",
+      lessonName: "Lesson Name",
+      unitName: "Unit Name",
+    });
+  });
+
+  test.each([
+    ["an invalid hostname", { returnTo: "https://google.com" }],
+    ["missing params", {}],
+    ["repeated params", { returnTo: ["/a", "/b"] }],
+  ])("returns undefined for %s", (_, params) => {
+    expect(
+      parseReturnToLessonParams({
+        lessonName: "Lesson Name",
+        unitName: "Unit Name",
+        ...params,
+      }),
+    ).toBeUndefined();
   });
 });

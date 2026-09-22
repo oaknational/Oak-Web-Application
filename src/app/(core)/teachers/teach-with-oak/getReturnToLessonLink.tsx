@@ -31,3 +31,12 @@ export const useReturnToLessonProps = () => {
 
   return props;
 };
+
+/** Server-side equivalent of {@link getReturnToLessonProps}, for `searchParams` records. */
+export const parseReturnToLessonParams = (
+  searchParams: Record<string, string | string[] | undefined>,
+) => {
+  const parsedParams = teachWithOakParams.safeParse(searchParams);
+
+  return parsedParams.success ? parsedParams.data : undefined;
+};

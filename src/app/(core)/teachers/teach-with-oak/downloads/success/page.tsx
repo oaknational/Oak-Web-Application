@@ -2,13 +2,18 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 
+import { parseReturnToLessonParams } from "../../getReturnToLessonLink";
+
 import { TeachWithOakDownloadSuccessView } from "./components/TeachWithOakDownloadSuccessView";
 
-import withPageErrorHandling from "@/hocs/withPageErrorHandling";
+import withPageErrorHandling, {
+  AppPageProps,
+} from "@/hocs/withPageErrorHandling";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
 import { cacheData } from "@/node-lib/cache";
-import { fetchSubjectPhasePickerData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 export const metadata: Metadata = {
   title: "",
@@ -20,12 +25,15 @@ export const metadata: Metadata = {
 };
 
 const cachedCurriculumPhaseOptions = cache(
-  cacheData(async () => {
-    return fetchSubjectPhasePickerData();
-  }, ["teach-with-oak-download-success"]),
+  cacheData(
+    async () => curriculumApi2023.curriculumPhaseOptions(),
+    ["teach-with-oak-download-success", "curriculum-phase-options"],
+  ),
 );
 
-const InnerTeachWithOakDownloadSuccessPage = async () => {
+const InnerTeachWithOakDownloadSuccessPage = async ({
+  searchParams,
+}: AppPageProps<Record<string, string>>) => {
   const isEnabled = await getFeatureFlagValue(
     "teachers-teach-with-oak",
     "string",
@@ -35,7 +43,18 @@ const InnerTeachWithOakDownloadSuccessPage = async () => {
     return notFound();
   }
 
-  const curriculumPhaseOptions = await cachedCurriculumPhaseOptions();
+  // The picker is only rendered when the user has no lesson to return to
+  const returnToLessonProps = parseReturnToLessonParams(
+    (await searchParams) ?? {},
+  );
+  const curriculumPhaseOptions = returnToLessonProps
+    ? null
+    : {
+        subjects: filterValidCurriculumPhaseOptions(
+          await cachedCurriculumPhaseOptions(),
+        ),
+        tab: "units" as const,
+      };
 
   return (
     <TeacherBrowseAnalyticsStoreProvider

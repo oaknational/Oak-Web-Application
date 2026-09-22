@@ -73,4 +73,13 @@ describe("TeachWithOakDownloadSuccessView", () => {
     ).toBeInTheDocument();
     expect(screen.getByRole("navigation")).toBeVisible();
   });
+
+  it("does not show the subject phase picker without curriculum phase options", () => {
+    render(<TeachWithOakDownloadSuccessView curriculumPhaseOptions={null} />);
+
+    expect(
+      screen.getByRole("heading", { name: "Thanks for downloading!" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
+  });
 });
