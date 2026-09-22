@@ -1,5 +1,8 @@
 import { z } from "zod";
-import { lessonContentSchema } from "@oaknational/oak-curriculum-schema";
+import {
+  keystageSlugs,
+  lessonContentSchema,
+} from "@oaknational/oak-curriculum-schema";
 
 import {
   lessonShareResourceSchema,
@@ -33,7 +36,7 @@ const baseLessonShareSchema = z.object({
 
 export const baseLessonBrowseSchema = z.object({
   programmeSlug: z.string(),
-  keyStageSlug: z.string(),
+  keyStageSlug: keystageSlugs,
   keyStageTitle: z.string(),
   unitSlug: z.string(),
   unitTitle: z.string(),
@@ -49,6 +52,7 @@ export const baseLessonBrowseSchema = z.object({
   pathwaySlug: z.string().nullable(),
   pathwayTitle: z.string().nullish(),
   yearGroupTitle: z.string().nullish(),
+  yearGroupSlug: z.string().nullish(),
 });
 
 export const lessonShareSchema = baseLessonShareSchema.extend({

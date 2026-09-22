@@ -26,6 +26,7 @@ const teachersLessonOverviewFixture = (
     tierTitle: null,
     yearGroupTitle: "Year 7",
     year: "7",
+    yearGroupSlug: "year-7",
     examBoardTitle: null,
     examBoardSlug: null,
     misconceptionsAndCommonMistakes: [{ response: "", misconception: "" }],

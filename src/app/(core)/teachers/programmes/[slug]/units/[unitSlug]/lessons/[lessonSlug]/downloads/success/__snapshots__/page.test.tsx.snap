@@ -91,8 +91,8 @@ exports[`LessonDownloadsSuccessPage fetches unit data and renders success confir
         "unitvariantId": 1,
         "whyThisWhyNow": "why this why now",
         "year": "7",
+        "yearGroupSlug": "year-7",
         "yearGroupTitle": "Year 7",
-        "yearSlug": "year-7",
       }
     }
   />

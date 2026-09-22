@@ -323,8 +323,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
       subjectcategories: [],
       threads: [
         {
@@ -406,7 +406,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
       subjectcategories: [],
       threads: [
@@ -435,7 +435,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Calculations involving masses",
       connection_prior_unit_title: "Patterns in the periodic table",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 18,
       phase: "Secondary",
@@ -522,7 +522,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Calculations involving masses",
       connection_prior_unit_title: "Patterns in the periodic table",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 18,
       phase: "Secondary",
@@ -683,7 +683,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
       subjectcategories: [],
       threads: [
@@ -785,8 +785,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
       subjectcategories: [],
       threads: [
         {
@@ -813,7 +813,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Drugs and new treatments for disease",
       connection_prior_unit_title: "Health and disease",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 8,
       phase: "Secondary",
@@ -848,7 +848,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -878,7 +878,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Drugs and new treatments for disease",
       connection_prior_unit_title: "Health and disease",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 8,
       phase: "Secondary",
@@ -917,8 +917,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -1036,7 +1036,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -1150,8 +1150,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -1215,7 +1215,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -1279,8 +1279,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -1379,8 +1379,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -1489,7 +1489,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -1835,8 +1835,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -1919,7 +1919,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -1948,7 +1948,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Chemistry of carbon",
       connection_prior_unit_title: "Atomic structure and the periodic table",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 20,
       phase: "Secondary",
@@ -2053,8 +2053,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -2087,7 +2087,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Chemistry of carbon",
       connection_prior_unit_title: "Atomic structure and the periodic table",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 20,
       phase: "Secondary",
@@ -2202,7 +2202,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -2290,7 +2290,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -2374,8 +2374,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -2404,7 +2404,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Energy of moving objects",
       connection_prior_unit_title: "Moving by force",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 42,
       phase: "Secondary",
@@ -2483,7 +2483,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -2512,7 +2512,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Energy of moving objects",
       connection_prior_unit_title: "Moving by force",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 42,
       phase: "Secondary",
@@ -2586,8 +2586,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -2615,7 +2615,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Transport and exchange surfaces in plants",
       connection_prior_unit_title: "Photosynthesis: requirements and products",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 5,
       phase: "Secondary",
@@ -2714,7 +2714,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -2782,8 +2782,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -2935,7 +2935,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: null,
       connection_prior_unit_title: "Patterns in the periodic table",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 20,
       phase: "Secondary",
@@ -3019,8 +3019,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -3048,7 +3048,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: null,
       connection_prior_unit_title: "Patterns in the periodic table",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 20,
       phase: "Secondary",
@@ -3133,7 +3133,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -3447,7 +3447,7 @@ const curriculumUnitsTabFixture = (
         "Defences against pathogens, the human immune system and vaccination",
       connection_prior_unit_title: "Disease and drugs",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 14,
       phase: "Secondary",
@@ -3580,7 +3580,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -3658,8 +3658,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -3761,7 +3761,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -3859,8 +3859,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -3952,8 +3952,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -4046,7 +4046,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -4128,8 +4128,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -4217,7 +4217,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -4247,7 +4247,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Industrial chemistry",
       connection_prior_unit_title: "Carbon cycle and climate change",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 11,
       phase: "Secondary",
@@ -4341,7 +4341,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Transport and exchange surfaces in plants",
       connection_prior_unit_title: "Photosynthesis: requirements and products",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 5,
       phase: "Secondary",
@@ -4449,8 +4449,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -4536,7 +4536,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -4825,7 +4825,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Transport and exchange surfaces in humans",
       connection_prior_unit_title: "Eukaryotic and prokaryotic cells",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 9,
       phase: "Secondary",
@@ -4912,7 +4912,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Making salts",
       connection_prior_unit_title: "States of matter",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 20,
       phase: "Secondary",
@@ -5079,8 +5079,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -5137,7 +5137,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -5240,7 +5240,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -5333,8 +5333,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -5363,7 +5363,7 @@ const curriculumUnitsTabFixture = (
         "Coordination and control: maintaining a constant internal environment",
       connection_prior_unit_title: "Aerobic and anaerobic cellular respiration",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 12,
       phase: "Secondary",
@@ -5539,7 +5539,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -5572,7 +5572,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: null,
       connection_prior_unit_title: "Rate of reaction",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 15,
       phase: "Secondary",
@@ -5657,8 +5657,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -5746,7 +5746,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -5829,8 +5829,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -5953,8 +5953,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -6082,7 +6082,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -6394,7 +6394,7 @@ const curriculumUnitsTabFixture = (
         "Coordination and control: the human nervous system",
       connection_prior_unit_title: "Biological molecules and enzymes",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 8,
       phase: "Secondary",
@@ -6480,7 +6480,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Making salts",
       connection_prior_unit_title: "Atomic structure and the periodic table",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 18,
       phase: "Secondary",
@@ -6569,7 +6569,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -6598,7 +6598,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Making salts",
       connection_prior_unit_title: "Atomic structure and the periodic table",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 18,
       phase: "Secondary",
@@ -6637,8 +6637,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -6715,7 +6715,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -6793,8 +6793,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -6827,7 +6827,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Forces make things change",
       connection_prior_unit_title: "Measuring and calculating motion",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 42,
       phase: "Secondary",
@@ -6888,7 +6888,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -6917,7 +6917,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Forces make things change",
       connection_prior_unit_title: "Measuring and calculating motion",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 42,
       phase: "Secondary",
@@ -6977,8 +6977,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -7046,7 +7046,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -7104,8 +7104,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -7181,7 +7181,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -7258,8 +7258,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -7320,8 +7320,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -7378,7 +7378,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -7487,7 +7487,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -7584,8 +7584,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -7908,7 +7908,7 @@ const curriculumUnitsTabFixture = (
         "Coordination and control: hormones and the human endocrine system",
       connection_prior_unit_title: "Transport and exchange surfaces in humans",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 10,
       phase: "Secondary",
@@ -7962,7 +7962,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -7993,7 +7993,7 @@ const curriculumUnitsTabFixture = (
         "Coordination and control: hormones and the human endocrine system",
       connection_prior_unit_title: "Transport and exchange surfaces in humans",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 10,
       phase: "Secondary",
@@ -8047,8 +8047,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -8077,7 +8077,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Electrolysis",
       connection_prior_unit_title: "Acids and bases",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 23,
       phase: "Secondary",
@@ -8178,8 +8178,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -8338,7 +8338,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -8368,7 +8368,7 @@ const curriculumUnitsTabFixture = (
         "Defences against pathogens, the human immune system and vaccination",
       connection_prior_unit_title: "Disease and drugs",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 14,
       phase: "Secondary",
@@ -8528,7 +8528,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -8632,8 +8632,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -8661,7 +8661,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Gene technology",
       connection_prior_unit_title: "Hormones and human reproduction",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 6,
       phase: "Secondary",
@@ -8707,7 +8707,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -8736,7 +8736,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Gene technology",
       connection_prior_unit_title: "Hormones and human reproduction",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 6,
       phase: "Secondary",
@@ -8776,8 +8776,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -8804,7 +8804,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: null,
       connection_prior_unit_title: "Using Earth's resources",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 10,
       phase: "Secondary",
@@ -8853,8 +8853,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -8886,7 +8886,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: null,
       connection_prior_unit_title: "Using Earth's resources",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 10,
       phase: "Secondary",
@@ -8945,7 +8945,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -9068,7 +9068,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -9182,8 +9182,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -9216,7 +9216,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: null,
       connection_prior_unit_title: "Solar system and beyond",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 10,
       phase: "Secondary",
@@ -9266,7 +9266,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -9294,7 +9294,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: null,
       connection_prior_unit_title: "Solar system and beyond",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 10,
       phase: "Secondary",
@@ -9343,8 +9343,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -9700,7 +9700,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -9767,8 +9767,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -9862,8 +9862,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -9960,7 +9960,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -10068,7 +10068,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -10171,8 +10171,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "physics" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -10201,7 +10201,7 @@ const curriculumUnitsTabFixture = (
         "Photosynthesis: factors affecting the rate",
       connection_prior_unit_title: "Transport and exchange surfaces in plants",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 13,
       phase: "Secondary",
@@ -10262,7 +10262,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -10294,7 +10294,7 @@ const curriculumUnitsTabFixture = (
         "Photosynthesis: factors affecting the rate",
       connection_prior_unit_title: "Transport and exchange surfaces in plants",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 13,
       phase: "Secondary",
@@ -10348,8 +10348,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -10464,7 +10464,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -10568,8 +10568,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -10598,7 +10598,7 @@ const curriculumUnitsTabFixture = (
         "Coordination and control: maintaining a constant internal environment",
       connection_prior_unit_title: "Aerobic and anaerobic cellular respiration",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 12,
       phase: "Secondary",
@@ -10984,7 +10984,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -11050,8 +11050,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -11124,7 +11124,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -11197,8 +11197,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "chemistry" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -11231,7 +11231,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Transport and exchange surfaces in humans",
       connection_prior_unit_title: "Eukaryotic and prokaryotic cells",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 9,
       phase: "Secondary",
@@ -11318,7 +11318,7 @@ const curriculumUnitsTabFixture = (
       connection_prior_unit_title:
         "Coordination and control: maintaining a constant internal environment",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 13,
       phase: "Secondary",
@@ -11383,7 +11383,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -11413,7 +11413,7 @@ const curriculumUnitsTabFixture = (
       connection_prior_unit_title:
         "Coordination and control: maintaining a constant internal environment",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 13,
       phase: "Secondary",
@@ -11473,8 +11473,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -11583,7 +11583,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -11691,8 +11691,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -12057,8 +12057,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -12140,7 +12140,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -12288,7 +12288,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Chemistry of carbon",
       connection_prior_unit_title: "Atomic structure and the periodic table",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 20,
       phase: "Secondary",
@@ -12393,8 +12393,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -12427,7 +12427,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Chemistry of carbon",
       connection_prior_unit_title: "Atomic structure and the periodic table",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 20,
       phase: "Secondary",
@@ -12537,7 +12537,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -12606,7 +12606,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -12669,8 +12669,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -12738,7 +12738,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -12796,8 +12796,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -13083,7 +13083,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Stem cells and differentiation",
       connection_prior_unit_title: "Inheritance, genotype and phenotype",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 7,
       phase: "Secondary",
@@ -13122,8 +13122,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -13151,7 +13151,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Stem cells and differentiation",
       connection_prior_unit_title: "Inheritance, genotype and phenotype",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 7,
       phase: "Secondary",
@@ -13190,7 +13190,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -13220,7 +13220,7 @@ const curriculumUnitsTabFixture = (
         "Coordination and control: the human nervous system",
       connection_prior_unit_title: "Biological molecules and enzymes",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 8,
       phase: "Secondary",
@@ -13362,7 +13362,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -13448,8 +13448,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -13517,7 +13517,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -13585,8 +13585,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -13947,8 +13947,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -14036,7 +14036,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -14100,8 +14100,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -14166,7 +14166,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -14197,7 +14197,7 @@ const curriculumUnitsTabFixture = (
         "Photosynthesis: factors affecting the rate",
       connection_prior_unit_title: "Transport and exchange surfaces in plants",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 13,
       phase: "Secondary",
@@ -14493,8 +14493,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -14580,7 +14580,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -14611,7 +14611,7 @@ const curriculumUnitsTabFixture = (
         "Coordination and control: hormones and the human endocrine system",
       connection_prior_unit_title: "Transport and exchange surfaces in humans",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 10,
       phase: "Secondary",
@@ -14724,7 +14724,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -14792,8 +14792,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -14869,8 +14869,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -14946,7 +14946,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -15215,7 +15215,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -15311,8 +15311,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "biology" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -15341,7 +15341,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Making salts",
       connection_prior_unit_title: "States of matter",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 20,
       phase: "Secondary",
@@ -15479,7 +15479,7 @@ const curriculumUnitsTabFixture = (
       connection_prior_unit_title:
         "Coordination and control: maintaining a constant internal environment",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 13,
       phase: "Secondary",
@@ -15544,7 +15544,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -15574,7 +15574,7 @@ const curriculumUnitsTabFixture = (
       connection_prior_unit_title:
         "Coordination and control: maintaining a constant internal environment",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 13,
       phase: "Secondary",
@@ -15634,8 +15634,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -15890,7 +15890,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -15957,8 +15957,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -15988,7 +15988,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Industrial chemistry",
       connection_prior_unit_title: "Carbon cycle and climate change",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 11,
       phase: "Secondary",
@@ -16156,7 +16156,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -16249,8 +16249,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -16307,7 +16307,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -16365,8 +16365,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -16431,7 +16431,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -16497,8 +16497,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -16602,8 +16602,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -16711,7 +16711,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -16740,7 +16740,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Making salts",
       connection_prior_unit_title: "Atomic structure and the periodic table",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 18,
       phase: "Secondary",
@@ -16824,7 +16824,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -16853,7 +16853,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Making salts",
       connection_prior_unit_title: "Atomic structure and the periodic table",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 18,
       phase: "Secondary",
@@ -16892,8 +16892,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -16971,8 +16971,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -17051,7 +17051,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -17130,8 +17130,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -17208,7 +17208,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -17270,8 +17270,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -17342,7 +17342,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -17376,7 +17376,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Forces make things change",
       connection_prior_unit_title: "Measuring and calculating motion",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 42,
       phase: "Secondary",
@@ -17436,8 +17436,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -17465,7 +17465,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Forces make things change",
       connection_prior_unit_title: "Measuring and calculating motion",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 42,
       phase: "Secondary",
@@ -17526,7 +17526,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -17591,7 +17591,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -17656,8 +17656,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -17686,7 +17686,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Stem cells and differentiation",
       connection_prior_unit_title: "Inheritance, genotype and phenotype",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 7,
       phase: "Secondary",
@@ -17725,7 +17725,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -17754,7 +17754,7 @@ const curriculumUnitsTabFixture = (
       connection_future_unit_title: "Stem cells and differentiation",
       connection_prior_unit_title: "Inheritance, genotype and phenotype",
 
-      examboard: "AQA",
+      examboard: "AQA" as const,
       examboard_slug: "aqa",
       planned_number_of_lessons: 7,
       phase: "Secondary",
@@ -17793,8 +17793,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -17890,8 +17890,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -17988,7 +17988,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -18108,8 +18108,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -18248,7 +18248,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -18316,7 +18316,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -18384,8 +18384,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -18562,7 +18562,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -18656,8 +18656,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -18760,8 +18760,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -18865,7 +18865,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -18945,7 +18945,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -19026,8 +19026,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -19110,8 +19110,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -19198,7 +19198,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -19288,8 +19288,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -19374,7 +19374,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -19478,8 +19478,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -19581,7 +19581,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
@@ -19649,8 +19649,8 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Foundation",
-      tier_slug: "foundation",
+      tier: "Foundation" as const,
+      tier_slug: "foundation" as const,
 
       subjectcategories: [],
       threads: [
@@ -19727,7 +19727,7 @@ const curriculumUnitsTabFixture = (
       subject_slug: "combined-science" as const,
       subject_parent: "Science" as const,
       subject_parent_slug: "science" as const,
-      tier: "Higher",
+      tier: "Higher" as const,
       tier_slug: "higher",
 
       subjectcategories: [],
