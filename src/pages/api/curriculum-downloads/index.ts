@@ -306,7 +306,7 @@ export async function getFile({
           examboardTitle: data.combinedCurriculumData?.examboardTitle,
           childSubjectSlug,
           tierSlug,
-          prefix: "NC-alignment",
+          prefix: "National-curriculum-alignment",
           isWithinArchive: data.isWithinArchive,
         });
       },
