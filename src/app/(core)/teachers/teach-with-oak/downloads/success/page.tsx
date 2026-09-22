@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 
-import { parseReturnToLessonParams } from "../../getReturnToLessonLink";
+import { parseReturnToLessonParams } from "../../parseReturnToLessonParams";
 
 import { TeachWithOakDownloadSuccessView } from "./components/TeachWithOakDownloadSuccessView";
 
