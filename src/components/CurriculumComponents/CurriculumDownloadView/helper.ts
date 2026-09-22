@@ -66,7 +66,6 @@ export const DOWNLOAD_TYPE_LABELS: {
   fileExt: string;
   groupLabel?: string;
   avoResourceType: ResourceTypeValueType;
-  filenameOverride?: string; // Optional override for filename
 }[] = [
   {
     id: "curriculumPlan",
