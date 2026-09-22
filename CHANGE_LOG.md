@@ -1,3 +1,15 @@
+# [1.1209.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1208.0...v1.1209.0) (2026-09-22)
+
+
+### Bug Fixes
+
+* **seo:** fail the build when robots.txt loses the Content Signals directive ([993b653](https://github.com/oaknational/Oak-Web-Application/commit/993b6539ed3642e4f90444037f952b981413d825))
+
+
+### Features
+
+* **seo:** declare Content Signals in robots.txt ([cbfc954](https://github.com/oaknational/Oak-Web-Application/commit/cbfc95428650f65f308920de081fd4db73fa23bb))
+
 # [1.1208.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1207.0...v1.1208.0) (2026-09-22)
 
 
