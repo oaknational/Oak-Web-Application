@@ -69,7 +69,7 @@ export default async function generate(
           })}
         </w:r>
       </w:p>
-      ${new Array(6)
+      ${new Array(4)
         .fill(true)
         .map(() => {
           return safeXml`
