@@ -12,6 +12,8 @@ import withPageErrorHandling, {
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import type { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
 type LessonSharePageParams = {
   slug: string;
@@ -84,18 +86,24 @@ const InnerLessonSharePage = async (
     pathwaySlug: data.pathwaySlug,
   });
 
+  const programmeState = getProgrammeStateForLesson(data);
+
   return (
-    <LessonShare
-      lesson={data}
-      breadcrumbsSlot={
-        <Breadcrumbs
-          key="lesson-share-breadcrumbs"
-          data={data}
-          subjectPhaseSlug={breadcrumbsSubjectPhaseSlug}
-          mode="share"
-        />
-      }
-    />
+    <TeacherBrowseAnalyticsStoreProvider
+      accessLevel="lesson"
+      programmeState={programmeState}
+    >
+      <LessonShare
+        lesson={data}
+        breadcrumbsSlot={
+          <Breadcrumbs
+            key="lesson-share-breadcrumbs"
+            subjectPhaseSlug={breadcrumbsSubjectPhaseSlug}
+            mode="share"
+          />
+        }
+      />
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 

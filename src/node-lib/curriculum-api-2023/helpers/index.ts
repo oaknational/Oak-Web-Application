@@ -31,7 +31,7 @@ export const constructPathwayLesson = (lesson: RawSyntheticUVLesson) => {
     unitSlug: lesson.unit_slug,
     unitTitle: lesson.programme_fields.optionality ?? lesson.unit_data.title,
     keyStageSlug: lesson.programme_fields.keystage_slug,
-    keyStageTitle: toSentenceCase(lesson.programme_fields.keystage_description),
+    keyStageTitle: lesson.programme_fields.keystage_description,
     subjectSlug: lesson.programme_fields.subject_slug,
     subjectTitle: lesson.programme_fields.subject,
     lessonCohort: lesson.lesson_data._cohort,

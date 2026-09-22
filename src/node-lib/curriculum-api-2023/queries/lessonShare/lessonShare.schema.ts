@@ -1,7 +1,20 @@
 import { z } from "zod";
 import {
+  examboards,
+  examboardSlugs,
+  keystageDescriptions,
   keystageSlugs,
   lessonContentSchema,
+  pathwayDescriptions,
+  pathwaySlugs,
+  phaseDescriptions,
+  phaseSlugs,
+  subjectSlugs,
+  tierDescriptions,
+  tierSlugs,
+  yearDescriptions,
+  years,
+  yearSlugs,
 } from "@oaknational/oak-curriculum-schema";
 
 import {
@@ -37,22 +50,23 @@ const baseLessonShareSchema = z.object({
 export const baseLessonBrowseSchema = z.object({
   programmeSlug: z.string(),
   keyStageSlug: keystageSlugs,
-  keyStageTitle: z.string(),
+  keyStageTitle: keystageDescriptions,
   unitSlug: z.string(),
   unitTitle: z.string(),
-  subjectSlug: z.string(),
+  subjectSlug: subjectSlugs,
   subjectTitle: z.string(),
   subjectParent: z.string().nullable(),
-  phaseSlug: z.string(),
-  phaseTitle: z.string().nullish(),
-  examBoardSlug: z.string().nullish(),
-  examBoardTitle: z.string().nullish(),
-  tierSlug: z.string().nullish(),
-  tierTitle: z.string().nullish(),
-  pathwaySlug: z.string().nullable(),
-  pathwayTitle: z.string().nullish(),
-  yearGroupTitle: z.string().nullish(),
-  yearGroupSlug: z.string().nullish(),
+  phaseSlug: phaseSlugs,
+  phaseTitle: phaseDescriptions,
+  year: years,
+  examBoardSlug: examboardSlugs.nullable(),
+  examBoardTitle: examboards.nullable(),
+  tierSlug: tierSlugs.nullable(),
+  tierTitle: tierDescriptions.nullable(),
+  pathwaySlug: pathwaySlugs.nullable(),
+  pathwayTitle: pathwayDescriptions.nullable(),
+  yearGroupTitle: yearDescriptions,
+  yearGroupSlug: yearSlugs,
 });
 
 export const lessonShareSchema = baseLessonShareSchema.extend({

@@ -76,6 +76,8 @@ const lessonShareQuery =
         parsedModifiedBrowseData.programme_fields.pathway_slug ?? null,
       yearGroupTitle:
         parsedModifiedBrowseData.programme_fields.year_description,
+      yearGroupSlug: parsedModifiedBrowseData.programme_fields.year_slug,
+      year: parsedModifiedBrowseData.programme_fields.year,
       lessonSlug: lessonSlug,
       lessonTitle: parsedRawLesson.lesson_title,
       shareableResources,
