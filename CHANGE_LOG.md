@@ -1,3 +1,10 @@
+# [1.1205.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1204.0...v1.1205.0) (2026-09-22)
+
+
+### Features
+
+* copy link toast has close button and auto dismiss ([e7ca374](https://github.com/oaknational/Oak-Web-Application/commit/e7ca3742c740e001593df5baaa41f413f0d37b12))
+
 # [1.1204.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1203.0...v1.1204.0) (2026-09-21)
 
 
