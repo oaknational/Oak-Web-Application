@@ -62,6 +62,8 @@
     "remove-local-components": "yalc remove @oaknational/oak-components && $npm_execpath install @oaknational/oak-components",
     "use-local-schema": "$npm_execpath remove @oaknational/oak-curriculum-schema && yalc add @oaknational/oak-curriculum-schema",
     "remove-local-schema": "pnpx yalc remove @oaknational/oak-curriculum-schema && $npm_execpath add @oaknational/oak-curriculum-schema",
+    "use-local-resource-adapter": "$npm_execpath remove @oaknational/resource-adapter && yalc add @oaknational/resource-adapter",
+    "remove-local-resource-adapter": "yalc remove @oaknational/resource-adapter && $npm_execpath install @oaknational/resource-adapter",
     "build-storybook": "storybook build",
     "use-local-classroom-addon": "$npm_execpath remove @oaknational/google-classroom-addon && yalc add @oaknational/google-classroom-addon",
     "remove-local-classroom-addon": "yalc remove @oaknational/google-classroom-addon && $npm_execpath install @oaknational/google-classroom-addon",
