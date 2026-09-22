@@ -6495,13 +6495,13 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                           class="c189"
                           role="group"
                         >
-                          <div
+                          <label
                             class="c190"
                             for="react-use-id-test-result-newsletter-signup-userrole"
                             id="react-use-id-test-result-role-label"
                           >
                             Role
-                          </div>
+                          </label>
                           <div
                             class="c191 c192 c193"
                           >

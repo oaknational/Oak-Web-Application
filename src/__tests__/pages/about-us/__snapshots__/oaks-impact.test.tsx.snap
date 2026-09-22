@@ -1420,13 +1420,13 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                           class="sc-aXZVg krbMpm"
                           role="group"
                         >
-                          <div
+                          <label
                             class="sc-aXZVg bdesQC"
                             for="react-use-id-test-result-newsletter-signup-userrole"
                             id="react-use-id-test-result-role-label"
                           >
                             Role
-                          </div>
+                          </label>
                           <div
                             class="sc-aXZVg sc-gEvEer sc-hRJfrW kmOUZj leHxVw yKSFP"
                           >

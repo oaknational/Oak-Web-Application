@@ -5611,13 +5611,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           class="c144"
                           role="group"
                         >
-                          <div
+                          <label
                             class="c145"
                             for="react-use-id-test-result-newsletter-signup-userrole"
                             id="react-use-id-test-result-role-label"
                           >
                             Role
-                          </div>
+                          </label>
                           <div
                             class="c146 c147 c148"
                           >

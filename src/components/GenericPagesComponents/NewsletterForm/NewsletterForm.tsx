@@ -177,6 +177,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
             <OakJauntyAngleLabel
               id={`${id}-role-label`}
               htmlFor={`${id}-newsletter-signup-userrole`}
+              as="label"
               label="Role"
               $color={fieldState.error ? "text-inverted" : "text-primary"}
               $background={
@@ -192,7 +193,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
             <OakSelect
               id={`${id}-newsletter-signup-userrole`}
               name={field.name}
-              aria-labelledby={`${id}-role-label`}
+              aria-label="Role"
               $display="block"
               value={field.value}
               validity={fieldState.error ? "invalid" : undefined}

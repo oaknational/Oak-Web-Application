@@ -5641,13 +5641,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="c154"
                           role="group"
                         >
-                          <div
+                          <label
                             class="c155"
                             for="react-use-id-test-result-newsletter-signup-userrole"
                             id="react-use-id-test-result-role-label"
                           >
                             Role
-                          </div>
+                          </label>
                           <div
                             class="c156 c157 c158"
                           >
