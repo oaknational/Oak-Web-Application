@@ -17,7 +17,7 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
           >
             <a
               class="sc-dcJsrY sc-dAlyuH dAja-dp eGtIkY"
-              href="/"
+              href="/teachers/programmes/art-primary-ks1/units/unit-slug/lessons/lesson-slug"
             >
               <div
                 class="sc-aXZVg sc-gEvEer jPvJsJ gghMxj"
@@ -53,7 +53,7 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-aXZVg sc-gEvEer sc-5ce3e7c8-0 jPvJsJ iDBIXi BPWok"
+          class="sc-aXZVg sc-gEvEer sc-37cefa1d-0 jPvJsJ iDBIXi hTMkBF"
         >
           <div
             class="sc-aXZVg jPvJsJ"
@@ -87,7 +87,7 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
                   class="sc-aXZVg sc-dd122c9c-0 QBMYh MCjfq"
                 >
                   <span
-                    class="sc-aXZVg iLOJBD sc-5ce3e7c8-1 exIaJo"
+                    class="sc-aXZVg iLOJBD sc-37cefa1d-1 jDbdyJ"
                   >
                     <img
                       alt="Teach with Oak Image"

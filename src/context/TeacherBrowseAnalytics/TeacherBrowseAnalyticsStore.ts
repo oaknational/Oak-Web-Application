@@ -74,7 +74,7 @@ export type TeacherBrowseAnalyticsStore = {
       keyStageTitle: KeyStageTitleValueType;
       keyStageSlug: string;
       tierName: TierNameValueType | undefined;
-      examBoard: ExamBoardValueType;
+      examBoard: ExamBoardValueType | undefined;
       pathway: PathwayValueType | undefined;
       lessonReleaseCohort: LessonReleaseCohortValueType;
       lessonReleaseDate: string;
@@ -125,6 +125,10 @@ export type TeacherBrowseAnalyticsStore = {
       filterType: FilterTypeValueType;
       filterValue: string;
     }) => void;
+    teachWithOakAccessed: (data: {
+      componentType: ComponentTypeValueType;
+    }) => void;
+    teachWithOakDownloaded: () => void;
     teachingMaterialsSelected: (props: {
       teachingMaterialType: TeachingMaterialTypeValueType;
     }) => void;
@@ -633,6 +637,41 @@ export const createTeacherBrowseAnalyticsStore = (
           componentType,
           accessLevel,
           journeyId,
+        });
+      },
+      teachWithOakAccessed: ({ componentType }) => {
+        const { avo, programmeState } = get();
+
+        const analyticsProperties =
+          programmeState?.browseLevel === "lesson"
+            ? getLessonAnalyticsProperties(programmeState)
+            : {
+                lessonName: undefined,
+                lessonSlug: undefined,
+                lessonReleaseCohort: undefined,
+                lessonReleaseDate: undefined,
+                tierName: undefined,
+                examBoard: undefined,
+                pathway: undefined,
+                unitName: undefined,
+                unitSlug: undefined,
+                keyStageTitle: undefined,
+                keyStageSlug: undefined,
+              };
+
+        avo.teachWithOakAccessed({
+          ...coreProperties,
+          ...analyticsProperties,
+          engagementIntent: EngagementIntent.EXPLORE,
+          componentType,
+        });
+      },
+      teachWithOakDownloaded: () => {
+        const { avo } = get();
+        avo.teachWithOakDownloaded({
+          ...coreProperties,
+          engagementIntent: EngagementIntent.USE,
+          componentType: "download_button",
         });
       },
       teachingMaterialsSelected: (data) => {

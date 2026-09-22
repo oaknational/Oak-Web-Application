@@ -21,6 +21,7 @@ type AnalyticsServices = {
  */
 const SEND_INSTANTLY_EVENTS: ReadonlySet<string> = new Set<string>([
   "User Onboarding Completed",
+  "Teach With Oak Accessed",
   "Lesson Accessed",
   "Unit Accessed",
   "Programme Accessed",

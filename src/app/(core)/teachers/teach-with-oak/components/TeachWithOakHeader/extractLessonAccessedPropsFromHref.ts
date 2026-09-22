@@ -1,0 +1,84 @@
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { TeacherBrowseAnalyticsStore } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsStore";
+import {
+  getExamboardTitleFromSlug,
+  getKeyStageTitle,
+  getTierTitleFromSlug,
+} from "@/utils/curriculum/formatting";
+import { getPathwayTitleFromSlug } from "@/utils/curriculum/pathways";
+import { parseProgrammeSlug } from "@/utils/curriculum/slugs";
+
+type LessonAccessedProps = Parameters<
+  TeacherBrowseAnalyticsStore["track"]["lessonAccessed"]
+>[0];
+
+export const extractLessonAccessedPropsFromHref = ({
+  returnTo,
+  lessonName,
+  unitName,
+}: {
+  returnTo: string;
+  lessonName: string;
+  unitName: string;
+}): LessonAccessedProps | null => {
+  const baseUrl = getBrowserConfig("clientAppBaseUrl");
+
+  let pathname: string;
+
+  try {
+    pathname = new URL(returnTo, baseUrl).pathname;
+  } catch {
+    pathname = returnTo;
+  }
+
+  const segments = pathname.split("/").filter(Boolean);
+
+  if (
+    segments[0] !== "teachers" ||
+    segments[1] !== "programmes" ||
+    segments[3] !== "units" ||
+    segments[5] !== "lessons"
+  ) {
+    return null;
+  }
+
+  const programmeSlug = segments[2];
+  const unitSlug = segments[4];
+  const lessonSlug = segments[6];
+
+  if (!programmeSlug || !unitSlug || !lessonSlug) {
+    return null;
+  }
+
+  const parsedProgrammeSlug = parseProgrammeSlug(programmeSlug);
+
+  if (!parsedProgrammeSlug) {
+    return null;
+  }
+
+  const { keystageSlug, tierSlug, pathwaySlug, examboardSlug } =
+    parsedProgrammeSlug;
+
+  if (!keystageSlug) {
+    return null;
+  }
+
+  const examboardTitle = getExamboardTitleFromSlug(examboardSlug);
+
+  return {
+    componentType: "teach_with_oak_back_to_lesson",
+    unitSlug,
+    unitName,
+    lessonSlug,
+    lessonName,
+    lessonReleaseCohort: "2023-2026",
+    lessonReleaseDate: "unknown",
+    keyStageSlug: keystageSlug,
+    keyStageTitle: getKeyStageTitle(keystageSlug),
+    tierName: getTierTitleFromSlug(tierSlug),
+    pathway: getPathwayTitleFromSlug(pathwaySlug),
+    examBoard: examboardTitle,
+    yearGroupName: "",
+    yearGroupSlug: "",
+  };
+};

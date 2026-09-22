@@ -22,7 +22,7 @@ export default function LessonOverviewSideNav(
   const currentSectionId = useCurrentSectionId();
   const { showPromoSection, ...linkProps } = props;
 
-  const { lessonHref } = useProgrammeState();
+  const { currentHref, lessonState } = useProgrammeState();
 
   return (
     <OakFlex
@@ -45,8 +45,12 @@ export default function LessonOverviewSideNav(
           currentSectionId={currentSectionId}
         />
       </OakBox>
-      {showPromoSection && lessonHref && (
-        <TeachWithOakPromoSection returnTo={lessonHref} />
+      {showPromoSection && lessonState && currentHref && (
+        <TeachWithOakPromoSection
+          returnTo={currentHref}
+          lessonName={lessonState.lesson.title}
+          unitName={lessonState.unit.title}
+        />
       )}
     </OakFlex>
   );
