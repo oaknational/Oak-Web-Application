@@ -9,6 +9,7 @@ import { DownloadSuccessHeader } from "@/app/(core)/teachers/programmes/[slug]/u
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 
 export type TeachWithOakDownloadSuccessViewProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
@@ -39,6 +40,10 @@ export function TeachWithOakDownloadSuccessView({
         onBackClick={onBackClick}
         backgroundColorLevel={1}
         showFontInstructions={false}
+        heroImage={getCloudinaryImageUrl(
+          "v1777386544/svg-illustrations/download-confirmation-Illustration_z1sczk.svg",
+        )}
+        layoutVariant="large"
       />
       {!returnToLessonProps && (
         <OakBox
