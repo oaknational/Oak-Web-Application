@@ -102,7 +102,7 @@ export const DOWNLOAD_TYPE_LABELS: {
   },
   {
     id: "commonQuestions",
-    label: "FAQs",
+    label: "Frequently asked questions",
     groupLabel: "implementation toolkit",
     avoResourceType: ResourceType.COMMON_QUESTIONS,
     ...implementationGuidePdfBase,
