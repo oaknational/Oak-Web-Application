@@ -1,6 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import { getByTestId, waitFor } from "@testing-library/react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/compat/router";
 import { renderToStaticMarkup } from "react-dom/server";
 
 import SubjectPhasePicker, { CurrentSelection } from "./SubjectPhasePicker";
@@ -17,7 +17,7 @@ jest.mock("@/hooks/useMediaQuery.tsx", () => ({
   default: () => false,
 }));
 
-jest.mock("next/router", () => ({
+jest.mock("next/compat/router", () => ({
   useRouter: jest.fn(),
 }));
 
