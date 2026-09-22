@@ -142,30 +142,32 @@ describe("MyLibraryUnitCard", () => {
     const lessonLink = screen.getByText("Lesson 0");
     const user = userEvent.setup();
     await user.click(lessonLink);
-    expect(mockTrackLessonAccessed).toHaveBeenCalledWith({
-      analyticsUseCase: "Teacher",
-      componentType: "lesson_card",
-      engagementIntent: "refine",
-      eventVersion: "2.0.0",
-      unitName: mockUnit.unitTitle,
-      unitSlug: mockUnit.unitSlug,
-      lessonName: "lesson-0-published",
-      lessonSlug: "lesson-0-published",
-      keyStageTitle: mockUnit.keyStageTitle,
-      keyStageSlug: mockUnit.keyStageSlug,
-      examBoard: mockUnit.examBoard,
-      pathway: mockUnit.pathway,
-      phase: "secondary",
-      platform: "owa",
-      product: "teacher lesson resources",
-      releaseGroup: "2023",
-      subjectSlug: "biology", // fallsback to default programme state values
-      subjectTitle: "Biology",
-      lessonReleaseCohort: "2023-2026",
-      lessonReleaseDate: "",
-      tierName: mockUnit.tierName,
-      yearGroupName: mockUnit.year,
-      yearGroupSlug: mockUnit.yearSlug,
-    });
+    expect(mockTrackLessonAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        analyticsUseCase: "Teacher",
+        componentType: "lesson_card",
+        engagementIntent: "refine",
+        eventVersion: "2.0.0",
+        unitName: mockUnit.unitTitle,
+        unitSlug: mockUnit.unitSlug,
+        lessonName: "lesson-0-published",
+        lessonSlug: "lesson-0-published",
+        keyStageTitle: mockUnit.keyStageTitle,
+        keyStageSlug: mockUnit.keyStageSlug,
+        examBoard: mockUnit.examBoard,
+        pathway: mockUnit.pathway,
+        phase: "secondary",
+        platform: "owa",
+        product: "teacher lesson resources",
+        releaseGroup: "2023",
+        subjectSlug: "biology", // fallsback to default programme state values
+        subjectTitle: "Biology",
+        lessonReleaseCohort: "2023-2026",
+        lessonReleaseDate: "",
+        tierName: mockUnit.tierName,
+        yearGroupName: mockUnit.year,
+        yearGroupSlug: mockUnit.yearSlug,
+      }),
+    );
   });
 });

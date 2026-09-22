@@ -125,27 +125,29 @@ describe("MyLibrary", () => {
     const lessonLink = screen.getByText("Lesson 1 - Part 1");
     const user = userEvent.setup();
     await user.click(lessonLink);
-    expect(mockTrackLessonAccessed).toHaveBeenCalledWith({
-      analyticsUseCase: "Teacher",
-      componentType: "lesson_card",
-      engagementIntent: "refine",
-      eventVersion: "2.0.0",
-      examBoard: "AQA",
-      keyStageSlug: "ks4",
-      keyStageTitle: "KS4",
-      lessonName: "lesson-1-1",
-      lessonReleaseCohort: "2023-2026",
-      lessonReleaseDate: "",
-      lessonSlug: "lesson-1-1",
-      pathway: undefined,
-      platform: "owa",
-      product: "teacher lesson resources",
-      tierName: "Foundation",
-      unitName: "Unit 1: Topic",
-      unitSlug: "unit-1",
-      yearGroupName: "Year 1",
-      yearGroupSlug: "year-1",
-    });
+    expect(mockTrackLessonAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        analyticsUseCase: "Teacher",
+        componentType: "lesson_card",
+        engagementIntent: "refine",
+        eventVersion: "2.0.0",
+        examBoard: "AQA",
+        keyStageSlug: "ks4",
+        keyStageTitle: "KS4",
+        lessonName: "lesson-1-1",
+        lessonReleaseCohort: "2023-2026",
+        lessonReleaseDate: "",
+        lessonSlug: "lesson-1-1",
+        pathway: undefined,
+        platform: "owa",
+        product: "teacher lesson resources",
+        tierName: "Foundation",
+        unitName: "Unit 1: Topic",
+        unitSlug: "unit-1",
+        yearGroupName: "Year 1",
+        yearGroupSlug: "year-1",
+      }),
+    );
   });
   it("shows Saved state when isUnitSaved returns true", () => {
     mockIsUnitSavedInternal.mockReturnValue(true);

@@ -375,7 +375,7 @@ export const createTeacherBrowseAnalyticsStore = (
         yearGroupName,
         yearGroupSlug,
       }) => {
-        const { avo, programmeState } = get();
+        const { avo, programmeState, journeyId, accessLevel } = get();
 
         const lessonState = programmeState
           ? requireLessonState("lessonAccessed", programmeState)
@@ -388,6 +388,9 @@ export const createTeacherBrowseAnalyticsStore = (
         avo.lessonAccessed({
           ...coreProperties,
           ...analyticsProperties,
+          journeyId,
+          accessLevel,
+          navigationType: "narrow",
           engagementIntent: EngagementIntent.REFINE,
           componentType,
           lessonName,
