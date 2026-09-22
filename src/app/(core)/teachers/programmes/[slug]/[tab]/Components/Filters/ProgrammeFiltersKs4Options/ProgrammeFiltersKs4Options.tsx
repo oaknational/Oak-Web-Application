@@ -25,6 +25,8 @@ import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculu
 import { sortKs4OptionsForDisplay } from "@/utils/curriculum/sorting";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { useBrowseFilters } from "@/context/BrowseFilters";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { FilterType, FilterTypeValueType } from "@/browser-lib/avo/Avo";
 
 export type ProgrammeFiltersKs4OptionsProps = {
   slugs: CurriculumSelectionSlugs;
@@ -40,6 +42,9 @@ export function ProgrammeFiltersKs4Options({
 }: Readonly<ProgrammeFiltersKs4OptionsProps>) {
   const router = useRouter();
   const { filters } = useBrowseFilters();
+  const { programmeAccessed } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
   const getKs4OptionFocusNavigationQuery =
     useGetKs4OptionFocusNavigationQuery();
   const { pathwayOptions, examBoardOptions } = partitionKs4Options(ks4Options);
@@ -71,7 +76,16 @@ export function ProgrammeFiltersKs4Options({
     });
   }
 
-  function onKs4OptionChange(selectedSlug: string) {
+  function onKs4OptionChange(
+    selectedSlug: string,
+    filterType: FilterTypeValueType,
+  ) {
+    programmeAccessed({
+      componentType: "filter_link",
+      activeFilters: filters,
+      filterType,
+      filterValue: selectedSlug,
+    });
     router.replace(buildKs4OptionHref(selectedSlug));
   }
 
@@ -85,7 +99,9 @@ export function ProgrammeFiltersKs4Options({
           namePrefix="pathway"
           options={pathwayOptions}
           selectedSlug={selectedSlug}
-          onSelect={onKs4OptionChange}
+          onSelect={(slug) =>
+            onKs4OptionChange(slug, FilterType.PATHWAY_FILTER)
+          }
           getHref={buildKs4OptionHref}
         />
       )}
@@ -95,7 +111,9 @@ export function ProgrammeFiltersKs4Options({
           namePrefix="exam-board"
           options={examBoardOptions}
           selectedSlug={selectedSlug}
-          onSelect={onKs4OptionChange}
+          onSelect={(slug) =>
+            onKs4OptionChange(slug, FilterType.EXAM_BOARD_FILTER)
+          }
           getHref={buildKs4OptionHref}
         />
       )}
