@@ -75,9 +75,9 @@ export type TeacherBrowseAnalyticsStore = {
       lessonSlug: string;
       keyStageTitle: KeyStageTitleValueType;
       keyStageSlug: string;
-      tierName: TierNameValueType | undefined;
-      examBoard: ExamBoardValueType | undefined;
-      pathway: PathwayValueType | undefined;
+      tierName: TierNameValueType | undefined | null;
+      examBoard: ExamBoardValueType | undefined | null;
+      pathway: PathwayValueType | undefined | null;
       lessonReleaseCohort: LessonReleaseCohortValueType;
       lessonReleaseDate: string;
       yearGroupName: string;
@@ -146,9 +146,9 @@ export type TeacherBrowseAnalyticsStore = {
       subjectSlug: string;
       unitName: string;
       unitSlug: string;
-      tierName: TierNameValueType | undefined;
-      examBoard: ExamBoardValueType | undefined;
-      pathway: PathwayValueType | undefined;
+      tierName: TierNameValueType | undefined | null;
+      examBoard: ExamBoardValueType | undefined | null;
+      pathway: PathwayValueType | undefined | null;
     }) => void;
     unitDownloaded: () => void;
     unitDownloadStarted: () => void;

@@ -112,7 +112,6 @@ const InnerLessonMediaPage = async (
         breadcrumbsSlot={
           <Breadcrumbs
             key="lesson-media-breadcrumbs"
-            data={lessonData}
             subjectPhaseSlug={breadcrumbsSubjectPhaseSlug}
             mode="media"
           />

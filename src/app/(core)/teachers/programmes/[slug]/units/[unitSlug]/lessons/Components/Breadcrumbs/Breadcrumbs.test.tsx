@@ -6,12 +6,13 @@ import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtur
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { resolveOakHref } from "@/common-lib/urls";
 import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersUnitOverview.fixture";
-import lessonDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
-import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { getKeyStageTitle } from "@/utils/curriculum/formatting";
-
-const render = renderWithProviders();
+import renderWithProviders, {
+  allProviders,
+} from "@/__tests__/__helpers__/renderWithProviders";
+import {
+  getProgrammeStateForLesson,
+  getProgrammeStateForUnit,
+} from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
 const mockLessonData = teachersLessonOverviewFixture({
   examBoardSlug: "aqa",
@@ -19,6 +20,22 @@ const mockLessonData = teachersLessonOverviewFixture({
   tierSlug: "foundation",
   tierTitle: "Foundation",
 });
+
+const renderWithLessonState = renderWithProviders({
+  ...allProviders,
+  teacherBrowseAnalytics: {
+    programmeState: getProgrammeStateForLesson(mockLessonData),
+  },
+});
+
+const mockUnitData = teachersUnitOverviewFixture();
+const renderWithUnitState = renderWithProviders({
+  ...allProviders,
+  teacherBrowseAnalytics: {
+    programmeState: getProgrammeStateForUnit(mockUnitData),
+  },
+});
+
 const mockSubjectPhaseSlug = getTeacherSubjectPhaseSlug({
   subjectSlug: mockLessonData.subjectSlug,
   phaseSlug: mockLessonData.phaseSlug,
@@ -28,14 +45,10 @@ const mockSubjectPhaseSlug = getTeacherSubjectPhaseSlug({
 
 describe("Breadcrumbs", () => {
   it("renders optional pfs for programme page breadcrumb", () => {
-    render(
-      <Breadcrumbs
-        data={mockLessonData}
-        subjectPhaseSlug={mockSubjectPhaseSlug}
-        mode="lesson"
-      />,
+    renderWithLessonState(
+      <Breadcrumbs subjectPhaseSlug={mockSubjectPhaseSlug} mode="lesson" />,
     );
-    const firstBreadcrumbText = `${mockLessonData.subjectTitle}, ${mockLessonData.phaseTitle}, ${getKeyStageTitle(mockLessonData.keyStageSlug)}, ${mockLessonData.yearGroupTitle}, ${mockLessonData.tierTitle}, ${mockLessonData.examBoardTitle}`;
+    const firstBreadcrumbText = `${mockLessonData.subjectTitle}, ${mockLessonData.phaseTitle}, ${mockLessonData.keyStageTitle}, ${mockLessonData.yearGroupTitle}, ${mockLessonData.tierTitle}, ${mockLessonData.examBoardTitle}`;
 
     const firstBreadcrumbLink = screen.getByRole("link", {
       name: firstBreadcrumbText,
@@ -51,12 +64,8 @@ describe("Breadcrumbs", () => {
     );
   });
   it("renders a unit page link for lesson data", () => {
-    render(
-      <Breadcrumbs
-        data={mockLessonData}
-        subjectPhaseSlug={mockSubjectPhaseSlug}
-        mode="lesson"
-      />,
+    renderWithLessonState(
+      <Breadcrumbs subjectPhaseSlug={mockSubjectPhaseSlug} mode="lesson" />,
     );
 
     const unitOverviewLink = screen.getByRole("link", {
@@ -73,32 +82,23 @@ describe("Breadcrumbs", () => {
     );
   });
   it("renders a final breadcrumb containing the lesson title for lesson data", () => {
-    render(
-      <Breadcrumbs
-        data={mockLessonData}
-        subjectPhaseSlug={mockSubjectPhaseSlug}
-        mode="lesson"
-      />,
+    renderWithLessonState(
+      <Breadcrumbs subjectPhaseSlug={mockSubjectPhaseSlug} mode="lesson" />,
     );
 
     const lessonBreadcrumb = screen.getByText(mockLessonData.lessonTitle);
     expect(lessonBreadcrumb).toBeInTheDocument();
   });
   it("renders 3 breadcrumbs for lesson data", () => {
-    render(
-      <Breadcrumbs
-        data={mockLessonData}
-        subjectPhaseSlug={mockSubjectPhaseSlug}
-        mode="lesson"
-      />,
+    renderWithLessonState(
+      <Breadcrumbs subjectPhaseSlug={mockSubjectPhaseSlug} mode="lesson" />,
     );
 
     const breadcrumbs = screen.getAllByRole("listitem");
     expect(breadcrumbs).toHaveLength(3);
   });
   it("renders a final breadcrumb containing the unit count for unit data", () => {
-    const mockUnitData = teachersUnitOverviewFixture();
-    render(
+    renderWithUnitState(
       <Breadcrumbs
         data={mockUnitData}
         subjectPhaseSlug={getTeacherSubjectPhaseSlug({
@@ -115,8 +115,7 @@ describe("Breadcrumbs", () => {
     expect(unitBreadcrumb).toBeInTheDocument();
   });
   it("renders 2 breadcrumbs for unit data", () => {
-    const mockUnitData = teachersUnitOverviewFixture();
-    render(
+    renderWithUnitState(
       <Breadcrumbs
         data={mockUnitData}
         subjectPhaseSlug={getTeacherSubjectPhaseSlug({
@@ -133,23 +132,12 @@ describe("Breadcrumbs", () => {
     expect(breadcrumbs).toHaveLength(2);
   });
   it("renders downloads breadcrumb trail with lesson link and downloads as current page", () => {
-    const mockDownloadsData = lessonDownloadsFixture({
-      subjectTitle: "Biology",
-      keyStageTitle: "Key Stage 4",
-      tierTitle: "Foundation",
-      examBoardTitle: "AQA",
-      yearGroupTitle: "Year 10",
-    });
-    render(
-      <Breadcrumbs
-        data={mockDownloadsData}
-        subjectPhaseSlug="biology-secondary-aqa"
-        mode="downloads"
-      />,
+    renderWithLessonState(
+      <Breadcrumbs subjectPhaseSlug="biology-secondary-aqa" mode="downloads" />,
     );
 
     const programmeBreadcrumbText =
-      "Biology, Secondary, Key stage 4, Year 10, Foundation, AQA";
+      "Biology, Secondary, Key Stage 3, Year 7, Foundation, AQA";
     const programmeLink = screen.getByRole("link", {
       name: programmeBreadcrumbText,
     });
@@ -163,27 +151,27 @@ describe("Breadcrumbs", () => {
     );
 
     const unitLink = screen.getByRole("link", {
-      name: mockDownloadsData.unitTitle,
+      name: mockLessonData.unitTitle,
     });
     expect(unitLink).toHaveAttribute(
       "href",
       resolveOakHref({
         page: "unit-overview",
-        unitSlug: mockDownloadsData.unitSlug,
-        programmeSlug: mockDownloadsData.programmeSlug,
+        unitSlug: mockLessonData.unitSlug,
+        programmeSlug: mockLessonData.programmeSlug,
       }),
     );
 
     const lessonLink = screen.getByRole("link", {
-      name: mockDownloadsData.lessonTitle,
+      name: mockLessonData.lessonTitle,
     });
     expect(lessonLink).toHaveAttribute(
       "href",
       resolveOakHref({
         page: "lesson-overview",
-        unitSlug: mockDownloadsData.unitSlug,
-        programmeSlug: mockDownloadsData.programmeSlug,
-        lessonSlug: mockDownloadsData.lessonSlug,
+        unitSlug: mockLessonData.unitSlug,
+        programmeSlug: mockLessonData.programmeSlug,
+        lessonSlug: mockLessonData.lessonSlug,
       }),
     );
 
@@ -191,26 +179,12 @@ describe("Breadcrumbs", () => {
     expect(screen.queryByRole("link", { name: "Downloads" })).toBeNull();
   });
   it("renders media breadcrumb trail with lesson link and media as current page", () => {
-    const mockMediaData = lessonMediaClipsFixtures({
-      subjectTitle: "Biology",
-      keyStageTitle: "Key Stage 4",
-      tierTitle: "Foundation",
-      examBoardTitle: "AQA",
-      yearGroupTitle: "Year 10",
-      phaseTitle: "Secondary",
-      lessonTitle: "Cells",
-      lessonSlug: "cells-101",
-    });
-    render(
-      <Breadcrumbs
-        data={mockMediaData}
-        subjectPhaseSlug="biology-secondary-aqa"
-        mode="media"
-      />,
+    renderWithLessonState(
+      <Breadcrumbs subjectPhaseSlug="biology-secondary-aqa" mode="media" />,
     );
 
     const programmeBreadcrumbText =
-      "Biology, Secondary, Key stage 4, Year 10, Foundation, AQA";
+      "Biology, Secondary, Key Stage 3, Year 7, Foundation, AQA";
     const programmeLink = screen.getByRole("link", {
       name: programmeBreadcrumbText,
     });
@@ -224,27 +198,27 @@ describe("Breadcrumbs", () => {
     );
 
     const unitLink = screen.getByRole("link", {
-      name: mockMediaData.unitTitle,
+      name: mockLessonData.unitTitle,
     });
     expect(unitLink).toHaveAttribute(
       "href",
       resolveOakHref({
         page: "unit-overview",
-        unitSlug: mockMediaData.unitSlug,
-        programmeSlug: mockMediaData.programmeSlug,
+        unitSlug: mockLessonData.unitSlug,
+        programmeSlug: mockLessonData.programmeSlug,
       }),
     );
 
     const lessonLink = screen.getByRole("link", {
-      name: mockMediaData.lessonTitle,
+      name: mockLessonData.lessonTitle,
     });
     expect(lessonLink).toHaveAttribute(
       "href",
       resolveOakHref({
         page: "lesson-overview",
-        unitSlug: mockMediaData.unitSlug,
-        programmeSlug: mockMediaData.programmeSlug,
-        lessonSlug: mockMediaData.lessonSlug,
+        unitSlug: mockLessonData.unitSlug,
+        programmeSlug: mockLessonData.programmeSlug,
+        lessonSlug: mockLessonData.lessonSlug,
       }),
     );
 

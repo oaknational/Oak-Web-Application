@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 
 import { Breadcrumbs } from "./Breadcrumbs";
 
-import lessonDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersUnitOverview.fixture";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
@@ -29,14 +28,6 @@ const unitSubjectPhaseSlug = getTeacherSubjectPhaseSlug({
   subjectParentTitle: unitData.parentSubject,
 });
 
-const downloadsData = lessonDownloadsFixture({
-  subjectTitle: "Biology",
-  keyStageTitle: "Key Stage 4",
-  yearGroupTitle: "Year 10",
-  tierTitle: "Foundation",
-  examBoardTitle: "AQA",
-});
-
 const meta: Meta<typeof Breadcrumbs> = {
   title: "App/Programmes/Units/Lessons/Breadcrumbs",
   component: Breadcrumbs,
@@ -49,7 +40,6 @@ type Story = StoryObj<typeof Breadcrumbs>;
 
 export const Lesson: Story = {
   args: {
-    data: lessonData,
     subjectPhaseSlug: lessonSubjectPhaseSlug,
     mode: "lesson",
   },
@@ -65,7 +55,6 @@ export const Unit: Story = {
 
 export const Downloads: Story = {
   args: {
-    data: downloadsData,
     subjectPhaseSlug: "biology-secondary-aqa",
     mode: "downloads",
   },

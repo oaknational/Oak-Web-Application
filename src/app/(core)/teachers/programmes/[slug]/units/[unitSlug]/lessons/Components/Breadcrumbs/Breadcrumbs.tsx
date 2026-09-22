@@ -6,70 +6,39 @@ import {
 } from "@oaknational/oak-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import type { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
-import type { LessonMediaClipsData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import type { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
-import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
-import type { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
 import {
-  getExamboardTitleFromSlug,
-  getKeyStageTitle,
-  getTierTitleFromSlug,
-} from "@/utils/curriculum/formatting";
-import { getPathwayTitleFromSlug } from "@/utils/curriculum/pathways";
+  ProgrammeStateLesson,
+  ProgrammeStateUnit,
+} from "@/context/TeacherBrowseAnalytics/teacherBrowseAnalytics.types";
+import { getKeyStageTitle } from "@/utils/curriculum/formatting";
 
-type BreadcrumbsProps =
+type BreadcrumbsProps = { subjectPhaseSlug: string } & (
   | {
-      mode: "lesson";
-      data: TeachersLessonOverviewPageData;
-      subjectPhaseSlug: string;
+      mode: "lesson" | "downloads" | "share" | "media";
     }
-  | {
-      mode: "unit";
-      data: TeachersUnitOverviewData;
-      subjectPhaseSlug: string;
-    }
-  | {
-      mode: "downloads";
-      data: LessonDownloadsPageData;
-      subjectPhaseSlug: string;
-    }
-  | {
-      mode: "share";
-      data: LessonShareData;
-      subjectPhaseSlug: string;
-    }
-  | {
-      mode: "media";
-      data: LessonMediaClipsData;
-      subjectPhaseSlug: string;
-    };
+  | { mode: "unit"; data: { unitIndex: number; unitCount: number } }
+);
 
-export const Breadcrumbs = ({
-  data,
-  subjectPhaseSlug,
-  mode,
-}: BreadcrumbsProps) => {
-  const {
-    tierTitle,
-    examBoardTitle,
-    subjectTitle,
-    phaseTitle,
-    yearGroupTitle,
-    unitTitle,
-    unitSlug,
-    programmeSlug,
-    subjectSlug,
-    tierSlug,
-    examBoardSlug,
-    keyStageSlug,
-    pathwaySlug,
-    yearGroupSlug,
-  } = data;
-
+export const Breadcrumbs = (props: BreadcrumbsProps) => {
+  const { subjectPhaseSlug, mode } = props;
   const { lessonAccessed, unitAccessed, programmeAccessed } =
     useTeacherBrowseAnalytics((store) => store.track);
+  const { lessonState, unitState } = useProgrammeState();
+
+  if (!unitState) {
+    return null;
+  }
+
+  const {
+    subjectTitle,
+    phaseTitle,
+    keyStageTitle,
+    yearGroupTitle,
+    tierTitle,
+    examBoardTitle,
+  } = unitState;
 
   let optionalPfs = "";
   if (tierTitle) {
@@ -79,10 +48,59 @@ export const Breadcrumbs = ({
     optionalPfs += `, ${examBoardTitle}`;
   }
 
-  const keyStageTitle = getKeyStageTitle(keyStageSlug);
-  const tierName = getTierTitleFromSlug(tierSlug);
-  const pathway = getPathwayTitleFromSlug(pathwaySlug);
-  const examBoard = getExamboardTitleFromSlug(examBoardSlug);
+  const trackUnitAccessed = (state: ProgrammeStateUnit) => {
+    const {
+      yearGroupTitle,
+      year,
+      examBoardTitle,
+      pathwayTitle,
+      subjectSlug,
+      tierTitle,
+      keyStageSlug,
+    } = state;
+    unitAccessed({
+      componentType: "breadcrumb",
+      navigationType: "broaden",
+      unitName: state.unit.title,
+      unitSlug: state.unit.slug,
+      keyStageTitle: getKeyStageTitle(keyStageSlug),
+      keyStageSlug,
+      subjectTitle: subjectTitle,
+      subjectSlug: subjectSlug,
+      yearGroupName: yearGroupTitle,
+      yearGroupSlug: year,
+      tierName: tierTitle,
+      examBoard: examBoardTitle,
+      pathway: pathwayTitle,
+    });
+  };
+
+  const trackLessonAccessed = (state: ProgrammeStateLesson) => {
+    const {
+      keyStageSlug,
+      yearGroupTitle,
+      year,
+      examBoardTitle,
+      pathwayTitle,
+      tierTitle,
+    } = state;
+    lessonAccessed({
+      componentType: "breadcrumb",
+      lessonName: state.lesson.title,
+      lessonSlug: state.lesson.slug,
+      lessonReleaseCohort: "2023-2026",
+      lessonReleaseDate: state.lesson.lessonReleaseDate,
+      unitName: state.unit.title,
+      unitSlug: state.unit.slug,
+      keyStageSlug,
+      keyStageTitle: getKeyStageTitle(keyStageSlug),
+      yearGroupName: yearGroupTitle,
+      yearGroupSlug: year,
+      tierName: tierTitle,
+      examBoard: examBoardTitle,
+      pathway: pathwayTitle,
+    });
+  };
 
   const firstBreadcrumb = {
     text: `${subjectTitle}, ${phaseTitle}, ${keyStageTitle}, ${yearGroupTitle}${optionalPfs}`,
@@ -99,131 +117,49 @@ export const Breadcrumbs = ({
       }),
   };
 
-  const trackUnitAccessed = () =>
-    unitAccessed({
-      componentType: "breadcrumb",
-      navigationType: "broaden",
-      unitName: unitTitle,
-      unitSlug: unitSlug,
-      subjectTitle: subjectTitle,
-      subjectSlug: subjectSlug,
-      yearGroupName: yearGroupTitle ?? "",
-      yearGroupSlug: yearGroupSlug ?? "",
-      keyStageSlug: keyStageSlug,
-      keyStageTitle,
-      tierName,
-      pathway,
-      examBoard,
+  const breadcrumbs: OakBreadcrumbsProps["breadcrumbs"] = [firstBreadcrumb];
+
+  if (mode === "unit") {
+    // Last breadcrumb for the unit overview page
+    breadcrumbs.push({
+      text: `Unit ${props.data.unitIndex} of ${props.data.unitCount}`,
+    });
+  } else if (lessonState) {
+    // Link to the unit overview page
+    breadcrumbs.push({
+      text: lessonState.unit.title,
+      href: resolveOakHref({
+        page: "unit-overview",
+        unitSlug: lessonState.unit.slug,
+        programmeSlug: lessonState.programmeSlug,
+      }),
+      onClick: () => trackUnitAccessed(lessonState),
     });
 
-  let breadcrumbs: OakBreadcrumbsProps["breadcrumbs"];
-  if (mode === "downloads" || mode === "share") {
-    breadcrumbs = [
-      firstBreadcrumb,
-      {
-        text: unitTitle,
-        href: resolveOakHref({
-          page: "unit-overview",
-          unitSlug: unitSlug,
-          programmeSlug,
-        }),
-        onClick: trackUnitAccessed,
-      },
-      {
-        text: data.lessonTitle,
-        href: resolveOakHref({
-          page: "lesson-overview",
-          unitSlug: unitSlug,
-          programmeSlug,
-          lessonSlug: data.lessonSlug,
-        }),
-        onClick: () =>
-          lessonAccessed({
-            componentType: "breadcrumb",
-            lessonName: data.lessonTitle,
-            lessonSlug: data.lessonSlug,
-            lessonReleaseCohort: "2023-2026",
-            lessonReleaseDate: data.lessonReleaseDate ?? "unknown",
-            unitName: unitTitle,
-            unitSlug: unitSlug,
-            keyStageSlug,
-            keyStageTitle,
-            yearGroupName: yearGroupTitle ?? "",
-            yearGroupSlug: yearGroupSlug ?? "",
-            tierName,
-            examBoard,
-            pathway,
+    if (mode === "lesson") {
+      // Last breadcrumb for the lesson overview page
+      breadcrumbs.push({
+        text: lessonState.lesson.title,
+      });
+    } else {
+      // Link to the lesson overview page and add a final breadcrumb for either download, media or share page
+
+      breadcrumbs.push(
+        {
+          text: lessonState.lesson.title,
+          href: resolveOakHref({
+            page: "lesson-overview",
+            unitSlug: lessonState.unit.slug,
+            programmeSlug: lessonState.programmeSlug,
+            lessonSlug: lessonState.lesson.slug,
           }),
-      },
-      {
-        text: mode === "downloads" ? "Downloads" : "Share",
-      },
-    ];
-  } else if (mode === "media") {
-    breadcrumbs = [
-      firstBreadcrumb,
-      {
-        text: unitTitle,
-        href: resolveOakHref({
-          page: "unit-overview",
-          unitSlug: unitSlug,
-          programmeSlug,
-        }),
-        onClick: trackUnitAccessed,
-      },
-      {
-        text: data.lessonTitle,
-        href: resolveOakHref({
-          page: "lesson-overview",
-          unitSlug: unitSlug,
-          programmeSlug,
-          lessonSlug: data.lessonSlug,
-        }),
-        onClick: () =>
-          lessonAccessed({
-            componentType: "breadcrumb",
-            lessonName: data.lessonTitle,
-            lessonSlug: data.lessonSlug,
-            lessonReleaseCohort: "2023-2026",
-            lessonReleaseDate: data.lessonReleaseDate ?? "unknown",
-            unitName: unitTitle,
-            unitSlug: unitSlug,
-            keyStageSlug,
-            keyStageTitle,
-            yearGroupName: yearGroupTitle ?? "",
-            yearGroupSlug: yearGroupSlug ?? "",
-            tierName,
-            examBoard,
-            pathway,
-          }),
-      },
-      {
-        text: "Media",
-      },
-    ];
-  } else if (mode === "lesson") {
-    breadcrumbs = [
-      firstBreadcrumb,
-      {
-        text: unitTitle,
-        href: resolveOakHref({
-          page: "unit-overview",
-          unitSlug: unitSlug,
-          programmeSlug,
-        }),
-        onClick: trackUnitAccessed,
-      },
-      {
-        text: data.lessonTitle,
-      },
-    ];
-  } else {
-    breadcrumbs = [
-      firstBreadcrumb,
-      {
-        text: `Unit ${data.unitIndex} of ${data.unitCount}`,
-      },
-    ];
+          onClick: () => trackLessonAccessed(lessonState),
+        },
+        {
+          text: `${mode[0]?.toUpperCase()}${mode.slice(1)}`,
+        },
+      );
+    }
   }
 
   return <OakBreadcrumbs breadcrumbs={breadcrumbs} />;
