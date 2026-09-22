@@ -11,6 +11,13 @@ import type { LessonMediaClipsData } from "@/node-lib/curriculum-api-2023/querie
 import type { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import type { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import {
+  getExamboardTitleFromSlug,
+  getKeyStageTitle,
+  getTierTitleFromSlug,
+} from "@/utils/curriculum/formatting";
+import { getPathwayTitleFromSlug } from "@/utils/curriculum/pathways";
 
 type BreadcrumbsProps =
   | {
@@ -49,12 +56,20 @@ export const Breadcrumbs = ({
     examBoardTitle,
     subjectTitle,
     phaseTitle,
-    keyStageTitle,
     yearGroupTitle,
     unitTitle,
     unitSlug,
     programmeSlug,
+    subjectSlug,
+    tierSlug,
+    examBoardSlug,
+    keyStageSlug,
+    pathwaySlug,
+    yearGroupSlug,
   } = data;
+
+  const { lessonAccessed, unitAccessed, programmeAccessed } =
+    useTeacherBrowseAnalytics((store) => store.track);
 
   let optionalPfs = "";
   if (tierTitle) {
@@ -64,6 +79,11 @@ export const Breadcrumbs = ({
     optionalPfs += `, ${examBoardTitle}`;
   }
 
+  const keyStageTitle = getKeyStageTitle(keyStageSlug);
+  const tierName = getTierTitleFromSlug(tierSlug);
+  const pathway = getPathwayTitleFromSlug(pathwaySlug);
+  const examBoard = getExamboardTitleFromSlug(examBoardSlug);
+
   const firstBreadcrumb = {
     text: `${subjectTitle}, ${phaseTitle}, ${keyStageTitle}, ${yearGroupTitle}${optionalPfs}`,
     href: resolveOakHref({
@@ -71,7 +91,30 @@ export const Breadcrumbs = ({
       subjectPhaseSlug,
       tab: "units",
     }),
+    onClick: () =>
+      programmeAccessed({
+        componentType: "breadcrumb",
+        activeFilters: {},
+        navigationType: "broaden",
+      }),
   };
+
+  const trackUnitAccessed = () =>
+    unitAccessed({
+      componentType: "breadcrumb",
+      navigationType: "broaden",
+      unitName: unitTitle,
+      unitSlug: unitSlug,
+      subjectTitle: subjectTitle,
+      subjectSlug: subjectSlug,
+      yearGroupName: yearGroupTitle ?? "",
+      yearGroupSlug: yearGroupSlug ?? "",
+      keyStageSlug: keyStageSlug,
+      keyStageTitle,
+      tierName,
+      pathway,
+      examBoard,
+    });
 
   let breadcrumbs: OakBreadcrumbsProps["breadcrumbs"];
   if (mode === "downloads" || mode === "share") {
@@ -84,6 +127,7 @@ export const Breadcrumbs = ({
           unitSlug: unitSlug,
           programmeSlug,
         }),
+        onClick: trackUnitAccessed,
       },
       {
         text: data.lessonTitle,
@@ -93,6 +137,23 @@ export const Breadcrumbs = ({
           programmeSlug,
           lessonSlug: data.lessonSlug,
         }),
+        onClick: () =>
+          lessonAccessed({
+            componentType: "breadcrumb",
+            lessonName: data.lessonTitle,
+            lessonSlug: data.lessonSlug,
+            lessonReleaseCohort: "2023-2026",
+            lessonReleaseDate: data.lessonReleaseDate ?? "unknown",
+            unitName: unitTitle,
+            unitSlug: unitSlug,
+            keyStageSlug,
+            keyStageTitle,
+            yearGroupName: yearGroupTitle ?? "",
+            yearGroupSlug: yearGroupSlug ?? "",
+            tierName,
+            examBoard,
+            pathway,
+          }),
       },
       {
         text: mode === "downloads" ? "Downloads" : "Share",
@@ -108,6 +169,7 @@ export const Breadcrumbs = ({
           unitSlug: unitSlug,
           programmeSlug,
         }),
+        onClick: trackUnitAccessed,
       },
       {
         text: data.lessonTitle,
@@ -117,6 +179,23 @@ export const Breadcrumbs = ({
           programmeSlug,
           lessonSlug: data.lessonSlug,
         }),
+        onClick: () =>
+          lessonAccessed({
+            componentType: "breadcrumb",
+            lessonName: data.lessonTitle,
+            lessonSlug: data.lessonSlug,
+            lessonReleaseCohort: "2023-2026",
+            lessonReleaseDate: data.lessonReleaseDate ?? "unknown",
+            unitName: unitTitle,
+            unitSlug: unitSlug,
+            keyStageSlug,
+            keyStageTitle,
+            yearGroupName: yearGroupTitle ?? "",
+            yearGroupSlug: yearGroupSlug ?? "",
+            tierName,
+            examBoard,
+            pathway,
+          }),
       },
       {
         text: "Media",
@@ -132,6 +211,7 @@ export const Breadcrumbs = ({
           unitSlug: unitSlug,
           programmeSlug,
         }),
+        onClick: trackUnitAccessed,
       },
       {
         text: data.lessonTitle,

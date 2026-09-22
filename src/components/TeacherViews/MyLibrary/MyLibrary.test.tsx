@@ -93,25 +93,27 @@ describe("MyLibrary", () => {
     const user = userEvent.setup();
     await user.click(unitLink);
     await waitFor(() =>
-      expect(mockTrackUnitAccessed).toHaveBeenCalledWith({
-        analyticsUseCase: "Teacher",
-        componentType: "unit_card",
-        engagementIntent: "refine",
-        eventVersion: "2.0.0",
-        examBoard: "AQA",
-        keyStageSlug: "ks4",
-        keyStageTitle: "KS4",
-        pathway: undefined,
-        platform: "owa",
-        product: "teacher lesson resources",
-        subjectSlug: "maths",
-        subjectTitle: "Subject 1",
-        tierName: "Foundation",
-        unitName: "Unit 1: Topic",
-        unitSlug: "unit-1",
-        yearGroupName: "Year 1",
-        yearGroupSlug: "year-1",
-      }),
+      expect(mockTrackUnitAccessed).toHaveBeenCalledWith(
+        expect.objectContaining({
+          analyticsUseCase: "Teacher",
+          componentType: "unit_card",
+          engagementIntent: "refine",
+          eventVersion: "2.0.0",
+          examBoard: "AQA",
+          keyStageSlug: "ks4",
+          keyStageTitle: "KS4",
+          pathway: undefined,
+          platform: "owa",
+          product: "teacher lesson resources",
+          subjectSlug: "maths",
+          subjectTitle: "Subject 1",
+          tierName: "Foundation",
+          unitName: "Unit 1: Topic",
+          unitSlug: "unit-1",
+          yearGroupName: "Year 1",
+          yearGroupSlug: "year-1",
+        }),
+      ),
     );
   });
   it("tracks lesson accessed with the correct arguments", async () => {

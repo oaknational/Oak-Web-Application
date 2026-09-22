@@ -21,6 +21,7 @@ import type {
   KeyStageTitleValueType,
   PathwayValueType,
   LessonReleaseCohortValueType,
+  NavigationTypeValueType,
 } from "@/browser-lib/avo/Avo";
 import {
   AccessLevelValueType,
@@ -67,6 +68,7 @@ export type TeacherBrowseAnalyticsStore = {
     }) => void;
     lessonAccessed: (props: {
       componentType: ComponentTypeValueType;
+      navigationType?: NavigationTypeValueType;
       unitName: string;
       unitSlug: string;
       lessonName: string;
@@ -115,9 +117,10 @@ export type TeacherBrowseAnalyticsStore = {
     }) => void;
     programmeAccessed: (props: {
       componentType: ComponentTypeValueType;
+      navigationType?: NavigationTypeValueType;
       activeFilters: ActiveFilters;
-      filterType: FilterTypeValueType;
-      filterValue: string;
+      filterType?: FilterTypeValueType;
+      filterValue?: string;
     }) => void;
     programmeRefined: (data: {
       componentType: ComponentTypeValueType;
@@ -134,6 +137,7 @@ export type TeacherBrowseAnalyticsStore = {
     }) => void;
     unitAccessed: (props: {
       componentType: ComponentTypeValueType;
+      navigationType?: NavigationTypeValueType;
       yearGroupName: string;
       yearGroupSlug: string;
       keyStageTitle: KeyStageTitleValueType;
@@ -365,6 +369,7 @@ export const createTeacherBrowseAnalyticsStore = (
       },
       lessonAccessed: ({
         componentType,
+        navigationType,
         lessonName,
         lessonSlug,
         unitName,
@@ -394,7 +399,7 @@ export const createTeacherBrowseAnalyticsStore = (
           ...analyticsProperties,
           journeyId,
           accessLevel,
-          navigationType: "narrow",
+          navigationType: navigationType ?? "narrow",
           engagementIntent: EngagementIntent.REFINE,
           componentType,
           lessonName,
@@ -587,6 +592,7 @@ export const createTeacherBrowseAnalyticsStore = (
       },
       programmeAccessed: ({
         componentType,
+        navigationType,
         activeFilters,
         filterType,
         filterValue,
@@ -604,7 +610,7 @@ export const createTeacherBrowseAnalyticsStore = (
           accessLevel,
           engagementIntent: EngagementIntent.REFINE,
           componentType,
-          navigationType: "narrow",
+          navigationType: navigationType ?? "narrow",
           filterType,
           filterValue,
           activeFilters,
@@ -706,6 +712,7 @@ export const createTeacherBrowseAnalyticsStore = (
       },
       unitAccessed: ({
         componentType,
+        navigationType,
         yearGroupName,
         yearGroupSlug,
         keyStageTitle,
@@ -718,20 +725,23 @@ export const createTeacherBrowseAnalyticsStore = (
         examBoard,
         pathway,
       }) => {
-        const { avo, programmeState } = get();
+        const { avo, programmeState, journeyId, accessLevel } = get();
 
-        const unitState = programmeState
-          ? requireUnitState("unitAccessed", programmeState)
+        const state = programmeState
+          ? requireProgrammeState("unitAccessed", programmeState)
           : null;
 
-        const analyticsProps = unitState
-          ? getUnitAnalyticsProperties(unitState)
+        const analyticsProps = state
+          ? getProgrammeAnalyticsProperties(state)
           : {};
 
         avo.unitAccessed({
           engagementIntent: EngagementIntent.REFINE,
+          journeyId,
+          accessLevel,
           ...coreProperties,
           ...analyticsProps,
+          navigationType: navigationType ?? "narrow",
           componentType,
           yearGroupName,
           yearGroupSlug,

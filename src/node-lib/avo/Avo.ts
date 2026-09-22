@@ -527,7 +527,7 @@ _avo_invoke = function _avo_invoke(
 ) {
   try {
     _avo_invoke_payload({
-      ac: "YtzoLjF8zEVKgYdQKQRF",
+      ac: "CnnYKeiBMlxp5PRh8h77",
       br: "evd5rHHwCneC8GvOJ7xfm",
       en: env,
       ev: eventId,
@@ -556,7 +556,7 @@ _avo_invoke_meta = function _avo_invoke_meta(
 ) {
   try {
     _avo_invoke_payload({
-      ac: "YtzoLjF8zEVKgYdQKQRF",
+      ac: "CnnYKeiBMlxp5PRh8h77",
       br: "evd5rHHwCneC8GvOJ7xfm",
       en: env,
       ty: type,
@@ -688,6 +688,7 @@ export const ComponentType = {
   TEACH_WITH_OAK_BACK_TO_LESSON: "teach_with_oak_back_to_lesson",
   PROMO_CARD: "promo_card",
   TEACHER_TIP: "teacher_tip",
+  BREADCRUMB: "breadcrumb",
 } as const;
 export type ComponentTypeType = typeof ComponentType;
 export type ComponentTypeValueType = ComponentTypeType[keyof ComponentTypeType];
@@ -928,7 +929,7 @@ export function userSignUpCompleted(
       _avo_invoke(
         __AVO_ENV__,
         "fOlHJypRwg",
-        "b6ee2523fbee1c653d36a7bbdcef26cd4882fe00a91c1f0f9cc5dbe46f9a74ce",
+        "5b06268fb4cf7d0999188bef2d1c9714bb7f14a232dc64bd174d9eeebeb70e05",
         messages.map((m) =>
           Object.assign(
             {},
@@ -958,7 +959,7 @@ export function userSignUpCompleted(
             "User Sign-Up Completed",
             eventProperties,
             "fOlHJypRwg",
-            "b6ee2523fbee1c653d36a7bbdcef26cd4882fe00a91c1f0f9cc5dbe46f9a74ce",
+            "5b06268fb4cf7d0999188bef2d1c9714bb7f14a232dc64bd174d9eeebeb70e05",
           )
         : Promise.resolve(),
       // destination PostHogEU

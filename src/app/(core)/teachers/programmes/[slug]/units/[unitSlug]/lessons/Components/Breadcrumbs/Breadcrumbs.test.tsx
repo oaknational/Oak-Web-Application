@@ -2,15 +2,16 @@ import { screen } from "@testing-library/dom";
 
 import { Breadcrumbs } from "./Breadcrumbs";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { resolveOakHref } from "@/common-lib/urls";
 import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersUnitOverview.fixture";
 import lessonDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { getKeyStageTitle } from "@/utils/curriculum/formatting";
 
-const render = renderWithTheme;
+const render = renderWithProviders();
 
 const mockLessonData = teachersLessonOverviewFixture({
   examBoardSlug: "aqa",
@@ -34,7 +35,7 @@ describe("Breadcrumbs", () => {
         mode="lesson"
       />,
     );
-    const firstBreadcrumbText = `${mockLessonData.subjectTitle}, ${mockLessonData.phaseTitle}, ${mockLessonData.keyStageTitle}, ${mockLessonData.yearGroupTitle}, ${mockLessonData.tierTitle}, ${mockLessonData.examBoardTitle}`;
+    const firstBreadcrumbText = `${mockLessonData.subjectTitle}, ${mockLessonData.phaseTitle}, ${getKeyStageTitle(mockLessonData.keyStageSlug)}, ${mockLessonData.yearGroupTitle}, ${mockLessonData.tierTitle}, ${mockLessonData.examBoardTitle}`;
 
     const firstBreadcrumbLink = screen.getByRole("link", {
       name: firstBreadcrumbText,
@@ -148,7 +149,7 @@ describe("Breadcrumbs", () => {
     );
 
     const programmeBreadcrumbText =
-      "Biology, Secondary, Key Stage 4, Year 10, Foundation, AQA";
+      "Biology, Secondary, Key stage 4, Year 10, Foundation, AQA";
     const programmeLink = screen.getByRole("link", {
       name: programmeBreadcrumbText,
     });
@@ -209,7 +210,7 @@ describe("Breadcrumbs", () => {
     );
 
     const programmeBreadcrumbText =
-      "Biology, Secondary, Key Stage 4, Year 10, Foundation, AQA";
+      "Biology, Secondary, Key stage 4, Year 10, Foundation, AQA";
     const programmeLink = screen.getByRole("link", {
       name: programmeBreadcrumbText,
     });
