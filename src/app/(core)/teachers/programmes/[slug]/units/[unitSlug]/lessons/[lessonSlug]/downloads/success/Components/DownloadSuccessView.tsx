@@ -45,6 +45,8 @@ export function DownloadSuccessView({
     unitTitle,
     lessons,
     unitvariantId,
+    lessonTitle,
+    lessonReleaseDate,
   } = lesson;
 
   const { unitDownloaded, onwardContentSelected } = useTeacherBrowseAnalytics(
@@ -75,6 +77,9 @@ export function DownloadSuccessView({
         onBackClick={() =>
           onwardContentSelected({
             onwardIntent: "view-lesson",
+            lessonName: lessonTitle,
+            lessonSlug,
+            lessonReleaseDate,
           })
         }
         backgroundColorLevel={1}

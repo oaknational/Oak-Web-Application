@@ -1,0 +1,34 @@
+query implementationGuides(
+  $isDraftFilter: Sanity_DocumentFilter
+  $subjectTitle: String
+  $phaseSlug: String
+) {
+  allCurriculumInfoPageOverview(
+    where: {
+      _: $isDraftFilter
+      subject: { eq: $subjectTitle }
+      phase: { matches: $phaseSlug }
+    }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id,
+    implementationGuides {
+      curriculumQuality {
+        ...File
+      }
+      whatsIncluded {
+        ...File
+      },
+      assessment {
+        ...File
+      },
+      commonQuestions {
+        ...File
+      },
+      equipmentList {
+        ...File
+      },
+    }
+  }
+}

@@ -8,7 +8,7 @@ const reportError = errorReporter("teacher-browse-analytics");
 
 export type AnalyticsErrorMeta = ErrorMeta & {
   event: keyof TeacherBrowseAnalyticsStore["track"];
-  programmeState: ProgrammeState;
+  programmeState: ProgrammeState | null;
 };
 
 /**
@@ -25,7 +25,7 @@ export const reportAnalyticsError = ({
       code: "analytics/teacher-browse",
       meta: {
         event,
-        browseLevel: programmeState.browseLevel,
+        browseLevel: programmeState?.browseLevel ?? "unknown",
         ...meta,
       },
     }),

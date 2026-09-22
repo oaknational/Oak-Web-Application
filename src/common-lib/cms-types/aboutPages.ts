@@ -1,6 +1,7 @@
 import * as z from "zod";
 
 import {
+  assetSchema,
   attachmentSchema,
   imageSchema,
   imageWithAltTextAndDarkModeSchema,
@@ -155,7 +156,6 @@ export const getInvolvedPageSchema = z.object({
 export type GetInvolvedPage = z.infer<typeof getInvolvedPageSchema>;
 
 // Oak's Impact Page
-
 export const oaksImpactPageHeaderSchema = z.object({
   introText: z.string(),
   video: videoSchema,
@@ -203,6 +203,7 @@ export const oaksImpactPageSchema = z.object({
 
 export type OaksImpactPage = z.infer<typeof oaksImpactPageSchema>;
 
+// Individual Case Study Page - to be updated to be independent of Oak's impact in following tickets
 export const oaksImpactCaseStudyPageSchema = z.object({
   caseStudiesSection: z.object({
     caseStudies: z.array(caseStudySchema),
@@ -212,6 +213,11 @@ export const oaksImpactCaseStudyPageSchema = z.object({
 export type OaksImpactCaseStudyPage = z.infer<
   typeof oaksImpactCaseStudyPageSchema
 >;
+
+// Case Studies Library Page
+export const caseStudyLibraryPageSchema = z.array(caseStudySchema);
+
+export type CaseStudyLibraryPage = z.infer<typeof caseStudyLibraryPageSchema>;
 
 // Aliases for about pages (old naming convention - mapping new queries to existing schemas)
 export const aboutWhoWeArePageSchema = whoWeArePageSchema;
@@ -234,3 +240,13 @@ export const aboutWorkWithUsPageSchema = getInvolvedPageWorkWithUsSchema;
 export type AboutWorkWithUsPage = z.infer<
   typeof getInvolvedPageWorkWithUsSchema
 >;
+
+export const implementationGuidesSchema = z.object({
+  curriculumQuality: assetSchema.optional().nullable(),
+  whatsIncluded: assetSchema.optional().nullable(),
+  assessment: assetSchema.optional().nullable(),
+  commonQuestions: assetSchema.optional().nullable(),
+  equipmentList: assetSchema.optional().nullable(),
+});
+
+export type ImplementationGuides = z.infer<typeof implementationGuidesSchema>;

@@ -35,6 +35,7 @@ jest.mock("next/navigation", () => {
     permanentRedirect: (url: string) => {
       throw new Error(`NEXT_PERMANENT_REDIRECT;${url}`);
     },
+    unstable_rethrow: jest.fn(),
   };
 });
 
@@ -66,6 +67,7 @@ jest.mock("@/node-lib/cms", () => ({
       curriculumSeoTextRaw: null,
     }),
     programmePageBySlug: jest.fn(),
+    implementationGuides: jest.fn().mockResolvedValue({}),
   },
 }));
 
@@ -102,6 +104,7 @@ jest.mock("./getProgrammeData", () => ({
   getProgrammeData: jest.fn(),
   getSubjectPhaseOptions: jest.fn(),
   getSubjectOverride: jest.fn(),
+  getCachedFileSizes: jest.fn().mockResolvedValue([]),
 }));
 
 const mockErrorReporter = jest.fn();

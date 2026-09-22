@@ -12,6 +12,7 @@ import {
   HamburgerState,
   TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type HamburgerMenuHook = {
   submenuOpen: HamburgerState;
@@ -88,7 +89,12 @@ export function TeachersTopNavHamburger(props: Readonly<TeachersSubNavData>) {
           $height={"100%"}
           id="teachers-top-nav-hamburger"
         >
-          <HamburgerMenuContent {...props} hamburgerMenu={hamburgerMenu} />
+          <TeacherBrowseAnalyticsStoreProvider
+            programmeState={null}
+            accessLevel={"homepage"}
+          >
+            <HamburgerMenuContent {...props} hamburgerMenu={hamburgerMenu} />
+          </TeacherBrowseAnalyticsStoreProvider>
         </OakBox>
       </OakInformativeModal>
     </OakBox>

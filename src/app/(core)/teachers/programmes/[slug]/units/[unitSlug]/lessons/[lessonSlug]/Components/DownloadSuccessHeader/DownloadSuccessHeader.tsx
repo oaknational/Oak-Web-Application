@@ -14,12 +14,8 @@ import {
   Header,
   HeaderProps,
 } from "@/components/TeacherComponents/Header/Header";
-import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
-
-const DOWNLOAD_SUCCESS_IMG_URL =
-  "v1777386544/svg-illustrations/download-confirmation-Illustration_z1sczk.svg";
 
 type DownloadSuccessHeaderProps = {
   href?: string;
@@ -37,7 +33,7 @@ export function DownloadSuccessHeader(
 
   return (
     <Header
-      layoutVariant="large"
+      layoutVariant="compact"
       useSubduedBackground
       headerSlot={<BackLinkButton {...props} />}
       heading="Thanks for downloading!"
@@ -51,7 +47,6 @@ export function DownloadSuccessHeader(
         </OakFlex>
       }
       backgroundColorLevel={props.backgroundColorLevel}
-      heroImage={getCloudinaryImageUrl(DOWNLOAD_SUCCESS_IMG_URL)}
     />
   );
 }

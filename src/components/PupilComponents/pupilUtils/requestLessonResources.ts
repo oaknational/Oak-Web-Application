@@ -1,5 +1,6 @@
 import { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
-import { formatSentences, getCaptionsFromFile } from "@/utils/handleTranscript";
+import { formatSentences } from "@/utils/formatTranscriptSentences";
+import { getCaptionsFromFile } from "@/utils/handleTranscript";
 
 const getFormattedTranscriptSentences = (
   transcriptSentences: LessonContent["transcriptSentences"],

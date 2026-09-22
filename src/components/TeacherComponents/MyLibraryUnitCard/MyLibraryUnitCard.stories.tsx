@@ -1,13 +1,19 @@
-import React from "react";
 import { Meta, StoryObj } from "@storybook/nextjs";
 
 import MyLibraryUnitCard from "./MyLibraryUnitCard";
 
+import type {
+  ExamBoardValueType,
+  TierNameValueType,
+} from "@/browser-lib/avo/Avo";
 import {
   completeUnitLessons,
   incompleteUnitLessons,
 } from "@/fixtures/teachers/myLibrary";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
+import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const unit = {
   unitTitle: "Fiction: Science Fiction Writing",
@@ -20,12 +26,19 @@ const unit = {
   keyStageSlug: "key-stage-4",
   subjectTitle: "English",
   subjectSlug: "english",
-  trackUnitAccessed: () => console.log("Track unit accessed"),
-  trackLessonAccessed: () => console.log("Track lesson accessed"),
+  tierName: "Core" as TierNameValueType,
+  examBoard: "AQA" as ExamBoardValueType,
+  pathway: undefined,
+  yearSlug: "year-10",
 };
 
 const meta: Meta<typeof MyLibraryUnitCard> = {
   component: MyLibraryUnitCard,
+  decorators: [
+    SaveCountDecorator,
+    NotificationsDecorator,
+    TeacherBrowseAnalyticsDecorator,
+  ],
   tags: ["autodocs"],
   args: {
     ...unit,

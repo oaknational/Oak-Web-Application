@@ -156,11 +156,11 @@ describe("helper", () => {
     });
 
     it("undefined if no slug", () => {
-      expect(subjectFromUnits(data, undefined)).toEqual(undefined);
+      expect(subjectFromUnits(data, undefined)).toBeUndefined();
     });
 
     it("undefined if no unit with subject", () => {
-      expect(subjectFromUnits(data, "foobar")).toEqual(undefined);
+      expect(subjectFromUnits(data, "foobar")).toBeUndefined();
     });
   });
 
@@ -449,7 +449,7 @@ describe("getSuffixFromPathway", () => {
   });
 
   it("none", () => {
-    expect(getSuffixFromPathway("foobar")).toEqual(undefined);
+    expect(getSuffixFromPathway("foobar")).toBeUndefined();
   });
 });
 

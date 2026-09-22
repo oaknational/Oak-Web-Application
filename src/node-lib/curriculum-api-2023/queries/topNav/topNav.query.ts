@@ -13,7 +13,6 @@ import errorReporter from "@/common-lib/error-reporter";
 import { resolveOakHref } from "@/common-lib/urls";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import OakError from "@/errors/OakError";
-import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 const topNavQuery = (sdk: Sdk) => {
   const cachedTopNav = cacheData(sdk.topNav, [
@@ -72,29 +71,34 @@ const topNavQuery = (sdk: Sdk) => {
       guidance: {
         title: "Guidance",
         slug: "guidance",
-        children: [
-          {
-            title: "Plan a lesson",
-            slug: "lesson-planning",
-            href: resolveOakHref({ page: "lesson-planning" }),
-          },
-          {
-            title: "Blogs",
-            slug: "blog-index",
-            href: resolveOakHref({ page: "blog-index" }),
-          },
-          {
-            title: "Webinars",
-            slug: "webinar-index",
-            href: resolveOakHref({ page: "webinar-index" }),
-          },
-          {
-            title: "Help",
-            slug: "help",
-            href: resolveOakHref({ page: "help" }),
-            external: true,
-          },
-        ],
+        children: (
+          [
+            {
+              title: "Curriculum change explained",
+              slug: "curriculum-change-explained",
+            },
+            {
+              title: "Plan a lesson",
+              slug: "lesson-planning",
+            },
+            {
+              title: "Blogs",
+              slug: "blog-index",
+            },
+            {
+              title: "Webinars",
+              slug: "webinar-index",
+            },
+            {
+              title: "Help",
+              slug: "help",
+              external: true,
+            },
+          ] as const
+        ).map((link) => ({
+          ...link,
+          href: resolveOakHref({ page: link.slug }),
+        })),
       },
       aboutUs: {
         title: "About us",
@@ -110,15 +114,11 @@ const topNavQuery = (sdk: Sdk) => {
             slug: "about-oaks-curricula",
             href: resolveOakHref({ page: "about-oaks-curricula" }),
           },
-          ...(isFeatureFlagEnabledStatic("oaks-impact")
-            ? [
-                {
-                  title: "Oak's impact",
-                  slug: "about-oaks-impact",
-                  href: resolveOakHref({ page: "about-oaks-impact" }),
-                },
-              ]
-            : []),
+          {
+            title: "Oak's impact",
+            slug: "about-oaks-impact",
+            href: resolveOakHref({ page: "about-oaks-impact" }),
+          },
           {
             title: "Get involved",
             slug: "about-get-involved",

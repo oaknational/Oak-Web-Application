@@ -29,6 +29,7 @@ import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { resolveOakHref } from "@/common-lib/urls";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type PlanALessonProps = {
   pageData: PlanALessonPage;
@@ -51,161 +52,166 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
   });
 
   return (
-    <Layout
-      seoProps={{
-        ...getSeoProps(pageData.seo),
-      }}
-      $background={"bg-primary"}
-      topNavProps={topNav}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
     >
-      <OakHeaderHero
-        heroImageAlt={pageData.hero.image?.altText ?? ""}
-        data-testid="header-hero"
-        headingTitle={pageData.hero.heading}
-        authorName={pageData.hero.author.name}
-        authorTitle={pageData.hero.author.role ?? ""}
-        authorImageSrc={
-          pageData.hero.author.image?.asset
-            ? imageBuilder.image(pageData.hero.author.image.asset).url()
-            : undefined
-        }
-        authorImageAlt={`${pageData.hero.author.name} profile picture`}
-        subHeadingText={
-          pageData.hero.summaryPortableText?.[0]?.children?.[0]?.text
-        }
-        heroImageSrc={imageBuilder
-          .image(pageData.hero.image?.asset?.url ?? {})
-          .url()}
-        breadcrumbs={
-          <Breadcrumbs
-            breadcrumbs={[
-              {
-                href: resolveOakHref({
-                  page: "home",
-                }),
-                label: "Home",
-              },
-
-              {
-                href: resolveOakHref({
-                  page: "lesson-planning",
-                }),
-                label: "Plan a lesson",
-                disabled: true,
-              },
-            ]}
-          />
-        }
-      />
-      <OakFlex
-        $background={"bg-decorative3-very-subdued"}
-        $display={["block", "block", "none"]}
-        $pv={"spacing-24"}
-        $ph={["spacing-16", "spacing-0", "spacing-0"]}
+      <Layout
+        seoProps={{
+          ...getSeoProps(pageData.seo),
+        }}
+        $background={"bg-primary"}
+        topNavProps={topNav}
       >
-        <OakMaxWidth>
-          <OakTertiaryOLNav
-            items={navItems}
-            ariaLabel="plan a lesson contents"
-            title={"Contents"}
-            anchorTarget={"plan-a-lesson-contents"}
-          />
-        </OakMaxWidth>
-      </OakFlex>
-      <OakMaxWidth $height={"auto"}>
-        <OakGrid $mt={"spacing-48"} $position={"relative"}>
-          <OakGridArea
-            $colSpan={[12, 3]}
-            $alignSelf={"start"}
-            $position={["static", "static", "sticky"]}
-            $top={"spacing-56"}
-            $display={["none", "none", "block"]}
-          >
+        <OakHeaderHero
+          heroImageAlt={pageData.hero.image?.altText ?? ""}
+          data-testid="header-hero"
+          headingTitle={pageData.hero.heading}
+          authorName={pageData.hero.author.name}
+          authorTitle={pageData.hero.author.role ?? ""}
+          authorImageSrc={
+            pageData.hero.author.image?.asset
+              ? imageBuilder.image(pageData.hero.author.image.asset).url()
+              : undefined
+          }
+          authorImageAlt={`${pageData.hero.author.name} profile picture`}
+          subHeadingText={
+            pageData.hero.summaryPortableText?.[0]?.children?.[0]?.text
+          }
+          heroImageSrc={imageBuilder
+            .image(pageData.hero.image?.asset?.url ?? {})
+            .url()}
+          breadcrumbs={
+            <Breadcrumbs
+              breadcrumbs={[
+                {
+                  href: resolveOakHref({
+                    page: "home",
+                  }),
+                  label: "Home",
+                },
+
+                {
+                  href: resolveOakHref({
+                    page: "lesson-planning",
+                  }),
+                  label: "Plan a lesson",
+                  disabled: true,
+                },
+              ]}
+            />
+          }
+        />
+        <OakFlex
+          $background={"bg-decorative3-very-subdued"}
+          $display={["block", "block", "none"]}
+          $pv={"spacing-24"}
+          $ph={["spacing-16", "spacing-0", "spacing-0"]}
+        >
+          <OakMaxWidth>
             <OakTertiaryOLNav
               items={navItems}
               ariaLabel="plan a lesson contents"
               title={"Contents"}
-              anchorTarget="plan-a-lesson-contents"
+              anchorTarget={"plan-a-lesson-contents"}
             />
-          </OakGridArea>
+          </OakMaxWidth>
+        </OakFlex>
+        <OakMaxWidth $height={"auto"}>
+          <OakGrid $mt={"spacing-48"} $position={"relative"}>
+            <OakGridArea
+              $colSpan={[12, 3]}
+              $alignSelf={"start"}
+              $position={["static", "static", "sticky"]}
+              $top={"spacing-56"}
+              $display={["none", "none", "block"]}
+            >
+              <OakTertiaryOLNav
+                items={navItems}
+                ariaLabel="plan a lesson contents"
+                title={"Contents"}
+                anchorTarget="plan-a-lesson-contents"
+              />
+            </OakGridArea>
 
-          <OakGridArea
-            $colSpan={[12, 12, 6]}
-            $colStart={[1, 1, 5]}
-            $mh={["spacing-16", null, null]}
-            $justifyContent={"center"}
-          >
-            <OakFlex
-              $width={"100%"}
-              $flexDirection={"column"}
-              $alignItems={"center"}
+            <OakGridArea
+              $colSpan={[12, 12, 6]}
+              $colStart={[1, 1, 5]}
+              $mh={["spacing-16", null, null]}
+              $justifyContent={"center"}
             >
               <OakFlex
-                $minWidth={[null, "spacing-640"]}
-                $maxWidth={"spacing-640"}
                 $width={"100%"}
                 $flexDirection={"column"}
+                $alignItems={"center"}
               >
-                {pageData.content.map((section, index, sections) => {
-                  const isLastSection = index === sections.length - 1;
-                  if (section.type === "PlanALessonPageFormBlock") {
+                <OakFlex
+                  $minWidth={[null, "spacing-640"]}
+                  $maxWidth={"spacing-640"}
+                  $width={"100%"}
+                  $flexDirection={"column"}
+                >
+                  {pageData.content.map((section, index, sections) => {
+                    const isLastSection = index === sections.length - 1;
+                    if (section.type === "PlanALessonPageFormBlock") {
+                      return (
+                        <OakFlex
+                          $width={"100%"}
+                          key={`${section.navigationTitle} ${index}`}
+                          data-testid="lesson-section"
+                          $mb={!isLastSection ? "spacing-80" : "spacing-32"}
+                          $flexDirection={"column"}
+                        >
+                          <LandingPageSignUpForm
+                            formTitle={"Don't miss out"}
+                            dontDescribe={true}
+                          />
+                        </OakFlex>
+                      );
+                    }
+
                     return (
-                      <OakFlex
-                        $width={"100%"}
+                      <OakBox
                         key={`${section.navigationTitle} ${index}`}
+                        $position={"relative"}
+                        $width={"100%"}
                         data-testid="lesson-section"
                         $mb={!isLastSection ? "spacing-80" : "spacing-32"}
-                        $flexDirection={"column"}
                       >
-                        <LandingPageSignUpForm
-                          formTitle={"Don't miss out"}
-                          dontDescribe={true}
+                        <OakAnchorTarget id={section.anchorSlug.current} />
+                        <LessonPlanningBlog
+                          title={section.navigationTitle}
+                          blogPortableText={section.bodyPortableText}
                         />
-                      </OakFlex>
-                    );
-                  }
-
-                  return (
-                    <OakBox
-                      key={`${section.navigationTitle} ${index}`}
-                      $position={"relative"}
-                      $width={"100%"}
-                      data-testid="lesson-section"
-                      $mb={!isLastSection ? "spacing-80" : "spacing-32"}
-                    >
-                      <OakAnchorTarget id={section.anchorSlug.current} />
-                      <LessonPlanningBlog
-                        title={section.navigationTitle}
-                        blogPortableText={section.bodyPortableText}
-                      />
-                      <OakBox
-                        $display={["block", "block", "none"]}
-                        $mt={"spacing-32"}
-                      >
-                        <OakLink
-                          iconName="arrow-up"
-                          href={"#plan-a-lesson-contents"}
-                          isTrailingIcon
+                        <OakBox
+                          $display={["block", "block", "none"]}
+                          $mt={"spacing-32"}
                         >
-                          {"Back to contents"}
-                        </OakLink>
+                          <OakLink
+                            iconName="arrow-up"
+                            href={"#plan-a-lesson-contents"}
+                            isTrailingIcon
+                          >
+                            {"Back to contents"}
+                          </OakLink>
+                        </OakBox>
                       </OakBox>
-                    </OakBox>
-                  );
-                })}
+                    );
+                  })}
+                </OakFlex>
               </OakFlex>
-            </OakFlex>
-          </OakGridArea>
-        </OakGrid>
-        <BlogAndWebinarList
-          backgroundColor={"bg-neutral"}
-          showImageOnTablet
-          blogListPosts={blogListPosts}
-          displayOnPhone={true}
-          title={"Latest lesson planning blogs"}
-        />
-      </OakMaxWidth>
-    </Layout>
+            </OakGridArea>
+          </OakGrid>
+          <BlogAndWebinarList
+            backgroundColor={"bg-neutral"}
+            showImageOnTablet
+            blogListPosts={blogListPosts}
+            displayOnPhone={true}
+            title={"Latest lesson planning blogs"}
+          />
+        </OakMaxWidth>
+      </Layout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 

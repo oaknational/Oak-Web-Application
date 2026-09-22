@@ -1,5 +1,6 @@
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
+import { mockVideoAsset } from "@/__tests__/__helpers__/cms";
 
 export const curriculumOverviewTabFixture = (
   partial?: Partial<{ curriculumCMSInfo: CurriculumOverviewSanityData }>,
@@ -72,6 +73,27 @@ export const curriculumOverviewCMSFixture = (
           style: "heading3",
           _key: "82cf6558d6f4",
           markDefs: [],
+        },
+        {
+          _type: "video",
+          _key: "82cf6558d6f5",
+          ...mockVideoAsset(),
+          transcript: [
+            {
+              style: "normal",
+              _key: "71b0e4f745f7",
+              _type: "block",
+              children: [
+                {
+                  _key: "582e86468d3b",
+                  _type: "span",
+                  marks: [],
+                  text: "(Upbeat music)",
+                },
+              ],
+              markDefs: [],
+            },
+          ],
         },
       ],
     },

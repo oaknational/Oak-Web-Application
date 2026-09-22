@@ -2,13 +2,13 @@ import { upperFirst } from "lodash";
 
 import type { TabSlug } from "../../tabSchema";
 
-import { CurriculumFilters } from "@/utils/curriculum/types";
 import {
   childSubjectForFilter,
   subjectCategoryForFilter,
   shouldDisplayFilter,
 } from "@/utils/curriculum/filtering";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { BrowseFilters } from "@/context/BrowseFilters/types";
 
 type SubjectTitleSelection = {
   title: string;
@@ -97,7 +97,7 @@ function getSharedGroupAsTitle(
 function buildSubjectTitleContext(
   subjectTitle: string,
   data: CurriculumUnitsFormattedData,
-  filters: CurriculumFilters,
+  filters: BrowseFilters,
   tabSlug: TabSlug,
 ): SubjectTitleContext {
   const formattedSubjectTitle = upperFirst(subjectTitle);
@@ -333,7 +333,7 @@ function resolveSubjectTitleSelection(
 function getSubjectTitleSelection(
   subjectTitle: string,
   data: CurriculumUnitsFormattedData,
-  filters: CurriculumFilters,
+  filters: BrowseFilters,
   tabSlug: TabSlug,
 ): SubjectTitleSelection {
   const context = buildSubjectTitleContext(
@@ -348,7 +348,7 @@ function getSubjectTitleSelection(
 type BuildProgrammeHeadingArgs = {
   subjectTitle: string;
   data: CurriculumUnitsFormattedData;
-  filters: CurriculumFilters;
+  filters: BrowseFilters;
   phaseTitle: string;
   tabSlug: TabSlug;
   schoolYear?: string | null;

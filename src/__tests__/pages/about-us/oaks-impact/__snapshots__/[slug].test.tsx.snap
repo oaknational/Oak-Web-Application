@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when feature flag is enabled 1`] = `
+exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title 1`] = `
 <div>
   <div
     data-overlay-container="true"
@@ -177,7 +177,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
         >
           <a
             aria-label="Home"
-            class="sc-fHjqPf bwIJQB"
+            class="sc-fHjqPf fYLNyU"
             href="/"
           >
             <span
@@ -392,7 +392,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                   class="sc-aXZVg ksEYoI"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-kdBSHD jsSxFg uEMma hwfiFr"
+                    class="sc-aXZVg sc-gEvEer sc-kdBSHD kTJpCI uEMma hwfiFr"
                   >
                     <input
                       aria-invalid="false"
@@ -491,7 +491,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
               </div>
               <a
                 aria-label="My library"
-                class="sc-dcJsrY sc-dGCmGc fIyhTG kNXJqf"
+                class="sc-dcJsrY sc-jOnpCo fIyhTG jkRXcZ"
                 href="/teachers/my-library"
               >
                 <div
@@ -616,13 +616,13 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-aXZVg bAgOK"
                       >
                         <ul
-                          class="sc-sLsrZ kLvTXA"
+                          class="sc-eyvILC bNbRk"
                         >
                           <li
-                            class="sc-dBmzty eiiTPx"
+                            class="sc-gfoqjT kLjmWM"
                           >
                             <a
-                              class="sc-fHjqPf cTauop"
+                              class="sc-fHjqPf kEMwfg"
                               href="/"
                               style="overflow: hidden;"
                             >
@@ -638,7 +638,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                             </a>
                           </li>
                           <li
-                            class="sc-dBmzty eiiTPx"
+                            class="sc-gfoqjT kLjmWM"
                           >
                             <span
                               class="sc-aXZVg fgsIMT"
@@ -654,7 +654,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                               />
                             </span>
                             <a
-                              class="sc-fHjqPf cTauop"
+                              class="sc-fHjqPf kEMwfg"
                               href="/about-us/oaks-impact"
                               style="overflow: hidden;"
                             >
@@ -670,7 +670,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                             </a>
                           </li>
                           <li
-                            class="sc-dBmzty eiiTPx"
+                            class="sc-gfoqjT kLjmWM"
                           >
                             <span
                               class="sc-aXZVg fgsIMT"
@@ -696,11 +696,11 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                       </nav>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-gFVvzn dDGJCM iDBIXi"
+                      class="sc-aXZVg sc-gEvEer sc-ggpjZQ dDGJCM iDBIXi"
                       focusable="false"
                     >
                       <svg
-                        class="sc-kAkpmW bTMRfD"
+                        class="sc-eZkCL hUkOGb"
                         height="100%"
                         preserveAspectRatio="none"
                         viewBox="0 0 866 8"
@@ -722,47 +722,51 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                     class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi jua-DQf"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer xdoGL gSlSXH"
+                      class="sc-aXZVg sc-gEvEer jPvJsJ bdgYlo"
                     >
-                      <h1
-                        class="sc-eldPxv cTFVAh"
-                      >
-                        Test Video
-                      </h1>
                       <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ feoULz"
+                        class="sc-aXZVg sc-gEvEer xdoGL gSlSXH"
                       >
-                        <div
-                          class="sc-aXZVg sc-gEvEer jEgKDG fXHtRp"
+                        <h1
+                          class="sc-eldPxv cTFVAh"
                         >
-                          1 January 2023
-                        </div>
-                        <button
-                          class="sc-fHjqPf cTauop"
+                          Test Video
+                        </h1>
+                        <div
+                          class="sc-aXZVg sc-gEvEer jPvJsJ feoULz"
                         >
                           <div
-                            class="sc-aXZVg bsftYB"
+                            class="sc-aXZVg sc-gEvEer jEgKDG fXHtRp"
                           >
-                            <span
-                              class="sc-aXZVg fjkwRj sc-fUnMCh esqnRZ"
-                            >
-                              <img
-                                alt=""
-                                class="sc-iGgWBj cMzyFO"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1727861316/icons/Icon_Copy_qxgynv.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </span>
+                            1 January 2023
                           </div>
-                          <span
-                            class="sc-eqUAAy iGfTGj"
+                          <button
+                            class="sc-fHjqPf kEMwfg"
                           >
-                            Copy link
-                          </span>
-                        </button>
+                            <div
+                              class="sc-aXZVg cFBbOh"
+                            >
+                              <span
+                                class="sc-aXZVg fjkwRj sc-fUnMCh esqnRZ"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-iGgWBj cMzyFO"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1727861316/icons/Icon_Copy_qxgynv.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                            <span
+                              class="sc-eqUAAy iGfTGj"
+                            >
+                              Copy link
+                            </span>
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -810,6 +814,115 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                           testing
                         </p>
                       </div>
+                      <div
+                        class="sc-aXZVg sc-gEvEer jswmVI ljLRpA"
+                      >
+                        <div
+                          class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
+                        >
+                          <div
+                            class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                          >
+                            <div
+                              class="sc-aXZVg kpXzs grey-shadow"
+                            />
+                            <div
+                              class="sc-aXZVg kpXzs yellow-shadow"
+                            />
+                            <button
+                              aria-controls=":r0:"
+                              aria-expanded="false"
+                              class="sc-dcJsrY sc-jXbUNg hkWkDf eTptGn internal-button"
+                            >
+                              <div
+                                class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
+                              >
+                                <span
+                                  class="sc-eqUAAy kJIzWq"
+                                >
+                                  Show
+                                   transcript
+                                </span>
+                                <span
+                                  class="sc-aXZVg jJQFnr"
+                                >
+                                  <img
+                                    alt=""
+                                    class="sc-iGgWBj lcrpYX"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </span>
+                              </div>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="sc-aXZVg sc-gEvEer cODBSt dKwsfm"
+                      >
+                        <div
+                          class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
+                        >
+                          <div
+                            class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                          >
+                            <div
+                              class="sc-aXZVg kpXzs grey-shadow"
+                            />
+                            <div
+                              class="sc-aXZVg kpXzs yellow-shadow"
+                            />
+                            <button
+                              aria-controls=":r0:"
+                              aria-expanded="false"
+                              class="sc-dcJsrY sc-jXbUNg hkWkDf eTptGn internal-button"
+                            >
+                              <div
+                                class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
+                              >
+                                <span
+                                  class="sc-eqUAAy kJIzWq"
+                                >
+                                  Show
+                                   transcript
+                                </span>
+                                <span
+                                  class="sc-aXZVg jJQFnr"
+                                >
+                                  <img
+                                    alt=""
+                                    class="sc-iGgWBj lcrpYX"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </span>
+                              </div>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="sc-aXZVg sc-gEvEer TfzCi jLfsQU"
+                        data-testid="oak-video-transcript-container"
+                        id=":r0:"
+                      >
+                        <div
+                          class="sc-aXZVg sc-gEvEer hkAEUL gWBhKY"
+                        >
+                          <p
+                            class="sc-ikkxIA jUPyul"
+                          >
+                            Use this KS3 and KS4 Eduqas English curriculum plan to support sequenced teaching in reading, writing and speaking. Aligned to the Eduqas GCSE specification, this curriculum helps pupils develop fluency in analysis and communication through a wide range of texts and topics.
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -845,29 +958,33 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                     class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi jYNrWW"
                   >
                     <div
-                      class="sc-aXZVg sc-fTFjTM gQdNNR fPhXjy"
+                      class="sc-aXZVg sc-jGKxIK bDPsaI efAcwU"
                     >
                       <a
-                        class="sc-aXZVg sc-gEvEer sc-kbousE eyLmQc dXoawi iNGAcO"
+                        class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi kDjeOv"
                         href="/about-us/case-studies/test-slug-2"
                       >
-                        <span
-                          class="sc-aXZVg kvjdhA sc-gfoqjT giDcXR"
-                        >
-                          <img
-                            alt=""
-                            class="sc-iGgWBj dZvqhO"
-                            data-nimg="fill"
-                            decoding="async"
-                            loading="lazy"
-                            sizes="100vw"
-                            src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
-                            srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
-                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                          />
-                        </span>
                         <div
-                          class="sc-aXZVg sc-gEvEer sc-eyvILC jPvJsJ jFNgPm"
+                          class="sc-aXZVg jPvJsJ"
+                        >
+                          <span
+                            class="sc-aXZVg kvjdhA sc-kYxDKI ZupGI"
+                          >
+                            <img
+                              alt=""
+                              class="sc-iGgWBj dZvqhO"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              sizes="100vw"
+                              src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
+                              srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
+                          </span>
+                        </div>
+                        <div
+                          class="sc-aXZVg sc-gEvEer sc-iHmpnF jPvJsJ jFNgPm"
                         >
                           <div
                             class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
@@ -912,29 +1029,33 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                     class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi bGCzCa"
                   >
                     <div
-                      class="sc-aXZVg sc-fTFjTM gQdNNR fPhXjy"
+                      class="sc-aXZVg sc-jGKxIK bDPsaI efAcwU"
                     >
                       <a
-                        class="sc-aXZVg sc-gEvEer sc-kbousE eyLmQc dXoawi iNGAcO"
+                        class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi kDjeOv"
                         href="/about-us/case-studies/test-slug-3"
                       >
-                        <span
-                          class="sc-aXZVg kvjdhA sc-gfoqjT giDcXR"
-                        >
-                          <img
-                            alt=""
-                            class="sc-iGgWBj dZvqhO"
-                            data-nimg="fill"
-                            decoding="async"
-                            loading="lazy"
-                            sizes="100vw"
-                            src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
-                            srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
-                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                          />
-                        </span>
                         <div
-                          class="sc-aXZVg sc-gEvEer sc-eyvILC jPvJsJ jFNgPm"
+                          class="sc-aXZVg jPvJsJ"
+                        >
+                          <span
+                            class="sc-aXZVg kvjdhA sc-kYxDKI ZupGI"
+                          >
+                            <img
+                              alt=""
+                              class="sc-iGgWBj dZvqhO"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              sizes="100vw"
+                              src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
+                              srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
+                          </span>
+                        </div>
+                        <div
+                          class="sc-aXZVg sc-gEvEer sc-iHmpnF jPvJsJ jFNgPm"
                         >
                           <div
                             class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
@@ -1012,10 +1133,10 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
           id="site-footer"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-brPLxw leSQlB iqPJZh"
+            class="sc-aXZVg sc-gEvEer sc-cmaqmh eVqnXU iqPJZh"
           >
             <div
-              class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
+              class="sc-aXZVg sc-tagGq jPvJsJ doDwBx"
             >
               <div
                 class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi kyzhPb"
@@ -1038,8 +1159,9 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="/pupils/years"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1072,8 +1194,9 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="/teachers/eyfs/maths"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1086,8 +1209,9 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="/lesson-planning"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1100,9 +1224,10 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="https://labs.thenational.academy"
                           target="_blank"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1110,7 +1235,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                             Aila, Oak’s AI lesson assistant
                           </span>
                           <div
-                            class="sc-aXZVg zBzRC"
+                            class="sc-aXZVg cbnANG"
                           >
                             <span
                               class="sc-aXZVg fjkwRj sc-fUnMCh esqnRZ"
@@ -1132,8 +1257,9 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="/blog"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1167,8 +1293,9 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="/"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1181,8 +1308,9 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="/about-us/who-we-are"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1195,8 +1323,9 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="/about-us/oaks-curricula"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1209,8 +1338,24 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
+                          href="/about-us/oaks-impact"
+                          variant="secondary"
+                        >
+                          <span
+                            class="sc-eqUAAy iGfTGj"
+                          >
+                            Oak's impact
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-fPXMVe jFJaNg"
+                      >
+                        <a
+                          class="sc-fHjqPf kEMwfg"
                           href="/about-us/get-involved"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1223,8 +1368,9 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="/about-us/meet-the-team"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1238,9 +1384,10 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                       >
                         <a
                           aria-label="Careers (opens in a new tab)"
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="https://jobs.thenational.academy"
                           target="_blank"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1248,7 +1395,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                             Careers
                           </span>
                           <div
-                            class="sc-aXZVg zBzRC"
+                            class="sc-aXZVg cbnANG"
                           >
                             <span
                               class="sc-aXZVg fjkwRj sc-fUnMCh esqnRZ"
@@ -1270,8 +1417,9 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="/contact-us"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1285,9 +1433,10 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                       >
                         <a
                           aria-label="Help (opens in a new tab)"
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="https://support.thenational.academy"
                           target="_blank"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1295,7 +1444,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                             Help
                           </span>
                           <div
-                            class="sc-aXZVg zBzRC"
+                            class="sc-aXZVg cbnANG"
                           >
                             <span
                               class="sc-aXZVg fjkwRj sc-fUnMCh esqnRZ"
@@ -1317,8 +1466,9 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="/webinars"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1332,9 +1482,10 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                       >
                         <a
                           aria-label="Status (opens in a new tab)"
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="https://status.thenational.academy"
                           target="_blank"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1342,7 +1493,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                             Status
                           </span>
                           <div
-                            class="sc-aXZVg zBzRC"
+                            class="sc-aXZVg cbnANG"
                           >
                             <span
                               class="sc-aXZVg fjkwRj sc-fUnMCh esqnRZ"
@@ -1385,8 +1536,9 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="/legal/terms-and-conditions"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1399,8 +1551,9 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="/legal/privacy-policy"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1413,8 +1566,9 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="/legal/cookie-policy"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1427,7 +1581,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <button
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1440,8 +1594,9 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="/legal/copyright-notice"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1454,8 +1609,9 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="/legal/accessibility-statement"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1468,8 +1624,9 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="/legal/safeguarding-statement"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1482,8 +1639,9 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="/legal/physical-activity-disclaimer"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1496,8 +1654,9 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="/legal/complaints"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1510,8 +1669,9 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf kEMwfg"
                           href="/legal/freedom-of-information-requests"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1669,7 +1829,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
               </div>
             </div>
             <span
-              class="sc-aXZVg kvjdhA sc-98540f6b-0 qLtgo"
+              class="sc-aXZVg kvjdhA sc-9e5378a8-0 gLpQrK"
               data-percy-hide="contents"
             >
               <img
@@ -1852,19 +2012,6 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
           />
         </span>
-        <span
-          class="sc-aXZVg dtaJPf"
-        >
-          <img
-            alt=""
-            class="sc-iGgWBj Ozuza"
-            data-nimg="fill"
-            decoding="async"
-            loading="lazy"
-            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734537039/OWA/ui-graphics/looping-line-4_xtjj4r.svg"
-            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-          />
-        </span>
       </footer>
     </div>
     <div
@@ -1903,7 +2050,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
               class="sc-aXZVg sc-gEvEer eapQdf uEMma"
             >
               <button
-                class="sc-fHjqPf kaaNKh"
+                class="sc-fHjqPf fFAulo"
                 data-testid="cookie-banner-reject"
                 type="button"
               >

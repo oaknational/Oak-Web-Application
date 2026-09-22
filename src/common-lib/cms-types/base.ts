@@ -71,7 +71,6 @@ export type ImageWithAltTextAndDarkMode = z.infer<
 
 export const videoSchema = z.object({
   title: z.string(),
-  captions: z.array(z.string()).nullish(),
   transcript: portableTextSchema.nullish(),
   video: z.object({
     asset: z.object({
@@ -96,15 +95,17 @@ export const blogWebinarCategorySchema = z.object({
 
 export type BlogWebinarCategory = z.infer<typeof blogWebinarCategorySchema>;
 
+export const assetSchema = z.object({
+  asset: z.object({
+    extension: z.string(),
+    size: z.number(),
+    url: z.string(),
+  }),
+});
+
 export const attachmentSchema = z.object({
   title: z.string(),
-  file: z.object({
-    asset: z.object({
-      extension: z.string(),
-      size: z.number(),
-      url: z.string(),
-    }),
-  }),
+  file: assetSchema,
 });
 
 export const formSchema = z.object({

@@ -29,13 +29,11 @@ describe("getBlogBreadcrumbs", () => {
     );
     const expectedCrumbs = [
       {
-        label: "Blog",
+        text: "Blog",
         href: "/blog",
       },
       {
-        label: "Research and insights",
-        href: "research-and-insights",
-        disabled: true,
+        text: "Research and insights",
       },
     ];
 
@@ -51,13 +49,11 @@ describe("getBlogBreadcrumbs", () => {
     );
     const expectedCrumbs = [
       {
-        label: "Webinars",
+        text: "Webinars",
         href: "/webinars",
       },
       {
-        label: "All",
-        href: "/webinars",
-        disabled: true,
+        text: "All",
       },
     ];
 

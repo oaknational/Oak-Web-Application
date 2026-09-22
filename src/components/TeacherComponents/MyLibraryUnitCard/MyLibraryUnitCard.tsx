@@ -15,7 +15,13 @@ import { SaveUnitButton } from "../SaveUnitButton/SaveUnitButton";
 import { resolveOakHref } from "@/common-lib/urls";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { MyLibraryUnit } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import {
+  ExamBoardValueType,
+  KeyStageTitleValueType,
+  PathwayValueType,
+  TierNameValueType,
+} from "@/browser-lib/avo/Avo";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const StyledOL = styled.ol`
   list-style-type: none;
@@ -51,7 +57,9 @@ const UnitCardHeader = ({
 }: MyLibraryUnitCardProps & {
   saveButton?: ReactNode;
 }) => {
-  const { unitTitle, year, savedAt, optionalityTitle } = props;
+  const { unitTitle, year, yearSlug, savedAt, optionalityTitle } = props;
+
+  const track = useTeacherBrowseAnalytics((store) => store.track);
 
   const lastSavedText = getLastSavedText(savedAt);
   const mainTitle = optionalityTitle ?? unitTitle;
@@ -78,7 +86,22 @@ const UnitCardHeader = ({
             programmeSlug: props.programmeSlug,
             unitSlug: props.unitSlug,
           })}
-          onClick={props.trackUnitAccessed}
+          onClick={() =>
+            track.unitAccessed({
+              componentType: "unit_card",
+              yearGroupName: props.year,
+              yearGroupSlug: yearSlug,
+              keyStageTitle: props.keyStageTitle,
+              keyStageSlug: props.keyStageSlug,
+              subjectTitle: props.subjectTitle,
+              subjectSlug: props.subjectSlug,
+              unitName: props.unitTitle,
+              unitSlug: props.unitSlug,
+              tierName: props.tierName,
+              examBoard: props.examBoard,
+              pathway: props.pathway,
+            })
+          }
         >
           <OakHeading
             tag="h3"
@@ -108,6 +131,7 @@ const UnitCardContent = ({
   saveButton?: ReactNode;
 } & MyLibraryUnitCardProps) => {
   const { unitSlug, programmeSlug, lessons } = props;
+  const track = useTeacherBrowseAnalytics((store) => store.track);
 
   return (
     <OakFlex>
@@ -137,7 +161,24 @@ const UnitCardContent = ({
                     key={lesson.slug}
                     $pb={"spacing-20"}
                     $font={"heading-light-7"}
-                    onClick={() => props.trackLessonAccessed(lesson.slug)}
+                    onClick={() =>
+                      track.lessonAccessed({
+                        componentType: "lesson_card",
+                        unitName: props.unitTitle,
+                        unitSlug: props.unitSlug,
+                        lessonName: lesson.slug,
+                        lessonSlug: lesson.slug,
+                        keyStageTitle: props.keyStageTitle,
+                        keyStageSlug: props.keyStageSlug,
+                        examBoard: props.examBoard,
+                        pathway: props.pathway,
+                        lessonReleaseCohort: "2023-2026",
+                        lessonReleaseDate: "",
+                        tierName: props.tierName,
+                        yearGroupName: props.year,
+                        yearGroupSlug: props.yearSlug,
+                      })
+                    }
                   >
                     <OakFlex>
                       <OakP
@@ -173,13 +214,15 @@ export type MyLibraryUnitCardProps = Omit<
   MyLibraryUnit,
   "yearOrder" | "unitOrder" | "yearSlug" | "pathway" | "examboard"
 > & {
+  examBoard: ExamBoardValueType;
   programmeSlug: string;
   keyStageSlug: string;
   keyStageTitle: KeyStageTitleValueType;
+  pathway: PathwayValueType | undefined;
   subjectTitle: string;
   subjectSlug: string;
-  trackUnitAccessed: () => void;
-  trackLessonAccessed: (lessonSlug: string) => void;
+  tierName: TierNameValueType;
+  yearSlug: string;
 };
 
 export default function MyLibraryUnitCard(props: MyLibraryUnitCardProps) {

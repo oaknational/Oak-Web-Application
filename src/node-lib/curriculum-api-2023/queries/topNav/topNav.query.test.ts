@@ -1,11 +1,10 @@
 import topNavQuery from "./topNav.query";
 import { mockResponseData } from "./fixtures";
-import { topNavResponseSchema } from "./topNav.schema";
+import { getItemSlug, topNavResponseSchema } from "./topNav.schema";
 
 import sdk from "@/node-lib/curriculum-api-2023/sdk";
 import { cacheData } from "@/node-lib/cache";
 import OakError from "@/errors/OakError";
-import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 jest.mock("@/node-lib/curriculum-api-2023/sdk", () => {});
 
@@ -24,16 +23,9 @@ jest.mock("@/common-lib/error-reporter", () => ({
       mockErrorReporter(...args),
 }));
 
-jest.mock("@/utils/featureFlagChecks/static", () => ({
-  isFeatureFlagEnabledStatic: jest.fn(),
-}));
-
-const mockIsFeatureFlagEnabledStatic = jest.mocked(isFeatureFlagEnabledStatic);
-
 describe("TopNavQuery", () => {
   beforeEach(() => {
     mockCacheData.mockImplementation((fn) => fn);
-    mockIsFeatureFlagEnabledStatic.mockReturnValue(false);
   });
 
   it("parses mock response data including phase options", () => {
@@ -55,26 +47,7 @@ describe("TopNavQuery", () => {
     expect(
       res.teachers?.primary.keystages.children?.[0]?.children?.[0]?.href,
     ).toBeDefined();
-    expect(
-      res.teachers?.aboutUs.children.some(
-        ({ slug }) => slug === "about-oaks-impact",
-      ),
-    ).toBe(false);
-  });
-
-  it("includes Oak's impact when the build-time feature flag is enabled", async () => {
-    mockIsFeatureFlagEnabledStatic.mockReturnValue(true);
-
-    const res = await topNavQuery({
-      ...sdk,
-      topNav: jest.fn(() => Promise.resolve(mockResponseData)),
-    })();
-
-    expect(
-      res.teachers?.aboutUs.children.some(
-        ({ slug }) => slug === "about-oaks-impact",
-      ),
-    ).toBe(true);
+    expect(res.teachers?.aboutUs.children).toHaveLength(6);
   });
 
   it("returns AI experiments as a dropdown with the AI links", async () => {
@@ -101,9 +74,24 @@ describe("TopNavQuery", () => {
       {
         title: "Oak Curriculum MCP",
         slug: "mcp",
-        href: "/mcp",
+        href: "/ai-plugin",
       },
     ]);
+  });
+
+  it("keeps every teachers top-level section's slug in sync with its object key", async () => {
+    // TopNavDropdown and SubNav both gate on `selectedMenu === <object key>`
+    // and derive aria-controls/panel ids from `slug`. If a section's `slug`
+    // ever drifted from its own object key, the dropdown would render but
+    // silently never open (see the review on PR #4459 for the failure mode).
+    const res = await topNavQuery({
+      ...sdk,
+      topNav: jest.fn(() => Promise.resolve(mockResponseData)),
+    })();
+
+    Object.entries(res.teachers!).forEach(([key, item]) => {
+      expect(getItemSlug(item as Record<string, unknown>)).toBe(key);
+    });
   });
 
   it("uses the cached topNav function when withCache is true", async () => {

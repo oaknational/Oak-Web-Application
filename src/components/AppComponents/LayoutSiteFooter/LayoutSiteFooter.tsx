@@ -1,6 +1,5 @@
 "use client";
 import { FC } from "react";
-import { keystageDescriptions } from "@oaknational/oak-curriculum-schema";
 import {
   OakGrid,
   OakGridArea,
@@ -16,7 +15,7 @@ import {
   OakMaxWidth,
   OakSvg,
   OakImage,
-  OakSecondaryLink,
+  OakLink,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 import Link from "next/link";
@@ -24,10 +23,7 @@ import Link from "next/link";
 import { aboutUsAccessed } from "@/browser-lib/avo/Avo";
 import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 import { buildAboutUsAnalytics } from "@/utils/analytics-builders";
-import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -90,16 +86,12 @@ const footerSections: FooterSections = {
         href: resolveOakHref({ page: "about-oaks-curricula" }),
         track: trackAboutUsFooter,
       },
-      ...(isFeatureFlagEnabledStatic("oaks-impact")
-        ? [
-            {
-              text: "Oak's impact",
-              type: "link" as const,
-              href: resolveOakHref({ page: "about-oaks-impact" }),
-              track: trackAboutUsFooter,
-            },
-          ]
-        : []),
+      {
+        text: "Oak's impact",
+        type: "link" as const,
+        href: resolveOakHref({ page: "about-oaks-impact" }),
+        track: trackAboutUsFooter,
+      },
       {
         text: "Get involved",
         type: "link",
@@ -204,19 +196,19 @@ type LayoutFooterLinkProps = {
 );
 
 const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
-  const { track } = useAnalytics();
   const { openSettings } = useCookieConsent();
 
   if (props.type === "consent-manager-toggle") {
     return (
-      <OakSecondaryLink element="button" onClick={openSettings}>
+      <OakLink variant="secondary" element="button" onClick={openSettings}>
         {props.text}
-      </OakSecondaryLink>
+      </OakLink>
     );
   }
 
   return (
-    <OakSecondaryLink
+    <OakLink
+      variant="secondary"
       href={props.href}
       element={Link}
       aria-label={props.ariaLabel ?? undefined}
@@ -224,34 +216,13 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
       isTrailingIcon
       target={props.icon === "external" ? "_blank" : undefined}
       onClick={() => {
-        const sentenceCaseText = props.text
-          .split(" ")
-          .map(toSentenceCase)
-          .join(" ");
-
-        if (keystageDescriptions.safeParse(sentenceCaseText).success) {
-          track.browseRefinedAccessed({
-            platform: "owa",
-            product: "teacher lesson resources",
-            engagementIntent: "refine",
-            componentType: "footer_menu_link",
-            eventVersion: "2.0.0",
-            analyticsUseCase: "Teacher",
-            filterType: "Key stage filter",
-            filterValue: props.text,
-            activeFilters: [],
-            googleLoginHint: null,
-            clientEnvironment: null,
-          });
-        }
-
         if (props.track) {
           props.track();
         }
       }}
     >
       {props.text}
-    </OakSecondaryLink>
+    </OakLink>
   );
 };
 
@@ -318,13 +289,14 @@ const LayoutSiteFooter: FC = () => {
       <nav id="site-footer">
         <OakMaxWidth
           $pt={["spacing-16", "spacing-80"]}
+          $maxWidth="spacing-1280"
           $justifyContent={"center"}
           $flexDirection={"column"}
-          $ph={"spacing-16"}
+          $ph={["spacing-20", "spacing-40", "spacing-40"]}
           $ma={"auto"}
           $width={"100%"}
         >
-          <OakGrid>
+          <OakGrid $cg="spacing-24">
             <OakGridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.pupils} />
               <OakBox $mt={["spacing-0", "spacing-32"]} />
@@ -415,21 +387,6 @@ const LayoutSiteFooter: FC = () => {
           "translate(25%, 25%) scale(0.7) rotate(-10deg)",
           "translate(25%, 15%) rotate(-10deg)",
         ]}
-        $position={"absolute"}
-        $left={"spacing-0"}
-        $right={"spacing-0"}
-        $top={"spacing-0"}
-        $bottom={"spacing-0"}
-        $width={"100%"}
-        $height={"100%"}
-      />
-      <OakIcon
-        iconName="looping-line-4"
-        $colorFilter={"bg-decorative4-subdued"}
-        $zIndex={"behind"}
-        $display={["block", "none"]}
-        $objectFit={"fill"}
-        $transform={"translate(0%, 32%)"}
         $position={"absolute"}
         $left={"spacing-0"}
         $right={"spacing-0"}

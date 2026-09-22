@@ -249,7 +249,7 @@ describe("urls.ts", () => {
       );
     });
     it("Oak Curriculum MCP", () => {
-      expect(resolveOakHref({ page: "mcp" })).toBe("/mcp");
+      expect(resolveOakHref({ page: "mcp" })).toBe("/ai-plugin");
     });
     it("Teacher hub", () => {
       expect(resolveOakHref({ page: "teacher-hub" })).toBe(

@@ -7,6 +7,7 @@ import Component from ".";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 import { BlogListingLinkProps } from "@/common-lib/urls";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const mockCategories: Category<BlogListingLinkProps>[] = [
   {
@@ -44,7 +45,7 @@ const CategoryFilterListWithHooks = () => {
 };
 
 const meta: Meta<typeof Component> = {
-  decorators: [AnalyticsDecorator],
+  decorators: [AnalyticsDecorator, TeacherBrowseAnalyticsDecorator],
   component: Component,
 };
 

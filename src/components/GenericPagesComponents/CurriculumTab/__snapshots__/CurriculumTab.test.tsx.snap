@@ -73,7 +73,7 @@ exports[`CurriculumTab renders 1`] = `
 
 .c22 {
   padding-left: 0.25rem;
-  display: inline-block;
+  display: inline;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -856,6 +856,7 @@ exports[`CurriculumTab renders 1`] = `
 
 .c18 {
   display: inline;
+  text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -920,6 +921,7 @@ exports[`CurriculumTab renders 1`] = `
 
 .c80 {
   display: inline;
+  text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1617,7 +1619,7 @@ exports[`CurriculumTab renders 1`] = `
                 class="c16 c17"
               >
                 <a
-                  class="c18 "
+                  class="c18"
                   href="/about-us/oaks-curricula"
                 >
                   <span

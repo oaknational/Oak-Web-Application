@@ -6,6 +6,7 @@ import {
 } from "./LessonOverviewVideo";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const transcriptSentences = [
   "Hi, I'm Rebecca, your computing teacher for the collaborating online respectfully unit.",
@@ -32,7 +33,11 @@ const props: LessonOverviewVideoProps = {
 
 const meta: Meta<typeof LessonOverviewVideo> = {
   component: LessonOverviewVideo,
-  decorators: [AnalyticsDecorator, (Story) => <Story />],
+  decorators: [
+    AnalyticsDecorator,
+    TeacherBrowseAnalyticsDecorator,
+    (Story) => <Story />,
+  ],
 };
 
 export default meta;

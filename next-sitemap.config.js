@@ -74,6 +74,7 @@ module.exports = {
     "/about-oak",
     "/people-and-partners",
     "/contact",
+    "/about-us/case-studies",
   ].concat(
     // Exclude dynamically created sitemaps
     shouldSkipInitialBuild ? serversideSitemapPaths : [],

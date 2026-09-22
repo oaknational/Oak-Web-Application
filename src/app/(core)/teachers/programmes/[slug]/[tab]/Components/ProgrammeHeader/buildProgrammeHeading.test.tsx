@@ -4,12 +4,12 @@ import type { TabSlug } from "../../tabSchema";
 
 import { buildProgrammeHeading } from "./buildProgrammeHeading";
 
-import { createFilter } from "@/fixtures/curriculum/filters";
 import { createYearData } from "@/fixtures/curriculum/yearData";
 import { createSubjectCategory } from "@/fixtures/curriculum/subjectCategories";
 import { createChildSubject } from "@/fixtures/curriculum/childSubject";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { createFilter } from "@/context/BrowseFilters/utils/fixtures";
 
 describe("buildProgrammeHeading", () => {
   const createDataWithChildSubjects = (): CurriculumUnitsFormattedData => ({

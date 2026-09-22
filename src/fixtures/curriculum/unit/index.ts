@@ -87,6 +87,7 @@ export function createUnit(partial: Partial<Unit> = {}): Unit {
     subject: subject,
     subject_slug: subject_slug,
     year: partial.year ?? BASE_UNIT.year,
+    features: {},
     ...(title ? { title } : {}),
     ...partial,
   };

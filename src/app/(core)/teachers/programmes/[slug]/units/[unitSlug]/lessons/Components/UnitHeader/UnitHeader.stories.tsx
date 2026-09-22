@@ -2,9 +2,11 @@ import { StoryObj, Meta } from "@storybook/nextjs";
 import { OakBreadcrumbs } from "@oaknational/oak-components";
 import { fn, mocked } from "storybook/test";
 
+// Storybook v10 requires relative imports for mocks, not aliases: https://storybook.js.org/docs/8/writing-stories/mocking-data-and-modules/mocking-modules#mock-files
+import useUnitDownloadExistenceCheck from "../../../../../../../../../../components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
+
 import UnitHeader, { UnitHeaderProps } from "./UnitHeader";
 
-import useUnitDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
 import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
 import { __setMockAuthState } from "@/storybook-mocks/clerk";

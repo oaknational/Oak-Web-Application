@@ -1,27 +1,19 @@
-import { OakP, OakSpan } from "@oaknational/oak-components";
-
-import { PromoSpan } from "../PromoSpan/PromoSpan";
+import { OakP } from "@oaknational/oak-components";
 
 import PromoBanner from "@/components/SharedComponents/PromoBanner";
 import { ResolveOakHrefProps } from "@/common-lib/urls";
 
 export default function Banners() {
-  const mythbustingContent = (
-    <OakP $font={"body-2"}>
-      <PromoSpan>
-        <OakSpan $font={"body-3-bold"}>Myths</OakSpan>
-      </PromoSpan>{" "}
-      about teaching <b>can hold you back</b>
+  const message = (
+    <OakP>
+      Oak is now used in <strong>72%</strong> of schools
     </OakP>
   );
-
-  const message = mythbustingContent;
-  const background = "bg-decorative5-very-subdued";
-  const ctaText = "Learn why";
+  const background = "bg-decorative2-main";
+  const ctaText = "Explore our impact";
 
   const linkProps: ResolveOakHrefProps = {
-    page: "campaign-single",
-    campaignSlug: "mythbusting",
+    page: "about-oaks-impact",
   };
 
   return (

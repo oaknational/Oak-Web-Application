@@ -43,7 +43,6 @@ export default function CurricTimetablingFilters({
         data={data}
         ks4Options={null}
         slugs={slugs}
-        context="curriculum-visualiser"
       />
       <OakBox $mt={"spacing-32"}>
         <OakSecondaryButton>Add next year</OakSecondaryButton>

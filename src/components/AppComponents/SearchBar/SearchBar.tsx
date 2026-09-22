@@ -23,6 +23,7 @@ const SearchBar = () => {
             name="term"
             aria-label="Lesson and unit search"
             $pr="spacing-32"
+            borderColor="border-neutral-stronger"
           />
         </OakBox>
         <OakBox

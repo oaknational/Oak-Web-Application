@@ -6,6 +6,8 @@ import {
   LessonMediaClipInfoProps,
 } from "./LessonMediaClipInfo";
 
+import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
+
 const props: LessonMediaClipInfoProps = {
   clipTitle: "How it is done",
   keyStageTitle: "KS 3",
@@ -22,6 +24,7 @@ const props: LessonMediaClipInfoProps = {
 
 const meta: Meta<typeof LessonMediaClipInfo> = {
   component: LessonMediaClipInfo,
+  decorators: [NotificationsDecorator],
 };
 
 export default meta;
