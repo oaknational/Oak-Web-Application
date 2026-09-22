@@ -286,7 +286,7 @@ export async function getFile({
           examboardTitle: data.combinedCurriculumData?.examboardTitle,
           childSubjectSlug,
           tierSlug,
-          prefix: "Curriculum-plan",
+          prefix: "Curriculum-plan-explainer",
           isWithinArchive: data.isWithinArchive,
         });
       },
