@@ -1,7 +1,11 @@
 import {
+  examboards,
   keystageSlugs,
+  pathways,
+  pathwaySlugs,
   subjects,
   subjectSlugs,
+  tierDescriptions,
 } from "@oaknational/oak-curriculum-schema";
 import { z } from "zod";
 
@@ -12,7 +16,7 @@ const curriculumSequenceSchema = z.object({
       connection_future_unit_description: z.string().nullable(),
       connection_future_unit_title: z.string().nullable(),
       connection_prior_unit_title: z.string().nullable(),
-      examboard: z.string().nullable(),
+      examboard: examboards.nullable(),
       examboard_slug: z.string().nullable(),
       planned_number_of_lessons: z.number().nullable(),
       phase: z.string(),
@@ -33,10 +37,10 @@ const curriculumSequenceSchema = z.object({
       subject_slug: subjectSlugs,
       subject_parent: z.string().nullable(),
       subject_parent_slug: z.string().nullable(),
-      tier: z.string().nullable(),
+      tier: tierDescriptions.nullable(),
       tier_slug: z.string().nullable(),
-      pathway: z.string().nullable().optional(),
-      pathway_slug: z.string().nullable().optional(),
+      pathway: pathways.nullish(),
+      pathway_slug: pathwaySlugs.nullish(),
       subjectcategories: z
         .array(
           z.object({

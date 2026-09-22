@@ -40,8 +40,6 @@ import {
   TeachingMaterialTypeValueType,
   TierNameValueType,
 } from "@/browser-lib/avo/Avo";
-import { Thread, Unit } from "@/utils/curriculum/types";
-import { buildUnitOverviewAccessedAnalytics } from "@/utils/curriculum/analytics";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import getFormattedDetailsForTracking, {
   getSchoolOption,
@@ -141,16 +139,11 @@ export type TeacherBrowseAnalyticsStore = {
       unitName: string;
       unitSlug: string;
       tierName: TierNameValueType | undefined;
-      examBoard: ExamBoardValueType;
+      examBoard: ExamBoardValueType | undefined;
       pathway: PathwayValueType | undefined;
     }) => void;
     unitDownloaded: () => void;
     unitDownloadStarted: () => void;
-    unitOverviewAccessed: (
-      unit: Unit,
-      isHighlighted: boolean,
-      selectedThread: Thread | undefined,
-    ) => void;
     unitRefined: (props: {
       componentType: ComponentTypeValueType;
       activeFilters: ActiveFilters;
@@ -767,22 +760,6 @@ export const createTeacherBrowseAnalyticsStore = (
           ...coreProperties,
           ...analyticsProperties,
         });
-      },
-      unitOverviewAccessed: (unit, isHighlighted, selectedThread) => {
-        const { avo, journeyId } = get();
-
-        const analyticsProperties = buildUnitOverviewAccessedAnalytics({
-          unit,
-          isHighlighted,
-          componentType: "unit_info_button",
-          selectedThread,
-          analyticsUseCase: "Teacher",
-          journeyId,
-          accessLevel: "programme",
-          navigationType: "narrow",
-        });
-
-        avo.unitOverviewAccessed(analyticsProperties);
       },
       unitRefined: ({
         componentType,

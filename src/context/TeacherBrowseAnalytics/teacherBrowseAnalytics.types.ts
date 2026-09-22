@@ -23,7 +23,6 @@ import {
   ActiveFilters,
 } from "@/browser-lib/avo/Avo";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import { Thread, Unit } from "@/utils/curriculum/types";
 
 // Core programme properties used at all browse levels
 export type CoreProgrammeState = {
@@ -164,11 +163,6 @@ export type TeacherBrowseTrackFns = {
   }) => void;
   unitDownloaded: () => void;
   unitDownloadStarted: () => void;
-  unitOverviewAccessed: (
-    unit: Unit,
-    isHighlighted: boolean,
-    selectedThread: Thread | undefined,
-  ) => void;
   unitSequenceRefined: (props: {
     selectedThread?: { slug: string; title: string }; // TD add filters to state
     subjectCategory?: string; // TD add filters to state
