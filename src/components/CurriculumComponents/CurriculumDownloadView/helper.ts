@@ -102,7 +102,7 @@ export const DOWNLOAD_TYPE_LABELS: {
   },
   {
     id: "commonQuestions",
-    label: "Common questions",
+    label: "FAQs",
     groupLabel: "implementation toolkit",
     avoResourceType: ResourceType.COMMON_QUESTIONS,
     ...implementationGuidePdfBase,
@@ -116,8 +116,7 @@ export const DOWNLOAD_TYPE_LABELS: {
   },
   {
     id: "assessment",
-    label: "Checking pupils' understanding in our lessons",
-    filenameOverride: "Checking-pupil-understanding",
+    label: "Checking pupil understanding",
     groupLabel: "implementation toolkit",
     avoResourceType: ResourceType.ASSESSMENT,
     ...implementationGuidePdfBase,
