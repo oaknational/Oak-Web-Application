@@ -1,12 +1,6 @@
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TeacherBrowseAnalyticsStore } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsStore";
-import {
-  getExamboardTitleFromSlug,
-  getKeyStageTitle,
-  getTierTitleFromSlug,
-} from "@/utils/curriculum/formatting";
-import { getPathwayTitleFromSlug } from "@/utils/curriculum/pathways";
-import { parseProgrammeSlug } from "@/utils/curriculum/slugs";
+import { getProgrammeFieldsFromProgrammeSlug } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeFieldsFromProgrammeSlug";
 
 type LessonAccessedProps = Parameters<
   TeacherBrowseAnalyticsStore["track"]["lessonAccessed"]
@@ -50,20 +44,13 @@ export const extractLessonAccessedPropsFromHref = ({
     return null;
   }
 
-  const parsedProgrammeSlug = parseProgrammeSlug(programmeSlug);
-
-  if (!parsedProgrammeSlug) {
+  const programmeFields = getProgrammeFieldsFromProgrammeSlug(programmeSlug);
+  if (!programmeFields) {
     return null;
   }
 
-  const { keystageSlug, tierSlug, pathwaySlug, examboardSlug } =
-    parsedProgrammeSlug;
-
-  if (!keystageSlug) {
-    return null;
-  }
-
-  const examboardTitle = getExamboardTitleFromSlug(examboardSlug);
+  const { keyStageSlug, keyStageTitle, tierName, pathway, examBoard } =
+    programmeFields;
 
   return {
     componentType: "teach_with_oak_back_to_lesson",
@@ -73,11 +60,11 @@ export const extractLessonAccessedPropsFromHref = ({
     lessonName,
     lessonReleaseCohort: "2023-2026",
     lessonReleaseDate: "unknown",
-    keyStageSlug: keystageSlug,
-    keyStageTitle: getKeyStageTitle(keystageSlug),
-    tierName: getTierTitleFromSlug(tierSlug),
-    pathway: getPathwayTitleFromSlug(pathwaySlug),
-    examBoard: examboardTitle,
+    keyStageSlug,
+    keyStageTitle,
+    tierName,
+    pathway,
+    examBoard,
     yearGroupName: "",
     yearGroupSlug: "",
   };

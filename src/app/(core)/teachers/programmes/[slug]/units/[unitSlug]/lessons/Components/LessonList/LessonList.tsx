@@ -16,6 +16,7 @@ import CardListing from "@/components/TeacherComponents/CardListing/CardListing"
 import { resolveOakHref } from "@/common-lib/urls";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getProgrammeFieldsFromProgrammeSlug } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeFieldsFromProgrammeSlug";
 
 type LessonListProps = Pick<
   UnitOverviewContentProps,
@@ -103,9 +104,7 @@ const LessonList = ({
   headerCtaSlot = null,
 }: LessonListProps) => {
   const showUnitCount = unitIndex !== undefined && unitCount !== undefined;
-  const { onwardContentSelected } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
+  const { lessonAccessed } = useTeacherBrowseAnalytics((store) => store.track);
 
   return (
     <OakFlex $flexDirection="column">
@@ -225,14 +224,25 @@ const LessonList = ({
                   })}
                   index={lesson.orderInUnit ?? undefined}
                   disabled={lesson.isUnpublished}
-                  onClickLink={() =>
-                    onwardContentSelected({
-                      onwardIntent: "view-lesson",
-                      lessonName: lesson.lessonTitle,
-                      lessonSlug: lesson.lessonSlug,
-                      lessonReleaseDate: lesson.lessonReleaseDate ?? "unknown",
-                    })
-                  }
+                  onClickLink={() => {
+                    const programmeFields =
+                      getProgrammeFieldsFromProgrammeSlug(programmeSlug);
+                    if (programmeFields) {
+                      lessonAccessed({
+                        componentType: "lesson_card",
+                        lessonName: lesson.lessonTitle,
+                        lessonSlug: lesson.lessonSlug,
+                        lessonReleaseDate:
+                          lesson.lessonReleaseDate ?? "unknown",
+                        lessonReleaseCohort: "2023-2026",
+                        unitName: unitTitle,
+                        unitSlug: unitSlug,
+                        yearGroupName: "",
+                        yearGroupSlug: "",
+                        ...programmeFields,
+                      });
+                    }
+                  }}
                 />
               </OakLI>
             ))}
