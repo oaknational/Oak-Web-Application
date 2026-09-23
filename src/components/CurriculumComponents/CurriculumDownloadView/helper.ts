@@ -70,7 +70,7 @@ export const DOWNLOAD_TYPE_LABELS: {
   {
     id: "curriculumPlan",
     group: "curriculum",
-    label: "Curriculum plan",
+    label: "Curriculum plan and explainer",
     subTitle: "Word (accessible)",
     icon: "curriculum-plan",
     fileExt: "DOCX",
@@ -79,7 +79,7 @@ export const DOWNLOAD_TYPE_LABELS: {
   {
     id: "nationalCurriculum",
     group: "curriculum",
-    label: "National curriculum",
+    label: "National curriculum alignment",
     subTitle: "Excel (accessible)",
     icon: "spreadsheet",
     fileExt: "XLSX",
