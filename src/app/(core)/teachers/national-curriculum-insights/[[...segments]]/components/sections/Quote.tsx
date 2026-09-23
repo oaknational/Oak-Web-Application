@@ -1,39 +1,14 @@
 "use client";
 
-import {
-  getMediaQuery,
-  OakBox,
-  OakQuote,
-  parseSpacing,
-} from "@oaknational/oak-components";
+import { OakBox, OakQuote } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import { SectionProps } from "./shared";
 
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 
-const GuidanceQuoteSection = styled(OakBox)`
-  box-sizing: border-box;
-
-  @media (${getMediaQuery("mobile")}) {
-    display: none;
-  }
-
-  @media (${getMediaQuery("desktop")}) {
-    height: 418px;
-    display: flex;
-    align-items: center;
-  }
-`;
-
 const GuidanceQuoteCard = styled(OakBox)`
-  box-sizing: border-box;
-  width: 100%;
-  max-width: ${parseSpacing("spacing-800")};
-
   img {
-    width: 54px;
-    height: 54px;
     border-radius: 50%;
     object-fit: cover;
   }
@@ -47,13 +22,18 @@ export const NationalCurriculumInsightsQuote = ({
     : undefined;
 
   return (
-    <GuidanceQuoteSection
+    <OakBox
+      $boxSizing="border-box"
+      $display={["none", "block"]}
       as="section"
       $ph={["spacing-16", "spacing-40"]}
       $pv="spacing-40"
       data-insights-module="guidance-testimonial"
     >
       <GuidanceQuoteCard
+        $boxSizing="border-box"
+        $width="100%"
+        $maxWidth="spacing-800"
         $mh="auto"
         $background="bg-decorative1-very-subdued"
         $pa={["spacing-24", "spacing-48"]}
@@ -67,6 +47,6 @@ export const NationalCurriculumInsightsQuote = ({
           hasLeftBorder
         />
       </GuidanceQuoteCard>
-    </GuidanceQuoteSection>
+    </OakBox>
   );
 };

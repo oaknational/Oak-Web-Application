@@ -1,5 +1,6 @@
 import { fireEvent, screen } from "@testing-library/react";
 import { useState } from "react";
+import userEvent from "@testing-library/user-event";
 
 import { MultiSelect, type MultiSelectProps } from "./MultiSelect";
 
@@ -48,16 +49,44 @@ const ControlledMultiSelect = ({
 
 describe("MultiSelect", () => {
   it.each([
-    ["standard", "3rem", "0.75rem 1rem"],
-    ["large", "4rem", "1rem"],
-  ] as const)("preserves %s control spacing", (size, minHeight, padding) => {
+    ["standard", "0.75rem"],
+    ["large", "1rem"],
+  ] as const)("preserves %s control spacing", (size, verticalPadding) => {
     renderWithTheme(<ControlledMultiSelect size={size} />);
 
     expect(screen.getByTestId("multi-select-trigger")).toHaveStyle({
-      gap: "0.5rem",
-      minHeight,
-      padding,
+      "padding-top": verticalPadding,
+      "padding-bottom": verticalPadding,
+      "padding-left": "1rem",
+      "padding-right": "1rem",
     });
+  });
+
+  it.each(["up", "down"] as const)(
+    "positions the dropdown %s without changing its size",
+    (direction) => {
+      renderWithTheme(<ControlledMultiSelect dropdownDirection={direction} />);
+      fireEvent.click(screen.getByTestId("multi-select-trigger"));
+
+      expect(screen.getByTestId("multi-select-panel")).toHaveStyle({
+        position: "absolute",
+        [direction === "up" ? "bottom" : "top"]: "calc(100% + 0.25rem)",
+        "max-height": "min(60rem,70vh)",
+        "overflow-y": "auto",
+      });
+    },
+  );
+
+  it("keeps an accessible legend for both selection layouts", () => {
+    renderWithTheme(<ControlledMultiSelect placeholder="Choose items" />);
+    fireEvent.click(screen.getByTestId("multi-select-trigger"));
+
+    expect(
+      screen.getByRole("group", { name: "Choose items" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getAllByText("Choose items", { selector: "legend" }),
+    ).toHaveLength(2);
   });
 
   it("opens the desktop selector and keeps checkbox and tag state in sync", () => {
@@ -136,5 +165,46 @@ describe("MultiSelect", () => {
 
     expect(screen.getByTestId("multi-select-trigger")).toBeDisabled();
     expect(screen.getByTestId("multi-select-mobile-confirm")).toBeDisabled();
+  });
+
+  it("supports keyboard selection and restores focus after Escape", async () => {
+    const user = userEvent.setup();
+    const onChange = jest.fn();
+    renderWithTheme(<ControlledMultiSelect onChange={onChange} />);
+
+    const trigger = screen.getByTestId("multi-select-trigger");
+    trigger.focus();
+    await user.keyboard("{Enter}");
+    expect(trigger).toHaveAttribute("aria-expanded", "true");
+
+    await user.tab();
+    await user.keyboard(" ");
+    expect(onChange).toHaveBeenLastCalledWith([
+      "first-one",
+      "first-two",
+      "second-one",
+    ]);
+
+    await user.keyboard("{Escape}");
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+    expect(trigger).toHaveFocus();
+  });
+
+  it("only confirms a non-empty mobile selection", async () => {
+    const user = userEvent.setup();
+    const onMobileConfirm = jest.fn();
+    renderWithTheme(
+      <ControlledMultiSelect onMobileConfirm={onMobileConfirm} />,
+    );
+
+    const confirm = screen.getByTestId("multi-select-mobile-confirm");
+    expect(confirm).toBeDisabled();
+    fireEvent.click(confirm);
+    expect(onMobileConfirm).not.toHaveBeenCalled();
+
+    await user.click(screen.getByText("Select all"));
+    expect(confirm).toBeEnabled();
+    await user.click(confirm);
+    expect(onMobileConfirm).toHaveBeenCalledTimes(1);
   });
 });

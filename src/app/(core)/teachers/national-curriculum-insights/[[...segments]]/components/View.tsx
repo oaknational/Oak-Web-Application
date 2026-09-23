@@ -7,7 +7,6 @@ import {
   OakP,
   OakTabs,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import type { NationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
 
@@ -46,12 +45,6 @@ type InsightTab = {
   href: string;
   label: string;
 };
-
-const TabsScroller = styled(OakBox)`
-  width: 100%;
-  max-width: 100%;
-  overflow-x: auto;
-`;
 
 const ModuleView = ({
   module,
@@ -261,11 +254,13 @@ const InsightsTabs = ({
   }
 
   return (
-    <TabsScroller
+    <OakBox
+      $width="100%"
+      $maxWidth="100%"
+      $overflowX="auto"
       as="nav"
       aria-label={`${data.subject.title} insights`}
       $mh="auto"
-      $maxWidth="spacing-1280"
       $ph={["spacing-16", "spacing-32"]}
       $pv={["spacing-24", "spacing-64"]}
     >
@@ -279,7 +274,7 @@ const InsightsTabs = ({
           type: "link" as const,
         }))}
       />
-    </TabsScroller>
+    </OakBox>
   );
 };
 
