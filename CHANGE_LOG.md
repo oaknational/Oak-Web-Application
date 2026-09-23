@@ -1,3 +1,10 @@
+# [1.1211.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1210.0...v1.1211.0) (2026-09-23)
+
+
+### Features
+
+* **mcp:** advertise the MCP server in the api-catalog now it's GA ([1e22958](https://github.com/oaknational/Oak-Web-Application/commit/1e22958f2027ee906fd8aea5a251b0e9c981710c))
+
 # [1.1210.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1209.0...v1.1210.0) (2026-09-23)
 
 
