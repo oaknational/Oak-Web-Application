@@ -72,7 +72,7 @@ describe("TopNavQuery", () => {
         external: true,
       },
       {
-        title: "Oak Curriculum MCP",
+        title: "AI Plugin",
         slug: "mcp",
         href: "/ai-plugin",
       },

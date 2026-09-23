@@ -352,7 +352,7 @@ describe("TeachersTopNavHamburger", () => {
     );
     expect(ailaLink).toHaveAttribute("target", "_blank");
 
-    const mcpLink = getByRole("link", { name: "Oak Curriculum MCP" });
+    const mcpLink = getByRole("link", { name: "AI Plugin" });
     expect(mcpLink).toHaveAttribute("href", "/ai-plugin");
     expect(mcpLink).toHaveAttribute("target", "_self");
   });

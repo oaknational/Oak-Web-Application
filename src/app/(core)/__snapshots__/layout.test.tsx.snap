@@ -128,7 +128,7 @@ exports[`core layout renders correctly 1`] = `
               {
                 "href": "/ai-plugin",
                 "slug": "mcp",
-                "title": "Oak Curriculum MCP",
+                "title": "AI Plugin",
               },
             ],
             "slug": "aiExperiments",

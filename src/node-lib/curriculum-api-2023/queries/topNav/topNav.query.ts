@@ -153,7 +153,7 @@ const topNavQuery = (sdk: Sdk) => {
             external: true,
           },
           {
-            title: "Oak Curriculum MCP",
+            title: "AI Plugin",
             slug: "mcp",
             href: resolveOakHref({ page: "mcp" }),
           },

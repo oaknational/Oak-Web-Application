@@ -566,7 +566,7 @@ describe("TopNavDropdown", () => {
         expect(ailaLink).toHaveAttribute("target", "_blank");
 
         const mcpLink = await screen.findByRole("link", {
-          name: "Oak Curriculum MCP",
+          name: "AI Plugin",
         });
         expect(mcpLink).toHaveAttribute("href", "/ai-plugin");
         expect(mcpLink).not.toHaveAttribute("target", "_blank");

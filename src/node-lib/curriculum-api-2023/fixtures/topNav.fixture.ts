@@ -328,7 +328,7 @@ export const topNavFixture: TopNavProps = {
         },
         {
           slug: "mcp",
-          title: "Oak Curriculum MCP",
+          title: "AI Plugin",
           href: "/ai-plugin",
         },
       ],
