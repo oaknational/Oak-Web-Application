@@ -1,3 +1,16 @@
+# [1.1210.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1209.0...v1.1210.0) (2026-09-23)
+
+
+### Bug Fixes
+
+* **discovery:** make the inline MCP server card conformant and correct two measurements ([1f7b941](https://github.com/oaknational/Oak-Web-Application/commit/1f7b941571eec8f023ea6fa8fb3ad4be3fd7bcd8))
+* **discovery:** point the API entry at the catalogue that carries bulk ([8a7e64b](https://github.com/oaknational/Oak-Web-Application/commit/8a7e64b33d805a47dc34eedb72569cf01296c92b))
+
+
+### Features
+
+* **discovery:** publish an ARD manifest for Oak's agent resources ([57bc8eb](https://github.com/oaknational/Oak-Web-Application/commit/57bc8eb2d296f8eb68b2c2c66378e8484bedc821))
+
 # [1.1209.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1208.0...v1.1209.0) (2026-09-22)
 
 
