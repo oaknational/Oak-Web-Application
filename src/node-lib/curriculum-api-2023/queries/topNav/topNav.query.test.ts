@@ -1,6 +1,6 @@
 import topNavQuery from "./topNav.query";
 import { mockResponseData } from "./fixtures";
-import { topNavResponseSchema } from "./topNav.schema";
+import { getItemSlug, topNavResponseSchema } from "./topNav.schema";
 
 import sdk from "@/node-lib/curriculum-api-2023/sdk";
 import { cacheData } from "@/node-lib/cache";
@@ -48,6 +48,50 @@ describe("TopNavQuery", () => {
       res.teachers?.primary.keystages.children?.[0]?.children?.[0]?.href,
     ).toBeDefined();
     expect(res.teachers?.aboutUs.children).toHaveLength(6);
+  });
+
+  it("returns AI experiments as a dropdown with the AI links", async () => {
+    const res = await topNavQuery({
+      ...sdk,
+      topNav: jest.fn(() => Promise.resolve(mockResponseData)),
+    })();
+
+    const aiExperiments = res.teachers?.aiExperiments;
+    expect(aiExperiments?.slug).toBe("aiExperiments");
+    expect(aiExperiments?.children).toEqual([
+      {
+        title: "Labs home",
+        slug: "labs",
+        href: "https://labs.thenational.academy",
+        external: true,
+      },
+      {
+        title: "Aila",
+        slug: "aila",
+        href: "https://labs.thenational.academy/aila",
+        external: true,
+      },
+      {
+        title: "AI Plugin",
+        slug: "mcp",
+        href: "/ai-plugin",
+      },
+    ]);
+  });
+
+  it("keeps every teachers top-level section's slug in sync with its object key", async () => {
+    // TopNavDropdown and SubNav both gate on `selectedMenu === <object key>`
+    // and derive aria-controls/panel ids from `slug`. If a section's `slug`
+    // ever drifted from its own object key, the dropdown would render but
+    // silently never open (see the review on PR #4459 for the failure mode).
+    const res = await topNavQuery({
+      ...sdk,
+      topNav: jest.fn(() => Promise.resolve(mockResponseData)),
+    })();
+
+    Object.entries(res.teachers!).forEach(([key, item]) => {
+      expect(getItemSlug(item as Record<string, unknown>)).toBe(key);
+    });
   });
 
   it("uses the cached topNav function when withCache is true", async () => {

@@ -358,12 +358,12 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                     <div
                       class="sc-aXZVg kpXzs yellow-shadow"
                     />
-                    <a
-                      aria-label="Ai experiments (this will open in a new tab)"
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="true"
                       class="sc-dcJsrY sc-jXbUNg hodcpD kwUki internal-button"
-                      href="https://labs.thenational.academy"
-                      id="teachers-labs"
-                      target="_blank"
+                      data-testid="teachers-aiExperiments"
+                      id="teachers-aiExperiments"
                     >
                       <div
                         class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
@@ -371,23 +371,10 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         <span
                           class="sc-eqUAAy kJIzWq"
                         >
-                          Ai experiments
-                        </span>
-                        <span
-                          class="sc-aXZVg jJQFnr"
-                        >
-                          <img
-                            alt=""
-                            class="sc-iGgWBj lcrpYX"
-                            data-nimg="fill"
-                            decoding="async"
-                            loading="lazy"
-                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
-                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                          />
+                          AI experiments
                         </span>
                       </div>
-                    </a>
+                    </button>
                   </div>
                 </li>
               </ul>

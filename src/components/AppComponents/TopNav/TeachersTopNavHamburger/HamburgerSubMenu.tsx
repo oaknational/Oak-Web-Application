@@ -105,8 +105,12 @@ export function HamburgerMenuContent(
 
   switch (submenuOpen.menu) {
     case "OakMenu": {
-      const links =
-        submenuOpen.value === "About us" ? navData.aboutUs : navData.guidance;
+      const oakMenuLinks = {
+        "About us": navData.aboutUs,
+        Guidance: navData.guidance,
+        "AI experiments": navData.aiExperiments,
+      };
+      const links = oakMenuLinks[submenuOpen.value];
       return (
         <SubmenuContainer
           title={submenuOpen.value}

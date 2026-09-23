@@ -112,10 +112,27 @@ exports[`core layout renders correctly 1`] = `
             "title": "About us",
           },
           "aiExperiments": {
-            "external": true,
-            "href": "https://labs.thenational.academy",
-            "slug": "labs",
-            "title": "Ai experiments",
+            "children": [
+              {
+                "external": true,
+                "href": "https://labs.thenational.academy",
+                "slug": "labs",
+                "title": "Labs home",
+              },
+              {
+                "external": true,
+                "href": "https://labs.thenational.academy/aila",
+                "slug": "aila",
+                "title": "Aila",
+              },
+              {
+                "href": "/ai-plugin",
+                "slug": "mcp",
+                "title": "AI Plugin",
+              },
+            ],
+            "slug": "aiExperiments",
+            "title": "AI experiments",
           },
           "guidance": {
             "children": [

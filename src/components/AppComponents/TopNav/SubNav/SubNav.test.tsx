@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 
@@ -34,19 +34,34 @@ describe("SubNav (Teachers)", () => {
     jest.clearAllMocks();
   });
 
-  it("renders Ai experiments link as a link element with external icon", () => {
+  it("renders AI experiments as a button", () => {
     render(<SubNav {...defaultProps} />);
 
-    const aiExperimentsLink = screen.getByRole("link", {
-      name: "Ai experiments (this will open in a new tab)",
+    const aiExperimentsButton = screen.getByRole("button", {
+      name: "AI experiments",
     });
 
-    expect(aiExperimentsLink).toBeInTheDocument();
-    expect(aiExperimentsLink).toHaveAttribute(
-      "href",
-      "https://labs.thenational.academy",
-    );
-    expect(aiExperimentsLink).toHaveAttribute("target", "_blank");
+    expect(aiExperimentsButton).toBeInTheDocument();
+    expect(aiExperimentsButton).not.toHaveAttribute("href");
+    // aria-haspopup="true" is normatively equivalent to "menu" (ARIA 1.2/1.3),
+    // which this Tab-only Disclosure Navigation Menu pattern does not implement
+    // (see APG's Disclosure Navigation Menu example). aria-expanded is the
+    // attribute this pattern actually requires and the one already rendered.
+    expect(aiExperimentsButton).toHaveAttribute("aria-expanded", "false");
+  });
+
+  it("clicking AI experiments notifies the click handler with its slug", () => {
+    // Prior coverage of AI experiments was keyboard-only (tab order and
+    // arrow roving); nothing exercised the click path that actually opens
+    // the dropdown, so this pins the open-on-click wiring for the new item.
+    render(<SubNav {...defaultProps} />);
+
+    const aiExperimentsButton = screen.getByRole("button", {
+      name: "AI experiments",
+    });
+    fireEvent.click(aiExperimentsButton);
+
+    expect(mockOnClick).toHaveBeenCalledWith("aiExperiments");
   });
 
   it("renders Primary as a button", () => {
