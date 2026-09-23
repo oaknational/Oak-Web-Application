@@ -106,6 +106,10 @@ describe("getPageViewProps()", () => {
       pageName: "Landing Page",
       analyticsUseCase: null,
     });
+    expect(getPageViewProps("/ai-plugin")).toEqual({
+      pageName: "AI Plugin",
+      analyticsUseCase: null,
+    });
   });
   it("About us: Who we are", () => {
     expect(getPageViewProps("/about-us/who-we-are")).toEqual({
