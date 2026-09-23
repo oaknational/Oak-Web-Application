@@ -54,20 +54,37 @@ const apiCatalog = {
         },
       ],
     },
-    // Oak Curriculum MCP server. Held back from the public catalog while it is
-    // alpha and invitation-only (OAuth 2.1, internal/invited access only) —
-    // listing it here would point discovery agents at an endpoint that rejects
-    // them. Uncomment to advertise it once it reaches general availability.
-    // {
-    //   anchor: "https://curriculum-mcp-alpha.oaknational.dev/mcp",
-    //   "service-doc": [
-    //     {
-    //       href: "https://curriculum-mcp-alpha.oaknational.dev/",
-    //       type: "text/html",
-    //       title: "Oak National Academy Curriculum MCP server",
-    //     },
-    //   ],
-    // },
+    // Oak Curriculum MCP server. Public beta since 2026-09-06 (OAuth 2.1;
+    // any authenticated user can connect) — the earlier "alpha, invitation
+    // only" restriction that held this entry back no longer applies.
+    //
+    // `anchor` is the MCP resource URL itself: it is what the production
+    // PRM document at `https://mcp.thenational.academy/.well-known/oauth-
+    // protected-resource` names as `resource`, confirmed live. There is no
+    // `service-desc` — MCP has no OpenAPI-style machine-readable schema
+    // document to point at.
+    //
+    // `service-doc` points at the human-readable landing page, not the MCP
+    // subdomain's root: per MCP-756, `mcp.thenational.academy` "will not be
+    // a live website" — its root is a 404 by design, since the domain now
+    // serves only the MCP server endpoint.
+    {
+      anchor: "https://mcp.thenational.academy/mcp",
+      "service-doc": [
+        {
+          href: "https://www.thenational.academy/ai-plugin",
+          type: "text/html",
+          title: "Oak National Academy Curriculum MCP server",
+        },
+      ],
+      status: [
+        {
+          href: "https://mcp.thenational.academy/healthz",
+          type: "application/json",
+          title: "Oak National Academy Curriculum MCP health check",
+        },
+      ],
+    },
   ],
 } as const;
 

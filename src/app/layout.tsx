@@ -14,6 +14,7 @@ import AppHooks from "@/components/AppComponents/App/AppHooks";
 import { OakThemeProvider, oakDefaultTheme } from "@/styles/oakThemeApp";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import { FAVICON_LINKS_HEAD_INNER_HTML } from "@/image-data";
+import { AGENT_DISCOVERY_LINKS } from "@/config/agentDiscovery";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { MenuProvider } from "@/context/Menu";
 import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
@@ -50,6 +51,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={lexend.className}>
       {parse(FAVICON_LINKS_HEAD_INNER_HTML)}
+      {AGENT_DISCOVERY_LINKS.map(({ rel, href }) => (
+        <link key={rel} rel={rel} href={href} />
+      ))}
       <StyledComponentsRegistry>
         {/* Pages Router uses #__next as the app root; add id to body for Pa11y CI and Percy to hook onto. */}
         <body id="__next" style={{ margin: "0px" }}>
