@@ -700,7 +700,7 @@ export const OAK_PAGES: {
   }),
   mcp: createOakPageConfig({
     pathPattern: "/ai-plugin",
-    analyticsPageName: "Landing Page",
+    analyticsPageName: "AI Plugin",
     configType: "internal",
     pageType: "mcp",
   }),
