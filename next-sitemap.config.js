@@ -52,8 +52,14 @@ const USER_AGENT_GROUP = "User-agent: *\n";
  * next-sitemap's robots builder emits only Allow, Disallow and Crawl-delay, so
  * this hook is the only supported way to add a directive.
  *
- * It throws rather than passing the input through: a silent no-op would ship a
- * robots.txt with no declaration and leave every check green.
+ * It throws rather than passing the input through, so the cause is named in the
+ * build log. The throw cannot fail the build on its own: next-sitemap registers
+ * robots.txt, the sitemaps and the sitemap index before writing any of them,
+ * catches every failure into a bare console.error, and exits 0 — so this throw
+ * ships a deploy with no robots.txt and no sitemaps at all, both gitignored.
+ *
+ * `scripts/build/assert_robots_content_signal` is what actually fails the build.
+ * It runs after next-sitemap in `postbuild` and reads the emitted file.
  */
 const addContentSignal = async (_config, robotsTxt) => {
   if (!robotsTxt.includes(USER_AGENT_GROUP)) {
@@ -110,6 +116,7 @@ module.exports = {
     "/about-oak",
     "/people-and-partners",
     "/contact",
+    "/about-us/case-studies",
   ].concat(
     // Exclude dynamically created sitemaps
     shouldSkipInitialBuild ? serversideSitemapPaths : [],

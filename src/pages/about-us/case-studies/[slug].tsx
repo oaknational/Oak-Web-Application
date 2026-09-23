@@ -25,15 +25,16 @@ import {
 } from "@/node-lib/isr";
 import Layout from "@/components/AppComponents/AppLayout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import { OaksImpactCaseStudies } from "@/components/GenericPagesComponents/OaksImpactCaseStudies";
+import { CaseStudiesSection } from "@/components/GenericPagesComponents/CaseStudiesSection";
 import { resolveOakHref } from "@/common-lib/urls";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
-import { OaksImpactCaseStudyHeader } from "@/components/GenericPagesComponents/OaksImpactCaseStudyHeader";
+import { CaseStudyHeader } from "@/components/GenericPagesComponents/CaseStudyHeader";
 import { OaksImpactCaseStudyContentLayout } from "@/components/GenericPagesComponents/OaksImpactCaseStudyContentLayout";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
+// to do - this data retrieval will be decoupled from oak's impact in coming tickets
 export type AboutUsOaksImpactCaseStudyPageProps = {
   pageData: {
     caseStudy: OaksImpactCaseStudyPage["caseStudiesSection"]["caseStudies"][number];
@@ -57,6 +58,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
       autoDismiss: true,
       autoDismissDuration: 4000,
       showIcon: true,
+      showClose: true,
     });
   };
 
@@ -101,7 +103,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                     $colStart={[0, 0, 3]}
                     $colSpan={[12, 12, 8]}
                   >
-                    <OaksImpactCaseStudyHeader
+                    <CaseStudyHeader
                       title={caseStudy.video.title}
                       publishedDate={format(
                         new Date(caseStudy.publishedAt),
@@ -125,21 +127,20 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                         thumbnailTime={caseStudy.video.video.asset.thumbTime}
                         playbackId={caseStudy.video.video.asset.playbackId}
                         title={caseStudy.video.title}
-                        isLegacy={true}
                         location="marketing"
                         omitBorder={true}
                       />
                     )
                   }
                   showTranscript={true}
-                  transcript={caseStudy.video.transcript ?? undefined}
+                  transcript={caseStudy.video.transcript}
                   body={caseStudy.textRaw ?? undefined}
                 />
               </OakBox>
             </OaksImpactCaseStudyContentLayout>
           </NewGutterMaxWidth>
 
-          <OaksImpactCaseStudies
+          <CaseStudiesSection
             title="Explore more case studies"
             caseStudies={otherCaseStudies}
           />

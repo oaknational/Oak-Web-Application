@@ -1,3 +1,360 @@
+# [1.1209.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1208.0...v1.1209.0) (2026-09-22)
+
+
+### Bug Fixes
+
+* **seo:** fail the build when robots.txt loses the Content Signals directive ([993b653](https://github.com/oaknational/Oak-Web-Application/commit/993b6539ed3642e4f90444037f952b981413d825))
+
+
+### Features
+
+* **seo:** declare Content Signals in robots.txt ([cbfc954](https://github.com/oaknational/Oak-Web-Application/commit/cbfc95428650f65f308920de081fd4db73fa23bb))
+
+# [1.1208.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1207.0...v1.1208.0) (2026-09-22)
+
+
+### Features
+
+* reduce spacing above cover page title ([b679275](https://github.com/oaknational/Oak-Web-Application/commit/b6792754fdb89168c13ae78611f13b30f4cc7cb2))
+* rename nc alignment filename ([52ba70f](https://github.com/oaknational/Oak-Web-Application/commit/52ba70ff49c07a3805811368402d89f72996b505))
+* update curriculum doc labels ([b1afcaa](https://github.com/oaknational/Oak-Web-Application/commit/b1afcaaacb451370e82fd4944fcceddc1b08d3af))
+* update curriculum plan cover page ([920c881](https://github.com/oaknational/Oak-Web-Application/commit/920c8812c6c58b7200689c57c4d1afeb8e96872c))
+* update curriculum plan file name ([5bb78fd](https://github.com/oaknational/Oak-Web-Application/commit/5bb78fde9d0504bae6f1edada30ec7d68540116f))
+
+# [1.1207.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1206.0...v1.1207.0) (2026-09-22)
+
+
+### Bug Fixes
+
+* add accessible role naming ([27306fa](https://github.com/oaknational/Oak-Web-Application/commit/27306fa8e450ef8608afbbee68dcf177616a6de3))
+* add aria label to select ([ecc9dea](https://github.com/oaknational/Oak-Web-Application/commit/ecc9dea2ffbd8126ca11ecc67226ab003f12da1d))
+
+
+### Features
+
+* add missing properties ([dec0f43](https://github.com/oaknational/Oak-Web-Application/commit/dec0f43831f6c4128d2dd969ec9b9d00c97b29b4))
+* add newsletter component to teach with oak page ([26df37a](https://github.com/oaknational/Oak-Web-Application/commit/26df37acf7655d9b75510902f24fb5b3e9e8c3ed))
+* add teach with oak newsletter component ([2a7c300](https://github.com/oaknational/Oak-Web-Application/commit/2a7c300c9883c8ad3b61ec4d61636fbb631c1614))
+* double spacing between fields ([b98a175](https://github.com/oaknational/Oak-Web-Application/commit/b98a175a681bf0df39cbec9606eabffed4d3041a))
+* update newsletter count from 100k to 200k ([f8c6fd0](https://github.com/oaknational/Oak-Web-Application/commit/f8c6fd03c00a72af8cf2e225ed590ab1bf0647fc))
+* update newsletter form for app router compatibility ([551cb89](https://github.com/oaknational/Oak-Web-Application/commit/551cb894a3fa52b43ff101859886feab8521f626))
+
+# [1.1206.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1205.0...v1.1206.0) (2026-09-22)
+
+
+### Features
+
+* filter out all legacy results from search ([b7346aa](https://github.com/oaknational/Oak-Web-Application/commit/b7346aab540bd816796d2d62b2b2dc9e9ce2932a))
+
+# [1.1205.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1204.0...v1.1205.0) (2026-09-22)
+
+
+### Features
+
+* copy link toast has close button and auto dismiss ([e7ca374](https://github.com/oaknational/Oak-Web-Application/commit/e7ca3742c740e001593df5baaa41f413f0d37b12))
+
+# [1.1204.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1203.0...v1.1204.0) (2026-09-21)
+
+
+### Features
+
+* enable posthog autocapture on the ai-plugin page ([cdee1a7](https://github.com/oaknational/Oak-Web-Application/commit/cdee1a71b09e21d4b890dd46a362b2869cf1db25))
+
+# [1.1203.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1202.0...v1.1203.0) (2026-09-21)
+
+
+### Bug Fixes
+
+* render loop in useResourceFormState ([7756d08](https://github.com/oaknational/Oak-Web-Application/commit/7756d08eb3441527b0928542bb2310e84eb2aac3))
+* resource card grid layout ([b30956f](https://github.com/oaknational/Oak-Web-Application/commit/b30956fee3273c7635cb60959462973ffeecd2ee))
+* return accordion text early for teach with oak ([c591282](https://github.com/oaknational/Oak-Web-Application/commit/c591282fc9a3761478021bf8a2bd2651dafc6cc2))
+* update accordion header on TwO download page ([b4a09a8](https://github.com/oaknational/Oak-Web-Application/commit/b4a09a83f49ee13b408634f41cebe5d1c7c761b5))
+
+
+### Features
+
+* add download accordion to teach with oak ([d1d915c](https://github.com/oaknational/Oak-Web-Application/commit/d1d915c629fa5170edd79ef6eff2971ec23f96c1))
+* add download page url to url config ([bed2ebb](https://github.com/oaknational/Oak-Web-Application/commit/bed2ebbf930e0f959cad44b98e9d670ded5ca0ec))
+* add downloads view with breadcrumbs ([27c3725](https://github.com/oaknational/Oak-Web-Application/commit/27c3725ede715c971aad530c7fa9a029f45c272c))
+* add links to download page from TwO main page ([82338a6](https://github.com/oaknational/Oak-Web-Application/commit/82338a60e783c08776265922f3f7aece74a9d105))
+* add success toast on download success ([f145d6f](https://github.com/oaknational/Oak-Web-Application/commit/f145d6fc9e3cf4bc1a24d55f3fee28f65b3b1209))
+* add teach with oak to download form state and hooks ([75c0733](https://github.com/oaknational/Oak-Web-Application/commit/75c07338096acf02aee39ed61476b4492a8b0fe9))
+* add TwO download page scaffolding ([fb51221](https://github.com/oaknational/Oak-Web-Application/commit/fb51221a158fa77ffe529bb3bd626d50c3bc88a8))
+* get file size for short reads ([3c98ffc](https://github.com/oaknational/Oak-Web-Application/commit/3c98ffc2a6686ed4d8c824c1d94785dd04ee0f76))
+* hide select all on resource cards for TwO ([63b4544](https://github.com/oaknational/Oak-Web-Application/commit/63b454431f84372a7f0302e7d32762cdb7055d70))
+* hide select all on teach with oak download accordion ([9a86f61](https://github.com/oaknational/Oak-Web-Application/commit/9a86f61f1a65ef66da99b28fb74a597c9639fcbd))
+
+# [1.1202.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1201.0...v1.1202.0) (2026-09-21)
+
+
+### Bug Fixes
+
+* fix dodgy merge ([9c78ff2](https://github.com/oaknational/Oak-Web-Application/commit/9c78ff2542cf901e57dba577f277e0d57885bb7b))
+* fix visibility issues ([b4ff166](https://github.com/oaknational/Oak-Web-Application/commit/b4ff166ff38501ab2e559700e8831c1f2d661c6f))
+
+
+### Features
+
+* add back button url ([6980e55](https://github.com/oaknational/Oak-Web-Application/commit/6980e55af2979266639d992af55fb44b431506bd))
+* add experiment feature flag and hide on practical pe lessons ([77e9143](https://github.com/oaknational/Oak-Web-Application/commit/77e91438ab9c2e9fb59c03bda709f93a71f9c0a1))
+* add fallback to feature flag ([f4f817a](https://github.com/oaknational/Oak-Web-Application/commit/f4f817a84ab450b59877c4b3b04562861f5d0abc))
+* add new oak card properties ([3676ad7](https://github.com/oaknational/Oak-Web-Application/commit/3676ad7a264c46cd15eb79fdd734e27bcefd6f3c))
+* add teach with oak promo component ([a983890](https://github.com/oaknational/Oak-Web-Application/commit/a98389042bc1aa97755b6fda3dcfd361a4ff976f))
+* add teach with oak promo component to lesson overview sidenav behind feature flag ([07cb7b7](https://github.com/oaknational/Oak-Web-Application/commit/07cb7b7b880f51463e5ccdfcad39b38d7d540cd5))
+* show promo on mobile ([e1977d4](https://github.com/oaknational/Oak-Web-Application/commit/e1977d4d28f420ec476c7460c66aeb1d7e8eef52))
+
+# [1.1201.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1200.2...v1.1201.0) (2026-09-21)
+
+
+### Bug Fixes
+
+* lockfile change and slipped through a commit ([f3605ca](https://github.com/oaknational/Oak-Web-Application/commit/f3605cad71733d50ac13182b6fd7ed377b85b1f0))
+* padding on lesson details ([0652eaf](https://github.com/oaknational/Oak-Web-Application/commit/0652eaf2c0e498541d70f259afa98a7f4db6c26b))
+
+
+### Features
+
+* add returnTo link ([462af67](https://github.com/oaknational/Oak-Web-Application/commit/462af677e68e982bd830818504c04be454dc6311))
+* add teach with oak card ([1c6b47c](https://github.com/oaknational/Oak-Web-Application/commit/1c6b47c1f4e85f2d7f7428c079080ac7d6743ccc))
+* add useProgrammeState hook and grab lessonHref from there ([30c36a4](https://github.com/oaknational/Oak-Web-Application/commit/30c36a40c961df1af3c5bd1ed7c10b532967398c))
+* try redirect behaviour ([c76e82a](https://github.com/oaknational/Oak-Web-Application/commit/c76e82afab20176e73e880ef047d591bc6ac10b1))
+* update oak components and add bg color  and border r ([43fac12](https://github.com/oaknational/Oak-Web-Application/commit/43fac12e436a0b3a6a762c87c5f1b5ba2bbeec68))
+* update teach with oak card ([6f44811](https://github.com/oaknational/Oak-Web-Application/commit/6f448115b15b8271e0e0e21ca23326ed81a30aab))
+
+## [1.1200.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1200.1...v1.1200.2) (2026-09-17)
+
+## [1.1200.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1200.0...v1.1200.1) (2026-09-17)
+
+
+### Bug Fixes
+
+* added column gap to grid in <LayoutSiteFooter/> ([134dba4](https://github.com/oaknational/Oak-Web-Application/commit/134dba41d762b40e15d42a958ff00dd6e25ffac5))
+* bumps oak-components for the following fixes ([1b0ec97](https://github.com/oaknational/Oak-Web-Application/commit/1b0ec9736fbb449d86c98c71c7a0fe7556afefce))
+* re-add, which were removed by reverted commit in another PR ([dda4555](https://github.com/oaknational/Oak-Web-Application/commit/dda4555546a96f2e1bdc14c0ca13bdcf7aee0d91))
+* snaps ([a645ce0](https://github.com/oaknational/Oak-Web-Application/commit/a645ce0df6e58ff7ead8309e758a17a8b5ced53f))
+
+# [1.1200.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1199.0...v1.1200.0) (2026-09-17)
+
+
+### Bug Fixes
+
+* decouple oaks impact from library page only - leave slug page for now ([52249d6](https://github.com/oaknational/Oak-Web-Application/commit/52249d6833b842f01f8a2e52da4be1e0476f44d4))
+* rename caseStudies to remove OaksImpact in case studies library page ([9069b7e](https://github.com/oaknational/Oak-Web-Application/commit/9069b7e5652b6ea7877c68f39ff96012a761f7d8))
+* reset lockfile to main version ([8ed158a](https://github.com/oaknational/Oak-Web-Application/commit/8ed158af9155cb2482fcf3167284327294083e15))
+* snaps ([155eaf7](https://github.com/oaknational/Oak-Web-Application/commit/155eaf7c0646176dd04e4590fccc00907b013a10))
+
+
+### Features
+
+* add to do ([debf194](https://github.com/oaknational/Oak-Web-Application/commit/debf1946f35a4d0c9069836ecaa50a6558ea4a7a))
+* added case study list page behind flag ([d4984eb](https://github.com/oaknational/Oak-Web-Application/commit/d4984eb6e50f8115b84251c155f15a144427dcdc))
+* added header to case studies list page ([5997dc9](https://github.com/oaknational/Oak-Web-Application/commit/5997dc95352b9935623795cc61dc2291fcdb9075))
+* added showImage added in https://github.com/oaknational/oak-components/pull/779 ([0a14a54](https://github.com/oaknational/Oak-Web-Application/commit/0a14a54dbf1ee3b3063be2b36f287a74136ad31a))
+
+# [1.1199.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1198.0...v1.1199.0) (2026-09-17)
+
+
+### Bug Fixes
+
+* explainer video guide alignment ([c30bb80](https://github.com/oaknational/Oak-Web-Application/commit/c30bb80f980c11c4bc4e31690c7ee50d1b911629))
+* homepage testimonials fixed height ([ce1fec9](https://github.com/oaknational/Oak-Web-Application/commit/ce1fec915e727db5e00b555387f4095abbed9336))
+* omit video border in post video ([1d79609](https://github.com/oaknational/Oak-Web-Application/commit/1d79609e5749a95856ad45d44a03b39d07a0c3c5))
+* video player legacy props typing ([21e3f51](https://github.com/oaknational/Oak-Web-Application/commit/21e3f51e56803e29f834af050d9bada7f56526be))
+
+
+### Features
+
+* add thumbnail time prop where missing ([7104e72](https://github.com/oaknational/Oak-Web-Application/commit/7104e72074d85aafb1f201dfde6e7e7bafc0c8f0))
+* add transcript to homepage video ([f05ae09](https://github.com/oaknational/Oak-Web-Application/commit/f05ae09a5d91e00c6da36c2a6eee9c64dd74af4d))
+* bump oak components ([9a7191f](https://github.com/oaknational/Oak-Web-Application/commit/9a7191fa553e34637d2fc53759836e5800205973))
+* bump oak components to use updated transcript typing ([b334687](https://github.com/oaknational/Oak-Web-Application/commit/b334687cd2baf83b774a1280cc7121dc2f63c6a8))
+* remove captions from cms video type ([8a54358](https://github.com/oaknational/Oak-Web-Application/commit/8a54358fe681e78ede0fcf91e89d98d7ffcbafc9))
+* remove cms video from nc insights ([6ed6f9a](https://github.com/oaknational/Oak-Web-Application/commit/6ed6f9a03621e0cf8aee75d03d2fe7a05be0e153))
+* remove field for captions do not use from sanity query ([85b9698](https://github.com/oaknational/Oak-Web-Application/commit/85b9698f8f0babab80b34cbd9125bea4d080b7fc))
+
+# [1.1198.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1197.0...v1.1198.0) (2026-09-16)
+
+
+### Bug Fixes
+
+* redirect curriculum review campaign to guidance ([98a6477](https://github.com/oaknational/Oak-Web-Application/commit/98a647731cf961341b8cd9ecd177bcce405c18a7))
+* redirect unpublished Insights routes to guidance ([978052c](https://github.com/oaknational/Oak-Web-Application/commit/978052ccfc451ce3cfd2ef0d61e0060434a3a485))
+* use the existing URL resolver for guidance navigation ([ab712f2](https://github.com/oaknational/Oak-Web-Application/commit/ab712f243fd736bcaff444021599af1a959fdb20))
+
+
+### Features
+
+* add curriculum change guidance to the main menu ([704fda4](https://github.com/oaknational/Oak-Web-Application/commit/704fda42d9a0ac4396d8e7c1faf4403f9acb90ed))
+
+# [1.1197.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1196.0...v1.1197.0) (2026-09-15)
+
+
+### Bug Fixes
+
+* add to sitemap exclusions ([5fbd4da](https://github.com/oaknational/Oak-Web-Application/commit/5fbd4dab159dd88a4be5415cf3521f5c284d758a))
+* added ./src/utils/featureFlagChecks/flags.tsx to coverage ignore ([f7b8238](https://github.com/oaknational/Oak-Web-Application/commit/f7b823876a267e4c931857f9f51428dd8437c30e))
+* remove oaks impact from case studies ([9b3041c](https://github.com/oaknational/Oak-Web-Application/commit/9b3041c347f55c109b3fda2a6a71311845034a84))
+* snaps ([ece264d](https://github.com/oaknational/Oak-Web-Application/commit/ece264d13889d2cf84f95e3f73e9f130faa1a08c))
+* snaps ([0fc1e88](https://github.com/oaknational/Oak-Web-Application/commit/0fc1e886baf99dce87f873e289ee356c9540a484))
+
+
+### Features
+
+* add /about-us/case-studies behind feature flag ([304ca66](https://github.com/oaknational/Oak-Web-Application/commit/304ca664b57d0dd23268e41d4c335213645e345f))
+
+# [1.1196.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1195.1...v1.1196.0) (2026-09-15)
+
+
+### Bug Fixes
+
+* footer styling fixes ([63cc984](https://github.com/oaknational/Oak-Web-Application/commit/63cc984304bd00f185ae8d7bb3f1a02c9716401d))
+* remove footer layout work from this PR ([4a5eb97](https://github.com/oaknational/Oak-Web-Application/commit/4a5eb97bd8718f13839d82d9035333847c2ab20b))
+* remove footer layout work from this PR ([a4d051c](https://github.com/oaknational/Oak-Web-Application/commit/a4d051cf9adf24669d3f661541980ea33fecc882))
+* small summary style fixes ([8186573](https://github.com/oaknational/Oak-Web-Application/commit/81865731d9c3e14a43b8ae6be1b90373d08fd1f3))
+* snaps ([63f8b3b](https://github.com/oaknational/Oak-Web-Application/commit/63f8b3b08a12192a1e62e737d572d7d6cb9dad71))
+* tidy ([ae38e74](https://github.com/oaknational/Oak-Web-Application/commit/ae38e749be9fb56a321f1958f719896bc9c16cc4))
+
+
+### Features
+
+* added summary block to <OaksImpactCaseStudyHeader/> ([a28ddf1](https://github.com/oaknational/Oak-Web-Application/commit/a28ddf10f996cef9f65b96de645e3eba91ed22e3))
+
+## [1.1195.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1195.0...v1.1195.1) (2026-09-15)
+
+
+### Bug Fixes
+
+* disable national-curriculum-insights in pa11y for now ([cef1f9c](https://github.com/oaknational/Oak-Web-Application/commit/cef1f9cc08492c8141ae4a0c3b849f3ec40b83f2))
+* re-enable "/curriculum-change-explained/guidance" as it's live ([c3ee7f7](https://github.com/oaknational/Oak-Web-Application/commit/c3ee7f7bdefdd691d0cc9faec4e7a712d8ed9cc5))
+* remove tests for unreleased features ([6ebf012](https://github.com/oaknational/Oak-Web-Application/commit/6ebf012d1490fe6b2c0cd6b1c941ace20a509771))
+
+# [1.1195.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1194.0...v1.1195.0) (2026-09-15)
+
+
+### Features
+
+* promote download success header compact variant ([c7760f7](https://github.com/oaknational/Oak-Web-Application/commit/c7760f746bac6b9fd1f945137bfa0e07f7fa359f))
+
+# [1.1194.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1193.0...v1.1194.0) (2026-09-15)
+
+
+### Bug Fixes
+
+* added missing quote in filename header ([51af394](https://github.com/oaknational/Oak-Web-Application/commit/51af3945f977ba667acd1323b4ef7d606862180f))
+* added missing test for filenameOverride ([a30afef](https://github.com/oaknational/Oak-Web-Application/commit/a30afef7657bdd1fa68451b14bb451e534d6fb29))
+* label always required don't include fallback ([6d0e26c](https://github.com/oaknational/Oak-Web-Application/commit/6d0e26c8282829c14c6a297dc7ff5715baee5f75))
+
+
+### Features
+
+* changed name of assessment filename to Checking-pupil-understanding ([6a93029](https://github.com/oaknational/Oak-Web-Application/commit/6a930299ebe393499d7d71c35cbdf616f53b440c))
+
+# [1.1193.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1192.0...v1.1193.0) (2026-09-10)
+
+
+### Bug Fixes
+
+* add the guidance status icon ([d29d6a4](https://github.com/oaknational/Oak-Web-Application/commit/d29d6a421f12e286ef4fd723402a7166bd8c977c))
+* align curriculum guidance with the latest design ([babfef1](https://github.com/oaknational/Oak-Web-Application/commit/babfef13581f0e3f7754d4e0039176e7d4b63461))
+* align guidance illustration with the text column ([b8c0963](https://github.com/oaknational/Oak-Web-Application/commit/b8c0963b0066c85dc4b573a2e43bd597835bc7d1))
+* align guidance videos at tablet widths ([a57fc98](https://github.com/oaknational/Oak-Web-Application/commit/a57fc98e7dcb78be2bc36dad70f5058c0bd32be2))
+* clarify curriculum insights hero font selection ([a08f4b9](https://github.com/oaknational/Oak-Web-Application/commit/a08f4b9a433b055a5e00b2443720b2739e0d2e00))
+* constrain the guidance status label ([b55ade5](https://github.com/oaknational/Oak-Web-Application/commit/b55ade56f7013c2491400a15d8464c69bcdee721))
+* link the curriculum role field error correctly ([dde7134](https://github.com/oaknational/Oak-Web-Application/commit/dde7134ab59af3eb45cbe84c3ec45bb39fcd188e))
+* make guidance video cards responsive ([5445937](https://github.com/oaknational/Oak-Web-Application/commit/5445937b02604d37d4f28b7ad2310dec8d519d52))
+* match the guidance status label ([8e2bb03](https://github.com/oaknational/Oak-Web-Application/commit/8e2bb03f98fef2c00ea03d0781443e8ababe723c))
+* refine curriculum guidance breakpoints ([7445876](https://github.com/oaknational/Oak-Web-Application/commit/744587629042925dc5b17c7f0a7dfabe2a74a65d))
+* refine curriculum guidance details ([2578521](https://github.com/oaknational/Oak-Web-Application/commit/2578521306c8be521b3f517e52fb56e9fca185d0))
+* refine curriculum guidance interactions ([d38e9c7](https://github.com/oaknational/Oak-Web-Application/commit/d38e9c7a9ed5196a3dfbc714b4b4792d52407797))
+* refine curriculum guidance layout and newsletter signup ([0a9c8fd](https://github.com/oaknational/Oak-Web-Application/commit/0a9c8fd99f258519ebbd7e296ff35c01d0578105))
+* refine curriculum guidance presentation ([881f27c](https://github.com/oaknational/Oak-Web-Application/commit/881f27cd708e076b8c9253b8a488f3e8639bce4a))
+* refine curriculum insights form interactions ([c317608](https://github.com/oaknational/Oak-Web-Application/commit/c31760861e3c0eb99b0ef0bc2dd291ae6784ff35))
+* refine curriculum insights layout and controls ([5b1c533](https://github.com/oaknational/Oak-Web-Application/commit/5b1c533cce7d527ab1c2a22ea1f1075bc5c848bb))
+* remove insights loading pages and update regression tests ([237b08c](https://github.com/oaknational/Oak-Web-Application/commit/237b08caad57a17a39a5c2effd1abc8d31b80d6c))
+* remove the unused curriculum heading context ([7c12839](https://github.com/oaknational/Oak-Web-Application/commit/7c128390219b5b28073165f635a4ba1f9be9d6da))
+* render guidance at request time without a loading page ([6a80573](https://github.com/oaknational/Oak-Web-Application/commit/6a8057347b6e9ced490358778556489bf97aae42))
+* use released OakSelect hydration fix ([1c580d9](https://github.com/oaknational/Oak-Web-Application/commit/1c580d940ea07e253009feb223aad0cb7ebe3c33))
+* use shared clock icon and cache Insights page data ([c2d8643](https://github.com/oaknational/Oak-Web-Application/commit/c2d864333040eb5ac062523f00a033d3f79daf8c))
+* use the approved guidance artwork at full resolution ([92e64ba](https://github.com/oaknational/Oak-Web-Application/commit/92e64ba6d687112c50530330bc4b1280aa2aa017))
+
+
+### Features
+
+* add curriculum insights guidance and refinements ([837eb3e](https://github.com/oaknational/Oak-Web-Application/commit/837eb3e9b307f39d5ef3803aa77b1e09856a34e6))
+* add school suggestions to the insights form ([45c797c](https://github.com/oaknational/Oak-Web-Application/commit/45c797c6f06bba1d7dfcd2f5af01e1f5fca39cdb))
+* play curriculum conversations from blog content ([9236b0a](https://github.com/oaknational/Oak-Web-Application/commit/9236b0aa85f4c0f7d8ea6ef3751591f0479f46af))
+* support independent guidance publishing ([c5ee696](https://github.com/oaknational/Oak-Web-Application/commit/c5ee6968a1766227a89fac1f5ca23f64937d8dd1))
+* track curriculum insights newsletter signups ([1e46b88](https://github.com/oaknational/Oak-Web-Application/commit/1e46b88640039e37733d7a70a62bb5d3a2608f64))
+
+# [1.1192.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1191.0...v1.1192.0) (2026-09-10)
+
+
+### Bug Fixes
+
+* labels for download buttons ([a4f8100](https://github.com/oaknational/Oak-Web-Application/commit/a4f810055c85a48020e9cbaf68295a5dd87ab30e))
+* make help link open in a new tab ([07d6f88](https://github.com/oaknational/Oak-Web-Application/commit/07d6f88fc7031f33a164d43503cbbf32f82f0f31))
+* only load the first iframe eagerly ([9a5ff26](https://github.com/oaknational/Oak-Web-Application/commit/9a5ff266f5db883273f1d841f4b688cb1e53fa7e))
+* page name ([fdff7fc](https://github.com/oaknational/Oak-Web-Application/commit/fdff7fc140ace60658199085d73c8d12bb7ec66a))
+* return proper segment of id ([0b32b17](https://github.com/oaknational/Oak-Web-Application/commit/0b32b1746cea3fdd055e23548d34edb834adbc88))
+* t-w-o header layout on mobile ([ecfe768](https://github.com/oaknational/Oak-Web-Application/commit/ecfe768e358dfba18cf3c4db1794183667c61bb9))
+
+
+### Features
+
+* add aria label to external help link ([7bdca4c](https://github.com/oaknational/Oak-Web-Application/commit/7bdca4c65ffb8344ca96d782e323b18d7dd30b86))
+* add short read guides to component ([7699466](https://github.com/oaknational/Oak-Web-Application/commit/7699466479bbf9acbd9d34fafb0cc105d0de3590))
+* add short reads component ([64cf182](https://github.com/oaknational/Oak-Web-Application/commit/64cf1820db18ee1690a88a8b64ffed115641565f))
+* add short reads header section ([360186b](https://github.com/oaknational/Oak-Web-Application/commit/360186be9208ea0c50816926672889dae2a25783))
+* add short reads section to teach with oak page ([b962a3f](https://github.com/oaknational/Oak-Web-Application/commit/b962a3ff21a387755ec18fe5a65d87b92fff58e8))
+* use external icon on guidance link ([d8477a6](https://github.com/oaknational/Oak-Web-Application/commit/d8477a6b60388c0b31e251f0f7e569786e7eaa9c))
+
+# [1.1191.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1190.0...v1.1191.0) (2026-09-10)
+
+
+### Features
+
+* added "Oak's impact" link to the homepage ([44ee684](https://github.com/oaknational/Oak-Web-Application/commit/44ee6846598ffc9cd7bfbf4f3d52168297579b29))
+
+# [1.1190.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1189.1...v1.1190.0) (2026-09-10)
+
+
+### Bug Fixes
+
+* point the llms.txt MCP entry at the live /ai-plugin page ([dc6f05b](https://github.com/oaknational/Oak-Web-Application/commit/dc6f05b5087a4f3ab33b50dc65ff1276adfef9fe))
+
+
+### Features
+
+* describe the Oak Curriculum MCP in llms.txt ([17a4580](https://github.com/oaknational/Oak-Web-Application/commit/17a45801fbcbd64c1fde1ce1fa2ed84ea487694d))
+
+## [1.1189.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1189.0...v1.1189.1) (2026-09-10)
+
+
+### Bug Fixes
+
+* added back in Content-Security-Policy with `frame-ancestors` ([4f07139](https://github.com/oaknational/Oak-Web-Application/commit/4f0713976d0c12b1b6000eac04d8b134a44ecf40))
+
+# [1.1189.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1188.1...v1.1189.0) (2026-09-10)
+
+
+### Bug Fixes
+
+* add force-dynamic to teach with oak page ([a63f816](https://github.com/oaknational/Oak-Web-Application/commit/a63f8165a916144721ff68fa340a3b2243738497))
+
+
+### Features
+
+* update withPageErrorHandling to rethrow all nextjs errors ([b26ce04](https://github.com/oaknational/Oak-Web-Application/commit/b26ce0470044af4005c4e13232a230966e66cdf9))
+
+## [1.1188.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1188.0...v1.1188.1) (2026-09-10)
+
+
+### Bug Fixes
+
+* remove old netlify code ([c81c843](https://github.com/oaknational/Oak-Web-Application/commit/c81c8439feec01d01828b7d9e3da036a6f64f22e))
+* remove remaining old netlify files ([6693115](https://github.com/oaknational/Oak-Web-Application/commit/669311583d287ca3500a5f3aaa1a47036476c9f9))
+* removed old .netlify reference from jest config ([9edaf20](https://github.com/oaknational/Oak-Web-Application/commit/9edaf20fb32266efa87d3595ee317c1263b4c2df))
+
 # [1.1188.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1187.0...v1.1188.0) (2026-09-10)
 
 

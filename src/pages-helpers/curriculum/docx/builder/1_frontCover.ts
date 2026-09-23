@@ -69,7 +69,7 @@ export default async function generate(
           })}
         </w:r>
       </w:p>
-      ${new Array(6)
+      ${new Array(4)
         .fill(true)
         .map(() => {
           return safeXml`
@@ -89,6 +89,7 @@ export default async function generate(
       <w:p>
         <w:pPr>
           <w:pStyle w:val="Heading1" />
+          <w:spacing w:after="200" />
         </w:pPr>
         <w:r>
           <w:rPr>
@@ -97,7 +98,11 @@ export default async function generate(
             <w:color w:val="222222" />
             <w:sz w:val="80" />
           </w:rPr>
-          <w:t>${cdata(`${phaseTitle} ${subjectTitle} curriculum plan`)}</w:t>
+          <w:t>
+            ${cdata(
+              `${phaseTitle} ${subjectTitle} curriculum plan and explainer`,
+            )}
+          </w:t>
         </w:r>
       </w:p>
       <w:p>

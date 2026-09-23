@@ -48,6 +48,7 @@ export type ExploreItem = {
   title: string;
   href: string;
   componentType: ComponentTypeValueType;
+  external?: boolean;
 };
 
 export type WhoAreWeExploreProps = {
@@ -94,45 +95,53 @@ export function WhoAreWeExplore({
           </OakHeading>
           <nav aria-labelledby={headingId}>
             <CustomUlAsGrid $size={items.length}>
-              {items.map(({ title, iconName, href, componentType }) => {
-                return (
-                  <OakFocusIndicator
-                    as="li"
-                    key={title}
-                    $borderRadius={"border-radius-m2"}
-                  >
-                    <Link
-                      style={{ outline: "none" }}
-                      href={href}
-                      onClick={() => handleClick(componentType)}
+              {items.map(
+                ({ title, iconName, href, componentType, external }) => {
+                  return (
+                    <OakFocusIndicator
+                      as="li"
+                      key={title}
+                      $borderRadius={"border-radius-m2"}
                     >
-                      <HoverableCard
-                        data-testid="who-we-are-explore-item"
-                        $flexDirection={"row"}
-                        $pa={"spacing-16"}
-                        $background={"bg-primary"}
-                        $gap={"spacing-16"}
-                        $alignItems={"center"}
-                        $borderRadius={"border-radius-m2"}
+                      <Link
+                        style={{ outline: "none" }}
+                        href={href}
+                        onClick={() => handleClick(componentType)}
+                        target={external ? "_blank" : "_self"}
+                        aria-label={
+                          external ? `${title}, opens in a new tab` : undefined
+                        }
                       >
-                        <OakFlex>
-                          <OakIcon
-                            iconName={iconName}
-                            $width={"spacing-56"}
-                            $height={"spacing-56"}
-                          />
-                        </OakFlex>
-                        <OakFlex $flexGrow={1} $font={"body-1-bold"}>
-                          {title}
-                        </OakFlex>
-                        <OakFlex>
-                          <OakIcon iconName="arrow-right" />
-                        </OakFlex>
-                      </HoverableCard>
-                    </Link>
-                  </OakFocusIndicator>
-                );
-              })}
+                        <HoverableCard
+                          data-testid="who-we-are-explore-item"
+                          $flexDirection={"row"}
+                          $pa={"spacing-16"}
+                          $background={"bg-primary"}
+                          $gap={"spacing-16"}
+                          $alignItems={"center"}
+                          $borderRadius={"border-radius-m2"}
+                        >
+                          <OakFlex>
+                            <OakIcon
+                              iconName={iconName}
+                              $width={"spacing-56"}
+                              $height={"spacing-56"}
+                            />
+                          </OakFlex>
+                          <OakFlex $flexGrow={1} $font={"body-1-bold"}>
+                            {title}
+                          </OakFlex>
+                          <OakFlex>
+                            <OakIcon
+                              iconName={external ? "external" : "arrow-right"}
+                            />
+                          </OakFlex>
+                        </HoverableCard>
+                      </Link>
+                    </OakFocusIndicator>
+                  );
+                },
+              )}
             </CustomUlAsGrid>
           </nav>
         </OakFlex>

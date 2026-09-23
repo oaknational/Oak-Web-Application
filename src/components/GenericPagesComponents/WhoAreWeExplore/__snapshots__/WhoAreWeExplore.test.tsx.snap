@@ -36,17 +36,18 @@ exports[`WhoAreWeExplore renders correctly with 3 items 1`] = `
             aria-labelledby="react-use-id-test-result"
           >
             <ul
-              class="sc-fa020a1b-1 kSLdHR"
+              class="sc-78cd633-1 gmsaGw"
             >
               <li
-                class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
+                class="sc-aXZVg sc-jGKxIK kBnJtM cUDAhh"
               >
                 <a
                   href="#item_one"
                   style="outline: none;"
+                  target="_self"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-fa020a1b-0 jtqxcT egjftS bWNnly"
+                    class="sc-aXZVg sc-gEvEer sc-78cd633-0 jtqxcT egjftS giBDqT"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -92,14 +93,15 @@ exports[`WhoAreWeExplore renders correctly with 3 items 1`] = `
                 </a>
               </li>
               <li
-                class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
+                class="sc-aXZVg sc-jGKxIK kBnJtM cUDAhh"
               >
                 <a
                   href="#item_two"
                   style="outline: none;"
+                  target="_self"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-fa020a1b-0 jtqxcT egjftS bWNnly"
+                    class="sc-aXZVg sc-gEvEer sc-78cd633-0 jtqxcT egjftS giBDqT"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -145,14 +147,15 @@ exports[`WhoAreWeExplore renders correctly with 3 items 1`] = `
                 </a>
               </li>
               <li
-                class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
+                class="sc-aXZVg sc-jGKxIK kBnJtM cUDAhh"
               >
                 <a
                   href="#item_three"
                   style="outline: none;"
+                  target="_self"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-fa020a1b-0 jtqxcT egjftS bWNnly"
+                    class="sc-aXZVg sc-gEvEer sc-78cd633-0 jtqxcT egjftS giBDqT"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -242,17 +245,18 @@ exports[`WhoAreWeExplore renders correctly with 4 items 1`] = `
             aria-labelledby="react-use-id-test-result"
           >
             <ul
-              class="sc-fa020a1b-1 gqaiKE"
+              class="sc-78cd633-1 dYqmxl"
             >
               <li
-                class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
+                class="sc-aXZVg sc-jGKxIK kBnJtM cUDAhh"
               >
                 <a
                   href="#item_one"
                   style="outline: none;"
+                  target="_self"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-fa020a1b-0 jtqxcT egjftS bWNnly"
+                    class="sc-aXZVg sc-gEvEer sc-78cd633-0 jtqxcT egjftS giBDqT"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -298,14 +302,15 @@ exports[`WhoAreWeExplore renders correctly with 4 items 1`] = `
                 </a>
               </li>
               <li
-                class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
+                class="sc-aXZVg sc-jGKxIK kBnJtM cUDAhh"
               >
                 <a
                   href="#item_two"
                   style="outline: none;"
+                  target="_self"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-fa020a1b-0 jtqxcT egjftS bWNnly"
+                    class="sc-aXZVg sc-gEvEer sc-78cd633-0 jtqxcT egjftS giBDqT"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -351,14 +356,15 @@ exports[`WhoAreWeExplore renders correctly with 4 items 1`] = `
                 </a>
               </li>
               <li
-                class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
+                class="sc-aXZVg sc-jGKxIK kBnJtM cUDAhh"
               >
                 <a
                   href="#item_three"
                   style="outline: none;"
+                  target="_self"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-fa020a1b-0 jtqxcT egjftS bWNnly"
+                    class="sc-aXZVg sc-gEvEer sc-78cd633-0 jtqxcT egjftS giBDqT"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -404,14 +410,15 @@ exports[`WhoAreWeExplore renders correctly with 4 items 1`] = `
                 </a>
               </li>
               <li
-                class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
+                class="sc-aXZVg sc-jGKxIK kBnJtM cUDAhh"
               >
                 <a
                   href="#item_four"
                   style="outline: none;"
+                  target="_self"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-fa020a1b-0 jtqxcT egjftS bWNnly"
+                    class="sc-aXZVg sc-gEvEer sc-78cd633-0 jtqxcT egjftS giBDqT"
                     data-testid="who-we-are-explore-item"
                   >
                     <div

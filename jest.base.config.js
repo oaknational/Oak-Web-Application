@@ -29,11 +29,13 @@ module.exports = {
     "src/__tests__/__helpers__/*",
     "src/tests/e2e/",
     ".storybook/storybook.*.test.js$",
-    ".netlify/*",
     ".yalc/*",
   ],
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
+    "^styled-jsx/style$": require.resolve("styled-jsx/style", {
+      paths: [require.resolve("next/package.json")],
+    }),
     // Force module uuid to resolve with the CJS entry point, because Jest does not support package.json.exports. See https://github.com/uuidjs/uuid/issues/451
     "^uuid$": require.resolve("uuid"),
     "^@oaknational/oak-components$": require.resolve(

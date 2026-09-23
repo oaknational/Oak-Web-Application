@@ -34,12 +34,26 @@ is injected by the `transformRobotsTxt` hook, which is next-sitemap's supported
 extension point for exactly this.
 
 That hook throws if the `User-agent: *` group is missing from the generated
-output. This is deliberate. A transform that quietly returned the input
-unchanged would publish a `robots.txt` with no declaration in it at all, and the
-build, the deploy and every other check would still pass.
-`src/tests/e2e/robots/content-signal.spec.ts` then asserts the directive on the
-served file, and asserts its position, not merely its presence — a directive
-outside the group applies to nobody.
+output, which names the cause in the build log. It cannot fail the build on its
+own. next-sitemap registers `robots.txt`, the sitemaps and the sitemap index
+before writing any of them, swallows every failure into a bare `console.error`,
+and exits 0 — so a throw here ships a deploy carrying **no `robots.txt` and no
+sitemaps at all**. Both `public/robots.txt` and `public/sitemap*.xml` are
+gitignored, so nothing in review or in CI would show it.
+
+Two checks close that, and they guard different things.
+
+`scripts/build/assert_robots_content_signal` guards **emission**. It runs after
+next-sitemap in `postbuild`, reads the file that actually landed on disk, and
+exits non-zero — naming what is missing — if there is no `robots.txt`, no
+`User-agent: *` group, or no `Content-Signal:` directive on the line immediately
+below that group. `postbuild` deletes `public/robots.txt` before generating, so
+the assertion cannot pass on a stale file left by an earlier local build.
+
+`src/tests/e2e/robots/content-signal.spec.ts` guards the **values**. It asserts
+the exact directive against the served file, spelled out rather than imported,
+and asserts its exact position: the line immediately after `User-agent: *`. A
+directive outside the group applies to nobody.
 
 ## Why the hosts differ, deliberately
 
@@ -53,16 +67,27 @@ than drift. Other hosts measured 9 September 2026:
 | `mcp.thenational.academy`      | 404          | none — the host serves no `robots.txt`                             |
 
 The two differ because what they serve differs. `www` carries Oak's own
-copyrighted site content, so it declines both training and grounding. The
-curriculum API serves material published under the Open Government Licence,
-where `ai-train=yes` is the coherent position. Two hosts, two licences, two
-policies.
+copyrighted site content, so it declines both training and grounding.
+`open-api` serves the openly licensed curriculum, where `ai-train=yes` is the
+coherent position. Two hosts, two surfaces, two policies.
 
 Aakash settled the `www` values, relayed by MG on 10 September 2026:
 
 > On content signals -> I think it's probably sensible to take the approach of
 > ai-train=no, search=yes, and ai-input=no. This makes sense for the main site
 > which has content that is copyrighted.
+
+Read "copyrighted" precisely, because `www`'s own
+[`/llms.txt`](https://www.thenational.academy/llms.txt) states twice that Oak's
+educational content is published under the Open Government Licence v3, free to
+adapt commercially — which at a glance looks like the opposite claim. It is not.
+OGL is itself a **copyright** licence: it grants permissions over rights Oak
+holds, it does not put the content out of copyright. And llms.txt scopes its own
+statement — "unless otherwise stated". What separates the hosts is the surface
+each one exposes. `open-api` serves the curriculum corpus and nothing else, so
+that surface is uniformly OGL. `www` is a whole website: the same curriculum, and
+also everything the site is built out of around it. One of those surfaces can be
+handed to a model wholesale on the licence alone; the other cannot.
 
 If these two hosts ever look like a contradiction to be tidied away, they are
 not. Change either only with the same authority that set it.

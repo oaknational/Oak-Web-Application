@@ -45,17 +45,16 @@ test.describe("robots.txt Content Signals", () => {
       `robots.txt does not carry the expected directive. ${AUTHORISATION_NOTICE}`,
     ).toBeGreaterThan(-1);
 
-    // Position, not just presence: a directive after a later `User-agent:` line
-    // is addressed to a different agent, and a presence check would pass on it.
-    const groupEndIndex = lines.findIndex(
-      (line, index) => index > userAgentIndex && line.startsWith("User-agent:"),
-    );
-    const groupEnd = groupEndIndex === -1 ? lines.length : groupEndIndex;
-
+    // Exact position, not "somewhere after". `next-sitemap.config.js` injects the
+    // directive on the line immediately below the group's opening line, so that is
+    // what gets asserted. A group-bounded check passes on any placement at all
+    // while this file has only one `User-agent:` line in it.
     expect(
-      directiveIndex > userAgentIndex && directiveIndex < groupEnd,
-      "The Content-Signal directive is served, but outside the 'User-agent: *' group, so " +
-        "it does not apply to the crawlers it is meant for.",
-    ).toBe(true);
+      directiveIndex,
+      "The Content-Signal directive is served, but not on the line immediately after " +
+        "'User-agent: *', where next-sitemap.config.js injects it. Check it is still " +
+        "inside the wildcard group rather than addressed to a different agent, and " +
+        "move this expectation only if the injection point moved deliberately.",
+    ).toBe(userAgentIndex + 1);
   });
 });
