@@ -1,8 +1,9 @@
 import { ok } from "assert";
 
 import React, { forwardRef } from "react";
-import { screen } from "@testing-library/react";
+import { screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import "jest-styled-components";
 
 import VideoPlayer, {
   VideoEventCallbackArgs,
@@ -61,8 +62,9 @@ jest.mock("@mux/mux-player-react/lazy", () => {
       onPause: () => void;
       poster?: string;
       thumbnailTime?: number;
+      children?: React.ReactNode;
     }
-  >(({ onError, onPlay, onPause, poster, thumbnailTime }, ref) => {
+  >(({ onError, onPlay, onPause, poster, thumbnailTime, children }, ref) => {
     return React.createElement(
       "mux-player-mock",
       {
@@ -71,6 +73,7 @@ jest.mock("@mux/mux-player-react/lazy", () => {
         poster,
         "thumbnail-time": thumbnailTime,
       },
+      children,
       <button
         data-testid="error-button"
         onClick={() => onError(currentErrorEvent)}
@@ -149,6 +152,22 @@ describe("VideoPlayer", () => {
     );
   });
 
+  it("fills the poster slot without exposing the video frame underneath", () => {
+    render(
+      <VideoPlayer {...defaultProps} poster="https://example.com/poster.jpg" />,
+    );
+
+    const image = within(screen.getByTestId("mux-player")).getByRole(
+      "presentation",
+    );
+
+    expect(image).toHaveStyleRule("object-fit", "cover");
+    expect(image.parentElement).toHaveAttribute("slot", "poster");
+    expect(image.parentElement).toHaveStyleRule("width", "100%");
+    expect(image.parentElement).toHaveStyleRule("height", "100%");
+    expect(image.parentElement).toHaveStyleRule("background", "#222222");
+  });
+
   it("keeps the video thumbnail when no custom poster is supplied", () => {
     render(<VideoPlayer {...defaultProps} thumbnailTime={12} />);
 
@@ -157,6 +176,9 @@ describe("VideoPlayer", () => {
       "thumbnail-time",
       "12",
     );
+    expect(
+      within(screen.getByTestId("mux-player")).queryByRole("presentation"),
+    ).not.toBeInTheDocument();
   });
 
   it("handles and doesn't report network error event", async () => {

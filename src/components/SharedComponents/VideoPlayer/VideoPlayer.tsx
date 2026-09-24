@@ -2,7 +2,12 @@ import React, { FC, useCallback, useEffect, useRef, useState } from "react";
 import MuxPlayer from "@mux/mux-player-react/lazy";
 import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
-import { OakP, OakFlex, OakUiRoleToken } from "@oaknational/oak-components";
+import {
+  OakP,
+  OakFlex,
+  OakImage,
+  OakUiRoleToken,
+} from "@oaknational/oak-components";
 
 import useVideoTracking, {
   VideoAnalyticsOverrides,
@@ -407,7 +412,19 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
           aspectRatio: "16/9",
           overflow: "hidden",
         }}
-      />
+      >
+        {poster ? (
+          <OakImage
+            slot="poster"
+            src={poster}
+            alt=""
+            $width="100%"
+            $height="100%"
+            $objectFit="cover"
+            $background="bg-inverted"
+          />
+        ) : null}
+      </MuxPlayer>
     </VideoContainer>
   );
 };
