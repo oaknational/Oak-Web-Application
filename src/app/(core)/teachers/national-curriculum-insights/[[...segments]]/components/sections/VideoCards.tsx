@@ -70,19 +70,24 @@ const GuidanceBlogPostCard = ({
         $minWidth="spacing-0"
         data-testid="guidance-inline-video"
       >
-        <OakVideo
-          showTranscript={false}
-          videoSlot={
-            <VideoPlayer
-              playbackPolicy="public"
-              playbackId={post.video.video.asset.playbackId}
-              thumbnailTime={post.video.video.asset.thumbTime}
-              title={post.title}
-              location="blog"
-              omitBorder
-            />
-          }
-        />
+        <OakBox $borderRadius="border-radius-m2" $overflow="hidden">
+          <OakVideo
+            showTranscript={false}
+            videoSlot={
+              <VideoPlayer
+                playbackPolicy="public"
+                playbackId={post.video.video.asset.playbackId}
+                thumbnailTime={post.video.video.asset.thumbTime}
+                poster={
+                  post.image.asset?.url ? imageUrl(post.image) : undefined
+                }
+                title={post.title}
+                location="blog"
+                omitBorder
+              />
+            }
+          />
+        </OakBox>
       </OakBox>
       {card}
     </OakGrid>

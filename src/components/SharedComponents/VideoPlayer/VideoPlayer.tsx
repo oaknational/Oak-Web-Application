@@ -41,6 +41,7 @@ type VideoPlayerBaseProps = {
   playbackId: string;
   initialStartTime?: number;
   thumbnailTime?: number | null;
+  poster?: string;
   title: string;
   location: VideoLocationValueType;
   userEventCallback?: (event: VideoEventCallbackArgs) => void;
@@ -148,6 +149,7 @@ function VideoContainer({
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const {
     thumbnailTime: thumbTime,
+    poster,
     initialStartTime = 0,
     title,
     location,
@@ -357,6 +359,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         start-time={startTime}
         tokens={tokens}
         thumbnailTime={thumbTime || undefined}
+        poster={poster}
         customDomain={"video.thenational.academy"}
         beaconCollectionDomain={"mux-litix.thenational.academy"}
         debug={debug}

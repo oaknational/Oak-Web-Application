@@ -53,11 +53,24 @@ if (!customElements.get("mux-player-mock")) {
 let currentErrorEvent = { detail: { data: { type: "networkError" } } };
 // Override the global mock for @mux/mux-player-react/lazy
 jest.mock("@mux/mux-player-react/lazy", () => {
-  // @ts-expect-error - MuxPlayer mock
-  return forwardRef(({ onError, onPlay, onPause }, ref) => {
+  return forwardRef<
+    HTMLElement,
+    {
+      onError: (event: typeof currentErrorEvent) => void;
+      onPlay: () => void;
+      onPause: () => void;
+      poster?: string;
+      thumbnailTime?: number;
+    }
+  >(({ onError, onPlay, onPause, poster, thumbnailTime }, ref) => {
     return React.createElement(
       "mux-player-mock",
-      { ref, "data-testid": "mux-player" },
+      {
+        ref,
+        "data-testid": "mux-player",
+        poster,
+        "thumbnail-time": thumbnailTime,
+      },
       <button
         data-testid="error-button"
         onClick={() => onError(currentErrorEvent)}
@@ -124,6 +137,27 @@ describe("VideoPlayer", () => {
     location: "pupil",
     userEventCallback: userEventCallbackMock,
   };
+
+  it("passes a custom poster to the player", () => {
+    render(
+      <VideoPlayer {...defaultProps} poster="https://example.com/poster.jpg" />,
+    );
+
+    expect(screen.getByTestId("mux-player")).toHaveAttribute(
+      "poster",
+      "https://example.com/poster.jpg",
+    );
+  });
+
+  it("keeps the video thumbnail when no custom poster is supplied", () => {
+    render(<VideoPlayer {...defaultProps} thumbnailTime={12} />);
+
+    expect(screen.getByTestId("mux-player")).not.toHaveAttribute("poster");
+    expect(screen.getByTestId("mux-player")).toHaveAttribute(
+      "thumbnail-time",
+      "12",
+    );
+  });
 
   it("handles and doesn't report network error event", async () => {
     render(<VideoPlayer {...defaultProps} />);
