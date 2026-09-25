@@ -11,7 +11,7 @@ type TeacherTipBoxProps = {
 const TeacherTipBox = (props: TeacherTipBoxProps) => {
   const { tips } = props;
 
-  const { lessonHref } = useProgrammeState();
+  const { currentHref, lessonState } = useProgrammeState();
 
   return (
     <OakFlex
@@ -31,7 +31,13 @@ const TeacherTipBox = (props: TeacherTipBoxProps) => {
           </OakP>
         ))}
       </OakFlex>
-      {lessonHref && <MaybeTeachWithOakCard returnTo={lessonHref} />}
+      {currentHref && lessonState && (
+        <MaybeTeachWithOakCard
+          returnTo={currentHref}
+          lessonName={lessonState.lesson.title}
+          unitName={lessonState.unit.title}
+        />
+      )}
     </OakFlex>
   );
 };

@@ -2,8 +2,11 @@ import { Meta, StoryObj } from "@storybook/nextjs";
 
 import { TeachWithOakPromoSection } from "./TeachWithOakPromoSection";
 
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
+
 const meta: Meta<typeof TeachWithOakPromoSection> = {
   component: TeachWithOakPromoSection,
+  decorators: [TeacherBrowseAnalyticsDecorator],
 };
 export default meta;
 

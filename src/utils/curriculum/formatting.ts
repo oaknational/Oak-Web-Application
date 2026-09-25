@@ -8,8 +8,11 @@ import { sortYears } from "./sorting";
 
 import { Phase } from "@/node-lib/curriculum-api-2023";
 import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/downloadCategories.fixture";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
-import { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
+import {
+  ExamBoardValueType,
+  KeyStageTitleValueType,
+  TierNameValueType,
+} from "@/browser-lib/avo/Avo";
 
 export function getYearGroupTitle(
   yearData: YearData,
@@ -34,9 +37,9 @@ function hasKs(keystages: { slug: string }[], num: number) {
   return keystages.find((k) => k.slug === `ks${num}`);
 }
 
-// Types are loose coming out of the API so we cast to `KeystageSlug` to
-// do our best to map it to the correct title. Fallback if we can't map it.
-export function getKeyStageTitle(ksSlug: KeystageSlug): KeyStageTitleValueType {
+// Types are loose coming out of the API so we  do our best to map it to the correct title.
+// Fallback if we can't map it.
+export function getKeyStageTitle(ksSlug: string): KeyStageTitleValueType {
   switch (ksSlug) {
     case "ks1":
       return "Key stage 1";
@@ -50,6 +53,40 @@ export function getKeyStageTitle(ksSlug: KeystageSlug): KeyStageTitleValueType {
       return "Early Years Foundation stage";
     default:
       return "Key stage 1"; // all ks has no option
+  }
+}
+
+export function getTierTitleFromSlug(
+  tierSlug?: string | null,
+): TierNameValueType | undefined {
+  switch (tierSlug) {
+    case "foundation":
+      return "Foundation";
+    case "higher":
+      return "Higher";
+    default:
+      return undefined;
+  }
+}
+
+export function getExamboardTitleFromSlug(
+  examboardSlug?: string | null,
+): ExamBoardValueType | undefined {
+  switch (examboardSlug) {
+    case "edexcel":
+      return "Edexcel";
+    case "edexcelb":
+      return "Edexcel B";
+    case "eduqas":
+      return "Eduqas";
+    case "ocr":
+      return "OCR";
+    case "wjec":
+      return "WJEC";
+    case "aqa":
+      return "AQA";
+    default:
+      return undefined;
   }
 }
 

@@ -1,4 +1,4 @@
-import { match, compile, MatchFunction } from "path-to-regexp";
+import { match, compile, MatchFunction, MatchResult } from "path-to-regexp";
 
 import createQueryStringFromObject, {
   UrlQueryObject,
@@ -334,13 +334,17 @@ type EyfsPageLinkProps = {
   subjectSlug: string;
 };
 
+type TeachWithOakDownloadLinkProps = { page: "teach-with-oak-download" };
+
+export type TeachWithOakQueryProps = {
+  returnTo: string;
+  lessonName: string;
+  unitName: string;
+};
 type TeachWithOakLinkProps = {
   page: "teach-with-oak";
-  query?: {
-    returnTo: string;
-  };
+  query?: TeachWithOakQueryProps;
 };
-type TeachWithOakDownloadLinkProps = { page: "teach-with-oak-download" };
 
 type OnlyPageRequired<T> = T extends { page: string }
   ? { page: T["page"] } extends T
@@ -1017,4 +1021,24 @@ export function resolveOakHref(props: ResolveOakHrefProps): string {
 
     return "/";
   }
+}
+
+/**
+ * Extract oak href params from a passed in path string
+ * or return false if the path does not match the expected page type
+ */
+type MatchPropsForPage<TPage extends OakPageType> = Omit<
+  Extract<OakLinkProps, { page: TPage }>,
+  "page"
+>;
+
+export function matchOakHref<TPage extends OakPageType>(
+  path: string,
+  page: TPage,
+): false | MatchResult<MatchPropsForPage<TPage>>;
+export function matchOakHref(
+  path: string,
+  page: OakPageType,
+): false | MatchResult<Omit<OakLinkProps, "page">> {
+  return OAK_PAGES[page].matchHref(path);
 }

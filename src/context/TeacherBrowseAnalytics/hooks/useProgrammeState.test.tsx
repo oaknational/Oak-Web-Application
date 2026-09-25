@@ -1,10 +1,11 @@
 import {
   getProgrammeStateForLesson,
+  getProgrammeStateForProgramme,
   getProgrammeStateForUnit,
 } from "../utils/getProgrammeState";
 import { ProgrammeState } from "../teacherBrowseAnalytics.types";
 
-import { deriveProgrammeState, useProgrammeState } from "./useProgrammeState";
+import { useProgrammeState } from "./useProgrammeState";
 
 import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersUnitOverview.fixture";
@@ -13,57 +14,60 @@ import {
   renderHookWithProviders,
 } from "@/__tests__/__helpers__/renderWithProviders";
 
-const renderUseProgrammeState = (programmeState: ProgrammeState) =>
+const renderUseProgrammeState = (programmeState: ProgrammeState | null) =>
   renderHookWithProviders({
     ...allProviders,
     teacherBrowseAnalytics: { programmeState },
   })(() => useProgrammeState()).result.current;
 
-describe("deriveProgrammeState", () => {
-  it("returns no slugs or hrefs when there is no programme state", () => {
-    expect(deriveProgrammeState(null)).toEqual({
-      programmeState: null,
-      browseLevel: undefined,
-      programmeSlug: undefined,
-      unitSlug: undefined,
-      lessonSlug: undefined,
-      unitHref: undefined,
-      lessonHref: undefined,
+describe("useProgrammeState", () => {
+  it("returns empty state when there is no programme state", () => {
+    expect(renderUseProgrammeState(null)).toEqual({
+      currentHref: null,
+      lessonState: null,
+      unitState: null,
     });
   });
 
-  it("derives the unit href at unit browse level", () => {
-    const derived = deriveProgrammeState(
-      getProgrammeStateForUnit(teachersUnitOverviewFixture()),
-    );
+  it("returns the programme state and programme href at programme level", () => {
+    const programmeState = getProgrammeStateForProgramme({
+      programmeSlug: "biology-secondary-ks3",
+      subjectSlug: "biology",
+      subjectTitle: "Biology",
+      phaseSlug: "secondary",
+      phaseTitle: "Secondary",
+    });
 
-    expect(derived.unitSlug).toBe("cells");
-    expect(derived.unitHref).toBe(
-      "/teachers/programmes/biology-secondary-ks3/units/cells/lessons",
-    );
-    expect(derived.lessonHref).toBeUndefined();
+    expect(renderUseProgrammeState(programmeState)).toEqual({
+      currentHref: "/teachers/programmes/biology-secondary-ks3/units",
+      lessonState: null,
+      unitState: null,
+    });
   });
 
-  it("derives the lesson href at lesson browse level", () => {
-    const derived = deriveProgrammeState(
-      getProgrammeStateForLesson(teachersLessonOverviewFixture()),
+  it("returns the unit state and unit href at unit level", () => {
+    const programmeState = getProgrammeStateForUnit(
+      teachersUnitOverviewFixture(),
     );
 
-    expect(derived.lessonSlug).toBe("lesson-3-structure-of-cells");
-    expect(derived.lessonHref).toBe(
-      "/teachers/programmes/biology-secondary-ks3/units/cells/lessons/lesson-3-structure-of-cells",
-    );
+    expect(renderUseProgrammeState(programmeState)).toEqual({
+      currentHref:
+        "/teachers/programmes/biology-secondary-ks3/units/cells/lessons",
+      lessonState: null,
+      unitState: programmeState,
+    });
   });
-});
 
-describe("useProgrammeState", () => {
-  it("reads the programme state from the teacher browse store", () => {
+  it("returns the lesson and unit state and lesson href at lesson level", () => {
     const programmeState = getProgrammeStateForLesson(
       teachersLessonOverviewFixture(),
     );
 
-    expect(renderUseProgrammeState(programmeState)).toEqual(
-      deriveProgrammeState(programmeState),
-    );
+    expect(renderUseProgrammeState(programmeState)).toEqual({
+      currentHref:
+        "/teachers/programmes/biology-secondary-ks3/units/cells/lessons/lesson-3-structure-of-cells",
+      lessonState: programmeState,
+      unitState: programmeState,
+    });
   });
 });
