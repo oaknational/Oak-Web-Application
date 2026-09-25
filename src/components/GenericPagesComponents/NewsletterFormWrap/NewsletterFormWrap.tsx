@@ -6,6 +6,7 @@ import {
   OakP,
 } from "@oaknational/oak-components";
 
+import { NEWSLETTER_COUNT } from "@/components/GenericPagesComponents/NewsletterForm/newsletterConstants";
 import NewsletterForm, {
   NewsletterFormProps,
 } from "@/components/GenericPagesComponents/NewsletterForm";
@@ -55,8 +56,8 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
             color={"text-primary"}
             id={descriptionId}
           >
-            Join over 100k teachers and get free resources and other helpful
-            content by email. Unsubscribe at any time. Read our{" "}
+            Join over {NEWSLETTER_COUNT} teachers and get free resources and
+            other helpful content by email. Unsubscribe at any time. Read our{" "}
             <OakLink
               href={resolveOakHref({
                 page: "legal",

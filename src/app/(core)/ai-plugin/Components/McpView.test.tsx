@@ -58,29 +58,30 @@ describe("McpView", () => {
     });
   });
 
-  it("offers Claude as the only assistant, with a Try in Claude link", () => {
+  it("offers Claude and ChatGPT as assistants, each with its own Try link", () => {
     const { getByRole } = render(<McpView />);
 
     const section = getByRole("region", { name: mcpAssistants.title });
-    const assistant = mcpAssistants.items[0];
 
-    expect(mcpAssistants.items).toHaveLength(1);
-    expect(
-      within(section).getByRole("heading", { name: "Claude" }),
-    ).toBeInTheDocument();
-    expect(
-      within(section).getByRole("link", {
-        name: new RegExp(assistant!.ctaLabel),
-      }),
-    ).toHaveAttribute("href", assistant!.ctaHref);
+    expect(mcpAssistants.items).toHaveLength(2);
+    mcpAssistants.items.forEach((assistant) => {
+      expect(
+        within(section).getByRole("heading", { name: assistant.name }),
+      ).toBeInTheDocument();
+      expect(
+        within(section).getByRole("link", {
+          name: new RegExp(assistant.ctaLabel),
+        }),
+      ).toHaveAttribute("href", assistant.ctaHref);
+    });
   });
 
-  it("prefills Claude's composer with the install prompt", () => {
+  it("prefills every assistant's composer with the install prompt", () => {
     const { getAllByRole } = render(<McpView />);
 
-    const tryLinks = getAllByRole("link", { name: /Try in Claude/ });
+    const tryLinks = getAllByRole("link", { name: /Try in (Claude|ChatGPT)/ });
 
-    // The hero and the assistant card share one href.
+    // The hero and each assistant card share the same href per provider.
     expect(tryLinks.length).toBeGreaterThan(0);
     tryLinks.forEach((link) => {
       const href = link.getAttribute("href") ?? "";
@@ -88,15 +89,21 @@ describe("McpView", () => {
     });
   });
 
-  it("lists the numbered steps for installing the connector", () => {
+  it("lists each assistant's own numbered install steps", () => {
     const { getByRole } = render(<McpView />);
 
     const section = getByRole("region", { name: mcpAssistants.title });
     const steps = within(section).getAllByRole("listitem");
 
-    expect(steps).toHaveLength(mcpAssistants.steps.length);
+    const expectedStepCount = mcpAssistants.items.reduce(
+      (total, assistant) => total + assistant.steps.length,
+      0,
+    );
+    expect(steps).toHaveLength(expectedStepCount);
     expect(steps[0]).toHaveTextContent("Try in Claude");
     expect(steps[1]).toHaveTextContent("authorise Oak");
+    expect(steps[2]).toHaveTextContent("Try in ChatGPT");
+    expect(steps[3]).toHaveTextContent("authorise Oak");
   });
 
   it("renders both 'Oak provides' and 'The AI provider' lists in full", () => {
@@ -125,11 +132,11 @@ describe("McpView", () => {
         name: mcpSupport.title,
       }),
     ).toBeInTheDocument();
-    expect(
-      within(section).getByRole("link", {
-        name: new RegExp(mcpSupport.linkLabel),
-      }),
-    ).toHaveAttribute("href", mcpSupport.href);
+    mcpSupport.links.forEach((link) => {
+      expect(
+        within(section).getByRole("link", { name: new RegExp(link.label) }),
+      ).toHaveAttribute("href", link.href);
+    });
   });
 
   it("warns that Oak does not endorse third-party output", () => {
@@ -138,13 +145,13 @@ describe("McpView", () => {
     expect(getByText(mcpOutputWarning)).toBeInTheDocument();
   });
 
-  it("points the feedback CTA at the support inbox", () => {
+  it("points the feedback CTA at the feedback survey", () => {
     const { getByRole } = render(<McpView />);
 
-    const cta = getByRole("link", { name: mcpFeedback.ctaLabel });
+    const cta = getByRole("link", { name: new RegExp(mcpFeedback.ctaLabel) });
 
     expect(cta).toHaveAttribute("href", mcpFeedback.ctaHref);
-    expect(cta).not.toHaveAttribute("target", "_blank");
+    expect(cta).toHaveAttribute("target", "_blank");
   });
 
   it("withholds the referrer on every link that opens a new tab", () => {

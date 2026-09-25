@@ -652,31 +652,113 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c199 {
-  position: relative;
-  margin-top: 2rem;
-  background: #ffffff;
+.c183 {
+  width: 100%;
+  margin-bottom: 3rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c202 {
+.c184 {
   position: absolute;
+  top: -20px;
+  left: 5px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  color: #222222;
+  background: #ffe555;
+  border-radius: 0rem;
+  -webkit-transform: rotate(-1.5deg);
+  -ms-transform: rotate(-1.5deg);
+  transform: rotate(-1.5deg);
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0.0115rem;
+  -moz-letter-spacing: 0.0115rem;
+  -ms-letter-spacing: 0.0115rem;
+  letter-spacing: 0.0115rem;
+  z-index: 1;
+}
+
+.c185 {
+  position: relative;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  color: #222222;
+  background: #ffffff;
+  border: 0.125rem solid;
+  border-color: #222222;
+  border-radius: 0.25rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c205 {
-  padding-top: 0.5rem;
+.c185:hover {
+  cursor: pointer;
+}
+
+.c189 {
+  position: relative;
+  width: 100%;
+  margin-top: spacing-14;
+  margin-bottom: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c209 {
+.c190 {
+  position: absolute;
+  top: -20px;
+  left: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  color: #222222;
+  background: #ffe555;
+  border-radius: 0rem;
+  -webkit-transform: rotate(-1.5deg);
+  -ms-transform: rotate(-1.5deg);
+  transform: rotate(-1.5deg);
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0.0115rem;
+  -moz-letter-spacing: 0.0115rem;
+  -ms-letter-spacing: 0.0115rem;
+  letter-spacing: 0.0115rem;
+  z-index: 1;
+}
+
+.c191 {
+  position: relative;
+  display: block;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c198 {
+  position: absolute;
+  top: 0rem;
+  right: 0.75rem;
+  bottom: 0rem;
+  pointer-events: none;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c203 {
   position: relative;
   width: 100%;
   height: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c213 {
+.c207 {
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -686,13 +768,13 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   z-index: 0;
 }
 
-.c214 {
+.c208 {
   position: relative;
   height: 0.25rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c216 {
+.c210 {
   width: 100%;
   max-width: 80rem;
   padding-left: 1.25rem;
@@ -704,23 +786,23 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c220 {
+.c214 {
   margin-top: 2rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c225 {
+.c219 {
   margin-top: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c226 {
+.c220 {
   padding-left: 0.25rem;
   display: inline;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c230 {
+.c224 {
   position: relative;
   width: 10rem;
   height: 4rem;
@@ -729,7 +811,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c231 {
+.c225 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -737,7 +819,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c235 {
+.c229 {
   position: relative;
   width: 2rem;
   min-width: 2rem;
@@ -748,7 +830,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c236 {
+.c230 {
   position: absolute;
   top: 0rem;
   width: 100%;
@@ -759,7 +841,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c238 {
+.c232 {
   width: 100%;
   padding-top: 0.75rem;
   margin-top: 2rem;
@@ -767,12 +849,12 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c240 {
+.c234 {
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c244 {
+.c238 {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -790,7 +872,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   z-index: -1;
 }
 
-.c246 {
+.c240 {
   position: fixed;
   right: 0rem;
   width: 100%;
@@ -800,7 +882,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   z-index: 300;
 }
 
-.c249 {
+.c243 {
   position: -webkit-sticky;
   position: sticky;
   bottom: 0rem;
@@ -808,7 +890,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   z-index: 299;
 }
 
-.c250 {
+.c244 {
   color: #222222;
   background: #f2f2f2;
   border-top: 0.063rem solid;
@@ -816,13 +898,13 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c251 {
+.c245 {
   margin-left: auto;
   margin-right: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c252 {
+.c246 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   margin-left: 1rem;
@@ -830,7 +912,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c254 {
+.c248 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -841,7 +923,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c257 {
+.c251 {
   font-family: --var(google-font),Lexend,sans-serif;
   white-space: nowrap;
 }
@@ -1371,7 +1453,38 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   align-items: center;
 }
 
-.c217 {
+.c186 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.c192 {
+  display: block;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.c199 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+}
+
+.c211 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1389,7 +1502,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   flex-grow: 1;
 }
 
-.c229 {
+.c223 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1400,7 +1513,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   justify-content: left;
 }
 
-.c232 {
+.c226 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1416,7 +1529,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c239 {
+.c233 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1434,7 +1547,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   justify-content: flex-start;
 }
 
-.c241 {
+.c235 {
   display: none;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -1447,7 +1560,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c247 {
+.c241 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1462,7 +1575,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   gap: 0.75rem;
 }
 
-.c253 {
+.c247 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1477,7 +1590,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   gap: 1.5rem;
 }
 
-.c256 {
+.c250 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1570,29 +1683,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c193 {
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
-  letter-spacing: 0.0115rem;
-}
-
-.c207 {
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 300;
-  font-size: 1rem;
-  line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
-  letter-spacing: -0.005rem;
-}
-
-.c255 {
+.c249 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
@@ -1603,7 +1694,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c215 {
+.c209 {
   position: absolute;
   top: 0rem;
   left: 0rem;
@@ -1859,7 +1950,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   cursor: default;
 }
 
-.c210 {
+.c204 {
   background: none;
   color: inherit;
   border: none;
@@ -1876,14 +1967,14 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   padding-right: 1rem;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  margin-top: 1.5rem;
+  margin-top: 0rem;
   display: inline-block;
   border: 0.125rem solid;
   border-color: #222222;
   border-radius: 0.25rem;
 }
 
-.c210:disabled {
+.c204:disabled {
   pointer-events: none;
   cursor: default;
 }
@@ -1904,7 +1995,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   object-fit: contain;
 }
 
-.c245 {
+.c239 {
   -webkit-filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   object-fit: fill;
@@ -2164,27 +2255,27 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   background: #222222;
 }
 
-.c233 > :first-child:focus-visible .shadow {
+.c227 > :first-child:focus-visible .shadow {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c233 > :first-child:hover .shadow {
+.c227 > :first-child:hover .shadow {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
 }
 
-.c233 > :first-child:active .shadow {
+.c227 > :first-child:active .shadow {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%), 0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
-.c233 > :first-child:disabled .icon-container {
+.c227 > :first-child:disabled .icon-container {
   background: #e4e4e4;
 }
 
-.c233 > :first-child:hover .icon-container {
+.c227 > :first-child:hover .icon-container {
   background: #ffffff;
 }
 
-.c233 > :first-child:active .icon-container {
+.c227 > :first-child:active .icon-container {
   background: #ffffff;
 }
 
@@ -2279,7 +2370,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c221 {
+.c215 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -2316,7 +2407,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   display: revert;
 }
 
-.c223 {
+.c217 {
   margin-top: 0.75rem;
   display: revert;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -2402,7 +2493,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   margin-bottom: 1.5rem;
 }
 
-.c211 {
+.c205 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -2415,7 +2506,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   margin-top: 0rem;
 }
 
-.c212 {
+.c206 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -2427,7 +2518,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   margin-top: 0rem;
 }
 
-.c242 {
+.c236 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
@@ -2438,7 +2529,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c243 {
+.c237 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.75rem;
@@ -2449,7 +2540,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c222 {
+.c216 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -2481,7 +2572,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   gap: 0.75rem;
 }
 
-.c228 {
+.c222 {
   width: 1.25em;
   min-width: 1.25em;
   height: 1.25em;
@@ -2513,7 +2604,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c24 .c227 {
+.c24 .c221 {
   -webkit-filter: invert(21%) sepia(90%) saturate(3220%) hue-rotate(232deg) brightness(71%) contrast(127%);
   filter: invert(21%) sepia(90%) saturate(3220%) hue-rotate(232deg) brightness(71%) contrast(127%);
   display: inline-block;
@@ -2528,7 +2619,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   color: #081676;
 }
 
-.c24:visited .c227 {
+.c24:visited .c221 {
   -webkit-filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
@@ -2538,7 +2629,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   outline: 1px solid #081676;
 }
 
-.c24:active .c227 {
+.c24:active .c221 {
   -webkit-filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
@@ -2548,12 +2639,12 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   color: #808080;
 }
 
-.c24[disabled] .c227 {
+.c24[disabled] .c221 {
   -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c224 {
+.c218 {
   display: inline;
   text-align: left;
   -webkit-align-items: center;
@@ -2578,47 +2669,47 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c224 .c227 {
+.c218 .c221 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   display: inline-block;
   vertical-align: text-top;
 }
 
-.c224:focus-visible {
+.c218:focus-visible {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c224:visited {
+.c218:visited {
   color: #222222;
 }
 
-.c224:visited .c227 {
+.c218:visited .c221 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c224:active {
+.c218:active {
   color: #222222;
   outline: 1px solid #222222;
 }
 
-.c224:active .c227 {
+.c218:active .c221 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c224[disabled] {
+.c218[disabled] {
   cursor: not-allowed;
   color: #808080;
 }
 
-.c224[disabled] .c227 {
+.c218[disabled] .c221 {
   -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c258 {
+.c252 {
   display: inline;
   text-align: left;
   -webkit-align-items: center;
@@ -2652,42 +2743,42 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c258 .c227 {
+.c252 .c221 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   display: inline-block;
   vertical-align: text-top;
 }
 
-.c258:focus-visible {
+.c252:focus-visible {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c258:visited {
+.c252:visited {
   color: #222222;
 }
 
-.c258:visited .c227 {
+.c252:visited .c221 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c258:active {
+.c252:active {
   color: #222222;
   outline: 1px solid #222222;
 }
 
-.c258:active .c227 {
+.c252:active .c221 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c258[disabled] {
+.c252[disabled] {
   cursor: not-allowed;
   color: #808080;
 }
 
-.c258[disabled] .c227 {
+.c252[disabled] .c221 {
   -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
@@ -2734,6 +2825,53 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 .c43:disabled {
+  cursor: not-allowed;
+}
+
+.c188 {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  border: 0;
+  border-radius: 0;
+  border-color: transparent;
+  box-shadow: none;
+  font-family: inherit;
+  background: transparent;
+  outline: none;
+  color: inherit;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+  width: 100%;
+  height: 3.5rem;
+}
+
+.c188::-webkit-input-placeholder {
+  color: #575757;
+}
+
+.c188::-moz-placeholder {
+  color: #575757;
+}
+
+.c188:-ms-input-placeholder {
+  color: #575757;
+}
+
+.c188::placeholder {
+  color: #575757;
+}
+
+.c188::-webkit-search-decoration,
+.c188::-webkit-search-cancel-button,
+.c188::-webkit-search-results-button,
+.c188::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.c188:disabled {
   cursor: not-allowed;
 }
 
@@ -2785,7 +2923,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   width: 100%;
 }
 
-.c218 {
+.c212 {
   display: grid;
   grid-template-columns: repeat(12,1fr);
   width: 100%;
@@ -2821,13 +2959,180 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   grid-row: span 1;
 }
 
-.c219 {
+.c213 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
   grid-column: span 12;
   grid-row: span undefined;
   grid-row: span 1;
+}
+
+.c194 {
+  border: none;
+  outline: none;
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-appearance: base-select;
+  -moz-appearance: base-select;
+  appearance: base-select;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  padding-right: 3.5rem;
+  border: 0.125rem solid;
+  border-color: #222222;
+  border-radius: 0.25rem;
+  color: #222222;
+  background: #ffffff;
+}
+
+.c194:focus {
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c194::picker(select) {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-appearance: base-select;
+  -moz-appearance: base-select;
+  appearance: base-select;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  overflow: visible;
+  border: 0.125rem solid;
+  border-color: #222222;
+  border-radius: 0.25rem;
+  color: #222222;
+  background: #ffffff;
+  border-top: none;
+}
+
+.c194::picker(select) {
+  top: calc(anchor(bottom) - 2px);
+  left: anchor(0);
+}
+
+.c194::picker-icon {
+  display: none;
+}
+
+.c194:open {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.c194:open::picker(select) {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.c200 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.c202 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.c193 select ~ .c201 {
+  display: block;
+}
+
+.c193 select:open ~ .c201 {
+  display: none;
+}
+
+.c193 select ~ .c197 {
+  display: none;
+}
+
+.c193 select:open ~ .c197 {
+  display: block;
+}
+
+.c195 {
+  cursor: pointer;
+  border: none;
+  color: #222222;
+  outline: none;
+  font: 1rem;
+  font-weight: 300;
+  border-radius: 0.125rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.c195:focus {
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c195:disabled {
+  background: #e4e4e4;
+  color: #575757;
+  cursor: not-allowed;
+}
+
+.c195:active:not(:disabled) {
+  background: initial;
+}
+
+.c195::checkmark {
+  display: none;
+}
+
+.c196 {
+  cursor: pointer;
+  border: none;
+  color: #222222;
+  outline: none;
+  font: 1rem;
+  font-weight: 500;
+  border-radius: 0.125rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.c196:focus {
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c196:disabled {
+  background: #e4e4e4;
+  color: #575757;
+  cursor: not-allowed;
+}
+
+.c196:active:not(:disabled) {
+  background: initial;
+}
+
+.c196::checkmark {
+  display: none;
+}
+
+.c187 {
+  background: #ffffff;
+}
+
+.c187:hover {
+  cursor: text;
+}
+
+.c187:focus-within {
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
 .c122 {
@@ -2884,15 +3189,15 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c248 {
+.c242 {
   top: 152px;
 }
 
-.c234 .icon-container > *:first-child {
+.c228 .icon-container > *:first-child {
   border: 0;
 }
 
-.c237 {
+.c231 {
   height: 87px;
   width: 77px;
   margin-top: 2rem;
@@ -2914,93 +3219,17 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   grid-template-columns: repeat(2,1fr);
 }
 
-.c196 {
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-  font-family: --var(google-font),Lexend,sans-serif;
+.c173 {
+  max-width: 100%;
+  justify-self: center;
 }
 
-.c184 {
-  width: 100%;
-  margin-bottom: 2rem;
-  background-color: #fff;
-  color: #222222;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c184::-webkit-scrollbar-track {
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c184::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c184::-webkit-scrollbar-thumb {
-  border-radius: 15px;
-  background-color: #999999;
-}
-
-.c187 {
-  position: relative;
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c187::-webkit-scrollbar-track {
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c187::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c187::-webkit-scrollbar-thumb {
-  border-radius: 15px;
-  background-color: #999999;
-}
-
-.c189 {
-  position: absolute;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c189::-webkit-scrollbar-track {
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c189::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c189::-webkit-scrollbar-thumb {
-  border-radius: 15px;
-  background-color: #999999;
-}
-
-.c185 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+.c78 {
+  height: 410px;
+  width: auto;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
 }
 
 .c129 {
@@ -3014,245 +3243,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
-}
-
-.c188 {
-  position: absolute;
-  top: 0rem;
-  right: 0rem;
-  bottom: 0rem;
-  left: 0rem;
-  object-fit: cover;
-  font-family: --var(google-font),Lexend,sans-serif;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.c194 {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: 0;
-  border-radius: 0;
-  border-color: transparent;
-  box-shadow: none;
-  font-family: fontFamily;
-}
-
-.c194::-webkit-input-placeholder {
-  color: #575757;
-}
-
-.c194::-moz-placeholder {
-  color: #575757;
-}
-
-.c194:-ms-input-placeholder {
-  color: #575757;
-}
-
-.c194::placeholder {
-  color: #575757;
-}
-
-.c194::-webkit-search-decoration,
-.c194::-webkit-search-cancel-button,
-.c194::-webkit-search-results-button,
-.c194::-webkit-search-results-decoration {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-.c191 {
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115em;
-  -moz-letter-spacing: 0.0115em;
-  -ms-letter-spacing: 0.0115em;
-  letter-spacing: 0.0115em;
-}
-
-.c198 {
-  display: none;
-  position: absolute;
-  bottom: -4px;
-  left: -2px;
-  right: 0;
-  height: 4px;
-  color: #ffe555;
-  -webkit-filter: drop-shadow(2px 2px 0 rgb(0 0 0));
-  filter: drop-shadow(2px 2px 0 rgb(0 0 0));
-  z-index: 1;
-}
-
-.c192 {
-  position: relative;
-  padding: 4px 8px;
-  -webkit-transform: rotate(-2deg) translateY(-16px) translateX(8px);
-  -ms-transform: rotate(-2deg) translateY(-16px) translateX(8px);
-  transform: rotate(-2deg) translateY(-16px) translateX(8px);
-  display: block;
-  background: #ffe555;
-  color: #222222;
-}
-
-.c186:focus-within .c190 {
-  background: #374cf1;
-  color: #fff;
-}
-
-.c186:focus-within .c197 {
-  display: inline;
-}
-
-.c195 {
-  color: #222222;
-  height: 60px;
-  border-radius: 8px;
-  border-color: #2d2d2d;
-  border-width: 1px;
-  padding-left: 12px;
-  padding: 16px;
-  padding-top: 20px;
-  font-size: 16px;
-  font-family: fontFamily;
-  font-weight: 300;
-  width: 100%;
-  outline: none;
-}
-
-.c195::-webkit-input-placeholder {
-  font-size: 16px;
-  font-weight: 300;
-  font-family: fontFamily;
-  color: #575757;
-  opacity: 1;
-}
-
-.c195::-moz-placeholder {
-  font-size: 16px;
-  font-weight: 300;
-  font-family: fontFamily;
-  color: #575757;
-  opacity: 1;
-}
-
-.c195:-ms-input-placeholder {
-  font-size: 16px;
-  font-weight: 300;
-  font-family: fontFamily;
-  color: #575757;
-  opacity: 1;
-}
-
-.c195::placeholder {
-  font-size: 16px;
-  font-weight: 300;
-  font-family: fontFamily;
-  color: #575757;
-  opacity: 1;
-}
-
-.c195:valid:not([value=""]) {
-  border-color: #2d2d2d;
-}
-
-.c195:valid:not([value=""])::-webkit-input-placeholder {
-  font-size: 16px;
-  color: #575757;
-}
-
-.c195:valid:not([value=""])::-moz-placeholder {
-  font-size: 16px;
-  color: #575757;
-}
-
-.c195:valid:not([value=""]):-ms-input-placeholder {
-  font-size: 16px;
-  color: #575757;
-}
-
-.c195:valid:not([value=""])::placeholder {
-  font-size: 16px;
-  color: #575757;
-}
-
-.c203 {
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  text-align: left;
-  font-family: unset;
-}
-
-.c201 {
-  display: none;
-}
-
-.c200:focus-within .c190 {
-  background: #374cf1;
-  color: #fff;
-}
-
-.c204 {
-  color: #222222;
-  height: 60px;
-  padding-left: 16px;
-  padding-right: 8px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  width: 100%;
-  text-align: left;
-  font-size: 16px;
-  background: transparent;
-  border: none;
-  outline: none;
-  font-size: 14px;
-  color: #575757;
-}
-
-.c206 {
-  max-width: calc(100% - 20px);
-}
-
-.c208 {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  min-width: 0;
-  overflow: hidden;
-}
-
-.c183 {
-  width: 100%;
-  font-family: --var(google-font),Lexend,sans-serif;
-}
-
-.c173 {
-  max-width: 100%;
-  justify-self: center;
-}
-
-.c78 {
-  height: 410px;
-  width: auto;
-  -webkit-flex: 0 1 auto;
-  -ms-flex: 0 1 auto;
-  flex: 0 1 auto;
 }
 
 .c123 {
@@ -3645,61 +3635,61 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c216 {
+  .c210 {
     padding-left: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c216 {
+  .c210 {
     padding-left: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c216 {
+  .c210 {
     padding-right: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c216 {
+  .c210 {
     padding-right: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c216 {
+  .c210 {
     padding-top: 5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c220 {
+  .c214 {
     margin-top: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c225 {
+  .c219 {
     margin-top: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c231 {
+  .c225 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c238 {
+  .c232 {
     padding-top: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c240 {
+  .c234 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -3708,13 +3698,13 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c244 {
+  .c238 {
     display: block;
   }
 }
 
 @media (min-width:750px) {
-  .c244 {
+  .c238 {
     -webkit-transform: translate(25%,25%) scale(0.7) rotate(-10deg);
     -ms-transform: translate(25%,25%) scale(0.7) rotate(-10deg);
     transform: translate(25%,25%) scale(0.7) rotate(-10deg);
@@ -3722,7 +3712,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c244 {
+  .c238 {
     -webkit-transform: translate(25%,15%) rotate(-10deg);
     -ms-transform: translate(25%,15%) rotate(-10deg);
     transform: translate(25%,15%) rotate(-10deg);
@@ -3730,13 +3720,13 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c246 {
+  .c240 {
     right: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c246 {
+  .c240 {
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
@@ -3744,61 +3734,61 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c246 {
+  .c240 {
     padding-left: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c246 {
+  .c240 {
     padding-right: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c252 {
+  .c246 {
     margin-left: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c252 {
+  .c246 {
     margin-left: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c252 {
+  .c246 {
     margin-right: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c252 {
+  .c246 {
     margin-right: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c254 {
+  .c248 {
     font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
-  .c254 {
+  .c248 {
     font-size: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c254 {
+  .c248 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c254 {
+  .c248 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -3966,7 +3956,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c229 {
+  .c223 {
     -webkit-box-pack: right;
     -webkit-justify-content: right;
     -ms-flex-pack: right;
@@ -3975,13 +3965,13 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c232 {
+  .c226 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c239 {
+  .c233 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -3989,7 +3979,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c239 {
+  .c233 {
     -webkit-align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -3998,7 +3988,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c239 {
+  .c233 {
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
@@ -4007,7 +3997,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c241 {
+  .c235 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -4016,7 +4006,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c247 {
+  .c241 {
     -webkit-align-items: flex-end;
     -webkit-box-align: flex-end;
     -ms-flex-align: flex-end;
@@ -4025,7 +4015,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c253 {
+  .c247 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -4033,7 +4023,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c253 {
+  .c247 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -4041,7 +4031,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c253 {
+  .c247 {
     -webkit-align-items: flex-start;
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
@@ -4050,7 +4040,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c253 {
+  .c247 {
     -webkit-align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -4059,19 +4049,19 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c253 {
+  .c247 {
     gap: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c253 {
+  .c247 {
     gap: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c256 {
+  .c250 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -4079,7 +4069,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c256 {
+  .c250 {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -4087,7 +4077,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c256 {
+  .c250 {
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
@@ -4095,7 +4085,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c256 {
+  .c250 {
     gap: 2rem;
   }
 }
@@ -4155,25 +4145,25 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c255 {
+  .c249 {
     font-weight: 500;
   }
 }
 
 @media (min-width:750px) {
-  .c255 {
+  .c249 {
     font-size: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c255 {
+  .c249 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c255 {
+  .c249 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -4599,16 +4589,16 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
     text-decoration-thickness: 18%;
   }
 
-  .c24:hover .c227,
-  .c24:visited:hover .c227 {
+  .c24:hover .c221,
+  .c24:visited:hover .c221 {
     -webkit-filter: invert(16%) sepia(72%) saturate(7176%) hue-rotate(239deg) brightness(61%) contrast(109%);
     filter: invert(16%) sepia(72%) saturate(7176%) hue-rotate(239deg) brightness(61%) contrast(109%);
   }
 }
 
 @media (hover:hover) {
-  .c224:hover,
-  .c224:visited:hover {
+  .c218:hover,
+  .c218:visited:hover {
     color: #222222;
     -webkit-text-decoration: underline;
     text-decoration: underline;
@@ -4616,16 +4606,16 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
     text-decoration-thickness: 18%;
   }
 
-  .c224:hover .c227,
-  .c224:visited:hover .c227 {
+  .c218:hover .c221,
+  .c218:visited:hover .c221 {
     -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
     filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   }
 }
 
 @media (hover:hover) {
-  .c258:hover,
-  .c258:visited:hover {
+  .c252:hover,
+  .c252:visited:hover {
     color: #222222;
     -webkit-text-decoration: underline;
     text-decoration: underline;
@@ -4633,8 +4623,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
     text-decoration-thickness: 18%;
   }
 
-  .c258:hover .c227,
-  .c258:visited:hover .c227 {
+  .c252:hover .c221,
+  .c252:visited:hover .c221 {
     -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
     filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   }
@@ -4642,6 +4632,12 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 
 @media (max-width:750px) {
   .c43 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width:750px) {
+  .c188 {
     font-size: 16px;
   }
 }
@@ -4720,20 +4716,26 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c219 {
+  .c213 {
     grid-column: span 3;
+  }
+}
+
+@media (hover:hover) {
+  .c194:hover:not(:focus-within) {
+    background: #f2f2f2;
+  }
+}
+
+@media (hover:hover) {
+  .c187:hover:not(:focus-within) {
+    background: #f2f2f2;
   }
 }
 
 @media (max-width:800px) {
   .c163 {
     grid-template-columns: repeat(1,1fr);
-  }
-}
-
-@media (max-width:750px) {
-  .c195 {
-    font-size: 16px;
   }
 }
 
@@ -6387,7 +6389,9 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         color="text-primary"
                         id="react-use-id-test-result-newsletter-form-description"
                       >
-                        Join over 100k teachers and get free resources and other helpful content by email. Unsubscribe at any time. Read our
+                        Join over 
+                        200k
+                         teachers and get free resources and other helpful content by email. Unsubscribe at any time. Read our
                          
                         <a
                           class="c24"
@@ -6407,500 +6411,175 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                     >
                       <form
                         aria-describedby="react-use-id-test-result-newsletter-form-description"
-                        class="c183"
+                        class="c67 c97"
                         novalidate=""
                       >
                         <div
-                          class="c184 c185 c186"
+                          class="c183"
                         >
                           <div
-                            class="c187 "
+                            class="c67 c97"
                           >
                             <div
-                              aria-hidden="true"
-                              class="c9"
-                              data-testid="brush-borders"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="c188"
-                                height="100%"
-                                name="box-border-top"
-                                style="bottom: unset; height: 3px;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 365.46 2.75"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="c188"
-                                height="100%"
-                                name="box-border-right"
-                                style="top: unset; left: unset; width: 3px; height: 90%;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 2.89 330.09"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M2.7 2.21c-.12-.76.36-2.63-1.15-2.13C.77.03-.13.13.01.85c.18 14.09.05 309.32.1 328.06 0 .15.3 1.07.28 1.18h2.5C2.85 303.49 2.6 17.84 2.7 2.21Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M1.87 1.07s.09.4.09 1.21c.11 3.3-.51-1.31-.09-1.21ZM1.25 44.05c-.47-.05-.49-1.38-.04-1.78.85-.76.2 1.8.04 1.78ZM.91 1.65c.08 2.14.7 4.95-.31 2.59-.13-.84.18-5.42.31-2.59ZM1.05 65.78c-.47-.05.11-8.31.56-9.46.4-1.07-.4 9.48-.56 9.46ZM1.76 54.4c-.47-.05-.76-.69.03-.65 1.14.07.13.67-.03.65Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="c188"
-                                height="100%"
-                                name="box-border-bottom"
-                                style="top: unset; height: 3px; width: 100%;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 365.46 2.75"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="c188"
-                                height="100%"
-                                name="box-border-left"
-                                style="right: unset; width: 3px;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 2.72 359.41"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M2.56 26.03c-.14-7.28.05-12.58 0-18.65C2.48 3.63 2.28.24 2.51 0H.02c.13 3.41 1.04 10.2.02 14.63-.1 9.52.02 311.42-.03 344.78h2.5c-.87-4.14.68-328.77.05-333.38Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M1.78 73.31c-.48-1.02.43-5.62.43-4.84.01.69.38 4.88-.43 4.84ZM1.56 142.12c1.14.07.13.67-.03.65-.47-.05-.76-.69.03-.65ZM1.65 196.21c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM2.48 27.51c0 .49 0 1.87-.11 3.12-.37 6.22-.42-1.85.11-3.12ZM2.01 65.86c.39.51.58 1.99-.23 1.95-.48-1.02-.25-2.56.23-1.95ZM1.02 132.42c-.47-.05-.49-1.39-.04-1.78.85-.76.2 1.8.04 1.78ZM.79 5.27c.07-1.81.65 1.18.59 5.76C1.27 17.8.69 6.25.79 5.27ZM.33 47.73c-.33-1.44.48-7.29.21-2.86-.12.57-.13 5.57-.21 2.86ZM.96 94.76c.28.95-.15 5.38-.31 5.36-.47-.05.08-6.12.31-5.36ZM1.23 100.12c-.07.9-.41 1.95-.58 1.95-.47-.05.64-2.73.58-1.95ZM1.38 144.69c.4-1.07-.4 9.48-.56 9.46-.47-.05.12-8.31.56-9.46ZM1.24 197.97c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM1.81 209.98c-.36-1.74-.84-7.52-.52-8.14l.5-1.57c.25.43.05 9.87.02 9.71ZM1.85 158.2c-.47-.05-.11-4.72.13-3.97.33 1.09.03 3.99-.13 3.97Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                            </div>
-                            <div
-                              class="c189 "
+                              class="c2 c97"
                             >
                               <label
-                                aria-hidden="true"
-                                class="c190 c191 c192"
-                                color="black"
-                                data-testid="rotated-input-label"
+                                class="c184"
+                                data-testid="jaunty-label"
                                 for="react-use-id-test-result-newsletter-signup-name"
-                                id="react-use-id-test-result-newsletter-signup-name-label"
+                                id="Name-label"
                               >
-                                <span
-                                  class="c25"
-                                >
-                                  Name
-                                   
-                                  <span
-                                    class="c193"
-                                  >
-                                    (required)
-                                  </span>
-                                </span>
+                                Name (required)
                               </label>
+                              <div
+                                class="c185 c186 c187"
+                              >
+                                <div
+                                  class="c9 c155"
+                                >
+                                  <input
+                                    autocomplete="name"
+                                    class="c188"
+                                    data-testid="text-input"
+                                    id="react-use-id-test-result-newsletter-signup-name"
+                                    name="name"
+                                    placeholder="Anna Smith"
+                                    type="text"
+                                    value=""
+                                  />
+                                </div>
+                              </div>
                             </div>
-                            <input
-                              aria-invalid="false"
-                              aria-labelledby="react-use-id-test-result-newsletter-signup-name-label"
-                              autocomplete="name"
-                              class="c194 c195"
-                              id="react-use-id-test-result-newsletter-signup-name"
-                              name="name"
-                              placeholder="Anna Smith"
-                              required=""
-                            />
-                            <svg
-                              aria-hidden="true"
-                              class="c196 c197 c198"
-                              height="100%"
-                              name="underline-1"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#underline-1"
-                              />
-                            </svg>
                           </div>
                         </div>
                         <div
-                          class="c184 c185 c186"
+                          class="c183"
                         >
                           <div
-                            class="c187 "
+                            class="c67 c97"
                           >
                             <div
-                              aria-hidden="true"
-                              class="c9"
-                              data-testid="brush-borders"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="c188"
-                                height="100%"
-                                name="box-border-top"
-                                style="bottom: unset; height: 3px;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 365.46 2.75"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="c188"
-                                height="100%"
-                                name="box-border-right"
-                                style="top: unset; left: unset; width: 3px; height: 90%;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 2.89 330.09"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M2.7 2.21c-.12-.76.36-2.63-1.15-2.13C.77.03-.13.13.01.85c.18 14.09.05 309.32.1 328.06 0 .15.3 1.07.28 1.18h2.5C2.85 303.49 2.6 17.84 2.7 2.21Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M1.87 1.07s.09.4.09 1.21c.11 3.3-.51-1.31-.09-1.21ZM1.25 44.05c-.47-.05-.49-1.38-.04-1.78.85-.76.2 1.8.04 1.78ZM.91 1.65c.08 2.14.7 4.95-.31 2.59-.13-.84.18-5.42.31-2.59ZM1.05 65.78c-.47-.05.11-8.31.56-9.46.4-1.07-.4 9.48-.56 9.46ZM1.76 54.4c-.47-.05-.76-.69.03-.65 1.14.07.13.67-.03.65Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="c188"
-                                height="100%"
-                                name="box-border-bottom"
-                                style="top: unset; height: 3px; width: 100%;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 365.46 2.75"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="c188"
-                                height="100%"
-                                name="box-border-left"
-                                style="right: unset; width: 3px;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 2.72 359.41"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M2.56 26.03c-.14-7.28.05-12.58 0-18.65C2.48 3.63 2.28.24 2.51 0H.02c.13 3.41 1.04 10.2.02 14.63-.1 9.52.02 311.42-.03 344.78h2.5c-.87-4.14.68-328.77.05-333.38Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M1.78 73.31c-.48-1.02.43-5.62.43-4.84.01.69.38 4.88-.43 4.84ZM1.56 142.12c1.14.07.13.67-.03.65-.47-.05-.76-.69.03-.65ZM1.65 196.21c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM2.48 27.51c0 .49 0 1.87-.11 3.12-.37 6.22-.42-1.85.11-3.12ZM2.01 65.86c.39.51.58 1.99-.23 1.95-.48-1.02-.25-2.56.23-1.95ZM1.02 132.42c-.47-.05-.49-1.39-.04-1.78.85-.76.2 1.8.04 1.78ZM.79 5.27c.07-1.81.65 1.18.59 5.76C1.27 17.8.69 6.25.79 5.27ZM.33 47.73c-.33-1.44.48-7.29.21-2.86-.12.57-.13 5.57-.21 2.86ZM.96 94.76c.28.95-.15 5.38-.31 5.36-.47-.05.08-6.12.31-5.36ZM1.23 100.12c-.07.9-.41 1.95-.58 1.95-.47-.05.64-2.73.58-1.95ZM1.38 144.69c.4-1.07-.4 9.48-.56 9.46-.47-.05.12-8.31.56-9.46ZM1.24 197.97c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM1.81 209.98c-.36-1.74-.84-7.52-.52-8.14l.5-1.57c.25.43.05 9.87.02 9.71ZM1.85 158.2c-.47-.05-.11-4.72.13-3.97.33 1.09.03 3.99-.13 3.97Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                            </div>
-                            <div
-                              class="c189 "
+                              class="c2 c97"
                             >
                               <label
-                                aria-hidden="true"
-                                class="c190 c191 c192"
-                                color="black"
-                                data-testid="rotated-input-label"
+                                class="c184"
+                                data-testid="jaunty-label"
                                 for="react-use-id-test-result-newsletter-signup-email"
-                                id="react-use-id-test-result-newsletter-signup-email-label"
+                                id="Email-label"
                               >
-                                <span
-                                  class="c25"
-                                >
-                                  Email
-                                   
-                                  <span
-                                    class="c193"
-                                  >
-                                    (required)
-                                  </span>
-                                </span>
+                                Email (required)
                               </label>
+                              <div
+                                class="c185 c186 c187"
+                              >
+                                <div
+                                  class="c9 c155"
+                                >
+                                  <input
+                                    autocomplete="email"
+                                    class="c188"
+                                    data-testid="text-input"
+                                    id="react-use-id-test-result-newsletter-signup-email"
+                                    name="email"
+                                    placeholder="anna@amail.com"
+                                    type="text"
+                                    value=""
+                                  />
+                                </div>
+                              </div>
                             </div>
-                            <input
-                              aria-invalid="false"
-                              aria-labelledby="react-use-id-test-result-newsletter-signup-email-label"
-                              autocomplete="email"
-                              class="c194 c195"
-                              id="react-use-id-test-result-newsletter-signup-email"
-                              name="email"
-                              placeholder="anna@amail.com"
-                              required=""
-                            />
-                            <svg
-                              aria-hidden="true"
-                              class="c196 c197 c198"
-                              height="100%"
-                              name="underline-1"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#underline-1"
-                              />
-                            </svg>
                           </div>
                         </div>
                         <div
-                          class="c199 c97 c200"
+                          aria-labelledby="react-use-id-test-result-role-label"
+                          class="c189"
+                          role="group"
                         >
+                          <label
+                            class="c190"
+                            for="react-use-id-test-result-newsletter-signup-userrole"
+                            id="react-use-id-test-result-role-label"
+                          >
+                            Role
+                          </label>
                           <div
-                            aria-hidden="true"
-                            class="c9"
-                            data-testid="brush-borders"
+                            class="c191 c192 c193"
                           >
-                            <svg
-                              aria-hidden="true"
-                              class="c188"
-                              height="100%"
-                              name="box-border-top"
-                              style="bottom: unset; height: 3px;"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <select
+                              class="c194"
+                              id="react-use-id-test-result-newsletter-signup-userrole"
+                              name="userRole"
                             >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 365.46 2.75"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                  fill="currentColor"
-                                />
-                                <path
-                                  d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                            <svg
-                              aria-hidden="true"
-                              class="c188"
-                              height="100%"
-                              name="box-border-right"
-                              style="top: unset; left: unset; width: 3px; height: 90%;"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 2.89 330.09"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M2.7 2.21c-.12-.76.36-2.63-1.15-2.13C.77.03-.13.13.01.85c.18 14.09.05 309.32.1 328.06 0 .15.3 1.07.28 1.18h2.5C2.85 303.49 2.6 17.84 2.7 2.21Z"
-                                  fill="currentColor"
-                                />
-                                <path
-                                  d="M1.87 1.07s.09.4.09 1.21c.11 3.3-.51-1.31-.09-1.21ZM1.25 44.05c-.47-.05-.49-1.38-.04-1.78.85-.76.2 1.8.04 1.78ZM.91 1.65c.08 2.14.7 4.95-.31 2.59-.13-.84.18-5.42.31-2.59ZM1.05 65.78c-.47-.05.11-8.31.56-9.46.4-1.07-.4 9.48-.56 9.46ZM1.76 54.4c-.47-.05-.76-.69.03-.65 1.14.07.13.67-.03.65Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                            <svg
-                              aria-hidden="true"
-                              class="c188"
-                              height="100%"
-                              name="box-border-bottom"
-                              style="top: unset; height: 3px; width: 100%;"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 365.46 2.75"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                  fill="currentColor"
-                                />
-                                <path
-                                  d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                            <svg
-                              aria-hidden="true"
-                              class="c188"
-                              height="100%"
-                              name="box-border-left"
-                              style="right: unset; width: 3px;"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 2.72 359.41"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M2.56 26.03c-.14-7.28.05-12.58 0-18.65C2.48 3.63 2.28.24 2.51 0H.02c.13 3.41 1.04 10.2.02 14.63-.1 9.52.02 311.42-.03 344.78h2.5c-.87-4.14.68-328.77.05-333.38Z"
-                                  fill="currentColor"
-                                />
-                                <path
-                                  d="M1.78 73.31c-.48-1.02.43-5.62.43-4.84.01.69.38 4.88-.43 4.84ZM1.56 142.12c1.14.07.13.67-.03.65-.47-.05-.76-.69.03-.65ZM1.65 196.21c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM2.48 27.51c0 .49 0 1.87-.11 3.12-.37 6.22-.42-1.85.11-3.12ZM2.01 65.86c.39.51.58 1.99-.23 1.95-.48-1.02-.25-2.56.23-1.95ZM1.02 132.42c-.47-.05-.49-1.39-.04-1.78.85-.76.2 1.8.04 1.78ZM.79 5.27c.07-1.81.65 1.18.59 5.76C1.27 17.8.69 6.25.79 5.27ZM.33 47.73c-.33-1.44.48-7.29.21-2.86-.12.57-.13 5.57-.21 2.86ZM.96 94.76c.28.95-.15 5.38-.31 5.36-.47-.05.08-6.12.31-5.36ZM1.23 100.12c-.07.9-.41 1.95-.58 1.95-.47-.05.64-2.73.58-1.95ZM1.38 144.69c.4-1.07-.4 9.48-.56 9.46-.47-.05.12-8.31.56-9.46ZM1.24 197.97c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM1.81 209.98c-.36-1.74-.84-7.52-.52-8.14l.5-1.57c.25.43.05 9.87.02 9.71ZM1.85 158.2c-.47-.05-.11-4.72.13-3.97.33 1.09.03 3.99-.13 3.97Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </div>
-                          <svg
-                            aria-hidden="true"
-                            class="c196 c197 c198 c201"
-                            height="100%"
-                            name="underline-1"
-                            width="100%"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <use
-                              xlink:href="/images/sprite/sprite.svg#underline-1"
-                            />
-                          </svg>
-                          <div
-                            class="c202 c46"
-                          >
-                            <label
-                              class="c190 c191 c192"
-                              color="black"
-                              id="react-use-id-test-result"
-                            >
-                              Role
-                            </label>
-                          </div>
-                          <button
-                            aria-expanded="false"
-                            aria-haspopup="listbox"
-                            aria-invalid="false"
-                            aria-labelledby="react-use-id-test-result react-use-id-test-result-button"
-                            class="c203 c204"
-                            data-testid="select"
-                            id="react-use-id-test-result-button"
-                            type="button"
-                          >
-                            <div
-                              class="c205 c41 c206"
-                            >
-                              <span
-                                class="c207 c208"
-                                data-testid="select-span"
-                                id="react-use-id-test-result-value"
-                                title="What describes you best?"
+                              <option
+                                class="c195"
+                                disabled=""
+                                value=""
                               >
                                 What describes you best?
+                              </option>
+                              <option
+                                class="c196"
+                                value="Teacher"
+                              >
+                                Teacher
+                              </option>
+                              <option
+                                class="c196"
+                                value="Parent"
+                              >
+                                Parent
+                              </option>
+                              <option
+                                class="c196"
+                                value="Student"
+                              >
+                                Pupil
+                              </option>
+                              <option
+                                class="c196"
+                                value="Other"
+                              >
+                                Other
+                              </option>
+                            </select>
+                            <div
+                              class="c197 c198 c199 c200"
+                            >
+                              <span
+                                class="c171"
+                              >
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954058/icons/pay71thmhhylj7z28sj1.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
                               </span>
                             </div>
-                            <span
-                              class="c20"
+                            <div
+                              class="c201 c198 c199 c202"
                             >
-                              <img
-                                alt=""
-                                class="c21"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </span>
-                          </button>
+                              <span
+                                class="c171"
+                              >
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
                         </div>
                         <div
-                          class="c209 c5"
+                          class="c203 c5"
                         >
                           <div
                             class="c6 grey-shadow"
@@ -6909,7 +6588,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                             class="c6 yellow-shadow"
                           />
                           <button
-                            class="c210 c19 internal-button"
+                            class="c204 c19 internal-button"
+                            type="submit"
                           >
                             <div
                               class="c9 c10"
@@ -6924,12 +6604,12 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </div>
                         <p
                           aria-live="assertive"
-                          class="c211"
+                          class="c205"
                           role="alert"
                         />
                         <p
                           aria-live="polite"
-                          class="c212"
+                          class="c206"
                         />
                       </form>
                     </div>
@@ -6941,14 +6621,14 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
         </div>
       </main>
       <footer
-        class="c213"
+        class="c207"
       >
         <div
-          class="c214 c46"
+          class="c208 c46"
         >
           <svg
             aria-hidden="true"
-            class="c215"
+            class="c209"
             height="100%"
             name="header-underline"
             width="100%"
@@ -6971,33 +6651,33 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
           id="site-footer"
         >
           <div
-            class="c216 c217"
+            class="c210 c211"
           >
             <div
-              class="c9 c218"
+              class="c9 c212"
             >
               <div
-                class="c9 c46 c219"
+                class="c9 c46 c213"
               >
                 <div
-                  class="c220 c97"
+                  class="c214 c97"
                 >
                   <h2
-                    class="c221"
+                    class="c215"
                   >
                     Pupils
                   </h2>
                   <div
-                    class="c134 c222"
+                    class="c134 c216"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/pupils/years"
                           variant="secondary"
                         >
@@ -7012,27 +6692,27 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c225"
+                  class="c219"
                 />
                 <div
-                  class="c220 c97"
+                  class="c214 c97"
                 >
                   <h2
-                    class="c221"
+                    class="c215"
                   >
                     Teachers
                   </h2>
                   <div
-                    class="c134 c222"
+                    class="c134 c216"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/teachers/eyfs/maths"
                           variant="secondary"
                         >
@@ -7044,10 +6724,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/lesson-planning"
                           variant="secondary"
                         >
@@ -7059,10 +6739,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="https://labs.thenational.academy"
                           target="_blank"
                           variant="secondary"
@@ -7073,10 +6753,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                             Aila, Oak’s AI lesson assistant
                           </span>
                           <div
-                            class="c226"
+                            class="c220"
                           >
                             <span
-                              class="c171 c227 c228"
+                              class="c171 c221 c222"
                             >
                               <img
                                 alt=""
@@ -7092,10 +6772,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/blog"
                           variant="secondary"
                         >
@@ -7111,27 +6791,27 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c219"
+                class="c9 c46 c213"
               >
                 <div
-                  class="c220 c97"
+                  class="c214 c97"
                 >
                   <h2
-                    class="c221"
+                    class="c215"
                   >
                     Oak
                   </h2>
                   <div
-                    class="c134 c222"
+                    class="c134 c216"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/"
                           variant="secondary"
                         >
@@ -7143,10 +6823,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/about-us/who-we-are"
                           variant="secondary"
                         >
@@ -7158,10 +6838,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/about-us/oaks-curricula"
                           variant="secondary"
                         >
@@ -7173,10 +6853,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/about-us/oaks-impact"
                           variant="secondary"
                         >
@@ -7188,10 +6868,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/about-us/get-involved"
                           variant="secondary"
                         >
@@ -7203,10 +6883,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/about-us/meet-the-team"
                           variant="secondary"
                         >
@@ -7218,11 +6898,11 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
                           aria-label="Careers (opens in a new tab)"
-                          class="c224"
+                          class="c218"
                           href="https://jobs.thenational.academy"
                           target="_blank"
                           variant="secondary"
@@ -7233,10 +6913,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                             Careers
                           </span>
                           <div
-                            class="c226"
+                            class="c220"
                           >
                             <span
-                              class="c171 c227 c228"
+                              class="c171 c221 c222"
                             >
                               <img
                                 alt=""
@@ -7252,10 +6932,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/contact-us"
                           variant="secondary"
                         >
@@ -7267,11 +6947,11 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
                           aria-label="Help (opens in a new tab)"
-                          class="c224"
+                          class="c218"
                           href="https://support.thenational.academy"
                           target="_blank"
                           variant="secondary"
@@ -7282,10 +6962,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                             Help
                           </span>
                           <div
-                            class="c226"
+                            class="c220"
                           >
                             <span
-                              class="c171 c227 c228"
+                              class="c171 c221 c222"
                             >
                               <img
                                 alt=""
@@ -7301,10 +6981,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/webinars"
                           variant="secondary"
                         >
@@ -7316,11 +6996,11 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
                           aria-label="Status (opens in a new tab)"
-                          class="c224"
+                          class="c218"
                           href="https://status.thenational.academy"
                           target="_blank"
                           variant="secondary"
@@ -7331,10 +7011,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                             Status
                           </span>
                           <div
-                            class="c226"
+                            class="c220"
                           >
                             <span
-                              class="c171 c227 c228"
+                              class="c171 c221 c222"
                             >
                               <img
                                 alt=""
@@ -7354,27 +7034,27 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c219"
+                class="c9 c46 c213"
               >
                 <div
-                  class="c220 c97"
+                  class="c214 c97"
                 >
                   <h2
-                    class="c221"
+                    class="c215"
                   >
                     Legal
                   </h2>
                   <div
-                    class="c134 c222"
+                    class="c134 c216"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/legal/terms-and-conditions"
                           variant="secondary"
                         >
@@ -7386,10 +7066,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/legal/privacy-policy"
                           variant="secondary"
                         >
@@ -7401,10 +7081,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/legal/cookie-policy"
                           variant="secondary"
                         >
@@ -7416,10 +7096,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <button
-                          class="c224"
+                          class="c218"
                         >
                           <span
                             class="c25"
@@ -7429,10 +7109,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </button>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/legal/copyright-notice"
                           variant="secondary"
                         >
@@ -7444,10 +7124,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/legal/accessibility-statement"
                           variant="secondary"
                         >
@@ -7459,10 +7139,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/legal/safeguarding-statement"
                           variant="secondary"
                         >
@@ -7474,10 +7154,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/legal/physical-activity-disclaimer"
                           variant="secondary"
                         >
@@ -7489,10 +7169,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/legal/complaints"
                           variant="secondary"
                         >
@@ -7504,10 +7184,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c223"
+                        class="c217"
                       >
                         <a
-                          class="c224"
+                          class="c218"
                           href="/legal/freedom-of-information-requests"
                           variant="secondary"
                         >
@@ -7523,16 +7203,16 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c219"
+                class="c9 c46 c213"
               >
                 <div
-                  class="c220 c229"
+                  class="c214 c223"
                 >
                   <div
                     class="c39"
                   >
                     <span
-                      class="c230"
+                      class="c224"
                     >
                       <img
                         alt=""
@@ -7546,10 +7226,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                     </span>
                   </div>
                   <div
-                    class="c231 c232"
+                    class="c225 c226"
                   >
                     <div
-                      class="c45 c46 c233 c234"
+                      class="c45 c46 c227 c228"
                     >
                       <a
                         aria-label="instagram for Oak National Academy"
@@ -7560,10 +7240,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c235 c52 icon-container"
+                            class="c229 c52 icon-container"
                           >
                             <div
-                              class="c236 shadow"
+                              class="c230 shadow"
                             />
                             <span
                               class="c20"
@@ -7587,7 +7267,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       </a>
                     </div>
                     <div
-                      class="c45 c46 c233 c234"
+                      class="c45 c46 c227 c228"
                     >
                       <a
                         aria-label="facebook for Oak National Academy"
@@ -7598,10 +7278,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c235 c52 icon-container"
+                            class="c229 c52 icon-container"
                           >
                             <div
-                              class="c236 shadow"
+                              class="c230 shadow"
                             />
                             <span
                               class="c20"
@@ -7625,7 +7305,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       </a>
                     </div>
                     <div
-                      class="c45 c46 c233 c234"
+                      class="c45 c46 c227 c228"
                     >
                       <a
                         aria-label="linkedIn for Oak National Academy"
@@ -7636,10 +7316,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c235 c52 icon-container"
+                            class="c229 c52 icon-container"
                           >
                             <div
-                              class="c236 shadow"
+                              class="c230 shadow"
                             />
                             <span
                               class="c20"
@@ -7667,7 +7347,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
               </div>
             </div>
             <span
-              class="c156 c237"
+              class="c156 c231"
               data-percy-hide="contents"
             >
               <img
@@ -7683,13 +7363,13 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
               />
             </span>
             <div
-              class="c238 c239"
+              class="c232 c233"
             >
               <div
-                class="c240 c241"
+                class="c234 c235"
               >
                 <div
-                  class="c45 c46 c233 c234"
+                  class="c45 c46 c227 c228"
                 >
                   <a
                     aria-label="instagram for Oak National Academy"
@@ -7700,10 +7380,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c235 c52 icon-container"
+                        class="c229 c52 icon-container"
                       >
                         <div
-                          class="c236 shadow"
+                          class="c230 shadow"
                         />
                         <span
                           class="c20"
@@ -7727,7 +7407,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                   </a>
                 </div>
                 <div
-                  class="c45 c46 c233 c234"
+                  class="c45 c46 c227 c228"
                 >
                   <a
                     aria-label="facebook for Oak National Academy"
@@ -7738,10 +7418,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c235 c52 icon-container"
+                        class="c229 c52 icon-container"
                       >
                         <div
-                          class="c236 shadow"
+                          class="c230 shadow"
                         />
                         <span
                           class="c20"
@@ -7765,7 +7445,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                   </a>
                 </div>
                 <div
-                  class="c45 c46 c233 c234"
+                  class="c45 c46 c227 c228"
                 >
                   <a
                     aria-label="linkedIn for Oak National Academy"
@@ -7776,10 +7456,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c235 c52 icon-container"
+                        class="c229 c52 icon-container"
                       >
                         <div
-                          class="c236 shadow"
+                          class="c230 shadow"
                         />
                         <span
                           class="c20"
@@ -7807,7 +7487,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                 class="c56"
               >
                 <span
-                  class="c230"
+                  class="c224"
                 >
                   <img
                     alt=""
@@ -7821,15 +7501,15 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                 </span>
               </div>
               <div
-                class="c220 c97"
+                class="c214 c97"
               >
                 <p
-                  class="c242"
+                  class="c236"
                 >
                   © Oak National Academy Limited, No 14174888
                 </p>
                 <p
-                  class="c243"
+                  class="c237"
                 >
                   1 Scott Place, 2 Hardman Street, Manchester, M3 3AA
                 </p>
@@ -7838,11 +7518,11 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
           </div>
         </nav>
         <span
-          class="c244"
+          class="c238"
         >
           <img
             alt=""
-            class="c245"
+            class="c239"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -7854,27 +7534,27 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
     </div>
     <div
       aria-live="polite"
-      class="c246 c247 c248"
+      class="c240 c241 c242"
     />
   </div>
   <div
-    class="c249"
+    class="c243"
   >
     <div
-      class="c250"
+      class="c244"
       data-testid="cookie-banner"
     >
       <div
-        class="c251"
+        class="c245"
       >
         <div
-          class="c252 c253"
+          class="c246 c247"
         >
           <div
-            class="c254"
+            class="c248"
           >
             <strong
-              class="c255"
+              class="c249"
             >
               This site uses cookies to store information on your computer.
             </strong>
@@ -7882,13 +7562,13 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
             Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
           </div>
           <div
-            class="c9 c256"
+            class="c9 c250"
           >
             <div
-              class="c257 c41"
+              class="c251 c41"
             >
               <button
-                class="c258"
+                class="c252"
                 data-testid="cookie-banner-reject"
                 type="button"
               >
