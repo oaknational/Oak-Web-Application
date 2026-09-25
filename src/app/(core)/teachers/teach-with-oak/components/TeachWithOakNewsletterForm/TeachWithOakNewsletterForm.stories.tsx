@@ -11,9 +11,5 @@ export default meta;
 export type Story = StoryObj<typeof TeachWithOakNewsletterForm>;
 
 export const Default: Story = {
-  args: {
-    id: "default-id",
-    onSubmit: async () => undefined,
-  },
-  render: (args) => <TeachWithOakNewsletterForm {...args} />,
+  render: () => <TeachWithOakNewsletterForm />,
 };
