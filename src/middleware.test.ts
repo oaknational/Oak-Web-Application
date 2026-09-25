@@ -1,6 +1,6 @@
 import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
 
-import middleware from "./middleware";
+import middleware, { config } from "./middleware";
 
 const mockClerkHandler = jest.fn(() => NextResponse.next());
 const mockClerkMiddleware = jest.fn(() => mockClerkHandler);
@@ -37,4 +37,13 @@ describe("middleware", () => {
     expect(mockClerkMiddleware).toHaveBeenCalled();
     expect(mockClerkHandler).toHaveBeenCalledWith(req, mockEvent);
   });
+
+  it.each(["__clerk_handshake", "__clerk_handshake_nonce"])(
+    "matches any page carrying a %s param so the handshake can be resolved",
+    (key) => {
+      expect(config.matcher).toContainEqual(
+        expect.objectContaining({ has: [{ type: "query", key }] }),
+      );
+    },
+  );
 });

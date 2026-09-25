@@ -14,4 +14,4 @@ inputs:
     description: "[optional] A link to further details on the status, e.g. the workflow run that caused it. Sensible default."
 runs:
   using: "node24"
-  main: "index.js"
+  main: "index.mjs"

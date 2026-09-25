@@ -756,7 +756,7 @@ export const OAK_PAGES: {
   }),
   "pupil-lesson": createOakPageConfig({
     pathPattern:
-      "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
+      "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/overview",
     analyticsPageName: "Lesson",
     configType: "internal",
     pageType: "pupil-lesson",
