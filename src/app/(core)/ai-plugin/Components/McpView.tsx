@@ -1,4 +1,5 @@
 "use client";
+import { Fragment } from "react";
 import {
   OakBox,
   OakFlex,
@@ -122,9 +123,14 @@ export const McpView = () => (
             </OakHeading>
             <OakP $font="body-2">
               {mcpSupport.bodyBefore}
-              <McpExternalLink href={mcpSupport.href}>
-                {mcpSupport.linkLabel}
-              </McpExternalLink>
+              {mcpSupport.links.map((link, index) => (
+                <Fragment key={link.label}>
+                  {index > 0 && mcpSupport.joiner}
+                  <McpExternalLink href={link.href}>
+                    {link.label}
+                  </McpExternalLink>
+                </Fragment>
+              ))}
               {mcpSupport.bodyAfter}
             </OakP>
           </OakFlex>
