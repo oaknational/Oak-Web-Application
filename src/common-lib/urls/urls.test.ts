@@ -1,4 +1,9 @@
-import { isExternalHref, resolveOakHref, ResolveOakHrefProps } from "./urls";
+import {
+  isExternalHref,
+  matchOakHref,
+  resolveOakHref,
+  ResolveOakHrefProps,
+} from "./urls";
 
 describe("urls.ts", () => {
   describe("isExternalHref()", () => {
@@ -306,6 +311,67 @@ describe("urls.ts", () => {
         subjectSlug: "maths",
       };
       expect(resolveOakHref(props)).toBe("/teachers/eyfs/maths");
+    });
+  });
+  describe("matchOakHref", () => {
+    it("matches a lesson overview route and returns its params", () => {
+      expect(
+        matchOakHref(
+          "/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48",
+          "lesson-overview",
+        ),
+      ).toMatchObject({
+        params: {
+          programmeSlug: "primary-ks2-maths",
+          unitSlug: "geometry-349",
+          lessonSlug: "semi-circles-48",
+        },
+      });
+    });
+
+    it("matches a blog listing category route", () => {
+      expect(
+        matchOakHref("/blog/categories/lessons", "blog-index"),
+      ).toMatchObject({
+        params: {
+          category: "lessons",
+        },
+      });
+    });
+
+    it("matches the root home route", () => {
+      expect(matchOakHref("/", "home")).toMatchObject({
+        params: {},
+      });
+    });
+
+    it("returns false when the url does not match the page pattern", () => {
+      expect(matchOakHref("/not-a-lesson", "lesson-overview")).toBe(false);
+      expect(matchOakHref("/blog/categories/lessons", "webinar-index")).toBe(
+        false,
+      );
+    });
+
+    it("infers the page-specific params type from the page literal", () => {
+      const match = matchOakHref(
+        "/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48",
+        "lesson-overview",
+      );
+
+      expect(match).not.toBe(false);
+
+      if (match) {
+        const programmeSlug: string = match.params.programmeSlug;
+        const unitSlug: string = match.params.unitSlug;
+        const lessonSlug: string = match.params.lessonSlug;
+
+        expect(programmeSlug).toBe("primary-ks2-maths");
+        expect(unitSlug).toBe("geometry-349");
+        expect(lessonSlug).toBe("semi-circles-48");
+
+        // @ts-expect-error - lesson overview params do not include a category slug, this should fail if there is no error
+        match.params.category;
+      }
     });
   });
 });
