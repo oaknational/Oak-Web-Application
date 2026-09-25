@@ -118,7 +118,7 @@ export type TeacherBrowseAnalyticsStore = {
     programmeAccessed: (props: {
       componentType: ComponentTypeValueType;
       navigationType?: NavigationTypeValueType;
-      activeFilters: ActiveFilters;
+      activeFilters?: ActiveFilters;
       filterType?: FilterTypeValueType;
       filterValue?: string;
     }) => void;
@@ -613,7 +613,7 @@ export const createTeacherBrowseAnalyticsStore = (
           navigationType: navigationType ?? "narrow",
           filterType,
           filterValue,
-          activeFilters,
+          activeFilters: activeFilters ?? {},
           googleLoginHint: null,
           clientEnvironment: null,
         });
