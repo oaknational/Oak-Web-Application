@@ -1,3 +1,58 @@
+# [1.1212.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1211.0...v1.1212.0) (2026-09-23)
+
+
+### Bug Fixes
+
+* recolour the provider icon on the ChatGPT tile so it's visible ([9b3cb40](https://github.com/oaknational/Oak-Web-Application/commit/9b3cb40a7a88b29b5623a2b444448eb7e6910c9f)), closes [#222222](https://github.com/oaknational/Oak-Web-Application/issues/222222)
+
+
+### Features
+
+* **ai-plugin:** bring copy in line with the live Figma design ([36dc6b5](https://github.com/oaknational/Oak-Web-Application/commit/36dc6b54ac69a85bb032c12686d9e5a83cfd2527))
+
+# [1.1211.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1210.0...v1.1211.0) (2026-09-23)
+
+
+### Features
+
+* **mcp:** advertise the MCP server in the api-catalog now it's GA ([1e22958](https://github.com/oaknational/Oak-Web-Application/commit/1e22958f2027ee906fd8aea5a251b0e9c981710c))
+
+# [1.1210.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1209.0...v1.1210.0) (2026-09-23)
+
+
+### Bug Fixes
+
+* **discovery:** make the inline MCP server card conformant and correct two measurements ([1f7b941](https://github.com/oaknational/Oak-Web-Application/commit/1f7b941571eec8f023ea6fa8fb3ad4be3fd7bcd8))
+* **discovery:** point the API entry at the catalogue that carries bulk ([8a7e64b](https://github.com/oaknational/Oak-Web-Application/commit/8a7e64b33d805a47dc34eedb72569cf01296c92b))
+
+
+### Features
+
+* **discovery:** publish an ARD manifest for Oak's agent resources ([57bc8eb](https://github.com/oaknational/Oak-Web-Application/commit/57bc8eb2d296f8eb68b2c2c66378e8484bedc821))
+
+# [1.1209.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1208.0...v1.1209.0) (2026-09-22)
+
+
+### Bug Fixes
+
+* **seo:** fail the build when robots.txt loses the Content Signals directive ([993b653](https://github.com/oaknational/Oak-Web-Application/commit/993b6539ed3642e4f90444037f952b981413d825))
+
+
+### Features
+
+* **seo:** declare Content Signals in robots.txt ([cbfc954](https://github.com/oaknational/Oak-Web-Application/commit/cbfc95428650f65f308920de081fd4db73fa23bb))
+
+# [1.1208.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1207.0...v1.1208.0) (2026-09-22)
+
+
+### Features
+
+* reduce spacing above cover page title ([b679275](https://github.com/oaknational/Oak-Web-Application/commit/b6792754fdb89168c13ae78611f13b30f4cc7cb2))
+* rename nc alignment filename ([52ba70f](https://github.com/oaknational/Oak-Web-Application/commit/52ba70ff49c07a3805811368402d89f72996b505))
+* update curriculum doc labels ([b1afcaa](https://github.com/oaknational/Oak-Web-Application/commit/b1afcaaacb451370e82fd4944fcceddc1b08d3af))
+* update curriculum plan cover page ([920c881](https://github.com/oaknational/Oak-Web-Application/commit/920c8812c6c58b7200689c57c4d1afeb8e96872c))
+* update curriculum plan file name ([5bb78fd](https://github.com/oaknational/Oak-Web-Application/commit/5bb78fde9d0504bae6f1edada30ec7d68540116f))
+
 # [1.1207.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1206.0...v1.1207.0) (2026-09-22)
 
 
