@@ -1,23 +1,27 @@
 import { FC, useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import {
+  OakBox,
   OakBoxProps,
+  OakFieldError,
+  OakFlex,
+  OakJauntyAngleLabel,
+  OakOption,
   OakP,
   OakPrimaryButton,
+  OakSelect,
 } from "@oaknational/oak-components";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import Input from "@/components/SharedComponents/Input";
 import OakError from "@/errors/OakError";
-import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 import errorReporter from "@/common-lib/error-reporter";
-import Form from "@/components/GenericPagesComponents/Form";
 import { createEmailSchema } from "@/common-lib/forms/emailSchema";
 import {
   USER_ROLES,
   UserRole,
 } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
+import { OakInputWithLabel } from "@/components/SharedComponents/OakInputWithLabel/OakInputWithLabel";
 
 const reportError = errorReporter("NewsletterForm.tsx");
 
@@ -72,90 +76,173 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
 }) => {
   const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const { register, handleSubmit, formState } = useForm<NewsletterFormValues>({
+  const [submitError, setSubmitError] = useState("");
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<NewsletterFormValues>({
     resolver: zodResolver(schema),
     mode: "onSubmit",
     reValidateMode: "onSubmit",
+    defaultValues: { name: "", email: "", userRole: "" },
   });
 
-  const { errors } = formState;
-
   return (
-    <Form
+    <OakFlex
+      as="form"
       noValidate
-      onSubmit={handleSubmit(async (data) => {
+      aria-describedby={descriptionId}
+      $flexDirection="column"
+      onSubmit={handleSubmit(async (values) => {
         setLoading(true);
-        setError("");
+        setSubmitError("");
         setSuccessMessage("");
         try {
-          const successMessage = await onSubmit(data);
-          setSuccessMessage(successMessage || "Thanks, that's been received!");
+          const message = await onSubmit(values);
+          setSuccessMessage(message || "Thanks, that's been received!");
         } catch (error) {
           if (error instanceof OakError) {
-            setError(error.message);
+            setSubmitError(error.message);
           } else {
             reportError(error);
-            setError("An unknown error occurred");
+            setSubmitError("An unknown error occurred");
           }
         } finally {
           setLoading(false);
         }
       })}
-      aria-describedby={descriptionId}
       $width={"100%"}
       {...boxProps}
     >
-      {/* TODO: replace with OakInputWithLabel when we have a corresponding Select component to replace DropdownSelect */}
-      <Input
-        id={`${id}-newsletter-signup-name`}
-        label="Name"
-        placeholder="Anna Smith"
-        required={true}
-        isRequired={true}
-        autoComplete="name"
-        {...register("name")}
-        error={errors.name?.message}
+      <Controller
+        name="name"
+        control={control}
+        render={({ field, fieldState }) => (
+          <OakBox
+            $width="100%"
+            $mb={fieldState.error ? "spacing-8" : "spacing-48"}
+          >
+            <OakInputWithLabel
+              id={`${id}-newsletter-signup-name`}
+              label="Name"
+              required
+              name={field.name}
+              value={field.value}
+              onChange={field.onChange}
+              onBlur={field.onBlur}
+              placeholder="Anna Smith"
+              autocomplete="name"
+              error={fieldState.error?.message}
+            />
+          </OakBox>
+        )}
       />
-      <Input
-        id={`${id}-newsletter-signup-email`}
-        label="Email"
-        autoComplete="email"
-        required={true}
-        isRequired={true}
-        placeholder="anna@amail.com"
-        {...register("email")}
-        error={errors.email?.message}
+      <Controller
+        name="email"
+        control={control}
+        render={({ field, fieldState }) => (
+          <OakBox
+            $width="100%"
+            $mb={fieldState.error ? "spacing-8" : "spacing-48"}
+          >
+            <OakInputWithLabel
+              id={`${id}-newsletter-signup-email`}
+              label="Email"
+              required
+              name={field.name}
+              value={field.value}
+              onChange={field.onChange}
+              onBlur={field.onBlur}
+              placeholder="anna@amail.com"
+              autocomplete="email"
+              error={fieldState.error?.message}
+            />
+          </OakBox>
+        )}
       />
-      <DropdownSelect
-        id={`${id}-newsletter-signup-userrole`}
-        $mt={"spacing-32"}
-        label="Role"
-        placeholder="What describes you best?"
-        listItems={userTypeOptions}
-        {...register("userRole")}
-        error={errors.userRole?.message}
+      <Controller
+        name="userRole"
+        control={control}
+        render={({ field, fieldState }) => (
+          <OakBox
+            $position="relative"
+            $width="100%"
+            $mt={errors.email ? "spacing-32" : "spacing-14"}
+            $mb="spacing-8"
+            role="group"
+            aria-labelledby={`${id}-role-label`}
+            aria-describedby={fieldState.error ? `${id}-role-error` : undefined}
+          >
+            <OakJauntyAngleLabel
+              id={`${id}-role-label`}
+              htmlFor={`${id}-newsletter-signup-userrole`}
+              as="label"
+              label="Role"
+              $color={fieldState.error ? "text-inverted" : "text-primary"}
+              $background={
+                fieldState.error ? "bg-error" : "bg-decorative5-main"
+              }
+              $font="heading-7"
+              $position="absolute"
+              $top="-20px"
+              $left="spacing-8"
+              $zIndex="in-front"
+              $borderRadius="border-radius-square"
+            />
+            <OakSelect
+              id={`${id}-newsletter-signup-userrole`}
+              name={field.name}
+              aria-label="Role"
+              $display="block"
+              value={field.value}
+              validity={fieldState.error ? "invalid" : undefined}
+              onChange={(event) => {
+                field.onChange(event.currentTarget.value);
+              }}
+            >
+              <OakOption asDefault value="" disabled>
+                What describes you best?
+              </OakOption>
+              {userTypeOptions.map((option) => (
+                <OakOption key={option.value} value={option.value}>
+                  {option.label}
+                </OakOption>
+              ))}
+            </OakSelect>
+            {fieldState.error && (
+              <OakBox id={`${id}-role-error`} role="alert" $mt="spacing-8">
+                <OakFieldError>{fieldState.error.message}</OakFieldError>
+              </OakBox>
+            )}
+          </OakBox>
+        )}
       />
-      <OakPrimaryButton $mt="spacing-24" width={"100%"} isLoading={loading}>
+      <OakPrimaryButton
+        $mt="spacing-0"
+        type="submit"
+        width="100%"
+        isLoading={loading}
+      >
         Sign up to the newsletter
       </OakPrimaryButton>
       <OakP
-        $mt={error ? "spacing-16" : "spacing-0"}
+        $mt={!submitError && successMessage ? "spacing-16" : "spacing-0"}
         $font={"body-3"}
         aria-live="assertive"
         role="alert"
         $color="text-error"
       >
-        {error}
+        {submitError}
       </OakP>
       <OakP
-        $mt={!error && successMessage ? "spacing-16" : "spacing-0"}
+        $mt={!submitError && successMessage ? "spacing-16" : "spacing-0"}
         $font={"body-3"}
         aria-live="polite"
       >
-        {!error && successMessage}
+        {!submitError && successMessage}
       </OakP>
-    </Form>
+    </OakFlex>
   );
 };
 

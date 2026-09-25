@@ -3,6 +3,7 @@
 import { ShortReads } from "./ShortReads/ShortReads";
 import { TeachWithOakDescription } from "./TeachWithOakDescription/TeachWithOakDescription";
 import { TeachWithOakHeader } from "./TeachWithOakHeader/TeachWithOakHeader";
+import TeachWithOakNewsletterForm from "./TeachWithOakNewsletterForm/TeachWithOakNewsletterForm";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import {
@@ -20,6 +21,7 @@ export const TeachWithOakView = () => {
         title={"Explore more guidance from Oak"}
         items={exploreItems}
       />
+      <TeachWithOakNewsletterForm />
     </>
   );
 };

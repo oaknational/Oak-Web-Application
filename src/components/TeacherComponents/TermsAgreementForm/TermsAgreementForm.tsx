@@ -26,6 +26,7 @@ import {
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { resolveOakHref } from "@/common-lib/urls";
+import { NEWSLETTER_COUNT } from "@/components/GenericPagesComponents/NewsletterForm/newsletterConstants";
 
 export type TermsAgreementFormProps = {
   form: {
@@ -174,9 +175,9 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                 $mb={"spacing-48"}
                 data-testid="newsletter-policy"
               >
-                Join over 200k teachers and get free resources and other helpful
-                content by email. Oak is free, and always will be. Unsubscribe
-                at any time. Read our{" "}
+                Join over {NEWSLETTER_COUNT} teachers and get free resources and
+                other helpful content by email. Oak is free, and always will be.
+                Unsubscribe at any time. Read our{" "}
                 <OakLink
                   href={resolveOakHref({
                     page: "legal",
