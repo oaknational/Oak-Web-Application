@@ -6688,6 +6688,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
             </div>
             <span
               class="c90 c189"
+              data-chromatic="ignore"
               data-percy-hide="contents"
             >
               <img

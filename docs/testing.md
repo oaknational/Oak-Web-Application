@@ -45,14 +45,16 @@ Before running Playwright tests locally, install browser binaries once per machi
 
 ### Location
 
-- E2E test files live under [src/tests/e2e](../src/tests/e2e/).
-- Current teacher flow tests live in [src/tests/e2e/teacher/lesson-page.spec.ts](../src/tests/e2e/teacher/lesson-page.spec.ts).
+- E2E test files live under [src/\_\_tests\_\_/e2e](../src/__tests__/e2e/).
+- Current teacher flow tests live in [src/\_\_tests\_\_/e2e/teacher/lesson-page.spec.ts](../src/__tests__/e2e/teacher/lesson-page.spec.ts).
 - Playwright config lives in [playwright.config.ts](../playwright.config.ts).
 
 ### Commands
 
-- `pnpm run test:e2e` runs all Playwright tests.
-- `pnpm run test:e2e -- src/tests/e2e/teacher/lesson-page.spec.ts` runs a single spec.
+The following use `--project=e2e-desktop` and therefore do not run any visual tests, see [Visual Snapshot Tests (Playwrihgt + Chromatic)](#visual-snapshot-tests-playwright--chromatic).
+
+- `pnpm run test:e2e` runs all end to end Playwright tests.
+- `pnpm run test:e2e -- src/__tests__/e2e/teacher/lesson-page.spec.ts` runs a single spec.
 - `pnpm run test:e2e:ci` runs Playwright with the HTML report enabled.
 
 ### Local Execution
@@ -66,10 +68,28 @@ Before running Playwright tests locally, install browser binaries once per machi
 - The shared Playwright action caches Chromium binaries (keyed by OS, architecture, and Playwright version), installs required system dependencies, and uploads the HTML report artifact.
 - Retries are configured as `1` in CI and `0` locally.
 
+## Visual Snapshot Tests (Playwright + Chromatic)
+
+- Visual snapshot specs are executed via Playwright and should be tagged with `@visual`.
+- Current example: [src/\_\_tests\_\_/visual/pages.spec.ts](../src/__tests__/visual/pages.spec.ts).
+- Use `takeSnapshot(page, name, testInfo)` from `@chromatic-com/playwright` inside those specs.
+- `playwright.config.ts` keeps `disableAutoSnapshot: true`, so snapshots are only captured where `takeSnapshot` is called.
+
+Required environment variables for Chromatic runs:
+
+- `CHROMATIC_PROJECT_TOKEN`
+- `BASE_URL` (target deployment URL)
+- `VERCEL_AUTOMATION_BYPASS_SECRET` (for protected Vercel previews)
+
+### Commands
+
+- `pnpm run test:visual` runs only Playwright tests tagged with `@visual`.
+- `pnpm run test:chromatic` runs visual specs and then uploads snapshots to Chromatic.
+
 ### Jest Separation
 
 - Unit tests run with Jest and E2E tests run with Playwright.
-- Jest ignores `src/tests/e2e/` so Playwright specs are not run during `pnpm run test:ci`.
+- Jest ignores `src/\_\_tests\_\_/e2e/` so Playwright specs are not run during `pnpm run test:ci`.
 
 ## Storybook
 
@@ -77,10 +97,11 @@ Before running Playwright tests locally, install browser binaries once per machi
 - Storybook test runner can be used to check that all stories compile without errors using:
   1. `pnpm exec playwright install`
   2. `pnpm run test:storybook`
+- These tests will also run in CI.
 
 ## Percy
 
-Visual regression testing of deployed apps.
+Visual regression testing of deployed apps via URL discovery (`percy.snapshot.list.js`) and deployment-event workflows.
 
 ### When They Run
 

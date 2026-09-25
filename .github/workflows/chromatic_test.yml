@@ -1,0 +1,92 @@
+name: Chromatic Visual Regression Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: chromatic-test-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  chromatic:
+    name: Chromatic
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@08c4be7e2e672a47d11bd04269e27e5f3e8529cb
+        with:
+          cache: true
+
+      - name: Setup node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --ignore-scripts --verbose
+
+      - name: Get Playwright version
+        id: playwright-version
+        run: |
+          PLAYWRIGHT_VERSION="$(node -p "require('./node_modules/playwright/package.json').version")"
+          echo "version=${PLAYWRIGHT_VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-chromium-webkit-${{ steps.playwright-version.outputs.version }}
+
+      - name: Install Playwright system dependencies
+        run: ./node_modules/.bin/playwright install-deps chromium webkit
+
+      - name: Install Playwright browser
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: ./node_modules/.bin/playwright install chromium webkit
+
+      - name: Wait for Vercel deployment
+        id: deployment
+        uses: vercel/wait-for-deployment-action@0e2b0c5c5cce31f1648108aeec56467187aca037
+        with:
+          environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}
+          project-slug: oak-web-application-website
+          require-deployment-id: false
+          timeout: 1200
+
+      - name: Run Playwright visual tests
+        id: playwright-visual
+        run: pnpm run test:visual
+        continue-on-error: true
+        env:
+          BASE_URL: ${{ steps.deployment.outputs.deployment-url }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+
+      - name: Run Chromatic
+        uses: chromaui/action@2a0b63f30233c48591844a46d451b9cf68128186
+        with:
+          playwright: true
+          # onlyChanged: true
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        env:
+          CHROMATIC_ARCHIVE_LOCATION: ./test-results
+          CHROMATIC_BRANCH: ${{ github.event.pull_request.head.ref || github.ref_name }}
+          CHROMATIC_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          CHROMATIC_SLUG: ${{ github.repository }}
+
+      - name: Fail if visual tests failed
+        if: steps.playwright-visual.outcome == 'failure'
+        run: exit 1
