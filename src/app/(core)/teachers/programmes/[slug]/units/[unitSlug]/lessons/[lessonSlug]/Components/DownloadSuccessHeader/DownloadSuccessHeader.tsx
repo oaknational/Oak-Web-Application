@@ -21,33 +21,51 @@ type DownloadSuccessHeaderProps = {
   href?: string;
   onBackClick?: () => void;
   backgroundColorLevel?: HeaderProps["backgroundColorLevel"];
-  returnTo: "lesson" | "downloads";
+  /** When omitted no back link is rendered */
+  returnTo?: "lesson" | "downloads";
+  showFontInstructions?: boolean;
+  layoutVariant?: "compact" | "large";
+  heroImage?: string | null;
 };
 
 export function DownloadSuccessHeader(
   props: Readonly<DownloadSuccessHeaderProps>,
 ) {
+  const {
+    returnTo,
+    showFontInstructions = true,
+    layoutVariant = "compact",
+    heroImage = null,
+  } = props;
   /** We only show the help message if the user has consented to the Gleap cookie */
   const { getConsent } = useOakConsent();
   const cookiesNotAccepted = getConsent(ServicePolicyMap.GLEAP) === "denied";
 
-  return (
-    <Header
-      layoutVariant="compact"
-      useSubduedBackground
-      headerSlot={<BackLinkButton {...props} />}
-      heading="Thanks for downloading!"
-      summary={
-        <OakFlex $flexDirection="column" $gap={"spacing-24"}>
-          <OakP $font={"body-2"}>
-            We hope you find the resources useful. Click the question mark in
-            the bottom-right corner to share your feedback.{" "}
-          </OakP>
+  const sharedProps: HeaderProps = {
+    useSubduedBackground: true,
+    headerSlot: returnTo ? (
+      <BackLinkButton {...props} returnTo={returnTo} />
+    ) : undefined,
+    heading: "Thanks for downloading!",
+    summary: (
+      <OakFlex $flexDirection="column" $gap={"spacing-24"}>
+        <OakP $font={"body-2"}>
+          e We hope you find the resources useful. Click the question mark in
+          the bottom-right corner to share your feedback.{" "}
+        </OakP>
+        {showFontInstructions && (
           <InstallFontsInstructions showHelpMessage={!cookiesNotAccepted} />
-        </OakFlex>
-      }
-      backgroundColorLevel={props.backgroundColorLevel}
-    />
+        )}
+      </OakFlex>
+    ),
+    backgroundColorLevel: props.backgroundColorLevel,
+  };
+
+  // Header's props are a discriminated union, so each variant needs its own element
+  return layoutVariant === "large" ? (
+    <Header {...sharedProps} layoutVariant="large" heroImage={heroImage} />
+  ) : (
+    <Header {...sharedProps} layoutVariant="compact" />
   );
 }
 
@@ -81,7 +99,13 @@ function InstallFontsInstructions({
   );
 }
 
-function BackLinkButton(props: Readonly<DownloadSuccessHeaderProps>) {
+function BackLinkButton(
+  props: Readonly<
+    DownloadSuccessHeaderProps & {
+      returnTo: NonNullable<DownloadSuccessHeaderProps["returnTo"]>;
+    }
+  >,
+) {
   return (
     <OakBox>
       <OakTertiaryInvertedButton

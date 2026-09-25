@@ -1,12 +1,8 @@
-import z from "zod";
+"use client";
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 
-export const teachWithOakParams = z.object({
-  returnTo: z.string().regex(/^\/(?!\/)/),
-  lessonName: z.string(),
-  unitName: z.string(),
-});
+import { teachWithOakParams } from "./parseReturnToLessonParams";
 
 export const getReturnToLessonProps = ({
   query,

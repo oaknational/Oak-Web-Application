@@ -21,6 +21,7 @@ jest.mock("next/navigation", () => ({
     throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
   }),
   usePathname: jest.fn(),
+  useRouter: jest.fn(() => ({ replace: jest.fn() })),
   useSearchParams: jest.fn(),
 }));
 

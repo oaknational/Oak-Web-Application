@@ -7,6 +7,9 @@ import {
   OakPrimaryButton,
 } from "@oaknational/oak-components";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+import { useReturnToLessonProps } from "../../getReturnToLessonLink";
 
 import { TeachWithOakResourceCards } from "./TeachWithOakResourceCards";
 
@@ -20,6 +23,7 @@ import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnb
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { TeachWithOakShortReadsDownloads } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/teachWithOakShortReads.schema";
+import { waitForLinkCallback } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 
 export const TeachWithOakDownloadView = ({
   resources,
@@ -30,6 +34,8 @@ export const TeachWithOakDownloadView = ({
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
   const [apiError, setApiError] = useState<string | null>(null);
+  const router = useRouter();
+  const returnToLessonProps = useReturnToLessonProps();
 
   const {
     form,
@@ -75,12 +81,20 @@ export const TeachWithOakDownloadView = ({
         setEmailInLocalStorage("");
       }
 
-      setCurrentToastProps({
-        message: "Download started. This may take a few minutes",
-        variant: "success",
-        autoDismiss: true,
-        showClose: true,
-        showIcon: true,
+      waitForLinkCallback(() => {
+        setCurrentToastProps({
+          message: "Download started. This may take a few minutes",
+          variant: "success",
+          autoDismiss: true,
+          showClose: true,
+          showIcon: true,
+        });
+        router.replace(
+          resolveOakHref({
+            page: "teach-with-oak-download-success",
+            ...(returnToLessonProps && { query: returnToLessonProps }),
+          }),
+        );
       });
 
       // TD: Tracking

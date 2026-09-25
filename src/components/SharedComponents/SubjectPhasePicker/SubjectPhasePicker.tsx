@@ -1,7 +1,8 @@
 import { useState, useId, useRef, useTransition } from "react";
 import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
-import { useRouter } from "next/router";
+import { useRouter as usePagesRouter } from "next/compat/router";
+import { useRouter as useAppRouter } from "next/navigation";
 import {
   OakBox,
   OakFlex,
@@ -1213,7 +1214,9 @@ const SubjectPhasePicker = ({
   const subjectPickerButton = useRef<HTMLButtonElement>(null);
   const subjectPickerButtonDesktopContainer = useRef<HTMLDivElement>(null);
   const subjectPickerButtonMobileContainer = useRef<HTMLDivElement>(null);
-  const router = useRouter();
+  // `null` when rendered from the app router, where `appRouter` is used instead
+  const pagesRouter = usePagesRouter();
+  const appRouter = useAppRouter();
 
   const ks4OptionErrorId = useId();
   const phaseErrorId = useId();
@@ -1410,7 +1413,11 @@ const SubjectPhasePicker = ({
     }
 
     startTransition(() => {
-      router.push({ pathname: newPathname }).finally(() => {
+      const navigation = pagesRouter
+        ? pagesRouter.push({ pathname: newPathname })
+        : Promise.resolve(appRouter.push(newPathname));
+
+      navigation.finally(() => {
         setIsNavigating(false);
         setShowPhases(false);
       });
