@@ -20,7 +20,7 @@ describe("ImplementationGuideCallout", () => {
 
     // Check if the message is rendered correctly
     const message = getByText(
-      "Leading your school's use of Oak's maths primary curriculum? Download our implementation toolkit.",
+      "Leading curriculum change for primary maths? Download our implementation toolkit.",
     );
     expect(message).toBeInTheDocument();
   });
@@ -40,7 +40,7 @@ describe("ImplementationGuideCallout", () => {
 
     // Check if the message is rendered correctly
     const message = getByText(
-      "Leading your school's use of Oak's English secondary curriculum? Download our implementation toolkit.",
+      "Leading curriculum change for secondary English? Download our implementation toolkit.",
     );
     expect(message).toBeInTheDocument();
   });
@@ -60,7 +60,7 @@ describe("ImplementationGuideCallout", () => {
 
     // Check if the message is rendered correctly
     const message = getByText(
-      "Leading your school's use of Oak's RSHE (PSHE) primary curriculum? Download our implementation toolkit.",
+      "Leading curriculum change for primary RSHE (PSHE)? Download our implementation toolkit.",
     );
     expect(message).toBeInTheDocument();
   });
@@ -79,7 +79,7 @@ describe("ImplementationGuideCallout", () => {
     );
 
     const message = queryByText(
-      "Leading your school's use of Oak's RSHE (PSHE) primary curriculum? Download our implementation toolkit.",
+      "Leading curriculum change for primary RSHE (PSHE)? Download our implementation toolkit.",
     );
     expect(message).not.toBeInTheDocument();
   });

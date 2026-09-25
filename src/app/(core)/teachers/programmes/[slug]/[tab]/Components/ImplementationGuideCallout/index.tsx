@@ -53,7 +53,7 @@ export function ImplementationGuideCallout({
           variant="regular"
           canDismiss={true}
           onDismiss={() => setBannerDismissed(true)}
-          message={`Leading your school's use of Oak's ${subjectTitleWithCase(subjectTitle)} ${phaseTitle.toLowerCase()} curriculum? Download our implementation toolkit.`}
+          message={`Leading curriculum change for ${phaseTitle.toLowerCase()} ${subjectTitleWithCase(subjectTitle)}? Download our implementation toolkit.`}
           cta={
             <OakBox $whiteSpace="nowrap">
               <OakLink

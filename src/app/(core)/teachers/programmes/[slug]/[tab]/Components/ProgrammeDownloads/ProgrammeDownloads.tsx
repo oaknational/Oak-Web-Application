@@ -322,7 +322,7 @@ export const ProgrammeDownloads = ({
               </OakTertiaryInvertedButton>
             )}
             <OakHeading tag="h2" $font={"heading-4"}>
-              Download curriculum resources
+              Download curriculum guidance
             </OakHeading>
             {isLoading ? (
               <OakBox $minHeight="spacing-480">
