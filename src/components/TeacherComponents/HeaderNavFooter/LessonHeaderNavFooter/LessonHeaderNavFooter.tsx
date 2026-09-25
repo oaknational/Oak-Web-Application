@@ -8,6 +8,9 @@ import {
   BaseHeaderNavFooterProps,
   PrevNextButtons,
 } from "@/components/TeacherComponents/HeaderNavFooter/HeaderNavFooterShared";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
+import { getLessonAnalyticsProperties } from "@/context/TeacherBrowseAnalytics/utils/getAnalyticsProperties";
 
 export type LessonHeaderNavFooterProps = Omit<
   BaseHeaderNavFooterProps,
@@ -17,6 +20,8 @@ export type LessonHeaderNavFooterProps = Omit<
 };
 
 export const LessonHeaderNavFooter = (props: LessonHeaderNavFooterProps) => {
+  const { unitAccessed } = useTeacherBrowseAnalytics((store) => store.track);
+  const { lessonState } = useProgrammeState();
   return (
     <OakFlex
       $background={`bg-decorative${props.backgroundColorLevel}-subdued`}
@@ -38,6 +43,17 @@ export const LessonHeaderNavFooter = (props: LessonHeaderNavFooterProps) => {
             iconName="list"
             element="a"
             href={props.viewHref}
+            onClick={() => {
+              if (lessonState) {
+                const lessonAnalyticsProps =
+                  getLessonAnalyticsProperties(lessonState);
+                unitAccessed({
+                  ...lessonAnalyticsProps,
+                  componentType: "view_all_button",
+                  navigationType: "broaden",
+                });
+              }
+            }}
           >
             View unit
           </OakTertiaryInvertedButton>

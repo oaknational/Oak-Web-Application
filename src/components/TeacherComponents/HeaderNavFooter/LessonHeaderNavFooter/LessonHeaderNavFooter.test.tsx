@@ -5,7 +5,7 @@ import {
   LessonHeaderNavFooterProps,
 } from "./LessonHeaderNavFooter";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const defaultProps: LessonHeaderNavFooterProps = {
   backgroundColorLevel: 1,
@@ -13,7 +13,7 @@ const defaultProps: LessonHeaderNavFooterProps = {
   downloadButton: <button>download</button>,
 };
 
-const render = renderWithTheme;
+const render = renderWithProviders();
 
 describe("LessonHeaderNavFooter", () => {
   it("Renders the correct text for the view href", () => {
@@ -45,7 +45,7 @@ describe("LessonHeaderNavFooter", () => {
       />,
     );
 
-    const actionButton = screen.getByRole("button");
+    const actionButton = screen.getByRole("button", { name: "action button" });
     expect(actionButton).toBeInTheDocument();
     expect(actionButton).toHaveTextContent("action button");
   });
