@@ -22,6 +22,7 @@ type AnalyticsServices = {
 const SEND_INSTANTLY_EVENTS: ReadonlySet<string> = new Set<string>([
   "User Onboarding Completed",
   "Teach With Oak Accessed",
+  "Lesson Accessed",
 ]);
 /**
  * getAvoBridge returns the bridge between Avo and our analytics services.
