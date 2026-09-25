@@ -20,7 +20,7 @@ import { OwaImageProps } from "@/components/SharedComponents/OwaImage";
 const IllustrationPanel = styled(OakBox)<{ $showImageOverflow: boolean }>`
   height: ${({ $showImageOverflow }) =>
     $showImageOverflow ? "auto" : "410px"};
-  width: auto;
+  width: ${({ $showImageOverflow }) => ($showImageOverflow ? "100%" : "auto")};
   flex: ${({ $showImageOverflow }) =>
     $showImageOverflow ? "1 1 0" : "0 1 auto"};
   @media (max-width: 920px) {
@@ -120,7 +120,7 @@ export function AboutSharedHeader({
   $background,
 }: Readonly<AboutSharedHeaderProps>) {
   return (
-    <OakBox $background={$background}>
+    <OakBox $background={$background} $width="100%">
       <NewGutterMaxWidth>
         <OakFlex
           $minWidth="spacing-0"
