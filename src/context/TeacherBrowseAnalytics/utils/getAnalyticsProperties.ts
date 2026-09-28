@@ -60,6 +60,6 @@ export const getLessonAnalyticsProperties = (
     lessonReleaseCohort: "2023-2026",
     releaseGroup: "2023",
     yearGroupName: programmeState.yearGroupTitle,
-    yearGroupSlug: `year-${programmeState.year}`,
+    yearGroupSlug: programmeState.yearGroupSlug,
   };
 };

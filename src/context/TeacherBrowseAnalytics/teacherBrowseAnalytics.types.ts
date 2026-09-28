@@ -36,6 +36,7 @@ export type CoreProgrammeState = {
 // Expanded programme factor state used at unit and lesson browse levels
 export type ProgrammeFactorState = CoreProgrammeState & {
   year: ProgrammeFields["year"];
+  yearGroupSlug: ProgrammeFields["year_slug"];
   yearGroupTitle: ProgrammeFields["year_description"];
   keyStageSlug: ProgrammeFields["keystage_slug"];
   keyStageTitle: ProgrammeFields["keystage_description"];

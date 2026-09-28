@@ -51,7 +51,7 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
   const trackUnitAccessed = (state: ProgrammeStateUnit) => {
     const {
       yearGroupTitle,
-      year,
+      yearGroupSlug,
       examBoardTitle,
       pathwayTitle,
       subjectSlug,
@@ -68,7 +68,7 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
       subjectTitle: subjectTitle,
       subjectSlug: subjectSlug,
       yearGroupName: yearGroupTitle,
-      yearGroupSlug: year,
+      yearGroupSlug: yearGroupSlug,
       tierName: tierTitle,
       examBoard: examBoardTitle,
       pathway: pathwayTitle,
@@ -79,7 +79,7 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
     const {
       keyStageSlug,
       yearGroupTitle,
-      year,
+      yearGroupSlug,
       examBoardTitle,
       pathwayTitle,
       tierTitle,
@@ -95,7 +95,7 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
       keyStageSlug,
       keyStageTitle: getKeyStageTitle(keyStageSlug),
       yearGroupName: yearGroupTitle,
-      yearGroupSlug: year,
+      yearGroupSlug: yearGroupSlug,
       tierName: tierTitle,
       examBoard: examBoardTitle,
       pathway: pathwayTitle,
