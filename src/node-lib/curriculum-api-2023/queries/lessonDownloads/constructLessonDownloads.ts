@@ -9,8 +9,6 @@ import {
   rawSyntheticUVLessonSchema,
 } from "./rawSyntheticUVLesson.schema";
 
-import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
-
 const constructLessonDownloads = ({
   downloads,
   additionalFiles,
@@ -39,9 +37,7 @@ const constructLessonDownloads = ({
     additionalFiles,
     programmeSlug: parsedCurrentLesson.programme_slug,
     keyStageSlug: parsedCurrentLesson.programme_fields.keystage_slug,
-    keyStageTitle: toSentenceCase(
-      parsedCurrentLesson.programme_fields.keystage_description,
-    ),
+    keyStageTitle: parsedCurrentLesson.programme_fields.keystage_description,
     pathwayTitle: parsedCurrentLesson.programme_fields.pathway_description,
     lessonSlug: parsedCurrentLesson.lesson_slug,
     lessonTitle: parsedCurrentLesson.lesson_data.title,
@@ -60,8 +56,11 @@ const constructLessonDownloads = ({
     examBoardSlug: parsedCurrentLesson.programme_fields.examboard_slug ?? null,
     examBoardTitle: parsedCurrentLesson.programme_fields.examboard,
     tierTitle: parsedCurrentLesson.programme_fields.tier_description,
+    tierSlug: parsedCurrentLesson.programme_fields.tier_slug,
     actions: keysToCamelCase(parsedCurrentLesson.actions),
     yearGroupTitle: parsedCurrentLesson.programme_fields.year_description,
+    yearGroupSlug: parsedCurrentLesson.programme_fields.year_slug,
+    year: parsedCurrentLesson.programme_fields.year,
   };
 
   const unitLessonsArray = parsedBrowseData.map((lesson) => {

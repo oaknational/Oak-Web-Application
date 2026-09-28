@@ -28,6 +28,7 @@ import { PortableTextWithDefaults } from "@/components/SharedComponents/Portable
 import { resolveInternalHref } from "@/utils/portableText/resolveInternalHref";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
   lastUpdatedAt: string;
@@ -108,49 +109,54 @@ const customPolicyComponent: PortableTextComponents = {
 
 const Policies: NextPage<PolicyPageProps> = ({ policy, topNav }) => {
   return (
-    <Layout
-      seoProps={getSeoProps({
-        ...policy.seo,
-        title: policy.seo?.title || policy.title,
-      })}
-      $background={"bg-primary"}
-      topNavProps={topNav}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
     >
-      <OakMaxWidth
-        $ph={["spacing-16", "spacing-24"]}
-        $maxWidth={["spacing-640"]}
+      <Layout
+        seoProps={getSeoProps({
+          ...policy.seo,
+          title: policy.seo?.title || policy.title,
+        })}
+        $background={"bg-primary"}
+        topNavProps={topNav}
       >
-        <OakGrid>
-          <OakGridArea $colSpan={[12, 12, 12]}>
-            <OakHeading
-              $mt={"spacing-80"}
-              $mb={"spacing-32"}
-              $font={"heading-3"}
-              tag={"h1"}
-            >
-              {policy.title}
-            </OakHeading>
-            <OakP $mb={"spacing-16"} $font={"body-3"}>
-              Updated{" "}
-              <time dateTime={policy.lastUpdatedAt}>
-                {new Date(policy.lastUpdatedAt).toLocaleDateString("en-GB", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                })}
-              </time>
-            </OakP>
-            <OakTypography>
-              <PortableTextWithDefaults
-                value={policy.bodyPortableText}
-                components={customPolicyComponent}
-                withoutDefaultComponents
-              />
-            </OakTypography>
-          </OakGridArea>
-        </OakGrid>
-      </OakMaxWidth>
-    </Layout>
+        <OakMaxWidth
+          $ph={["spacing-16", "spacing-24"]}
+          $maxWidth={["spacing-640"]}
+        >
+          <OakGrid>
+            <OakGridArea $colSpan={[12, 12, 12]}>
+              <OakHeading
+                $mt={"spacing-80"}
+                $mb={"spacing-32"}
+                $font={"heading-3"}
+                tag={"h1"}
+              >
+                {policy.title}
+              </OakHeading>
+              <OakP $mb={"spacing-16"} $font={"body-3"}>
+                Updated{" "}
+                <time dateTime={policy.lastUpdatedAt}>
+                  {new Date(policy.lastUpdatedAt).toLocaleDateString("en-GB", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </time>
+              </OakP>
+              <OakTypography>
+                <PortableTextWithDefaults
+                  value={policy.bodyPortableText}
+                  components={customPolicyComponent}
+                  withoutDefaultComponents
+                />
+              </OakTypography>
+            </OakGridArea>
+          </OakGrid>
+        </OakMaxWidth>
+      </Layout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 

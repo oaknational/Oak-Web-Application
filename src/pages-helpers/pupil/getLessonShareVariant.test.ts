@@ -26,4 +26,19 @@ describe("getLessonShareVariantSlug", () => {
   it("returns null when no variant matches exactly", () => {
     expect(getLessonShareVariantSlug(["overview", "intro"])).toBeNull();
   });
+
+  it("returns the matching slug from selected lesson sections and year group", () => {
+    expect(
+      getLessonShareVariantSlug(["overview", "intro", "starter-quiz"], true),
+    ).toBe("starter-quiz-only-no-year");
+  });
+
+  it("returns full lesson slug when all sections and year group", () => {
+    expect(
+      getLessonShareVariantSlug(
+        ["overview", "intro", "starter-quiz", "video", "exit-quiz"],
+        true,
+      ),
+    ).toBe("full-no-year");
+  });
 });

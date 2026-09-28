@@ -1,6 +1,8 @@
 import userEvent from "@testing-library/user-event";
 import { waitFor } from "@testing-library/react";
 
+import { CurrentSelection } from "./SubjectPhasePicker";
+
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -12,13 +14,12 @@ jest.mock("@/hooks/useMediaQuery.tsx", () => ({
 
 const render = renderWithProviders();
 
-const curriculumVisualiserAccessed = jest.fn();
+const programmeAccessed = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      curriculumVisualiserAccessed: (...args: unknown[]) =>
-        curriculumVisualiserAccessed(...args),
+      programmeAccessed: (...args: unknown[]) => programmeAccessed(...args),
     },
   }),
 }));
@@ -228,7 +229,7 @@ describe("Component - Mobile subject phase picker", () => {
     });
 
     test("user cannot click view curriculum button until a valid phase selection is made", async () => {
-      const { getByTitle, findAllByTitle, findByTitle, getByTestId } = render(
+      const { getByTitle, findAllByTitle, getByTestId } = render(
         <SubjectPhasePicker {...curriculumPhaseOptions} />,
       );
 
@@ -248,7 +249,9 @@ describe("Component - Mobile subject phase picker", () => {
       const viewButton = getByTestId("mobile-phase-picker-confirm-button");
       expect(viewButton).toBeDisabled();
 
-      await userEvent.click(await findByTitle("Secondary"));
+      const secondaryButton = getByTitle("Secondary");
+
+      await userEvent.click(secondaryButton);
       expect(viewButton).toBeDisabled();
 
       const ks4Options = await findAllByTitle("AQA");
@@ -409,7 +412,7 @@ describe("Component - Mobile subject phase picker", () => {
         expect(getByTestId("mobile-phase-picker-heading")).toBeInTheDocument();
       });
 
-      const secondaryButton = await getByTitle("Secondary");
+      const secondaryButton = getByTitle("Secondary");
       expect(secondaryButton).toBeInTheDocument();
       if (!secondaryButton) {
         throw new Error("Secondary button not found");
@@ -450,7 +453,7 @@ describe("Component - Mobile subject phase picker", () => {
         expect(getByTestId("mobile-phase-picker-heading")).toBeInTheDocument();
       });
 
-      const secondaryButton = await getByTitle("Secondary");
+      const secondaryButton = getByTitle("Secondary");
       expect(secondaryButton).toBeInTheDocument();
       if (!secondaryButton) {
         throw new Error("Secondary button not found");
@@ -494,7 +497,7 @@ describe("Component - Mobile subject phase picker", () => {
         expect(getByTestId("mobile-phase-picker-heading")).toBeInTheDocument();
       });
 
-      const secondaryButton = await getByTitle("Secondary");
+      const secondaryButton = getByTitle("Secondary");
       expect(secondaryButton).toBeInTheDocument();
       if (!secondaryButton) {
         throw new Error("Secondary button not found");
@@ -537,7 +540,7 @@ describe("Component - Mobile subject phase picker", () => {
         expect(getByTestId("mobile-phase-picker-heading")).toBeInTheDocument();
       });
 
-      const secondaryButton = await getByTitle("Secondary");
+      const secondaryButton = getByTitle("Secondary");
       expect(secondaryButton).toBeInTheDocument();
       if (!secondaryButton) {
         throw new Error("Secondary button not found");
@@ -561,12 +564,11 @@ describe("Component - Mobile subject phase picker", () => {
     });
 
     test("populates lot picker with the correct subject and phase selections", () => {
-      const currentSelection = {
+      const currentSelection: CurrentSelection = {
         subject: {
           title: "English",
           slug: "english",
           phases: [],
-          cycle: "1",
           ks4_options: [{ title: "AQA", slug: "aqa" }],
           keystages: [
             { title: "KS1", slug: "ks1" },

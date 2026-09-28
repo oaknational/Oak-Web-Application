@@ -1,15 +1,12 @@
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
-import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import { CurriculumOverviewTabData } from "@/components/CurriculumComponents/OverviewTab/OverviewTab";
+import { mockVideoAsset } from "@/__tests__/__helpers__/cms";
 
 export const curriculumOverviewTabFixture = (
-  partial?: Partial<CurriculumOverviewTabData>,
-): CurriculumOverviewTabData => {
+  partial?: Partial<{ curriculumCMSInfo: CurriculumOverviewSanityData }>,
+) => {
   return {
-    subjectTitle: curriculumOverviewMVFixture().subjectTitle,
     curriculumCMSInfo: curriculumOverviewCMSFixture(),
-    curriculumSelectionSlugs: curriculumOverviewSlugsFixture(),
     ...partial,
   };
 };
@@ -77,6 +74,27 @@ export const curriculumOverviewCMSFixture = (
           _key: "82cf6558d6f4",
           markDefs: [],
         },
+        {
+          _type: "video",
+          _key: "82cf6558d6f5",
+          ...mockVideoAsset(),
+          transcript: [
+            {
+              style: "normal",
+              _key: "71b0e4f745f7",
+              _type: "block",
+              children: [
+                {
+                  _key: "582e86468d3b",
+                  _type: "span",
+                  marks: [],
+                  text: "(Upbeat music)",
+                },
+              ],
+              markDefs: [],
+            },
+          ],
+        },
       ],
     },
     subjectPrinciples: [
@@ -99,17 +117,6 @@ export const curriculumOverviewCMSFixture = (
     },
     curriculumPartnerOverviews: [],
     curriculumSeoTextRaw: null,
-    ...partial,
-  };
-};
-
-const curriculumOverviewSlugsFixture = (
-  partial?: Partial<CurriculumSelectionSlugs>,
-): CurriculumSelectionSlugs => {
-  return {
-    phaseSlug: "primary",
-    subjectSlug: "maths",
-    ks4OptionSlug: null,
     ...partial,
   };
 };

@@ -7,6 +7,7 @@ import {
   OakMaxWidth,
   OakP,
   OakSecondaryButton,
+  OakVideo,
 } from "@oaknational/oak-components";
 
 import { aboutUsAccessed } from "@/browser-lib/avo/Avo";
@@ -21,12 +22,12 @@ import { webinarToPostListItem } from "@/components/GenericPagesViews/WebinarsIn
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { Testimonials } from "@/components/GenericPagesComponents/Testimonials";
 import { HomePage } from "@/common-lib/cms-types";
-import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import { CampaignPromoBanner } from "@/components/GenericPagesComponents/CampaignPromoBanner/CampaignPromoBanner";
 import { campaignTextStyles } from "@/pages/campaigns/[campaignSlug]";
 import { CampaignPromoBannerType } from "@/common-lib/cms-types/campaignPage";
 import { resolveOakHref } from "@/common-lib/urls";
 import { buildAboutUsAnalytics } from "@/utils/analytics-builders";
+import VideoPlayer from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 
 export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
   return post.type === "blog-post"
@@ -87,26 +88,52 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
                     <OakP $font={["body-2", "body-2", "body-1"]}>
                       {introVideo?.bodyPortableText?.[0]?.children[0]?.text}
                     </OakP>
-                    <OakSecondaryButton
-                      element="a"
-                      href={resolveOakHref({ page: "about-who-we-are" })}
-                      iconName="arrow-right"
-                      isTrailingIcon={true}
-                      onClick={() =>
-                        aboutUsAccessed(buildAboutUsAnalytics("about_oak"))
-                      }
-                    >
-                      About Oak
-                    </OakSecondaryButton>
+                    <OakFlex $flexWrap="wrap" $gap="spacing-16">
+                      <OakSecondaryButton
+                        element="a"
+                        href={resolveOakHref({ page: "about-who-we-are" })}
+                        iconName="arrow-right"
+                        isTrailingIcon={true}
+                        onClick={() =>
+                          aboutUsAccessed(buildAboutUsAnalytics("about_oak"))
+                        }
+                      >
+                        About Oak
+                      </OakSecondaryButton>
+                      <OakSecondaryButton
+                        element="a"
+                        href={resolveOakHref({ page: "about-oaks-impact" })}
+                        iconName="arrow-right"
+                        isTrailingIcon={true}
+                        onClick={() =>
+                          aboutUsAccessed(buildAboutUsAnalytics("oaks_impact"))
+                        }
+                      >
+                        Oak's impact
+                      </OakSecondaryButton>
+                    </OakFlex>
                   </OakFlex>
-                  <CMSVideo
-                    hideCaptions={true}
-                    video={introVideo.video}
-                    location="marketing"
+                  <OakVideo
+                    showTranscript={true}
+                    transcript={introVideo.video.transcript}
+                    videoSlot={
+                      <VideoPlayer
+                        playbackPolicy="public"
+                        playbackId={introVideo.video.video.asset.playbackId}
+                        thumbnailTime={introVideo.video.video.asset.thumbTime}
+                        title={introVideo.title}
+                        location="marketing"
+                        omitBorder={true}
+                      />
+                    }
                   />
                 </OakFlex>
               </OakGridArea>
-              <OakGridArea $colSpan={[12, 12, 4]}>
+              <OakGridArea
+                $colSpan={[12, 12, 4]}
+                $alignSelf="start"
+                $height={["auto", "auto", "730px"]}
+              >
                 <Testimonials testimonials={props.testimonials} />
               </OakGridArea>
             </OakGrid>

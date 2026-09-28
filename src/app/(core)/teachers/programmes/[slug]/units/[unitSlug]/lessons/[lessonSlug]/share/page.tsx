@@ -19,6 +19,8 @@ type LessonSharePageParams = {
   lessonSlug: string;
 };
 
+export const dynamic = "force-static";
+
 const getCachedLessonShareData = cache(
   async (
     programmeSlug: string,

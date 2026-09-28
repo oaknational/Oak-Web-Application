@@ -33,13 +33,13 @@ describe("getSavePropsForUnitCard", () => {
     expect(result).toEqual({
       unitSlug: "something-nice",
       unitTitle: "Something nice",
-      programmeSlug: "transfiguration-primary-ks2",
+      programmeSlug: "maths-primary-ks2",
       trackingProps: {
         savedFrom: "unit_listing_save_button",
         keyStageSlug: "ks2",
         keyStageTitle: "Key stage 2",
-        subjectTitle: "Transfiguration",
-        subjectSlug: "transfiguration",
+        subjectTitle: "Maths",
+        subjectSlug: "maths",
       },
     });
   });

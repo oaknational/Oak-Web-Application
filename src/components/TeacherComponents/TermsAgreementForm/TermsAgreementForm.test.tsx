@@ -32,6 +32,14 @@ const Wrapper = (props: Partial<TermsAgreementFormPropsOptionalForm>) => {
 };
 
 describe("TermsAgreementForm (School, email and terms form within the teacher and curriculum journey)", () => {
+  beforeEach(() => {
+    jest.spyOn(global, "fetch").mockResolvedValue(new Response("[]"));
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   it("Shows school error message when error object is passed in", async () => {
     const errorMessage = `Select school, type 'homeschool' or tick 'My school isn't listed'`;
     const errors: FieldErrors<ResourceFormValues> = {

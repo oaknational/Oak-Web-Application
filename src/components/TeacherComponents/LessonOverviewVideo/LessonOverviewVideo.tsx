@@ -5,10 +5,9 @@ import {
   OakSmallPrimaryInvertedButton,
 } from "@oaknational/oak-components";
 
-import { AnalyticsBrowseData } from "../types/lesson.types";
-
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import TranscriptViewer from "@/components/TeacherComponents/TranscriptViewer";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export interface LessonOverviewVideoProps {
   video: string | null;
@@ -16,7 +15,6 @@ export interface LessonOverviewVideoProps {
   title: string;
   transcriptSentences?: string[] | string | null;
   isLegacy: boolean;
-  browsePathwayData: AnalyticsBrowseData;
 }
 
 export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
@@ -25,7 +23,6 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
   title,
   transcriptSentences,
   isLegacy,
-  browsePathwayData,
 }) => {
   const [signLanguageOn, setSignLanguageOn] = useState(false);
   const [transcriptOn, setTranscriptOn] = useState(false);
@@ -37,6 +34,9 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
   const toggleTranscript = () => {
     setTranscriptOn(!transcriptOn);
   };
+
+  const { videoPlayed, videoFinished, videoPaused, videoStarted } =
+    useTeacherBrowseAnalytics((state) => state.track);
 
   return (
     <OakFlex $flexDirection={"column"} $gap={["spacing-24"]}>
@@ -50,7 +50,12 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
           location={"lesson"}
           isLegacy={isLegacy}
           defaultHiddenCaptions={signLanguageOn}
-          pathwayData={browsePathwayData}
+          analyticsOverrides={{
+            videoPlayed,
+            videoFinished,
+            videoPaused,
+            videoStarted,
+          }}
         />
       )}
       <OakFlex

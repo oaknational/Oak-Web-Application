@@ -1,13 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/compat/router";
-import { useUser } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { fetchHubspotContactDetails } from "../../helpers/downloadAndShareHelpers/fetchHubspotContactDetails";
-
-import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
+import { useSyncHubspotAndLocalStorage } from "./useSyncHubspotAndLocalStorage";
 
 import {
   getSchoolOption,
@@ -38,10 +35,179 @@ export type UseResourceFormStateProps =
       additionalFilesResources: LessonDownloadsPageData["additionalFiles"];
       type: "download";
     }
-  | { curriculumResources: DownloadType[]; type: "curriculum" };
+  | { curriculumResources: DownloadType[]; type: "curriculum" }
+  | {
+      type: "teach-with-oak";
+    };
+
+type ResourceFormSelection = {
+  initialResources: ResourceType[];
+  initialAdditionalFiles?: ResourceType[];
+  initialSelectedResources: ResourceType[];
+};
+
+/**
+ * Share helpers
+ */
+const getShareFormSelection = (
+  shareResources: LessonShareData["shareableResources"],
+): ResourceFormSelection => {
+  const initialResources = shareResources
+    .filter((resource) => resource.exists)
+    .map((resource) => resource.type);
+
+  return {
+    initialResources,
+    initialSelectedResources: [],
+  };
+};
+
+const getSharePreselectedResources = (value: string | null) => {
+  const result = preselectedShareType.safeParse(value);
+
+  return result.success && isPreselectedShareType(result.data)
+    ? getPreselectedShareResourceTypes(result.data)
+    : "all";
+};
+
+/**
+ * Lesson download helpers
+ */
+
+const getLessonDownloadFormSelection = (
+  downloadResources: LessonDownloadsPageData["downloads"],
+  additionalFilesResources: LessonDownloadsPageData["additionalFiles"],
+): ResourceFormSelection => {
+  const initialResources = downloadResources
+    .filter((resource) => resource.exists && !resource.forbidden)
+    .map((resource) => resource.type);
+  const initialAdditionalFiles = additionalFilesResources
+    .filter((resource) => resource.exists && !resource.forbidden)
+    .map(
+      (resource) =>
+        `${resource.type}-${resource.assetId.toString()}` as ResourceType,
+    );
+
+  return {
+    initialResources,
+    initialAdditionalFiles,
+    initialSelectedResources: [],
+  };
+};
+
+const getDownloadPreselectedResources = (
+  value: string | null,
+  downloadResources: LessonDownloadsPageData["downloads"],
+  additionalFilesResources: LessonDownloadsPageData["additionalFiles"],
+) => {
+  const result = preselectedDownloadType.safeParse(value);
+
+  if (!result.success || !isPreselectedDownloadType(result.data)) {
+    return "all";
+  }
+
+  const preselected = getPreselectedDownloadResourceTypes(
+    result.data,
+    downloadResources.concat(
+      additionalFilesResources,
+    ) as LessonDownloadsPageData["downloads"],
+  ) as ResourceType[] | undefined;
+
+  if (!preselected) {
+    return "all";
+  }
+
+  if (!preselected.includes("additional-files")) {
+    return preselected;
+  }
+
+  return preselected
+    .concat(
+      additionalFilesResources.map(
+        (resource) => `additional-files-${resource.assetId}` as ResourceType,
+      ),
+    )
+    .filter((resource) => resource !== "additional-files");
+};
+
+/**
+ * Curriculum helpers
+ */
+
+const getCurriculumFormSelection = (
+  curriculumResources: DownloadType[],
+): ResourceFormSelection => ({
+  initialResources: curriculumResources,
+  initialSelectedResources: curriculumResources,
+});
+
+/**
+ * Teach with Oak helpers
+ */
+
+const getTeachWithOakFormSelection = (): ResourceFormSelection => ({
+  initialResources: [
+    "explanation",
+    "feedback",
+    "practice",
+    "check-for-understanding",
+  ],
+  initialSelectedResources: [
+    "explanation",
+    "feedback",
+    "practice",
+    "check-for-understanding",
+  ],
+});
 
 export const useResourceFormState = (props: UseResourceFormStateProps) => {
-  const selectAllByDefault = props.type === "curriculum";
+  const resourceType = props.type;
+  const shareResources =
+    props.type === "share" ? props.shareResources : undefined;
+  const downloadResources =
+    props.type === "download" ? props.downloadResources : undefined;
+  const additionalFilesResources =
+    props.type === "download" ? props.additionalFilesResources : undefined;
+  const curriculumResources =
+    props.type === "curriculum" ? props.curriculumResources : undefined;
+
+  const resourceFormSelection = useMemo(() => {
+    switch (resourceType) {
+      case "share": {
+        if (!shareResources) throw new Error("Invalid resource type");
+        return getShareFormSelection(shareResources);
+      }
+      case "download": {
+        if (!downloadResources || !additionalFilesResources) {
+          throw new Error("Invalid resource type");
+        }
+        return getLessonDownloadFormSelection(
+          downloadResources,
+          additionalFilesResources,
+        );
+      }
+      case "curriculum": {
+        if (!curriculumResources) throw new Error("Invalid resource type");
+        return getCurriculumFormSelection(curriculumResources);
+      }
+      case "teach-with-oak": {
+        return getTeachWithOakFormSelection();
+      }
+      default:
+        throw new Error("Invalid resource type");
+    }
+  }, [
+    resourceType,
+    shareResources,
+    downloadResources,
+    additionalFilesResources,
+    curriculumResources,
+  ]);
+  const { initialResources, initialAdditionalFiles, initialSelectedResources } =
+    resourceFormSelection;
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const {
     register,
@@ -56,198 +222,42 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     resolver: zodResolver(resourceFormValuesSchema),
     mode: "onBlur",
     defaultValues: {
-      resources: selectAllByDefault ? props.curriculumResources : [],
+      resources: initialSelectedResources,
     },
   });
 
-  const [selectAllChecked, setSelectAllChecked] = useState(selectAllByDefault);
-
-  const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
-  const [schoolUrn, setSchoolUrn] = useState("");
-
-  const [hubspotLoaded, setHubspotLoaded] = useState(false);
-  const [schoolFromHubspot, setSchoolFromHubspot] = useState<null | {
-    schoolId: string;
-    schoolName: string;
-  }>(null);
-
-  const { isSignedIn, user } = useUser();
+  const [selectAllChecked, setSelectAllChecked] = useState(
+    props.type === "curriculum" || props.type === "teach-with-oak",
+  );
+  const [editDetailsClicked, setEditDetailsClicked] = useState(false);
+  const [hasLocalStorageDetails, setHasLocalStorageDetails] = useState(false);
 
   const {
-    schoolFromLocalStorage,
-    emailFromLocalStorage,
-    termsFromLocalStorage,
     hasDetailsFromLocalStorage,
-    setEmailInLocalStorage,
-    setSchoolInLocalStorage,
-    setTermsInLocalStorage,
-  } = useLocalStorageForDownloads();
-
-  const {
-    schoolName: schoolNameFromLocalStorage,
-    schoolId: schoolIdFromLocalStorage,
-  } = schoolFromLocalStorage;
-
-  useEffect(() => {
-    const userEmail = user?.emailAddresses?.[0]?.emailAddress;
-
-    const updateUserDetailsFromHubspot = async (email: string) => {
-      const hubspotContact = await fetchHubspotContactDetails();
-      setTermsInLocalStorage(true);
-      setValue("terms", true);
-
-      setEmailInLocalStorage(email);
-      setValue("email", email);
-
-      if (hubspotContact) {
-        const schoolUrn = hubspotContact.schoolId;
-        // @sonar-ignore
-        // current sonar rule typescript:S6606 incorrectly flags this, see open issue here https://sonarsource.atlassian.net/browse/JS-373
-        const schoolName = hubspotContact.schoolName || "notListed";
-        // @sonar-end
-
-        // hubspot stores schoolUrn isolated from schoolName, but we need to store them together in local storage
-        const schoolId = schoolUrn ? `${schoolUrn}-${schoolName}` : "notListed";
-
-        const school = {
-          schoolId,
-          schoolName,
-        };
-
-        setSchoolInLocalStorage(school);
-        setSchoolFromHubspot(school);
-
-        if (schoolName) {
-          setValue("schoolName", schoolName);
-        }
-
-        if (schoolId) {
-          setValue("school", schoolId);
-        }
-      }
-    };
-
-    if (userEmail && isSignedIn) {
-      updateUserDetailsFromHubspot(userEmail);
-    }
-  }, [
-    isSignedIn,
-    setEmailInLocalStorage,
-    setSchoolInLocalStorage,
-    setTermsInLocalStorage,
-    setValue,
-    user?.emailAddresses,
-  ]);
-
-  // Set finished loading when local storage matches hubspot or when no details expected in hubspot
-  useEffect(() => {
-    const detailsUpdatedFromHubspot =
-      schoolFromHubspot?.schoolId === schoolFromLocalStorage.schoolId &&
-      schoolFromHubspot?.schoolName === schoolFromLocalStorage.schoolName;
-
-    const noDetailsInHubspot =
-      isSignedIn === false ||
-      (isSignedIn && !user?.publicMetadata?.owa?.isOnboarded); // user has signed in but not onboarded
-
-    if ((detailsUpdatedFromHubspot || noDetailsInHubspot) && !hubspotLoaded) {
-      setHubspotLoaded(true);
-    }
-  }, [
-    schoolFromHubspot,
-    schoolFromLocalStorage,
-    isSignedIn,
-    hubspotLoaded,
-    user,
-  ]);
-
-  useEffect(() => {
-    if (emailFromLocalStorage) {
-      setValue("email", emailFromLocalStorage);
-    }
-
-    if (termsFromLocalStorage) {
-      setValue("terms", termsFromLocalStorage);
-    }
-
-    if (schoolIdFromLocalStorage) {
-      setValue("school", schoolIdFromLocalStorage);
-      const schoolUrn = getSchoolUrn(
-        schoolIdFromLocalStorage,
-        getSchoolOption(schoolIdFromLocalStorage),
-      );
-      setSchoolUrn(schoolUrn);
-    }
-  }, [
     emailFromLocalStorage,
     schoolIdFromLocalStorage,
-    setValue,
-    termsFromLocalStorage,
-  ]);
+    schoolNameFromLocalStorage,
+    schoolUrn,
+    hubspotLoaded,
+    isLocalStorageLoading,
+    setEmailInLocalStorage,
+    setSchoolInLocalStorage,
+    setTermsInLocalStorage,
+    setSchoolUrn,
+  } = useSyncHubspotAndLocalStorage({ setValue });
 
-  const resources = (() => {
-    switch (props.type) {
-      case "share":
-        return props.shareResources;
-      case "download":
-        return props.downloadResources;
-      case "curriculum":
-        return props.curriculumResources;
-    }
-  })();
+  const getInitialResourcesState = useCallback(
+    () => initialResources,
+    [initialResources],
+  );
 
-  const additionalResources =
-    props.type === "download" && props.additionalFilesResources;
-
-  const getInitialResourcesState = useCallback(() => {
-    if (props.type === "share") {
-      return (resources as LessonShareData["shareableResources"])
-        .filter((resource) => resource.exists)
-        .map((resource) => resource.type);
-    } else if (props.type === "download") {
-      return (resources as LessonDownloadsPageData["downloads"])
-        .filter((resource) => resource.exists && !resource.forbidden)
-        .map((resource) => resource.type);
-    } else if (props.type === "curriculum") {
-      return resources as DownloadType[];
-    } else {
-      throw new Error("Invalid resource type");
-    }
-  }, [resources, props.type]);
-
-  const getInitialAdditionalFilesState = useCallback(() => {
-    if (props.type === "download") {
-      return (additionalResources as LessonDownloadsPageData["additionalFiles"])
-        .filter(
-          (additionalResource) =>
-            additionalResource.exists && !additionalResource.forbidden,
-        )
-        .map((resource) => `${resource.type}-${resource.assetId.toString()}`);
-    }
-  }, [additionalResources, props.type]);
-
+  // Mark local storage for refresh when edit details button clicked
   useEffect(() => {
-    setIsLocalStorageLoading(false);
-  }, [hasDetailsFromLocalStorage]);
-
-  const [editDetailsClicked, setEditDetailsClicked] = useState(false);
-
-  const shouldDisplayDetailsCompleted =
-    !!hasDetailsFromLocalStorage && !editDetailsClicked;
-  const [localStorageDetails, setLocalStorageDetails] = useState(false);
-
-  useEffect(() => {
-    if (hasDetailsFromLocalStorage || shouldDisplayDetailsCompleted) {
-      setLocalStorageDetails(true);
+    if (hasDetailsFromLocalStorage) {
+      const localStorageNeedsRefreshing = !editDetailsClicked;
+      setHasLocalStorageDetails(localStorageNeedsRefreshing);
     }
-    if (editDetailsClicked) {
-      setLocalStorageDetails(false);
-    }
-  }, [
-    hasDetailsFromLocalStorage,
-    localStorageDetails,
-    editDetailsClicked,
-    shouldDisplayDetailsCompleted,
-  ]);
+  }, [hasDetailsFromLocalStorage, editDetailsClicked]);
 
   const setSchool = useCallback(
     (value: string, name?: string) => {
@@ -260,22 +270,21 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       const schoolUrn = getSchoolUrn(value, getSchoolOption(value));
       setSchoolUrn(schoolUrn);
     },
-    [setValue, schoolNameFromLocalStorage],
+    [setValue, schoolNameFromLocalStorage, setSchoolUrn],
   );
 
   const { errors, submitCount } = formState;
   const hasFormErrors = Object.keys(errors)?.length > 0;
   const selectedResources = watch("resources") as ResourceType[];
 
-  const [activeResources, setActiveResources] = useState<string[]>(
-    getInitialResourcesState(),
-  );
+  const [activeResources, setActiveResources] =
+    useState<string[]>(initialResources);
 
-  const [activeAdditonalFiles, setActiveAdditonalFiles] = useState<
+  const [activeAdditionalFiles, setActiveAdditionalFiles] = useState<
     string[] | undefined
-  >(getInitialAdditionalFilesState());
+  >(initialAdditionalFiles);
 
-  const hasResources = getInitialResourcesState().length > 0;
+  const hasResources = initialResources.length > 0;
 
   // Keep selectAllChecked in sync by comparing selected resources to available resources
   useEffect(() => {
@@ -287,76 +296,37 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   }, [selectedResources, activeResources]);
 
   const onSelectAllClick = () =>
-    setValue("resources", activeResources.concat(activeAdditonalFiles || []));
+    setValue("resources", activeResources.concat(activeAdditionalFiles || []));
   const onDeselectAllClick = () => setValue("resources", []);
 
   const handleEditDetailsCompletedClick = () => {
     setEditDetailsClicked(true);
-    setLocalStorageDetails(false);
+    setHasLocalStorageDetails(false);
     setValue("email", emailFromLocalStorage);
   };
 
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
   useEffect(() => {
     if (router && !router.isReady) return;
-    if (props.type === "curriculum") return;
-
-    const getPreselectedQuery = () => {
-      const value = searchParams?.get("preselected");
-
-      const result =
-        props.type === "download"
-          ? preselectedDownloadType.safeParse(value)
-          : preselectedShareType.safeParse(value);
-
-      return result.success ? result.data : "all";
-    };
+    if (resourceType === "curriculum" || resourceType === "teach-with-oak")
+      return;
 
     const getAllAvailableResources = () =>
-      getInitialResourcesState().concat(
-        (getInitialAdditionalFilesState() || []) as ResourceType[],
+      initialResources.concat((initialAdditionalFiles || []) as ResourceType[]);
+
+    const value = searchParams?.get("preselected") ?? null;
+    let preselected: ResourceType[] | "all" | undefined;
+    if (resourceType === "share") {
+      preselected = getSharePreselectedResources(value);
+    } else {
+      if (!downloadResources || !additionalFilesResources) {
+        throw new Error("Invalid resource type");
+      }
+      preselected = getDownloadPreselectedResources(
+        value,
+        downloadResources,
+        additionalFilesResources,
       );
-
-    const getPreselectedResources = () => {
-      const queryResult = getPreselectedQuery();
-
-      if (props.type === "share" && isPreselectedShareType(queryResult)) {
-        return getPreselectedShareResourceTypes(queryResult);
-      }
-
-      if (props.type === "download" && isPreselectedDownloadType(queryResult)) {
-        const downloads = additionalResources
-          ? resources?.concat(additionalResources)
-          : resources;
-
-        return getPreselectedDownloadResourceTypes(
-          queryResult,
-          downloads as LessonDownloadsPageData["downloads"],
-        );
-      }
-
-      return undefined;
-    };
-
-    const expandAdditionalFiles = (preselected: ResourceType[]) => {
-      if (!preselected.includes("additional-files") || !additionalResources) {
-        return preselected;
-      }
-
-      const additionalFiles = additionalResources.map(
-        (resource) => `additional-files-${resource.assetId}` as ResourceType,
-      );
-
-      return preselected
-        .concat(additionalFiles)
-        .filter((resource) => resource !== "additional-files");
-    };
-
-    const preselected = getPreselectedResources();
-
-    if (!preselected) return;
+    }
 
     if (preselected === "all") {
       setSelectAllChecked(true);
@@ -364,16 +334,18 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       return;
     }
 
-    setValue("resources", expandAdditionalFiles(preselected));
+    if (!preselected) return;
+
+    setValue("resources", preselected);
   }, [
-    getInitialResourcesState,
-    getInitialAdditionalFilesState,
-    props.type,
+    resourceType,
+    downloadResources,
+    additionalFilesResources,
     router,
     router?.isReady,
     searchParams,
-    resources,
-    additionalResources,
+    initialResources,
+    initialAdditionalFiles,
     setValue,
   ]);
 
@@ -394,7 +366,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     schoolNameFromLocalStorage,
     schoolIdFromLocalStorage,
     setSchool,
-    shouldDisplayDetailsCompleted,
+    shouldDisplayDetailsCompleted:
+      !!hasDetailsFromLocalStorage && !editDetailsClicked,
     handleEditDetailsCompletedClick,
     selectedResources,
     schoolUrn,
@@ -402,13 +375,13 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     setEmailInLocalStorage,
     setSchoolInLocalStorage,
     setTermsInLocalStorage,
-    localStorageDetails,
+    localStorageDetails: hasLocalStorageDetails,
     editDetailsClicked,
     setEditDetailsClicked,
     activeResources,
     setActiveResources,
-    activeAdditonalFiles,
-    setActiveAdditonalFiles,
+    activeAdditionalFiles,
+    setActiveAdditionalFiles,
     handleToggleSelectAll,
     selectAllChecked,
     hubspotLoaded,

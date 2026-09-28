@@ -11,7 +11,7 @@ import {
 import type { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
-import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
+import { formatBytes } from "@/utils/formatBytes";
 import { groupDownloadResources } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/groupResources";
 
 type Download = LessonDownloadsPageData["downloads"][number];
@@ -48,7 +48,7 @@ const DownloadCard: FC<DownloadCardProps> = ({
         };
 
         const formattedSize = download.size
-          ? `${convertBytesToMegabytes(download.size)} `
+          ? `${formatBytes(download.size)} `
           : "";
         const subtitle = `${formattedSize}(${download.ext.toUpperCase()})`;
         const isEditable = ["docx", "pptx", "ppt", "doc"].includes(

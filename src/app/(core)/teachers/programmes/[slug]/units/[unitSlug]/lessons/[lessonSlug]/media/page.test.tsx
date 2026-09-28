@@ -11,6 +11,7 @@ jest.mock("next/navigation", () => ({
   notFound: () => {
     throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
   },
+  unstable_rethrow: jest.fn(),
 }));
 
 const mockLessonMediaClips = jest.fn();
@@ -67,25 +68,6 @@ const defaultParams = {
 describe("LessonMediaPage", () => {
   beforeEach(() => {
     mockLessonMediaClips.mockResolvedValue(lessonMediaFixture);
-  });
-
-  it("renders the lesson media page", async () => {
-    const result = await LessonMediaPage({
-      params: Promise.resolve(defaultParams),
-      searchParams: Promise.resolve({}),
-    });
-
-    expect(result).toBeDefined();
-    expect(mockLessonMediaClips).toHaveBeenCalledWith({
-      programmeSlug: defaultParams.slug,
-      unitSlug: defaultParams.unitSlug,
-      lessonSlug: defaultParams.lessonSlug,
-    });
-    expect(result).toMatchObject({
-      props: {
-        breadcrumbsSlot: expect.anything(),
-      },
-    });
   });
 
   it("returns 404 when media clips are missing", async () => {

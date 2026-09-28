@@ -30,11 +30,10 @@ type TeachersLessonContentCamel = Omit<
 
 export type TeachersLessonOverviewContent = Omit<
   TeachersLessonContentCamel,
-  "starterQuiz" | "exitQuiz" | "transcriptSentences"
+  "starterQuiz" | "exitQuiz"
 > & {
   starterQuiz: QuizQuestion[];
   exitQuiz: QuizQuestion[];
-  transcriptSentences: string | string[];
 };
 
 export const teachersLessonOverviewDownloads = z.array(

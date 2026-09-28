@@ -14,6 +14,7 @@ import { getABTestedLandingPage } from "@/node-lib/cms/ab-testing";
 import Layout from "@/components/AppComponents/AppLayout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type LandingPageProps = {
   pageData: LandingPage;
@@ -22,51 +23,56 @@ export type LandingPageProps = {
 
 const Landing: NextPage<LandingPageProps> = ({ pageData, topNav }) => {
   return (
-    <Layout
-      headerCta={pageData.headerCta}
-      seoProps={getSeoProps(pageData.seo)}
-      topNavProps={topNav}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
     >
-      <OakMaxWidth $justifyContent={"flex-start"}>
-        <LandingPageHero hero={pageData.hero} />
-        <>
-          {pageData.content.map((content, index) => {
-            if (content.type == "LandingPageTextAndMediaBlock") {
-              return (
-                <LandingPageTextAndMedia
-                  key={`${index}:${content.textAndMedia.title}`}
-                  {...content.textAndMedia}
-                />
-              );
-            }
-            if (content.type == "LandingPageQuoteBlock") {
-              return (
-                <LandingPageQuote
-                  key={`${index}:${content.quote.text}`}
-                  {...content.quote}
-                />
-              );
-            }
-            if (content.type == "LandingPageFormBlock") {
-              return (
-                <LandingPageSignupPrompt
-                  key={`${index}:${content.title}`}
-                  {...content}
-                />
-              );
-            }
-            if (content.type == "LandingPageTextBlock") {
-              return (
-                <LandingPageTextBlock
-                  key={`${index}:${content.bodyPortableText[0]._key}`}
-                  {...content}
-                />
-              );
-            }
-          })}
-        </>
-      </OakMaxWidth>
-    </Layout>
+      <Layout
+        headerCta={pageData.headerCta}
+        seoProps={getSeoProps(pageData.seo)}
+        topNavProps={topNav}
+      >
+        <OakMaxWidth $justifyContent={"flex-start"}>
+          <LandingPageHero hero={pageData.hero} />
+          <>
+            {pageData.content.map((content, index) => {
+              if (content.type == "LandingPageTextAndMediaBlock") {
+                return (
+                  <LandingPageTextAndMedia
+                    key={`${index}:${content.textAndMedia.title}`}
+                    {...content.textAndMedia}
+                  />
+                );
+              }
+              if (content.type == "LandingPageQuoteBlock") {
+                return (
+                  <LandingPageQuote
+                    key={`${index}:${content.quote.text}`}
+                    {...content.quote}
+                  />
+                );
+              }
+              if (content.type == "LandingPageFormBlock") {
+                return (
+                  <LandingPageSignupPrompt
+                    key={`${index}:${content.title}`}
+                    {...content}
+                  />
+                );
+              }
+              if (content.type == "LandingPageTextBlock") {
+                return (
+                  <LandingPageTextBlock
+                    key={`${index}:${content.bodyPortableText[0]._key}`}
+                    {...content}
+                  />
+                );
+              }
+            })}
+          </>
+        </OakMaxWidth>
+      </Layout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 

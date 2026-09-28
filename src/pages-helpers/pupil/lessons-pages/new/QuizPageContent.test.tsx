@@ -174,6 +174,7 @@ describe("QuizPageContent", () => {
       section: "starter-quiz",
       questionsArray: [mcqQuestion],
       initialQuestionResults: undefined,
+      initialIsComplete: undefined,
     });
   });
 
@@ -195,7 +196,10 @@ describe("QuizPageContent", () => {
 
     renderPage();
     expect(quizState.initialiseQuiz).toHaveBeenCalledWith(
-      expect.objectContaining({ initialQuestionResults: existingResults }),
+      expect.objectContaining({
+        initialQuestionResults: existingResults,
+        initialIsComplete: false,
+      }),
     );
   });
 

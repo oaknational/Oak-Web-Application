@@ -44,6 +44,7 @@ export type PageProperties = {
 export type TrackFeatureFlagFunction = (properties: {
   $feature_flag: string;
   $feature_flag_response: string;
+  [key: string]: string;
 }) => void;
 export type PageFn = (properties: PageProperties) => void;
 export type IdentifyProperties = { email?: string };

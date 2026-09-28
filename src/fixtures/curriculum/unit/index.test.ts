@@ -21,8 +21,8 @@ describe("createUnit", () => {
       title: "Test",
       lessons: [],
       order: 0,
-      subject: "Transfiguration",
-      subject_slug: "transfiguration",
+      subject: "Maths",
+      subject_slug: "maths",
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -37,13 +37,14 @@ describe("createUnit", () => {
       year: "5",
       prior_knowledge_requirements: [],
       national_curriculum_content: [],
+      features: {},
     });
   });
 
   it("with overrides", () => {
     const result = createUnit({
-      slug: "plain-transfiguration",
-      title: "Plain Transfiguration",
+      slug: "plain-maths",
+      title: "Plain maths",
     });
 
     expect(result).toEqual({
@@ -57,12 +58,12 @@ describe("createUnit", () => {
       phase: "Primary",
       phase_slug: "primary",
       keystage_slug: "ks2",
-      slug: "plain-transfiguration",
-      title: "Plain Transfiguration",
+      slug: "plain-maths",
+      title: "Plain maths",
       lessons: [],
       order: 0,
-      subject: "Transfiguration",
-      subject_slug: "transfiguration",
+      subject: "Maths",
+      subject_slug: "maths",
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -77,12 +78,13 @@ describe("createUnit", () => {
       year: "5",
       prior_knowledge_requirements: [],
       national_curriculum_content: [],
+      features: {},
     });
   });
 
   it("with only slug override", () => {
     const result = createUnit({
-      slug: "plain-transfiguration",
+      slug: "plain-maths",
     });
 
     expect(result).toEqual({
@@ -96,12 +98,12 @@ describe("createUnit", () => {
       phase: "Primary",
       phase_slug: "primary",
       keystage_slug: "ks2",
-      slug: "plain-transfiguration",
-      title: "Plain transfiguration",
+      slug: "plain-maths",
+      title: "Plain maths",
       lessons: [],
       order: 0,
-      subject: "Transfiguration",
-      subject_slug: "transfiguration",
+      subject: "Maths",
+      subject_slug: "maths",
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -116,6 +118,7 @@ describe("createUnit", () => {
       year: "5",
       prior_knowledge_requirements: [],
       national_curriculum_content: [],
+      features: {},
     });
   });
 
@@ -142,8 +145,8 @@ describe("createUnit", () => {
       title: "Test",
       lessons: [],
       order: 0,
-      subject: "Transfiguration",
-      subject_slug: "transfiguration",
+      subject: "Maths",
+      subject_slug: "maths",
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -158,6 +161,7 @@ describe("createUnit", () => {
       year: "5",
       prior_knowledge_requirements: [],
       national_curriculum_content: [],
+      features: {},
     });
   });
 
@@ -181,8 +185,8 @@ describe("createUnit", () => {
       title: "Test",
       lessons: [],
       order: 0,
-      subject: "Transfiguration",
-      subject_slug: "transfiguration",
+      subject: "Maths",
+      subject_slug: "maths",
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -203,6 +207,7 @@ describe("createUnit", () => {
       year: "5",
       prior_knowledge_requirements: [],
       national_curriculum_content: [],
+      features: {},
     });
   });
 
@@ -226,8 +231,8 @@ describe("createUnit", () => {
       title: "Test",
       lessons: [],
       order: 0,
-      subject: "Transfiguration",
-      subject_slug: "transfiguration",
+      subject: "Maths",
+      subject_slug: "maths",
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -242,6 +247,7 @@ describe("createUnit", () => {
       year: "5",
       prior_knowledge_requirements: [],
       national_curriculum_content: [],
+      features: {},
     });
   });
 });

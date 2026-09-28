@@ -1,9 +1,25 @@
-import { createChildSubject } from "@/fixtures/curriculum/childSubject";
+import { subjects, subjectSlugs } from "@oaknational/oak-curriculum-schema";
+import z from "zod";
+
 import { createUnit } from "@/fixtures/curriculum/unit";
 
-const childSubjectBiology = createChildSubject({ subject_slug: "biology" });
-const childSubjectChemistry = createChildSubject({ subject_slug: "chemistry" });
-const childSubjectPhysics = createChildSubject({ subject_slug: "physics" });
+export type ChildSubject = {
+  subject_slug: z.infer<typeof subjectSlugs>;
+  subject: z.infer<typeof subjects>;
+};
+
+const childSubjectBiology: ChildSubject = {
+  subject_slug: "biology",
+  subject: "Biology",
+};
+const childSubjectChemistry: ChildSubject = {
+  subject_slug: "chemistry",
+  subject: "Chemistry",
+};
+const childSubjectPhysics: ChildSubject = {
+  subject_slug: "physics",
+  subject: "Physics",
+};
 
 export const ks4Setup = {
   yearData: {

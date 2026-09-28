@@ -1,6 +1,6 @@
 import { ChangeEvent, FC } from "react";
 import { Control, Controller } from "react-hook-form";
-import { OakDownloadCard, OakFlex, OakGrid } from "@oaknational/oak-components";
+import { OakResourceCard, OakFlex, OakGrid } from "@oaknational/oak-components";
 
 import ResourceCard, {
   getActivityDownloadCardAriaLabel,
@@ -39,17 +39,25 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
     resourceType: string | string[],
   ) => {
     if (e.target.checked) {
-      onChange([
-        ...fieldValue,
-        ...(Array.isArray(resourceType) ? resourceType : [resourceType]),
-      ]);
+      onChange(
+        Array.from(
+          new Set([
+            ...fieldValue,
+            ...(Array.isArray(resourceType) ? resourceType : [resourceType]),
+          ]),
+        ),
+      );
     } else {
       onChange(
-        fieldValue.filter(
-          (val) =>
-            !(Array.isArray(resourceType)
-              ? resourceType.includes(val)
-              : val === resourceType),
+        Array.from(
+          new Set(
+            fieldValue.filter(
+              (val) =>
+                !(Array.isArray(resourceType)
+                  ? resourceType.includes(val)
+                  : val === resourceType),
+            ),
+          ),
         ),
       );
     }
@@ -90,8 +98,8 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
                 field: { value: fieldValue, onChange, name, onBlur },
               }) => {
                 return (
-                  <OakDownloadCard
-                    format={FULL_ONLINE_LESSON_FORMAT}
+                  <OakResourceCard
+                    description={FULL_ONLINE_LESSON_FORMAT}
                     id={"download-card-wrapping-long"}
                     data-testid="resourceCard"
                     value={"all"}

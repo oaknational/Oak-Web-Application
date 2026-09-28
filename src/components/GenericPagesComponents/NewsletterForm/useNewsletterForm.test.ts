@@ -32,6 +32,21 @@ describe("useNewsletterForm", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
+  test("passes through the destination of a dedicated campaign", () => {
+    const { result } = renderHook(() =>
+      useNewsletterForm({
+        hubspotNewsletterFormId: "campaign-form",
+        hubspotPortalId: "campaign-portal",
+      }),
+    );
+    result.current.onSubmit({ email: "test", name: "", userRole: "" });
+    expect(hubspotSubmitForm).toHaveBeenCalledWith({
+      hubspotFormId: "campaign-form",
+      hubspotPortalId: "campaign-portal",
+      payload: expect.any(Object),
+    });
+  });
+
   test("should call hubspotSubmitForm() and include utm params", () => {
     const { result } = renderHook(() => useNewsletterForm());
     const data: NewsletterHubspotFormData = {

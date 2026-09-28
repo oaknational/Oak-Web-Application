@@ -157,6 +157,7 @@ export const QuizPageContent = ({
       section,
       questionsArray,
       initialQuestionResults: sectionResults[section]?.questionResults,
+      initialIsComplete: sectionResults[section]?.isComplete,
     });
   }, [initialiseQuiz, lessonSlug, questionsArray, section, sectionResults]);
 

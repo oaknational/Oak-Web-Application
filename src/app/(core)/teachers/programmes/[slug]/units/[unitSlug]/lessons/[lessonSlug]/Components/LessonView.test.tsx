@@ -1,6 +1,9 @@
 import { screen, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { useFeatureFlagEnabled } from "posthog-js/react";
+import {
+  useFeatureFlagEnabled,
+  useFeatureFlagVariantKey,
+} from "posthog-js/react";
 
 import LessonView from "./LessonView";
 
@@ -10,9 +13,7 @@ import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtur
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
-import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
-import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
 const lessonResourceDownloadStarted = jest.fn();
 const lessonMediaClipsStarted = jest.fn();
@@ -44,28 +45,32 @@ jest.mock(
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: jest.fn(),
+  useFeatureFlagVariantKey: jest.fn(),
 }));
 
 const mockUseFeatureFlagEnabled = useFeatureFlagEnabled as jest.MockedFunction<
   typeof useFeatureFlagEnabled
 >;
-
-const render = renderWithProviders();
+const mockUseFeatureFlagVariantKey =
+  useFeatureFlagVariantKey as jest.MockedFunction<
+    typeof useFeatureFlagVariantKey
+  >;
 
 const baseProps = teachersLessonOverviewFixture();
-const programmeState = getProgrammeStateForLesson(baseProps);
 
 const renderLessonView = (props?: Partial<TeachersLessonOverviewPageData>) => {
-  return render(
-    <TeacherBrowseAnalyticsStoreProvider
-      programmeState={{
-        programmeState,
-      }}
-    >
-      <LessonView {...baseProps} {...props} />
-    </TeacherBrowseAnalyticsStoreProvider>,
-  );
+  return renderWithProviders()(<LessonView {...baseProps} {...props} />);
 };
+
+const resizeWindow = (width: number, height: number) => {
+  globalThis.innerWidth = width;
+  globalThis.innerHeight = height;
+  globalThis.dispatchEvent(new Event("resize"));
+};
+
+afterEach(() => {
+  resizeWindow(1280, 800);
+});
 
 describe("Previous and Next Lesson Navigation", () => {
   it("renders previous and next lesson links when adjacent lessons exist", () => {
@@ -492,12 +497,6 @@ describe("Tracking callbacks", () => {
 
     expect(lessonMediaClipsStarted).toHaveBeenCalledWith(
       expect.objectContaining({
-        platform: "owa",
-        product: "media clips",
-        engagementIntent: "use",
-        componentType: "go_to_media_clips_page_button",
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Teacher",
         mediaClipsButtonName: "play all",
       }),
     );
@@ -514,14 +513,16 @@ describe("Tracking callbacks", () => {
 
     expect(lessonShareStarted).toHaveBeenCalledWith(
       expect.objectContaining({
-        keyStageSlug: baseProps.keyStageSlug,
-        keyStageTitle: baseProps.keyStageTitle,
-        subjectSlug: baseProps.subjectSlug,
-        subjectTitle: baseProps.subjectTitle,
-        unitSlug: baseProps.unitSlug,
-        unitName: baseProps.unitTitle,
-        lessonSlug: baseProps.lessonSlug,
-        lessonName: baseProps.lessonTitle,
+        keyStageSlug: "ks3",
+        keyStageTitle: "Key stage 3",
+        lessonName: "Structure of cells",
+        lessonSlug: "lesson-3-structure-of-cells",
+        subjectSlug: "biology",
+        subjectTitle: "Biology",
+        unitName: "Cells",
+        unitSlug: "cells",
+        yearGroupName: "Year 7",
+        yearGroupSlug: "year-7",
       }),
     );
   });
@@ -540,5 +541,40 @@ describe("Tracking callbacks", () => {
     const glossaryLink = screen.getByRole("menuitem", { name: "Glossary" });
     await user.click(glossaryLink);
     expect(mockTeachingMaterialsSelected).toHaveBeenCalled();
+  });
+});
+describe("LessonOverviewSideNav TeachWithOakPromoSection", () => {
+  it("renders TeachWithOakPromoSection when feature flag is enabled", () => {
+    mockUseFeatureFlagVariantKey.mockReturnValue("promo-section");
+    renderLessonView();
+
+    expect(
+      screen.getByText(
+        "Ever wondered why our lessons are structured this way?",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByText("See the thinking")).toBeInTheDocument();
+  });
+
+  it("does not render TeachWithOakPromoSection when feature flag is disabled", () => {
+    mockUseFeatureFlagVariantKey.mockReturnValue(undefined);
+    renderLessonView();
+
+    expect(
+      screen.queryByText(
+        "Ever wondered why our lessons are structured this way?",
+      ),
+    ).not.toBeInTheDocument();
+  });
+
+  it("does not render TeachWithOakPromoSection for practical PE lessons", () => {
+    mockUseFeatureFlagVariantKey.mockReturnValue("promo-section");
+    renderLessonView({ actions: { isPePractical: true } });
+
+    expect(
+      screen.queryByText(
+        "Ever wondered why our lessons are structured this way?",
+      ),
+    ).not.toBeInTheDocument();
   });
 });

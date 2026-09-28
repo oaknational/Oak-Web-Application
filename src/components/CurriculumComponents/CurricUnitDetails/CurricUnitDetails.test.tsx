@@ -55,7 +55,7 @@ describe("CurricUnitDetails component", () => {
     expect(numberOfLessons).toBeInTheDocument();
 
     const lessonElements = getAllByTestId("ac_lessons_lesson");
-    expect(lessonElements.length).toEqual(1);
+    expect(lessonElements).toHaveLength(1);
     expect(lessonElements[0]).toHaveTextContent("LESSON_1");
   });
 
@@ -77,7 +77,7 @@ describe("CurricUnitDetails component", () => {
     const numberOfLessons = getByText("3 lessons");
     expect(numberOfLessons).toBeInTheDocument();
     const lessonElements = getAllByTestId("ac_lessons_lesson");
-    expect(lessonElements.length).toEqual(3);
+    expect(lessonElements).toHaveLength(3);
     expect(lessonElements[0]).toHaveTextContent("OPTION_LESSON_1");
     expect(lessonElements[1]).toHaveTextContent("OPTION_LESSON_2");
     expect(lessonElements[2]).toHaveTextContent("OPTION_LESSON_3");

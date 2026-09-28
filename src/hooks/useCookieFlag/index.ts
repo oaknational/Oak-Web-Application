@@ -1,0 +1,1 @@
+export { useCookieFlag } from "./useCookieFlag";

@@ -2,405 +2,415 @@
 
 exports[`core layout renders correctly 1`] = `
 <React.Fragment>
-  <TopNav
-    pupils={
-      {
-        "help": {
-          "external": true,
-          "href": "https://support.thenational.academy",
-          "slug": "help",
-          "title": "Help",
-        },
-        "primary": {
-          "children": [
-            {
-              "slug": "year-1",
-              "title": "Year 1",
-            },
-            {
-              "slug": "year-2",
-              "title": "Year 2",
-            },
-            {
-              "slug": "year-3",
-              "title": "Year 3",
-            },
-            {
-              "slug": "year-4",
-              "title": "Year 4",
-            },
-            {
-              "slug": "year-5",
-              "title": "Year 5",
-            },
-            {
-              "slug": "year-6",
-              "title": "Year 6",
-            },
-          ],
-          "slug": "primary",
-          "title": "Primary",
-        },
-        "secondary": {
-          "children": [
-            {
-              "slug": "year-7",
-              "title": "Year 7",
-            },
-            {
-              "slug": "year-8",
-              "title": "Year 8",
-            },
-            {
-              "slug": "year-9",
-              "title": "Year 9",
-            },
-            {
-              "slug": "year-10",
-              "title": "Year 10",
-            },
-            {
-              "slug": "year-11",
-              "title": "Year 11",
-            },
-          ],
-          "slug": "secondary",
-          "title": "Secondary",
-        },
-      }
-    }
-    teachers={
-      {
-        "aboutUs": {
-          "children": [
-            {
-              "href": "/about-us/who-we-are",
-              "slug": "about-who-we-are",
-              "title": "Who we are",
-            },
-            {
-              "href": "/about-us/meet-the-team",
-              "slug": "about-meet-the-team",
-              "title": "Meet the team",
-            },
-            {
-              "href": "/about-us/oaks-curricula",
-              "slug": "about-oaks-curricula",
-              "title": "Oak's curricula",
-            },
-            {
-              "href": "/about-us/get-involved",
-              "slug": "about-get-involved",
-              "title": "Get involved",
-            },
-            {
-              "href": "/contact-us",
-              "slug": "contact",
-              "title": "Contact us",
-            },
-          ],
-          "slug": "aboutUs",
-          "title": "About us",
-        },
-        "aiExperiments": {
-          "external": true,
-          "href": "https://labs.thenational.academy",
-          "slug": "labs",
-          "title": "Ai experiments",
-        },
-        "guidance": {
-          "children": [
-            {
-              "href": "/teachers/lesson-planning",
-              "slug": "lesson-planning",
-              "title": "Plan a lesson",
-            },
-            {
-              "href": "/blog",
-              "slug": "blog-index",
-              "title": "Blogs",
-            },
-            {
-              "external": true,
-              "href": "https://support.thenational.academy",
-              "slug": "help",
-              "title": "Help",
-            },
-          ],
-          "slug": "guidance",
-          "title": "Guidance",
-        },
-        "primary": {
-          "keystages": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "children": null,
-                    "href": "/teachers/programmes/english-primary/units?keystages=ks1",
-                    "nonCurriculum": false,
-                    "programmeCount": 0,
-                    "programmeSlug": "english-primary-ks1",
-                    "slug": "english",
-                    "subjectSlug": "english",
-                    "title": "English",
-                  },
-                  {
-                    "children": null,
-                    "href": "/teachers/programmes/maths-primary/units?keystages=ks1",
-                    "nonCurriculum": false,
-                    "programmeCount": 0,
-                    "programmeSlug": "maths-primary-ks1",
-                    "slug": "maths",
-                    "subjectSlug": "maths",
-                    "title": "Maths",
-                  },
-                  {
-                    "children": null,
-                    "href": "/teachers/programmes/financial-education-primary/units?keystages=ks1",
-                    "nonCurriculum": true,
-                    "programmeCount": 0,
-                    "programmeSlug": "financial-education-primary-ks1",
-                    "slug": "financial-education",
-                    "subjectSlug": "financial-education",
-                    "title": "Financial education",
-                  },
-                ],
-                "description": "Key stage 1",
-                "slug": "ks1",
-                "title": "KS1",
-              },
-              {
-                "children": [
-                  {
-                    "children": null,
-                    "href": "/teachers/programmes/science-primary/units?keystages=ks2",
-                    "nonCurriculum": false,
-                    "programmeCount": 0,
-                    "programmeSlug": "science-primary-ks2",
-                    "slug": "science",
-                    "subjectSlug": "science",
-                    "title": "Science",
-                  },
-                ],
-                "description": "Key stage 2",
-                "slug": "ks2",
-                "title": "KS2",
-              },
-              {
-                "children": [],
-                "description": "Early years foundation stage",
-                "slug": "early-years-foundation-stage",
-                "title": "EYFS",
-              },
-            ],
-            "slug": "keystages",
-            "title": "Keystages",
+  <TeacherBrowseAnalyticsStoreProvider
+    accessLevel="homepage"
+    programmeState={null}
+  >
+    <TopNav
+      pupils={
+        {
+          "help": {
+            "external": true,
+            "href": "https://support.thenational.academy",
+            "slug": "help",
+            "title": "Help",
           },
-          "phases": {
+          "primary": {
             "children": [
               {
-                "children": null,
-                "href": "/teachers/programmes/english-primary/units?keystages=ks1",
-                "nonCurriculum": false,
-                "programmeCount": 0,
-                "programmeSlug": "english-primary-ks1",
-                "slug": "english",
-                "subjectSlug": "english",
-                "title": "English",
+                "slug": "year-1",
+                "title": "Year 1",
               },
               {
-                "children": null,
-                "href": "/teachers/programmes/maths-primary/units?keystages=ks1",
-                "nonCurriculum": false,
-                "programmeCount": 0,
-                "programmeSlug": "maths-primary-ks1",
-                "slug": "maths",
-                "subjectSlug": "maths",
-                "title": "Maths",
+                "slug": "year-2",
+                "title": "Year 2",
               },
               {
-                "children": null,
-                "href": "/teachers/programmes/financial-education-primary/units?keystages=ks1",
-                "nonCurriculum": true,
-                "programmeCount": 0,
-                "programmeSlug": "financial-education-primary-ks1",
-                "slug": "financial-education",
-                "subjectSlug": "financial-education",
-                "title": "Financial education",
+                "slug": "year-3",
+                "title": "Year 3",
               },
               {
-                "children": null,
-                "href": "/teachers/programmes/science-primary/units?keystages=ks2",
-                "nonCurriculum": false,
-                "programmeCount": 0,
-                "programmeSlug": "science-primary-ks2",
-                "slug": "science",
-                "subjectSlug": "science",
-                "title": "Science",
+                "slug": "year-4",
+                "title": "Year 4",
+              },
+              {
+                "slug": "year-5",
+                "title": "Year 5",
+              },
+              {
+                "slug": "year-6",
+                "title": "Year 6",
               },
             ],
             "slug": "primary",
             "title": "Primary",
           },
-        },
-        "secondary": {
-          "keystages": {
+          "secondary": {
             "children": [
               {
-                "children": [
-                  {
-                    "children": null,
-                    "href": "/teachers/programmes/history-secondary-edexcel/units?keystages=ks3",
-                    "nonCurriculum": false,
-                    "programmeCount": 0,
-                    "programmeSlug": "history-secondary-ks3",
-                    "slug": "history",
-                    "subjectSlug": "history",
-                    "title": "History",
-                  },
-                  {
-                    "children": null,
-                    "href": "/teachers/programmes/geography-secondary/units?keystages=ks3",
-                    "nonCurriculum": false,
-                    "programmeCount": 0,
-                    "programmeSlug": "geography-secondary-ks3",
-                    "slug": "geography",
-                    "subjectSlug": "geography",
-                    "title": "Geography",
-                  },
-                ],
-                "description": "Key stage 3",
-                "slug": "ks3",
-                "title": "KS3",
+                "slug": "year-7",
+                "title": "Year 7",
               },
               {
-                "children": [
-                  {
-                    "children": [
-                      {
-                        "href": "/teachers/programmes/geography-secondary-aqa/units?keystages=ks4&tiers=foundation",
-                        "programmeFactors": {
-                          "examboard": {
-                            "slug": "aqa",
-                            "title": "AQA",
-                          },
-                          "tier": {
-                            "description": "Foundation",
-                            "slug": "foundation",
-                          },
-                        },
-                        "slug": "geography-secondary-ks4-aqa",
-                        "title": "AQA",
-                      },
-                      {
-                        "href": "/teachers/programmes/geography-secondary-edexcel/units?keystages=ks4&tiers=higher",
-                        "programmeFactors": {
-                          "examboard": {
-                            "slug": "edexcel",
-                            "title": "Edexcel",
-                          },
-                          "tier": {
-                            "description": "Higher",
-                            "slug": "higher",
-                          },
-                        },
-                        "slug": "geography-secondary-ks4-edexcel",
-                        "title": "Edexcel",
-                      },
-                    ],
-                    "href": "/teachers/programmes/geography-secondary/units?keystages=ks4",
-                    "nonCurriculum": false,
-                    "programmeCount": 2,
-                    "programmeSlug": null,
-                    "slug": "geography",
-                    "subjectSlug": "geography",
-                    "title": "Geography",
-                  },
-                ],
-                "description": "Key stage 4",
-                "slug": "ks4",
-                "title": "KS4",
-              },
-            ],
-            "slug": "keystages",
-            "title": "Keystages",
-          },
-          "phases": {
-            "children": [
-              {
-                "children": [],
-                "href": "/teachers/programmes/computer-science-secondary/units?keystages=ks3,ks4",
-                "nonCurriculum": false,
-                "programmeCount": 0,
-                "programmeSlug": "computer-science-secondary",
-                "slug": "computer-science",
-                "subjectSlug": "computer-science",
-                "title": "Computer science",
+                "slug": "year-8",
+                "title": "Year 8",
               },
               {
-                "children": [
-                  {
-                    "href": "/teachers/programmes/maths-secondary/units?keystages=ks4&tiers=higher",
-                    "programmeFactors": {
-                      "examboard": null,
-                      "tier": {
-                        "description": "Higher",
-                        "slug": "higher",
-                      },
-                    },
-                    "slug": "maths-secondary-ks4-higher",
-                    "title": "Higher",
-                  },
-                  {
-                    "href": "/teachers/programmes/maths-secondary/units?keystages=ks4&tiers=foundation",
-                    "programmeFactors": {
-                      "examboard": null,
-                      "tier": {
-                        "description": "Foundation",
-                        "slug": "foundation",
-                      },
-                    },
-                    "slug": "maths-secondary-ks4-foundation",
-                    "title": "Foundation",
-                  },
-                ],
-                "href": "/teachers/programmes/maths-secondary/units?keystages=ks3,ks4",
-                "nonCurriculum": false,
-                "programmeCount": 0,
-                "programmeSlug": null,
-                "slug": "maths",
-                "subjectSlug": "maths",
-                "title": "Maths",
+                "slug": "year-9",
+                "title": "Year 9",
               },
               {
-                "children": [],
-                "href": "/teachers/programmes/history-secondary/units?keystages=ks3,ks4",
-                "nonCurriculum": false,
-                "programmeCount": 0,
-                "programmeSlug": "history-secondary",
-                "slug": "history",
-                "subjectSlug": "history",
-                "title": "History",
+                "slug": "year-10",
+                "title": "Year 10",
               },
               {
-                "children": [],
-                "href": "/teachers/programmes/geography-secondary/units?keystages=ks3,ks4",
-                "nonCurriculum": false,
-                "programmeCount": 0,
-                "programmeSlug": "geography-secondary",
-                "slug": "geography",
-                "subjectSlug": "geography",
-                "title": "Geography",
+                "slug": "year-11",
+                "title": "Year 11",
               },
             ],
             "slug": "secondary",
             "title": "Secondary",
           },
-        },
+        }
       }
-    }
-  />
+      teachers={
+        {
+          "aboutUs": {
+            "children": [
+              {
+                "href": "/about-us/who-we-are",
+                "slug": "about-who-we-are",
+                "title": "Who we are",
+              },
+              {
+                "href": "/about-us/oaks-curricula",
+                "slug": "about-oaks-curricula",
+                "title": "Oak's curricula",
+              },
+              {
+                "href": "/about-us/oaks-impact",
+                "slug": "about-oaks-impact",
+                "title": "Oak's impact",
+              },
+              {
+                "href": "/about-us/get-involved",
+                "slug": "about-get-involved",
+                "title": "Get involved",
+              },
+              {
+                "href": "/about-us/meet-the-team",
+                "slug": "about-meet-the-team",
+                "title": "Meet the team",
+              },
+              {
+                "href": "/contact-us",
+                "slug": "contact",
+                "title": "Contact us",
+              },
+            ],
+            "slug": "aboutUs",
+            "title": "About us",
+          },
+          "aiExperiments": {
+            "external": true,
+            "href": "https://labs.thenational.academy",
+            "slug": "labs",
+            "title": "Ai experiments",
+          },
+          "guidance": {
+            "children": [
+              {
+                "href": "/teachers/lesson-planning",
+                "slug": "lesson-planning",
+                "title": "Plan a lesson",
+              },
+              {
+                "href": "/blog",
+                "slug": "blog-index",
+                "title": "Blogs",
+              },
+              {
+                "external": true,
+                "href": "https://support.thenational.academy",
+                "slug": "help",
+                "title": "Help",
+              },
+            ],
+            "slug": "guidance",
+            "title": "Guidance",
+          },
+          "primary": {
+            "keystages": {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": null,
+                      "href": "/teachers/programmes/english-primary/units?keystages=ks1",
+                      "nonCurriculum": false,
+                      "programmeCount": 0,
+                      "programmeSlug": "english-primary-ks1",
+                      "slug": "english",
+                      "subjectSlug": "english",
+                      "title": "English",
+                    },
+                    {
+                      "children": null,
+                      "href": "/teachers/programmes/maths-primary/units?keystages=ks1",
+                      "nonCurriculum": false,
+                      "programmeCount": 0,
+                      "programmeSlug": "maths-primary-ks1",
+                      "slug": "maths",
+                      "subjectSlug": "maths",
+                      "title": "Maths",
+                    },
+                    {
+                      "children": null,
+                      "href": "/teachers/programmes/financial-education-primary/units?keystages=ks1",
+                      "nonCurriculum": true,
+                      "programmeCount": 0,
+                      "programmeSlug": "financial-education-primary-ks1",
+                      "slug": "financial-education",
+                      "subjectSlug": "financial-education",
+                      "title": "Financial education",
+                    },
+                  ],
+                  "description": "Key stage 1",
+                  "slug": "ks1",
+                  "title": "KS1",
+                },
+                {
+                  "children": [
+                    {
+                      "children": null,
+                      "href": "/teachers/programmes/science-primary/units?keystages=ks2",
+                      "nonCurriculum": false,
+                      "programmeCount": 0,
+                      "programmeSlug": "science-primary-ks2",
+                      "slug": "science",
+                      "subjectSlug": "science",
+                      "title": "Science",
+                    },
+                  ],
+                  "description": "Key stage 2",
+                  "slug": "ks2",
+                  "title": "KS2",
+                },
+                {
+                  "children": [],
+                  "description": "Early years foundation stage",
+                  "slug": "early-years-foundation-stage",
+                  "title": "EYFS",
+                },
+              ],
+              "slug": "keystages",
+              "title": "Keystages",
+            },
+            "phases": {
+              "children": [
+                {
+                  "children": null,
+                  "href": "/teachers/programmes/english-primary/units?keystages=ks1",
+                  "nonCurriculum": false,
+                  "programmeCount": 0,
+                  "programmeSlug": "english-primary-ks1",
+                  "slug": "english",
+                  "subjectSlug": "english",
+                  "title": "English",
+                },
+                {
+                  "children": null,
+                  "href": "/teachers/programmes/maths-primary/units?keystages=ks1",
+                  "nonCurriculum": false,
+                  "programmeCount": 0,
+                  "programmeSlug": "maths-primary-ks1",
+                  "slug": "maths",
+                  "subjectSlug": "maths",
+                  "title": "Maths",
+                },
+                {
+                  "children": null,
+                  "href": "/teachers/programmes/financial-education-primary/units?keystages=ks1",
+                  "nonCurriculum": true,
+                  "programmeCount": 0,
+                  "programmeSlug": "financial-education-primary-ks1",
+                  "slug": "financial-education",
+                  "subjectSlug": "financial-education",
+                  "title": "Financial education",
+                },
+                {
+                  "children": null,
+                  "href": "/teachers/programmes/science-primary/units?keystages=ks2",
+                  "nonCurriculum": false,
+                  "programmeCount": 0,
+                  "programmeSlug": "science-primary-ks2",
+                  "slug": "science",
+                  "subjectSlug": "science",
+                  "title": "Science",
+                },
+              ],
+              "slug": "primary",
+              "title": "Primary",
+            },
+          },
+          "secondary": {
+            "keystages": {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": null,
+                      "href": "/teachers/programmes/history-secondary-edexcel/units?keystages=ks3",
+                      "nonCurriculum": false,
+                      "programmeCount": 0,
+                      "programmeSlug": "history-secondary-ks3",
+                      "slug": "history",
+                      "subjectSlug": "history",
+                      "title": "History",
+                    },
+                    {
+                      "children": null,
+                      "href": "/teachers/programmes/geography-secondary/units?keystages=ks3",
+                      "nonCurriculum": false,
+                      "programmeCount": 0,
+                      "programmeSlug": "geography-secondary-ks3",
+                      "slug": "geography",
+                      "subjectSlug": "geography",
+                      "title": "Geography",
+                    },
+                  ],
+                  "description": "Key stage 3",
+                  "slug": "ks3",
+                  "title": "KS3",
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "href": "/teachers/programmes/geography-secondary-aqa/units?keystages=ks4&tiers=foundation",
+                          "programmeFactors": {
+                            "examboard": {
+                              "slug": "aqa",
+                              "title": "AQA",
+                            },
+                            "tier": {
+                              "description": "Foundation",
+                              "slug": "foundation",
+                            },
+                          },
+                          "slug": "geography-secondary-ks4-aqa",
+                          "title": "AQA",
+                        },
+                        {
+                          "href": "/teachers/programmes/geography-secondary-edexcel/units?keystages=ks4&tiers=higher",
+                          "programmeFactors": {
+                            "examboard": {
+                              "slug": "edexcel",
+                              "title": "Edexcel",
+                            },
+                            "tier": {
+                              "description": "Higher",
+                              "slug": "higher",
+                            },
+                          },
+                          "slug": "geography-secondary-ks4-edexcel",
+                          "title": "Edexcel",
+                        },
+                      ],
+                      "href": "/teachers/programmes/geography-secondary/units?keystages=ks4",
+                      "nonCurriculum": false,
+                      "programmeCount": 2,
+                      "programmeSlug": null,
+                      "slug": "geography",
+                      "subjectSlug": "geography",
+                      "title": "Geography",
+                    },
+                  ],
+                  "description": "Key stage 4",
+                  "slug": "ks4",
+                  "title": "KS4",
+                },
+              ],
+              "slug": "keystages",
+              "title": "Keystages",
+            },
+            "phases": {
+              "children": [
+                {
+                  "children": [],
+                  "href": "/teachers/programmes/computer-science-secondary/units?keystages=ks3,ks4",
+                  "nonCurriculum": false,
+                  "programmeCount": 0,
+                  "programmeSlug": "computer-science-secondary",
+                  "slug": "computer-science",
+                  "subjectSlug": "computer-science",
+                  "title": "Computer science",
+                },
+                {
+                  "children": [
+                    {
+                      "href": "/teachers/programmes/maths-secondary/units?keystages=ks4&tiers=higher",
+                      "programmeFactors": {
+                        "examboard": null,
+                        "tier": {
+                          "description": "Higher",
+                          "slug": "higher",
+                        },
+                      },
+                      "slug": "maths-secondary-ks4-higher",
+                      "title": "Higher",
+                    },
+                    {
+                      "href": "/teachers/programmes/maths-secondary/units?keystages=ks4&tiers=foundation",
+                      "programmeFactors": {
+                        "examboard": null,
+                        "tier": {
+                          "description": "Foundation",
+                          "slug": "foundation",
+                        },
+                      },
+                      "slug": "maths-secondary-ks4-foundation",
+                      "title": "Foundation",
+                    },
+                  ],
+                  "href": "/teachers/programmes/maths-secondary/units?keystages=ks3,ks4",
+                  "nonCurriculum": false,
+                  "programmeCount": 0,
+                  "programmeSlug": null,
+                  "slug": "maths",
+                  "subjectSlug": "maths",
+                  "title": "Maths",
+                },
+                {
+                  "children": [],
+                  "href": "/teachers/programmes/history-secondary/units?keystages=ks3,ks4",
+                  "nonCurriculum": false,
+                  "programmeCount": 0,
+                  "programmeSlug": "history-secondary",
+                  "slug": "history",
+                  "subjectSlug": "history",
+                  "title": "History",
+                },
+                {
+                  "children": [],
+                  "href": "/teachers/programmes/geography-secondary/units?keystages=ks3,ks4",
+                  "nonCurriculum": false,
+                  "programmeCount": 0,
+                  "programmeSlug": "geography-secondary",
+                  "slug": "geography",
+                  "subjectSlug": "geography",
+                  "title": "Geography",
+                },
+              ],
+              "slug": "secondary",
+              "title": "Secondary",
+            },
+          },
+        }
+      }
+    />
+  </TeacherBrowseAnalyticsStoreProvider>
   <SimulateErrorControls
     errorBoundaryLevel="root"
   />
@@ -412,6 +422,5 @@ exports[`core layout renders correctly 1`] = `
     </styled.div>
   </main>
   <LayoutSiteFooter />
-  <LayoutPreviewControls />
 </React.Fragment>
 `;

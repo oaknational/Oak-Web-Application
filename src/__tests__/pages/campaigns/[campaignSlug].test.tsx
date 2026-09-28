@@ -63,6 +63,18 @@ jest.mock("@/components/HooksAndUtils/sanityImageBuilder", () => ({
   getImageDimensions: jest.fn().mockReturnValue({ width: 800, height: 600 }),
 }));
 
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      videoPlayed: jest.fn(),
+      videoStarted: jest.fn(),
+      videoFinished: jest.fn(),
+      videoPaused: jest.fn(),
+    },
+  }),
+}));
+
 const render = renderWithProviders();
 
 describe("Campaign page", () => {

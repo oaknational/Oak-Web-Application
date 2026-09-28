@@ -24,6 +24,7 @@ import PostSingleLayout from "@/components/SharedComponents/PostSingleLayout";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -39,38 +40,43 @@ const BlogSinglePage: NextPage<BlogSinglePageProps> = (props) => {
   const { blog, categories, topNav } = props;
 
   return (
-    <Layout
-      topNavProps={topNav}
-      seoProps={getSeoProps({
-        ...props.blog.seo,
-        title: props.blog.seo?.title || props.blog.title,
-        description:
-          props.blog.seo?.description || props.blog.summaryPortableText,
-        imageUrl: imageBuilder
-          .image(props.blog.mainImage)
-          .width(1400)
-          .height(700)
-          .fit("crop")
-          .crop("center")
-          .url(),
-      })}
-      $background="bg-primary"
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="blogs_embedded_links"
     >
-      <PostSingleLayout
-        content={props}
-        breadcrumbs={getBlogWebinarPostBreadcrumbs(
-          categories,
-          blog,
-          "blog",
-          "Blog",
-        )}
+      <Layout
+        topNavProps={topNav}
+        seoProps={getSeoProps({
+          ...props.blog.seo,
+          title: props.blog.seo?.title || props.blog.title,
+          description:
+            props.blog.seo?.description || props.blog.summaryPortableText,
+          imageUrl: imageBuilder
+            .image(props.blog.mainImage)
+            .width(1400)
+            .height(700)
+            .fit("crop")
+            .crop("center")
+            .url(),
+        })}
+        $background="bg-primary"
       >
-        <OakBox $mt="spacing-48">
-          <BlogPortableText portableText={props.blog.contentPortableText} />
-        </OakBox>
-      </PostSingleLayout>
-      <BlogJsonLd blog={props.blog} />
-    </Layout>
+        <PostSingleLayout
+          content={props}
+          breadcrumbs={getBlogWebinarPostBreadcrumbs(
+            categories,
+            blog,
+            "blog",
+            "Blog",
+          )}
+        >
+          <OakBox $mt="spacing-48">
+            <BlogPortableText portableText={props.blog.contentPortableText} />
+          </OakBox>
+        </PostSingleLayout>
+        <BlogJsonLd blog={props.blog} />
+      </Layout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 

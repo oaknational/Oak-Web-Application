@@ -21,6 +21,7 @@ const props: PropsWithoutForm = {
   onEditClick: jest.fn(),
   setSchool: jest.fn(),
   cardGroup: <div>Cards</div>,
+  radioGroups: <div>Radio Groups</div>,
   cta: <button>CTA</button>,
   updatedAt: "2022-01-01T00:00:00Z",
   withHomeschool: true,

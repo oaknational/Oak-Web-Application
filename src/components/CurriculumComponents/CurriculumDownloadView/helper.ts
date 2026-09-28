@@ -1,4 +1,7 @@
+import { OakIconName } from "@oaknational/oak-components";
 import { ZodType } from "zod";
+
+import { ResourceType, ResourceTypeValueType } from "@/browser-lib/avo/Avo";
 
 export type School = {
   urn: string;
@@ -38,46 +41,98 @@ export function runSchema<T extends Record<string, unknown>>(
   };
 }
 
-export const validDownloadTypes = [
-  "curriculum-plans",
-  "national-curriculum",
+export type DownloadTypes =
+  | "curriculumPlan"
+  | "nationalCurriculum"
+  | "curriculumQuality"
+  | "whatsIncluded"
+  | "assessment"
+  | "commonQuestions"
+  | "equipmentList";
+
+const implementationGuidePdfBase = {
+  group: "implementation-guide",
+  icon: "subject-computing",
+  fileExt: "PDF",
+} as const;
+
+export const DOWNLOAD_TYPE_LABELS: {
+  id: DownloadTypes;
+  label: string;
+  group: string;
+  disabled?: boolean;
+  icon: OakIconName;
+  subTitle?: string;
+  fileExt: string;
+  groupLabel?: string;
+  avoResourceType: ResourceTypeValueType;
+  filenameOverride?: string; // Optional override for filename
+}[] = [
+  {
+    id: "curriculumPlan",
+    group: "curriculum",
+    label: "Curriculum plan and explainer",
+    subTitle: "Word (accessible)",
+    icon: "curriculum-plan",
+    fileExt: "DOCX",
+    avoResourceType: ResourceType.CURRICULUM_PLAN,
+  },
+  {
+    id: "nationalCurriculum",
+    group: "curriculum",
+    label: "National curriculum alignment",
+    subTitle: "Excel (accessible)",
+    icon: "spreadsheet",
+    fileExt: "XLSX",
+    avoResourceType: ResourceType.CURRICULUM_DOCUMENT,
+  },
+  {
+    id: "curriculumQuality",
+    label: "Curriculum quality",
+    groupLabel: "implementation toolkit",
+    avoResourceType: ResourceType.CURRICULUM_QUALITY,
+    ...implementationGuidePdfBase,
+  },
+  {
+    id: "whatsIncluded",
+    label: "What's included",
+    groupLabel: "implementation toolkit",
+    avoResourceType: ResourceType.WHATS_INCLUDED,
+    ...implementationGuidePdfBase,
+  },
+  {
+    id: "commonQuestions",
+    label: "Common questions",
+    groupLabel: "implementation toolkit",
+    avoResourceType: ResourceType.COMMON_QUESTIONS,
+    ...implementationGuidePdfBase,
+  },
+  {
+    id: "equipmentList",
+    label: "Equipment list",
+    groupLabel: "implementation toolkit",
+    avoResourceType: ResourceType.EQUIPMENT_LIST,
+    ...implementationGuidePdfBase,
+  },
+  {
+    id: "assessment",
+    label: "Checking pupils' understanding in our lessons",
+    filenameOverride: "Checking-pupil-understanding",
+    groupLabel: "implementation toolkit",
+    avoResourceType: ResourceType.ASSESSMENT,
+    ...implementationGuidePdfBase,
+  },
 ] as const;
 
-export type ValidDownloadTypes = (typeof validDownloadTypes)[number];
+export const DOWNLOAD_TYPES = DOWNLOAD_TYPE_LABELS.map(({ id }) => id);
 
 export function assertValidDownloadType(val: string) {
-  if (!validDownloadTypes.includes(val as DownloadType)) {
-    throw new Error("Invalid ");
+  if (!DOWNLOAD_TYPES.includes(val as DownloadType)) {
+    throw new Error(`Invalid type ${val}`);
   }
   return val as DownloadType;
 }
 
-export type DownloadType = (typeof validDownloadTypes)[number];
-
-export const DOWNLOAD_TYPE_LABELS: {
-  id: DownloadType;
-  label: string;
-  disabled?: boolean;
-  icon: "curriculum-plan" | "spreadsheet";
-  subTitle?: string;
-  fileExt: string;
-}[] = [
-  {
-    id: "curriculum-plans",
-    label: "Curriculum plan",
-    subTitle: "Word (accessible)",
-    icon: "curriculum-plan",
-    fileExt: "DOCX",
-  },
-  {
-    id: "national-curriculum",
-    label: "National curriculum",
-    subTitle: "Excel (accessible)",
-    icon: "spreadsheet",
-    fileExt: "XLSX",
-  },
-];
-
-export const DOWNLOAD_TYPES = DOWNLOAD_TYPE_LABELS.map(({ id }) => id);
+export type DownloadType = (typeof DOWNLOAD_TYPES)[number];
 
 export type DownloadTypeLabel = (typeof DOWNLOAD_TYPE_LABELS)[number];

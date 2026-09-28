@@ -2,6 +2,17 @@ import { z } from "zod";
 import {
   syntheticUnitvariantLessonsSchema,
   quizQuestionSchema,
+  examboards,
+  examboardSlugs,
+  keystageDescriptions,
+  keystageSlugs,
+  pathwayDescriptions,
+  phaseDescriptions,
+  subjectSlugs,
+  tierDescriptions,
+  tierSlugs,
+  yearDescriptions,
+  yearSlugs,
 } from "@oaknational/oak-curriculum-schema";
 
 import {
@@ -9,7 +20,6 @@ import {
   lessonAdditionalFilesListSchema,
   lessonDownloadsListSchema,
   lessonListSchema,
-  lessonPathwaySchema,
 } from "../../shared.schema";
 
 export const nextLessonSchema = z.object({
@@ -20,8 +30,23 @@ export const nextLessonSchema = z.object({
 
 export const lessonDownloadsSchema = z.object({
   ...baseLessonDownloadsSchema.shape,
-  ...lessonPathwaySchema.shape,
   ...nextLessonSchema.shape,
+  programmeSlug: z.string(),
+  unitSlug: z.string(),
+  unitTitle: z.string(),
+  keyStageSlug: keystageSlugs,
+  keyStageTitle: keystageDescriptions,
+  subjectSlug: subjectSlugs,
+  subjectTitle: z.string(),
+  phaseTitle: phaseDescriptions,
+  lessonCohort: z.string().nullish(),
+  examBoardSlug: examboardSlugs.nullable(),
+  examBoardTitle: examboards.nullable(),
+  tierSlug: tierSlugs.nullable(),
+  tierTitle: tierDescriptions.nullable(),
+  yearGroupSlug: yearSlugs,
+  yearGroupTitle: yearDescriptions,
+  pathwayTitle: pathwayDescriptions.nullable(),
 });
 
 export const additionalFile = z.object({

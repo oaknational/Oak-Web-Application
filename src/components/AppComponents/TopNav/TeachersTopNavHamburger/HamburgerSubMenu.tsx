@@ -27,7 +27,7 @@ import {
   OakLinkPropsRequiringPageOnly,
   resolveOakHref,
 } from "@/common-lib/urls";
-import useAnalytics from "@/context/Analytics/useAnalytics";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const isEyfsKeystage = (keystage: KeystageSubjectsMenu) =>
   keystage.slug === "early-years-foundation-stage";
@@ -98,7 +98,7 @@ export function HamburgerMenuContent(
   props: Readonly<TeachersSubNavData & { hamburgerMenu: HamburgerMenuHook }>,
 ) {
   const { hamburgerMenu, ...navData } = props;
-  const { track } = useAnalytics();
+  const track = useTeacherBrowseAnalytics((store) => store.track);
   const { submenuOpen, handleNav, handleCloseHamburger } = hamburgerMenu;
 
   if (!submenuOpen) return null;
@@ -184,18 +184,11 @@ export function HamburgerMenuContent(
         >
           <TopNavSubjectButtons
             handleClick={(subject: SubjectsMenu, keystageSlug: string) => {
-              track.browseRefined({
-                platform: "owa",
-                product: "teacher lesson resources",
-                engagementIntent: "refine",
+              track.programmeRefined({
                 componentType: "topnav-browse-button",
-                eventVersion: "2.0.0",
-                analyticsUseCase: "Teacher",
                 filterType: "Subject filter",
                 filterValue: subject.subjectSlug,
                 activeFilters: { keystages: [keystageSlug] },
-                googleLoginHint: null,
-                clientEnvironment: null,
               });
               handleCloseHamburger();
             }}
@@ -209,18 +202,11 @@ export function HamburgerMenuContent(
               `teachers-${phase}-${keystageData.slug}-${key}`
             }
             onExamBoardPanelOpen={(subject: SubjectsMenu) => {
-              track.browseRefined({
-                platform: "owa",
-                product: "teacher lesson resources",
-                engagementIntent: "refine",
+              track.programmeRefined({
                 componentType: "topnav-browse-button",
-                eventVersion: "2.0.0",
-                analyticsUseCase: "Teacher",
                 filterType: "Subject filter",
                 filterValue: subject.subjectSlug,
                 activeFilters: { keystages: ["ks4"] },
-                googleLoginHint: null,
-                clientEnvironment: null,
               });
               handleNav({ menu: "Ks4Options", value: subject.slug });
             }}
@@ -255,18 +241,11 @@ export function HamburgerMenuContent(
                   })
                 }
                 track={() => {
-                  track.browseRefined({
-                    platform: "owa",
-                    product: "teacher lesson resources",
-                    engagementIntent: "refine",
+                  track.programmeRefined({
                     componentType: "topnav-browse-button",
-                    eventVersion: "2.0.0",
-                    analyticsUseCase: "Teacher",
                     filterType: "Key stage filter",
                     filterValue: child.slug,
                     activeFilters: {},
-                    googleLoginHint: null,
-                    clientEnvironment: null,
                   });
                 }}
               />
@@ -288,18 +267,11 @@ export function HamburgerMenuContent(
           <TopNavSubjectButtons
             identifyingSlug={phase}
             handleClick={(subject: SubjectsMenu) => {
-              track.browseRefined({
-                platform: "owa",
-                product: "teacher lesson resources",
-                engagementIntent: "refine",
+              track.programmeRefined({
                 componentType: "topnav-browse-button",
-                eventVersion: "2.0.0",
-                analyticsUseCase: "Teacher",
                 filterType: "Subject filter",
                 filterValue: subject.subjectSlug,
                 activeFilters: {},
-                googleLoginHint: null,
-                clientEnvironment: null,
               });
               handleCloseHamburger();
             }}
@@ -310,18 +282,11 @@ export function HamburgerMenuContent(
             getButtonId={(key) => `teachers-${phase}-${key}`}
             onExamboardPanelClose={handleCloseHamburger}
             onExamBoardPanelOpen={(subject: SubjectsMenu) => {
-              track.browseRefined({
-                platform: "owa",
-                product: "teacher lesson resources",
-                engagementIntent: "refine",
+              track.programmeRefined({
                 componentType: "topnav-browse-button",
-                eventVersion: "2.0.0",
-                analyticsUseCase: "Teacher",
                 filterType: "Subject filter",
                 filterValue: subject.subjectSlug,
                 activeFilters: { keystages: ["ks4"] },
-                googleLoginHint: null,
-                clientEnvironment: null,
               });
               handleNav({ menu: "Ks4Options", value: subject.slug });
             }}

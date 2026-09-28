@@ -39,6 +39,7 @@ export type SharePageLayoutProps = ResourcePageDetailsCompletedProps &
     header: string;
     errors: FieldErrors<ResourceFormValues>;
     cardGroup: React.ReactNode;
+    radioGroups: React.ReactNode;
     showLoading: boolean;
     showNoResources: boolean;
     schoolId?: string;
@@ -104,7 +105,15 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
             <OakFlex
               $flexDirection="column"
               $gap="spacing-16"
-              $position={"sticky"}
+              $top={"spacing-56"}
+              $width={"100%"}
+            >
+              {props.radioGroups}
+            </OakFlex>
+
+            <OakFlex
+              $flexDirection="column"
+              $gap="spacing-16"
               $top={"spacing-56"}
               $width={"100%"}
             >

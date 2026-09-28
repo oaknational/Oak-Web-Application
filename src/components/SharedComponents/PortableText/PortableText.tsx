@@ -103,7 +103,7 @@ export const PTExternalLink: PortableTextMarkComponent<{
     return null;
   }
 
-  const { href } = props.value;
+  const href = getProxiedSanityAssetUrl(props.value.href);
 
   return <OakLink href={href}>{props.children}</OakLink>;
 };

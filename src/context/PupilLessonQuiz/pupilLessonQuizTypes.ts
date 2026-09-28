@@ -12,6 +12,7 @@ export type PupilLessonQuizInitArgs = {
   section: QuizSection;
   questionsArray: QuestionsArray;
   initialQuestionResults?: QuestionState[];
+  initialIsComplete?: boolean;
 };
 
 export type PupilLessonQuizState = {

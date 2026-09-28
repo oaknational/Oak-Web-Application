@@ -36,7 +36,20 @@ interface LessonOverviewPresentationProps {
   isWorksheetLandscape?: boolean | null;
   isWorksheet: boolean;
   isAdditionalMaterial?: boolean;
+  loading?: "eager" | "lazy";
 }
+
+const getSlidesId = (asset: string | null) => {
+  if (asset) {
+    const split = asset.split("/");
+    if (split.length > 1) {
+      return split[5];
+    } else if (split.length === 1) {
+      return split[0];
+    }
+  }
+  return null;
+};
 
 const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
   asset,
@@ -44,8 +57,9 @@ const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
   isWorksheetLandscape,
   isWorksheet,
   isAdditionalMaterial,
+  loading = "eager",
 }) => {
-  const [slidesId] = useState(asset ? asset.split("/")?.[5] : null);
+  const [slidesId] = useState(getSlidesId(asset));
   const isWorksheetPortrait = !isWorksheetLandscape && isWorksheet;
   const srcUrl =
     isAdditionalMaterial && asset
@@ -81,7 +95,7 @@ const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
               // Keep the embedded player out of the tab order to avoid keyboard traps.
               tabIndex={-1}
               aria-hidden="true"
-              loading="eager"
+              loading={loading}
             />
           </FocusTarget>
         </OakFocusIndicator>

@@ -5,6 +5,9 @@ import {
   OakHeading,
   OakIcon,
   OakMaxWidth,
+  OakBreadcrumbs,
+  OakBreadcrumb,
+  OakBreadcrumbWithoutHref,
 } from "@oaknational/oak-components";
 
 import PostCategoryList from "@/components/SharedComponents/PostCategoryList";
@@ -16,14 +19,11 @@ import BlogHeader from "@/components/SharedComponents/PostHeader/PostHeader";
 import { WebinarSinglePageProps } from "@/pages/webinars/[webinarSlug]";
 import { BlogSinglePageProps } from "@/pages/blog/[blogSlug]";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
-import Breadcrumbs, {
-  Breadcrumb,
-} from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 
 type PostSingleLayoutProps = {
   children?: ReactNode;
   content: BlogSinglePageProps | WebinarSinglePageProps;
-  breadcrumbs: Breadcrumb[];
+  breadcrumbs: [...OakBreadcrumb[], OakBreadcrumbWithoutHref];
 };
 
 const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
@@ -35,7 +35,7 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
 
   return (
     <OakMaxWidth>
-      <OakGrid $ph={["spacing-12", "spacing-0"]}>
+      <OakGrid $ph={["spacing-12", "spacing-0"]} $pb="spacing-24">
         <OakGridArea
           $colSpan={[12, 0]}
           $mt={["spacing-24", "spacing-0", "spacing-0"]}
@@ -56,7 +56,7 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
           $mv={"spacing-16"}
           $gap={"spacing-24"}
         >
-          <Breadcrumbs breadcrumbs={breadcrumbs} />
+          <OakBreadcrumbs breadcrumbs={breadcrumbs} />
           <OakIcon
             iconName="header-underline"
             $colorFilter="bg-interactive-element2"

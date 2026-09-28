@@ -4,9 +4,9 @@ import {
   LessonOverviewVideo,
   LessonOverviewVideoProps,
 } from "./LessonOverviewVideo";
-import { mockBrowsePathwayData } from "./LessonOverviewVideo.fixtures";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const transcriptSentences = [
   "Hi, I'm Rebecca, your computing teacher for the collaborating online respectfully unit.",
@@ -29,12 +29,15 @@ const props: LessonOverviewVideoProps = {
   transcriptSentences,
   signLanguageVideo: "signLanguageVideo",
   isLegacy: true,
-  browsePathwayData: mockBrowsePathwayData,
 };
 
 const meta: Meta<typeof LessonOverviewVideo> = {
   component: LessonOverviewVideo,
-  decorators: [AnalyticsDecorator, (Story) => <Story />],
+  decorators: [
+    AnalyticsDecorator,
+    TeacherBrowseAnalyticsDecorator,
+    (Story) => <Story />,
+  ],
 };
 
 export default meta;

@@ -70,6 +70,7 @@ export type HubspotPayload = {
 
 type HubspotSubmitFormProps = {
   hubspotFormId: string;
+  hubspotPortalId?: string;
   payload: HubspotPayload;
   isFallbackAttempt?: boolean;
 };
@@ -101,7 +102,7 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
     errorMeta.payload = payload;
 
     // Cloudflare worker proxy forwards hubspot-forms.thenational.academy -> api.hsforms.com
-    const url = `${hubspotFormSubmissionUrl}/${hubspotPortalId}/${hubspotFormId}`;
+    const url = `${hubspotFormSubmissionUrl}/${props.hubspotPortalId ?? hubspotPortalId}/${hubspotFormId}`;
 
     let res: Response;
 

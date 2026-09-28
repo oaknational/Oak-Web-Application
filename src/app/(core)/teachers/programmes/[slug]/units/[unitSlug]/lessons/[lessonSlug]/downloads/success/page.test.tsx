@@ -10,11 +10,7 @@ jest.mock("next/navigation", () => ({
   notFound: () => {
     throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
   },
-}));
-
-const featureFlagMock = jest.fn().mockResolvedValue(undefined);
-jest.mock("@/utils/featureFlags", () => ({
-  getFeatureFlagValue: () => featureFlagMock(),
+  unstable_rethrow: jest.fn(),
 }));
 
 const mockTeachersUnitOverview = jest.fn();
@@ -48,7 +44,6 @@ const defaultParams = {
 describe("LessonDownloadsSuccessPage", () => {
   beforeEach(() => {
     mockTeachersUnitOverview.mockResolvedValue(unitFixture);
-    featureFlagMock.mockResolvedValue(undefined);
   });
 
   it("fetches unit data and renders success confirmation", async () => {
@@ -64,24 +59,6 @@ describe("LessonDownloadsSuccessPage", () => {
     });
     expect(result).toMatchSnapshot();
   });
-
-  it.each([
-    { flagValue: undefined, expectedVariant: "control" },
-    { flagValue: "control", expectedVariant: "control" },
-    { flagValue: "test", expectedVariant: "test" },
-  ])(
-    "renders $expectedVariant variant when feature flag is $flagValue",
-    async ({ flagValue }) => {
-      featureFlagMock.mockResolvedValue(flagValue);
-
-      const result = await LessonDownloadsSuccessPage({
-        params: Promise.resolve(defaultParams),
-        searchParams: Promise.resolve({}),
-      });
-
-      expect(result).toMatchSnapshot();
-    },
-  );
 
   it("renders 404 when lesson release date is missing", async () => {
     mockTeachersUnitOverview.mockResolvedValue({

@@ -35,6 +35,7 @@ export type ErrorCode =
   | "school-picker/fetch-suggestions"
   | "urls/failed-to-resolve"
   | "downloads/failed-to-fetch"
+  | "downloads/generation-failed"
   | "downloads/check-files-failed"
   | "downloads/missing-auth-token"
   | "onboarding/request-error"
@@ -43,7 +44,8 @@ export type ErrorCode =
   | "educator-api/failed-to-get-saved-units"
   | "educator-api/failed-to-unsave-unit"
   | "graphql/timeout"
-  | "analytics/teacher-browse";
+  | "analytics/teacher-browse"
+  | "mathjax/startup";
 
 type ErrorConfig = {
   // Message intended for developer's convenience. Human error messages should probably be handled in the view layer
@@ -193,6 +195,11 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
     message: "Failed to fetch downloads",
     shouldNotify: true,
   },
+  "downloads/generation-failed": {
+    message: "Failed to generate curriculum insight downloads",
+    responseStatusCode: 500,
+    shouldNotify: true,
+  },
   "downloads/check-files-failed": {
     message: "Failed to check file existence",
     shouldNotify: true,
@@ -231,6 +238,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "analytics/teacher-browse": {
     message: "Invalid browse level for analytics event",
+    shouldNotify: true,
+  },
+  "mathjax/startup": {
+    message: "Something went wrong loading mathjax",
     shouldNotify: true,
   },
 };

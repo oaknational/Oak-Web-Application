@@ -3,6 +3,7 @@ import { ComponentProps, FC } from "react";
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { resolveOakHref } from "@/common-lib/urls";
 import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type LessonOverviewDownloadAllButtonProps = Pick<
   LessonOverviewHeaderProps,
@@ -11,7 +12,6 @@ export type LessonOverviewDownloadAllButtonProps = Pick<
   | "programmeSlug"
   | "lessonSlug"
   | "unitSlug"
-  | "onClickDownloadAll"
   | "geoRestricted"
   | "loginRequired"
 > &
@@ -26,13 +26,14 @@ export const LessonOverviewDownloadAllButton: FC<
     programmeSlug,
     lessonSlug,
     unitSlug,
-    onClickDownloadAll,
     geoRestricted,
     loginRequired,
     sizeVariant = "small",
     width = "spacing-160",
   } = props;
-
+  const { lessonResourceDownloadStarted } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
   const preselected = "all";
 
   if (expired || !showDownloadAll || !programmeSlug || !unitSlug) {
@@ -56,7 +57,8 @@ export const LessonOverviewDownloadAllButton: FC<
       signUpProps={{ name: "Download all" }}
       actionProps={{
         name: "Download all",
-        onClick: onClickDownloadAll,
+        onClick: () =>
+          lessonResourceDownloadStarted({ downloadResourceButtonName: "all" }),
         isActionGeorestricted: true,
         shouldHidewhenGeoRestricted: true,
         href: href,

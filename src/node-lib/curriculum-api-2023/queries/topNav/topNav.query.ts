@@ -71,29 +71,34 @@ const topNavQuery = (sdk: Sdk) => {
       guidance: {
         title: "Guidance",
         slug: "guidance",
-        children: [
-          {
-            title: "Plan a lesson",
-            slug: "lesson-planning",
-            href: resolveOakHref({ page: "lesson-planning" }),
-          },
-          {
-            title: "Blogs",
-            slug: "blog-index",
-            href: resolveOakHref({ page: "blog-index" }),
-          },
-          {
-            title: "Webinars",
-            slug: "webinar-index",
-            href: resolveOakHref({ page: "webinar-index" }),
-          },
-          {
-            title: "Help",
-            slug: "help",
-            href: resolveOakHref({ page: "help" }),
-            external: true,
-          },
-        ],
+        children: (
+          [
+            {
+              title: "Curriculum change explained",
+              slug: "curriculum-change-explained",
+            },
+            {
+              title: "Plan a lesson",
+              slug: "lesson-planning",
+            },
+            {
+              title: "Blogs",
+              slug: "blog-index",
+            },
+            {
+              title: "Webinars",
+              slug: "webinar-index",
+            },
+            {
+              title: "Help",
+              slug: "help",
+              external: true,
+            },
+          ] as const
+        ).map((link) => ({
+          ...link,
+          href: resolveOakHref({ page: link.slug }),
+        })),
       },
       aboutUs: {
         title: "About us",
@@ -105,19 +110,24 @@ const topNavQuery = (sdk: Sdk) => {
             href: resolveOakHref({ page: "about-who-we-are" }),
           },
           {
-            title: "Meet the team",
-            slug: "about-meet-the-team",
-            href: resolveOakHref({ page: "about-meet-the-team" }),
-          },
-          {
             title: "Oak's curricula",
             slug: "about-oaks-curricula",
             href: resolveOakHref({ page: "about-oaks-curricula" }),
           },
           {
+            title: "Oak's impact",
+            slug: "about-oaks-impact",
+            href: resolveOakHref({ page: "about-oaks-impact" }),
+          },
+          {
             title: "Get involved",
             slug: "about-get-involved",
             href: resolveOakHref({ page: "about-get-involved" }),
+          },
+          {
+            title: "Meet the team",
+            slug: "about-meet-the-team",
+            href: resolveOakHref({ page: "about-meet-the-team" }),
           },
           {
             title: "Contact us",

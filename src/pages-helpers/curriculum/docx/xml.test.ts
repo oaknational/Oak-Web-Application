@@ -26,7 +26,7 @@ describe("xml", () => {
 
     it("should return empty if empty", () => {
       const json = xmlElementToJson(undefined);
-      expect(json).toEqual(undefined);
+      expect(json).toBeUndefined();
     });
 
     it("should throw with valid XML with multiple root nodes", () => {

@@ -192,6 +192,14 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
+  hubspotCurriculumDownloadsFormId: {
+    // Hubspot form name dev: OWA curriculum resource download
+    value: process.env.NEXT_PUBLIC_HUBSPOT_CURRICULUM_DOWNLOADS_FORM_ID,
+    envName: "NEXT_PUBLIC_HUBSPOT_CURRICULUM_DOWNLOADS_FORM_ID",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
   hubspotScriptDomain: {
     value: process.env.NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN,
     envName: "NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN",

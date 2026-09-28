@@ -61,6 +61,10 @@ jest.mock("@/node-lib/cms", () => ({
 }));
 
 describe("Teachers Page", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   describe("Page component", () => {
     it("renders", () => {
       const { baseElement } = render(<Home {...props} />);

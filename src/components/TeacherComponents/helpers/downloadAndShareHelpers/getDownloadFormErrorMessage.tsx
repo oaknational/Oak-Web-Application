@@ -15,18 +15,19 @@ export const getDownloadFormErrorMessage = (errorsArray: ErrorKeysType[]) => {
     ErrorKeysType,
     ErrorMessagesAndOrderType
   > = {
-    school: {
-      order: 2,
-      message:
-        "select school, type 'homeschool' or tick 'My school isn't listed'",
-    },
-    email: { order: 3, message: "enter a valid email address" },
-    terms: { order: 4, message: "accept terms and conditions to continue" },
     resources: {
       order: 1,
       message: "select at least one resource to continue",
     },
-    schoolName: { order: 5, message: "" },
+    hideYearGroup: { order: 2, message: "" },
+    school: {
+      order: 3,
+      message:
+        "select school, type 'homeschool' or tick 'My school isn't listed'",
+    },
+    email: { order: 4, message: "enter a valid email address" },
+    terms: { order: 5, message: "accept terms and conditions to continue" },
+    schoolName: { order: 6, message: "" },
   };
 
   const sortedErrorsArray = errorsArray.sort(

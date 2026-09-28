@@ -1,8 +1,9 @@
-import { match, compile, MatchFunction } from "path-to-regexp";
+import { match, compile, MatchFunction, MatchResult } from "path-to-regexp";
 
 import createQueryStringFromObject, {
   UrlQueryObject,
 } from "./createQueryStringFromObject";
+import { nationalCurriculumInsightsGuidanceHref } from "./nationalCurriculumInsights";
 
 import { PageNameValueType } from "@/browser-lib/avo/Avo";
 import isBrowser from "@/utils/isBrowser";
@@ -239,6 +240,9 @@ type PupilHelpLinkProps = { page: "pupil-help" };
 type GuideToOakLinkProps = { page: "guide-to-oak" };
 type HomeLinkProps = { page: "home" };
 type LessonPlanningLinkProps = { page: "lesson-planning" };
+type CurriculumChangeExplainedLinkProps = {
+  page: "curriculum-change-explained";
+};
 type LegalLinkProps = {
   page: "legal";
   /**
@@ -330,6 +334,18 @@ type EyfsPageLinkProps = {
   subjectSlug: string;
 };
 
+type TeachWithOakDownloadLinkProps = { page: "teach-with-oak-download" };
+
+export type TeachWithOakQueryProps = {
+  returnTo: string;
+  lessonName: string;
+  unitName: string;
+};
+type TeachWithOakLinkProps = {
+  page: "teach-with-oak";
+  query?: TeachWithOakQueryProps;
+};
+
 type OnlyPageRequired<T> = T extends { page: string }
   ? { page: T["page"] } extends T
     ? T
@@ -384,6 +400,7 @@ export type OakLinkProps =
   | ContactUsLinkProps
   | HomeLinkProps
   | LessonPlanningLinkProps
+  | CurriculumChangeExplainedLinkProps
   | OurTeachersLinkProps
   | OakCurriculumLinkProps
   | ClassroomLinkProps
@@ -406,7 +423,9 @@ export type OakLinkProps =
   | ClassroomPupilSignInLinkProps
   | EyfsPageLinkProps
   | GuideToOakLinkProps
-  | FontHelpLinkProps;
+  | FontHelpLinkProps
+  | TeachWithOakLinkProps
+  | TeachWithOakDownloadLinkProps;
 
 export type ExternalPageName =
   | "[external] Careers"
@@ -642,6 +661,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Plan a Lesson",
     configType: "internal",
     pageType: "lesson-planning",
+  }),
+  "curriculum-change-explained": createOakPageConfig({
+    pathPattern: nationalCurriculumInsightsGuidanceHref(),
+    analyticsPageName: "Landing Page",
+    configType: "internal",
+    pageType: "curriculum-change-explained",
   }),
   legal: createOakPageConfig({
     pathPattern: "/legal/:legalSlug",
@@ -954,6 +979,18 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "eyfs-page",
   }),
+  "teach-with-oak": createOakPageConfig({
+    pathPattern: "/teachers/teach-with-oak",
+    analyticsPageName: "Teach With Oak",
+    configType: "internal",
+    pageType: "teach-with-oak",
+  }),
+  "teach-with-oak-download": createOakPageConfig({
+    pathPattern: "/teachers/teach-with-oak/downloads",
+    analyticsPageName: "Teach With Oak",
+    configType: "internal",
+    pageType: "teach-with-oak-download",
+  }),
 };
 
 export type ResolveOakHrefProps = Exclude<
@@ -984,4 +1021,24 @@ export function resolveOakHref(props: ResolveOakHrefProps): string {
 
     return "/";
   }
+}
+
+/**
+ * Extract oak href params from a passed in path string
+ * or return false if the path does not match the expected page type
+ */
+type MatchPropsForPage<TPage extends OakPageType> = Omit<
+  Extract<OakLinkProps, { page: TPage }>,
+  "page"
+>;
+
+export function matchOakHref<TPage extends OakPageType>(
+  path: string,
+  page: TPage,
+): false | MatchResult<MatchPropsForPage<TPage>>;
+export function matchOakHref(
+  path: string,
+  page: OakPageType,
+): false | MatchResult<Omit<OakLinkProps, "page">> {
+  return OAK_PAGES[page].matchHref(path);
 }

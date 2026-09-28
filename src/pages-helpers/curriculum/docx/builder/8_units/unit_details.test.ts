@@ -73,7 +73,7 @@ describe("buildUnitPriorKnowledgeReqs", () => {
       }),
     );
     expect(insertNumberingMock).not.toHaveBeenCalled();
-    expect(out).toEqual(undefined);
+    expect(out).toBeUndefined();
   });
 
   test("no data", async () => {
@@ -84,6 +84,6 @@ describe("buildUnitPriorKnowledgeReqs", () => {
       }),
     );
     expect(insertNumberingMock).not.toHaveBeenCalled();
-    expect(out).toEqual(undefined);
+    expect(out).toBeUndefined();
   });
 });

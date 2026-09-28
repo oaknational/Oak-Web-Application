@@ -218,6 +218,24 @@ describe("useResourceFormState", () => {
       ]);
     });
   });
+  describe("teach-with-oak", () => {
+    test("useResourceFormState should return all resources as selectedResources for teach-with-oak", () => {
+      const { result } = renderHook(() =>
+        useResourceFormState({
+          type: "teach-with-oak",
+        }),
+      );
+
+      expect(result.current.selectedResources).toEqual([
+        "explanation",
+        "feedback",
+        "practice",
+        "check-for-understanding",
+      ]);
+      expect(result.current.selectAllChecked).toBe(true);
+      expect(result.current.hasResources).toBe(true);
+    });
+  });
   describe("State local storage and auth", () => {
     test("should set email, school and terms from local storage if not logged in ", async () => {
       const useFormSpy = jest.spyOn(require("react-hook-form"), "useForm");
@@ -319,6 +337,36 @@ describe("useResourceFormState", () => {
           schoolName: "notListed",
         }),
       );
+    });
+    test("should set hubspotLoaded to true when onboarded user has no hubspot contact", async () => {
+      setUseUserReturn({
+        ...mockLoggedIn,
+        user: mockTeacherUserWithDownloadAccess,
+      });
+
+      (fetchHubspotContactDetails as jest.Mock).mockResolvedValue(null);
+
+      const { result } = renderHook(() => useResourceFormState(downloadProps));
+
+      await waitFor(() => {
+        expect(result.current.hubspotLoaded).toBe(true);
+      });
+    });
+    test("should set hubspotLoaded to true when hubspot fetch fails", async () => {
+      setUseUserReturn({
+        ...mockLoggedIn,
+        user: mockTeacherUserWithDownloadAccess,
+      });
+
+      (fetchHubspotContactDetails as jest.Mock).mockRejectedValue(
+        new Error("Failed to fetch contact details"),
+      );
+
+      const { result } = renderHook(() => useResourceFormState(downloadProps));
+
+      await waitFor(() => {
+        expect(result.current.hubspotLoaded).toBe(true);
+      });
     });
     test("should throw an error for invalid resource type", () => {
       console.error = jest.fn();

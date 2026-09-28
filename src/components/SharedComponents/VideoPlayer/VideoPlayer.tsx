@@ -4,12 +4,14 @@ import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
 import { OakP, OakFlex, OakUiRoleToken } from "@oaknational/oak-components";
 
-import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
+import useVideoTracking, {
+  VideoAnalyticsOverrides,
+  VideoTrackingGetState,
+} from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
 import getSubtitleTrack from "./getSubtitleTrack";
 import getDuration from "./getDuration";
 import {
-  PlaybackPolicy,
   useSignedVideoToken,
   useSignedThumbnailToken,
   useSignedStoryboardToken,
@@ -35,14 +37,12 @@ export type VideoStyleConfig = {
   };
 };
 
-export type VideoPlayerProps = {
+type VideoPlayerBaseProps = {
   playbackId: string;
-  playbackPolicy: PlaybackPolicy;
   initialStartTime?: number;
   thumbnailTime?: number | null;
   title: string;
   location: VideoLocationValueType;
-  isLegacy: boolean;
   userEventCallback?: (event: VideoEventCallbackArgs) => void;
   pathwayData?: PupilPathwayData | AnalyticsBrowseData;
   isAudioClip?: boolean;
@@ -52,12 +52,29 @@ export type VideoPlayerProps = {
   muxAssetId?: string | null;
   /** When true, focuses the play button when the player is mounted */
   autoFocusPlayButton?: boolean;
+  /** When true, starts playback as soon as the player is ready. */
+  autoPlay?: boolean;
   /** When false, pauses playback */
   isActive?: boolean;
   /** When false, suppresses the analytics event for reaching the end. */
   shouldTrackEndAnalytics?: boolean;
   omitBorder?: boolean;
+  /** Used to override the functions used to track analytics events  */
+  analyticsOverrides?: VideoAnalyticsOverrides;
 };
+
+type SignedVideoPlayerProps = VideoPlayerBaseProps & {
+  playbackPolicy: "signed";
+  /** Refers to whether legacy signing tokens are required or not for signed videos */
+  isLegacy: boolean;
+};
+type PublicVideoPlayerProps = VideoPlayerBaseProps & {
+  playbackPolicy: "public";
+  /** Signed tokens are not required for public videos */
+  isLegacy?: never;
+};
+
+export type VideoPlayerProps = SignedVideoPlayerProps | PublicVideoPlayerProps;
 
 export type VideoEventCallbackArgs = {
   event: "play" | "playing" | "pause" | "end";
@@ -115,7 +132,7 @@ function VideoContainer({
       data-percy-hide="contents"
       $alignItems={"center"}
       $justifyContent={"center"}
-      $ba={omitBorder ? "border-none" : "border-solid-l"}
+      $ba={omitBorder ? "border-solid-none" : "border-solid-l"}
       $minWidth={"100%"}
       $borderColor={"border-primary"}
       style={{
@@ -136,7 +153,6 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     location,
     playbackId,
     playbackPolicy,
-    isLegacy,
     userEventCallback = () => {},
     pathwayData,
     isAudioClip,
@@ -145,10 +161,14 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     cloudinaryUrl,
     muxAssetId,
     autoFocusPlayButton = false,
+    autoPlay = false,
     isActive = true,
     shouldTrackEndAnalytics = true,
     omitBorder = false,
+    analyticsOverrides,
   } = props;
+
+  const isLegacy = playbackPolicy === "signed" ? props.isLegacy : false;
 
   const mediaElRef = useRef<MuxPlayerElement | null>(null);
   const [endTracked, setEndTracked] = useState<string | null>(null);
@@ -195,6 +215,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     pathwayData,
     cloudinaryUrl,
     muxAssetId,
+    analyticsOverrides,
   });
 
   const thumbnailToken = useSignedThumbnailToken({
@@ -327,6 +348,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       <MuxPlayer
         key={reloadOnErrors.length}
         preload="metadata"
+        autoPlay={autoPlay}
         ref={setMediaElRef}
         envKey={envKey}
         metadata={metadata}

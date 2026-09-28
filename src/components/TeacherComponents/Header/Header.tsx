@@ -47,6 +47,10 @@ export type HeaderProps = {
    * The level of the decorative background colour to be used. Defaults to transparent.
    */
   backgroundColorLevel?: 1 | 2 | 3 | 4 | 5 | 6;
+  /**
+   * Whether to use the subdued variant of the background colour for the main background.
+   */
+  useSubduedBackground?: boolean;
 };
 
 export type LargeHeaderProps = {
@@ -55,10 +59,6 @@ export type LargeHeaderProps = {
    * A hero image for the header;
    */
   heroImage: string | null;
-  /**
-   * Whether to use the subdued vaiant of the background colour for the main background
-   */
-  useSubduedBackground?: boolean;
 } & HeaderProps;
 
 export type SubjectIcon = `subject-${string}` & OakIconName;

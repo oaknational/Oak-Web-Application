@@ -141,19 +141,21 @@ export const QuizRenderer = ({
           $height="100%"
         >
           <OakFlex $flexDirection="column" $gap="spacing-24" $height="100%">
-            <MathJaxWrap>
+            <OakBox>
               {currentQuestionData.questionStem && (
-                <QuizQuestionStem
-                  questionUid={currentQuestionData.questionUid}
-                  questionStem={currentQuestionData.questionStem}
-                  index={currentQuestionIndex}
-                  takeFullHeight={
-                    currentQuestionData.questionType === "explanatory-text"
-                  }
-                />
+                <MathJaxWrap>
+                  <QuizQuestionStem
+                    questionUid={currentQuestionData.questionUid}
+                    questionStem={currentQuestionData.questionStem}
+                    index={currentQuestionIndex}
+                    takeFullHeight={
+                      currentQuestionData.questionType === "explanatory-text"
+                    }
+                  />
+                </MathJaxWrap>
               )}
               {answerRender}
-            </MathJaxWrap>
+            </OakBox>
             <QuizAttribution questionData={currentQuestionData} />
           </OakFlex>
         </OakBox>

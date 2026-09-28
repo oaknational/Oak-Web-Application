@@ -9,6 +9,7 @@ import {
   resolveUnitYear,
 } from "./groupProgrammeFilterUnits";
 
+import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023";
 import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
 import { teachersSitemapDataFixtureCamelCase } from "@/node-lib/curriculum-api-2023/fixtures/teachersSiteMap.fixture";
 import type { TeachersSitemapProgrammeFilterUnit } from "@/node-lib/curriculum-api-2023/queries/teachersSitemap/teacherSitemap.schema";
@@ -152,7 +153,7 @@ describe("groupProgrammeFilterUnits", () => {
     });
 
     it("omits variants when all units collapse to a single year bucket (cross-keystage)", () => {
-      const subjects = [
+      const subjects: CurriculumPhaseOptions = [
         {
           title: "Rule of law",
           slug: "rule-of-law",
@@ -177,7 +178,7 @@ describe("groupProgrammeFilterUnits", () => {
     });
 
     it("includes all-years variant when mixed with numeric years", () => {
-      const subjects = [
+      const subjects: CurriculumPhaseOptions = [
         {
           title: "Physical education",
           slug: "physical-education",
@@ -213,7 +214,7 @@ describe("groupProgrammeFilterUnits", () => {
           state: "published",
         },
       ];
-      const subjects = [
+      const subjects: CurriculumPhaseOptions = [
         {
           title: "Maths",
           slug: "maths",

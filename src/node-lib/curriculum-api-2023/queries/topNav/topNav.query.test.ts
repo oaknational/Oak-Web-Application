@@ -47,6 +47,7 @@ describe("TopNavQuery", () => {
     expect(
       res.teachers?.primary.keystages.children?.[0]?.children?.[0]?.href,
     ).toBeDefined();
+    expect(res.teachers?.aboutUs.children).toHaveLength(6);
   });
 
   it("uses the cached topNav function when withCache is true", async () => {

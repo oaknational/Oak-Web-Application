@@ -32,6 +32,7 @@ import {
 import { trimTrailingEmptyBlocks } from "@/utils/portableText/trimEmptyBlocks";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { resolveOakHref } from "@/common-lib/urls";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type AboutUsMeetTheTeamPersonPageProps = {
   pageData: TeamMember;
@@ -92,85 +93,37 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
   ];
 
   return (
-    <Layout
-      seoProps={getSeoProps({
-        title: `${name} - Meet the Team`,
-        description: role ?? undefined,
-      })}
-      $background={"bg-primary"}
-      topNavProps={topNav}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
     >
-      <NewGutterMaxWidth>
-        <OakFlex $pt={"spacing-24"} $color={"text-primary"}>
-          <OakBreadcrumbs breadcrumbs={breadcrumbs} />
-        </OakFlex>
-        <OakGrid
-          $pt={["spacing-40", "spacing-56"]}
-          $pb={["spacing-56", "spacing-80"]}
-          $cg={["spacing-0", "spacing-16"]}
-          $rg={"spacing-24"}
-          $color={"text-primary"}
-        >
-          {/* Image - Desktop/Tablet only (left column) */}
-          <OakGridArea
-            $colSpan={[12, 4]}
-            $order={1}
-            $display={["none", "block"]}
+      <Layout
+        seoProps={getSeoProps({
+          title: `${name} - Meet the Team`,
+          description: role ?? undefined,
+        })}
+        $background={"bg-primary"}
+        topNavProps={topNav}
+      >
+        <NewGutterMaxWidth>
+          <OakFlex $pt={"spacing-24"} $color={"text-primary"}>
+            <OakBreadcrumbs breadcrumbs={breadcrumbs} />
+          </OakFlex>
+          <OakGrid
+            $pt={["spacing-40", "spacing-56"]}
+            $pb={["spacing-56", "spacing-80"]}
+            $cg={["spacing-0", "spacing-16"]}
+            $rg={"spacing-24"}
+            $color={"text-primary"}
           >
-            {imageUrl && (
-              <OakBox>
-                <OakBox $borderRadius={"border-radius-l"} $overflow={"hidden"}>
-                  <OakImage
-                    src={imageUrl}
-                    alt={image?.altText ?? ""}
-                    $width={"100%"}
-                    $aspectRatio={"2/3"}
-                    $objectFit={"cover"}
-                    style={{ objectPosition: "center" }}
-                  />
-                </OakBox>
-              </OakBox>
-            )}
-          </OakGridArea>
-
-          {/* All text content (right column on desktop, full width on mobile) */}
-          <OakGridArea $colSpan={[12, 8]} $order={2}>
-            <OakFlex
-              $flexDirection={"column"}
-              $gap={"spacing-24"}
-              $ph={["spacing-0", "spacing-40"]}
+            {/* Image - Desktop/Tablet only (left column) */}
+            <OakGridArea
+              $colSpan={[12, 4]}
+              $order={1}
+              $display={["none", "block"]}
             >
-              {/* Header group - category, name, job title */}
-              <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
-                {/* Category + Name */}
-                <OakFlex $flexDirection={"column"} $gap={"spacing-4"}>
-                  <OakTypography $font={["heading-light-7", "heading-light-6"]}>
-                    {category}
-                  </OakTypography>
-                  <OakHeading tag="h1" $font={["heading-3", "heading-2"]}>
-                    {name}
-                  </OakHeading>
-                </OakFlex>
-
-                {/* Job title */}
-                {role && (
-                  <OakBox
-                    $background={"bg-decorative5-main"}
-                    $ph={"spacing-4"}
-                    style={{ width: "fit-content" }}
-                  >
-                    <OakTypography
-                      $font={["heading-light-5", "heading-light-4"]}
-                    >
-                      {role}
-                    </OakTypography>
-                  </OakBox>
-                )}
-              </OakFlex>
-
-              {/* Image - Mobile only (between header and socials) */}
               {imageUrl && (
-                <OakBox $display={["block", "none"]} style={{ width: "75%" }}>
+                <OakBox>
                   <OakBox
                     $borderRadius={"border-radius-l"}
                     $overflow={"hidden"}
@@ -186,65 +139,124 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                   </OakBox>
                 </OakBox>
               )}
+            </OakGridArea>
 
-              {/* Socials */}
-              {socials && (socials.twitterUsername || socials.linkedinUrl) && (
-                <OakFlex
-                  $gap={"spacing-12"}
-                  style={{ width: "fit-content" }}
-                  aria-label={`${name}'s social media links`}
-                  role="group"
-                >
-                  {socials.linkedinUrl && (
-                    <SocialButton
-                      socialType="linkedin"
-                      profileHref={socials.linkedinUrl}
-                    />
-                  )}
-                  {socials.twitterUsername && (
-                    <SocialButton
-                      socialType="x"
-                      profileHref={`https://x.com/${socials.twitterUsername}`}
-                    />
-                  )}
-                </OakFlex>
-              )}
-
-              {/* Bio */}
-              {trimmedBio && (
-                <OakBox $font={["body-2", "body-1"]} $pb={"spacing-16"}>
-                  <PortableTextWithDefaults value={trimmedBio} />
-                </OakBox>
-              )}
-
-              {/* Navigation buttons */}
-              {(prevHref || nextHref) && (
-                <OakFlex
-                  as="nav"
-                  $gap={"spacing-16"}
-                  aria-label="Team member navigation"
-                >
-                  {prevHref && (
-                    <ProfileLinkButton href={prevHref} iconName="arrow-left">
-                      Previous profile
-                    </ProfileLinkButton>
-                  )}
-                  {nextHref && (
-                    <ProfileLinkButton
-                      href={nextHref}
-                      iconName="arrow-right"
-                      isTrailingIcon
+            {/* All text content (right column on desktop, full width on mobile) */}
+            <OakGridArea $colSpan={[12, 8]} $order={2}>
+              <OakFlex
+                $flexDirection={"column"}
+                $gap={"spacing-24"}
+                $ph={["spacing-0", "spacing-40"]}
+              >
+                {/* Header group - category, name, job title */}
+                <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+                  {/* Category + Name */}
+                  <OakFlex $flexDirection={"column"} $gap={"spacing-4"}>
+                    <OakTypography
+                      $font={["heading-light-7", "heading-light-6"]}
                     >
-                      Next profile
-                    </ProfileLinkButton>
+                      {category}
+                    </OakTypography>
+                    <OakHeading tag="h1" $font={["heading-3", "heading-2"]}>
+                      {name}
+                    </OakHeading>
+                  </OakFlex>
+
+                  {/* Job title */}
+                  {role && (
+                    <OakBox
+                      $background={"bg-decorative5-main"}
+                      $ph={"spacing-4"}
+                      style={{ width: "fit-content" }}
+                    >
+                      <OakTypography
+                        $font={["heading-light-5", "heading-light-4"]}
+                      >
+                        {role}
+                      </OakTypography>
+                    </OakBox>
                   )}
                 </OakFlex>
-              )}
-            </OakFlex>
-          </OakGridArea>
-        </OakGrid>
-      </NewGutterMaxWidth>
-    </Layout>
+
+                {/* Image - Mobile only (between header and socials) */}
+                {imageUrl && (
+                  <OakBox $display={["block", "none"]} style={{ width: "75%" }}>
+                    <OakBox
+                      $borderRadius={"border-radius-l"}
+                      $overflow={"hidden"}
+                    >
+                      <OakImage
+                        src={imageUrl}
+                        alt={image?.altText ?? ""}
+                        $width={"100%"}
+                        $aspectRatio={"2/3"}
+                        $objectFit={"cover"}
+                        style={{ objectPosition: "center" }}
+                      />
+                    </OakBox>
+                  </OakBox>
+                )}
+
+                {/* Socials */}
+                {socials &&
+                  (socials.twitterUsername || socials.linkedinUrl) && (
+                    <OakFlex
+                      $gap={"spacing-12"}
+                      style={{ width: "fit-content" }}
+                      aria-label={`${name}'s social media links`}
+                      role="group"
+                    >
+                      {socials.linkedinUrl && (
+                        <SocialButton
+                          socialType="linkedin"
+                          profileHref={socials.linkedinUrl}
+                        />
+                      )}
+                      {socials.twitterUsername && (
+                        <SocialButton
+                          socialType="x"
+                          profileHref={`https://x.com/${socials.twitterUsername}`}
+                        />
+                      )}
+                    </OakFlex>
+                  )}
+
+                {/* Bio */}
+                {trimmedBio && (
+                  <OakBox $font={["body-2", "body-1"]} $pb={"spacing-16"}>
+                    <PortableTextWithDefaults value={trimmedBio} />
+                  </OakBox>
+                )}
+
+                {/* Navigation buttons */}
+                {(prevHref || nextHref) && (
+                  <OakFlex
+                    as="nav"
+                    $gap={"spacing-16"}
+                    aria-label="Team member navigation"
+                  >
+                    {prevHref && (
+                      <ProfileLinkButton href={prevHref} iconName="arrow-left">
+                        Previous profile
+                      </ProfileLinkButton>
+                    )}
+                    {nextHref && (
+                      <ProfileLinkButton
+                        href={nextHref}
+                        iconName="arrow-right"
+                        isTrailingIcon
+                      >
+                        Next profile
+                      </ProfileLinkButton>
+                    )}
+                  </OakFlex>
+                )}
+              </OakFlex>
+            </OakGridArea>
+          </OakGrid>
+        </NewGutterMaxWidth>
+      </Layout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 

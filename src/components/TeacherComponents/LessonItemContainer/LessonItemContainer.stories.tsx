@@ -7,6 +7,7 @@ import {
 } from "./LessonItemContainer";
 
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const { lessonSlug, unitSlug, programmeSlug } = lessonOverviewFixture();
 
@@ -20,6 +21,7 @@ const props: LessonItemContainerProps = {
 
 const meta: Meta<typeof LessonItemContainer> = {
   component: LessonItemContainer,
+  decorators: [TeacherBrowseAnalyticsDecorator],
 };
 
 export default meta;

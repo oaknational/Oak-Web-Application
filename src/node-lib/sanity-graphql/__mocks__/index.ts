@@ -43,4 +43,10 @@ export default {
   landingPageBySlug: jest.fn(() => landingPageBySlugFixture),
   newsListingPage: jest.fn(() => allNewsListingPageFixture),
   curriculumOverviewPage: jest.fn(() => curriculumOverviewPageFixture),
+  nationalCurriculumInsightsHub: jest.fn(() => ({
+    allNationalCurriculumInsightsHub: [],
+  })),
+  nationalCurriculumInsightsSubjectBySlug: jest.fn(() => ({
+    allNationalCurriculumInsightsSubject: [],
+  })),
 };
