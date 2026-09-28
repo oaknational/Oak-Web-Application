@@ -1,4 +1,4 @@
-import { match, compile, MatchFunction } from "path-to-regexp";
+import { match, compile, MatchFunction, MatchResult } from "path-to-regexp";
 
 import createQueryStringFromObject, {
   UrlQueryObject,
@@ -1021,4 +1021,24 @@ export function resolveOakHref(props: ResolveOakHrefProps): string {
 
     return "/";
   }
+}
+
+/**
+ * Extract oak href params from a passed in path string
+ * or return false if the path does not match the expected page type
+ */
+type MatchPropsForPage<TPage extends OakPageType> = Omit<
+  Extract<OakLinkProps, { page: TPage }>,
+  "page"
+>;
+
+export function matchOakHref<TPage extends OakPageType>(
+  path: string,
+  page: TPage,
+): false | MatchResult<MatchPropsForPage<TPage>>;
+export function matchOakHref(
+  path: string,
+  page: OakPageType,
+): false | MatchResult<Omit<OakLinkProps, "page">> {
+  return OAK_PAGES[page].matchHref(path);
 }

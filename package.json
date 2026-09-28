@@ -11,7 +11,7 @@
     "build": "pnpm run build:prep && next build",
     "build:prep": "rimraf ./reports/*",
     "build:analyse-bundle": "ANALYSE_BUNDLE=on next build",
-    "postbuild": "next-sitemap --config next-sitemap.config.js",
+    "postbuild": "rimraf public/robots.txt && next-sitemap --config next-sitemap.config.js && tsx scripts/build/assert_robots_content_signal/index.ts",
     "cc": "commit",
     "cca": "git add . && commit",
     "check-types": "tsc --noEmit",

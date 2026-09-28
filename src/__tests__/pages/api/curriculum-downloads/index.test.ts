@@ -286,7 +286,7 @@ describe("/api/curriculum-downloads", () => {
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     );
     expect(res.getHeader("Content-Disposition")).toContain(
-      `attachment; filename="Curriculum-plan-English-Secondary-AQA.docx"`,
+      `attachment; filename="Curriculum-plan-explainer-English-Secondary-AQA.docx"`,
     );
     expect(fetch).toHaveBeenCalledTimes(1);
     expect(res._getStatusCode()).toBe(200);
