@@ -42,7 +42,7 @@ export function ProgrammeFiltersKs4Options({
 }: Readonly<ProgrammeFiltersKs4OptionsProps>) {
   const router = useRouter();
   const { filters } = useBrowseFilters();
-  const { programmeAccessed } = useTeacherBrowseAnalytics(
+  const { programmeRefined } = useTeacherBrowseAnalytics(
     (store) => store.track,
   );
   const getKs4OptionFocusNavigationQuery =
@@ -80,7 +80,7 @@ export function ProgrammeFiltersKs4Options({
     selectedSlug: string,
     filterType: FilterTypeValueType,
   ) {
-    programmeAccessed({
+    programmeRefined({
       componentType: "filter_link",
       activeFilters: filters,
       filterType,
