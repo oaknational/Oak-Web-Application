@@ -1,3 +1,17 @@
+# [1.1213.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1212.0...v1.1213.0) (2026-09-28)
+
+
+### Bug Fixes
+
+* add margin auto to misaligned box ([79faca6](https://github.com/oaknational/Oak-Web-Application/commit/79faca6e1de24c83e54d67b37fcee7f8013fc18c))
+* clarify mobile width for header image ([065ba04](https://github.com/oaknational/Oak-Web-Application/commit/065ba04861e4f9c596538c2ce3cf9642412fea62))
+
+
+### Features
+
+* remove unused property ([b26c71b](https://github.com/oaknational/Oak-Web-Application/commit/b26c71b5b6fd6f5aef497cbe80414c24abb7a32d))
+* update header image ([329010c](https://github.com/oaknational/Oak-Web-Application/commit/329010c1c7e4857a1d41f02c9014b67bb08b0b88))
+
 # [1.1212.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1211.0...v1.1212.0) (2026-09-23)
 
 
