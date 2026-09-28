@@ -29,6 +29,7 @@ exports[`LessonDownloadsSuccessPage fetches unit data and renders success confir
         "title": "Cells",
       },
       "year": "7",
+      "yearGroupSlug": "year-7",
       "yearGroupTitle": "Year 7",
     }
   }

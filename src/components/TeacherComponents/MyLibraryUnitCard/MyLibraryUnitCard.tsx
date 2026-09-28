@@ -164,19 +164,21 @@ const UnitCardContent = ({
                     onClick={() =>
                       track.lessonAccessed({
                         componentType: "lesson_card",
-                        unitName: props.unitTitle,
-                        unitSlug: props.unitSlug,
+                        unitContext: {
+                          unitName: props.unitTitle,
+                          unitSlug: props.unitSlug,
+                          keyStageTitle: props.keyStageTitle,
+                          keyStageSlug: props.keyStageSlug,
+                          examBoard: props.examBoard,
+                          pathway: props.pathway,
+                          tierName: props.tierName,
+                          yearGroupName: props.year,
+                          yearGroupSlug: props.yearSlug,
+                        },
                         lessonName: lesson.slug,
                         lessonSlug: lesson.slug,
-                        keyStageTitle: props.keyStageTitle,
-                        keyStageSlug: props.keyStageSlug,
-                        examBoard: props.examBoard,
-                        pathway: props.pathway,
                         lessonReleaseCohort: "2023-2026",
                         lessonReleaseDate: "",
-                        tierName: props.tierName,
-                        yearGroupName: props.year,
-                        yearGroupSlug: props.yearSlug,
                       })
                     }
                   >

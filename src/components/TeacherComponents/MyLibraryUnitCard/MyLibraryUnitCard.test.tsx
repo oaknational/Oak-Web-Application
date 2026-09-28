@@ -156,12 +156,8 @@ describe("MyLibraryUnitCard", () => {
         keyStageSlug: mockUnit.keyStageSlug,
         examBoard: mockUnit.examBoard,
         pathway: mockUnit.pathway,
-        phase: "secondary",
         platform: "owa",
         product: "teacher lesson resources",
-        releaseGroup: "2023",
-        subjectSlug: "biology", // fallsback to default programme state values
-        subjectTitle: "Biology",
         lessonReleaseCohort: "2023-2026",
         lessonReleaseDate: "",
         tierName: mockUnit.tierName,

@@ -69,19 +69,22 @@ export type TeacherBrowseAnalyticsStore = {
     lessonAccessed: (props: {
       componentType: ComponentTypeValueType;
       navigationType?: NavigationTypeValueType;
-      unitName: string;
-      unitSlug: string;
       lessonName: string;
       lessonSlug: string;
-      keyStageTitle: KeyStageTitleValueType;
-      keyStageSlug: string;
-      tierName: TierNameValueType | undefined | null;
-      examBoard: ExamBoardValueType | undefined | null;
-      pathway: PathwayValueType | undefined | null;
       lessonReleaseCohort: LessonReleaseCohortValueType;
       lessonReleaseDate: string;
-      yearGroupName: string;
-      yearGroupSlug: string;
+
+      unitContext?: {
+        unitName: string;
+        unitSlug: string;
+        keyStageTitle: KeyStageTitleValueType;
+        keyStageSlug: string;
+        tierName: TierNameValueType | undefined | null;
+        examBoard: ExamBoardValueType | undefined | null;
+        pathway: PathwayValueType | undefined | null;
+        yearGroupName: string;
+        yearGroupSlug: string;
+      };
     }) => void;
     lessonMediaClipsStarted: (data: {
       mediaClipsButtonName: MediaClipsButtonNameValueType;
@@ -165,7 +168,7 @@ export type TeacherBrowseAnalyticsStore = {
   };
 };
 
-const coreProperties: {
+export const coreProperties: {
   platform: PlatformValueType;
   product: ProductValueType;
   eventVersion: EventVersionValueType;
@@ -372,50 +375,41 @@ export const createTeacherBrowseAnalyticsStore = (
         navigationType,
         lessonName,
         lessonSlug,
-        unitName,
-        unitSlug,
-        keyStageTitle,
-        keyStageSlug,
-        tierName,
-        examBoard,
-        pathway,
+        unitContext,
         lessonReleaseCohort,
         lessonReleaseDate,
-        yearGroupName,
-        yearGroupSlug,
       }) => {
-        const { avo, programmeState, journeyId, accessLevel } = get();
+        const { avo, journeyId, accessLevel, programmeState } = get();
 
-        const lessonState = programmeState
-          ? requireLessonState("lessonAccessed", programmeState)
-          : null;
-
-        const analyticsProperties = lessonState
-          ? getLessonAnalyticsProperties(lessonState)
-          : {};
-
-        avo.lessonAccessed({
-          ...coreProperties,
-          ...analyticsProperties,
+        const stateProps = {
           journeyId,
           accessLevel,
+          componentType: componentType,
           navigationType: navigationType ?? "narrow",
           engagementIntent: EngagementIntent.REFINE,
-          componentType,
-          lessonName,
-          lessonSlug,
-          unitName,
-          unitSlug,
-          keyStageTitle,
-          keyStageSlug,
-          tierName,
-          examBoard,
-          pathway,
           lessonReleaseCohort,
           lessonReleaseDate,
-          yearGroupName,
-          yearGroupSlug,
-        });
+          lessonName,
+          lessonSlug,
+        };
+
+        if (unitContext) {
+          avo.lessonAccessed({
+            ...coreProperties,
+            ...unitContext,
+            ...stateProps,
+          });
+        } else {
+          const state = requireUnitState("lessonAccessed", programmeState);
+          if (state) {
+            const analyticsProperties = getUnitAnalyticsProperties(state);
+            avo.lessonAccessed({
+              ...coreProperties,
+              ...analyticsProperties,
+              ...stateProps,
+            });
+          }
+        }
       },
       lessonMediaClipsStarted: (data) => {
         const { avo, programmeState, journeyId } = get();

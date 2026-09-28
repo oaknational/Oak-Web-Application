@@ -45,6 +45,8 @@ export const getUnitAnalyticsProperties = (
     tierName: programmeState.tierTitle,
     unitName: programmeState.unit.title,
     unitSlug: programmeState.unit.slug,
+    yearGroupSlug: programmeState.yearGroupSlug,
+    yearGroupName: programmeState.yearGroupTitle,
   };
 };
 

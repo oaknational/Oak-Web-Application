@@ -44,18 +44,20 @@ export const extractLessonAccessedPropsFromHref = ({
 
   return {
     componentType: "teach_with_oak_back_to_lesson",
-    unitSlug,
-    unitName,
     lessonSlug,
     lessonName,
     lessonReleaseCohort: "2023-2026",
     lessonReleaseDate: "unknown",
-    keyStageSlug,
-    keyStageTitle,
-    tierName,
-    pathway,
-    examBoard,
-    yearGroupName: "",
-    yearGroupSlug: "",
+    unitContext: {
+      unitSlug,
+      unitName,
+      keyStageSlug,
+      keyStageTitle,
+      tierName,
+      pathway,
+      examBoard,
+      yearGroupName: "",
+      yearGroupSlug: "",
+    },
   };
 };

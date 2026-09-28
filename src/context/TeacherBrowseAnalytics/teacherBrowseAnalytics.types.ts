@@ -101,6 +101,8 @@ export type UnitPathwayData = ProgrammePathwayData & {
   pathway: PathwayValueType | null;
   unitName: string;
   unitSlug: string;
+  yearGroupName: string;
+  yearGroupSlug: string;
 };
 
 export type LessonPathwayData = UnitPathwayData & {
@@ -109,8 +111,6 @@ export type LessonPathwayData = UnitPathwayData & {
   lessonReleaseDate: string;
   lessonReleaseCohort: LessonReleaseCohortValueType;
   releaseGroup: string;
-  yearGroupName: string;
-  yearGroupSlug: string;
 };
 
 export type VideoTrackingProperties = {

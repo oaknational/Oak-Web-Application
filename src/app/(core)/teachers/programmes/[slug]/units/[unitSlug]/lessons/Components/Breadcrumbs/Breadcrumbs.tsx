@@ -9,7 +9,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
 import {
-  ProgrammeStateLesson,
+  LessonState,
   ProgrammeStateUnit,
 } from "@/context/TeacherBrowseAnalytics/teacherBrowseAnalytics.types";
 import { getKeyStageTitle } from "@/utils/curriculum/formatting";
@@ -75,30 +75,13 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
     });
   };
 
-  const trackLessonAccessed = (state: ProgrammeStateLesson) => {
-    const {
-      keyStageSlug,
-      yearGroupTitle,
-      yearGroupSlug,
-      examBoardTitle,
-      pathwayTitle,
-      tierTitle,
-    } = state;
+  const trackLessonAccessed = (lesson: LessonState) => {
     lessonAccessed({
       componentType: "breadcrumb",
-      lessonName: state.lesson.title,
-      lessonSlug: state.lesson.slug,
+      lessonName: lesson.title,
+      lessonSlug: lesson.slug,
       lessonReleaseCohort: "2023-2026",
-      lessonReleaseDate: state.lesson.lessonReleaseDate,
-      unitName: state.unit.title,
-      unitSlug: state.unit.slug,
-      keyStageSlug,
-      keyStageTitle: getKeyStageTitle(keyStageSlug),
-      yearGroupName: yearGroupTitle,
-      yearGroupSlug: yearGroupSlug,
-      tierName: tierTitle,
-      examBoard: examBoardTitle,
-      pathway: pathwayTitle,
+      lessonReleaseDate: lesson.lessonReleaseDate,
     });
   };
 
@@ -153,7 +136,7 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
             programmeSlug: lessonState.programmeSlug,
             lessonSlug: lessonState.lesson.slug,
           }),
-          onClick: () => trackLessonAccessed(lessonState),
+          onClick: () => trackLessonAccessed(lessonState.lesson),
         },
         {
           text: `${mode[0]?.toUpperCase()}${mode.slice(1)}`,

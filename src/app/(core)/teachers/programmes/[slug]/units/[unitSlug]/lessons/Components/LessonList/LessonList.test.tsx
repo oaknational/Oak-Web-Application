@@ -176,7 +176,7 @@ describe("LessonList", () => {
     );
   });
 
-  it("does not call tracking when the programme slug does not contain a keystage", async () => {
+  it("tracks a lesson click when the programme slug does not contain a keystage", async () => {
     render(
       <LessonList {...defaultProps} programmeSlug="invalid-programme-slug" />,
     );
@@ -189,8 +189,12 @@ describe("LessonList", () => {
     const user = userEvent.setup();
     await user.click(firstLessonLink);
 
-    expect(mockLessonAccessed).not.toHaveBeenCalledWith(
-      expect.objectContaining({ lessonName: "Introduction to cells" }),
+    expect(mockLessonAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        componentType: "lesson_card",
+        lessonName: "Introduction to cells",
+        lessonSlug: "lesson-1",
+      }),
     );
   });
 });
