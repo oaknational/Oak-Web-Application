@@ -20,7 +20,7 @@ export const mockProgrammeState: ProgrammeState = getProgrammeStateForLesson(
  * so that tests don't need a session to be available.
  */
 const MockedTeacherBrowseAnalyticsProvider: FC<{
-  programmeState?: ProgrammeState;
+  programmeState?: ProgrammeState | null;
   accessLevel?: AccessLevelValueType;
   children?: ReactNode;
 }> = ({

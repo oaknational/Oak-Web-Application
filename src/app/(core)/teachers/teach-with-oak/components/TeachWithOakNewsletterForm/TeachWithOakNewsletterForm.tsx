@@ -3,16 +3,9 @@
 import { OakBox, OakFlex } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-import { NewsletterFormProps } from "@/components/GenericPagesComponents/NewsletterForm";
+import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
-
-type FormValues = Parameters<NewsletterFormProps["onSubmit"]>[0];
-
-type TeachWithOakNewsletterFormProps = {
-  id: string;
-  onSubmit: (values: FormValues) => Promise<string | void>;
-};
 
 const NewsletterWrapper = styled(OakFlex)`
   max-width: 100%;
@@ -23,11 +16,8 @@ const NewsletterWrapper = styled(OakFlex)`
   }
 `;
 
-const TeachWithOakNewsletterForm = ({
-  id,
-  onSubmit,
-}: TeachWithOakNewsletterFormProps) => {
-  const newsletterFormProps = { id, onSubmit };
+const TeachWithOakNewsletterForm = () => {
+  const { onSubmit } = useNewsletterForm();
   return (
     <OakBox
       $background="bg-decorative1-subdued"
@@ -36,7 +26,7 @@ const TeachWithOakNewsletterForm = ({
     >
       <NewGutterMaxWidth>
         <NewsletterWrapper>
-          <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
+          <NewsletterFormWrap desktopColSpan={6} onSubmit={onSubmit} />
         </NewsletterWrapper>
       </NewGutterMaxWidth>
     </OakBox>
