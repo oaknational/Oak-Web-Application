@@ -1,3 +1,10 @@
+## [1.1214.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1214.0...v1.1214.1) (2026-09-28)
+
+
+### Bug Fixes
+
+* preserve insights hero content order ([5508365](https://github.com/oaknational/Oak-Web-Application/commit/550836530c697295c16af94c840bff0fe675882d))
+
 # [1.1214.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1213.0...v1.1214.0) (2026-09-28)
 
 
