@@ -49,14 +49,14 @@ jobs:
         id: playwright-cache
         with:
           path: ~/.cache/ms-playwright
-          key: playwright-${{ runner.os }}-chromium-webkit-${{ steps.playwright-version.outputs.version }}
+          key: playwright-${{ runner.os }}-chromium-${{ steps.playwright-version.outputs.version }}
 
       - name: Install Playwright system dependencies
-        run: ./node_modules/.bin/playwright install-deps chromium webkit
+        run: ./node_modules/.bin/playwright install-deps chromium
 
       - name: Install Playwright browser
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: ./node_modules/.bin/playwright install chromium webkit
+        run: ./node_modules/.bin/playwright install chromium
 
       - name: Wait for Vercel deployment
         id: deployment
