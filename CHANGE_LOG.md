@@ -1,3 +1,54 @@
+## [1.1214.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1214.0...v1.1214.1) (2026-09-28)
+
+
+### Bug Fixes
+
+* preserve insights hero content order ([5508365](https://github.com/oaknational/Oak-Web-Application/commit/550836530c697295c16af94c840bff0fe675882d))
+
+# [1.1214.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1213.0...v1.1214.0) (2026-09-28)
+
+
+### Bug Fixes
+
+* add decorator to stories ([ce98800](https://github.com/oaknational/Oak-Web-Application/commit/ce988006eb331cd0dc24170589cdd65a0baebd24))
+* add Lesson Accessed to send instantly events ([ebbdf58](https://github.com/oaknational/Oak-Web-Application/commit/ebbdf5878a8eb621a3625731bb67e0509032f56a))
+* add missing events to decorator ([a6c0c8e](https://github.com/oaknational/Oak-Web-Application/commit/a6c0c8ec21aaf67cf0eddaa5716e4f5b844b1005))
+* add Teach With Oak accessed to send instantly events ([72dc980](https://github.com/oaknational/Oak-Web-Application/commit/72dc9805ace462086b5620408a7cf8e9b91200b4))
+* add use client directive to header ([f73bc81](https://github.com/oaknational/Oak-Web-Application/commit/f73bc812272e28ac5a5362bb64c5313cf88ea0d2))
+* expected url format in test ([0803aed](https://github.com/oaknational/Oak-Web-Application/commit/0803aed0298f4264a293cc2fb33f8fd09a423213))
+* pass component types to teachWithOakAccessed ([75ffbf4](https://github.com/oaknational/Oak-Web-Application/commit/75ffbf47a5c60cdc21b201c44ee756a3c32900f1))
+
+
+### Features
+
+* add helper fn to get properties from href for tracking ([27ff960](https://github.com/oaknational/Oak-Web-Application/commit/27ff9604701639dced0756c4578f39c6110a90b3))
+* add matchOakHref helper fn and tests ([0483515](https://github.com/oaknational/Oak-Web-Application/commit/04835152463f938177730d6b365d42df3e676edf))
+* add teach with oak accessed event to store ([a890a85](https://github.com/oaknational/Oak-Web-Application/commit/a890a85754af25bd8a73d335f8c86d7b0ac1d894))
+* add teachWithOakAccessed tracking ([c623ef7](https://github.com/oaknational/Oak-Web-Application/commit/c623ef7e866f100ba4a38d33ee1563b6a91b8e60))
+* get lesson and unit name from search params for tracking ([82ddef8](https://github.com/oaknational/Oak-Web-Application/commit/82ddef8c260d3a0b8051f48499871b7773a27e23))
+* get state from store for returnTo props ([552141b](https://github.com/oaknational/Oak-Web-Application/commit/552141be5b8fc85dd41eadfb305faddbdd911061))
+* merge in promo link branch ([2167ddc](https://github.com/oaknational/Oak-Web-Application/commit/2167ddcd709c897f561d77178c976c9a415319d2))
+* merge in teach tip branch ([124febc](https://github.com/oaknational/Oak-Web-Application/commit/124febc27aa23f3c5762f31f9f6bd3e56ddfa858))
+* track lesson accessed on back to lesson click ([88c753e](https://github.com/oaknational/Oak-Web-Application/commit/88c753e381c8d965b9c1f3089807417185c1e150))
+* track teach with oak download ([374e659](https://github.com/oaknational/Oak-Web-Application/commit/374e659f3e671214911010e804c149b3c6d04e68))
+* update component type on lesson accessed props ([8d49583](https://github.com/oaknational/Oak-Web-Application/commit/8d4958360e74666c7cc50b9c858ec44bd028ef66))
+* update to use new url helper for href parsing ([4bab702](https://github.com/oaknational/Oak-Web-Application/commit/4bab702004b270e27c9439b23fd39427690c960c))
+* update TwO url query props ([ef3ccde](https://github.com/oaknational/Oak-Web-Application/commit/ef3ccde9ce7a297ff6ade4ccc55b7480ab11dbea))
+
+# [1.1213.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1212.0...v1.1213.0) (2026-09-28)
+
+
+### Bug Fixes
+
+* add margin auto to misaligned box ([79faca6](https://github.com/oaknational/Oak-Web-Application/commit/79faca6e1de24c83e54d67b37fcee7f8013fc18c))
+* clarify mobile width for header image ([065ba04](https://github.com/oaknational/Oak-Web-Application/commit/065ba04861e4f9c596538c2ce3cf9642412fea62))
+
+
+### Features
+
+* remove unused property ([b26c71b](https://github.com/oaknational/Oak-Web-Application/commit/b26c71b5b6fd6f5aef497cbe80414c24abb7a32d))
+* update header image ([329010c](https://github.com/oaknational/Oak-Web-Application/commit/329010c1c7e4857a1d41f02c9014b67bb08b0b88))
+
 # [1.1212.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1211.0...v1.1212.0) (2026-09-23)
 
 

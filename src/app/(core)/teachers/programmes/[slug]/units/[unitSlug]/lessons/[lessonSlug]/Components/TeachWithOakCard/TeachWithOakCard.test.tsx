@@ -1,9 +1,10 @@
 import { screen } from "@testing-library/dom";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
+import userEvent from "@testing-library/user-event";
 
 import { MaybeTeachWithOakCard } from "./TeachWithOakCard";
 
-import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 jest.mock("posthog-js/react", () => ({
   ...jest.requireActual("posthog-js/react"),
@@ -12,32 +13,45 @@ jest.mock("posthog-js/react", () => ({
 
 const mockUseFeatureFlagVariantKey = jest.mocked(useFeatureFlagVariantKey);
 
-const render = renderWithProvidersByName(["theme", "oakTheme"]);
+const render = renderWithProviders();
 
 const returnTo =
   "/teachers/programmes/maths-secondary-year-7/units/adding-and-subtracting/lessons/adding-integers";
 
+const query = { returnTo, lessonName: "Lesson Name", unitName: "Unit Name" };
+
+const mockTeachWithOakAccessed = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      teachWithOakAccessed: (...args: unknown[]) =>
+        mockTeachWithOakAccessed(...args),
+    },
+  }),
+}));
+
 describe("MaybeTeachWithOakCard", () => {
-  it("renders nothing while the feature flag is unresolved", () => {
+  it("does not render the card when the feature flag is unresolved", () => {
     mockUseFeatureFlagVariantKey.mockReturnValue(undefined);
 
-    const { container } = render(<MaybeTeachWithOakCard returnTo={returnTo} />);
+    render(<MaybeTeachWithOakCard {...query} />);
 
-    expect(container).toBeEmptyDOMElement();
+    expect(screen.queryByRole("heading")).not.toBeInTheDocument();
   });
 
   it("renders nothing when the feature flag is on another variant", () => {
     mockUseFeatureFlagVariantKey.mockReturnValue("control");
 
-    const { container } = render(<MaybeTeachWithOakCard returnTo={returnTo} />);
+    render(<MaybeTeachWithOakCard {...query} />);
 
-    expect(container).toBeEmptyDOMElement();
+    expect(screen.queryByRole("heading")).not.toBeInTheDocument();
   });
 
   it("reads the teachers-teach-with-oak feature flag", () => {
     mockUseFeatureFlagVariantKey.mockReturnValue("teacher-tip");
 
-    render(<MaybeTeachWithOakCard returnTo={returnTo} />);
+    render(<MaybeTeachWithOakCard {...query} />);
 
     expect(mockUseFeatureFlagVariantKey).toHaveBeenCalledWith(
       "teachers-teach-with-oak",
@@ -50,7 +64,7 @@ describe("MaybeTeachWithOakCard", () => {
     });
 
     it("renders the card content", () => {
-      render(<MaybeTeachWithOakCard returnTo={returnTo} />);
+      render(<MaybeTeachWithOakCard {...query} />);
 
       expect(
         screen.getByText(
@@ -63,11 +77,22 @@ describe("MaybeTeachWithOakCard", () => {
     });
 
     it("links to the teach with oak page, returning to the given path", () => {
-      render(<MaybeTeachWithOakCard returnTo={returnTo} />);
+      render(<MaybeTeachWithOakCard {...query} />);
 
       expect(screen.getByRole("link")).toHaveAttribute(
         "href",
-        `/teachers/teach-with-oak?returnTo=${encodeURIComponent(returnTo)}`,
+        `/teachers/teach-with-oak?returnTo=${encodeURIComponent(returnTo)}&lessonName=Lesson+Name&unitName=Unit+Name`,
+      );
+    });
+
+    it("calls tracking on click", async () => {
+      render(<MaybeTeachWithOakCard {...query} />);
+      const cardLink = screen.getByRole("link");
+      cardLink.addEventListener("click", (e) => e.preventDefault());
+      const user = userEvent.setup();
+      await user.click(cardLink);
+      expect(mockTeachWithOakAccessed).toHaveBeenCalledWith(
+        expect.objectContaining({ componentType: "teacher_tip" }),
       );
     });
   });

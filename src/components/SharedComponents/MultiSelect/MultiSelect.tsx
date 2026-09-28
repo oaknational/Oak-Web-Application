@@ -1,14 +1,18 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import {
-  getMediaQuery,
   OakBox,
   OakFlex,
   OakCheckBox,
   OakIcon,
   OakP,
+  OakPrimaryButton,
+  OakScreenReader,
+  OakSecondaryButton,
+  OakUL,
+  parseFontSize,
+  parseLineHeight,
   type OakUiRoleToken,
-  parseColor,
   parseDropShadow,
   parseSpacing,
 } from "@oaknational/oak-components";
@@ -49,150 +53,19 @@ export type MultiSelectProps = {
   "data-testid"?: string;
 };
 
-const Root = styled(OakBox).attrs({ $position: "relative", $width: "100%" })``;
-
-const DesktopView = styled.div`
-  display: none;
-
-  @media (${getMediaQuery("desktop")}) {
-    display: block;
-  }
-`;
-
-const TriggerAnchor = styled(OakBox).attrs({
-  $position: "relative",
-  $width: "100%",
-})``;
-
-const Trigger = styled.button<{ $size: "standard" | "large" }>`
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: ${parseSpacing("spacing-8")};
-  width: 100%;
-  min-height: ${({ $size }) =>
-    $size === "large"
-      ? parseSpacing("spacing-64")
-      : parseSpacing("spacing-48")};
-  padding: ${({ $size }) =>
-    $size === "large"
-      ? parseSpacing("spacing-16")
-      : `${parseSpacing("spacing-12")} ${parseSpacing("spacing-16")}`};
-  border: 2px solid ${parseColor("border-primary")};
-  border-radius: 4px;
-  background: ${parseColor("bg-primary")};
-  color: ${parseColor("text-primary")};
-  font: inherit;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 20px;
-  letter-spacing: -1px;
-  text-align: left;
-  cursor: pointer;
-
-  &:hover:not(:disabled) {
-    background: ${parseColor("bg-neutral")};
-    box-shadow: ${parseDropShadow("drop-shadow-lemon")};
-  }
-
-  &:focus-visible {
-    outline: 0;
-    box-shadow: ${parseDropShadow("drop-shadow-centered-lemon")},
-      ${parseDropShadow("drop-shadow-centered-grey")};
-  }
-
-  &:active:not(:disabled) {
-    background: ${parseColor("bg-primary")};
-    box-shadow: ${parseDropShadow("drop-shadow-lemon")},
-      ${parseDropShadow("drop-shadow-grey")};
-  }
-
-  &:disabled {
-    border-color: ${parseColor("border-neutral")};
-    background: ${parseColor("bg-neutral-stronger")};
-    color: ${parseColor("text-disabled")};
-    cursor: not-allowed;
-  }
-`;
-
-const DropdownPanel = styled.div<{ $direction: "down" | "up" }>`
-  position: absolute;
-  right: 0;
-  left: 0;
-  z-index: 20;
-  box-sizing: border-box;
-  max-height: min(1016px, 70vh);
-  overflow-y: auto;
-  border: 4px solid ${parseColor("border-primary")};
-  border-radius: 4px;
-  background: ${parseColor("bg-primary")};
-  padding: ${parseSpacing("spacing-12")};
-  ${({ $direction }) =>
-    $direction === "up"
-      ? css`
-          bottom: calc(100% + ${parseSpacing("spacing-4")});
-        `
-      : css`
-          top: calc(100% + ${parseSpacing("spacing-4")});
-        `}
-`;
-
-const OptionsFieldset = styled.fieldset`
-  min-width: 0;
-  margin: 0;
-  padding: 0;
-  border: 0;
-`;
-
-const CheckboxStack = styled(OakFlex).attrs({
-  $flexDirection: "column",
-  $gap: "spacing-16",
-})`
+// OakCheckBox does not expose a minimum-height prop for its label.
+const CheckboxStack = styled(OakFlex)`
   label {
-    min-height: 28px;
+    min-height: ${parseSpacing("spacing-32")};
   }
 `;
 
-const GroupHeading = styled(OakP)`
-  margin: ${parseSpacing("spacing-20")} 0 ${parseSpacing("spacing-16")};
-`;
-
-const ChipGroups = styled(OakFlex).attrs({
-  $flexDirection: "column",
-  $gap: "spacing-32",
-  $mt: "spacing-40",
-})``;
-
-const ChipGroup = styled(OakFlex).attrs({
-  $flexDirection: "column",
-  $gap: "spacing-16",
-})``;
-
-const ChipList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: ${parseSpacing("spacing-8")};
-  row-gap: ${parseSpacing("spacing-16")};
-  margin: 0;
-  padding: 0;
-  list-style: none;
-`;
-
-const ChipButton = styled.button<{ $background: OakUiRoleToken }>`
-  display: inline-flex;
-  align-items: center;
-  gap: ${parseSpacing("spacing-8")};
-  min-height: 28px;
-  padding: ${parseSpacing("spacing-4")} ${parseSpacing("spacing-8")};
-  border: 0;
-  border-radius: 6px;
-  background: ${({ $background }) => parseColor($background)};
-  color: ${parseColor("text-primary")};
+// The tag's 14px regular type has no exact Oak font token.
+const ChipButton = styled(OakFlex)`
   font: inherit;
-  font-size: 14px;
+  font-size: ${parseFontSize("body-3")};
   font-weight: 400;
-  line-height: 20px;
+  line-height: ${parseLineHeight("heading-7")};
   cursor: pointer;
 
   &:focus-visible {
@@ -206,36 +79,7 @@ const ChipButton = styled.button<{ $background: OakUiRoleToken }>`
   }
 `;
 
-const MobileView = styled.div`
-  display: block;
-  width: 100%;
-  background: ${parseColor("bg-primary")};
-
-  @media (${getMediaQuery("desktop")}) {
-    display: none;
-  }
-`;
-
-const MobileHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: ${parseSpacing("spacing-64")};
-  padding: ${parseSpacing("spacing-12")} ${parseSpacing("spacing-16")};
-  background: ${parseColor("bg-decorative5-subdued")};
-`;
-
-const IconButton = styled.button`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: ${parseSpacing("spacing-40")};
-  height: ${parseSpacing("spacing-40")};
-  padding: 0;
-  border: 0;
-  border-radius: 4px;
-  background: transparent;
-  color: ${parseColor("text-primary")};
+const IconButton = styled(OakFlex)`
   cursor: pointer;
 
   &:focus-visible {
@@ -243,71 +87,19 @@ const IconButton = styled.button`
     box-shadow: ${parseDropShadow("drop-shadow-centered-lemon")},
       ${parseDropShadow("drop-shadow-centered-grey")};
   }
-`;
-
-const MobileOptions = styled.div`
-  padding: ${parseSpacing("spacing-20")} ${parseSpacing("spacing-16")} 96px;
-`;
-
-const MobileConfirm = styled.div`
-  position: sticky;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  min-height: ${parseSpacing("spacing-72")};
-  padding: ${parseSpacing("spacing-12")} ${parseSpacing("spacing-16")};
-  border-top: 1px solid ${parseColor("border-neutral-lighter")};
-  background: ${parseColor("bg-primary")};
-`;
-
-const ConfirmButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: ${parseSpacing("spacing-8")};
-  width: 100%;
-  min-height: ${parseSpacing("spacing-48")};
-  padding: ${parseSpacing("spacing-12")} ${parseSpacing("spacing-16")};
-  border: 2px solid ${parseColor("border-primary")};
-  border-radius: 4px;
-  background: ${parseColor("bg-btn-primary")};
-  color: ${parseColor("text-inverted")};
-  font: inherit;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 20px;
-  cursor: pointer;
-
-  &:disabled {
-    border-color: ${parseColor("border-neutral")};
-    background: ${parseColor("bg-btn-primary-disabled")};
-    cursor: not-allowed;
-  }
-
-  &:focus-visible {
-    outline: 0;
-    box-shadow: ${parseDropShadow("drop-shadow-centered-lemon")},
-      ${parseDropShadow("drop-shadow-centered-grey")};
-  }
-`;
-
-const visuallyHidden = css`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-`;
-
-const Legend = styled.legend`
-  ${visuallyHidden}
 `;
 
 const uniqueValues = (values: string[]) => [...new Set(values)];
+
+const triggerSizeProps = {
+  standard: { pv: "spacing-12" },
+  large: { pv: "spacing-16" },
+} as const;
+
+const dropdownPositionProps = {
+  down: { $top: `calc(100% + ${parseSpacing("spacing-4")})` },
+  up: { $bottom: `calc(100% + ${parseSpacing("spacing-4")})` },
+};
 
 export const MultiSelect = ({
   disabled = false,
@@ -334,7 +126,7 @@ export const MultiSelect = ({
   const generatedId = useId();
   const id = idProp ?? `oak-multiselect-${generatedId.replace(/:/g, "")}`;
   const panelId = `${id}-panel`;
-  const triggerRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -400,9 +192,16 @@ export const MultiSelect = ({
   };
 
   const renderOptions = (mobile = false) => (
-    <OptionsFieldset disabled={disabled}>
-      <Legend>{placeholder}</Legend>
-      <CheckboxStack>
+    <OakBox
+      as="fieldset"
+      $minWidth="spacing-0"
+      $ma="spacing-0"
+      $pa="spacing-0"
+      $ba="border-solid-none"
+      disabled={disabled}
+    >
+      <OakScreenReader as="legend">{placeholder}</OakScreenReader>
+      <CheckboxStack $flexDirection="column" $gap="spacing-16">
         <OakCheckBox
           id={`${id}-${mobile ? "mobile-" : ""}select-all`}
           value={selectAllLabel}
@@ -431,8 +230,15 @@ export const MultiSelect = ({
 
         return (
           <div key={`${mobile ? "mobile-" : ""}${group.value}`}>
-            <GroupHeading $font="heading-7">{group.label}</GroupHeading>
-            <CheckboxStack>
+            <OakP
+              $font="heading-7"
+              $mt="spacing-20"
+              $mb="spacing-16"
+              $mh="spacing-0"
+            >
+              {group.label}
+            </OakP>
+            <CheckboxStack $flexDirection="column" $gap="spacing-16">
               {mobile ? (
                 <OakCheckBox
                   id={`${id}-mobile-${group.value}-all`}
@@ -456,7 +262,7 @@ export const MultiSelect = ({
           </div>
         );
       })}
-    </OptionsFieldset>
+    </OakBox>
   );
 
   const selectedGroups = groups
@@ -467,48 +273,98 @@ export const MultiSelect = ({
     .filter(({ options: groupOptions }) => groupOptions.length > 0);
 
   return (
-    <Root ref={rootRef} data-testid={dataTestId}>
-      <DesktopView>
-        <TriggerAnchor>
-          <Trigger
-            ref={triggerRef}
+    <OakBox
+      $position="relative"
+      $width="100%"
+      ref={rootRef}
+      data-testid={dataTestId}
+    >
+      <OakBox $display={["none", "none", "block"]}>
+        <OakBox $position="relative" $width="100%">
+          <OakSecondaryButton
+            width="100%"
+            innerWidth="100%"
+            {...triggerSizeProps[size]}
+            hoverUnderline={false}
+            isTrailingIcon
+            iconOverride={
+              <OakIcon
+                iconName={isOpen ? "chevron-up" : "chevron-down"}
+                $color={disabled ? "icon-disabled" : "icon-primary"}
+                $ml="auto"
+              />
+            }
             id={id}
             type="button"
-            $size={size}
             data-testid={dataTestId ? `${dataTestId}-trigger` : undefined}
             aria-controls={panelId}
             aria-expanded={isOpen}
             disabled={disabled}
-            onClick={() => setIsOpen((open) => !open)}
+            onClick={(event) => {
+              triggerRef.current = event.currentTarget;
+              setIsOpen((open) => !open);
+            }}
           >
-            <span>{placeholder}</span>
-            <OakIcon
-              iconName={isOpen ? "chevron-up" : "chevron-down"}
-              $color={disabled ? "icon-disabled" : "icon-primary"}
-            />
-          </Trigger>
+            {placeholder}
+          </OakSecondaryButton>
           {isOpen ? (
-            <DropdownPanel
+            <OakBox
+              $position="absolute"
+              $right="spacing-0"
+              $left="spacing-0"
+              $zIndex={20}
+              $boxSizing="border-box"
+              $maxHeight={`min(${parseSpacing("spacing-960")}, 70vh)`}
+              $overflowY="auto"
+              $ba="border-solid-xl"
+              $borderColor="border-primary"
+              $borderRadius="border-radius-s"
+              $background="bg-primary"
+              $pa="spacing-12"
+              {...dropdownPositionProps[dropdownDirection]}
               id={panelId}
-              $direction={dropdownDirection}
               aria-label={placeholder}
               data-testid={dataTestId ? `${dataTestId}-panel` : undefined}
             >
               {renderOptions()}
-            </DropdownPanel>
+            </OakBox>
           ) : null}
-        </TriggerAnchor>
+        </OakBox>
         {selectedGroups.length > 0 ? (
-          <ChipGroups aria-label={selectedItemsLabel}>
+          <OakFlex
+            $flexDirection="column"
+            $gap="spacing-32"
+            $mt="spacing-40"
+            aria-label={selectedItemsLabel}
+          >
             {selectedGroups.map((group) => (
-              <ChipGroup key={group.value}>
+              <OakFlex
+                $flexDirection="column"
+                $gap="spacing-16"
+                key={group.value}
+              >
                 <OakP $font="heading-7" $mv="spacing-0">
                   {group.label}
                 </OakP>
-                <ChipList>
+                <OakUL
+                  $reset
+                  $display="flex"
+                  $flexWrap="wrap"
+                  $columnGap="spacing-8"
+                  $rowGap="spacing-16"
+                >
                   {group.options.map((option) => (
                     <li key={option.value}>
                       <ChipButton
+                        as="button"
+                        $display="inline-flex"
+                        $alignItems="center"
+                        $gap="spacing-8"
+                        $pv="spacing-4"
+                        $ph="spacing-8"
+                        $ba="border-solid-none"
+                        $borderRadius="border-radius-m"
+                        $color="text-primary"
                         type="button"
                         $background={
                           group.tagBackground ?? "bg-decorative2-main"
@@ -531,21 +387,43 @@ export const MultiSelect = ({
                       </ChipButton>
                     </li>
                   ))}
-                </ChipList>
-              </ChipGroup>
+                </OakUL>
+              </OakFlex>
             ))}
-          </ChipGroups>
+          </OakFlex>
         ) : null}
-      </DesktopView>
+      </OakBox>
 
-      <MobileView>
+      <OakBox
+        $display={["block", "block", "none"]}
+        $width="100%"
+        $background="bg-primary"
+      >
         {!hideMobileHeader ? (
-          <MobileHeader>
+          <OakFlex
+            $alignItems="center"
+            $justifyContent="space-between"
+            $minHeight="spacing-64"
+            $pv="spacing-12"
+            $ph="spacing-16"
+            $background="bg-decorative5-subdued"
+          >
             <OakP $font="heading-7" $mv="spacing-0">
               {effectiveMobileTitle}
             </OakP>
             {onMobileClose ? (
               <IconButton
+                as="button"
+                $display="inline-flex"
+                $alignItems="center"
+                $justifyContent="center"
+                $width="spacing-40"
+                $height="spacing-40"
+                $pa="spacing-0"
+                $ba="border-solid-none"
+                $borderRadius="border-radius-s"
+                $background="transparent"
+                $color="text-primary"
                 type="button"
                 aria-label={`Close ${effectiveMobileTitle}`}
                 onClick={onMobileClose}
@@ -553,11 +431,30 @@ export const MultiSelect = ({
                 <OakIcon iconName="cross" />
               </IconButton>
             ) : null}
-          </MobileHeader>
+          </OakFlex>
         ) : null}
-        <MobileOptions>{renderOptions(true)}</MobileOptions>
-        <MobileConfirm>
-          <ConfirmButton
+        <OakBox $pt="spacing-20" $ph="spacing-16" $pb="spacing-100">
+          {renderOptions(true)}
+        </OakBox>
+        <OakFlex
+          $position="sticky"
+          $bottom="spacing-0"
+          $alignItems="center"
+          $minHeight="spacing-72"
+          $pv="spacing-12"
+          $ph="spacing-16"
+          $bt="border-solid-s"
+          $borderColor="border-neutral-lighter"
+          $background="bg-primary"
+        >
+          <OakPrimaryButton
+            width="100%"
+            hoverUnderline={false}
+            hoverShadow={null}
+            isTrailingIcon
+            iconOverride={
+              <OakIcon iconName="arrow-right" $color="icon-inverted" />
+            }
             type="button"
             disabled={disabled || selectedSet.size === 0}
             onClick={onMobileConfirm}
@@ -566,10 +463,9 @@ export const MultiSelect = ({
             }
           >
             {mobileConfirmLabel}
-            <OakIcon iconName="arrow-right" $color="icon-inverted" />
-          </ConfirmButton>
-        </MobileConfirm>
-      </MobileView>
-    </Root>
+          </OakPrimaryButton>
+        </OakFlex>
+      </OakBox>
+    </OakBox>
   );
 };

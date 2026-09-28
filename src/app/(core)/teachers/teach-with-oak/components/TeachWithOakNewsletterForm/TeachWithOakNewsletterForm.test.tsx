@@ -8,11 +8,20 @@ import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
 
 const renderWithTheme = renderWithProviders();
 
+const onSubmit = jest.fn();
+jest.mock(
+  "@/components/GenericPagesComponents/NewsletterForm/useNewsletterForm",
+  () => ({
+    __esModule: true,
+    default: () => ({
+      onSubmit: (...args: []) => onSubmit(args),
+    }),
+  }),
+);
+
 describe("TeachWithOakNewsletterForm", () => {
   it("should render the form correctly", () => {
-    const { container } = renderWithTheme(
-      <TeachWithOakNewsletterForm id="default-id" onSubmit={jest.fn()} />,
-    );
+    const { container } = renderWithTheme(<TeachWithOakNewsletterForm />);
 
     expect(container.querySelector("form")).toBeInTheDocument();
     expect(
@@ -28,10 +37,7 @@ describe("TeachWithOakNewsletterForm", () => {
   });
 
   it("forwards completed form values to onSubmit", async () => {
-    const onSubmit = jest.fn().mockResolvedValue(undefined);
-    renderWithTheme(
-      <TeachWithOakNewsletterForm id="default-id" onSubmit={onSubmit} />,
-    );
+    renderWithTheme(<TeachWithOakNewsletterForm />);
 
     const user = userEvent.setup();
     await user.type(
@@ -48,10 +54,12 @@ describe("TeachWithOakNewsletterForm", () => {
     );
     await waitForNextTick();
 
-    expect(onSubmit).toHaveBeenCalledWith({
-      name: "Ada Lovelace",
-      email: "ada@example.com",
-      userRole: "Student",
-    });
+    expect(onSubmit).toHaveBeenCalledWith([
+      {
+        name: "Ada Lovelace",
+        email: "ada@example.com",
+        userRole: "Student",
+      },
+    ]);
   });
 });
