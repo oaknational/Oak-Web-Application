@@ -1,4 +1,4 @@
-// Relative URLs used by pa11y and percy
+// Relative URLs used by pa11y and Chromatic
 
 // Commented out urls have pa11y errors to be fixed in this ticket - https://github.com/oaknational/Oak-Web-Application/issues/1693
 
