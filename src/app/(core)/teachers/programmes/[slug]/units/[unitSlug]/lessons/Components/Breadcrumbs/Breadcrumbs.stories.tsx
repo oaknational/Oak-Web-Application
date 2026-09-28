@@ -5,6 +5,7 @@ import { Breadcrumbs } from "./Breadcrumbs";
 import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersUnitOverview.fixture";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const lessonData = teachersLessonOverviewFixture({
   examBoardSlug: "aqa",
@@ -32,6 +33,7 @@ const meta: Meta<typeof Breadcrumbs> = {
   title: "App/Programmes/Units/Lessons/Breadcrumbs",
   component: Breadcrumbs,
   tags: ["autodocs"],
+  decorators: [TeacherBrowseAnalyticsDecorator],
 };
 
 export default meta;
