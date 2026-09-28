@@ -143,7 +143,6 @@ type UseSearchProps = {
   allSubjects?: SearchPageData["subjects"];
   allContentTypes?: ContentType[];
   allExamBoards?: SearchPageData["examBoards"];
-  legacy?: { slug: string; title: string }[];
   navigation?: SearchNavigationAdapter;
 };
 const useSearch = (props: UseSearchProps): UseSearchReturnType => {
@@ -153,7 +152,6 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
     allSubjects,
     allContentTypes,
     allExamBoards,
-    legacy,
     navigation,
   } = props;
   const { query, setQuery } = useSearchQuery({
@@ -162,7 +160,6 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
     allSubjects,
     allContentTypes,
     allExamBoards,
-    legacy,
     navigation,
   });
   const [searchStartTime, setSearchStartTime] = useState<null | number>(null);
@@ -170,16 +167,14 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
   const [results, setResults] = useState<SearchHit[]>([]);
   const [status, setStatus] = useState<RequestStatus>("not-asked");
 
-  const legacyQueryVal =
-    query.curriculum?.[0] === "new" ? "filterOutAll" : "filterOutEYFS";
   const fetchResults = useStableCallback(async () => {
     /**
-     * Searches both 2020 and 2023 content, and merges the results
+     * Searches 2023 content
      */
     performSearch({
       query: {
         ...query,
-        legacy: legacyQueryVal,
+        legacy: "filterOutAll",
       },
       onStart: () => {
         setStatus("loading");

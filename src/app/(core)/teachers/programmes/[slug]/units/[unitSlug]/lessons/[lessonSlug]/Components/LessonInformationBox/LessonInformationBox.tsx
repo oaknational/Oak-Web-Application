@@ -10,7 +10,6 @@ import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredBut
 import CopyrightLicence from "@/components/TeacherComponents/CopyrightLicence/CopyrightLicence";
 
 type LessonInformationBoxProps = {
-  teacherTip?: string[];
   equipment?: string[];
   contentGuidance?: string[];
   supervision?: string;
@@ -26,28 +25,19 @@ type LessonInformationBoxProps = {
 };
 
 const LessonInformationBox = (props: LessonInformationBoxProps) => {
-  const {
-    teacherTip,
-    equipment,
-    contentGuidance,
-    supervision,
-    filesNeeded,
-    licence,
-  } = props;
+  const { equipment, contentGuidance, supervision, filesNeeded, licence } =
+    props;
   const isPlural = filesNeeded && filesNeeded.files.length > 1;
 
   return (
     <OakFlex
       $flexDirection={"column"}
-      $gap={"spacing-32"}
-      $background={teacherTip ? "bg-decorative2-subdued" : "bg-neutral"}
       $pa={"spacing-24"}
+      $gap={"spacing-32"}
+      $background={"bg-neutral"}
       $borderRadius={"border-radius-l"}
       data-testid="lesson-information-container"
     >
-      {teacherTip && (
-        <LessonInformationItem title="Teacher tip" items={teacherTip} />
-      )}
       {equipment && equipment.length > 0 && (
         <LessonInformationItem
           iconName={"equipment-required"}
