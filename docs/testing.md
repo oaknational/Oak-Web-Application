@@ -83,8 +83,7 @@ Required environment variables for Chromatic runs:
 
 ### Commands
 
-- `pnpm run test:visual` runs only Playwright tests tagged with `@visual`.
-- `pnpm run test:chromatic` runs visual specs and then uploads snapshots to Chromatic.
+- `pnpm run test:visual` runs only Playwright tests tagged with `@visual`, results are only uploaded to Chromatic during CI.
 
 ### Jest Separation
 
