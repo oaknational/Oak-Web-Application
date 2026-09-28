@@ -44,7 +44,7 @@ export function ProgrammeUnitList({
       subjectTitle: unit.subject,
       subjectSlug: unit.subject_slug,
       yearGroupName: `Year ${unit.year}`,
-      yearGroupSlug: unit.year,
+      yearGroupSlug: `year-${unit.year}`,
       keyStageSlug: unit.keystage_slug,
       keyStageTitle: getKeyStageTitle(unit.keystage_slug),
       tierName: unit.tier ?? undefined,
