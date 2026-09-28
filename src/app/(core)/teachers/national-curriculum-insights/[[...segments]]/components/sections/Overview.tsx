@@ -1,16 +1,15 @@
 "use client";
 
 import {
-  getMediaQuery,
   OakBox,
   OakFlex,
+  OakGrid,
+  OakGridArea,
   OakHeading,
   OakImage,
   OakP,
-  parseSpacing,
 } from "@oaknational/oak-components";
 import { useId } from "react";
-import styled from "styled-components";
 
 import { insightsAssetUrl } from "../../helpers/assets";
 import type { NationalCurriculumInsightsRouteData } from "../../helpers/getRouteData";
@@ -19,7 +18,6 @@ import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } fr
 
 import {
   ContextualSectionProps,
-  insightsTabletMediaQuery,
   portableTextComponents,
   SectionMaxWidth,
 } from "./shared";
@@ -28,101 +26,12 @@ import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl
 
 type OverviewPageKind = "hub" | "subject" | "phase" | "keyStage";
 
-const OverviewPanel = styled(SectionMaxWidth)<{ $isKeyStage: boolean }>`
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: ${parseSpacing("spacing-24")};
-
-  @media (${getMediaQuery("desktop")}) {
-    height: auto;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: ${({ $isKeyStage }) =>
-      $isKeyStage ? "81px" : parseSpacing("spacing-40")};
-  }
-
-  @media ${insightsTabletMediaQuery} {
-    height: auto;
-    flex-direction: column;
-    align-items: stretch;
-    gap: ${parseSpacing("spacing-40")};
-  }
-`;
-
-const OverviewCopy = styled(OakFlex)`
-  width: 100%;
-
-  @media (${getMediaQuery("desktop")}) {
-    width: 684px;
-    flex: 0 0 684px;
-  }
-
-  @media ${insightsTabletMediaQuery} {
-    display: contents;
-  }
-`;
-
-const OverviewTitleGroup = styled(OakFlex)`
-  width: 100%;
-
-  @media ${insightsTabletMediaQuery} {
-    gap: ${parseSpacing("spacing-20")};
-  }
-`;
-
-const OverviewBody = styled(OakBox)`
-  @media ${insightsTabletMediaQuery} {
-    order: 3;
-  }
-`;
-
-const OverviewImage = styled(OakBox)<{
-  $isKeyStage: boolean;
-  $pageKind: OverviewPageKind;
-}>`
-  width: 100%;
-  aspect-ratio: 332 / 259;
-  overflow: hidden;
-
-  @media (${getMediaQuery("desktop")}) {
-    width: ${({ $isKeyStage }) => ($isKeyStage ? "295px" : "332px")};
-    height: ${({ $isKeyStage }) => ($isKeyStage ? "312px" : "259px")};
-    flex: ${({ $isKeyStage }) => ($isKeyStage ? "0 0 295px" : "0 0 332px")};
-    align-self: center;
-  }
-
-  @media ${insightsTabletMediaQuery} {
-    width: ${({ $pageKind }) => {
-      switch ($pageKind) {
-        case "subject":
-          return "403px";
-        case "phase":
-          return "clamp(382px, calc(19.434vw + 236.245px), 485px)";
-        case "keyStage":
-          return "295px";
-        case "hub":
-          return "403px";
-      }
-    }};
-    max-width: 100%;
-    height: auto;
-    aspect-ratio: ${({ $pageKind }) => {
-      switch ($pageKind) {
-        case "subject":
-        case "hub":
-          return "403 / 274";
-        case "phase":
-          return "485 / 318";
-        case "keyStage":
-          return "295 / 312";
-      }
-    }};
-    flex: 0 1 auto;
-    align-self: center;
-    order: 2;
-  }
-`;
+const tabletIllustrationLayout = {
+  hub: { columns: "2fr minmax(0, 6fr) 2fr", aspectRatio: "403 / 274" },
+  subject: { columns: "2fr minmax(0, 6fr) 2fr", aspectRatio: "403 / 274" },
+  phase: { columns: "7fr minmax(0, 26fr) 7fr", aspectRatio: "485 / 318" },
+  keyStage: { columns: "11fr minmax(0, 18fr) 11fr", aspectRatio: "295 / 312" },
+};
 
 const overviewPageKind = (
   data: NationalCurriculumInsightsRouteData,
@@ -166,8 +75,8 @@ export const NationalCurriculumInsightsOverview = ({
       $ph={["spacing-20", "spacing-40"]}
       $pv={["spacing-32", "spacing-48"]}
     >
-      <OverviewPanel
-        $isKeyStage={isKeyStage}
+      <SectionMaxWidth
+        $boxSizing="border-box"
         as="section"
         $mh="auto"
         $background={presentation.overviewBackground}
@@ -176,50 +85,96 @@ export const NationalCurriculumInsightsOverview = ({
         aria-labelledby={headingId}
         data-insights-module="overview"
       >
-        <OverviewCopy
-          $flexDirection="column"
-          $gap={isKeyStage ? "spacing-40" : "spacing-20"}
+        <OakGrid
+          $gridTemplateColumns={[
+            "minmax(0, 1fr)",
+            "minmax(0, 1fr)",
+            isKeyStage
+              ? "minmax(0, 18fr) minmax(0, 7fr)"
+              : "minmax(0, 17fr) minmax(0, 8fr)",
+          ]}
+          $rg={["spacing-24", "spacing-40", "spacing-0"]}
         >
-          <OverviewTitleGroup
+          <OakFlex
+            $width="100%"
+            $minWidth={["auto", "auto", "spacing-0"]}
+            $display={["flex", "contents", "flex"]}
+            $boxSizing="border-box"
+            $pr={[
+              "spacing-0",
+              "spacing-0",
+              isKeyStage ? "spacing-80" : "spacing-40",
+            ]}
             $flexDirection="column"
             $gap={isKeyStage ? "spacing-40" : "spacing-20"}
           >
-            <OakP $font="body-2" $mv="spacing-0">
-              At a glance
-            </OakP>
-            <OakHeading
-              id={headingId}
-              tag="h2"
-              $font={["heading-4", "heading-4", "heading-3"]}
+            <OakFlex
+              $width="100%"
+              $flexDirection="column"
+              $gap={[
+                isKeyStage ? "spacing-40" : "spacing-20",
+                "spacing-20",
+                isKeyStage ? "spacing-40" : "spacing-20",
+              ]}
             >
-              {section.heading}
-            </OakHeading>
-          </OverviewTitleGroup>
-          <OverviewBody>
-            <PortableTextWithDefaults
-              value={section.bodyPortableText}
-              components={portableTextComponents}
-            />
-          </OverviewBody>
-        </OverviewCopy>
-        <OverviewImage
-          $isKeyStage={isKeyStage}
-          $pageKind={pageKind}
-          aria-hidden={illustrationIsPresentational ? true : undefined}
-        >
-          <OakImage
-            src={presentation.illustration ?? insightsAssetUrl("overview")}
-            alt={
-              illustrationIsPresentational
-                ? ""
-                : (subjectIllustration?.altText ?? "")
-            }
-            $width="100%"
-            $height="100%"
-            $objectFit="contain"
-          />
-        </OverviewImage>
-      </OverviewPanel>
+              <OakP $font="body-2" $mv="spacing-0">
+                At a glance
+              </OakP>
+              <OakHeading
+                id={headingId}
+                tag="h2"
+                $font={["heading-4", "heading-4", "heading-3"]}
+              >
+                {section.heading}
+              </OakHeading>
+            </OakFlex>
+            <OakFlex $display="block" $order={[0, 3, 0]}>
+              <PortableTextWithDefaults
+                value={section.bodyPortableText}
+                components={portableTextComponents}
+              />
+            </OakFlex>
+          </OakFlex>
+          <OakFlex $alignSelf="center" $order={[0, 2, 0]}>
+            <OakGrid
+              $gridTemplateColumns={[
+                "minmax(0, 1fr)",
+                tabletIllustrationLayout[pageKind].columns,
+                "minmax(0, 1fr)",
+              ]}
+            >
+              <OakGridArea $colSpan={1} $colStart={[1, 2, 1]}>
+                <OakBox
+                  $width="100%"
+                  $maxWidth={["unset", "spacing-480", "unset"]}
+                  $mh="auto"
+                  $aspectRatio={[
+                    "332 / 259",
+                    tabletIllustrationLayout[pageKind].aspectRatio,
+                    isKeyStage ? "295 / 312" : "332 / 259",
+                  ]}
+                  $overflow="hidden"
+                  aria-hidden={illustrationIsPresentational ? true : undefined}
+                >
+                  <OakImage
+                    src={
+                      presentation.illustration ?? insightsAssetUrl("overview")
+                    }
+                    alt={
+                      illustrationIsPresentational
+                        ? ""
+                        : (subjectIllustration?.altText ?? "")
+                    }
+                    $width="100%"
+                    $height="100%"
+                    $objectFit="contain"
+                  />
+                </OakBox>
+              </OakGridArea>
+            </OakGrid>
+          </OakFlex>
+        </OakGrid>
+      </SectionMaxWidth>
     </OakBox>
   );
 };
