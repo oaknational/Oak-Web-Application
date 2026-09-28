@@ -21,7 +21,7 @@ export const TeachWithOakPromoSection = (
       $maxWidth={["100%", "spacing-240"]}
       $mt={"spacing-24"}
       $mb={["spacing-24", "spacing-56"]}
-      onClick={teachWithOakAccessed}
+      onClick={() => teachWithOakAccessed({ componentType: "promo_card" })}
     >
       <OakCard
         heading="Ever wondered why our lessons are structured this way?"

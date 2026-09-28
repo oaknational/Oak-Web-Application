@@ -8,8 +8,7 @@ import type { PortableTextBlock } from "@portabletext/types";
  * page - thenational.academy/mcp >1280" frame). Kept in one place so copy
  * review does not mean reading through components.
  *
- * Link targets are still placeholders, except the feedback CTA, which Figma
- * annotates as mailto:support@thenational.academy.
+ * Some link targets are still placeholders.
  */
 
 /**
@@ -17,7 +16,7 @@ import type { PortableTextBlock } from "@portabletext/types";
  * assistant" — so it lives here to keep the two in step.
  */
 export const mcpMoreAssistantsNote =
-  "We’re starting with Claude, and working to bring Oak to ChatGPT and more AI assistants soon.";
+  "We’re starting with Claude and ChatGPT, and working to bring Oak to more AI assistants soon.";
 
 export const mcpHero = {
   title: "Bring Oak’s curriculum into your AI assistant",
@@ -28,7 +27,7 @@ export const mcpHero = {
 export const mcpIntro = {
   title: "See it in action",
   paragraphs: [
-    "Our curriculum is now available in Claude, with ChatGPT and more assistants to follow.",
+    "Our curriculum is now available in Claude and ChatGPT, with more AI assistants to follow.",
     "With Oak connected, your AI assistant can plan lessons, sequence a whole curriculum, or map how a topic builds across year groups. And that’s just a start.",
     "Everything is grounded in our national curriculum-aligned resources, written and quality-assured by subject experts, and free to use. You stay in control: you’re the expert, and you know what works for your pupils.",
   ],
@@ -90,12 +89,12 @@ export const mcpCapabilities: {
 } as const;
 
 /**
- * The message the "Try in Claude" deep link drops into Claude's composer, and
- * the same text the small print tells you to paste if it arrives empty. Both
- * read from here so they cannot drift apart.
+ * The message the "Try in <assistant>" deep links drop into the composer, and
+ * the same text the small print tells you to paste if it arrives empty. All
+ * three read from here so they cannot drift apart.
  */
 export const mcpInstallPrompt =
-  "Browse the plugins directory, install the Oak National Academy plugin, then give me some examples of what I can do with it!";
+  "Install the Oak National Academy plugin and its connector, then give me some examples of what I can do with it!";
 
 /** Portable text span. Emphasis uses the `strong` mark, as elsewhere in OWA. */
 const span = (key: string, text: string, marks: string[] = []) => ({
@@ -116,15 +115,36 @@ export type McpAssistant = {
   ctaLabel: string;
   ctaHref: string;
   /** Tile colour behind the provider icon. */
-  background: "bg-decorative6-main";
+  background: "bg-decorative6-main" | "bg-inverted";
+  /** This provider's own numbered install steps. */
+  steps: PortableTextBlock[];
+  /** The paste-it-yourself fallback for this provider's composer. */
+  pasteNote: PortableTextBlock[];
 };
+
+const pasteNoteFor = (
+  key: string,
+  assistantName: string,
+): PortableTextBlock[] => [
+  {
+    _type: "block",
+    _key: key,
+    style: "normal",
+    markDefs: [],
+    children: [
+      span(
+        `${key}-a`,
+        `If ${assistantName} opens with an empty message box, paste this in and send it: `,
+      ),
+      span(`${key}-b`, mcpInstallPrompt, ["strong"]),
+    ],
+  },
+];
 
 export const mcpAssistants: {
   title: string;
   body: string;
   items: readonly McpAssistant[];
-  steps: PortableTextBlock[];
-  smallPrint: PortableTextBlock[];
 } = {
   title: "Choose your AI assistant",
   body: "Start in the AI assistant you already use.",
@@ -136,64 +156,87 @@ export const mcpAssistants: {
       // steps describe ("a message ready to send... click the orange arrow").
       ctaHref: `https://claude.ai/new?q=${encodeURIComponent(mcpInstallPrompt)}`,
       background: "bg-decorative6-main",
-    },
-  ],
-  steps: [
-    {
-      _type: "block",
-      _key: "install-step-1",
-      style: "normal",
-      listItem: "number",
-      level: 1,
-      markDefs: [],
-      children: [
-        span("s1-a", "Click "),
-        span("s1-b", "Try in Claude", ["strong"]),
-        span(
-          "s1-c",
-          ". Claude opens in a new tab with a message ready to send. Click the orange arrow to send it, and an install card appears in the chat.",
-        ),
+      steps: [
+        {
+          _type: "block",
+          _key: "claude-step-1",
+          style: "normal",
+          listItem: "number",
+          level: 1,
+          markDefs: [],
+          children: [
+            span("cs1-a", "Click "),
+            span("cs1-b", "Try in Claude", ["strong"]),
+            span(
+              "cs1-c",
+              ". Claude opens in a new tab with a message ready to send. Click the orange arrow to send it, and an install card appears in the chat.",
+            ),
+          ],
+        },
+        {
+          _type: "block",
+          _key: "claude-step-2",
+          style: "normal",
+          listItem: "number",
+          level: 1,
+          markDefs: [],
+          children: [
+            span("cs2-a", "Tap "),
+            span("cs2-b", "Install", ["strong"]),
+            span("cs2-c", " on the card, then "),
+            span("cs2-d", "authorise Oak", ["strong"]),
+            span(
+              "cs2-e",
+              " when prompted. Claude is now ready to draw on the Oak curriculum.",
+            ),
+          ],
+        },
       ],
+      pasteNote: pasteNoteFor("claude-paste", "Claude"),
     },
     {
-      _type: "block",
-      _key: "install-step-2",
-      style: "normal",
-      listItem: "number",
-      level: 1,
-      markDefs: [],
-      children: [
-        span("s2-a", "Tap "),
-        span("s2-b", "Install", ["strong"]),
-        span("s2-c", " on the card, then "),
-        span("s2-d", "authorise Oak", ["strong"]),
-        span(
-          "s2-e",
-          " when prompted. Claude is now ready to draw on the Oak curriculum.",
-        ),
+      name: "ChatGPT",
+      ctaLabel: "Try in ChatGPT",
+      // Same `?q=` prefill behaviour as Claude's deep link.
+      ctaHref: `https://chatgpt.com/?q=${encodeURIComponent(mcpInstallPrompt)}`,
+      background: "bg-inverted",
+      steps: [
+        {
+          _type: "block",
+          _key: "chatgpt-step-1",
+          style: "normal",
+          listItem: "number",
+          level: 1,
+          markDefs: [],
+          children: [
+            span("gs1-a", "Click "),
+            span("gs1-b", "Try in ChatGPT", ["strong"]),
+            span(
+              "gs1-c",
+              ". ChatGPT opens in a new tab with a message ready to send. Click the blue arrow to send it, and an install card appears in the chat.",
+            ),
+          ],
+        },
+        {
+          _type: "block",
+          _key: "chatgpt-step-2",
+          style: "normal",
+          listItem: "number",
+          level: 1,
+          markDefs: [],
+          children: [
+            span("gs2-a", "Tap "),
+            span("gs2-b", "Install", ["strong"]),
+            span("gs2-c", " on the card, then "),
+            span("gs2-d", "authorise Oak", ["strong"]),
+            span(
+              "gs2-e",
+              " when prompted. ChatGPT is now ready to draw on the Oak curriculum.",
+            ),
+          ],
+        },
       ],
-    },
-  ],
-  smallPrint: [
-    {
-      _type: "block",
-      _key: "small-print-paste",
-      style: "normal",
-      markDefs: [],
-      children: [
-        span(
-          "sp1-a",
-          "If Claude opens with an empty message box, paste this in and send it: ",
-        ),
-        span("sp1-b", mcpInstallPrompt, ["strong"]),
-      ],
-    },
-    {
-      _type: "block",
-      _key: "small-print-more-assistants",
-      style: "normal",
-      markDefs: [],
-      children: [span("sp2-a", mcpMoreAssistantsNote)],
+      pasteNote: pasteNoteFor("chatgpt-paste", "ChatGPT"),
     },
   ],
 };
@@ -253,9 +296,18 @@ export const mcpHowItWorks = {
 export const mcpSupport = {
   title: "Questions or problems?",
   bodyBefore:
-    "Find answers about accounts and cost, supported AI assistants, connecting Oak, privacy and data sharing, and what to do when something isn’t working, in our ",
-  linkLabel: "Help centre",
-  href: "https://support.thenational.academy/using-oak-mcp",
+    "Find answers about accounts and cost, connecting Oak, privacy and data sharing, and what to do when something isn’t working, in our help articles for ",
+  links: [
+    {
+      label: "Claude",
+      href: "https://support.thenational.academy/using-oak-mcp-claude",
+    },
+    {
+      label: "ChatGPT",
+      href: "https://support.thenational.academy/using-oak-mcp-openai",
+    },
+  ],
+  joiner: " and ",
   bodyAfter: ".",
 } as const;
 
@@ -266,6 +318,6 @@ export const mcpFeedback = {
   title: "Give feedback",
   body: "This is new, and still in development. We’re continually improving it, and your feedback helps us make it better for you and your pupils.",
   ctaLabel: "Share feedback",
-  // Figma annotates this button with "Should link to: support@thenational.academy".
-  ctaHref: "mailto:support@thenational.academy",
+  // Figma annotates this button with the link to this HubSpot survey form.
+  ctaHref: "https://survey.hsforms.com/2vy6BnIvzTASqx1DbH8CaJAbvumd",
 } as const;

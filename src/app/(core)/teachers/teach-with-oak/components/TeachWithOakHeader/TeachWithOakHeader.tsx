@@ -1,3 +1,4 @@
+"use client";
 import {
   OakTertiaryInvertedButton,
   OakFlex,
@@ -38,7 +39,7 @@ const StyledAboutSharedHeaderImage = styled(AboutSharedHeaderImage)`
 
 export function TeachWithOakHeader() {
   const imageUrl = getCloudinaryImageUrl(
-    "v1734018546/OWA/illustrations/hero-aila_wgpmas.jpg",
+    "v1789976818/teacher-journey/teach-with-oak-header-image.jpg",
   );
 
   const { lessonAccessed } = useTeacherBrowseAnalytics((store) => store.track);
@@ -77,10 +78,7 @@ export function TeachWithOakHeader() {
           titleHighlight={"bg-decorative2-main"}
           showImageOverflow={true}
         >
-          <StyledAboutSharedHeaderImage
-            imageUrl={imageUrl}
-            imageAlt={"Teach with Oak Image"}
-          />
+          <StyledAboutSharedHeaderImage imageUrl={imageUrl} />
         </AboutSharedHeader>
       </HeaderLayout>
     </OakBox>

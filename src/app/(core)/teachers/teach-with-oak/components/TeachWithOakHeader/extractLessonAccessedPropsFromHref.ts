@@ -1,4 +1,5 @@
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { matchOakHref } from "@/common-lib/urls";
 import { TeacherBrowseAnalyticsStore } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsStore";
 import {
   getExamboardTitleFromSlug,
@@ -31,24 +32,13 @@ export const extractLessonAccessedPropsFromHref = ({
     pathname = returnTo;
   }
 
-  const segments = pathname.split("/").filter(Boolean);
+  const lessonPath = matchOakHref(pathname, "lesson-overview");
 
-  if (
-    segments[0] !== "teachers" ||
-    segments[1] !== "programmes" ||
-    segments[3] !== "units" ||
-    segments[5] !== "lessons"
-  ) {
+  if (!lessonPath) {
     return null;
   }
 
-  const programmeSlug = segments[2];
-  const unitSlug = segments[4];
-  const lessonSlug = segments[6];
-
-  if (!programmeSlug || !unitSlug || !lessonSlug) {
-    return null;
-  }
+  const { programmeSlug, unitSlug, lessonSlug } = lessonPath.params;
 
   const parsedProgrammeSlug = parseProgrammeSlug(programmeSlug);
 

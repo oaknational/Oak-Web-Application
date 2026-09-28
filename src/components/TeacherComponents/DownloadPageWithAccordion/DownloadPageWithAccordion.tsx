@@ -75,6 +75,7 @@ export type DownloadWrapperProps = {
   lessonTitle?: string;
   lessonReleaseDate?: string | null;
   isLegacy?: boolean;
+  heading?: string;
 } & DownloadPageWithAccordionProps;
 
 const DownloadPageWithAccordion: FC<DownloadWrapperProps> = (
@@ -89,6 +90,7 @@ const DownloadPageWithAccordion: FC<DownloadWrapperProps> = (
     lessonReleaseDate = null,
     lessonTitle,
     isLegacy = false,
+    heading,
   } = props;
   return (
     <OakGrid>
@@ -99,7 +101,7 @@ const DownloadPageWithAccordion: FC<DownloadWrapperProps> = (
         $gap={"spacing-48"}
       >
         <OakHeading tag="h1" $font={["heading-5", "heading-4"]}>
-          Download
+          {heading ?? "Download"}
         </OakHeading>
         {isLoading ? (
           <OakBox $minHeight="spacing-480">

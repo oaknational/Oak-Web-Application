@@ -55,7 +55,7 @@ describe("Teach with Oak download page", () => {
       "string",
     );
     const downloadPageHeader = screen.getByRole("heading", {
-      name: "Download",
+      name: "Download short read guides",
     });
     expect(downloadPageHeader).toBeInTheDocument();
   });

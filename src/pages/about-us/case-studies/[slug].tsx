@@ -58,6 +58,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
       autoDismiss: true,
       autoDismissDuration: 4000,
       showIcon: true,
+      showClose: true,
     });
   };
 

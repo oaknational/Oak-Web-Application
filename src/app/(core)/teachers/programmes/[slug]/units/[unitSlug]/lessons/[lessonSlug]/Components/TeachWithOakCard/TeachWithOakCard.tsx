@@ -21,7 +21,9 @@ export function MaybeTeachWithOakCard(query: Readonly<TeachWithOakQueryProps>) {
   });
 
   return (
-    <OakBox onClick={teachWithOakAccessed}>
+    <OakBox
+      onClick={() => teachWithOakAccessed({ componentType: "teacher_tip" })}
+    >
       <OakCard
         $background={"bg-decorative2-main"}
         $btr={"border-radius-square"}

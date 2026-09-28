@@ -14,7 +14,6 @@ import { useReturnToLessonProps } from "../../getReturnToLessonLink";
 import { TeachWithOakResourceCards } from "./TeachWithOakResourceCards";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import Banners from "@/components/SharedComponents/Banners";
 import DownloadPageWithAccordion from "@/components/TeacherComponents/DownloadPageWithAccordion";
 import downloadDebouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
@@ -124,7 +123,6 @@ export const TeachWithOakDownloadView = ({
 
   return (
     <OakBox $ph={["spacing-16", "spacing-0"]} $background={"bg-neutral"}>
-      {isDownloadSuccessful && <Banners />}
       <OakMaxWidth
         $pb="spacing-80"
         $maxWidth={["spacing-480", "spacing-960", "spacing-1280"]}
@@ -151,6 +149,7 @@ export const TeachWithOakDownloadView = ({
         </OakBox>
         <DownloadPageWithAccordion
           teachWithOak
+          heading="Download short read guides"
           errors={form.errors}
           handleToggleSelectAll={handleToggleSelectAll}
           selectAllChecked={selectAllChecked}
