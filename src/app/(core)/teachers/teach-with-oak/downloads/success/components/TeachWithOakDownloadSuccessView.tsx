@@ -1,6 +1,6 @@
 "use client";
 
-import { OakBox, OakHeading } from "@oaknational/oak-components";
+import { OakBox, OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 
 import { useReturnToLessonProps } from "../../../getReturnToLessonLink";
 import { extractLessonAccessedPropsFromHref } from "../../../components/TeachWithOakHeader/extractLessonAccessedPropsFromHref";
@@ -51,18 +51,27 @@ export function TeachWithOakDownloadSuccessView({
           $pt={["spacing-48", "spacing-72"]}
           $pb={["spacing-56", "spacing-80"]}
         >
-          <OakBox $maxWidth="spacing-1280" $mh="auto">
-            <OakHeading
-              tag="h2"
-              $font={["heading-5", "heading-4"]}
-              $mb={["spacing-24", "spacing-32"]}
-            >
-              Explore curriculum plans and teaching resources
-            </OakHeading>
-            <SubjectPhasePicker
-              {...curriculumPhaseOptions}
-              id="teach-with-oak-download-success-subject-picker"
-            />
+          <OakBox $maxWidth="spacing-960" $mh="auto">
+            <OakFlex $flexDirection="column" $gap="spacing-40">
+              <OakBox>
+                <OakHeading tag="h2" $font="heading-4" $mb={"spacing-24"}>
+                  Helping you deliver a world-class curriculum{" "}
+                </OakHeading>
+                <OakP $font="body-1">
+                  Free, national curriculum-aligned resources designed by
+                  subject experts, openly available to support innovation.
+                </OakP>
+              </OakBox>
+              <OakHeading tag="h3" $font="heading-7">
+                Explore curriculum plans and teaching resources
+              </OakHeading>
+              <OakBox $width="spacing-640">
+                <SubjectPhasePicker
+                  {...curriculumPhaseOptions}
+                  id="teach-with-oak-download-success-subject-picker"
+                />
+              </OakBox>
+            </OakFlex>
           </OakBox>
         </OakBox>
       )}

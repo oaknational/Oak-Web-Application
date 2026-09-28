@@ -50,8 +50,8 @@ export function DownloadSuccessHeader(
     summary: (
       <OakFlex $flexDirection="column" $gap={"spacing-24"}>
         <OakP $font={"body-2"}>
-          e We hope you find the resources useful. Click the question mark in
-          the bottom-right corner to share your feedback.{" "}
+          We hope you find the resources useful. Click the question mark in the
+          bottom-right corner to share your feedback.{" "}
         </OakP>
         {showFontInstructions && (
           <InstallFontsInstructions showHelpMessage={!cookiesNotAccepted} />
