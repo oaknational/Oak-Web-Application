@@ -51,7 +51,7 @@ Before running Playwright tests locally, install browser binaries once per machi
 
 ### Commands
 
-The following use `--project=e2e-desktop` and therefore do not run any visual tests, see [Visual Snapshot Tests (Playwrihgt + Chromatic)](#visual-snapshot-tests-playwright--chromatic).
+The following use `--project=e2e-desktop` and therefore do not run any visual tests, see [Visual Snapshot Tests (Playwright + Chromatic)](#visual-snapshot-tests-playwright--chromatic).
 
 - `pnpm run test:e2e` runs all end to end Playwright tests.
 - `pnpm run test:e2e -- src/__tests__/e2e/teacher/lesson-page.spec.ts` runs a single spec.
