@@ -39,7 +39,7 @@ export function TeachWithOakHeader({
   href,
 }: Readonly<TeachWithOakHeaderProps>) {
   const imageUrl = getCloudinaryImageUrl(
-    "v1734018546/OWA/illustrations/hero-aila_wgpmas.jpg",
+    "v1789976818/teacher-journey/teach-with-oak-header-image.jpg",
   );
   return (
     <OakBox
@@ -66,10 +66,7 @@ export function TeachWithOakHeader({
           titleHighlight={"bg-decorative2-main"}
           showImageOverflow={true}
         >
-          <StyledAboutSharedHeaderImage
-            imageUrl={imageUrl}
-            imageAlt={"Teach with Oak Image"}
-          />
+          <StyledAboutSharedHeaderImage imageUrl={imageUrl} />
         </AboutSharedHeader>
       </HeaderLayout>
     </OakBox>
