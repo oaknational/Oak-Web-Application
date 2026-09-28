@@ -11,6 +11,8 @@ import {
   usePupilLessonProgress,
 } from "@/context/PupilLessonProgress";
 import { usePupilLessonQuiz } from "@/context/PupilLessonQuiz";
+import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { QuestionState } from "@/components/PupilComponents/QuizUtils/questionTypes";
 
 const routerPush = jest.fn();
 let asPath: string;
@@ -35,6 +37,35 @@ const questions = [question, { ...question, questionUid: "final-question" }];
 const checkedAnswer = { mode: "feedback", offerHint: false, grade: 1 } as const;
 const submitClassroomProgress = jest.fn().mockResolvedValue({ status: "OK" });
 const refreshReadOnly = jest.fn(() => new Promise<boolean>(() => undefined));
+const savedAnswers: {
+  fixtureIndex: number;
+  name: string;
+  answer: QuestionState;
+}[] = [
+  {
+    fixtureIndex: 3,
+    name: "matching",
+    answer: {
+      ...checkedAnswer,
+      pupilAnswer: ["0", "1", "2"],
+      feedback: ["correct", "correct", "correct"],
+    },
+  },
+  {
+    fixtureIndex: 4,
+    name: "ordering",
+    answer: {
+      ...checkedAnswer,
+      pupilAnswer: [1, 2, 3, 4],
+      feedback: ["correct", "correct", "correct", "correct"],
+    },
+  },
+  {
+    fixtureIndex: 5,
+    name: "short answer",
+    answer: { ...checkedAnswer, pupilAnswer: "earth", feedback: "correct" },
+  },
+];
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -51,7 +82,11 @@ afterEach(cleanup);
 describe.each(["starter-quiz", "exit-quiz"] as const)(
   "resuming %s",
   (section) => {
-    const openQuiz = (saved: LessonSectionResults = {}, isReadOnly = false) => {
+    const openQuiz = (
+      saved: LessonSectionResults = {},
+      isReadOnly = false,
+      questionsArray: QuizQuestion[] = questions,
+    ) => {
       // Reopening the assignment hydrates new stores from saved Classroom progress.
       usePupilLessonProgress.getState().resetLessonProgress();
       usePupilLessonQuiz.getState().resetQuiz();
@@ -65,12 +100,51 @@ describe.each(["starter-quiz", "exit-quiz"] as const)(
       return renderWithTheme(
         <QuizPageContent
           section={section}
-          questionsArray={questions}
+          questionsArray={questionsArray}
           lessonSlug="test-lesson"
           phase="primary"
         />,
       );
     };
+
+    it.each(savedAnswers)(
+      "can finish a reopened $name final question",
+      async ({ fixtureIndex, answer }) => {
+        const finalQuestion = quizQuestions[fixtureIndex];
+        if (!finalQuestion) throw new Error("question fixture missing");
+        const user = userEvent.setup();
+        const page = openQuiz(
+          {
+            [section]: {
+              isComplete: false,
+              grade: 1,
+              numQuestions: 1,
+              questionResults: [answer],
+            },
+          },
+          false,
+          [finalQuestion],
+        );
+        expect(routerPush).not.toHaveBeenCalled();
+        expect(page.getByText("Well done!")).toBeInTheDocument();
+        await user.click(
+          page.getByRole("button", {
+            name:
+              section === "starter-quiz" ? "Continue lesson" : "Lesson review",
+          }),
+        );
+        await waitFor(() => {
+          expect(
+            usePupilLessonProgress.getState().sectionResults[section]
+              ?.isComplete,
+          ).toBe(true);
+        });
+        expect(
+          usePupilLessonProgress.getState().sectionResults[section]
+            ?.questionResults,
+        ).toEqual([answer]);
+      },
+    );
 
     it("allows completion after checking the final answer, handing in and unsubmitting", async () => {
       const user = userEvent.setup();
@@ -112,6 +186,11 @@ describe.each(["starter-quiz", "exit-quiz"] as const)(
       expect(routerPush).not.toHaveBeenCalled();
       expect(usePupilLessonQuiz.getState().currentQuestionIndex).toBe(1);
       expect(reopened.getByText("Well done!")).toBeInTheDocument();
+      expect(
+        reopened.getByRole("radio", {
+          name: "a group of words that contains a verb and makes complete sense",
+        }),
+      ).toBeChecked();
       await user.click(
         reopened.getByRole("button", {
           name:

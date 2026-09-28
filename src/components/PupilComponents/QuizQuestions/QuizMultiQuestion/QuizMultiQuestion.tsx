@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   OakCloudinaryImage,
   OakCodeRenderer,
@@ -43,8 +43,21 @@ export const QuizMultiQuestion = ({
     (answer) => answer.answerIsCorrect,
   ).length;
   const [scaled, setScaled] = useState<boolean[]>(answers.map(() => false));
+  const [selectedAnswers, setSelectedAnswers] = useState<boolean[]>(() =>
+    answers.map((_, index) =>
+      Array.isArray(questionState.pupilAnswer)
+        ? questionState.pupilAnswer.includes(index)
+        : questionState.pupilAnswer === index,
+    ),
+  );
+  const [isMounted, setIsMounted] = useState(false);
   const isFeedbackMode = questionState.mode === "feedback";
   const isExitQuizReadOnly = isReadOnly && section === "exit-quiz";
+
+  useEffect(() => {
+    // Oak reads each mounted input's checked state to render its feedback icon.
+    setIsMounted(true);
+  }, []);
 
   const toggleScaledAt = useCallback((index: number) => {
     setScaled((prev) =>
@@ -117,13 +130,24 @@ export const QuizMultiQuestion = ({
                   )
                 }
                 value={`answer-${index}`}
+                checked={selectedAnswers[index] ?? false}
                 feedback={
-                  isFeedbackMode && Array.isArray(questionState.feedback)
+                  isMounted &&
+                  isFeedbackMode &&
+                  Array.isArray(questionState.feedback)
                     ? questionState.feedback[index]
                     : undefined
                 }
                 image={image}
-                onChange={onChange}
+                onChange={(event) => {
+                  const isChecked = event.target.checked;
+                  setSelectedAnswers((previous) =>
+                    previous.map((checked, answerIndex) =>
+                      answerIndex === index ? isChecked : checked,
+                    ),
+                  );
+                  onChange();
+                }}
                 disabled={isExitQuizReadOnly || isFeedbackMode}
                 isHighlighted={questionState.mode === "incomplete"}
               />
