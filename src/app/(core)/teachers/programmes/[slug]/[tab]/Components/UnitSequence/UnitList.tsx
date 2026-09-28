@@ -41,15 +41,17 @@ export function ProgrammeUnitList({
       componentType: "unit_info_button",
       unitName: unit.title,
       unitSlug: unit.slug,
-      subjectTitle: unit.subject,
-      subjectSlug: unit.subject_slug,
-      yearGroupName: `Year ${unit.year}`,
-      yearGroupSlug: `year-${unit.year}`,
-      keyStageSlug: unit.keystage_slug,
-      keyStageTitle: getKeyStageTitle(unit.keystage_slug),
-      tierName: unit.tier ?? undefined,
-      examBoard: unit.examboard ?? undefined,
-      pathway: unit.pathway ?? undefined,
+      unitContext: {
+        subjectTitle: unit.subject,
+        subjectSlug: unit.subject_slug,
+        yearGroupName: `Year ${unit.year}`,
+        yearGroupSlug: `year-${unit.year}`,
+        keyStageSlug: unit.keystage_slug,
+        keyStageTitle: getKeyStageTitle(unit.keystage_slug),
+        tierName: unit.tier ?? undefined,
+        examBoard: unit.examboard ?? undefined,
+        pathway: unit.pathway ?? undefined,
+      },
     });
   };
 

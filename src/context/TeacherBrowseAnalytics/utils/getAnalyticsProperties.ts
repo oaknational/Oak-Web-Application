@@ -1,12 +1,12 @@
 import { ProgrammeFields } from "@oaknational/oak-curriculum-schema";
 
 import {
-  ProgrammeState,
   ProgrammePathwayData,
   ProgrammeStateUnit,
   UnitPathwayData,
   ProgrammeStateLesson,
   LessonPathwayData,
+  CoreProgrammeState,
 } from "../teacherBrowseAnalytics.types";
 
 import { KeyStageTitleValueType, PhaseValueType } from "@/browser-lib/avo/Avo";
@@ -22,7 +22,7 @@ const convertKsTitle = (ks: ProgrammeFields["keystage_description"]) => {
 };
 
 export const getProgrammeAnalyticsProperties = (
-  programmeState: ProgrammeState,
+  programmeState: CoreProgrammeState,
 ): ProgrammePathwayData => {
   return {
     phase: programmeState.phaseSlug as PhaseValueType,

@@ -10,9 +10,8 @@ import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/Teac
 import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
 import {
   LessonState,
-  ProgrammeStateUnit,
+  UnitState,
 } from "@/context/TeacherBrowseAnalytics/teacherBrowseAnalytics.types";
-import { getKeyStageTitle } from "@/utils/curriculum/formatting";
 
 type BreadcrumbsProps = { subjectPhaseSlug: string } & (
   | {
@@ -48,30 +47,12 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
     optionalPfs += `, ${examBoardTitle}`;
   }
 
-  const trackUnitAccessed = (state: ProgrammeStateUnit) => {
-    const {
-      yearGroupTitle,
-      yearGroupSlug,
-      examBoardTitle,
-      pathwayTitle,
-      subjectSlug,
-      tierTitle,
-      keyStageSlug,
-    } = state;
+  const trackUnitAccessed = (state: UnitState) => {
     unitAccessed({
       componentType: "breadcrumb",
       navigationType: "broaden",
-      unitName: state.unit.title,
-      unitSlug: state.unit.slug,
-      keyStageTitle: getKeyStageTitle(keyStageSlug),
-      keyStageSlug,
-      subjectTitle: subjectTitle,
-      subjectSlug: subjectSlug,
-      yearGroupName: yearGroupTitle,
-      yearGroupSlug: yearGroupSlug,
-      tierName: tierTitle,
-      examBoard: examBoardTitle,
-      pathway: pathwayTitle,
+      unitName: state.title,
+      unitSlug: state.slug,
     });
   };
 
@@ -116,7 +97,7 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
         unitSlug: lessonState.unit.slug,
         programmeSlug: lessonState.programmeSlug,
       }),
-      onClick: () => trackUnitAccessed(lessonState),
+      onClick: () => trackUnitAccessed(lessonState.unit),
     });
 
     if (mode === "lesson") {

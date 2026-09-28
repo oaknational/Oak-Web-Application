@@ -89,17 +89,19 @@ const UnitCardHeader = ({
           onClick={() =>
             track.unitAccessed({
               componentType: "unit_card",
-              yearGroupName: props.year,
-              yearGroupSlug: yearSlug,
-              keyStageTitle: props.keyStageTitle,
-              keyStageSlug: props.keyStageSlug,
-              subjectTitle: props.subjectTitle,
-              subjectSlug: props.subjectSlug,
               unitName: props.unitTitle,
               unitSlug: props.unitSlug,
-              tierName: props.tierName,
-              examBoard: props.examBoard,
-              pathway: props.pathway,
+              unitContext: {
+                yearGroupName: props.year,
+                yearGroupSlug: yearSlug,
+                keyStageTitle: props.keyStageTitle,
+                keyStageSlug: props.keyStageSlug,
+                subjectTitle: props.subjectTitle,
+                subjectSlug: props.subjectSlug,
+                tierName: props.tierName,
+                examBoard: props.examBoard,
+                pathway: props.pathway,
+              },
             })
           }
         >

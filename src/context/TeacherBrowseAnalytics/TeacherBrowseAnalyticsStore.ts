@@ -4,6 +4,7 @@ import { capitalize } from "lodash";
 import { TrackFns } from "../Analytics/AnalyticsProvider";
 
 import {
+  CoreProgrammeState,
   ProgrammeState,
   ProgrammeStateLesson,
   ProgrammeStateUnit,
@@ -73,7 +74,6 @@ export type TeacherBrowseAnalyticsStore = {
       lessonSlug: string;
       lessonReleaseCohort: LessonReleaseCohortValueType;
       lessonReleaseDate: string;
-
       unitContext?: {
         unitName: string;
         unitSlug: string;
@@ -141,17 +141,19 @@ export type TeacherBrowseAnalyticsStore = {
     unitAccessed: (props: {
       componentType: ComponentTypeValueType;
       navigationType?: NavigationTypeValueType;
-      yearGroupName: string;
-      yearGroupSlug: string;
-      keyStageTitle: KeyStageTitleValueType;
-      keyStageSlug: string;
-      subjectTitle: string;
-      subjectSlug: string;
       unitName: string;
       unitSlug: string;
-      tierName: TierNameValueType | undefined | null;
-      examBoard: ExamBoardValueType | undefined | null;
-      pathway: PathwayValueType | undefined | null;
+      unitContext?: {
+        tierName: TierNameValueType | undefined | null;
+        examBoard: ExamBoardValueType | undefined | null;
+        pathway: PathwayValueType | undefined | null;
+        yearGroupName: string;
+        yearGroupSlug: string;
+        keyStageTitle: KeyStageTitleValueType;
+        keyStageSlug: string;
+        subjectTitle: string;
+        subjectSlug: string;
+      };
     }) => void;
     unitDownloaded: () => void;
     unitDownloadStarted: () => void;
@@ -190,7 +192,7 @@ export const createTeacherBrowseAnalyticsStore = (
     event: keyof TeacherBrowseAnalyticsStore["track"],
     programmeState: ProgrammeState | null,
     meta?: Record<string, unknown>,
-  ): ProgrammeState | null => {
+  ): CoreProgrammeState | null => {
     if (!programmeState) {
       reportAnalyticsError({ event, programmeState, ...meta });
       return null;
@@ -230,14 +232,6 @@ export const createTeacherBrowseAnalyticsStore = (
     track: {
       createTeachingMaterialsInitiated: (data) => {
         const { avo, programmeState, journeyId } = get();
-
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "createTeachingMaterialsInitiated",
-            programmeState,
-          });
-          return;
-        }
 
         const lessonState = requireLessonState(
           "createTeachingMaterialsInitiated",
@@ -414,18 +408,11 @@ export const createTeacherBrowseAnalyticsStore = (
       lessonMediaClipsStarted: (data) => {
         const { avo, programmeState, journeyId } = get();
 
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "lessonMediaClipsStarted",
-            programmeState,
-          });
-          return;
-        }
-
         const lessonState = requireLessonState(
           "lessonMediaClipsStarted",
           programmeState,
         );
+
         if (!lessonState) {
           return;
         }
@@ -475,14 +462,6 @@ export const createTeacherBrowseAnalyticsStore = (
       lessonResourceDownloadStarted: (data) => {
         const { avo, programmeState, journeyId } = get();
 
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "lessonResourceDownloadStarted",
-            programmeState,
-          });
-          return;
-        }
-
         const lessonState = requireLessonState(
           "lessonResourceDownloadStarted",
           programmeState,
@@ -490,6 +469,7 @@ export const createTeacherBrowseAnalyticsStore = (
             downloadResourceButtonName: data.downloadResourceButtonName,
           },
         );
+
         if (!lessonState) {
           return;
         }
@@ -506,14 +486,6 @@ export const createTeacherBrowseAnalyticsStore = (
       },
       lessonShareStarted: () => {
         const { avo, programmeState, journeyId } = get();
-
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "lessonShareStarted",
-            programmeState,
-          });
-          return;
-        }
 
         const lessonState = requireLessonState(
           "lessonShareStarted",
@@ -534,18 +506,11 @@ export const createTeacherBrowseAnalyticsStore = (
       mediaClipsPlaylistPlayed: (data) => {
         const { avo, programmeState, journeyId } = get();
 
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "mediaClipsPlaylistPlayed",
-            programmeState,
-          });
-          return;
-        }
-
         const lessonState = requireLessonState(
           "mediaClipsPlaylistPlayed",
           programmeState,
         );
+
         if (!lessonState) {
           return;
         }
@@ -564,15 +529,16 @@ export const createTeacherBrowseAnalyticsStore = (
       onwardContentSelected: (data) => {
         const { avo, programmeState, journeyId, accessLevel } = get();
 
-        if (!programmeState || programmeState?.browseLevel === "programme") {
-          reportAnalyticsError({
-            event: "onwardContentSelected",
-            programmeState,
-          });
+        const unitState = requireUnitState(
+          "onwardContentSelected",
+          programmeState,
+        );
+
+        if (!unitState) {
           return;
         }
 
-        const analyticsProperties = getUnitAnalyticsProperties(programmeState);
+        const analyticsProperties = getUnitAnalyticsProperties(unitState);
 
         avo.onwardContentSelected({
           ...coreProperties,
@@ -677,18 +643,11 @@ export const createTeacherBrowseAnalyticsStore = (
       teachingMaterialsSelected: (data) => {
         const { avo, programmeState, journeyId } = get();
 
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "teachingMaterialsSelected",
-            programmeState,
-          });
-          return;
-        }
-
         const lessonState = requireLessonState(
           "teachingMaterialsSelected",
           programmeState,
         );
+
         if (!lessonState) {
           return;
         }
@@ -707,61 +666,46 @@ export const createTeacherBrowseAnalyticsStore = (
       unitAccessed: ({
         componentType,
         navigationType,
-        yearGroupName,
-        yearGroupSlug,
-        keyStageTitle,
-        keyStageSlug,
-        subjectTitle,
-        subjectSlug,
         unitName,
         unitSlug,
-        tierName,
-        examBoard,
-        pathway,
+        unitContext,
       }) => {
         const { avo, programmeState, journeyId, accessLevel } = get();
 
-        const state = programmeState
-          ? requireProgrammeState("unitAccessed", programmeState)
-          : null;
-
-        const analyticsProps = state
-          ? getProgrammeAnalyticsProperties(state)
-          : {};
-
-        avo.unitAccessed({
+        const stateProps = {
           engagementIntent: EngagementIntent.REFINE,
           journeyId,
           accessLevel,
-          ...coreProperties,
-          ...analyticsProps,
           navigationType: navigationType ?? "narrow",
           componentType,
-          yearGroupName,
-          yearGroupSlug,
-          keyStageTitle,
-          keyStageSlug,
-          subjectTitle,
-          subjectSlug,
-          unitName,
-          unitSlug,
-          tierName,
-          examBoard,
-          pathway,
-        });
+          ...coreProperties,
+        };
+
+        if (unitContext) {
+          avo.unitAccessed({
+            ...stateProps,
+            ...unitContext,
+            unitName,
+            unitSlug,
+          });
+        } else {
+          const state = requireUnitState("unitAccessed", programmeState);
+          if (state) {
+            const analyticsProperties = getUnitAnalyticsProperties(state);
+            avo.unitAccessed({
+              ...stateProps,
+              ...analyticsProperties,
+              unitName,
+              unitSlug,
+            });
+          }
+        }
       },
       unitDownloaded: () => {
         const { avo, programmeState, journeyId, accessLevel } = get();
 
-        if (programmeState?.browseLevel === "programme") {
-          reportAnalyticsError({
-            event: "unitDownloaded",
-            programmeState,
-          });
-          return;
-        }
-
         const unitState = requireUnitState("unitDownloaded", programmeState);
+
         if (!unitState) {
           return;
         }
@@ -780,18 +724,11 @@ export const createTeacherBrowseAnalyticsStore = (
       unitDownloadStarted: () => {
         const { avo, programmeState, journeyId, accessLevel } = get();
 
-        if (programmeState?.browseLevel === "programme") {
-          reportAnalyticsError({
-            event: "unitDownloadStarted",
-            programmeState,
-          });
-          return;
-        }
-
         const unitState = requireUnitState(
           "unitDownloadStarted",
           programmeState,
         );
+
         if (!unitState) {
           return;
         }
@@ -838,14 +775,6 @@ export const createTeacherBrowseAnalyticsStore = (
       videoPlayed: (data) => {
         const { avo, programmeState, journeyId } = get();
 
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "videoPlayed",
-            programmeState,
-          });
-          return;
-        }
-
         const lessonState = requireLessonState("videoPlayed", programmeState);
         if (!lessonState) {
           return;
@@ -861,14 +790,6 @@ export const createTeacherBrowseAnalyticsStore = (
       },
       videoStarted: (data) => {
         const { avo, programmeState, journeyId } = get();
-
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "videoStarted",
-            programmeState,
-          });
-          return;
-        }
 
         const lessonState = requireLessonState("videoStarted", programmeState);
         if (!lessonState) {
@@ -886,14 +807,6 @@ export const createTeacherBrowseAnalyticsStore = (
       videoPaused: (data) => {
         const { avo, programmeState, journeyId } = get();
 
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "videoPaused",
-            programmeState,
-          });
-          return;
-        }
-
         const lessonState = requireLessonState("videoPaused", programmeState);
         if (!lessonState) {
           return;
@@ -909,14 +822,6 @@ export const createTeacherBrowseAnalyticsStore = (
       },
       videoFinished: (data) => {
         const { avo, programmeState, journeyId } = get();
-
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "videoFinished",
-            programmeState,
-          });
-          return;
-        }
 
         const lessonState = requireLessonState("videoFinished", programmeState);
         if (!lessonState) {
