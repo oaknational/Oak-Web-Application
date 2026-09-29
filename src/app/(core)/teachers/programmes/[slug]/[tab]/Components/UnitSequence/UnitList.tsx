@@ -11,7 +11,6 @@ import { getSavePropsForUnitCard } from "./getSavePropsForUnitCard";
 import { isHighlightedUnit } from "@/utils/curriculum/filtering";
 import {
   CurriculumFilters,
-  Thread,
   Unit,
   YearData,
 } from "@/utils/curriculum/types";
@@ -21,30 +20,20 @@ import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
 import CardListing, {
   CardProps,
 } from "@/components/TeacherComponents/CardListing/CardListing";
-import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type ProgrammeUnitListProps = {
   units: Unit[];
   filters: CurriculumFilters;
   year: string;
   yearData: YearData;
-  selectedThread?: Thread;
 };
 export function ProgrammeUnitList({
   units,
   yearData,
   year,
   filters,
-  selectedThread,
 }: Readonly<ProgrammeUnitListProps>) {
-  const { unitOverviewAccessed } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
   const isMobile = useMediaQuery("mobile");
-
-  const onClick = (unit: Unit, isHighlighted: boolean) => {
-    unitOverviewAccessed(unit, isHighlighted, selectedThread);
-  };
 
   function getItems(unit: Unit, index: number, isMobile: boolean) {
     const isHighlighted = isHighlightedUnit(unit, filters.threads);
@@ -87,7 +76,6 @@ export function ProgrammeUnitList({
                 programmeSlug,
               }),
               showBorder: true,
-              onClickLink: () => onClick(unit, isHighlighted),
               lessonCount: option.lessons.length,
             }) satisfies CardProps,
         )
@@ -110,7 +98,6 @@ export function ProgrammeUnitList({
             unitSlug: unit.slug,
             programmeSlug,
           })}
-          onClickLink={() => onClick(unit, isHighlighted)}
           lessonCount={isOptionalityUnitCard ? undefined : unit.lessons?.length}
           saveProps={getSavePropsForUnitCard({
             slug: unit.slug,

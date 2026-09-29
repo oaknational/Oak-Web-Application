@@ -1,4 +1,4 @@
-import { act, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import { ProgrammeUnitList } from "./UnitList";
 
@@ -27,13 +27,10 @@ jest.mock("next/navigation", () => ({
   usePathname: jest.fn(() => "/"),
 }));
 
-const unitOverviewAccessedMock = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
-    track: {
-      unitOverviewAccessed: unitOverviewAccessedMock,
-    },
+    track: {},
   }),
 }));
 
@@ -89,24 +86,6 @@ describe("ProgrammeUnitList", () => {
 
     const list = container.querySelector("ol");
     expect(list).toBeInTheDocument();
-  });
-
-  it("calls track.unitOverviewAccessed when a unit link is clicked", async () => {
-    render(<ProgrammeUnitList {...defaultProps} />);
-
-    const link = screen.getByRole("link", { name: /Unit One/i });
-    await act(async () => {
-      link.click();
-    });
-
-    expect(unitOverviewAccessedMock).toHaveBeenCalledTimes(1);
-    expect(unitOverviewAccessedMock).toHaveBeenCalledWith(
-      expect.objectContaining({
-        unitName: "Unit One",
-        unitSlug: "unit-one",
-        componentType: "unit_info_button",
-      }),
-    );
   });
 
   describe("thread highlighting", () => {
