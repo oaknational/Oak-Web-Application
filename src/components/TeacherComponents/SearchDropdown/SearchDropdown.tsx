@@ -27,8 +27,6 @@ const SearchDropdown: FC<
     isToggleOpen: boolean;
     isHovered: boolean;
     label: string;
-    isExamBoardDropdown?: boolean;
-    isTierDropdown?: boolean;
     dropdownContent: PathwaySchemaCamel[];
   }
 > = (props) => {
