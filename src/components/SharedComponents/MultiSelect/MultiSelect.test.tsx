@@ -71,7 +71,7 @@ describe("MultiSelect", () => {
       expect(screen.getByTestId("multi-select-panel")).toHaveStyle({
         position: "absolute",
         [direction === "up" ? "bottom" : "top"]: "calc(100% + 0.25rem)",
-        "max-height": "min(60rem, 70vh)",
+        "max-height": "min(60rem,70vh)",
         "overflow-y": "auto",
       });
     },
