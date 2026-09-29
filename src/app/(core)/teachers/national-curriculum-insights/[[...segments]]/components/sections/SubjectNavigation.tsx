@@ -198,10 +198,10 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
                               getMobileColumnStart(index, subjects.length),
                               1,
                               index >= subjects.length - lastDesktopRowLength
-                                ? desktopColumnStarts[lastDesktopRowLength]?.[
+                                ? (desktopColumnStarts[lastDesktopRowLength]?.[
                                     index % 5
-                                  ]
-                                : desktopColumnStarts[0][index % 5],
+                                  ] ?? 1)
+                                : (desktopColumnStarts[0][index % 5] ?? 1),
                             ]}
                           >
                             <HubSubjectItem
