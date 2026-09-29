@@ -57,6 +57,7 @@ export const extractLessonAccessedPropsFromHref = ({
 
   return {
     componentType: "teach_with_oak_back_to_lesson",
+    navigationType: "across",
     unitSlug,
     unitName,
     lessonSlug,

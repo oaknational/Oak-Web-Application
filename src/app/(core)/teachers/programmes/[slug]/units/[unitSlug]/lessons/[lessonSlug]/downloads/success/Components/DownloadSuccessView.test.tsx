@@ -155,6 +155,7 @@ describe("DownloadSuccessView", () => {
     expect(lessonAccessed).toHaveBeenCalledTimes(1);
     expect(lessonAccessed).toHaveBeenCalledWith({
       componentType: "back_a_step_button",
+      navigationType: "across",
     });
   });
 

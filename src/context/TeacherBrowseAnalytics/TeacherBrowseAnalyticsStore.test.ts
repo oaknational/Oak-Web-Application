@@ -229,6 +229,7 @@ describe("TeacherBrowseAnalyticsStore", () => {
 
       store.getState().track[eventName]({
         componentType: ComponentType.UNIT_SEQUENCE_TAB,
+        navigationType: "narrow",
         unitName: "Cells",
         unitSlug: "cells",
         lessonReleaseCohort: "cohort-1" as LessonReleaseCohortValueType,

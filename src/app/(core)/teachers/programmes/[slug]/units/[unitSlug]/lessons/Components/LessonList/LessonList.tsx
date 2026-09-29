@@ -226,6 +226,7 @@ const LessonList = ({
                   onClickLink={() =>
                     lessonAccessed({
                       componentType: "lessons_in_unit",
+                      navigationType: "across",
                       lessonName: lesson.lessonTitle,
                       lessonSlug: lesson.lessonSlug,
                       lessonReleaseDate: lesson.lessonReleaseDate ?? "unknown",

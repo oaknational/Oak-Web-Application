@@ -276,6 +276,7 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
     it("calls lessonAccessed with the correct props", () => {
       renderTrackingTest(lessonLevelState, "lessonAccessed", {
         componentType: "lessons_in_unit",
+        navigationType: "across",
       });
 
       const trackBtn = screen.getByRole("button", { name: "Track" });
@@ -288,11 +289,13 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
           engagementIntent: "refine",
           eventVersion: "2.0.0",
           examBoard: null,
+          journeyId: "session-1:secondary-biology",
           keyStageSlug: "ks3",
           keyStageTitle: "Key stage 3",
           lessonName: "Structure of cells",
           lessonReleaseCohort: "2023-2026",
           lessonSlug: "lesson-3-structure-of-cells",
+          navigationType: "across",
           pathway: null,
           phase: "secondary",
           platform: "owa",
@@ -427,6 +430,7 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
     it("handles invalid browse level for lessonAccessed", () => {
       renderTrackingTest(programmeLevelState, "lessonAccessed", {
         componentType: "lessons_in_unit",
+        navigationType: "across",
       });
       const trackBtn = screen.getByRole("button", { name: "Track" });
       const result = trackBtn.click();

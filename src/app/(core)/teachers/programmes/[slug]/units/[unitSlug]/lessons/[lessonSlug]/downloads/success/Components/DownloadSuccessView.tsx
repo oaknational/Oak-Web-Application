@@ -75,6 +75,7 @@ export function DownloadSuccessView({
         onBackClick={() =>
           lessonAccessed({
             componentType: "back_a_step_button",
+            navigationType: "across",
           })
         }
         backgroundColorLevel={1}

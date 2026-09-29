@@ -89,6 +89,7 @@ const UnitCardHeader = ({
           onClick={() =>
             track.unitAccessed({
               componentType: "unit_card",
+              navigationType: "narrow",
               yearGroupName: props.year,
               yearGroupSlug: yearSlug,
               keyStageTitle: props.keyStageTitle,
@@ -164,6 +165,7 @@ const UnitCardContent = ({
                     onClick={() =>
                       track.lessonAccessed({
                         componentType: "lesson_card",
+                        navigationType: "narrow",
                         unitName: props.unitTitle,
                         unitSlug: props.unitSlug,
                         lessonName: lesson.slug,

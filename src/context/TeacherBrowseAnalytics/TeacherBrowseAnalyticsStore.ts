@@ -22,6 +22,7 @@ import type {
   PathwayValueType,
   LessonAccessedProperties,
   LessonReleaseCohortValueType,
+  NavigationTypeValueType,
 } from "@/browser-lib/avo/Avo";
 import {
   AccessLevelValueType,
@@ -67,6 +68,7 @@ export type TeacherBrowseAnalyticsStore = {
     }) => void;
     lessonAccessed: (props: {
       componentType: ComponentTypeValueType;
+      navigationType: NavigationTypeValueType;
       /** Only needed when the target lesson is not the lesson in programme state */
       unitName?: string;
       unitSlug?: string;
@@ -129,6 +131,7 @@ export type TeacherBrowseAnalyticsStore = {
     }) => void;
     unitAccessed: (props: {
       componentType: ComponentTypeValueType;
+      navigationType: NavigationTypeValueType;
       yearGroupName: string;
       yearGroupSlug: string;
       keyStageTitle: KeyStageTitleValueType;
@@ -384,8 +387,8 @@ export const createTeacherBrowseAnalyticsStore = (
           learningTier: capitalize(tierSlug || "") as LearningTierValueType,
         });
       },
-      lessonAccessed: ({ componentType, ...overrides }) => {
-        const { avo, programmeState } = get();
+      lessonAccessed: ({ componentType, navigationType, ...overrides }) => {
+        const { avo, programmeState, journeyId, accessLevel } = get();
 
         let contextProperties: Partial<LessonAccessedProperties> = {};
         if (programmeState?.browseLevel === "lesson") {
@@ -414,6 +417,9 @@ export const createTeacherBrowseAnalyticsStore = (
           pathway: lessonProperties.pathway,
           engagementIntent: EngagementIntent.REFINE,
           componentType,
+          navigationType,
+          journeyId,
+          accessLevel,
         });
       },
       lessonMediaClipsStarted: (data) => {
@@ -687,6 +693,7 @@ export const createTeacherBrowseAnalyticsStore = (
       },
       unitAccessed: ({
         componentType,
+        navigationType,
         yearGroupName,
         yearGroupSlug,
         keyStageTitle,
@@ -699,7 +706,7 @@ export const createTeacherBrowseAnalyticsStore = (
         examBoard,
         pathway,
       }) => {
-        const { avo, programmeState } = get();
+        const { avo, programmeState, journeyId, accessLevel } = get();
 
         const unitState = programmeState
           ? requireUnitState("unitAccessed", programmeState)
@@ -714,6 +721,9 @@ export const createTeacherBrowseAnalyticsStore = (
           ...coreProperties,
           ...analyticsProps,
           componentType,
+          navigationType,
+          journeyId,
+          accessLevel,
           yearGroupName,
           yearGroupSlug,
           keyStageTitle,

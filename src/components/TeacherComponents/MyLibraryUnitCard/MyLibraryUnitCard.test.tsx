@@ -143,10 +143,13 @@ describe("MyLibraryUnitCard", () => {
     const user = userEvent.setup();
     await user.click(lessonLink);
     expect(mockTrackLessonAccessed).toHaveBeenCalledWith({
+      accessLevel: "unit",
       analyticsUseCase: "Teacher",
       componentType: "lesson_card",
+      navigationType: "narrow",
       engagementIntent: "refine",
       eventVersion: "2.0.0",
+      journeyId: "mockJourneyId",
       unitName: mockUnit.unitTitle,
       unitSlug: mockUnit.unitSlug,
       lessonName: "lesson-0-published",

@@ -94,11 +94,14 @@ describe("MyLibrary", () => {
     await user.click(unitLink);
     await waitFor(() =>
       expect(mockTrackUnitAccessed).toHaveBeenCalledWith({
+        accessLevel: "my_library",
         analyticsUseCase: "Teacher",
         componentType: "unit_card",
+        navigationType: "narrow",
         engagementIntent: "refine",
         eventVersion: "2.0.0",
         examBoard: "AQA",
+        journeyId: null,
         keyStageSlug: "ks4",
         keyStageTitle: "KS4",
         pathway: undefined,
@@ -126,11 +129,14 @@ describe("MyLibrary", () => {
     const user = userEvent.setup();
     await user.click(lessonLink);
     expect(mockTrackLessonAccessed).toHaveBeenCalledWith({
+      accessLevel: "my_library",
       analyticsUseCase: "Teacher",
       componentType: "lesson_card",
+      navigationType: "narrow",
       engagementIntent: "refine",
       eventVersion: "2.0.0",
       examBoard: "AQA",
+      journeyId: null,
       keyStageSlug: "ks4",
       keyStageTitle: "KS4",
       lessonName: "lesson-1-1",

@@ -131,6 +131,10 @@ export const PupilViewsUnitListing = ({
                   eventVersion: "2.0.0",
                   componentType: "programme_card",
                   analyticsUseCase: "Pupil",
+                  // Journey tracking is specific to the teacher browse journey
+                  journeyId: null,
+                  navigationType: null,
+                  accessLevel: null,
                   unitName: unit.unitData.title,
                   unitSlug: unit.unitData.slug,
                   subjectTitle: programmeFields.subject,
