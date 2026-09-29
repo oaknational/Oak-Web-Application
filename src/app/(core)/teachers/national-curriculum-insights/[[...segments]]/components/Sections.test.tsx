@@ -280,8 +280,13 @@ describe("National Curriculum Insights sections", () => {
     );
 
     expect(
-      screen.getByRole("region", { name: "Science overview" }),
-    ).toHaveStyle({ gap: "1.5rem" });
+      screen.getByRole("region", { name: "Science overview" })
+        .firstElementChild,
+    ).toHaveStyle({
+      display: "grid",
+      "row-gap": "1.5rem",
+      "grid-template-columns": "minmax(0, 1fr)",
+    });
 
     expect(
       screen.getByRole("img", {
@@ -470,10 +475,25 @@ describe("National Curriculum Insights sections", () => {
       screen.getByRole("heading", { name: "When will the curriculum change?" }),
     ).toHaveStyle({ textAlign: "left" });
 
-    expect(screen.queryByRole("status")).not.toBeInTheDocument();
+    expect(screen.getByRole("status")).toBeEmptyDOMElement();
     expect(useNewsletterForm).toHaveBeenCalledWith({
       hubspotNewsletterFormId: INSIGHTS_NEWSLETTER_FORM_ID,
       hubspotPortalId: INSIGHTS_NEWSLETTER_PORTAL_ID,
+    });
+
+    const newsletterForm = screen
+      .getByRole("button", { name: "Join the mailing list" })
+      .closest("form")!;
+    expect(
+      screen.getByRole("checkbox", { name: "My school isn't listed" }),
+    ).toHaveStyle({
+      "border-radius": "0rem",
+      width: "1.5rem",
+      height: "1.5rem",
+    });
+    // Each grid item starts in the first column in the stacked mobile layout.
+    Array.from(newsletterForm.parentElement!.children).forEach((column) => {
+      expect(column).toHaveStyle({ gridColumnStart: "1" });
     });
 
     fireEvent.change(screen.getByRole("textbox", { name: /Name/ }), {
@@ -550,7 +570,7 @@ describe("National Curriculum Insights sections", () => {
       "We couldn't submit the form. Please try again.",
     );
     expect(newsletterSignUpCompleted).not.toHaveBeenCalled();
-    expect(screen.queryByRole("status")).not.toBeInTheDocument();
+    expect(screen.getByRole("status")).toBeEmptyDOMElement();
   });
 
   it("renders the guidance introduction with its image and status", () => {
@@ -796,6 +816,10 @@ describe("National Curriculum Insights sections", () => {
     expect(screen.getByText("Curriculum team")).toBeInTheDocument();
     expect(screen.getByText("Subject specialists")).toBeInTheDocument();
     expect(screen.getByText("Draft guidance")).toBeInTheDocument();
+    const heroGrid = screen.getByRole("heading", {
+      name: hero.heading,
+    }).parentElement!.parentElement!.parentElement!;
+    expect(heroGrid.children[1]).toHaveStyle({ order: "2" });
     expect(
       screen.getByRole("link", { name: /National curriculum insights/ }),
     ).toHaveAttribute("href", "/teachers/national-curriculum-insights");

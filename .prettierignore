@@ -10,6 +10,7 @@ src/node-lib/sanity-graphql/generated
 next-env.d.ts
 out
 storybook-static
+pnpm-lock.yaml
 
 # Test coverage
 coverage

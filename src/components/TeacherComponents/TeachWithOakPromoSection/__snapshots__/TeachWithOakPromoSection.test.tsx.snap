@@ -1,0 +1,165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TeachWithOakPromoSection renders correctly 1`] = `
+<div>
+  <div
+    data-overlay-container="true"
+  >
+    <div
+      class="sc-bdvwhi cqfEAN"
+    >
+      <div
+        class="sc-bdvwhi sc-bXTeWK ccVrhi bnMUc"
+      >
+        <a
+          class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fugdSh fbAqCR hsiEZu"
+          href="/teachers/teach-with-oak?returnTo=%2Ftest%2Furl&lessonName=Lesson+Name&unitName=Unit+Name"
+        >
+          <div
+            class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
+          >
+            <div
+              class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+            >
+              <h2
+                class="sc-bkkgYE jxvseu"
+              >
+                Ever wondered why our lessons are structured this way?
+              </h2>
+              <p
+                class="sc-hGPAwl elFTWr"
+              >
+                See how explanation, checks for understanding, practice and feedback work together to support pupils' learning.
+              </p>
+            </div>
+            <div
+              class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
+            >
+              <div
+                class="sc-bdvwhi sc-gsDMPd hPWTKU eWbmLh"
+              >
+                <span
+                  class="sc-dkPwfY hmZYGI"
+                >
+                  See the thinking
+                </span>
+                <span
+                  class="sc-bdvwhi cERAFe"
+                >
+                  <img
+                    alt=""
+                    class="sc-jRQBiJ eMsccW"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div
+      aria-live="polite"
+      class="sc-bdvwhi sc-gsDMPd sc-b7a27f76-0 kjWDfr htLMtM krUohl"
+    />
+  </div>
+  <div
+    class="sc-bdvwhi gFnpsF"
+  >
+    <div
+      class="sc-bdvwhi iwVUCi"
+      data-testid="cookie-banner"
+    >
+      <div
+        class="sc-bdvwhi iIozLH"
+      >
+        <div
+          class="sc-bdvwhi sc-gsDMPd egBoar iKjTsb"
+        >
+          <div
+            class="sc-bdvwhi fIxCDL"
+          >
+            <strong
+              class="sc-dkPwfY iyMjBM"
+            >
+              This site uses cookies to store information on your computer.
+            </strong>
+             
+            Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
+          </div>
+          <div
+            class="sc-bdvwhi sc-gsDMPd hPWTKU gyKdMN"
+          >
+            <div
+              class="sc-bdvwhi sc-gsDMPd lmXuba eWbmLh"
+            >
+              <button
+                class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                data-testid="cookie-banner-reject"
+                type="button"
+              >
+                <span
+                  class="sc-dkPwfY fgmEIT"
+                >
+                  Reject non-essential cookies
+                </span>
+              </button>
+            </div>
+            <div
+              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+            >
+              <div
+                class="sc-bdvwhi kAFHfV grey-shadow"
+              />
+              <div
+                class="sc-bdvwhi kAFHfV yellow-shadow"
+              />
+              <button
+                class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                >
+                  <span
+                    class="sc-dkPwfY kXQhTZ"
+                  >
+                    Cookie settings
+                  </span>
+                </div>
+              </button>
+            </div>
+            <div
+              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+            >
+              <div
+                class="sc-bdvwhi kAFHfV grey-shadow"
+              />
+              <div
+                class="sc-bdvwhi kAFHfV yellow-shadow"
+              />
+              <button
+                class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                data-testid="cookie-banner-accept"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                >
+                  <span
+                    class="sc-dkPwfY kXQhTZ"
+                  >
+                    Accept all cookies
+                  </span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

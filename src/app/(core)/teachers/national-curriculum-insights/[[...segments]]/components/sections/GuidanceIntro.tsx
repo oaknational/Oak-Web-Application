@@ -25,9 +25,7 @@ import {
 } from "./shared";
 
 // Let the paragraph wrap naturally around the inline status tag.
-const GuidanceTaggedParagraph = styled.div`
-  display: flow-root;
-
+const GuidanceTaggedParagraph = styled(OakBox)`
   > :first-child {
     float: left;
     margin-right: ${parseSpacing("spacing-8")};
@@ -128,7 +126,7 @@ export const NationalCurriculumInsightsGuidanceIntro = ({
                     value={[leadBlock]}
                     components={guidancePortableTextComponents}
                   />
-                  <GuidanceTaggedParagraph>
+                  <GuidanceTaggedParagraph $display="flow-root">
                     <GuidanceStatusLabel label={section.statusLabel!} />
                     <PortableTextWithDefaults
                       value={remainingBlocks}
