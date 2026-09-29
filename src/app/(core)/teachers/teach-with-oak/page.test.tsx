@@ -1,15 +1,11 @@
 /**
  * @jest-environment jsdom
  */
-import { notFound } from "next/navigation";
 import type { ReactElement } from "react";
 
 import TeachWithOakPage from "./page";
 
-import { getFeatureFlagValue } from "@/utils/featureFlags";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-
-jest.mock("@/utils/featureFlags");
 
 jest.mock("next/navigation", () => ({
   notFound: jest.fn(() => {
@@ -40,28 +36,11 @@ const renderPage = async (searchParams = {}) =>
 describe("Teach with Oak page", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    jest.mocked(getFeatureFlagValue).mockResolvedValue("enabled");
   });
 
   test("renders the view inside the teach-with-oak analytics context", async () => {
     const { getByTestId } = await renderPage();
 
-    expect(getFeatureFlagValue).toHaveBeenCalledWith(
-      "teachers-teach-with-oak",
-      "string",
-    );
     expect(getByTestId("teach-with-oak-view")).toBeInTheDocument();
-  });
-
-  test("returns a not-found response when the feature is disabled", async () => {
-    jest.mocked(getFeatureFlagValue).mockResolvedValue("");
-
-    await expect(
-      TeachWithOakPage({
-        params: Promise.resolve({}),
-        searchParams: Promise.resolve({}),
-      }),
-    ).rejects.toThrow("NEXT_HTTP_ERROR_FALLBACK;404");
-    expect(notFound).toHaveBeenCalledTimes(1);
   });
 });

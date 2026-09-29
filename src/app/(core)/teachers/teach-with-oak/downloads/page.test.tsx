@@ -1,7 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-import { notFound } from "next/navigation";
 import type { ReactElement } from "react";
 import { screen } from "@testing-library/dom";
 
@@ -11,7 +10,6 @@ import { getTeachWithOakDownloadFileExistence } from "@/components/SharedCompone
 import { getFeatureFlagValue } from "@/utils/featureFlags";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-jest.mock("@/utils/featureFlags");
 jest.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
 );
@@ -47,28 +45,12 @@ describe("Teach with Oak download page", () => {
     } as never);
   });
 
-  test("renders the download view when the feature is enabled", async () => {
+  test("renders the download view ", async () => {
     await renderPage();
 
-    expect(getFeatureFlagValue).toHaveBeenCalledWith(
-      "teachers-teach-with-oak",
-      "string",
-    );
     const downloadPageHeader = screen.getByRole("heading", {
       name: "Download short read guides",
     });
     expect(downloadPageHeader).toBeInTheDocument();
-  });
-
-  test("returns a not-found response when the feature is disabled", async () => {
-    jest.mocked(getFeatureFlagValue).mockResolvedValue("");
-
-    await expect(
-      TeachWithOakDownloadPage({
-        params: Promise.resolve({}),
-        searchParams: Promise.resolve({}),
-      }),
-    ).rejects.toThrow("NEXT_HTTP_ERROR_FALLBACK;404");
-    expect(notFound).toHaveBeenCalledTimes(1);
   });
 });
