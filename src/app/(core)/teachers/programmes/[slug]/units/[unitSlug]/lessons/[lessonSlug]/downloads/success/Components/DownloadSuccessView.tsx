@@ -45,11 +45,9 @@ export function DownloadSuccessView({
     unitTitle,
     lessons,
     unitvariantId,
-    lessonTitle,
-    lessonReleaseDate,
   } = lesson;
 
-  const { unitDownloaded, onwardContentSelected } = useTeacherBrowseAnalytics(
+  const { unitDownloaded, lessonAccessed } = useTeacherBrowseAnalytics(
     (store) => store.track,
   );
 
@@ -75,11 +73,8 @@ export function DownloadSuccessView({
           unitSlug,
         })}
         onBackClick={() =>
-          onwardContentSelected({
-            onwardIntent: "view-lesson",
-            lessonName: lessonTitle,
-            lessonSlug,
-            lessonReleaseDate,
+          lessonAccessed({
+            componentType: "back_a_step_button",
           })
         }
         backgroundColorLevel={1}

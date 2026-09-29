@@ -103,9 +103,7 @@ const LessonList = ({
   headerCtaSlot = null,
 }: LessonListProps) => {
   const showUnitCount = unitIndex !== undefined && unitCount !== undefined;
-  const { onwardContentSelected } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
+  const { lessonAccessed } = useTeacherBrowseAnalytics((store) => store.track);
 
   return (
     <OakFlex $flexDirection="column">
@@ -226,8 +224,8 @@ const LessonList = ({
                   index={lesson.orderInUnit ?? undefined}
                   disabled={lesson.isUnpublished}
                   onClickLink={() =>
-                    onwardContentSelected({
-                      onwardIntent: "view-lesson",
+                    lessonAccessed({
+                      componentType: "lessons_in_unit",
                       lessonName: lesson.lessonTitle,
                       lessonSlug: lesson.lessonSlug,
                       lessonReleaseDate: lesson.lessonReleaseDate ?? "unknown",

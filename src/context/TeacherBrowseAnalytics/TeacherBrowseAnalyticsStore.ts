@@ -20,6 +20,7 @@ import type {
   ExamBoardValueType,
   KeyStageTitleValueType,
   PathwayValueType,
+  LessonAccessedProperties,
   LessonReleaseCohortValueType,
 } from "@/browser-lib/avo/Avo";
 import {
@@ -69,19 +70,20 @@ export type TeacherBrowseAnalyticsStore = {
     }) => void;
     lessonAccessed: (props: {
       componentType: ComponentTypeValueType;
-      unitName: string;
-      unitSlug: string;
-      lessonName: string;
-      lessonSlug: string;
-      keyStageTitle: KeyStageTitleValueType;
-      keyStageSlug: string;
-      tierName: TierNameValueType | undefined;
-      examBoard: ExamBoardValueType | undefined;
-      pathway: PathwayValueType | undefined;
-      lessonReleaseCohort: LessonReleaseCohortValueType;
-      lessonReleaseDate: string;
-      yearGroupName: string;
-      yearGroupSlug: string;
+      /** Only needed when the target lesson is not the lesson in programme state */
+      unitName?: string;
+      unitSlug?: string;
+      lessonName?: string;
+      lessonSlug?: string;
+      keyStageTitle?: KeyStageTitleValueType;
+      keyStageSlug?: string;
+      tierName?: TierNameValueType;
+      examBoard?: ExamBoardValueType;
+      pathway?: PathwayValueType;
+      lessonReleaseCohort?: LessonReleaseCohortValueType;
+      lessonReleaseDate?: string;
+      yearGroupName?: string;
+      yearGroupSlug?: string;
     }) => void;
     lessonMediaClipsStarted: (data: {
       mediaClipsButtonName: MediaClipsButtonNameValueType;
@@ -179,6 +181,32 @@ const coreProperties: {
   eventVersion: "2.0.0",
   analyticsUseCase: "Teacher",
 };
+
+// Properties `lessonAccessed` cannot send as null, sourced from programme state or the caller
+const requiredLessonProperties = [
+  "unitName",
+  "unitSlug",
+  "lessonName",
+  "lessonSlug",
+  "keyStageTitle",
+  "keyStageSlug",
+  "lessonReleaseCohort",
+  "lessonReleaseDate",
+  "yearGroupName",
+  "yearGroupSlug",
+] as const;
+
+type RequiredLessonProperties = Pick<
+  LessonAccessedProperties,
+  (typeof requiredLessonProperties)[number]
+>;
+
+const hasRequiredLessonProperties = <
+  T extends Partial<RequiredLessonProperties>,
+>(
+  properties: T,
+): properties is T & RequiredLessonProperties =>
+  requiredLessonProperties.every((key) => properties[key] !== undefined);
 
 export const createTeacherBrowseAnalyticsStore = (
   initialState: Pick<
@@ -370,50 +398,36 @@ export const createTeacherBrowseAnalyticsStore = (
           learningTier: capitalize(tierSlug || "") as LearningTierValueType,
         });
       },
-      lessonAccessed: ({
-        componentType,
-        lessonName,
-        lessonSlug,
-        unitName,
-        unitSlug,
-        keyStageTitle,
-        keyStageSlug,
-        tierName,
-        examBoard,
-        pathway,
-        lessonReleaseCohort,
-        lessonReleaseDate,
-        yearGroupName,
-        yearGroupSlug,
-      }) => {
+      lessonAccessed: ({ componentType, ...overrides }) => {
         const { avo, programmeState } = get();
 
-        const lessonState = programmeState
-          ? requireLessonState("lessonAccessed", programmeState)
-          : null;
+        let contextProperties: Partial<LessonAccessedProperties> = {};
+        if (programmeState?.browseLevel === "lesson") {
+          contextProperties = getLessonAnalyticsProperties(programmeState);
+        } else if (programmeState?.browseLevel === "unit") {
+          contextProperties = {
+            ...getUnitAnalyticsProperties(programmeState),
+            lessonReleaseCohort: "2023-2026",
+            yearGroupName: programmeState.yearGroupTitle,
+            yearGroupSlug: `year-${programmeState.year}`,
+          };
+        }
 
-        const analyticsProperties = lessonState
-          ? getLessonAnalyticsProperties(lessonState)
-          : {};
+        const lessonProperties = { ...contextProperties, ...overrides };
+
+        if (!hasRequiredLessonProperties(lessonProperties)) {
+          reportAnalyticsError({ event: "lessonAccessed", programmeState });
+          return;
+        }
 
         avo.lessonAccessed({
           ...coreProperties,
-          ...analyticsProperties,
+          ...lessonProperties,
+          tierName: lessonProperties.tierName,
+          examBoard: lessonProperties.examBoard,
+          pathway: lessonProperties.pathway,
           engagementIntent: EngagementIntent.REFINE,
           componentType,
-          lessonName,
-          lessonSlug,
-          unitName,
-          unitSlug,
-          keyStageTitle,
-          keyStageSlug,
-          tierName,
-          examBoard,
-          pathway,
-          lessonReleaseCohort,
-          lessonReleaseDate,
-          yearGroupName,
-          yearGroupSlug,
         });
       },
       lessonMediaClipsStarted: (data) => {
