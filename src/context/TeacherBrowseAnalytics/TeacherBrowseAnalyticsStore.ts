@@ -35,14 +35,11 @@ import {
   FilterTypeValueType,
   LearningTierValueType,
   MediaClipsButtonNameValueType,
-  OnwardIntentValueType,
   PlatformValueType,
   ProductValueType,
   TeachingMaterialTypeValueType,
   TierNameValueType,
 } from "@/browser-lib/avo/Avo";
-import { Thread, Unit } from "@/utils/curriculum/types";
-import { buildUnitOverviewAccessedAnalytics } from "@/utils/curriculum/analytics";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import getFormattedDetailsForTracking, {
   getSchoolOption,
@@ -111,12 +108,6 @@ export type TeacherBrowseAnalyticsStore = {
       mediaClipsCount: number;
       mediaClipIndex: number;
     }) => void;
-    onwardContentSelected: (props: {
-      lessonSlug: string;
-      lessonName: string;
-      lessonReleaseDate: string;
-      onwardIntent: OnwardIntentValueType;
-    }) => void;
     programmeAccessed: (props: {
       componentType: ComponentTypeValueType;
       activeFilters: ActiveFilters;
@@ -152,11 +143,6 @@ export type TeacherBrowseAnalyticsStore = {
     }) => void;
     unitDownloaded: () => void;
     unitDownloadStarted: () => void;
-    unitOverviewAccessed: (
-      unit: Unit,
-      isHighlighted: boolean,
-      selectedThread: Thread | undefined,
-    ) => void;
     unitRefined: (props: {
       componentType: ComponentTypeValueType;
       activeFilters: ActiveFilters;
@@ -580,29 +566,6 @@ export const createTeacherBrowseAnalyticsStore = (
           videoLocation: "media clips",
         });
       },
-      onwardContentSelected: (data) => {
-        const { avo, programmeState, journeyId, accessLevel } = get();
-
-        if (!programmeState || programmeState?.browseLevel === "programme") {
-          reportAnalyticsError({
-            event: "onwardContentSelected",
-            programmeState,
-          });
-          return;
-        }
-
-        const analyticsProperties = getUnitAnalyticsProperties(programmeState);
-
-        avo.onwardContentSelected({
-          ...coreProperties,
-          ...analyticsProperties,
-          ...data,
-          journeyId,
-          accessLevel,
-          navigationType: "across",
-          lessonReleaseCohort: "2023-2026",
-        });
-      },
       programmeAccessed: ({
         componentType,
         activeFilters,
@@ -820,22 +783,6 @@ export const createTeacherBrowseAnalyticsStore = (
           ...coreProperties,
           ...analyticsProperties,
         });
-      },
-      unitOverviewAccessed: (unit, isHighlighted, selectedThread) => {
-        const { avo, journeyId } = get();
-
-        const analyticsProperties = buildUnitOverviewAccessedAnalytics({
-          unit,
-          isHighlighted,
-          componentType: "unit_info_button",
-          selectedThread,
-          analyticsUseCase: "Teacher",
-          journeyId,
-          accessLevel: "programme",
-          navigationType: "narrow",
-        });
-
-        avo.unitOverviewAccessed(analyticsProperties);
       },
       unitRefined: ({
         componentType,
