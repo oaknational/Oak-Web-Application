@@ -9,17 +9,17 @@ import { getTagsForUnitCard } from "./getTagsForUnitCard";
 import { getSavePropsForUnitCard } from "./getSavePropsForUnitCard";
 
 import { isHighlightedUnit } from "@/utils/curriculum/filtering";
+import { CurriculumFilters, Unit, YearData } from "@/utils/curriculum/types";
 import {
-  CurriculumFilters,
-  Unit,
-  YearData,
-} from "@/utils/curriculum/types";
-import { getSubjectCategoryMessage } from "@/utils/curriculum/formatting";
+  getKeyStageTitle,
+  getSubjectCategoryMessage,
+} from "@/utils/curriculum/formatting";
 import { resolveOakHref } from "@/common-lib/urls";
 import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
 import CardListing, {
   CardProps,
 } from "@/components/TeacherComponents/CardListing/CardListing";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type ProgrammeUnitListProps = {
   units: Unit[];
@@ -33,7 +33,27 @@ export function ProgrammeUnitList({
   year,
   filters,
 }: Readonly<ProgrammeUnitListProps>) {
+  const { unitAccessed } = useTeacherBrowseAnalytics((store) => store.track);
   const isMobile = useMediaQuery("mobile");
+
+  const onClick = (unit: Unit) => {
+    unitAccessed({
+      componentType: "unit_info_button",
+      unitName: unit.title,
+      unitSlug: unit.slug,
+      unitContext: {
+        subjectTitle: unit.subject,
+        subjectSlug: unit.subject_slug,
+        yearGroupName: `Year ${unit.year}`,
+        yearGroupSlug: `year-${unit.year}`,
+        keyStageSlug: unit.keystage_slug,
+        keyStageTitle: getKeyStageTitle(unit.keystage_slug),
+        tierName: unit.tier ?? undefined,
+        examBoard: unit.examboard ?? undefined,
+        pathway: unit.pathway ?? undefined,
+      },
+    });
+  };
 
   function getItems(unit: Unit, index: number, isMobile: boolean) {
     const isHighlighted = isHighlightedUnit(unit, filters.threads);
@@ -76,6 +96,7 @@ export function ProgrammeUnitList({
                 programmeSlug,
               }),
               showBorder: true,
+              onClickLink: () => onClick(unit),
               lessonCount: option.lessons.length,
             }) satisfies CardProps,
         )
@@ -98,6 +119,7 @@ export function ProgrammeUnitList({
             unitSlug: unit.slug,
             programmeSlug,
           })}
+          onClickLink={() => onClick(unit)}
           lessonCount={isOptionalityUnitCard ? undefined : unit.lessons?.length}
           saveProps={getSavePropsForUnitCard({
             slug: unit.slug,

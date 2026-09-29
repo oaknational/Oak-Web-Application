@@ -19,6 +19,7 @@ import {
   KeyStageTitleValueType,
   LessonReleaseCohortValueType,
   MediaClipsButtonName,
+  OnwardIntent,
   TeachingMaterialType,
   VideoLocation,
 } from "@/browser-lib/avo/Avo";
@@ -42,6 +43,7 @@ const createAvoMock = () => {
     lessonResourcesDownloaded: jest.fn(),
     lessonShareStarted: jest.fn(),
     mediaClipsPlaylistPlayed: jest.fn(),
+    onwardContentSelected: jest.fn(),
     programmeAccessed: jest.fn(),
     teachingMaterialsSelected: jest.fn(),
     unitAccessed: jest.fn(),
@@ -216,26 +218,122 @@ describe("TeacherBrowseAnalyticsStore", () => {
     );
   });
 
-  test.each(["lessonAccessed", "unitAccessed"] as const)(
-    "%s tracks with lesson analytics properties",
-    (eventName) => {
-      const lessonState = getProgrammeStateForLesson(
-        teachersLessonOverviewFixture(),
-      );
-      const { store, avo } = buildStore({
-        programmeState: lessonState,
-        accessLevel: "lesson",
-      });
+  test("lessonAccessed derives unit analytics properties from programme state", () => {
+    const lessonState = getProgrammeStateForLesson(
+      teachersLessonOverviewFixture(),
+    );
+    const { store, avo } = buildStore({
+      programmeState: lessonState,
+      accessLevel: "lesson",
+    });
 
-      store.getState().track[eventName]({
+    store.getState().track.lessonAccessed({
+      componentType: ComponentType.UNIT_SEQUENCE_TAB,
+      lessonReleaseCohort: "cohort-1" as LessonReleaseCohortValueType,
+      lessonReleaseDate: "2023-01-01",
+      lessonName: "Structure of cells",
+      lessonSlug: "lesson-3-structure-of-cells",
+    });
+
+    expect(avo.lessonAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        analyticsUseCase: "Teacher",
+        accessLevel: "lesson",
+        journeyId: "journey-1",
         componentType: ComponentType.UNIT_SEQUENCE_TAB,
-        navigationType: "narrow",
-        unitName: "Cells",
-        unitSlug: "cells",
-        lessonReleaseCohort: "cohort-1" as LessonReleaseCohortValueType,
+        engagementIntent: "refine",
+        eventVersion: "2.0.0",
+        examBoard: null,
+        keyStageTitle: "Key stage 3",
+        keyStageSlug: "ks3",
+        lessonReleaseCohort: "cohort-1",
         lessonReleaseDate: "2023-01-01",
         lessonName: "Structure of cells",
         lessonSlug: "lesson-3-structure-of-cells",
+        subjectTitle: "Biology",
+        subjectSlug: "biology",
+        unitName: "Cells",
+        unitSlug: "cells",
+        tierName: null,
+        phase: "secondary",
+        platform: "owa",
+        product: "teacher lesson resources",
+        pathway: null,
+        yearGroupName: "Year 7",
+        yearGroupSlug: "year-7",
+      }),
+    );
+  });
+
+  test("lessonAccessed uses caller-provided unitContext", () => {
+    const lessonState = getProgrammeStateForLesson(
+      teachersLessonOverviewFixture(),
+    );
+    const { store, avo } = buildStore({
+      programmeState: lessonState,
+      accessLevel: "lesson",
+    });
+
+    store.getState().track.lessonAccessed({
+      componentType: ComponentType.UNIT_SEQUENCE_TAB,
+      lessonReleaseCohort: "cohort-1" as LessonReleaseCohortValueType,
+      lessonReleaseDate: "2023-01-01",
+      lessonName: "Structure of cells",
+      lessonSlug: "lesson-3-structure-of-cells",
+      unitContext: {
+        unitName: "Cells",
+        unitSlug: "cells",
+        keyStageTitle: "Key Stage 4" as KeyStageTitleValueType,
+        keyStageSlug: "key-stage-4",
+        tierName: undefined,
+        examBoard: "aqa" as ExamBoardValueType,
+        pathway: undefined,
+        yearGroupName: "Year 10",
+        yearGroupSlug: "year-10",
+      },
+    });
+
+    expect(avo.lessonAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        analyticsUseCase: "Teacher",
+        accessLevel: "lesson",
+        journeyId: "journey-1",
+        componentType: ComponentType.UNIT_SEQUENCE_TAB,
+        engagementIntent: "refine",
+        eventVersion: "2.0.0",
+        examBoard: "aqa",
+        keyStageTitle: "Key Stage 4",
+        keyStageSlug: "key-stage-4",
+        lessonReleaseCohort: "cohort-1",
+        lessonReleaseDate: "2023-01-01",
+        lessonName: "Structure of cells",
+        lessonSlug: "lesson-3-structure-of-cells",
+        unitName: "Cells",
+        unitSlug: "cells",
+        tierName: undefined,
+        platform: "owa",
+        product: "teacher lesson resources",
+        pathway: undefined,
+        yearGroupName: "Year 10",
+        yearGroupSlug: "year-10",
+      }),
+    );
+  });
+
+  test("unitAccessed tracks with caller-provided analytics properties", () => {
+    const lessonState = getProgrammeStateForLesson(
+      teachersLessonOverviewFixture(),
+    );
+    const { store, avo } = buildStore({
+      programmeState: lessonState,
+      accessLevel: "lesson",
+    });
+
+    store.getState().track.unitAccessed({
+      componentType: ComponentType.UNIT_SEQUENCE_TAB,
+      unitName: "Cells",
+      unitSlug: "cells",
+      unitContext: {
         keyStageTitle: "Key Stage 4" as KeyStageTitleValueType,
         keyStageSlug: "key-stage-4",
         tierName: undefined,
@@ -245,32 +343,31 @@ describe("TeacherBrowseAnalyticsStore", () => {
         subjectSlug: "biology",
         yearGroupName: "Year 10",
         yearGroupSlug: "year-10",
-      });
+      },
+    });
 
-      expect(avo[eventName]).toHaveBeenCalledWith(
-        expect.objectContaining({
-          analyticsUseCase: "Teacher",
-          componentType: ComponentType.UNIT_SEQUENCE_TAB,
-          engagementIntent: "refine",
-          eventVersion: "2.0.0",
-          examBoard: "aqa",
-          keyStageTitle: "Key Stage 4",
-          keyStageSlug: "key-stage-4",
-          subjectTitle: "Biology",
-          subjectSlug: "biology",
-          unitName: "Cells",
-          unitSlug: "cells",
-          tierName: undefined,
-          phase: "secondary",
-          platform: "owa",
-          product: "teacher lesson resources",
-          pathway: undefined,
-          yearGroupName: "Year 10",
-          yearGroupSlug: "year-10",
-        }),
-      );
-    },
-  );
+    expect(avo.unitAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        analyticsUseCase: "Teacher",
+        componentType: ComponentType.UNIT_SEQUENCE_TAB,
+        engagementIntent: "refine",
+        eventVersion: "2.0.0",
+        examBoard: "aqa",
+        keyStageTitle: "Key Stage 4",
+        keyStageSlug: "key-stage-4",
+        subjectTitle: "Biology",
+        subjectSlug: "biology",
+        unitName: "Cells",
+        unitSlug: "cells",
+        tierName: undefined,
+        platform: "owa",
+        product: "teacher lesson resources",
+        pathway: undefined,
+        yearGroupName: "Year 10",
+        yearGroupSlug: "year-10",
+      }),
+    );
+  });
 
   test("lessonResourcesDownloaded tracks with lesson analytics properties and formatted resource details", () => {
     const lessonState = getProgrammeStateForLesson(
@@ -485,6 +582,7 @@ describe("TeacherBrowseAnalyticsStore", () => {
     ],
     ["lessonShareStarted", undefined],
     ["mediaClipsPlaylistPlayed", mediaClipsPlaylistPayload],
+    ["onwardContentSelected", { onwardIntent: OnwardIntent.VIEW_LESSON }],
     [
       "teachingMaterialsSelected",
       { teachingMaterialType: TeachingMaterialType.EXIT_QUIZ },

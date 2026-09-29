@@ -277,6 +277,10 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
       renderTrackingTest(lessonLevelState, "lessonAccessed", {
         componentType: "lessons_in_unit",
         navigationType: "across",
+        lessonName: lessonLevelState.lesson.title,
+        lessonSlug: lessonLevelState.lesson.slug,
+        lessonReleaseDate: lessonLevelState.lesson.lessonReleaseDate,
+        lessonReleaseCohort: "2023-2026",
       });
 
       const trackBtn = screen.getByRole("button", { name: "Track" });
@@ -431,6 +435,10 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
       renderTrackingTest(programmeLevelState, "lessonAccessed", {
         componentType: "lessons_in_unit",
         navigationType: "across",
+        lessonName: lessonLevelState.lesson.title,
+        lessonSlug: lessonLevelState.lesson.slug,
+        lessonReleaseDate: lessonLevelState.lesson.lessonReleaseDate,
+        lessonReleaseCohort: "2023-2026",
       });
       const trackBtn = screen.getByRole("button", { name: "Track" });
       const result = trackBtn.click();

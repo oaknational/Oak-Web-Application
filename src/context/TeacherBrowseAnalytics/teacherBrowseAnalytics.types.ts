@@ -35,6 +35,7 @@ export type CoreProgrammeState = {
 // Expanded programme factor state used at unit and lesson browse levels
 export type ProgrammeFactorState = CoreProgrammeState & {
   year: ProgrammeFields["year"];
+  yearGroupSlug: ProgrammeFields["year_slug"];
   yearGroupTitle: ProgrammeFields["year_description"];
   keyStageSlug: ProgrammeFields["keystage_slug"];
   keyStageTitle: ProgrammeFields["keystage_description"];
@@ -99,6 +100,8 @@ export type UnitPathwayData = ProgrammePathwayData & {
   pathway: PathwayValueType | null;
   unitName: string;
   unitSlug: string;
+  yearGroupName: string;
+  yearGroupSlug: string;
 };
 
 export type LessonPathwayData = UnitPathwayData & {
@@ -107,8 +110,6 @@ export type LessonPathwayData = UnitPathwayData & {
   lessonReleaseDate: string;
   lessonReleaseCohort: LessonReleaseCohortValueType;
   releaseGroup: string;
-  yearGroupName: string;
-  yearGroupSlug: string;
 };
 
 export type VideoTrackingProperties = {

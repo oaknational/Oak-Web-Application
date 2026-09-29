@@ -45,6 +45,8 @@ export function DownloadSuccessView({
     unitTitle,
     lessons,
     unitvariantId,
+    lessonTitle,
+    lessonReleaseDate,
   } = lesson;
 
   const { unitDownloaded, lessonAccessed } = useTeacherBrowseAnalytics(
@@ -76,6 +78,10 @@ export function DownloadSuccessView({
           lessonAccessed({
             componentType: "back_a_step_button",
             navigationType: "across",
+            lessonName: lessonTitle,
+            lessonSlug,
+            lessonReleaseDate,
+            lessonReleaseCohort: "2023-2026",
           })
         }
         backgroundColorLevel={1}

@@ -223,15 +223,15 @@ const LessonList = ({
                   })}
                   index={lesson.orderInUnit ?? undefined}
                   disabled={lesson.isUnpublished}
-                  onClickLink={() =>
+                  onClickLink={() => {
                     lessonAccessed({
-                      componentType: "lessons_in_unit",
-                      navigationType: "across",
+                      componentType: "lesson_card",
                       lessonName: lesson.lessonTitle,
                       lessonSlug: lesson.lessonSlug,
                       lessonReleaseDate: lesson.lessonReleaseDate ?? "unknown",
-                    })
-                  }
+                      lessonReleaseCohort: "2023-2026",
+                    });
+                  }}
                 />
               </OakLI>
             ))}

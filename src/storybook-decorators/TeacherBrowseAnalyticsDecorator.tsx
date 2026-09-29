@@ -31,6 +31,7 @@ const state: TeacherBrowseAnalyticsStore = {
       console.log("curriculumResourcesDownloaded fired"),
     curriculumResourcesDownloadRefined: () =>
       console.log("curriculumResourcesDownloadRefined fired"),
+    onwardContentSelected: () => console.log("onwardContentSelected fired"),
     teachWithOakAccessed: () => console.log("teachwithOakAccessed fired"),
     teachWithOakDownloaded: () => console.log("teachWithOakDownloaded fired"),
     teachingMaterialsSelected: () =>

@@ -6,55 +6,38 @@ import {
 } from "@oaknational/oak-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import type { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
-import type { LessonMediaClipsData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import type { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
-import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
-import type { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
+import {
+  LessonState,
+  UnitState,
+} from "@/context/TeacherBrowseAnalytics/teacherBrowseAnalytics.types";
 
-type BreadcrumbsProps =
+type BreadcrumbsProps = { subjectPhaseSlug: string } & (
   | {
-      mode: "lesson";
-      data: TeachersLessonOverviewPageData;
-      subjectPhaseSlug: string;
+      mode: "lesson" | "downloads" | "share" | "media";
     }
-  | {
-      mode: "unit";
-      data: TeachersUnitOverviewData;
-      subjectPhaseSlug: string;
-    }
-  | {
-      mode: "downloads";
-      data: LessonDownloadsPageData;
-      subjectPhaseSlug: string;
-    }
-  | {
-      mode: "share";
-      data: LessonShareData;
-      subjectPhaseSlug: string;
-    }
-  | {
-      mode: "media";
-      data: LessonMediaClipsData;
-      subjectPhaseSlug: string;
-    };
+  | { mode: "unit"; data: { unitIndex: number; unitCount: number } }
+);
 
-export const Breadcrumbs = ({
-  data,
-  subjectPhaseSlug,
-  mode,
-}: BreadcrumbsProps) => {
+export const Breadcrumbs = (props: BreadcrumbsProps) => {
+  const { subjectPhaseSlug, mode } = props;
+  const { lessonAccessed, unitAccessed, programmeAccessed } =
+    useTeacherBrowseAnalytics((store) => store.track);
+  const { lessonState, unitState } = useProgrammeState();
+
+  if (!unitState) {
+    return null;
+  }
+
   const {
-    tierTitle,
-    examBoardTitle,
     subjectTitle,
     phaseTitle,
     keyStageTitle,
     yearGroupTitle,
-    unitTitle,
-    unitSlug,
-    programmeSlug,
-  } = data;
+    tierTitle,
+    examBoardTitle,
+  } = unitState;
 
   let optionalPfs = "";
   if (tierTitle) {
@@ -64,6 +47,25 @@ export const Breadcrumbs = ({
     optionalPfs += `, ${examBoardTitle}`;
   }
 
+  const trackUnitAccessed = (state: UnitState) => {
+    unitAccessed({
+      componentType: "breadcrumb",
+      navigationType: "broaden",
+      unitName: state.title,
+      unitSlug: state.slug,
+    });
+  };
+
+  const trackLessonAccessed = (lesson: LessonState) => {
+    lessonAccessed({
+      componentType: "breadcrumb",
+      lessonName: lesson.title,
+      lessonSlug: lesson.slug,
+      lessonReleaseCohort: "2023-2026",
+      lessonReleaseDate: lesson.lessonReleaseDate,
+    });
+  };
+
   const firstBreadcrumb = {
     text: `${subjectTitle}, ${phaseTitle}, ${keyStageTitle}, ${yearGroupTitle}${optionalPfs}`,
     href: resolveOakHref({
@@ -71,79 +73,57 @@ export const Breadcrumbs = ({
       subjectPhaseSlug,
       tab: "units",
     }),
+    onClick: () =>
+      programmeAccessed({
+        componentType: "breadcrumb",
+        activeFilters: {},
+        navigationType: "broaden",
+      }),
   };
 
-  let breadcrumbs: OakBreadcrumbsProps["breadcrumbs"];
-  if (mode === "downloads" || mode === "share") {
-    breadcrumbs = [
-      firstBreadcrumb,
-      {
-        text: unitTitle,
-        href: resolveOakHref({
-          page: "unit-overview",
-          unitSlug: unitSlug,
-          programmeSlug,
-        }),
-      },
-      {
-        text: data.lessonTitle,
-        href: resolveOakHref({
-          page: "lesson-overview",
-          unitSlug: unitSlug,
-          programmeSlug,
-          lessonSlug: data.lessonSlug,
-        }),
-      },
-      {
-        text: mode === "downloads" ? "Downloads" : "Share",
-      },
-    ];
-  } else if (mode === "media") {
-    breadcrumbs = [
-      firstBreadcrumb,
-      {
-        text: unitTitle,
-        href: resolveOakHref({
-          page: "unit-overview",
-          unitSlug: unitSlug,
-          programmeSlug,
-        }),
-      },
-      {
-        text: data.lessonTitle,
-        href: resolveOakHref({
-          page: "lesson-overview",
-          unitSlug: unitSlug,
-          programmeSlug,
-          lessonSlug: data.lessonSlug,
-        }),
-      },
-      {
-        text: "Media",
-      },
-    ];
-  } else if (mode === "lesson") {
-    breadcrumbs = [
-      firstBreadcrumb,
-      {
-        text: unitTitle,
-        href: resolveOakHref({
-          page: "unit-overview",
-          unitSlug: unitSlug,
-          programmeSlug,
-        }),
-      },
-      {
-        text: data.lessonTitle,
-      },
-    ];
-  } else {
-    breadcrumbs = [
-      firstBreadcrumb,
-      {
-        text: `Unit ${data.unitIndex} of ${data.unitCount}`,
-      },
-    ];
+  const breadcrumbs: OakBreadcrumbsProps["breadcrumbs"] = [firstBreadcrumb];
+
+  if (mode === "unit") {
+    // Last breadcrumb for the unit overview page
+    breadcrumbs.push({
+      text: `Unit ${props.data.unitIndex} of ${props.data.unitCount}`,
+    });
+  } else if (lessonState) {
+    // Link to the unit overview page
+    breadcrumbs.push({
+      text: lessonState.unit.title,
+      href: resolveOakHref({
+        page: "unit-overview",
+        unitSlug: lessonState.unit.slug,
+        programmeSlug: lessonState.programmeSlug,
+      }),
+      onClick: () => trackUnitAccessed(lessonState.unit),
+    });
+
+    if (mode === "lesson") {
+      // Last breadcrumb for the lesson overview page
+      breadcrumbs.push({
+        text: lessonState.lesson.title,
+      });
+    } else {
+      // Link to the lesson overview page and add a final breadcrumb for either download, media or share page
+
+      breadcrumbs.push(
+        {
+          text: lessonState.lesson.title,
+          href: resolveOakHref({
+            page: "lesson-overview",
+            unitSlug: lessonState.unit.slug,
+            programmeSlug: lessonState.programmeSlug,
+            lessonSlug: lessonState.lesson.slug,
+          }),
+          onClick: () => trackLessonAccessed(lessonState.lesson),
+        },
+        {
+          text: `${mode[0]?.toUpperCase()}${mode.slice(1)}`,
+        },
+      );
+    }
   }
 
   return <OakBreadcrumbs breadcrumbs={breadcrumbs} />;

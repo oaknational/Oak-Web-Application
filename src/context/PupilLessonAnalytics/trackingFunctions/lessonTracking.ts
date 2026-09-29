@@ -28,10 +28,9 @@ export const trackLessonAccessed = ({
     ...additionalArgs,
     ...getCorePropertyArgs(additionalArgs.clientEnvironment),
     componentType: ComponentType.PAGE_VIEW,
-    // Journey tracking is specific to the teacher browse journey
-    journeyId: null,
-    navigationType: null,
-    accessLevel: null,
+    journeyId: undefined,
+    accessLevel: undefined,
+    navigationType: undefined,
   });
 };
 
