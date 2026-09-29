@@ -183,7 +183,6 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
             <OffsetJauntyAngle
               id={`${id}-role-label`}
               htmlFor={`${id}-newsletter-signup-userrole`}
-              for={`${id}-newsletter-signup-userrole`}
               as="label"
               label="Role"
               $color={fieldState.error ? "text-inverted" : "text-primary"}
