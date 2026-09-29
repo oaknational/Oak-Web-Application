@@ -36,7 +36,6 @@ import {
   FilterTypeValueType,
   LearningTierValueType,
   MediaClipsButtonNameValueType,
-  OnwardIntentValueType,
   PlatformValueType,
   ProductValueType,
   TeachingMaterialTypeValueType,
@@ -111,12 +110,6 @@ export type TeacherBrowseAnalyticsStore = {
       isMuted: boolean;
       mediaClipsCount: number;
       mediaClipIndex: number;
-    }) => void;
-    onwardContentSelected: (props: {
-      lessonSlug: string;
-      lessonName: string;
-      lessonReleaseDate: string;
-      onwardIntent: OnwardIntentValueType;
     }) => void;
     programmeAccessed: (props: {
       componentType: ComponentTypeValueType;
@@ -524,30 +517,6 @@ export const createTeacherBrowseAnalyticsStore = (
           engagementIntent: "use",
           componentType: "media_clips_played",
           videoLocation: "media clips",
-        });
-      },
-      onwardContentSelected: (data) => {
-        const { avo, programmeState, journeyId, accessLevel } = get();
-
-        const unitState = requireUnitState(
-          "onwardContentSelected",
-          programmeState,
-        );
-
-        if (!unitState) {
-          return;
-        }
-
-        const analyticsProperties = getUnitAnalyticsProperties(unitState);
-
-        avo.onwardContentSelected({
-          ...coreProperties,
-          ...analyticsProperties,
-          ...data,
-          journeyId,
-          accessLevel,
-          navigationType: "across",
-          lessonReleaseCohort: "2023-2026",
         });
       },
       programmeAccessed: ({
