@@ -1,3 +1,5 @@
+import pathLib from "node:path";
+
 import { devices, type TestInfo } from "@playwright/test";
 import { test, takeSnapshot } from "@chromatic-com/playwright";
 
@@ -41,6 +43,10 @@ for (const config of visualConfigs) {
           await page.goto(path, {
             waitUntil: "domcontentloaded",
             timeout,
+          });
+
+          await page.addStyleTag({
+            path: pathLib.join(__dirname, "screenshot.css"),
           });
 
           await page
