@@ -13,6 +13,7 @@ import {
   OakSelect,
 } from "@oaknational/oak-components";
 import { zodResolver } from "@hookform/resolvers/zod";
+import styled from "styled-components";
 
 import OakError from "@/errors/OakError";
 import errorReporter from "@/common-lib/error-reporter";
@@ -62,6 +63,11 @@ export type NewsletterFormProps = OakBoxProps & {
   id: string;
   descriptionId?: string;
 };
+
+const OffsetJauntyAngle = styled(OakJauntyAngleLabel)`
+  top: -20px;
+`;
+
 /**
  * Newsletter Form is a styled sign-up form for the newsletter.
  *
@@ -168,13 +174,13 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
           <OakBox
             $position="relative"
             $width="100%"
-            $mt={errors.email ? "spacing-32" : "spacing-14"}
+            $mt={errors.email ? "spacing-32" : "spacing-12"}
             $mb="spacing-8"
             role="group"
             aria-labelledby={`${id}-role-label`}
             aria-describedby={fieldState.error ? `${id}-role-error` : undefined}
           >
-            <OakJauntyAngleLabel
+            <OffsetJauntyAngle
               id={`${id}-role-label`}
               htmlFor={`${id}-newsletter-signup-userrole`}
               as="label"
@@ -185,7 +191,6 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
               }
               $font="heading-7"
               $position="absolute"
-              $top="-20px"
               $left="spacing-8"
               $zIndex="in-front"
               $borderRadius="border-radius-square"

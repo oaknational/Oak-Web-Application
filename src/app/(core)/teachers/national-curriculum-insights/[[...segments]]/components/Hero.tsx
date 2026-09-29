@@ -175,7 +175,7 @@ const HeroPageMeta = ({
       {section.authorName ? (
         <OakFlex $alignItems="center" $gap="spacing-12">
           {authorImageUrl ? (
-            <OakBox
+            <OakFlex
               $position="relative"
               $flexShrink={0}
               $width="spacing-56"
@@ -190,7 +190,7 @@ const HeroPageMeta = ({
                 $height="100%"
                 $objectFit="cover"
               />
-            </OakBox>
+            </OakFlex>
           ) : null}
           <OakFlex $flexDirection="column" $gap="spacing-4">
             <OakP $font="heading-7" $mv="spacing-0">

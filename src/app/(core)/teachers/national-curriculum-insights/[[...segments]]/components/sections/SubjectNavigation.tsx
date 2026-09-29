@@ -34,7 +34,7 @@ const getMobileColumnStart = (index: number, subjectCount: number) => {
 };
 
 // OakSubjectIconButton fixes these colours by phase and exposes no overrides.
-const SubjectNavigationMaxWidth = styled(OakBox)`
+const SubjectNavigationMaxWidth = styled(OakFlex)`
   a {
     background: ${parseColor("bg-primary")};
     border-color: ${parseColor("grey30")};
