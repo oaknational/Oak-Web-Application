@@ -6,7 +6,7 @@ exports[`core layout renders correctly 1`] = `
     accessLevel="homepage"
     programmeState={null}
   >
-    <TopNav
+    <Memo
       pupils={
         {
           "help": {
@@ -421,6 +421,6 @@ exports[`core layout renders correctly 1`] = `
       children
     </styled.div>
   </main>
-  <LayoutSiteFooter />
+  <Memo />
 </React.Fragment>
 `;
