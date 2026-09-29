@@ -56,7 +56,9 @@ describe("NationalCurriculumInsightsDownload", () => {
     const sectionElement = toggle.closest("section");
     expect(sectionElement).toHaveStyle({
       position: "fixed",
-      inset: "auto 0 0",
+      bottom: "0rem",
+      left: "0rem",
+      right: "0rem",
       "flex-direction": "column",
     });
     expect(toggle).toHaveStyle("background: #b0e2de");

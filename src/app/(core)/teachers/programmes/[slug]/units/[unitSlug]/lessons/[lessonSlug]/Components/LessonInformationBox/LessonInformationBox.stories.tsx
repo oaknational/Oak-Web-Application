@@ -9,7 +9,6 @@ const meta = {
   parameters: {
     controls: {
       include: [
-        "teacherTip",
         "equipment",
         "contentGuidance",
         "supervision",
@@ -19,18 +18,6 @@ const meta = {
     },
   },
   argTypes: {
-    teacherTip: {
-      control: {
-        type: "radio",
-      },
-      options: [
-        undefined,
-        [
-          "Allow pupils to sensibly and kindly trigger a reflex response to allow pupils to realise that the response happens before they know about it.",
-        ],
-        ["teacher tip 1", "teacher tip 2", "teacher tip 3"],
-      ],
-    },
     equipment: {
       control: {
         type: "radio",
@@ -105,8 +92,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default = {
   args: {
-    teacherTip: [
-      "Allow pupils to sensibly and kindly trigger a reflex response to allow pupils to realise that the response happens before they know about it.",
-    ],
+    equipment: ["Equipment item 1", "Equipment item 2", "Equipment item 3"],
   },
 } satisfies Story;

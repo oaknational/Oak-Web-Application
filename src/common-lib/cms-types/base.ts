@@ -71,7 +71,6 @@ export type ImageWithAltTextAndDarkMode = z.infer<
 
 export const videoSchema = z.object({
   title: z.string(),
-  captions: z.array(z.string()).nullish(),
   transcript: portableTextSchema.nullish(),
   video: z.object({
     asset: z.object({
