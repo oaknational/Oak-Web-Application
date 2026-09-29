@@ -551,7 +551,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 .c192 {
   padding-left: 0.25rem;
-  display: inline-block;
+  display: inline;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -1739,6 +1739,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 .c24 {
   display: inline;
+  text-align: left;
   align-items: center;
   gap: 0.25rem;
   outline: none;
@@ -1793,6 +1794,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 .c190 {
   display: inline;
+  text-align: left;
   align-items: center;
   gap: 0.25rem;
   outline: none;

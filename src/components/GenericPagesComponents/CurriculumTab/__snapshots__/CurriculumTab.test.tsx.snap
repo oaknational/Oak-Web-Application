@@ -67,7 +67,7 @@ exports[`CurriculumTab renders 1`] = `
 
 .c22 {
   padding-left: 0.25rem;
-  display: inline-block;
+  display: inline;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -676,6 +676,7 @@ exports[`CurriculumTab renders 1`] = `
 
 .c18 {
   display: inline;
+  text-align: left;
   align-items: center;
   gap: 0.25rem;
   outline: none;

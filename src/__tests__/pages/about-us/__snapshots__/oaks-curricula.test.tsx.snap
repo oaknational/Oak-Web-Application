@@ -687,7 +687,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 
 .c226 {
   padding-left: 0.25rem;
-  display: inline-block;
+  display: inline;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -1991,6 +1991,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 
 .c24 {
   display: inline;
+  text-align: left;
   align-items: center;
   gap: 0.25rem;
   outline: none;
@@ -2045,6 +2046,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 
 .c224 {
   display: inline;
+  text-align: left;
   align-items: center;
   gap: 0.25rem;
   outline: none;
