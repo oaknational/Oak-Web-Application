@@ -1,9 +1,6 @@
 import { Metadata } from "next";
 
-import type { PageSearchParms } from "../programmes/[slug]/[tab]/page";
-
 import { TeachWithOakView } from "./components/TeachWithOakView";
-import { getReturnToLessonLink } from "./getReturnToLessonLink";
 
 import withPageErrorHandling from "@/hocs/withPageErrorHandling";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
@@ -17,17 +14,13 @@ export const metadata: Metadata = {
   },
 };
 
-const InnerTeachWithOakPage = async (props: {
-  searchParams?: Promise<PageSearchParms>;
-}) => {
-  const query = await props.searchParams;
-
+const InnerTeachWithOakPage = async () => {
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={null}
       accessLevel="teach_with_oak"
     >
-      <TeachWithOakView backToLessonLink={getReturnToLessonLink({ query })} />
+      <TeachWithOakView />
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };
