@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 
 import SubNav from "./SubNav/SubNav";
 import TopNavDropdown from "./TopNavDropdown/TopNavDropdown";
@@ -68,7 +68,7 @@ export const MaybeVisuallyHidden = ({
   }
 };
 
-const TopNav = (props: TopNavProps) => {
+const TopNav = memo((props: TopNavProps) => {
   const { teachers, pupils } = props;
   const track = useTeacherBrowseAnalytics((store) => store.track);
 
@@ -209,6 +209,6 @@ const TopNav = (props: TopNavProps) => {
       }
     />
   );
-};
+});
 
 export default TopNav;

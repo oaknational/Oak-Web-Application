@@ -1,5 +1,5 @@
 "use client";
-import { FC } from "react";
+import { FC, memo } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -266,7 +266,7 @@ export type FooterSections = Record<
   FooterSection
 >;
 
-const LayoutSiteFooter: FC = () => {
+const LayoutSiteFooter: FC = memo(() => {
   const sections = footerSections;
 
   return (
@@ -397,6 +397,6 @@ const LayoutSiteFooter: FC = () => {
       />
     </OakBox>
   );
-};
+});
 
 export default LayoutSiteFooter;
