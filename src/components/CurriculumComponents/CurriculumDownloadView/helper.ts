@@ -66,7 +66,6 @@ export const DOWNLOAD_TYPE_LABELS: {
   fileExt: string;
   groupLabel?: string;
   avoResourceType: ResourceTypeValueType;
-  filenameOverride?: string; // Optional override for filename
 }[] = [
   {
     id: "curriculumPlan",
@@ -102,7 +101,7 @@ export const DOWNLOAD_TYPE_LABELS: {
   },
   {
     id: "commonQuestions",
-    label: "Common questions",
+    label: "Frequently asked questions",
     groupLabel: "implementation toolkit",
     avoResourceType: ResourceType.COMMON_QUESTIONS,
     ...implementationGuidePdfBase,
@@ -116,8 +115,7 @@ export const DOWNLOAD_TYPE_LABELS: {
   },
   {
     id: "assessment",
-    label: "Checking pupils' understanding in our lessons",
-    filenameOverride: "Checking-pupil-understanding",
+    label: "Checking pupil understanding",
     groupLabel: "implementation toolkit",
     avoResourceType: ResourceType.ASSESSMENT,
     ...implementationGuidePdfBase,
