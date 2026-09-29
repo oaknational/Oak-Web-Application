@@ -65,7 +65,7 @@ export function TeachWithOakDownloadSuccessView({
               <OakHeading tag="h3" $font="heading-7">
                 Explore curriculum plans and teaching resources
               </OakHeading>
-              <OakBox $width="spacing-640">
+              <OakBox $maxWidth="spacing-640">
                 <SubjectPhasePicker
                   {...curriculumPhaseOptions}
                   id="teach-with-oak-download-success-subject-picker"
