@@ -7,7 +7,6 @@ import { screen } from "@testing-library/dom";
 import TeachWithOakDownloadPage from "./page";
 
 import { getTeachWithOakDownloadFileExistence } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
-import { getFeatureFlagValue } from "@/utils/featureFlags";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 jest.mock(
@@ -39,7 +38,6 @@ const renderPage = async () =>
 describe("Teach with Oak download page", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    jest.mocked(getFeatureFlagValue).mockResolvedValue("enabled");
     jest.mocked(getTeachWithOakDownloadFileExistence).mockResolvedValue({
       resources: [{ type: "explanation", exists: true, fileSize: "2 MB" }],
     } as never);
