@@ -61,6 +61,10 @@ const Expanded = styled(OakBox)<{ $sticky: boolean }>`
   ${({ $sticky }) => ($sticky ? "overscroll-behavior: contain;" : "")}
 `;
 
+const DownloadSectionContainer = styled(OakFlex)<{ $sticky: boolean }>`
+  ${({ $sticky }) => ($sticky ? "max-height: 100dvh;" : "")}
+`;
+
 const getDownloadLayoutProps = (sticky: boolean) =>
   sticky
     ? ({
@@ -70,7 +74,6 @@ const getDownloadLayoutProps = (sticky: boolean) =>
           $left: "spacing-0",
           $right: "spacing-0",
           $zIndex: 20,
-          $maxHeight: "100dvh",
           $dropShadow: "drop-shadow-centred-standard",
         },
         expanded: { $minHeight: "spacing-0", $overflowY: "auto" },
@@ -355,10 +358,11 @@ export const NationalCurriculumInsightsDownload = ({
   };
 
   return (
-    <OakFlex
+    <DownloadSectionContainer
       as="section"
       data-insights-module="downloads"
       {...layoutProps.section}
+      $sticky={sticky}
       $width="100%"
       $flexDirection="column"
       $background="bg-primary"
@@ -661,6 +665,6 @@ export const NationalCurriculumInsightsDownload = ({
           />
         </Expanded>
       ) : null}
-    </OakFlex>
+    </DownloadSectionContainer>
   );
 };
