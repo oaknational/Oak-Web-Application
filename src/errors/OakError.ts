@@ -35,6 +35,7 @@ export type ErrorCode =
   | "school-picker/fetch-suggestions"
   | "urls/failed-to-resolve"
   | "downloads/failed-to-fetch"
+  | "downloads/generation-failed"
   | "downloads/check-files-failed"
   | "downloads/missing-auth-token"
   | "onboarding/request-error"
@@ -192,6 +193,11 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "downloads/failed-to-fetch": {
     message: "Failed to fetch downloads",
+    shouldNotify: true,
+  },
+  "downloads/generation-failed": {
+    message: "Failed to generate curriculum insight downloads",
+    responseStatusCode: 500,
     shouldNotify: true,
   },
   "downloads/check-files-failed": {

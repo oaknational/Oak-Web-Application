@@ -17,7 +17,7 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
           >
             <a
               class="sc-dcJsrY sc-dAlyuH dAja-dp eGtIkY"
-              href="/"
+              href="/teachers/programmes/art-primary-ks1/units/unit-slug/lessons/lesson-slug"
             >
               <div
                 class="sc-aXZVg sc-gEvEer jPvJsJ gghMxj"
@@ -53,51 +53,55 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-aXZVg sc-gEvEer sc-5ce3e7c8-0 jPvJsJ iDBIXi BPWok"
+          class="sc-aXZVg sc-gEvEer sc-11be7c52-0 jPvJsJ iDBIXi ikMCKV"
         >
           <div
-            class="sc-aXZVg bZTQLO"
+            class="sc-aXZVg bwVgbu"
           >
             <div
-              class="sc-aXZVg sc-gEvEer gHbcIj bzMUbf"
+              class="sc-aXZVg bZTQLO"
             >
               <div
-                class="sc-aXZVg sc-gEvEer kJbZjn kYSywO"
+                class="sc-aXZVg sc-gEvEer gHbcIj ifDtnt"
               >
-                <h1
-                  class="sc-eldPxv kSQYKV"
+                <div
+                  class="sc-aXZVg sc-gEvEer kJbZjn kYSywO"
+                >
+                  <h1
+                    class="sc-eldPxv kSQYKV"
+                  >
+                    <span
+                      class="sc-eqUAAy ffxKII"
+                      style="line-height: 1.25; box-decoration-break: clone;"
+                    >
+                      The thinking behind Oak lessons
+                    </span>
+                  </h1>
+                  <p
+                    class="sc-ikkxIA fPezaI"
+                  >
+                    See how our lessons are designed to support learning - and make the most of them in your classroom.
+                  </p>
+                </div>
+                <div
+                  class="sc-aXZVg sc-a5a405e2-0 QBMYh clcTCl"
                 >
                   <span
-                    class="sc-eqUAAy ffxKII"
-                    style="line-height: 1.25; box-decoration-break: clone;"
+                    class="sc-aXZVg iLOJBD sc-11be7c52-1 iuwGXd"
                   >
-                    The thinking behind Oak lessons
+                    <img
+                      alt=""
+                      class="sc-iGgWBj dZvqhO"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      sizes="100vw"
+                      src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1789976818%2Fteacher-journey%2Fteach-with-oak-header-image.jpg&w=3840&q=75"
+                      srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1789976818%2Fteacher-journey%2Fteach-with-oak-header-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1789976818%2Fteacher-journey%2Fteach-with-oak-header-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1789976818%2Fteacher-journey%2Fteach-with-oak-header-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1789976818%2Fteacher-journey%2Fteach-with-oak-header-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1789976818%2Fteacher-journey%2Fteach-with-oak-header-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1789976818%2Fteacher-journey%2Fteach-with-oak-header-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1789976818%2Fteacher-journey%2Fteach-with-oak-header-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1789976818%2Fteacher-journey%2Fteach-with-oak-header-image.jpg&w=3840&q=75 3840w"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
                   </span>
-                </h1>
-                <p
-                  class="sc-ikkxIA fPezaI"
-                >
-                  See how our lessons are designed to support learning - and make the most of them in your classroom.
-                </p>
-              </div>
-              <div
-                class="sc-aXZVg sc-2736bf64-0 QBMYh jVVlFo"
-              >
-                <span
-                  class="sc-aXZVg iLOJBD sc-5ce3e7c8-1 exIaJo"
-                >
-                  <img
-                    alt="Teach with Oak Image"
-                    class="sc-iGgWBj dZvqhO"
-                    data-nimg="fill"
-                    decoding="async"
-                    loading="lazy"
-                    sizes="100vw"
-                    src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=3840&q=75"
-                    srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=3840&q=75 3840w"
-                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                  />
-                </span>
+                </div>
               </div>
             </div>
           </div>
@@ -139,7 +143,7 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
                 class="sc-aXZVg sc-gEvEer eapQdf uEMma"
               >
                 <button
-                  class="sc-fHjqPf kaaNKh"
+                  class="sc-fHjqPf fFAulo"
                   data-testid="cookie-banner-reject"
                   type="button"
                 >

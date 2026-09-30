@@ -1,7 +1,9 @@
 "use client";
 
+import { ShortReads } from "./ShortReads/ShortReads";
 import { TeachWithOakDescription } from "./TeachWithOakDescription/TeachWithOakDescription";
 import { TeachWithOakHeader } from "./TeachWithOakHeader/TeachWithOakHeader";
+import TeachWithOakNewsletterForm from "./TeachWithOakNewsletterForm/TeachWithOakNewsletterForm";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import {
@@ -9,19 +11,17 @@ import {
   WhoAreWeExplore,
 } from "@/components/GenericPagesComponents/WhoAreWeExplore";
 
-export const TeachWithOakView = ({
-  backToLessonLink,
-}: {
-  backToLessonLink?: string;
-}) => {
+export const TeachWithOakView = () => {
   return (
     <>
-      <TeachWithOakHeader href={backToLessonLink} />
+      <TeachWithOakHeader />
       <TeachWithOakDescription />
+      <ShortReads />
       <WhoAreWeExplore
         title={"Explore more guidance from Oak"}
         items={exploreItems}
       />
+      <TeachWithOakNewsletterForm />
     </>
   );
 };
@@ -58,5 +58,6 @@ const exploreItems: ExploreItem[] = [
       page: "help",
     }),
     componentType: "about_oak",
+    external: true,
   },
 ];

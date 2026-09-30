@@ -6,6 +6,11 @@ import { useEyfsLessonDownload } from "./useEyfsLessonDownload";
 import { ResourcesToDownloadArrayType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { renderHookWithProviders } from "@/__tests__/__helpers__/renderWithProviders";
 
+jest.mock("@/browser-lib/hubspot/forms/hubspotSubmitForm", () => ({
+  __esModule: true,
+  default: jest.fn().mockResolvedValue(undefined),
+}));
+
 jest.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
   () => ({

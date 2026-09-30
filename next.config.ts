@@ -129,7 +129,11 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         headers: [
           {
             key: "Link",
-            value: '</.well-known/api-catalog>; rel="api-catalog"',
+            value: [
+              '</.well-known/api-catalog>; rel="api-catalog"',
+              '</.well-known/ard.json>; rel="ard"',
+              '</.well-known/ai-catalog.json>; rel="ai-catalog"',
+            ].join(", "),
           },
         ],
       },
@@ -178,10 +182,10 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
             key: "Content-Security-Policy-Report-Only",
             value: cspHeader.replaceAll(/\n/g, ""),
           },
-          // {
-          //   key: "Content-Security-Policy",
-          //   value: "frame-ancestors 'self' https://classroom.google.com;",
-          // },
+          {
+            key: "Content-Security-Policy",
+            value: "frame-ancestors 'self' https://classroom.google.com;",
+          },
           // {
           //   key: "x-vercel-set-bypass-cookie",
           //   value: "samesitenone",
@@ -424,6 +428,14 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         },
       ];
 
+      const campaignRedirects = [
+        {
+          source: "/campaigns/curriculum-and-assessment-review",
+          destination: "/curriculum-change-explained/guidance",
+          permanent: true,
+        },
+      ];
+
       const aboutUsRedirects = [
         {
           source: "/about-us/leadership",
@@ -499,6 +511,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
 
       return [
         ...pupilsRedirects,
+        ...campaignRedirects,
         ...aboutUsRedirects,
         ...eyfsRedirects,
         ...integratedJourneyRedirects,
@@ -511,6 +524,16 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         {
           source: "/.well-known/api-catalog",
           destination: "/api/well-known/api-catalog",
+        },
+        // Both the ARD path and its predecessor: deployed consumers still use
+        // the older one, so removing either loses reach. docs/agent-discovery.md.
+        {
+          source: "/.well-known/ard.json",
+          destination: "/api/well-known/ard",
+        },
+        {
+          source: "/.well-known/ai-catalog.json",
+          destination: "/api/well-known/ard",
         },
       ];
       // The MCP submission carousel images now live under /ai-plugin/carousel,

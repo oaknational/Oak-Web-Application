@@ -122,7 +122,6 @@ describe("VideoPlayer", () => {
     playbackPolicy: "public",
     title: "Test Video",
     location: "pupil",
-    isLegacy: false,
     userEventCallback: userEventCallbackMock,
   };
 

@@ -6,6 +6,11 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
 
+const mockReturnToLessonLink = jest.fn().mockReturnValue(null);
+jest.mock("../getReturnToLessonLink", () => ({
+  useReturnToLessonProps: () => mockReturnToLessonLink(),
+}));
+
 describe("TeachWithOakView", () => {
   it("renders the lesson guidance and learning cycle content", () => {
     render(<TeachWithOakView />);
@@ -37,11 +42,13 @@ describe("TeachWithOakView", () => {
       screen.getByRole("heading", { name: "Explore more guidance from Oak" }),
     ).toBeInTheDocument();
 
-    ["Plan a lesson", "Blogs", "Webinars", "Help"].forEach((linkName) => {
-      expect(screen.getByRole("link", { name: linkName })).toHaveAttribute(
-        "href",
-      );
-    });
+    ["Plan a lesson", "Blogs", "Webinars", "Help, opens in a new tab"].forEach(
+      (linkName) => {
+        expect(screen.getByRole("link", { name: linkName })).toHaveAttribute(
+          "href",
+        );
+      },
+    );
   });
 
   it("renders a return link only when one is supplied", () => {
@@ -51,10 +58,45 @@ describe("TeachWithOakView", () => {
       screen.queryByRole("link", { name: "Back to lesson" }),
     ).not.toBeInTheDocument();
 
-    rerender(<TeachWithOakView backToLessonLink="/teachers/lessons/example" />);
+    mockReturnToLessonLink.mockReturnValue({
+      returnTo:
+        "/teachers/programmes/art-primary-ks1/units/unitSlug/lessons/lessonSlug",
+      lessonName: "Lesson Name",
+      unitName: "Unit Name",
+    });
+
+    rerender(<TeachWithOakView />);
 
     expect(
       screen.getByRole("link", { name: "Back to lesson" }),
-    ).toHaveAttribute("href", "/teachers/lessons/example");
+    ).toHaveAttribute(
+      "href",
+      "/teachers/programmes/art-primary-ks1/units/unitSlug/lessons/lessonSlug",
+    );
+  });
+
+  it("renders a short read guides section", () => {
+    render(<TeachWithOakView />);
+
+    const shortReadsHeader = screen.getByRole("heading", {
+      level: 2,
+      name: "Short read guides",
+    });
+    expect(shortReadsHeader).toBeInTheDocument();
+  });
+
+  it.each([
+    "Explanation",
+    "Check for understanding (CfU)",
+    "Feedback",
+    "Practice",
+  ])("renders a section for each learning cycle", (learningCycle) => {
+    render(<TeachWithOakView />);
+
+    const sectionHeading = screen.getByRole("heading", {
+      level: 3,
+      name: `${learningCycle} at Oak`,
+    });
+    expect(sectionHeading).toBeInTheDocument();
   });
 });

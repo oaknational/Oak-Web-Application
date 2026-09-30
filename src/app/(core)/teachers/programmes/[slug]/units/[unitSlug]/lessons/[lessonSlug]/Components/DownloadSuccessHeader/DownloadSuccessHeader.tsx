@@ -11,60 +11,61 @@ import {
 import { useOakConsent } from "@oaknational/oak-consent-client";
 
 import {
-  CompactHeaderProps,
   Header,
   HeaderProps,
-  LargeHeaderProps,
 } from "@/components/TeacherComponents/Header/Header";
-import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
-
-const DOWNLOAD_SUCCESS_IMG_URL =
-  "v1777386544/svg-illustrations/download-confirmation-Illustration_z1sczk.svg";
 
 type DownloadSuccessHeaderProps = {
   href?: string;
   onBackClick?: () => void;
   backgroundColorLevel?: HeaderProps["backgroundColorLevel"];
-  returnTo: "lesson" | "downloads";
-  /** Set by the caller based on the `download-success-header-compact` experiment */
-  showCompactHeader?: boolean;
+  /** When omitted no back link is rendered */
+  returnTo?: "lesson" | "downloads";
+  showFontInstructions?: boolean;
+  layoutVariant?: "compact" | "large";
+  heroImage?: string | null;
 };
 
 export function DownloadSuccessHeader(
   props: Readonly<DownloadSuccessHeaderProps>,
 ) {
+  const {
+    returnTo,
+    showFontInstructions = true,
+    layoutVariant = "compact",
+    heroImage = null,
+  } = props;
   /** We only show the help message if the user has consented to the Gleap cookie */
   const { getConsent } = useOakConsent();
   const cookiesNotAccepted = getConsent(ServicePolicyMap.GLEAP) === "denied";
 
-  const headerProps = props.showCompactHeader
-    ? ({
-        layoutVariant: "compact",
-      } satisfies Partial<CompactHeaderProps>)
-    : ({
-        layoutVariant: "large",
-        heroImage: getCloudinaryImageUrl(DOWNLOAD_SUCCESS_IMG_URL),
-      } satisfies Partial<LargeHeaderProps>);
-
-  return (
-    <Header
-      {...headerProps}
-      useSubduedBackground
-      headerSlot={<BackLinkButton {...props} />}
-      heading="Thanks for downloading!"
-      summary={
-        <OakFlex $flexDirection="column" $gap={"spacing-24"}>
-          <OakP $font={"body-2"}>
-            We hope you find the resources useful. Click the question mark in
-            the bottom-right corner to share your feedback.{" "}
-          </OakP>
+  const sharedProps: HeaderProps = {
+    useSubduedBackground: true,
+    headerSlot: returnTo ? (
+      <BackLinkButton {...props} returnTo={returnTo} />
+    ) : undefined,
+    heading: "Thanks for downloading!",
+    summary: (
+      <OakFlex $flexDirection="column" $gap={"spacing-24"}>
+        <OakP $font={"body-2"}>
+          We hope you find the resources useful. Click the question mark in the
+          bottom-right corner to share your feedback.{" "}
+        </OakP>
+        {showFontInstructions && (
           <InstallFontsInstructions showHelpMessage={!cookiesNotAccepted} />
-        </OakFlex>
-      }
-      backgroundColorLevel={props.backgroundColorLevel}
-    />
+        )}
+      </OakFlex>
+    ),
+    backgroundColorLevel: props.backgroundColorLevel,
+  };
+
+  // Header's props are a discriminated union, so each variant needs its own element
+  return layoutVariant === "large" ? (
+    <Header {...sharedProps} layoutVariant="large" heroImage={heroImage} />
+  ) : (
+    <Header {...sharedProps} layoutVariant="compact" />
   );
 }
 
@@ -98,7 +99,13 @@ function InstallFontsInstructions({
   );
 }
 
-function BackLinkButton(props: Readonly<DownloadSuccessHeaderProps>) {
+function BackLinkButton(
+  props: Readonly<
+    DownloadSuccessHeaderProps & {
+      returnTo: NonNullable<DownloadSuccessHeaderProps["returnTo"]>;
+    }
+  >,
+) {
   return (
     <OakBox>
       <OakTertiaryInvertedButton

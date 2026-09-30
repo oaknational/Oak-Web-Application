@@ -35,6 +35,7 @@ jest.mock("next/navigation", () => {
     permanentRedirect: (url: string) => {
       throw new Error(`NEXT_PERMANENT_REDIRECT;${url}`);
     },
+    unstable_rethrow: jest.fn(),
   };
 });
 

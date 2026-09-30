@@ -215,6 +215,13 @@ jest.mock("../../../../node-lib/cms", () => ({
           url: "http://localhost:3000/test.pdf",
         },
       },
+      assessment: {
+        asset: {
+          extension: "PDF",
+          size: 1000,
+          url: "http://localhost:3000/test.pdf",
+        },
+      },
     }),
   },
 }));
@@ -277,6 +284,9 @@ describe("/api/curriculum-downloads", () => {
 
     expect(res.getHeader("Content-Type")).toBe(
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    );
+    expect(res.getHeader("Content-Disposition")).toContain(
+      `attachment; filename="Curriculum-plan-explainer-English-Secondary-AQA.docx"`,
     );
     expect(fetch).toHaveBeenCalledTimes(1);
     expect(res._getStatusCode()).toBe(200);
