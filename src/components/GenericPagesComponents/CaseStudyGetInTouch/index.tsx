@@ -81,6 +81,7 @@ export function CaseStudyGetInTouch({
             target="_blank"
             isTrailingIcon={true}
             iconName={"external"}
+            aria-label="Get in touch (opens in a new tab)"
           >
             Get in touch
           </OakSecondaryButton>

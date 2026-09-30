@@ -67,6 +67,7 @@ exports[`CaseStudyGetInTouch renders 1`] = `
             class="sc-aXZVg kpXzs yellow-shadow"
           />
           <a
+            aria-label="Get in touch (opens in a new tab)"
             class="sc-dcJsrY sc-jXbUNg bALQkH khQbhv internal-button"
             href="#"
             rel="noreferrer"
