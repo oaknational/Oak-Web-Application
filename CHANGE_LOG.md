@@ -1,3 +1,10 @@
+## [1.1220.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1220.0...v1.1220.1) (2026-09-30)
+
+
+### Bug Fixes
+
+* add case study titles to oaks impact ([aa69eef](https://github.com/oaknational/Oak-Web-Application/commit/aa69eefb208da5019a4325ab00ee218923034756))
+
 # [1.1220.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1219.0...v1.1220.0) (2026-09-30)
 
 
