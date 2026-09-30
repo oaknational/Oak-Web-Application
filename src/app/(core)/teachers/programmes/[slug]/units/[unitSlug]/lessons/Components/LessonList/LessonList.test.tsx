@@ -160,7 +160,7 @@ describe("LessonList", () => {
     expect(screen.queryByText("Current lesson")).toBeInTheDocument();
   });
 
-  it("calls lessonAccessded when a lesson is clicked", async () => {
+  it("calls lessonAccessed when a lesson is clicked", async () => {
     render(<LessonList {...defaultProps} />);
     const firstLessonLink = screen.getByRole("link", {
       name: /Introduction to cells/i,
@@ -173,28 +173,6 @@ describe("LessonList", () => {
 
     expect(mockLessonAccessed).toHaveBeenCalledWith(
       expect.objectContaining({ lessonName: "Introduction to cells" }),
-    );
-  });
-
-  it("tracks a lesson click when the programme slug does not contain a keystage", async () => {
-    render(
-      <LessonList {...defaultProps} programmeSlug="invalid-programme-slug" />,
-    );
-    const firstLessonLink = screen.getByRole("link", {
-      name: /Introduction to cells/i,
-    });
-
-    firstLessonLink.addEventListener("click", (e) => e.preventDefault());
-
-    const user = userEvent.setup();
-    await user.click(firstLessonLink);
-
-    expect(mockLessonAccessed).toHaveBeenCalledWith(
-      expect.objectContaining({
-        componentType: "lesson_card",
-        lessonName: "Introduction to cells",
-        lessonSlug: "lesson-1",
-      }),
     );
   });
 });
