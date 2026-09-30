@@ -12,6 +12,7 @@ import {
   subjectSlugs,
   tierSlugs,
   tierDescriptions,
+  yearSlugs,
 } from "@oaknational/oak-curriculum-schema";
 
 import { CanonicalLessonMediaClips } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
@@ -35,6 +36,8 @@ export const getProgrammePropsForCanonicalLesson = (
     yearDescriptions.safeParse(firstPathway?.yearGroupTitle).data ??
     "All years";
   const year = years.safeParse(firstPathway?.yearGroupSlug).data ?? "All";
+  const yearGroupSlug =
+    yearSlugs.safeParse(firstPathway?.yearGroupSlug).data ?? "all-years";
   const pathwayTitle =
     pathwayDescriptions.safeParse(firstPathway?.pathwayTitle).data ?? null;
   const pathwaySlug =
@@ -63,6 +66,7 @@ export const getProgrammePropsForCanonicalLesson = (
     tierSlug,
     tierTitle,
     year,
+    yearGroupSlug,
     yearGroupTitle,
     pathwayTitle,
     pathwaySlug,
