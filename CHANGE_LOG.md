@@ -1,3 +1,16 @@
+# [1.1217.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1216.0...v1.1217.0) (2026-09-30)
+
+
+### Bug Fixes
+
+* added (opens in a new tab) to link ([818afe8](https://github.com/oaknational/Oak-Web-Application/commit/818afe833d46371b2c75b9e50ad9c3221bb5521d))
+* added missing headingTag to <CaseStudyGetInTouch/> ([34d58d6](https://github.com/oaknational/Oak-Web-Application/commit/34d58d6f382ce5a3827621c434dd6568edae9804))
+
+
+### Features
+
+* added <GetInTouch/> component ([78ff1d5](https://github.com/oaknational/Oak-Web-Application/commit/78ff1d56cc720d3d491831d9a37d104f19a86f87))
+
 # [1.1216.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1215.0...v1.1216.0) (2026-09-29)
 
 
