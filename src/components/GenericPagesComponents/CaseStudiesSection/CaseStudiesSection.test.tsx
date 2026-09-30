@@ -70,7 +70,7 @@ describe("CaseStudiesSection", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("doesn't renders view all link when not enabled", () => {
+  it("doesn't render view all link when not enabled", () => {
     const { queryByRole } = render(
       <CaseStudiesSection
         title={"Case studies"}
