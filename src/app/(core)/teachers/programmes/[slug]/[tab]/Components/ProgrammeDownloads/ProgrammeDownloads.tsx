@@ -322,7 +322,7 @@ export const ProgrammeDownloads = ({
               </OakTertiaryInvertedButton>
             )}
             <OakHeading tag="h2" $font={"heading-4"}>
-              Download curriculum guidance
+              Downloads
             </OakHeading>
             {isLoading ? (
               <OakBox $minHeight="spacing-480">
@@ -356,7 +356,9 @@ export const ProgrammeDownloads = ({
                     {curriculumDownloadsWithLabels.length > 0 && (
                       <OakFlex $gap={"spacing-16"} $flexDirection={["column"]}>
                         {featureFlags["implementation-guides"] && (
-                          <OakFlex $gap="spacing-8">Curriculum</OakFlex>
+                          <OakFlex $gap="spacing-8">
+                            Explore the curriculum
+                          </OakFlex>
                         )}
                         <OakFlex
                           $gap={"spacing-16"}
@@ -412,7 +414,7 @@ export const ProgrammeDownloads = ({
                     {implementationGuideDownloadsWithLabels.length > 0 && (
                       <OakFlex $gap={"spacing-16"} $flexDirection="column">
                         <OakFlex $gap="spacing-8" $alignItems="center">
-                          Implementation toolkit
+                          Explore our implementation guides
                           <OakPromoTag />
                         </OakFlex>
                         <OakGrid $rg={"spacing-16"} $cg={"spacing-16"}>
