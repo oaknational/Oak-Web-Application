@@ -1,6 +1,7 @@
 import {
   OakBox,
   OakLI,
+  OakLink,
   OakP,
   OakSideMenuNavLink,
   OakUL,
@@ -22,23 +23,41 @@ export function CaseStudyNav({
     <OakBox
       as="nav"
       aria-label="page sections"
-      $display={["none", "block", "block"]}
-      $position="sticky"
+      $position={["static", "sticky", "sticky"]}
       $top="spacing-20"
+      $pb={["spacing-56", "spacing-0", "spacing-0"]}
     >
-      <OakP $font="body-3" $mb="spacing-8">
+      <OakP
+        $font={["body-2-bold", "body-2", "body-2"]}
+        $color={["text-primary", "text-subdued", "text-subdued"]}
+        $mb="spacing-16"
+      >
         Contents
       </OakP>
       <OakUL $reset $display="flex" $gap="spacing-16" $flexDirection="column">
         {links.map(({ label, anchor }) => (
           <OakLI key={anchor}>
-            <OakSideMenuNavLink
-              onClick={() => document.getElementById(anchor)?.scrollIntoView()}
-              item={{ heading: label, href: `#${anchor}` }}
-              isSelected={anchor === (currentSectionId ?? links[0]?.anchor)}
-              $pt={"spacing-8"}
-              $pb={"spacing-8"}
-            />
+            <OakBox $display={["block", "none", "none"]} $pv="spacing-4">
+              <OakLink
+                href={`#${anchor}`}
+                onClick={() =>
+                  document.getElementById(anchor)?.scrollIntoView()
+                }
+              >
+                {label}
+              </OakLink>
+            </OakBox>
+            <OakBox $display={["none", "block", "block"]}>
+              <OakSideMenuNavLink
+                onClick={() =>
+                  document.getElementById(anchor)?.scrollIntoView()
+                }
+                item={{ heading: label, href: `#${anchor}` }}
+                isSelected={anchor === (currentSectionId ?? links[0]?.anchor)}
+                $pt={"spacing-8"}
+                $pb={"spacing-8"}
+              />
+            </OakBox>
           </OakLI>
         ))}
       </OakUL>
