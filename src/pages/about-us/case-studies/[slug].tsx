@@ -11,6 +11,8 @@ import {
   OakGridArea,
   OakVideo,
   OakHandDrawnHR,
+  OakBreadcrumbWithoutHref,
+  OakBreadcrumb,
 } from "@oaknational/oak-components";
 import { format } from "date-fns";
 
@@ -33,6 +35,7 @@ import { CaseStudyHeader } from "@/components/GenericPagesComponents/CaseStudyHe
 import { OaksImpactCaseStudyContentLayout } from "@/components/GenericPagesComponents/OaksImpactCaseStudyContentLayout";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 // to do - this data retrieval will be decoupled from oak's impact in coming tickets
 export type AboutUsOaksImpactCaseStudyPageProps = {
@@ -41,11 +44,14 @@ export type AboutUsOaksImpactCaseStudyPageProps = {
     otherCaseStudies: OaksImpactCaseStudyPage["caseStudiesSection"]["caseStudies"];
   };
   topNav: TopNavProps;
+  isCaseStudiesFeatEnabled: boolean;
 };
 
-const AboutUsOaksImpactCaseStudy: NextPage<
-  AboutUsOaksImpactCaseStudyPageProps
-> = ({ pageData: { caseStudy, otherCaseStudies }, topNav }) => {
+const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
+  pageData: { caseStudy, otherCaseStudies },
+  topNav,
+  isCaseStudiesFeatEnabled,
+}) => {
   const { setCurrentToastProps } = useOakNotificationsContext();
 
   const onCopyLink = () => {
@@ -58,8 +64,26 @@ const AboutUsOaksImpactCaseStudy: NextPage<
       autoDismiss: true,
       autoDismissDuration: 4000,
       showIcon: true,
+      showClose: true,
     });
   };
+
+  const breadcrumbs: [...OakBreadcrumb[], OakBreadcrumbWithoutHref] = [
+    {
+      href: resolveOakHref({ page: "home" }),
+      text: "Home",
+    },
+    isCaseStudiesFeatEnabled
+      ? {
+          href: "/about-us/case-studies",
+          text: "Case studies",
+        }
+      : {
+          href: resolveOakHref({ page: "about-oaks-impact" }),
+          text: "Oak's impact",
+        },
+    { text: caseStudy.video.title },
+  ];
 
   return (
     <TeacherBrowseAnalyticsStoreProvider
@@ -78,19 +102,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                 <OakGrid $cg="spacing-16">
                   <OakGridArea $rowStart={1} $colSpan={12}>
                     <OakBox $pb="spacing-20">
-                      <OakBreadcrumbs
-                        breadcrumbs={[
-                          {
-                            href: resolveOakHref({ page: "home" }),
-                            text: "Home",
-                          },
-                          {
-                            href: "/about-us/oaks-impact",
-                            text: "Oak's impact",
-                          },
-                          { text: caseStudy.video.title },
-                        ]}
-                      />
+                      <OakBreadcrumbs breadcrumbs={breadcrumbs} />
                     </OakBox>
                     <OakHandDrawnHR
                       hrColor={"bg-neutral-stronger"}
@@ -192,6 +204,9 @@ export const getStaticProps: GetStaticProps<
         return { notFound: true };
       }
 
+      const isCaseStudiesFeatEnabled =
+        isFeatureFlagEnabledStatic("case-studies-v2");
+
       const isPreviewMode = context.preview === true;
       const oaksImpactCaseStudyPage = await CMSClient.oaksImpactCaseStudyPage({
         previewMode: isPreviewMode,
@@ -223,6 +238,7 @@ export const getStaticProps: GetStaticProps<
               otherCaseStudies,
             },
             topNav,
+            isCaseStudiesFeatEnabled,
           },
         };
       return results;
@@ -230,4 +246,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default AboutUsOaksImpactCaseStudy;
+export default AboutUsCaseStudy;

@@ -1,40 +1,38 @@
 "use client";
 
-import { OakBox, parseColor, parseSpacing } from "@oaknational/oak-components";
+import {
+  OakBox,
+  parseColor,
+  parseSpacing,
+  parseBorderWidth,
+  parseFontSize,
+  parseLineHeight,
+} from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import { SectionProps, InsightsContentMaxWidth } from "./shared";
 
-const TableScroll = styled(OakBox)`
-  width: 100%;
-  max-width: 100%;
-  overflow-x: auto;
-`;
-
-const InsightsTable = styled.table`
-  width: 100%;
-  min-width: ${parseSpacing("spacing-640")};
+const InsightsTable = styled(OakBox)`
   border-spacing: 0;
   border-collapse: separate;
-  border: 1px solid ${parseColor("border-decorative1-stronger")};
-  border-radius: 8px;
-  overflow: hidden;
 
   th,
   td {
     padding: ${parseSpacing("spacing-12")};
-    border-right: 1px solid ${parseColor("border-decorative1-stronger")};
-    border-bottom: 1px solid ${parseColor("border-decorative1-stronger")};
+    border-right: ${parseBorderWidth("border-solid-s")} solid
+      ${parseColor("border-decorative1-stronger")};
+    border-bottom: ${parseBorderWidth("border-solid-s")} solid
+      ${parseColor("border-decorative1-stronger")};
     text-align: left;
     vertical-align: top;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: ${parseFontSize("body-2")};
+    line-height: ${parseLineHeight("body-2")};
   }
 
   th {
     background: ${parseColor("bg-decorative1-main")};
     font-weight: 700;
-    line-height: 20px;
+    line-height: ${parseLineHeight("heading-7")};
   }
 
   tbody tr:nth-child(odd) td {
@@ -70,8 +68,16 @@ export const NationalCurriculumInsightsTable = ({
         $flexDirection="column"
         data-insights-module="table"
       >
-        <TableScroll>
-          <InsightsTable>
+        <OakBox $width="100%" $maxWidth="100%" $overflowX="auto">
+          <InsightsTable
+            as="table"
+            $width="100%"
+            $minWidth="spacing-640"
+            $ba="border-solid-s"
+            $borderColor="border-decorative1-stronger"
+            $borderRadius="border-radius-m2"
+            $overflow="hidden"
+          >
             <thead>
               <tr>
                 {section.table.rows[0]?.cells.map((cell, cellIndex) => (
@@ -93,7 +99,7 @@ export const NationalCurriculumInsightsTable = ({
               ))}
             </tbody>
           </InsightsTable>
-        </TableScroll>
+        </OakBox>
       </InsightsContentMaxWidth>
     </OakBox>
   );
