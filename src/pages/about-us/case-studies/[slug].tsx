@@ -158,16 +158,16 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
 
               {isCaseStudiesFeatEnabled && (
                 <>
-                  {caseStudy.content && (
+                  {caseStudy.content && caseStudy.content.length > 0 && (
                     <OakFlex
                       $flexDirection="column"
                       $gap="spacing-100"
                       $pb="spacing-100"
                       $position={"relative"}
                     >
-                      {caseStudy.content.map((contentBlock, index) => (
+                      {caseStudy.content.map((contentBlock) => (
                         <OakFlex
-                          key={index}
+                          key={contentBlock.heading}
                           $flexDirection="column"
                           $alignItems="flex-start"
                         >

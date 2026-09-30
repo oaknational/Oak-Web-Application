@@ -3099,14 +3099,61 @@ exports[`pages/about-us/case-studies/[slug].tsx renders written case study 1`] =
                       <div
                         class="sc-aXZVg sc-gEvEer jPvJsJ gbtScN"
                       >
+                        <div
+                          class="sc-aXZVg sc-gEvEer leqxDc crYpLM"
+                        >
+                          <div
+                            class="sc-aXZVg jPvJsJ"
+                          >
+                            TEST_LABEL_1
+                          </div>
+                        </div>
                         <span
                           class="sc-hZDyAQ doIoaN"
-                          id="#undefined"
+                          id="#test-anchor-slug-1"
                         />
                         <h2
                           class="sc-eldPxv hOapSF"
-                        />
+                        >
+                          TEST_HEADING_1
+                        </h2>
                       </div>
+                      <p
+                        class="sc-ikkxIA sc-82983132-0 cFDVg lcICdz"
+                      >
+                        TEST_CONTENT_1
+                      </p>
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ blEyxD"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ gbtScN"
+                      >
+                        <div
+                          class="sc-aXZVg sc-gEvEer leqxDc crYpLM"
+                        >
+                          <div
+                            class="sc-aXZVg jPvJsJ"
+                          >
+                            TEST_LABEL_2
+                          </div>
+                        </div>
+                        <span
+                          class="sc-hZDyAQ doIoaN"
+                          id="#test-anchor-slug-2"
+                        />
+                        <h2
+                          class="sc-eldPxv hOapSF"
+                        >
+                          TEST_HEADING_2
+                        </h2>
+                      </div>
+                      <p
+                        class="sc-ikkxIA sc-82983132-0 cFDVg lcICdz"
+                      >
+                        TEST_CONTENT_2
+                      </p>
                     </div>
                   </div>
                   <div

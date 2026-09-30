@@ -64,7 +64,24 @@ const writtenCaseStudy = {
   title: "Test",
   tag: "primary",
   summaryRaw: portableTextFromString("TEST_SUMMARY"),
-  content: portableTextFromString("TEST_CONTENT"),
+  content: [
+    {
+      heading: "TEST_HEADING_1",
+      anchorSlug: {
+        current: "test-anchor-slug-1",
+      },
+      label: "TEST_LABEL_1",
+      contentRaw: portableTextFromString("TEST_CONTENT_1"),
+    },
+    {
+      heading: "TEST_HEADING_2",
+      anchorSlug: {
+        current: "test-anchor-slug-2",
+      },
+      label: "TEST_LABEL_2",
+      contentRaw: portableTextFromString("TEST_CONTENT_2"),
+    },
+  ],
   showGetInTouchPanel: true,
   getInTouchPanel: {
     personName: "TEST_PERSON_NAME",
@@ -214,6 +231,11 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
     expect(container).toHaveTextContent("TEST_PERSON_NAME");
     expect(container).toHaveTextContent("TEST_JOB_ROLE");
     expect(container).toHaveTextContent("TEST_INSTITUTION_NAME");
+
+    expect(container).toHaveTextContent("TEST_HEADING_1");
+    expect(container).toHaveTextContent("TEST_CONTENT_1");
+    expect(container).toHaveTextContent("TEST_HEADING_2");
+    expect(container).toHaveTextContent("TEST_CONTENT_2");
   });
 
   // describe("getStaticProps", () => {
