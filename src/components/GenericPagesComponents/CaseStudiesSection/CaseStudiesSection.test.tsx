@@ -72,9 +72,9 @@ describe("CaseStudiesSection", () => {
 
   it("doesn't renders view all link when not enabled", () => {
     const { queryByRole } = render(
-      <OaksImpactCaseStudies
+      <CaseStudiesSection
         title={"Case studies"}
-        caseStudies={oaksImpactCaseStudiesFixture}
+        caseStudies={caseStudiesSectionFixture}
       />,
     );
 
@@ -85,9 +85,9 @@ describe("CaseStudiesSection", () => {
 
   it("renders view all link when enabled", () => {
     const { getByRole } = render(
-      <OaksImpactCaseStudies
+      <CaseStudiesSection
         title={"Case studies"}
-        caseStudies={oaksImpactCaseStudiesFixture}
+        caseStudies={caseStudiesSectionFixture}
         showViewAllLink={true}
       />,
     );

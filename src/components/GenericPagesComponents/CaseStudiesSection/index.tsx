@@ -6,6 +6,7 @@ import {
   OakGridArea,
   OakHeading,
   OakLink,
+  OakSpan,
 } from "@oaknational/oak-components";
 
 import { CaseStudyCard } from "@/common-lib/cms-types/caseStudy";
@@ -52,9 +53,10 @@ export const CaseStudiesSection = ({
                     variant="secondary"
                     iconName="chevron-right"
                     isTrailingIcon={true}
-                    href={"/"}
+                    href={"/about-us/case-studies"}
+                    $font={"heading-7"}
                   >
-                    View all case studies
+                    <OakSpan $textWrap="nowrap">View all case studies</OakSpan>
                   </OakLink>
                 )}
               </OakFlex>

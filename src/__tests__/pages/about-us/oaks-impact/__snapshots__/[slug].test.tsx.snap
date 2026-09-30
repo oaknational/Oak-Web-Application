@@ -957,11 +957,50 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title 1`] = 
                   <div
                     class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi cSXJqk"
                   >
-                    <h2
-                      class="sc-eldPxv dGkyUI"
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ bIrEfD"
                     >
-                      Explore more case studies
-                    </h2>
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ fXHtRp"
+                      >
+                        <h2
+                          class="sc-eldPxv dGkyUI"
+                        >
+                          Case studies
+                        </h2>
+                      </div>
+                      <a
+                        class="sc-fHjqPf fFAulo"
+                        href="/about-us/case-studies"
+                      >
+                        <span
+                          class="sc-eqUAAy iGfTGj"
+                        >
+                          <span
+                            class="sc-eqUAAy gvqDmj"
+                          >
+                            View all case studies
+                          </span>
+                        </span>
+                        <div
+                          class="sc-aXZVg cbnANG"
+                        >
+                          <span
+                            class="sc-aXZVg fjkwRj sc-fUnMCh esqnRZ"
+                          >
+                            <img
+                              alt=""
+                              class="sc-iGgWBj cMzyFO"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
+                          </span>
+                        </div>
+                      </a>
+                    </div>
                   </div>
                 </div>
                 <ul

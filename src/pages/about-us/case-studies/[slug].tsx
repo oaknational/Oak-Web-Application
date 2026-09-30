@@ -33,6 +33,7 @@ import { CaseStudyHeader } from "@/components/GenericPagesComponents/CaseStudyHe
 import { OaksImpactCaseStudyContentLayout } from "@/components/GenericPagesComponents/OaksImpactCaseStudyContentLayout";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 // to do - this data retrieval will be decoupled from oak's impact in coming tickets
 export type AboutUsOaksImpactCaseStudyPageProps = {
@@ -47,6 +48,8 @@ const AboutUsOaksImpactCaseStudy: NextPage<
   AboutUsOaksImpactCaseStudyPageProps
 > = ({ pageData: { caseStudy, otherCaseStudies }, topNav }) => {
   const { setCurrentToastProps } = useOakNotificationsContext();
+  const isCaseStudiesFeatEnabled =
+    isFeatureFlagEnabledStatic("case-studies-v2");
 
   const onCopyLink = () => {
     const urlToCopy = window.location.href;
@@ -141,9 +144,9 @@ const AboutUsOaksImpactCaseStudy: NextPage<
           </NewGutterMaxWidth>
 
           <CaseStudiesSection
-            title="Explore more case studies"
+            title="Case studies"
             caseStudies={otherCaseStudies}
-            showViewAllLink={false}
+            showViewAllLink={isCaseStudiesFeatEnabled}
           />
         </OakBox>
       </Layout>
