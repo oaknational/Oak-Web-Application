@@ -150,6 +150,7 @@ describe("McpView", () => {
     expect(
       within(section).getByRole("link", { name: "School or trust" }),
     ).toHaveAttribute("aria-current", "page");
+    expect(section.querySelector("#school-or-trust")).toBeInTheDocument();
   });
 
   it("puts the chosen tab in the URL, and follows the back button", async () => {

@@ -24,6 +24,7 @@ import {
   type McpAssistant,
   type McpAudience,
 } from "@/app/(core)/ai-plugin/mcpContent";
+import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 const McpAssistantCard = ({
@@ -137,7 +138,6 @@ const audienceFromHash = (): McpAudience =>
 
 export const McpAssistants = () => {
   const [audience, setAudience] = useState<McpAudience>(mcpAudiences[0].label);
-  const activeId = mcpAudiences.find(({ label }) => label === audience)?.id;
 
   useEffect(() => {
     const syncWithUrl = () => setAudience(audienceFromHash());
@@ -161,7 +161,10 @@ export const McpAssistants = () => {
         $gap={["spacing-32", "spacing-32", "spacing-24"]}
       >
         <OakP $font="body-2">{mcpAssistants.body}</OakP>
-        <OakFlex $pb="spacing-32">
+        <OakFlex $pb="spacing-32" $position="relative">
+          {mcpAudiences.map(({ id }) => (
+            <AnchorTarget key={id} id={id} />
+          ))}
           <OakTabs<McpAudience>
             sizeVariant="default"
             colorVariant="white"
@@ -179,7 +182,7 @@ export const McpAssistants = () => {
             }}
           />
         </OakFlex>
-        <OakFlex id={activeId} $flexDirection="column" $gap="spacing-32">
+        <OakFlex $flexDirection="column" $gap="spacing-32">
           {audience === "School or trust" ? (
             <McpSchoolSetup />
           ) : (
