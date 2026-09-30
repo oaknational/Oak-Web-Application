@@ -8,7 +8,7 @@ const teachersUnitOverviewFixture = (
     unitDescription: "Unit about cells",
     unitIndex: 1,
     unitCount: 10,
-    yearSlug: "year-7",
+    yearGroupSlug: "year-7",
     unitTitle: "Cells",
     programmeSlug: "biology-secondary-ks3",
     unitSlug: "cells",

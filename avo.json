@@ -9,6 +9,8 @@
   "branch": {
     "id": "master",
     "name": "main"
+    "id": "master",
+    "name": "main"
   },
   "sources": [
     {
