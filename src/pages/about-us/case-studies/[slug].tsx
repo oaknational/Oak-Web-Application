@@ -53,8 +53,6 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
   isCaseStudiesFeatEnabled,
 }) => {
   const { setCurrentToastProps } = useOakNotificationsContext();
-  const isCaseStudiesFeatEnabled =
-    isFeatureFlagEnabledStatic("case-studies-v2");
 
   const onCopyLink = () => {
     const urlToCopy = window.location.href;
