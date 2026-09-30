@@ -1423,7 +1423,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                           role="group"
                         >
                           <label
-                            class="sc-bdvwhi fZAcmJ sc-e43d2ed2-0 ckDgCp"
+                            class="sc-bdvwhi fZAcmJ sc-9af7ca74-0 eTrdsy"
                             for="react-use-id-test-result-newsletter-signup-userrole"
                             id="react-use-id-test-result-role-label"
                           >
