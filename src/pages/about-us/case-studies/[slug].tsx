@@ -106,6 +106,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                   >
                     <CaseStudyHeader
                       title={title}
+                      headingLevel="h3"
                       publishedDate={format(
                         new Date(caseStudy.publishedAt),
                         "d MMMM y",
@@ -179,7 +180,9 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                         href={""}
                         name={caseStudy.getInTouchPanel.personName}
                         role={caseStudy.getInTouchPanel.jobRole}
-                        schoolOrMat={caseStudy.getInTouchPanel.institutionName}
+                        institutionName={
+                          caseStudy.getInTouchPanel.institutionName
+                        }
                         imageUrl={
                           getProxiedSanityAssetUrl(
                             caseStudy.getInTouchPanel.personImage.asset?.url,
