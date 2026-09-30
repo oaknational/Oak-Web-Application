@@ -37,6 +37,7 @@ export const AboutUsCaseStudyLibrary: NextPage<
       slug: caseStudy.slug.current,
     }),
     imageSrc: getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? "",
+    tagName: caseStudy.tag ?? undefined,
   }));
 
   return (
@@ -87,6 +88,13 @@ export const AboutUsCaseStudyLibrary: NextPage<
                       aspectRatio="4/3"
                       cardOrientation={["column", "row", "row"]}
                       showImage={[false, true, true]}
+                      tagBackground={
+                        item.tagName === "secondary"
+                          ? "bg-decorative1-main"
+                          : item.tagName === "primary"
+                            ? "bg-decorative4-main"
+                            : undefined
+                      }
                       {...item}
                     />
                   );

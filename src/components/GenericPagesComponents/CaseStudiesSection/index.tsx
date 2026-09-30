@@ -70,6 +70,14 @@ export const CaseStudiesSection = ({
                   aspectRatio="4/3"
                   linkText={"Watch the video"}
                   cardWidth={"100%"}
+                  tagName={caseStudy.tag ?? undefined}
+                  tagBackground={
+                    caseStudy.tag === "secondary"
+                      ? "bg-decorative1-main"
+                      : caseStudy.tag === "primary"
+                        ? "bg-decorative4-main"
+                        : undefined
+                  }
                 />
               </OakGridArea>
             ))}
