@@ -1,5 +1,9 @@
 "use client";
-import { OakFlex, OakHeading } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHeading,
+  type OakFlexProps,
+} from "@oaknational/oak-components";
 
 /**
  * A titled content section of the MCP landing page.
@@ -10,21 +14,23 @@ import { OakFlex, OakHeading } from "@oaknational/oak-components";
 export const McpSection = ({
   title,
   id,
+  gap = "spacing-24",
   children,
 }: Readonly<{
   title: string;
   id?: string;
+  gap?: OakFlexProps["$gap"];
   children: React.ReactNode;
 }>) => (
   <OakFlex
     as="section"
     $flexDirection="column"
-    $gap="spacing-24"
+    $gap={gap}
     $width="100%"
     $minWidth="spacing-0"
     aria-labelledby={id}
   >
-    <OakHeading id={id} tag="h2" $font={["heading-6", "heading-5"]}>
+    <OakHeading id={id} tag="h2" $font="heading-5">
       {title}
     </OakHeading>
     {children}

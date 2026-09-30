@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import {
   OakBox,
   OakFlex,
@@ -46,7 +46,9 @@ const McpAssistantCard = ({
         iconHeight="spacing-40"
         alt=""
         $colorFilter={
-          assistant.background === "bg-inverted" ? "text-inverted" : undefined
+          assistant.background === "bg-inverted"
+            ? "icon-inverted"
+            : "icon-primary"
         }
       />
     </OakFlex>
@@ -54,7 +56,7 @@ const McpAssistantCard = ({
       <OakHeading tag="h3" $font="heading-6">
         {assistant.name}
       </OakHeading>
-      <McpTryButton label={assistant.ctaLabel} href={assistant.ctaHref} />
+      <McpTryButton label={assistant.ctaLabel} href={assistant.ctaHref} small />
     </OakFlex>
   </OakFlex>
 );
@@ -65,8 +67,8 @@ const McpAssistantCard = ({
  */
 const stepComponents: PortableTextComponents = {
   listItem: {
-    number: ({ children }) => (
-      <OakLI $font="body-2" $mb="spacing-8">
+    number: ({ children, index }) => (
+      <OakLI $font="body-2" $mt={index > 0 ? "spacing-8" : undefined}>
         {children}
       </OakLI>
     ),
@@ -79,48 +81,42 @@ const smallPrintComponents: PortableTextComponents = {
   },
 };
 
-const McpAssistantFlow = ({
-  assistant,
-}: Readonly<{ assistant: McpAssistant }>) => (
-  <OakFlex $flexDirection="column" $gap="spacing-24">
-    <McpAssistantCard assistant={assistant} />
-    <PortableTextWithDefaults
-      value={assistant.steps}
-      components={stepComponents}
-    />
-    <PortableTextWithDefaults
-      value={assistant.pasteNote}
-      components={smallPrintComponents}
-    />
-  </OakFlex>
-);
-
 const Divider = () => (
-  <OakBox $bt="border-solid-m" $borderColor="border-neutral-lighter" />
+  <OakBox $bt="border-solid-m" $borderColor="bg-neutral-stronger" />
 );
 
 const McpIndividualSetup = () =>
   mcpAssistants.items.map((assistant, index) => (
-    <OakFlex key={assistant.name} $flexDirection="column" $gap="spacing-24">
+    <Fragment key={assistant.name}>
       {index > 0 && <Divider />}
-      <McpAssistantFlow assistant={assistant} />
-    </OakFlex>
+      <McpAssistantCard assistant={assistant} />
+      <PortableTextWithDefaults
+        value={assistant.steps}
+        components={stepComponents}
+      />
+      <PortableTextWithDefaults
+        value={assistant.pasteNote}
+        components={smallPrintComponents}
+      />
+    </Fragment>
   ));
 
 const McpSchoolSetup = () => (
   <>
-    {mcpSchoolSetup.intro.map((paragraph) => (
-      <OakP key={paragraph} $font="body-2">
-        {paragraph}
-      </OakP>
-    ))}
+    <OakFlex $flexDirection="column" $gap="spacing-20">
+      {mcpSchoolSetup.intro.map((paragraph) => (
+        <OakP key={paragraph} $font="body-2">
+          {paragraph}
+        </OakP>
+      ))}
+    </OakFlex>
     {mcpSchoolSetup.providers.map((provider, index) => (
-      <OakFlex key={provider.name} $flexDirection="column" $gap="spacing-24">
+      <Fragment key={provider.name}>
         {index > 0 && <Divider />}
-        <OakFlex $flexDirection="column" $gap="spacing-16">
-          <OakHeading tag="h3" $font="heading-6">
-            {provider.name}
-          </OakHeading>
+        <OakHeading tag="h3" $font="heading-6">
+          {provider.name}
+        </OakHeading>
+        <OakFlex $flexDirection="column" $gap="spacing-20">
           <OakP $font="body-2">{provider.body}</OakP>
           <OakBox $font="body-2">
             {provider.guideBefore}
@@ -130,51 +126,58 @@ const McpSchoolSetup = () => (
             .
           </OakBox>
         </OakFlex>
-      </OakFlex>
+      </Fragment>
     ))}
   </>
 );
 
-/**
- * The tabs are in-page links rather than buttons: OakTabs only marks the
- * selected tab for assistive technology (`aria-current`) on its link variant.
- */
 export const McpAssistants = () => {
   const [audience, setAudience] = useState<McpAudience>(mcpAudiences[0].label);
   const activeId = mcpAudiences.find(({ label }) => label === audience)?.id;
 
   return (
-    <McpSection title={mcpAssistants.title} id="choose-your-ai-tool">
-      <OakP $font="body-2">{mcpAssistants.body}</OakP>
-      <OakFlex>
-        <OakTabs<McpAudience>
-          sizeVariant="default"
-          colorVariant="white"
-          activeTab={audience}
-          tabs={mcpAudiences.map(({ label, id }) => ({
-            label,
-            type: "link" as const,
-            href: `#${id}`,
-          }))}
-          onTabClick={(tab, event) => {
-            event.preventDefault();
-            setAudience(tab);
-          }}
-        />
+    <McpSection
+      title={mcpAssistants.title}
+      id="choose-your-ai-tool"
+      gap={["spacing-48", "spacing-48", "spacing-24"]}
+    >
+      <OakFlex
+        $flexDirection="column"
+        $gap={["spacing-32", "spacing-32", "spacing-24"]}
+      >
+        <OakP $font="body-2">{mcpAssistants.body}</OakP>
+        <OakFlex $pb="spacing-32">
+          <OakTabs<McpAudience>
+            sizeVariant="default"
+            colorVariant="white"
+            activeTab={audience}
+            tabs={mcpAudiences.map(({ label, id }) => ({
+              label,
+              type: "link" as const,
+              href: `#${id}`,
+            }))}
+            onTabClick={(tab, event) => {
+              event.preventDefault();
+              setAudience(tab);
+            }}
+          />
+        </OakFlex>
+        <OakFlex id={activeId} $flexDirection="column" $gap="spacing-32">
+          {audience === "School or trust" ? (
+            <McpSchoolSetup />
+          ) : (
+            <McpIndividualSetup />
+          )}
+          <OakBox $pt="spacing-64">
+            <OakInlineBanner
+              isOpen
+              type="info"
+              message={mcpMoreAssistantsNote}
+              $width="100%"
+            />
+          </OakBox>
+        </OakFlex>
       </OakFlex>
-      <OakFlex id={activeId} $flexDirection="column" $gap="spacing-24">
-        {audience === "School or trust" ? (
-          <McpSchoolSetup />
-        ) : (
-          <McpIndividualSetup />
-        )}
-      </OakFlex>
-      <OakInlineBanner
-        isOpen
-        type="info"
-        message={mcpMoreAssistantsNote}
-        $width="100%"
-      />
     </McpSection>
   );
 };

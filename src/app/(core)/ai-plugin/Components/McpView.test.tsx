@@ -172,7 +172,6 @@ describe("McpView", () => {
     const { getByRole } = render(<McpView />);
 
     const section = getByRole("region", { name: mcpAssistants.title });
-    // The tabs are a list too, so count only the numbered (ordered) lists.
     const steps = within(section)
       .getAllByRole("list")
       .filter((list) => list.tagName === "OL")

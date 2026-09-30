@@ -11,9 +11,6 @@ import type { PortableTextBlock } from "@portabletext/types";
  * Some link targets are still placeholders.
  */
 
-/**
- * Sits at the foot of "Choose your AI tool", under whichever tab is open.
- */
 export const mcpMoreAssistantsNote =
   "We’re starting with ChatGPT and Claude, with Gemini, Copilot and others coming soon.";
 
@@ -243,9 +240,6 @@ export const mcpAssistants: {
   ],
 };
 
-/**
- * The tabs in "Choose your AI tool". The first is open on page load.
- */
 export const mcpAudiences = [
   { label: "Individual teacher", id: "individual-teacher" },
   { label: "School or trust", id: "school-or-trust" },
@@ -327,9 +321,6 @@ export const mcpHowItWorks = {
   ],
 } as const;
 
-/**
- * Follows the "Oak provides" list in "How it works".
- */
 export const mcpLicence = {
   bodyBefore:
     "Our AI plugin draws on content that is © Oak National Academy Limited (2026), licensed on ",
