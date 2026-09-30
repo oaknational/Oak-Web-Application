@@ -740,11 +740,11 @@ exports[`pages/about-us/case-studies/[slug].tsx renders title 1`] = `
                       <div
                         class="sc-aXZVg sc-gEvEer xdoGL gSlSXH"
                       >
-                        <h1
+                        <h3
                           class="sc-eldPxv cTFVAh"
                         >
                           Test Video
-                        </h1>
+                        </h3>
                         <div
                           class="sc-aXZVg sc-gEvEer jPvJsJ feoULz"
                         >
