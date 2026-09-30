@@ -339,7 +339,7 @@ export const NationalCurriculumInsightsDownload = ({
       }
     } catch (downloadError) {
       if (downloadError instanceof TypeError) {
-        reportError(
+        void reportError(
           new OakError({
             code: "downloads/failed-to-fetch",
             originalError: downloadError,

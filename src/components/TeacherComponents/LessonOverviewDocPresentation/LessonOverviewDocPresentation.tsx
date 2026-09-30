@@ -44,7 +44,7 @@ const LessonOverviewDocPresentation: FC<LessonOverviewPresentationProps> = ({
   const srcUrl = convertToPreviewUrl(asset);
 
   if (!srcUrl) {
-    reportError(
+    void reportError(
       new Error(
         `Unable to generate google doc preview url for asset with url: ${asset}`,
       ),

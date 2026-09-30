@@ -162,7 +162,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                   placeholder="Enter email address here"
                   onFocus={() => setEmailHasFocus(true)}
                   onBlur={(e) => {
-                    emailProps.onBlur(e);
+                    void emailProps.onBlur(e);
                     setEmailHasFocus(false);
                   }}
                   {...getEmailFieldErrorAriaProps(hasEmailError)}
@@ -201,7 +201,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                     e: ChangeEvent<HTMLInputElement>,
                   ) => {
                     onChange(e.target.checked);
-                    form.trigger();
+                    void form.trigger();
                   };
                   return (
                     <ResourcePageTermsAndConditionsCheckbox

@@ -111,7 +111,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
           if (error instanceof OakError) {
             setSubmitError(error.message);
           } else {
-            reportError(error);
+            void reportError(error);
             setSubmitError("An unknown error occurred");
           }
         } finally {

@@ -674,8 +674,8 @@ type DesktopSubjectPickerProps = {
   isSelected: (option: Subject | Phase | KS4Option) => boolean;
   onSelectSubject: (subject: CurriculumPhaseOption) => void;
   onClose: () => void;
-  onFocusStart: () => Promise<void>;
-  onFocusEnd: () => Promise<void>;
+  onFocusStart: () => void;
+  onFocusEnd: () => void;
 };
 
 function DesktopSubjectPicker({
@@ -813,8 +813,8 @@ type DesktopPhasePickerProps = {
   onSelectPhase: (phase: Phase) => void;
   onSelectKS4Option: (option: KS4Option) => void;
   onClose: () => void;
-  onFocusStart: () => Promise<void>;
-  onFocusEnd: () => Promise<void>;
+  onFocusStart: () => void;
+  onFocusEnd: () => void;
 };
 
 function DesktopPhasePicker({
@@ -1278,7 +1278,7 @@ const SubjectPhasePicker = ({
     }
   };
 
-  const onFocusSubjectStart = async () => {
+  const onFocusSubjectStart = () => {
     setShowSubjects(false);
   };
 
@@ -1417,7 +1417,7 @@ const SubjectPhasePicker = ({
         ? pagesRouter.push({ pathname: newPathname })
         : Promise.resolve(appRouter.push(newPathname));
 
-      navigation.finally(() => {
+      void navigation.finally(() => {
         setIsNavigating(false);
         setShowPhases(false);
       });
