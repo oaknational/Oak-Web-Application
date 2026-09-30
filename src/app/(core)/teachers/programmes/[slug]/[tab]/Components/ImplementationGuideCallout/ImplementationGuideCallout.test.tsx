@@ -20,7 +20,7 @@ describe("ImplementationGuideCallout", () => {
 
     // Check if the message is rendered correctly
     const message = getByText(
-      "Leading curriculum change for primary maths? Download our implementation toolkit.",
+      "Leading curriculum change for primary maths? Download our implementation guides.",
     );
     expect(message).toBeInTheDocument();
   });
@@ -40,7 +40,7 @@ describe("ImplementationGuideCallout", () => {
 
     // Check if the message is rendered correctly
     const message = getByText(
-      "Leading curriculum change for secondary English? Download our implementation toolkit.",
+      "Leading curriculum change for secondary English? Download our implementation guides.",
     );
     expect(message).toBeInTheDocument();
   });
@@ -60,7 +60,7 @@ describe("ImplementationGuideCallout", () => {
 
     // Check if the message is rendered correctly
     const message = getByText(
-      "Leading curriculum change for primary RSHE (PSHE)? Download our implementation toolkit.",
+      "Leading curriculum change for primary RSHE (PSHE)? Download our implementation guides.",
     );
     expect(message).toBeInTheDocument();
   });
@@ -79,7 +79,7 @@ describe("ImplementationGuideCallout", () => {
     );
 
     const message = queryByText(
-      "Leading curriculum change for primary RSHE (PSHE)? Download our implementation toolkit.",
+      "Leading curriculum change for primary RSHE (PSHE)? Download our implementation guides.",
     );
     expect(message).not.toBeInTheDocument();
   });
