@@ -1,3 +1,33 @@
+# [1.1219.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1218.0...v1.1219.0) (2026-09-30)
+
+
+### Bug Fixes
+
+* add missing decorators to stories ([6f4d0c2](https://github.com/oaknational/Oak-Web-Application/commit/6f4d0c26e988f9c5f8232e1b74bf25985f5bc0ba))
+* construct year slug for unitAccessed event ([64b8d43](https://github.com/oaknational/Oak-Web-Application/commit/64b8d4320256fe876fc716342bbaf1f987261385))
+* get subject and phase from full programme slugs for journeyId ([ef2ea7a](https://github.com/oaknational/Oak-Web-Application/commit/ef2ea7ad98c63cb1848fb61772631661c95b0eff))
+* multi select story ([9689410](https://github.com/oaknational/Oak-Web-Application/commit/96894100ae38cb2c706ea84b93bfd4dee219ca82))
+* revert change to onclick ([7e45944](https://github.com/oaknational/Oak-Web-Application/commit/7e4594406cb7a346d7d5eeb744584677f5cf421d))
+* use programmeRefined for ks4 filter tracking ([dd8c7ad](https://github.com/oaknational/Oak-Web-Application/commit/dd8c7ad5058551e7e048967836d74a005d8c3f60))
+* use yearGroupSkug from state in accessed event tracking ([e423edb](https://github.com/oaknational/Oak-Web-Application/commit/e423edb7864ca0318b254e33d31f3d508a425d7d))
+
+
+### Features
+
+* add analytics provider to share page ([64fe011](https://github.com/oaknational/Oak-Web-Application/commit/64fe011733df160d68e952cf0281aa96a8d0fe4a))
+* add programmeAccessed call on view all units button ([9287f5f](https://github.com/oaknational/Oak-Web-Application/commit/9287f5f691a8ca4917e0fd9b5a23e3a80b186b66))
+* add tracking to bredcrumbs ([998846e](https://github.com/oaknational/Oak-Web-Application/commit/998846e13e75b71ca1f189729d5c4c9f8626e648))
+* replace unitOverviewAccessed with unitAccessed ([69e7496](https://github.com/oaknational/Oak-Web-Application/commit/69e74968c6c2e9e1b1dd08579f5a08670e986d96))
+* strengthen types for tracking ([65824ab](https://github.com/oaknational/Oak-Web-Application/commit/65824abb941bcaa24dbe34c09a96838f3b07d3ad))
+* track examboard and pathway filter events ([e657867](https://github.com/oaknational/Oak-Web-Application/commit/e6578673ddf28dedc9564537a0851d7ba2d116ef))
+* track unitAccessed from view unit button on lesson page ([b49d67e](https://github.com/oaknational/Oak-Web-Application/commit/b49d67ed2b72f7761a309ad10f77a2351e989e6d))
+* update avo branch ([ab11e49](https://github.com/oaknational/Oak-Web-Application/commit/ab11e4932f3710ca3e4134967b5f8b66f7916603))
+* update lessonAccessed event properties ([838ba60](https://github.com/oaknational/Oak-Web-Application/commit/838ba6031abac6ee876c5716be144047cab40e39))
+* update lessonAccessed event to handle triggers in and out of state ([1244b47](https://github.com/oaknational/Oak-Web-Application/commit/1244b472e7f5e28a37a83355082b79c000bb35a8))
+* update send instantly events ([ba9c04a](https://github.com/oaknational/Oak-Web-Application/commit/ba9c04a0e1a6edfe9b532668ddfad5b7f1ab39b6))
+* use lessonAccessed on unit page lesson list ([6e34ab9](https://github.com/oaknational/Oak-Web-Application/commit/6e34ab9d85695d104ec511e69a900dbc70c56e3b))
+* use programme state in breadcrumbs ([b496446](https://github.com/oaknational/Oak-Web-Application/commit/b496446ba0074e2704a58a7b4f720b9439a2acca))
+
 # [1.1218.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1217.0...v1.1218.0) (2026-09-30)
 
 
