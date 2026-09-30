@@ -10,6 +10,8 @@ import {
   OakHeading,
   OakAnchorTarget,
   OakFlex,
+  OakBreadcrumbWithoutHref,
+  OakBreadcrumb,
 } from "@oaknational/oak-components";
 import { format } from "date-fns";
 
@@ -37,14 +39,16 @@ export type AboutUsOaksImpactCaseStudyPageProps = {
   pageData: {
     caseStudy: OaksImpactCaseStudyPage["caseStudiesSection"]["caseStudies"][number];
     otherCaseStudies: OaksImpactCaseStudyPage["caseStudiesSection"]["caseStudies"];
-    isV2Enabled: boolean;
   };
   topNav: TopNavProps;
+  isCaseStudiesFeatEnabled: boolean;
 };
 
-const AboutUsOaksImpactCaseStudy: NextPage<
-  AboutUsOaksImpactCaseStudyPageProps
-> = ({ pageData: { caseStudy, otherCaseStudies, isV2Enabled }, topNav }) => {
+const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
+  pageData: { caseStudy, otherCaseStudies },
+  topNav,
+  isCaseStudiesFeatEnabled,
+}) => {
   const { setCurrentToastProps } = useOakNotificationsContext();
 
   const onCopyLink = () => {
@@ -62,6 +66,22 @@ const AboutUsOaksImpactCaseStudy: NextPage<
   };
 
   const title = caseStudy.title ?? caseStudy.video?.title ?? "";
+  const breadcrumbs: [...OakBreadcrumb[], OakBreadcrumbWithoutHref] = [
+    {
+      href: resolveOakHref({ page: "home" }),
+      text: "Home",
+    },
+    isCaseStudiesFeatEnabled
+      ? {
+          href: "/about-us/case-studies",
+          text: "Case studies",
+        }
+      : {
+          href: resolveOakHref({ page: "about-oaks-impact" }),
+          text: "Oak's impact",
+        },
+    { text: title },
+  ];
 
   return (
     <TeacherBrowseAnalyticsStoreProvider
@@ -80,19 +100,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                 <OakGrid $cg="spacing-16">
                   <OakGridArea $rowStart={1} $colSpan={12}>
                     <OakBox $pb="spacing-20">
-                      <OakBreadcrumbs
-                        breadcrumbs={[
-                          {
-                            href: resolveOakHref({ page: "home" }),
-                            text: "Home",
-                          },
-                          {
-                            href: "/about-us/oaks-impact",
-                            text: "Oak's impact",
-                          },
-                          { text: title },
-                        ]}
-                      />
+                      <OakBreadcrumbs breadcrumbs={breadcrumbs} />
                     </OakBox>
                     <OakHandDrawnHR
                       hrColor={"bg-neutral-stronger"}
@@ -112,8 +120,12 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                         "d MMMM y",
                       )}
                       onCopyLink={onCopyLink}
-                      summary={isV2Enabled ? caseStudy.summaryRaw : undefined}
-                      tag={isV2Enabled ? caseStudy.tag : undefined}
+                      summary={
+                        isCaseStudiesFeatEnabled
+                          ? caseStudy.summaryRaw
+                          : undefined
+                      }
+                      tag={isCaseStudiesFeatEnabled ? caseStudy.tag : undefined}
                     />
                   </OakGridArea>
                 </OakGrid>
@@ -144,7 +156,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                 </OakBox>
               )}
 
-              {isV2Enabled && (
+              {isCaseStudiesFeatEnabled && (
                 <>
                   {caseStudy.content && (
                     <OakFlex
@@ -232,7 +244,7 @@ export const getServerSideProps: GetServerSideProps<
   AboutUsOaksImpactCaseStudyPageProps,
   URLParams
 > = async (context) => {
-  const isV2Enabled = await isFeatureFlagEnabledServer(
+  const isCaseStudiesFeatEnabled = await isFeatureFlagEnabledServer(
     context.req.cookies,
     "case-studies-v2",
   );
@@ -263,12 +275,12 @@ export const getServerSideProps: GetServerSideProps<
       pageData: {
         caseStudy,
         otherCaseStudies,
-        isV2Enabled,
       },
       topNav,
+      isCaseStudiesFeatEnabled,
     },
   };
   return results;
 };
 
-export default AboutUsOaksImpactCaseStudy;
+export default AboutUsCaseStudy;
