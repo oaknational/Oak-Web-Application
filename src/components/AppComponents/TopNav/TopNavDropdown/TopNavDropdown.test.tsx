@@ -464,7 +464,8 @@ describe("TopNavDropdown", () => {
 
         const links = await screen.findAllByRole("link");
         expect(links[0]).toHaveTextContent("Plan a lesson");
-        expect(links[1]).toHaveTextContent("Blogs");
+        expect(links[1]).toHaveTextContent("Teach with Oak");
+        expect(links[2]).toHaveTextContent("Blogs");
       });
 
       it("calls onClose when clicking a guidance link", async () => {
