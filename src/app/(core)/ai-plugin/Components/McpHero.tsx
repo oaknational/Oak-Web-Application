@@ -69,6 +69,7 @@ export const McpHero = () => (
         <OakFlex
           $flexDirection={["column", "column", "row"]}
           $alignItems={["flex-start", "flex-start", "center"]}
+          $flexWrap="wrap"
           $gap={["spacing-32", "spacing-24", "spacing-16"]}
         >
           <OakFlex
