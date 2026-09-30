@@ -68,7 +68,6 @@ export const CaseStudiesSection = ({
                     getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? ""
                   }
                   aspectRatio="4/3"
-                  linkText={"Watch the video"}
                   cardWidth={"100%"}
                   tagName={caseStudy.tag ?? undefined}
                   tagBackground={
