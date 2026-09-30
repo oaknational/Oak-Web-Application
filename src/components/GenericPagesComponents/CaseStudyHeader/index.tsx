@@ -5,6 +5,7 @@ import {
   OakLink,
 } from "@oaknational/oak-components";
 import { PortableTextBlock } from "@portabletext/types";
+import upperFirst from "lodash/upperFirst";
 
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
@@ -33,7 +34,10 @@ export function CaseStudyHeader({
         $alignItems="flex-start"
       >
         {tag && (
-          <OakTagFunctional label={tag} $background="bg-decorative2-main" />
+          <OakTagFunctional
+            label={upperFirst(tag)}
+            $background="bg-decorative2-main"
+          />
         )}
         <OakHeading
           tag={headingLevel}
