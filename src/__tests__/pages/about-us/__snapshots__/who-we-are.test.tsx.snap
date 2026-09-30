@@ -371,8 +371,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 .c124 {
   position: relative;
+  overflow: hidden;
   background: #bef2bd;
   font-family: --var(google-font),Lexend,sans-serif;
+  overflow: hidden;
 }
 
 .c125 {
