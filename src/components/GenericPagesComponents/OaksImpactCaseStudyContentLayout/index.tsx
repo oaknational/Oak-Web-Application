@@ -9,10 +9,10 @@ export function OaksImpactCaseStudyContentLayout({
   children,
 }: Readonly<OaksImpactCaseStudyContentLayoutProps>) {
   return (
-    <OakGrid $cg="spacing-16">
+    <OakGrid $cg="spacing-16" $pt={["spacing-56", "spacing-80", "spacing-100"]}>
       {menu && (
         <OakGridArea $rowStart={1} $colSpan={[12, 3, 2]}>
-          <OakBox>{menu}</OakBox>
+          <OakBox $height="100%">{menu}</OakBox>
         </OakGridArea>
       )}
       <OakGridArea
