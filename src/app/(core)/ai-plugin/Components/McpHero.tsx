@@ -19,7 +19,7 @@ const McpComingSoon = () => (
     $alignItems="center"
     $gap="spacing-12"
     $ph="spacing-12"
-    $height="spacing-48"
+    $minHeight="spacing-48"
     $background="bg-decorative1-subdued"
     $borderRadius="border-radius-m"
   >

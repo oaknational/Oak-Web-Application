@@ -1,4 +1,4 @@
-import { within } from "@testing-library/react";
+import { act, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { McpView } from "./McpView";
@@ -23,6 +23,10 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 const render = renderWithProviders();
 
 describe("McpView", () => {
+  afterEach(() => {
+    globalThis.history.replaceState(null, "", "/");
+  });
+
   it("renders the hero as the only h1", () => {
     const { getAllByRole } = render(<McpView />);
 
@@ -135,6 +139,36 @@ describe("McpView", () => {
     expect(
       within(section).getByText(mcpMoreAssistantsNote),
     ).toBeInTheDocument();
+  });
+
+  it("opens the tab named in the URL", () => {
+    globalThis.history.replaceState(null, "", "#school-or-trust");
+    const { getByRole } = render(<McpView />);
+
+    const section = getByRole("region", { name: mcpAssistants.title });
+
+    expect(
+      within(section).getByRole("link", { name: "School or trust" }),
+    ).toHaveAttribute("aria-current", "page");
+  });
+
+  it("puts the chosen tab in the URL, and follows the back button", async () => {
+    const user = userEvent.setup({ delay: null });
+    const { getByRole } = render(<McpView />);
+
+    const section = getByRole("region", { name: mcpAssistants.title });
+    await user.click(
+      within(section).getByRole("link", { name: "School or trust" }),
+    );
+    expect(globalThis.location.hash).toBe("#school-or-trust");
+
+    act(() => {
+      globalThis.history.replaceState(null, "", "#individual-teacher");
+      globalThis.dispatchEvent(new PopStateEvent("popstate"));
+    });
+    expect(
+      within(section).getByRole("link", { name: "Individual teacher" }),
+    ).toHaveAttribute("aria-current", "page");
   });
 
   it("offers ChatGPT and Claude as assistants, each with its own Try link", () => {

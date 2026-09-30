@@ -1,5 +1,5 @@
 "use client";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import {
   OakBox,
   OakFlex,
@@ -131,9 +131,24 @@ const McpSchoolSetup = () => (
   </>
 );
 
+const audienceFromHash = (): McpAudience =>
+  mcpAudiences.find(({ id }) => `#${id}` === globalThis.location.hash)?.label ??
+  mcpAudiences[0].label;
+
 export const McpAssistants = () => {
   const [audience, setAudience] = useState<McpAudience>(mcpAudiences[0].label);
   const activeId = mcpAudiences.find(({ label }) => label === audience)?.id;
+
+  useEffect(() => {
+    const syncWithUrl = () => setAudience(audienceFromHash());
+    syncWithUrl();
+    globalThis.addEventListener("popstate", syncWithUrl);
+    globalThis.addEventListener("hashchange", syncWithUrl);
+    return () => {
+      globalThis.removeEventListener("popstate", syncWithUrl);
+      globalThis.removeEventListener("hashchange", syncWithUrl);
+    };
+  }, []);
 
   return (
     <McpSection
@@ -158,6 +173,8 @@ export const McpAssistants = () => {
             }))}
             onTabClick={(tab, event) => {
               event.preventDefault();
+              const id = mcpAudiences.find(({ label }) => label === tab)?.id;
+              globalThis.history.pushState(null, "", `#${id}`);
               setAudience(tab);
             }}
           />
