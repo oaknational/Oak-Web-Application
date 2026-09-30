@@ -152,9 +152,11 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
           </NewGutterMaxWidth>
 
           <CaseStudiesSection
-            title="Case studies"
+            title="Explore more case studies"
             caseStudies={otherCaseStudies}
-            showViewAllLink={isCaseStudiesFeatEnabled}
+            showViewAllLink={
+              otherCaseStudies.length > 3 && isCaseStudiesFeatEnabled
+            }
           />
         </OakBox>
       </Layout>
