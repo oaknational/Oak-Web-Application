@@ -1,4 +1,4 @@
-import { act, within } from "@testing-library/react";
+import { act, fireEvent, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { McpView } from "./McpView";
@@ -170,6 +170,17 @@ describe("McpView", () => {
     expect(
       within(section).getByRole("link", { name: "Individual teacher" }),
     ).toHaveAttribute("aria-current", "page");
+  });
+
+  it("leaves Ctrl/Cmd-clicks on a tab to the browser", () => {
+    const { getByRole } = render(<McpView />);
+
+    const section = getByRole("region", { name: mcpAssistants.title });
+    const tab = within(section).getByRole("link", { name: "School or trust" });
+
+    expect(fireEvent.click(tab, { ctrlKey: true })).toBe(true);
+    expect(fireEvent.click(tab, { metaKey: true })).toBe(true);
+    expect(fireEvent.click(tab)).toBe(false);
   });
 
   it("offers ChatGPT and Claude as assistants, each with its own Try link", () => {

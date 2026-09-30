@@ -175,6 +175,11 @@ export const McpAssistants = () => {
               href: `#${id}`,
             }))}
             onTabClick={(tab, event) => {
+              const { metaKey, ctrlKey, shiftKey, altKey } =
+                event as MouseEvent;
+              if (metaKey || ctrlKey || shiftKey || altKey) {
+                return;
+              }
               event.preventDefault();
               const id = mcpAudiences.find(({ label }) => label === tab)?.id;
               globalThis.history.pushState(null, "", `#${id}`);
