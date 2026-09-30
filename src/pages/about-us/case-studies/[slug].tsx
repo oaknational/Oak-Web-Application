@@ -114,7 +114,7 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                   >
                     <CaseStudyHeader
                       title={title}
-                      headingLevel="h3"
+                      headingLevel="h1"
                       publishedDate={format(
                         new Date(caseStudy.publishedAt),
                         "d MMMM y",
@@ -172,20 +172,23 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                           $alignItems="flex-start"
                         >
                           <OakFlex
+                            $as="h2"
                             $alignItems="flex-start"
                             $flexDirection="column"
                             $gap="spacing-8"
                           >
                             {contentBlock.label && (
-                              <OakTagFunctional
-                                label={contentBlock.label}
-                                $background="bg-decorative2-main"
-                              />
+                              <>
+                                <OakTagFunctional
+                                  label={contentBlock.label}
+                                  $background="bg-decorative2-main"
+                                />{" "}
+                              </>
                             )}
                             <OakAnchorTarget
                               id={`#${contentBlock.anchorSlug?.current}`}
                             />
-                            <OakHeading tag="h2" $font="heading-4">
+                            <OakHeading tag="div" $font="heading-4">
                               {contentBlock.heading}
                             </OakHeading>
                           </OakFlex>

@@ -740,11 +740,11 @@ exports[`pages/about-us/case-studies/[slug].tsx renders title 1`] = `
                       <div
                         class="sc-aXZVg sc-gEvEer xdoGL gSlSXH"
                       >
-                        <h3
+                        <h1
                           class="sc-eldPxv cTFVAh"
                         >
                           Test Video
-                        </h3>
+                        </h1>
                         <div
                           class="sc-aXZVg sc-gEvEer jPvJsJ feoULz"
                         >
@@ -2878,11 +2878,11 @@ exports[`pages/about-us/case-studies/[slug].tsx renders written case study 1`] =
                             primary
                           </div>
                         </div>
-                        <h3
+                        <h1
                           class="sc-eldPxv cTFVAh"
                         >
                           Test
-                        </h3>
+                        </h1>
                         <div
                           class="sc-aXZVg sc-gEvEer jPvJsJ feoULz"
                         >
@@ -3096,7 +3096,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders written case study 1`] =
                     <div
                       class="sc-aXZVg sc-gEvEer jPvJsJ blEyxD"
                     >
-                      <div
+                      <h2
                         class="sc-aXZVg sc-gEvEer jPvJsJ gbtScN"
                       >
                         <div
@@ -3108,16 +3108,17 @@ exports[`pages/about-us/case-studies/[slug].tsx renders written case study 1`] =
                             TEST_LABEL_1
                           </div>
                         </div>
+                         
                         <span
                           class="sc-hZDyAQ doIoaN"
                           id="#test-anchor-slug-1"
                         />
-                        <h2
+                        <div
                           class="sc-eldPxv hOapSF"
                         >
                           TEST_HEADING_1
-                        </h2>
-                      </div>
+                        </div>
+                      </h2>
                       <p
                         class="sc-ikkxIA sc-82983132-0 cFDVg lcICdz"
                       >
@@ -3127,7 +3128,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders written case study 1`] =
                     <div
                       class="sc-aXZVg sc-gEvEer jPvJsJ blEyxD"
                     >
-                      <div
+                      <h2
                         class="sc-aXZVg sc-gEvEer jPvJsJ gbtScN"
                       >
                         <div
@@ -3139,16 +3140,17 @@ exports[`pages/about-us/case-studies/[slug].tsx renders written case study 1`] =
                             TEST_LABEL_2
                           </div>
                         </div>
+                         
                         <span
                           class="sc-hZDyAQ doIoaN"
                           id="#test-anchor-slug-2"
                         />
-                        <h2
+                        <div
                           class="sc-eldPxv hOapSF"
                         >
                           TEST_HEADING_2
-                        </h2>
-                      </div>
+                        </div>
+                      </h2>
                       <p
                         class="sc-ikkxIA sc-82983132-0 cFDVg lcICdz"
                       >
