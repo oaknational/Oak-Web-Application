@@ -39,9 +39,9 @@ export function ProgrammeUnitList({
   const onClick = (unit: Unit) => {
     unitAccessed({
       componentType: "unit_info_button",
-      unitName: unit.title,
-      unitSlug: unit.slug,
       unitContext: {
+        unitName: unit.title,
+        unitSlug: unit.slug,
         subjectTitle: unit.subject,
         subjectSlug: unit.subject_slug,
         yearGroupName: `Year ${unit.year}`,

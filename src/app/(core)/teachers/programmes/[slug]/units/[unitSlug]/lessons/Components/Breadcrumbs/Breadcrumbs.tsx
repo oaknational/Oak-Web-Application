@@ -8,10 +8,7 @@ import {
 import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
-import {
-  LessonState,
-  UnitState,
-} from "@/context/TeacherBrowseAnalytics/teacherBrowseAnalytics.types";
+import { LessonState } from "@/context/TeacherBrowseAnalytics/teacherBrowseAnalytics.types";
 
 type BreadcrumbsProps = { subjectPhaseSlug: string } & (
   | {
@@ -47,12 +44,10 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
     optionalPfs += `, ${examBoardTitle}`;
   }
 
-  const trackUnitAccessed = (state: UnitState) => {
+  const trackUnitAccessed = () => {
     unitAccessed({
       componentType: "breadcrumb",
       navigationType: "broaden",
-      unitName: state.title,
-      unitSlug: state.slug,
     });
   };
 
@@ -97,7 +92,7 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
         unitSlug: lessonState.unit.slug,
         programmeSlug: lessonState.programmeSlug,
       }),
-      onClick: () => trackUnitAccessed(lessonState.unit),
+      onClick: trackUnitAccessed,
     });
 
     if (mode === "lesson") {

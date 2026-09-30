@@ -329,9 +329,9 @@ describe("TeacherBrowseAnalyticsStore", () => {
 
     store.getState().track.unitAccessed({
       componentType: ComponentType.UNIT_SEQUENCE_TAB,
-      unitName: "Cells",
-      unitSlug: "cells",
       unitContext: {
+        unitName: "Cells",
+        unitSlug: "cells",
         keyStageTitle: "Key Stage 4" as KeyStageTitleValueType,
         keyStageSlug: "key-stage-4",
         tierName: undefined,

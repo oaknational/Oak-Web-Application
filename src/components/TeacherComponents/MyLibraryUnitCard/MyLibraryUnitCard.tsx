@@ -89,9 +89,9 @@ const UnitCardHeader = ({
           onClick={() =>
             track.unitAccessed({
               componentType: "unit_card",
-              unitName: props.unitTitle,
-              unitSlug: props.unitSlug,
               unitContext: {
+                unitName: props.unitTitle,
+                unitSlug: props.unitSlug,
                 yearGroupName: props.year,
                 yearGroupSlug: yearSlug,
                 keyStageTitle: props.keyStageTitle,

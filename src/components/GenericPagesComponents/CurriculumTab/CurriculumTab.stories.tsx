@@ -17,7 +17,9 @@ const meta = {
   argTypes: {},
   parameters: {
     nextjs: {
-      appDirectory: false,
+      // SubjectPhasePicker always calls useRouter from next/navigation,
+      // so the app router mocks must exist.
+      appDirectory: true,
     },
   },
 } satisfies Meta<typeof Component>;
