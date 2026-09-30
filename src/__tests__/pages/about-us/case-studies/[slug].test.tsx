@@ -1,3 +1,5 @@
+import { GetServerSidePropsContext } from "next/dist/types";
+
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import CMSClient from "@/node-lib/cms";
@@ -8,7 +10,9 @@ import {
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 import { getFallbackBlockingConfig } from "@/node-lib/isr";
 import { mockPortableTextBlocks } from "@/fixtures/curriculum/programmeSequenceYearData.fixtures";
-import AboutUsCaseStudy from "@/pages/about-us/case-studies/[slug]";
+import AboutUsCaseStudy, {
+  getServerSideProps,
+} from "@/pages/about-us/case-studies/[slug]";
 
 let mockShouldSkipInitialBuild = false;
 
@@ -236,6 +240,35 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
     expect(container).toHaveTextContent("TEST_CONTENT_1");
     expect(container).toHaveTextContent("TEST_HEADING_2");
     expect(container).toHaveTextContent("TEST_CONTENT_2");
+  });
+
+  describe("getServerSideProps", () => {
+    it("returns notFound when the slug is missing", async () => {
+      const propsResult = await getServerSideProps({
+        req: {
+          cookies: {},
+        },
+      } as GetServerSidePropsContext<{ slug: string }>);
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
+      });
+    });
+
+    it("returns notFound when CMS returns null", async () => {
+      mockCMSClient.oaksImpactCaseStudyPage.mockResolvedValueOnce(null);
+
+      const propsResult = await getServerSideProps({
+        req: {
+          cookies: {},
+        },
+        params: { slug: "test-slug-1" },
+      } as GetServerSidePropsContext<{ slug: string }>);
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
+      });
+    });
   });
 
   // describe("getStaticProps", () => {
