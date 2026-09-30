@@ -22,10 +22,28 @@ import { McpExternalLink } from "./McpExternalLink";
 import {
   mcpHowItWorks,
   mcpIntro,
+  mcpLicence,
   mcpOutputWarning,
   mcpResponsibleUse,
   mcpSupport,
 } from "@/app/(core)/ai-plugin/mcpContent";
+
+const McpLicence = () => (
+  <OakFlex $flexDirection="column" $gap="spacing-16">
+    <OakBox $font="body-2">
+      {mcpLicence.bodyBefore}
+      <McpExternalLink href={mcpLicence.licenceLink.href}>
+        {mcpLicence.licenceLink.label}
+      </McpExternalLink>
+      {mcpLicence.bodyMiddle}
+      <McpExternalLink href={mcpLicence.termsLink.href}>
+        {mcpLicence.termsLink.label}
+      </McpExternalLink>
+      {mcpLicence.bodyAfter}
+    </OakBox>
+    <OakP $font="body-2">{mcpLicence.ukOnly}</OakP>
+  </OakFlex>
+);
 
 /**
  * A titled block of body copy, e.g. "Check the source" followed by a
@@ -91,6 +109,13 @@ export const McpView = () => (
           ))}
         </McpSection>
 
+        <OakInlineBanner
+          isOpen
+          type="info"
+          message={mcpOutputWarning}
+          $width="100%"
+        />
+
         <OakImage
           src="/images/mcp/using-oaks-content.svg"
           alt=""
@@ -102,26 +127,29 @@ export const McpView = () => (
         />
 
         <McpSection title={mcpHowItWorks.title} id="how-it-works">
-          {mcpHowItWorks.groups.map((group) => (
-            <OakBox key={group.title}>
-              <OakHeading tag="h3" $font="body-2-bold" $mb="spacing-20">
-                {group.title}
-              </OakHeading>
-              <OakUL $font="body-2">
-                {group.items.map((item) => (
-                  <OakLI key={item} $mb="spacing-8">
-                    {item}
-                  </OakLI>
-                ))}
-              </OakUL>
-            </OakBox>
+          {mcpHowItWorks.groups.map((group, index) => (
+            <Fragment key={group.title}>
+              <OakBox>
+                <OakHeading tag="h3" $font="body-2-bold" $mb="spacing-20">
+                  {group.title}
+                </OakHeading>
+                <OakUL $font="body-2">
+                  {group.items.map((item) => (
+                    <OakLI key={item} $mb="spacing-8">
+                      {item}
+                    </OakLI>
+                  ))}
+                </OakUL>
+              </OakBox>
+              {index === 0 && <McpLicence />}
+            </Fragment>
           ))}
 
           <OakFlex $flexDirection="column" $gap="spacing-4">
             <OakHeading tag="h3" $font="body-2-bold">
               {mcpSupport.title}
             </OakHeading>
-            <OakP $font="body-2">
+            <OakBox $font="body-2">
               {mcpSupport.bodyBefore}
               {mcpSupport.links.map((link, index) => (
                 <Fragment key={link.label}>
@@ -132,16 +160,9 @@ export const McpView = () => (
                 </Fragment>
               ))}
               {mcpSupport.bodyAfter}
-            </OakP>
+            </OakBox>
           </OakFlex>
         </McpSection>
-
-        <OakInlineBanner
-          isOpen
-          type="info"
-          message={mcpOutputWarning}
-          $width="100%"
-        />
       </OakFlex>
     </OakMaxWidth>
 

@@ -1,10 +1,13 @@
 "use client";
+import { Fragment } from "react";
 import {
   OakBox,
   OakFlex,
   OakHeading,
   OakImage,
   OakP,
+  OakSpan,
+  OakTagFunctional,
 } from "@oaknational/oak-components";
 
 import { McpTryButton } from "./McpTryButton";
@@ -32,7 +35,7 @@ export const McpHero = () => (
           {mcpHero.title}
         </OakHeading>
         <OakP $font="body-1">{mcpHero.body}</OakP>
-        <OakFlex $gap="spacing-16" $flexWrap="wrap">
+        <OakFlex $gap="spacing-16" $flexWrap="wrap" $alignItems="center">
           {mcpAssistants.items.map((assistant) => (
             <McpTryButton
               key={assistant.name}
@@ -40,8 +43,28 @@ export const McpHero = () => (
               href={assistant.ctaHref}
             />
           ))}
+          <OakFlex
+            $alignItems="center"
+            $gap="spacing-8"
+            $pa="spacing-8"
+            $background="bg-decorative1-very-subdued"
+            $borderRadius="border-radius-s"
+          >
+            <OakTagFunctional
+              label={mcpHero.comingSoon.label}
+              $background="bg-decorative5-main"
+              useSpan
+            />
+            <OakP $font="body-2">
+              {mcpHero.comingSoon.tools.map((tool, index) => (
+                <Fragment key={tool}>
+                  {index > 0 && " and "}
+                  <OakSpan $font="body-2-bold">{tool}</OakSpan>
+                </Fragment>
+              ))}
+            </OakP>
+          </OakFlex>
         </OakFlex>
-        <OakP $font="body-2-bold">{mcpHero.note}</OakP>
       </OakFlex>
       <OakImage
         src="/images/mcp/hero-using-ai.svg"

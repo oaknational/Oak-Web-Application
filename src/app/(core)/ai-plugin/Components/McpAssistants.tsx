@@ -1,21 +1,28 @@
 "use client";
+import { useState } from "react";
 import {
   OakBox,
   OakFlex,
   OakHeading,
   OakIcon,
+  OakInlineBanner,
   OakLI,
   OakP,
+  OakTabs,
 } from "@oaknational/oak-components";
 import type { PortableTextComponents } from "@portabletext/react";
 
+import { McpExternalLink } from "./McpExternalLink";
 import { McpSection } from "./McpSection";
 import { McpTryButton } from "./McpTryButton";
 
 import {
   mcpAssistants,
+  mcpAudiences,
   mcpMoreAssistantsNote,
+  mcpSchoolSetup,
   type McpAssistant,
+  type McpAudience,
 } from "@/app/(core)/ai-plugin/mcpContent";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
@@ -88,17 +95,86 @@ const McpAssistantFlow = ({
   </OakFlex>
 );
 
-export const McpAssistants = () => (
-  <McpSection title={mcpAssistants.title} id="choose-your-ai-assistant">
-    <OakP $font="body-2">{mcpAssistants.body}</OakP>
-    {mcpAssistants.items.map((assistant, index) => (
-      <OakFlex key={assistant.name} $flexDirection="column" $gap="spacing-24">
-        {index > 0 && (
-          <OakBox $bt="border-solid-m" $borderColor="border-neutral-lighter" />
-        )}
-        <McpAssistantFlow assistant={assistant} />
+const Divider = () => (
+  <OakBox $bt="border-solid-m" $borderColor="border-neutral-lighter" />
+);
+
+const McpIndividualSetup = () =>
+  mcpAssistants.items.map((assistant, index) => (
+    <OakFlex key={assistant.name} $flexDirection="column" $gap="spacing-24">
+      {index > 0 && <Divider />}
+      <McpAssistantFlow assistant={assistant} />
+    </OakFlex>
+  ));
+
+const McpSchoolSetup = () => (
+  <>
+    {mcpSchoolSetup.intro.map((paragraph) => (
+      <OakP key={paragraph} $font="body-2">
+        {paragraph}
+      </OakP>
+    ))}
+    {mcpSchoolSetup.providers.map((provider, index) => (
+      <OakFlex key={provider.name} $flexDirection="column" $gap="spacing-24">
+        {index > 0 && <Divider />}
+        <OakFlex $flexDirection="column" $gap="spacing-16">
+          <OakHeading tag="h3" $font="heading-6">
+            {provider.name}
+          </OakHeading>
+          <OakP $font="body-2">{provider.body}</OakP>
+          <OakBox $font="body-2">
+            {provider.guideBefore}
+            <McpExternalLink href={provider.guideHref}>
+              {provider.guideLabel}
+            </McpExternalLink>
+            .
+          </OakBox>
+        </OakFlex>
       </OakFlex>
     ))}
-    <OakP $font="body-3">{mcpMoreAssistantsNote}</OakP>
-  </McpSection>
+  </>
 );
+
+/**
+ * The tabs are in-page links rather than buttons: OakTabs only marks the
+ * selected tab for assistive technology (`aria-current`) on its link variant.
+ */
+export const McpAssistants = () => {
+  const [audience, setAudience] = useState<McpAudience>(mcpAudiences[0].label);
+  const activeId = mcpAudiences.find(({ label }) => label === audience)?.id;
+
+  return (
+    <McpSection title={mcpAssistants.title} id="choose-your-ai-tool">
+      <OakP $font="body-2">{mcpAssistants.body}</OakP>
+      <OakFlex>
+        <OakTabs<McpAudience>
+          sizeVariant="default"
+          colorVariant="white"
+          activeTab={audience}
+          tabs={mcpAudiences.map(({ label, id }) => ({
+            label,
+            type: "link" as const,
+            href: `#${id}`,
+          }))}
+          onTabClick={(tab, event) => {
+            event.preventDefault();
+            setAudience(tab);
+          }}
+        />
+      </OakFlex>
+      <OakFlex id={activeId} $flexDirection="column" $gap="spacing-24">
+        {audience === "School or trust" ? (
+          <McpSchoolSetup />
+        ) : (
+          <McpIndividualSetup />
+        )}
+      </OakFlex>
+      <OakInlineBanner
+        isOpen
+        type="info"
+        message={mcpMoreAssistantsNote}
+        $width="100%"
+      />
+    </McpSection>
+  );
+};

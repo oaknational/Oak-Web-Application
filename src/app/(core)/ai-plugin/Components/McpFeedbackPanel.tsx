@@ -42,7 +42,7 @@ export const McpFeedbackPanel = () => (
             href={mcpFeedback.ctaHref}
             target="_blank"
             rel="noreferrer"
-            iconName="arrow-right"
+            iconName="external"
             isTrailingIcon
           >
             {mcpFeedback.ctaLabel}
