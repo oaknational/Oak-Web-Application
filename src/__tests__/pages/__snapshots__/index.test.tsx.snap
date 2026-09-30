@@ -2488,6 +2488,21 @@ exports[`Teachers Page Page component renders 1`] = `
                         >
                           <a
                             class="sc-fHjqPf kEMwfg"
+                            href="/teachers/teach-with-oak"
+                            variant="secondary"
+                          >
+                            <span
+                              class="sc-eqUAAy iGfTGj"
+                            >
+                              Teach with Oak
+                            </span>
+                          </a>
+                        </li>
+                        <li
+                          class="sc-fPXMVe jFJaNg"
+                        >
+                          <a
+                            class="sc-fHjqPf kEMwfg"
                             href="https://labs.thenational.academy"
                             target="_blank"
                             variant="secondary"
@@ -3092,7 +3107,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 </div>
               </div>
               <span
-                class="sc-aXZVg kvjdhA sc-9e5378a8-0 gLpQrK"
+                class="sc-aXZVg kvjdhA sc-1e96d27d-0 heofYs"
                 data-percy-hide="contents"
               >
                 <img

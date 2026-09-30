@@ -426,6 +426,11 @@ exports[`core layout renders correctly 1`] = `
       children
     </styled.div>
   </main>
-  <LayoutSiteFooter />
+  <TeacherBrowseAnalyticsStoreProvider
+    accessLevel="homepage"
+    programmeState={null}
+  >
+    <LayoutSiteFooter />
+  </TeacherBrowseAnalyticsStoreProvider>
 </React.Fragment>
 `;
