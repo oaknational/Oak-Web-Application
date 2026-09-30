@@ -36,8 +36,6 @@ type OnboardingProps = {
   name: string;
 };
 
-type LinkVariant = "primary" | "secondary";
-
 type BaseProps = {
   geoRestricted: boolean;
   loginRequired: boolean;
@@ -48,10 +46,6 @@ type BaseProps = {
 };
 
 type LoginRequiredLinkProps = BaseProps & OakLinkProps;
-
-const getLinkVariant = (variant: LinkVariant) => {
-  return variant === "primary" ? OakLink : OakSecondaryLink;
-};
 
 const LoginRequiredLink = (props: LoginRequiredLinkProps) => {
   const {
@@ -98,44 +92,49 @@ const LoginRequiredLink = (props: LoginRequiredLinkProps) => {
     showGeoBlocked,
   ]);
 
-  const LinkVariant = getLinkVariant(variant);
-
   switch (linkState) {
     case "onboarding":
       return (
-        <LinkVariant
+        <OakLink
+          type={variant}
           href={
             resolveOakHref({ page: "onboarding" }) + `?returnTo=${pathName}`
           }
           {...overrideProps}
         >
           {onboardingProps?.name ?? "Complete sign up to continue"}
-        </LinkVariant>
+        </OakLink>
       );
     case "signup":
       return (
         <SignUpButton forceRedirectUrl={`/onboarding?returnTo=${pathName}`}>
-          <LinkVariant {...overrideProps} href={"#"}>
+          <OakLink {...overrideProps} type={variant} href={"#"}>
             {signUpProps?.name ?? "Sign up"}
-          </LinkVariant>
+          </OakLink>
         </SignUpButton>
       );
     case "action":
     case "georestricted":
       return (
-        <LinkVariant
+        <OakLink
+          type={variant}
           href={actionProps?.href}
           aria-disabled={linkState === "georestricted"}
           {...overrideProps}
         >
           {actionProps?.name}
-        </LinkVariant>
+        </OakLink>
       );
     case "loading":
       return (
-        <LinkVariant {...overrideProps} aria-disabled="true" aria-busy="true">
+        <OakLink
+          {...overrideProps}
+          type={variant}
+          aria-disabled="true"
+          aria-busy="true"
+        >
           {actionProps?.name}
-        </LinkVariant>
+        </OakLink>
       );
     default:
       return null;
