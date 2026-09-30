@@ -6,7 +6,7 @@ import {
   OakHeading,
   OakP,
   OakPrimaryButton,
-  OakSecondaryLink,
+  OakLink,
 } from "@oaknational/oak-components";
 
 import ScreenReaderOnly from "../ScreenReaderOnly";
@@ -59,12 +59,13 @@ const PostListUpcomingWebinarListItem: FC<
           $font={["heading-6", "heading-5"]}
           $mt={"spacing-8"}
         >
-          <OakSecondaryLink
+          <OakLink
+            variant="secondary"
             {...primaryTargetProps}
             href={resolveOakHref({ page: "webinar-single", webinarSlug: slug })}
           >
             {title}
-          </OakSecondaryLink>
+          </OakLink>
         </OakHeading>
         <OakP $mt="spacing-8">
           <LineClamp lines={2}>{summary}</LineClamp>

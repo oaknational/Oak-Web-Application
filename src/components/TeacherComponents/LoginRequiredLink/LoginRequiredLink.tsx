@@ -3,7 +3,6 @@ import {
   OakIconName,
   OakLink,
   OakLinkProps,
-  OakSecondaryLink,
 } from "@oaknational/oak-components";
 import { useMemo } from "react";
 import { usePathname } from "next/navigation";

@@ -2,7 +2,7 @@ import {
   OakBox,
   OakFlex,
   OakHeading,
-  OakSecondaryLink,
+  OakLink,
 } from "@oaknational/oak-components";
 import React from "react";
 
@@ -40,13 +40,14 @@ export function CurricTimetablingYearCard({
           {yearTitle}
         </OakHeading>
         {timetablingUrl && (
-          <OakSecondaryLink
+          <OakLink
+            variant="secondary"
             href={timetablingUrl}
             iconName="external"
             isTrailingIcon
           >
             Map to school timetable
-          </OakSecondaryLink>
+          </OakLink>
         )}
       </OakFlex>
       {yearSubheading && (

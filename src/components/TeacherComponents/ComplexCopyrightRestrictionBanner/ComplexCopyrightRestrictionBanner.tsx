@@ -3,7 +3,6 @@ import { SignUpButton } from "@clerk/nextjs";
 import {
   OakLink,
   OakP,
-  OakSecondaryLink,
   OakSpan,
   OakInlineBanner,
   OakSmallTertiaryInvertedButton,
@@ -79,7 +78,8 @@ const SignedOutCopyrightBanner = ({
           to view and download resources from this {isUnit ? "unit" : "lesson"},
           you’ll need to {isGeorestricted && `be in the UK and `}
           {showOnboardingLink ? (
-            <OakSecondaryLink
+            <OakLink
+              variant="secondary"
               data-testid="copyright-banner-onboarding-link"
               href={resolveOakHref({
                 page: "onboarding",
@@ -87,15 +87,16 @@ const SignedOutCopyrightBanner = ({
               })}
             >
               complete sign up.
-            </OakSecondaryLink>
+            </OakLink>
           ) : (
             <SignUpButton forceRedirectUrl={`/onboarding?returnTo=${returnTo}`}>
-              <OakSecondaryLink
+              <OakLink
+                variant="secondary"
                 data-testid="copyright-banner-signin-link"
                 element="button"
               >
                 sign in.
-              </OakSecondaryLink>
+              </OakLink>
             </SignUpButton>
           )}
         </OakP>

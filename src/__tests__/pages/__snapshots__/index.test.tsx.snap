@@ -1676,7 +1676,7 @@ exports[`Teachers Page Page component renders 1`] = `
                     class="sc-aXZVg sc-dAbbOL lgAxeN eZDdgy"
                   >
                     <a
-                      class="sc-fHjqPf kEMwfg sc-fBdRDi"
+                      class="sc-fHjqPf kEMwfg"
                       href="/webinars"
                     >
                       <span
@@ -1690,7 +1690,7 @@ exports[`Teachers Page Page component renders 1`] = `
                     class="sc-aXZVg sc-dAbbOL eUsGfA eZDdgy"
                   >
                     <a
-                      class="sc-fHjqPf kEMwfg sc-fBdRDi"
+                      class="sc-fHjqPf kEMwfg"
                       href="/blog"
                     >
                       <span
@@ -1865,7 +1865,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-eldPxv dQwkSK"
                         >
                           <a
-                            class="sc-fHjqPf kEMwfg sc-fBdRDi"
+                            class="sc-fHjqPf kEMwfg"
                             href="/blog/some-blog-post"
                             title="Some blog post"
                           >
@@ -2065,7 +2065,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-eldPxv dQwkSK"
                         >
                           <a
-                            class="sc-fHjqPf kEMwfg sc-fBdRDi"
+                            class="sc-fHjqPf kEMwfg"
                             href="/blog/some-other-post"
                             title="Some other post"
                           >
