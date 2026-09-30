@@ -112,7 +112,7 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
             programmeSlug: lessonState.programmeSlug,
             lessonSlug: lessonState.lesson.slug,
           }),
-          onClick: trackLessonAccessed,
+          onClick: () => trackLessonAccessed(lessonState.lesson),
         },
         {
           text: `${mode[0]?.toUpperCase()}${mode.slice(1)}`,
