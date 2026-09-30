@@ -5,14 +5,14 @@ import {
   UnitHeaderNavFooterProps,
 } from "./UnitHeaderNavFooter";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const defaultProps: UnitHeaderNavFooterProps = {
   backgroundColorLevel: 3,
   viewHref: "testUrl",
 };
 
-const render = renderWithTheme;
+const render = renderWithProviders();
 
 const createDownloadButton = () =>
   jest.fn(() => <button>action button</button>);
@@ -46,7 +46,7 @@ describe("UnitHeaderNavFooter", () => {
       <UnitHeaderNavFooter {...defaultProps} downloadButton={downloadButton} />,
     );
 
-    const actionButton = screen.getByRole("button");
+    const actionButton = screen.getByRole("button", { name: "action button" });
     expect(actionButton).toBeInTheDocument();
     expect(actionButton).toHaveTextContent("action button");
     expect(downloadButton).toHaveBeenCalledWith(false);
