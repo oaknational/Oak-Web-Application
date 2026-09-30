@@ -1,10 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import type { PageSearchParms } from "../programmes/[slug]/[tab]/page";
-
 import { TeachWithOakView } from "./components/TeachWithOakView";
-import { getReturnToLessonLink } from "./getReturnToLessonLink";
 
 import withPageErrorHandling from "@/hocs/withPageErrorHandling";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
@@ -19,9 +16,7 @@ export const metadata: Metadata = {
   },
 };
 
-const InnerTeachWithOakPage = async (props: {
-  searchParams?: Promise<PageSearchParms>;
-}) => {
+const InnerTeachWithOakPage = async () => {
   const isEnabled = await getFeatureFlagValue(
     "teachers-teach-with-oak",
     "string",
@@ -31,14 +26,12 @@ const InnerTeachWithOakPage = async (props: {
     return notFound();
   }
 
-  const query = await props.searchParams;
-
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={null}
       accessLevel="teach_with_oak"
     >
-      <TeachWithOakView backToLessonLink={getReturnToLessonLink({ query })} />
+      <TeachWithOakView />
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };

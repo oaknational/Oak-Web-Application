@@ -4,6 +4,8 @@ import { PostHogProvider } from "posthog-js/react";
 
 import { MaybeTeachWithOakCard } from "./TeachWithOakCard";
 
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
+
 /** Stubs the PostHog client so the card's flag check is deterministic in Storybook. */
 const withFeatureFlagVariant = (variant: string): Decorator => {
   const client = {
@@ -22,8 +24,13 @@ const meta = {
   title: "App/Programmes/Units/Lessons/TeachWithOakCard",
   component: MaybeTeachWithOakCard,
   tags: ["autodocs"],
-  decorators: [withFeatureFlagVariant("teacher-tip")],
+  decorators: [
+    withFeatureFlagVariant("teacher-tip"),
+    TeacherBrowseAnalyticsDecorator,
+  ],
   args: {
+    lessonName: "Lesson Name",
+    unitName: "Unit Name",
     returnTo:
       "/teachers/programmes/maths-secondary-year-7/units/adding-and-subtracting/lessons/adding-integers",
   },

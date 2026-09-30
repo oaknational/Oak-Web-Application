@@ -1,10 +1,11 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { waitFor } from "@testing-library/react";
 
 import useTeachWithOakDownload from "./useTeachWithOakDownload";
 
 import { createTeachWithOakDownloadLink } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink";
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import type { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { renderHookWithProviders } from "@/__tests__/__helpers__/renderWithProviders";
 
 jest.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink",
@@ -26,6 +27,17 @@ jest.mock("./usePersistResourceFormDetails", () => () => ({
   persistResourceFormDetails: mockPersistResourceFormDetails,
 }));
 
+const mockTeachWithOakDownloaded = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      teachWithOakDownloaded: (...args: unknown[]) =>
+        mockTeachWithOakDownloaded(...args),
+    },
+  }),
+}));
+
 describe("useTeachWithOakDownload", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -36,7 +48,9 @@ describe("useTeachWithOakDownload", () => {
       "download-link",
     );
 
-    const { result } = renderHook(() => useTeachWithOakDownload());
+    const { result } = renderHookWithProviders()(() =>
+      useTeachWithOakDownload(),
+    );
 
     const data: ResourceFormValues = {
       school: "homeschool",
@@ -52,6 +66,27 @@ describe("useTeachWithOakDownload", () => {
       expect(createAndClickHiddenDownloadLink).toHaveBeenCalledWith(
         "download-link",
       );
+    });
+  });
+  it("tracks the download event", async () => {
+    (createTeachWithOakDownloadLink as jest.Mock).mockResolvedValue(
+      "download-link",
+    );
+
+    const { result } = renderHookWithProviders()(() =>
+      useTeachWithOakDownload(),
+    );
+
+    const data: ResourceFormValues = {
+      school: "homeschool",
+      terms: true,
+      resources: [],
+    };
+
+    await result.current.onSubmit({ data });
+
+    await waitFor(() => {
+      expect(mockTeachWithOakDownloaded).toHaveBeenCalled();
     });
   });
 });
