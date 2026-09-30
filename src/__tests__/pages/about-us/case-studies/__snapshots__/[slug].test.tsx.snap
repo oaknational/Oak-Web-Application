@@ -3190,7 +3190,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders written case study 1`] =
                       <div
                         class="sc-aXZVg sc-gEvEer jPvJsJ cuuNOT"
                       >
-                        <h1
+                        <h2
                           class="sc-eldPxv fjdFhT"
                         >
                           Thank you to 
@@ -3200,18 +3200,18 @@ exports[`pages/about-us/case-studies/[slug].tsx renders written case study 1`] =
                            at 
                           TEST_INSTITUTION_NAME
                            for sharing their feedback to inform this case study
-                        </h1>
+                        </h2>
                         <div
                           class="sc-aXZVg sc-gEvEer jPvJsJ iwFTtF"
                         >
                           <div
                             class="sc-aXZVg sc-gEvEer jPvJsJ dUCWjO"
                           >
-                            <h1
+                            <h3
                               class="sc-eldPxv fjdFhT"
                             >
                               Connect me to schools like this one
-                            </h1>
+                            </h3>
                             <p
                               class="sc-ikkxIA bevdi"
                             >

@@ -208,6 +208,7 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                         $borderColor="border-neutral-lighter"
                       >
                         <CaseStudyGetInTouch
+                          headingStartLevel={2}
                           href={
                             "https://bvumd.share.hsforms.com/24SxO0XoTTTmGj8OInxGjrA"
                           }
