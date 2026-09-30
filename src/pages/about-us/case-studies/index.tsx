@@ -4,6 +4,7 @@ import {
   OakBox,
   OakCard,
   OakFlex,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -19,12 +20,25 @@ import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl
 import { resolveOakHref } from "@/common-lib/urls";
 import { AboutSharedHeader } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
+import { CaseStudy } from "@/common-lib/cms-types/caseStudy";
 
 export type AboutUsCaseStudyLibraryPageProps = {
   pageData: {
     caseStudies: CaseStudyLibraryPage;
   };
   topNav: TopNavProps;
+};
+
+export const getCaseStudyTagBackground = (
+  tag: CaseStudy["tag"],
+): OakUiRoleToken | undefined => {
+  if (tag === "secondary") {
+    return "bg-decorative1-main";
+  }
+  if (tag === "primary") {
+    return "bg-decorative4-main";
+  }
+  return undefined;
 };
 
 export const AboutUsCaseStudyLibrary: NextPage<
@@ -38,6 +52,7 @@ export const AboutUsCaseStudyLibrary: NextPage<
     }),
     imageSrc: getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? "",
     tagName: caseStudy.tag ?? undefined,
+    tagBackground: getCaseStudyTagBackground(caseStudy.tag),
   }));
 
   return (
@@ -88,13 +103,6 @@ export const AboutUsCaseStudyLibrary: NextPage<
                       aspectRatio="4/3"
                       cardOrientation={["column", "row", "row"]}
                       showImage={[false, true, true]}
-                      tagBackground={
-                        item.tagName === "secondary"
-                          ? "bg-decorative1-main"
-                          : item.tagName === "primary"
-                            ? "bg-decorative4-main"
-                            : undefined
-                      }
                       {...item}
                     />
                   );

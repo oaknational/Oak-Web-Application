@@ -11,6 +11,7 @@ import { CaseStudyCard } from "@/common-lib/cms-types/caseStudy";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { resolveOakHref } from "@/common-lib/urls";
+import { getCaseStudyTagBackground } from "@/pages/about-us/case-studies";
 
 export type CaseStudiesSectionProps = {
   title: string;
@@ -70,13 +71,7 @@ export const CaseStudiesSection = ({
                   aspectRatio="4/3"
                   cardWidth={"100%"}
                   tagName={caseStudy.tag ?? undefined}
-                  tagBackground={
-                    caseStudy.tag === "secondary"
-                      ? "bg-decorative1-main"
-                      : caseStudy.tag === "primary"
-                        ? "bg-decorative4-main"
-                        : undefined
-                  }
+                  tagBackground={getCaseStudyTagBackground(caseStudy.tag)}
                 />
               </OakGridArea>
             ))}
