@@ -12,7 +12,7 @@ export type CaseStudyGetInTouchProps = {
   href: string;
   name: string;
   role: string;
-  schoolOrMat: string;
+  institutionName: string;
   imageUrl: string;
   imageAlt?: string;
   headingTag?: OakHeadingProps["tag"];
@@ -22,7 +22,7 @@ export function CaseStudyGetInTouch({
   href,
   name,
   role,
-  schoolOrMat,
+  institutionName,
   imageUrl,
   imageAlt,
   headingTag = "h1",
@@ -49,7 +49,7 @@ export function CaseStudyGetInTouch({
           $color={"text-primary"}
           $font={["heading-6", "heading-5", "heading-5"]}
         >
-          Thank you to {name}, {role} at {schoolOrMat} for sharing their
+          Thank you to {name}, {role} at {institutionName} for sharing their
           feedback to inform this case study
         </OakHeading>
         <OakFlex $flexDirection={"column"} $gap={"spacing-32"}>
