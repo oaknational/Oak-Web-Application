@@ -1,3 +1,23 @@
+# [1.1220.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1219.0...v1.1220.0) (2026-09-30)
+
+
+### Bug Fixes
+
+* added missing headingLevel to <CaseStudyHeader/> ([eb9587d](https://github.com/oaknational/Oak-Web-Application/commit/eb9587dd9481f586f4f678618f32113af6347684))
+* changed to headingStartLevel in <CaseStudyGetInTouch/> ([24614ca](https://github.com/oaknational/Oak-Web-Application/commit/24614ca0d8c6f300dcee72516e565684a50ec3f3))
+* fixes to heading hierarchy ([e428578](https://github.com/oaknational/Oak-Web-Application/commit/e428578803697cd9ab17b6cbb77ba6114ead09f3))
+* more test fixes for written case studies ([9dd6b02](https://github.com/oaknational/Oak-Web-Application/commit/9dd6b02924e6ea6afedab3a7020105dc7c8d501c))
+* remove video title as title ([96e70cb](https://github.com/oaknational/Oak-Web-Application/commit/96e70cb9d855e067be92764de430255fecaf9e6e))
+* sentence case the tag ([a723fe2](https://github.com/oaknational/Oak-Web-Application/commit/a723fe2c7d3289832c43ab751703867df44e3667))
+* spacing and added missing link ([1c7e07c](https://github.com/oaknational/Oak-Web-Application/commit/1c7e07c2c91ea358c84584c8d273bcd389c9de8c))
+* unknown to PortableTextBlock ([683ba84](https://github.com/oaknational/Oak-Web-Application/commit/683ba849221f149e672056ceb6c6abc00405c79b))
+
+
+### Features
+
+* added in <CaseStudyGetInTouch/> ([37a5340](https://github.com/oaknational/Oak-Web-Application/commit/37a534026111aa0133ca52434c3c4a80a80b5095))
+* initial work on written case study page ([ed44092](https://github.com/oaknational/Oak-Web-Application/commit/ed4409275024c8b0c206f0247e9e66e4901982c1))
+
 # [1.1219.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1218.0...v1.1219.0) (2026-09-30)
 
 
