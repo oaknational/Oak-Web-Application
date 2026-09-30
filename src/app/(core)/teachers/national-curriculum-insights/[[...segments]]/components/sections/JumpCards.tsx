@@ -7,13 +7,13 @@ import {
   OakHeading,
   OakIcon,
   OakImage,
+  OakLI,
   OakP,
   OakAllSpacingToken,
   OakFocusIndicator,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import styled from "styled-components";
 
 import {
   nationalCurriculumInsightsKeyStageIllustration,
@@ -27,10 +27,6 @@ import {
   nationalCurriculumInsightsSubjectPhaseHref,
   nationalCurriculumInsightsSubjectPhaseKeyStageHref,
 } from "@/common-lib/urls/nationalCurriculumInsights";
-
-const JumpCardList = styled(OakGrid)`
-  list-style: none;
-`;
 
 const InsightsJumpCard = ({
   minHeight,
@@ -86,7 +82,7 @@ export const NationalCurriculumInsightsPhaseCards = ({
       $pv={["spacing-32", "spacing-48"]}
     >
       <SectionMaxWidth $mh="auto">
-        <JumpCardList
+        <OakGrid
           $cg="spacing-16"
           $rg="spacing-16"
           as="ul"
@@ -100,7 +96,11 @@ export const NationalCurriculumInsightsPhaseCards = ({
           data-insights-module="phase-cards"
         >
           {cards.map((card) => (
-            <OakBox as="li" $width="100%" key={`${card.phase}-${card.heading}`}>
+            <OakLI
+              $listStyle="none"
+              $width="100%"
+              key={`${card.phase}-${card.heading}`}
+            >
               <InsightsJumpCard
                 minHeight="spacing-240"
                 href={nationalCurriculumInsightsSubjectPhaseHref(
@@ -147,9 +147,9 @@ export const NationalCurriculumInsightsPhaseCards = ({
                   $height="spacing-32"
                 />
               </InsightsJumpCard>
-            </OakBox>
+            </OakLI>
           ))}
-        </JumpCardList>
+        </OakGrid>
       </SectionMaxWidth>
     </OakBox>
   );
@@ -182,7 +182,7 @@ export const NationalCurriculumInsightsKeyStageCards = ({
       $pv={["spacing-32", "spacing-48"]}
     >
       <SectionMaxWidth $mh="auto">
-        <JumpCardList
+        <OakGrid
           $cg="spacing-16"
           $rg="spacing-16"
           as="ul"
@@ -196,8 +196,8 @@ export const NationalCurriculumInsightsKeyStageCards = ({
           data-insights-module="key-stage-cards"
         >
           {cards.map((card) => (
-            <OakBox
-              as="li"
+            <OakLI
+              $listStyle="none"
               $width="100%"
               key={`${card.keyStage}-${card.heading}`}
             >
@@ -248,9 +248,9 @@ export const NationalCurriculumInsightsKeyStageCards = ({
                   $height="spacing-32"
                 />
               </InsightsJumpCard>
-            </OakBox>
+            </OakLI>
           ))}
-        </JumpCardList>
+        </OakGrid>
       </SectionMaxWidth>
     </OakBox>
   );

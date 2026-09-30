@@ -1,14 +1,15 @@
 "use client";
 
 import {
-  getMediaQuery,
   isValidIconName,
   OakBox,
   OakFlex,
   OakHeading,
+  OakGrid,
+  OakGridArea,
   OakSubjectIconButton,
+  OakUL,
   parseColor,
-  parseSpacing,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 import styled from "styled-components";
@@ -26,66 +27,24 @@ type Subject = NationalCurriculumInsightsRouteData["subjects"][number];
 
 type Phase = "primary" | "secondary";
 
-const SubjectList = styled(OakFlex)`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-`;
+const getMobileColumnStart = (index: number, subjectCount: number) => {
+  if (subjectCount % 2 === 1 && index === subjectCount - 1) return 2;
 
+  return index % 2 === 0 ? 1 : 3;
+};
+
+// OakSubjectIconButton fixes these colours by phase and exposes no overrides.
 const SubjectNavigationMaxWidth = styled(OakBox)`
-  width: 100%;
-  max-width: 998px;
-
-  @media (${getMediaQuery("desktop")}) {
-    min-height: 176px;
-    display: flex;
-    align-items: center;
-  }
-
   a {
     background: ${parseColor("bg-primary")};
     border-color: ${parseColor("grey30")};
   }
 `;
 
-const HubSubjectItem = styled.li`
-  width: 225px;
-  height: 225px;
-
-  @media (${getMediaQuery("mobile")}) {
-    width: calc(50% - ${parseSpacing("spacing-8")});
-    height: auto;
-    aspect-ratio: 1;
-  }
-
+// The subject button exposes width, but not its outer wrapper's height.
+const HubSubjectItem = styled(OakBox)`
   > * {
-    width: 100%;
     height: 100%;
-  }
-
-  a {
-    box-sizing: border-box;
-    width: 100%;
-    padding-inline: ${parseSpacing("spacing-8")};
-  }
-`;
-
-const HubSubjectList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: ${parseSpacing("spacing-16")};
-  list-style: none;
-  margin: 0;
-  padding: 0;
-`;
-
-const HubPhaseNavigation = styled.nav`
-  width: 100%;
-
-  @media (${getMediaQuery("desktop")}) {
-    max-width: 1189px;
-    margin-inline: auto;
   }
 `;
 
@@ -122,11 +81,17 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
         $pb={["spacing-48", "spacing-64"]}
       >
         <SubjectNavigationMaxWidth
+          $width="100%"
+          $maxWidth="spacing-960"
+          $minHeight={["auto", "auto", "spacing-180"]}
+          $display={["block", "block", "flex"]}
+          $alignItems="center"
           $mh="auto"
           data-insights-module="subject-navigation"
         >
-          <SubjectList
-            as="ul"
+          <OakUL
+            $reset
+            $display="flex"
             $flexWrap="wrap"
             $justifyContent="center"
             $gap="spacing-12"
@@ -151,7 +116,7 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
                 </OakSubjectIconButton>
               </li>
             ))}
-          </SubjectList>
+          </OakUL>
         </SubjectNavigationMaxWidth>
       </OakBox>
     );
@@ -170,52 +135,104 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
                 tabs.some(({ kind }) => kind === phase),
               ),
             )
-            .map((phase) => (
-              <HubPhaseNavigation
-                key={phase}
-                aria-labelledby={`national-curriculum-insights-${phase}-subjects`}
-              >
-                <OakFlex
-                  $flexDirection="column"
-                  $gap="spacing-16"
-                  $alignItems={["center", "center", "stretch"]}
+            .map((phase) => {
+              const subjects = data.subjects.filter((subject) =>
+                subject.tabs.some(({ kind }) => kind === phase),
+              );
+              const lastDesktopRowLength = subjects.length % 5;
+              const desktopColumnStarts = [
+                [1, 3, 5, 7, 9],
+                [5],
+                [4, 6],
+                [3, 5, 7],
+                [2, 4, 6, 8],
+              ] as const;
+              return (
+                <OakBox
+                  as="nav"
+                  $width="100%"
+                  key={phase}
+                  aria-labelledby={`national-curriculum-insights-${phase}-subjects`}
                 >
-                  <OakHeading
-                    tag="h3"
-                    id={`national-curriculum-insights-${phase}-subjects`}
-                    $font="heading-5"
-                    $textAlign={["center", "center", "left"]}
+                  <OakFlex
+                    $flexDirection="column"
+                    $gap="spacing-16"
+                    $alignItems={["center", "center", "stretch"]}
                   >
-                    {phase === "primary"
-                      ? section.primaryHeading
-                      : section.secondaryHeading}
-                  </OakHeading>
-                  <HubSubjectList>
-                    {data.subjects
-                      .filter((subject) =>
-                        subject.tabs.some(({ kind }) => kind === phase),
-                      )
-                      .map((subject) => (
-                        <HubSubjectItem key={`${phase}-${subject.slug}`}>
-                          <OakSubjectIconButton
-                            variant="vertical"
-                            innerWidth="100%"
-                            element={Link}
-                            phase={phase as Phase}
-                            subjectIconName={normaliseSubjectIcon(subject)}
-                            href={nationalCurriculumInsightsSubjectPhaseHref(
-                              subject.slug,
-                              phase,
-                            )}
+                    <OakHeading
+                      tag="h3"
+                      id={`national-curriculum-insights-${phase}-subjects`}
+                      $font="heading-5"
+                      $textAlign={["center", "center", "left"]}
+                    >
+                      {phase === "primary"
+                        ? section.primaryHeading
+                        : section.secondaryHeading}
+                    </OakHeading>
+                    <OakGrid
+                      $display={["grid", "block", "grid"]}
+                      $gridTemplateColumns={[
+                        "repeat(4, minmax(0, 1fr))",
+                        "none",
+                        "repeat(10, minmax(0, 1fr))",
+                      ]}
+                      $rg="spacing-16"
+                      $cg="spacing-16"
+                    >
+                      <OakFlex
+                        as="ul"
+                        $listStyle="none"
+                        $ma="spacing-0"
+                        $pa="spacing-0"
+                        $display={["contents", "flex", "contents"]}
+                        $flexWrap="wrap"
+                        $justifyContent="center"
+                        $gap="spacing-16"
+                      >
+                        {subjects.map((subject, index) => (
+                          <OakGridArea
+                            as="li"
+                            key={`${phase}-${subject.slug}`}
+                            $colSpan={[2, 2, 2]}
+                            $colStart={[
+                              getMobileColumnStart(index, subjects.length),
+                              1,
+                              index >= subjects.length - lastDesktopRowLength
+                                ? desktopColumnStarts[lastDesktopRowLength]?.[
+                                    index % 5
+                                  ]
+                                : desktopColumnStarts[0][index % 5],
+                            ]}
                           >
-                            {subject.title}
-                          </OakSubjectIconButton>
-                        </HubSubjectItem>
-                      ))}
-                  </HubSubjectList>
-                </OakFlex>
-              </HubPhaseNavigation>
-            ))}
+                            <HubSubjectItem
+                              $width={["100%", "spacing-240", "100%"]}
+                              $aspectRatio="1"
+                            >
+                              <OakSubjectIconButton
+                                width="100%"
+                                $pl="spacing-8"
+                                $pr="spacing-8"
+                                variant="vertical"
+                                innerWidth="100%"
+                                element={Link}
+                                phase={phase as Phase}
+                                subjectIconName={normaliseSubjectIcon(subject)}
+                                href={nationalCurriculumInsightsSubjectPhaseHref(
+                                  subject.slug,
+                                  phase,
+                                )}
+                              >
+                                {subject.title}
+                              </OakSubjectIconButton>
+                            </HubSubjectItem>
+                          </OakGridArea>
+                        ))}
+                      </OakFlex>
+                    </OakGrid>
+                  </OakFlex>
+                </OakBox>
+              );
+            })}
         </OakFlex>
       </SectionMaxWidth>
     </OakBox>
