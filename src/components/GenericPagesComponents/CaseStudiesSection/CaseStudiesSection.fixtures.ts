@@ -15,6 +15,7 @@ export const caseStudiesSectionFixture = [
     text: "Some text about case study 1",
   },
   {
+    title: "Case study 2 (override title)",
     video: {
       title: "Case study 2",
     },
