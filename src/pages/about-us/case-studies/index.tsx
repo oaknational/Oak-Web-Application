@@ -31,7 +31,7 @@ export const AboutUsCaseStudyLibrary: NextPage<
   AboutUsCaseStudyLibraryPageProps
 > = ({ pageData: { caseStudies }, topNav }) => {
   const items = caseStudies.map((caseStudy) => ({
-    heading: caseStudy.video.title,
+    heading: caseStudy.title ?? caseStudy.video?.title ?? "",
     href: resolveOakHref({
       page: "about-case-study",
       slug: caseStudy.slug.current,

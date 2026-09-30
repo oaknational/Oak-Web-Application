@@ -3,14 +3,15 @@ import {
   OakTagFunctional,
   OakHeading,
   OakLink,
-  OakP,
 } from "@oaknational/oak-components";
+
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 type CaseStudyHeaderProps = {
   title: string;
-  tag?: string;
+  tag?: string | null;
   publishedDate: string;
-  summary?: string;
+  summary?: unknown[] | null;
   onCopyLink: () => void;
 };
 export function CaseStudyHeader({
@@ -61,7 +62,7 @@ export function CaseStudyHeader({
           <OakHeading tag={"div"} $font={["heading-7", "heading-6"]}>
             Summary
           </OakHeading>
-          <OakP $font={["body-2", "body-1"]}>{summary}</OakP>
+          <PortableTextWithDefaults value={summary} />
         </OakFlex>
       )}
     </OakFlex>

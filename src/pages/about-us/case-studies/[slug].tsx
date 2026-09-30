@@ -1,9 +1,4 @@
-import {
-  NextPage,
-  GetStaticPathsResult,
-  GetStaticProps,
-  GetStaticPropsResult,
-} from "next";
+import { NextPage, GetStaticPropsResult, GetServerSideProps } from "next";
 import {
   OakBreadcrumbs,
   OakBox,
@@ -11,6 +6,10 @@ import {
   OakGridArea,
   OakVideo,
   OakHandDrawnHR,
+  OakTagFunctional,
+  OakHeading,
+  OakAnchorTarget,
+  OakFlex,
 } from "@oaknational/oak-components";
 import { format } from "date-fns";
 
@@ -18,11 +17,6 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { OaksImpactCaseStudyPage } from "@/common-lib/cms-types/aboutPages";
 import CMSClient from "@/node-lib/cms";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import getPageProps from "@/node-lib/getPageProps";
-import {
-  getFallbackBlockingConfig,
-  shouldSkipInitialBuild,
-} from "@/node-lib/isr";
 import Layout from "@/components/AppComponents/AppLayout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { CaseStudiesSection } from "@/components/GenericPagesComponents/CaseStudiesSection";
@@ -33,19 +27,22 @@ import { CaseStudyHeader } from "@/components/GenericPagesComponents/CaseStudyHe
 import { OaksImpactCaseStudyContentLayout } from "@/components/GenericPagesComponents/OaksImpactCaseStudyContentLayout";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText/PortableText";
+import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 
 // to do - this data retrieval will be decoupled from oak's impact in coming tickets
 export type AboutUsOaksImpactCaseStudyPageProps = {
   pageData: {
     caseStudy: OaksImpactCaseStudyPage["caseStudiesSection"]["caseStudies"][number];
     otherCaseStudies: OaksImpactCaseStudyPage["caseStudiesSection"]["caseStudies"];
+    isV2Enabled: boolean;
   };
   topNav: TopNavProps;
 };
 
 const AboutUsOaksImpactCaseStudy: NextPage<
   AboutUsOaksImpactCaseStudyPageProps
-> = ({ pageData: { caseStudy, otherCaseStudies }, topNav }) => {
+> = ({ pageData: { caseStudy, otherCaseStudies, isV2Enabled }, topNav }) => {
   const { setCurrentToastProps } = useOakNotificationsContext();
 
   const onCopyLink = () => {
@@ -62,13 +59,15 @@ const AboutUsOaksImpactCaseStudy: NextPage<
     });
   };
 
+  const title = caseStudy.title ?? caseStudy.video?.title ?? "";
+
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={null}
       accessLevel="homepage"
     >
       <Layout
-        seoProps={getSeoProps({ title: caseStudy.video.title })}
+        seoProps={getSeoProps({ title })}
         $background={"bg-primary"}
         topNavProps={topNav}
       >
@@ -89,7 +88,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                             href: "/about-us/oaks-impact",
                             text: "Oak's impact",
                           },
-                          { text: caseStudy.video.title },
+                          { text: title },
                         ]}
                       />
                     </OakBox>
@@ -104,12 +103,14 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                     $colSpan={[12, 12, 8]}
                   >
                     <CaseStudyHeader
-                      title={caseStudy.video.title}
+                      title={title}
                       publishedDate={format(
                         new Date(caseStudy.publishedAt),
                         "d MMMM y",
                       )}
                       onCopyLink={onCopyLink}
+                      summary={isV2Enabled ? caseStudy.summaryRaw : undefined}
+                      tag={isV2Enabled ? caseStudy.tag : undefined}
                     />
                   </OakGridArea>
                 </OakGrid>
@@ -118,25 +119,67 @@ const AboutUsOaksImpactCaseStudy: NextPage<
           </OakBox>
           <NewGutterMaxWidth>
             <OaksImpactCaseStudyContentLayout>
-              <OakBox $pv="spacing-100" $position={"relative"}>
-                <OakVideo
-                  videoSlot={
-                    caseStudy.video.video.asset && (
-                      <VideoPlayer
-                        playbackPolicy="public"
-                        thumbnailTime={caseStudy.video.video.asset.thumbTime}
-                        playbackId={caseStudy.video.video.asset.playbackId}
-                        title={caseStudy.video.title}
-                        location="marketing"
-                        omitBorder={true}
-                      />
-                    )
-                  }
-                  showTranscript={true}
-                  transcript={caseStudy.video.transcript}
-                  body={caseStudy.textRaw ?? undefined}
-                />
-              </OakBox>
+              {caseStudy.video && (
+                <OakBox $pv="spacing-100" $position={"relative"}>
+                  <OakVideo
+                    videoSlot={
+                      caseStudy.video.video.asset && (
+                        <VideoPlayer
+                          playbackPolicy="public"
+                          thumbnailTime={caseStudy.video.video.asset.thumbTime}
+                          playbackId={caseStudy.video.video.asset.playbackId}
+                          title={caseStudy.video.title}
+                          location="marketing"
+                          omitBorder={true}
+                        />
+                      )
+                    }
+                    showTranscript={true}
+                    transcript={caseStudy.video.transcript}
+                    body={caseStudy.textRaw ?? undefined}
+                  />
+                </OakBox>
+              )}
+
+              {isV2Enabled && (
+                <>
+                  {caseStudy.content && (
+                    <OakBox $pv="spacing-100" $position={"relative"}>
+                      {caseStudy.content.map((contentBlock, index) => (
+                        <OakFlex
+                          key={index}
+                          $flexDirection="column"
+                          $alignItems="flex-start"
+                        >
+                          {contentBlock.label && (
+                            <OakTagFunctional
+                              label={contentBlock.label}
+                              $background="bg-decorative2-main"
+                            />
+                          )}
+                          <OakAnchorTarget
+                            id={`#${contentBlock.anchorSlug?.current}`}
+                          />
+                          <OakHeading tag="h2">
+                            {contentBlock.heading}
+                          </OakHeading>
+                          <PortableTextWithDefaults
+                            value={contentBlock.contentRaw ?? undefined}
+                          />
+                        </OakFlex>
+                      ))}
+                    </OakBox>
+                  )}
+
+                  {caseStudy.showGetInTouchPanel &&
+                    caseStudy.getInTouchPanel && (
+                      <OakBox $pv="spacing-100" $position={"relative"}>
+                        {JSON.stringify(caseStudy.getInTouchPanel)}
+                        {/* TODO: Add in <CaseStudyGetInTouch/> */}
+                      </OakBox>
+                    )}
+                </>
+              )}
             </OaksImpactCaseStudyContentLayout>
           </NewGutterMaxWidth>
 
@@ -154,81 +197,47 @@ type URLParams = {
   slug: string;
 };
 
-export const getStaticPaths = async () => {
-  if (shouldSkipInitialBuild) {
-    return getFallbackBlockingConfig();
+export const getServerSideProps: GetServerSideProps<
+  AboutUsOaksImpactCaseStudyPageProps,
+  URLParams
+> = async (context) => {
+  const isV2Enabled = await isFeatureFlagEnabledServer(
+    context.req.cookies,
+    "case-studies-v2",
+  );
+
+  const slug = context.params?.slug;
+  if (!slug) {
+    return { notFound: true };
   }
 
-  const impactPageData = await CMSClient.oaksImpactPage();
+  const isPreviewMode = context.preview === true;
+  const caseStudy = await CMSClient.caseStudyPage({
+    slug,
+    previewMode: isPreviewMode,
+  });
 
-  if (!impactPageData) {
+  const topNav = await curriculumApi2023.topNav();
+
+  if (!caseStudy) {
     return {
       notFound: true,
     };
   }
 
-  const paths = impactPageData.caseStudiesSection.caseStudies.map(
-    (caseStudy) => ({
-      params: { slug: caseStudy.slug.current },
-    }),
-  );
+  const otherCaseStudies = await CMSClient.caseStudyLibraryPage({ limit: 3 });
 
-  const config: GetStaticPathsResult<URLParams> = {
-    fallback: "blocking",
-    paths,
-  };
-  return config;
-};
-
-export const getStaticProps: GetStaticProps<
-  AboutUsOaksImpactCaseStudyPageProps,
-  URLParams
-> = async (context) => {
-  return getPageProps({
-    page: "about-oaks-impact-case-study::getStaticProps",
-    context,
-    getProps: async () => {
-      const slug = context.params?.slug;
-      if (!slug) {
-        return { notFound: true };
-      }
-
-      const isPreviewMode = context.preview === true;
-      const oaksImpactCaseStudyPage = await CMSClient.oaksImpactCaseStudyPage({
-        previewMode: isPreviewMode,
-      });
-
-      const caseStudy =
-        oaksImpactCaseStudyPage?.caseStudiesSection.caseStudies.find(
-          (caseStudy) => caseStudy.slug.current === slug,
-        );
-
-      const topNav = await curriculumApi2023.topNav();
-
-      if (!oaksImpactCaseStudyPage || !caseStudy) {
-        return {
-          notFound: true,
-        };
-      }
-
-      const otherCaseStudies =
-        oaksImpactCaseStudyPage.caseStudiesSection.caseStudies.filter(
-          (caseStudy) => caseStudy.slug.current !== slug,
-        );
-
-      const results: GetStaticPropsResult<AboutUsOaksImpactCaseStudyPageProps> =
-        {
-          props: {
-            pageData: {
-              caseStudy,
-              otherCaseStudies,
-            },
-            topNav,
-          },
-        };
-      return results;
+  const results: GetStaticPropsResult<AboutUsOaksImpactCaseStudyPageProps> = {
+    props: {
+      pageData: {
+        caseStudy,
+        otherCaseStudies,
+        isV2Enabled,
+      },
+      topNav,
     },
-  });
+  };
+  return results;
 };
 
 export default AboutUsOaksImpactCaseStudy;
