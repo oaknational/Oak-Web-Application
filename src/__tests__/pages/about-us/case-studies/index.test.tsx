@@ -5,7 +5,6 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import CaseStudyLibraryPage, {
   AboutUsCaseStudyLibraryPageProps,
-  getCaseStudyTagBackground,
   getServerSideProps,
 } from "@/pages/about-us/case-studies/index";
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
@@ -107,20 +106,6 @@ describe("pages/about-us/case-studies/index.tsx", () => {
       expect(propsResult).toMatchObject({
         notFound: true,
       });
-    });
-  });
-
-  describe("getCaseStudyTagBackground", () => {
-    it("returns the correct background for secondary tag", () => {
-      expect(getCaseStudyTagBackground("secondary")).toBe(
-        "bg-decorative1-main",
-      );
-    });
-    it("returns the correct background for primary tag", () => {
-      expect(getCaseStudyTagBackground("primary")).toBe("bg-decorative4-main");
-    });
-    it("returns undefined for other tags", () => {
-      expect(getCaseStudyTagBackground("other")).toBeUndefined();
     });
   });
 });
