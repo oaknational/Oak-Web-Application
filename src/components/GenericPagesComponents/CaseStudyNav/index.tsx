@@ -9,7 +9,7 @@ import { RefObject } from "react";
 
 import { useCurrentSection } from "@/hooks/useCurrentSection";
 
-export default function CaseStudyNav({
+export function CaseStudyNav({
   links,
   sectionRefs,
 }: {
