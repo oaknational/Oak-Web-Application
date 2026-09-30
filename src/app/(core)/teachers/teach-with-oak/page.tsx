@@ -2,7 +2,6 @@ import { Metadata } from "next";
 
 import { TeachWithOakView } from "./components/TeachWithOakView";
 
-import withPageErrorHandling from "@/hocs/withPageErrorHandling";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export const metadata: Metadata = {
@@ -14,7 +13,7 @@ export const metadata: Metadata = {
   },
 };
 
-const InnerTeachWithOakPage = async () => {
+const TeachWithOakPage = () => {
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={null}
@@ -24,10 +23,5 @@ const InnerTeachWithOakPage = async () => {
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };
-
-const TeachWithOakPage = withPageErrorHandling(
-  InnerTeachWithOakPage,
-  "teach-with-oak::app",
-);
 
 export default TeachWithOakPage;
