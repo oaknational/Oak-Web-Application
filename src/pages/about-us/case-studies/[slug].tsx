@@ -147,48 +147,67 @@ const AboutUsOaksImpactCaseStudy: NextPage<
               {isV2Enabled && (
                 <>
                   {caseStudy.content && (
-                    <OakBox $pv="spacing-100" $position={"relative"}>
+                    <OakFlex
+                      $flexDirection="column"
+                      $gap="spacing-100"
+                      $pb="spacing-100"
+                      $position={"relative"}
+                    >
                       {caseStudy.content.map((contentBlock, index) => (
                         <OakFlex
                           key={index}
                           $flexDirection="column"
                           $alignItems="flex-start"
                         >
-                          {contentBlock.label && (
-                            <OakTagFunctional
-                              label={contentBlock.label}
-                              $background="bg-decorative2-main"
+                          <OakFlex
+                            $alignItems="flex-start"
+                            $flexDirection="column"
+                            $gap="spacing-8"
+                          >
+                            {contentBlock.label && (
+                              <OakTagFunctional
+                                label={contentBlock.label}
+                                $background="bg-decorative2-main"
+                              />
+                            )}
+                            <OakAnchorTarget
+                              id={`#${contentBlock.anchorSlug?.current}`}
                             />
-                          )}
-                          <OakAnchorTarget
-                            id={`#${contentBlock.anchorSlug?.current}`}
-                          />
-                          <OakHeading tag="h2">
-                            {contentBlock.heading}
-                          </OakHeading>
+                            <OakHeading tag="h2" $font="heading-4">
+                              {contentBlock.heading}
+                            </OakHeading>
+                          </OakFlex>
                           <PortableTextWithDefaults
                             value={contentBlock.contentRaw ?? undefined}
                           />
                         </OakFlex>
                       ))}
-                    </OakBox>
+                    </OakFlex>
                   )}
 
                   {caseStudy.showGetInTouchPanel &&
                     caseStudy.getInTouchPanel && (
-                      <CaseStudyGetInTouch
-                        href={""}
-                        name={caseStudy.getInTouchPanel.personName}
-                        role={caseStudy.getInTouchPanel.jobRole}
-                        institutionName={
-                          caseStudy.getInTouchPanel.institutionName
-                        }
-                        imageUrl={
-                          getProxiedSanityAssetUrl(
-                            caseStudy.getInTouchPanel.personImage.asset?.url,
-                          ) ?? ""
-                        }
-                      />
+                      <OakBox
+                        $pv="spacing-100"
+                        $bt="border-solid-m"
+                        $borderColor="border-neutral-lighter"
+                      >
+                        <CaseStudyGetInTouch
+                          href={
+                            "https://bvumd.share.hsforms.com/24SxO0XoTTTmGj8OInxGjrA"
+                          }
+                          name={caseStudy.getInTouchPanel.personName}
+                          role={caseStudy.getInTouchPanel.jobRole}
+                          institutionName={
+                            caseStudy.getInTouchPanel.institutionName
+                          }
+                          imageUrl={
+                            getProxiedSanityAssetUrl(
+                              caseStudy.getInTouchPanel.personImage.asset?.url,
+                            ) ?? ""
+                          }
+                        />
+                      </OakBox>
                     )}
                 </>
               )}
