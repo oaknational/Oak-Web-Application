@@ -27,6 +27,8 @@ const McpComingSoon = () => (
       label={mcpHero.comingSoon.label}
       $background="bg-decorative5-main"
       $borderRadius="border-radius-s"
+      $whiteSpace="nowrap"
+      $flexShrink={0}
       useSpan
     />
     <OakP $font="body-2">
