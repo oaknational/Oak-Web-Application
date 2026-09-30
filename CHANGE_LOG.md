@@ -1,3 +1,10 @@
+# [1.1218.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1217.0...v1.1218.0) (2026-09-30)
+
+
+### Features
+
+* case study breadcrumb update with feat flag ([7fbb52b](https://github.com/oaknational/Oak-Web-Application/commit/7fbb52b503e15044d148f857f836c5cbad2b7e98))
+
 # [1.1217.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1216.0...v1.1217.0) (2026-09-30)
 
 
