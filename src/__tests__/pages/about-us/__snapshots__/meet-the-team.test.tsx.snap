@@ -334,8 +334,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 .c111 {
   position: relative;
+  overflow: hidden;
   background: #bef2bd;
   font-family: --var(google-font),Lexend,sans-serif;
+  overflow: hidden;
 }
 
 .c112 {
@@ -4800,7 +4802,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
           class="c68"
         >
           <div
-            class="c9"
+            class="c67"
           >
             <div
               class="c69"

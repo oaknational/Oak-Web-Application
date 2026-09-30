@@ -323,8 +323,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 
 .c115 {
   position: relative;
+  overflow: hidden;
   background: #bef2bd;
   font-family: --var(google-font),Lexend,sans-serif;
+  overflow: hidden;
 }
 
 .c116 {
@@ -4950,7 +4952,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
           class="c68"
         >
           <div
-            class="c9"
+            class="c67"
           >
             <div
               class="c69"

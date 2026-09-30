@@ -52,24 +52,30 @@ type DownloadFormValues = {
   selectedValues: string[];
 };
 
-const Section = styled(OakFlex)<{ $sticky: boolean }>`
-  ${({ $sticky }) =>
-    $sticky
-      ? "position: fixed; inset: auto 0 0; z-index: 20; max-height: 100dvh;"
-      : ""}
-`;
-
 const HeaderButton = styled(OakBox)`
   font: inherit;
   cursor: pointer;
 `;
 
 const Expanded = styled(OakBox)<{ $sticky: boolean }>`
-  ${({ $sticky }) =>
-    $sticky
-      ? "min-height: 0; overflow-y: auto; overscroll-behavior: contain;"
-      : ""}
+  ${({ $sticky }) => ($sticky ? "overscroll-behavior: contain;" : "")}
 `;
+
+const getDownloadLayoutProps = (sticky: boolean) =>
+  sticky
+    ? ({
+        section: {
+          $position: "fixed",
+          $bottom: "spacing-0",
+          $left: "spacing-0",
+          $right: "spacing-0",
+          $zIndex: 20,
+          $maxHeight: "100dvh",
+          $dropShadow: "drop-shadow-centred-standard",
+        },
+        expanded: { $minHeight: "spacing-0", $overflowY: "auto" },
+      } as const)
+    : { section: {}, expanded: {} };
 
 const responseFilename = (response: Response) => {
   const explicitFilename = response.headers.get("x-filename");
@@ -237,6 +243,7 @@ export const NationalCurriculumInsightsDownload = ({
   const expandedRef = useRef<HTMLFormElement>(null);
   const downloadInFlight = useRef(false);
   const sticky = data.route.kind === "hub";
+  const layoutProps = getDownloadLayoutProps(sticky);
   const [expanded, setExpanded] = useState(false);
   const [mobileStage, setMobileStage] = useState<"details" | "subjects">(
     "details",
@@ -348,14 +355,13 @@ export const NationalCurriculumInsightsDownload = ({
   };
 
   return (
-    <Section
+    <OakFlex
       as="section"
       data-insights-module="downloads"
-      $sticky={sticky}
+      {...layoutProps.section}
       $width="100%"
       $flexDirection="column"
       $background="bg-primary"
-      $dropShadow={sticky ? "drop-shadow-centred-standard" : undefined}
     >
       <DownloadHeader
         formId={formId}
@@ -377,6 +383,7 @@ export const NationalCurriculumInsightsDownload = ({
           onSubmit={handleSubmit(submit)}
           noValidate
           $sticky={sticky}
+          {...layoutProps.expanded}
         >
           <OakGrid
             $maxWidth="spacing-1280"
@@ -652,6 +659,6 @@ export const NationalCurriculumInsightsDownload = ({
           />
         </Expanded>
       ) : null}
-    </Section>
+    </OakFlex>
   );
 };
