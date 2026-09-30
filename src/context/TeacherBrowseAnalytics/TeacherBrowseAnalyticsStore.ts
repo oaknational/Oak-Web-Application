@@ -374,7 +374,6 @@ export const createTeacherBrowseAnalyticsStore = (
         lessonReleaseDate,
       }) => {
         const { avo, journeyId, accessLevel, programmeState } = get();
-
         const stateProps = {
           journeyId,
           accessLevel,
