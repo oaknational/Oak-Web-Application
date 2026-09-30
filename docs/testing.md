@@ -78,14 +78,6 @@ Before running Playwright tests locally, install browser binaries once per machi
   1. `pnpm exec playwright install`
   2. `pnpm run test:storybook`
 
-## Percy
-
-Visual regression testing of deployed apps.
-
-### When They Run
-
-In a Github workflow triggered by a `deployment_status === success` event.
-
 ## Pa11y
 
 Accessibility testing of deployed apps.

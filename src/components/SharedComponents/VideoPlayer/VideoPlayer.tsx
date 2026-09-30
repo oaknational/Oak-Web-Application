@@ -126,10 +126,6 @@ function VideoContainer({
 }: Readonly<{ omitBorder: boolean; children: React.ReactNode }>) {
   return (
     <OakFlex
-      // NOTE: Hiding video contents because otherwise we get some percy
-      // snapshots loaded and some pending load depending on the timing
-      // (race condition)
-      data-percy-hide="contents"
       $alignItems={"center"}
       $justifyContent={"center"}
       $ba={omitBorder ? "border-solid-none" : "border-solid-l"}

@@ -7350,7 +7350,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
             </div>
             <span
               class="c156 c231"
-              data-percy-hide="contents"
             >
               <img
                 alt="Cyber Essentials Logo"

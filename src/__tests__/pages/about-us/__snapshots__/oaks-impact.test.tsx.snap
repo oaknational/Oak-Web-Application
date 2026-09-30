@@ -647,7 +647,6 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                       >
                         <div
                           class="sc-aXZVg sc-gEvEer kqqNVp jMLdOa"
-                          data-percy-hide="contents"
                           style="box-sizing: content-box;"
                         />
                       </div>
@@ -2272,8 +2271,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
               </div>
             </div>
             <span
-              class="sc-aXZVg kvjdhA sc-9e5378a8-0 gLpQrK"
-              data-percy-hide="contents"
+              class="sc-aXZVg kvjdhA sc-272a7588-0 HbeKW"
             >
               <img
                 alt="Cyber Essentials Logo"

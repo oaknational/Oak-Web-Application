@@ -44,7 +44,6 @@ exports[`OaksImpactHeader renders correctly 1`] = `
                 >
                   <div
                     class="sc-aXZVg sc-gEvEer kqqNVp jMLdOa"
-                    data-percy-hide="contents"
                     style="box-sizing: content-box;"
                   />
                 </div>
