@@ -141,9 +141,9 @@ export type TeacherBrowseAnalyticsStore = {
     unitAccessed: (props: {
       componentType: ComponentTypeValueType;
       navigationType?: NavigationTypeValueType;
-      unitName: string;
-      unitSlug: string;
       unitContext?: {
+        unitName: string;
+        unitSlug: string;
         tierName: TierNameValueType | undefined | null;
         examBoard: ExamBoardValueType | undefined | null;
         pathway: PathwayValueType | undefined | null;
@@ -663,13 +663,7 @@ export const createTeacherBrowseAnalyticsStore = (
           componentType: "create_more_with_ai_dropdown",
         });
       },
-      unitAccessed: ({
-        componentType,
-        navigationType,
-        unitName,
-        unitSlug,
-        unitContext,
-      }) => {
+      unitAccessed: ({ componentType, navigationType, unitContext }) => {
         const { avo, programmeState, journeyId, accessLevel } = get();
 
         const stateProps = {
@@ -685,8 +679,6 @@ export const createTeacherBrowseAnalyticsStore = (
           avo.unitAccessed({
             ...stateProps,
             ...unitContext,
-            unitName,
-            unitSlug,
           });
         } else {
           const state = requireUnitState("unitAccessed", programmeState);
@@ -695,8 +687,6 @@ export const createTeacherBrowseAnalyticsStore = (
             avo.unitAccessed({
               ...stateProps,
               ...analyticsProperties,
-              unitName,
-              unitSlug,
             });
           }
         }
