@@ -5,9 +5,11 @@ import { TrackFns } from "../Analytics/AnalyticsProvider";
 
 import {
   CoreProgrammeState,
+  NullableSearchResultContext,
   ProgrammeState,
   ProgrammeStateLesson,
   ProgrammeStateUnit,
+  SearchResultContext,
   VideoTrackingProperties,
 } from "./teacherBrowseAnalytics.types";
 import {
@@ -23,6 +25,10 @@ import type {
   PathwayValueType,
   LessonReleaseCohortValueType,
   NavigationTypeValueType,
+  SearchFilterMatchTypeValueType,
+  SearchResultTypeValueType,
+  SearchSourceValueType,
+  ContextValueType,
 } from "@/browser-lib/avo/Avo";
 import {
   AccessLevelValueType,
@@ -86,6 +92,7 @@ export type TeacherBrowseAnalyticsStore = {
         yearGroupSlug: string;
       };
     }) => void;
+    lessonAssistantAccessed: (props: { isLoggedIn: boolean }) => void;
     lessonMediaClipsStarted: (data: {
       mediaClipsButtonName: MediaClipsButtonNameValueType;
       learningCycle: string | null;
@@ -130,6 +137,43 @@ export type TeacherBrowseAnalyticsStore = {
       activeFilters: ActiveFilters;
       filterType: FilterTypeValueType;
       filterValue: string;
+    }) => void;
+    searchJourneyInitiated: (props: {
+      searchSource: SearchSourceValueType;
+      context: ContextValueType;
+    }) => void;
+    searchAccessed: (props: {
+      searchResultCount: number;
+      searchResultsLoadTime: number;
+      searchTerm: string;
+      componentType: ComponentTypeValueType;
+    }) => void;
+    searchRefined: (props: {
+      searchResultCount: number;
+      activeFilters: Record<string, string>; // TD add filters to state
+      searchTerm: string; // TD add query to state
+      componentType: ComponentTypeValueType;
+    }) => void;
+    searchResultExpanded: (props: {
+      searchRank: number;
+      searchFilterOptionSelected: string[];
+      searchResultCount: number;
+      searchResultType: SearchResultTypeValueType;
+      searchResultContext: SearchResultContext;
+    }) => void;
+    searchResultOpened: (props: {
+      searchRank: number;
+      searchFilterOptionSelected: string[];
+      searchResultCount: number;
+      searchResultType: SearchResultTypeValueType;
+      searchResultContext: NullableSearchResultContext;
+    }) => void;
+    searchFilterModified: (props: {
+      checked: boolean;
+      filterType: FilterTypeValueType;
+      filterValue: string;
+      searchTerm: string; // TD move to state
+      searchFilterMatchType: SearchFilterMatchTypeValueType;
     }) => void;
     teachWithOakAccessed: (data: {
       componentType: ComponentTypeValueType;
@@ -404,6 +448,14 @@ export const createTeacherBrowseAnalyticsStore = (
           }
         }
       },
+      lessonAssistantAccessed: ({ isLoggedIn }: { isLoggedIn: boolean }) => {
+        const { avo } = get();
+        avo.lessonAssistantAccessed({
+          product: "ai lesson assistant",
+          isLoggedIn,
+          componentType: "search_get_started_button",
+        });
+      },
       lessonMediaClipsStarted: (data) => {
         const { avo, programmeState, journeyId } = get();
 
@@ -602,6 +654,89 @@ export const createTeacherBrowseAnalyticsStore = (
           componentType,
           accessLevel,
           journeyId,
+        });
+      },
+      searchJourneyInitiated: ({
+        searchSource,
+        context,
+      }: {
+        searchSource: SearchSourceValueType;
+        context: ContextValueType;
+      }) => {
+        const { avo } = get();
+
+        avo.searchJourneyInitiated({
+          searchSource,
+          context,
+        });
+      },
+      searchAccessed: ({
+        searchTerm,
+        searchResultCount,
+        searchResultsLoadTime,
+        componentType,
+      }: {
+        searchTerm: string;
+        searchResultCount: number;
+        searchResultsLoadTime: number;
+        componentType: ComponentTypeValueType;
+      }) => {
+        const { avo } = get();
+
+        avo.searchAccessed({
+          ...coreProperties,
+          engagementIntent: "refine",
+          componentType,
+          searchTerm,
+          searchResultCount,
+          searchResultsLoadTime,
+        });
+      },
+      searchRefined: (props: {
+        searchResultCount: number;
+        activeFilters: Record<string, string>;
+        searchTerm: string;
+        componentType: ComponentTypeValueType;
+      }) => {
+        const { avo } = get();
+
+        avo.searchRefined({
+          ...coreProperties,
+          engagementIntent: "refine",
+          ...props,
+        });
+      },
+      searchResultExpanded: ({ searchResultContext, ...props }) => {
+        const { avo } = get();
+
+        avo.searchResultExpanded({
+          ...coreProperties,
+          ...searchResultContext,
+          ...props,
+          engagementIntent: "refine",
+          componentType: "search_result_item",
+          context: "search",
+        });
+      },
+      searchResultOpened: ({ searchResultContext, ...props }) => {
+        const { avo } = get();
+
+        avo.searchResultOpened({
+          analyticsUseCase: coreProperties.analyticsUseCase,
+          ...searchResultContext,
+          ...props,
+          context: "search",
+        });
+      },
+      searchFilterModified: ({ checked, ...props }) => {
+        const { avo } = get();
+
+        avo.searchFilterModified({
+          ...coreProperties,
+          ...props,
+          engagementIntent: "refine",
+          componentType: "filter_link",
+          filterModificationType: checked ? "remove" : "add",
         });
       },
       teachWithOakAccessed: ({ componentType }) => {
