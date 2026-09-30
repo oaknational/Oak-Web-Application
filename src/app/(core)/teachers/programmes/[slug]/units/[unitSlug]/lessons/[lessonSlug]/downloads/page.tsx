@@ -93,7 +93,6 @@ const InnerLessonDownloadsPage = async (
         breadcrumbsSlot={
           <Breadcrumbs
             key="lesson-downloads-breadcrumbs"
-            data={data}
             subjectPhaseSlug={breadcrumbsSubjectPhaseSlug}
             mode="downloads"
           />
