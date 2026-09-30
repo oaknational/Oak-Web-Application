@@ -7,7 +7,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders title 1`] = `
   >
     <fake-head>
       <title>
-        Test Video | NEXT_PUBLIC_SEO_APP_NAME
+        test slug 1 | NEXT_PUBLIC_SEO_APP_NAME
       </title>
       <meta
         content="index,follow"
@@ -30,7 +30,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders title 1`] = `
         name="twitter:creator"
       />
       <meta
-        content="Test Video | NEXT_PUBLIC_SEO_APP_NAME"
+        content="test slug 1 | NEXT_PUBLIC_SEO_APP_NAME"
         property="og:title"
       />
       <meta
@@ -702,7 +702,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders title 1`] = `
                               aria-current="page"
                               class="sc-aXZVg feaFgR"
                             >
-                              Test Video
+                              test slug 1
                             </div>
                           </li>
                         </ul>
@@ -743,7 +743,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders title 1`] = `
                         <h1
                           class="sc-eldPxv cTFVAh"
                         >
-                          Test Video
+                          test slug 1
                         </h1>
                         <div
                           class="sc-aXZVg sc-gEvEer jPvJsJ feoULz"
@@ -1005,7 +1005,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders title 1`] = `
                             <div
                               class="sc-eldPxv ibGcSM"
                             >
-                              Test Video
+                              test slug 2
                             </div>
                           </div>
                           <div
@@ -1076,7 +1076,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders title 1`] = `
                             <div
                               class="sc-eldPxv ibGcSM"
                             >
-                              Test Video
+                              test slug 3
                             </div>
                           </div>
                           <div
@@ -3329,7 +3329,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders written case study 1`] =
                             <div
                               class="sc-eldPxv ibGcSM"
                             >
-                              Test Video
+                              test slug 2
                             </div>
                           </div>
                           <div
@@ -3400,7 +3400,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders written case study 1`] =
                             <div
                               class="sc-eldPxv ibGcSM"
                             >
-                              Test Video
+                              test slug 3
                             </div>
                           </div>
                           <div

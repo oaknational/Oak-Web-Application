@@ -1,7 +1,8 @@
 export const caseStudiesSectionFixture = [
   {
+    title: "Case study 1",
     video: {
-      title: "Case study 1",
+      title: "Video 1",
     },
     slug: {
       current: "case-study-1",
@@ -15,9 +16,9 @@ export const caseStudiesSectionFixture = [
     text: "Some text about case study 1",
   },
   {
-    title: "Case study 2 (override title)",
+    title: "Case study 2",
     video: {
-      title: "Case study 2",
+      title: "Video 2",
     },
     slug: {
       current: "case-study-2",
@@ -31,8 +32,9 @@ export const caseStudiesSectionFixture = [
     text: "Some text about case study 2",
   },
   {
+    title: "Case study 3",
     video: {
-      title: "Case study 3",
+      title: "Video 3",
     },
     slug: {
       current: "case-study-3",
