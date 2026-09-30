@@ -4,6 +4,7 @@ import {
   OakHeading,
   OakLink,
 } from "@oaknational/oak-components";
+import { PortableTextBlock } from "@portabletext/types";
 
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
@@ -11,7 +12,7 @@ type CaseStudyHeaderProps = {
   title: string;
   tag?: string | null;
   publishedDate: string;
-  summary?: unknown[] | null;
+  summary?: PortableTextBlock[] | null;
   onCopyLink: () => void;
 };
 export function CaseStudyHeader({
