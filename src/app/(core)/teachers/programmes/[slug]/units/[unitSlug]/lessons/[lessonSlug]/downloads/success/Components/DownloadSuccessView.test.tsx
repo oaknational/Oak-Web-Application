@@ -156,6 +156,10 @@ describe("DownloadSuccessView", () => {
     expect(lessonAccessed).toHaveBeenCalledWith({
       componentType: "back_a_step_button",
       navigationType: "across",
+      lessonName: "Transverse waves",
+      lessonReleaseCohort: "2023-2026",
+      lessonReleaseDate: "2025-09-29T14:00:00.000Z",
+      lessonSlug: "transverse-waves",
     });
   });
 
