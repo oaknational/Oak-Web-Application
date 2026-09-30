@@ -26,6 +26,7 @@ import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import { buildAboutUsAnalytics } from "@/utils/analytics-builders";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
+import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 const trackAboutUsFooter = () =>
   aboutUsAccessed(buildAboutUsAnalytics("about_us_footer"));
@@ -92,6 +93,16 @@ const footerSections: FooterSections = {
         href: resolveOakHref({ page: "about-oaks-impact" }),
         track: trackAboutUsFooter,
       },
+      ...(isFeatureFlagEnabledStatic("case-studies-v2")
+        ? [
+            {
+              text: "Case studies",
+              type: "link" as const,
+              href: "/about-us/case-studies", // TODO: Replace with resolveOakHref
+              track: trackAboutUsFooter,
+            },
+          ]
+        : []),
       {
         text: "Get involved",
         type: "link",

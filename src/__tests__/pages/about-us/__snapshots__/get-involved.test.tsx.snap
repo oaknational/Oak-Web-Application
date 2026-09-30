@@ -6214,6 +6214,21 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                       >
                         <a
                           class="c176"
+                          href="/about-us/case-studies"
+                          variant="secondary"
+                        >
+                          <span
+                            class="c25"
+                          >
+                            Case studies
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c175"
+                      >
+                        <a
+                          class="c176"
                           href="/about-us/get-involved"
                           variant="secondary"
                         >

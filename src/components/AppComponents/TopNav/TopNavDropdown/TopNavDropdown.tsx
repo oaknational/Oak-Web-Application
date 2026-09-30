@@ -331,7 +331,9 @@ const TeachersLinksSection = ({
       </OakBox>
       <OakGrid
         as="ul"
-        $gridTemplateColumns={["1fr 1fr 1fr"]}
+        $gridTemplateColumns={
+          linkData.children.length > 6 ? ["1fr 1fr 1fr 1fr"] : ["1fr 1fr 1fr"]
+        }
         $cg={"spacing-40"}
         $rg={"spacing-8"}
         $pa={"spacing-0"}
