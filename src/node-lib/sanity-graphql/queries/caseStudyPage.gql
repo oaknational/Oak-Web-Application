@@ -1,9 +1,6 @@
-query caseStudyLibraryPage($isDraftFilter: Sanity_DocumentFilter, $limit: Int) {
+query caseStudyPage($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
   allCaseStudy (
-    where: {
-      _: $isDraftFilter
-    }
-    limit: $limit
+    where: { _: $isDraftFilter, slug: { current: { eq: $slug } } }
   ) {
     title,
     slug {
