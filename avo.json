@@ -9,8 +9,6 @@
   "branch": {
     "id": "master",
     "name": "main"
-    "id": "master",
-    "name": "main"
   },
   "sources": [
     {
@@ -19,7 +17,7 @@
       "path": "src/browser-lib/avo/Avo.ts",
       "actionId": "FOXnIjzZ420wzGFB6L6i",
       "branchId": "master",
-      "updatedAt": "2026-09-30T09:11:25.528Z"
+      "updatedAt": "2026-09-30T14:27:40.526Z"
     },
     {
       "id": "TIyqDLIJa8nMKd9ddScyh",
@@ -28,7 +26,7 @@
       "interfacePath": "src/node-lib/avo/Avo.ts",
       "actionId": "FOXnIjzZ420wzGFB6L6i",
       "branchId": "master",
-      "updatedAt": "2026-09-30T09:11:24.546Z"
+      "updatedAt": "2026-09-30T14:27:38.325Z"
     }
   ],
   "force": false
