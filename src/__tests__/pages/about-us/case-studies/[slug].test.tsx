@@ -1,4 +1,5 @@
 import { GetServerSidePropsContext } from "next/dist/types";
+import { within } from "@testing-library/react";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
@@ -240,6 +241,57 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
     expect(container).toHaveTextContent("TEST_CONTENT_1");
     expect(container).toHaveTextContent("TEST_HEADING_2");
     expect(container).toHaveTextContent("TEST_CONTENT_2");
+  });
+
+  it("renders a sidebar nav with label names when there are at least two content sections and the feature flag is enabled", () => {
+    const { getByLabelText } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={true}
+        pageData={{ caseStudy: writtenCaseStudy, otherCaseStudies: [] }}
+        topNav={topNavFixture}
+      />,
+    );
+
+    const nav = getByLabelText("page sections");
+    const navLinks = within(nav).getAllByRole("link");
+
+    expect(nav).toBeVisible();
+    expect(navLinks).toHaveLength(2);
+    expect(navLinks[0]).toHaveTextContent("TEST_LABEL_1");
+    expect(navLinks[0]).toHaveAttribute(
+      "href",
+      `#${writtenCaseStudy.content[0]?.anchorSlug.current}`,
+    );
+  });
+
+  it("does not render a sidebar nav when there are less than two content sections", () => {
+    const caseStudyWithOneContentSection = {
+      ...writtenCaseStudy,
+      content: writtenCaseStudy.content.slice(0, 1),
+    };
+
+    const { queryByLabelText } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={true}
+        pageData={{
+          caseStudy: caseStudyWithOneContentSection,
+          otherCaseStudies: [],
+        }}
+        topNav={topNavFixture}
+      />,
+    );
+    expect(queryByLabelText("page sections")).toBeNull();
+  });
+
+  it("does not render a sidebar nav when the feature flag is disabled", () => {
+    const { queryByLabelText } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={false}
+        pageData={{ caseStudy: writtenCaseStudy, otherCaseStudies: [] }}
+        topNav={topNavFixture}
+      />,
+    );
+    expect(queryByLabelText("page sections")).toBeNull();
   });
 
   describe("getServerSideProps", () => {
