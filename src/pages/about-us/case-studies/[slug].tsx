@@ -153,7 +153,10 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
             <OaksImpactCaseStudyContentLayout
               menu={
                 isCaseStudiesFeatEnabled && menuLinks.length >= 2 ? (
-                  <OakBox $height="100%">
+                  <OakBox
+                    $height="100%"
+                    $pb={["spacing-0", "spacing-800", "spacing-640"]}
+                  >
                     <CaseStudyNav links={menuLinks} sectionRefs={sectionRefs} />
                   </OakBox>
                 ) : undefined
