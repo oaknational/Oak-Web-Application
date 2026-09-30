@@ -29,6 +29,8 @@ import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText/PortableText";
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
+import { CaseStudyGetInTouch } from "@/components/GenericPagesComponents/CaseStudyGetInTouch";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 
 // to do - this data retrieval will be decoupled from oak's impact in coming tickets
 export type AboutUsOaksImpactCaseStudyPageProps = {
@@ -173,10 +175,17 @@ const AboutUsOaksImpactCaseStudy: NextPage<
 
                   {caseStudy.showGetInTouchPanel &&
                     caseStudy.getInTouchPanel && (
-                      <OakBox $pv="spacing-100" $position={"relative"}>
-                        {JSON.stringify(caseStudy.getInTouchPanel)}
-                        {/* TODO: Add in <CaseStudyGetInTouch/> */}
-                      </OakBox>
+                      <CaseStudyGetInTouch
+                        href={""}
+                        name={caseStudy.getInTouchPanel.personName}
+                        role={caseStudy.getInTouchPanel.jobRole}
+                        schoolOrMat={caseStudy.getInTouchPanel.institutionName}
+                        imageUrl={
+                          getProxiedSanityAssetUrl(
+                            caseStudy.getInTouchPanel.personImage.asset?.url,
+                          ) ?? ""
+                        }
+                      />
                     )}
                 </>
               )}

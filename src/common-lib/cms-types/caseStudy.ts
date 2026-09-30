@@ -24,10 +24,10 @@ export const caseStudySchema = z.object({
   showGetInTouchPanel: z.boolean().nullish(),
   getInTouchPanel: z
     .object({
-      personName: z.string().nullish(),
-      personImage: imageSchema.nullish(),
-      jobRole: z.string().nullish(),
-      institutionName: z.string().nullish(),
+      personName: z.string(),
+      personImage: imageSchema,
+      jobRole: z.string(),
+      institutionName: z.string(),
     })
     .nullish(),
   video: videoSchema.nullish(),
