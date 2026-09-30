@@ -1,3 +1,36 @@
+# [1.1217.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1216.0...v1.1217.0) (2026-09-30)
+
+
+### Bug Fixes
+
+* added (opens in a new tab) to link ([818afe8](https://github.com/oaknational/Oak-Web-Application/commit/818afe833d46371b2c75b9e50ad9c3221bb5521d))
+* added missing headingTag to <CaseStudyGetInTouch/> ([34d58d6](https://github.com/oaknational/Oak-Web-Application/commit/34d58d6f382ce5a3827621c434dd6568edae9804))
+
+
+### Features
+
+* added <GetInTouch/> component ([78ff1d5](https://github.com/oaknational/Oak-Web-Application/commit/78ff1d56cc720d3d491831d9a37d104f19a86f87))
+
+# [1.1216.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1215.0...v1.1216.0) (2026-09-29)
+
+
+### Bug Fixes
+
+* overflow on two page ([b2c48bb](https://github.com/oaknational/Oak-Web-Application/commit/b2c48bb195300f7178c6a7c57d04ffaabc509252))
+
+
+### Features
+
+* add download success page and view ([3e7f60d](https://github.com/oaknational/Oak-Web-Application/commit/3e7f60de50a281d077fe7f6ddccd532a8074ca09))
+* fix width of subjectphasepicker ([1ef533f](https://github.com/oaknational/Oak-Web-Application/commit/1ef533fd4aca28f283cb5927b574cff99f24eba4))
+* make download success header render large variants, TWO uses large variant ([bc4a85a](https://github.com/oaknational/Oak-Web-Application/commit/bc4a85a5e7545553c29d25acccddd8550c6a1e0b))
+* make return to and font instructions optional in downloadsuccessheader ([d97d87a](https://github.com/oaknational/Oak-Web-Application/commit/d97d87ad2fbd4c85f7a327300c83077f0d833753))
+* make subject phase picker compatible with app router ([a8f87cc](https://github.com/oaknational/Oak-Web-Application/commit/a8f87cc68494822816a1c2e1569e0494a4973865))
+* only load subject picker data when needed, cache raw response, not filter output ([974b906](https://github.com/oaknational/Oak-Web-Application/commit/974b906b264447bba74af5833fdcf63f9ad82648))
+* returnTo link behaviour ([4fb5ad5](https://github.com/oaknational/Oak-Web-Application/commit/4fb5ad562d2e80c7ad2d1c5d49a785c2e636749e))
+* spacing and layout of sucess page ([58aae36](https://github.com/oaknational/Oak-Web-Application/commit/58aae3639661a5b4cbe384f84a3cc862f049a8e8))
+* split server and client lessonlink logic ([a374921](https://github.com/oaknational/Oak-Web-Application/commit/a3749213ec62670777676fc70ea7e178df3e465b))
+
 # [1.1215.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1214.1...v1.1215.0) (2026-09-28)
 
 

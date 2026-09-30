@@ -335,13 +335,22 @@ type EyfsPageLinkProps = {
   subjectSlug: string;
 };
 
-type TeachWithOakDownloadLinkProps = { page: "teach-with-oak-download" };
-
 export type TeachWithOakQueryProps = {
   returnTo: string;
   lessonName: string;
   unitName: string;
 };
+
+type TeachWithOakDownloadLinkProps = {
+  page: "teach-with-oak-download";
+  query?: TeachWithOakQueryProps;
+};
+
+type TeachWithOakDownloadSuccessLinkProps = {
+  page: "teach-with-oak-download-success";
+  query?: TeachWithOakQueryProps;
+};
+
 type TeachWithOakLinkProps = {
   page: "teach-with-oak";
   query?: TeachWithOakQueryProps;
@@ -427,7 +436,8 @@ export type OakLinkProps =
   | GuideToOakLinkProps
   | FontHelpLinkProps
   | TeachWithOakLinkProps
-  | TeachWithOakDownloadLinkProps;
+  | TeachWithOakDownloadLinkProps
+  | TeachWithOakDownloadSuccessLinkProps;
 
 export type ExternalPageName =
   | "[external] Careers"
@@ -998,6 +1008,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Teach With Oak",
     configType: "internal",
     pageType: "teach-with-oak-download",
+  }),
+  "teach-with-oak-download-success": createOakPageConfig({
+    pathPattern: "/teachers/teach-with-oak/downloads/success",
+    analyticsPageName: "Teach With Oak",
+    configType: "internal",
+    pageType: "teach-with-oak-download-success",
   }),
 };
 
