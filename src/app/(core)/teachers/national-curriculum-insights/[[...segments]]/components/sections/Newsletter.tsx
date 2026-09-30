@@ -1,17 +1,17 @@
 "use client";
 import {
-  getMediaQuery,
   OakBox,
   OakCheckBox,
   OakFlex,
+  OakGrid,
+  OakGridArea,
   OakHeading,
   OakImage,
   OakP,
   OakPrimaryButton,
-  parseSpacing,
+  OakUL,
 } from "@oaknational/oak-components";
 import { FormEvent, useState } from "react";
-import styled from "styled-components";
 
 import { insightsAssetUrl } from "../../helpers/assets";
 import { NationalCurriculumInsightsSelect } from "../Select";
@@ -24,7 +24,6 @@ import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } fr
 
 import {
   ContextualSectionProps,
-  insightsTabletMediaQuery,
   imageUrl,
   imageAlt,
   guidancePortableTextComponents,
@@ -37,123 +36,6 @@ import { OakInputWithLabel } from "@/components/SharedComponents/OakInputWithLab
 import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-
-const NewsletterList = styled(OakFlex)`
-  list-style: disc;
-  margin: 0;
-  padding-left: ${parseSpacing("spacing-24")};
-`;
-
-const NewsletterSection = styled(OakBox)`
-  box-sizing: border-box;
-
-  @media (${getMediaQuery("desktop")}) {
-    height: 632px;
-    display: flex;
-    align-items: center;
-  }
-
-  @media ${insightsTabletMediaQuery} {
-    height: auto;
-    display: block;
-    padding-block: ${parseSpacing("spacing-40")};
-  }
-`;
-
-const NewsletterInner = styled(OakBox)<{ $isGuidance: boolean }>`
-  width: 100%;
-  max-width: ${({ $isGuidance }) => ($isGuidance ? "1151px" : "1058px")};
-
-  @media (${getMediaQuery("desktop")}) {
-    transform: ${({ $isGuidance }) =>
-      $isGuidance ? "none" : `translateX(${parseSpacing("spacing-12")})`};
-  }
-`;
-
-const NewsletterLayout = styled(OakBox)`
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: ${parseSpacing("spacing-20")};
-
-  @media (${getMediaQuery("desktop")}) {
-    grid-template-columns: 544px 475px;
-    grid-template-rows: auto 1fr;
-    column-gap: 39px;
-    row-gap: ${parseSpacing("spacing-16")};
-    justify-content: center;
-    align-items: start;
-  }
-
-  @media ${insightsTabletMediaQuery} {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto auto auto;
-    row-gap: ${parseSpacing("spacing-16")};
-    justify-content: stretch;
-  }
-`;
-
-const NewsletterLead = styled(OakFlex)`
-  width: 100%;
-  grid-column: 1;
-  grid-row: 1;
-
-  @media (${getMediaQuery("desktop")}) {
-    width: 544px;
-  }
-
-  @media ${insightsTabletMediaQuery} {
-    width: clamp(666px, calc(38.679vw + 375.906px), 871px);
-    max-width: 100%;
-    justify-self: center;
-  }
-`;
-
-const NewsletterDetails = styled(OakFlex)`
-  width: 100%;
-  grid-column: 1;
-  grid-row: 3;
-
-  @media (${getMediaQuery("desktop")}) {
-    width: 544px;
-    grid-row: 2;
-  }
-
-  @media ${insightsTabletMediaQuery} {
-    width: clamp(666px, calc(28.113vw + 455.151px), 815px);
-    max-width: 100%;
-    grid-column: 1;
-    grid-row: 2;
-    justify-self: center;
-  }
-`;
-
-const NewsletterForm = styled(OakFlex)`
-  width: 100%;
-  grid-column: 1;
-  grid-row: 2;
-
-  @media (${getMediaQuery("mobile")}) {
-    margin-top: ${parseSpacing("spacing-24")};
-  }
-
-  input[type="checkbox"] {
-    border-radius: 0;
-  }
-
-  @media (${getMediaQuery("desktop")}) {
-    width: 475px;
-    grid-column: 2;
-    grid-row: 1 / span 2;
-  }
-
-  @media ${insightsTabletMediaQuery} {
-    width: min(100%, 686px);
-    grid-column: 1;
-    grid-row: 3;
-    justify-self: center;
-    margin-top: ${parseSpacing("spacing-32")};
-  }
-`;
 
 export const NationalCurriculumInsightsNewsletter = ({
   section,
@@ -228,19 +110,44 @@ export const NationalCurriculumInsightsNewsletter = ({
   };
 
   return (
-    <NewsletterSection
+    <OakBox
+      $boxSizing="border-box"
       as="section"
       id="sign-up"
       $background={isGuidance ? "bg-primary" : "bg-decorative5-very-subdued"}
       $ph={["spacing-20", "spacing-40"]}
-      $pv={["spacing-48", "spacing-48"]}
+      $pv={["spacing-48", "spacing-40", "spacing-48"]}
       $borderRadius="border-radius-l"
       aria-labelledby="national-curriculum-insights-newsletter-heading"
       data-insights-module="newsletter"
     >
-      <NewsletterInner $mh="auto" $isGuidance={isGuidance}>
-        <NewsletterLayout>
-          <NewsletterLead $flexDirection="column" $gap="spacing-16">
+      <OakBox
+        $mh="auto"
+        $width="100%"
+        $maxWidth="spacing-1280"
+        $ph={["spacing-0", "spacing-0", "spacing-100"]}
+      >
+        <OakGrid
+          $gridTemplateColumns={[
+            "minmax(0, 1fr)",
+            "minmax(0, 1fr)",
+            "minmax(0, 8fr) minmax(0, 7fr)",
+          ]}
+          $gridTemplateRows={["auto auto auto", "auto auto auto", "auto 1fr"]}
+          $cg="spacing-40"
+          $rg={["spacing-20", "spacing-16"]}
+          $alignItems="start"
+        >
+          <OakGridArea
+            $colSpan={1}
+            $colStart={1}
+            $rowStart={1}
+            $width="100%"
+            $maxWidth={["100%", "spacing-800", "100%"]}
+            $mh="auto"
+            $flexDirection="column"
+            $gap="spacing-16"
+          >
             <OakFlex $alignItems="center" $gap="spacing-12">
               <OakImage
                 src={imageUrl(
@@ -266,12 +173,27 @@ export const NationalCurriculumInsightsNewsletter = ({
             >
               {section.introduction}
             </OakP>
-          </NewsletterLead>
-          <NewsletterDetails $flexDirection="column" $gap="spacing-16">
+          </OakGridArea>
+          <OakGridArea
+            $colSpan={1}
+            $colStart={1}
+            $rowStart={[3, 2, 2]}
+            $width="100%"
+            $maxWidth={["100%", "spacing-800", "100%"]}
+            $mh="auto"
+            $flexDirection="column"
+            $gap="spacing-16"
+          >
             <OakP $font={isGuidance ? "body-1" : "body-2"} $mv="spacing-0">
               {section.benefitsHeading ?? "Sign up now for:"}
             </OakP>
-            <NewsletterList as="ul" $flexDirection="column" $gap="spacing-16">
+            <OakUL
+              $display="flex"
+              $flexDirection="column"
+              $gap="spacing-16"
+              $ma="spacing-0"
+              $pl="spacing-24"
+            >
               {section.benefits.map((benefit) => (
                 <li key={benefit}>
                   <OakP
@@ -282,16 +204,24 @@ export const NationalCurriculumInsightsNewsletter = ({
                   </OakP>
                 </li>
               ))}
-            </NewsletterList>
+            </OakUL>
             <PortableTextWithDefaults
               value={section.privacyPortableText}
               components={
                 isGuidance ? guidancePortableTextComponents : undefined
               }
             />
-          </NewsletterDetails>
+          </OakGridArea>
 
-          <NewsletterForm
+          <OakGridArea
+            $colSpan={1}
+            $colStart={[1, 1, 2]}
+            $rowStart={[2, 3, 1]}
+            $rowSpan={[1, 1, 2]}
+            $width="100%"
+            $maxWidth={["100%", "spacing-640", "spacing-480"]}
+            $mh="auto"
+            $mt={["spacing-24", "spacing-32", "spacing-0"]}
             as="form"
             onSubmit={onSubmit}
             $gap="spacing-48"
@@ -340,6 +270,7 @@ export const NationalCurriculumInsightsNewsletter = ({
                 placeholder="Type your school or organisation"
               />
               <OakCheckBox
+                checkboxBorderRadius="border-radius-square"
                 id="insights-newsletter-school-not-listed"
                 name="schoolNotListed"
                 value="not-listed"
@@ -396,9 +327,9 @@ export const NationalCurriculumInsightsNewsletter = ({
             >
               {successMessage}
             </OakP>
-          </NewsletterForm>
-        </NewsletterLayout>
-      </NewsletterInner>
-    </NewsletterSection>
+          </OakGridArea>
+        </OakGrid>
+      </OakBox>
+    </OakBox>
   );
 };

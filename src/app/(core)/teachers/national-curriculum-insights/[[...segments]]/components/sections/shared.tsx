@@ -2,14 +2,13 @@
 
 import type { PortableTextComponents } from "@portabletext/react";
 import {
-  getBreakpoint,
   OakFlex,
   OakFlexProps,
   OakLI,
   OakMaxWidth,
   OakP,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
+import type { ElementType, HTMLAttributes } from "react";
 
 import type { NationalCurriculumInsightsRouteData } from "../../helpers/getRouteData";
 import { insightsAssetUrl } from "../../helpers/assets";
@@ -30,14 +29,6 @@ export type ContextualSectionProps<T extends InsightSection["__typename"]> =
   };
 
 export const DEFAULT_IMAGE = insightsAssetUrl("hero");
-
-export const insightsTabletMediaQuery = `(min-width: ${getBreakpoint(
-  "small",
-)}px) and (max-width: ${getBreakpoint("large")}px)`;
-
-export const insightsWideDesktopMediaQuery = `(min-width: ${
-  getBreakpoint("large") + 1
-}px)`;
 
 export const imageUrl = (
   image: { asset?: { url?: string | null } | null } | null | undefined,
@@ -87,10 +78,15 @@ export const guidancePortableTextComponents: PortableTextComponents = {
   },
 };
 
-export const SectionMaxWidth = styled(OakMaxWidth).attrs({
-  $maxWidth: "spacing-1280",
-  $ph: ["spacing-0", "spacing-0", "spacing-32"],
-})``;
+export const SectionMaxWidth = (
+  props: OakFlexProps & HTMLAttributes<HTMLDivElement> & { as?: ElementType },
+) => (
+  <OakMaxWidth
+    {...props}
+    $maxWidth="spacing-1280"
+    $ph={["spacing-0", "spacing-0", "spacing-32"]}
+  />
+);
 
 export const InsightsContentMaxWidth = (props: OakFlexProps) => (
   <OakFlex $width="100%" $maxWidth="spacing-960" {...props} />

@@ -1,17 +1,8 @@
 "use client";
 
 import { OakBox, OakFlex, OakHeading } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import { SectionProps } from "./shared";
-
-const PromotionalHeadingFrame = styled(OakFlex)`
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 1106px;
-  justify-content: center;
-  text-align: center;
-`;
 
 export const NationalCurriculumInsightsPromotionalHeading = ({
   section,
@@ -21,7 +12,13 @@ export const NationalCurriculumInsightsPromotionalHeading = ({
       $ph={["spacing-20", "spacing-40"]}
       $pv={["spacing-32", "spacing-48"]}
     >
-      <PromotionalHeadingFrame
+      <OakFlex
+        $boxSizing="border-box"
+        $width="100%"
+        $maxWidth="spacing-1280"
+        $ph={["spacing-0", "spacing-0", "spacing-80"]}
+        $justifyContent="center"
+        $textAlign="center"
         $mh="auto"
         $alignItems="center"
         data-insights-module="promotional-heading"
@@ -29,7 +26,7 @@ export const NationalCurriculumInsightsPromotionalHeading = ({
         <OakHeading tag="h2" $font={["heading-5", "heading-4"]}>
           {section.heading}
         </OakHeading>
-      </PromotionalHeadingFrame>
+      </OakFlex>
     </OakBox>
   );
 };

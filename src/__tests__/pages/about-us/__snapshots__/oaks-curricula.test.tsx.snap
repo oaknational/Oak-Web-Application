@@ -540,8 +540,10 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 
 .c158 {
   position: relative;
+  overflow: hidden;
   background: #bef2bd;
   font-family: --var(google-font),Lexend,sans-serif;
+  overflow: hidden;
 }
 
 .c159 {

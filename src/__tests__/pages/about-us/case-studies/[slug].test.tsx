@@ -1,9 +1,5 @@
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
-import OaksImpact, {
-  getStaticPaths,
-  getStaticProps,
-} from "@/pages/about-us/case-studies/[slug]";
 import CMSClient from "@/node-lib/cms";
 import {
   OaksImpactCaseStudyPage,
@@ -12,6 +8,10 @@ import {
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 import { getFallbackBlockingConfig } from "@/node-lib/isr";
 import { mockPortableTextBlocks } from "@/fixtures/curriculum/programmeSequenceYearData.fixtures";
+import AboutUsCaseStudy, {
+  getStaticPaths,
+  getStaticProps,
+} from "@/pages/about-us/case-studies/[slug]";
 
 let mockShouldSkipInitialBuild = false;
 
@@ -115,10 +115,11 @@ beforeEach(() => {
   mockCMSClient.oaksImpactPage.mockResolvedValue(mockImpactPageData);
 });
 
-describe("pages/about-us/oaks-impact/case-studies/[slug].tsx", () => {
+describe("pages/about-us/case-studies/[slug].tsx", () => {
   it("renders title", async () => {
-    const { container } = renderWithProviders()(
-      <OaksImpact
+    const { container, getAllByRole } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={false}
         pageData={{
           caseStudy: mockPageData.caseStudiesSection.caseStudies[0]!,
           otherCaseStudies:
@@ -129,6 +130,25 @@ describe("pages/about-us/oaks-impact/case-studies/[slug].tsx", () => {
     );
 
     expect(container).toMatchSnapshot();
+    expect(getAllByRole("navigation")[1]).toHaveTextContent("Oak's impact");
+    expect(getAllByRole("navigation")[1]).not.toHaveTextContent("Case studies");
+  });
+
+  it("renders correct breadcrumb when case studies feature flag is enabled", async () => {
+    const { getAllByRole } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={true}
+        pageData={{
+          caseStudy: mockPageData.caseStudiesSection.caseStudies[0]!,
+          otherCaseStudies:
+            mockPageData.caseStudiesSection.caseStudies.slice(1),
+        }}
+        topNav={topNavFixture}
+      />,
+    );
+
+    expect(getAllByRole("navigation")[1]).toHaveTextContent("Case studies");
+    expect(getAllByRole("navigation")[1]).not.toHaveTextContent("Oak's impact");
   });
 
   describe("getStaticProps", () => {
