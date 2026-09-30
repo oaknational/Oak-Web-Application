@@ -1,8 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-import type { ReactElement } from "react";
-
 import TeachWithOakPage from "./page";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -25,21 +23,15 @@ jest.mock("./components/TeachWithOakView", () => ({
   ),
 }));
 
-const renderPage = async (searchParams = {}) =>
-  renderWithProviders()(
-    (await TeachWithOakPage({
-      params: Promise.resolve({}),
-      searchParams: Promise.resolve(searchParams),
-    })) as ReactElement,
-  );
+const renderPage = () => renderWithProviders()(TeachWithOakPage());
 
 describe("Teach with Oak page", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  test("renders the view inside the teach-with-oak analytics context", async () => {
-    const { getByTestId } = await renderPage();
+  test("renders the view inside the teach-with-oak analytics context", () => {
+    const { getByTestId } = renderPage();
 
     expect(getByTestId("teach-with-oak-view")).toBeInTheDocument();
   });
