@@ -57,7 +57,7 @@ export const isExternalHref = (href: MaybeOakHref) => {
       return false;
     }
   } catch (error) {
-    reportError(error, { href });
+    void reportError(error, { href });
   }
 
   return true;
@@ -1033,7 +1033,7 @@ export function resolveOakHref(props: ResolveOakHrefProps): string {
       originalError: error,
       meta: props,
     });
-    reportError(err);
+    void reportError(err);
 
     return "/";
   }
