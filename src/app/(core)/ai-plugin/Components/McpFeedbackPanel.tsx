@@ -53,8 +53,7 @@ export const McpFeedbackPanel = () => (
         width={446}
         height={215}
         placeholder="empty"
-        $width={["100%", "100%", "auto"]}
-        $minWidth={["spacing-0", "spacing-0", "spacing-480"]}
+        $minWidth={["100%", "100%", "spacing-480"]}
       />
     </OakFlex>
   </OakBox>

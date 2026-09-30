@@ -95,7 +95,6 @@ export const McpHero = () => (
         height={308}
         placeholder="empty"
         $display={["none", "none", "block"]}
-        $width="spacing-360"
         $minWidth="spacing-360"
       />
     </OakFlex>
