@@ -272,7 +272,10 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 
-  const otherCaseStudies = await CMSClient.caseStudyLibraryPage({ limit: 3 });
+  const otherCaseStudies = await CMSClient.caseStudyLibraryPage({
+    slug,
+    limit: 3,
+  });
 
   const results: GetStaticPropsResult<AboutUsOaksImpactCaseStudyPageProps> = {
     props: {
