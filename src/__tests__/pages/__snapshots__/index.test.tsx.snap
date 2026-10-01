@@ -178,7 +178,7 @@ exports[`Teachers Page Page component renders 1`] = `
           >
             <a
               aria-label="Home"
-              class="sc-iwjfEg gbbVHe sc-cxpUrY"
+              class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
               href="/"
             >
               <span
@@ -1846,7 +1846,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             class="sc-dkPwfY leSQeG"
                           >
                             <a
-                              class="sc-iwjfEg gbbVHe sc-cxpUrY"
+                              class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
                               href="/blog/categories/some-category"
                             >
                               <span
@@ -2048,7 +2048,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             class="sc-dkPwfY leSQeG"
                           >
                             <a
-                              class="sc-iwjfEg gbbVHe sc-cxpUrY"
+                              class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
                               href="/blog/categories/some-category"
                             >
                               <span
@@ -2144,7 +2144,7 @@ exports[`Teachers Page Page component renders 1`] = `
                          teachers and get free resources and other helpful content by email. Unsubscribe at any time. Read our
                          
                         <a
-                          class="sc-iwjfEg gbbVHe sc-cxpUrY"
+                          class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
                           href="/legal/privacy-policy"
                         >
                           <span
@@ -2257,7 +2257,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             class="sc-bdvwhi sc-gsDMPd sc-hiwNGW wiZya enStEb drQjAO"
                           >
                             <select
-                              class="sc-jeqZuJ iQfzDP"
+                              class="sc-jeqZuJ gupyXh"
                               id="react-use-id-test-result-newsletter-signup-userrole"
                               name="userRole"
                             >
@@ -2427,7 +2427,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/pupils/years"
                           >
                             <span
@@ -2461,7 +2461,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/teachers/eyfs/maths"
                           >
                             <span
@@ -2475,7 +2475,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/lesson-planning"
                           >
                             <span
@@ -2489,7 +2489,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="https://labs.thenational.academy"
                             target="_blank"
                           >
@@ -2521,7 +2521,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/blog"
                           >
                             <span
@@ -2556,7 +2556,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/"
                           >
                             <span
@@ -2570,7 +2570,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/about-us/who-we-are"
                           >
                             <span
@@ -2584,7 +2584,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/about-us/oaks-curricula"
                           >
                             <span
@@ -2598,7 +2598,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/about-us/oaks-impact"
                           >
                             <span
@@ -2612,7 +2612,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/about-us/get-involved"
                           >
                             <span
@@ -2626,7 +2626,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/about-us/meet-the-team"
                           >
                             <span
@@ -2641,7 +2641,7 @@ exports[`Teachers Page Page component renders 1`] = `
                         >
                           <a
                             aria-label="Careers (opens in a new tab)"
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="https://jobs.thenational.academy"
                             target="_blank"
                           >
@@ -2673,7 +2673,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/contact-us"
                           >
                             <span
@@ -2688,7 +2688,7 @@ exports[`Teachers Page Page component renders 1`] = `
                         >
                           <a
                             aria-label="Help (opens in a new tab)"
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="https://support.thenational.academy"
                             target="_blank"
                           >
@@ -2720,7 +2720,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/webinars"
                           >
                             <span
@@ -2735,7 +2735,7 @@ exports[`Teachers Page Page component renders 1`] = `
                         >
                           <a
                             aria-label="Status (opens in a new tab)"
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="https://status.thenational.academy"
                             target="_blank"
                           >
@@ -2788,7 +2788,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/legal/terms-and-conditions"
                           >
                             <span
@@ -2802,7 +2802,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/legal/privacy-policy"
                           >
                             <span
@@ -2816,7 +2816,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/legal/cookie-policy"
                           >
                             <span
@@ -2830,7 +2830,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <button
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           >
                             <span
                               class="sc-dkPwfY fgmEIT"
@@ -2843,7 +2843,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/legal/copyright-notice"
                           >
                             <span
@@ -2857,7 +2857,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/legal/accessibility-statement"
                           >
                             <span
@@ -2871,7 +2871,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/legal/safeguarding-statement"
                           >
                             <span
@@ -2885,7 +2885,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/legal/physical-activity-disclaimer"
                           >
                             <span
@@ -2899,7 +2899,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/legal/complaints"
                           >
                             <span
@@ -2913,7 +2913,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/legal/freedom-of-information-requests"
                           >
                             <span
@@ -3293,7 +3293,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 class="sc-bdvwhi sc-gsDMPd lmXuba eWbmLh"
               >
                 <button
-                  class="sc-iwjfEg ieUBNG sc-cxpUrY"
+                  class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
                   data-testid="cookie-banner-reject"
                   type="button"
                 >

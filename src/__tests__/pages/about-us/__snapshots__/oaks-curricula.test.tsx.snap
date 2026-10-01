@@ -2170,6 +2170,14 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
+.c252 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  letter-spacing: 0.0115rem;
+}
+
 .c43 {
   appearance: none!important;
   border: 0;
@@ -2359,7 +2367,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   border-bottom-right-radius: 0px;
 }
 
-.c194:open ::picker(select) {
+.c194:open::picker(select) {
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
 }
@@ -6702,7 +6710,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
               class="c251 c41"
             >
               <button
-                class="c218 "
+                class="c218 c252"
                 data-testid="cookie-banner-reject"
                 type="button"
               >

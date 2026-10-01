@@ -465,7 +465,7 @@ exports[`CurriculumTab renders 1`] = `
   cursor: default;
 }
 
-.c80 {
+.c81 {
   background: none;
   color: inherit;
   border: none;
@@ -488,7 +488,7 @@ exports[`CurriculumTab renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c80:disabled {
+.c81:disabled {
   pointer-events: none;
   cursor: default;
 }
@@ -544,40 +544,40 @@ exports[`CurriculumTab renders 1`] = `
   display: none;
 }
 
-.c81 {
+.c82 {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.c81:hover {
+.c82:hover {
   text-decoration: underline;
   color: #222222;
   background: #f2f2f2;
   border-color: #222222;
 }
 
-.c81:hover [data-state="selected"] {
+.c82:hover [data-state="selected"] {
   display: none;
 }
 
-.c81:active {
+.c82:active {
   background: #ffffff;
   border-color: #222222;
   color: #222222;
 }
 
-.c81:active [data-state="selected"] {
+.c82:active [data-state="selected"] {
   display: none;
 }
 
-.c81:disabled {
+.c82:disabled {
   background: #e4e4e4;
   border-color: #808080;
   color: #808080;
 }
 
-.c81:disabled [data-state="selected"] {
+.c82:disabled [data-state="selected"] {
   display: none;
 }
 
@@ -727,6 +727,14 @@ exports[`CurriculumTab renders 1`] = `
 
 .c18[disabled] .c24 {
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
+}
+
+.c80 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  letter-spacing: 0.0115rem;
 }
 
 .c37 {
@@ -1716,7 +1724,7 @@ exports[`CurriculumTab renders 1`] = `
                 class="c78 c79"
               >
                 <button
-                  class="c18 "
+                  class="c18 c80"
                   data-testid="cookie-banner-reject"
                   type="button"
                 >
@@ -1737,7 +1745,7 @@ exports[`CurriculumTab renders 1`] = `
                   class="c55 yellow-shadow"
                 />
                 <button
-                  class="c80 c81 internal-button"
+                  class="c81 c82 internal-button"
                 >
                   <div
                     class="c5 c58"

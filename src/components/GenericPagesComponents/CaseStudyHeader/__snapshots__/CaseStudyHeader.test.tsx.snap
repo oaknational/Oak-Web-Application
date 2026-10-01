@@ -23,7 +23,7 @@ exports[`CaseStudyHeader renders correctly 1`] = `
             TEST_DATE
           </div>
           <button
-            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
           >
             <div
               class="sc-bdvwhi TWNfU"
@@ -78,7 +78,7 @@ exports[`CaseStudyHeader renders correctly with summary 1`] = `
             TEST_DATE
           </div>
           <button
-            class="sc-iwjfEg ieUBNG sc-cxpUrY"
+            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
           >
             <div
               class="sc-bdvwhi TWNfU"

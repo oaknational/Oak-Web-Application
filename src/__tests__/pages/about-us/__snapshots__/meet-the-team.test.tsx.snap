@@ -1265,7 +1265,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   cursor: default;
 }
 
-.c209 {
+.c210 {
   background: none;
   color: inherit;
   border: none;
@@ -1288,7 +1288,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c209:disabled {
+.c210:disabled {
   pointer-events: none;
   cursor: default;
 }
@@ -1872,6 +1872,14 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
+.c209 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  letter-spacing: 0.0115rem;
+}
+
 .c43 {
   appearance: none!important;
   border: 0;
@@ -2029,7 +2037,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   border-bottom-right-radius: 0px;
 }
 
-.c149:open ::picker(select) {
+.c149:open::picker(select) {
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
 }
@@ -5898,7 +5906,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
               class="c208 c41"
             >
               <button
-                class="c174 "
+                class="c174 c209"
                 data-testid="cookie-banner-reject"
                 type="button"
               >
@@ -5942,7 +5950,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 class="c6 yellow-shadow"
               />
               <button
-                class="c209 c19 internal-button"
+                class="c210 c19 internal-button"
                 data-testid="cookie-banner-accept"
               >
                 <div
