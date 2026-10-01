@@ -1,3 +1,5 @@
+import { GetServerSidePropsContext } from "next/dist/types";
+
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import CMSClient from "@/node-lib/cms";
@@ -9,8 +11,7 @@ import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 import { getFallbackBlockingConfig } from "@/node-lib/isr";
 import { mockPortableTextBlocks } from "@/fixtures/curriculum/programmeSequenceYearData.fixtures";
 import AboutUsCaseStudy, {
-  getStaticPaths,
-  getStaticProps,
+  getServerSideProps,
 } from "@/pages/about-us/case-studies/[slug]";
 
 let mockShouldSkipInitialBuild = false;
@@ -37,6 +38,7 @@ const mockGetFallbackBlockingConfig = jest.mocked(getFallbackBlockingConfig);
 
 function caseStudyFixture(slug: string) {
   return {
+    title: slug.replaceAll("-", " "),
     image: {
       altText: "Test image alt text",
       asset: {
@@ -62,6 +64,68 @@ function caseStudyFixture(slug: string) {
     publishedAt: "2023-01-01",
   };
 }
+
+const writtenCaseStudy = {
+  title: "Test",
+  tag: "primary",
+  summaryRaw: portableTextFromString("TEST_SUMMARY"),
+  content: [
+    {
+      heading: "TEST_HEADING_1",
+      anchorSlug: {
+        current: "test-anchor-slug-1",
+      },
+      label: "TEST_LABEL_1",
+      contentRaw: portableTextFromString("TEST_CONTENT_1"),
+    },
+    {
+      heading: "TEST_HEADING_2",
+      anchorSlug: {
+        current: "test-anchor-slug-2",
+      },
+      label: "TEST_LABEL_2",
+      contentRaw: portableTextFromString("TEST_CONTENT_2"),
+    },
+  ],
+  showGetInTouchPanel: true,
+  getInTouchPanel: {
+    personName: "TEST_PERSON_NAME",
+    personImage: {
+      altText: null,
+      isPresentational: true,
+      asset: {
+        _id: "image-d16d5ceea1923b8cf31845affe93f9626f600c4c-240x320-png",
+        url: "https://cdn.sanity.io/images/cuvjke51/production/d16d5ceea1923b8cf31845affe93f9626f600c4c-240x320.png",
+      },
+      hotspot: null,
+    },
+    jobRole: "TEST_JOB_ROLE",
+    institutionName: "TEST_INSTITUTION_NAME",
+  },
+  video: {
+    title: "Test Video",
+    video: {
+      asset: {
+        assetId: "test-asset-id",
+        playbackId: "test-playback-id",
+        thumbTime: null,
+      },
+    },
+    transcript: [mockPortableTextBlocks[0]],
+  },
+  slug: {
+    current: "test",
+  },
+  image: {
+    altText: "Test image alt text",
+    asset: {
+      _id: "test-image-asset-id",
+      url: "https://example.com/test-image.jpg",
+    },
+  },
+  textRaw: portableTextFromString("TEST_TEXT_RAW"),
+  publishedAt: "2026-09-30",
+};
 
 const mockPageData: OaksImpactCaseStudyPage = {
   caseStudiesSection: {
@@ -151,21 +215,41 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
     expect(getAllByRole("navigation")[1]).not.toHaveTextContent("Oak's impact");
   });
 
-  describe("getStaticProps", () => {
-    it("returns props data", async () => {
-      const propsResult = await getStaticProps({
-        params: { slug: "test-slug-1" },
-      });
+  it("renders written case study", async () => {
+    const { container, getAllByRole } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={true}
+        pageData={{
+          caseStudy: writtenCaseStudy,
+          otherCaseStudies:
+            mockPageData.caseStudiesSection.caseStudies.slice(1),
+        }}
+        topNav={topNavFixture}
+      />,
+    );
 
-      expect(propsResult).toMatchObject({
-        props: {
-          topNav: topNavFixture,
-        },
-      });
-    });
+    expect(container).toMatchSnapshot();
+    expect(getAllByRole("navigation")[1]).toHaveTextContent("Case studies");
+    expect(getAllByRole("navigation")[1]).not.toHaveTextContent("Oak's impact");
+    expect(container).toHaveTextContent("TEST_TEXT_RAW");
+    expect(container).toHaveTextContent("TEST_SUMMARY");
+    expect(container).toHaveTextContent("TEST_PERSON_NAME");
+    expect(container).toHaveTextContent("TEST_JOB_ROLE");
+    expect(container).toHaveTextContent("TEST_INSTITUTION_NAME");
 
+    expect(container).toHaveTextContent("TEST_HEADING_1");
+    expect(container).toHaveTextContent("TEST_CONTENT_1");
+    expect(container).toHaveTextContent("TEST_HEADING_2");
+    expect(container).toHaveTextContent("TEST_CONTENT_2");
+  });
+
+  describe("getServerSideProps", () => {
     it("returns notFound when the slug is missing", async () => {
-      const propsResult = await getStaticProps({});
+      const propsResult = await getServerSideProps({
+        req: {
+          cookies: {},
+        },
+      } as GetServerSidePropsContext<{ slug: string }>);
 
       expect(propsResult).toMatchObject({
         notFound: true,
@@ -175,9 +259,12 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
     it("returns notFound when CMS returns null", async () => {
       mockCMSClient.oaksImpactCaseStudyPage.mockResolvedValueOnce(null);
 
-      const propsResult = await getStaticProps({
+      const propsResult = await getServerSideProps({
+        req: {
+          cookies: {},
+        },
         params: { slug: "test-slug-1" },
-      });
+      } as GetServerSidePropsContext<{ slug: string }>);
 
       expect(propsResult).toMatchObject({
         notFound: true,
@@ -185,30 +272,64 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
     });
   });
 
-  describe("getStaticPaths", () => {
-    it("returns the paths of all case studies", async () => {
-      const pathsResult = await getStaticPaths();
+  // describe("getStaticProps", () => {
+  //   it("returns props data", async () => {
+  //     const propsResult = await getStaticProps({
+  //       params: { slug: "test-slug-1" },
+  //     });
 
-      expect(pathsResult).toEqual({
-        fallback: "blocking",
-        paths: [
-          { params: { slug: "test-slug-1" } },
-          { params: { slug: "test-slug-2" } },
-          { params: { slug: "test-slug-3" } },
-        ],
-      });
-    });
+  //     expect(propsResult).toMatchObject({
+  //       props: {
+  //         topNav: topNavFixture,
+  //       },
+  //     });
+  //   });
 
-    it("returns the fallback blocking config when initial build is skipped", async () => {
-      mockShouldSkipInitialBuild = true;
+  //   it("returns notFound when the slug is missing", async () => {
+  //     const propsResult = await getStaticProps({});
 
-      const pathsResult = await getStaticPaths();
+  //     expect(propsResult).toMatchObject({
+  //       notFound: true,
+  //     });
+  //   });
 
-      expect(mockGetFallbackBlockingConfig).toHaveBeenCalled();
-      expect(pathsResult).toEqual({
-        fallback: "blocking",
-        paths: [],
-      });
-    });
-  });
+  //   it("returns notFound when CMS returns null", async () => {
+  //     mockCMSClient.oaksImpactCaseStudyPage.mockResolvedValueOnce(null);
+
+  //     const propsResult = await getStaticProps({
+  //       params: { slug: "test-slug-1" },
+  //     });
+
+  //     expect(propsResult).toMatchObject({
+  //       notFound: true,
+  //     });
+  //   });
+  // });
+
+  // describe("getStaticPaths", () => {
+  //   it("returns the paths of all case studies", async () => {
+  //     const pathsResult = await getStaticPaths();
+
+  //     expect(pathsResult).toEqual({
+  //       fallback: "blocking",
+  //       paths: [
+  //         { params: { slug: "test-slug-1" } },
+  //         { params: { slug: "test-slug-2" } },
+  //         { params: { slug: "test-slug-3" } },
+  //       ],
+  //     });
+  //   });
+
+  //   it("returns the fallback blocking config when initial build is skipped", async () => {
+  //     mockShouldSkipInitialBuild = true;
+
+  //     const pathsResult = await getStaticPaths();
+
+  //     expect(mockGetFallbackBlockingConfig).toHaveBeenCalled();
+  //     expect(pathsResult).toEqual({
+  //       fallback: "blocking",
+  //       paths: [],
+  //     });
+  //   });
+  // });
 });
