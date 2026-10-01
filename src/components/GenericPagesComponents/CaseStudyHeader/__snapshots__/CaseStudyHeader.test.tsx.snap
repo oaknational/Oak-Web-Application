@@ -114,7 +114,7 @@ exports[`CaseStudyHeader renders correctly with summary 1`] = `
           Summary
         </div>
         <p
-          class="sc-hGPAwl gpFakR"
+          class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
         >
           TEST_SUMMARY
         </p>
