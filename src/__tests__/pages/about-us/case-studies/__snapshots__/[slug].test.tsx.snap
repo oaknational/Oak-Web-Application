@@ -791,16 +791,16 @@ exports[`pages/about-us/case-studies/[slug].tsx renders title 1`] = `
             class="sc-aXZVg bZTQLO"
           >
             <div
-              class="sc-aXZVg sc-tagGq jPvJsJ eSQvfu"
+              class="sc-aXZVg sc-tagGq jWlXXi eSQvfu"
             >
               <div
-                class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi kBKjPD"
+                class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi evaTyT"
               >
                 <div
                   class="sc-aXZVg jPvJsJ"
                 >
                   <div
-                    class="sc-aXZVg bflClx"
+                    class="sc-aXZVg cLBNuG"
                   >
                     <div
                       class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
@@ -2958,16 +2958,141 @@ exports[`pages/about-us/case-studies/[slug].tsx renders written case study 1`] =
             class="sc-aXZVg bZTQLO"
           >
             <div
-              class="sc-aXZVg sc-tagGq jPvJsJ eSQvfu"
+              class="sc-aXZVg sc-tagGq jWlXXi eSQvfu"
             >
               <div
-                class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi kBKjPD"
+                class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi iOEKvA"
+              >
+                <div
+                  class="sc-aXZVg eIUCsj"
+                >
+                  <div
+                    class="sc-aXZVg eYGSNf"
+                  >
+                    <nav
+                      aria-label="page sections"
+                      class="sc-aXZVg hNpiyt"
+                    >
+                      <p
+                        class="sc-ikkxIA brWfcL"
+                      >
+                        Contents
+                      </p>
+                      <ul
+                        class="sc-feUZmu hgNKKZ"
+                      >
+                        <li
+                          class="sc-fPXMVe ishrdH"
+                        >
+                          <div
+                            class="sc-aXZVg cxrurG"
+                          >
+                            <a
+                              class="sc-fHjqPf fYLNyU"
+                              href="#test-anchor-slug-1"
+                            >
+                              <span
+                                class="sc-eqUAAy iGfTGj"
+                              >
+                                TEST_LABEL_1
+                              </span>
+                            </a>
+                          </div>
+                          <div
+                            class="sc-aXZVg gZoCWt"
+                          >
+                            <a
+                              aria-current="true"
+                              class="sc-lbJcrp eHkrdA sc-eifrsQ iDMA-Dj"
+                              href="#test-anchor-slug-1"
+                            >
+                              <div
+                                class="sc-aXZVg sc-gEvEer jPvJsJ icSftN"
+                              >
+                                <span
+                                  class="sc-eqUAAy kdDkjD"
+                                >
+                                  TEST_LABEL_1
+                                </span>
+                              </div>
+                              <span
+                                class="sc-aXZVg eayDnI"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-iGgWBj cMzyFO"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </a>
+                          </div>
+                        </li>
+                        <li
+                          class="sc-fPXMVe ishrdH"
+                        >
+                          <div
+                            class="sc-aXZVg cxrurG"
+                          >
+                            <a
+                              class="sc-fHjqPf fYLNyU"
+                              href="#test-anchor-slug-2"
+                            >
+                              <span
+                                class="sc-eqUAAy iGfTGj"
+                              >
+                                TEST_LABEL_2
+                              </span>
+                            </a>
+                          </div>
+                          <div
+                            class="sc-aXZVg gZoCWt"
+                          >
+                            <a
+                              class="sc-lbJcrp bXpnHW sc-eifrsQ iDMA-Dj"
+                              href="#test-anchor-slug-2"
+                            >
+                              <div
+                                class="sc-aXZVg sc-gEvEer jPvJsJ icSftN"
+                              >
+                                <span
+                                  class="sc-eqUAAy kdDkjD"
+                                >
+                                  TEST_LABEL_2
+                                </span>
+                              </div>
+                              <span
+                                class="sc-aXZVg eayDnI"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-iGgWBj cMzyFO"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi fnWHNc"
               >
                 <div
                   class="sc-aXZVg jPvJsJ"
                 >
                   <div
-                    class="sc-aXZVg bflClx"
+                    class="sc-aXZVg cLBNuG"
                   >
                     <div
                       class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
@@ -3110,6 +3235,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders written case study 1`] =
                   >
                     <div
                       class="sc-aXZVg sc-gEvEer jPvJsJ blEyxD"
+                      id="test-anchor-slug-1"
                     >
                       <h2
                         class="sc-aXZVg sc-gEvEer jPvJsJ gbtScN"
@@ -3124,10 +3250,6 @@ exports[`pages/about-us/case-studies/[slug].tsx renders written case study 1`] =
                           </div>
                         </div>
                          
-                        <span
-                          class="sc-hZDyAQ doIoaN"
-                          id="#test-anchor-slug-1"
-                        />
                         <div
                           class="sc-eldPxv hOapSF"
                         >
@@ -3142,6 +3264,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders written case study 1`] =
                     </div>
                     <div
                       class="sc-aXZVg sc-gEvEer jPvJsJ blEyxD"
+                      id="test-anchor-slug-2"
                     >
                       <h2
                         class="sc-aXZVg sc-gEvEer jPvJsJ gbtScN"
@@ -3156,10 +3279,6 @@ exports[`pages/about-us/case-studies/[slug].tsx renders written case study 1`] =
                           </div>
                         </div>
                          
-                        <span
-                          class="sc-hZDyAQ doIoaN"
-                          id="#test-anchor-slug-2"
-                        />
                         <div
                           class="sc-eldPxv hOapSF"
                         >
