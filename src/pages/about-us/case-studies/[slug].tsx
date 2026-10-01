@@ -172,7 +172,6 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                           $alignItems="flex-start"
                         >
                           <OakFlex
-                            $as="h2"
                             $alignItems="flex-start"
                             $flexDirection="column"
                             $gap="spacing-8"
