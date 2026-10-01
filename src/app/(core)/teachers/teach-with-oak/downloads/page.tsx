@@ -1,12 +1,14 @@
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { cache } from "react";
+
+import { parseReturnToLessonParams } from "../parseReturnToLessonParams";
 
 import { TeachWithOakDownloadView } from "./components/TeachWithOakDownloadView";
 
-import withPageErrorHandling from "@/hocs/withPageErrorHandling";
+import withPageErrorHandling, {
+  AppPageProps,
+} from "@/hocs/withPageErrorHandling";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { getFeatureFlagValue } from "@/utils/featureFlags";
 import { getTeachWithOakDownloadFileExistence } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
 import { cacheData } from "@/node-lib/cache";
 
@@ -25,24 +27,23 @@ const cachedFileExistence = cache(
   }, ["teach-with-oak"]),
 );
 
-const InnerTeachWithOakDownloadPage = async () => {
-  const isEnabled = await getFeatureFlagValue(
-    "teachers-teach-with-oak",
-    "string",
-  );
-
-  if (!isEnabled) {
-    return notFound();
-  }
-
+const InnerTeachWithOakDownloadPage = async ({
+  searchParams,
+}: AppPageProps<Record<string, string>>) => {
   const data = await cachedFileExistence();
+  const returnToLessonProps = parseReturnToLessonParams(
+    (await searchParams) ?? {},
+  );
 
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={null}
       accessLevel="teach_with_oak"
     >
-      <TeachWithOakDownloadView resources={data.resources} />
+      <TeachWithOakDownloadView
+        resources={data.resources}
+        returnToLessonProps={returnToLessonProps}
+      />
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };
