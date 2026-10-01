@@ -51,6 +51,12 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
 }) => {
   const { setCurrentToastProps } = useOakNotificationsContext();
 
+  if (!isCaseStudiesFeatEnabled) {
+    otherCaseStudies = otherCaseStudies.filter(
+      (caseStudy) => !caseStudy.content,
+    );
+  }
+
   const onCopyLink = () => {
     const urlToCopy = window.location.href;
     navigator.clipboard.writeText(urlToCopy);
