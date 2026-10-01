@@ -360,6 +360,15 @@ export const mcpSupport = {
   bodyAfter: ".",
 } as const;
 
+export const mcpForDevelopers = {
+  title: "For developers",
+  bodyBefore:
+    "Developer or technically minded? Oak can connect to any AI tool that supports Model Context Protocol (MCP) connections. ",
+  linkLabel: "Find out how here",
+  linkHref: "https://github.com/oaknational/oak-ai-plugins/blob/main/README.md",
+  bodyAfter: ".",
+} as const;
+
 export const mcpOutputWarning =
   "Outputs are AI-generated and not endorsed by Oak. Always check that what you create is right for your pupils and context.";
 

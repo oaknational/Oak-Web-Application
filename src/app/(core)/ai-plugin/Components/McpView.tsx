@@ -29,6 +29,7 @@ import {
   mcpOutputWarning,
   mcpResponsibleUse,
   mcpSupport,
+  mcpForDevelopers,
 } from "@/app/(core)/ai-plugin/mcpContent";
 
 const sectionSpacing: OakFlexProps["$pt"] = [
@@ -189,6 +190,22 @@ export const McpView = () => (
                   </Prose>
                 </McpSection>
               </OakBox>
+            </OakBox>
+
+            <OakBox
+              $pt="spacing-64"
+              $mt={["spacing-24", "spacing-24", "spacing-0"]}
+              $pb={["spacing-32", "spacing-32", "spacing-0"]}
+            >
+              <McpSection title={mcpForDevelopers.title} id="for-developers">
+                <OakBox $font="body-2">
+                  {mcpForDevelopers.bodyBefore}
+                  <McpExternalLink href={mcpForDevelopers.linkHref}>
+                    {mcpForDevelopers.linkLabel}
+                  </McpExternalLink>
+                  {mcpForDevelopers.bodyAfter}
+                </OakBox>
+              </McpSection>
             </OakBox>
           </OakGridArea>
         </OakGrid>

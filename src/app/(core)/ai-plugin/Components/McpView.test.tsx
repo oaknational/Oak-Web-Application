@@ -17,6 +17,7 @@ import {
   mcpResponsibleUse,
   mcpSchoolSetup,
   mcpSupport,
+  mcpForDevelopers,
 } from "@/app/(core)/ai-plugin/mcpContent";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
@@ -49,6 +50,7 @@ describe("McpView", () => {
       mcpAssistants.title,
       mcpResponsibleUse.title,
       mcpHowItWorks.title,
+      mcpForDevelopers.title,
       mcpFeedback.title,
     ]);
   });
@@ -232,6 +234,18 @@ describe("McpView", () => {
     expect(steps[1]).toHaveTextContent("authorise Oak");
     expect(steps[2]).toHaveTextContent("Try in Claude");
     expect(steps[3]).toHaveTextContent("authorise Oak");
+  });
+
+  it("points developers at the plugin README", () => {
+    const { getByRole } = render(<McpView />);
+
+    const section = getByRole("region", { name: mcpForDevelopers.title });
+
+    expect(
+      within(section).getByRole("link", {
+        name: new RegExp(mcpForDevelopers.linkLabel),
+      }),
+    ).toHaveAttribute("href", mcpForDevelopers.linkHref);
   });
 
   it("links the licence and Oak's terms from 'How it works'", () => {
