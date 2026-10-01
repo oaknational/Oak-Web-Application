@@ -18,7 +18,7 @@ describe("CaseStudiesSection", () => {
     expect(baseElement).toMatchSnapshot();
     expect(getByRole("heading", { name: "Case studies" })).toBeInTheDocument();
     expect(
-      getAllByRole("link", { name: /case study [1-3] watch the video/i }),
+      getAllByRole("link", { name: /case study [1-3].*watch the video/i }),
     ).toHaveLength(3);
   });
 
@@ -33,7 +33,7 @@ describe("CaseStudiesSection", () => {
     expect(baseElement).toMatchSnapshot();
     expect(getByRole("heading", { name: "Case studies" })).toBeInTheDocument();
     expect(
-      getAllByRole("link", { name: /case study [1-2] watch the video/i }),
+      getAllByRole("link", { name: /case study [1-2].*watch the video/i }),
     ).toHaveLength(2);
   });
 

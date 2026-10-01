@@ -46,11 +46,11 @@ exports[`CaseStudyGetInTouch renders 1`] = `
         <div
           class="sc-aXZVg sc-gEvEer jPvJsJ dUCWjO"
         >
-          <h1
+          <h2
             class="sc-eldPxv fjdFhT"
           >
             Connect me to schools like this one
-          </h1>
+          </h2>
           <p
             class="sc-ikkxIA bevdi"
           >

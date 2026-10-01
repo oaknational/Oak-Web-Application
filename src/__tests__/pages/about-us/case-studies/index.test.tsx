@@ -20,6 +20,7 @@ jest.mock("@/utils/featureFlagChecks/server", () => ({
 function fixtureCaseStudy(title: string) {
   const slug = slugify(title);
   return {
+    title,
     video: {
       title: title,
       video: {
