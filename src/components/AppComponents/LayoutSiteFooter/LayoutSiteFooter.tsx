@@ -196,7 +196,7 @@ export const LayoutSiteFooterInner: FC = () => {
         {
           text: "Case studies",
           type: "link" as const,
-          href: "/about-us/case-studies", // TODO: Replace with resolveOakHref
+          href: resolveOakHref({ page: "about-case-study-library" }),
           track: trackAboutUsFooter,
         },
         {

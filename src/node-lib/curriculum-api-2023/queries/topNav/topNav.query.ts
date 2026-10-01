@@ -133,7 +133,7 @@ const topNavQuery = (sdk: Sdk) => {
           {
             title: "Case studies",
             slug: "about-case-studies",
-            href: "/about-us/case-studies", // TODO: Replace with resolveOakHref
+            href: resolveOakHref({ page: "about-case-study-library" }),
           },
           {
             title: "Get involved",
