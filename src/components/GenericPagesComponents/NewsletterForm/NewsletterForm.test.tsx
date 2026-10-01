@@ -50,7 +50,7 @@ describe("NewsletterForm", () => {
   test("role select has an accessible name", () => {
     const { getByRole } = render(<NewsletterForm id="1" onSubmit={onSubmit} />);
 
-    expect(getByRole("group", { name: "Role" })).toBeInTheDocument();
+    expect(getByRole("combobox", { name: "Role" })).toBeInTheDocument();
   });
   test("should display error hint on submit if no name is entered", async () => {
     const { getByPlaceholderText, getByRole } = render(

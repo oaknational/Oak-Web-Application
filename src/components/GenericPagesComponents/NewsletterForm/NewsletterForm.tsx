@@ -172,14 +172,11 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
             $width="100%"
             $mt={errors.email ? "spacing-32" : "spacing-0"}
             $mb="spacing-8"
-            role="group"
-            aria-labelledby={`${id}-role-label`}
-            aria-describedby={fieldState.error ? `${id}-role-error` : undefined}
           >
             <OakJauntyAngleLabel
               id={`${id}-role-label`}
               htmlFor={`${id}-newsletter-signup-userrole`}
-              forwardedAs="label"
+              as="label"
               label="Role"
               $color={fieldState.error ? "text-inverted" : "text-primary"}
               $background={
@@ -195,6 +192,10 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
             <OakSelect
               id={`${id}-newsletter-signup-userrole`}
               name={field.name}
+              aria-labelledby={`${id}-role-label`}
+              aria-describedby={
+                fieldState.error ? `${id}-role-error` : undefined
+              }
               $display="block"
               value={field.value}
               validity={fieldState.error ? "invalid" : undefined}
