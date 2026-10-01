@@ -29,12 +29,7 @@ export default async function CoreLayout({
         </TeacherBrowseAnalyticsStoreProvider>
         <SimulateErrorControls errorBoundaryLevel="root" />
         <main id="main">{children}</main>
-        <TeacherBrowseAnalyticsStoreProvider
-          programmeState={null}
-          accessLevel="homepage"
-        >
-          <LayoutSiteFooter />
-        </TeacherBrowseAnalyticsStoreProvider>
+        <LayoutSiteFooter />
       </>
     );
   } catch (error) {

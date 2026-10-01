@@ -26,7 +26,10 @@ import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import { buildAboutUsAnalytics } from "@/utils/analytics-builders";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
-import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import {
+  TeacherBrowseAnalyticsStoreProvider,
+  useTeacherBrowseAnalytics,
+} from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const trackAboutUsFooter = () =>
   aboutUsAccessed(buildAboutUsAnalytics("about_us_footer"));
@@ -117,7 +120,7 @@ export type FooterSections = Record<
   FooterSection
 >;
 
-const LayoutSiteFooter: FC = () => {
+export const LayoutSiteFooterInner: FC = () => {
   const { teachWithOakAccessed } = useTeacherBrowseAnalytics(
     (store) => store.track,
   );
@@ -405,6 +408,17 @@ const LayoutSiteFooter: FC = () => {
         $height={"100%"}
       />
     </OakBox>
+  );
+};
+
+const LayoutSiteFooter = () => {
+  return (
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
+    >
+      <LayoutSiteFooterInner />
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 
