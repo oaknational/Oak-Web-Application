@@ -18,7 +18,6 @@ import { WithReturnToLessonProps } from "../../returnToLessonProps/WithReturnToL
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import { resolveOakHref } from "@/common-lib/urls";
 
-
 export const ShortReads = () => {
   return (
     <OakBox $background="bg-decorative2-very-subdued" $width="100%">
