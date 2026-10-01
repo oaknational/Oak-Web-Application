@@ -14,6 +14,8 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import OakError from "@/errors/OakError";
 
+const reportError = errorReporter("curriculum-api-2023::topNav");
+
 const topNavQuery = (sdk: Sdk) => {
   const cachedTopNav = cacheData(sdk.topNav, [
     "curriculum-api",
@@ -38,7 +40,7 @@ const topNavQuery = (sdk: Sdk) => {
       const error = new OakError({
         code: "curriculum-api/internal-error",
       });
-      errorReporter("curriculum-api-2023::topNav")(error, {
+      void reportError(error, {
         severity: "error",
         res,
         errorMessage: parsed.error,
@@ -76,6 +78,10 @@ const topNavQuery = (sdk: Sdk) => {
             {
               title: "Curriculum change explained",
               slug: "curriculum-change-explained",
+            },
+            {
+              title: "Teach with Oak",
+              slug: "teach-with-oak",
             },
             {
               title: "Plan a lesson",

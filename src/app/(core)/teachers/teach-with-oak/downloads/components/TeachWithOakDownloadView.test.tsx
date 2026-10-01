@@ -87,7 +87,12 @@ describe("TeachWithOakDownloadView", () => {
   });
 
   it("renders the breadcrumbs and the short read resource cards", () => {
-    render(<TeachWithOakDownloadView resources={resources} />);
+    render(
+      <TeachWithOakDownloadView
+        resources={resources}
+        returnToLessonProps={undefined}
+      />,
+    );
 
     expect(
       screen.getByRole("link", { name: "Teach with Oak" }),
@@ -96,7 +101,12 @@ describe("TeachWithOakDownloadView", () => {
   });
 
   it("navigates to the success page once the download has started", async () => {
-    render(<TeachWithOakDownloadView resources={resources} />);
+    render(
+      <TeachWithOakDownloadView
+        resources={resources}
+        returnToLessonProps={undefined}
+      />,
+    );
 
     await clickDownload();
 
@@ -119,9 +129,12 @@ describe("TeachWithOakDownloadView", () => {
       lessonName: "Lesson Name",
       unitName: "Unit Name",
     };
-    mockSearchParams.mockReturnValue(new URLSearchParams(query));
-
-    render(<TeachWithOakDownloadView resources={resources} />);
+    render(
+      <TeachWithOakDownloadView
+        resources={resources}
+        returnToLessonProps={query}
+      />,
+    );
 
     await clickDownload();
 
@@ -137,7 +150,12 @@ describe("TeachWithOakDownloadView", () => {
   it("shows an error message when the download fails", async () => {
     mockOnSubmit.mockRejectedValue(new Error("Download failed"));
 
-    render(<TeachWithOakDownloadView resources={resources} />);
+    render(
+      <TeachWithOakDownloadView
+        resources={resources}
+        returnToLessonProps={undefined}
+      />,
+    );
 
     await clickDownload();
 
