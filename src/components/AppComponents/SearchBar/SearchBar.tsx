@@ -40,6 +40,12 @@ const SearchBar = () => {
             aria-label="Submit search"
             type="submit"
             iconName="search"
+            onClick={() => {
+              searchJourneyInitiated({
+                context: "search",
+                searchSource: "top nav",
+              });
+            }}
           />
         </OakBox>
       </OakBox>
@@ -49,12 +55,6 @@ const SearchBar = () => {
           element={Link}
           aria-label="Search"
           href={resolveOakHref({ page: "search" })}
-          onClick={() => {
-            searchJourneyInitiated({
-              context: "search",
-              searchSource: "top nav",
-            });
-          }}
           iconName="search"
         />
       </OakBox>
