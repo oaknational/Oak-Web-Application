@@ -5083,19 +5083,16 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           </div>
                         </div>
                         <div
-                          aria-labelledby="react-use-id-test-result-role-label"
                           class="c146"
-                          role="group"
                         >
-                          <div
-                            as="label"
+                          <label
                             class="c147"
                             for="react-use-id-test-result-newsletter-signup-userrole"
                             id="react-use-id-test-result-role-label"
                             style="top: -1.25rem;"
                           >
                             Role
-                          </div>
+                          </label>
                           <div
                             class="c148 c149 c150"
                           >

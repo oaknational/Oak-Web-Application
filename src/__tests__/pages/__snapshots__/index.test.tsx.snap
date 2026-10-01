@@ -2243,19 +2243,16 @@ exports[`Teachers Page Page component renders 1`] = `
                           </div>
                         </div>
                         <div
-                          aria-labelledby="react-use-id-test-result-role-label"
                           class="sc-bdvwhi kHQhzQ"
-                          role="group"
                         >
-                          <div
-                            as="label"
+                          <label
                             class="sc-bdvwhi jMFyqC"
                             for="react-use-id-test-result-newsletter-signup-userrole"
                             id="react-use-id-test-result-role-label"
                             style="top: -1.25rem;"
                           >
                             Role
-                          </div>
+                          </label>
                           <div
                             class="sc-bdvwhi sc-gsDMPd sc-hiwNGW wiZya enStEb drQjAO"
                           >
