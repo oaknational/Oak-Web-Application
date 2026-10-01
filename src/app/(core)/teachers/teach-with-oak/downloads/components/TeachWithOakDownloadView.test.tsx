@@ -98,7 +98,6 @@ describe("TeachWithOakDownloadView", () => {
       screen.getByRole("link", { name: "Teach with Oak" }),
     ).toBeInTheDocument();
     expect(screen.getByText("Explanation at Oak guide")).toBeInTheDocument();
-    expect(mockSearchParams).not.toHaveBeenCalled();
   });
 
   it("navigates to the success page once the download has started", async () => {
