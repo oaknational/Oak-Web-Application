@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`OakModalNew should match snapshot 1`] = `
 <div>
@@ -77,6 +77,7 @@ exports[`OakModalNew should match snapshot 1`] = `
         <div
           class="sc-aXZVg sc-gEvEer cWFjzT eUIBLO"
           data-testid="modal-content"
+          style="scrollbar-gutter: stable;"
         >
           test_content
         </div>

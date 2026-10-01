@@ -14,4 +14,4 @@ inputs:
     description: "[optional] The pull request number to report back to, not defined for baseline snapshots on 'main'"
 runs:
   using: "node24"
-  main: "index.js"
+  main: "index.mjs"

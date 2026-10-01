@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Teachers Page Page component renders 1`] = `
 <body>
@@ -824,7 +824,7 @@ exports[`Teachers Page Page component renders 1`] = `
                                 class="sc-8c07ce1d-0 caUSIC"
                                 height="100%"
                                 name="box-border-left"
-                                style="width: 3px;"
+                                style="right: unset; width: 3px;"
                                 width="100%"
                                 xmlns="http://www.w3.org/2000/svg"
                               >
@@ -1143,7 +1143,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               class="sc-8c07ce1d-0 caUSIC"
                               height="100%"
                               name="box-border-left"
-                              style="width: 3px;"
+                              style="right: unset; width: 3px;"
                               width="100%"
                               xmlns="http://www.w3.org/2000/svg"
                             >
@@ -1440,7 +1440,7 @@ exports[`Teachers Page Page component renders 1`] = `
                                   class="sc-8c07ce1d-0 caUSIC"
                                   height="100%"
                                   name="box-border-left"
-                                  style="width: 3px;"
+                                  style="right: unset; width: 3px;"
                                   width="100%"
                                   xmlns="http://www.w3.org/2000/svg"
                                 >
@@ -1727,7 +1727,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             class="sc-8c07ce1d-0 fhgLSt"
                             height="100%"
                             name="box-border-top"
-                            style="height: 3px;"
+                            style="bottom: unset; height: 3px;"
                             width="100%"
                             xmlns="http://www.w3.org/2000/svg"
                           >
@@ -1752,7 +1752,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             class="sc-8c07ce1d-0 fhgLSt"
                             height="100%"
                             name="box-border-right"
-                            style="width: 3px; height: 100%;"
+                            style="top: unset; left: unset; width: 3px; height: 100%;"
                             width="100%"
                             xmlns="http://www.w3.org/2000/svg"
                           >
@@ -1777,7 +1777,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             class="sc-8c07ce1d-0 fhgLSt"
                             height="100%"
                             name="box-border-bottom"
-                            style="height: 3px; width: 90%;"
+                            style="top: unset; height: 3px; width: 90%;"
                             width="100%"
                             xmlns="http://www.w3.org/2000/svg"
                           >
@@ -1802,7 +1802,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             class="sc-8c07ce1d-0 fhgLSt"
                             height="100%"
                             name="box-border-left"
-                            style="width: 3px;"
+                            style="right: unset; width: 3px;"
                             width="100%"
                             xmlns="http://www.w3.org/2000/svg"
                           >
@@ -1927,7 +1927,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             class="sc-8c07ce1d-0 fhgLSt"
                             height="100%"
                             name="box-border-top"
-                            style="height: 3px;"
+                            style="bottom: unset; height: 3px;"
                             width="100%"
                             xmlns="http://www.w3.org/2000/svg"
                           >
@@ -1952,7 +1952,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             class="sc-8c07ce1d-0 fhgLSt"
                             height="100%"
                             name="box-border-right"
-                            style="width: 3px; height: 100%;"
+                            style="top: unset; left: unset; width: 3px; height: 100%;"
                             width="100%"
                             xmlns="http://www.w3.org/2000/svg"
                           >
@@ -1977,7 +1977,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             class="sc-8c07ce1d-0 fhgLSt"
                             height="100%"
                             name="box-border-bottom"
-                            style="height: 3px; width: 90%;"
+                            style="top: unset; height: 3px; width: 90%;"
                             width="100%"
                             xmlns="http://www.w3.org/2000/svg"
                           >
@@ -2002,7 +2002,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             class="sc-8c07ce1d-0 fhgLSt"
                             height="100%"
                             name="box-border-left"
-                            style="width: 3px;"
+                            style="right: unset; width: 3px;"
                             width="100%"
                             xmlns="http://www.w3.org/2000/svg"
                           >

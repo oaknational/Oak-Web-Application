@@ -4,7 +4,7 @@ import { fetchHubspotContactDetails } from "./fetchHubspotContactDetails";
 
 import OakError from "@/errors/OakError";
 
-fetchMock.enableMocks();
+fetchMock.doMock();
 
 describe(fetchHubspotContactDetails, () => {
   it("returns the contact from the response", async () => {
@@ -20,7 +20,7 @@ describe(fetchHubspotContactDetails, () => {
   it("returns null when there is no contact", async () => {
     fetchMock.mockResponseOnce("", { status: 204 });
 
-    expect(await fetchHubspotContactDetails()).toEqual(null);
+    expect(await fetchHubspotContactDetails()).toBeNull();
   });
 
   it("throws when there is an error", async () => {
