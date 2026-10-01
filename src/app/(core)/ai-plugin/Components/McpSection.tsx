@@ -5,12 +5,6 @@ import {
   type OakFlexProps,
 } from "@oaknational/oak-components";
 
-/**
- * A titled content section of the MCP landing page.
- *
- * Every section heading is an `h2` so the page keeps a single `h1` (the hero)
- * and an unbroken heading order.
- */
 export const McpSection = ({
   title,
   id,

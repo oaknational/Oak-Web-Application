@@ -1,16 +1,6 @@
 import type { OakIconName } from "@oaknational/oak-components";
 import type { PortableTextBlock } from "@portabletext/types";
 
-/**
- * Copy for the Oak Curriculum MCP landing page.
- *
- * Taken from the Figma designs (🌳 Oak MCP v1, the "Oak MCP landing page - Last
- * updated 30 Sept" section). Kept in one place so copy review does not mean
- * reading through components.
- *
- * Some link targets are still placeholders.
- */
-
 export const mcpMoreAssistantsNote =
   "We’re starting with ChatGPT and Claude, with Gemini, Copilot and others coming soon.";
 
@@ -87,15 +77,9 @@ export const mcpCapabilities: {
   ],
 } as const;
 
-/**
- * The message the "Try in <assistant>" deep links drop into the composer, and
- * the same text the small print tells you to paste if it arrives empty. All
- * three read from here so they cannot drift apart.
- */
 export const mcpInstallPrompt =
   "Install the Oak National Academy plugin and its connector, then give me some examples of what I can do with it!";
 
-/** Portable text span. Emphasis uses the `strong` mark, as elsewhere in OWA. */
 const span = (key: string, text: string, marks: string[] = []) => ({
   _type: "span" as const,
   _key: key,
@@ -103,21 +87,12 @@ const span = (key: string, text: string, marks: string[] = []) => ({
   marks,
 });
 
-/**
- * The provider's own mark is deliberately absent: it is a third-party
- * trademark, and this repo is public and MIT licensed, so it should not be
- * committed here. A neutral Oak icon stands in until Oak has permission and
- * the mark can be served from Cloudinary like other imagery.
- */
 export type McpAssistant = {
   name: string;
   ctaLabel: string;
   ctaHref: string;
-  /** Tile colour behind the provider icon. */
   background: "bg-decorative6-main" | "bg-inverted";
-  /** This provider's own numbered install steps. */
   steps: PortableTextBlock[];
-  /** The paste-it-yourself fallback for this provider's composer. */
   pasteNote: PortableTextBlock[];
 };
 
@@ -151,8 +126,6 @@ export const mcpAssistants: {
     {
       name: "ChatGPT",
       ctaLabel: "Try in ChatGPT",
-      // `?q=` prefills the composer without sending, which is what the install
-      // steps describe ("a message ready to send... click the blue arrow").
       ctaHref: `https://chatgpt.com/?q=${encodeURIComponent(mcpInstallPrompt)}`,
       background: "bg-inverted",
       steps: [
@@ -196,7 +169,6 @@ export const mcpAssistants: {
     {
       name: "Claude",
       ctaLabel: "Try in Claude",
-      // Same `?q=` prefill behaviour as ChatGPT's deep link.
       ctaHref: `https://claude.ai/new?q=${encodeURIComponent(mcpInstallPrompt)}`,
       background: "bg-decorative6-main",
       steps: [
@@ -338,10 +310,6 @@ export const mcpLicence = {
     "Our AI plugin is intended for teachers in the UK, and we restrict access to the UK where the AI provider allows it.",
 } as const;
 
-/**
- * Sits inside "How it works" in the final design, so it is rendered as a
- * subsection rather than its own top-level section.
- */
 export const mcpSupport = {
   title: "Questions or problems?",
   bodyBefore:
@@ -376,6 +344,5 @@ export const mcpFeedback = {
   title: "Give feedback",
   body: "This is new, and still in development. We’re continually improving it, and your feedback helps us make it better for you and your pupils.",
   ctaLabel: "Share feedback",
-  // Figma annotates this button with the link to this HubSpot survey form.
   ctaHref: "https://survey.hsforms.com/2vy6BnIvzTASqx1DbH8CaJAbvumd",
 } as const;

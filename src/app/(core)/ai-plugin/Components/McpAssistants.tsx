@@ -40,7 +40,6 @@ const McpAssistantCard = ({
       $width="spacing-100"
       $height="spacing-100"
     >
-      {/* Placeholder for the provider mark — see McpAssistant in mcpContent. */}
       <OakIcon
         iconName="ai"
         iconWidth="spacing-40"
@@ -62,10 +61,6 @@ const McpAssistantCard = ({
   </OakFlex>
 );
 
-/**
- * Portable text overrides, kept at module scope so they are not redefined on
- * every render — and so they read as components rather than nested closures.
- */
 const stepComponents: PortableTextComponents = {
   listItem: {
     number: ({ children, index }) => (

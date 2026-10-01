@@ -7,14 +7,6 @@ import {
   OakSmallSecondaryButton,
 } from "@oaknational/oak-components";
 
-/**
- * "Try in <assistant>" call to action.
- *
- * Figma shows the provider's own mark here, but that is a third-party trademark
- * and this repo is public and MIT licensed, so a neutral Oak icon stands in
- * until Oak has permission and the mark can be served from Cloudinary. The
- * button already names the provider, so the icon is decorative either way.
- */
 export const McpTryButton = ({
   label,
   href,
