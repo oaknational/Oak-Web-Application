@@ -1,3 +1,12 @@
+# [1.1221.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1220.1...v1.1221.0) (2026-10-01)
+
+
+### Features
+
+* curric downloads page copy updates ([56435a5](https://github.com/oaknational/Oak-Web-Application/commit/56435a5f3cbd3557d8a2cdd7bfddc3106d5694c2))
+* update callout banner copy ([1b69405](https://github.com/oaknational/Oak-Web-Application/commit/1b69405445e7dbb6c71e883716ba8439cd6781ef))
+* update curriculum downloads tab content title ([5edf953](https://github.com/oaknational/Oak-Web-Application/commit/5edf9538517e9bec03b14fc400d5d15bf788fddf))
+
 ## [1.1220.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1220.0...v1.1220.1) (2026-09-30)
 
 
