@@ -10,9 +10,11 @@ describe("parseLessonUrl", () => {
     });
     expect(result).toEqual(
       expect.objectContaining({
-        unitSlug: "unitSlug",
         lessonSlug: "lessonSlug",
-        keyStageSlug: "ks1",
+        unitContext: expect.objectContaining({
+          unitSlug: "unitSlug",
+          keyStageSlug: "ks1",
+        }),
       }),
     );
   });

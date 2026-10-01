@@ -9,9 +9,12 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 const render = renderWithProviders();
 
 const mockReturnToLessonProps = jest.fn().mockReturnValue(undefined);
-jest.mock("../../../getReturnToLessonLink", () => ({
-  useReturnToLessonProps: () => mockReturnToLessonProps(),
-}));
+jest.mock(
+  "@/app/(core)/teachers/teach-with-oak/returnToLessonProps/getReturnToLessonLink",
+  () => ({
+    useReturnToLessonProps: () => mockReturnToLessonProps(),
+  }),
+);
 
 const mockTrackLessonAccessed = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
