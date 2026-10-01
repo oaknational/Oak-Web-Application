@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "QciryuJizpQTBhBzXDba",
+          "ac": "Mm8CNT5GvJBR8s00cPuL",
           "br": "14MrdC8zIZUy7BA4-fK0Q",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "QciryuJizpQTBhBzXDba",
+          "ac": "Mm8CNT5GvJBR8s00cPuL",
           "br": "14MrdC8zIZUy7BA4-fK0Q",
           "en": env,
           "ty": type,
@@ -1574,6 +1574,7 @@ export const SearchSource = {
   'SEARCH_PAGE_SEARCH_BOX': 'search page search box',
   'HOMEPAGE_SEARCH_SUGGESTION': 'homepage search suggestion',
   'CAMPAIGN_PAGE': 'campaign page',
+  'TOP_NAV': 'top nav',
 } as const;
 export type SearchSourceType = typeof SearchSource;
 export type SearchSourceValueType = SearchSourceType[keyof SearchSourceType];
@@ -3313,7 +3314,7 @@ export function searchJourneyInitiated(properties: SearchJourneyInitiatedPropert
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "rYxJBK8Kpm", "f57c0e9873b3f4f1a50b3a25b16f87f825440fefcb95de9c48ede0217696c24d", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "rYxJBK8Kpm", "89aa79af3ebf456f444493d98da3f817db05072f952e5c83fb89112b67912de3", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Search Journey Initiated", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3324,7 +3325,7 @@ export function searchJourneyInitiated(properties: SearchJourneyInitiatedPropert
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Journey Initiated", eventProperties, "rYxJBK8Kpm", "f57c0e9873b3f4f1a50b3a25b16f87f825440fefcb95de9c48ede0217696c24d");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Journey Initiated", eventProperties, "rYxJBK8Kpm", "89aa79af3ebf456f444493d98da3f817db05072f952e5c83fb89112b67912de3");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Search Journey Initiated", (Object as any).assign({}, eventProperties));
