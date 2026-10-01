@@ -4,9 +4,12 @@ import { OakPrimaryButton } from "@oaknational/oak-components";
 
 import { LessonHeaderNavFooter } from "./LessonHeaderNavFooter";
 
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
+
 const meta: Meta<typeof LessonHeaderNavFooter> = {
   component: LessonHeaderNavFooter,
   tags: ["autodocs"],
+  decorators: [TeacherBrowseAnalyticsDecorator],
 };
 
 export default meta;

@@ -114,7 +114,7 @@ exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1
                       <div
                         class="sc-eldPxv ibGcSM"
                       >
-                        Case study 2 (override title)
+                        Case study 2
                       </div>
                     </div>
                     <div
@@ -246,7 +246,7 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
                       <div
                         class="sc-eldPxv ibGcSM"
                       >
-                        Case study 2 (override title)
+                        Case study 2
                       </div>
                     </div>
                     <div

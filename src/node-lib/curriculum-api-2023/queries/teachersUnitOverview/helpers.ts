@@ -280,7 +280,7 @@ export const getPackagedUnit = ({
     tierTitle: modifiedProgrammeFields.tier_description,
     examBoardSlug: modifiedProgrammeFields.examboard_slug,
     examBoardTitle: modifiedProgrammeFields.examboard,
-    yearSlug: modifiedProgrammeFields.year_slug,
+    yearGroupSlug: modifiedProgrammeFields.year_slug,
     yearGroupTitle: modifiedProgrammeFields.year_description,
     year: modifiedProgrammeFields.year,
     lessons: unitLessons,

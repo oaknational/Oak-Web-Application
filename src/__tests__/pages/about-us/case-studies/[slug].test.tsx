@@ -38,6 +38,7 @@ const mockGetFallbackBlockingConfig = jest.mocked(getFallbackBlockingConfig);
 
 function caseStudyFixture(slug: string) {
   return {
+    title: slug.replaceAll("-", " "),
     image: {
       altText: "Test image alt text",
       asset: {
