@@ -1801,7 +1801,7 @@ exports[`pages/about-us/case-studies/[slug].tsx does not render written case stu
               </div>
             </div>
             <span
-              class="sc-aXZVg kvjdhA sc-cc003eb3-0 iCnMIR"
+              class="sc-aXZVg kvjdhA sc-aa95c44-0 jLchbx"
               data-percy-hide="contents"
             >
               <img
@@ -3327,6 +3327,21 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
                       >
                         <a
                           class="sc-fHjqPf kEMwfg"
+                          href="/about-us/case-studies"
+                          variant="secondary"
+                        >
+                          <span
+                            class="sc-eqUAAy iGfTGj"
+                          >
+                            Case studies
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-fPXMVe jFJaNg"
+                      >
+                        <a
+                          class="sc-fHjqPf kEMwfg"
                           href="/about-us/get-involved"
                           variant="secondary"
                         >
@@ -3802,7 +3817,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
               </div>
             </div>
             <span
-              class="sc-aXZVg kvjdhA sc-cc003eb3-0 iCnMIR"
+              class="sc-aXZVg kvjdhA sc-aa95c44-0 jLchbx"
               data-percy-hide="contents"
             >
               <img
@@ -5523,6 +5538,21 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                       >
                         <a
                           class="sc-fHjqPf kEMwfg"
+                          href="/about-us/case-studies"
+                          variant="secondary"
+                        >
+                          <span
+                            class="sc-eqUAAy iGfTGj"
+                          >
+                            Case studies
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-fPXMVe jFJaNg"
+                      >
+                        <a
+                          class="sc-fHjqPf kEMwfg"
                           href="/about-us/get-involved"
                           variant="secondary"
                         >
@@ -5998,7 +6028,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
               </div>
             </div>
             <span
-              class="sc-aXZVg kvjdhA sc-cc003eb3-0 iCnMIR"
+              class="sc-aXZVg kvjdhA sc-aa95c44-0 jLchbx"
               data-percy-hide="contents"
             >
               <img
@@ -7933,6 +7963,21 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                       >
                         <a
                           class="sc-fHjqPf kEMwfg"
+                          href="/about-us/case-studies"
+                          variant="secondary"
+                        >
+                          <span
+                            class="sc-eqUAAy iGfTGj"
+                          >
+                            Case studies
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-fPXMVe jFJaNg"
+                      >
+                        <a
+                          class="sc-fHjqPf kEMwfg"
                           href="/about-us/get-involved"
                           variant="secondary"
                         >
@@ -8408,7 +8453,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
               </div>
             </div>
             <span
-              class="sc-aXZVg kvjdhA sc-cc003eb3-0 iCnMIR"
+              class="sc-aXZVg kvjdhA sc-aa95c44-0 jLchbx"
               data-percy-hide="contents"
             >
               <img
