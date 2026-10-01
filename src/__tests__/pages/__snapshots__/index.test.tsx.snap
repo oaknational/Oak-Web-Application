@@ -2632,6 +2632,21 @@ exports[`Teachers Page Page component renders 1`] = `
                         >
                           <a
                             class="sc-fHjqPf kEMwfg"
+                            href="/about-us/case-studies"
+                            variant="secondary"
+                          >
+                            <span
+                              class="sc-eqUAAy iGfTGj"
+                            >
+                              Case studies
+                            </span>
+                          </a>
+                        </li>
+                        <li
+                          class="sc-fPXMVe jFJaNg"
+                        >
+                          <a
+                            class="sc-fHjqPf kEMwfg"
                             href="/about-us/get-involved"
                             variant="secondary"
                           >
@@ -3107,7 +3122,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 </div>
               </div>
               <span
-                class="sc-aXZVg kvjdhA sc-cc003eb3-0 iCnMIR"
+                class="sc-aXZVg kvjdhA sc-aa95c44-0 jLchbx"
                 data-percy-hide="contents"
               >
                 <img
