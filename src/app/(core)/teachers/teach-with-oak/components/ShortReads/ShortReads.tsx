@@ -6,13 +6,18 @@ import {
   OakHeading,
   OakMaxWidth,
   OakP,
+  OakPrimaryButton,
+  OakSmallTertiaryInvertedButton,
+  parseSpacing,
 } from "@oaknational/oak-components";
-import { Suspense } from "react";
+import Link from "next/link";
+import styled from "styled-components";
 
-import { DownloadAllGuidesButton } from "./DownloadAllGuidesButton";
-import { DownloadShortReadButton } from "./DownloadShortReadButton";
+import { WithReturnToLessonProps } from "../../returnToLessonProps/WithReturnToLessonProps";
 
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
+import { resolveOakHref } from "@/common-lib/urls";
+
 
 export const ShortReads = () => {
   return (
@@ -72,9 +77,22 @@ const ShortReadsHeader = () => {
         $order={[3, 3, 1]}
       >
         <OakBox $pt={["spacing-8", "spacing-8", "spacing-0"]}>
-          <Suspense>
-            <DownloadAllGuidesButton />
-          </Suspense>
+          <WithReturnToLessonProps>
+            {(returnToLessonProps) => (
+              <OakPrimaryButton
+                iconName="download"
+                isTrailingIcon
+                aria-label={"Download all guides"}
+                element={Link}
+                href={resolveOakHref({
+                  page: "teach-with-oak-download",
+                  query: returnToLessonProps,
+                })}
+              >
+                Download all guides
+              </OakPrimaryButton>
+            )}
+          </WithReturnToLessonProps>
         </OakBox>
       </OakGridArea>
       <OakGridArea $colSpan={[12, 12, 8]} $order={[2, 2, 1]}>
@@ -87,6 +105,12 @@ const ShortReadsHeader = () => {
     </OakGrid>
   );
 };
+
+const ShortReadDownloadButton = styled(OakSmallTertiaryInvertedButton)`
+  div {
+    padding-left: ${parseSpacing("spacing-0")};
+  }
+`;
 
 const ShortReadSection = ({
   title,
@@ -116,9 +140,22 @@ const ShortReadSection = ({
           $order={[2, 3, 1]}
         >
           <OakBox $pt="spacing-16">
-            <Suspense>
-              <DownloadShortReadButton shortReadType={shortReadType} />
-            </Suspense>
+            <WithReturnToLessonProps>
+              {(returnToLessonProps) => (
+                <ShortReadDownloadButton
+                  iconName="download"
+                  isTrailingIcon
+                  aria-label={`Download ${shortReadType} guide (PDF)`}
+                  element={Link}
+                  href={resolveOakHref({
+                    page: "teach-with-oak-download",
+                    query: returnToLessonProps,
+                  })}
+                >
+                  {`Download ${shortReadType} guide (PDF)`}
+                </ShortReadDownloadButton>
+              )}
+            </WithReturnToLessonProps>
           </OakBox>
         </OakGridArea>
         <OakGridArea $colSpan={[12, 12, 8]} $order={[3, 2, 1]}>
