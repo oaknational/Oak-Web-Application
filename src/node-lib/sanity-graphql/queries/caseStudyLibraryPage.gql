@@ -5,11 +5,7 @@ query caseStudyLibraryPage(
 ) {
   allCaseStudy(
     where: { _: $isDraftFilter, slug: { current: { neq: $slug } } }
-query caseStudyLibraryPage($isDraftFilter: Sanity_DocumentFilter, $limit: Int) {
-  allCaseStudy (
-    where: {
-      _: $isDraftFilter
-    }
+    sort: { _updatedAt: DESC }
     limit: $limit
   ) {
     title
