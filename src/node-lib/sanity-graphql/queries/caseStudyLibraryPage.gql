@@ -5,7 +5,7 @@ query caseStudyLibraryPage(
 ) {
   allCaseStudy(
     where: { _: $isDraftFilter, slug: { current: { neq: $slug } } }
-    sort: { _updatedAt: DESC }
+    sort: { publishedAt: DESC }
     limit: $limit
   ) {
     title

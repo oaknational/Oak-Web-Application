@@ -8343,7 +8343,7 @@ export const CaseStudyLibraryPageDocument = gql`
     query caseStudyLibraryPage($slug: String, $isDraftFilter: Sanity_DocumentFilter, $limit: Int) {
   allCaseStudy(
     where: {_: $isDraftFilter, slug: {current: {neq: $slug}}}
-    sort: {_updatedAt: DESC}
+    sort: {publishedAt: DESC}
     limit: $limit
   ) {
     title
