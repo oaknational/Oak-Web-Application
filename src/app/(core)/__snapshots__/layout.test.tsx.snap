@@ -125,6 +125,11 @@ exports[`core layout renders correctly 1`] = `
                 "title": "Plan a lesson",
               },
               {
+                "href": "/teachers/teach-with-oak",
+                "slug": "teach-with-oak",
+                "title": "Teach with Oak",
+              },
+              {
                 "href": "/blog",
                 "slug": "blog-index",
                 "title": "Blogs",

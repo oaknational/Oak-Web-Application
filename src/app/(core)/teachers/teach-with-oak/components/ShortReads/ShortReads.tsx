@@ -10,10 +10,10 @@ import {
   OakSmallTertiaryInvertedButton,
   parseSpacing,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 import Link from "next/link";
+import styled from "styled-components";
 
-import { useReturnToLessonProps } from "../../getReturnToLessonLink";
+import { WithReturnToLessonProps } from "../../returnToLessonProps/WithReturnToLessonProps";
 
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -34,26 +34,26 @@ export const ShortReads = () => {
           description="This short guide explores Oak’s approach to explanation and the
               thinking behind our design, helping you deepen your understanding
               and support your teaching."
-          assetUrl={"1Wc5TYGrmX3z6pvJWORXVyg_Hlu8NsfMTL6xoTb_UbFM"}
+          assetUrl={"1_jacDT87inoS4juE1I7XXnVqWE3X5_qjxnO5QnKgC_I"}
           shortReadType="explanation"
           isInitiallyVisible
         />
         <ShortReadSection
           title="Check for understanding (CfU) at Oak"
           description="This short guide explores Oak’s approach to CfUs and the thinking behind our design, helping you deepen your understanding and support your teaching."
-          assetUrl={"1Wc5TYGrmX3z6pvJWORXVyg_Hlu8NsfMTL6xoTb_UbFM"}
+          assetUrl={"1BuM9T0oNO5k7vEOokbuvsAAe2ubBFKlXbDY6g3Upb1w"}
           shortReadType="CfU"
         />
         <ShortReadSection
           title="Practice at Oak"
           description="This short guide explores Oak’s approach to practice and the thinking behind our design, helping you deepen your understanding and support your teaching. "
-          assetUrl={"1Wc5TYGrmX3z6pvJWORXVyg_Hlu8NsfMTL6xoTb_UbFM"}
+          assetUrl={"1ZvhXa3JtkDkyCA-QIAEjd8Ou5udBSyhLpZzfRgj5bbI"}
           shortReadType="practice"
         />
         <ShortReadSection
           title="Feedback at Oak"
           description="This short guide explores Oak’s approach to feedback and the thinking behind our design, helping you deepen your understanding and support your teaching.  "
-          assetUrl={"1Wc5TYGrmX3z6pvJWORXVyg_Hlu8NsfMTL6xoTb_UbFM"}
+          assetUrl={"1bFuPFXnonE6yDD1ocaeX64-H9DVBTyXuUcYqYRWna9w"}
           shortReadType="feedback"
         />
       </OakMaxWidth>
@@ -62,8 +62,6 @@ export const ShortReads = () => {
 };
 
 const ShortReadsHeader = () => {
-  const returnToLessonProps = useReturnToLessonProps();
-
   return (
     <OakGrid $rg={["spacing-16", "spacing-16", "spacing-8"]}>
       <OakGridArea $colSpan={[12, 12, 8]} $order={1}>
@@ -78,18 +76,22 @@ const ShortReadsHeader = () => {
         $order={[3, 3, 1]}
       >
         <OakBox $pt={["spacing-8", "spacing-8", "spacing-0"]}>
-          <OakPrimaryButton
-            iconName="download"
-            isTrailingIcon
-            aria-label={"Download all guides"}
-            element={Link}
-            href={resolveOakHref({
-              page: "teach-with-oak-download",
-              ...(returnToLessonProps && { query: returnToLessonProps }),
-            })}
-          >
-            Download all guides
-          </OakPrimaryButton>
+          <WithReturnToLessonProps>
+            {(returnToLessonProps) => (
+              <OakPrimaryButton
+                iconName="download"
+                isTrailingIcon
+                aria-label={"Download all guides"}
+                element={Link}
+                href={resolveOakHref({
+                  page: "teach-with-oak-download",
+                  query: returnToLessonProps,
+                })}
+              >
+                Download all guides
+              </OakPrimaryButton>
+            )}
+          </WithReturnToLessonProps>
         </OakBox>
       </OakGridArea>
       <OakGridArea $colSpan={[12, 12, 8]} $order={[2, 2, 1]}>
@@ -122,8 +124,6 @@ const ShortReadSection = ({
   assetUrl: string;
   isInitiallyVisible?: boolean;
 }) => {
-  const returnToLessonProps = useReturnToLessonProps();
-
   return (
     <OakFlex $flexDirection="column" $gap="spacing-24">
       <OakGrid $rg="spacing-8">
@@ -139,18 +139,22 @@ const ShortReadSection = ({
           $order={[2, 3, 1]}
         >
           <OakBox $pt="spacing-16">
-            <ShortReadDownloadButton
-              iconName="download"
-              isTrailingIcon
-              aria-label={`Download ${shortReadType} guide (PDF)`}
-              element={Link}
-              href={resolveOakHref({
-                page: "teach-with-oak-download",
-                ...(returnToLessonProps && { query: returnToLessonProps }),
-              })}
-            >
-              {`Download ${shortReadType} guide (PDF)`}
-            </ShortReadDownloadButton>
+            <WithReturnToLessonProps>
+              {(returnToLessonProps) => (
+                <ShortReadDownloadButton
+                  iconName="download"
+                  isTrailingIcon
+                  aria-label={`Download ${shortReadType} guide (PDF)`}
+                  element={Link}
+                  href={resolveOakHref({
+                    page: "teach-with-oak-download",
+                    query: returnToLessonProps,
+                  })}
+                >
+                  {`Download ${shortReadType} guide (PDF)`}
+                </ShortReadDownloadButton>
+              )}
+            </WithReturnToLessonProps>
           </OakBox>
         </OakGridArea>
         <OakGridArea $colSpan={[12, 12, 8]} $order={[3, 2, 1]}>
