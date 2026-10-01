@@ -81,7 +81,7 @@ export const CaseStudiesSection = ({
                 }
               >
                 <OakCard
-                  heading={caseStudy.video.title || ""}
+                  heading={caseStudy.title ?? ""}
                   headingLevel={"div"}
                   href={resolveOakHref({
                     page: "about-case-study",

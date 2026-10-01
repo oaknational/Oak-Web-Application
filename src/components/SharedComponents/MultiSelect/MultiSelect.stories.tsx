@@ -1,9 +1,10 @@
+import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import { useArgs } from "storybook/preview-api";
 import { expect, fn, userEvent, within } from "storybook/test";
 import { OakBox } from "@oaknational/oak-components";
+import { waitFor } from "@testing-library/dom";
 
-import { MultiSelect, type MultiSelectProps } from "./MultiSelect";
+import { MultiSelect } from "./MultiSelect";
 
 const meta = {
   component: MultiSelect,
@@ -36,14 +37,15 @@ const meta = {
     onMobileClose: fn(),
   },
   render: function Render(args) {
-    const [{ selectedValues }, updateArgs] = useArgs<MultiSelectProps>();
+    // updateArgs re-renders the story, which ends test-runner play functions early.
+    const [selectedValues, setSelectedValues] = useState(args.selectedValues);
     return (
       <OakBox $width="100%" $maxWidth="spacing-480">
         <MultiSelect
           {...args}
           selectedValues={selectedValues}
           onChange={(values) => {
-            updateArgs({ selectedValues: values });
+            setSelectedValues(values);
             args.onChange(values);
           }}
         />
@@ -70,8 +72,11 @@ export const Selection: Story = {
     await userEvent.click(option);
     await expect(option).not.toBeChecked();
     if (trigger) {
-      await userEvent.keyboard("{Escape}");
-      await expect(trigger).toHaveFocus();
+      await waitFor(() => userEvent.keyboard("{Escape}"));
+      await waitFor(async () => {
+        await expect(trigger).toHaveAttribute("aria-expanded", "false");
+        await expect(trigger).toHaveFocus();
+      });
     }
   },
 };

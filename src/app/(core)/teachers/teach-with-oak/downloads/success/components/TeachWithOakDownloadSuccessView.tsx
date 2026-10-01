@@ -2,9 +2,8 @@
 
 import { OakBox, OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 
-import { useReturnToLessonProps } from "../../../getReturnToLessonLink";
-import { extractLessonAccessedPropsFromHref } from "../../../components/TeachWithOakHeader/extractLessonAccessedPropsFromHref";
-
+import { useReturnToLessonProps } from "@/app/(core)/teachers/teach-with-oak/returnToLessonProps/getReturnToLessonLink";
+import { extractLessonAccessedPropsFromHref } from "@/app/(core)/teachers/teach-with-oak/components/TeachWithOakHeader/extractLessonAccessedPropsFromHref";
 import { DownloadSuccessHeader } from "@/app/(core)/teachers/programmes/[slug]/units/[unitSlug]/lessons/[lessonSlug]/Components/DownloadSuccessHeader/DownloadSuccessHeader";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";

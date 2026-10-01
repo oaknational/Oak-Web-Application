@@ -2,7 +2,7 @@
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 
-import { teachWithOakParams } from "./parseReturnToLessonParams";
+import { teachWithOakParams } from "../parseReturnToLessonParams";
 
 export const getReturnToLessonProps = ({
   query,
