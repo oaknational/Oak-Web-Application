@@ -26,165 +26,13 @@ import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import { buildAboutUsAnalytics } from "@/utils/analytics-builders";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
+import {
+  TeacherBrowseAnalyticsStoreProvider,
+  useTeacherBrowseAnalytics,
+} from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const trackAboutUsFooter = () =>
   aboutUsAccessed(buildAboutUsAnalytics("about_us_footer"));
-
-const footerSections: FooterSections = {
-  pupils: {
-    title: "Pupils",
-    links: [
-      {
-        text: "Learn online",
-        type: "link",
-        href: resolveOakHref({ page: "pupil-year-index" }),
-      },
-    ],
-  },
-  teachers: {
-    title: "Teachers",
-    links: [
-      {
-        text: "EYFS",
-        type: "link",
-        href: resolveOakHref({
-          page: "eyfs-page",
-          subjectSlug: "maths",
-        }),
-      },
-      {
-        text: "Plan a lesson",
-        type: "link",
-        href: resolveOakHref({ page: "lesson-planning" }),
-      },
-      {
-        text: "Aila, Oak’s AI lesson assistant",
-        type: "link",
-        icon: "external",
-        href: resolveOakHref({ page: "labs" }),
-      },
-      {
-        text: "Blog",
-        type: "link",
-        href: resolveOakHref({ page: "blog-index" }),
-      },
-    ],
-  },
-  oak: {
-    title: "Oak",
-    links: [
-      { text: "Home", type: "link", href: resolveOakHref({ page: "home" }) },
-      {
-        text: "About us",
-        type: "link",
-        href: resolveOakHref({ page: "about-who-we-are" }),
-        track: trackAboutUsFooter,
-      },
-      {
-        text: "Oak's curricula",
-        type: "link",
-        href: resolveOakHref({ page: "about-oaks-curricula" }),
-        track: trackAboutUsFooter,
-      },
-      {
-        text: "Oak's impact",
-        type: "link" as const,
-        href: resolveOakHref({ page: "about-oaks-impact" }),
-        track: trackAboutUsFooter,
-      },
-      {
-        text: "Case studies",
-        type: "link" as const,
-        href: "/about-us/case-studies", // TODO: Replace with resolveOakHref
-        track: trackAboutUsFooter,
-      },
-      {
-        text: "Get involved",
-        type: "link",
-        href: resolveOakHref({ page: "about-get-involved" }),
-        track: trackAboutUsFooter,
-      },
-      {
-        text: "Meet the team",
-        type: "link",
-        href: resolveOakHref({ page: "about-meet-the-team" }),
-        track: trackAboutUsFooter,
-      },
-      {
-        text: "Careers",
-        type: "link",
-        href: "https://jobs.thenational.academy",
-        icon: "external",
-        ariaLabel: "Careers (opens in a new tab)",
-      },
-      {
-        text: "Contact us",
-        type: "link",
-        href: resolveOakHref({ page: "contact" }),
-      },
-      {
-        text: "Help",
-        type: "link",
-        href: resolveOakHref({ page: "help" }),
-        icon: "external",
-        ariaLabel: "Help (opens in a new tab)",
-      },
-      {
-        text: "Webinars",
-        type: "link",
-        href: resolveOakHref({ page: "webinar-index" }),
-      },
-      {
-        text: "Status",
-        href: "https://status.thenational.academy",
-        icon: "external",
-        type: "link",
-        ariaLabel: "Status (opens in a new tab)",
-      },
-    ],
-  },
-
-  legal: {
-    title: "Legal",
-    links: [
-      {
-        text: "Terms & conditions",
-        type: "link",
-        href: "/legal/terms-and-conditions",
-      },
-      { text: "Privacy policy", type: "link", href: "/legal/privacy-policy" },
-      { text: "Cookie policy", type: "link", href: "/legal/cookie-policy" },
-      { text: "Manage cookie settings", type: "consent-manager-toggle" },
-
-      {
-        text: "Copyright notice",
-        type: "link",
-        href: "/legal/copyright-notice",
-      },
-      {
-        text: "Accessibility statement",
-        type: "link",
-        href: "/legal/accessibility-statement",
-      },
-      {
-        text: "Safeguarding statement",
-        type: "link",
-        href: "/legal/safeguarding-statement",
-      },
-      {
-        text: "Physical activity disclaimer",
-        type: "link",
-        href: "/legal/physical-activity-disclaimer",
-      },
-      { text: "Complaints", type: "link", href: "/legal/complaints" },
-      {
-        text: "Freedom of information requests",
-        type: "link",
-        href: "/legal/freedom-of-information-requests",
-      },
-    ],
-  },
-};
 
 type LayoutFooterLinkProps = {
   text: string;
@@ -272,8 +120,172 @@ export type FooterSections = Record<
   FooterSection
 >;
 
-const LayoutSiteFooter: FC = () => {
-  const sections = footerSections;
+export const LayoutSiteFooterInner: FC = () => {
+  const { teachWithOakAccessed } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
+  const sections: FooterSections = {
+    pupils: {
+      title: "Pupils",
+      links: [
+        {
+          text: "Learn online",
+          type: "link",
+          href: resolveOakHref({ page: "pupil-year-index" }),
+        },
+      ],
+    },
+    teachers: {
+      title: "Teachers",
+      links: [
+        {
+          text: "EYFS",
+          type: "link",
+          href: resolveOakHref({
+            page: "eyfs-page",
+            subjectSlug: "maths",
+          }),
+        },
+        {
+          text: "Plan a lesson",
+          type: "link",
+          href: resolveOakHref({ page: "lesson-planning" }),
+        },
+        {
+          text: "Teach with Oak",
+          type: "link",
+          href: resolveOakHref({ page: "teach-with-oak" }),
+          track: () =>
+            teachWithOakAccessed({ componentType: "footer_menu_link" }),
+        },
+        {
+          text: "Aila, Oak’s AI lesson assistant",
+          type: "link",
+          icon: "external",
+          href: resolveOakHref({ page: "labs" }),
+        },
+        {
+          text: "Blog",
+          type: "link",
+          href: resolveOakHref({ page: "blog-index" }),
+        },
+      ],
+    },
+    oak: {
+      title: "Oak",
+      links: [
+        { text: "Home", type: "link", href: resolveOakHref({ page: "home" }) },
+        {
+          text: "About us",
+          type: "link",
+          href: resolveOakHref({ page: "about-who-we-are" }),
+          track: trackAboutUsFooter,
+        },
+        {
+          text: "Oak's curricula",
+          type: "link",
+          href: resolveOakHref({ page: "about-oaks-curricula" }),
+          track: trackAboutUsFooter,
+        },
+        {
+          text: "Oak's impact",
+          type: "link" as const,
+          href: resolveOakHref({ page: "about-oaks-impact" }),
+          track: trackAboutUsFooter,
+        },
+        {
+          text: "Case studies",
+          type: "link" as const,
+          href: "/about-us/case-studies", // TODO: Replace with resolveOakHref
+          track: trackAboutUsFooter,
+        },
+        {
+          text: "Get involved",
+          type: "link",
+          href: resolveOakHref({ page: "about-get-involved" }),
+          track: trackAboutUsFooter,
+        },
+        {
+          text: "Meet the team",
+          type: "link",
+          href: resolveOakHref({ page: "about-meet-the-team" }),
+          track: trackAboutUsFooter,
+        },
+        {
+          text: "Careers",
+          type: "link",
+          href: "https://jobs.thenational.academy",
+          icon: "external",
+          ariaLabel: "Careers (opens in a new tab)",
+        },
+        {
+          text: "Contact us",
+          type: "link",
+          href: resolveOakHref({ page: "contact" }),
+        },
+        {
+          text: "Help",
+          type: "link",
+          href: resolveOakHref({ page: "help" }),
+          icon: "external",
+          ariaLabel: "Help (opens in a new tab)",
+        },
+        {
+          text: "Webinars",
+          type: "link",
+          href: resolveOakHref({ page: "webinar-index" }),
+        },
+        {
+          text: "Status",
+          href: "https://status.thenational.academy",
+          icon: "external",
+          type: "link",
+          ariaLabel: "Status (opens in a new tab)",
+        },
+      ],
+    },
+
+    legal: {
+      title: "Legal",
+      links: [
+        {
+          text: "Terms & conditions",
+          type: "link",
+          href: "/legal/terms-and-conditions",
+        },
+        { text: "Privacy policy", type: "link", href: "/legal/privacy-policy" },
+        { text: "Cookie policy", type: "link", href: "/legal/cookie-policy" },
+        { text: "Manage cookie settings", type: "consent-manager-toggle" },
+
+        {
+          text: "Copyright notice",
+          type: "link",
+          href: "/legal/copyright-notice",
+        },
+        {
+          text: "Accessibility statement",
+          type: "link",
+          href: "/legal/accessibility-statement",
+        },
+        {
+          text: "Safeguarding statement",
+          type: "link",
+          href: "/legal/safeguarding-statement",
+        },
+        {
+          text: "Physical activity disclaimer",
+          type: "link",
+          href: "/legal/physical-activity-disclaimer",
+        },
+        { text: "Complaints", type: "link", href: "/legal/complaints" },
+        {
+          text: "Freedom of information requests",
+          type: "link",
+          href: "/legal/freedom-of-information-requests",
+        },
+      ],
+    },
+  };
 
   return (
     <OakBox
@@ -402,6 +414,17 @@ const LayoutSiteFooter: FC = () => {
         $height={"100%"}
       />
     </OakBox>
+  );
+};
+
+const LayoutSiteFooter = () => {
+  return (
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
+    >
+      <LayoutSiteFooterInner />
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 

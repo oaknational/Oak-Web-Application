@@ -800,6 +800,8 @@ export type BlockOrCodeOrCtaLinkOrImageOrNoticeOrTable = Block | Code | CtaLink 
 
 export type BlockOrImage = Block | Image;
 
+export type BlockOrImageWithAltTextOrVideo = Block | ImageWithAltText | Video;
+
 export type BlockOrVideo = Block | Video;
 
 export type BlogWebinarCategory = Document & {
@@ -1098,10 +1100,16 @@ export type CaseStudy = Document & {
   _type?: Maybe<Scalars['String']['output']>;
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  content?: Maybe<Array<Maybe<CaseStudyPageContent>>>;
+  getInTouchPanel?: Maybe<GetInTouchPanel>;
   image?: Maybe<ImageWithAltText>;
   publishedAt?: Maybe<Scalars['Date']['output']>;
+  showGetInTouchPanel?: Maybe<Scalars['Boolean']['output']>;
   slug?: Maybe<Slug>;
+  summaryRaw?: Maybe<Scalars['JSON']['output']>;
+  tag?: Maybe<Scalars['String']['output']>;
   textRaw?: Maybe<Scalars['JSON']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
   video?: Maybe<Video>;
 };
 
@@ -1114,10 +1122,42 @@ export type CaseStudyFilter = {
   _rev?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   _updatedAt?: InputMaybe<DatetimeFilter>;
+  getInTouchPanel?: InputMaybe<GetInTouchPanelFilter>;
   image?: InputMaybe<ImageWithAltTextFilter>;
   publishedAt?: InputMaybe<DateFilter>;
+  showGetInTouchPanel?: InputMaybe<BooleanFilter>;
   slug?: InputMaybe<SlugFilter>;
+  tag?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
   video?: InputMaybe<VideoFilter>;
+};
+
+export type CaseStudyPageContent = {
+  __typename?: 'CaseStudyPageContent';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  anchorSlug?: Maybe<Slug>;
+  contentRaw?: Maybe<Scalars['JSON']['output']>;
+  /** This is the main heading for each section */
+  heading?: Maybe<Scalars['String']['output']>;
+  /** This is used for the table of contents and the highlight label above the headings */
+  label?: Maybe<Scalars['String']['output']>;
+};
+
+export type CaseStudyPageContentFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  anchorSlug?: InputMaybe<SlugFilter>;
+  heading?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+};
+
+export type CaseStudyPageContentSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  anchorSlug?: InputMaybe<SlugSorting>;
+  heading?: InputMaybe<SortOrder>;
+  label?: InputMaybe<SortOrder>;
 };
 
 export type CaseStudySorting = {
@@ -1127,9 +1167,13 @@ export type CaseStudySorting = {
   _rev?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   _updatedAt?: InputMaybe<SortOrder>;
+  getInTouchPanel?: InputMaybe<GetInTouchPanelSorting>;
   image?: InputMaybe<ImageWithAltTextSorting>;
   publishedAt?: InputMaybe<SortOrder>;
+  showGetInTouchPanel?: InputMaybe<SortOrder>;
   slug?: InputMaybe<SlugSorting>;
+  tag?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
 };
 
 export type Code = {
@@ -1786,6 +1830,34 @@ export type GeopointSorting = {
   alt?: InputMaybe<SortOrder>;
   lat?: InputMaybe<SortOrder>;
   lng?: InputMaybe<SortOrder>;
+};
+
+export type GetInTouchPanel = {
+  __typename?: 'GetInTouchPanel';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  institutionName?: Maybe<Scalars['String']['output']>;
+  jobRole?: Maybe<Scalars['String']['output']>;
+  personImage?: Maybe<ImageWithAltText>;
+  personName?: Maybe<Scalars['String']['output']>;
+};
+
+export type GetInTouchPanelFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  institutionName?: InputMaybe<StringFilter>;
+  jobRole?: InputMaybe<StringFilter>;
+  personImage?: InputMaybe<ImageWithAltTextFilter>;
+  personName?: InputMaybe<StringFilter>;
+};
+
+export type GetInTouchPanelSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  institutionName?: InputMaybe<SortOrder>;
+  jobRole?: InputMaybe<SortOrder>;
+  personImage?: InputMaybe<ImageWithAltTextSorting>;
+  personName?: InputMaybe<SortOrder>;
 };
 
 export type GetInvolvedPageCollab = {
@@ -2740,6 +2812,854 @@ export type MuxVideoFilter = {
 export type MuxVideoSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsAtAGlance = {
+  __typename?: 'NationalCurriculumInsightsAtAGlance';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  items?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+export type NationalCurriculumInsightsAtAGlanceFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsAtAGlanceSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsDownloadSection = {
+  __typename?: 'NationalCurriculumInsightsDownloadSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  barCtaLabel?: Maybe<Scalars['String']['output']>;
+  barHeading?: Maybe<Scalars['String']['output']>;
+  detailsHeading?: Maybe<Scalars['String']['output']>;
+  /** The selected document count and file type are appended automatically. */
+  downloadButtonLabel?: Maybe<Scalars['String']['output']>;
+  downloadsHeading?: Maybe<Scalars['String']['output']>;
+  downloadsIntroduction?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsDownloadSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  barCtaLabel?: InputMaybe<StringFilter>;
+  barHeading?: InputMaybe<StringFilter>;
+  detailsHeading?: InputMaybe<StringFilter>;
+  downloadButtonLabel?: InputMaybe<StringFilter>;
+  downloadsHeading?: InputMaybe<StringFilter>;
+  downloadsIntroduction?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsDownloadSectionOrNationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsGuidanceIntroSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPhaseNavigationSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection = NationalCurriculumInsightsDownloadSection | NationalCurriculumInsightsFaqSection | NationalCurriculumInsightsGuidanceIntroSection | NationalCurriculumInsightsHeroSection | NationalCurriculumInsightsImageTextSection | NationalCurriculumInsightsKeyStageCardsSection | NationalCurriculumInsightsNewsletterSection | NationalCurriculumInsightsOverviewSection | NationalCurriculumInsightsPhaseCardsSection | NationalCurriculumInsightsPhaseNavigationSection | NationalCurriculumInsightsPromotionalHeadingSection | NationalCurriculumInsightsQuoteSection | NationalCurriculumInsightsRichTextSection | NationalCurriculumInsightsSubjectNavigationSection | NationalCurriculumInsightsTableSection | NationalCurriculumInsightsVideoCardsSection;
+
+export type NationalCurriculumInsightsDownloadSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  barCtaLabel?: InputMaybe<SortOrder>;
+  barHeading?: InputMaybe<SortOrder>;
+  detailsHeading?: InputMaybe<SortOrder>;
+  downloadButtonLabel?: InputMaybe<SortOrder>;
+  downloadsHeading?: InputMaybe<SortOrder>;
+  downloadsIntroduction?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsFaqItem = {
+  __typename?: 'NationalCurriculumInsightsFaqItem';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  answerRaw?: Maybe<Scalars['JSON']['output']>;
+  question?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsFaqItemFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  question?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsFaqItemSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  question?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsFaqSection = {
+  __typename?: 'NationalCurriculumInsightsFaqSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  items?: Maybe<Array<Maybe<NationalCurriculumInsightsFaqItem>>>;
+};
+
+export type NationalCurriculumInsightsFaqSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsFaqSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsGuidanceIntroSection = {
+  __typename?: 'NationalCurriculumInsightsGuidanceIntroSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  bodyRaw?: Maybe<Scalars['JSON']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<ImageWithAltText>;
+  /** Optional alternative for phone and tablet screens. Leave blank to use the main heading. */
+  mobileHeading?: Maybe<Scalars['String']['output']>;
+  /** Optional short label, for example Coming soon. */
+  statusLabel?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsGuidanceIntroSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
+  mobileHeading?: InputMaybe<StringFilter>;
+  statusLabel?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsGuidanceIntroSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
+  mobileHeading?: InputMaybe<SortOrder>;
+  statusLabel?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsGuidancePage = Document & {
+  __typename?: 'NationalCurriculumInsightsGuidancePage';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']['output']>;
+  _key?: Maybe<Scalars['String']['output']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']['output']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']['output']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  modules?: Maybe<Array<Maybe<NationalCurriculumInsightsDownloadSectionOrNationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsGuidanceIntroSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPhaseNavigationSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection>>>;
+  seo?: Maybe<Seo>;
+  summary?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsGuidancePageFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  seo?: InputMaybe<SeoFilter>;
+  summary?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsGuidancePageSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  seo?: InputMaybe<SeoSorting>;
+  summary?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsHeroSection = {
+  __typename?: 'NationalCurriculumInsightsHeroSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  authorImage?: Maybe<ImageWithAltText>;
+  /** Optional byline shown on subject, phase and key-stage pages. */
+  authorName?: Maybe<Scalars['String']['output']>;
+  authorRole?: Maybe<Scalars['String']['output']>;
+  bodyRaw?: Maybe<Scalars['JSON']['output']>;
+  ctaHref?: Maybe<Scalars['String']['output']>;
+  /** Optional link shown beneath the hero introduction. */
+  ctaLabel?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<ImageWithAltText>;
+  /** Optional heading for the publication or review note shown beside the byline. */
+  statusHeading?: Maybe<Scalars['String']['output']>;
+  /** Optional publication or review message shown alongside the byline. */
+  statusMessage?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsHeroSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  authorImage?: InputMaybe<ImageWithAltTextFilter>;
+  authorName?: InputMaybe<StringFilter>;
+  authorRole?: InputMaybe<StringFilter>;
+  ctaHref?: InputMaybe<StringFilter>;
+  ctaLabel?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
+  statusHeading?: InputMaybe<StringFilter>;
+  statusMessage?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsHeroSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  authorImage?: InputMaybe<ImageWithAltTextSorting>;
+  authorName?: InputMaybe<SortOrder>;
+  authorRole?: InputMaybe<SortOrder>;
+  ctaHref?: InputMaybe<SortOrder>;
+  ctaLabel?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
+  statusHeading?: InputMaybe<SortOrder>;
+  statusMessage?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsHub = Document & {
+  __typename?: 'NationalCurriculumInsightsHub';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']['output']>;
+  _key?: Maybe<Scalars['String']['output']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']['output']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']['output']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  modules?: Maybe<Array<Maybe<NationalCurriculumInsightsDownloadSectionOrNationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsGuidanceIntroSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPhaseNavigationSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection>>>;
+  seo?: Maybe<Seo>;
+  subjects?: Maybe<Array<Maybe<NationalCurriculumInsightsSubject>>>;
+  summary?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsHubFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  seo?: InputMaybe<SeoFilter>;
+  summary?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsHubSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  seo?: InputMaybe<SeoSorting>;
+  summary?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsImageTextSection = {
+  __typename?: 'NationalCurriculumInsightsImageTextSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  background?: Maybe<Scalars['String']['output']>;
+  bodyRaw?: Maybe<Scalars['JSON']['output']>;
+  ctaHref?: Maybe<Scalars['String']['output']>;
+  ctaLabel?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<ImageWithAltText>;
+  imagePosition?: Maybe<Scalars['String']['output']>;
+  /** Use this when the guidance illustration should face the text. */
+  mirrorImage?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type NationalCurriculumInsightsImageTextSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  background?: InputMaybe<StringFilter>;
+  ctaHref?: InputMaybe<StringFilter>;
+  ctaLabel?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
+  imagePosition?: InputMaybe<StringFilter>;
+  mirrorImage?: InputMaybe<BooleanFilter>;
+};
+
+export type NationalCurriculumInsightsImageTextSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  background?: InputMaybe<SortOrder>;
+  ctaHref?: InputMaybe<SortOrder>;
+  ctaLabel?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
+  imagePosition?: InputMaybe<SortOrder>;
+  mirrorImage?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsKeyStageCard = {
+  __typename?: 'NationalCurriculumInsightsKeyStageCard';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  keyStage?: Maybe<Scalars['String']['output']>;
+  linkLabel?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsKeyStageCardFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  keyStage?: InputMaybe<StringFilter>;
+  linkLabel?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsKeyStageCardSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  keyStage?: InputMaybe<SortOrder>;
+  linkLabel?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsKeyStageCardsSection = {
+  __typename?: 'NationalCurriculumInsightsKeyStageCardsSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  cards?: Maybe<Array<Maybe<NationalCurriculumInsightsKeyStageCard>>>;
+};
+
+export type NationalCurriculumInsightsKeyStageCardsSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsKeyStageCardsSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsKeyStagePage = Document & {
+  __typename?: 'NationalCurriculumInsightsKeyStagePage';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']['output']>;
+  _key?: Maybe<Scalars['String']['output']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']['output']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']['output']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** The URL segment is derived from this value, for example KS1 becomes key-stage-1. */
+  keyStage?: Maybe<Scalars['String']['output']>;
+  modules?: Maybe<Array<Maybe<NationalCurriculumInsightsDownloadSectionOrNationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsGuidanceIntroSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPhaseNavigationSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection>>>;
+  seo?: Maybe<Seo>;
+  summary?: Maybe<Scalars['String']['output']>;
+  /** Used in Studio and as a safe fallback. Visible headings should normally come from the ordered modules. */
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsKeyStagePageFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  keyStage?: InputMaybe<StringFilter>;
+  seo?: InputMaybe<SeoFilter>;
+  summary?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsKeyStagePageReference = {
+  __typename?: 'NationalCurriculumInsightsKeyStagePageReference';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  keyStage?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+  /** This key stage points to its own independently editable page and ordered modules. */
+  page?: Maybe<NationalCurriculumInsightsKeyStagePage>;
+};
+
+export type NationalCurriculumInsightsKeyStagePageReferenceFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  keyStage?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+  page?: InputMaybe<NationalCurriculumInsightsKeyStagePageFilter>;
+};
+
+export type NationalCurriculumInsightsKeyStagePageReferenceSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  keyStage?: InputMaybe<SortOrder>;
+  label?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsKeyStagePageSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  keyStage?: InputMaybe<SortOrder>;
+  seo?: InputMaybe<SeoSorting>;
+  summary?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsNewsletterSection = {
+  __typename?: 'NationalCurriculumInsightsNewsletterSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  benefits?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  benefitsHeading?: Maybe<Scalars['String']['output']>;
+  buttonLabel?: Maybe<Scalars['String']['output']>;
+  /** National Curriculum Insights signups use the application's global newsletter form. This retained field is ignored. */
+  formId?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  illustration?: Maybe<ImageWithAltText>;
+  introduction?: Maybe<Scalars['String']['output']>;
+  privacyTextRaw?: Maybe<Scalars['JSON']['output']>;
+};
+
+export type NationalCurriculumInsightsNewsletterSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  benefitsHeading?: InputMaybe<StringFilter>;
+  buttonLabel?: InputMaybe<StringFilter>;
+  formId?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  illustration?: InputMaybe<ImageWithAltTextFilter>;
+  introduction?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsNewsletterSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  benefitsHeading?: InputMaybe<SortOrder>;
+  buttonLabel?: InputMaybe<SortOrder>;
+  formId?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  illustration?: InputMaybe<ImageWithAltTextSorting>;
+  introduction?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsOverviewSection = {
+  __typename?: 'NationalCurriculumInsightsOverviewSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  bodyRaw?: Maybe<Scalars['JSON']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsOverviewSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsOverviewSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsPage = Document & {
+  __typename?: 'NationalCurriculumInsightsPage';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']['output']>;
+  _key?: Maybe<Scalars['String']['output']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']['output']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']['output']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  keyStages?: Maybe<Array<Maybe<NationalCurriculumInsightsKeyStagePageReference>>>;
+  modules?: Maybe<Array<Maybe<NationalCurriculumInsightsDownloadSectionOrNationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsGuidanceIntroSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPhaseNavigationSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection>>>;
+  /** The subject phase that can reference this page. The subject itself is the Overview page and controls the URL. */
+  pageType?: Maybe<Scalars['String']['output']>;
+  seo?: Maybe<Seo>;
+  summary?: Maybe<Scalars['String']['output']>;
+  /** Used in Studio and as a safe fallback. Visible headings should normally come from the ordered modules. */
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsPageFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  pageType?: InputMaybe<StringFilter>;
+  seo?: InputMaybe<SeoFilter>;
+  summary?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsPageSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  pageType?: InputMaybe<SortOrder>;
+  seo?: InputMaybe<SeoSorting>;
+  summary?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsPhaseCard = {
+  __typename?: 'NationalCurriculumInsightsPhaseCard';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  linkLabel?: Maybe<Scalars['String']['output']>;
+  phase?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsPhaseCardFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  linkLabel?: InputMaybe<StringFilter>;
+  phase?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsPhaseCardSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  linkLabel?: InputMaybe<SortOrder>;
+  phase?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsPhaseCardsSection = {
+  __typename?: 'NationalCurriculumInsightsPhaseCardsSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  cards?: Maybe<Array<Maybe<NationalCurriculumInsightsPhaseCard>>>;
+};
+
+export type NationalCurriculumInsightsPhaseCardsSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsPhaseCardsSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsPhaseNavigationSection = {
+  __typename?: 'NationalCurriculumInsightsPhaseNavigationSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  overviewLabel?: Maybe<Scalars['String']['output']>;
+  primaryLabel?: Maybe<Scalars['String']['output']>;
+  secondaryLabel?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsPhaseNavigationSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  overviewLabel?: InputMaybe<StringFilter>;
+  primaryLabel?: InputMaybe<StringFilter>;
+  secondaryLabel?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsPhaseNavigationSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  overviewLabel?: InputMaybe<SortOrder>;
+  primaryLabel?: InputMaybe<SortOrder>;
+  secondaryLabel?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsPromotionalHeadingSection = {
+  __typename?: 'NationalCurriculumInsightsPromotionalHeadingSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  variant?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsPromotionalHeadingSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  variant?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsPromotionalHeadingSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  variant?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsQuoteSection = {
+  __typename?: 'NationalCurriculumInsightsQuoteSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  attribution?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<ImageWithAltText>;
+  quote?: Maybe<Scalars['String']['output']>;
+  role?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsQuoteSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  attribution?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
+  quote?: InputMaybe<StringFilter>;
+  role?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsQuoteSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  attribution?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
+  quote?: InputMaybe<SortOrder>;
+  role?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsRichTextSection = {
+  __typename?: 'NationalCurriculumInsightsRichTextSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  contentRaw?: Maybe<Scalars['JSON']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  headingStyle?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsRichTextSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  headingStyle?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsRichTextSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  headingStyle?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsSubject = Document & {
+  __typename?: 'NationalCurriculumInsightsSubject';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']['output']>;
+  _key?: Maybe<Scalars['String']['output']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']['output']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']['output']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  curriculumSubjectSlugs?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  illustration?: Maybe<ImageWithAltText>;
+  modules?: Maybe<Array<Maybe<NationalCurriculumInsightsDownloadSectionOrNationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsGuidanceIntroSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPhaseNavigationSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection>>>;
+  seo?: Maybe<Seo>;
+  slug?: Maybe<Slug>;
+  summary?: Maybe<Scalars['String']['output']>;
+  tabs?: Maybe<Array<Maybe<NationalCurriculumInsightsTab>>>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsSubjectFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  illustration?: InputMaybe<ImageWithAltTextFilter>;
+  seo?: InputMaybe<SeoFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  summary?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsSubjectNavigationSection = {
+  __typename?: 'NationalCurriculumInsightsSubjectNavigationSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  phases?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  primaryHeading?: Maybe<Scalars['String']['output']>;
+  secondaryHeading?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsSubjectNavigationSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  primaryHeading?: InputMaybe<StringFilter>;
+  secondaryHeading?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsSubjectNavigationSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  primaryHeading?: InputMaybe<SortOrder>;
+  secondaryHeading?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsSubjectSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  illustration?: InputMaybe<ImageWithAltTextSorting>;
+  seo?: InputMaybe<SeoSorting>;
+  slug?: InputMaybe<SlugSorting>;
+  summary?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsTab = {
+  __typename?: 'NationalCurriculumInsightsTab';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  kind?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+  /** The phase points to its own page and independently ordered content modules. */
+  page?: Maybe<NationalCurriculumInsightsPage>;
+};
+
+export type NationalCurriculumInsightsTabFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  kind?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+  page?: InputMaybe<NationalCurriculumInsightsPageFilter>;
+};
+
+export type NationalCurriculumInsightsTabSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  kind?: InputMaybe<SortOrder>;
+  label?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsTableSection = {
+  __typename?: 'NationalCurriculumInsightsTableSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  table?: Maybe<Table>;
+};
+
+export type NationalCurriculumInsightsTableSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  table?: InputMaybe<TableFilter>;
+};
+
+export type NationalCurriculumInsightsTableSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  table?: InputMaybe<TableSorting>;
+};
+
+export type NationalCurriculumInsightsVideoCard = {
+  __typename?: 'NationalCurriculumInsightsVideoCard';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  /** Optional display value, for example 12 mins. */
+  duration?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<ImageWithAltText>;
+  videoUrl?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsVideoCardFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  duration?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
+  videoUrl?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsVideoCardSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  description?: InputMaybe<SortOrder>;
+  duration?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
+  videoUrl?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsVideoCardsSection = {
+  __typename?: 'NationalCurriculumInsightsVideoCardsSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  cards?: Maybe<Array<Maybe<NationalCurriculumInsightsVideoCard>>>;
+  heading?: Maybe<Scalars['String']['output']>;
+  illustration?: Maybe<ImageWithAltText>;
+  introductionRaw?: Maybe<Scalars['JSON']['output']>;
+  posts?: Maybe<Array<Maybe<NewsPost>>>;
+};
+
+export type NationalCurriculumInsightsVideoCardsSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  illustration?: InputMaybe<ImageWithAltTextFilter>;
+};
+
+export type NationalCurriculumInsightsVideoCardsSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  illustration?: InputMaybe<ImageWithAltTextSorting>;
 };
 
 export type NavGroup = Document & {
@@ -3941,6 +4861,11 @@ export type RootQuery = {
   Illustration?: Maybe<Illustration>;
   LandingPage?: Maybe<LandingPage>;
   MuxVideoAsset?: Maybe<MuxVideoAsset>;
+  NationalCurriculumInsightsGuidancePage?: Maybe<NationalCurriculumInsightsGuidancePage>;
+  NationalCurriculumInsightsHub?: Maybe<NationalCurriculumInsightsHub>;
+  NationalCurriculumInsightsKeyStagePage?: Maybe<NationalCurriculumInsightsKeyStagePage>;
+  NationalCurriculumInsightsPage?: Maybe<NationalCurriculumInsightsPage>;
+  NationalCurriculumInsightsSubject?: Maybe<NationalCurriculumInsightsSubject>;
   NavGroup?: Maybe<NavGroup>;
   NewAboutCorePage?: Maybe<NewAboutCorePage>;
   NewAboutCorePageGetInvolved?: Maybe<NewAboutCorePageGetInvolved>;
@@ -3994,6 +4919,11 @@ export type RootQuery = {
   allIllustration: Array<Illustration>;
   allLandingPage: Array<LandingPage>;
   allMuxVideoAsset: Array<MuxVideoAsset>;
+  allNationalCurriculumInsightsGuidancePage: Array<NationalCurriculumInsightsGuidancePage>;
+  allNationalCurriculumInsightsHub: Array<NationalCurriculumInsightsHub>;
+  allNationalCurriculumInsightsKeyStagePage: Array<NationalCurriculumInsightsKeyStagePage>;
+  allNationalCurriculumInsightsPage: Array<NationalCurriculumInsightsPage>;
+  allNationalCurriculumInsightsSubject: Array<NationalCurriculumInsightsSubject>;
   allNavGroup: Array<NavGroup>;
   allNewAboutCorePage: Array<NewAboutCorePage>;
   allNewAboutCorePageGetInvolved: Array<NewAboutCorePageGetInvolved>;
@@ -4154,6 +5084,31 @@ export type RootQueryLandingPageArgs = {
 
 
 export type RootQueryMuxVideoAssetArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type RootQueryNationalCurriculumInsightsGuidancePageArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type RootQueryNationalCurriculumInsightsHubArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type RootQueryNationalCurriculumInsightsKeyStagePageArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type RootQueryNationalCurriculumInsightsPageArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type RootQueryNationalCurriculumInsightsSubjectArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -4501,6 +5456,46 @@ export type RootQueryAllMuxVideoAssetArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<MuxVideoAssetSorting>>;
   where?: InputMaybe<MuxVideoAssetFilter>;
+};
+
+
+export type RootQueryAllNationalCurriculumInsightsGuidancePageArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<NationalCurriculumInsightsGuidancePageSorting>>;
+  where?: InputMaybe<NationalCurriculumInsightsGuidancePageFilter>;
+};
+
+
+export type RootQueryAllNationalCurriculumInsightsHubArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<NationalCurriculumInsightsHubSorting>>;
+  where?: InputMaybe<NationalCurriculumInsightsHubFilter>;
+};
+
+
+export type RootQueryAllNationalCurriculumInsightsKeyStagePageArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<NationalCurriculumInsightsKeyStagePageSorting>>;
+  where?: InputMaybe<NationalCurriculumInsightsKeyStagePageFilter>;
+};
+
+
+export type RootQueryAllNationalCurriculumInsightsPageArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<NationalCurriculumInsightsPageSorting>>;
+  where?: InputMaybe<NationalCurriculumInsightsPageFilter>;
+};
+
+
+export type RootQueryAllNationalCurriculumInsightsSubjectArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<NationalCurriculumInsightsSubjectSorting>>;
+  where?: InputMaybe<NationalCurriculumInsightsSubjectFilter>;
 };
 
 
@@ -6270,6 +7265,23 @@ export type CampaignBySlugQuery = { __typename?: 'RootQuery', allCampaignPage: A
 
 export type CardFragment = { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null };
 
+export type CaseStudyLibraryPageQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']['input']>;
+  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type CaseStudyLibraryPageQuery = { __typename?: 'RootQuery', allCaseStudy: Array<{ __typename?: 'CaseStudy', title?: string | null, tag?: string | null, summaryRaw?: any | null, textRaw?: any | null, publishedAt?: any | null, showGetInTouchPanel?: boolean | null, slug?: { __typename?: 'Slug', current?: string | null } | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, content?: Array<{ __typename?: 'CaseStudyPageContent', heading?: string | null, label?: string | null, contentRaw?: any | null, anchorSlug?: { __typename?: 'Slug', current?: string | null } | null } | null> | null, getInTouchPanel?: { __typename?: 'GetInTouchPanel', personName?: string | null, jobRole?: string | null, institutionName?: string | null, personImage?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null }> };
+
+export type CaseStudyPageQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']['input']>;
+  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
+}>;
+
+
+export type CaseStudyPageQuery = { __typename?: 'RootQuery', allCaseStudy: Array<{ __typename?: 'CaseStudy', title?: string | null, tag?: string | null, summaryRaw?: any | null, textRaw?: any | null, publishedAt?: any | null, showGetInTouchPanel?: boolean | null, slug?: { __typename?: 'Slug', current?: string | null } | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, content?: Array<{ __typename?: 'CaseStudyPageContent', heading?: string | null, label?: string | null, contentRaw?: any | null, anchorSlug?: { __typename?: 'Slug', current?: string | null } | null } | null> | null, getInTouchPanel?: { __typename?: 'GetInTouchPanel', personName?: string | null, jobRole?: string | null, institutionName?: string | null, personImage?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null }> };
+
 export type ContactCorePageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
 }>;
@@ -6373,6 +7385,16 @@ type InternalLinkFields_LandingPage_Fragment = { __typename?: 'LandingPage', id?
 
 type InternalLinkFields_MuxVideoAsset_Fragment = { __typename?: 'MuxVideoAsset', id?: string | null, contentType?: string | null };
 
+type InternalLinkFields_NationalCurriculumInsightsGuidancePage_Fragment = { __typename?: 'NationalCurriculumInsightsGuidancePage', id?: string | null, contentType?: string | null };
+
+type InternalLinkFields_NationalCurriculumInsightsHub_Fragment = { __typename?: 'NationalCurriculumInsightsHub', id?: string | null, contentType?: string | null };
+
+type InternalLinkFields_NationalCurriculumInsightsKeyStagePage_Fragment = { __typename?: 'NationalCurriculumInsightsKeyStagePage', id?: string | null, contentType?: string | null };
+
+type InternalLinkFields_NationalCurriculumInsightsPage_Fragment = { __typename?: 'NationalCurriculumInsightsPage', id?: string | null, contentType?: string | null };
+
+type InternalLinkFields_NationalCurriculumInsightsSubject_Fragment = { __typename?: 'NationalCurriculumInsightsSubject', id?: string | null, contentType?: string | null };
+
 type InternalLinkFields_NavGroup_Fragment = { __typename?: 'NavGroup', id?: string | null, contentType?: string | null };
 
 type InternalLinkFields_NewAboutCorePage_Fragment = { __typename?: 'NewAboutCorePage', id?: string | null, contentType?: string | null };
@@ -6425,7 +7447,7 @@ type InternalLinkFields_Webinar_Fragment = { __typename?: 'Webinar', id?: string
 
 type InternalLinkFields_WebinarListingPage_Fragment = { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null };
 
-export type InternalLinkFieldsFragment = InternalLinkFields_AbTest_Fragment | InternalLinkFields_AboutCorePage_Fragment | InternalLinkFields_AboutCorePageBoard_Fragment | InternalLinkFields_AboutCorePageLeadership_Fragment | InternalLinkFields_AboutCorePagePartners_Fragment | InternalLinkFields_AboutCorePageWhoWeAre_Fragment | InternalLinkFields_AboutCorePageWorkWithUs_Fragment | InternalLinkFields_AiHomepage_Fragment | InternalLinkFields_AiPolicyPage_Fragment | InternalLinkFields_ApiContentPage_Fragment | InternalLinkFields_AssistInstructionContext_Fragment | InternalLinkFields_Attachment_Fragment | InternalLinkFields_BlogWebinarCategory_Fragment | InternalLinkFields_BrandAsset_Fragment | InternalLinkFields_CampaignPage_Fragment | InternalLinkFields_CaseStudy_Fragment | InternalLinkFields_ContactCorePage_Fragment | InternalLinkFields_CurriculumApiLandingPage_Fragment | InternalLinkFields_CurriculumCorePage_Fragment | InternalLinkFields_CurriculumExplainer_Fragment | InternalLinkFields_CurriculumInfoPageOverview_Fragment | InternalLinkFields_CurriculumPartner_Fragment | InternalLinkFields_Homepage_Fragment | InternalLinkFields_Illustration_Fragment | InternalLinkFields_LandingPage_Fragment | InternalLinkFields_MuxVideoAsset_Fragment | InternalLinkFields_NavGroup_Fragment | InternalLinkFields_NewAboutCorePage_Fragment | InternalLinkFields_NewAboutCorePageGetInvolved_Fragment | InternalLinkFields_NewAboutCorePageMeetTheTeam_Fragment | InternalLinkFields_NewAboutCorePageOaksCurricula_Fragment | InternalLinkFields_NewAboutCorePageOaksImpact_Fragment | InternalLinkFields_NewAboutCorePageWhoWeAre_Fragment | InternalLinkFields_NewsListingPage_Fragment | InternalLinkFields_NewsPost_Fragment | InternalLinkFields_PlanALessonCorePage_Fragment | InternalLinkFields_PlanALessonPageContent_Fragment | InternalLinkFields_PlanningCorePage_Fragment | InternalLinkFields_PolicyPage_Fragment | InternalLinkFields_ProgrammePage_Fragment | InternalLinkFields_SanityFileAsset_Fragment | InternalLinkFields_SanityHelpArticle_Fragment | InternalLinkFields_SanityImageAsset_Fragment | InternalLinkFields_SubjectIcon_Fragment | InternalLinkFields_SupportCorePage_Fragment | InternalLinkFields_TeamMember_Fragment | InternalLinkFields_Testimonial_Fragment | InternalLinkFields_UiGraphic_Fragment | InternalLinkFields_UiIcon_Fragment | InternalLinkFields_Video_Fragment | InternalLinkFields_Webinar_Fragment | InternalLinkFields_WebinarListingPage_Fragment;
+export type InternalLinkFieldsFragment = InternalLinkFields_AbTest_Fragment | InternalLinkFields_AboutCorePage_Fragment | InternalLinkFields_AboutCorePageBoard_Fragment | InternalLinkFields_AboutCorePageLeadership_Fragment | InternalLinkFields_AboutCorePagePartners_Fragment | InternalLinkFields_AboutCorePageWhoWeAre_Fragment | InternalLinkFields_AboutCorePageWorkWithUs_Fragment | InternalLinkFields_AiHomepage_Fragment | InternalLinkFields_AiPolicyPage_Fragment | InternalLinkFields_ApiContentPage_Fragment | InternalLinkFields_AssistInstructionContext_Fragment | InternalLinkFields_Attachment_Fragment | InternalLinkFields_BlogWebinarCategory_Fragment | InternalLinkFields_BrandAsset_Fragment | InternalLinkFields_CampaignPage_Fragment | InternalLinkFields_CaseStudy_Fragment | InternalLinkFields_ContactCorePage_Fragment | InternalLinkFields_CurriculumApiLandingPage_Fragment | InternalLinkFields_CurriculumCorePage_Fragment | InternalLinkFields_CurriculumExplainer_Fragment | InternalLinkFields_CurriculumInfoPageOverview_Fragment | InternalLinkFields_CurriculumPartner_Fragment | InternalLinkFields_Homepage_Fragment | InternalLinkFields_Illustration_Fragment | InternalLinkFields_LandingPage_Fragment | InternalLinkFields_MuxVideoAsset_Fragment | InternalLinkFields_NationalCurriculumInsightsGuidancePage_Fragment | InternalLinkFields_NationalCurriculumInsightsHub_Fragment | InternalLinkFields_NationalCurriculumInsightsKeyStagePage_Fragment | InternalLinkFields_NationalCurriculumInsightsPage_Fragment | InternalLinkFields_NationalCurriculumInsightsSubject_Fragment | InternalLinkFields_NavGroup_Fragment | InternalLinkFields_NewAboutCorePage_Fragment | InternalLinkFields_NewAboutCorePageGetInvolved_Fragment | InternalLinkFields_NewAboutCorePageMeetTheTeam_Fragment | InternalLinkFields_NewAboutCorePageOaksCurricula_Fragment | InternalLinkFields_NewAboutCorePageOaksImpact_Fragment | InternalLinkFields_NewAboutCorePageWhoWeAre_Fragment | InternalLinkFields_NewsListingPage_Fragment | InternalLinkFields_NewsPost_Fragment | InternalLinkFields_PlanALessonCorePage_Fragment | InternalLinkFields_PlanALessonPageContent_Fragment | InternalLinkFields_PlanningCorePage_Fragment | InternalLinkFields_PolicyPage_Fragment | InternalLinkFields_ProgrammePage_Fragment | InternalLinkFields_SanityFileAsset_Fragment | InternalLinkFields_SanityHelpArticle_Fragment | InternalLinkFields_SanityImageAsset_Fragment | InternalLinkFields_SubjectIcon_Fragment | InternalLinkFields_SupportCorePage_Fragment | InternalLinkFields_TeamMember_Fragment | InternalLinkFields_Testimonial_Fragment | InternalLinkFields_UiGraphic_Fragment | InternalLinkFields_UiIcon_Fragment | InternalLinkFields_Video_Fragment | InternalLinkFields_Webinar_Fragment | InternalLinkFields_WebinarListingPage_Fragment;
 
 export type LandingPageFragment = { __typename?: 'LandingPage', id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, headerCta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, hero?: { __typename?: 'LandingPageHero', title?: string | null, heading?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, content?: Array<{ __typename?: 'LandingPageFormBlock', title?: string | null, bodyPortableText?: any | null, type: 'LandingPageFormBlock', form?: { __typename?: 'FormWrapper', title?: string | null } | null } | { __typename?: 'LandingPageQuoteBlock', type: 'LandingPageQuoteBlock', quote?: { __typename?: 'Quote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null } | { __typename?: 'LandingPageTextAndMediaBlock', type: 'LandingPageTextAndMediaBlock', textAndMedia?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null } | { __typename?: 'LandingPageTextBlock', bodyPortableText?: any | null, type: 'LandingPageTextBlock' } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null };
 
@@ -6460,13 +7482,6 @@ export type OaksCurriculaPageQueryVariables = Exact<{
 
 export type OaksCurriculaPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageOaksCurricula: Array<{ __typename?: 'NewAboutCorePageOaksCurricula', id?: string | null, header?: { __typename?: 'OaksCurriculaPageHeader', introText?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, guidingPrinciples?: { __typename?: 'OaksCurriculaPageGuidingPrinciples', textRaw?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, principles?: Array<{ __typename?: 'OaksCurriculaPageGuidingPrinciple', heading?: string | null, text2Raw?: any | null } | null> | null } | null, curriculumPartners?: { __typename?: 'OaksCurriculaPageCurriculumPartnersSection', textRaw?: any | null, current?: { __typename?: 'OaksCurriculaPagePartnerSection', textRaw?: any | null, partners?: Array<{ __typename?: 'OaksCurriculaPagePartner', logo?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, legacy?: { __typename?: 'OaksCurriculaPagePartnerSection', textRaw?: any | null, partners?: Array<{ __typename?: 'OaksCurriculaPagePartner', logo?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
-export type CaseStudyLibraryPageQueryVariables = Exact<{
-  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
-}>;
-
-
-export type CaseStudyLibraryPageQuery = { __typename?: 'RootQuery', allCaseStudy: Array<{ __typename?: 'CaseStudy', publishedAt?: any | null, textRaw?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null }> };
-
 export type OaksImpactCaseStudyPageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
 }>;
@@ -6479,7 +7494,7 @@ export type OaksImpactPageQueryVariables = Exact<{
 }>;
 
 
-export type OaksImpactPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageOaksImpact: Array<{ __typename?: 'NewAboutCorePageOaksImpact', id?: string | null, header?: { __typename?: 'OaksImpactPageHeader', introText?: string | null, videoDescription?: string | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null, statsSection?: { __typename?: 'OaksImpactPageStatsSection', textBlock?: { __typename?: 'TextBlock', title?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, stats?: Array<{ __typename?: 'OaksImpactPageStat', heading?: string | null, textRaw?: any | null, icon?: { __typename?: 'ImageWithAltTextAndDarkMode', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, darkModeImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, caseStudiesSection?: { __typename?: 'OaksImpactPageCaseStudiesSection', caseStudies?: Array<{ __typename?: 'CaseStudy', textRaw?: any | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, schoolQuotes?: { __typename?: 'OaksImpactPageSchoolQuotesSection', heading?: string | null, cards?: Array<{ __typename?: 'OaksImpactPageSchoolQuoteCard', summary?: string | null, logo?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, quote?: { __typename?: 'OaksImpactPageSchoolQuote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null, headshot?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null }> };
+export type OaksImpactPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageOaksImpact: Array<{ __typename?: 'NewAboutCorePageOaksImpact', id?: string | null, header?: { __typename?: 'OaksImpactPageHeader', introText?: string | null, videoDescription?: string | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null, statsSection?: { __typename?: 'OaksImpactPageStatsSection', textBlock?: { __typename?: 'TextBlock', title?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, stats?: Array<{ __typename?: 'OaksImpactPageStat', heading?: string | null, textRaw?: any | null, icon?: { __typename?: 'ImageWithAltTextAndDarkMode', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, darkModeImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, caseStudiesSection?: { __typename?: 'OaksImpactPageCaseStudiesSection', caseStudies?: Array<{ __typename?: 'CaseStudy', textRaw?: any | null, title?: string | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, schoolQuotes?: { __typename?: 'OaksImpactPageSchoolQuotesSection', heading?: string | null, cards?: Array<{ __typename?: 'OaksImpactPageSchoolQuoteCard', summary?: string | null, logo?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, quote?: { __typename?: 'OaksImpactPageSchoolQuote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null, headshot?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null }> };
 
 export type PlanALessonPageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -6508,7 +7523,7 @@ export type PortableTextReferencesQueryVariables = Exact<{
 }>;
 
 
-export type PortableTextReferencesQuery = { __typename?: 'RootQuery', allDocument: Array<{ __typename?: 'AbTest', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AiHomepage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AiPolicyPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'ApiContentPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AssistInstructionContext', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', _type?: string | null, title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'BlogWebinarCategory', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'BrandAsset', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CampaignPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CaseStudy', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'ContactCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumApiLandingPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumExplainer', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumInfoPageOverview', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumPartner', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Illustration', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'MuxVideoAsset', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NavGroup', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageGetInvolved', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageMeetTheTeam', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageOaksCurricula', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageOaksImpact', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageWhoWeAre', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewsListingPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanALessonCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'PlanALessonPageContent', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'PlanningCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'ProgrammePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SanityFileAsset', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SanityHelpArticle', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null, _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SubjectIcon', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SupportCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'TeamMember', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Testimonial', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'UiGraphic', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'UiIcon', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Video', _type?: string | null, title?: string | null, id?: string | null, transcript?: any | null, contentType?: string | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | { __typename?: 'Webinar', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', _type?: string | null, id?: string | null, contentType?: string | null }> };
+export type PortableTextReferencesQuery = { __typename?: 'RootQuery', allDocument: Array<{ __typename?: 'AbTest', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AiHomepage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AiPolicyPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'ApiContentPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AssistInstructionContext', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', _type?: string | null, title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'BlogWebinarCategory', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'BrandAsset', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CampaignPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CaseStudy', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'ContactCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumApiLandingPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumExplainer', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumInfoPageOverview', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumPartner', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Illustration', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'MuxVideoAsset', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NationalCurriculumInsightsGuidancePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NationalCurriculumInsightsHub', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NationalCurriculumInsightsKeyStagePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NationalCurriculumInsightsPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NationalCurriculumInsightsSubject', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NavGroup', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageGetInvolved', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageMeetTheTeam', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageOaksCurricula', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageOaksImpact', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageWhoWeAre', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewsListingPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanALessonCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'PlanALessonPageContent', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'PlanningCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'ProgrammePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SanityFileAsset', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SanityHelpArticle', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null, _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SubjectIcon', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SupportCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'TeamMember', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Testimonial', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'UiGraphic', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'UiIcon', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Video', _type?: string | null, title?: string | null, id?: string | null, transcript?: any | null, contentType?: string | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | { __typename?: 'Webinar', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', _type?: string | null, id?: string | null, contentType?: string | null }> };
 
 export type ProgrammePageBySlugQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -7324,6 +8339,86 @@ export const CampaignBySlugDocument = gql`
     ${ImageWithAltTextFragmentDoc}
 ${VideoFragmentDoc}
 ${SeoFragmentDoc}`;
+export const CaseStudyLibraryPageDocument = gql`
+    query caseStudyLibraryPage($slug: String, $isDraftFilter: Sanity_DocumentFilter, $limit: Int) {
+  allCaseStudy(
+    where: {_: $isDraftFilter, slug: {current: {neq: $slug}}}
+    sort: {publishedAt: DESC}
+    limit: $limit
+  ) {
+    title
+    slug {
+      current
+    }
+    tag
+    summaryRaw
+    video {
+      ...Video
+    }
+    textRaw
+    image {
+      ...ImageWithAltText
+    }
+    publishedAt
+    content {
+      heading
+      label
+      anchorSlug {
+        current
+      }
+      contentRaw
+    }
+    showGetInTouchPanel
+    getInTouchPanel {
+      personName
+      personImage {
+        ...ImageWithAltText
+      }
+      jobRole
+      institutionName
+    }
+  }
+}
+    ${VideoFragmentDoc}
+${ImageWithAltTextFragmentDoc}`;
+export const CaseStudyPageDocument = gql`
+    query caseStudyPage($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
+  allCaseStudy(where: {_: $isDraftFilter, slug: {current: {eq: $slug}}}) {
+    title
+    slug {
+      current
+    }
+    tag
+    summaryRaw
+    video {
+      ...Video
+    }
+    textRaw
+    image {
+      ...ImageWithAltText
+    }
+    publishedAt
+    content {
+      heading
+      label
+      anchorSlug {
+        current
+      }
+      contentRaw
+    }
+    showGetInTouchPanel
+    getInTouchPanel {
+      personName
+      personImage {
+        ...ImageWithAltText
+      }
+      jobRole
+      institutionName
+    }
+  }
+}
+    ${VideoFragmentDoc}
+${ImageWithAltTextFragmentDoc}`;
 export const ContactCorePageDocument = gql`
     query contactCorePage($isDraftFilter: Sanity_DocumentFilter) {
   allContactCorePage(
@@ -7632,24 +8727,6 @@ export const OaksCurriculaPageDocument = gql`
 }
     ${ImageWithAltTextFragmentDoc}
 ${SeoFragmentDoc}`;
-export const CaseStudyLibraryPageDocument = gql`
-    query caseStudyLibraryPage($isDraftFilter: Sanity_DocumentFilter) {
-  allCaseStudy(where: {_: $isDraftFilter}) {
-    slug {
-      current
-    }
-    video {
-      ...Video
-    }
-    image {
-      ...ImageWithAltText
-    }
-    publishedAt
-    textRaw
-  }
-}
-    ${VideoFragmentDoc}
-${ImageWithAltTextFragmentDoc}`;
 export const OaksImpactCaseStudyPageDocument = gql`
     query oaksImpactCaseStudyPage($isDraftFilter: Sanity_DocumentFilter) {
   allNewAboutCorePageOaksImpact(
@@ -7715,6 +8792,7 @@ export const OaksImpactPageDocument = gql`
           ...ImageWithAltText
         }
         textRaw
+        title
       }
     }
     schoolQuotes {
@@ -8069,6 +9147,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     campaignBySlug(variables?: CampaignBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CampaignBySlugQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<CampaignBySlugQuery>({ document: CampaignBySlugDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'campaignBySlug', 'query', variables);
     },
+    caseStudyLibraryPage(variables?: CaseStudyLibraryPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CaseStudyLibraryPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CaseStudyLibraryPageQuery>({ document: CaseStudyLibraryPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'caseStudyLibraryPage', 'query', variables);
+    },
+    caseStudyPage(variables?: CaseStudyPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CaseStudyPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CaseStudyPageQuery>({ document: CaseStudyPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'caseStudyPage', 'query', variables);
+    },
     contactCorePage(variables?: ContactCorePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ContactCorePageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ContactCorePageQuery>({ document: ContactCorePageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'contactCorePage', 'query', variables);
     },
@@ -8095,9 +9179,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     oaksCurriculaPage(variables?: OaksCurriculaPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<OaksCurriculaPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<OaksCurriculaPageQuery>({ document: OaksCurriculaPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'oaksCurriculaPage', 'query', variables);
-    },
-    caseStudyLibraryPage(variables?: CaseStudyLibraryPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CaseStudyLibraryPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CaseStudyLibraryPageQuery>({ document: CaseStudyLibraryPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'caseStudyLibraryPage', 'query', variables);
     },
     oaksImpactCaseStudyPage(variables?: OaksImpactCaseStudyPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<OaksImpactCaseStudyPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<OaksImpactCaseStudyPageQuery>({ document: OaksImpactCaseStudyPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'oaksImpactCaseStudyPage', 'query', variables);

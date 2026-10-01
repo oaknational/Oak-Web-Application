@@ -1,19 +1,43 @@
-query caseStudyLibraryPage($isDraftFilter: Sanity_DocumentFilter) {
-  allCaseStudy (
-    where: {
-      _: $isDraftFilter
-    }
+query caseStudyLibraryPage(
+  $slug: String
+  $isDraftFilter: Sanity_DocumentFilter
+  $limit: Int
+) {
+  allCaseStudy(
+    where: { _: $isDraftFilter, slug: { current: { neq: $slug } } }
+    sort: { publishedAt: DESC }
+    limit: $limit
   ) {
+    title
     slug {
       current
-    },
+    }
+    tag
+    summaryRaw
     video {
       ...Video
-    },
+    }
+    textRaw
     image {
       ...ImageWithAltText
     }
-    publishedAt,
-    textRaw,
+    publishedAt
+    content {
+      heading
+      label
+      anchorSlug {
+        current
+      }
+      contentRaw
+    }
+    showGetInTouchPanel
+    getInTouchPanel {
+      personName
+      personImage {
+        ...ImageWithAltText
+      }
+      jobRole
+      institutionName
+    }
   }
 }

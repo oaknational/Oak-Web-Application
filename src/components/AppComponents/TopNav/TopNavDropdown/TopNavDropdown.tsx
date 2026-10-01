@@ -318,6 +318,9 @@ const TeachersLinksSection = ({
   linkData: NavDropDownButton;
   onClose: () => void;
 }) => {
+  const { teachWithOakAccessed } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
   return (
     <OakFlex $flexDirection={"column"} $gap={"spacing-40"}>
       <OakBox $width={"fit-content"} $position={"relative"}>
@@ -348,6 +351,7 @@ const TeachersLinksSection = ({
             topLevelSlug: linkData.slug,
           });
           if (!buttonId) return null;
+
           return (
             <OakLI key={link.slug}>
               <OakLeftAlignedButton
@@ -366,7 +370,14 @@ const TeachersLinksSection = ({
                 }
                 width={"spacing-160"}
                 id={buttonId}
-                onClick={onClose}
+                onClick={() => {
+                  if (link.slug === "teach-with-oak") {
+                    teachWithOakAccessed({
+                      componentType: "topnav-browse-button",
+                    });
+                  }
+                  onClose();
+                }}
                 onKeyDown={(e) => focusManager.handleTabKeyDown(e, buttonId)}
               >
                 {link.title}

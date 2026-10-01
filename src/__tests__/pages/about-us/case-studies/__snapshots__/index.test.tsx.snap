@@ -925,6 +925,21 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                       >
                         <a
                           class="sc-fHjqPf kEMwfg"
+                          href="/teachers/teach-with-oak"
+                          variant="secondary"
+                        >
+                          <span
+                            class="sc-eqUAAy iGfTGj"
+                          >
+                            Teach with Oak
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-fPXMVe jFJaNg"
+                      >
+                        <a
+                          class="sc-fHjqPf kEMwfg"
                           href="https://labs.thenational.academy"
                           target="_blank"
                           variant="secondary"
@@ -1544,7 +1559,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
               </div>
             </div>
             <span
-              class="sc-aXZVg kvjdhA sc-2a7a3394-0 hUSjJW"
+              class="sc-aXZVg kvjdhA sc-cc003eb3-0 iCnMIR"
               data-percy-hide="contents"
             >
               <img
