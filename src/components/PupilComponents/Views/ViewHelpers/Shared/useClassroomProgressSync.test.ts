@@ -115,6 +115,47 @@ describe("useClassroomProgressSync", () => {
     expect(mockedApi.submitPupilProgress).not.toHaveBeenCalled();
   });
 
+  it.each([
+    { isReady: false },
+    { submissionId: null },
+    { pupilLoginHint: null },
+    { isReadOnly: true },
+  ])(
+    "does not report a successful final save for unavailable Classroom context %s",
+    async (overrides) => {
+      renderHook(() =>
+        useClassroomProgressSync({ ...classroomArgs, ...overrides }),
+      );
+
+      await expect(
+        usePupilLessonProgress.getState().submitClassroomProgress({
+          "exit-quiz": { isComplete: true, grade: 1, numQuestions: 1 },
+        }),
+      ).rejects.toThrow();
+      expect(mockedApi.submitPupilProgress).not.toHaveBeenCalled();
+    },
+  );
+
+  it("allows ordinary OWA completion without a Classroom save", async () => {
+    renderHook(() =>
+      useClassroomProgressSync({
+        ...classroomArgs,
+        courseId: null,
+        itemId: null,
+        attachmentId: null,
+        submissionId: null,
+        pupilLoginHint: null,
+      }),
+    );
+
+    await expect(
+      usePupilLessonProgress.getState().submitClassroomProgress({
+        "exit-quiz": { isComplete: true, grade: 1, numQuestions: 1 },
+      }),
+    ).resolves.toBeNull();
+    expect(mockedApi.submitPupilProgress).not.toHaveBeenCalled();
+  });
+
   it("reuses an in-flight request for identical progress", async () => {
     let resolveRequest:
       | ((value: { progress: never; status: "PERSISTED" }) => void)

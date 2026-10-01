@@ -516,6 +516,9 @@ describe("QuizPageContent", () => {
 
     fireEvent.click(button);
     await waitFor(() => expect(button).toBeEnabled());
+    expect(getByRole("alert", { name: "Quiz save failed" })).toHaveTextContent(
+      "We couldn't save your quiz. Please try again.",
+    );
     expect(progressState.completeSection).not.toHaveBeenCalled();
     expect(routerPush).not.toHaveBeenCalled();
 
@@ -652,7 +655,7 @@ describe("QuizPageContent", () => {
     expect(trackLessonStarted).toHaveBeenCalledTimes(1);
   });
 
-  it("completes the quiz on back when the quiz is effectively complete but not yet committed", async () => {
+  it("keeps a checked final question unfinished when using Back", async () => {
     quizState = buildQuizState({
       questionState: [{ ...baseQuestionState, mode: "feedback", grade: 1 }],
       currentQuestionIndex: 0,
@@ -665,9 +668,9 @@ describe("QuizPageContent", () => {
     await act(async () => {
       fireEvent.click(getByLabelText(/Back/));
     });
-    expect(progressState.completeSection).toHaveBeenCalledWith("starter-quiz");
-    expect(trackQuizCompleted).toHaveBeenCalledTimes(1);
-    expect(trackQuizAbandoned).not.toHaveBeenCalled();
+    expect(progressState.completeSection).not.toHaveBeenCalled();
+    expect(trackQuizCompleted).not.toHaveBeenCalled();
+    expect(trackQuizAbandoned).toHaveBeenCalledTimes(1);
   });
 
   it("shows 'Well done!' for a correct answer in feedback mode", () => {

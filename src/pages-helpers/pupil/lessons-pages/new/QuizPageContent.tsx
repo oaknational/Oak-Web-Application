@@ -3,6 +3,8 @@ import {
   OakBackLink,
   OakCloudinaryConfigProvider,
   OakCodeRenderer,
+  OakFlex,
+  OakP,
   OakSpan,
 } from "@oaknational/oak-components";
 import { useShallow } from "zustand/react/shallow";
@@ -134,6 +136,7 @@ export const QuizPageContent = ({
     pressed: boolean;
   }>({ questionIndex: currentQuestionIndex, pressed: false });
   const [isCompleting, setIsCompleting] = useState(false);
+  const [hasSaveError, setHasSaveError] = useState(false);
   const isCompletingRef = useRef(false);
   const completionAttemptRef = useRef(0);
   const formId = "quiz-form";
@@ -267,18 +270,6 @@ export const QuizPageContent = ({
     handleQuestionResult(result);
   };
 
-  const isQuizEffectivelyComplete = () => {
-    const nextStep = getQuizNextStep({
-      currentQuestionIndex,
-      numQuestions,
-      isReadOnly,
-    });
-    return (
-      nextStep.action === "complete-quiz" &&
-      currentQuestionState?.mode === "feedback"
-    );
-  };
-
   const completeQuizAndTrack = (
     nextSectionResults = getCompletedQuizSectionResults({
       section,
@@ -318,6 +309,7 @@ export const QuizPageContent = ({
       const completionAttempt = ++completionAttemptRef.current;
       isCompletingRef.current = true;
       setIsCompleting(true);
+      setHasSaveError(false);
       try {
         const result = await submitClassroomProgress(nextSectionResults);
         if (completionAttemptRef.current !== completionAttempt) return null;
@@ -327,6 +319,9 @@ export const QuizPageContent = ({
           return null;
         }
       } catch {
+        if (completionAttemptRef.current === completionAttempt) {
+          setHasSaveError(true);
+        }
         return null;
       } finally {
         if (completionAttemptRef.current === completionAttempt) {
@@ -379,10 +374,7 @@ export const QuizPageContent = ({
 
     const alreadyComplete = sectionResults[section]?.isComplete;
 
-    if (!alreadyComplete && isQuizEffectivelyComplete()) {
-      if (!ensureCanProgress()) return;
-      completeQuizAndTrack();
-    } else if (!alreadyComplete) {
+    if (!alreadyComplete) {
       if (!lessonStarted) {
         trackLessonStarted();
       }
@@ -492,15 +484,31 @@ export const QuizPageContent = ({
                   isTooltipOpen={currentQuestionState?.mode === "incomplete"}
                 />
               ) : (
-                <PupilLessonQuizNextButton
-                  label={pickQuizNavigationButtonLabel({
-                    currentQuestionIndex,
-                    numQuestions,
-                    currentSection: section,
-                  })}
-                  onClick={onNext}
-                  isLoading={isCompleting}
-                />
+                <OakFlex
+                  $flexDirection="column"
+                  $gap="spacing-8"
+                  $width={["100%", "max-content"]}
+                  $alignItems={["stretch", "flex-end"]}
+                >
+                  {hasSaveError && (
+                    <OakP
+                      role="alert"
+                      aria-label="Quiz save failed"
+                      $font="body-3"
+                    >
+                      We couldn&apos;t save your quiz. Please try again.
+                    </OakP>
+                  )}
+                  <PupilLessonQuizNextButton
+                    label={pickQuizNavigationButtonLabel({
+                      currentQuestionIndex,
+                      numQuestions,
+                      currentSection: section,
+                    })}
+                    onClick={onNext}
+                    isLoading={isCompleting}
+                  />
+                </OakFlex>
               ),
           }}
           questionSlot={

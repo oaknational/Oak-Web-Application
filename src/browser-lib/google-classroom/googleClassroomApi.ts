@@ -212,12 +212,18 @@ const submitPupilProgress = async (
   args: UpsertPupilLessonProgressArgs,
 ): Promise<SubmitPupilProgressResult> => {
   const headers = await getOakGCAuthHeaders(true);
-  return sendRequest<SubmitPupilProgressResult, UpsertPupilLessonProgressArgs>(
-    "/api/classroom/pupil/progress/submit",
-    "POST",
-    args,
-    headers,
-  );
+  const result = await sendRequest<
+    SubmitPupilProgressResult,
+    UpsertPupilLessonProgressArgs
+  >("/api/classroom/pupil/progress/submit", "POST", args, headers);
+  if (
+    args.exitQuiz?.isComplete &&
+    result.status === "PERSISTED" &&
+    result.progress.exitQuizGradeSubmitted === false
+  ) {
+    throw new Error("Classroom grade has not been submitted");
+  }
+  return result;
 };
 
 type GetPupilLessonProgressArgs = {

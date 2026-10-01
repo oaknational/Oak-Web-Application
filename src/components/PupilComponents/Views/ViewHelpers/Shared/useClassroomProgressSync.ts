@@ -51,7 +51,9 @@ export const useClassroomProgressSync = ({
       sectionResults: LessonSectionResults,
     ): Promise<SubmitPupilProgressResult | null> => {
       if (!isReady || isReadOnly) {
-        return Promise.resolve(readOnlyResultRef.current);
+        return readOnlyResultRef.current
+          ? Promise.resolve(readOnlyResultRef.current)
+          : Promise.reject(new Error("Classroom progress is not writable"));
       }
       if (
         !courseId ||
@@ -60,7 +62,11 @@ export const useClassroomProgressSync = ({
         !submissionId ||
         !pupilLoginHint
       ) {
-        return Promise.resolve(null);
+        return courseId || itemId || attachmentId
+          ? Promise.reject(
+              new Error("Classroom progress context is incomplete"),
+            )
+          : Promise.resolve(null);
       }
 
       const progressContext: ClassroomProgressContext = {

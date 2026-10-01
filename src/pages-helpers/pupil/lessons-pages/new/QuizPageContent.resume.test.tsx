@@ -35,7 +35,9 @@ const question = quizQuestions[0];
 if (!question) throw new Error("MCQ fixture missing");
 const questions = [question, { ...question, questionUid: "final-question" }];
 const checkedAnswer = { mode: "feedback", offerHint: false, grade: 1 } as const;
-const submitClassroomProgress = jest.fn().mockResolvedValue({ status: "OK" });
+const submitClassroomProgress = jest
+  .fn()
+  .mockResolvedValue({ status: "GRADE_SUBMITTED" });
 const refreshReadOnly = jest.fn(() => new Promise<boolean>(() => undefined));
 const savedAnswers: {
   fixtureIndex: number;
@@ -231,6 +233,36 @@ describe.each(["starter-quiz", "exit-quiz"] as const)(
         `/pupils/lessons/test-lesson/${destination}?courseId=test-course`,
       );
       expect(submitClassroomProgress).not.toHaveBeenCalled();
+    });
+
+    it("keeps the checked final answer unfinished when leaving with Back", async () => {
+      const user = userEvent.setup();
+      const saved: LessonSectionResults = {
+        [section]: {
+          isComplete: false,
+          grade: 2,
+          numQuestions: 2,
+          questionResults: [checkedAnswer, checkedAnswer],
+        },
+      };
+      const page = openQuiz(saved);
+
+      await user.click(page.getByRole("link", { name: /Back/ }));
+
+      expect(usePupilLessonProgress.getState().sectionResults).toEqual(saved);
+      expect(submitClassroomProgress).not.toHaveBeenCalled();
+      expect(routerPush).toHaveBeenCalledWith(
+        "/pupils/lessons/test-lesson/overview?courseId=test-course",
+      );
+      page.unmount();
+      routerPush.mockClear();
+
+      const reopened = openQuiz(
+        usePupilLessonProgress.getState().sectionResults,
+      );
+      expect(routerPush).not.toHaveBeenCalled();
+      expect(usePupilLessonQuiz.getState().currentQuestionIndex).toBe(1);
+      expect(reopened.getByText("Well done!")).toBeInTheDocument();
     });
 
     it("does not complete or submit a checked quiz while it is still handed in", async () => {
