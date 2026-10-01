@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useSearchParams } from "next/navigation";
+import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import { useRouter } from "next/compat/router";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -161,6 +161,17 @@ const getTeachWithOakFormSelection = (): ResourceFormSelection => ({
 });
 
 export const useResourceFormState = (props: UseResourceFormStateProps) => {
+  const searchParams = useSearchParams();
+  return useResourceFormStateWithPreselected(props, searchParams);
+};
+
+export const useTeachWithOakResourceFormState = () =>
+  useResourceFormStateWithPreselected({ type: "teach-with-oak" }, null);
+
+const useResourceFormStateWithPreselected = (
+  props: UseResourceFormStateProps,
+  searchParams: ReadonlyURLSearchParams | null,
+) => {
   const resourceType = props.type;
   const shareResources =
     props.type === "share" ? props.shareResources : undefined;
@@ -207,7 +218,6 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     resourceFormSelection;
 
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   const {
     register,
