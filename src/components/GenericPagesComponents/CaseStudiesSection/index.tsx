@@ -53,7 +53,7 @@ export const CaseStudiesSection = ({
                     variant="secondary"
                     iconName="chevron-right"
                     isTrailingIcon={true}
-                    href={"/about-us/case-studies"}
+                    href={resolveOakHref({ page: "about-case-study-library" })}
                     $font={"heading-7"}
                   >
                     <OakSpan $textWrap="nowrap">View all case studies</OakSpan>
