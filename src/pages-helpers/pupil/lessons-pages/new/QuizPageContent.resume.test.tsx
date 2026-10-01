@@ -109,6 +109,40 @@ describe.each(["starter-quiz", "exit-quiz"] as const)(
       );
     };
 
+    it("waits for saved progress before initialising a directly reopened quiz", () => {
+      asPath = `/pupils/lessons/test-lesson/${section}?courseId=test-course`;
+      const page = renderWithTheme(
+        <QuizPageContent
+          section={section}
+          questionsArray={questions}
+          lessonSlug="test-lesson"
+          phase="primary"
+        />,
+      );
+
+      expect(page.queryByRole("button", { name: "Check" })).toBeNull();
+      expect(usePupilLessonQuiz.getState().lessonSlug).toBeNull();
+
+      act(() => {
+        usePupilLessonProgress.getState().initialiseLessonProgress({
+          lessonSlug: "test-lesson",
+          lessonReviewSections: ["starter-quiz", "exit-quiz"],
+          initialSectionResults: {
+            [section]: {
+              isComplete: false,
+              grade: 2,
+              numQuestions: 2,
+              questionResults: [checkedAnswer, checkedAnswer],
+            },
+          },
+        });
+      });
+
+      expect(usePupilLessonQuiz.getState().currentQuestionIndex).toBe(1);
+      expect(page.getByText("Well done!")).toBeInTheDocument();
+      expect(routerPush).not.toHaveBeenCalled();
+    });
+
     it.each(savedAnswers)(
       "can finish a reopened $name final question",
       async ({ fixtureIndex, answer }) => {

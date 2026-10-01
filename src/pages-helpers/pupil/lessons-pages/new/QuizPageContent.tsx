@@ -65,6 +65,8 @@ export const QuizPageContent = ({
   const initialiseKeyRef = useRef<string | null>(null);
   const sectionStartedAtRef = useRef(Date.now());
   const {
+    progressLessonSlug,
+    isHydratingInitialProgress,
     sectionResults,
     lessonReviewSections,
     lessonStarted,
@@ -75,6 +77,8 @@ export const QuizPageContent = ({
     updateSectionInProgressResult,
   } = usePupilLessonProgress(
     useShallow((state) => ({
+      progressLessonSlug: state.lessonSlug,
+      isHydratingInitialProgress: state.isHydratingInitialProgress,
       sectionResults: state.sectionResults,
       lessonReviewSections: state.lessonReviewSections,
       lessonStarted: state.lessonStarted,
@@ -85,6 +89,8 @@ export const QuizPageContent = ({
       updateSectionInProgressResult: state.updateSectionInProgressResult,
     })),
   );
+  const isProgressReadyForLesson =
+    progressLessonSlug === lessonSlug && !isHydratingInitialProgress;
   const {
     storeLessonSlug,
     storeSection,
@@ -115,7 +121,9 @@ export const QuizPageContent = ({
     })),
   );
   const isStoreReadyForSection =
-    storeLessonSlug === lessonSlug && storeSection === section;
+    isProgressReadyForLesson &&
+    storeLessonSlug === lessonSlug &&
+    storeSection === section;
   const {
     trackSectionStarted,
     trackQuizQuestionAttempt,
@@ -150,6 +158,7 @@ export const QuizPageContent = ({
   );
 
   useEffect(() => {
+    if (!isProgressReadyForLesson) return;
     const initialiseKey = `${lessonSlug}:${section}`;
     if (initialiseKeyRef.current === initialiseKey) return;
     initialiseKeyRef.current = initialiseKey;
@@ -162,7 +171,14 @@ export const QuizPageContent = ({
       initialQuestionResults: sectionResults[section]?.questionResults,
       initialIsComplete: sectionResults[section]?.isComplete,
     });
-  }, [initialiseQuiz, lessonSlug, questionsArray, section, sectionResults]);
+  }, [
+    initialiseQuiz,
+    isProgressReadyForLesson,
+    lessonSlug,
+    questionsArray,
+    section,
+    sectionResults,
+  ]);
 
   useEffect(() => {
     if (!isStoreReadyForSection || !isHydratedComplete) return;

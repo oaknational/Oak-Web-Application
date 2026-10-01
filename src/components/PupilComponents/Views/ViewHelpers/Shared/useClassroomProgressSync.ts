@@ -21,7 +21,7 @@ type ClassroomProgressSyncArgs = {
   isReady: boolean;
 };
 
-const noClassroomSubmission = async () => null;
+const noClassroomSubmission = () => Promise.resolve(null);
 const staleClassroomProgressError = new Error(
   "classroom progress context changed",
 );

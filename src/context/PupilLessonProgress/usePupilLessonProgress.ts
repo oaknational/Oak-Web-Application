@@ -15,7 +15,7 @@ export const createPupilLessonProgressState: StateCreator<
 > = (set) => ({
   ...getDefaultLessonProgressState(),
   refreshReadOnly: async () => false,
-  submitClassroomProgress: async () => null,
+  submitClassroomProgress: () => Promise.resolve(null),
   initialiseLessonProgress: ({
     lessonSlug,
     lessonReviewSections,

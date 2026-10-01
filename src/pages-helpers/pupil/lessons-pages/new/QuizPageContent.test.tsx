@@ -18,6 +18,8 @@ jest.mock("next/router", () => ({
 }));
 
 type ProgressState = {
+  lessonSlug: string | null;
+  isHydratingInitialProgress: boolean;
   sectionResults: LessonSectionResults;
   lessonReviewSections: readonly ("starter-quiz" | "exit-quiz")[];
   lessonStarted: boolean;
@@ -98,6 +100,8 @@ if (!orderQuestion) throw new Error("order fixture missing");
 const buildProgressState = (
   overrides: Partial<ProgressState> = {},
 ): ProgressState => ({
+  lessonSlug: "test-lesson",
+  isHydratingInitialProgress: false,
   sectionResults: {},
   lessonReviewSections: ["starter-quiz", "exit-quiz"],
   lessonStarted: false,
