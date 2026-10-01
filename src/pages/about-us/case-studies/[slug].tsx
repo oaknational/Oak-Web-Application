@@ -90,7 +90,7 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
     },
     isCaseStudiesFeatEnabled
       ? {
-          href: "/about-us/case-studies",
+          href: resolveOakHref({ page: "about-case-study-library" }),
           text: "Case studies",
         }
       : {
