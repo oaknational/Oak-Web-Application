@@ -3,18 +3,12 @@ import { GetServerSidePropsContext } from "next/dist/types";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import CMSClient from "@/node-lib/cms";
-import {
-  OaksImpactCaseStudyPage,
-  OaksImpactPage,
-} from "@/common-lib/cms-types/aboutPages";
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
-import { getFallbackBlockingConfig } from "@/node-lib/isr";
+import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import { mockPortableTextBlocks } from "@/fixtures/curriculum/programmeSequenceYearData.fixtures";
 import AboutUsCaseStudy, {
   getServerSideProps,
 } from "@/pages/about-us/case-studies/[slug]";
-
-let mockShouldSkipInitialBuild = false;
 
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   __esModule: true,
@@ -23,33 +17,53 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   },
 }));
 
-jest.mock("@/node-lib/isr", () => ({
-  ...jest.requireActual("@/node-lib/isr"),
-  get shouldSkipInitialBuild() {
-    return mockShouldSkipInitialBuild;
-  },
-  getFallbackBlockingConfig: jest.fn(),
+jest.mock("@/utils/featureFlagChecks/server", () => ({
+  isFeatureFlagEnabledServer: jest.fn(),
 }));
 
 jest.mock("@/node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
-const mockGetFallbackBlockingConfig = jest.mocked(getFallbackBlockingConfig);
+const mockIsFeatureFlagEnabledServer = jest.mocked(isFeatureFlagEnabledServer);
 
-function caseStudyFixture(slug: string) {
+function caseStudyFixture(number: number) {
   return {
-    title: slug.replaceAll("-", " "),
-    image: {
-      altText: "Test image alt text",
-      asset: {
-        _id: "test-image-asset-id",
-        url: "https://example.com/test-image.jpg",
+    title: `TEST_TITLE_${number}`,
+    tag: "primary",
+    summaryRaw: portableTextFromString(`TEST_SUMMARY_${number}`),
+    content: [
+      {
+        heading: "TEST_HEADING_1",
+        anchorSlug: {
+          current: "test-anchor-slug-1",
+        },
+        label: "TEST_LABEL_1",
+        contentRaw: portableTextFromString("TEST_CONTENT_1"),
       },
+      {
+        heading: "TEST_HEADING_2",
+        anchorSlug: {
+          current: "test-anchor-slug-2",
+        },
+        label: "TEST_LABEL_2",
+        contentRaw: portableTextFromString("TEST_CONTENT_2"),
+      },
+    ],
+    showGetInTouchPanel: true,
+    getInTouchPanel: {
+      personName: "TEST_PERSON_NAME",
+      personImage: {
+        altText: null,
+        isPresentational: true,
+        asset: {
+          _id: "image-d16d5ceea1923b8cf31845affe93f9626f600c4c-240x320-png",
+          url: "https://cdn.sanity.io/images/cuvjke51/production/d16d5ceea1923b8cf31845affe93f9626f600c4c-240x320.png",
+        },
+        hotspot: null,
+      },
+      jobRole: "TEST_JOB_ROLE",
+      institutionName: "TEST_INSTITUTION_NAME",
     },
-    slug: {
-      current: slug,
-    },
-    textRaw: portableTextFromString("testing"),
     video: {
       title: "Test Video",
       video: {
@@ -61,178 +75,63 @@ function caseStudyFixture(slug: string) {
       },
       transcript: [mockPortableTextBlocks[0]],
     },
-    publishedAt: "2023-01-01",
+    slug: {
+      current: `test-${number}`,
+    },
+    image: {
+      altText: "Test image alt text",
+      asset: {
+        _id: "test-image-asset-id",
+        url: "https://example.com/test-image.jpg",
+      },
+    },
+    textRaw: portableTextFromString("TEST_TEXT_RAW"),
+    publishedAt: `2026-0${number}-30`,
   };
 }
 
-const writtenCaseStudy = {
-  title: "Test",
-  tag: "primary",
-  summaryRaw: portableTextFromString("TEST_SUMMARY"),
-  content: [
-    {
-      heading: "TEST_HEADING_1",
-      anchorSlug: {
-        current: "test-anchor-slug-1",
-      },
-      label: "TEST_LABEL_1",
-      contentRaw: portableTextFromString("TEST_CONTENT_1"),
-    },
-    {
-      heading: "TEST_HEADING_2",
-      anchorSlug: {
-        current: "test-anchor-slug-2",
-      },
-      label: "TEST_LABEL_2",
-      contentRaw: portableTextFromString("TEST_CONTENT_2"),
-    },
-  ],
-  showGetInTouchPanel: true,
-  getInTouchPanel: {
-    personName: "TEST_PERSON_NAME",
-    personImage: {
-      altText: null,
-      isPresentational: true,
-      asset: {
-        _id: "image-d16d5ceea1923b8cf31845affe93f9626f600c4c-240x320-png",
-        url: "https://cdn.sanity.io/images/cuvjke51/production/d16d5ceea1923b8cf31845affe93f9626f600c4c-240x320.png",
-      },
-      hotspot: null,
-    },
-    jobRole: "TEST_JOB_ROLE",
-    institutionName: "TEST_INSTITUTION_NAME",
-  },
-  video: {
-    title: "Test Video",
-    video: {
-      asset: {
-        assetId: "test-asset-id",
-        playbackId: "test-playback-id",
-        thumbTime: null,
-      },
-    },
-    transcript: [mockPortableTextBlocks[0]],
-  },
+const caseStudy = caseStudyFixture(1);
+
+const videoCaseStudy = {
+  ...caseStudy,
+  title: "TEST_TITLE_VIDEO",
   slug: {
-    current: "test",
+    current: `test-video`,
   },
-  image: {
-    altText: "Test image alt text",
-    asset: {
-      _id: "test-image-asset-id",
-      url: "https://example.com/test-image.jpg",
-    },
-  },
-  textRaw: portableTextFromString("TEST_TEXT_RAW"),
-  publishedAt: "2026-09-30",
+  tag: null,
+  summaryRaw: null,
+  content: null,
+  showGetInTouchPanel: false,
+  getInTouchPanel: null,
 };
 
-const mockPageData: OaksImpactCaseStudyPage = {
-  caseStudiesSection: {
-    caseStudies: [
-      caseStudyFixture("test-slug-1"),
-      caseStudyFixture("test-slug-2"),
-      caseStudyFixture("test-slug-3"),
-    ],
-  },
-};
-
-const mockImpactPageData: OaksImpactPage = {
-  header: {
-    introText: "Oaks Impact intro",
-    video: {
-      title: "Oaks Impact video",
-      video: {
-        asset: {
-          assetId: "123",
-          playbackId: "123",
-          thumbTime: null,
-        },
-      },
-      transcript: [mockPortableTextBlocks[0]],
-    },
-    videoDescription: "Oaks Impact video description",
-  },
-  statsSection: {
-    textBlock: {
-      title: "Oaks Impact stats heading",
-      bodyPortableText: [],
-    },
-    stats: [],
-  },
-  caseStudiesSection: mockPageData.caseStudiesSection,
-  schoolQuotes: {
-    heading: "Oaks Impact school quotes heading",
-    cards: [],
-  },
-};
+const otherCaseStudies = [
+  caseStudyFixture(2),
+  caseStudyFixture(3),
+  videoCaseStudy,
+];
 
 beforeEach(() => {
   jest.clearAllMocks();
-  jest.resetModules();
-  mockShouldSkipInitialBuild = false;
-  mockGetFallbackBlockingConfig.mockReturnValue({
-    fallback: "blocking",
-    paths: [],
-  });
-  mockCMSClient.oaksImpactCaseStudyPage.mockResolvedValue(mockPageData);
-  mockCMSClient.oaksImpactPage.mockResolvedValue(mockImpactPageData);
+  mockIsFeatureFlagEnabledServer.mockResolvedValue(true);
+  mockCMSClient.caseStudyPage.mockResolvedValue(caseStudy);
+  mockCMSClient.caseStudyLibraryPage.mockResolvedValue(otherCaseStudies);
 });
 
 describe("pages/about-us/case-studies/[slug].tsx", () => {
-  it("renders title", async () => {
-    const { container, getAllByRole } = renderWithProviders()(
+  it("renders a case study with written content correctly", async () => {
+    const { container } = renderWithProviders()(
       <AboutUsCaseStudy
-        isCaseStudiesFeatEnabled={false}
-        pageData={{
-          caseStudy: mockPageData.caseStudiesSection.caseStudies[0]!,
-          otherCaseStudies:
-            mockPageData.caseStudiesSection.caseStudies.slice(1),
-        }}
+        isCaseStudiesFeatEnabled={true}
+        pageData={{ caseStudy, otherCaseStudies: [] }}
         topNav={topNavFixture}
       />,
     );
 
     expect(container).toMatchSnapshot();
-    expect(getAllByRole("navigation")[1]).toHaveTextContent("Oak's impact");
-    expect(getAllByRole("navigation")[1]).not.toHaveTextContent("Case studies");
-  });
-
-  it("renders correct breadcrumb when case studies feature flag is enabled", async () => {
-    const { getAllByRole } = renderWithProviders()(
-      <AboutUsCaseStudy
-        isCaseStudiesFeatEnabled={true}
-        pageData={{
-          caseStudy: mockPageData.caseStudiesSection.caseStudies[0]!,
-          otherCaseStudies:
-            mockPageData.caseStudiesSection.caseStudies.slice(1),
-        }}
-        topNav={topNavFixture}
-      />,
-    );
-
-    expect(getAllByRole("navigation")[1]).toHaveTextContent("Case studies");
-    expect(getAllByRole("navigation")[1]).not.toHaveTextContent("Oak's impact");
-  });
-
-  it("renders written case study", async () => {
-    const { container, getAllByRole } = renderWithProviders()(
-      <AboutUsCaseStudy
-        isCaseStudiesFeatEnabled={true}
-        pageData={{
-          caseStudy: writtenCaseStudy,
-          otherCaseStudies:
-            mockPageData.caseStudiesSection.caseStudies.slice(1),
-        }}
-        topNav={topNavFixture}
-      />,
-    );
-
-    expect(container).toMatchSnapshot();
-    expect(getAllByRole("navigation")[1]).toHaveTextContent("Case studies");
-    expect(getAllByRole("navigation")[1]).not.toHaveTextContent("Oak's impact");
+    expect(container).toHaveTextContent("TEST_TITLE_1");
     expect(container).toHaveTextContent("TEST_TEXT_RAW");
-    expect(container).toHaveTextContent("TEST_SUMMARY");
+    expect(container).toHaveTextContent("TEST_SUMMARY_1");
     expect(container).toHaveTextContent("TEST_PERSON_NAME");
     expect(container).toHaveTextContent("TEST_JOB_ROLE");
     expect(container).toHaveTextContent("TEST_INSTITUTION_NAME");
@@ -241,6 +140,76 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
     expect(container).toHaveTextContent("TEST_CONTENT_1");
     expect(container).toHaveTextContent("TEST_HEADING_2");
     expect(container).toHaveTextContent("TEST_CONTENT_2");
+  });
+
+  it("renders a case study with video only correctly", async () => {
+    const { container } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={true}
+        pageData={{ caseStudy: videoCaseStudy, otherCaseStudies: [] }}
+        topNav={topNavFixture}
+      />,
+    );
+
+    expect(container).toMatchSnapshot();
+    expect(container).toHaveTextContent("TEST_TITLE_VIDEO");
+  });
+
+  it("renders correct breadcrumb when case studies feature flag is enabled", async () => {
+    const { getAllByRole } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={true}
+        pageData={{ caseStudy, otherCaseStudies: [] }}
+        topNav={topNavFixture}
+      />,
+    );
+
+    expect(getAllByRole("navigation")[1]).toHaveTextContent("Case studies");
+    expect(getAllByRole("navigation")[1]).not.toHaveTextContent("Oak's impact");
+  });
+
+  it("renders the other case studies", async () => {
+    const { container, getAllByRole } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={true}
+        pageData={{ caseStudy, otherCaseStudies }}
+        topNav={topNavFixture}
+      />,
+    );
+
+    const otherCaseStudiesLinks = getAllByRole("link", {
+      name: /TEST_TITLE_.*Watch the video/,
+    }).map((link) => link.getAttribute("href"));
+
+    expect(container).toMatchSnapshot();
+    expect(otherCaseStudiesLinks).toEqual([
+      "/about-us/case-studies/test-2",
+      "/about-us/case-studies/test-3",
+      "/about-us/case-studies/test-video",
+    ]);
+  });
+
+  it("does not render written case studies in other case studies section when feature flag is not enabled", async () => {
+    const { container, getAllByRole } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={false}
+        pageData={{ caseStudy, otherCaseStudies }}
+        topNav={topNavFixture}
+      />,
+    );
+
+    const otherCaseStudiesLinks = getAllByRole("link", {
+      name: /TEST_TITLE_.*Watch the video/,
+    }).map((link) => link.getAttribute("href"));
+
+    expect(container).toMatchSnapshot();
+    expect(otherCaseStudiesLinks).toEqual([
+      "/about-us/case-studies/test-video",
+    ]);
+    expect(otherCaseStudiesLinks).not.toContain(
+      "/about-us/case-studies/test-2",
+    );
+    expect(otherCaseStudiesLinks).toHaveLength(1);
   });
 
   describe("getServerSideProps", () => {
@@ -257,7 +226,7 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
     });
 
     it("returns notFound when CMS returns null", async () => {
-      mockCMSClient.oaksImpactCaseStudyPage.mockResolvedValueOnce(null);
+      mockCMSClient.caseStudyPage.mockResolvedValueOnce(null);
 
       const propsResult = await getServerSideProps({
         req: {

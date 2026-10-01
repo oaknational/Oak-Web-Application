@@ -7266,6 +7266,7 @@ export type CampaignBySlugQuery = { __typename?: 'RootQuery', allCampaignPage: A
 export type CardFragment = { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null };
 
 export type CaseStudyLibraryPageQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']['input']>;
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
 }>;
@@ -8339,8 +8340,12 @@ export const CampaignBySlugDocument = gql`
 ${VideoFragmentDoc}
 ${SeoFragmentDoc}`;
 export const CaseStudyLibraryPageDocument = gql`
-    query caseStudyLibraryPage($isDraftFilter: Sanity_DocumentFilter, $limit: Int) {
-  allCaseStudy(where: {_: $isDraftFilter}, limit: $limit) {
+    query caseStudyLibraryPage($slug: String, $isDraftFilter: Sanity_DocumentFilter, $limit: Int) {
+  allCaseStudy(
+    where: {_: $isDraftFilter, slug: {current: {neq: $slug}}}
+    sort: {publishedAt: DESC}
+    limit: $limit
+  ) {
     title
     slug {
       current
