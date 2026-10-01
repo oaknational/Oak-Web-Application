@@ -73,7 +73,10 @@ export const Selection: Story = {
     await expect(option).not.toBeChecked();
     if (trigger) {
       await waitFor(() => userEvent.keyboard("{Escape}"));
-      await expect(trigger).toHaveFocus();
+      await waitFor(async () => {
+        await expect(trigger).toHaveAttribute("aria-expanded", "false");
+        await expect(trigger).toHaveFocus();
+      });
     }
   },
 };

@@ -1,6 +1,6 @@
 import { OakTertiaryInvertedButton } from "@oaknational/oak-components";
 
-import { useReturnToLessonProps } from "../../../getReturnToLessonLink";
+import { useReturnToLessonProps } from "../../../returnToLessonProps/getReturnToLessonLink";
 import { extractLessonAccessedPropsFromHref } from "../extractLessonAccessedPropsFromHref";
 
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
