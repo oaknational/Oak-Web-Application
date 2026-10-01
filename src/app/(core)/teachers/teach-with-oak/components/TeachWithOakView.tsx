@@ -1,5 +1,7 @@
 "use client";
 
+import { Suspense } from "react";
+
 import { ShortReads } from "./ShortReads/ShortReads";
 import { TeachWithOakDescription } from "./TeachWithOakDescription/TeachWithOakDescription";
 import { TeachWithOakHeader } from "./TeachWithOakHeader/TeachWithOakHeader";
@@ -21,7 +23,9 @@ export const TeachWithOakView = () => {
         title={"Explore more guidance from Oak"}
         items={exploreItems}
       />
-      <TeachWithOakNewsletterForm />
+      <Suspense>
+        <TeachWithOakNewsletterForm />
+      </Suspense>
     </>
   );
 };
