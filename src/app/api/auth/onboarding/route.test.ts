@@ -21,8 +21,8 @@ jest.mock("@/common-lib/error-reporter", () => ({
 
 jest.mock("@clerk/nextjs/server");
 
-// @ts-expect-error - region is overwritten in development
-process.env.NODE_ENV = "production";
+// region is overwritten in development
+process.env = { ...process.env, NODE_ENV: "production" };
 
 const updateUserMetadata = jest.fn();
 const getUser = jest.fn();
@@ -96,18 +96,6 @@ describe("/api/auth/onboarding", () => {
       expect.objectContaining({
         publicMetadata: expect.objectContaining({
           sourceApp: "http://example.com",
-        }),
-      }),
-    );
-  });
-  it("sets the x-vercel-ip-country header as region", async () => {
-    await POST(req);
-
-    expect(updateUserMetadata).toHaveBeenCalledWith(
-      "123",
-      expect.objectContaining({
-        privateMetadata: expect.objectContaining({
-          region: "US",
         }),
       }),
     );

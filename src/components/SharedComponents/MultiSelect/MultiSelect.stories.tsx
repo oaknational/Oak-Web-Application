@@ -1,21 +1,13 @@
+import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import { useArgs } from "storybook/preview-api";
 import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 import { OakBox } from "@oaknational/oak-components";
-import { useState } from "react";
 
-import { MultiSelect, type MultiSelectProps } from "./MultiSelect";
+import { MultiSelect } from "./MultiSelect";
 
 const meta = {
   component: MultiSelect,
   parameters: { layout: "padded" },
-  decorators: [
-    (Story) => (
-      <OakBox $width="100%" $maxWidth="spacing-480">
-        <Story />
-      </OakBox>
-    ),
-  ],
   args: {
     placeholder: "Choose resources",
     groups: [
@@ -44,16 +36,19 @@ const meta = {
     onMobileClose: fn(),
   },
   render: function Render(args) {
-    const [{ selectedValues }, updateArgs] = useArgs<MultiSelectProps>();
+    // updateArgs re-renders the story, which ends test-runner play functions early.
+    const [selectedValues, setSelectedValues] = useState(args.selectedValues);
     return (
-      <MultiSelect
-        {...args}
-        selectedValues={selectedValues}
-        onChange={(values) => {
-          updateArgs({ selectedValues: values });
-          args.onChange(values);
-        }}
-      />
+      <OakBox $width="100%" $maxWidth="spacing-480">
+        <MultiSelect
+          {...args}
+          selectedValues={selectedValues}
+          onChange={(values) => {
+            setSelectedValues(values);
+            args.onChange(values);
+          }}
+        />
+      </OakBox>
     );
   },
 } satisfies Meta<typeof MultiSelect>;
@@ -63,20 +58,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 export const Selection: Story = {
-  render: function Render(args) {
-    // Keep interaction state local so args updates do not interrupt the play function.
-    const [selectedValues, setSelectedValues] = useState(args.selectedValues);
-    return (
-      <MultiSelect
-        {...args}
-        selectedValues={selectedValues}
-        onChange={(values) => {
-          setSelectedValues(values);
-          args.onChange(values);
-        }}
-      />
-    );
-  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const trigger = canvas.queryByRole("button", { name: "Choose resources" });

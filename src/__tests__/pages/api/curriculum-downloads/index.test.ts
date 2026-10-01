@@ -286,35 +286,7 @@ describe("/api/curriculum-downloads", () => {
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     );
     expect(res.getHeader("Content-Disposition")).toContain(
-      `attachment; filename="Curriculum-plan-English-Secondary-AQA.docx"`,
-    );
-    expect(fetch).toHaveBeenCalledTimes(1);
-    expect(res._getStatusCode()).toBe(200);
-  });
-
-  it("return 200 if correct cache slug with filenameOverride", async () => {
-    (isFeatureFlagEnabledServer as jest.Mock).mockImplementation(
-      (_cookies, flag) => {
-        return flag === "implementation-guides" ? true : false;
-      },
-    );
-
-    curriculumSequenceMock.mockResolvedValue(mockSequenceData);
-    const { req, res } = createNextApiMocks({
-      query: {
-        types: ["assessment"],
-        mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
-        subjectSlug: "english",
-        phaseSlug: "secondary",
-        state: "published",
-        ks4OptionSlug: "aqa",
-      },
-    });
-    await handler(req, res);
-
-    expect(res.getHeader("Content-Type")).toBe("application/pdf");
-    expect(res.getHeader("Content-Disposition")).toContain(
-      `attachment; filename="Checking-pupil-understanding-English-Secondary-AQA.pdf"`,
+      `attachment; filename="Curriculum-plan-explainer-English-Secondary-AQA.docx"`,
     );
     expect(fetch).toHaveBeenCalledTimes(1);
     expect(res._getStatusCode()).toBe(200);

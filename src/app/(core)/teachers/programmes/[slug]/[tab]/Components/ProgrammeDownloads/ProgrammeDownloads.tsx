@@ -41,7 +41,7 @@ import { DelayedLoadingSpinner } from "@/components/TeacherComponents/SharePageL
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { doUnitsHaveNc, flatUnitsFromYearData } from "@/utils/curriculum/units";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
+import useCurriculumDownload from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useCurriculumDownload";
 import downloadDebouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
 import { ImplementationGuides } from "@/common-lib/cms-types";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
@@ -207,7 +207,7 @@ export const ProgrammeDownloads = ({
     curriculumResourcesDownloadRefined({ tierSlug, childSubjectSlug });
   };
 
-  const { onSubmit } = useResourceFormSubmit();
+  const { onSubmit } = useCurriculumDownload();
 
   const onFormSubmit = async (data: ResourceFormValues): Promise<void> => {
     setSubmitError(undefined);
@@ -218,7 +218,6 @@ export const ProgrammeDownloads = ({
         setIsAttemptingDownload: setIsSubmitting,
         setEditDetailsClicked,
         onSubmit,
-        type: "curriculum",
         mvRefreshTime,
         slugs: curriculumSelectionSlugs,
         tierSlug: tierSelected,
@@ -323,7 +322,7 @@ export const ProgrammeDownloads = ({
               </OakTertiaryInvertedButton>
             )}
             <OakHeading tag="h2" $font={"heading-4"}>
-              Download curriculum resources
+              Downloads
             </OakHeading>
             {isLoading ? (
               <OakBox $minHeight="spacing-480">
@@ -357,7 +356,9 @@ export const ProgrammeDownloads = ({
                     {curriculumDownloadsWithLabels.length > 0 && (
                       <OakFlex $gap={"spacing-16"} $flexDirection={["column"]}>
                         {featureFlags["implementation-guides"] && (
-                          <OakFlex $gap="spacing-8">Curriculum</OakFlex>
+                          <OakFlex $gap="spacing-8">
+                            Explore the curriculum
+                          </OakFlex>
                         )}
                         <OakFlex
                           $gap={"spacing-16"}
@@ -413,7 +414,7 @@ export const ProgrammeDownloads = ({
                     {implementationGuideDownloadsWithLabels.length > 0 && (
                       <OakFlex $gap={"spacing-16"} $flexDirection="column">
                         <OakFlex $gap="spacing-8" $alignItems="center">
-                          Implementation toolkit
+                          Explore our implementation guides
                           <OakPromoTag />
                         </OakFlex>
                         <OakGrid $rg={"spacing-16"} $cg={"spacing-16"}>

@@ -66,12 +66,11 @@ export const DOWNLOAD_TYPE_LABELS: {
   fileExt: string;
   groupLabel?: string;
   avoResourceType: ResourceTypeValueType;
-  filenameOverride?: string; // Optional override for filename
 }[] = [
   {
     id: "curriculumPlan",
     group: "curriculum",
-    label: "Curriculum plan",
+    label: "Curriculum plan and explainer",
     subTitle: "Word (accessible)",
     icon: "curriculum-plan",
     fileExt: "DOCX",
@@ -80,7 +79,7 @@ export const DOWNLOAD_TYPE_LABELS: {
   {
     id: "nationalCurriculum",
     group: "curriculum",
-    label: "National curriculum",
+    label: "National curriculum alignment",
     subTitle: "Excel (accessible)",
     icon: "spreadsheet",
     fileExt: "XLSX",
@@ -89,36 +88,35 @@ export const DOWNLOAD_TYPE_LABELS: {
   {
     id: "curriculumQuality",
     label: "Curriculum quality",
-    groupLabel: "implementation toolkit",
+    groupLabel: "implementation guides",
     avoResourceType: ResourceType.CURRICULUM_QUALITY,
     ...implementationGuidePdfBase,
   },
   {
     id: "whatsIncluded",
     label: "What's included",
-    groupLabel: "implementation toolkit",
+    groupLabel: "implementation guides",
     avoResourceType: ResourceType.WHATS_INCLUDED,
     ...implementationGuidePdfBase,
   },
   {
     id: "commonQuestions",
-    label: "Common questions",
-    groupLabel: "implementation toolkit",
+    label: "Frequently asked questions",
+    groupLabel: "implementation guides",
     avoResourceType: ResourceType.COMMON_QUESTIONS,
     ...implementationGuidePdfBase,
   },
   {
     id: "equipmentList",
     label: "Equipment list",
-    groupLabel: "implementation toolkit",
+    groupLabel: "implementation guides",
     avoResourceType: ResourceType.EQUIPMENT_LIST,
     ...implementationGuidePdfBase,
   },
   {
     id: "assessment",
-    label: "Checking pupils' understanding in our lessons",
-    filenameOverride: "Checking-pupil-understanding",
-    groupLabel: "implementation toolkit",
+    label: "Checking pupil understanding",
+    groupLabel: "implementation guides",
     avoResourceType: ResourceType.ASSESSMENT,
     ...implementationGuidePdfBase,
   },

@@ -4,6 +4,7 @@ import { capitalize } from "lodash";
 import { TrackFns } from "../Analytics/AnalyticsProvider";
 
 import {
+  CoreProgrammeState,
   ProgrammeState,
   ProgrammeStateLesson,
   ProgrammeStateUnit,
@@ -21,6 +22,7 @@ import type {
   KeyStageTitleValueType,
   PathwayValueType,
   LessonReleaseCohortValueType,
+  NavigationTypeValueType,
 } from "@/browser-lib/avo/Avo";
 import {
   AccessLevelValueType,
@@ -40,8 +42,6 @@ import {
   TeachingMaterialTypeValueType,
   TierNameValueType,
 } from "@/browser-lib/avo/Avo";
-import { Thread, Unit } from "@/utils/curriculum/types";
-import { buildUnitOverviewAccessedAnalytics } from "@/utils/curriculum/analytics";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import getFormattedDetailsForTracking, {
   getSchoolOption,
@@ -69,19 +69,22 @@ export type TeacherBrowseAnalyticsStore = {
     }) => void;
     lessonAccessed: (props: {
       componentType: ComponentTypeValueType;
-      unitName: string;
-      unitSlug: string;
+      navigationType?: NavigationTypeValueType;
       lessonName: string;
       lessonSlug: string;
-      keyStageTitle: KeyStageTitleValueType;
-      keyStageSlug: string;
-      tierName: TierNameValueType | undefined;
-      examBoard: ExamBoardValueType;
-      pathway: PathwayValueType | undefined;
       lessonReleaseCohort: LessonReleaseCohortValueType;
       lessonReleaseDate: string;
-      yearGroupName: string;
-      yearGroupSlug: string;
+      unitContext?: {
+        unitName: string;
+        unitSlug: string;
+        keyStageTitle: KeyStageTitleValueType;
+        keyStageSlug: string;
+        tierName: TierNameValueType | undefined | null;
+        examBoard: ExamBoardValueType | undefined | null;
+        pathway: PathwayValueType | undefined | null;
+        yearGroupName: string;
+        yearGroupSlug: string;
+      };
     }) => void;
     lessonMediaClipsStarted: (data: {
       mediaClipsButtonName: MediaClipsButtonNameValueType;
@@ -117,9 +120,10 @@ export type TeacherBrowseAnalyticsStore = {
     }) => void;
     programmeAccessed: (props: {
       componentType: ComponentTypeValueType;
-      activeFilters: ActiveFilters;
-      filterType: FilterTypeValueType;
-      filterValue: string;
+      navigationType?: NavigationTypeValueType;
+      activeFilters?: ActiveFilters;
+      filterType?: FilterTypeValueType;
+      filterValue?: string;
     }) => void;
     programmeRefined: (data: {
       componentType: ComponentTypeValueType;
@@ -127,30 +131,32 @@ export type TeacherBrowseAnalyticsStore = {
       filterType: FilterTypeValueType;
       filterValue: string;
     }) => void;
+    teachWithOakAccessed: (data: {
+      componentType: ComponentTypeValueType;
+    }) => void;
+    teachWithOakDownloaded: () => void;
     teachingMaterialsSelected: (props: {
       teachingMaterialType: TeachingMaterialTypeValueType;
     }) => void;
     unitAccessed: (props: {
       componentType: ComponentTypeValueType;
-      yearGroupName: string;
-      yearGroupSlug: string;
-      keyStageTitle: KeyStageTitleValueType;
-      keyStageSlug: string;
-      subjectTitle: string;
-      subjectSlug: string;
-      unitName: string;
-      unitSlug: string;
-      tierName: TierNameValueType | undefined;
-      examBoard: ExamBoardValueType;
-      pathway: PathwayValueType | undefined;
+      navigationType?: NavigationTypeValueType;
+      unitContext?: {
+        unitName: string;
+        unitSlug: string;
+        tierName: TierNameValueType | undefined | null;
+        examBoard: ExamBoardValueType | undefined | null;
+        pathway: PathwayValueType | undefined | null;
+        yearGroupName: string;
+        yearGroupSlug: string;
+        keyStageTitle: KeyStageTitleValueType;
+        keyStageSlug: string;
+        subjectTitle: string;
+        subjectSlug: string;
+      };
     }) => void;
     unitDownloaded: () => void;
     unitDownloadStarted: () => void;
-    unitOverviewAccessed: (
-      unit: Unit,
-      isHighlighted: boolean,
-      selectedThread: Thread | undefined,
-    ) => void;
     unitRefined: (props: {
       componentType: ComponentTypeValueType;
       activeFilters: ActiveFilters;
@@ -164,7 +170,7 @@ export type TeacherBrowseAnalyticsStore = {
   };
 };
 
-const coreProperties: {
+export const coreProperties: {
   platform: PlatformValueType;
   product: ProductValueType;
   eventVersion: EventVersionValueType;
@@ -186,7 +192,7 @@ export const createTeacherBrowseAnalyticsStore = (
     event: keyof TeacherBrowseAnalyticsStore["track"],
     programmeState: ProgrammeState | null,
     meta?: Record<string, unknown>,
-  ): ProgrammeState | null => {
+  ): CoreProgrammeState | null => {
     if (!programmeState) {
       reportAnalyticsError({ event, programmeState, ...meta });
       return null;
@@ -226,14 +232,6 @@ export const createTeacherBrowseAnalyticsStore = (
     track: {
       createTeachingMaterialsInitiated: (data) => {
         const { avo, programmeState, journeyId } = get();
-
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "createTeachingMaterialsInitiated",
-            programmeState,
-          });
-          return;
-        }
 
         const lessonState = requireLessonState(
           "createTeachingMaterialsInitiated",
@@ -368,65 +366,52 @@ export const createTeacherBrowseAnalyticsStore = (
       },
       lessonAccessed: ({
         componentType,
+        navigationType,
         lessonName,
         lessonSlug,
-        unitName,
-        unitSlug,
-        keyStageTitle,
-        keyStageSlug,
-        tierName,
-        examBoard,
-        pathway,
+        unitContext,
         lessonReleaseCohort,
         lessonReleaseDate,
-        yearGroupName,
-        yearGroupSlug,
       }) => {
-        const { avo, programmeState } = get();
-
-        const lessonState = programmeState
-          ? requireLessonState("lessonAccessed", programmeState)
-          : null;
-
-        const analyticsProperties = lessonState
-          ? getLessonAnalyticsProperties(lessonState)
-          : {};
-
-        avo.lessonAccessed({
-          ...coreProperties,
-          ...analyticsProperties,
+        const { avo, journeyId, accessLevel, programmeState } = get();
+        const stateProps = {
+          journeyId,
+          accessLevel,
+          componentType: componentType,
+          navigationType: navigationType ?? "narrow",
           engagementIntent: EngagementIntent.REFINE,
-          componentType,
-          lessonName,
-          lessonSlug,
-          unitName,
-          unitSlug,
-          keyStageTitle,
-          keyStageSlug,
-          tierName,
-          examBoard,
-          pathway,
           lessonReleaseCohort,
           lessonReleaseDate,
-          yearGroupName,
-          yearGroupSlug,
-        });
+          lessonName,
+          lessonSlug,
+        };
+
+        if (unitContext) {
+          avo.lessonAccessed({
+            ...coreProperties,
+            ...unitContext,
+            ...stateProps,
+          });
+        } else {
+          const state = requireUnitState("lessonAccessed", programmeState);
+          if (state) {
+            const analyticsProperties = getUnitAnalyticsProperties(state);
+            avo.lessonAccessed({
+              ...coreProperties,
+              ...analyticsProperties,
+              ...stateProps,
+            });
+          }
+        }
       },
       lessonMediaClipsStarted: (data) => {
         const { avo, programmeState, journeyId } = get();
-
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "lessonMediaClipsStarted",
-            programmeState,
-          });
-          return;
-        }
 
         const lessonState = requireLessonState(
           "lessonMediaClipsStarted",
           programmeState,
         );
+
         if (!lessonState) {
           return;
         }
@@ -476,14 +461,6 @@ export const createTeacherBrowseAnalyticsStore = (
       lessonResourceDownloadStarted: (data) => {
         const { avo, programmeState, journeyId } = get();
 
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "lessonResourceDownloadStarted",
-            programmeState,
-          });
-          return;
-        }
-
         const lessonState = requireLessonState(
           "lessonResourceDownloadStarted",
           programmeState,
@@ -491,6 +468,7 @@ export const createTeacherBrowseAnalyticsStore = (
             downloadResourceButtonName: data.downloadResourceButtonName,
           },
         );
+
         if (!lessonState) {
           return;
         }
@@ -507,14 +485,6 @@ export const createTeacherBrowseAnalyticsStore = (
       },
       lessonShareStarted: () => {
         const { avo, programmeState, journeyId } = get();
-
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "lessonShareStarted",
-            programmeState,
-          });
-          return;
-        }
 
         const lessonState = requireLessonState(
           "lessonShareStarted",
@@ -535,18 +505,11 @@ export const createTeacherBrowseAnalyticsStore = (
       mediaClipsPlaylistPlayed: (data) => {
         const { avo, programmeState, journeyId } = get();
 
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "mediaClipsPlaylistPlayed",
-            programmeState,
-          });
-          return;
-        }
-
         const lessonState = requireLessonState(
           "mediaClipsPlaylistPlayed",
           programmeState,
         );
+
         if (!lessonState) {
           return;
         }
@@ -565,15 +528,16 @@ export const createTeacherBrowseAnalyticsStore = (
       onwardContentSelected: (data) => {
         const { avo, programmeState, journeyId, accessLevel } = get();
 
-        if (!programmeState || programmeState?.browseLevel === "programme") {
-          reportAnalyticsError({
-            event: "onwardContentSelected",
-            programmeState,
-          });
+        const unitState = requireUnitState(
+          "onwardContentSelected",
+          programmeState,
+        );
+
+        if (!unitState) {
           return;
         }
 
-        const analyticsProperties = getUnitAnalyticsProperties(programmeState);
+        const analyticsProperties = getUnitAnalyticsProperties(unitState);
 
         avo.onwardContentSelected({
           ...coreProperties,
@@ -587,6 +551,7 @@ export const createTeacherBrowseAnalyticsStore = (
       },
       programmeAccessed: ({
         componentType,
+        navigationType,
         activeFilters,
         filterType,
         filterValue,
@@ -604,10 +569,10 @@ export const createTeacherBrowseAnalyticsStore = (
           accessLevel,
           engagementIntent: EngagementIntent.REFINE,
           componentType,
-          navigationType: "narrow",
+          navigationType: navigationType ?? "narrow",
           filterType,
           filterValue,
-          activeFilters,
+          activeFilters: activeFilters ?? {},
           googleLoginHint: null,
           clientEnvironment: null,
         });
@@ -639,21 +604,49 @@ export const createTeacherBrowseAnalyticsStore = (
           journeyId,
         });
       },
+      teachWithOakAccessed: ({ componentType }) => {
+        const { avo, programmeState } = get();
+
+        const analyticsProperties =
+          programmeState?.browseLevel === "lesson"
+            ? getLessonAnalyticsProperties(programmeState)
+            : {
+                lessonName: undefined,
+                lessonSlug: undefined,
+                lessonReleaseCohort: undefined,
+                lessonReleaseDate: undefined,
+                tierName: undefined,
+                examBoard: undefined,
+                pathway: undefined,
+                unitName: undefined,
+                unitSlug: undefined,
+                keyStageTitle: undefined,
+                keyStageSlug: undefined,
+              };
+
+        avo.teachWithOakAccessed({
+          ...coreProperties,
+          ...analyticsProperties,
+          engagementIntent: EngagementIntent.EXPLORE,
+          componentType,
+        });
+      },
+      teachWithOakDownloaded: () => {
+        const { avo } = get();
+        avo.teachWithOakDownloaded({
+          ...coreProperties,
+          engagementIntent: EngagementIntent.USE,
+          componentType: "download_button",
+        });
+      },
       teachingMaterialsSelected: (data) => {
         const { avo, programmeState, journeyId } = get();
-
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "teachingMaterialsSelected",
-            programmeState,
-          });
-          return;
-        }
 
         const lessonState = requireLessonState(
           "teachingMaterialsSelected",
           programmeState,
         );
+
         if (!lessonState) {
           return;
         }
@@ -669,60 +662,39 @@ export const createTeacherBrowseAnalyticsStore = (
           componentType: "create_more_with_ai_dropdown",
         });
       },
-      unitAccessed: ({
-        componentType,
-        yearGroupName,
-        yearGroupSlug,
-        keyStageTitle,
-        keyStageSlug,
-        subjectTitle,
-        subjectSlug,
-        unitName,
-        unitSlug,
-        tierName,
-        examBoard,
-        pathway,
-      }) => {
-        const { avo, programmeState } = get();
+      unitAccessed: ({ componentType, navigationType, unitContext }) => {
+        const { avo, programmeState, journeyId, accessLevel } = get();
 
-        const unitState = programmeState
-          ? requireUnitState("unitAccessed", programmeState)
-          : null;
-
-        const analyticsProps = unitState
-          ? getUnitAnalyticsProperties(unitState)
-          : {};
-
-        avo.unitAccessed({
+        const stateProps = {
           engagementIntent: EngagementIntent.REFINE,
-          ...coreProperties,
-          ...analyticsProps,
+          journeyId,
+          accessLevel,
+          navigationType: navigationType ?? "narrow",
           componentType,
-          yearGroupName,
-          yearGroupSlug,
-          keyStageTitle,
-          keyStageSlug,
-          subjectTitle,
-          subjectSlug,
-          unitName,
-          unitSlug,
-          tierName,
-          examBoard,
-          pathway,
-        });
+          ...coreProperties,
+        };
+
+        if (unitContext) {
+          avo.unitAccessed({
+            ...stateProps,
+            ...unitContext,
+          });
+        } else {
+          const state = requireUnitState("unitAccessed", programmeState);
+          if (state) {
+            const analyticsProperties = getUnitAnalyticsProperties(state);
+            avo.unitAccessed({
+              ...stateProps,
+              ...analyticsProperties,
+            });
+          }
+        }
       },
       unitDownloaded: () => {
         const { avo, programmeState, journeyId, accessLevel } = get();
 
-        if (programmeState?.browseLevel === "programme") {
-          reportAnalyticsError({
-            event: "unitDownloaded",
-            programmeState,
-          });
-          return;
-        }
-
         const unitState = requireUnitState("unitDownloaded", programmeState);
+
         if (!unitState) {
           return;
         }
@@ -741,18 +713,11 @@ export const createTeacherBrowseAnalyticsStore = (
       unitDownloadStarted: () => {
         const { avo, programmeState, journeyId, accessLevel } = get();
 
-        if (programmeState?.browseLevel === "programme") {
-          reportAnalyticsError({
-            event: "unitDownloadStarted",
-            programmeState,
-          });
-          return;
-        }
-
         const unitState = requireUnitState(
           "unitDownloadStarted",
           programmeState,
         );
+
         if (!unitState) {
           return;
         }
@@ -767,22 +732,6 @@ export const createTeacherBrowseAnalyticsStore = (
           ...coreProperties,
           ...analyticsProperties,
         });
-      },
-      unitOverviewAccessed: (unit, isHighlighted, selectedThread) => {
-        const { avo, journeyId } = get();
-
-        const analyticsProperties = buildUnitOverviewAccessedAnalytics({
-          unit,
-          isHighlighted,
-          componentType: "unit_info_button",
-          selectedThread,
-          analyticsUseCase: "Teacher",
-          journeyId,
-          accessLevel: "programme",
-          navigationType: "narrow",
-        });
-
-        avo.unitOverviewAccessed(analyticsProperties);
       },
       unitRefined: ({
         componentType,
@@ -815,14 +764,6 @@ export const createTeacherBrowseAnalyticsStore = (
       videoPlayed: (data) => {
         const { avo, programmeState, journeyId } = get();
 
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "videoPlayed",
-            programmeState,
-          });
-          return;
-        }
-
         const lessonState = requireLessonState("videoPlayed", programmeState);
         if (!lessonState) {
           return;
@@ -838,14 +779,6 @@ export const createTeacherBrowseAnalyticsStore = (
       },
       videoStarted: (data) => {
         const { avo, programmeState, journeyId } = get();
-
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "videoStarted",
-            programmeState,
-          });
-          return;
-        }
 
         const lessonState = requireLessonState("videoStarted", programmeState);
         if (!lessonState) {
@@ -863,14 +796,6 @@ export const createTeacherBrowseAnalyticsStore = (
       videoPaused: (data) => {
         const { avo, programmeState, journeyId } = get();
 
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "videoPaused",
-            programmeState,
-          });
-          return;
-        }
-
         const lessonState = requireLessonState("videoPaused", programmeState);
         if (!lessonState) {
           return;
@@ -886,14 +811,6 @@ export const createTeacherBrowseAnalyticsStore = (
       },
       videoFinished: (data) => {
         const { avo, programmeState, journeyId } = get();
-
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "videoFinished",
-            programmeState,
-          });
-          return;
-        }
 
         const lessonState = requireLessonState("videoFinished", programmeState);
         if (!lessonState) {
