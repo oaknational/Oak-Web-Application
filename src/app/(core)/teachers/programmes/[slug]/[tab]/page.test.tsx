@@ -324,7 +324,7 @@ describe("Programme page tabs", () => {
         searchParams: Promise.resolve({}),
       })) as React.ReactElement,
     );
-    expect(container).toHaveTextContent("Download our implementation toolkit.");
+    expect(container).toHaveTextContent("Download our implementation guides.");
   });
 
   it("returns 404 page if params are invalid", async () => {

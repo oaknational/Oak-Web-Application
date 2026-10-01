@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 import { OakBox } from "@oaknational/oak-components";
+import { waitFor } from "@testing-library/dom";
 
 import { MultiSelect } from "./MultiSelect";
 
@@ -71,8 +72,11 @@ export const Selection: Story = {
     await userEvent.click(option);
     await expect(option).not.toBeChecked();
     if (trigger) {
-      await userEvent.keyboard("{Escape}");
-      await waitFor(() => expect(trigger).toHaveFocus());
+      await waitFor(() => userEvent.keyboard("{Escape}"));
+      await waitFor(async () => {
+        await expect(trigger).toHaveAttribute("aria-expanded", "false");
+        await expect(trigger).toHaveFocus();
+      });
     }
   },
 };
