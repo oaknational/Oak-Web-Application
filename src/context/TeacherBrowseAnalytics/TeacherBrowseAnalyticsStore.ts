@@ -226,6 +226,14 @@ export const coreProperties: {
   analyticsUseCase: "Teacher",
 };
 
+const sharedSearchProperties: {
+  accessLevel: AccessLevelValueType;
+  navigationType: NavigationTypeValueType;
+} = {
+  accessLevel: "search",
+  navigationType: "narrow",
+};
+
 export const createTeacherBrowseAnalyticsStore = (
   initialState: Pick<
     TeacherBrowseAnalyticsStore,
@@ -666,6 +674,7 @@ export const createTeacherBrowseAnalyticsStore = (
         const { avo } = get();
 
         avo.searchJourneyInitiated({
+          ...sharedSearchProperties,
           searchSource,
           context,
         });
@@ -685,6 +694,7 @@ export const createTeacherBrowseAnalyticsStore = (
 
         avo.searchAccessed({
           ...coreProperties,
+          ...sharedSearchProperties,
           engagementIntent: "refine",
           componentType,
           searchTerm,
@@ -702,6 +712,7 @@ export const createTeacherBrowseAnalyticsStore = (
 
         avo.searchRefined({
           ...coreProperties,
+          ...sharedSearchProperties,
           engagementIntent: "refine",
           ...props,
         });
@@ -711,6 +722,7 @@ export const createTeacherBrowseAnalyticsStore = (
 
         avo.searchResultExpanded({
           ...coreProperties,
+          ...sharedSearchProperties,
           ...searchResultContext,
           ...props,
           engagementIntent: "refine",
@@ -723,6 +735,7 @@ export const createTeacherBrowseAnalyticsStore = (
 
         avo.searchResultOpened({
           analyticsUseCase: coreProperties.analyticsUseCase,
+          ...sharedSearchProperties,
           ...searchResultContext,
           ...props,
           context: "search",
@@ -734,6 +747,9 @@ export const createTeacherBrowseAnalyticsStore = (
         avo.searchFilterModified({
           ...coreProperties,
           ...props,
+          ...sharedSearchProperties,
+          accessLevel: "search",
+          navigationType: "narrow",
           engagementIntent: "refine",
           componentType: "filter_link",
           filterModificationType: checked ? "remove" : "add",
