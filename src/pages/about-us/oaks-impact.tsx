@@ -49,6 +49,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
           <CaseStudiesSection
             title="Case studies"
             caseStudies={pageData.caseStudiesSection.caseStudies}
+            showTags={false}
           />
           <OaksImpactSchoolQuotesSection {...pageData.schoolQuotes} />
           <TrackScrolledTo eventKey="support_you" />

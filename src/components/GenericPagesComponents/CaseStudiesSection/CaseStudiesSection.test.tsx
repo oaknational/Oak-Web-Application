@@ -62,4 +62,28 @@ describe("CaseStudiesSection", () => {
 
     expect(getAllByRole("listitem")).toHaveLength(3);
   });
+
+  it("renders 'Watch the video' link when the case study contains a video and showTags is false", () => {
+    const { getAllByText } = render(
+      <CaseStudiesSection
+        title={"Case studies"}
+        caseStudies={caseStudiesSectionFixture}
+        showTags={false}
+      />,
+    );
+
+    expect(getAllByText("Watch the video")).toHaveLength(3);
+  });
+
+  it("renders the card tags when showTags is true", () => {
+    const { getAllByText } = render(
+      <CaseStudiesSection
+        title={"Case studies"}
+        caseStudies={caseStudiesSectionFixture}
+        showTags={true}
+      />,
+    );
+
+    expect(getAllByText("primary")).toHaveLength(3);
+  });
 });

@@ -233,6 +233,7 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
           <CaseStudiesSection
             title="Explore more case studies"
             caseStudies={otherCaseStudies}
+            showTags={isCaseStudiesFeatEnabled}
           />
         </OakBox>
       </Layout>
