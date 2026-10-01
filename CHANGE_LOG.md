@@ -1,3 +1,10 @@
+# [1.1224.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1223.1...v1.1224.0) (2026-10-01)
+
+
+### Features
+
+* add TwO link in footer ([07ff510](https://github.com/oaknational/Oak-Web-Application/commit/07ff510d9d4a3136120038e659b8ac95cb3db0d3))
+
 ## [1.1223.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1223.0...v1.1223.1) (2026-10-01)
 
 
