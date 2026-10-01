@@ -231,6 +231,7 @@ type AboutUsGetInvolvedLinkProps = { page: "about-get-involved" };
 type AboutUsOaksCurriculaLinkProps = { page: "about-oaks-curricula" };
 type AboutUsOaksImpactLinkProps = { page: "about-oaks-impact" };
 type AboutUsCaseStudyLinkProps = { page: "about-case-study"; slug: string };
+type AboutUsCaseStudyLibraryLinkProps = { page: "about-case-study-library" };
 
 type CareersLinkProps = { page: "careers" };
 type ContactUsLinkProps = { page: "contact" };
@@ -334,13 +335,22 @@ type EyfsPageLinkProps = {
   subjectSlug: string;
 };
 
-type TeachWithOakDownloadLinkProps = { page: "teach-with-oak-download" };
-
 export type TeachWithOakQueryProps = {
   returnTo: string;
   lessonName: string;
   unitName: string;
 };
+
+type TeachWithOakDownloadLinkProps = {
+  page: "teach-with-oak-download";
+  query?: TeachWithOakQueryProps;
+};
+
+type TeachWithOakDownloadSuccessLinkProps = {
+  page: "teach-with-oak-download-success";
+  query?: TeachWithOakQueryProps;
+};
+
 type TeachWithOakLinkProps = {
   page: "teach-with-oak";
   query?: TeachWithOakQueryProps;
@@ -396,6 +406,7 @@ export type OakLinkProps =
   | AboutUsOaksCurriculaLinkProps
   | AboutUsOaksImpactLinkProps
   | AboutUsCaseStudyLinkProps
+  | AboutUsCaseStudyLibraryLinkProps
   | CareersLinkProps
   | ContactUsLinkProps
   | HomeLinkProps
@@ -425,7 +436,8 @@ export type OakLinkProps =
   | GuideToOakLinkProps
   | FontHelpLinkProps
   | TeachWithOakLinkProps
-  | TeachWithOakDownloadLinkProps;
+  | TeachWithOakDownloadLinkProps
+  | TeachWithOakDownloadSuccessLinkProps;
 
 export type ExternalPageName =
   | "[external] Careers"
@@ -613,6 +625,12 @@ export const OAK_PAGES: {
     analyticsPageName: "About Us: Case Study",
     configType: "internal",
     pageType: "about-case-study",
+  }),
+  "about-case-study-library": createOakPageConfig({
+    pathPattern: "/about-us/case-studies",
+    analyticsPageName: "About Us: Case Study Library",
+    configType: "internal",
+    pageType: "about-case-study-library",
   }),
   careers: createOakPageConfig({
     url: "https://app.beapplied.com/org/1574/oak-national-academy",
@@ -990,6 +1008,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Teach With Oak",
     configType: "internal",
     pageType: "teach-with-oak-download",
+  }),
+  "teach-with-oak-download-success": createOakPageConfig({
+    pathPattern: "/teachers/teach-with-oak/downloads/success",
+    analyticsPageName: "Teach With Oak",
+    configType: "internal",
+    pageType: "teach-with-oak-download-success",
   }),
 };
 

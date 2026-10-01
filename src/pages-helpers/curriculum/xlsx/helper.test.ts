@@ -213,7 +213,7 @@ describe("generateYearTitle", () => {
             createUnit({
               year: "10",
               subject: "Physical education",
-              examboard: "Core",
+              examboard_slug: "Core",
             }),
           ],
         }),

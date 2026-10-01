@@ -1,19 +1,40 @@
-query caseStudyLibraryPage($isDraftFilter: Sanity_DocumentFilter) {
+query caseStudyLibraryPage($isDraftFilter: Sanity_DocumentFilter, $limit: Int) {
   allCaseStudy (
     where: {
       _: $isDraftFilter
     }
+    limit: $limit
   ) {
+    title,
     slug {
       current
     },
+    tag,
+    summaryRaw,
     video {
       ...Video
     },
+    textRaw,
     image {
       ...ImageWithAltText
     }
     publishedAt,
-    textRaw,
+    content {
+      heading,
+      label,
+      anchorSlug {
+        current
+      }
+      contentRaw
+    }
+    showGetInTouchPanel,
+    getInTouchPanel {
+      personName,
+      personImage {
+        ...ImageWithAltText
+      }
+      jobRole,
+      institutionName
+    }
   }
 }
