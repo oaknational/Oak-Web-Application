@@ -1167,6 +1167,21 @@ exports[`pages/about-us/case-studies/[slug].tsx does not render written case stu
                       >
                         <a
                           class="sc-fHjqPf kEMwfg"
+                          href="/teachers/teach-with-oak"
+                          variant="secondary"
+                        >
+                          <span
+                            class="sc-eqUAAy iGfTGj"
+                          >
+                            Teach with Oak
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-fPXMVe jFJaNg"
+                      >
+                        <a
+                          class="sc-fHjqPf kEMwfg"
                           href="https://labs.thenational.academy"
                           target="_blank"
                           variant="secondary"
@@ -1771,7 +1786,7 @@ exports[`pages/about-us/case-studies/[slug].tsx does not render written case stu
               </div>
             </div>
             <span
-              class="sc-aXZVg kvjdhA sc-9e5378a8-0 gLpQrK"
+              class="sc-aXZVg kvjdhA sc-cc003eb3-0 iCnMIR"
               data-percy-hide="contents"
             >
               <img
@@ -7729,6 +7744,21 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                       >
                         <a
                           class="sc-fHjqPf kEMwfg"
+                          href="/teachers/teach-with-oak"
+                          variant="secondary"
+                        >
+                          <span
+                            class="sc-eqUAAy iGfTGj"
+                          >
+                            Teach with Oak
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-fPXMVe jFJaNg"
+                      >
+                        <a
+                          class="sc-fHjqPf kEMwfg"
                           href="https://labs.thenational.academy"
                           target="_blank"
                           variant="secondary"
@@ -8333,7 +8363,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
               </div>
             </div>
             <span
-              class="sc-aXZVg kvjdhA sc-9e5378a8-0 gLpQrK"
+              class="sc-aXZVg kvjdhA sc-cc003eb3-0 iCnMIR"
               data-percy-hide="contents"
             >
               <img

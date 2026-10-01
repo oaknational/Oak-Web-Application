@@ -262,6 +262,11 @@ export const topNavFixture: TopNavProps = {
           href: "/teachers/lesson-planning",
         },
         {
+          title: "Teach with Oak",
+          slug: "teach-with-oak",
+          href: "/teachers/teach-with-oak",
+        },
+        {
           slug: "blog-index",
           title: "Blogs",
           href: "/blog",
