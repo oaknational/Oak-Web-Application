@@ -1,3 +1,19 @@
+# [1.1226.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1225.0...v1.1226.0) (2026-10-02)
+
+
+### Bug Fixes
+
+* merge issue ([55f96e6](https://github.com/oaknational/Oak-Web-Application/commit/55f96e613d4e10962c53dc7389782fd1ae89f4a2))
+* only show "all link" when more than three case studies ([baf45aa](https://github.com/oaknational/Oak-Web-Application/commit/baf45aa26e8b4ac0dfc7dd17ff9fe6fa029bcf9e))
+* snaps ([3efd25e](https://github.com/oaknational/Oak-Web-Application/commit/3efd25e2f1f45b578365984f4c7facef09db1525))
+
+
+### Features
+
+* add in resolveoakhref with avo ([3bd4e31](https://github.com/oaknational/Oak-Web-Application/commit/3bd4e31b67307005086f13c83a4cc33aedd532cd))
+* added disabled view all case studies link ([c49383f](https://github.com/oaknational/Oak-Web-Application/commit/c49383f556245ea52ecba414a54c2a0c83b6d13c))
+* enabled when "case-studies-v2" feature enabled ([74b2450](https://github.com/oaknational/Oak-Web-Application/commit/74b2450ed3dfb0d6ef64ad69f1f506652c87aeb3))
+
 # [1.1225.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1224.1...v1.1225.0) (2026-10-02)
 
 
