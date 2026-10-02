@@ -192,9 +192,7 @@ describe("National Curriculum Insights sections", () => {
     },
   );
 
-  it("renders referenced blog content and opens its video without navigating", async () => {
-    const user = userEvent.setup();
-
+  it("renders a paused inline video separately from the blog link", () => {
     renderWithTheme(
       <NationalCurriculumInsightsVideoCards
         section={moduleOf({
@@ -235,18 +233,15 @@ describe("National Curriculum Insights sections", () => {
     );
 
     expect(screen.queryByText("Legacy content")).not.toBeInTheDocument();
-    expect(screen.queryByTestId("cms-video")).not.toBeInTheDocument();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
-    expect(
-      screen.getByRole("link", {
-        name: "Bennie Kara on inclusive curriculum leadership",
-      }),
-    ).toHaveAttribute("href", "/blog/curriculum-conversations-episode-3");
-    await user.click(
-      screen.getByRole("button", {
-        name: "Play Bennie Kara on inclusive curriculum leadership",
-      }),
+    const blogLink = screen.getByRole("link", {
+      name: /Bennie Kara on inclusive curriculum leadership/,
+    });
+    expect(blogLink).toHaveAttribute(
+      "href",
+      "/blog/curriculum-conversations-episode-3",
     );
+    expect(blogLink).not.toContainElement(screen.getByTestId("cms-video"));
 
     expect(screen.getByTestId("cms-video")).toHaveTextContent(
       "Bennie Kara on inclusive curriculum leadership",
@@ -260,7 +255,7 @@ describe("National Curriculum Insights sections", () => {
     );
     expect(screen.getByTestId("cms-video")).toHaveAttribute(
       "data-autoplay",
-      "true",
+      "false",
     );
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });

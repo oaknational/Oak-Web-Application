@@ -46,6 +46,7 @@ export const caseStudyCardSchema = caseStudySchema
     title: true,
     slug: true,
     image: true,
+    tag: true,
   })
   .extend({
     video: videoSchema
