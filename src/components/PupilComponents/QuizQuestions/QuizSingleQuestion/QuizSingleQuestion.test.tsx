@@ -20,6 +20,30 @@ const baseState: QuestionState = {
 };
 
 describe("QuizSingleQuestion", () => {
+  it.each([[0], [2]])(
+    "restores the saved selection %s when reopened",
+    (index) => {
+      const { getAllByRole } = renderWithTheme(
+        <QuizSingleQuestion
+          section="starter-quiz"
+          questionData={mcqTextQuestion}
+          questionState={{
+            ...baseState,
+            mode: "feedback",
+            pupilAnswer: [index],
+          }}
+          isReadOnly={false}
+          onChange={jest.fn()}
+        />,
+      );
+      getAllByRole("radio").forEach((radio, answerIndex) => {
+        expect(radio).toBeDisabled();
+        if (answerIndex === index) expect(radio).toBeChecked();
+        else expect(radio).not.toBeChecked();
+      });
+    },
+  );
+
   it("renders one radio button per answer with the answer text as label", () => {
     const { getAllByRole, getByLabelText } = renderWithTheme(
       <QuizSingleQuestion

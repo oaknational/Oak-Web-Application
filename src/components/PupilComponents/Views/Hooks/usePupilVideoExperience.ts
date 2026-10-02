@@ -196,8 +196,8 @@ export const usePupilVideoExperience = ({
     void router.push(overviewHref);
   };
 
-  const handleProceed = async () => {
-    if (!(await ensureCanProgress())) return;
+  const handleProceed = () => {
+    if (!ensureCanProgress()) return;
 
     if (!sectionResults.video?.isComplete) {
       setIsCompletingAndRedirecting(true);

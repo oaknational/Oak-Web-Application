@@ -58,19 +58,40 @@ describe("usePupilExperienceBase", () => {
     expect(routerPush).toHaveBeenCalledWith("/pupils/lessons/lesson-1/review");
   });
 
-  it("blocks progression and redirects when refresh resolves read-only", async () => {
-    const refreshReadOnly = jest.fn().mockResolvedValue(true);
+  it("allows progression immediately from cached writable state without refreshing", () => {
+    const refreshReadOnly = jest.fn(
+      () => new Promise<boolean>(() => undefined),
+    );
     usePupilLessonProgress.getState().setRefreshReadOnly(refreshReadOnly);
 
     const { result } = renderHook(() => usePupilExperienceBase());
     let canProgress: boolean | undefined;
-    await act(async () => {
-      canProgress = await result.current.ensureCanProgress();
+    act(() => {
+      canProgress = result.current.ensureCanProgress();
     });
 
-    expect(refreshReadOnly).toHaveBeenCalledTimes(1);
+    expect(refreshReadOnly).not.toHaveBeenCalled();
+    expect(canProgress).toBe(true);
+    expect(routerPush).not.toHaveBeenCalled();
+  });
+
+  it("blocks progression immediately from cached read-only state", () => {
+    const refreshReadOnly = jest.fn(
+      () => new Promise<boolean>(() => undefined),
+    );
+    usePupilLessonProgress.getState().setRefreshReadOnly(refreshReadOnly);
+
+    const { result } = renderHook(() => usePupilExperienceBase());
+    act(() => usePupilLessonProgress.getState().setReadOnly(true));
+    routerPush.mockClear();
+
+    let canProgress: boolean | undefined;
+    act(() => {
+      canProgress = result.current.ensureCanProgress();
+    });
+
+    expect(refreshReadOnly).not.toHaveBeenCalled();
     expect(canProgress).toBe(false);
-    expect(usePupilLessonProgress.getState().isReadOnly).toBe(true);
     expect(routerPush).toHaveBeenCalledWith("/pupils/lessons/lesson-1/review");
   });
 });

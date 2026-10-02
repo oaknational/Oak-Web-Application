@@ -489,16 +489,43 @@ describe("Google Classroom API", () => {
   });
 
   describe("submitPupilProgress", () => {
+    it("rejects an unsent final grade so the same result can be retried", async () => {
+      const payload = {
+        courseId: "course-1",
+        itemId: "item-1",
+        attachmentId: "attachment-1",
+        submissionId: "submission-1",
+        pupilLoginHint: "test-pupil",
+        exitQuiz: { grade: 1, numQuestions: 1, isComplete: true },
+      };
+      mockJsonResponse({
+        status: "PERSISTED",
+        progress: { ...payload, exitQuizGradeSubmitted: false },
+      });
+      await expect(
+        GoogleClassroomApi.submitPupilProgress(payload),
+      ).rejects.toThrow("Classroom grade has not been submitted");
+
+      const response = {
+        status: "GRADE_SUBMITTED",
+        progress: { ...payload, exitQuizGradeSubmitted: true },
+      };
+      mockJsonResponse(response);
+      await expect(
+        GoogleClassroomApi.submitPupilProgress(payload),
+      ).resolves.toEqual(response);
+      expect(mockFetch).toHaveBeenCalledTimes(2);
+    });
+
     it("should call the lesson progress API with payload", async () => {
       // Arrange
       mockCookieStore.get.mockImplementation((name) => {
-        if (name === AuthCookieKeys.Session)
+        if (name === AuthCookieKeys.PupilSession)
           return Promise.resolve({ value: "test-session" });
-        if (name === AuthCookieKeys.AccessToken)
+        if (name === AuthCookieKeys.PupilAccessToken)
           return Promise.resolve({ value: "test-token" });
         return Promise.resolve(null);
       });
-      mockJsonResponse({});
 
       const payload = {
         courseId: "course-1",
@@ -512,9 +539,19 @@ describe("Google Classroom API", () => {
           isComplete: false,
         },
       };
+      const response = {
+        progress: {
+          ...payload,
+          postSubmissionState: "CREATED",
+          createdAt: "2026-01-01T00:00:00.000Z",
+          updatedAt: "2026-01-01T00:00:00.000Z",
+        },
+        status: "PERSISTED",
+      };
+      mockJsonResponse(response);
 
       // Act
-      await GoogleClassroomApi.submitPupilProgress(payload);
+      const result = await GoogleClassroomApi.submitPupilProgress(payload);
 
       // Assert
       expect(mockFetch).toHaveBeenCalledWith(
@@ -525,6 +562,7 @@ describe("Google Classroom API", () => {
           body: JSON.stringify(payload),
         }),
       );
+      expect(result).toEqual(response);
     });
   });
 
