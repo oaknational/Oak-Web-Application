@@ -448,7 +448,7 @@ export default async function handler(
   } = curriculumDownloadQuerySchema.parse(req.query);
 
   const mvRefreshTimeParsed = Number.parseInt(mvRefreshTime);
-  const actualMvRefreshTime = await getMvRefreshTime();
+  const actualMvRefreshTime = await getMvRefreshTime({ withCache: false });
 
   const isImplementationGuidesEnabled = await isFeatureFlagEnabledServer(
     req.cookies,

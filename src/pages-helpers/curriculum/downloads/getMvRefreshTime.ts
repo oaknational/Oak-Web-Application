@@ -1,20 +1,25 @@
 import { connection } from "next/server";
 
-import { applyCachePolicy } from "@/node-lib/cache";
+import { getCachedMvRefreshTimes } from "./getMvRefreshTimeWithCache";
+
 import errorReporter from "@/common-lib/error-reporter";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
-async function getCachedMvRefreshTimes() {
-  "use cache";
-  applyCachePolicy();
+export async function getMvRefreshTime({ withCache }: { withCache: boolean }) {
+  let mvRefreshTimes: {
+    last_refresh_finish: string;
+    materializedview_name: string;
+  }[];
 
-  return curriculumApi2023.refreshedMVTime({
-    viewName: "mv_curriculum_sequence_b%",
-  });
-}
-
-export async function getMvRefreshTime() {
-  const { data: mvRefreshTimes } = await getCachedMvRefreshTimes();
+  if (withCache) {
+    const { data } = await getCachedMvRefreshTimes();
+    mvRefreshTimes = data;
+  } else {
+    const { data } = await curriculumApi2023.refreshedMVTime({
+      viewName: "mv_curriculum_sequence_b%",
+    });
+    mvRefreshTimes = data;
+  }
 
   // If no refresh times are found, report an error
   if (!mvRefreshTimes || mvRefreshTimes.length === 0 || !mvRefreshTimes[0]) {
