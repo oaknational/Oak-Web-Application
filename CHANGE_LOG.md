@@ -1,3 +1,23 @@
+## [1.1224.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1224.0...v1.1224.1) (2026-10-01)
+
+
+### Bug Fixes
+
+* add desc sort order for case studies ([da279b8](https://github.com/oaknational/Oak-Web-Application/commit/da279b861021f616441a89dbe764ca000f362a58))
+* add exclusion slug into case studies library query and callpoint ([f91b3bb](https://github.com/oaknational/Oak-Web-Application/commit/f91b3bb6e4b5b746ec68d32d066d784c23c56127))
+* add slug to list params ([a7af0d8](https://github.com/oaknational/Oak-Web-Application/commit/a7af0d8f869c6acd8c1573ab12c5cfccf0864bbe))
+* order by published at not updated at ([1f527fd](https://github.com/oaknational/Oak-Web-Application/commit/1f527fd286f30b84985afdb17cd153dbad4de836))
+* remove limit of 3 while we have feature to stop newest coming back then being excluded ([90c7ac3](https://github.com/oaknational/Oak-Web-Application/commit/90c7ac3fdc4f67b3b0af9018a69a56a49426614a))
+* snaps ([12b171f](https://github.com/oaknational/Oak-Web-Application/commit/12b171ff0bf72fc6f46f11f3d7ca88d8ea1d8c3f))
+* temp filter out non video case studies ([ed01fd6](https://github.com/oaknational/Oak-Web-Application/commit/ed01fd6e805b6143af21cefed33ffaccba3f19d6))
+
+# [1.1224.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1223.1...v1.1224.0) (2026-10-01)
+
+
+### Features
+
+* add TwO link in footer ([07ff510](https://github.com/oaknational/Oak-Web-Application/commit/07ff510d9d4a3136120038e659b8ac95cb3db0d3))
+
 ## [1.1223.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1223.0...v1.1223.1) (2026-10-01)
 
 

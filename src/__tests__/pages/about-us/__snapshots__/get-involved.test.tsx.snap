@@ -5339,6 +5339,20 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                       >
                         <a
                           class="c176 "
+                          href="/teachers/teach-with-oak"
+                        >
+                          <span
+                            class="c25"
+                          >
+                            Teach with Oak
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c175"
+                      >
+                        <a
+                          class="c176 "
                           href="https://labs.thenational.academy"
                           target="_blank"
                         >

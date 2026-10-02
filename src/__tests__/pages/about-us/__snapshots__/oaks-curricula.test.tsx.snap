@@ -5907,6 +5907,20 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       >
                         <a
                           class="c218 "
+                          href="/teachers/teach-with-oak"
+                        >
+                          <span
+                            class="c25"
+                          >
+                            Teach with Oak
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c217"
+                      >
+                        <a
+                          class="c218 "
                           href="https://labs.thenational.academy"
                           target="_blank"
                         >

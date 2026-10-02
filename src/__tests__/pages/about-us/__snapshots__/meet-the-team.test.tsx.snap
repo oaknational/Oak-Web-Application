@@ -5103,6 +5103,20 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       >
                         <a
                           class="c174 "
+                          href="/teachers/teach-with-oak"
+                        >
+                          <span
+                            class="c25"
+                          >
+                            Teach with Oak
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c173"
+                      >
+                        <a
+                          class="c174 "
                           href="https://labs.thenational.academy"
                           target="_blank"
                         >

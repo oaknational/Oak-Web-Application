@@ -51,6 +51,12 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
 }) => {
   const { setCurrentToastProps } = useOakNotificationsContext();
 
+  if (!isCaseStudiesFeatEnabled) {
+    otherCaseStudies = otherCaseStudies.filter(
+      (caseStudy) => !caseStudy.content,
+    );
+  }
+
   const onCopyLink = () => {
     const urlToCopy = window.location.href;
     navigator.clipboard.writeText(urlToCopy);
@@ -271,7 +277,10 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 
-  const otherCaseStudies = await CMSClient.caseStudyLibraryPage({ limit: 3 });
+  const otherCaseStudies = await CMSClient.caseStudyLibraryPage({
+    slug,
+    // limit: 3, TO DO: this can be put back in when the feature is switched on, maybe change to 4 as it may exclude slug?
+  });
 
   const results: GetStaticPropsResult<AboutUsOaksImpactCaseStudyPageProps> = {
     props: {
