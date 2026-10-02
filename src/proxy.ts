@@ -1,10 +1,7 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
-import { MiddlewareConfig, NextFetchEvent, NextRequest } from "next/server";
+import { ProxyConfig, NextFetchEvent, NextRequest } from "next/server";
 
-export default async function middleware(
-  req: NextRequest,
-  event: NextFetchEvent,
-) {
+export default async function proxy(req: NextRequest, event: NextFetchEvent) {
   return clerkMiddleware()(req, event);
 }
 
@@ -13,7 +10,7 @@ export default async function middleware(
  * we need to access the user session in the backend
  */
 
-export const config: MiddlewareConfig = {
+export const config: ProxyConfig = {
   matcher: [
     // Skip Next.js internals and all static files, unless found in search params
     //"/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",

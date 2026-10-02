@@ -1,6 +1,6 @@
 import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
 
-import middleware from "./middleware";
+import middleware from "./proxy";
 
 const mockClerkHandler = jest.fn(() => NextResponse.next());
 const mockClerkMiddleware = jest.fn(() => mockClerkHandler);
