@@ -11,12 +11,12 @@ import {
   OakSpan,
   OakAnchorTarget,
 } from "@oaknational/oak-components";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { getContainerId } from "../../TeacherComponents/LessonItemContainer/LessonItemContainer";
 
 import { hasLessonMathJax } from "./hasLessonMathJax";
 
+import { useFeatureFlagVariantKey } from "@/browser-lib/posthog/featureFlags";
 import {
   getBreadcrumbsForLessonPathway,
   getLessonOverviewBreadCrumb,

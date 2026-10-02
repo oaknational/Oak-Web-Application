@@ -8,10 +8,6 @@ import {
   OakInlineBanner,
 } from "@oaknational/oak-components";
 import { Fragment, useState } from "react";
-import {
-  useFeatureFlagEnabled,
-  useFeatureFlagVariantKey,
-} from "posthog-js/react";
 
 import { CurrentSectionIdProvider } from "./CurrentSectionIdProvider";
 import LessonOverviewSideNav from "./LessonOverviewSideNav";
@@ -20,6 +16,10 @@ import { LessonItem } from "./LessonItem";
 import LessonActionsBar from "./LessonActionsBar/LessonActionsBar";
 import { LessonSeoHelper } from "./LessonSeoHelper/LessonSeoHelper";
 
+import {
+  useFeatureFlagEnabled,
+  useFeatureFlagVariantKey,
+} from "@/browser-lib/posthog/featureFlags";
 import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
 import { resolveOakHref } from "@/common-lib/urls";

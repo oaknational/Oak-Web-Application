@@ -13,7 +13,6 @@ import {
   OakSpan,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import {
   getActiveFilters,
@@ -23,6 +22,7 @@ import {
   trackSearchModified,
 } from "./helpers";
 
+import { useFeatureFlagVariantKey } from "@/browser-lib/posthog/featureFlags";
 import { SearchProps } from "@/components/TeacherViews/Search/search.view.types";
 import { ContentFilterToggle } from "@/components/TeacherViews/Search/ContentFilterToggle";
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";

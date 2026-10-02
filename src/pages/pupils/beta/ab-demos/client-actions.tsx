@@ -1,4 +1,3 @@
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 import { useState } from "react";
 import {
   OakFlex,
@@ -7,6 +6,7 @@ import {
   OakSpan,
 } from "@oaknational/oak-components";
 
+import { useFeatureFlagVariantKey } from "@/browser-lib/posthog/featureFlags";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
 

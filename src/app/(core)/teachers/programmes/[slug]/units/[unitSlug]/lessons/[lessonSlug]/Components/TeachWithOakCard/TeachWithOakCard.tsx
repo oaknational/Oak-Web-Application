@@ -1,6 +1,6 @@
 import { OakBox, OakCard } from "@oaknational/oak-components";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 
+import { useFeatureFlagVariantKey } from "@/browser-lib/posthog/featureFlags";
 import { resolveOakHref, TeachWithOakQueryProps } from "@/common-lib/urls";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
