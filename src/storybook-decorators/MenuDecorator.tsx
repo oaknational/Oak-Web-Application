@@ -1,8 +1,8 @@
-import { StoryFn } from "@storybook/react";
+import type { Decorator } from "@storybook/react";
 
 import { menuContext } from "@/context/Menu/MenuProvider";
 
-export default function MenuDecorator(Story: StoryFn) {
+const MenuDecorator: Decorator = (Story) => {
   const value = { open: false, openMenu: () => {}, closeMenu: () => {} };
 
   return (
@@ -10,4 +10,6 @@ export default function MenuDecorator(Story: StoryFn) {
       <Story />
     </menuContext.Provider>
   );
-}
+};
+
+export default MenuDecorator;
