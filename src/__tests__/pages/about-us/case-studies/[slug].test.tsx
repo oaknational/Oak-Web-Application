@@ -34,19 +34,44 @@ function caseStudyFixture(number: number) {
     content: [
       {
         heading: "TEST_HEADING_1",
+        label: "TEST_LABEL_1",
         anchorSlug: {
           current: "test-anchor-slug-1",
         },
-        label: "TEST_LABEL_1",
         contentRaw: portableTextFromString("TEST_CONTENT_1"),
       },
       {
         heading: "TEST_HEADING_2",
+        label: "TEST_LABEL_2",
         anchorSlug: {
           current: "test-anchor-slug-2",
         },
-        label: "TEST_LABEL_2",
-        contentRaw: portableTextFromString("TEST_CONTENT_2"),
+        contentRaw: [
+          ...portableTextFromString("Text alongside media"),
+          {
+            _key: "embedded-image",
+            _type: "imageWithAltText",
+            altText: "A classroom using Oak",
+            isPresentational: false,
+            asset: {
+              _id: "image-d16d5ceea1923b8cf31845affe93f9626f600c4c-240x320-png",
+              url: "https://cdn.sanity.io/images/cuvjke51/production/d16d5ceea1923b8cf31845affe93f9626f600c4c-240x320.png",
+            },
+          },
+          {
+            _key: "embedded-video",
+            _type: "video",
+            title: "Embedded case study video",
+            video: {
+              asset: {
+                assetId: "embedded-asset-id",
+                playbackId: "embedded-playback-id",
+                thumbTime: null,
+              },
+            },
+            transcript: portableTextFromString("Embedded video transcript"),
+          },
+        ],
       },
     ],
     showGetInTouchPanel: true,
@@ -80,13 +105,15 @@ function caseStudyFixture(number: number) {
     },
     image: {
       altText: "Test image alt text",
+      isPresentational: false,
       asset: {
         _id: "test-image-asset-id",
         url: "https://example.com/test-image.jpg",
       },
+      hotspot: null,
     },
     textRaw: portableTextFromString("TEST_TEXT_RAW"),
-    publishedAt: `2026-0${number}-30`,
+    publishedAt: `2026-01-30`,
   };
 }
 
@@ -119,8 +146,8 @@ beforeEach(() => {
 });
 
 describe("pages/about-us/case-studies/[slug].tsx", () => {
-  it("renders a case study with written content correctly", async () => {
-    const { container } = renderWithProviders()(
+  it("renders a case study with written content and embedded media correctly", async () => {
+    const { container, getByRole } = renderWithProviders()(
       <AboutUsCaseStudy
         isCaseStudiesFeatEnabled={true}
         pageData={{ caseStudy, otherCaseStudies: [] }}
@@ -139,7 +166,11 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
     expect(container).toHaveTextContent("TEST_HEADING_1");
     expect(container).toHaveTextContent("TEST_CONTENT_1");
     expect(container).toHaveTextContent("TEST_HEADING_2");
-    expect(container).toHaveTextContent("TEST_CONTENT_2");
+    expect(container).toHaveTextContent("Text alongside media");
+    expect(
+      getByRole("img", { name: "A classroom using Oak" }),
+    ).toBeInTheDocument();
+    expect(container).toHaveTextContent("Embedded video transcript");
   });
 
   it("renders a case study with video only correctly", async () => {

@@ -843,7 +843,7 @@ exports[`pages/about-us/case-studies/[slug].tsx does not render written case stu
                               class="sc-aXZVg kpXzs yellow-shadow"
                             />
                             <button
-                              aria-controls=":r4:"
+                              aria-controls=":r7:"
                               aria-expanded="false"
                               class="sc-dcJsrY sc-jXbUNg hkWkDf eTptGn internal-button"
                             >
@@ -890,7 +890,7 @@ exports[`pages/about-us/case-studies/[slug].tsx does not render written case stu
                               class="sc-aXZVg kpXzs yellow-shadow"
                             />
                             <button
-                              aria-controls=":r4:"
+                              aria-controls=":r7:"
                               aria-expanded="false"
                               class="sc-dcJsrY sc-jXbUNg hkWkDf eTptGn internal-button"
                             >
@@ -924,7 +924,7 @@ exports[`pages/about-us/case-studies/[slug].tsx does not render written case stu
                       <div
                         class="sc-aXZVg sc-gEvEer TfzCi jLfsQU"
                         data-testid="oak-video-transcript-container"
-                        id=":r4:"
+                        id=":r7:"
                       >
                         <div
                           class="sc-aXZVg sc-gEvEer hkAEUL gWBhKY"
@@ -2924,7 +2924,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
                               class="sc-aXZVg kpXzs yellow-shadow"
                             />
                             <button
-                              aria-controls=":r1:"
+                              aria-controls=":r2:"
                               aria-expanded="false"
                               class="sc-dcJsrY sc-jXbUNg hkWkDf eTptGn internal-button"
                             >
@@ -2971,7 +2971,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
                               class="sc-aXZVg kpXzs yellow-shadow"
                             />
                             <button
-                              aria-controls=":r1:"
+                              aria-controls=":r2:"
                               aria-expanded="false"
                               class="sc-dcJsrY sc-jXbUNg hkWkDf eTptGn internal-button"
                             >
@@ -3005,7 +3005,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
                       <div
                         class="sc-aXZVg sc-gEvEer TfzCi jLfsQU"
                         data-testid="oak-video-transcript-container"
-                        id=":r1:"
+                        id=":r2:"
                       >
                         <div
                           class="sc-aXZVg sc-gEvEer hkAEUL gWBhKY"
@@ -4090,7 +4090,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
 </div>
 `;
 
-exports[`pages/about-us/case-studies/[slug].tsx renders a case study with written content correctly 1`] = `
+exports[`pages/about-us/case-studies/[slug].tsx renders a case study with written content and embedded media correctly 1`] = `
 <div>
   <div
     data-overlay-container="true"
@@ -5115,8 +5115,157 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                       <p
                         class="sc-ikkxIA sc-82983132-0 cFDVg lcICdz"
                       >
-                        TEST_CONTENT_2
+                        Text alongside media
                       </p>
+                      <img
+                        alt="A classroom using Oak"
+                        class="sc-ba397cd3-0 gA-dRpq"
+                        data-nimg="1"
+                        decoding="async"
+                        height="320"
+                        loading="lazy"
+                        src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d16d5ceea1923b8cf31845affe93f9626f600c4c-240x320.png?w=640&h=853&fm=webp&q=80&fit=clip&auto=format"
+                        srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d16d5ceea1923b8cf31845affe93f9626f600c4c-240x320.png?w=256&h=341&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d16d5ceea1923b8cf31845affe93f9626f600c4c-240x320.png?w=640&h=853&fm=webp&q=80&fit=clip&auto=format 2x"
+                        style="color: transparent;"
+                        width="240"
+                      />
+                      <div
+                        class="sc-aXZVg joEyOW"
+                      >
+                        <div
+                          class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+                        >
+                          <div
+                            class="sc-aXZVg sc-gEvEer dApLPd daEtut"
+                          >
+                            <div
+                              class="sc-aXZVg dLPTTd"
+                            >
+                              <div
+                                class="sc-aXZVg sc-gEvEer kqqNVp jMLdOa"
+                                data-percy-hide="contents"
+                                style="box-sizing: content-box;"
+                              />
+                            </div>
+                          </div>
+                          <div
+                            class="sc-aXZVg sc-gEvEer iJiUdo cZgzoh"
+                          >
+                            <p
+                              class="sc-ikkxIA bevdi"
+                            />
+                          </div>
+                          <div
+                            class="sc-aXZVg sc-gEvEer jswmVI ljLRpA"
+                          >
+                            <div
+                              class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
+                            >
+                              <div
+                                class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                              >
+                                <div
+                                  class="sc-aXZVg kpXzs grey-shadow"
+                                />
+                                <div
+                                  class="sc-aXZVg kpXzs yellow-shadow"
+                                />
+                                <button
+                                  aria-controls=":r1:"
+                                  aria-expanded="false"
+                                  class="sc-dcJsrY sc-jXbUNg hkWkDf eTptGn internal-button"
+                                >
+                                  <div
+                                    class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
+                                  >
+                                    <span
+                                      class="sc-eqUAAy kJIzWq"
+                                    >
+                                      Show
+                                       transcript
+                                    </span>
+                                    <span
+                                      class="sc-aXZVg jJQFnr"
+                                    >
+                                      <img
+                                        alt=""
+                                        class="sc-iGgWBj lcrpYX"
+                                        data-nimg="fill"
+                                        decoding="async"
+                                        loading="lazy"
+                                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
+                                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                      />
+                                    </span>
+                                  </div>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="sc-aXZVg sc-gEvEer cODBSt dKwsfm"
+                          >
+                            <div
+                              class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
+                            >
+                              <div
+                                class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                              >
+                                <div
+                                  class="sc-aXZVg kpXzs grey-shadow"
+                                />
+                                <div
+                                  class="sc-aXZVg kpXzs yellow-shadow"
+                                />
+                                <button
+                                  aria-controls=":r1:"
+                                  aria-expanded="false"
+                                  class="sc-dcJsrY sc-jXbUNg hkWkDf eTptGn internal-button"
+                                >
+                                  <div
+                                    class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
+                                  >
+                                    <span
+                                      class="sc-eqUAAy kJIzWq"
+                                    >
+                                      Show
+                                       transcript
+                                    </span>
+                                    <span
+                                      class="sc-aXZVg jJQFnr"
+                                    >
+                                      <img
+                                        alt=""
+                                        class="sc-iGgWBj lcrpYX"
+                                        data-nimg="fill"
+                                        decoding="async"
+                                        loading="lazy"
+                                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
+                                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                      />
+                                    </span>
+                                  </div>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="sc-aXZVg sc-gEvEer TfzCi jLfsQU"
+                            data-testid="oak-video-transcript-container"
+                            id=":r1:"
+                          >
+                            <div
+                              class="sc-aXZVg sc-gEvEer hkAEUL gWBhKY"
+                            >
+                              <p
+                                class="sc-ikkxIA jUPyul"
+                              >
+                                Embedded video transcript
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -7160,7 +7309,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                               class="sc-aXZVg kpXzs yellow-shadow"
                             />
                             <button
-                              aria-controls=":r3:"
+                              aria-controls=":r5:"
                               aria-expanded="false"
                               class="sc-dcJsrY sc-jXbUNg hkWkDf eTptGn internal-button"
                             >
@@ -7207,7 +7356,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                               class="sc-aXZVg kpXzs yellow-shadow"
                             />
                             <button
-                              aria-controls=":r3:"
+                              aria-controls=":r5:"
                               aria-expanded="false"
                               class="sc-dcJsrY sc-jXbUNg hkWkDf eTptGn internal-button"
                             >
@@ -7241,7 +7390,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                       <div
                         class="sc-aXZVg sc-gEvEer TfzCi jLfsQU"
                         data-testid="oak-video-transcript-container"
-                        id=":r3:"
+                        id=":r5:"
                       >
                         <div
                           class="sc-aXZVg sc-gEvEer hkAEUL gWBhKY"
@@ -7319,8 +7468,157 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                       <p
                         class="sc-ikkxIA sc-82983132-0 cFDVg lcICdz"
                       >
-                        TEST_CONTENT_2
+                        Text alongside media
                       </p>
+                      <img
+                        alt="A classroom using Oak"
+                        class="sc-ba397cd3-0 gA-dRpq"
+                        data-nimg="1"
+                        decoding="async"
+                        height="320"
+                        loading="lazy"
+                        src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d16d5ceea1923b8cf31845affe93f9626f600c4c-240x320.png?w=640&h=853&fm=webp&q=80&fit=clip&auto=format"
+                        srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d16d5ceea1923b8cf31845affe93f9626f600c4c-240x320.png?w=256&h=341&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d16d5ceea1923b8cf31845affe93f9626f600c4c-240x320.png?w=640&h=853&fm=webp&q=80&fit=clip&auto=format 2x"
+                        style="color: transparent;"
+                        width="240"
+                      />
+                      <div
+                        class="sc-aXZVg joEyOW"
+                      >
+                        <div
+                          class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+                        >
+                          <div
+                            class="sc-aXZVg sc-gEvEer dApLPd daEtut"
+                          >
+                            <div
+                              class="sc-aXZVg dLPTTd"
+                            >
+                              <div
+                                class="sc-aXZVg sc-gEvEer kqqNVp jMLdOa"
+                                data-percy-hide="contents"
+                                style="box-sizing: content-box;"
+                              />
+                            </div>
+                          </div>
+                          <div
+                            class="sc-aXZVg sc-gEvEer iJiUdo cZgzoh"
+                          >
+                            <p
+                              class="sc-ikkxIA bevdi"
+                            />
+                          </div>
+                          <div
+                            class="sc-aXZVg sc-gEvEer jswmVI ljLRpA"
+                          >
+                            <div
+                              class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
+                            >
+                              <div
+                                class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                              >
+                                <div
+                                  class="sc-aXZVg kpXzs grey-shadow"
+                                />
+                                <div
+                                  class="sc-aXZVg kpXzs yellow-shadow"
+                                />
+                                <button
+                                  aria-controls=":r6:"
+                                  aria-expanded="false"
+                                  class="sc-dcJsrY sc-jXbUNg hkWkDf eTptGn internal-button"
+                                >
+                                  <div
+                                    class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
+                                  >
+                                    <span
+                                      class="sc-eqUAAy kJIzWq"
+                                    >
+                                      Show
+                                       transcript
+                                    </span>
+                                    <span
+                                      class="sc-aXZVg jJQFnr"
+                                    >
+                                      <img
+                                        alt=""
+                                        class="sc-iGgWBj lcrpYX"
+                                        data-nimg="fill"
+                                        decoding="async"
+                                        loading="lazy"
+                                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
+                                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                      />
+                                    </span>
+                                  </div>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="sc-aXZVg sc-gEvEer cODBSt dKwsfm"
+                          >
+                            <div
+                              class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
+                            >
+                              <div
+                                class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                              >
+                                <div
+                                  class="sc-aXZVg kpXzs grey-shadow"
+                                />
+                                <div
+                                  class="sc-aXZVg kpXzs yellow-shadow"
+                                />
+                                <button
+                                  aria-controls=":r6:"
+                                  aria-expanded="false"
+                                  class="sc-dcJsrY sc-jXbUNg hkWkDf eTptGn internal-button"
+                                >
+                                  <div
+                                    class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
+                                  >
+                                    <span
+                                      class="sc-eqUAAy kJIzWq"
+                                    >
+                                      Show
+                                       transcript
+                                    </span>
+                                    <span
+                                      class="sc-aXZVg jJQFnr"
+                                    >
+                                      <img
+                                        alt=""
+                                        class="sc-iGgWBj lcrpYX"
+                                        data-nimg="fill"
+                                        decoding="async"
+                                        loading="lazy"
+                                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
+                                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                      />
+                                    </span>
+                                  </div>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="sc-aXZVg sc-gEvEer TfzCi jLfsQU"
+                            data-testid="oak-video-transcript-container"
+                            id=":r6:"
+                          >
+                            <div
+                              class="sc-aXZVg sc-gEvEer hkAEUL gWBhKY"
+                            >
+                              <p
+                                class="sc-ikkxIA jUPyul"
+                              >
+                                Embedded video transcript
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div
