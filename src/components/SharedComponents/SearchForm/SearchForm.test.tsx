@@ -180,6 +180,8 @@ describe("<SearchForm />", () => {
     expect(searchJourneyInitiated).toHaveBeenCalledWith({
       searchSource: "homepage search box",
       context: "homepage",
+      accessLevel: "search",
+      navigationType: "narrow",
     });
   });
   it("search input is populated with placeholder text", () => {
