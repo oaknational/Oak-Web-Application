@@ -261,6 +261,7 @@ type LabsTeachingMaterialsLinkProps = {
   page: "labs-teaching-materials";
   query?: UrlQueryObject;
 };
+type McpLinkProps = { page: "mcp" };
 type TeacherHubLinkProps = { page: "teacher-hub" };
 
 type OnboardingLinkProps = {
@@ -370,6 +371,7 @@ export type OakLinkPropsRequiringPageOnly = Extract<
 export type OakLinkProps =
   | LabsLinkProps
   | LabsTeachingMaterialsLinkProps
+  | McpLinkProps
   | TeachersHomePageProps
   | LandingPageLinkProps
   | LessonDownloadsLinkProps
@@ -709,6 +711,12 @@ export const OAK_PAGES: {
     analyticsPageName: "[external] Labs",
     configType: "external",
     pageType: "labs-teaching-materials",
+  }),
+  mcp: createOakPageConfig({
+    pathPattern: "/ai-plugin",
+    analyticsPageName: "AI Plugin",
+    configType: "internal",
+    pageType: "mcp",
   }),
   "our-teachers": createOakPageConfig({
     url: "https://classroom.thenational.academy/teachers",
