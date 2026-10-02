@@ -52,7 +52,7 @@ export default function CurricUnitCard(props: Readonly<CurricUnitCardProps>) {
       $width={"100%"}
       $borderRadius={"border-radius-s"}
       $overflow={"hidden"}
-      hoverBackground="bg-decorative6-main"
+      $hoverBackground="bg-decorative6-main"
     >
       <StyledLink
         href={href}
