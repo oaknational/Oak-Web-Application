@@ -57,6 +57,12 @@ function renderUnits(units: Unit[], numbering: { unitNumbering: string }) {
   `;
 }
 
+function filterUnitsByThread(units: Unit[], threadSlug: string): Unit[] {
+  return units.filter(
+    (u) => u.threads.findIndex((t) => t.slug === threadSlug) > -1,
+  );
+}
+
 export default async function generate(
   zip: JSZipCached,
   { data }: { data: CombinedCurriculumData },
@@ -132,12 +138,6 @@ export default async function generate(
 
     const contentElements: string[] = [];
 
-    const filterUnitsByThread = (units: Unit[]): Unit[] => {
-      return units.filter(
-        (u) => u.threads.findIndex((t) => t.slug === thread.slug) > -1,
-      );
-    };
-
     const nonCategorizedUnits = enableGroupBySubjectCategory
       ? data.units.filter((u) => (u.subjectcategories ?? []).length < 1)
       : data.units;
@@ -147,7 +147,7 @@ export default async function generate(
 
     const sortedList = Object.entries(groupedByYearPathway)
       .map(([yearPathwayKey, unitsInGroup]) => {
-        const unitsForThread = filterUnitsByThread(unitsInGroup);
+        const unitsForThread = filterUnitsByThread(unitsInGroup, thread.slug);
         return [yearPathwayKey, unitsForThread] as [string, Unit[]];
       })
       .filter(([, units]) => units.length > 0)
@@ -213,7 +213,7 @@ export default async function generate(
               categoryGroupedByYearPathway,
             )
               .map(([yearPathwayKey, unitsInGroup]) => {
-                const unitsForThread = filterUnitsByThread(unitsInGroup);
+                const unitsForThread = filterUnitsByThread(unitsInGroup, thread.slug);
                 return [yearPathwayKey, unitsForThread] as [string, Unit[]];
               })
               .filter(([, units]) => units.length > 0);

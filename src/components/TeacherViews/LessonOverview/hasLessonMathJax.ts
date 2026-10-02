@@ -20,6 +20,13 @@ export const containsMathJax = (text: string | undefined | null): boolean => {
   return mathJaxPatterns.test(text);
 };
 
+const findMatchingMathJax = (answer: StemObject[]) => {
+  if (!answer) return false;
+  return answer.some(
+    (a) => a.type === "text" && containsMathJax(a.text),
+  );
+};
+
 const hasQuizMathJax = (
   quizData: LessonOverviewQuizQuestion[] | undefined,
 ): boolean => {
@@ -33,31 +40,24 @@ const hasQuizMathJax = (
       // Check in answers by type
       const answerCheck = Object.entries(question.answers ?? {}).some(
         ([type]) => {
-          const findMatch = (answer: StemObject[]) => {
-            if (!answer) return false;
-            return answer.some(
-              (a) => a.type === "text" && containsMathJax(a.text),
-            );
-          };
-
           switch (type) {
             case "multiple-choice":
               return question.answers?.["multiple-choice"]?.some((ans) =>
-                findMatch(ans.answer),
+                findMatchingMathJax(ans.answer),
               );
 
             case "match": {
               return question.answers?.match?.some((ans) =>
-                findMatch(ans.matchOption),
+                findMatchingMathJax(ans.matchOption),
               );
             }
             case "order":
               return question.answers?.order?.some((ans) =>
-                findMatch(ans.answer),
+                findMatchingMathJax(ans.answer),
               );
             case "short-answer":
               return question.answers?.["short-answer"]?.some((ans) =>
-                findMatch(ans.answer),
+                findMatchingMathJax(ans.answer),
               );
             default:
               return false;

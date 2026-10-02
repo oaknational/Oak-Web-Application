@@ -77,6 +77,22 @@ export const useSaveUnits = (
 
   const { setCurrentToastProps } = useOakNotificationsContext();
 
+  const handleSaveError = (unitSlug: string) => {
+    // Revert the optimistic update if the request fails and show an error toast
+    setLocallySavedUnits((prev) =>
+      prev.filter((unit) => unit !== unitSlug),
+    );
+    setCurrentToastProps(ErrorToastProps);
+    decrementSavedUnitsCount();
+  };
+
+  const handleUnsaveError = (unitSlug: string) => {
+    // Revert the optimistic update if the request fails and show an error toast
+    setLocallySavedUnits((prev) => [...prev, unitSlug]);
+    setCurrentToastProps(ErrorToastProps);
+    incrementSavedUnitsCount();
+  };
+
   const onSave = async (unitSlug: string) => {
     setLocallySavedUnits((prev) => [...prev, unitSlug]);
     setIsSavingUnit(unitSlug);
@@ -84,14 +100,7 @@ export const useSaveUnits = (
     incrementSavedUnitsCount();
     await postEducatorData(
       `/api/educator/saveUnit/${programmeSlug}/${unitSlug}`,
-      () => {
-        // Revert the optimistic update if the request fails and show an error toast
-        setLocallySavedUnits((prev) =>
-          prev.filter((unit) => unit !== unitSlug),
-        );
-        setCurrentToastProps(ErrorToastProps);
-        decrementSavedUnitsCount();
-      },
+      () => handleSaveError(unitSlug),
     );
     setIsSavingUnit(null);
     track.contentSaved({
@@ -117,12 +126,7 @@ export const useSaveUnits = (
     decrementSavedUnitsCount();
     await postEducatorData(
       `/api/educator/unsaveUnit/${programmeSlug}/${unitSlug}`,
-      () => {
-        // Revert the optimistic update if the request fails and show an error toast
-        setLocallySavedUnits((prev) => [...prev, unitSlug]);
-        setCurrentToastProps(ErrorToastProps);
-        incrementSavedUnitsCount();
-      },
+      () => handleUnsaveError(unitSlug),
     );
     setIsSavingUnit(null);
     track.contentUnsaved({
