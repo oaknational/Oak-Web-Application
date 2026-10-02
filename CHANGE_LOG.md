@@ -1,3 +1,17 @@
+# [1.1225.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1224.1...v1.1225.0) (2026-10-02)
+
+
+### Bug Fixes
+
+* add showTags prop to case studies section for feature switch ([6e726b5](https://github.com/oaknational/Oak-Web-Application/commit/6e726b508a2ef68dc6a40ab22460c0dab19fee7a))
+* tests ([9c0bb53](https://github.com/oaknational/Oak-Web-Application/commit/9c0bb530d363e4d5431c1d78ef42f5e57b802898))
+
+
+### Features
+
+* add tag to caase study cards ([c5c3bfb](https://github.com/oaknational/Oak-Web-Application/commit/c5c3bfb2d7d4b015ca243049af78eab4d6ba41e7))
+* remove watch the video link from case study cards ([bab31f0](https://github.com/oaknational/Oak-Web-Application/commit/bab31f0746d148e75d72d4f0d91f65d5cf28bdf9))
+
 ## [1.1224.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1224.0...v1.1224.1) (2026-10-01)
 
 
