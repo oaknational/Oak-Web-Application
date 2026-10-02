@@ -670,7 +670,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                 >
                   <a
                     class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi bFbzWL"
-                    href="/about-us/case-studies/Test-1"
+                    href="/about-us/case-studies/test-2"
                   >
                     <div
                       class="sc-aXZVg gZoCWt"
@@ -685,8 +685,8 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                           decoding="async"
                           loading="lazy"
                           sizes="100vw"
-                          src="http://localhost/_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=3840&q=75"
-                          srcset="/_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=3840&q=75 3840w"
+                          src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
                           style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                         />
                       </span>
@@ -700,12 +700,22 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         <h3
                           class="sc-eldPxv ibGcSM"
                         >
-                          Test 1
+                          TEST_TITLE_2
                         </h3>
                       </div>
                       <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
-                      />
+                        class="sc-aXZVg sc-gEvEer jPvJsJ cuoeZG"
+                      >
+                        <div
+                          class="sc-aXZVg sc-gEvEer caEYbJ crYpLM"
+                        >
+                          <div
+                            class="sc-aXZVg jPvJsJ"
+                          >
+                            primary
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </a>
                 </div>
@@ -714,7 +724,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                 >
                   <a
                     class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi bFbzWL"
-                    href="/about-us/case-studies/Test-2"
+                    href="/about-us/case-studies/test-3"
                   >
                     <div
                       class="sc-aXZVg gZoCWt"
@@ -729,8 +739,8 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                           decoding="async"
                           loading="lazy"
                           sizes="100vw"
-                          src="http://localhost/_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=3840&q=75"
-                          srcset="/_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=3840&q=75 3840w"
+                          src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
                           style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                         />
                       </span>
@@ -744,12 +754,22 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         <h3
                           class="sc-eldPxv ibGcSM"
                         >
-                          Test 2
+                          TEST_TITLE_3
                         </h3>
                       </div>
                       <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
-                      />
+                        class="sc-aXZVg sc-gEvEer jPvJsJ cuoeZG"
+                      >
+                        <div
+                          class="sc-aXZVg sc-gEvEer caEYbJ crYpLM"
+                        >
+                          <div
+                            class="sc-aXZVg jPvJsJ"
+                          >
+                            primary
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </a>
                 </div>
@@ -758,7 +778,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                 >
                   <a
                     class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi bFbzWL"
-                    href="/about-us/case-studies/Test-3"
+                    href="/about-us/case-studies/test-video"
                   >
                     <div
                       class="sc-aXZVg gZoCWt"
@@ -773,8 +793,8 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                           decoding="async"
                           loading="lazy"
                           sizes="100vw"
-                          src="http://localhost/_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=3840&q=75"
-                          srcset="/_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=3840&q=75 3840w"
+                          src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
                           style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                         />
                       </span>
@@ -788,7 +808,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         <h3
                           class="sc-eldPxv ibGcSM"
                         >
-                          Test 3
+                          TEST_TITLE_VIDEO
                         </h3>
                       </div>
                       <div
