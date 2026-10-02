@@ -7,6 +7,8 @@ import {
   OakHeading,
 } from "@oaknational/oak-components";
 
+import { getCaseStudyTagBackground } from "./getCaseStudyTagBackground";
+
 import { CaseStudyCard } from "@/common-lib/cms-types/caseStudy";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
@@ -15,11 +17,13 @@ import { resolveOakHref } from "@/common-lib/urls";
 export type CaseStudiesSectionProps = {
   title: string;
   caseStudies: CaseStudyCard[];
+  showTags?: boolean;
 };
 
 export const CaseStudiesSection = ({
   title,
   caseStudies,
+  showTags = false,
 }: CaseStudiesSectionProps) => {
   return (
     <OakBox $background={"bg-decorative2-subdued"}>
@@ -68,8 +72,16 @@ export const CaseStudiesSection = ({
                     getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? ""
                   }
                   aspectRatio="4/3"
-                  linkText={"Watch the video"}
+                  linkText={
+                    !showTags && caseStudy.video ? "Watch the video" : undefined
+                  }
                   cardWidth={"100%"}
+                  tagName={showTags ? (caseStudy.tag ?? undefined) : undefined}
+                  tagBackground={
+                    showTags
+                      ? getCaseStudyTagBackground(caseStudy.tag)
+                      : undefined
+                  }
                 />
               </OakGridArea>
             ))}

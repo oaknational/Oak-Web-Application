@@ -178,7 +178,7 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
     );
 
     const otherCaseStudiesLinks = getAllByRole("link", {
-      name: /TEST_TITLE_.*Watch the video/,
+      name: /TEST_TITLE_/,
     }).map((link) => link.getAttribute("href"));
 
     expect(container).toMatchSnapshot();
@@ -187,6 +187,7 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
       "/about-us/case-studies/test-3",
       "/about-us/case-studies/test-video",
     ]);
+    expect(otherCaseStudiesLinks).toHaveLength(3);
   });
 
   it("does not render written case studies in other case studies section when feature flag is not enabled", async () => {
@@ -199,7 +200,7 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
     );
 
     const otherCaseStudiesLinks = getAllByRole("link", {
-      name: /TEST_TITLE_.*Watch the video/,
+      name: /TEST_TITLE_/,
     }).map((link) => link.getAttribute("href"));
 
     expect(container).toMatchSnapshot();
