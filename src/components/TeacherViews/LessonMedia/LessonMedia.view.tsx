@@ -490,7 +490,9 @@ export const LessonMedia = (
                   $height={"100%"}
                   $br={"border-solid-m"}
                   data-testid="video-player-wrapper"
-                  ref={videoPlayerWrapper}
+                  ref={(element: HTMLDivElement | null) => {
+                    videoPlayerWrapper.current = element;
+                  }}
                   tabIndex={-1}
                 >
                   {videoPlayer}

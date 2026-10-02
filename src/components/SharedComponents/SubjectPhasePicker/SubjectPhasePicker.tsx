@@ -1641,7 +1641,9 @@ const SubjectPhasePicker = ({
                       $height="100%"
                       $display={["none", "block"]}
                       $zIndex={3}
-                      ref={subjectPickerButtonDesktopContainer}
+                      ref={(element: HTMLDivElement | null) => {
+                        subjectPickerButtonDesktopContainer.current = element;
+                      }}
                     >
                       <OakPrimaryButton
                         iconName="arrow-right"

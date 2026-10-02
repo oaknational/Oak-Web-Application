@@ -253,7 +253,9 @@ export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
         />
       )}
       <MobileAnimatedShell
-        ref={shellRef}
+        ref={(element: HTMLDivElement | null) => {
+          shellRef.current = element;
+        }}
         data-testid="unit-header-nav-footer"
         data-stuck={Boolean(isStuck)}
         $animateIn={isStuck}
