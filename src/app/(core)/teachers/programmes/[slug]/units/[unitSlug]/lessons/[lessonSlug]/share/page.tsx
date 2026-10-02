@@ -10,10 +10,15 @@ import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import type { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import { applyCachePolicy } from "@/node-lib/cache";
+
+// We are using dynamic route segments so we can't enable instant navigation without
+// prefetching all possible routes with generateStaticParams. Longer term we'd want to
+// use Suspense boundaries to enable instant loading with data streaming
+export const instant = false;
 
 type LessonSharePageParams = {
   slug: string;
@@ -21,14 +26,11 @@ type LessonSharePageParams = {
   lessonSlug: string;
 };
 
-export const dynamic = "force-static";
-
 const getCachedLessonShareData = cache(
-  async (
-    programmeSlug: string,
-    unitSlug: string,
-    lessonSlug: string,
-  ): Promise<LessonShareData> => {
+  async (programmeSlug: string, unitSlug: string, lessonSlug: string) => {
+    "use cache";
+    applyCachePolicy();
+
     return curriculumApi2023.lessonShare({
       programmeSlug,
       unitSlug,

@@ -10,9 +10,12 @@ import withPageErrorHandling, {
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForUnit } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
-type LessonsPageParams = { slug: string; unitSlug: string };
+// We are using dynamic route segments so we can't enable instant navigation without
+// prefetching all possible routes with generateStaticParams. Longer term we'd want to
+// use Suspense boundaries to enable instant loading with data streaming
+export const instant = false;
 
-export const dynamic = "force-static";
+type LessonsPageParams = { slug: string; unitSlug: string };
 
 export { generateMetadata } from "./generateMetadata";
 

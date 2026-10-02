@@ -34,7 +34,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 import { BrowseFiltersProvider } from "@/context/BrowseFilters";
 import { redirectProgrammeSlugIfNeeded } from "@/utils/integratedJourney/legacyProgrammeUnitsRedirect";
-import { cacheData, CURRICULUM_API_CACHE_TAG } from "@/node-lib/cache";
+import { applyCachePolicy, CURRICULUM_API_CACHE_TAG } from "@/node-lib/cache";
 import CMSClient from "@/node-lib/cms";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 import { validateServerSearchParams } from "@/utils/validateProgrammePageSearchParams";
@@ -42,6 +42,8 @@ import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnal
 import { getProgrammeStateForProgramme } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 import { getActiveCookieFlags } from "@/hooks/useCookieFlag/getActiveCookieFlags";
 import { getBrowseFilterState } from "@/context/BrowseFilters/utils/getBrowseFilterState";
+
+export const instant = false;
 
 const reportError = errorReporter("programme-page::app");
 
@@ -61,49 +63,41 @@ export type ProgrammeCmsParams = {
   isPreviewModeEnabled: boolean;
 };
 
-const getCachedProgrammeCms = cache(
-  cacheData(
-    async ({
-      nonCurriculum,
-      subjectTitle,
-      phaseSlug,
-      programmePageSlug,
-      isPreviewModeEnabled,
-    }: ProgrammeCmsParams) => {
-      const [curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime] =
-        await Promise.all([
-          nonCurriculum
-            ? null
-            : CMSClient.curriculumOverviewPage({
-                previewMode: isPreviewModeEnabled,
-                subjectTitle,
-                phaseSlug,
-              }),
-          CMSClient.programmePageBySlug(programmePageSlug, {
-            previewMode: isPreviewModeEnabled,
-          }),
-          getMvRefreshTime(),
-        ]);
+async function getCachedProgrammeCms({
+  nonCurriculum,
+  subjectTitle,
+  phaseSlug,
+  programmePageSlug,
+  isPreviewModeEnabled,
+}: ProgrammeCmsParams) {
+  "use cache";
+  applyCachePolicy();
 
-      return {
-        curriculumCMSInfo,
-        subjectPhaseSanityData,
-        mvRefreshTime,
-      };
-    },
-    ["programme-cms"],
-  ),
-);
+  const [curriculumCMSInfo, subjectPhaseSanityData] = await Promise.all([
+    nonCurriculum
+      ? null
+      : CMSClient.curriculumOverviewPage({
+          previewMode: isPreviewModeEnabled,
+          subjectTitle,
+          phaseSlug,
+        }),
+    CMSClient.programmePageBySlug(programmePageSlug, {
+      previewMode: isPreviewModeEnabled,
+    }),
+  ]);
 
-const getCachedImplementationGuides = cache(
-  cacheData(
-    async (opts: { subjectTitle: string; phaseSlug: string }) => {
-      return CMSClient.implementationGuides(opts);
-    },
-    ["programme-implementation-guides"],
-    { tags: [CURRICULUM_API_CACHE_TAG] },
-  ),
-);
+  return { curriculumCMSInfo, subjectPhaseSanityData };
+}
+
+async function getCachedImplementationGuides(opts: {
+  subjectTitle: string;
+  phaseSlug: string;
+}) {
+  "use cache";
+  applyCachePolicy({ tags: [CURRICULUM_API_CACHE_TAG] });
+
+  return CMSClient.implementationGuides(opts);
+}
 
 export async function generateMetadata({
   params,
@@ -273,7 +267,8 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
 
   // None of these depend on each other's results, so run them concurrently instead of as a waterfall
   const [
-    { curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime },
+    { curriculumCMSInfo, subjectPhaseSanityData },
+    mvRefreshTime,
     isImplementationGuidesEnabled,
     implementationGuides,
     fileSizes,
@@ -286,6 +281,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
       programmePageSlug: `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
       isPreviewModeEnabled: isEnabled,
     }),
+    getMvRefreshTime({ withCache: true }),
     isFeatureFlagEnabledServer(
       Object.fromEntries(
         cookieStore.getAll().map(({ name, value }) => [name, value]),

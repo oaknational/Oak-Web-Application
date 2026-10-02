@@ -16,10 +16,15 @@ import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
-import { cacheData } from "@/node-lib/cache";
+import { applyCachePolicy } from "@/node-lib/cache";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+
+// We are using dynamic route segments so we can't enable instant navigation without
+// prefetching all possible routes with generateStaticParams. Longer term we'd want to
+// use Suspense boundaries to enable instant loading with data streaming
+export const instant = false;
 
 type LessonPageParams = {
   slug: string;
@@ -27,19 +32,17 @@ type LessonPageParams = {
   lessonSlug: string;
 };
 
-export const dynamic = "force-static";
-
 const getCachedLessonData = cache(
-  cacheData(
-    async (programmeSlug: string, unitSlug: string, lessonSlug: string) => {
-      return curriculumApi2023.teachersLessonOverview({
-        programmeSlug,
-        unitSlug,
-        lessonSlug,
-      });
-    },
-    ["teachers-lesson-overview"],
-  ),
+  async (programmeSlug: string, unitSlug: string, lessonSlug: string) => {
+    "use cache";
+    applyCachePolicy();
+
+    return curriculumApi2023.teachersLessonOverview({
+      programmeSlug,
+      unitSlug,
+      lessonSlug,
+    });
+  },
 );
 
 export async function generateMetadata(
