@@ -18,7 +18,7 @@ import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.sch
 
 globalThis.fetch = jest.fn().mockResolvedValue({ ok: true });
 
-const onwardContentSelected = jest.fn();
+const lessonAccessed = jest.fn();
 
 jest.mock(
   "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider",
@@ -27,7 +27,7 @@ jest.mock(
       "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider",
     ),
     useTeacherBrowseAnalytics: () => ({
-      onwardContentSelected,
+      lessonAccessed,
     }),
   }),
 );
@@ -138,7 +138,7 @@ describe("DownloadSuccessView", () => {
     );
   });
 
-  it("calls onwardContentSelected when Back to lesson is clicked", async () => {
+  it("calls lessonAccessed when Back to lesson is clicked", async () => {
     const user = userEvent.setup();
     renderDownloadSuccessView();
 
@@ -152,10 +152,12 @@ describe("DownloadSuccessView", () => {
         unitSlug: baseLesson.unitSlug,
       })}`,
     );
-    expect(onwardContentSelected).toHaveBeenCalledTimes(1);
-    expect(onwardContentSelected).toHaveBeenCalledWith({
-      onwardIntent: "view-lesson",
+    expect(lessonAccessed).toHaveBeenCalledTimes(1);
+    expect(lessonAccessed).toHaveBeenCalledWith({
+      componentType: "back_a_step_button",
+      navigationType: "across",
       lessonName: "Transverse waves",
+      lessonReleaseCohort: "2023-2026",
       lessonReleaseDate: "2025-09-29T14:00:00.000Z",
       lessonSlug: "transverse-waves",
     });
