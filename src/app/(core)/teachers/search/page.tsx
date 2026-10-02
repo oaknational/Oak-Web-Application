@@ -1,22 +1,10 @@
-import React, { Suspense } from "react";
+import React, { cache } from "react";
 import { Metadata } from "next";
 
 import { SearchView } from "./SearchView";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-
-function SearchPageFallback() {
-  return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    />
-  );
-}
+import { applyCachePolicy } from "@/node-lib/cache";
 
 export const metadata: Metadata = {
   title: "Search for Free Teaching Resources",
@@ -27,14 +15,17 @@ export const metadata: Metadata = {
   },
 };
 
-async function SearchPage() {
-  const curriculumData = await curriculumApi2023.searchPage();
+const getCachedSearchPage = cache(async () => {
+  "use cache";
+  applyCachePolicy();
 
-  return (
-    <Suspense fallback={<SearchPageFallback />}>
-      <SearchView curriculumData={curriculumData} />
-    </Suspense>
-  );
+  return curriculumApi2023.searchPage();
+});
+
+async function SearchPage() {
+  const curriculumData = await getCachedSearchPage();
+
+  return <SearchView curriculumData={curriculumData} />;
 }
 
 export default SearchPage;
