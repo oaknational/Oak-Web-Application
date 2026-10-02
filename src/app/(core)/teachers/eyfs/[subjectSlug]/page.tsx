@@ -17,7 +17,15 @@ export const metadata: Metadata = {
   },
 };
 
-export const dynamic = "force-static";
+export function generateStaticParams() {
+  return [
+    { subjectSlug: "maths" },
+    { subjectSlug: "literacy" },
+    { subjectSlug: "personal-social-and-emotional-development" },
+    { subjectSlug: "expressive-arts-and-design" },
+    { subjectSlug: "understanding-the-world" },
+  ];
+}
 
 const InnerEyfsPage = async ({
   params,
