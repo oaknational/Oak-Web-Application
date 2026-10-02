@@ -12,7 +12,10 @@ const CodeRenderWrapper = ({ children }: PropsWithChildren) => {
   function hasChildren(
     node: React.ReactNode,
   ): node is ReactElement<{ children?: React.ReactNode }> {
-    return isValidElement(node) && "children" in node.props;
+    return (
+      isValidElement<{ children?: React.ReactNode }>(node) &&
+      "children" in node.props
+    );
   }
   const drillIntoChildren = (node: React.ReactNode): React.ReactNode => {
     if (typeof node === "string") {

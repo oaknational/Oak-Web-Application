@@ -28,6 +28,7 @@ jest.mocked(useRouter).mockReturnValue({
   replace: jest.fn(),
   forward: jest.fn(),
   refresh: jest.fn(),
+  bfcacheId: "test",
 });
 jest.mocked(usePathname).mockReturnValue("/");
 jest

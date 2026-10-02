@@ -46,6 +46,7 @@ describe("usePagination()", () => {
       back: jest.fn(),
       forward: jest.fn(),
       refresh: jest.fn(),
+      bfcacheId: "test",
     });
 
     mockUseCompatRouter.mockReturnValue({
