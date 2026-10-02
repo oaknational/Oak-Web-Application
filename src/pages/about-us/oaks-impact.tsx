@@ -54,6 +54,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
             showViewAllLink={isCaseStudiesFeatEnabled}
             title="Case studies"
             caseStudies={pageData.caseStudiesSection.caseStudies}
+            showTags={false}
           />
           <OaksImpactSchoolQuotesSection {...pageData.schoolQuotes} />
           <TrackScrolledTo eventKey="support_you" />

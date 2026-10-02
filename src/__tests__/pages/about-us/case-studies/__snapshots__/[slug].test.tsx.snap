@@ -7506,29 +7506,16 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                             </div>
                           </div>
                           <div
-                            class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                            class="sc-aXZVg sc-gEvEer jPvJsJ cuoeZG"
                           >
                             <div
-                              class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
+                              class="sc-aXZVg sc-gEvEer caEYbJ crYpLM"
                             >
-                              <span
-                                class="sc-eqUAAy dECBeo"
+                              <div
+                                class="sc-aXZVg jPvJsJ"
                               >
-                                Watch the video
-                              </span>
-                              <span
-                                class="sc-aXZVg jJQFnr"
-                              >
-                                <img
-                                  alt=""
-                                  class="sc-iGgWBj cMzyFO"
-                                  data-nimg="fill"
-                                  decoding="async"
-                                  loading="lazy"
-                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                />
-                              </span>
+                                primary
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -7577,29 +7564,16 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                             </div>
                           </div>
                           <div
-                            class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                            class="sc-aXZVg sc-gEvEer jPvJsJ cuoeZG"
                           >
                             <div
-                              class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
+                              class="sc-aXZVg sc-gEvEer caEYbJ crYpLM"
                             >
-                              <span
-                                class="sc-eqUAAy dECBeo"
+                              <div
+                                class="sc-aXZVg jPvJsJ"
                               >
-                                Watch the video
-                              </span>
-                              <span
-                                class="sc-aXZVg jJQFnr"
-                              >
-                                <img
-                                  alt=""
-                                  class="sc-iGgWBj cMzyFO"
-                                  data-nimg="fill"
-                                  decoding="async"
-                                  loading="lazy"
-                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                />
-                              </span>
+                                primary
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -7649,30 +7623,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                           </div>
                           <div
                             class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
-                          >
-                            <div
-                              class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
-                            >
-                              <span
-                                class="sc-eqUAAy dECBeo"
-                              >
-                                Watch the video
-                              </span>
-                              <span
-                                class="sc-aXZVg jJQFnr"
-                              >
-                                <img
-                                  alt=""
-                                  class="sc-iGgWBj cMzyFO"
-                                  data-nimg="fill"
-                                  decoding="async"
-                                  loading="lazy"
-                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                />
-                              </span>
-                            </div>
-                          </div>
+                          />
                         </div>
                       </a>
                     </div>
