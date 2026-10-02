@@ -1,18 +1,19 @@
-const { defineConfig, globalIgnores } = require("eslint/config");
+const { globalIgnores } = require("eslint/config");
 const globals = require("globals");
 const nextNext = require("@next/eslint-plugin-next");
 const react = require("eslint-plugin-react");
 const reactHooks = require("eslint-plugin-react-hooks");
-const { fixupPluginRules, fixupConfigRules } = require("@eslint/compat");
+const importPlugin = require("eslint-plugin-import");
+const typescriptPlugin = require("@typescript-eslint/eslint-plugin");
+const prettier = require("eslint-config-prettier");
 const js = require("@eslint/js");
-const { FlatCompat } = require("@eslint/eslintrc");
 const browserCompat = require("eslint-plugin-compat");
 
-const flatCompat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
+const typescriptFiles = ["**/*.{ts,tsx}"];
+const typescriptRecommended = typescriptPlugin.configs["flat/recommended"];
+const typescriptConfigs = Array.isArray(typescriptRecommended)
+  ? typescriptRecommended
+  : [typescriptRecommended];
 
 const importRules = {
   "import/first": "error",
@@ -28,7 +29,12 @@ const importRules = {
   ],
 };
 
-module.exports = defineConfig([
+module.exports = [
+  nextNext.configs["core-web-vitals"],
+  js.configs.recommended,
+  importPlugin.flatConfigs.recommended,
+  prettier,
+  browserCompat.configs["flat/recommended"],
   {
     languageOptions: {
       globals: {
@@ -41,19 +47,8 @@ module.exports = defineConfig([
 
     plugins: {
       react,
-      "react-hooks": fixupPluginRules(reactHooks),
-      compat: fixupPluginRules(browserCompat),
+      "react-hooks": reactHooks,
     },
-
-    extends: fixupConfigRules(
-      flatCompat.extends(
-        "eslint:recommended",
-        "plugin:@next/next/core-web-vitals",
-        "plugin:import/recommended",
-        "prettier",
-        "plugin:compat/recommended",
-      ),
-    ),
 
     rules: {
       ...importRules,
@@ -87,23 +82,24 @@ module.exports = defineConfig([
     "src/node-lib/educator-api/generated",
     "!**/.github",
   ]),
+  ...typescriptConfigs.map((config) => ({
+    ...config,
+    files: typescriptFiles,
+  })),
   {
-    files: ["**/*.{ts,tsx}"],
-
-    plugins: {
-      "@next/next": fixupPluginRules(nextNext),
-    },
-
-    extends: fixupConfigRules(
-      flatCompat.extends(
-        "plugin:@next/next/core-web-vitals",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:import/recommended",
-        "plugin:import/typescript",
-        "prettier",
-      ),
-    ),
-
+    ...importPlugin.flatConfigs.recommended,
+    files: typescriptFiles,
+  },
+  {
+    ...importPlugin.flatConfigs.typescript,
+    files: typescriptFiles,
+  },
+  {
+    ...prettier,
+    files: typescriptFiles,
+  },
+  {
+    files: typescriptFiles,
     rules: {
       "@typescript-eslint/no-unused-vars": [
         "error",
@@ -172,4 +168,4 @@ module.exports = defineConfig([
     },
   },
   globalIgnores(["**/temp.js", "config/*"]),
-]);
+];
