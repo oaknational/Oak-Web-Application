@@ -117,6 +117,7 @@ export default async (phase: string): Promise<NextConfig> => {
   }
 
   const nextConfig: NextConfig = {
+    cacheComponents: true,
     headers: async () => [
       {
         // Advertise the RFC 9727 API catalog from the homepage so discovery

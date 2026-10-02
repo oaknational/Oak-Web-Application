@@ -1,5 +1,6 @@
-import { Sdk } from "../../sdk";
+import { type Sdk } from "../../sdk";
 
+import { getCachedTopNavData } from "./cachedTopNav";
 import { getPupilsNavData } from "./getPupilsNavData";
 import { getTeachersNavData } from "./getTeachersNavData";
 import {
@@ -8,7 +9,6 @@ import {
   PupilsSubNavData,
 } from "./topNav.schema";
 
-import { cacheData } from "@/node-lib/cache";
 import errorReporter from "@/common-lib/error-reporter";
 import { resolveOakHref } from "@/common-lib/urls";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
@@ -16,12 +16,10 @@ import OakError from "@/errors/OakError";
 
 const reportError = errorReporter("curriculum-api-2023::topNav");
 
-const topNavQuery = (sdk: Sdk) => {
-  const cachedTopNav = cacheData(sdk.topNav, [
-    "curriculum-api",
-    "top-nav-query",
-  ]);
-
+const topNavQuery = (
+  sdk: Sdk,
+  cachedTopNav: typeof getCachedTopNavData = getCachedTopNavData,
+) => {
   /**
    * @param withCache - whether to cache the query results (only officially supported under app router)
    */

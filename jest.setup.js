@@ -44,7 +44,8 @@ jest.mock("next/cache", () => {
   const actual = jest.requireActual("next/cache");
   return {
     ...actual,
-    unstable_cache: (fn) => fn,
+    cacheLife: jest.fn(),
+    cacheTag: jest.fn(),
   };
 });
 

@@ -9,7 +9,7 @@ import curriculumApi2023, {
   CurriculumUnit,
   CurriculumUnitsTabData,
 } from "@/node-lib/curriculum-api-2023";
-import { cacheData, CURRICULUM_API_CACHE_TAG } from "@/node-lib/cache";
+import { applyCachePolicy, CURRICULUM_API_CACHE_TAG } from "@/node-lib/cache";
 import {
   parseSubjectPhaseSlug,
   type CurriculumSelectionSlugs,
@@ -17,74 +17,73 @@ import {
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { BrowseFilters } from "@/context/BrowseFilters/types";
 import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtering";
-
 const PAGE_KEY = "programme-page-data";
 
-export const getCachedFileSizes = cacheData(
-  getFileSizes,
-  [PAGE_KEY, "file-sizes"],
-  {
-    tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG],
-  },
-);
+export async function getCachedFileSizes(
+  subjectPhaseKeystageSlugs: Parameters<typeof getFileSizes>[0],
+  curriculumDownloadsTabData: Parameters<typeof getFileSizes>[1],
+) {
+  "use cache";
+  applyCachePolicy({ tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG] });
 
-const getCachedCurriculumPhaseOptions = cacheData(
-  async () =>
-    curriculumApi2023.curriculumPhaseOptions({
-      includeNonCurriculum: true,
-    }),
-  [PAGE_KEY, "curriculum-phase-options"],
-  {
-    tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG],
-  },
-);
+  return getFileSizes(subjectPhaseKeystageSlugs, curriculumDownloadsTabData);
+}
 
-const getCachedCurriculumOverview = cacheData(
-  async (subjectSlug: string, phaseSlug: string) =>
-    curriculumApi2023.curriculumOverview({
-      subjectSlug,
-      phaseSlug,
-      includeNonCurriculum: true,
-    }),
-  [PAGE_KEY, "curriculum-overview"],
-  {
-    tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG],
-  },
-);
+async function getCachedCurriculumPhaseOptions() {
+  "use cache";
+  applyCachePolicy({ tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG] });
 
-const getCachedCurriculumSequence = cacheData(
-  async (
-    subjectSlug: string,
-    phaseSlug: string,
-    ks4OptionSlug: string | null,
-    excludeCoreUnits: boolean,
-  ) =>
-    curriculumApi2023.curriculumSequence({
-      subjectSlug,
-      phaseSlug,
-      ks4OptionSlug,
-      includeNonCurriculum: true,
-      excludeUnitsWithNoPublishedLessons: true,
-      excludeCoreUnits,
-    }),
-  [PAGE_KEY, "curriculum-sequence"],
-  {
-    tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG],
-  },
-);
+  return curriculumApi2023.curriculumPhaseOptions({
+    includeNonCurriculum: true,
+  });
+}
 
-const getCachedCurriculumSequenceSlugs = cacheData(
-  async (subjectSlug: string, phaseSlug: string) =>
-    curriculumApi2023.curriculumSequenceSlugs({
-      subjectSlug,
-      phaseSlug,
-      includeNonCurriculum: true,
-    }),
-  [PAGE_KEY, "curriculum-sequence-slugs"],
-  {
-    tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG],
-  },
-);
+async function getCachedCurriculumOverview(
+  subjectSlug: string,
+  phaseSlug: string,
+) {
+  "use cache";
+  applyCachePolicy({ tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG] });
+
+  return curriculumApi2023.curriculumOverview({
+    subjectSlug,
+    phaseSlug,
+    includeNonCurriculum: true,
+  });
+}
+
+async function getCachedCurriculumSequence(
+  subjectSlug: string,
+  phaseSlug: string,
+  ks4OptionSlug: string | null,
+  excludeCoreUnits: boolean,
+) {
+  "use cache";
+  applyCachePolicy({ tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG] });
+
+  return curriculumApi2023.curriculumSequence({
+    subjectSlug,
+    phaseSlug,
+    ks4OptionSlug,
+    includeNonCurriculum: true,
+    excludeUnitsWithNoPublishedLessons: true,
+    excludeCoreUnits,
+  });
+}
+
+async function getCachedCurriculumSequenceSlugs(
+  subjectSlug: string,
+  phaseSlug: string,
+) {
+  "use cache";
+  applyCachePolicy({ tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG] });
+
+  return curriculumApi2023.curriculumSequenceSlugs({
+    subjectSlug,
+    phaseSlug,
+    includeNonCurriculum: true,
+  });
+}
 
 // Helper function to sort units consistently
 const sortUnits = (units: CurriculumUnit[]): CurriculumUnit[] => {

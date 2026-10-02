@@ -12,7 +12,7 @@ import {
 } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import type { NationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
 import CMSClient from "@/node-lib/cms";
-import { cacheData } from "@/node-lib/cache";
+import { applyCachePolicy } from "@/node-lib/cache";
 import getServerConfig from "@/node-lib/getServerConfig";
 
 export type NationalCurriculumInsightsReader = Pick<
@@ -39,34 +39,47 @@ export type NationalCurriculumInsightsRouteData = {
   activeKeyStage: NationalCurriculumInsightsKeyStage | null;
 };
 
-const cacheKeyParts = [
+const cacheScope = [
   "national-curriculum-insights",
   getServerConfig("sanityProjectId"),
   getServerConfig("sanityDataset"),
-];
-const cacheOptions = {
-  revalidate: getServerConfig("sanityRevalidateSeconds"),
-};
+].join(":");
+const cacheRevalidateSeconds = getServerConfig("sanityRevalidateSeconds");
+const cacheTags = ["national-curriculum-insights", cacheScope];
 
-const getPublishedHub = cacheData(
-  () => CMSClient.nationalCurriculumInsightsHub({ previewMode: false }),
-  [...cacheKeyParts, "hub"],
-  cacheOptions,
-);
-const getPublishedGuidancePage = cacheData(
-  () =>
-    CMSClient.nationalCurriculumInsightsGuidancePage({ previewMode: false }),
-  [...cacheKeyParts, "guidance"],
-  cacheOptions,
-);
-const getPublishedSubject = cacheData(
-  (slug: string) =>
-    CMSClient.nationalCurriculumInsightsSubjectBySlug(slug, {
-      previewMode: false,
-    }),
-  [...cacheKeyParts, "subject"],
-  cacheOptions,
-);
+async function getPublishedHub() {
+  "use cache";
+  applyCachePolicy({
+    revalidate: cacheRevalidateSeconds,
+    tags: cacheTags,
+  });
+
+  return CMSClient.nationalCurriculumInsightsHub({ previewMode: false });
+}
+
+async function getPublishedGuidancePage() {
+  "use cache";
+  applyCachePolicy({
+    revalidate: cacheRevalidateSeconds,
+    tags: cacheTags,
+  });
+
+  return CMSClient.nationalCurriculumInsightsGuidancePage({
+    previewMode: false,
+  });
+}
+
+async function getPublishedSubject(slug: string) {
+  "use cache";
+  applyCachePolicy({
+    revalidate: cacheRevalidateSeconds,
+    tags: cacheTags,
+  });
+
+  return CMSClient.nationalCurriculumInsightsSubjectBySlug(slug, {
+    previewMode: false,
+  });
+}
 
 // Draft reads are deduplicated within a render, but never cached across requests.
 const getHub = cache((previewMode: boolean) =>

@@ -9,13 +9,14 @@ import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnal
 
 // TD: [integrated journey] get revalidate from env somehow
 // revalidate in layout controls revalidation of child pages in route
-export const revalidate = 7200;
+// See: https://nextjs.org/docs/app/guides/migrating-to-cache-components
 
 export default async function CoreLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  cacheLife({ revalidate: 7200 });
   try {
     const topNavProps = await curriculumApi2023.topNav({ withCache: true });
 

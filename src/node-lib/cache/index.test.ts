@@ -1,37 +1,34 @@
 /**
  * @jest-environment node
  */
-import { unstable_cache } from "next/cache";
+import { cacheLife, cacheTag } from "next/cache";
 
-import { cacheData } from ".";
+import { applyCachePolicy } from ".";
 
 jest.mock("next/cache", () => ({
-  unstable_cache: jest.fn(),
+  cacheLife: jest.fn(),
+  cacheTag: jest.fn(),
 }));
 
-const mockUnstableCache = jest.mocked(unstable_cache);
+const mockCacheLife = jest.mocked(cacheLife);
+const mockCacheTag = jest.mocked(cacheTag);
 
-describe("cacheData", () => {
+describe("applyCachePolicy", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it("applies default revalidate of 7200 when options are omitted", () => {
-    const fn = async () => "result";
-    cacheData(fn, ["test-key"]);
+  it("applies the default revalidation period", () => {
+    applyCachePolicy();
 
-    expect(mockUnstableCache).toHaveBeenCalledWith(fn, ["test-key"], {
-      revalidate: 7200,
-    });
+    expect(mockCacheLife).toHaveBeenCalledWith({ revalidate: 7200 });
+    expect(mockCacheTag).not.toHaveBeenCalled();
   });
 
-  it("allows overriding revalidate", () => {
-    const fn = async () => "result";
-    cacheData(fn, ["test-key"], { revalidate: 60, tags: ["cms"] });
+  it("applies custom revalidation and tags", () => {
+    applyCachePolicy({ revalidate: 60, tags: ["programme", "curriculum"] });
 
-    expect(mockUnstableCache).toHaveBeenCalledWith(fn, ["test-key"], {
-      revalidate: 60,
-      tags: ["cms"],
-    });
+    expect(mockCacheLife).toHaveBeenCalledWith({ revalidate: 60 });
+    expect(mockCacheTag).toHaveBeenCalledWith("programme", "curriculum");
   });
 });

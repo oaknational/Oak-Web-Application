@@ -2,29 +2,27 @@ import { cache } from "react";
 import { permanentRedirect } from "next/navigation";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { cacheData } from "@/node-lib/cache";
+import { applyCachePolicy } from "@/node-lib/cache";
 import { resolveOakHref } from "@/common-lib/urls";
 
 export const getCachedUnitData = cache(
-  cacheData(
-    async (programmeSlug: string, unitSlug: string) => {
-      return curriculumApi2023.teachersUnitOverview({
-        programmeSlug,
-        unitSlug,
-      });
-    },
-    ["teachers-unit-overview"],
-  ),
+  async (programmeSlug: string, unitSlug: string) => {
+    "use cache";
+    applyCachePolicy();
+
+    return curriculumApi2023.teachersUnitOverview({
+      programmeSlug,
+      unitSlug,
+    });
+  },
 );
 
-export const getCachedProgrammesForUnit = cache(
-  cacheData(
-    async (unitSlug: string) => {
-      return curriculumApi2023.teachersUnitProgramme({ unitSlug });
-    },
-    ["teachers-unit-programme"],
-  ),
-);
+export const getCachedProgrammesForUnit = cache(async (unitSlug: string) => {
+  "use cache";
+  applyCachePolicy();
+
+  return curriculumApi2023.teachersUnitProgramme({ unitSlug });
+});
 
 // Validate the programme slug against valid programmes for the given unit
 // If no match exists, return the first valid programme for the unit

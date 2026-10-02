@@ -9,11 +9,11 @@ import {
 import { parseNationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
 import type { NationalCurriculumInsightsModule } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import CMSClient from "@/node-lib/cms";
-import { cacheData } from "@/node-lib/cache";
+import { applyCachePolicy } from "@/node-lib/cache";
 import getServerConfig from "@/node-lib/getServerConfig";
 
 jest.mock("@/node-lib/cache", () => ({
-  cacheData: jest.fn((fn) => jest.fn(fn)),
+  applyCachePolicy: jest.fn(),
 }));
 
 jest.mock("@/node-lib/cms", () => ({
@@ -365,42 +365,32 @@ describe("getNationalCurriculumInsightsRouteData", () => {
 });
 
 describe("getNationalCurriculumInsightsReader", () => {
-  const cachedReaders = jest
-    .mocked(cacheData)
-    .mock.results.map(({ value }) => value);
-
-  it("scopes published caches by page, project and dataset with the CMS refresh interval", () => {
-    for (const page of ["hub", "guidance", "subject"]) {
-      expect(cacheData).toHaveBeenCalledWith(
-        expect.any(Function),
-        [
-          "national-curriculum-insights",
-          getServerConfig("sanityProjectId"),
-          getServerConfig("sanityDataset"),
-          page,
-        ],
-        { revalidate: getServerConfig("sanityRevalidateSeconds") },
-      );
-    }
+  beforeEach(() => {
+    jest.clearAllMocks();
   });
 
-  it("uses persistent caches for published reads and keys subjects by slug", async () => {
-    cachedReaders.forEach((cachedReader) => cachedReader.mockClear());
+  it("applies the configured persistent cache policy to published reads", async () => {
     const reader = getNationalCurriculumInsightsReader();
 
     await reader.nationalCurriculumInsightsHub();
     await reader.nationalCurriculumInsightsGuidancePage();
     await reader.nationalCurriculumInsightsSubjectBySlug("science");
-    await reader.nationalCurriculumInsightsSubjectBySlug("maths");
 
-    expect(cachedReaders[0]).toHaveBeenCalledTimes(1);
-    expect(cachedReaders[1]).toHaveBeenCalledTimes(1);
-    expect(cachedReaders[2]).toHaveBeenNthCalledWith(1, "science");
-    expect(cachedReaders[2]).toHaveBeenNthCalledWith(2, "maths");
+    expect(applyCachePolicy).toHaveBeenCalledTimes(3);
+    expect(applyCachePolicy).toHaveBeenCalledWith({
+      revalidate: getServerConfig("sanityRevalidateSeconds"),
+      tags: [
+        "national-curriculum-insights",
+        [
+          "national-curriculum-insights",
+          getServerConfig("sanityProjectId"),
+          getServerConfig("sanityDataset"),
+        ].join(":"),
+      ],
+    });
   });
 
   it("bypasses every persistent cache for draft reads", async () => {
-    cachedReaders.forEach((cachedReader) => cachedReader.mockClear());
     const reader = getNationalCurriculumInsightsReader();
 
     await reader.nationalCurriculumInsightsHub({ previewMode: true });
@@ -409,9 +399,7 @@ describe("getNationalCurriculumInsightsReader", () => {
       previewMode: true,
     });
 
-    cachedReaders.forEach((cachedReader) =>
-      expect(cachedReader).not.toHaveBeenCalled(),
-    );
+    expect(applyCachePolicy).not.toHaveBeenCalled();
     expect(CMSClient.nationalCurriculumInsightsHub).toHaveBeenLastCalledWith({
       previewMode: true,
     });

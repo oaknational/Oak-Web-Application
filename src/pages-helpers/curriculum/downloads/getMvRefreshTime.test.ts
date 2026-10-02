@@ -1,3 +1,5 @@
+import { connection } from "next/server";
+
 import { getMvRefreshTime } from "./getMvRefreshTime";
 
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/curriculumApi2023Mock";
@@ -5,6 +7,12 @@ const mockErrorReporter = jest.fn();
 jest.mock("@/common-lib/error-reporter", () =>
   jest.fn(() => mockErrorReporter),
 );
+jest.mock("@/node-lib/cache", () => ({
+  applyCachePolicy: jest.fn(),
+}));
+jest.mock("next/server", () => ({
+  connection: jest.fn(),
+}));
 
 describe("getMvRefreshTime", () => {
   it("should query the api", async () => {
@@ -17,6 +25,7 @@ describe("getMvRefreshTime", () => {
       curriculumApi2023.default.refreshedMVTime as jest.Mock
     ).mockResolvedValueOnce([]);
     await getMvRefreshTime();
+    expect(connection).toHaveBeenCalled();
     expect(mockErrorReporter).toHaveBeenCalledWith(
       "Could not find MV refresh time for curriculum downloads cache",
     );
