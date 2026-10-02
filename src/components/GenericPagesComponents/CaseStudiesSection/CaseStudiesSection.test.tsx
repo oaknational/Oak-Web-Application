@@ -86,4 +86,31 @@ describe("CaseStudiesSection", () => {
 
     expect(getAllByText("primary")).toHaveLength(3);
   });
+
+  it("doesn't render view all link when not enabled", () => {
+    const { queryByRole } = render(
+      <CaseStudiesSection
+        title={"Case studies"}
+        caseStudies={caseStudiesSectionFixture}
+      />,
+    );
+
+    expect(
+      queryByRole("link", { name: /View all case studies/i }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("renders view all link when enabled", () => {
+    const { getByRole } = render(
+      <CaseStudiesSection
+        title={"Case studies"}
+        caseStudies={caseStudiesSectionFixture}
+        showViewAllLink={true}
+      />,
+    );
+
+    expect(
+      getByRole("link", { name: /View all case studies/i }),
+    ).toBeInTheDocument();
+  });
 });

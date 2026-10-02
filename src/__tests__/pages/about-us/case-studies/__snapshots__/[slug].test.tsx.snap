@@ -957,11 +957,19 @@ exports[`pages/about-us/case-studies/[slug].tsx does not render written case stu
                   <div
                     class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi bdQReA"
                   >
-                    <h2
-                      class="sc-eldPxv dGkyUI"
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ bIrEfD"
                     >
-                      Explore more case studies
-                    </h2>
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ fXHtRp"
+                      >
+                        <h2
+                          class="sc-eldPxv dGkyUI"
+                        >
+                          Explore more case studies
+                        </h2>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <ul
@@ -3030,11 +3038,19 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
                   <div
                     class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi bdQReA"
                   >
-                    <h2
-                      class="sc-eldPxv dGkyUI"
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ bIrEfD"
                     >
-                      Explore more case studies
-                    </h2>
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ fXHtRp"
+                      >
+                        <h2
+                          class="sc-eldPxv dGkyUI"
+                        >
+                          Explore more case studies
+                        </h2>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <ul
@@ -5226,11 +5242,19 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                   <div
                     class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi bdQReA"
                   >
-                    <h2
-                      class="sc-eldPxv dGkyUI"
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ bIrEfD"
                     >
-                      Explore more case studies
-                    </h2>
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ fXHtRp"
+                      >
+                        <h2
+                          class="sc-eldPxv dGkyUI"
+                        >
+                          Explore more case studies
+                        </h2>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <ul
@@ -7422,11 +7446,19 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                   <div
                     class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi bdQReA"
                   >
-                    <h2
-                      class="sc-eldPxv dGkyUI"
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ bIrEfD"
                     >
-                      Explore more case studies
-                    </h2>
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ fXHtRp"
+                      >
+                        <h2
+                          class="sc-eldPxv dGkyUI"
+                        >
+                          Explore more case studies
+                        </h2>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <ul

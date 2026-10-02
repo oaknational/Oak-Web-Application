@@ -825,11 +825,19 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                   <div
                     class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi bdQReA"
                   >
-                    <h2
-                      class="sc-eldPxv dGkyUI"
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ bIrEfD"
                     >
-                      Case studies
-                    </h2>
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ fXHtRp"
+                      >
+                        <h2
+                          class="sc-eldPxv dGkyUI"
+                        >
+                          Case studies
+                        </h2>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <ul
