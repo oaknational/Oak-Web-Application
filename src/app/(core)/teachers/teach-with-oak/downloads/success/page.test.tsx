@@ -18,9 +18,7 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
 }));
 
 jest.mock("@/node-lib/cache", () => ({
-  cacheData: <Args extends unknown[], Result>(
-    fn: (...args: Args) => Promise<Result>,
-  ) => fn,
+  applyCachePolicy: jest.fn(),
 }));
 
 const mockSearchParams = jest.fn(() => new URLSearchParams());

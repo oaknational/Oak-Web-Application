@@ -10,7 +10,10 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getTeachWithOakDownloadFileExistence } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
-import { cacheData } from "@/node-lib/cache";
+import { applyCachePolicy } from "@/node-lib/cache";
+
+// We use search params on the page so instant nav is not supported
+export const instant = false;
 
 export const metadata: Metadata = {
   title: "",
@@ -21,11 +24,12 @@ export const metadata: Metadata = {
   },
 };
 
-const cachedFileExistence = cache(
-  cacheData(async () => {
-    return getTeachWithOakDownloadFileExistence();
-  }, ["teach-with-oak"]),
-);
+const cachedFileExistence = cache(async () => {
+  "use cache";
+  applyCachePolicy();
+
+  return getTeachWithOakDownloadFileExistence();
+});
 
 const InnerTeachWithOakDownloadPage = async ({
   searchParams,

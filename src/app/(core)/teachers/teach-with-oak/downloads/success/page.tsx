@@ -9,9 +9,12 @@ import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { cacheData } from "@/node-lib/cache";
+import { applyCachePolicy } from "@/node-lib/cache";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+
+// We use search params on the page so instant nav is not supported
+export const instant = false;
 
 export const metadata: Metadata = {
   title: "",
@@ -22,12 +25,12 @@ export const metadata: Metadata = {
   },
 };
 
-const cachedCurriculumPhaseOptions = cache(
-  cacheData(
-    async () => curriculumApi2023.curriculumPhaseOptions(),
-    ["teach-with-oak-download-success", "curriculum-phase-options"],
-  ),
-);
+const cachedCurriculumPhaseOptions = cache(async () => {
+  "use cache";
+  applyCachePolicy();
+
+  return curriculumApi2023.curriculumPhaseOptions();
+});
 
 const InnerTeachWithOakDownloadSuccessPage = async ({
   searchParams,
