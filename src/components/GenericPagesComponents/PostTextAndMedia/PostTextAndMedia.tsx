@@ -7,6 +7,7 @@ import {
   OakTertiaryButton,
 } from "@oaknational/oak-components";
 
+import type { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import { PortableTextJSON, TextAndMedia } from "@/common-lib/cms-types";
 import { OmitKeepDiscriminated } from "@/utils/generics";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
@@ -24,7 +25,9 @@ type TextAndMediaBlock = OmitKeepDiscriminated<
 };
 
 const PostTextAndMedia = (
-  props: PortableTextComponentProps<TextAndMediaBlock>,
+  props: PortableTextComponentProps<TextAndMediaBlock> & {
+    location?: VideoLocationValueType;
+  },
 ) => {
   if (!props.value) {
     return null;
@@ -68,7 +71,7 @@ const PostTextAndMedia = (
           <VideoPlayer
             title={params.video.title}
             playbackId={params.video.video.asset.playbackId}
-            location="blog"
+            location={props.location ?? "blog"}
             playbackPolicy="public"
           />
         </OakBox>

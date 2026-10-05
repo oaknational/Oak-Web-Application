@@ -1,10 +1,15 @@
 import { PortableTextComponentProps } from "@portabletext/react";
 import { OakBox, OakVideo } from "@oaknational/oak-components";
 
+import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import { Video } from "@/common-lib/cms-types";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
-const PostVideo = (props: PortableTextComponentProps<Video>) => {
+const PostVideo = (
+  props: PortableTextComponentProps<Video> & {
+    location?: VideoLocationValueType;
+  },
+) => {
   if (!props.value) {
     return null;
   }
@@ -18,7 +23,7 @@ const PostVideo = (props: PortableTextComponentProps<Video>) => {
             playbackId={props.value.video.asset.playbackId}
             thumbnailTime={props.value.video.asset.thumbTime}
             title={props.value.title}
-            location="blog"
+            location={props.location ?? "blog"}
             omitBorder={true}
           />
         }

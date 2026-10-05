@@ -199,6 +199,7 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                           </OakFlex>
                           <PostPortableText
                             portableText={contentBlock.contentRaw ?? []}
+                            location="marketing"
                           />
                         </OakFlex>
                       ))}
