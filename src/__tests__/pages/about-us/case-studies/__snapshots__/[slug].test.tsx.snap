@@ -2970,11 +2970,12 @@ exports[`pages/about-us/case-studies/[slug].tsx renders written case study 1`] =
                     class="sc-aXZVg eYGSNf"
                   >
                     <nav
-                      aria-label="page sections"
+                      aria-labelledby="case-study-contents"
                       class="sc-aXZVg hNpiyt"
                     >
                       <p
                         class="sc-ikkxIA brWfcL"
+                        id="case-study-contents"
                       >
                         Contents
                       </p>
@@ -3249,7 +3250,6 @@ exports[`pages/about-us/case-studies/[slug].tsx renders written case study 1`] =
                             TEST_LABEL_1
                           </div>
                         </div>
-                         
                         <div
                           class="sc-eldPxv hOapSF"
                         >
@@ -3278,7 +3278,6 @@ exports[`pages/about-us/case-studies/[slug].tsx renders written case study 1`] =
                             TEST_LABEL_2
                           </div>
                         </div>
-                         
                         <div
                           class="sc-eldPxv hOapSF"
                         >

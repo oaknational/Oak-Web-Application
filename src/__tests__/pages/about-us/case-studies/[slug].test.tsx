@@ -253,7 +253,7 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
       />,
     );
 
-    const nav = getByLabelText("page sections");
+    const nav = getByLabelText("Contents");
     const navLinks = within(nav).getAllByRole("link");
 
     expect(nav).toBeVisible();
@@ -281,7 +281,7 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
         topNav={topNavFixture}
       />,
     );
-    expect(queryByLabelText("page sections")).toBeNull();
+    expect(queryByLabelText("Contents")).toBeNull();
   });
 
   it("does not render a sidebar nav when the feature flag is disabled", () => {
@@ -292,7 +292,7 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
         topNav={topNavFixture}
       />,
     );
-    expect(queryByLabelText("page sections")).toBeNull();
+    expect(queryByLabelText("Contents")).toBeNull();
   });
 
   describe("getServerSideProps", () => {

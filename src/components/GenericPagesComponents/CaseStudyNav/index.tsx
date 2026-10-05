@@ -22,7 +22,7 @@ export function CaseStudyNav({
   return (
     <OakBox
       as="nav"
-      aria-label="page sections"
+      aria-labelledby="case-study-contents"
       $position={["static", "sticky", "sticky"]}
       $top="spacing-20"
       $pb={["spacing-56", "spacing-0", "spacing-0"]}
@@ -31,6 +31,7 @@ export function CaseStudyNav({
         $font={["body-2-bold", "body-2", "body-2"]}
         $color={["text-primary", "text-subdued", "text-subdued"]}
         $mb="spacing-16"
+        id="case-study-contents"
       >
         Contents
       </OakP>
