@@ -60,6 +60,14 @@ const CheckboxStack = styled(OakFlex)`
   }
 `;
 
+const DropdownPanel = styled(OakBox)<{ $dropdownDirection: "down" | "up" }>`
+  max-height: min(${parseSpacing("spacing-960")}, 70vh);
+  ${({ $dropdownDirection }) =>
+    $dropdownDirection === "down"
+      ? `top: calc(100% + ${parseSpacing("spacing-4")});`
+      : `bottom: calc(100% + ${parseSpacing("spacing-4")});`}
+`;
+
 // The tag's 14px regular type has no exact Oak font token.
 const ChipButton = styled(OakFlex)`
   font: inherit;
@@ -95,11 +103,6 @@ const triggerSizeProps = {
   standard: { pv: "spacing-12" },
   large: { pv: "spacing-16" },
 } as const;
-
-const dropdownPositionProps = {
-  down: { $top: `calc(100% + ${parseSpacing("spacing-4")})` },
-  up: { $bottom: `calc(100% + ${parseSpacing("spacing-4")})` },
-};
 
 export const MultiSelect = ({
   disabled = false,
@@ -308,26 +311,25 @@ export const MultiSelect = ({
             {placeholder}
           </OakSecondaryButton>
           {isOpen ? (
-            <OakBox
+            <DropdownPanel
               $position="absolute"
               $right="spacing-0"
               $left="spacing-0"
+              $dropdownDirection={dropdownDirection}
               $zIndex={20}
               $boxSizing="border-box"
-              $maxHeight={`min(${parseSpacing("spacing-960")}, 70vh)`}
               $overflowY="auto"
               $ba="border-solid-xl"
               $borderColor="border-primary"
               $borderRadius="border-radius-s"
               $background="bg-primary"
               $pa="spacing-12"
-              {...dropdownPositionProps[dropdownDirection]}
               id={panelId}
               aria-label={placeholder}
               data-testid={dataTestId ? `${dataTestId}-panel` : undefined}
             >
               {renderOptions()}
-            </OakBox>
+            </DropdownPanel>
           ) : null}
         </OakBox>
         {selectedGroups.length > 0 ? (

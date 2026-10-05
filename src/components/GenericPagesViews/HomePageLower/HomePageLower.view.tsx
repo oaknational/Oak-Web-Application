@@ -132,7 +132,7 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
               <OakGridArea
                 $colSpan={[12, 12, 4]}
                 $alignSelf="start"
-                $height={["auto", "auto", "730px"]}
+                $height={["auto", "auto", "spacing-800"]}
               >
                 <Testimonials testimonials={props.testimonials} />
               </OakGridArea>

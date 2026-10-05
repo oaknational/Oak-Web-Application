@@ -29,7 +29,12 @@ type NewsletterFormWrapProps = {
 } & Pick<NewsletterFormProps, "onSubmit">;
 
 const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
-  const { containerProps, anchorTargetId, desktopColSpan = 12 } = props;
+  const {
+    containerProps,
+    anchorTargetId,
+    desktopColSpan = 12,
+    ...restProps
+  } = props;
 
   const id = useId();
   const descriptionId = `${id}-newsletter-form-description`;
@@ -70,7 +75,11 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
           </OakP>
         </OakGridArea>
         <OakGridArea $colSpan={[12, desktopColSpan]} $mt={"spacing-12"}>
-          <NewsletterForm descriptionId={descriptionId} id={id} {...props} />
+          <NewsletterForm
+            descriptionId={descriptionId}
+            id={id}
+            {...restProps}
+          />
         </OakGridArea>
       </OakGrid>
     </Card>

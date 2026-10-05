@@ -5,6 +5,7 @@ import {
   OakJauntyAngleLabel,
   OakTextInput,
   OakUiRoleToken,
+  parseSpacing,
 } from "@oaknational/oak-components";
 import { useState } from "react";
 
@@ -79,8 +80,8 @@ export const OakInputWithLabel = ({
           $background={getFormLabelBackground(error, hasFocus, labelBackground)}
           $zIndex="in-front"
           $position="absolute"
-          $top={"-20px"}
-          $left={"5px"}
+          $left={"spacing-4"}
+          style={{ top: `-${parseSpacing("spacing-20")}` }}
           $borderRadius="border-radius-square"
           data-testid="jaunty-label"
         />

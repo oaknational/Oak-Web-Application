@@ -129,7 +129,7 @@ export const NationalCurriculumInsightsVideoCards = ({
           $gap="spacing-40"
         >
           {section.illustration?.asset?.url ? (
-            <OakBox
+            <OakFlex
               $display={["none", "none", "block"]}
               $width="spacing-240"
               $flexShrink={0}
@@ -143,7 +143,7 @@ export const NationalCurriculumInsightsVideoCards = ({
                 $height="100%"
                 $objectFit="contain"
               />
-            </OakBox>
+            </OakFlex>
           ) : null}
           <OakFlex
             $minWidth="spacing-0"
