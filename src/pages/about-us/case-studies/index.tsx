@@ -1,3 +1,4 @@
+import { capitalize } from "lodash";
 import { NextPage, GetServerSideProps } from "next";
 import {
   OakImage,
@@ -38,7 +39,7 @@ export const AboutUsCaseStudyLibrary: NextPage<
       slug: caseStudy.slug.current,
     }),
     imageSrc: getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? "",
-    tagName: caseStudy.tag ?? undefined,
+    tagName: capitalize(caseStudy.tag ?? undefined),
     tagBackground: getCaseStudyTagBackground(caseStudy.tag),
   }));
 

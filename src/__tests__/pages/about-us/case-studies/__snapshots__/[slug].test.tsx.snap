@@ -7432,7 +7432,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                               <div
                                 class="sc-bdvwhi hPWTKU"
                               >
-                                primary
+                                Primary
                               </div>
                             </div>
                           </div>
@@ -7490,7 +7490,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                               <div
                                 class="sc-bdvwhi hPWTKU"
                               >
-                                primary
+                                Primary
                               </div>
                             </div>
                           </div>
