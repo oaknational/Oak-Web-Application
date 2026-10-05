@@ -17,9 +17,7 @@ describe("CaseStudiesSection", () => {
 
     expect(baseElement).toMatchSnapshot();
     expect(getByRole("heading", { name: "Case studies" })).toBeInTheDocument();
-    expect(
-      getAllByRole("link", { name: /case study [1-3].*watch the video/i }),
-    ).toHaveLength(3);
+    expect(getAllByRole("listitem")).toHaveLength(3);
   });
 
   it("renders correctly when 2 case studies are provided", () => {
@@ -32,9 +30,7 @@ describe("CaseStudiesSection", () => {
 
     expect(baseElement).toMatchSnapshot();
     expect(getByRole("heading", { name: "Case studies" })).toBeInTheDocument();
-    expect(
-      getAllByRole("link", { name: /case study [1-2].*watch the video/i }),
-    ).toHaveLength(2);
+    expect(getAllByRole("listitem")).toHaveLength(2);
   });
 
   it("renders only the first 3 case studies when more are provided", () => {
@@ -57,16 +53,64 @@ describe("CaseStudiesSection", () => {
       },
     ];
 
-    const { getAllByRole, queryByRole } = render(
+    const { getAllByRole } = render(
       <CaseStudiesSection
         title={"Case studies"}
         caseStudies={caseStudiesWithFourth}
       />,
     );
 
-    expect(getAllByRole("link", { name: /watch the video/i })).toHaveLength(3);
+    expect(getAllByRole("listitem")).toHaveLength(3);
+  });
+
+  it("renders 'Watch the video' link when the case study contains a video and showTags is false", () => {
+    const { getAllByText } = render(
+      <CaseStudiesSection
+        title={"Case studies"}
+        caseStudies={caseStudiesSectionFixture}
+        showTags={false}
+      />,
+    );
+
+    expect(getAllByText("Watch the video")).toHaveLength(3);
+  });
+
+  it("renders the card tags when showTags is true", () => {
+    const { getAllByText } = render(
+      <CaseStudiesSection
+        title={"Case studies"}
+        caseStudies={caseStudiesSectionFixture}
+        showTags={true}
+      />,
+    );
+
+    expect(getAllByText("primary")).toHaveLength(3);
+  });
+
+  it("doesn't render view all link when not enabled", () => {
+    const { queryByRole } = render(
+      <CaseStudiesSection
+        title={"Case studies"}
+        caseStudies={caseStudiesSectionFixture}
+      />,
+    );
+
     expect(
-      queryByRole("link", { name: /case study 4 watch the video/i }),
+      queryByRole("link", { name: /View all case studies/i }),
     ).not.toBeInTheDocument();
+  });
+
+  it("renders view all link when enabled", () => {
+    const { getByRole } = render(
+      <CaseStudiesSection
+        title={"Case studies"}
+        caseStudies={caseStudiesSectionFixture}
+        showViewAllLink={true}
+      />,
+    );
+
+    expect(
+      getByRole("link", { name: /View all case studies/i }),
+    ).toBeInTheDocument();
   });
 });
