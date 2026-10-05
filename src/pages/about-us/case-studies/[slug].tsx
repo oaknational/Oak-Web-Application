@@ -12,8 +12,10 @@ import {
   OakBreadcrumb,
   OakSpan,
   OakTagFunctional,
+  OakHeading,
 } from "@oaknational/oak-components";
 import { format } from "date-fns";
+import { PortableTextComponent } from "@portabletext/react";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { OaksImpactCaseStudyPage } from "@/common-lib/cms-types/aboutPages";
@@ -88,6 +90,27 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
         },
     { text: title },
   ];
+
+  const caseStudyPortableTextBlockOverrides: Record<
+    string,
+    PortableTextComponent<"block">
+  > = {
+    heading1: (props) => (
+      <OakHeading tag="h3" $font="heading-5" $mt={["spacing-32", "spacing-40"]}>
+        {props.children}
+      </OakHeading>
+    ),
+    heading2: (props) => (
+      <OakHeading tag="h4" $font="heading-6" $mt={["spacing-32", "spacing-40"]}>
+        {props.children}
+      </OakHeading>
+    ),
+    heading3: (props) => (
+      <OakHeading tag="h5" $font="heading-7" $mt={["spacing-32", "spacing-40"]}>
+        {props.children}
+      </OakHeading>
+    ),
+  };
 
   return (
     <TeacherBrowseAnalyticsStoreProvider
@@ -203,6 +226,7 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                           <PostPortableText
                             portableText={contentBlock.contentRaw ?? []}
                             location="marketing"
+                            blockOverrides={caseStudyPortableTextBlockOverrides}
                           />
                         </OakFlex>
                       ))}

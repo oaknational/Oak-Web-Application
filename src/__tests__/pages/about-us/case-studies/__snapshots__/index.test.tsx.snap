@@ -666,7 +666,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                 class="sc-bdvwhi sc-gsDMPd jRsqVQ cNirtN"
               >
                 <div
-                  class="sc-bdvwhi sc-bXTeWK ccVrhi bnMUc"
+                  class="sc-bdvwhi sc-bXTeWK ldqnbP jIhKcl"
                 >
                   <a
                     class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR kemcJO"
@@ -712,7 +712,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                           <div
                             class="sc-bdvwhi hPWTKU"
                           >
-                            primary
+                            Primary
                           </div>
                         </div>
                       </div>
@@ -720,7 +720,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                   </a>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-bXTeWK ccVrhi bnMUc"
+                  class="sc-bdvwhi sc-bXTeWK ldqnbP jIhKcl"
                 >
                   <a
                     class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR kemcJO"
@@ -766,7 +766,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                           <div
                             class="sc-bdvwhi hPWTKU"
                           >
-                            primary
+                            Primary
                           </div>
                         </div>
                       </div>
@@ -774,7 +774,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                   </a>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-bXTeWK ccVrhi bnMUc"
+                  class="sc-bdvwhi sc-bXTeWK ldqnbP jIhKcl"
                 >
                   <a
                     class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR kemcJO"
