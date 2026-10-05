@@ -1,7 +1,7 @@
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 import { mockPortableTextBlocks } from "@/fixtures/curriculum/programmeSequenceYearData.fixtures";
 
-function caseStudyFixture(number: number) {
+export function caseStudyFixture(number: number) {
   return {
     title: `TEST_TITLE_${number}`,
     tag: "primary",

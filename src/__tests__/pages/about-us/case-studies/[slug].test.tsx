@@ -2,6 +2,7 @@ import { GetServerSidePropsContext } from "next/dist/types";
 
 import {
   caseStudy,
+  caseStudyFixture,
   otherCaseStudies,
   videoCaseStudy,
 } from "@/__tests__/pages/about-us/case-studies/case-studies.fixtures";
@@ -91,7 +92,7 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
   });
 
   it("renders the other case studies", async () => {
-    const { container, getAllByRole } = renderWithProviders()(
+    const { container, getAllByRole, queryByRole } = renderWithProviders()(
       <AboutUsCaseStudy
         isCaseStudiesFeatEnabled={true}
         pageData={{ caseStudy, otherCaseStudies }}
@@ -110,6 +111,37 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
       "/about-us/case-studies/test-video",
     ]);
     expect(otherCaseStudiesLinks).toHaveLength(3);
+    expect(
+      queryByRole("link", { name: "View all case studies" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("shows 'View all case studies' when more than three other case studies exist", async () => {
+    const { container, getAllByRole, getByRole } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={true}
+        pageData={{
+          caseStudy,
+          otherCaseStudies: [...otherCaseStudies, caseStudyFixture(4)],
+        }}
+        topNav={topNavFixture}
+      />,
+    );
+
+    const otherCaseStudiesLinks = getAllByRole("link", {
+      name: /TEST_TITLE_/,
+    }).map((link) => link.getAttribute("href"));
+
+    expect(container).toMatchSnapshot();
+    expect(otherCaseStudiesLinks).toEqual([
+      "/about-us/case-studies/test-2",
+      "/about-us/case-studies/test-3",
+      "/about-us/case-studies/test-video",
+    ]);
+    expect(otherCaseStudiesLinks).toHaveLength(3);
+    expect(
+      getByRole("link", { name: "View all case studies" }),
+    ).toBeInTheDocument();
   });
 
   it("does not render written case studies in other case studies section when feature flag is not enabled", async () => {
