@@ -141,7 +141,10 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
           <NewGutterMaxWidth>
             <OaksImpactCaseStudyContentLayout>
               {caseStudy.video && (
-                <OakBox $pv="spacing-100" $position={"relative"}>
+                <OakBox
+                  $pv={["spacing-72", "spacing-100"]}
+                  $position={"relative"}
+                >
                   <OakVideo
                     videoSlot={
                       caseStudy.video.video.asset && (
@@ -167,7 +170,7 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                   {caseStudy.content && caseStudy.content.length > 0 && (
                     <OakFlex
                       $flexDirection="column"
-                      $gap="spacing-100"
+                      $gap={["spacing-72", "spacing-100"]}
                       $pb="spacing-100"
                       $position={"relative"}
                     >
@@ -208,7 +211,7 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                   {caseStudy.showGetInTouchPanel &&
                     caseStudy.getInTouchPanel && (
                       <OakBox
-                        $pv="spacing-100"
+                        $pv={["spacing-72", "spacing-100"]}
                         $bt="border-solid-m"
                         $borderColor="border-neutral-lighter"
                       >
