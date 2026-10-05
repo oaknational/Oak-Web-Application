@@ -248,6 +248,9 @@ describe("urls.ts", () => {
         "https://labs.thenational.academy",
       );
     });
+    it("Oak Curriculum MCP", () => {
+      expect(resolveOakHref({ page: "mcp" })).toBe("/ai-plugin");
+    });
     it("Teacher hub", () => {
       expect(resolveOakHref({ page: "teacher-hub" })).toBe(
         "https://teachers.thenational.academy",
