@@ -204,7 +204,7 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                           />
                         </OakFlex>
                       ))}
-                      <TrackScrolledTo eventKey="case-study-content-end" />
+                      <TrackScrolledTo eventKey="case_study_content_end" />
                     </OakFlex>
                   )}
 
