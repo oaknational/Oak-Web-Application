@@ -5028,7 +5028,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                         </span>
                       </h2>
                       <p
-                        class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                        class="sc-hGPAwl sc-291f9570-0 egPakc gEzUVG"
                       >
                         TEST_CONTENT_1
                       </p>
@@ -5059,7 +5059,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                         </span>
                       </h2>
                       <p
-                        class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                        class="sc-hGPAwl sc-291f9570-0 egPakc gEzUVG"
                       >
                         TEST_CONTENT_2
                       </p>
@@ -7204,7 +7204,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                         </span>
                       </h2>
                       <p
-                        class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                        class="sc-hGPAwl sc-291f9570-0 egPakc gEzUVG"
                       >
                         TEST_CONTENT_1
                       </p>
@@ -7235,7 +7235,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                         </span>
                       </h2>
                       <p
-                        class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                        class="sc-hGPAwl sc-291f9570-0 egPakc gEzUVG"
                       >
                         TEST_CONTENT_2
                       </p>
