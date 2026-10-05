@@ -5,6 +5,7 @@ import {
   OakP,
   OakPrimaryButton,
   OakJauntyAngleLabel,
+  parseSpacing,
 } from "@oaknational/oak-components";
 import { useMemo } from "react";
 import Link from "next/link";
@@ -79,8 +80,8 @@ export const CurricTimetablingNewView = ({
               $color="text-primary"
               $zIndex="in-front"
               $position="absolute"
-              $top={"-20px"}
-              $left={"5px"}
+              $left={"spacing-4"}
+              style={{ top: `-${parseSpacing("spacing-20")}` }}
               $borderRadius="border-radius-square"
             />
             <CurricNumberInput
@@ -113,8 +114,8 @@ export const CurricTimetablingNewView = ({
               $color="text-primary"
               $zIndex="in-front"
               $position="absolute"
-              $top={"-20px"}
-              $left={"5px"}
+              $left={"spacing-4"}
+              style={{ top: `-${parseSpacing("spacing-20")}` }}
               $borderRadius="border-radius-square"
             />
             <CurricNumberInput
@@ -147,8 +148,8 @@ export const CurricTimetablingNewView = ({
               $color="text-primary"
               $zIndex="in-front"
               $position="absolute"
-              $top={"-20px"}
-              $left={"5px"}
+              $left={"spacing-4"}
+              style={{ top: `-${parseSpacing("spacing-20")}` }}
               $borderRadius="border-radius-square"
             />
             <CurricNumberInput

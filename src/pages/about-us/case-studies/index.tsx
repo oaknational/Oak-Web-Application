@@ -19,6 +19,7 @@ import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl
 import { resolveOakHref } from "@/common-lib/urls";
 import { AboutSharedHeader } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
+import { getCaseStudyTagBackground } from "@/components/GenericPagesComponents/CaseStudiesSection/getCaseStudyTagBackground";
 
 export type AboutUsCaseStudyLibraryPageProps = {
   pageData: {
@@ -37,6 +38,8 @@ export const AboutUsCaseStudyLibrary: NextPage<
       slug: caseStudy.slug.current,
     }),
     imageSrc: getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? "",
+    tagName: caseStudy.tag ?? undefined,
+    tagBackground: getCaseStudyTagBackground(caseStudy.tag),
   }));
 
   return (
