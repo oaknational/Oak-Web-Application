@@ -1,3 +1,23 @@
+# [1.1228.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1227.0...v1.1228.0) (2026-10-05)
+
+
+### Bug Fixes
+
+* **ai-plugin:** keep the chosen tab in the URL, and let the coming-soon box grow ([b1fb966](https://github.com/oaknational/Oak-Web-Application/commit/b1fb9663185b2b22ad10da5226c1b93b237ad820)), closes [#school-or-trust](https://github.com/oaknational/Oak-Web-Application/issues/school-or-trust)
+* **ai-plugin:** keep the coming-soon tag on one line on small phones ([57d6874](https://github.com/oaknational/Oak-Web-Application/commit/57d68746dc2625972627d3cdb69c9d4277391ac9))
+* **ai-plugin:** keep the page padding outside the 1280 width cap ([161980a](https://github.com/oaknational/Oak-Web-Application/commit/161980af4391adeaaabf5319c25378b4132c8a22))
+* **ai-plugin:** land on the tabs when a link opens one of them ([1a9d409](https://github.com/oaknational/Oak-Web-Application/commit/1a9d409f907c849655736e13b05fd9ba011d869c)), closes [#school-or-trust](https://github.com/oaknational/Oak-Web-Application/issues/school-or-trust)
+* **ai-plugin:** lay the page out on the Oak grid, as the campaign page does ([5832a6c](https://github.com/oaknational/Oak-Web-Application/commit/5832a6c8ba34e4ebb1662bbaa508fd7f4d8d7b84))
+* **ai-plugin:** let Ctrl/Cmd-clicks on a tab open it in a new tab ([ea0fb74](https://github.com/oaknational/Oak-Web-Application/commit/ea0fb74af0f04572c4fd571d04afb5c769b9bf3a))
+* **ai-plugin:** take every layout value from the 30 Sept Figma ([1d30193](https://github.com/oaknational/Oak-Web-Application/commit/1d30193995c74a9f4e77413ca12781c13ed9a831))
+
+
+### Features
+
+* **ai-plugin:** add the For developers section ([29e8368](https://github.com/oaknational/Oak-Web-Application/commit/29e83687a0b8626ba639ccab1d2ceaf54d1ef1d6))
+* **ai-plugin:** apply the 30 Sept landing page design ([6970040](https://github.com/oaknational/Oak-Web-Application/commit/69700402e7d6357d643d17e70cec62788fab8d93))
+* **analytics:** give the ai-plugin page its own Avo page name ([f50801b](https://github.com/oaknational/Oak-Web-Application/commit/f50801bf9c38fd9c31d8ad092b0f82c507e33ceb)), closes [#4459](https://github.com/oaknational/Oak-Web-Application/issues/4459)
+
 # [1.1227.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1226.0...v1.1227.0) (2026-10-05)
 
 
