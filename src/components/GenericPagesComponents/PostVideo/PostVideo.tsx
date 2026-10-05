@@ -5,11 +5,11 @@ import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import { Video } from "@/common-lib/cms-types";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
-const PostVideo = (
-  props: PortableTextComponentProps<Video> & {
-    location?: VideoLocationValueType;
-  },
-) => {
+export type PostVideoProps = PortableTextComponentProps<Video> & {
+  location?: VideoLocationValueType;
+};
+
+const PostVideo = (props: PostVideoProps) => {
   if (!props.value) {
     return null;
   }
