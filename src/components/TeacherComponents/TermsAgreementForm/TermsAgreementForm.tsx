@@ -14,6 +14,7 @@ import {
   OakLink,
   OakTextInput,
   OakJauntyAngleLabel,
+  parseSpacing,
 } from "@oaknational/oak-components";
 
 import FieldError from "@/components/SharedComponents/FieldError";
@@ -148,8 +149,8 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                   }
                   $zIndex="in-front"
                   $position="absolute"
-                  $top={"-20px"}
-                  $left={"5px"}
+                  $left={"spacing-4"}
+                  style={{ top: `-${parseSpacing("spacing-20")}` }}
                   $borderRadius="border-radius-square"
                   data-testid="jaunty-label"
                 />
@@ -161,7 +162,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                   placeholder="Enter email address here"
                   onFocus={() => setEmailHasFocus(true)}
                   onBlur={(e) => {
-                    emailProps.onBlur(e);
+                    void emailProps.onBlur(e);
                     setEmailHasFocus(false);
                   }}
                   {...getEmailFieldErrorAriaProps(hasEmailError)}
@@ -200,7 +201,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                     e: ChangeEvent<HTMLInputElement>,
                   ) => {
                     onChange(e.target.checked);
-                    form.trigger();
+                    void form.trigger();
                   };
                   return (
                     <ResourcePageTermsAndConditionsCheckbox
