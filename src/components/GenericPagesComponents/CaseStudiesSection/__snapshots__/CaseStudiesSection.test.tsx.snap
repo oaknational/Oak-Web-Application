@@ -18,11 +18,19 @@ exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1
             <div
               class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi cSXJqk"
             >
-              <h2
-                class="sc-eldPxv dGkyUI"
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ bIrEfD"
               >
-                Case studies
-              </h2>
+                <div
+                  class="sc-aXZVg sc-gEvEer jPvJsJ fXHtRp"
+                >
+                  <h2
+                    class="sc-eldPxv dGkyUI"
+                  >
+                    Case studies
+                  </h2>
+                </div>
+              </div>
             </div>
           </div>
           <ul
@@ -36,7 +44,7 @@ exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1
               >
                 <a
                   class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi kDjeOv"
-                  href="/about-us/case-studies/case-study-1"
+                  href="/about-us/case-studies/test-1"
                 >
                   <div
                     class="sc-aXZVg jPvJsJ"
@@ -51,8 +59,8 @@ exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1
                         decoding="async"
                         loading="lazy"
                         sizes="100vw"
-                        src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=3840&q=75"
-                        srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=3840&q=75 3840w"
+                        src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
+                        srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
                     </span>
@@ -66,7 +74,7 @@ exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1
                       <div
                         class="sc-eldPxv ibGcSM"
                       >
-                        Case study 1
+                        Test-1
                       </div>
                     </div>
                     <div
@@ -107,7 +115,7 @@ exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1
               >
                 <a
                   class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi kDjeOv"
-                  href="/about-us/case-studies/case-study-2"
+                  href="/about-us/case-studies/test-2"
                 >
                   <div
                     class="sc-aXZVg jPvJsJ"
@@ -122,8 +130,8 @@ exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1
                         decoding="async"
                         loading="lazy"
                         sizes="100vw"
-                        src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=3840&q=75"
-                        srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=3840&q=75 3840w"
+                        src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
+                        srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
                     </span>
@@ -137,7 +145,7 @@ exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1
                       <div
                         class="sc-eldPxv ibGcSM"
                       >
-                        Case study 2
+                        Test-2
                       </div>
                     </div>
                     <div
@@ -196,11 +204,19 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
             <div
               class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi bdQReA"
             >
-              <h2
-                class="sc-eldPxv dGkyUI"
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ bIrEfD"
               >
-                Case studies
-              </h2>
+                <div
+                  class="sc-aXZVg sc-gEvEer jPvJsJ fXHtRp"
+                >
+                  <h2
+                    class="sc-eldPxv dGkyUI"
+                  >
+                    Case studies
+                  </h2>
+                </div>
+              </div>
             </div>
           </div>
           <ul
@@ -214,7 +230,7 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
               >
                 <a
                   class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi kDjeOv"
-                  href="/about-us/case-studies/case-study-1"
+                  href="/about-us/case-studies/test-1"
                 >
                   <div
                     class="sc-aXZVg jPvJsJ"
@@ -229,8 +245,8 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
                         decoding="async"
                         loading="lazy"
                         sizes="100vw"
-                        src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=3840&q=75"
-                        srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=3840&q=75 3840w"
+                        src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
+                        srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
                     </span>
@@ -244,7 +260,7 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
                       <div
                         class="sc-eldPxv ibGcSM"
                       >
-                        Case study 1
+                        Test-1
                       </div>
                     </div>
                     <div
@@ -285,7 +301,7 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
               >
                 <a
                   class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi kDjeOv"
-                  href="/about-us/case-studies/case-study-2"
+                  href="/about-us/case-studies/test-2"
                 >
                   <div
                     class="sc-aXZVg jPvJsJ"
@@ -300,8 +316,8 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
                         decoding="async"
                         loading="lazy"
                         sizes="100vw"
-                        src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=3840&q=75"
-                        srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=3840&q=75 3840w"
+                        src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
+                        srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
                     </span>
@@ -315,7 +331,7 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
                       <div
                         class="sc-eldPxv ibGcSM"
                       >
-                        Case study 2
+                        Test-2
                       </div>
                     </div>
                     <div
@@ -356,7 +372,7 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
               >
                 <a
                   class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi kDjeOv"
-                  href="/about-us/case-studies/case-study-3"
+                  href="/about-us/case-studies/test-3"
                 >
                   <div
                     class="sc-aXZVg jPvJsJ"
@@ -371,8 +387,8 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
                         decoding="async"
                         loading="lazy"
                         sizes="100vw"
-                        src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=3840&q=75"
-                        srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=3840&q=75 3840w"
+                        src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
+                        srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
                     </span>
@@ -386,7 +402,7 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
                       <div
                         class="sc-eldPxv ibGcSM"
                       >
-                        Case study 3
+                        Test-3
                       </div>
                     </div>
                     <div
