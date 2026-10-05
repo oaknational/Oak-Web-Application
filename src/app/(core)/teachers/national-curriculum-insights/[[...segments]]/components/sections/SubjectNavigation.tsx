@@ -179,11 +179,8 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
                       $rg="spacing-16"
                       $cg="spacing-16"
                     >
-                      <OakFlex
-                        as="ul"
-                        $listStyle="none"
-                        $ma="spacing-0"
-                        $pa="spacing-0"
+                      <OakUL
+                        $reset
                         $display={["contents", "flex", "contents"]}
                         $flexWrap="wrap"
                         $justifyContent="center"
@@ -198,10 +195,10 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
                               getMobileColumnStart(index, subjects.length),
                               1,
                               index >= subjects.length - lastDesktopRowLength
-                                ? desktopColumnStarts[lastDesktopRowLength]?.[
+                                ? (desktopColumnStarts[lastDesktopRowLength]?.[
                                     index % 5
-                                  ]
-                                : desktopColumnStarts[0][index % 5],
+                                  ] ?? 1)
+                                : (desktopColumnStarts[0][index % 5] ?? 1),
                             ]}
                           >
                             <HubSubjectItem
@@ -227,7 +224,7 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
                             </HubSubjectItem>
                           </OakGridArea>
                         ))}
-                      </OakFlex>
+                      </OakUL>
                     </OakGrid>
                   </OakFlex>
                 </OakBox>

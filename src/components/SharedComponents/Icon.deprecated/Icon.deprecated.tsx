@@ -23,7 +23,7 @@ type RotateValue = 0 | 180;
 type RotateProps = { rotate?: RotateValue };
 type IconOuterWrapperProps = {
   variant: IconVariant;
-  verticalAlign?: VerticalAlign;
+  $verticalAlign?: VerticalAlign;
 } & SizeProps &
   RotateProps &
   BoxProps;
@@ -38,7 +38,7 @@ const IconOuterWrapper = styled.span<IconOuterWrapperProps>`
 
   ${size}
   ${box}
-  vertical-align: ${(props) => props.verticalAlign};
+  vertical-align: ${(props) => props.$verticalAlign};
 `;
 
 const IconWrapper = styled.span<BoxProps>`
@@ -140,7 +140,7 @@ const Icon: FC<IconProps> = (props) => {
       $minHeight={outerHeight}
       $width={outerWidth}
       $minWidth={outerWidth}
-      verticalAlign={verticalAlign}
+      $verticalAlign={verticalAlign}
       {...rootProps}
     >
       {variant === "brush" && (

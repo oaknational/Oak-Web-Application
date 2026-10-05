@@ -4,88 +4,96 @@ exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1
 <body>
   <div>
     <div
-      class="sc-aXZVg kNKvOG"
+      class="sc-bdvwhi THUtj"
     >
       <div
-        class="sc-aXZVg bZTQLO"
+        class="sc-bdvwhi iatEdD"
       >
         <div
-          class="sc-aXZVg sc-gEvEer bkFrQJ daEtut"
+          class="sc-bdvwhi sc-gsDMPd blOvSo eChlAW"
         >
           <div
-            class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
+            class="sc-bdvwhi sc-jObTYW hPWTKU jmGxKU"
           >
             <div
-              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi cSXJqk"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex cAldUs"
             >
-              <h2
-                class="sc-eldPxv dGkyUI"
+              <div
+                class="sc-bdvwhi sc-gsDMPd hPWTKU kZwEgc"
               >
-                Case studies
-              </h2>
+                <div
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU kkGnDS"
+                >
+                  <h2
+                    class="sc-bkkgYE NpoJm"
+                  >
+                    Case studies
+                  </h2>
+                </div>
+              </div>
             </div>
           </div>
           <ul
-            class="sc-aXZVg sc-tagGq bMQSvq jFIZYB"
+            class="sc-bdvwhi sc-jObTYW eZfdqr boCgwA"
           >
             <li
-              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi jYNrWW"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex lcZKPm"
             >
               <div
-                class="sc-aXZVg sc-jGKxIK bDPsaI efAcwU"
+                class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
               >
                 <a
-                  class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi kDjeOv"
-                  href="/about-us/case-studies/case-study-1"
+                  class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
+                  href="/about-us/case-studies/test-1"
                 >
                   <div
-                    class="sc-aXZVg jPvJsJ"
+                    class="sc-bdvwhi hPWTKU"
                   >
                     <span
-                      class="sc-aXZVg kvjdhA sc-kYxDKI ZupGI"
+                      class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
                     >
                       <img
                         alt=""
-                        class="sc-iGgWBj dZvqhO"
+                        class="sc-jRQBiJ hssYEG"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
                         sizes="100vw"
-                        src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=3840&q=75"
-                        srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=3840&q=75 3840w"
+                        src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
+                        srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
                     </span>
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-iHmpnF jPvJsJ jFNgPm"
+                    class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
                     >
                       <div
-                        class="sc-eldPxv ibGcSM"
+                        class="sc-bkkgYE jxvseu"
                       >
-                        Case study 1
+                        Test-1
                       </div>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU eWbmLh"
                       >
                         <span
-                          class="sc-eqUAAy dECBeo"
+                          class="sc-dkPwfY hmZYGI"
                         >
                           Watch the video
                         </span>
                         <span
-                          class="sc-aXZVg jJQFnr"
+                          class="sc-bdvwhi cERAFe"
                         >
                           <img
                             alt=""
-                            class="sc-iGgWBj cMzyFO"
+                            class="sc-jRQBiJ eMsccW"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -100,63 +108,63 @@ exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1
               </div>
             </li>
             <li
-              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi bGCzCa"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex bfRFGW"
             >
               <div
-                class="sc-aXZVg sc-jGKxIK bDPsaI efAcwU"
+                class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
               >
                 <a
-                  class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi kDjeOv"
-                  href="/about-us/case-studies/case-study-2"
+                  class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
+                  href="/about-us/case-studies/test-2"
                 >
                   <div
-                    class="sc-aXZVg jPvJsJ"
+                    class="sc-bdvwhi hPWTKU"
                   >
                     <span
-                      class="sc-aXZVg kvjdhA sc-kYxDKI ZupGI"
+                      class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
                     >
                       <img
                         alt=""
-                        class="sc-iGgWBj dZvqhO"
+                        class="sc-jRQBiJ hssYEG"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
                         sizes="100vw"
-                        src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=3840&q=75"
-                        srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=3840&q=75 3840w"
+                        src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
+                        srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
                     </span>
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-iHmpnF jPvJsJ jFNgPm"
+                    class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
                     >
                       <div
-                        class="sc-eldPxv ibGcSM"
+                        class="sc-bkkgYE jxvseu"
                       >
-                        Case study 2
+                        Test-2
                       </div>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU eWbmLh"
                       >
                         <span
-                          class="sc-eqUAAy dECBeo"
+                          class="sc-dkPwfY hmZYGI"
                         >
                           Watch the video
                         </span>
                         <span
-                          class="sc-aXZVg jJQFnr"
+                          class="sc-bdvwhi cERAFe"
                         >
                           <img
                             alt=""
-                            class="sc-iGgWBj cMzyFO"
+                            class="sc-jRQBiJ eMsccW"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -182,88 +190,96 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
 <body>
   <div>
     <div
-      class="sc-aXZVg kNKvOG"
+      class="sc-bdvwhi THUtj"
     >
       <div
-        class="sc-aXZVg bZTQLO"
+        class="sc-bdvwhi iatEdD"
       >
         <div
-          class="sc-aXZVg sc-gEvEer bkFrQJ daEtut"
+          class="sc-bdvwhi sc-gsDMPd blOvSo eChlAW"
         >
           <div
-            class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
+            class="sc-bdvwhi sc-jObTYW hPWTKU jmGxKU"
           >
             <div
-              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi bdQReA"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex jESsXg"
             >
-              <h2
-                class="sc-eldPxv dGkyUI"
+              <div
+                class="sc-bdvwhi sc-gsDMPd hPWTKU kZwEgc"
               >
-                Case studies
-              </h2>
+                <div
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU kkGnDS"
+                >
+                  <h2
+                    class="sc-bkkgYE NpoJm"
+                  >
+                    Case studies
+                  </h2>
+                </div>
+              </div>
             </div>
           </div>
           <ul
-            class="sc-aXZVg sc-tagGq bMQSvq jFIZYB"
+            class="sc-bdvwhi sc-jObTYW eZfdqr boCgwA"
           >
             <li
-              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi fjdsDR"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
             >
               <div
-                class="sc-aXZVg sc-jGKxIK bDPsaI efAcwU"
+                class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
               >
                 <a
-                  class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi kDjeOv"
-                  href="/about-us/case-studies/case-study-1"
+                  class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
+                  href="/about-us/case-studies/test-1"
                 >
                   <div
-                    class="sc-aXZVg jPvJsJ"
+                    class="sc-bdvwhi hPWTKU"
                   >
                     <span
-                      class="sc-aXZVg kvjdhA sc-kYxDKI ZupGI"
+                      class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
                     >
                       <img
                         alt=""
-                        class="sc-iGgWBj dZvqhO"
+                        class="sc-jRQBiJ hssYEG"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
                         sizes="100vw"
-                        src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=3840&q=75"
-                        srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=3840&q=75 3840w"
+                        src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
+                        srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
                     </span>
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-iHmpnF jPvJsJ jFNgPm"
+                    class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
                     >
                       <div
-                        class="sc-eldPxv ibGcSM"
+                        class="sc-bkkgYE jxvseu"
                       >
-                        Case study 1
+                        Test-1
                       </div>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU eWbmLh"
                       >
                         <span
-                          class="sc-eqUAAy dECBeo"
+                          class="sc-dkPwfY hmZYGI"
                         >
                           Watch the video
                         </span>
                         <span
-                          class="sc-aXZVg jJQFnr"
+                          class="sc-bdvwhi cERAFe"
                         >
                           <img
                             alt=""
-                            class="sc-iGgWBj cMzyFO"
+                            class="sc-jRQBiJ eMsccW"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -278,63 +294,63 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
               </div>
             </li>
             <li
-              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi fjdsDR"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
             >
               <div
-                class="sc-aXZVg sc-jGKxIK bDPsaI efAcwU"
+                class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
               >
                 <a
-                  class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi kDjeOv"
-                  href="/about-us/case-studies/case-study-2"
+                  class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
+                  href="/about-us/case-studies/test-2"
                 >
                   <div
-                    class="sc-aXZVg jPvJsJ"
+                    class="sc-bdvwhi hPWTKU"
                   >
                     <span
-                      class="sc-aXZVg kvjdhA sc-kYxDKI ZupGI"
+                      class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
                     >
                       <img
                         alt=""
-                        class="sc-iGgWBj dZvqhO"
+                        class="sc-jRQBiJ hssYEG"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
                         sizes="100vw"
-                        src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=3840&q=75"
-                        srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=3840&q=75 3840w"
+                        src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
+                        srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
                     </span>
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-iHmpnF jPvJsJ jFNgPm"
+                    class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
                     >
                       <div
-                        class="sc-eldPxv ibGcSM"
+                        class="sc-bkkgYE jxvseu"
                       >
-                        Case study 2
+                        Test-2
                       </div>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU eWbmLh"
                       >
                         <span
-                          class="sc-eqUAAy dECBeo"
+                          class="sc-dkPwfY hmZYGI"
                         >
                           Watch the video
                         </span>
                         <span
-                          class="sc-aXZVg jJQFnr"
+                          class="sc-bdvwhi cERAFe"
                         >
                           <img
                             alt=""
-                            class="sc-iGgWBj cMzyFO"
+                            class="sc-jRQBiJ eMsccW"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -349,63 +365,63 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
               </div>
             </li>
             <li
-              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi fjdsDR"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
             >
               <div
-                class="sc-aXZVg sc-jGKxIK bDPsaI efAcwU"
+                class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
               >
                 <a
-                  class="sc-aXZVg sc-gEvEer sc-bpUBKd eKeEyp dXoawi kDjeOv"
-                  href="/about-us/case-studies/case-study-3"
+                  class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
+                  href="/about-us/case-studies/test-3"
                 >
                   <div
-                    class="sc-aXZVg jPvJsJ"
+                    class="sc-bdvwhi hPWTKU"
                   >
                     <span
-                      class="sc-aXZVg kvjdhA sc-kYxDKI ZupGI"
+                      class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
                     >
                       <img
                         alt=""
-                        class="sc-iGgWBj dZvqhO"
+                        class="sc-jRQBiJ hssYEG"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
                         sizes="100vw"
-                        src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=3840&q=75"
-                        srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=3840&q=75 3840w"
+                        src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
+                        srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
                     </span>
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-iHmpnF jPvJsJ jFNgPm"
+                    class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
                     >
                       <div
-                        class="sc-eldPxv ibGcSM"
+                        class="sc-bkkgYE jxvseu"
                       >
-                        Case study 3
+                        Test-3
                       </div>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU eWbmLh"
                       >
                         <span
-                          class="sc-eqUAAy dECBeo"
+                          class="sc-dkPwfY hmZYGI"
                         >
                           Watch the video
                         </span>
                         <span
-                          class="sc-aXZVg jJQFnr"
+                          class="sc-bdvwhi cERAFe"
                         >
                           <img
                             alt=""
-                            class="sc-iGgWBj cMzyFO"
+                            class="sc-jRQBiJ eMsccW"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
