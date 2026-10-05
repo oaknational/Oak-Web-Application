@@ -24,11 +24,12 @@ type TextAndMediaBlock = OmitKeepDiscriminated<
   body: PortableTextJSON;
 };
 
-const PostTextAndMedia = (
-  props: PortableTextComponentProps<TextAndMediaBlock> & {
+export type PostTextAndMediaProps =
+  PortableTextComponentProps<TextAndMediaBlock> & {
     location?: VideoLocationValueType;
-  },
-) => {
+  };
+
+const PostTextAndMedia = (props: PostTextAndMediaProps) => {
   if (!props.value) {
     return null;
   }
