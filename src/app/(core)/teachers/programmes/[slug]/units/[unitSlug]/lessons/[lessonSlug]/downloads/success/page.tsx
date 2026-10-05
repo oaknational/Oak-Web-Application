@@ -1,7 +1,10 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getCachedUnitData } from "../../../getCachedUnitData";
+import {
+  getCachedUnitData,
+  getUnitDownloadExistence,
+} from "../../../getCachedUnitData";
 
 import { DownloadSuccessView } from "./Components/DownloadSuccessView";
 
@@ -10,6 +13,7 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 
 type LessonDownloadsSuccessPageParams = {
   slug: string;
@@ -17,7 +21,7 @@ type LessonDownloadsSuccessPageParams = {
   lessonSlug: string;
 };
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 const getSuccessData = async (
   programmeSlug: string,
@@ -73,13 +77,16 @@ const InnerLessonDownloadsSuccessPage = async (
   }
 
   const programmeState = getProgrammeStateForLesson(data);
+  const { exists, fileSize } = await getUnitDownloadExistence(
+    getUnitDownloadFileId(data.unitTitle, data.unitvariantId),
+  );
 
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={programmeState}
       accessLevel="lesson"
     >
-      <DownloadSuccessView lesson={data} />
+      <DownloadSuccessView lesson={data} exists={exists} fileSize={fileSize} />
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };

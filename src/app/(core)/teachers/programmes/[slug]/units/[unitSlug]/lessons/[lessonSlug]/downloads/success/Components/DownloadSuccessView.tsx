@@ -33,10 +33,15 @@ type DownloadSuccessViewLesson = {
 
 export type DownloadSuccessViewProps = {
   lesson: DownloadSuccessViewLesson;
+} & {
+  exists: boolean;
+  fileSize?: string;
 };
 
 export function DownloadSuccessView({
   lesson,
+  exists,
+  fileSize,
 }: Readonly<DownloadSuccessViewProps>) {
   const {
     lessonSlug,
@@ -138,6 +143,8 @@ export function DownloadSuccessView({
                       </OakBox>
                     </OakSpan>
                   }
+                  downloadExists={exists}
+                  fileSize={fileSize}
                 />
               }
             />

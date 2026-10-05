@@ -35,6 +35,7 @@ exports[`LessonDownloadsSuccessPage fetches unit data and renders success confir
   }
 >
   <DownloadSuccessView
+    exists={false}
     lesson={
       {
         "containsGeorestrictedLessons": false,

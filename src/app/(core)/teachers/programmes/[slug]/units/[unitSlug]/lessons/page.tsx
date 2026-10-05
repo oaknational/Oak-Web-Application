@@ -14,8 +14,6 @@ import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 
 type LessonsPageParams = { slug: string; unitSlug: string };
 
-// Rendered per request so the download button isn't frozen in the page cache; the
-// upstream calls are both cached in cacheData, so this costs renders, not API load.
 export const dynamic = "force-dynamic";
 
 export { generateMetadata } from "./generateMetadata";

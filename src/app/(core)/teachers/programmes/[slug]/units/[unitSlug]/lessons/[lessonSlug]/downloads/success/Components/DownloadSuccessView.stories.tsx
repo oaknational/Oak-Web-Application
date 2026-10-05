@@ -102,5 +102,7 @@ export const Default: Story = {
   ],
   args: {
     lesson: lessonWithUnitList,
+    exists: true,
+    fileSize: "1.2MB",
   },
 };

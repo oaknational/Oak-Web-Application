@@ -14,6 +14,8 @@ import {
   mockLinkClick,
 } from "@/utils/mockLinkClick";
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 globalThis.fetch = jest.fn().mockResolvedValue({ ok: true });
@@ -94,7 +96,12 @@ const renderDownloadSuccessView = (
   props?: Partial<DownloadSuccessViewProps>,
 ) => {
   return renderWithProviders()(
-    <DownloadSuccessView lesson={baseLesson} {...props} />,
+    <DownloadSuccessView
+      lesson={baseLesson}
+      exists
+      fileSize="1.2MB"
+      {...props}
+    />,
   );
 };
 
@@ -173,6 +180,24 @@ describe("DownloadSuccessView", () => {
     expect(screen.getByText("Ready to keep going?")).toBeInTheDocument();
     expect(screen.getByText("Measuring wave speed")).toBeInTheDocument();
     expect(screen.getByText("Current lesson")).toBeInTheDocument();
+  });
+
+  it("renders the unit download button when the unit download exists", () => {
+    setUseUserReturn(mockLoggedIn);
+    renderDownloadSuccessView({ exists: true });
+
+    expect(
+      screen.getByRole("button", { name: "Download complete unit" }),
+    ).toBeInTheDocument();
+  });
+
+  it("omits the unit download button when the unit download does not exist", () => {
+    setUseUserReturn(mockLoggedIn);
+    renderDownloadSuccessView({ exists: false });
+
+    expect(
+      screen.queryByRole("button", { name: "Download complete unit" }),
+    ).not.toBeInTheDocument();
   });
 
   it("shows extra help copy when statistics (Gleap) consent is granted", () => {
