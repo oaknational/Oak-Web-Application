@@ -2,9 +2,11 @@ import PostTextAndMedia, { PostTextAndMediaProps } from "./PostTextAndMedia";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-const textAndMedia: NonNullable<PostTextAndMediaProps["value"]> = {
+const textAndMedia: Omit<
+  NonNullable<PostTextAndMediaProps["value"]>,
+  "mediaType" | "image" | "video"
+> = {
   alignMedia: "left",
-  mediaType: "image",
   title: "Text and media title",
   body: [
     {
@@ -27,21 +29,24 @@ const textAndMedia: NonNullable<PostTextAndMediaProps["value"]> = {
     linkType: "anchor",
     anchor: "more-information",
   },
-  image: {
-    asset: {
-      _id: "image-586258ca4b3b23d1a6fc47979841e5a5eb3dc36c-320x256-png",
-      url: "https://cdn.sanity.io/images/cuvjke51/production/586258ca4b3b23d1a6fc47979841e5a5eb3dc36c-320x256.png",
-    },
-    altText: "Text and media image",
-  },
-};
+} as const;
 
 describe("PostTextAndMedia", () => {
-  it("should render correctly", () => {
+  it("should render image correctly", () => {
     const render = renderWithProviders();
     const { getByRole, getByText, getByAltText } = render(
       <PostTextAndMedia
-        value={textAndMedia}
+        value={{
+          ...textAndMedia,
+          mediaType: "image",
+          image: {
+            asset: {
+              _id: "image-586258ca4b3b23d1a6fc47979841e5a5eb3dc36c-320x256-png",
+              url: "https://cdn.sanity.io/images/cuvjke51/production/586258ca4b3b23d1a6fc47979841e5a5eb3dc36c-320x256.png",
+            },
+            altText: "Text and media image",
+          },
+        }}
         index={0}
         isInline={false}
         renderNode={() => null}
@@ -57,5 +62,39 @@ describe("PostTextAndMedia", () => {
       "/#more-information",
     );
     expect(getByAltText("Text and media image")).toBeInTheDocument();
+  });
+
+  it("should render video correctly", () => {
+    const render = renderWithProviders();
+    const { getByRole, getByText } = render(
+      <PostTextAndMedia
+        value={{
+          ...textAndMedia,
+          mediaType: "video",
+          video: {
+            title: "Text and media video",
+            video: {
+              asset: {
+                playbackId: "playback-id",
+                assetId: "",
+                thumbTime: null,
+              },
+            },
+          },
+        }}
+        index={0}
+        isInline={false}
+        renderNode={() => null}
+      />,
+    );
+
+    expect(
+      getByRole("heading", { level: 2, name: "Text and media title" }),
+    ).toBeInTheDocument();
+    expect(getByText("Text and media body text")).toBeInTheDocument();
+    expect(getByRole("link", { name: "Read more" })).toHaveAttribute(
+      "href",
+      "/#more-information",
+    );
   });
 });
