@@ -22,6 +22,7 @@ import {
 } from "@/components/GenericPagesComponents/PostFootnotes";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 
 const logMissingPortableTextComponents: MissingComponentHandler = (
   message,
@@ -35,9 +36,11 @@ const logMissingPortableTextComponents: MissingComponentHandler = (
 
 type PostPortableTextContext = {
   footnotes: Footnote[];
+  location?: VideoLocationValueType;
 };
 
 const postPortableTextComponents = ({
+  location,
   footnotes,
 }: PostPortableTextContext): PortableTextComponents => ({
   block: {
@@ -76,8 +79,10 @@ const postPortableTextComponents = ({
   },
   types: {
     imageWithAltText: PostImageWithAltText,
-    video: PostVideo,
-    textAndMedia: PostTextAndMedia,
+    video: (props) => <PostVideo {...props} location={location} />,
+    textAndMedia: (props) => (
+      <PostTextAndMedia {...props} location={location} />
+    ),
     formWrapper: PostForm,
     quote: PostQuote,
     callout: PostCallout,
@@ -92,13 +97,17 @@ const postPortableTextComponents = ({
 
 type PostPortableTextProps = {
   portableText: PortableTextJSON;
+  location?: VideoLocationValueType;
 };
 
 export const PostPortableText: FC<PostPortableTextProps> = (props) => {
-  const { portableText } = props;
+  const { portableText, location } = props;
 
   const footnotes = extractFootnotes(portableText);
-  const portableTextComponents = postPortableTextComponents({ footnotes });
+  const portableTextComponents = postPortableTextComponents({
+    location,
+    footnotes,
+  });
 
   return (
     <>
