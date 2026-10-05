@@ -2,7 +2,9 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useMediaQuery } from "@oaknational/oak-components";
 
-import UnitDownloadButton from "./UnitDownloadButton";
+import UnitDownloadButton, {
+  UnitDownloadButtonProps,
+} from "./UnitDownloadButton";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
@@ -12,17 +14,6 @@ import {
   mockLoggedOut,
   mockNotOnboardedUser,
 } from "@/__tests__/__helpers__/mockUser";
-
-jest.mock(
-  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck",
-  () => {
-    return jest.fn(() => ({
-      exists: true,
-      fileSize: "1.2MB",
-      hasCheckedFiles: true,
-    }));
-  },
-);
 
 jest.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink",
@@ -78,6 +69,26 @@ const setBreakpoint = ({
   });
 };
 
+const renderUnitDownloadButton = (
+  props: Partial<UnitDownloadButtonProps> = {},
+) =>
+  renderWithProviders()(
+    <UnitDownloadButton
+      setDownloadError={jest.fn()}
+      setDownloadInProgress={jest.fn()}
+      setShowDownloadMessage={jest.fn()}
+      setShowIncompleteMessage={jest.fn()}
+      downloadInProgress={false}
+      onDownloadSuccess={jest.fn()}
+      unitFileId="mockSlug"
+      showNewTag
+      geoRestricted={false}
+      downloadExists
+      fileSize="1.2MB"
+      {...props}
+    />,
+  );
+
 describe("UnitDownloadButton", () => {
   beforeEach(() => {
     setUseUserReturn(mockLoggedIn);
@@ -88,54 +99,18 @@ describe("UnitDownloadButton", () => {
 
   it("should render a continue button when logged in but not onboarded", () => {
     setUseUserReturn(mockNotOnboardedUser);
-    renderWithProviders()(
-      <UnitDownloadButton
-        setDownloadError={jest.fn()}
-        setDownloadInProgress={jest.fn()}
-        setShowDownloadMessage={jest.fn()}
-        setShowIncompleteMessage={jest.fn()}
-        downloadInProgress={false}
-        onDownloadSuccess={jest.fn()}
-        unitFileId="mockSlug"
-        showNewTag
-        geoRestricted={false}
-      />,
-    );
+    renderUnitDownloadButton();
     const button = screen.getByText("Sign up to download");
     expect(button).toBeInTheDocument();
   });
   it("should render a download button when logged in", () => {
     setUseUserReturn(mockLoggedIn);
-    renderWithProviders()(
-      <UnitDownloadButton
-        setDownloadError={jest.fn()}
-        setDownloadInProgress={jest.fn()}
-        setShowDownloadMessage={jest.fn()}
-        setShowIncompleteMessage={jest.fn()}
-        downloadInProgress={false}
-        onDownloadSuccess={jest.fn()}
-        unitFileId="mockSlug"
-        showNewTag
-        geoRestricted={false}
-      />,
-    );
+    renderUnitDownloadButton();
     const button = screen.getByText("Download (.zip 1.2MB)");
     expect(button).toBeInTheDocument();
   });
   it("should render loading text and spinner when download is in progress", () => {
-    renderWithProviders()(
-      <UnitDownloadButton
-        setDownloadError={jest.fn()}
-        setDownloadInProgress={jest.fn()}
-        setShowDownloadMessage={jest.fn()}
-        setShowIncompleteMessage={jest.fn()}
-        downloadInProgress={true}
-        onDownloadSuccess={jest.fn()}
-        unitFileId="mockSlug"
-        showNewTag
-        geoRestricted={false}
-      />,
-    );
+    renderUnitDownloadButton({ downloadInProgress: true });
     const button = screen.getByText("Downloading...");
     expect(button).toBeInTheDocument();
     const spinner = screen.getByTestId("loading-spinner");
@@ -143,38 +118,14 @@ describe("UnitDownloadButton", () => {
   });
   it("should render a sign in button when logged out", () => {
     setUseUserReturn(mockLoggedOut);
-    renderWithProviders()(
-      <UnitDownloadButton
-        setDownloadError={jest.fn()}
-        setDownloadInProgress={jest.fn()}
-        setShowDownloadMessage={jest.fn()}
-        setShowIncompleteMessage={jest.fn()}
-        downloadInProgress={false}
-        onDownloadSuccess={jest.fn()}
-        unitFileId="mockSlug"
-        showNewTag
-        geoRestricted={false}
-      />,
-    );
+    renderUnitDownloadButton();
     const button = screen.getByText("Download complete unit");
     expect(button).toBeInTheDocument();
   });
   it("should disable the button when geoblocked", () => {
     setUseUserReturn(mockGeorestrictedUser);
 
-    renderWithProviders()(
-      <UnitDownloadButton
-        setDownloadError={jest.fn()}
-        setDownloadInProgress={jest.fn()}
-        setShowDownloadMessage={jest.fn()}
-        setShowIncompleteMessage={jest.fn()}
-        downloadInProgress={false}
-        onDownloadSuccess={jest.fn()}
-        unitFileId="mockSlug"
-        showNewTag
-        geoRestricted={true}
-      />,
-    );
+    renderUnitDownloadButton({ geoRestricted: true });
     const button = screen.getByRole("button", {
       name: "Download (.zip 1.2MB)",
     });
@@ -183,38 +134,14 @@ describe("UnitDownloadButton", () => {
 
   it("should set an error when the download fails", () => {
     const setDownloadError = jest.fn();
-    renderWithProviders()(
-      <UnitDownloadButton
-        setDownloadError={setDownloadError}
-        setDownloadInProgress={jest.fn()}
-        setShowDownloadMessage={jest.fn()}
-        setShowIncompleteMessage={jest.fn()}
-        downloadInProgress={false}
-        onDownloadSuccess={jest.fn()}
-        unitFileId="mockSlug"
-        showNewTag
-        geoRestricted={false}
-      />,
-    );
+    renderUnitDownloadButton({ setDownloadError });
     setDownloadError(true);
     expect(setDownloadError).toHaveBeenCalledWith(true);
   });
   it('should call "onDownloadSuccess" when the download is successful', async () => {
     const onDownloadSuccess = jest.fn();
 
-    renderWithProviders()(
-      <UnitDownloadButton
-        setDownloadError={jest.fn()}
-        setDownloadInProgress={jest.fn()}
-        setShowDownloadMessage={jest.fn()}
-        setShowIncompleteMessage={jest.fn()}
-        downloadInProgress={false}
-        onDownloadSuccess={onDownloadSuccess}
-        unitFileId="mockSlug"
-        showNewTag
-        geoRestricted={false}
-      />,
-    );
+    renderUnitDownloadButton({ onDownloadSuccess });
     const button = screen.getByRole("button", {
       name: "Download (.zip 1.2MB)",
     });
@@ -231,19 +158,11 @@ describe("UnitDownloadButton", () => {
     const setShowDownloadMessage = jest.fn();
     const setShowIncompleteMessage = jest.fn();
 
-    renderWithProviders()(
-      <UnitDownloadButton
-        setDownloadError={setDownloadError}
-        setDownloadInProgress={jest.fn()}
-        setShowDownloadMessage={setShowDownloadMessage}
-        setShowIncompleteMessage={setShowIncompleteMessage}
-        downloadInProgress={false}
-        onDownloadSuccess={jest.fn()}
-        unitFileId="mockSlug"
-        showNewTag
-        geoRestricted={false}
-      />,
-    );
+    renderUnitDownloadButton({
+      setDownloadError,
+      setShowDownloadMessage,
+      setShowIncompleteMessage,
+    });
     const button = screen.getByRole("button", {
       name: "Download (.zip 1.2MB)",
     });
@@ -256,93 +175,33 @@ describe("UnitDownloadButton", () => {
   });
   it("should render the long label when stuck, regardless of breakpoint", () => {
     setBreakpoint({ isDesktop: false, isMobile: false });
-    renderWithProviders()(
-      <UnitDownloadButton
-        setDownloadError={jest.fn()}
-        setDownloadInProgress={jest.fn()}
-        setShowDownloadMessage={jest.fn()}
-        setShowIncompleteMessage={jest.fn()}
-        downloadInProgress={false}
-        onDownloadSuccess={jest.fn()}
-        unitFileId="mockSlug"
-        showNewTag
-        geoRestricted={false}
-        isStuck
-      />,
-    );
+    renderUnitDownloadButton({ isStuck: true });
     expect(screen.getByText("Download (.zip 1.2MB)")).toBeInTheDocument();
   });
   it("should render the short label on tablet (not desktop, not mobile)", () => {
     setBreakpoint({ isDesktop: false, isMobile: false });
-    renderWithProviders()(
-      <UnitDownloadButton
-        setDownloadError={jest.fn()}
-        setDownloadInProgress={jest.fn()}
-        setShowDownloadMessage={jest.fn()}
-        setShowIncompleteMessage={jest.fn()}
-        downloadInProgress={false}
-        onDownloadSuccess={jest.fn()}
-        unitFileId="mockSlug"
-        showNewTag
-        geoRestricted={false}
-      />,
-    );
+    renderUnitDownloadButton();
     expect(screen.getByText("Download")).toBeInTheDocument();
     expect(screen.queryByText("Download (.zip 1.2MB)")).not.toBeInTheDocument();
   });
   it("should render the long label on mobile when longTextOnMobile is set", () => {
     setBreakpoint({ isDesktop: false, isMobile: true });
-    renderWithProviders()(
-      <UnitDownloadButton
-        setDownloadError={jest.fn()}
-        setDownloadInProgress={jest.fn()}
-        setShowDownloadMessage={jest.fn()}
-        setShowIncompleteMessage={jest.fn()}
-        downloadInProgress={false}
-        onDownloadSuccess={jest.fn()}
-        unitFileId="mockSlug"
-        showNewTag
-        geoRestricted={false}
-        longTextOnMobile
-        fullWidthOnMobile
-      />,
-    );
+    renderUnitDownloadButton({
+      longTextOnMobile: true,
+      fullWidthOnMobile: true,
+    });
     expect(screen.getByText("Download (.zip 1.2MB)")).toBeInTheDocument();
   });
   it("should render the short label on mobile when longTextOnMobile is not set", () => {
     setBreakpoint({ isDesktop: false, isMobile: true });
-    renderWithProviders()(
-      <UnitDownloadButton
-        setDownloadError={jest.fn()}
-        setDownloadInProgress={jest.fn()}
-        setShowDownloadMessage={jest.fn()}
-        setShowIncompleteMessage={jest.fn()}
-        downloadInProgress={false}
-        onDownloadSuccess={jest.fn()}
-        unitFileId="mockSlug"
-        showNewTag
-        geoRestricted={false}
-      />,
-    );
+    renderUnitDownloadButton();
     expect(screen.getByText("Download")).toBeInTheDocument();
   });
 
   describe("analytics events", () => {
     it("tracks the event when a logged out user starts the sign in flow", async () => {
       setUseUserReturn(mockLoggedOut);
-      renderWithProviders()(
-        <UnitDownloadButton
-          setDownloadError={jest.fn()}
-          setDownloadInProgress={jest.fn()}
-          setShowDownloadMessage={jest.fn()}
-          setShowIncompleteMessage={jest.fn()}
-          downloadInProgress={false}
-          onDownloadSuccess={jest.fn()}
-          unitFileId="mockSlug"
-          showNewTag
-          geoRestricted={false}
-        />,
-      );
+      renderUnitDownloadButton();
 
       await userEvent.setup().click(screen.getByText("Download complete unit"));
 
@@ -351,19 +210,7 @@ describe("UnitDownloadButton", () => {
 
     it("tracks the event when a user who has not onboarded starts the onboarding flow", async () => {
       setUseUserReturn(mockNotOnboardedUser);
-      renderWithProviders()(
-        <UnitDownloadButton
-          setDownloadError={jest.fn()}
-          setDownloadInProgress={jest.fn()}
-          setShowDownloadMessage={jest.fn()}
-          setShowIncompleteMessage={jest.fn()}
-          downloadInProgress={false}
-          onDownloadSuccess={jest.fn()}
-          unitFileId="mockSlug"
-          showNewTag
-          geoRestricted={false}
-        />,
-      );
+      renderUnitDownloadButton();
 
       const link = screen.getByText("Sign up to download").closest("a")!;
       link.addEventListener("click", (e) => e.preventDefault());
@@ -375,19 +222,7 @@ describe("UnitDownloadButton", () => {
 
     it("does not track the event when an onboarded user downloads directly", async () => {
       setUseUserReturn(mockLoggedIn);
-      renderWithProviders()(
-        <UnitDownloadButton
-          setDownloadError={jest.fn()}
-          setDownloadInProgress={jest.fn()}
-          setShowDownloadMessage={jest.fn()}
-          setShowIncompleteMessage={jest.fn()}
-          downloadInProgress={false}
-          onDownloadSuccess={jest.fn()}
-          unitFileId="mockSlug"
-          showNewTag
-          geoRestricted={false}
-        />,
-      );
+      renderUnitDownloadButton();
 
       await userEvent
         .setup()
@@ -398,19 +233,9 @@ describe("UnitDownloadButton", () => {
 
     it("tracks the unit downloaded event when the download succeeds", async () => {
       setUseUserReturn(mockLoggedIn);
-      renderWithProviders()(
-        <UnitDownloadButton
-          setDownloadError={jest.fn()}
-          setDownloadInProgress={jest.fn()}
-          setShowDownloadMessage={jest.fn()}
-          setShowIncompleteMessage={jest.fn()}
-          downloadInProgress={false}
-          onDownloadSuccess={() => mockUnitDownloaded()}
-          unitFileId="mockSlug"
-          showNewTag
-          geoRestricted={false}
-        />,
-      );
+      renderUnitDownloadButton({
+        onDownloadSuccess: () => mockUnitDownloaded(),
+      });
 
       await userEvent
         .setup()
@@ -425,19 +250,9 @@ describe("UnitDownloadButton", () => {
       );
       createUnitDownloadLink.mockRejectedValueOnce(new Error("network error"));
       setUseUserReturn(mockLoggedIn);
-      renderWithProviders()(
-        <UnitDownloadButton
-          setDownloadError={jest.fn()}
-          setDownloadInProgress={jest.fn()}
-          setShowDownloadMessage={jest.fn()}
-          setShowIncompleteMessage={jest.fn()}
-          downloadInProgress={false}
-          onDownloadSuccess={() => mockUnitDownloaded()}
-          unitFileId="mockSlug"
-          showNewTag
-          geoRestricted={false}
-        />,
-      );
+      renderUnitDownloadButton({
+        onDownloadSuccess: () => mockUnitDownloaded(),
+      });
 
       await userEvent
         .setup()

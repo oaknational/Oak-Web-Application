@@ -22,16 +22,6 @@ jest.mock("@/context/OakNotifications/useOakNotificationsContext", () => ({
 }));
 
 jest.mock(
-  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck",
-  () =>
-    jest.fn(() => ({
-      exists: true,
-      fileSize: "1.2MB",
-      hasCheckedFiles: true,
-    })),
-);
-
-jest.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink",
   () => jest.fn(),
 );
@@ -62,6 +52,8 @@ const defaultProps: UnitHeaderProps = {
   subjectIcon: "subject-maths",
   programmeSlug: "maths-ks4-higher",
   subjectPhaseSlug: "maths-secondary",
+  downloadExists: true,
+  fileSize: "1.2MB",
   downloadButtonState: {
     downloadError: false,
     setDownloadError: jest.fn(),
