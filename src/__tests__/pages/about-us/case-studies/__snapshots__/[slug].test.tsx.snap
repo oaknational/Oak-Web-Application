@@ -4837,7 +4837,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                           Summary
                         </div>
                         <p
-                          class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                          class="sc-hGPAwl gpFakR"
                         >
                           TEST_SUMMARY_1
                         </p>
@@ -7015,7 +7015,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                           Summary
                         </div>
                         <p
-                          class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                          class="sc-hGPAwl gpFakR"
                         >
                           TEST_SUMMARY_1
                         </p>
