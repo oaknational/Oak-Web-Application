@@ -13,10 +13,10 @@ import { useCurrentSection } from "@/hooks/useCurrentSection";
 export function CaseStudyNav({
   links,
   sectionRefs,
-}: {
+}: Readonly<{
   links: { label: string; anchor: string }[];
   sectionRefs: Record<string, RefObject<HTMLDivElement>>;
-}) {
+}>) {
   const { currentSectionId } = useCurrentSection({ sectionRefs });
 
   return (
