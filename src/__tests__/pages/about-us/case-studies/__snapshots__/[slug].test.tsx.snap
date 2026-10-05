@@ -3235,7 +3235,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders written case study 1`] =
                     class="sc-aXZVg sc-gEvEer cLBNuG eOXYpA"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ blEyxD"
+                      class="sc-aXZVg sc-gEvEer fLtWye blEyxD"
                       id="test-anchor-slug-1"
                     >
                       <h2
@@ -3263,7 +3263,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders written case study 1`] =
                       </p>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ blEyxD"
+                      class="sc-aXZVg sc-gEvEer fLtWye blEyxD"
                       id="test-anchor-slug-2"
                     >
                       <h2

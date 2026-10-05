@@ -203,6 +203,7 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                             sectionRefs[contentBlock.anchorSlug?.current ?? ""]
                           }
                           id={contentBlock.anchorSlug?.current}
+                          $scrollMarginTop="spacing-12"
                           $flexDirection="column"
                           $alignItems="flex-start"
                         >
@@ -213,12 +214,10 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                             $gap="spacing-8"
                           >
                             {contentBlock.label && (
-                              <>
-                                <OakTagFunctional
-                                  label={contentBlock.label}
-                                  $background="bg-decorative2-main"
-                                />{" "}
-                              </>
+                              <OakTagFunctional
+                                label={contentBlock.label}
+                                $background="bg-decorative2-main"
+                              />
                             )}
                             <OakHeading tag="div" $font="heading-4">
                               {contentBlock.heading}
