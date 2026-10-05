@@ -12,8 +12,6 @@ import {
   useMediaQuery,
 } from "@oaknational/oak-components";
 
-import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
-
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import { createUnitDownloadLink } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -263,7 +261,9 @@ export type UnitDownloadButtonProps = {
   downloadInProgress: boolean;
   showNewTag: boolean;
   geoRestricted: boolean;
+  downloadExists: boolean;
   size?: "small";
+  fileSize?: string;
   buttonLabel?: ReactNode;
   ariaLabel?: string;
   isStuck?: boolean;
@@ -279,7 +279,7 @@ export type UnitDownloadButtonProps = {
  * If there is no download for this unit, or unit download is disabled, the button will not be shown (ie. legacy units)
  */
 export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
-  const { unitFileId, geoRestricted } = props;
+  const { unitFileId, geoRestricted, downloadExists, fileSize } = props;
   const { isSignedIn, isLoaded, user } = useUser();
   const auth = useAuth();
   const pathname = usePathname();
@@ -300,9 +300,6 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     longTextOnMobile,
     fullWidthOnMobile,
   } = props;
-
-  const { exists, fileSize, hasCheckedFiles } =
-    useUnitDownloadExistenceCheck(unitFileId);
 
   const onUnitDownloadClick = async () => {
     setShowDownloadMessage(true);
@@ -327,7 +324,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     setDownloadInProgress(false);
   };
 
-  const showDownloadButton = hasCheckedFiles && exists;
+  const showDownloadButton = downloadExists;
 
   const showSignInButton = showDownloadButton && isLoaded && !isSignedIn;
 

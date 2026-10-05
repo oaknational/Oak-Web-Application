@@ -33,6 +33,8 @@ export type UnitHeaderProps = Omit<
   subjectPhaseSlug: string;
   programmeSlug: string;
   downloadButtonState: ReturnType<typeof useUnitDownloadButtonState>;
+  downloadExists: boolean;
+  fileSize?: string;
 };
 
 /**
@@ -97,6 +99,8 @@ const UnitHeader = (props: UnitHeaderProps) => {
             showNewTag={false}
             geoRestricted={Boolean(isGeorestrictedUnit)}
             size={isStuck ? "small" : undefined}
+            downloadExists={props.downloadExists}
+            fileSize={props.fileSize}
           />
         </NegativeBorderBox>
       )
