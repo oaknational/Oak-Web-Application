@@ -6,12 +6,12 @@ import {
   OakGridArea,
   OakVideo,
   OakHandDrawnHR,
-  OakTagFunctional,
-  OakHeading,
   OakAnchorTarget,
   OakFlex,
   OakBreadcrumbWithoutHref,
   OakBreadcrumb,
+  OakSpan,
+  OakTagFunctional,
 } from "@oaknational/oak-components";
 import { format } from "date-fns";
 
@@ -181,21 +181,21 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                             $alignItems="flex-start"
                             $flexDirection="column"
                             $gap="spacing-8"
+                            as="h2"
                           >
                             {contentBlock.label && (
-                              <>
-                                <OakTagFunctional
-                                  label={contentBlock.label}
-                                  $background="bg-decorative2-main"
-                                />{" "}
-                              </>
+                              <OakTagFunctional
+                                label={contentBlock.label}
+                                $background="bg-decorative2-main"
+                                useSpan={true}
+                              />
                             )}
                             <OakAnchorTarget
                               id={`#${contentBlock.anchorSlug?.current}`}
                             />
-                            <OakHeading tag="div" $font="heading-4">
+                            <OakSpan $font={["heading-5", "heading-4"]}>
                               {contentBlock.heading}
-                            </OakHeading>
+                            </OakSpan>
                           </OakFlex>
                           <PortableTextWithDefaults
                             value={contentBlock.contentRaw ?? undefined}
