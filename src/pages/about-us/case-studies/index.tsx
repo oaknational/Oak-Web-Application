@@ -81,7 +81,7 @@ export const AboutUsCaseStudyLibrary: NextPage<
                 $flexDirection="column"
                 $pa={["spacing-16", "spacing-20", "spacing-20"]}
                 $borderRadius="border-radius-l"
-                $background="bg-decorative2-very-subdued"
+                $background="bg-decorative2-subdued"
               >
                 {items.map((item) => {
                   return (
