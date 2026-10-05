@@ -957,11 +957,19 @@ exports[`pages/about-us/case-studies/[slug].tsx does not render written case stu
                   <div
                     class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex jESsXg"
                   >
-                    <h2
-                      class="sc-bkkgYE NpoJm"
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU kZwEgc"
                     >
-                      Explore more case studies
-                    </h2>
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU kkGnDS"
+                      >
+                        <h2
+                          class="sc-bkkgYE NpoJm"
+                        >
+                          Explore more case studies
+                        </h2>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <ul
@@ -3004,11 +3012,19 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
                   <div
                     class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex jESsXg"
                   >
-                    <h2
-                      class="sc-bkkgYE NpoJm"
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU kZwEgc"
                     >
-                      Explore more case studies
-                    </h2>
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU kkGnDS"
+                      >
+                        <h2
+                          class="sc-bkkgYE NpoJm"
+                        >
+                          Explore more case studies
+                        </h2>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <ul
@@ -5174,11 +5190,19 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                   <div
                     class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex jESsXg"
                   >
-                    <h2
-                      class="sc-bkkgYE NpoJm"
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU kZwEgc"
                     >
-                      Explore more case studies
-                    </h2>
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU kkGnDS"
+                      >
+                        <h2
+                          class="sc-bkkgYE NpoJm"
+                        >
+                          Explore more case studies
+                        </h2>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <ul
@@ -7344,11 +7368,19 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                   <div
                     class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex jESsXg"
                   >
-                    <h2
-                      class="sc-bkkgYE NpoJm"
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU kZwEgc"
                     >
-                      Explore more case studies
-                    </h2>
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU kkGnDS"
+                      >
+                        <h2
+                          class="sc-bkkgYE NpoJm"
+                        >
+                          Explore more case studies
+                        </h2>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <ul
@@ -7396,29 +7428,16 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                             </div>
                           </div>
                           <div
-                            class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
+                            class="sc-bdvwhi sc-gsDMPd hPWTKU eESQcF"
                           >
                             <div
-                              class="sc-bdvwhi sc-gsDMPd hPWTKU eWbmLh"
+                              class="sc-bdvwhi sc-gsDMPd qIlM gYQTzD"
                             >
-                              <span
-                                class="sc-dkPwfY hmZYGI"
+                              <div
+                                class="sc-bdvwhi hPWTKU"
                               >
-                                Watch the video
-                              </span>
-                              <span
-                                class="sc-bdvwhi cERAFe"
-                              >
-                                <img
-                                  alt=""
-                                  class="sc-jRQBiJ eMsccW"
-                                  data-nimg="fill"
-                                  decoding="async"
-                                  loading="lazy"
-                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                />
-                              </span>
+                                primary
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -7467,29 +7486,16 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                             </div>
                           </div>
                           <div
-                            class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
+                            class="sc-bdvwhi sc-gsDMPd hPWTKU eESQcF"
                           >
                             <div
-                              class="sc-bdvwhi sc-gsDMPd hPWTKU eWbmLh"
+                              class="sc-bdvwhi sc-gsDMPd qIlM gYQTzD"
                             >
-                              <span
-                                class="sc-dkPwfY hmZYGI"
+                              <div
+                                class="sc-bdvwhi hPWTKU"
                               >
-                                Watch the video
-                              </span>
-                              <span
-                                class="sc-bdvwhi cERAFe"
-                              >
-                                <img
-                                  alt=""
-                                  class="sc-jRQBiJ eMsccW"
-                                  data-nimg="fill"
-                                  decoding="async"
-                                  loading="lazy"
-                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                />
-                              </span>
+                                primary
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -7539,30 +7545,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                           </div>
                           <div
                             class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
-                          >
-                            <div
-                              class="sc-bdvwhi sc-gsDMPd hPWTKU eWbmLh"
-                            >
-                              <span
-                                class="sc-dkPwfY hmZYGI"
-                              >
-                                Watch the video
-                              </span>
-                              <span
-                                class="sc-bdvwhi cERAFe"
-                              >
-                                <img
-                                  alt=""
-                                  class="sc-jRQBiJ eMsccW"
-                                  data-nimg="fill"
-                                  decoding="async"
-                                  loading="lazy"
-                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                />
-                              </span>
-                            </div>
-                          </div>
+                          />
                         </div>
                       </a>
                     </div>
