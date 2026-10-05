@@ -509,12 +509,23 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         },
       ];
 
+      // Exact path only: /mcp/carousel/* is a separate external contract,
+      // handled by carouselCompatRewrites below, and must not be redirected.
+      const mcpRedirects = [
+        {
+          source: "/mcp",
+          destination: "/ai-plugin",
+          permanent: true,
+        },
+      ];
+
       return [
         ...pupilsRedirects,
         ...campaignRedirects,
         ...aboutUsRedirects,
         ...eyfsRedirects,
         ...integratedJourneyRedirects,
+        ...mcpRedirects,
       ];
     },
     async rewrites() {
