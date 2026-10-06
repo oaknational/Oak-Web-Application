@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { SearchView } from "./SearchView";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 function SearchPageFallback() {
   return (
@@ -31,9 +32,14 @@ async function SearchPage() {
   const curriculumData = await curriculumApi2023.searchPage();
 
   return (
-    <Suspense fallback={<SearchPageFallback />}>
-      <SearchView curriculumData={curriculumData} />
-    </Suspense>
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel={"search"}
+    >
+      <Suspense fallback={<SearchPageFallback />}>
+        <SearchView curriculumData={curriculumData} />
+      </Suspense>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 }
 

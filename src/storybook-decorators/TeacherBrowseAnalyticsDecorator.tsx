@@ -47,7 +47,14 @@ const state: TeacherBrowseAnalyticsStore = {
     lessonResourcesDownloaded: () =>
       console.log("lessonResourcesDownloaded fired"),
     lessonAccessed: () => console.log("lessonAccessed fired"),
+    lessonAssistantAccessed: () => console.log("lessonAssistantAccessed fired"),
     unitAccessed: () => console.log("unitAccessed fired"),
+    searchJourneyInitiated: () => console.log("searchJourneyInitiated fired"),
+    searchAccessed: () => console.log("searchAccessed fired"),
+    searchRefined: () => console.log("searchRefined fired"),
+    searchResultExpanded: () => console.log("searchResultExpanded fired"),
+    searchResultOpened: () => console.log("searchResultOpened fired"),
+    searchFilterModified: () => console.log("searchFilterModified fired"),
   },
 };
 
