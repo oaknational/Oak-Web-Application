@@ -32,6 +32,7 @@ const additionalAboutUsPaths = [
   "/about-us/oaks-impact",
   "/about-us/meet-the-team",
   "/about-us/get-involved",
+  "/about-us/case-studies",
 ];
 
 /**
