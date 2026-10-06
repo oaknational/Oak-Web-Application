@@ -1,0 +1,267 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostVideo allow override of location 1`] = `
+<div>
+  <div
+    data-overlay-container="true"
+  >
+    <div
+      class="sc-bdvwhi iTIjHb"
+    >
+      <div
+        class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+      >
+        <div
+          class="sc-bdvwhi sc-gsDMPd ctjFUQ eChlAW"
+        >
+          <div
+            class="sc-bdvwhi rRUGc"
+          >
+            <div>
+              MOCK_VIDEO
+            </div>
+          </div>
+        </div>
+        <div
+          class="sc-bdvwhi sc-gsDMPd eXzoht lkvGTq"
+        >
+          <p
+            class="sc-hGPAwl gjGOEe"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      aria-live="polite"
+      class="sc-bdvwhi sc-gsDMPd sc-b7a27f76-0 kjWDfr htLMtM krUohl"
+    />
+  </div>
+  <div
+    class="sc-bdvwhi gFnpsF"
+  >
+    <div
+      class="sc-bdvwhi iwVUCi"
+      data-testid="cookie-banner"
+    >
+      <div
+        class="sc-bdvwhi iIozLH"
+      >
+        <div
+          class="sc-bdvwhi sc-gsDMPd egBoar iKjTsb"
+        >
+          <div
+            class="sc-bdvwhi fIxCDL"
+          >
+            <strong
+              class="sc-dkPwfY iyMjBM"
+            >
+              This site uses cookies to store information on your computer.
+            </strong>
+             
+            Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
+          </div>
+          <div
+            class="sc-bdvwhi sc-gsDMPd hPWTKU gyKdMN"
+          >
+            <div
+              class="sc-bdvwhi sc-gsDMPd lmXuba eWbmLh"
+            >
+              <button
+                class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
+                data-testid="cookie-banner-reject"
+                type="button"
+              >
+                <span
+                  class="sc-dkPwfY fgmEIT"
+                >
+                  Reject non-essential cookies
+                </span>
+              </button>
+            </div>
+            <div
+              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+            >
+              <div
+                class="sc-bdvwhi kAFHfV grey-shadow"
+              />
+              <div
+                class="sc-bdvwhi kAFHfV yellow-shadow"
+              />
+              <button
+                class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                >
+                  <span
+                    class="sc-dkPwfY kXQhTZ"
+                  >
+                    Cookie settings
+                  </span>
+                </div>
+              </button>
+            </div>
+            <div
+              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+            >
+              <div
+                class="sc-bdvwhi kAFHfV grey-shadow"
+              />
+              <div
+                class="sc-bdvwhi kAFHfV yellow-shadow"
+              />
+              <button
+                class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                data-testid="cookie-banner-accept"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                >
+                  <span
+                    class="sc-dkPwfY kXQhTZ"
+                  >
+                    Accept all cookies
+                  </span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PostVideo should render correctly 1`] = `
+<div>
+  <div
+    data-overlay-container="true"
+  >
+    <div
+      class="sc-bdvwhi iTIjHb"
+    >
+      <div
+        class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+      >
+        <div
+          class="sc-bdvwhi sc-gsDMPd ctjFUQ eChlAW"
+        >
+          <div
+            class="sc-bdvwhi rRUGc"
+          >
+            <div>
+              MOCK_VIDEO
+            </div>
+          </div>
+        </div>
+        <div
+          class="sc-bdvwhi sc-gsDMPd eXzoht lkvGTq"
+        >
+          <p
+            class="sc-hGPAwl gjGOEe"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      aria-live="polite"
+      class="sc-bdvwhi sc-gsDMPd sc-b7a27f76-0 kjWDfr htLMtM krUohl"
+    />
+  </div>
+  <div
+    class="sc-bdvwhi gFnpsF"
+  >
+    <div
+      class="sc-bdvwhi iwVUCi"
+      data-testid="cookie-banner"
+    >
+      <div
+        class="sc-bdvwhi iIozLH"
+      >
+        <div
+          class="sc-bdvwhi sc-gsDMPd egBoar iKjTsb"
+        >
+          <div
+            class="sc-bdvwhi fIxCDL"
+          >
+            <strong
+              class="sc-dkPwfY iyMjBM"
+            >
+              This site uses cookies to store information on your computer.
+            </strong>
+             
+            Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
+          </div>
+          <div
+            class="sc-bdvwhi sc-gsDMPd hPWTKU gyKdMN"
+          >
+            <div
+              class="sc-bdvwhi sc-gsDMPd lmXuba eWbmLh"
+            >
+              <button
+                class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
+                data-testid="cookie-banner-reject"
+                type="button"
+              >
+                <span
+                  class="sc-dkPwfY fgmEIT"
+                >
+                  Reject non-essential cookies
+                </span>
+              </button>
+            </div>
+            <div
+              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+            >
+              <div
+                class="sc-bdvwhi kAFHfV grey-shadow"
+              />
+              <div
+                class="sc-bdvwhi kAFHfV yellow-shadow"
+              />
+              <button
+                class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                >
+                  <span
+                    class="sc-dkPwfY kXQhTZ"
+                  >
+                    Cookie settings
+                  </span>
+                </div>
+              </button>
+            </div>
+            <div
+              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+            >
+              <div
+                class="sc-bdvwhi kAFHfV grey-shadow"
+              />
+              <div
+                class="sc-bdvwhi kAFHfV yellow-shadow"
+              />
+              <button
+                class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                data-testid="cookie-banner-accept"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                >
+                  <span
+                    class="sc-dkPwfY kXQhTZ"
+                  >
+                    Accept all cookies
+                  </span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
