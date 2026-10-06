@@ -86,9 +86,8 @@ export const AboutUsCaseStudyLibrary: NextPage<
               >
                 {items.map((item) => {
                   return (
-                    <OakBox as="article">
+                    <OakBox as="article" key={item.href}>
                       <OakCard
-                        key={item.href}
                         headingLevel="div"
                         aspectRatio="4/3"
                         cardOrientation={["column", "row", "row"]}
