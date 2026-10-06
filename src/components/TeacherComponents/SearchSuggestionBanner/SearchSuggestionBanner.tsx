@@ -10,7 +10,7 @@ import { getSearchSuggestionBannerProps } from "./getSearchSuggestionBannerProps
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { SearchIntent } from "@/common-lib/schemas/search-intent";
-import useAnalytics from "@/context/Analytics/useAnalytics";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
@@ -39,7 +39,7 @@ export const SearchSuggestionBanner = (props: {
     searchResultCount: number;
   };
 }) => {
-  const { track } = useAnalytics();
+  const track = useTeacherBrowseAnalytics((store) => store.track);
   const convertedProps =
     props.intent && getSearchSuggestionBannerProps(props.intent);
 
@@ -113,21 +113,21 @@ export const SearchSuggestionBanner = (props: {
             href={getLinkHref(link)}
             onClick={() =>
               track.searchResultOpened({
-                keyStageTitle: link.keystageTitle as KeyStageTitleValueType,
-                keyStageSlug: link.keystageSlug,
-                subjectTitle: title,
-                subjectSlug,
-                unitName: null,
-                unitSlug: null,
-                lessonName: null,
-                lessonSlug: null,
-                lessonReleaseCohort: "2023-2026",
-                lessonReleaseDate: "",
-                analyticsUseCase: "Teacher",
                 searchResultType: "suggestion",
-                context: "search",
                 searchRank: 1,
                 ...props.searchTrackingData,
+                searchResultContext: {
+                  keyStageTitle: link.keystageTitle as KeyStageTitleValueType,
+                  keyStageSlug: link.keystageSlug,
+                  subjectTitle: title,
+                  subjectSlug,
+                  unitName: null,
+                  unitSlug: null,
+                  lessonName: null,
+                  lessonSlug: null,
+                  lessonReleaseCohort: "2023-2026",
+                  lessonReleaseDate: "",
+                },
               })
             }
           >

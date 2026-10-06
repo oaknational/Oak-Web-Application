@@ -26,7 +26,7 @@ const Template: StoryFn<BoxBordersProps> = (args) => <BoxBorders {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  gapPosition: undefined,
+  $gapPosition: undefined,
   $zIndex: null,
   hideTop: false,
   hideBottom: false,
@@ -40,5 +40,5 @@ Default.args = {
 export const WithGapPosition = Template.bind({});
 WithGapPosition.args = {
   ...Default.args,
-  gapPosition: "bottomRight",
+  $gapPosition: "bottomRight",
 };

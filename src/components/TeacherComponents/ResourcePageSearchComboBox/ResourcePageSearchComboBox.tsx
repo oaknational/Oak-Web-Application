@@ -10,6 +10,7 @@ import {
   OakFlex,
   OakJauntyAngleLabel,
   OakTextInput,
+  parseSpacing,
 } from "@oaknational/oak-components";
 
 import { Popover } from "@/components/SharedComponents/Popover";
@@ -83,8 +84,8 @@ const ResourcePageSearchComboBox = <T extends School>(
           $background={labelBackground}
           $zIndex="in-front"
           $position="absolute"
-          $top={"-20px"}
-          $left={"5px"}
+          $left={"spacing-4"}
+          style={{ top: `-${parseSpacing("spacing-20")}` }}
           $borderRadius="border-radius-square"
         />
 
