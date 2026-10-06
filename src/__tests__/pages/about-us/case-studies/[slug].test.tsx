@@ -1,4 +1,5 @@
 import { GetServerSidePropsContext } from "next/dist/types";
+import { within } from "@testing-library/react";
 
 import {
   caseStudy,
@@ -165,6 +166,57 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
       "/about-us/case-studies/test-2",
     );
     expect(otherCaseStudiesLinks).toHaveLength(1);
+  });
+
+  it("renders a sidebar nav with label names when there are at least two content sections and the feature flag is enabled", () => {
+    const { getByLabelText } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={true}
+        pageData={{ caseStudy, otherCaseStudies: [] }}
+        topNav={topNavFixture}
+      />,
+    );
+
+    const nav = getByLabelText("Contents");
+    const navLinks = within(nav).getAllByRole("link");
+
+    expect(nav).toBeVisible();
+    expect(navLinks).toHaveLength(2);
+    expect(navLinks[0]).toHaveTextContent("TEST_LABEL_1");
+    expect(navLinks[0]).toHaveAttribute(
+      "href",
+      `#${caseStudy.content[0]?.anchorSlug.current}`,
+    );
+  });
+
+  it("does not render a sidebar nav when there are less than two content sections", () => {
+    const caseStudyWithOneContentSection = {
+      ...caseStudy,
+      content: caseStudy.content.slice(0, 1),
+    };
+
+    const { queryByLabelText } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={true}
+        pageData={{
+          caseStudy: caseStudyWithOneContentSection,
+          otherCaseStudies: [],
+        }}
+        topNav={topNavFixture}
+      />,
+    );
+    expect(queryByLabelText("Contents")).toBeNull();
+  });
+
+  it("does not render a sidebar nav when the feature flag is disabled", () => {
+    const { queryByLabelText } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={false}
+        pageData={{ caseStudy, otherCaseStudies: [] }}
+        topNav={topNavFixture}
+      />,
+    );
+    expect(queryByLabelText("Contents")).toBeNull();
   });
 
   describe("getServerSideProps", () => {

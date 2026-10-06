@@ -6,7 +6,8 @@ import {
   OakGridArea,
   OakVideo,
   OakHandDrawnHR,
-  OakAnchorTarget,
+  OakTagFunctional,
+  OakHeading,
   OakFlex,
   OakBreadcrumbWithoutHref,
   OakBreadcrumb,
@@ -15,6 +16,7 @@ import {
   OakHeading,
 } from "@oaknational/oak-components";
 import { format } from "date-fns";
+import { createRef, useMemo } from "react";
 import { PortableTextComponent } from "@portabletext/react";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -28,6 +30,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { CaseStudyHeader } from "@/components/GenericPagesComponents/CaseStudyHeader";
+import { CaseStudyNav } from "@/components/GenericPagesComponents/CaseStudyNav";
 import { OaksImpactCaseStudyContentLayout } from "@/components/GenericPagesComponents/OaksImpactCaseStudyContentLayout";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
@@ -52,6 +55,22 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
   isCaseStudiesFeatEnabled,
 }) => {
   const { setCurrentToastProps } = useOakNotificationsContext();
+  const menuLinks = useMemo(
+    () =>
+      (caseStudy.content ?? []).flatMap(({ label, anchorSlug }) =>
+        label && anchorSlug?.current
+          ? [{ label, anchor: anchorSlug.current }]
+          : [],
+      ),
+    [caseStudy.content],
+  );
+  const sectionRefs = useMemo(
+    () =>
+      Object.fromEntries(
+        menuLinks.map(({ anchor }) => [anchor, createRef<HTMLDivElement>()]),
+      ),
+    [menuLinks],
+  );
 
   if (!isCaseStudiesFeatEnabled) {
     otherCaseStudies = otherCaseStudies.filter(
@@ -162,7 +181,18 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
             </NewGutterMaxWidth>
           </OakBox>
           <NewGutterMaxWidth>
-            <OaksImpactCaseStudyContentLayout>
+            <OaksImpactCaseStudyContentLayout
+              menu={
+                isCaseStudiesFeatEnabled && menuLinks.length >= 2 ? (
+                  <OakBox
+                    $height="100%"
+                    $pb={["spacing-0", "spacing-800", "spacing-640"]}
+                  >
+                    <CaseStudyNav links={menuLinks} sectionRefs={sectionRefs} />
+                  </OakBox>
+                ) : undefined
+              }
+            >
               {caseStudy.video && (
                 <OakBox
                   $pv={["spacing-72", "spacing-100"]}
@@ -199,7 +229,15 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                     >
                       {caseStudy.content.map((contentBlock) => (
                         <OakFlex
-                          key={contentBlock.heading}
+                          key={
+                            contentBlock.anchorSlug?.current ??
+                            contentBlock.heading
+                          }
+                          ref={
+                            sectionRefs[contentBlock.anchorSlug?.current ?? ""]
+                          }
+                          id={contentBlock.anchorSlug?.current}
+                          $scrollMarginTop="spacing-12"
                           $flexDirection="column"
                           $alignItems="flex-start"
                         >
@@ -217,9 +255,6 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                                 as="span"
                               />
                             )}
-                            <OakAnchorTarget
-                              id={`#${contentBlock.anchorSlug?.current}`}
-                            />
                             <OakSpan $font={["heading-5", "heading-4"]}>
                               {contentBlock.heading}
                             </OakSpan>

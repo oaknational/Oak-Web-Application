@@ -1,3 +1,38 @@
+# [1.1230.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1229.0...v1.1230.0) (2026-10-06)
+
+
+### Bug Fixes
+
+* add bottom padding on to stop nav running into get in touch panel ([7ffe27c](https://github.com/oaknational/Oak-Web-Application/commit/7ffe27cb021ae58dfb5c71c2db682857dd756eb8))
+* add consistent padding top for case study content ([811f44d](https://github.com/oaknational/Oak-Web-Application/commit/811f44d896f3c44bf8e94096107f3bd4971d1c2e))
+* case study contents font tokens ([8005dcb](https://github.com/oaknational/Oak-Web-Application/commit/8005dcbeca98a6ef24be591b47df963ccb4b5567))
+* remove default export ([70ac8c9](https://github.com/oaknational/Oak-Web-Application/commit/70ac8c9af87a4a6d6ef3edc4682a8d1e614212c6))
+
+
+### Features
+
+* add CaseStudyNav component ([8ffbada](https://github.com/oaknational/Oak-Web-Application/commit/8ffbada680d6d347e4c0350e7a76f62190d45207))
+* add scroll margin top to case study sections ([e315f11](https://github.com/oaknational/Oak-Web-Application/commit/e315f11d650a9f03799020aadf39449dee0b1604))
+* bring nav into case study individual page ([e80c7b6](https://github.com/oaknational/Oak-Web-Application/commit/e80c7b6d72bda0f3b8ff08b966733e0588c424b2))
+* make nav follow mobile design ([50cacf2](https://github.com/oaknational/Oak-Web-Application/commit/50cacf2978030dd9c1b73d1f5db2a6f64c272a89))
+* use contents title to label side nav ([19756ee](https://github.com/oaknational/Oak-Web-Application/commit/19756ee12bc09685008597c5b0c367c4407e5870))
+
+# [1.1229.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1228.0...v1.1229.0) (2026-10-05)
+
+
+### Bug Fixes
+
+* override location to "marketing" in case-studies blogs ([b965756](https://github.com/oaknational/Oak-Web-Application/commit/b96575658369261946673f03d7f5420c85f09e16))
+* storybook to use fixture ([f2fd8af](https://github.com/oaknational/Oak-Web-Application/commit/f2fd8af46514c4c5454606b0ad10290a812f4069))
+* use PostPortableTest instead of portableTextWithDefaults to embed image and video ([55283ea](https://github.com/oaknational/Oak-Web-Application/commit/55283eacdf487200a12f1614656071557303dab3))
+* use updated fixtures in caseStudiesSection ([f5e0cdb](https://github.com/oaknational/Oak-Web-Application/commit/f5e0cdbb750b306392b4d45d9ec2fe884860f500))
+* use updated fixtures in slug and index ([ca142f5](https://github.com/oaknational/Oak-Web-Application/commit/ca142f5a0d9d32ae81e98a0863b49e26d661fc0e))
+
+
+### Features
+
+* create case studies accurate fixtures ([76873d3](https://github.com/oaknational/Oak-Web-Application/commit/76873d3d8bf83f9eec05ce9fc6f20daafd296dd5))
+
 # [1.1228.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1227.0...v1.1228.0) (2026-10-05)
 
 
