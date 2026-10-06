@@ -193,7 +193,7 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
             >
               {caseStudy.video && (
                 <OakBox
-                  $pv={["spacing-72", "spacing-100"]}
+                  $pb={["spacing-72", "spacing-100"]}
                   $position={"relative"}
                 >
                   <OakVideo
@@ -235,7 +235,7 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                             sectionRefs[contentBlock.anchorSlug?.current ?? ""]
                           }
                           id={contentBlock.anchorSlug?.current}
-                          $scrollMarginTop="spacing-12"
+                          $scrollMarginTop={["spacing-24", "spacing-24"]}
                           $flexDirection="column"
                           $alignItems="flex-start"
                         >

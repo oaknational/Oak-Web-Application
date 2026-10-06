@@ -800,7 +800,7 @@ exports[`pages/about-us/case-studies/[slug].tsx does not render written case stu
                   class="sc-bdvwhi hPWTKU"
                 >
                   <div
-                    class="sc-bdvwhi ggJHFM"
+                    class="sc-bdvwhi Flphu"
                   >
                     <div
                       class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
@@ -2855,7 +2855,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
                   class="sc-bdvwhi hPWTKU"
                 >
                   <div
-                    class="sc-bdvwhi ggJHFM"
+                    class="sc-bdvwhi Flphu"
                   >
                     <div
                       class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
@@ -4987,7 +4987,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                   class="sc-bdvwhi hPWTKU"
                 >
                   <div
-                    class="sc-bdvwhi ggJHFM"
+                    class="sc-bdvwhi Flphu"
                   >
                     <div
                       class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
@@ -5129,7 +5129,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                     class="sc-bdvwhi sc-gsDMPd eXLAVP ga-DXyn"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd JknFv jMMTBg"
+                      class="sc-bdvwhi sc-gsDMPd bNskZW jMMTBg"
                       id="test-anchor-slug-1"
                     >
                       <h2
@@ -5157,7 +5157,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                       </p>
                     </div>
                     <div
-                      class="sc-bdvwhi sc-gsDMPd JknFv jMMTBg"
+                      class="sc-bdvwhi sc-gsDMPd bNskZW jMMTBg"
                       id="test-anchor-slug-2"
                     >
                       <h2
@@ -7432,7 +7432,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                   class="sc-bdvwhi hPWTKU"
                 >
                   <div
-                    class="sc-bdvwhi ggJHFM"
+                    class="sc-bdvwhi Flphu"
                   >
                     <div
                       class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
@@ -7574,7 +7574,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                     class="sc-bdvwhi sc-gsDMPd eXLAVP ga-DXyn"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd JknFv jMMTBg"
+                      class="sc-bdvwhi sc-gsDMPd bNskZW jMMTBg"
                       id="test-anchor-slug-1"
                     >
                       <h2
@@ -7602,7 +7602,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                       </p>
                     </div>
                     <div
-                      class="sc-bdvwhi sc-gsDMPd JknFv jMMTBg"
+                      class="sc-bdvwhi sc-gsDMPd bNskZW jMMTBg"
                       id="test-anchor-slug-2"
                     >
                       <h2
@@ -10042,7 +10042,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                   class="sc-bdvwhi hPWTKU"
                 >
                   <div
-                    class="sc-bdvwhi ggJHFM"
+                    class="sc-bdvwhi Flphu"
                   >
                     <div
                       class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
@@ -10184,7 +10184,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                     class="sc-bdvwhi sc-gsDMPd eXLAVP ga-DXyn"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd JknFv jMMTBg"
+                      class="sc-bdvwhi sc-gsDMPd bNskZW jMMTBg"
                       id="test-anchor-slug-1"
                     >
                       <h2
@@ -10212,7 +10212,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                       </p>
                     </div>
                     <div
-                      class="sc-bdvwhi sc-gsDMPd JknFv jMMTBg"
+                      class="sc-bdvwhi sc-gsDMPd bNskZW jMMTBg"
                       id="test-anchor-slug-2"
                     >
                       <h2
