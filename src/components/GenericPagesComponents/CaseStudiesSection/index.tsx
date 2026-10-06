@@ -5,7 +5,11 @@ import {
   OakGrid,
   OakGridArea,
   OakHeading,
+  OakLink,
+  OakSpan,
 } from "@oaknational/oak-components";
+
+import { getCaseStudyTagBackground } from "./getCaseStudyTagBackground";
 
 import { CaseStudyCard } from "@/common-lib/cms-types/caseStudy";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
@@ -15,11 +19,15 @@ import { resolveOakHref } from "@/common-lib/urls";
 export type CaseStudiesSectionProps = {
   title: string;
   caseStudies: CaseStudyCard[];
+  showTags?: boolean;
+  showViewAllLink?: boolean;
 };
 
 export const CaseStudiesSection = ({
   title,
   caseStudies,
+  showTags = false,
+  showViewAllLink,
 }: CaseStudiesSectionProps) => {
   return (
     <OakBox $background={"bg-decorative2-subdued"}>
@@ -34,9 +42,28 @@ export const CaseStudiesSection = ({
               $colSpan={caseStudies.length === 2 ? [12, 8, 8] : [12]}
               $colStart={caseStudies.length === 2 ? [1, 3, 3] : [1]}
             >
-              <OakHeading tag={"h2"} $font={["heading-5", "heading-3"]}>
-                {title}
-              </OakHeading>
+              <OakFlex
+                $flexDirection={["column", "row", "row"]}
+                $alignItems={["flex-start", "center", "center"]}
+                $gap={["spacing-12", "spacing-48", "spacing-48"]}
+              >
+                <OakFlex $flexGrow={1}>
+                  <OakHeading tag={"h2"} $font={["heading-5", "heading-3"]}>
+                    {title}
+                  </OakHeading>
+                </OakFlex>
+                {showViewAllLink && (
+                  <OakLink
+                    variant="secondary"
+                    iconName="chevron-right"
+                    isTrailingIcon={true}
+                    href={resolveOakHref({ page: "about-case-study-library" })}
+                    $font={"heading-7"}
+                  >
+                    <OakSpan $textWrap="nowrap">View all case studies</OakSpan>
+                  </OakLink>
+                )}
+              </OakFlex>
             </OakGridArea>
           </OakGrid>
           <OakGrid
@@ -58,7 +85,7 @@ export const CaseStudiesSection = ({
                 }
               >
                 <OakCard
-                  heading={caseStudy.video.title || ""}
+                  heading={caseStudy.title ?? ""}
                   headingLevel={"div"}
                   href={resolveOakHref({
                     page: "about-case-study",
@@ -68,8 +95,16 @@ export const CaseStudiesSection = ({
                     getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? ""
                   }
                   aspectRatio="4/3"
-                  linkText={"Watch the video"}
+                  linkText={
+                    !showTags && caseStudy.video ? "Watch the video" : undefined
+                  }
                   cardWidth={"100%"}
+                  tagName={showTags ? (caseStudy.tag ?? undefined) : undefined}
+                  tagBackground={
+                    showTags
+                      ? getCaseStudyTagBackground(caseStudy.tag)
+                      : undefined
+                  }
                 />
               </OakGridArea>
             ))}

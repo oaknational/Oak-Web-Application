@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
-import background from "./background";
+import background, { BackgroundProps } from "./background";
 
 describe("background", () => {
   test("should correctly handle prop 'background' as string", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<BackgroundProps>`
       ${background}
     `;
     const { getByTestId } = renderWithTheme(
@@ -19,7 +19,7 @@ describe("background", () => {
     expect(getByTestId("test")).toHaveStyle("color: rgb(255, 255, 255)");
   });
   test("should correctly handle prop 'background' as array", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<BackgroundProps>`
       ${background}
     `;
     const { getByTestId } = renderWithTheme(

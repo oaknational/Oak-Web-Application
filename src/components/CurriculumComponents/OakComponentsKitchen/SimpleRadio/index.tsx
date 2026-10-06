@@ -35,15 +35,15 @@ export function RadioGroup({
 }
 
 export const StyledRadio = styled.span<{
-  isSelected: boolean;
-  isFocusVisible: boolean;
-  hasError?: boolean;
+  $isSelected: boolean;
+  $isFocusVisible: boolean;
+  $hasError?: boolean;
 }>`
   height: 24px;
   width: 24px;
   border: 2px solid
     ${(props) =>
-      props.isFocusVisible
+      props.$isFocusVisible
         ? getColorByName("black")
         : getColorByName("grey50")};
   border-radius: 50%;
@@ -56,22 +56,22 @@ export const StyledRadio = styled.span<{
   cursor: pointer;
   margin-right: 16px;
   ${(props) =>
-    props.isFocusVisible &&
+    props.$isFocusVisible &&
     css`
       box-shadow: 0 0 0 2px ${getColorByName("lemon")};
     `}
 
   &::after {
     content: "";
-    height: ${(props) => (props.isSelected ? "20px" : "16px")};
-    width: ${(props) => (props.isSelected ? "20px" : "16px")};
+    height: ${(props) => (props.$isSelected ? "20px" : "16px")};
+    width: ${(props) => (props.$isSelected ? "20px" : "16px")};
     background: ${(props) =>
-      props.isSelected ? getColorByName("black") : getColorByName("white")};
+      props.$isSelected ? getColorByName("black") : getColorByName("white")};
     display: block;
     position: absolute;
     border-radius: 50%;
     ${(props) =>
-      props.isSelected &&
+      props.$isSelected &&
       css`
         border: 2px solid ${getColorByName("white")};
       `}
@@ -125,7 +125,7 @@ export function RadioButton(
         />
       </VisuallyHidden>
 
-      <StyledRadio isSelected={isSelected} isFocusVisible={isFocusVisible} />
+      <StyledRadio $isSelected={isSelected} $isFocusVisible={isFocusVisible} />
 
       {children}
     </label>

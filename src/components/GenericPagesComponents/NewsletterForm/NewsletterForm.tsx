@@ -11,6 +11,7 @@ import {
   OakP,
   OakPrimaryButton,
   OakSelect,
+  parseSpacing,
 } from "@oaknational/oak-components";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -62,6 +63,7 @@ export type NewsletterFormProps = OakBoxProps & {
   id: string;
   descriptionId?: string;
 };
+
 /**
  * Newsletter Form is a styled sign-up form for the newsletter.
  *
@@ -105,7 +107,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
           if (error instanceof OakError) {
             setSubmitError(error.message);
           } else {
-            reportError(error);
+            void reportError(error);
             setSubmitError("An unknown error occurred");
           }
         } finally {
@@ -168,11 +170,8 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
           <OakBox
             $position="relative"
             $width="100%"
-            $mt={errors.email ? "spacing-32" : "spacing-14"}
+            $mt={errors.email ? "spacing-32" : "spacing-0"}
             $mb="spacing-8"
-            role="group"
-            aria-labelledby={`${id}-role-label`}
-            aria-describedby={fieldState.error ? `${id}-role-error` : undefined}
           >
             <OakJauntyAngleLabel
               id={`${id}-role-label`}
@@ -183,9 +182,9 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
               $background={
                 fieldState.error ? "bg-error" : "bg-decorative5-main"
               }
+              style={{ top: `-${parseSpacing("spacing-20")}` }}
               $font="heading-7"
               $position="absolute"
-              $top="-20px"
               $left="spacing-8"
               $zIndex="in-front"
               $borderRadius="border-radius-square"
@@ -193,7 +192,10 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
             <OakSelect
               id={`${id}-newsletter-signup-userrole`}
               name={field.name}
-              aria-label="Role"
+              aria-labelledby={`${id}-role-label`}
+              aria-describedby={
+                fieldState.error ? `${id}-role-error` : undefined
+              }
               $display="block"
               value={field.value}
               validity={fieldState.error ? "invalid" : undefined}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useId } from "react";
+import { Suspense } from "react";
 
 import { ShortReads } from "./ShortReads/ShortReads";
 import { TeachWithOakDescription } from "./TeachWithOakDescription/TeachWithOakDescription";
@@ -12,26 +12,20 @@ import {
   ExploreItem,
   WhoAreWeExplore,
 } from "@/components/GenericPagesComponents/WhoAreWeExplore";
-import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 
-export const TeachWithOakView = ({
-  backToLessonLink,
-}: {
-  backToLessonLink?: string;
-}) => {
-  const { onSubmit } = useNewsletterForm();
-  const id = useId();
-
+export const TeachWithOakView = () => {
   return (
     <>
-      <TeachWithOakHeader href={backToLessonLink} />
+      <TeachWithOakHeader />
       <TeachWithOakDescription />
       <ShortReads />
       <WhoAreWeExplore
         title={"Explore more guidance from Oak"}
         items={exploreItems}
       />
-      <TeachWithOakNewsletterForm id={id} onSubmit={onSubmit} />
+      <Suspense>
+        <TeachWithOakNewsletterForm />
+      </Suspense>
     </>
   );
 };

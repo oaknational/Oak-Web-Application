@@ -21,8 +21,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 .c4 {
   position: relative;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   height: auto;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -111,8 +109,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 .c40 {
   position: relative;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   padding: 0.5rem;
   color: #222222;
@@ -124,9 +120,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -142,8 +135,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 .c45 {
   position: relative;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   font-family: --var(google-font),Lexend,sans-serif;
 }
@@ -174,8 +165,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c59 {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   min-width: 2rem;
   height: 2rem;
@@ -187,9 +176,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -305,9 +291,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 600;
   font-size: 1.25rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -346,9 +329,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -357,9 +337,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -394,8 +371,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 .c124 {
   position: relative;
+  overflow: hidden;
   background: #bef2bd;
   font-family: --var(google-font),Lexend,sans-serif;
+  overflow: hidden;
 }
 
 .c125 {
@@ -407,8 +386,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   height: 100%;
   min-height: 100%;
   display: none;
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
   transform: scale(1);
   font-family: --var(google-font),Lexend,sans-serif;
 }
@@ -447,9 +424,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 500;
   font-size: 1.125rem;
   line-height: 1.75rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -514,8 +488,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 .c149 {
   position: absolute;
-  top: -20px;
-  left: 5px;
+  left: 0.25rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   padding-top: 0.25rem;
@@ -523,16 +496,11 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   color: #222222;
   background: #ffe555;
   border-radius: 0rem;
-  -webkit-transform: rotate(-1.5deg);
-  -ms-transform: rotate(-1.5deg);
   transform: rotate(-1.5deg);
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
   z-index: 1;
 }
@@ -540,8 +508,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 .c150 {
   position: relative;
   width: 100%;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
@@ -560,14 +526,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 .c154 {
   position: relative;
   width: 100%;
-  margin-top: spacing-14;
+  margin-top: 0rem;
   margin-bottom: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
 .c155 {
   position: absolute;
-  top: -20px;
   left: 0.5rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -576,16 +541,11 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   color: #222222;
   background: #ffe555;
   border-radius: 0rem;
-  -webkit-transform: rotate(-1.5deg);
-  -ms-transform: rotate(-1.5deg);
   transform: rotate(-1.5deg);
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
   z-index: 1;
 }
@@ -651,9 +611,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -678,9 +635,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c191 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   font-family: --var(google-font),Lexend,sans-serif;
 }
@@ -731,8 +685,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   height: 100%;
   min-height: 100%;
   display: none;
-  -webkit-transform: none;
-  -ms-transform: none;
   transform: none;
   font-family: --var(google-font),Lexend,sans-serif;
   z-index: -1;
@@ -749,7 +701,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c209 {
-  position: -webkit-sticky;
   position: sticky;
   bottom: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -783,9 +734,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 300;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -795,533 +743,245 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
 .c10 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 0.5rem;
 }
 
 .c13 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 1rem;
 }
 
 .c23 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 1.5rem;
 }
 
 .c29 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
 .c34 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 0.25rem;
 }
 
 .c37 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 1.5rem;
 }
 
 .c41 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
 .c46 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
 .c50 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 0rem;
 }
 
 .c52 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
 .c60 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 0.25rem;
 }
 
 .c94 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   gap: 0.5rem;
 }
 
 .c98 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
 }
 
 .c71 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-flex-basis: auto;
-  -ms-flex-preferred-size: auto;
   flex-basis: auto;
   gap: 0rem;
 }
 
 .c73 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-flex: 0;
-  -webkit-flex-grow: 0;
-  -ms-flex-positive: 0;
   flex-grow: 0;
-  -webkit-flex-shrink: 1;
-  -ms-flex-negative: 1;
   flex-shrink: 1;
-  -webkit-flex-basis: auto;
-  -ms-flex-preferred-size: auto;
   flex-basis: auto;
   gap: 1.5rem;
 }
 
 .c83 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
 .c87 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-flex-shrink: 1;
-  -ms-flex-negative: 1;
   flex-shrink: 1;
 }
 
 .c91 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   gap: 2.5rem;
 }
 
 .c99 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   gap: 1rem;
 }
 
 .c101 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
 .c103 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-flex: 0;
-  -webkit-flex-grow: 0;
-  -ms-flex-positive: 0;
   flex-grow: 0;
 }
 
 .c112 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   gap: 2rem;
 }
 
 .c117 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   gap: 1.5rem;
 }
 
 .c120 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   gap: 1rem;
 }
 
 .c132 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 1rem;
 }
 
 .c143 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
 .c151 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 1rem;
 }
 
 .c157 {
   display: block;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 1rem;
 }
 
 .c164 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-content: center;
-  -ms-flex-line-pack: center;
   align-content: center;
 }
 
 .c176 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
 .c189 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: left;
-  -webkit-justify-content: left;
-  -ms-flex-pack: left;
   justify-content: left;
 }
 
 .c192 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 1rem;
 }
 
 .c199 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
   align-items: flex-start;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
   justify-content: flex-start;
 }
 
 .c201 {
   display: none;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 1rem;
 }
 
 .c207 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 0.75rem;
 }
 
 .c213 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
   align-items: flex-start;
   gap: 1.5rem;
 }
 
 .c216 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
   justify-content: flex-end;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
   gap: 0.75rem;
 }
@@ -1331,9 +991,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
   text-align: left;
 }
@@ -1343,9 +1000,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
   text-align: left;
 }
@@ -1359,9 +1013,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
   text-align: left;
 }
@@ -1371,9 +1022,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -1389,9 +1037,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -1400,7 +1045,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   top: 0rem;
   left: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
-  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
@@ -1573,9 +1217,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
   color: #ffffff;
   background: #222222;
@@ -1685,19 +1326,16 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c36 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   object-fit: contain;
 }
 
 .c54 {
-  -webkit-filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
   filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
   object-fit: contain;
 }
 
 .c205 {
-  -webkit-filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   object-fit: fill;
 }
@@ -1727,7 +1365,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c8:hover {
-  -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #222222;
   background: #f2f2f2;
@@ -1765,7 +1402,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c19:hover {
-  -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #ffffff;
   background: #575757;
@@ -1803,7 +1439,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c33:hover {
-  -webkit-text-decoration: none;
   text-decoration: none;
   color: #222222;
   background: #f2f2f2;
@@ -1841,7 +1476,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c64:hover {
-  -webkit-text-decoration: none;
   text-decoration: none;
   color: #ffffff;
   background: #575757;
@@ -1873,16 +1507,16 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c5 .grey-shadow:has(+ * + .internal-button:focus-visible) {
-  box-shadow: 0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
 .c5 .yellow-shadow:has(+ .internal-button:focus-visible) {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%);
 }
 
 .c5 .yellow-shadow:has(+ .internal-button:hover),
-.c5 .yellow-shadow:has(+ .internal-button:hover:not(:focus-visible,:active)) {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
+.c5 .yellow-shadow:has(+ .internal-button:hover:not(:focus-visible, :active)) {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%);
 }
 
 .c5 .grey-shadow:has(+ * + .internal-button:hover) {
@@ -1890,23 +1524,23 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c5 .grey-shadow:has(+ * + .internal-button:active) {
-  box-shadow: 0.25rem 0.25rem 0 rgba(87,87,87,100%);
+  box-shadow: 0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
 .c5 .yellow-shadow:has(+ .internal-button:active) {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%);
 }
 
 .c15 .grey-shadow:has(+ * + .internal-button:focus-visible) {
-  box-shadow: 0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
 .c15 .yellow-shadow:has(+ .internal-button:focus-visible) {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%);
 }
 
 .c15 .yellow-shadow:has(+ .internal-button:hover),
-.c15 .yellow-shadow:has(+ .internal-button:hover:not(:focus-visible,:active)) {
+.c15 .yellow-shadow:has(+ .internal-button:hover:not(:focus-visible, :active)) {
   box-shadow: none;
 }
 
@@ -1915,11 +1549,11 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c15 .grey-shadow:has(+ * + .internal-button:active) {
-  box-shadow: 0.25rem 0.25rem 0 rgba(87,87,87,100%);
+  box-shadow: 0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
 .c15 .yellow-shadow:has(+ .internal-button:active) {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%);
 }
 
 .c49 {
@@ -1928,7 +1562,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c49:hover {
-  -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #575757;
 }
@@ -1941,51 +1574,51 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   color: #808080;
 }
 
-.c47 > :first-child:focus-visible .shadow {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+.c47 >:first-of-type:focus-visible .shadow {
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c47 > :first-child:hover .shadow {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
+.c47 >:first-of-type:hover .shadow {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%);
 }
 
-.c47 > :first-child:active .shadow {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%), 0.25rem 0.25rem 0 rgba(87,87,87,100%);
+.c47 >:first-of-type:active .shadow {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%),0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
-.c47 > :first-child:disabled .icon-container {
+.c47 >:first-of-type:disabled .icon-container {
   background: #808080;
 }
 
-.c47 > :first-child:hover .icon-container {
+.c47 >:first-of-type:hover .icon-container {
   background: #575757;
 }
 
-.c47 > :first-child:active .icon-container {
+.c47 >:first-of-type:active .icon-container {
   background: #222222;
 }
 
-.c193 > :first-child:focus-visible .shadow {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+.c193 >:first-of-type:focus-visible .shadow {
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c193 > :first-child:hover .shadow {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
+.c193 >:first-of-type:hover .shadow {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%);
 }
 
-.c193 > :first-child:active .shadow {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%), 0.25rem 0.25rem 0 rgba(87,87,87,100%);
+.c193 >:first-of-type:active .shadow {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%),0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
-.c193 > :first-child:disabled .icon-container {
+.c193 >:first-of-type:disabled .icon-container {
   background: #e4e4e4;
 }
 
-.c193 > :first-child:hover .icon-container {
+.c193 >:first-of-type:hover .icon-container {
   background: #ffffff;
 }
 
-.c193 > :first-child:active .icon-container {
+.c193 >:first-of-type:active .icon-container {
   background: #ffffff;
 }
 
@@ -1994,9 +1627,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 600;
   font-size: 2rem;
   line-height: 2.5rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -2005,9 +1635,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 600;
   font-size: 1.5rem;
   line-height: 2rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -2016,9 +1643,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 600;
   font-size: 1.25rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -2027,9 +1651,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 600;
   font-size: 1.5rem;
   line-height: 2rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
   text-align: left;
 }
@@ -2039,9 +1660,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 600;
   font-size: 1.25rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -2050,9 +1668,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 600;
   font-size: 1.5rem;
   line-height: 2rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
   text-align: center;
 }
@@ -2062,9 +1677,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 600;
   font-size: 1.5rem;
   line-height: 2rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -2073,9 +1685,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
   margin-bottom: 0.5rem;
   color: #222222;
@@ -2103,9 +1712,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 400;
   font-size: 1.5rem;
   line-height: 2rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -2114,9 +1720,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -2125,9 +1728,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
   margin-top: 1rem;
 }
@@ -2137,9 +1737,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -2154,9 +1751,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 300;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
   color: #dd0035;
   margin-top: 0rem;
@@ -2167,9 +1761,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 300;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
   margin-top: 0rem;
 }
@@ -2179,9 +1770,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -2190,9 +1778,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 300;
   font-size: 0.75rem;
   line-height: 1rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -2201,9 +1786,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -2212,18 +1794,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   padding: 0;
   margin: 0;
   display: block;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   font-family: --var(google-font),Lexend,sans-serif;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 0.75rem;
 }
@@ -2238,22 +1811,16 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 .c24 {
   display: inline;
   text-align: left;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 0.25rem;
   outline: none;
   border-radius: 0.375rem;
   padding: 0.25rem;
   margin: -0.25rem;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   font: inherit;
   background: none;
   border: none;
-  -webkit-text-decoration: underline;
   text-decoration: underline;
   cursor: pointer;
   color: #0d24c4;
@@ -2261,14 +1828,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c24 .c187 {
-  -webkit-filter: invert(21%) sepia(90%) saturate(3220%) hue-rotate(232deg) brightness(71%) contrast(127%);
   filter: invert(21%) sepia(90%) saturate(3220%) hue-rotate(232deg) brightness(71%) contrast(127%);
   display: inline-block;
   vertical-align: text-top;
 }
 
 .c24:focus-visible {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
 .c24:visited {
@@ -2276,7 +1842,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c24:visited .c187 {
-  -webkit-filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
 
@@ -2286,7 +1851,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c24:active .c187 {
-  -webkit-filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
 
@@ -2296,29 +1860,22 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c24[disabled] .c187 {
-  -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
 .c184 {
   display: inline;
   text-align: left;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 0.25rem;
   outline: none;
   border-radius: 0.375rem;
   padding: 0.25rem;
   margin: -0.25rem;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   font: inherit;
   background: none;
   border: none;
-  -webkit-text-decoration: none;
   text-decoration: none;
   cursor: pointer;
   color: #222222;
@@ -2326,14 +1883,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c184 .c187 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   display: inline-block;
   vertical-align: text-top;
 }
 
 .c184:focus-visible {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
 .c184:visited {
@@ -2341,7 +1897,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c184:visited .c187 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
@@ -2351,7 +1906,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c184:active .c187 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
@@ -2361,88 +1915,19 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c184[disabled] .c187 {
-  -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
 .c218 {
-  display: inline;
-  text-align: left;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 0.25rem;
-  outline: none;
-  border-radius: 0.375rem;
-  padding: 0.25rem;
-  margin: -0.25rem;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  background: none;
-  border: none;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  cursor: pointer;
-  color: #222222;
-  overflow-wrap: break-word;
-}
-
-.c218 .c187 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  display: inline-block;
-  vertical-align: text-top;
-}
-
-.c218:focus-visible {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
-}
-
-.c218:visited {
-  color: #222222;
-}
-
-.c218:visited .c187 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-}
-
-.c218:active {
-  color: #222222;
-  outline: 1px solid #222222;
-}
-
-.c218:active .c187 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-}
-
-.c218[disabled] {
-  cursor: not-allowed;
-  color: #808080;
-}
-
-.c218[disabled] .c187 {
-  -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
-  filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
 .c43 {
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
-  appearance: none !important;
+  appearance: none!important;
   border: 0;
   border-radius: 0;
   border-color: transparent;
@@ -2455,18 +1940,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   width: 100%;
 }
 
-.c43::-webkit-input-placeholder {
-  color: #575757;
-}
-
-.c43::-moz-placeholder {
-  color: #575757;
-}
-
-.c43:-ms-input-placeholder {
-  color: #575757;
-}
-
 .c43::placeholder {
   color: #575757;
 }
@@ -2475,8 +1948,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 .c43::-webkit-search-cancel-button,
 .c43::-webkit-search-results-button,
 .c43::-webkit-search-results-decoration {
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
 }
 
@@ -2485,9 +1956,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c153 {
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
-  appearance: none !important;
+  appearance: none!important;
   border: 0;
   border-radius: 0;
   border-color: transparent;
@@ -2502,18 +1971,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   height: 3.5rem;
 }
 
-.c153::-webkit-input-placeholder {
-  color: #575757;
-}
-
-.c153::-moz-placeholder {
-  color: #575757;
-}
-
-.c153:-ms-input-placeholder {
-  color: #575757;
-}
-
 .c153::placeholder {
   color: #575757;
 }
@@ -2522,8 +1979,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 .c153::-webkit-search-cancel-button,
 .c153::-webkit-search-results-button,
 .c153::-webkit-search-results-decoration {
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
 }
 
@@ -2546,39 +2001,34 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 .c92 {
   display: grid;
-  grid-template-columns: repeat(12,1fr);
+  grid-template-columns: repeat(12, 1fr);
   width: 100%;
   row-gap: 1rem;
-  -webkit-column-gap: 1rem;
   column-gap: 1rem;
 }
 
 .c114 {
   display: grid;
-  grid-template-columns: repeat(12,1fr);
+  grid-template-columns: repeat(12, 1fr);
   width: 100%;
   row-gap: 2rem;
-  -webkit-column-gap: 1rem;
   column-gap: 1rem;
 }
 
 .c140 {
   display: grid;
-  grid-template-columns: repeat(12,1fr);
+  grid-template-columns: repeat(12, 1fr);
   width: 100%;
 }
 
 .c177 {
   display: grid;
-  grid-template-columns: repeat(12,1fr);
+  grid-template-columns: repeat(12, 1fr);
   width: 100%;
-  -webkit-column-gap: 1.5rem;
   column-gap: 1.5rem;
 }
 
 .c93 {
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   grid-column: span 12;
   grid-row: span undefined;
@@ -2587,8 +2037,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c97 {
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   grid-column: span 12;
   grid-row: span undefined;
@@ -2597,8 +2045,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c115 {
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   grid-column: span 12;
   grid-row: span undefined;
@@ -2606,8 +2052,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c141 {
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   grid-column: span 12;
   grid-row: span undefined;
@@ -2615,8 +2059,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c178 {
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   grid-column: span 12;
   grid-row: span undefined;
@@ -2627,11 +2069,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   border: none;
   outline: none;
   width: 100%;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
-  -webkit-appearance: base-select;
-  -moz-appearance: base-select;
   appearance: base-select;
   border-radius: 0.25rem;
   padding: 1rem;
@@ -2644,15 +2082,11 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c159:focus {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
 .c159::picker(select) {
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
-  -webkit-appearance: base-select;
-  -moz-appearance: base-select;
   appearance: base-select;
   border-bottom-left-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
@@ -2685,32 +2119,26 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c165 {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
 .c167 {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
-.c158 select ~ .c166 {
+.c158 select~.c166 {
   display: block;
 }
 
-.c158 select:open ~ .c166 {
+.c158 select:open~.c166 {
   display: none;
 }
 
-.c158 select ~ .c162 {
+.c158 select~.c162 {
   display: none;
 }
 
-.c158 select:open ~ .c162 {
+.c158 select:open~.c162 {
   display: block;
 }
 
@@ -2729,7 +2157,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c160:focus {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
 .c160:disabled {
@@ -2761,7 +2189,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c161:focus {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
 .c161:disabled {
@@ -2787,7 +2215,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c152:focus-within {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
 .c130 {
@@ -2797,22 +2225,22 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   box-shadow: none;
 }
 
-.c130:has(a:hover,button:hover) {
+.c130:has(a:hover, button:hover) {
   box-shadow: none;
 }
 
-.c130:has( a, button) {
+.c130:has(   a,   button ) {
   border-radius: 0.5rem;
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c130:has( a, button)  a,
-.c130:has( a, button) button {
+.c130:has(   a,   button ) a,
+.c130:has(   a,   button ) button {
   outline: none;
 }
 
-.c130:has(a:active,button:active) {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%),0.25rem 0.25rem 0 rgba(87,87,87,100%);
+.c130:has(a:active, button:active) {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%),0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
 .c58:hover .oak-save-count {
@@ -2820,7 +2248,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c58:focus-visible .oak-save-count {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
 .c208 {
@@ -2834,14 +2262,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 .c78 {
   height: 410px;
   width: auto;
-  -webkit-flex: 0 1 auto;
-  -ms-flex: 0 1 auto;
   flex: 0 1 auto;
 }
 
 .c81 {
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
 }
 
@@ -2859,10 +2283,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   list-style: none;
   display: grid;
   row-gap: 1rem;
-  -webkit-column-gap: 1rem;
   column-gap: 1rem;
   grid-auto-rows: 1fr;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .c138 {
@@ -2870,7 +2293,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   justify-self: center;
 }
 
-.c194 .icon-container > *:first-child {
+.c194 .icon-container>*:first-child {
   border: 0;
 }
 
@@ -2880,1419 +2303,1270 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   margin-top: 2rem;
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c12 {
     padding-left: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c12 {
     padding-right: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c14 {
-    width: -webkit-max-content;
-    width: -moz-max-content;
     width: max-content;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c22 {
     padding-left: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c22 {
     padding-right: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c22 {
     padding-top: 1.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c22 {
     padding-bottom: 1.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c26 {
     display: none;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c28 {
     display: block;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c38 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c39 {
     display: block;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c44 {
     position: absolute;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c44 {
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c56 {
     display: none;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c59 {
     padding-left: 0.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c59 {
     padding-right: 0.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c62 {
     display: contents;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c65 {
     display: block;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c65 {
     display: none;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
 
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
 
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c69 {
     padding-left: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c69 {
     padding-right: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c70 {
     padding-top: 4.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c70 {
     padding-bottom: 4.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c82 {
     min-width: 40rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c82 {
     min-width: 50rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c86 {
     padding-left: 2.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c86 {
     padding-left: 5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c86 {
     padding-right: 2.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c86 {
     padding-right: 5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c86 {
     padding-top: 2.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c86 {
     padding-top: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c86 {
     padding-bottom: 2.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c86 {
     padding-bottom: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c90 {
     padding-top: 4.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c95 {
     font-weight: 600;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c95 {
     font-size: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c95 {
     line-height: 2rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c95 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c105 {
     margin-bottom: 4.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c108 {
     font-weight: 300;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c108 {
     font-size: 1.125rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c108 {
     line-height: 1.75rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c108 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
     letter-spacing: -0.005rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c111 {
     padding-top: 5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c111 {
     padding-top: 5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c111 {
     padding-bottom: 5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c111 {
     padding-bottom: 5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c125 {
     display: block;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c125 {
-    -webkit-transform: scale(1.1) translateX(-0.65%) translateY(4%);
-    -ms-transform: scale(1.1) translateX(-0.65%) translateY(4%);
     transform: scale(1.1) translateX(-0.65%) translateY(4%);
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c125 {
-    -webkit-transform: scale(1.4) translateY(4%);
-    -ms-transform: scale(1.4) translateY(4%);
     transform: scale(1.4) translateY(4%);
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c126 {
     padding-top: 5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c126 {
     padding-top: 5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c126 {
     padding-bottom: 5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c126 {
     padding-bottom: 5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c139 {
     padding-top: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c139 {
     padding-bottom: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c175 {
     padding-left: 2.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c175 {
     padding-left: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c175 {
     padding-right: 2.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c175 {
     padding-right: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c175 {
     padding-top: 5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c179 {
     margin-top: 0rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c185 {
     margin-top: 2rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c191 {
     display: none;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c198 {
     padding-top: 0rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c200 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c204 {
     display: block;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c204 {
-    -webkit-transform: translate(25%,25%) scale(0.7) rotate(-10deg);
-    -ms-transform: translate(25%,25%) scale(0.7) rotate(-10deg);
-    transform: translate(25%,25%) scale(0.7) rotate(-10deg);
+    transform: translate(25%, 25%) scale(0.7) rotate(-10deg);
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c204 {
-    -webkit-transform: translate(25%,15%) rotate(-10deg);
-    -ms-transform: translate(25%,15%) rotate(-10deg);
-    transform: translate(25%,15%) rotate(-10deg);
+    transform: translate(25%, 15%) rotate(-10deg);
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c206 {
     right: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c206 {
-    width: -webkit-max-content;
-    width: -moz-max-content;
     width: max-content;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c206 {
     padding-left: 0rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c206 {
     padding-right: 0rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c212 {
     margin-left: 1.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c212 {
     margin-left: 3.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c212 {
     margin-right: 1.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c212 {
     margin-right: 3.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c214 {
     font-weight: 300;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c214 {
     font-size: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c214 {
     line-height: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c214 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
     letter-spacing: -0.005rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c13 {
-    -webkit-box-pack: left;
-    -webkit-justify-content: left;
-    -ms-flex-pack: left;
     justify-content: left;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c37 {
     gap: 1rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c37 {
     gap: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c60 {
-    -webkit-box-pack: initial;
-    -webkit-justify-content: initial;
-    -ms-flex-pack: initial;
     justify-content: initial;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
 
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
 
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c71 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
     flex-direction: row;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c71 {
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
     flex-basis: auto;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c71 {
     gap: 3rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c71 {
     gap: 15rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c91 {
     gap: 3.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c112 {
     gap: 3.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c112 {
     gap: 3.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c189 {
-    -webkit-box-pack: right;
-    -webkit-justify-content: right;
-    -ms-flex-pack: right;
     justify-content: right;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c192 {
     display: none;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c199 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
     flex-direction: row;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c199 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c199 {
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
     justify-content: space-between;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c201 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c207 {
-    -webkit-align-items: flex-end;
-    -webkit-box-align: flex-end;
-    -ms-flex-align: flex-end;
     align-items: flex-end;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c213 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
     flex-direction: column;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c213 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
     flex-direction: row;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c213 {
-    -webkit-align-items: flex-start;
-    -webkit-box-align: flex-start;
-    -ms-flex-align: flex-start;
     align-items: flex-start;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c213 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c213 {
     gap: 1.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c213 {
     gap: 2rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c216 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
     flex-direction: row;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c216 {
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c216 {
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c216 {
     gap: 2rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c17 {
     font-weight: 600;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c17 {
     font-weight: 600;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c17 {
     font-size: 1rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c17 {
     font-size: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c17 {
     line-height: 1.25rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c17 {
     line-height: 1.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c17 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c17 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c215 {
     font-weight: 500;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c215 {
     font-size: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c215 {
     line-height: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c215 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
     letter-spacing: -0.005rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c16 {
     padding-left: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c16 {
     padding-right: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c18 {
     padding-left: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c18 {
     padding-right: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c74 {
     font-weight: 600;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c74 {
     font-weight: 600;
   }
 }
 
-@media (min-width:750px) {
-  .c74 {
-    font-size: 3rem;
-  }
-}
-
-@media (min-width:1280px) {
+@media (min-width: 750px) {
   .c74 {
     font-size: 3rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 1280px) {
+  .c74 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 750px) {
   .c74 {
     line-height: 3.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c74 {
     line-height: 3.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c74 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c74 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c96 {
     font-weight: 600;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c96 {
     font-size: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c96 {
     line-height: 3rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c96 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c107 {
     font-weight: 600;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c107 {
     font-size: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c107 {
     line-height: 2rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c107 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c113 {
     font-weight: 600;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c113 {
     font-weight: 600;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c113 {
     font-size: 2.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c113 {
     font-size: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c113 {
     line-height: 3rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c113 {
     line-height: 3rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c113 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c113 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c113 {
     text-align: center;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c113 {
     text-align: center;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c121 {
     font-weight: 600;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c121 {
     font-weight: 600;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c121 {
     font-size: 1.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c121 {
     font-size: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c121 {
     line-height: 2rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c121 {
     line-height: 2rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c121 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c121 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c127 {
     font-weight: 600;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c127 {
     font-weight: 600;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c127 {
     font-size: 2rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c127 {
     font-size: 2rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c127 {
     line-height: 2.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c127 {
     line-height: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c127 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c127 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c76 {
     font-weight: 400;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c76 {
     font-weight: 400;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c76 {
     font-size: 2.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c76 {
     font-size: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c76 {
     line-height: 3rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c76 {
     line-height: 3rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c76 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c76 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c88 {
     font-weight: 400;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c88 {
     font-size: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c88 {
     line-height: 2rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c88 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c109 {
     font-weight: 300;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c109 {
     font-size: 1.125rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c109 {
     line-height: 1.75rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c109 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
     letter-spacing: -0.005rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c109 {
     margin-top: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c122 {
     font-weight: 300;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c122 {
     font-size: 1.125rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c122 {
     line-height: 1.75rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c122 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
     letter-spacing: -0.005rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c146 {
     margin-right: 1.5rem;
   }
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   .c24:hover,
   .c24:visited:hover {
     color: #0a1d9d;
-    -webkit-text-decoration: underline;
     text-decoration: underline;
-    -webkit-text-decoration-thickness: 18%;
     text-decoration-thickness: 18%;
   }
 
   .c24:hover .c187,
   .c24:visited:hover .c187 {
-    -webkit-filter: invert(16%) sepia(72%) saturate(7176%) hue-rotate(239deg) brightness(61%) contrast(109%);
     filter: invert(16%) sepia(72%) saturate(7176%) hue-rotate(239deg) brightness(61%) contrast(109%);
   }
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   .c184:hover,
   .c184:visited:hover {
     color: #222222;
-    -webkit-text-decoration: underline;
     text-decoration: underline;
-    -webkit-text-decoration-thickness: 18%;
     text-decoration-thickness: 18%;
   }
 
   .c184:hover .c187,
   .c184:visited:hover .c187 {
-    -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
     filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   }
 }
 
-@media (hover:hover) {
-  .c218:hover,
-  .c218:visited:hover {
-    color: #222222;
-    -webkit-text-decoration: underline;
-    text-decoration: underline;
-    -webkit-text-decoration-thickness: 18%;
-    text-decoration-thickness: 18%;
-  }
-
-  .c218:hover .c187,
-  .c218:visited:hover .c187 {
-    -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-    filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  }
-}
-
-@media (max-width:750px) {
+@media (max-width: 750px) {
   .c43 {
     font-size: 16px;
   }
 }
 
-@media (max-width:750px) {
+@media (max-width: 750px) {
   .c153 {
     font-size: 16px;
   }
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   .c42:hover:not(:focus-within) {
     background: #f2f2f2;
     border-color: #808080;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c93 {
     grid-column: span 12;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c93 {
-    grid-column: 2 / span 9;
+    grid-column: 2/span 9;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c93 {
     grid-column-start: 0;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c93 {
     grid-column-start: 2;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c97 {
     grid-column: span 12;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c97 {
-    grid-column: 3 / span 8;
+    grid-column: 3/span 8;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c97 {
     grid-column-start: 0;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c97 {
     grid-column-start: 3;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c141 {
     grid-column: span 6;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c178 {
     grid-column: span 3;
   }
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   .c159:hover:not(:focus-within) {
     background: #f2f2f2;
   }
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   .c152:hover:not(:focus-within) {
     background: #f2f2f2;
   }
@@ -4306,8 +3580,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 @media (max-width:1000px) {
   .c81 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
     flex-direction: column;
   }
 }
@@ -4512,7 +3784,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
         >
           <a
             aria-label="Home"
-            class="c24"
+            class="c24 "
             href="/"
           >
             <span
@@ -4942,7 +4214,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
           class="c68"
         >
           <div
-            class="c9"
+            class="c67"
           >
             <div
               class="c69"
@@ -5540,7 +4812,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                          teachers and get free resources and other helpful content by email. Unsubscribe at any time. Read our
                          
                         <a
-                          class="c24"
+                          class="c24 "
                           href="/legal/privacy-policy"
                         >
                           <span
@@ -5574,6 +4846,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                                 data-testid="jaunty-label"
                                 for="react-use-id-test-result-newsletter-signup-name"
                                 id="Name-label"
+                                style="top: -1.25rem;"
                               >
                                 Name (required)
                               </label>
@@ -5612,6 +4885,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                                 data-testid="jaunty-label"
                                 for="react-use-id-test-result-newsletter-signup-email"
                                 id="Email-label"
+                                style="top: -1.25rem;"
                               >
                                 Email (required)
                               </label>
@@ -5637,14 +4911,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           </div>
                         </div>
                         <div
-                          aria-labelledby="react-use-id-test-result-role-label"
                           class="c154"
-                          role="group"
                         >
                           <label
                             class="c155"
                             for="react-use-id-test-result-newsletter-signup-userrole"
                             id="react-use-id-test-result-role-label"
+                            style="top: -1.25rem;"
                           >
                             Role
                           </label>
@@ -5823,9 +5096,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/pupils/years"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -5858,9 +5130,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/teachers/eyfs/maths"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -5873,9 +5144,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/lesson-planning"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -5888,10 +5158,23 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
+                          href="/teachers/teach-with-oak"
+                        >
+                          <span
+                            class="c25"
+                          >
+                            Teach with Oak
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c183"
+                      >
+                        <a
+                          class="c184 "
                           href="https://labs.thenational.academy"
                           target="_blank"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -5921,9 +5204,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/blog"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -5957,9 +5239,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -5972,9 +5253,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/about-us/who-we-are"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -5987,9 +5267,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/about-us/oaks-curricula"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6002,9 +5281,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/about-us/oaks-impact"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6017,9 +5295,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/about-us/get-involved"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6032,9 +5309,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/about-us/meet-the-team"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6048,10 +5324,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       >
                         <a
                           aria-label="Careers (opens in a new tab)"
-                          class="c184"
+                          class="c184 "
                           href="https://jobs.thenational.academy"
                           target="_blank"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6081,9 +5356,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/contact-us"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6097,10 +5371,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       >
                         <a
                           aria-label="Help (opens in a new tab)"
-                          class="c184"
+                          class="c184 "
                           href="https://support.thenational.academy"
                           target="_blank"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6130,9 +5403,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/webinars"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6146,10 +5418,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       >
                         <a
                           aria-label="Status (opens in a new tab)"
-                          class="c184"
+                          class="c184 "
                           href="https://status.thenational.academy"
                           target="_blank"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6200,9 +5471,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/legal/terms-and-conditions"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6215,9 +5485,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/legal/privacy-policy"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6230,9 +5499,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/legal/cookie-policy"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6245,7 +5513,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <button
-                          class="c184"
+                          class="c184 "
                         >
                           <span
                             class="c25"
@@ -6258,9 +5526,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/legal/copyright-notice"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6273,9 +5540,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/legal/accessibility-statement"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6288,9 +5554,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/legal/safeguarding-statement"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6303,9 +5568,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/legal/physical-activity-disclaimer"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6318,9 +5582,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/legal/complaints"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6333,9 +5596,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c183"
                       >
                         <a
-                          class="c184"
+                          class="c184 "
                           href="/legal/freedom-of-information-requests"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6715,7 +5977,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               class="c217 c41"
             >
               <button
-                class="c218"
+                class="c184 c218"
                 data-testid="cookie-banner-reject"
                 type="button"
               >

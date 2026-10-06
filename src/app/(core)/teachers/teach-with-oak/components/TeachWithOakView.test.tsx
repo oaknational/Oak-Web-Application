@@ -6,6 +6,14 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
 
+const mockReturnToLessonLink = jest.fn().mockReturnValue(null);
+jest.mock(
+  "@/app/(core)/teachers/teach-with-oak/returnToLessonProps/getReturnToLessonLink",
+  () => ({
+    useReturnToLessonProps: () => mockReturnToLessonLink(),
+  }),
+);
+
 describe("TeachWithOakView", () => {
   it("renders the lesson guidance and learning cycle content", () => {
     render(<TeachWithOakView />);
@@ -53,11 +61,21 @@ describe("TeachWithOakView", () => {
       screen.queryByRole("link", { name: "Back to lesson" }),
     ).not.toBeInTheDocument();
 
-    rerender(<TeachWithOakView backToLessonLink="/teachers/lessons/example" />);
+    mockReturnToLessonLink.mockReturnValue({
+      returnTo:
+        "/teachers/programmes/art-primary-ks1/units/unitSlug/lessons/lessonSlug",
+      lessonName: "Lesson Name",
+      unitName: "Unit Name",
+    });
+
+    rerender(<TeachWithOakView />);
 
     expect(
       screen.getByRole("link", { name: "Back to lesson" }),
-    ).toHaveAttribute("href", "/teachers/lessons/example");
+    ).toHaveAttribute(
+      "href",
+      "/teachers/programmes/art-primary-ks1/units/unitSlug/lessons/lessonSlug",
+    );
   });
 
   it("renders a short read guides section", () => {

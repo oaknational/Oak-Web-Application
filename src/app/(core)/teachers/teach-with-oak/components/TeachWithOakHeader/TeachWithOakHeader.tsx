@@ -1,5 +1,5 @@
+"use client";
 import {
-  OakTertiaryInvertedButton,
   OakFlex,
   parseSpacing,
   parseBorder,
@@ -7,12 +7,14 @@ import {
   OakBox,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
+import { Suspense } from "react";
+
+import { BackToLessonButton } from "./BackToLessonButton/BackToLessonButton";
 
 import {
   AboutSharedHeader,
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
-import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 
 const HeaderLayout = styled(OakFlex)`
@@ -31,32 +33,19 @@ const StyledAboutSharedHeaderImage = styled(AboutSharedHeaderImage)`
   }
 `;
 
-type TeachWithOakHeaderProps = {
-  href?: string;
-};
-
-export function TeachWithOakHeader({
-  href,
-}: Readonly<TeachWithOakHeaderProps>) {
+export function TeachWithOakHeader() {
   const imageUrl = getCloudinaryImageUrl(
-    "v1734018546/OWA/illustrations/hero-aila_wgpmas.jpg",
+    "v1789976818/teacher-journey/teach-with-oak-header-image.jpg",
   );
+
   return (
     <OakBox
       $mt={["spacing-56", "spacing-80", "spacing-56"]}
       $mb={["spacing-56", "spacing-80", "spacing-72"]}
     >
-      {href && (
-        <NewGutterMaxWidth>
-          <OakTertiaryInvertedButton
-            element="a"
-            href={href}
-            iconName="arrow-left"
-          >
-            Back to lesson
-          </OakTertiaryInvertedButton>
-        </NewGutterMaxWidth>
-      )}
+      <Suspense>
+        <BackToLessonButton />
+      </Suspense>
       <HeaderLayout>
         <AboutSharedHeader
           title={"The thinking behind Oak lessons"}
@@ -66,10 +55,7 @@ export function TeachWithOakHeader({
           titleHighlight={"bg-decorative2-main"}
           showImageOverflow={true}
         >
-          <StyledAboutSharedHeaderImage
-            imageUrl={imageUrl}
-            imageAlt={"Teach with Oak Image"}
-          />
+          <StyledAboutSharedHeaderImage imageUrl={imageUrl} />
         </AboutSharedHeader>
       </HeaderLayout>
     </OakBox>

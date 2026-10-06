@@ -15,8 +15,8 @@ export const McpFeedbackPanel = () => (
   <OakBox
     $background="bg-decorative3-very-subdued"
     $color="text-primary"
-    $pv={["spacing-32", "spacing-64"]}
-    $ph={["spacing-16", "spacing-32"]}
+    $pv={["spacing-48", "spacing-48", "spacing-64"]}
+    $ph={["spacing-20", "spacing-40", "spacing-32"]}
   >
     <OakFlex
       as="section"
@@ -25,14 +25,10 @@ export const McpFeedbackPanel = () => (
       $ma="auto"
       $flexDirection={["column", "column", "row"]}
       $alignItems="center"
-      $gap={["spacing-32", "spacing-72"]}
+      $gap="spacing-72"
     >
       <OakFlex $flexDirection="column" $gap="spacing-24" $flexGrow={1}>
-        <OakHeading
-          id="give-feedback"
-          tag="h2"
-          $font={["heading-5", "heading-4"]}
-        >
+        <OakHeading id="give-feedback" tag="h2" $font="heading-4">
           {mcpFeedback.title}
         </OakHeading>
         <OakP $font="body-2">{mcpFeedback.body}</OakP>
@@ -42,7 +38,7 @@ export const McpFeedbackPanel = () => (
             href={mcpFeedback.ctaHref}
             target="_blank"
             rel="noreferrer"
-            iconName="arrow-right"
+            iconName="external"
             isTrailingIcon
           >
             {mcpFeedback.ctaLabel}
@@ -57,8 +53,7 @@ export const McpFeedbackPanel = () => (
         width={446}
         height={215}
         placeholder="empty"
-        $display={["none", "none", "block"]}
-        $minWidth="spacing-480"
+        $minWidth={["100%", "100%", "spacing-480"]}
       />
     </OakFlex>
   </OakBox>

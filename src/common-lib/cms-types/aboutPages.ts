@@ -219,6 +219,10 @@ export const caseStudyLibraryPageSchema = z.array(caseStudySchema);
 
 export type CaseStudyLibraryPage = z.infer<typeof caseStudyLibraryPageSchema>;
 
+export const caseStudyPageSchema = caseStudySchema;
+
+export type CaseStudyPage = z.infer<typeof caseStudyPageSchema>;
+
 // Aliases for about pages (old naming convention - mapping new queries to existing schemas)
 export const aboutWhoWeArePageSchema = whoWeArePageSchema;
 
