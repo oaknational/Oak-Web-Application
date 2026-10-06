@@ -2,6 +2,7 @@ import { SignInButton, useAuth, useUser } from "@clerk/nextjs";
 import React, { Dispatch, ReactNode, SetStateAction, useState } from "react";
 import { usePathname } from "next/navigation";
 import {
+  OakBox,
   OakFlex,
   OakLoadingSpinner,
   OakPrimaryButton,
@@ -9,7 +10,6 @@ import {
   OakSmallPrimaryButton,
   OakSpan,
   OakTagFunctional,
-  useMediaQuery,
 } from "@oaknational/oak-components";
 
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
@@ -17,28 +17,32 @@ import { createUnitDownloadLink } from "@/components/SharedComponents/helpers/do
 import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
-const getLabel = ({
-  isStuck,
-  isDesktop,
-  isMobile,
-  longTextOnMobile,
+// Long text shows when stuck, on desktop, or - only where the caller opts in
+// via longTextOnMobile (e.g. the full-width unit header button) - on mobile.
+// This leaves tablet as the only breakpoint showing the short label.
+// Driven by CSS, not useMediaQuery, so SSR and the first client paint agree.
+const DownloadLabel = ({
   longerText,
+  longTextOnMobile,
+  isStuck,
 }: {
-  isStuck: boolean | undefined;
-  isDesktop: boolean;
-  isMobile: boolean;
-  longTextOnMobile?: boolean;
   longerText: string;
-}) => {
-  const label = "Download";
-  // Long text shows when stuck, on desktop, or - only where the caller opts in
-  // via longTextOnMobile (e.g. the full-width unit header button) - on mobile.
-  // This leaves tablet as the only breakpoint showing the short label.
-  if (isStuck || isDesktop || (longTextOnMobile && isMobile)) {
-    return label + " " + longerText;
-  }
-  return label;
-};
+  longTextOnMobile?: boolean;
+  isStuck?: boolean;
+}) => (
+  <OakSpan>
+    <OakSpan>Download </OakSpan>
+    <OakBox
+      $display={
+        isStuck
+          ? "inline"
+          : [longTextOnMobile ? "inline" : "none", "none", "inline"]
+      }
+    >
+      {longerText}
+    </OakBox>
+  </OakSpan>
+);
 
 // Used when a user is signed in but not onboarded
 const UnitDownloadOnboardButton = ({
@@ -84,8 +88,6 @@ const UnitDownloadOnboardButton = ({
 const UnitDownloadSignInButton = ({
   redirectUrl,
   showNewTag,
-  isDesktop,
-  isMobile,
   longTextOnMobile,
   fullWidthOnMobile,
   size,
@@ -96,8 +98,6 @@ const UnitDownloadSignInButton = ({
 }: {
   redirectUrl: string;
   showNewTag: boolean;
-  isDesktop: boolean;
-  isMobile: boolean;
   onClick: () => void;
   longTextOnMobile?: boolean;
   fullWidthOnMobile?: boolean;
@@ -106,15 +106,13 @@ const UnitDownloadSignInButton = ({
   ariaLabel?: string;
   isStuck?: boolean;
 }) => {
-  const signInButtonLabel =
-    buttonLabel ??
-    getLabel({
-      isStuck,
-      isDesktop,
-      isMobile,
-      longTextOnMobile,
-      longerText: "complete unit",
-    });
+  const signInButtonLabel = buttonLabel ?? (
+    <DownloadLabel
+      isStuck={isStuck}
+      longTextOnMobile={longTextOnMobile}
+      longerText="complete unit"
+    />
+  );
 
   return (
     <SignInButton
@@ -151,8 +149,6 @@ const DownloadButton = ({
   downloadInProgress,
   fileSize,
   disabled,
-  isDesktop,
-  isMobile,
   longTextOnMobile,
   fullWidthOnMobile,
   size,
@@ -164,8 +160,6 @@ const DownloadButton = ({
   downloadInProgress: boolean;
   fileSize: string | undefined;
   disabled: boolean;
-  isDesktop: boolean;
-  isMobile: boolean;
   longTextOnMobile?: boolean;
   fullWidthOnMobile?: boolean;
   isStuck?: boolean;
@@ -173,15 +167,12 @@ const DownloadButton = ({
   buttonLabel?: ReactNode;
   ariaLabel?: string;
 }) => {
-  const zipSizeText = getLabel({
-    isStuck,
-    isDesktop,
-    isMobile,
-    longTextOnMobile,
-    longerText: `(.zip ${fileSize})`,
-  });
-  const downloadButtonText: ReactNode = (
-    <OakSpan>{buttonLabel ?? zipSizeText}</OakSpan>
+  const downloadButtonText: ReactNode = buttonLabel ?? (
+    <DownloadLabel
+      isStuck={isStuck}
+      longTextOnMobile={longTextOnMobile}
+      longerText={`(.zip ${fileSize})`}
+    />
   );
 
   return (
@@ -280,11 +271,9 @@ export type UnitDownloadButtonProps = {
  */
 export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   const { unitFileId, geoRestricted, downloadExists, fileSize } = props;
-  const { isSignedIn, isLoaded, user } = useUser();
+  const { isSignedIn, user } = useUser();
   const auth = useAuth();
   const pathname = usePathname();
-  const isDesktop = useMediaQuery("desktop");
-  const isMobile = useMediaQuery("mobile");
   const { unitDownloadStarted } = useTeacherBrowseAnalytics(
     (store) => store.track,
   );
@@ -326,7 +315,9 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
 
   const showDownloadButton = downloadExists;
 
-  const showSignInButton = showDownloadButton && isLoaded && !isSignedIn;
+  // Not gated on isLoaded: while Clerk resolves, treat the user as signed out so the
+  // server and first client render agree and signed-out users never see a label swap.
+  const showSignInButton = showDownloadButton && !isSignedIn;
 
   const showOnboardButton =
     showDownloadButton && user && !user.publicMetadata?.owa?.isOnboarded;
@@ -355,8 +346,6 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
       redirectUrl={`/onboarding?returnTo=${pathname}`}
       onClick={unitDownloadStarted}
       showNewTag={props.showNewTag}
-      isDesktop={isDesktop}
-      isMobile={isMobile}
       longTextOnMobile={longTextOnMobile}
       fullWidthOnMobile={fullWidthOnMobile}
       size={props.size}
@@ -370,8 +359,6 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
       onUnitDownloadClick={onUnitDownloadClick}
       downloadInProgress={downloadInProgress}
       fileSize={fileSize}
-      isDesktop={isDesktop}
-      isMobile={isMobile}
       longTextOnMobile={longTextOnMobile}
       fullWidthOnMobile={fullWidthOnMobile}
       size={props.size}

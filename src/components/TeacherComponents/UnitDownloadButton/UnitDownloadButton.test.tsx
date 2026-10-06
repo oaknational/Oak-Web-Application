@@ -1,6 +1,7 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useMediaQuery } from "@oaknational/oak-components";
+import "jest-styled-components";
 
 import UnitDownloadButton, {
   UnitDownloadButtonProps,
@@ -106,7 +107,7 @@ describe("UnitDownloadButton", () => {
   it("should render a download button when logged in", () => {
     setUseUserReturn(mockLoggedIn);
     renderUnitDownloadButton();
-    const button = screen.getByText("Download (.zip 1.2MB)");
+    const button = screen.getByText("Download");
     expect(button).toBeInTheDocument();
   });
   it("should render loading text and spinner when download is in progress", () => {
@@ -119,16 +120,14 @@ describe("UnitDownloadButton", () => {
   it("should render a sign in button when logged out", () => {
     setUseUserReturn(mockLoggedOut);
     renderUnitDownloadButton();
-    const button = screen.getByText("Download complete unit");
+    const button = screen.getByText("complete unit");
     expect(button).toBeInTheDocument();
   });
   it("should disable the button when geoblocked", () => {
     setUseUserReturn(mockGeorestrictedUser);
 
     renderUnitDownloadButton({ geoRestricted: true });
-    const button = screen.getByRole("button", {
-      name: "Download (.zip 1.2MB)",
-    });
+    const button = screen.getByRole("button", { name: "Download" });
     expect(button).toBeDisabled();
   });
 
@@ -142,9 +141,7 @@ describe("UnitDownloadButton", () => {
     const onDownloadSuccess = jest.fn();
 
     renderUnitDownloadButton({ onDownloadSuccess });
-    const button = screen.getByRole("button", {
-      name: "Download (.zip 1.2MB)",
-    });
+    const button = screen.getByRole("button", { name: "Download" });
     const user = userEvent.setup();
     await user.click(button);
     expect(onDownloadSuccess).toHaveBeenCalledTimes(1);
@@ -163,9 +160,7 @@ describe("UnitDownloadButton", () => {
       setShowDownloadMessage,
       setShowIncompleteMessage,
     });
-    const button = screen.getByRole("button", {
-      name: "Download (.zip 1.2MB)",
-    });
+    const button = screen.getByRole("button", { name: "Download" });
     const user = userEvent.setup();
     await user.click(button);
 
@@ -173,29 +168,30 @@ describe("UnitDownloadButton", () => {
     expect(setShowDownloadMessage).toHaveBeenCalledWith(false);
     expect(setShowIncompleteMessage).toHaveBeenCalledWith(false);
   });
-  it("should render the long label when stuck, regardless of breakpoint", () => {
-    setBreakpoint({ isDesktop: false, isMobile: false });
+  // The breakpoint switch is CSS, which jsdom can't evaluate, so these assert the
+  // emitted rules rather than which label is visible at a given width.
+  it("shows the long label at every breakpoint when stuck", () => {
     renderUnitDownloadButton({ isStuck: true });
-    expect(screen.getByText("Download (.zip 1.2MB)")).toBeInTheDocument();
+    expect(screen.getByText("(.zip 1.2MB)")).toHaveStyleRule(
+      "display",
+      "inline",
+    );
   });
-  it("should render the short label on tablet (not desktop, not mobile)", () => {
-    setBreakpoint({ isDesktop: false, isMobile: false });
+  it("hides the long label by default, revealing it on wider viewports", () => {
     renderUnitDownloadButton();
+    const longLabel = screen.getByText("(.zip 1.2MB)");
     expect(screen.getByText("Download")).toBeInTheDocument();
-    expect(screen.queryByText("Download (.zip 1.2MB)")).not.toBeInTheDocument();
+    expect(longLabel).toHaveStyleRule("display", "none");
   });
-  it("should render the long label on mobile when longTextOnMobile is set", () => {
-    setBreakpoint({ isDesktop: false, isMobile: true });
+  it("shows the long label from the narrowest viewport when longTextOnMobile is set", () => {
     renderUnitDownloadButton({
       longTextOnMobile: true,
       fullWidthOnMobile: true,
     });
-    expect(screen.getByText("Download (.zip 1.2MB)")).toBeInTheDocument();
-  });
-  it("should render the short label on mobile when longTextOnMobile is not set", () => {
-    setBreakpoint({ isDesktop: false, isMobile: true });
-    renderUnitDownloadButton();
-    expect(screen.getByText("Download")).toBeInTheDocument();
+    expect(screen.getByText("(.zip 1.2MB)")).toHaveStyleRule(
+      "display",
+      "inline",
+    );
   });
 
   describe("analytics events", () => {
@@ -203,7 +199,7 @@ describe("UnitDownloadButton", () => {
       setUseUserReturn(mockLoggedOut);
       renderUnitDownloadButton();
 
-      await userEvent.setup().click(screen.getByText("Download complete unit"));
+      await userEvent.setup().click(screen.getByText("complete unit"));
 
       expect(mockUnitDownloadStarted).toHaveBeenCalledTimes(1);
     });
@@ -226,7 +222,7 @@ describe("UnitDownloadButton", () => {
 
       await userEvent
         .setup()
-        .click(screen.getByRole("button", { name: "Download (.zip 1.2MB)" }));
+        .click(screen.getByRole("button", { name: "Download" }));
 
       expect(mockUnitDownloadStarted).not.toHaveBeenCalled();
     });
@@ -239,7 +235,7 @@ describe("UnitDownloadButton", () => {
 
       await userEvent
         .setup()
-        .click(screen.getByRole("button", { name: "Download (.zip 1.2MB)" }));
+        .click(screen.getByRole("button", { name: "Download" }));
 
       expect(mockUnitDownloaded).toHaveBeenCalledTimes(1);
     });
@@ -256,7 +252,7 @@ describe("UnitDownloadButton", () => {
 
       await userEvent
         .setup()
-        .click(screen.getByRole("button", { name: "Download (.zip 1.2MB)" }));
+        .click(screen.getByRole("button", { name: "Download" }));
 
       expect(mockUnitDownloaded).not.toHaveBeenCalled();
     });
