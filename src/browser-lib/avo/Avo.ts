@@ -974,8 +974,8 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "Mm8CNT5GvJBR8s00cPuL",
-          "br": "14MrdC8zIZUy7BA4-fK0Q",
+          "ac": "U1yECwTL0qODVmrr2Gsr",
+          "br": "master",
           "en": env,
           "ev": eventId,
           "ha": hash,
@@ -1001,8 +1001,8 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "Mm8CNT5GvJBR8s00cPuL",
-          "br": "14MrdC8zIZUy7BA4-fK0Q",
+          "ac": "U1yECwTL0qODVmrr2Gsr",
+          "br": "master",
           "en": env,
           "ty": type,
           "sc": "5PhajbVijwhXVKIJtGMT",
@@ -1106,6 +1106,13 @@ export interface AccessBlockDetails {
 
 export interface ActiveFilters {
 }
+
+export const RetryTarget = {
+  'SUGGESTIONS': 'suggestions',
+  'TRANSFORMATION': 'transformation',
+} as const;
+export type RetryTargetType = typeof RetryTarget;
+export type RetryTargetValueType = RetryTargetType[keyof RetryTargetType];
 
 export const SearchFilterMatchType = {
   'AI': 'ai',
@@ -1320,6 +1327,19 @@ export const ComponentType = {
   'TEACH_WITH_OAK_BACK_TO_LESSON': 'teach_with_oak_back_to_lesson',
   'TEACHER_TIP': 'teacher_tip',
   'VIEW_ALL_BUTTON': 'view_all_button',
+  'ACCEPT_BUTTON': 'accept_button',
+  'GENERATE_NEW_SUGGESTIONS_BUTTON': 'generate_new_suggestions_button',
+  'NO_SCAFFOLD_REQUIRED_BUTTON': 'no_scaffold_required_button',
+  'REMOVE_ALL_SCAFFOLDS_BUTTON': 'remove_all_scaffolds_button',
+  'REMOVE_SCAFFOLD_BUTTON': 'remove_scaffold_button',
+  'RESOURCE_ADAPTER_BUTTON': 'resource_adapter_button',
+  'RESOURCE_ADAPTER_DIALOG': 'resource_adapter_dialog',
+  'RESOURCE_ADAPTER_MENU_ITEM': 'resource_adapter_menu_item',
+  'RETRY_BUTTON': 'retry_button',
+  'START_AGAIN_BUTTON': 'start_again_button',
+  'START_FROM_ORIGINAL_BUTTON': 'start_from_original_button',
+  'SUGGESTION_BUTTON': 'suggestion_button',
+  'TRY_AGAIN_BUTTON': 'try_again_button',
 } as const;
 export type ComponentTypeType = typeof ComponentType;
 export type ComponentTypeValueType = ComponentTypeType[keyof ComponentTypeType];
@@ -1421,9 +1441,20 @@ export const Product = {
   'TEACHING_MATERIAL': 'teaching material',
   'ABOUT_US': 'about us',
   'GOOGLE_CLASSROOM_ADDON': 'google classroom addon',
+  'RESOURCE_ADAPTER': 'resource adapter',
 } as const;
 export type ProductType = typeof Product;
 export type ProductValueType = ProductType[keyof ProductType];
+
+export const JobKind = {
+  'SUGGESTIONS_APPLY': 'suggestions.apply',
+  'SUGGESTIONS_GENERATE': 'suggestions.generate',
+  'TRANSFORMATIONS_DISMISS': 'transformations.dismiss',
+  'TRANSFORMATIONS_REMOVE': 'transformations.remove',
+  'TRANSFORMATIONS_RETRY': 'transformations.retry',
+} as const;
+export type JobKindType = typeof JobKind;
+export type JobKindValueType = JobKindType[keyof JobKindType];
 
 export const PageName = {
   'SUBJECT_LISTING': 'Subject Listing',
@@ -1502,6 +1533,12 @@ export const NavigationType = {
 export type NavigationTypeType = typeof NavigationType;
 export type NavigationTypeValueType = NavigationTypeType[keyof NavigationTypeType];
 
+export const Format = {
+  'DOCX': 'docx',
+} as const;
+export type FormatType = typeof Format;
+export type FormatValueType = FormatType[keyof FormatType];
+
 export const ContentGuidanceWarning = {
   'LANGUAGE_AND_DISCRIMINATION': 'Language and discrimination',
   'NUDITY_AND_SEX': 'Nudity and sex',
@@ -1569,6 +1606,12 @@ export const ShareMedium = {
 export type ShareMediumType = typeof ShareMedium;
 export type ShareMediumValueType = ShareMediumType[keyof ShareMediumType];
 
+export const CapabilityId = {
+  'WORKSHEET_SCAFFOLDING': 'worksheetScaffolding',
+} as const;
+export type CapabilityIdType = typeof CapabilityId;
+export type CapabilityIdValueType = CapabilityIdType[keyof CapabilityIdType];
+
 export const SearchSource = {
   'HOMEPAGE_SEARCH_BOX': 'homepage search box',
   'SEARCH_PAGE_SEARCH_BOX': 'search page search box',
@@ -1578,6 +1621,37 @@ export const SearchSource = {
 } as const;
 export type SearchSourceType = typeof SearchSource;
 export type SearchSourceValueType = SearchSourceType[keyof SearchSourceType];
+
+export const RequestAction = {
+  'ACCEPT': 'accept',
+  'APPLY': 'apply',
+  'DISMISS': 'dismiss',
+  'DOWNLOAD': 'download',
+  'OPEN': 'open',
+  'POLL': 'poll',
+  'REFRESH': 'refresh',
+  'REMOVE': 'remove',
+  'RESUME': 'resume',
+  'RETRY': 'retry',
+  'UNDO': 'undo',
+} as const;
+export type RequestActionType = typeof RequestAction;
+export type RequestActionValueType = RequestActionType[keyof RequestActionType];
+
+export const StartMode = {
+  'NEW': 'new',
+  'RESUMED': 'resumed',
+} as const;
+export type StartModeType = typeof StartMode;
+export type StartModeValueType = StartModeType[keyof StartModeType];
+
+export const ReviewAction = {
+  'ACCEPT': 'accept',
+  'RETRY': 'retry',
+  'UNDO': 'undo',
+} as const;
+export type ReviewActionType = typeof ReviewAction;
+export type ReviewActionValueType = ReviewActionType[keyof ReviewActionType];
 
 export const TeachingMaterialType = {
   'COMPREHENSION_TASK': 'comprehension task',
@@ -1643,6 +1717,14 @@ export const AccessLevel = {
 } as const;
 export type AccessLevelType = typeof AccessLevel;
 export type AccessLevelValueType = AccessLevelType[keyof AccessLevelType];
+
+export const SupportLevel = {
+  'HIGH': 'high',
+  'LOW': 'low',
+  'MID': 'mid',
+} as const;
+export type SupportLevelType = typeof SupportLevel;
+export type SupportLevelValueType = SupportLevelType[keyof SupportLevelType];
 
 export const LearningTier = {
   'FOUNDATION': 'Foundation',
@@ -1815,11 +1897,11 @@ export function setAvoLogger(avoLogger: AvoLogger | null) {
  * 
  * When to trigger this event:
  * 1. User has completed the newsletter fields and pressed the Sign Up button
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/sLqKBjU-Wt/trigger/_MC_apwfp
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sLqKBjU-Wt/trigger/_MC_apwfp
  * 2. Clicking Sign-in with Google button after checking the receive sign ups box.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/sLqKBjU-Wt/trigger/tZTijzcL6sdSe6YVaWUUJ
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sLqKBjU-Wt/trigger/tZTijzcL6sdSe6YVaWUUJ
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/sLqKBjU-Wt}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sLqKBjU-Wt}
  */
 export function newsletterSignUpCompleted() {
   // @ts-ignore
@@ -1861,14 +1943,14 @@ export interface ClassroomSelectedProperties {
  * 
  * When to trigger this event:
  * 1. Classroom app selected from homepage card
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/esgLdNSBsj/trigger/d46nqqMBY
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/esgLdNSBsj/trigger/d46nqqMBY
  * 2. Classroom app selected from menu
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/esgLdNSBsj/trigger/M_vqoTLFQ
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/esgLdNSBsj/trigger/M_vqoTLFQ
  * 
  * @param properties the properties associated with this event
  * @param properties.navigatedFrom: The location of the link used to navigate to the current page
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/esgLdNSBsj}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/esgLdNSBsj}
  */
 export function classroomSelected(properties: ClassroomSelectedProperties) {
   // @ts-ignore
@@ -1964,7 +2046,7 @@ export interface VideoStartedProperties {
  * @param properties.muxAssetId: Unique identifier of the asset in mux
  * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/G0I28K0B2f}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/G0I28K0B2f}
  */
 export function videoStarted(properties: VideoStartedProperties) {
   // @ts-ignore
@@ -2126,7 +2208,7 @@ export interface VideoPausedProperties {
  * @param properties.muxAssetId: Unique identifier of the asset in mux
  * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/z91WauKeVB}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/z91WauKeVB}
  */
 export function videoPaused(properties: VideoPausedProperties) {
   // @ts-ignore
@@ -2288,7 +2370,7 @@ export interface VideoPlayedProperties {
  * @param properties.muxAssetId: Unique identifier of the asset in mux
  * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/r4DFADUHFh}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/r4DFADUHFh}
  */
 export function videoPlayed(properties: VideoPlayedProperties) {
   // @ts-ignore
@@ -2450,7 +2532,7 @@ export interface VideoFinishedProperties {
  * @param properties.muxAssetId: Unique identifier of the asset in mux
  * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/NP9klWkaki}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/NP9klWkaki}
  */
 export function videoFinished(properties: VideoFinishedProperties) {
   // @ts-ignore
@@ -2585,7 +2667,7 @@ export interface LessonResourcesDownloadedProperties {
  * 
  * When to trigger this event:
  * 1. The download .zip button is clicked on the lesson download page and submission passes validation checks
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/k9ZQJai7ws/trigger/sAqordxVG
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/k9ZQJai7ws/trigger/sAqordxVG
  * 
  * @param properties the properties associated with this event
  * @param properties.keyStageTitle: Title of the current key stage.
@@ -2618,7 +2700,7 @@ export interface LessonResourcesDownloadedProperties {
  * @param properties.totalDownloadableResources: The total number of resources that are available to be downloaded
  * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/k9ZQJai7ws}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/k9ZQJai7ws}
  */
 export function lessonResourcesDownloaded(properties: LessonResourcesDownloadedProperties) {
   // @ts-ignore
@@ -2680,7 +2762,7 @@ export function lessonResourcesDownloaded(properties: LessonResourcesDownloadedP
     messages = messages.concat(assertTotalDownloadableResources(properties.totalDownloadableResources));
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "k9ZQJai7ws", "6b87289b52f4c11ba8669da91775f3690d8c00e4ed09b88c03c4870bbcd44f8d", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "k9ZQJai7ws", "f14697ba29527d62fa3c9a6ce06ffc3c36597c053603b934a3a53ebb4b82f800", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Resources Downloaded", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -2702,7 +2784,7 @@ export function lessonResourcesDownloaded(properties: LessonResourcesDownloadedP
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Resources Downloaded", eventProperties, "k9ZQJai7ws", "6b87289b52f4c11ba8669da91775f3690d8c00e4ed09b88c03c4870bbcd44f8d");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Resources Downloaded", eventProperties, "k9ZQJai7ws", "f14697ba29527d62fa3c9a6ce06ffc3c36597c053603b934a3a53ebb4b82f800");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Resources Downloaded", (Object as any).assign({}, eventProperties));
@@ -2738,7 +2820,7 @@ export interface UnitAccessedProperties {
  * 
  * When to trigger this event:
  * 1. A unit card is selected from the unit listing page
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/Me4ouIgPxh/trigger/t8lbfIsGe
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Me4ouIgPxh/trigger/t8lbfIsGe
  * 
  * @param properties the properties associated with this event
  * @param properties.keyStageTitle: Title of the current key stage.
@@ -2765,7 +2847,7 @@ export interface UnitAccessedProperties {
  * Indicates the direction of movement and what it represents.
  * @param properties.accessLevel: Indicates where the user is going from when navigating content, whether zooming in, out, or across.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/Me4ouIgPxh}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Me4ouIgPxh}
  */
 export function unitAccessed(properties: UnitAccessedProperties) {
   // @ts-ignore
@@ -2811,7 +2893,7 @@ export function unitAccessed(properties: UnitAccessedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "Me4ouIgPxh", "070c2ed450f7bcab87e4d5c57c6d7bbbfd62db23b1d2717a3011b8e22b1db6e1", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "Me4ouIgPxh", "1404e97612211144a932e1d5c1e38cd9c07a6f4f151d0dbac54f93f192ecc7c8", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Unit Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -2822,7 +2904,7 @@ export function unitAccessed(properties: UnitAccessedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Accessed", eventProperties, "Me4ouIgPxh", "070c2ed450f7bcab87e4d5c57c6d7bbbfd62db23b1d2717a3011b8e22b1db6e1");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Accessed", eventProperties, "Me4ouIgPxh", "1404e97612211144a932e1d5c1e38cd9c07a6f4f151d0dbac54f93f192ecc7c8");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Unit Accessed", (Object as any).assign({}, eventProperties));
@@ -2844,7 +2926,7 @@ export interface WebinarPageViewedProperties {
  * @param properties.webinarCategory: Category of the webinar
  * @param properties.videoAvailable: Watchable video is available on page (eg. not 'upcoming' or 'processing' status
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/-9FHudlATb}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/-9FHudlATb}
  */
 export function webinarPageViewed(properties: WebinarPageViewedProperties) {
   // @ts-ignore
@@ -2895,7 +2977,7 @@ export interface PageviewProperties {
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.pageName: The main pages of a user journey eg. subject listing, unit listing, etc
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/iYVEEwNT0q}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/iYVEEwNT0q}
  */
 export function pageview(properties: PageviewProperties) {
   // @ts-ignore
@@ -2962,9 +3044,9 @@ export interface LessonResourceDownloadStartedProperties {
  * 
  * When to trigger this event:
  * 1. Download all resources button is clicked on the lesson overview page
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/0n50tfMg2N/trigger/w2ACuk2F3
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/0n50tfMg2N/trigger/w2ACuk2F3
  * 2. An individual resource download button on an expandable container is clicked (eg. slide deck, starter quiz, worksheet, etc)
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/0n50tfMg2N/trigger/5PBz6j66G
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/0n50tfMg2N/trigger/5PBz6j66G
  * 
  * @param properties the properties associated with this event
  * @param properties.keyStageTitle: Title of the current key stage.
@@ -2991,7 +3073,7 @@ export interface LessonResourceDownloadStartedProperties {
  * @param properties.downloadResourceButtonName: The name of the button to download the resource (all, or individual resources)
  * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/0n50tfMg2N}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/0n50tfMg2N}
  */
 export function lessonResourceDownloadStarted(properties: LessonResourceDownloadStartedProperties) {
   // @ts-ignore
@@ -3046,7 +3128,7 @@ export function lessonResourceDownloadStarted(properties: LessonResourceDownload
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "0n50tfMg2N", "bd733359e77f57e1973884f8cff3e4b7d31e3746cb9daee9d344696ed70ef7f6", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "0n50tfMg2N", "bc96b8395643146be55780dc225e9380b361ea41b1a849c32f800ab0db4aec18", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Resource Download Started", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3057,7 +3139,7 @@ export function lessonResourceDownloadStarted(properties: LessonResourceDownload
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Resource Download Started", eventProperties, "0n50tfMg2N", "bd733359e77f57e1973884f8cff3e4b7d31e3746cb9daee9d344696ed70ef7f6");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Resource Download Started", eventProperties, "0n50tfMg2N", "bc96b8395643146be55780dc225e9380b361ea41b1a849c32f800ab0db4aec18");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Resource Download Started", (Object as any).assign({}, eventProperties));
@@ -3086,13 +3168,13 @@ export interface SearchAccessedProperties {
  * 1. A user initiates a search from the homepage by 
 entering the search term and clicking "Go"
 entering the search term and pressing ENTER on the keyboard
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/I_dSzYI2PB/trigger/GRZ05_zLD
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/I_dSzYI2PB/trigger/GRZ05_zLD
  * 2. A user initiates a search from the search page (eg. they refine their search term or try looking for something else) by entering the search term and 
 clicking "Go", or 
 pressing ENTER 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/I_dSzYI2PB/trigger/SG8O6HFoP
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/I_dSzYI2PB/trigger/SG8O6HFoP
  * 3. A search is initiated from the homepage by clicking on one of the search suggestion option beneath the search box
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/I_dSzYI2PB/trigger/5gULgsDoY
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/I_dSzYI2PB/trigger/5gULgsDoY
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -3110,7 +3192,7 @@ pressing ENTER
  * Indicates the direction of movement and what it represents.
  * @param properties.accessLevel: Indicates where the user is going from when navigating content, whether zooming in, out, or across.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/I_dSzYI2PB}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/I_dSzYI2PB}
  */
 export function searchAccessed(properties: SearchAccessedProperties) {
   // @ts-ignore
@@ -3135,7 +3217,7 @@ export function searchAccessed(properties: SearchAccessedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "I_dSzYI2PB", "b206a5912b2eb6294ad2c70b332bd818ba016e634784f64ba888df5de45469bb", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "I_dSzYI2PB", "3530de9b3988c759a83f1f8d140e6206ec51b5c2d8a5b713e51ea7df073e3e14", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Search Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3146,7 +3228,7 @@ export function searchAccessed(properties: SearchAccessedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Accessed", eventProperties, "I_dSzYI2PB", "b206a5912b2eb6294ad2c70b332bd818ba016e634784f64ba888df5de45469bb");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Accessed", eventProperties, "I_dSzYI2PB", "3530de9b3988c759a83f1f8d140e6206ec51b5c2d8a5b713e51ea7df073e3e14");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Search Accessed", (Object as any).assign({}, eventProperties));
@@ -3180,7 +3262,7 @@ export interface SearchResultOpenedProperties {
  * 
  * When to trigger this event:
  * 1. A search result card (could be unit or lesson) is clicked
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/_TD-gtSgIj/trigger/ZezXTZ0ri
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/_TD-gtSgIj/trigger/ZezXTZ0ri
  * 
  * @param properties the properties associated with this event
  * @param properties.keyStageTitle: Title of the current key stage.
@@ -3205,7 +3287,7 @@ export interface SearchResultOpenedProperties {
  * Indicates the direction of movement and what it represents.
  * @param properties.accessLevel: Indicates where the user is going from when navigating content, whether zooming in, out, or across.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/_TD-gtSgIj}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/_TD-gtSgIj}
  */
 export function searchResultOpened(properties: SearchResultOpenedProperties) {
   // @ts-ignore
@@ -3284,9 +3366,9 @@ export interface SearchJourneyInitiatedProperties {
  * 
  * When to trigger this event:
  * 1. A user types in the search bar on the homepage (first letter is typed).
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/rYxJBK8Kpm/trigger/aeEheVqLW
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/rYxJBK8Kpm/trigger/aeEheVqLW
  * 2. A user types in the search bar on the search page (first letter is typed)
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/rYxJBK8Kpm/trigger/5OM1jFoWf
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/rYxJBK8Kpm/trigger/5OM1jFoWf
  * 
  * @param properties the properties associated with this event
  * @param properties.searchSource: The location of the search box/entry point. 
@@ -3296,7 +3378,7 @@ export interface SearchJourneyInitiatedProperties {
  * Indicates the direction of movement and what it represents.
  * @param properties.accessLevel: Indicates where the user is going from when navigating content, whether zooming in, out, or across.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/rYxJBK8Kpm}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/rYxJBK8Kpm}
  */
 export function searchJourneyInitiated(properties: SearchJourneyInitiatedProperties) {
   // @ts-ignore
@@ -3351,13 +3433,13 @@ export interface CurriculumVisualiserAccessedProperties {
  * When to trigger this event:
  * 1. A user has clicked view after successfully completing the "Subject" and "School phase" fields.
 Component Type: 'homepage_button'
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/_ImUDkApb7/trigger/R19ayisHj
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/_ImUDkApb7/trigger/R19ayisHj
  * 2. Illustration of same component with would trigger this event but this time from the curriculum visualiser itself where this event could also be triggered
 component: curriculum_visualiser_button
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/_ImUDkApb7/trigger/LFOFUdkpr
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/_ImUDkApb7/trigger/LFOFUdkpr
  * 3. The lot picker is also accessible from the curriculum landing page
 component type: 'landing_page_button'
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/_ImUDkApb7/trigger/vCEJO0o_GAdCNaTlSlkoP
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/_ImUDkApb7/trigger/vCEJO0o_GAdCNaTlSlkoP
  * 
  * @param properties the properties associated with this event
  * @param properties.subjectTitle: Title of the current subject.
@@ -3372,7 +3454,7 @@ component type: 'landing_page_button'
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.phase: School phase related to key stage and age of audience
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/_ImUDkApb7}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/_ImUDkApb7}
  */
 export function curriculumVisualiserAccessed(properties: CurriculumVisualiserAccessedProperties) {
   // @ts-ignore
@@ -3395,7 +3477,7 @@ export function curriculumVisualiserAccessed(properties: CurriculumVisualiserAcc
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "_ImUDkApb7", "937c829acdc00e679f9c6c736dc3482286c5f8999941933f55b343b2cd34049b", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "_ImUDkApb7", "c6254f93ebcb60f024b48404e8189a5cb1ae239e2496ad214c3620baf4ce4cf8", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Curriculum Visualiser Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3406,7 +3488,7 @@ export function curriculumVisualiserAccessed(properties: CurriculumVisualiserAcc
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Visualiser Accessed", eventProperties, "_ImUDkApb7", "937c829acdc00e679f9c6c736dc3482286c5f8999941933f55b343b2cd34049b");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Visualiser Accessed", eventProperties, "_ImUDkApb7", "c6254f93ebcb60f024b48404e8189a5cb1ae239e2496ad214c3620baf4ce4cf8");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Curriculum Visualiser Accessed", (Object as any).assign({}, eventProperties));
@@ -3441,7 +3523,7 @@ export interface UnitOverviewAccessedProperties {
  * 
  * When to trigger this event:
  * 1. Unit info div is selected on div corresponding to a particular unit (in this case one that is highlighted a resulted of the selected thread)
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/OnjKTo8kYs/trigger/I6HnzeUNk
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/OnjKTo8kYs/trigger/I6HnzeUNk
  * 
  * @param properties the properties associated with this event
  * @param properties.unitName: Title of the current unit.
@@ -3467,7 +3549,7 @@ export interface UnitOverviewAccessedProperties {
  * @param properties.navigationType: How a user is navigating our content, zooming in, out, or across.
  * Indicates the direction of movement and what it represents.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/OnjKTo8kYs}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/OnjKTo8kYs}
  */
 export function unitOverviewAccessed(properties: UnitOverviewAccessedProperties) {
   // @ts-ignore
@@ -3506,7 +3588,7 @@ export function unitOverviewAccessed(properties: UnitOverviewAccessedProperties)
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "OnjKTo8kYs", "76ab8febaebd2c7aebb87990c28571b00f7e86197ec8fb9e3e746577829532b4", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "OnjKTo8kYs", "b44dc4d112e00d3d9236819a7e8608e69f9aac2939de3211e365802e3dfccff9", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Unit Overview Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3517,7 +3599,7 @@ export function unitOverviewAccessed(properties: UnitOverviewAccessedProperties)
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Overview Accessed", eventProperties, "OnjKTo8kYs", "76ab8febaebd2c7aebb87990c28571b00f7e86197ec8fb9e3e746577829532b4");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Overview Accessed", eventProperties, "OnjKTo8kYs", "b44dc4d112e00d3d9236819a7e8608e69f9aac2939de3211e365802e3dfccff9");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Unit Overview Accessed", (Object as any).assign({}, eventProperties));
@@ -3543,7 +3625,7 @@ export interface OnwardContentSelectedProperties {
  * 
  * When to trigger this event:
  * 1. Onward Content presentation screen following the download of a resource. Any of the links highlighted below would trigger this event.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/H9jrWEk8wy/trigger/t_FkWxgTH
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/H9jrWEk8wy/trigger/t_FkWxgTH
  * 
  * @param properties the properties associated with this event
  * @param properties.unitName: Title of the current unit.
@@ -3558,7 +3640,7 @@ export interface OnwardContentSelectedProperties {
  * Indicates the direction of movement and what it represents.
  * @param properties.accessLevel: Indicates where the user is going from when navigating content, whether zooming in, out, or across.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/H9jrWEk8wy}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/H9jrWEk8wy}
  */
 export function onwardContentSelected(properties: OnwardContentSelectedProperties) {
   // @ts-ignore
@@ -3629,7 +3711,7 @@ export interface LessonSharedProperties {
  * 
  * When to trigger this event:
  * 1. One of the share options is selected
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/RnJu4EY4bA/trigger/lvtGVFDJo
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/RnJu4EY4bA/trigger/lvtGVFDJo
  * 
  * @param properties the properties associated with this event
  * @param properties.lessonName: Name of the current lesson.
@@ -3653,7 +3735,7 @@ export interface LessonSharedProperties {
  * @param properties.audience: Corresponds to the a target audience (usually in relation to a share event)
  * @param properties.yearGroupHidden: Whether the teacher decided to hide the year group for the shared lesson
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/RnJu4EY4bA}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/RnJu4EY4bA}
  */
 export function lessonShared(properties: LessonSharedProperties) {
   // @ts-ignore
@@ -3685,7 +3767,7 @@ export function lessonShared(properties: LessonSharedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "RnJu4EY4bA", "8e4b3f94810925bcefbbbd2721435e58279fcc806abbce38ed6ef33c6060b117", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "RnJu4EY4bA", "0d7bbd16ea5a133ee8ad76aa9b6118ddd1ae6188d96fef65cd971aed2ae30cee", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Shared", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3696,7 +3778,7 @@ export function lessonShared(properties: LessonSharedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Shared", eventProperties, "RnJu4EY4bA", "8e4b3f94810925bcefbbbd2721435e58279fcc806abbce38ed6ef33c6060b117");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Shared", eventProperties, "RnJu4EY4bA", "0d7bbd16ea5a133ee8ad76aa9b6118ddd1ae6188d96fef65cd971aed2ae30cee");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Shared", (Object as any).assign({}, eventProperties));
@@ -3723,11 +3805,11 @@ export interface LessonShareStartedProperties {
  * 
  * When to trigger this event:
  * 1. Share activities with pupils button clicked at top of the page
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/PS8tcnGrN2/trigger/Lsaaeanis
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/PS8tcnGrN2/trigger/Lsaaeanis
  * 2. Share activities with pupils button clicked at the resource level
 
 NB. There is no sharing of slide decks at this time
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/PS8tcnGrN2/trigger/QMYuEgDaG
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/PS8tcnGrN2/trigger/QMYuEgDaG
  * 
  * @param properties the properties associated with this event
  * @param properties.lessonName: Name of the current lesson.
@@ -3742,7 +3824,7 @@ NB. There is no sharing of slide decks at this time
  * @param properties.subjectSlug: Human-readable unique ID of the current subject.
  * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/PS8tcnGrN2}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/PS8tcnGrN2}
  */
 export function lessonShareStarted(properties: LessonShareStartedProperties) {
   // @ts-ignore
@@ -3819,11 +3901,11 @@ export interface SearchRefinedProperties {
  * 
  * When to trigger this event:
  * 1. Results are returned by the search and a count of results is known
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/XpQ27vPNH4/trigger/PcgndFCLH2PP2U6ErGXCe
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/XpQ27vPNH4/trigger/PcgndFCLH2PP2U6ErGXCe
  * 2. (AI) A user selects from the list of suggested filters
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/XpQ27vPNH4/trigger/3uRc57QBJnE3_9gJlojNZ
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/XpQ27vPNH4/trigger/3uRc57QBJnE3_9gJlojNZ
  * 3. User selects filter from the ‘All filters’ list
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/XpQ27vPNH4/trigger/jJhXn8kQGmPcNHrAl_DbV
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/XpQ27vPNH4/trigger/jJhXn8kQGmPcNHrAl_DbV
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -3850,7 +3932,7 @@ export interface SearchRefinedProperties {
  * Indicates the direction of movement and what it represents.
  * @param properties.accessLevel: Indicates where the user is going from when navigating content, whether zooming in, out, or across.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/XpQ27vPNH4}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/XpQ27vPNH4}
  */
 export function searchRefined(properties: SearchRefinedProperties) {
   // @ts-ignore
@@ -3875,7 +3957,7 @@ export function searchRefined(properties: SearchRefinedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "XpQ27vPNH4", "d04d85df0e9ce357ee28a2cebf4143746f65fb7931f126a58d56a649406af2a9", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "XpQ27vPNH4", "40e2663214d08a34915e8998e424c9258214279cdafd74a49353489f3ab4ad18", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Search Refined", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3886,7 +3968,7 @@ export function searchRefined(properties: SearchRefinedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Refined", eventProperties, "XpQ27vPNH4", "d04d85df0e9ce357ee28a2cebf4143746f65fb7931f126a58d56a649406af2a9");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Refined", eventProperties, "XpQ27vPNH4", "40e2663214d08a34915e8998e424c9258214279cdafd74a49353489f3ab4ad18");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Search Refined", (Object as any).assign({}, eventProperties));
@@ -3952,7 +4034,7 @@ export interface SearchResultExpandedProperties {
  * Indicates the direction of movement and what it represents.
  * @param properties.accessLevel: Indicates where the user is going from when navigating content, whether zooming in, out, or across.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/eP2lOQQj8C}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/eP2lOQQj8C}
  */
 export function searchResultExpanded(properties: SearchResultExpandedProperties) {
   // @ts-ignore
@@ -3989,7 +4071,7 @@ export function searchResultExpanded(properties: SearchResultExpandedProperties)
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "eP2lOQQj8C", "f934ab35d20d0aa5bc9f497878ad39a8adf3bd9d293300c5efae49c6054633a7", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "eP2lOQQj8C", "1c4172ae216fcab32bdf88cc90a5b9e40fbf12bc34fe921269e77441727103d9", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Search Result Expanded", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -4000,7 +4082,7 @@ export function searchResultExpanded(properties: SearchResultExpandedProperties)
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Result Expanded", eventProperties, "eP2lOQQj8C", "f934ab35d20d0aa5bc9f497878ad39a8adf3bd9d293300c5efae49c6054633a7");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Result Expanded", eventProperties, "eP2lOQQj8C", "1c4172ae216fcab32bdf88cc90a5b9e40fbf12bc34fe921269e77441727103d9");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Search Result Expanded", (Object as any).assign({}, eventProperties));
@@ -4061,7 +4143,7 @@ export interface LessonCompletedProperties {
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.phase: School phase related to key stage and age of audience
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/Hy-6QNrYKU}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Hy-6QNrYKU}
  */
 export function lessonCompleted(properties: LessonCompletedProperties) {
   // @ts-ignore
@@ -4207,7 +4289,7 @@ export interface LessonActivityCompletedProperties {
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * @param properties.activityTimeSpent: time spent on activity in seconds
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/sBllxa-nuz}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sBllxa-nuz}
  */
 export function lessonActivityCompleted(properties: LessonActivityCompletedProperties) {
   // @ts-ignore
@@ -4365,7 +4447,7 @@ export interface LessonActivityCompletedIntroductionProperties {
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * @param properties.activityTimeSpent: time spent on activity in seconds
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/sBllxa-nuz.w-tN4OqGk}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sBllxa-nuz.w-tN4OqGk}
  */
 export function lessonActivityCompletedIntroduction(properties: LessonActivityCompletedIntroductionProperties) {
   // @ts-ignore
@@ -4533,7 +4615,7 @@ export interface LessonActivityCompletedStarterQuizProperties {
  * @param properties.pupilQuizNumQuestions: The total number of questions in the quiz
  * @param properties.phase: School phase related to key stage and age of audience
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/sBllxa-nuz.VPlVqR6yv}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sBllxa-nuz.VPlVqR6yv}
  */
 export function lessonActivityCompletedStarterQuiz(properties: LessonActivityCompletedStarterQuizProperties) {
   // @ts-ignore
@@ -4718,7 +4800,7 @@ export interface LessonActivityCompletedLessonVideoProperties {
  * @param properties.isCaptioned: Indicates whether captions were enabled when the event was triggered
  * @param properties.transcriptOpened: if the transcript of the video was accessed/viewed
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/sBllxa-nuz.66NwEPbGj}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sBllxa-nuz.66NwEPbGj}
  */
 export function lessonActivityCompletedLessonVideo(properties: LessonActivityCompletedLessonVideoProperties) {
   // @ts-ignore
@@ -4897,7 +4979,7 @@ export interface LessonActivityCompletedExitQuizProperties {
  * @param properties.pupilQuizNumQuestions: The total number of questions in the quiz
  * @param properties.phase: School phase related to key stage and age of audience
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/sBllxa-nuz.pE7MH59gY}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sBllxa-nuz.pE7MH59gY}
  */
 export function lessonActivityCompletedExitQuiz(properties: LessonActivityCompletedExitQuizProperties) {
   // @ts-ignore
@@ -5078,7 +5160,7 @@ export interface LessonActivityCompletedLessonAudioProperties {
  * @param properties.audioTitle: Title of Audio
  * @param properties.transcriptOpened: if the transcript of the video was accessed/viewed
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/sBllxa-nuz.vftftUlwJ}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sBllxa-nuz.vftftUlwJ}
  */
 export function lessonActivityCompletedLessonAudio(properties: LessonActivityCompletedLessonAudioProperties) {
   // @ts-ignore
@@ -5233,7 +5315,7 @@ export interface LessonStartedProperties {
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.phase: School phase related to key stage and age of audience
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/9zz1OCsT2}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/9zz1OCsT2}
  */
 export function lessonStarted(properties: LessonStartedProperties) {
   // @ts-ignore
@@ -5364,7 +5446,7 @@ export interface LessonActivityStartedProperties {
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/8LfOc60dl}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/8LfOc60dl}
  */
 export function lessonActivityStarted(properties: LessonActivityStartedProperties) {
   // @ts-ignore
@@ -5505,7 +5587,7 @@ export interface LessonActivityStartedIntroductionProperties {
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/8LfOc60dl.sQj7v3rhg}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/8LfOc60dl.sQj7v3rhg}
  */
 export function lessonActivityStartedIntroduction(properties: LessonActivityStartedIntroductionProperties) {
   // @ts-ignore
@@ -5652,7 +5734,7 @@ export interface LessonActivityStartedStarterQuizProperties {
  * @param properties.pupilQuizNumQuestions: The total number of questions in the quiz
  * @param properties.phase: School phase related to key stage and age of audience
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/8LfOc60dl.jXPPatapH}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/8LfOc60dl.jXPPatapH}
  */
 export function lessonActivityStartedStarterQuiz(properties: LessonActivityStartedStarterQuizProperties) {
   // @ts-ignore
@@ -5810,7 +5892,7 @@ export interface LessonActivityStartedLessonVideoProperties {
  * @param properties.pupilVideoPlayed: True if the play button has been pressed at all during the session
  * @param properties.videoPlaybackId: Playback Id of a mux video
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/8LfOc60dl.--Q2qdv1R}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/8LfOc60dl.--Q2qdv1R}
  */
 export function lessonActivityStartedLessonVideo(properties: LessonActivityStartedLessonVideoProperties) {
   // @ts-ignore
@@ -5964,7 +6046,7 @@ export interface LessonActivityStartedExitQuizProperties {
  * @param properties.pupilQuizNumQuestions: The total number of questions in the quiz
  * @param properties.phase: School phase related to key stage and age of audience
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/8LfOc60dl.bwLDlBvXo}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/8LfOc60dl.bwLDlBvXo}
  */
 export function lessonActivityStartedExitQuiz(properties: LessonActivityStartedExitQuizProperties) {
   // @ts-ignore
@@ -6120,7 +6202,7 @@ export interface LessonActivityStartedLessonAudioProperties {
  * @param properties.pupilAudioDurationSeconds: The total length of the audio in seconds
  * @param properties.audioTitle: Title of Audio
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/8LfOc60dl.UadcF0krG}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/8LfOc60dl.UadcF0krG}
  */
 export function lessonActivityStartedLessonAudio(properties: LessonActivityStartedLessonAudioProperties) {
   // @ts-ignore
@@ -6231,9 +6313,9 @@ export interface CurriculumResourcesDownloadedProperties {
  * 
  * When to trigger this event:
  * 1. User clicks on the 'download' button on the 'Downloads' tab to download a curriculum plan, resource type = 'curriculum_plan'
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/L7-HOgqfOB/trigger/jUQsfF-ITbWp_67NmYgz3
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/L7-HOgqfOB/trigger/jUQsfF-ITbWp_67NmYgz3
  * 2. User clicks on the 'Download PDF' button on the 'Previously Released Curricula' page - Resource Type = 'previously_released_curricula'
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/L7-HOgqfOB/trigger/8nxd5KGbX7Ulg8ZhUyiRB
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/L7-HOgqfOB/trigger/8nxd5KGbX7Ulg8ZhUyiRB
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -6255,7 +6337,7 @@ export interface CurriculumResourcesDownloadedProperties {
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/L7-HOgqfOB}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/L7-HOgqfOB}
  */
 export function curriculumResourcesDownloaded(properties: CurriculumResourcesDownloadedProperties) {
   // @ts-ignore
@@ -6291,7 +6373,7 @@ export function curriculumResourcesDownloaded(properties: CurriculumResourcesDow
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "L7-HOgqfOB", "ad0e66565e96b5696b1d4e3d0f7a88d243c64a47976a6aad927437d51d83d42b", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "L7-HOgqfOB", "a11f561c1fa5d3152cc097310b14e30618f1e7a96305d2f43f3fe5ee275dd6f4", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Curriculum Resources Downloaded", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -6302,7 +6384,7 @@ export function curriculumResourcesDownloaded(properties: CurriculumResourcesDow
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Resources Downloaded", eventProperties, "L7-HOgqfOB", "ad0e66565e96b5696b1d4e3d0f7a88d243c64a47976a6aad927437d51d83d42b");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Resources Downloaded", eventProperties, "L7-HOgqfOB", "a11f561c1fa5d3152cc097310b14e30618f1e7a96305d2f43f3fe5ee275dd6f4");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Curriculum Resources Downloaded", (Object as any).assign({}, eventProperties));
@@ -6375,7 +6457,7 @@ export interface LessonActivityAbandonedProperties {
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * @param properties.activityTimeSpent: time spent on activity in seconds
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/lucA3x3s4}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/lucA3x3s4}
  */
 export function lessonActivityAbandoned(properties: LessonActivityAbandonedProperties) {
   // @ts-ignore
@@ -6531,7 +6613,7 @@ export interface LessonActivityAbandonedStarterQuizProperties {
  * @param properties.hintUsed: Shows whether the pupil used the available hint
  * @param properties.pupilQuizNumQuestions: The total number of questions in the quiz
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/lucA3x3s4.RRbQMT3mC}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/lucA3x3s4.RRbQMT3mC}
  */
 export function lessonActivityAbandonedStarterQuiz(properties: LessonActivityAbandonedStarterQuizProperties) {
   // @ts-ignore
@@ -6682,7 +6764,7 @@ export interface LessonActivityAbandonedIntroductionProperties {
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * @param properties.activityTimeSpent: time spent on activity in seconds
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/lucA3x3s4.lfCw2Vowr}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/lucA3x3s4.lfCw2Vowr}
  */
 export function lessonActivityAbandonedIntroduction(properties: LessonActivityAbandonedIntroductionProperties) {
   // @ts-ignore
@@ -6850,7 +6932,7 @@ export interface LessonActivityAbandonedLessonVideoProperties {
  * @param properties.isCaptioned: Indicates whether captions were enabled when the event was triggered
  * @param properties.transcriptOpened: if the transcript of the video was accessed/viewed
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/lucA3x3s4.F-FcsZGOv}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/lucA3x3s4.F-FcsZGOv}
  */
 export function lessonActivityAbandonedLessonVideo(properties: LessonActivityAbandonedLessonVideoProperties) {
   // @ts-ignore
@@ -7017,7 +7099,7 @@ export interface LessonActivityAbandonedExitQuizProperties {
  * @param properties.hintUsed: Shows whether the pupil used the available hint
  * @param properties.pupilQuizNumQuestions: The total number of questions in the quiz
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/lucA3x3s4.67Vn1Fv8t}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/lucA3x3s4.67Vn1Fv8t}
  */
 export function lessonActivityAbandonedExitQuiz(properties: LessonActivityAbandonedExitQuizProperties) {
   // @ts-ignore
@@ -7188,7 +7270,7 @@ export interface LessonActivityAbandonedLessonAudioProperties {
  * @param properties.audioTitle: Title of Audio
  * @param properties.transcriptOpened: if the transcript of the video was accessed/viewed
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/lucA3x3s4.6YVHZaiT6}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/lucA3x3s4.6YVHZaiT6}
  */
 export function lessonActivityAbandonedLessonAudio(properties: LessonActivityAbandonedLessonAudioProperties) {
   // @ts-ignore
@@ -7290,16 +7372,16 @@ export interface LessonAssistantAccessedProperties {
  * 
  * When to trigger this event:
  * 1. The user selects the Lesson Planner from the footer menu on the labs homepage
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/xsOZT-77ro/trigger/DLeioZeJ8
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/xsOZT-77ro/trigger/DLeioZeJ8
  * 2. User clicks on the 'Get started' button from the search results
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/xsOZT-77ro/trigger/LCMU0NPnivcZrJQ58uvzN
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/xsOZT-77ro/trigger/LCMU0NPnivcZrJQ58uvzN
  * 
  * @param properties the properties associated with this event
  * @param properties.isLoggedIn: Flags whether the user logged in or not before accessing the Oak object
  * @param properties.componentType: The web component used to carry out the action on the Oak object
  * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/xsOZT-77ro}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/xsOZT-77ro}
  */
 export function lessonAssistantAccessed(properties: LessonAssistantAccessedProperties) {
   // @ts-ignore
@@ -7316,7 +7398,7 @@ export function lessonAssistantAccessed(properties: LessonAssistantAccessedPrope
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "xsOZT-77ro", "a09b269d82d54d67af9aa814d5b3c8d50db85fb43e267e54a1510fd4c0ef47a3", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "xsOZT-77ro", "d1df4c72b069883c36f2f7dee71c5f66bd901bcb885ce7dd3cd060ab415beb3e", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Assistant Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -7327,7 +7409,7 @@ export function lessonAssistantAccessed(properties: LessonAssistantAccessedPrope
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Assistant Accessed", eventProperties, "xsOZT-77ro", "a09b269d82d54d67af9aa814d5b3c8d50db85fb43e267e54a1510fd4c0ef47a3");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Assistant Accessed", eventProperties, "xsOZT-77ro", "d1df4c72b069883c36f2f7dee71c5f66bd901bcb885ce7dd3cd060ab415beb3e");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Assistant Accessed", (Object as any).assign({}, eventProperties));
@@ -7365,9 +7447,9 @@ export interface LessonAccessedProperties {
  * 
  * When to trigger this event:
  * 1. Lesson Page is loaded in the Pupil Experience
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/u21IHcK8_t/trigger/8mS2FLJSv
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/u21IHcK8_t/trigger/8mS2FLJSv
  * 2. Lesson Page is loaded in the Teacher Experience
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/u21IHcK8_t/trigger/MU1FQL9Lp
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/u21IHcK8_t/trigger/MU1FQL9Lp
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -7396,7 +7478,7 @@ export interface LessonAccessedProperties {
  * Indicates the direction of movement and what it represents.
  * @param properties.accessLevel: Indicates where the user is going from when navigating content, whether zooming in, out, or across.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/u21IHcK8_t}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/u21IHcK8_t}
  */
 export function lessonAccessed(properties: LessonAccessedProperties) {
   // @ts-ignore
@@ -7444,7 +7526,7 @@ export function lessonAccessed(properties: LessonAccessedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "u21IHcK8_t", "a01904e5b8a3dd18ea9de22dc124e89d9f9715edf9a78d2aa240363ade35c315", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "u21IHcK8_t", "73fc21edaac3cb17a3f9efb0907a5dee119abf7bbe4ec8ee211104cd3d3a4610", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -7455,7 +7537,7 @@ export function lessonAccessed(properties: LessonAccessedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Accessed", eventProperties, "u21IHcK8_t", "a01904e5b8a3dd18ea9de22dc124e89d9f9715edf9a78d2aa240363ade35c315");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Accessed", eventProperties, "u21IHcK8_t", "73fc21edaac3cb17a3f9efb0907a5dee119abf7bbe4ec8ee211104cd3d3a4610");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Accessed", (Object as any).assign({}, eventProperties));
@@ -7534,7 +7616,7 @@ export interface LessonAccessedPupilJourneyProperties {
  * Indicates the direction of movement and what it represents.
  * @param properties.accessLevel: Indicates where the user is going from when navigating content, whether zooming in, out, or across.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/u21IHcK8_t.ohEZ3G-E4C1P-RIAsc4D_}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/u21IHcK8_t.ohEZ3G-E4C1P-RIAsc4D_}
  */
 export function lessonAccessedPupilJourney(properties: LessonAccessedPupilJourneyProperties) {
   // @ts-ignore
@@ -7604,7 +7686,7 @@ export function lessonAccessedPupilJourney(properties: LessonAccessedPupilJourne
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "u21IHcK8_t.ohEZ3G-E4C1P-RIAsc4D_", "b32642ed58a31b51d1e358bb23084397b4987ceb138bc883b001dc7f1998cd29", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "u21IHcK8_t.ohEZ3G-E4C1P-RIAsc4D_", "b161f9a2abfcb88345d591e6c3ff6e733e0d4838fa3a18659a85e02247208125", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -7615,7 +7697,7 @@ export function lessonAccessedPupilJourney(properties: LessonAccessedPupilJourne
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Accessed", eventProperties, "u21IHcK8_t.ohEZ3G-E4C1P-RIAsc4D_", "b32642ed58a31b51d1e358bb23084397b4987ceb138bc883b001dc7f1998cd29");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Accessed", eventProperties, "u21IHcK8_t.ohEZ3G-E4C1P-RIAsc4D_", "b161f9a2abfcb88345d591e6c3ff6e733e0d4838fa3a18659a85e02247208125");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Accessed", (Object as any).assign({}, eventProperties));
@@ -7642,9 +7724,9 @@ export interface BrowseRefinedProperties {
  * 
  * When to trigger this event:
  * 1. An example from the Teacher Experience. Clicking on a Key Stage or a Subject would be an example of a refinement
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/qqX_ISnl2q/trigger/JfZk0CQKk
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/qqX_ISnl2q/trigger/JfZk0CQKk
  * 2. An example from the Pupil Experience. Selecting a subject would class as a refinement
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/qqX_ISnl2q/trigger/4yqBipPtJ
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/qqX_ISnl2q/trigger/4yqBipPtJ
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -7670,7 +7752,7 @@ export interface BrowseRefinedProperties {
  * @param properties.googleLoginHint: no description
  * @param properties.clientEnvironment: Denotes the environment the client is running
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/qqX_ISnl2q}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/qqX_ISnl2q}
  */
 export function browseRefined(properties: BrowseRefinedProperties) {
   // @ts-ignore
@@ -7699,7 +7781,7 @@ export function browseRefined(properties: BrowseRefinedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "qqX_ISnl2q", "24aca2433660349f1492fac10b8cd2ffc6cde5d46a3cb523457153819e2dadba", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "qqX_ISnl2q", "1ad59b3e306b67993fcfd9cf01d887a0cfcfc7b169b9dfd656bc709438ff8964", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Browse Refined", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -7710,7 +7792,7 @@ export function browseRefined(properties: BrowseRefinedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Browse Refined", eventProperties, "qqX_ISnl2q", "24aca2433660349f1492fac10b8cd2ffc6cde5d46a3cb523457153819e2dadba");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Browse Refined", eventProperties, "qqX_ISnl2q", "1ad59b3e306b67993fcfd9cf01d887a0cfcfc7b169b9dfd656bc709438ff8964");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Browse Refined", (Object as any).assign({}, eventProperties));
@@ -7738,9 +7820,9 @@ export interface BrowseRefinedAccessedProperties {
  * 
  * When to trigger this event:
  * 1. In the current iteration of the pupil experience the Accessed event will always be a year-group selection
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/qqX_ISnl2q.oU4o61r0g/trigger/yqG1kLnrT
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/qqX_ISnl2q.oU4o61r0g/trigger/yqG1kLnrT
  * 2. In the teacher experience the first browse event will always be through a key stage
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/qqX_ISnl2q.oU4o61r0g/trigger/jjG0aRtDl
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/qqX_ISnl2q.oU4o61r0g/trigger/jjG0aRtDl
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -7766,7 +7848,7 @@ export interface BrowseRefinedAccessedProperties {
  * @param properties.googleLoginHint: no description
  * @param properties.clientEnvironment: Denotes the environment the client is running
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/qqX_ISnl2q.oU4o61r0g}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/qqX_ISnl2q.oU4o61r0g}
  */
 export function browseRefinedAccessed(properties: BrowseRefinedAccessedProperties) {
   // @ts-ignore
@@ -7795,7 +7877,7 @@ export function browseRefinedAccessed(properties: BrowseRefinedAccessedPropertie
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "qqX_ISnl2q.oU4o61r0g", "0b8da7288f575fcaf0f47ac5b372cfed8952f47cb62fc6c6c2f3957166e60b0d", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "qqX_ISnl2q.oU4o61r0g", "f5b133f5c2a4768aa156c7f346f5de39acb552f0048e1fba7d991a4e48fcc2bc", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Browse Refined", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -7806,7 +7888,7 @@ export function browseRefinedAccessed(properties: BrowseRefinedAccessedPropertie
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Browse Refined", eventProperties, "qqX_ISnl2q.oU4o61r0g", "0b8da7288f575fcaf0f47ac5b372cfed8952f47cb62fc6c6c2f3957166e60b0d");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Browse Refined", eventProperties, "qqX_ISnl2q.oU4o61r0g", "f5b133f5c2a4768aa156c7f346f5de39acb552f0048e1fba7d991a4e48fcc2bc");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Browse Refined", (Object as any).assign({}, eventProperties));
@@ -7847,7 +7929,7 @@ export interface LessonActivityDownloadedProperties {
  * 
  * When to trigger this event:
  * 1. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/reCapRsfgU/trigger/7ch5HthPl
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/reCapRsfgU/trigger/7ch5HthPl
  * 
  * @param properties the properties associated with this event
  * @param properties.keyStageTitle: Title of the current key stage.
@@ -7876,7 +7958,7 @@ export interface LessonActivityDownloadedProperties {
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/reCapRsfgU}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/reCapRsfgU}
  */
 export function lessonActivityDownloaded(properties: LessonActivityDownloadedProperties) {
   // @ts-ignore
@@ -8012,7 +8094,7 @@ export interface LessonActivityDownloadedWorksheetProperties {
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/reCapRsfgU.1gaZkUNtF}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/reCapRsfgU.1gaZkUNtF}
  */
 export function lessonActivityDownloadedWorksheet(properties: LessonActivityDownloadedWorksheetProperties) {
   // @ts-ignore
@@ -8152,7 +8234,7 @@ export interface ContentGuidanceAcceptedProperties {
  * @param properties.contentGuidanceWarning: The category of the specific content guidance
  * @param properties.ageRestriction: no description
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/1u1gDPFXp3}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/1u1gDPFXp3}
  */
 export function contentGuidanceAccepted(properties: ContentGuidanceAcceptedProperties) {
   // @ts-ignore
@@ -8306,7 +8388,7 @@ export interface ContentGuidanceDeclinedProperties {
  * @param properties.contentGuidanceWarning: The category of the specific content guidance
  * @param properties.ageRestriction: no description
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/2spbwH8iKS}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/2spbwH8iKS}
  */
 export function contentGuidanceDeclined(properties: ContentGuidanceDeclinedProperties) {
   // @ts-ignore
@@ -8456,7 +8538,7 @@ export interface ActivityResultsSharedProperties {
  * @param properties.pupilExitQuiz: no description
  * @param properties.pupilStarterQuiz: no description
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/IEzudJUnh0}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/IEzudJUnh0}
  */
 export function activityResultsShared(properties: ActivityResultsSharedProperties) {
   // @ts-ignore
@@ -8659,7 +8741,7 @@ export interface LessonSummaryReviewedProperties {
  * @param properties.pupilExitQuiz: no description
  * @param properties.pupilStarterQuiz: no description
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/HO-MSD-SiA}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/HO-MSD-SiA}
  */
 export function lessonSummaryReviewed(properties: LessonSummaryReviewedProperties) {
   // @ts-ignore
@@ -8814,7 +8896,7 @@ export interface UserSignMinusUpCompletedProperties {
  * 
  * When to trigger this event:
  * 1. A user uses SSO or email/password combination to create an account in Clerk.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/fOlHJypRwg/trigger/aV1XekNBLU
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/fOlHJypRwg/trigger/aV1XekNBLU
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -8828,7 +8910,7 @@ export interface UserSignMinusUpCompletedProperties {
  * @param properties.userId_: The value used to identify the user. Make sure it's a unique sequence of characters used to identify the user.
  * @param properties.singleSignOnService: The Single Sign-On (SSO) Service used at a given stage of sign-up / sign-on.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/fOlHJypRwg}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/fOlHJypRwg}
  */
 export function userSignUpCompleted(properties: UserSignMinusUpCompletedProperties) {
   // @ts-ignore
@@ -8851,7 +8933,7 @@ export function userSignUpCompleted(properties: UserSignMinusUpCompletedProperti
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "fOlHJypRwg", "0832fb92156cd59c4fb119761beb1e040f721ed0f3a27a44553f02802dbe2d9a", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "fOlHJypRwg", "e8c86e36665abd707de9ad60b261b49bfc97536d9925289c049eb6d0c72f41e6", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("User Sign-Up Completed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -8862,7 +8944,7 @@ export function userSignUpCompleted(properties: UserSignMinusUpCompletedProperti
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("User Sign-Up Completed", eventProperties, "fOlHJypRwg", "0832fb92156cd59c4fb119761beb1e040f721ed0f3a27a44553f02802dbe2d9a");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("User Sign-Up Completed", eventProperties, "fOlHJypRwg", "e8c86e36665abd707de9ad60b261b49bfc97536d9925289c049eb6d0c72f41e6");
     }
     // destination PostHogEU
     PostHogEU.identify(properties.userId_);
@@ -8899,9 +8981,9 @@ export interface UserOnboardingCompletedProperties {
  * 
  * When to trigger this event:
  * 1. A teacher user completes the final stage of the onboarding journey (either continue or skip) and onboarding is complete.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/1Wfnj8Bspf/trigger/rwg0-pla4a
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/1Wfnj8Bspf/trigger/rwg0-pla4a
  * 2. A non-teacher user completes the final stage of the onboarding journey and can be thought of as having completed the onboarding journey
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/1Wfnj8Bspf/trigger/mA2lAiF3la
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/1Wfnj8Bspf/trigger/mA2lAiF3la
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -8921,7 +9003,7 @@ export interface UserOnboardingCompletedProperties {
  * @param properties.userAccountVerificationStatus: The status of the user account
  * @param properties.teacherSchoolManualEntryDetails: A small object containing the manually entered details of a users school when it is not available in the school picker.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/1Wfnj8Bspf}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/1Wfnj8Bspf}
  */
 export function userOnboardingCompleted(properties: UserOnboardingCompletedProperties) {
   // @ts-ignore
@@ -8960,7 +9042,7 @@ export function userOnboardingCompleted(properties: UserOnboardingCompletedPrope
     messages = messages.concat(assertTeacherSchoolManualEntryDetailsOptional(properties.teacherSchoolManualEntryDetails));
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "1Wfnj8Bspf", "3c763e1de7e7076896f8795922663d33771ba6ad612f67131cfc7b8c738ab292", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "1Wfnj8Bspf", "fe46022e5749838b813ecf1de8c8d6ecb205ebca45ad134e2c940746139df740", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("User Onboarding Completed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -8982,7 +9064,7 @@ export function userOnboardingCompleted(properties: UserOnboardingCompletedPrope
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("User Onboarding Completed", eventProperties, "1Wfnj8Bspf", "3c763e1de7e7076896f8795922663d33771ba6ad612f67131cfc7b8c738ab292");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("User Onboarding Completed", eventProperties, "1Wfnj8Bspf", "fe46022e5749838b813ecf1de8c8d6ecb205ebca45ad134e2c940746139df740");
     }
     // destination PostHogEU
     PostHogEU.setUserProperties(properties.userId_, (Object as any).assign({}, userProperties));
@@ -9001,7 +9083,7 @@ export interface UserSignMinusInProperties {
  * @param properties the properties associated with this event
  * @param properties.userId_: The value used to identify the user. Make sure it's a unique sequence of characters used to identify the user.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/KiDGLM5Isg}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/KiDGLM5Isg}
  */
 export function userSignIn(properties: UserSignMinusInProperties) {
   // @ts-ignore
@@ -9039,7 +9121,7 @@ export function userSignIn(properties: UserSignMinusInProperties) {
 /**
  * User Sign-Out: A user signs-out of their account
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/j0lSWreaah}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/j0lSWreaah}
  */
 export function userSignOut() {
   // @ts-ignore
@@ -9128,7 +9210,7 @@ export interface LessonAbandonedProperties {
  * @param properties.yearGroupSlug: Human-readable unique ID of the current year group.
  * @param properties.phase: School phase related to key stage and age of audience
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/qv9EeULbT}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/qv9EeULbT}
  */
 export function lessonAbandoned(properties: LessonAbandonedProperties) {
   // @ts-ignore
@@ -9179,7 +9261,7 @@ export function lessonAbandoned(properties: LessonAbandonedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "qv9EeULbT", "204b1f4348d75b7de89f219a5caf0126ad1b8a625e432d3ea9f32ae003482498", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "qv9EeULbT", "4b7d84e30e685d1160ad9ffd77a7d769c352d791452742de808c1e604dd32537", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Abandoned", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -9190,7 +9272,7 @@ export function lessonAbandoned(properties: LessonAbandonedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Abandoned", eventProperties, "qv9EeULbT", "204b1f4348d75b7de89f219a5caf0126ad1b8a625e432d3ea9f32ae003482498");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Abandoned", eventProperties, "qv9EeULbT", "4b7d84e30e685d1160ad9ffd77a7d769c352d791452742de808c1e604dd32537");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Abandoned", (Object as any).assign({}, eventProperties));
@@ -9220,7 +9302,7 @@ export interface BrowseAccessedProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/MFzroCdj0}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/MFzroCdj0}
  */
 export function browseAccessed(properties: BrowseAccessedProperties) {
   // @ts-ignore
@@ -9240,7 +9322,7 @@ export function browseAccessed(properties: BrowseAccessedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "MFzroCdj0", "ecc4f5549384f41058726039323f1954f6cb38bd5377c11a199c48d80b72d63c", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "MFzroCdj0", "e96fc45bb31fc2676932ea2871f64416469adf3918dcf7210372ada78a20a90d", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Browse Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -9251,7 +9333,7 @@ export function browseAccessed(properties: BrowseAccessedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Browse Accessed", eventProperties, "MFzroCdj0", "ecc4f5549384f41058726039323f1954f6cb38bd5377c11a199c48d80b72d63c");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Browse Accessed", eventProperties, "MFzroCdj0", "e96fc45bb31fc2676932ea2871f64416469adf3918dcf7210372ada78a20a90d");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Browse Accessed", (Object as any).assign({}, eventProperties));
@@ -9330,7 +9412,7 @@ export interface QuestionAttemptSubmittedProperties {
  * @param properties.hintAccessed: no description
  * @param properties.questionNumber: no description
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/oxHJDrfL0el}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/oxHJDrfL0el}
  */
 export function questionAttemptSubmitted(properties: QuestionAttemptSubmittedProperties) {
   // @ts-ignore
@@ -9460,7 +9542,7 @@ export interface TeacherShareInitiatedProperties {
  * @param properties.shareId: unique id associated with a share event
  * @param properties.sourcePageSlug: The slug portion of the url used to identify the page (on Oak's Website) from which an event was triggered. (e.g.  'teachers/curriculum/english-primary/units')
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/4zw48vJqLbd}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/4zw48vJqLbd}
  */
 export function teacherShareInitiated(properties: TeacherShareInitiatedProperties) {
   // @ts-ignore
@@ -9510,7 +9592,7 @@ export function teacherShareInitiated(properties: TeacherShareInitiatedPropertie
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "4zw48vJqLbd", "2c539bc8816e8a87a5e576ee68988096c5301a971097bf08443a84e9caf9f7ed", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "4zw48vJqLbd", "836cfc02ae007b5877cf5db8e09c9bc28d5aceedf5596af5b52f67ca4cec938c", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Teacher Share Initiated", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -9521,7 +9603,7 @@ export function teacherShareInitiated(properties: TeacherShareInitiatedPropertie
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teacher Share Initiated", eventProperties, "4zw48vJqLbd", "2c539bc8816e8a87a5e576ee68988096c5301a971097bf08443a84e9caf9f7ed");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teacher Share Initiated", eventProperties, "4zw48vJqLbd", "836cfc02ae007b5877cf5db8e09c9bc28d5aceedf5596af5b52f67ca4cec938c");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Teacher Share Initiated", (Object as any).assign({}, eventProperties));
@@ -9579,7 +9661,7 @@ export interface TeacherShareActivatedProperties {
  * @param properties.linkUrl: The href of a link
  * @param properties.noteLengthChars: The character length of a teacher note
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/ttpIP3aUQX2}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/ttpIP3aUQX2}
  */
 export function teacherShareActivated(properties: TeacherShareActivatedProperties) {
   // @ts-ignore
@@ -9633,7 +9715,7 @@ export function teacherShareActivated(properties: TeacherShareActivatedPropertie
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "ttpIP3aUQX2", "891c620e653d68776fa2bf1e63d840d9f1b09032787a861ad9b933a3952185f1", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "ttpIP3aUQX2", "e6712c9b0c86d902aa5b0942b2838b194375b00003362f8b0f1dcc288e841b33", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Teacher Share Activated", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -9644,7 +9726,7 @@ export function teacherShareActivated(properties: TeacherShareActivatedPropertie
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teacher Share Activated", eventProperties, "ttpIP3aUQX2", "891c620e653d68776fa2bf1e63d840d9f1b09032787a861ad9b933a3952185f1");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teacher Share Activated", eventProperties, "ttpIP3aUQX2", "e6712c9b0c86d902aa5b0942b2838b194375b00003362f8b0f1dcc288e841b33");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Teacher Share Activated", (Object as any).assign({}, eventProperties));
@@ -9698,7 +9780,7 @@ export interface TeacherShareConvertedProperties {
  * @param properties.shareId: unique id associated with a share event
  * @param properties.linkUrl: The href of a link
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/ANLiC7JLe7-}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/ANLiC7JLe7-}
  */
 export function teacherShareConverted(properties: TeacherShareConvertedProperties) {
   // @ts-ignore
@@ -9746,7 +9828,7 @@ export function teacherShareConverted(properties: TeacherShareConvertedPropertie
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "ANLiC7JLe7-", "ca6252566dc4fd14586cd9e73a320dc377e52d110a8a9d18aa296c72743d0baa", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "ANLiC7JLe7-", "7b5f552c549b480f6ee3f237354ef3b10410aaa0ee84b8bf5fe2ec3fd927214c", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Teacher Share Converted", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -9757,7 +9839,7 @@ export function teacherShareConverted(properties: TeacherShareConvertedPropertie
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teacher Share Converted", eventProperties, "ANLiC7JLe7-", "ca6252566dc4fd14586cd9e73a320dc377e52d110a8a9d18aa296c72743d0baa");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teacher Share Converted", eventProperties, "ANLiC7JLe7-", "7b5f552c549b480f6ee3f237354ef3b10410aaa0ee84b8bf5fe2ec3fd927214c");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Teacher Share Converted", (Object as any).assign({}, eventProperties));
@@ -9803,7 +9885,7 @@ export interface UnitDownloadedProperties {
  * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * @param properties.accessLevel: Indicates where the user is going from when navigating content, whether zooming in, out, or across.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/72bRke5-7b0}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/72bRke5-7b0}
  */
 export function unitDownloaded(properties: UnitDownloadedProperties) {
   // @ts-ignore
@@ -9833,7 +9915,7 @@ export function unitDownloaded(properties: UnitDownloadedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "72bRke5-7b0", "a5901cb13c88ffb59ff828dc8e024c1c304414c5394b9242612468a656b03c9a", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "72bRke5-7b0", "06759242e438796ccda0673d314424081bf4235afa2a7c9531b64dc1d1432f52", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Unit Downloaded", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -9844,7 +9926,7 @@ export function unitDownloaded(properties: UnitDownloadedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Downloaded", eventProperties, "72bRke5-7b0", "a5901cb13c88ffb59ff828dc8e024c1c304414c5394b9242612468a656b03c9a");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Downloaded", eventProperties, "72bRke5-7b0", "06759242e438796ccda0673d314424081bf4235afa2a7c9531b64dc1d1432f52");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Unit Downloaded", (Object as any).assign({}, eventProperties));
@@ -9900,7 +9982,7 @@ export interface TeacherNoteDialogueOpenedProperties {
  * @param properties.sourcePageSlug: The slug portion of the url used to identify the page (on Oak's Website) from which an event was triggered. (e.g.  'teachers/curriculum/english-primary/units')
  * @param properties.linkUrl: The href of a link
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/ZfGgVMk2GGv2hxZQMZDBl}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/ZfGgVMk2GGv2hxZQMZDBl}
  */
 export function teacherNoteDialogueOpened(properties: TeacherNoteDialogueOpenedProperties) {
   // @ts-ignore
@@ -9955,7 +10037,7 @@ export function teacherNoteDialogueOpened(properties: TeacherNoteDialogueOpenedP
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "ZfGgVMk2GGv2hxZQMZDBl", "983c14bd4cbc20d2b326cb9c46d690b1b429bfd4815d887be19b15f7a06bf8c0", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "ZfGgVMk2GGv2hxZQMZDBl", "15dfa29e03b56a8c25313519b54cb209e8be8c7d59daa2b23a62422f633cc97e", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Teacher Note Dialogue Opened", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -9966,7 +10048,7 @@ export function teacherNoteDialogueOpened(properties: TeacherNoteDialogueOpenedP
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teacher Note Dialogue Opened", eventProperties, "ZfGgVMk2GGv2hxZQMZDBl", "983c14bd4cbc20d2b326cb9c46d690b1b429bfd4815d887be19b15f7a06bf8c0");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teacher Note Dialogue Opened", eventProperties, "ZfGgVMk2GGv2hxZQMZDBl", "15dfa29e03b56a8c25313519b54cb209e8be8c7d59daa2b23a62422f633cc97e");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Teacher Note Dialogue Opened", (Object as any).assign({}, eventProperties));
@@ -10024,7 +10106,7 @@ export interface TeacherNoteSavedProperties {
  * @param properties.linkUrl: The href of a link
  * @param properties.noteLengthChars: The character length of a teacher note
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/rY3jUdERBSrdNUQPY_2h-}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/rY3jUdERBSrdNUQPY_2h-}
  */
 export function teacherNoteSaved(properties: TeacherNoteSavedProperties) {
   // @ts-ignore
@@ -10076,7 +10158,7 @@ export function teacherNoteSaved(properties: TeacherNoteSavedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "rY3jUdERBSrdNUQPY_2h-", "0fc5ed8b545a38677632320d681598e8165d468153c0a3cc125e3aa3818d2e8f", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "rY3jUdERBSrdNUQPY_2h-", "b206f9667319d55a142b29e264d35eaf31951fd26059862a84ee2e5b39e11293", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Teacher Note Saved", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -10087,7 +10169,7 @@ export function teacherNoteSaved(properties: TeacherNoteSavedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teacher Note Saved", eventProperties, "rY3jUdERBSrdNUQPY_2h-", "0fc5ed8b545a38677632320d681598e8165d468153c0a3cc125e3aa3818d2e8f");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teacher Note Saved", eventProperties, "rY3jUdERBSrdNUQPY_2h-", "b206f9667319d55a142b29e264d35eaf31951fd26059862a84ee2e5b39e11293");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Teacher Note Saved", (Object as any).assign({}, eventProperties));
@@ -10115,7 +10197,7 @@ export interface CurriculumVisualiserExitedProperties {
  * 
  * When to trigger this event:
  * 1. User clicks on 'See lessons in unit'
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/zsO3YXYKon/trigger/DevPKYouf
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/zsO3YXYKon/trigger/DevPKYouf
  * 
  * @param properties the properties associated with this event
  * @param properties.unitName: Title of the current unit.
@@ -10133,7 +10215,7 @@ export interface CurriculumVisualiserExitedProperties {
  * @param properties.yearGroupName: Name of the current year group.
  * @param properties.yearGroupSlug: Human-readable unique ID of the current year group.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/zsO3YXYKon}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/zsO3YXYKon}
  */
 export function curriculumVisualiserExited(properties: CurriculumVisualiserExitedProperties) {
   // @ts-ignore
@@ -10159,7 +10241,7 @@ export function curriculumVisualiserExited(properties: CurriculumVisualiserExite
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "zsO3YXYKon", "4aa976ad185eec3f1bee28181382d373c3476116e1657a70831a601c395d4a41", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "zsO3YXYKon", "d2d0de77f750ee6a3a4250cdc927603e0721a470eeeef87058b32d3071a0b8e2", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Curriculum Visualiser Exited", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -10170,7 +10252,7 @@ export function curriculumVisualiserExited(properties: CurriculumVisualiserExite
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Visualiser Exited", eventProperties, "zsO3YXYKon", "4aa976ad185eec3f1bee28181382d373c3476116e1657a70831a601c395d4a41");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Visualiser Exited", eventProperties, "zsO3YXYKon", "d2d0de77f750ee6a3a4250cdc927603e0721a470eeeef87058b32d3071a0b8e2");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Curriculum Visualiser Exited", (Object as any).assign({}, eventProperties));
@@ -10195,11 +10277,11 @@ export interface CurriculumVisualiserTabAccessedProperties {
  * 
  * When to trigger this event:
  * 1. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/lyC0uySKzt/trigger/PcASRZWOw1ku51PJZc9CB
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/lyC0uySKzt/trigger/PcASRZWOw1ku51PJZc9CB
  * 2. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/lyC0uySKzt/trigger/D1VxROFKdnXDVTvFaw9Gs
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/lyC0uySKzt/trigger/D1VxROFKdnXDVTvFaw9Gs
  * 3. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/lyC0uySKzt/trigger/fgn-xU4Zxy0ZQxt_KOcnH
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/lyC0uySKzt/trigger/fgn-xU4Zxy0ZQxt_KOcnH
  * 
  * @param properties the properties associated with this event
  * @param properties.subjectTitle: Title of the current subject.
@@ -10214,7 +10296,7 @@ export interface CurriculumVisualiserTabAccessedProperties {
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.phase: School phase related to key stage and age of audience
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/lyC0uySKzt}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/lyC0uySKzt}
  */
 export function curriculumVisualiserTabAccessed(properties: CurriculumVisualiserTabAccessedProperties) {
   // @ts-ignore
@@ -10237,7 +10319,7 @@ export function curriculumVisualiserTabAccessed(properties: CurriculumVisualiser
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "lyC0uySKzt", "e5a4df5752896d2ddaca2a29f2794723b64ae92a4c5caec28ce9642a2d9b9646", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "lyC0uySKzt", "d8d4d0f750d2060508199c38f71be3ae2fe27c1aeab603dba68f88bde84fffed", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Curriculum Visualiser Tab Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -10248,7 +10330,7 @@ export function curriculumVisualiserTabAccessed(properties: CurriculumVisualiser
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Visualiser Tab Accessed", eventProperties, "lyC0uySKzt", "e5a4df5752896d2ddaca2a29f2794723b64ae92a4c5caec28ce9642a2d9b9646");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Visualiser Tab Accessed", eventProperties, "lyC0uySKzt", "d8d4d0f750d2060508199c38f71be3ae2fe27c1aeab603dba68f88bde84fffed");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Curriculum Visualiser Tab Accessed", (Object as any).assign({}, eventProperties));
@@ -10278,9 +10360,9 @@ export interface UnitOverviewExploredProperties {
  * 
  * When to trigger this event:
  * 1. User clicks on one of the accordians within the unit overview pop out
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/i6-nnHEIYs/trigger/1eRpH5Gxy
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/i6-nnHEIYs/trigger/1eRpH5Gxy
  * 2. Depending on the unit, the accordian tab names will vary
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/i6-nnHEIYs/trigger/Iy1Mdcswp_HFz7gu3Vkv8
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/i6-nnHEIYs/trigger/Iy1Mdcswp_HFz7gu3Vkv8
  * 
  * @param properties the properties associated with this event
  * @param properties.subjectTitle: Title of the current subject.
@@ -10300,7 +10382,7 @@ export interface UnitOverviewExploredProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/i6-nnHEIYs}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/i6-nnHEIYs}
  */
 export function unitOverviewExplored(properties: UnitOverviewExploredProperties) {
   // @ts-ignore
@@ -10328,7 +10410,7 @@ export function unitOverviewExplored(properties: UnitOverviewExploredProperties)
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "i6-nnHEIYs", "433b8e2e56e7653d1913c017d898870776142cf713579c70242bbec08fd4f923", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "i6-nnHEIYs", "16b8d6a422d84196976eee76d519b1d65b5fdef397fd5db6572776310b5ed63b", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Unit Overview Explored", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -10339,7 +10421,7 @@ export function unitOverviewExplored(properties: UnitOverviewExploredProperties)
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Overview Explored", eventProperties, "i6-nnHEIYs", "433b8e2e56e7653d1913c017d898870776142cf713579c70242bbec08fd4f923");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Overview Explored", eventProperties, "i6-nnHEIYs", "16b8d6a422d84196976eee76d519b1d65b5fdef397fd5db6572776310b5ed63b");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Unit Overview Explored", (Object as any).assign({}, eventProperties));
@@ -10361,13 +10443,13 @@ export interface ProductHomepageAccessedProperties {
  * 
  * When to trigger this event:
  * 1. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/Lftzxt-mHyPsAzsv5H2Vi/trigger/a85DGvpxPtzycSgl20lbY
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Lftzxt-mHyPsAzsv5H2Vi/trigger/a85DGvpxPtzycSgl20lbY
  * 2. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/Lftzxt-mHyPsAzsv5H2Vi/trigger/dWx1KqJ9Z1YDgC5lDOY94
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Lftzxt-mHyPsAzsv5H2Vi/trigger/dWx1KqJ9Z1YDgC5lDOY94
  * 3. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/Lftzxt-mHyPsAzsv5H2Vi/trigger/MMsrYL3JK596X0m5vVdWP
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Lftzxt-mHyPsAzsv5H2Vi/trigger/MMsrYL3JK596X0m5vVdWP
  * 4. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/Lftzxt-mHyPsAzsv5H2Vi/trigger/Crn6BaMk17vcqoYOgaFs1
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Lftzxt-mHyPsAzsv5H2Vi/trigger/Crn6BaMk17vcqoYOgaFs1
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -10379,7 +10461,7 @@ export interface ProductHomepageAccessedProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/Lftzxt-mHyPsAzsv5H2Vi}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Lftzxt-mHyPsAzsv5H2Vi}
  */
 export function productHomepageAccessed(properties: ProductHomepageAccessedProperties) {
   // @ts-ignore
@@ -10399,7 +10481,7 @@ export function productHomepageAccessed(properties: ProductHomepageAccessedPrope
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "Lftzxt-mHyPsAzsv5H2Vi", "9df35b73e2093551908b65c745a417f678316a034de7075e44227f5e4882eb98", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "Lftzxt-mHyPsAzsv5H2Vi", "6e36087bb26da201f01e66bd117b723b51238753be042e6eaf1fc40f117a1f1d", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Product Homepage Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -10410,7 +10492,7 @@ export function productHomepageAccessed(properties: ProductHomepageAccessedPrope
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Product Homepage Accessed", eventProperties, "Lftzxt-mHyPsAzsv5H2Vi", "9df35b73e2093551908b65c745a417f678316a034de7075e44227f5e4882eb98");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Product Homepage Accessed", eventProperties, "Lftzxt-mHyPsAzsv5H2Vi", "6e36087bb26da201f01e66bd117b723b51238753be042e6eaf1fc40f117a1f1d");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Product Homepage Accessed", (Object as any).assign({}, eventProperties));
@@ -10432,7 +10514,7 @@ export interface CurriculumLandingPageAccessedProperties {
  * 
  * When to trigger this event:
  * 1. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/Sv8oxJgYPLCidSo_wxLpN/trigger/6A2Ow5TjrtpMpDLy_gR_n
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Sv8oxJgYPLCidSo_wxLpN/trigger/6A2Ow5TjrtpMpDLy_gR_n
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -10444,7 +10526,7 @@ export interface CurriculumLandingPageAccessedProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/Sv8oxJgYPLCidSo_wxLpN}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Sv8oxJgYPLCidSo_wxLpN}
  */
 export function curriculumLandingPageAccessed(properties: CurriculumLandingPageAccessedProperties) {
   // @ts-ignore
@@ -10464,7 +10546,7 @@ export function curriculumLandingPageAccessed(properties: CurriculumLandingPageA
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "Sv8oxJgYPLCidSo_wxLpN", "fe8f72a3133149179a1d89d014d3ed0b487263038f7f43d72c1798bc6defb080", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "Sv8oxJgYPLCidSo_wxLpN", "e21e682f8be3892fec8e6f49e85fde33c2b2ddbcc936c820431a04fd22533127", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Curriculum Landing Page Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -10475,7 +10557,7 @@ export function curriculumLandingPageAccessed(properties: CurriculumLandingPageA
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Landing Page Accessed", eventProperties, "Sv8oxJgYPLCidSo_wxLpN", "fe8f72a3133149179a1d89d014d3ed0b487263038f7f43d72c1798bc6defb080");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Landing Page Accessed", eventProperties, "Sv8oxJgYPLCidSo_wxLpN", "e21e682f8be3892fec8e6f49e85fde33c2b2ddbcc936c820431a04fd22533127");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Curriculum Landing Page Accessed", (Object as any).assign({}, eventProperties));
@@ -10501,7 +10583,7 @@ export interface CurriculumExplainerExploredProperties {
  * 
  * When to trigger this event:
  * 1. User navigates to any of the contents on the left
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/FP1B-pCMEjGG0k3hk6oXU/trigger/YgOtQr6ps2icWqT4X3JT7
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/FP1B-pCMEjGG0k3hk6oXU/trigger/YgOtQr6ps2icWqT4X3JT7
  * 
  * @param properties the properties associated with this event
  * @param properties.subjectTitle: Title of the current subject.
@@ -10517,7 +10599,7 @@ export interface CurriculumExplainerExploredProperties {
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/FP1B-pCMEjGG0k3hk6oXU}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/FP1B-pCMEjGG0k3hk6oXU}
  */
 export function curriculumExplainerExplored(properties: CurriculumExplainerExploredProperties) {
   // @ts-ignore
@@ -10543,7 +10625,7 @@ export function curriculumExplainerExplored(properties: CurriculumExplainerExplo
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "FP1B-pCMEjGG0k3hk6oXU", "06de23d771629242ac13d33f3611fd31ebad224ae04c0d1452dc5b20e82d19f0", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "FP1B-pCMEjGG0k3hk6oXU", "31e6416e38deda45f4850c1d4605ae81dde834a081a01af2a58399ae87b437a1", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Curriculum Explainer Explored", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -10554,7 +10636,7 @@ export function curriculumExplainerExplored(properties: CurriculumExplainerExplo
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Explainer Explored", eventProperties, "FP1B-pCMEjGG0k3hk6oXU", "06de23d771629242ac13d33f3611fd31ebad224ae04c0d1452dc5b20e82d19f0");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Explainer Explored", eventProperties, "FP1B-pCMEjGG0k3hk6oXU", "31e6416e38deda45f4850c1d4605ae81dde834a081a01af2a58399ae87b437a1");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Curriculum Explainer Explored", (Object as any).assign({}, eventProperties));
@@ -10582,7 +10664,7 @@ export interface CurriculumResourcesDownloadRefinedProperties {
  * 
  * When to trigger this event:
  * 1. User selects a subject and learning tier to download curriculum resources for
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/cTKf4kbAHd211SR05Bbq8/trigger/j79s4AM_FvlH_6oP87NBj
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/cTKf4kbAHd211SR05Bbq8/trigger/j79s4AM_FvlH_6oP87NBj
  * 
  * @param properties the properties associated with this event
  * @param properties.subjectTitle: Title of the current subject.
@@ -10600,7 +10682,7 @@ export interface CurriculumResourcesDownloadRefinedProperties {
  * @param properties.learningTier: Learning tier that was selected
  * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/cTKf4kbAHd211SR05Bbq8}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/cTKf4kbAHd211SR05Bbq8}
  */
 export function curriculumResourcesDownloadRefined(properties: CurriculumResourcesDownloadRefinedProperties) {
   // @ts-ignore
@@ -10628,7 +10710,7 @@ export function curriculumResourcesDownloadRefined(properties: CurriculumResourc
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "cTKf4kbAHd211SR05Bbq8", "49b0745137789d2e56ca69408a3b1c942dc44baaa18856d8593a709d12b543dc", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "cTKf4kbAHd211SR05Bbq8", "d2d0b3f72715214da6c78e7615a74c8a9b45730e52b0f815b558276e266af435", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Curriculum Resources Download Refined", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -10639,7 +10721,7 @@ export function curriculumResourcesDownloadRefined(properties: CurriculumResourc
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Resources Download Refined", eventProperties, "cTKf4kbAHd211SR05Bbq8", "49b0745137789d2e56ca69408a3b1c942dc44baaa18856d8593a709d12b543dc");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Resources Download Refined", eventProperties, "cTKf4kbAHd211SR05Bbq8", "d2d0b3f72715214da6c78e7615a74c8a9b45730e52b0f815b558276e266af435");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Curriculum Resources Download Refined", (Object as any).assign({}, eventProperties));
@@ -10668,7 +10750,7 @@ export interface SearchFilterModifiedProperties {
  * 
  * When to trigger this event:
  * 1. A search filter button is selected.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/JbWzId2dPo6mN6Y3aHwMr/trigger/Cx9_xD-MYDD1Tt00diuFC
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/JbWzId2dPo6mN6Y3aHwMr/trigger/Cx9_xD-MYDD1Tt00diuFC
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -10688,7 +10770,7 @@ export interface SearchFilterModifiedProperties {
  * Indicates the direction of movement and what it represents.
  * @param properties.accessLevel: Indicates where the user is going from when navigating content, whether zooming in, out, or across.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/JbWzId2dPo6mN6Y3aHwMr}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/JbWzId2dPo6mN6Y3aHwMr}
  */
 export function searchFilterModified(properties: SearchFilterModifiedProperties) {
   // @ts-ignore
@@ -10715,7 +10797,7 @@ export function searchFilterModified(properties: SearchFilterModifiedProperties)
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "JbWzId2dPo6mN6Y3aHwMr", "c33b2cc95e36dfe6e3344d4350e494980bc3c2485ef9406a2316b71a9cdfb72f", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "JbWzId2dPo6mN6Y3aHwMr", "0ea566e6a3c6ddc34315bc4ed65f11583be7c3c68cdc8d77dd616935a7b496e0", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Search Filter Modified", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -10726,7 +10808,7 @@ export function searchFilterModified(properties: SearchFilterModifiedProperties)
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Filter Modified", eventProperties, "JbWzId2dPo6mN6Y3aHwMr", "c33b2cc95e36dfe6e3344d4350e494980bc3c2485ef9406a2316b71a9cdfb72f");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Filter Modified", eventProperties, "JbWzId2dPo6mN6Y3aHwMr", "0ea566e6a3c6ddc34315bc4ed65f11583be7c3c68cdc8d77dd616935a7b496e0");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Search Filter Modified", (Object as any).assign({}, eventProperties));
@@ -10796,7 +10878,7 @@ export interface LessonMediaClipsStartedProperties {
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/YbxoviiZ7zqvdvU_8FRv9}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/YbxoviiZ7zqvdvU_8FRv9}
  */
 export function lessonMediaClipsStarted(properties: LessonMediaClipsStartedProperties) {
   // @ts-ignore
@@ -10864,7 +10946,7 @@ export function lessonMediaClipsStarted(properties: LessonMediaClipsStartedPrope
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "YbxoviiZ7zqvdvU_8FRv9", "d3a62360c19e4c70ada677aaecf2d5ba5f8936ce1271022809738694142958db", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "YbxoviiZ7zqvdvU_8FRv9", "e333245924a475c9ca024446cb47fdf7255c7d5ee4fbd92c7fbb0b740e540e88", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Media Clips Started", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -10875,7 +10957,7 @@ export function lessonMediaClipsStarted(properties: LessonMediaClipsStartedPrope
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Media Clips Started", eventProperties, "YbxoviiZ7zqvdvU_8FRv9", "d3a62360c19e4c70ada677aaecf2d5ba5f8936ce1271022809738694142958db");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Media Clips Started", eventProperties, "YbxoviiZ7zqvdvU_8FRv9", "e333245924a475c9ca024446cb47fdf7255c7d5ee4fbd92c7fbb0b740e540e88");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Media Clips Started", (Object as any).assign({}, eventProperties));
@@ -10961,7 +11043,7 @@ export interface MediaClipsPlaylistPlayedProperties {
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/VvOi9lNYmXNrmqXMSkT-X}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/VvOi9lNYmXNrmqXMSkT-X}
  */
 export function mediaClipsPlaylistPlayed(properties: MediaClipsPlaylistPlayedProperties) {
   // @ts-ignore
@@ -11039,7 +11121,7 @@ export function mediaClipsPlaylistPlayed(properties: MediaClipsPlaylistPlayedPro
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "VvOi9lNYmXNrmqXMSkT-X", "f37c9c68d0fdf36d510208e97f0bf6d28c22cc5324b5182a64957b02ee388332", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "VvOi9lNYmXNrmqXMSkT-X", "832981efc27c5de99a6704187e04e84ebac73402db6a6b08741abc8730f938e5", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Media Clips Playlist Played", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -11050,7 +11132,7 @@ export function mediaClipsPlaylistPlayed(properties: MediaClipsPlaylistPlayedPro
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Media Clips Playlist Played", eventProperties, "VvOi9lNYmXNrmqXMSkT-X", "f37c9c68d0fdf36d510208e97f0bf6d28c22cc5324b5182a64957b02ee388332");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Media Clips Playlist Played", eventProperties, "VvOi9lNYmXNrmqXMSkT-X", "832981efc27c5de99a6704187e04e84ebac73402db6a6b08741abc8730f938e5");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Media Clips Playlist Played", (Object as any).assign({}, eventProperties));
@@ -11092,7 +11174,7 @@ export interface ContentSavedProperties {
  * @param properties.contentType: no description
  * @param properties.contentItemSlug: no description
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/SA9Od8Lltuc37iY7IHGP4}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/SA9Od8Lltuc37iY7IHGP4}
  */
 export function contentSaved(properties: ContentSavedProperties) {
   // @ts-ignore
@@ -11118,7 +11200,7 @@ export function contentSaved(properties: ContentSavedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "SA9Od8Lltuc37iY7IHGP4", "e580fc77f821eeb34e3718918dd14012519396f74165b27a562e5e8176009a06", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "SA9Od8Lltuc37iY7IHGP4", "84cff0060ab24d299efc470251be530363e40a70b424fe558fad262aac2a1d97", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Content Saved", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -11129,7 +11211,7 @@ export function contentSaved(properties: ContentSavedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Content Saved", eventProperties, "SA9Od8Lltuc37iY7IHGP4", "e580fc77f821eeb34e3718918dd14012519396f74165b27a562e5e8176009a06");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Content Saved", eventProperties, "SA9Od8Lltuc37iY7IHGP4", "84cff0060ab24d299efc470251be530363e40a70b424fe558fad262aac2a1d97");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Content Saved", (Object as any).assign({}, eventProperties));
@@ -11171,7 +11253,7 @@ export interface ContentUnsavedProperties {
  * @param properties.contentType: no description
  * @param properties.contentItemSlug: no description
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/ma0dTvBAlMIMPsHIHNKW4}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/ma0dTvBAlMIMPsHIHNKW4}
  */
 export function contentUnsaved(properties: ContentUnsavedProperties) {
   // @ts-ignore
@@ -11197,7 +11279,7 @@ export function contentUnsaved(properties: ContentUnsavedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "ma0dTvBAlMIMPsHIHNKW4", "148bfb7912a7f9ce589d5e084aa2cbb287da5d43da4bd21a8b5264da5eed15f0", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "ma0dTvBAlMIMPsHIHNKW4", "b95b2a7af895a211936f8cfba646e1fdc43f38e63ebbe528520bf220da81fdae", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Content Unsaved", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -11208,7 +11290,7 @@ export function contentUnsaved(properties: ContentUnsavedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Content Unsaved", eventProperties, "ma0dTvBAlMIMPsHIHNKW4", "148bfb7912a7f9ce589d5e084aa2cbb287da5d43da4bd21a8b5264da5eed15f0");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Content Unsaved", eventProperties, "ma0dTvBAlMIMPsHIHNKW4", "b95b2a7af895a211936f8cfba646e1fdc43f38e63ebbe528520bf220da81fdae");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Content Unsaved", (Object as any).assign({}, eventProperties));
@@ -11232,7 +11314,7 @@ export interface CreateTeachingMaterialsInitiatedProperties {
  * 
  * When to trigger this event:
  * 1. User clicks on the 'Create additional materials' button
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/I_3ZXJv2dxdML9tN8VHYb/trigger/7HC7dZHAPT8KBGGnQOp6C
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/I_3ZXJv2dxdML9tN8VHYb/trigger/7HC7dZHAPT8KBGGnQOp6C
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -11246,7 +11328,7 @@ export interface CreateTeachingMaterialsInitiatedProperties {
  * @param properties.isLoggedIn: Flags whether the user logged in or not before accessing the Oak object
  * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/I_3ZXJv2dxdML9tN8VHYb}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/I_3ZXJv2dxdML9tN8VHYb}
  */
 export function createTeachingMaterialsInitiated(properties: CreateTeachingMaterialsInitiatedProperties) {
   // @ts-ignore
@@ -11270,7 +11352,7 @@ export function createTeachingMaterialsInitiated(properties: CreateTeachingMater
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "I_3ZXJv2dxdML9tN8VHYb", "f3d79617e8ef73ec96d216202c0079e3000b3ddb96a11fe78d145c3c0aa911cf", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "I_3ZXJv2dxdML9tN8VHYb", "13a0f694d44d4642e167baac1653b2fcf9796cd07d2d8ca85747ac8cea4a5e64", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Create Teaching Materials Initiated", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -11281,7 +11363,7 @@ export function createTeachingMaterialsInitiated(properties: CreateTeachingMater
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Create Teaching Materials Initiated", eventProperties, "I_3ZXJv2dxdML9tN8VHYb", "f3d79617e8ef73ec96d216202c0079e3000b3ddb96a11fe78d145c3c0aa911cf");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Create Teaching Materials Initiated", eventProperties, "I_3ZXJv2dxdML9tN8VHYb", "13a0f694d44d4642e167baac1653b2fcf9796cd07d2d8ca85747ac8cea4a5e64");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Create Teaching Materials Initiated", (Object as any).assign({}, eventProperties));
@@ -11306,7 +11388,7 @@ export interface TeachingMaterialsSelectedProperties {
  * 
  * When to trigger this event:
  * 1. The user selects from the radial options which type of additional material to create, and clicks on 'Next, lesson details'.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/53a2df64-53be-4f28-9b3e-2918d78d9477/trigger/G4MY_H0MONSXFiAi_PstL
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/53a2df64-53be-4f28-9b3e-2918d78d9477/trigger/G4MY_H0MONSXFiAi_PstL
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -11321,7 +11403,7 @@ export interface TeachingMaterialsSelectedProperties {
  * @param properties.teachingMaterialType: Type of Additional Material user has selected to generate.
  * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/53a2df64-53be-4f28-9b3e-2918d78d9477}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/53a2df64-53be-4f28-9b3e-2918d78d9477}
  */
 export function teachingMaterialsSelected(properties: TeachingMaterialsSelectedProperties) {
   // @ts-ignore
@@ -11346,7 +11428,7 @@ export function teachingMaterialsSelected(properties: TeachingMaterialsSelectedP
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "53a2df64-53be-4f28-9b3e-2918d78d9477", "3f12c4ba997c990f4eed2b4993a457e02dc0111e9f916d8542740c04818bf409", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "53a2df64-53be-4f28-9b3e-2918d78d9477", "bb43a89b8b23ed5cbdba7c216145c1957ef68884bdbe73c743ea322cdacd610e", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Teaching Materials Selected", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -11357,7 +11439,7 @@ export function teachingMaterialsSelected(properties: TeachingMaterialsSelectedP
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teaching Materials Selected", eventProperties, "53a2df64-53be-4f28-9b3e-2918d78d9477", "3f12c4ba997c990f4eed2b4993a457e02dc0111e9f916d8542740c04818bf409");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teaching Materials Selected", eventProperties, "53a2df64-53be-4f28-9b3e-2918d78d9477", "bb43a89b8b23ed5cbdba7c216145c1957ef68884bdbe73c743ea322cdacd610e");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Teaching Materials Selected", (Object as any).assign({}, eventProperties));
@@ -11387,13 +11469,13 @@ export interface TeachingMaterialsRefinedProperties {
  * 
  * When to trigger this event:
  * 1. The user selects a year group, subject and lesson title for the additional materials, then clicks on ‘Create lesson summary’ 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/DZzW7MOE1d7mmFy-3KXnq/trigger/FDM2fVMrZ51mmmXDlsAQw
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/DZzW7MOE1d7mmFy-3KXnq/trigger/FDM2fVMrZ51mmmXDlsAQw
  * 2. The user clicks on the ‘Create glossary’ button to carry on with the additional resources creation. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/DZzW7MOE1d7mmFy-3KXnq/trigger/ELWI6ZF7mpGVF0X_ch4jk
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/DZzW7MOE1d7mmFy-3KXnq/trigger/ELWI6ZF7mpGVF0X_ch4jk
  * 3. The user selects one of the Modify options on the Glossary page
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/DZzW7MOE1d7mmFy-3KXnq/trigger/e3YmT5oE5dvmk9LTbQrqU
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/DZzW7MOE1d7mmFy-3KXnq/trigger/e3YmT5oE5dvmk9LTbQrqU
  * 4. The user clicks on ‘Back a step’
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/DZzW7MOE1d7mmFy-3KXnq/trigger/0Lqu48jyX2732YmT_-dTc
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/DZzW7MOE1d7mmFy-3KXnq/trigger/0Lqu48jyX2732YmT_-dTc
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -11413,7 +11495,7 @@ export interface TeachingMaterialsRefinedProperties {
  * @param properties.lessonPlanTitle: Title of the lesson plan
  * @param properties.moderatedContentType: The flag displayed to the user if the content they are looking at is sensitive/blocked
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/DZzW7MOE1d7mmFy-3KXnq}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/DZzW7MOE1d7mmFy-3KXnq}
  */
 export function teachingMaterialsRefined(properties: TeachingMaterialsRefinedProperties) {
   // @ts-ignore
@@ -11443,7 +11525,7 @@ export function teachingMaterialsRefined(properties: TeachingMaterialsRefinedPro
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "DZzW7MOE1d7mmFy-3KXnq", "e0fe1401138131d87fefe1922a2285a876420166a976d8e78b672eec06388f5c", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "DZzW7MOE1d7mmFy-3KXnq", "a1f52e6de6db307978fb44f154b2362ed3d72f6eecb12689f2c5f272596bd40d", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Teaching Materials Refined", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -11454,7 +11536,7 @@ export function teachingMaterialsRefined(properties: TeachingMaterialsRefinedPro
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teaching Materials Refined", eventProperties, "DZzW7MOE1d7mmFy-3KXnq", "e0fe1401138131d87fefe1922a2285a876420166a976d8e78b672eec06388f5c");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teaching Materials Refined", eventProperties, "DZzW7MOE1d7mmFy-3KXnq", "a1f52e6de6db307978fb44f154b2362ed3d72f6eecb12689f2c5f272596bd40d");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Teaching Materials Refined", (Object as any).assign({}, eventProperties));
@@ -11486,7 +11568,7 @@ export interface TeachingMaterialDownloadedProperties {
  * 
  * When to trigger this event:
  * 1. User clicks on 'Download (.zip)'.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/6E7DzaaR8xj-jTMeAu7TS/trigger/pTcRgM36sUy0DWCa6X1kp
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/6E7DzaaR8xj-jTMeAu7TS/trigger/pTcRgM36sUy0DWCa6X1kp
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -11508,7 +11590,7 @@ export interface TeachingMaterialDownloadedProperties {
  * @param properties.resourceFileType: The file type of the resource related to the event
  * @param properties.moderatedContentType: The flag displayed to the user if the content they are looking at is sensitive/blocked
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/6E7DzaaR8xj-jTMeAu7TS}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/6E7DzaaR8xj-jTMeAu7TS}
  */
 export function teachingMaterialDownloaded(properties: TeachingMaterialDownloadedProperties) {
   // @ts-ignore
@@ -11540,7 +11622,7 @@ export function teachingMaterialDownloaded(properties: TeachingMaterialDownloade
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "6E7DzaaR8xj-jTMeAu7TS", "d69b6529f35c112229d98e17e0b9ffbf6c0e2ed1e2f777a1a23443b342a488c8", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "6E7DzaaR8xj-jTMeAu7TS", "d1722b720fb26a2236dd577be2f10b939fc97159f233b69e9f7570cb7b5f7b4a", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Teaching Material Downloaded", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -11551,7 +11633,7 @@ export function teachingMaterialDownloaded(properties: TeachingMaterialDownloade
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teaching Material Downloaded", eventProperties, "6E7DzaaR8xj-jTMeAu7TS", "d69b6529f35c112229d98e17e0b9ffbf6c0e2ed1e2f777a1a23443b342a488c8");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teaching Material Downloaded", eventProperties, "6E7DzaaR8xj-jTMeAu7TS", "d1722b720fb26a2236dd577be2f10b939fc97159f233b69e9f7570cb7b5f7b4a");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Teaching Material Downloaded", (Object as any).assign({}, eventProperties));
@@ -11599,7 +11681,7 @@ export interface ContentBlockNotificationDisplayedProperties {
  * @param properties.accessBlockType: The reason why an item of content was blocked from being accessed.
  * @param properties.accessBlockDetails: An object providing details about the block reason (e.g. the country of the user at the time geo-restricted content was blocked)
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/E_1QtSmDaMHlZzmoL1bSm}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/E_1QtSmDaMHlZzmoL1bSm}
  */
 export function contentBlockNotificationDisplayed(properties: ContentBlockNotificationDisplayedProperties) {
   // @ts-ignore
@@ -11640,7 +11722,7 @@ export function contentBlockNotificationDisplayed(properties: ContentBlockNotifi
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "E_1QtSmDaMHlZzmoL1bSm", "6a8a4e45bac8ce4be7e93b8293951ab2c34febdfccbb31a90f9c9c1f7cfe9737", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "E_1QtSmDaMHlZzmoL1bSm", "80050a5c466372303b82873794b02ac06a5d695020f858cfdb9fddcf7b12af50", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Content Block Notification Displayed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -11651,7 +11733,7 @@ export function contentBlockNotificationDisplayed(properties: ContentBlockNotifi
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Content Block Notification Displayed", eventProperties, "E_1QtSmDaMHlZzmoL1bSm", "6a8a4e45bac8ce4be7e93b8293951ab2c34febdfccbb31a90f9c9c1f7cfe9737");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Content Block Notification Displayed", eventProperties, "E_1QtSmDaMHlZzmoL1bSm", "80050a5c466372303b82873794b02ac06a5d695020f858cfdb9fddcf7b12af50");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Content Block Notification Displayed", (Object as any).assign({}, eventProperties));
@@ -11697,7 +11779,7 @@ export interface UserOnboardingProgressedProperties {
  * @param properties.userAccountVerificationStatus: The status of the user account
  * @param properties.teacherSchoolManualEntryDetails: A small object containing the manually entered details of a users school when it is not available in the school picker.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/WFQ_xNUmm}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/WFQ_xNUmm}
  */
 export function userOnboardingProgressed(properties: UserOnboardingProgressedProperties) {
   // @ts-ignore
@@ -11740,7 +11822,7 @@ export function userOnboardingProgressed(properties: UserOnboardingProgressedPro
     messages = messages.concat(assertTeacherSchoolManualEntryDetailsOptional(properties.teacherSchoolManualEntryDetails));
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "WFQ_xNUmm", "e375cb9cddc81e0e2f55b5e44176be828dc860e3ed35cb1a3fb47c8f06942589", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "WFQ_xNUmm", "f9298a4cf3fc5c4645ff4c6bd3a76e311e6b2741d58489f81feded740b666985", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("User Onboarding Progressed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -11780,7 +11862,7 @@ export interface AboutUsAccessedProperties {
  * 
  * When to trigger this event:
  * 1. User clicks on the About Oak button from the homepage
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/oSWvaTUE8hKucXrR3I4V4/trigger/GC1EHCHa7Lm7iUZfbZh7q
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/oSWvaTUE8hKucXrR3I4V4/trigger/GC1EHCHa7Lm7iUZfbZh7q
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -11792,7 +11874,7 @@ export interface AboutUsAccessedProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/oSWvaTUE8hKucXrR3I4V4}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/oSWvaTUE8hKucXrR3I4V4}
  */
 export function aboutUsAccessed(properties: AboutUsAccessedProperties) {
   // @ts-ignore
@@ -11812,7 +11894,7 @@ export function aboutUsAccessed(properties: AboutUsAccessedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "oSWvaTUE8hKucXrR3I4V4", "5292bb40038f273b20b87ad650405e5182ec8486ee41c40cfdf6846a9d68a2cb", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "oSWvaTUE8hKucXrR3I4V4", "09c5b78a4552d31d5a8d9eda33031a499cfbf5a7b25abe7b8870bd99c6bb1e9a", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("About Us Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -11823,7 +11905,7 @@ export function aboutUsAccessed(properties: AboutUsAccessedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("About Us Accessed", eventProperties, "oSWvaTUE8hKucXrR3I4V4", "5292bb40038f273b20b87ad650405e5182ec8486ee41c40cfdf6846a9d68a2cb");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("About Us Accessed", eventProperties, "oSWvaTUE8hKucXrR3I4V4", "09c5b78a4552d31d5a8d9eda33031a499cfbf5a7b25abe7b8870bd99c6bb1e9a");
     }
     // destination PostHogEU
     PostHogEU.logEvent("About Us Accessed", (Object as any).assign({}, eventProperties));
@@ -11845,7 +11927,7 @@ export interface AboutUsExploredProperties {
  * 
  * When to trigger this event:
  * 1. User selects any of the four options in this section
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/GTkyUItOAwx_e4-aU1pXH/trigger/jCTVX9nXJdT7DwN9dxeKS
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/GTkyUItOAwx_e4-aU1pXH/trigger/jCTVX9nXJdT7DwN9dxeKS
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -11857,7 +11939,7 @@ export interface AboutUsExploredProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/GTkyUItOAwx_e4-aU1pXH}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/GTkyUItOAwx_e4-aU1pXH}
  */
 export function aboutUsExplored(properties: AboutUsExploredProperties) {
   // @ts-ignore
@@ -11877,7 +11959,7 @@ export function aboutUsExplored(properties: AboutUsExploredProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "GTkyUItOAwx_e4-aU1pXH", "b2ea2eb59986d4fbd18149985783d8e7a4e9f6cc481635a34acbe770160c4798", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "GTkyUItOAwx_e4-aU1pXH", "e08f26f90b8904893c9a76d837ba615059d657868eaa188aadf578e298fee07e", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("About Us Explored", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -11888,7 +11970,7 @@ export function aboutUsExplored(properties: AboutUsExploredProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("About Us Explored", eventProperties, "GTkyUItOAwx_e4-aU1pXH", "b2ea2eb59986d4fbd18149985783d8e7a4e9f6cc481635a34acbe770160c4798");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("About Us Explored", eventProperties, "GTkyUItOAwx_e4-aU1pXH", "e08f26f90b8904893c9a76d837ba615059d657868eaa188aadf578e298fee07e");
     }
     // destination PostHogEU
     PostHogEU.logEvent("About Us Explored", (Object as any).assign({}, eventProperties));
@@ -11910,11 +11992,11 @@ export interface AboutUsContactInitiatedProperties {
  * 
  * When to trigger this event:
  * 1. User clicks on 'join the research panel' (component type = 'join_research_panel')
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/1kAeBL_oSYtSUA_xJrLFz/trigger/CZqCjnoNG1tfXzDfGMQZf
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/1kAeBL_oSYtSUA_xJrLFz/trigger/CZqCjnoNG1tfXzDfGMQZf
  * 2. User clicks 'get in touch' (component_type = 'get_in_touch')
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/1kAeBL_oSYtSUA_xJrLFz/trigger/0mHzNpxH8P4Eh0nu7LGYK
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/1kAeBL_oSYtSUA_xJrLFz/trigger/0mHzNpxH8P4Eh0nu7LGYK
  * 3. User clicks on 'permanent roles' or 'freelance roles' (component type = 'permanent_roles'/'freelance roles')
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/1kAeBL_oSYtSUA_xJrLFz/trigger/f_oDDB8k7c9p_8ZRnnlsO
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/1kAeBL_oSYtSUA_xJrLFz/trigger/f_oDDB8k7c9p_8ZRnnlsO
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -11926,7 +12008,7 @@ export interface AboutUsContactInitiatedProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/1kAeBL_oSYtSUA_xJrLFz}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/1kAeBL_oSYtSUA_xJrLFz}
  */
 export function aboutUsContactInitiated(properties: AboutUsContactInitiatedProperties) {
   // @ts-ignore
@@ -11946,7 +12028,7 @@ export function aboutUsContactInitiated(properties: AboutUsContactInitiatedPrope
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "1kAeBL_oSYtSUA_xJrLFz", "f4b86ea1b7cda486fb328a78c54767f667af92b87588808de73e10749344054f", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "1kAeBL_oSYtSUA_xJrLFz", "d169b9e3cd9bc77589b6d248a5334a03b6052edbf54747fd089eb91177cb9668", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("About Us Contact Initiated", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -11957,7 +12039,7 @@ export function aboutUsContactInitiated(properties: AboutUsContactInitiatedPrope
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("About Us Contact Initiated", eventProperties, "1kAeBL_oSYtSUA_xJrLFz", "f4b86ea1b7cda486fb328a78c54767f667af92b87588808de73e10749344054f");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("About Us Contact Initiated", eventProperties, "1kAeBL_oSYtSUA_xJrLFz", "d169b9e3cd9bc77589b6d248a5334a03b6052edbf54747fd089eb91177cb9668");
     }
     // destination PostHogEU
     PostHogEU.logEvent("About Us Contact Initiated", (Object as any).assign({}, eventProperties));
@@ -11986,7 +12068,7 @@ export interface ClassroomSignInCompletedProperties {
  * @param properties.subscribeToNewsletter: Newsletter subscribe button selected
  * @param properties.clientEnvironment: Denotes the environment the client is running
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/b7534ea2-1ff5-4707-9395-b93dd01d8944}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/b7534ea2-1ff5-4707-9395-b93dd01d8944}
  */
 export function classroomSignInCompleted(properties: ClassroomSignInCompletedProperties) {
   // @ts-ignore
@@ -12012,7 +12094,7 @@ export function classroomSignInCompleted(properties: ClassroomSignInCompletedPro
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "b7534ea2-1ff5-4707-9395-b93dd01d8944", "d65b83e7ff36eed90d6005e1536916563506a99f0d86e1c5b410813bb12dd739", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "b7534ea2-1ff5-4707-9395-b93dd01d8944", "fe02af02306d39f295d185a184f65926ee6cc913d877191adf3112fdd83cd9dc", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Classroom Sign in Completed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -12023,7 +12105,7 @@ export function classroomSignInCompleted(properties: ClassroomSignInCompletedPro
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Classroom Sign in Completed", eventProperties, "b7534ea2-1ff5-4707-9395-b93dd01d8944", "d65b83e7ff36eed90d6005e1536916563506a99f0d86e1c5b410813bb12dd739");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Classroom Sign in Completed", eventProperties, "b7534ea2-1ff5-4707-9395-b93dd01d8944", "fe02af02306d39f295d185a184f65926ee6cc913d877191adf3112fdd83cd9dc");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Classroom Sign in Completed", (Object as any).assign({}, eventProperties));
@@ -12044,7 +12126,7 @@ export interface ClassroomSignInStartedProperties {
  * 
  * When to trigger this event:
  * 1. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/NH1qVkE2GB5IFRN2i5QyY/trigger/V7rxuuU3dpqHVeWA4i-Hi
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/NH1qVkE2GB5IFRN2i5QyY/trigger/V7rxuuU3dpqHVeWA4i-Hi
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -12054,7 +12136,7 @@ export interface ClassroomSignInStartedProperties {
  * @param properties.googleLoginHint: no description
  * @param properties.clientEnvironment: Denotes the environment the client is running
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/NH1qVkE2GB5IFRN2i5QyY}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/NH1qVkE2GB5IFRN2i5QyY}
  */
 export function classroomSignInStarted(properties: ClassroomSignInStartedProperties) {
   // @ts-ignore
@@ -12075,7 +12157,7 @@ export function classroomSignInStarted(properties: ClassroomSignInStartedPropert
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "NH1qVkE2GB5IFRN2i5QyY", "090801f7dc5d35185628712bb25e50496a86c3cd8991b8932474d5f180f1a2be", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "NH1qVkE2GB5IFRN2i5QyY", "a9ebab1b26a9d3a7bfaf1e88d57db8ecdbdc4917a4f2eca2f5142286577f21b4", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Classroom Sign in Started", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -12086,7 +12168,7 @@ export function classroomSignInStarted(properties: ClassroomSignInStartedPropert
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Classroom Sign in Started", eventProperties, "NH1qVkE2GB5IFRN2i5QyY", "090801f7dc5d35185628712bb25e50496a86c3cd8991b8932474d5f180f1a2be");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Classroom Sign in Started", eventProperties, "NH1qVkE2GB5IFRN2i5QyY", "a9ebab1b26a9d3a7bfaf1e88d57db8ecdbdc4917a4f2eca2f5142286577f21b4");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Classroom Sign in Started", (Object as any).assign({}, eventProperties));
@@ -12117,7 +12199,7 @@ export interface ClassroomLessonSelectedProperties {
  * 
  * When to trigger this event:
  * 1. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/7ed5d88c-5b8d-4af2-87a2-2d7611079795/trigger/H3G3BWqetpDQYy_zDAqDo
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/7ed5d88c-5b8d-4af2-87a2-2d7611079795/trigger/H3G3BWqetpDQYy_zDAqDo
  * 
  * @param properties the properties associated with this event
  * @param properties.lessonName: Name of the current lesson.
@@ -12136,7 +12218,7 @@ export interface ClassroomLessonSelectedProperties {
  * @param properties.googleLoginHint: no description
  * @param properties.clientEnvironment: Denotes the environment the client is running
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/7ed5d88c-5b8d-4af2-87a2-2d7611079795}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/7ed5d88c-5b8d-4af2-87a2-2d7611079795}
  */
 export function classroomLessonSelected(properties: ClassroomLessonSelectedProperties) {
   // @ts-ignore
@@ -12209,7 +12291,7 @@ export interface ClassroomLessonPreviewedProperties {
  * 
  * When to trigger this event:
  * 1. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/yyH7tlz5DF7yCPBTS7ukR/trigger/NFnARcInP5Uvh60kuCZ_Z
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/yyH7tlz5DF7yCPBTS7ukR/trigger/NFnARcInP5Uvh60kuCZ_Z
  * 
  * @param properties the properties associated with this event
  * @param properties.lessonName: Name of the current lesson.
@@ -12228,7 +12310,7 @@ export interface ClassroomLessonPreviewedProperties {
  * @param properties.googleLoginHint: no description
  * @param properties.clientEnvironment: Denotes the environment the client is running
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/yyH7tlz5DF7yCPBTS7ukR}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/yyH7tlz5DF7yCPBTS7ukR}
  */
 export function classroomLessonPreviewed(properties: ClassroomLessonPreviewedProperties) {
   // @ts-ignore
@@ -12294,7 +12376,7 @@ export interface ClassroomLessonsAttachedProperties {
  * 
  * When to trigger this event:
  * 1. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/t7nhIQuz1fXoUi0xheAxT/trigger/SWV04E6prIUjsxP0dVXEh
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/t7nhIQuz1fXoUi0xheAxT/trigger/SWV04E6prIUjsxP0dVXEh
  * 
  * @param properties the properties associated with this event
  * @param properties.googleLoginHint: no description
@@ -12306,7 +12388,7 @@ export interface ClassroomLessonsAttachedProperties {
  * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/t7nhIQuz1fXoUi0xheAxT}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/t7nhIQuz1fXoUi0xheAxT}
  */
 export function classroomLessonsAttached(properties: ClassroomLessonsAttachedProperties) {
   // @ts-ignore
@@ -12370,7 +12452,7 @@ export interface ClassroomAddOnOpenedProperties {
  * 
  * When to trigger this event:
  * 1. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/f6c5fadc-2289-4875-a4a5-062de83dc9c1/trigger/MBJLU55HRcRhUoHwRSu8p
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/f6c5fadc-2289-4875-a4a5-062de83dc9c1/trigger/MBJLU55HRcRhUoHwRSu8p
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -12383,7 +12465,7 @@ export interface ClassroomAddOnOpenedProperties {
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.clientEnvironment: Denotes the environment the client is running
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/f6c5fadc-2289-4875-a4a5-062de83dc9c1}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/f6c5fadc-2289-4875-a4a5-062de83dc9c1}
  */
 export function classroomAddOnOpened(properties: ClassroomAddOnOpenedProperties) {
   // @ts-ignore
@@ -12406,7 +12488,7 @@ export function classroomAddOnOpened(properties: ClassroomAddOnOpenedProperties)
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "f6c5fadc-2289-4875-a4a5-062de83dc9c1", "6c99106725722f682c4137a9f544bdcb57395f930303b0bb688b87a45b0e9df2", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "f6c5fadc-2289-4875-a4a5-062de83dc9c1", "0bad39664cdc8ae3b5ecab5110985c7ba272b463d7c124a996169249a8f80d53", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Classroom Add on Opened", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -12417,7 +12499,7 @@ export function classroomAddOnOpened(properties: ClassroomAddOnOpenedProperties)
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Classroom Add on Opened", eventProperties, "f6c5fadc-2289-4875-a4a5-062de83dc9c1", "6c99106725722f682c4137a9f544bdcb57395f930303b0bb688b87a45b0e9df2");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Classroom Add on Opened", eventProperties, "f6c5fadc-2289-4875-a4a5-062de83dc9c1", "0bad39664cdc8ae3b5ecab5110985c7ba272b463d7c124a996169249a8f80d53");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Classroom Add on Opened", (Object as any).assign({}, eventProperties));
@@ -12474,7 +12556,7 @@ export interface ProgrammeRefinedProperties {
  * @param properties.googleLoginHint: no description
  * @param properties.clientEnvironment: Denotes the environment the client is running
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/c4mJzrmGf_5D5QuDPODpn}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/c4mJzrmGf_5D5QuDPODpn}
  */
 export function programmeRefined(properties: ProgrammeRefinedProperties) {
   // @ts-ignore
@@ -12508,7 +12590,7 @@ export function programmeRefined(properties: ProgrammeRefinedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "c4mJzrmGf_5D5QuDPODpn", "7cbf8587d973f3744b39e4127cb41caf553a8ea89bda977e0fc7cbbf013b8c62", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "c4mJzrmGf_5D5QuDPODpn", "6d7c5660d293a04512c21309b54ee8d2e94d9120aaa4aae9c9e8caacc12655db", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Programme Refined", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -12519,7 +12601,7 @@ export function programmeRefined(properties: ProgrammeRefinedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Programme Refined", eventProperties, "c4mJzrmGf_5D5QuDPODpn", "7cbf8587d973f3744b39e4127cb41caf553a8ea89bda977e0fc7cbbf013b8c62");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Programme Refined", eventProperties, "c4mJzrmGf_5D5QuDPODpn", "6d7c5660d293a04512c21309b54ee8d2e94d9120aaa4aae9c9e8caacc12655db");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Programme Refined", (Object as any).assign({}, eventProperties));
@@ -12576,7 +12658,7 @@ export interface UnitRefinedProperties {
  * @param properties.googleLoginHint: no description
  * @param properties.clientEnvironment: Denotes the environment the client is running
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/oY_aSUaUvf18ywGxI-X6z}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/oY_aSUaUvf18ywGxI-X6z}
  */
 export function unitRefined(properties: UnitRefinedProperties) {
   // @ts-ignore
@@ -12610,7 +12692,7 @@ export function unitRefined(properties: UnitRefinedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "oY_aSUaUvf18ywGxI-X6z", "94e3415537b6099594929a08fd09bd60bf68150751d13c96e62f2bf374ab50ff", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "oY_aSUaUvf18ywGxI-X6z", "c80fd75a001bcbf92149068523e9241a3a268297072f2a63e7357097a5b6b3e7", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Unit Refined", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -12621,7 +12703,7 @@ export function unitRefined(properties: UnitRefinedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Refined", eventProperties, "oY_aSUaUvf18ywGxI-X6z", "94e3415537b6099594929a08fd09bd60bf68150751d13c96e62f2bf374ab50ff");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Refined", eventProperties, "oY_aSUaUvf18ywGxI-X6z", "c80fd75a001bcbf92149068523e9241a3a268297072f2a63e7357097a5b6b3e7");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Unit Refined", (Object as any).assign({}, eventProperties));
@@ -12678,7 +12760,7 @@ export interface ProgrammeAccessedProperties {
  * @param properties.googleLoginHint: no description
  * @param properties.clientEnvironment: Denotes the environment the client is running
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/n3ZOBTu172etcRz3zYUVl}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/n3ZOBTu172etcRz3zYUVl}
  */
 export function programmeAccessed(properties: ProgrammeAccessedProperties) {
   // @ts-ignore
@@ -12716,7 +12798,7 @@ export function programmeAccessed(properties: ProgrammeAccessedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "n3ZOBTu172etcRz3zYUVl", "884089ac9a8cdd6dda79ce0bd2814b4ce5e9853702b9524f664c6a898ecf92cb", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "n3ZOBTu172etcRz3zYUVl", "2961dea99127956156f3014c554c5eb5c8793c840665aaa25610a02b133fd08e", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Programme Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -12727,7 +12809,7 @@ export function programmeAccessed(properties: ProgrammeAccessedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Programme Accessed", eventProperties, "n3ZOBTu172etcRz3zYUVl", "884089ac9a8cdd6dda79ce0bd2814b4ce5e9853702b9524f664c6a898ecf92cb");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Programme Accessed", eventProperties, "n3ZOBTu172etcRz3zYUVl", "2961dea99127956156f3014c554c5eb5c8793c840665aaa25610a02b133fd08e");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Programme Accessed", (Object as any).assign({}, eventProperties));
@@ -12773,7 +12855,7 @@ export interface UnitDownloadStartedProperties {
  * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * @param properties.accessLevel: Indicates where the user is going from when navigating content, whether zooming in, out, or across.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/HYZZOlRO94Gxvz8uxfkLe}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/HYZZOlRO94Gxvz8uxfkLe}
  */
 export function unitDownloadStarted(properties: UnitDownloadStartedProperties) {
   // @ts-ignore
@@ -12803,7 +12885,7 @@ export function unitDownloadStarted(properties: UnitDownloadStartedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "HYZZOlRO94Gxvz8uxfkLe", "685b1ff712c15ec1b08b189cd8798778dde188797a0d40034801d5490d9a2c2f", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "HYZZOlRO94Gxvz8uxfkLe", "c6c90f55cdd59d2c9393835f03f999c74ea64c02e8fc0305ffc440fe324351cc", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Unit Download Started", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -12814,7 +12896,7 @@ export function unitDownloadStarted(properties: UnitDownloadStartedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Download Started", eventProperties, "HYZZOlRO94Gxvz8uxfkLe", "685b1ff712c15ec1b08b189cd8798778dde188797a0d40034801d5490d9a2c2f");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Download Started", eventProperties, "HYZZOlRO94Gxvz8uxfkLe", "c6c90f55cdd59d2c9393835f03f999c74ea64c02e8fc0305ffc440fe324351cc");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Unit Download Started", (Object as any).assign({}, eventProperties));
@@ -12832,7 +12914,7 @@ export interface ScrolledToProperties {
  * @param properties the properties associated with this event
  * @param properties.key: The identifier of the scroll position
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/6sIUwYy1D_6UwtP2zAqCc}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/6sIUwYy1D_6UwtP2zAqCc}
  */
 export function scrolledTo(properties: ScrolledToProperties) {
   // @ts-ignore
@@ -12870,7 +12952,7 @@ export function scrolledTo(properties: ScrolledToProperties) {
 /**
  * Exit Intended: User's mouse moves out of the viewport
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/nyqGzMKPEl11t7qMaKKCT}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/nyqGzMKPEl11t7qMaKKCT}
  */
 export function exitIntended() {
   // @ts-ignore
@@ -12920,9 +13002,9 @@ export interface CurriculumResourcesAccessedProperties {
  * 
  * When to trigger this event:
  * 1. Clicking the implementation toolkit callout banner
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/e95d312e-ad29-49c7-8527-f0fc0730a796/trigger/gWqE1Ze1RWLfVZlQB8y1K
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/e95d312e-ad29-49c7-8527-f0fc0730a796/trigger/gWqE1Ze1RWLfVZlQB8y1K
  * 2. Clicking the downloads tab for a given subject and phase
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/e95d312e-ad29-49c7-8527-f0fc0730a796/trigger/iYBfsLi81WyhaXb5vE5fz
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/e95d312e-ad29-49c7-8527-f0fc0730a796/trigger/iYBfsLi81WyhaXb5vE5fz
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -12937,7 +13019,7 @@ export interface CurriculumResourcesAccessedProperties {
  * @param properties.subjectTitle: Title of the current subject.
  * @param properties.subjectSlug: Human-readable unique ID of the current subject.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/e95d312e-ad29-49c7-8527-f0fc0730a796}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/e95d312e-ad29-49c7-8527-f0fc0730a796}
  */
 export function curriculumResourcesAccessed(properties: CurriculumResourcesAccessedProperties) {
   // @ts-ignore
@@ -12960,7 +13042,7 @@ export function curriculumResourcesAccessed(properties: CurriculumResourcesAcces
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "e95d312e-ad29-49c7-8527-f0fc0730a796", "8aa38cbffd1c9a1e83333cfd4cff1146ae9799c50c2f4e532f0045fa06598f9d", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "e95d312e-ad29-49c7-8527-f0fc0730a796", "fc9468bd14290aebb232d48fb50ee0bdf834d3e7cac11e84a6c21183c6613b2e", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Curriculum Resources Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -12971,7 +13053,7 @@ export function curriculumResourcesAccessed(properties: CurriculumResourcesAcces
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Resources Accessed", eventProperties, "e95d312e-ad29-49c7-8527-f0fc0730a796", "8aa38cbffd1c9a1e83333cfd4cff1146ae9799c50c2f4e532f0045fa06598f9d");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Resources Accessed", eventProperties, "e95d312e-ad29-49c7-8527-f0fc0730a796", "fc9468bd14290aebb232d48fb50ee0bdf834d3e7cac11e84a6c21183c6613b2e");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Curriculum Resources Accessed", (Object as any).assign({}, eventProperties));
@@ -13023,7 +13105,7 @@ export interface TeachWithOakAccessedProperties {
  * @param properties.keyStageTitle: Title of the current key stage.
  * @param properties.keyStageSlug: Human-readable unique ID of the current key stage.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/XuRO7-a_-Ts6ULZsnzGbG}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/XuRO7-a_-Ts6ULZsnzGbG}
  */
 export function teachWithOakAccessed(properties: TeachWithOakAccessedProperties) {
   // @ts-ignore
@@ -13076,7 +13158,7 @@ export function teachWithOakAccessed(properties: TeachWithOakAccessedProperties)
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "XuRO7-a_-Ts6ULZsnzGbG", "8e39524103f7ec81266cc918ae3d1443ccbc15523146342ca5297aee95f5c9b5", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "XuRO7-a_-Ts6ULZsnzGbG", "d8046030396f942b3c195ca61fdb21fe09d8e078489d3dc7231c03338c706ccf", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Teach With Oak Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -13087,7 +13169,7 @@ export function teachWithOakAccessed(properties: TeachWithOakAccessedProperties)
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teach With Oak Accessed", eventProperties, "XuRO7-a_-Ts6ULZsnzGbG", "8e39524103f7ec81266cc918ae3d1443ccbc15523146342ca5297aee95f5c9b5");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teach With Oak Accessed", eventProperties, "XuRO7-a_-Ts6ULZsnzGbG", "d8046030396f942b3c195ca61fdb21fe09d8e078489d3dc7231c03338c706ccf");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Teach With Oak Accessed", (Object as any).assign({}, eventProperties));
@@ -13117,7 +13199,7 @@ export interface TeachWithOakDownloadedProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/14MrdC8zIZUy7BA4-fK0Q/events/hMRyptl68CyvWjhBaMvXi}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/hMRyptl68CyvWjhBaMvXi}
  */
 export function teachWithOakDownloaded(properties: TeachWithOakDownloadedProperties) {
   // @ts-ignore
@@ -13137,7 +13219,7 @@ export function teachWithOakDownloaded(properties: TeachWithOakDownloadedPropert
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "hMRyptl68CyvWjhBaMvXi", "9675214d0e740e261ebe7e3be864c0afd1ecae5b1d468ff936bbeb4d2f74ef8f", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "hMRyptl68CyvWjhBaMvXi", "d8b15296fae4fc810e158da9bbd6136ac3b2b17c57dbbeaff398e41d8295261c", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Teach With Oak Downloaded", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -13148,10 +13230,1198 @@ export function teachWithOakDownloaded(properties: TeachWithOakDownloadedPropert
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teach With Oak Downloaded", eventProperties, "hMRyptl68CyvWjhBaMvXi", "9675214d0e740e261ebe7e3be864c0afd1ecae5b1d468ff936bbeb4d2f74ef8f");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teach With Oak Downloaded", eventProperties, "hMRyptl68CyvWjhBaMvXi", "d8b15296fae4fc810e158da9bbd6136ac3b2b17c57dbbeaff398e41d8295261c");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Teach With Oak Downloaded", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
+export interface ResourceAdapterOpenedProperties {
+  platform: PlatformValueType;
+  product: ProductValueType;
+  engagementIntent: EngagementIntentValueType;
+  componentType: ComponentTypeValueType;
+  eventVersion: EventVersionValueType;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  capabilityId: CapabilityIdValueType;
+}
+/**
+ * Resource Adapter Opened: A teacher opened the Resource Adapter for a capability.
+ * 
+ * When to trigger this event:
+ * 1. The launcher button is clicked.
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/qgX2wCDfp08a-XdB8wqWI/trigger/VXiPc-Tu0L8-0oEKpAEBd
+ * 2. A capability is chosen from the "Adapt with AI" menu. Opening the menu alone does not fire it.
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/qgX2wCDfp08a-XdB8wqWI/trigger/xjkodz79HxtDRsPkOyd_L
+ * 
+ * @param properties the properties associated with this event
+ * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
+ * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
+ * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
+ * This property should be populated with a single value for each event/product combination (i.e. the instance of each event within a product should determine the level of engagement).
+ * @param properties.componentType: The web component used to carry out the action on the Oak object
+ * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ * NB - This will be removed, but keeping to ease transition from AUC to 'product'
+ * @param properties.capabilityId: The Resource Adapter capability the teacher is using, such as adding scaffolding to a worksheet.
+ * 
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/qgX2wCDfp08a-XdB8wqWI}
+ */
+export function resourceAdapterOpened(properties: ResourceAdapterOpenedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
+  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
+  eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
+  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
+  eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  eventPropertiesArray.push({id: "ajD7ZBm9O9N24Pg5nPo1x", name: "Capability Id", value: properties.capabilityId});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "qgX2wCDfp08a-XdB8wqWI", "9798ca73fe76f170bc4e4aec8c9574c993c85c6be456a66377d676e1fc1f5152", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Resource Adapter Opened", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("qgX2wCDfp08a-XdB8wqWI", "Resource Adapter Opened", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Resource Adapter Opened", eventProperties, "qgX2wCDfp08a-XdB8wqWI", "9798ca73fe76f170bc4e4aec8c9574c993c85c6be456a66377d676e1fc1f5152");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Resource Adapter Opened", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
+export interface ResourceAdapterClosedProperties {
+  platform: PlatformValueType;
+  product: ProductValueType;
+  engagementIntent: EngagementIntentValueType;
+  componentType: ComponentTypeValueType;
+  eventVersion: EventVersionValueType;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  capabilityId: CapabilityIdValueType;
+  packageVersion: string;
+}
+/**
+ * Resource Adapter Closed: A teacher closed the Resource Adapter.
+ * 
+ * When to trigger this event:
+ * 1. The teacher closes the dialog. Leaving the page does not fire it.
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/o1tdWQMgpTfYj8YIhH5um/trigger/_0OB7VT-SYSUmcDORuywn
+ * 
+ * @param properties the properties associated with this event
+ * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
+ * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
+ * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
+ * This property should be populated with a single value for each event/product combination (i.e. the instance of each event within a product should determine the level of engagement).
+ * @param properties.componentType: The web component used to carry out the action on the Oak object
+ * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ * NB - This will be removed, but keeping to ease transition from AUC to 'product'
+ * @param properties.capabilityId: The Resource Adapter capability the teacher is using, such as adding scaffolding to a worksheet.
+ * @param properties.packageVersion: Version of the Resource Adapter UI package that sent the event, for comparing behaviour across releases.
+ * 
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/o1tdWQMgpTfYj8YIhH5um}
+ */
+export function resourceAdapterClosed(properties: ResourceAdapterClosedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
+  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
+  eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
+  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
+  eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  eventPropertiesArray.push({id: "ajD7ZBm9O9N24Pg5nPo1x", name: "Capability Id", value: properties.capabilityId});
+  eventPropertiesArray.push({id: "yDQBVNy_diWjlbnPnqEFE", name: "Package Version", value: properties.packageVersion});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "o1tdWQMgpTfYj8YIhH5um", "5e9230f64281991a694366e64a3d0bc964ae5f5dfbf8d0971fb6da153f45554b", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Resource Adapter Closed", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("o1tdWQMgpTfYj8YIhH5um", "Resource Adapter Closed", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Resource Adapter Closed", eventProperties, "o1tdWQMgpTfYj8YIhH5um", "5e9230f64281991a694366e64a3d0bc964ae5f5dfbf8d0971fb6da153f45554b");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Resource Adapter Closed", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
+export interface AdaptationStartedProperties {
+  platform: PlatformValueType;
+  product: ProductValueType;
+  engagementIntent: EngagementIntentValueType;
+  componentType: ComponentTypeValueType;
+  eventVersion: EventVersionValueType;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  capabilityId: CapabilityIdValueType;
+  packageVersion: string;
+  adaptationId: string;
+  startMode: StartModeValueType;
+}
+/**
+ * Adaptation Started: An adaptation was started or resumed.
+ * 
+ * When to trigger this event:
+ * 1. The dialog opens a new adaptation (Start Mode: new).
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/CZWgvyrvCYNTvk6nKfaKm/trigger/XyUsQBj2WdjpgKnv31spa
+ * 2. "Carry on" is clicked and the saved adaptation loads (Start Mode: resumed).
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/CZWgvyrvCYNTvk6nKfaKm/trigger/Q_Q60BPknGkV07tLpHXrU
+ * 
+ * @param properties the properties associated with this event
+ * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
+ * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
+ * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
+ * This property should be populated with a single value for each event/product combination (i.e. the instance of each event within a product should determine the level of engagement).
+ * @param properties.componentType: The web component used to carry out the action on the Oak object
+ * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ * NB - This will be removed, but keeping to ease transition from AUC to 'product'
+ * @param properties.capabilityId: The Resource Adapter capability the teacher is using, such as adding scaffolding to a worksheet.
+ * @param properties.packageVersion: Version of the Resource Adapter UI package that sent the event, for comparing behaviour across releases.
+ * @param properties.adaptationId: UUID of the adaptation: one teacher's adapted copy of one lesson resource.
+ * @param properties.startMode: Whether the teacher started a new adaptation or carried on with a saved one.
+ * 
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/CZWgvyrvCYNTvk6nKfaKm}
+ */
+export function adaptationStarted(properties: AdaptationStartedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
+  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
+  eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
+  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
+  eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  eventPropertiesArray.push({id: "ajD7ZBm9O9N24Pg5nPo1x", name: "Capability Id", value: properties.capabilityId});
+  eventPropertiesArray.push({id: "yDQBVNy_diWjlbnPnqEFE", name: "Package Version", value: properties.packageVersion});
+  eventPropertiesArray.push({id: "Vz5VimpUTU6oblIwKdIX2", name: "Adaptation Id", value: properties.adaptationId});
+  eventPropertiesArray.push({id: "e80dRG544TJhxuW_6rFgH", name: "Start Mode", value: properties.startMode});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "CZWgvyrvCYNTvk6nKfaKm", "4cae1d9ba84952071509e76e4d09f81a78d1a6621097e997e3f043e6d606dd82", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Adaptation Started", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("CZWgvyrvCYNTvk6nKfaKm", "Adaptation Started", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Adaptation Started", eventProperties, "CZWgvyrvCYNTvk6nKfaKm", "4cae1d9ba84952071509e76e4d09f81a78d1a6621097e997e3f043e6d606dd82");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Adaptation Started", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
+export interface AdaptationRestartRequestedProperties {
+  platform: PlatformValueType;
+  product: ProductValueType;
+  engagementIntent: EngagementIntentValueType;
+  componentType: ComponentTypeValueType;
+  eventVersion: EventVersionValueType;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  capabilityId: CapabilityIdValueType;
+  packageVersion: string;
+  adaptationId: string;
+}
+/**
+ * Adaptation Restart Requested: A teacher asked to start an adaptation again from the original.
+ * 
+ * When to trigger this event:
+ * 1. "Remove all scaffolds" is clicked.
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/eTfZt0ZG07cvPA7MYFTXa/trigger/AE0ctewD_AjN_I1hV49lO
+ * 2. "Start from the original" is clicked.
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/eTfZt0ZG07cvPA7MYFTXa/trigger/WwRAYFOUXSl4gu3tQkT0I
+ * 3. "Start again" is clicked after a step fails.
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/eTfZt0ZG07cvPA7MYFTXa/trigger/3aZw-SlT70s_tA02s85L2
+ * 
+ * @param properties the properties associated with this event
+ * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
+ * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
+ * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
+ * This property should be populated with a single value for each event/product combination (i.e. the instance of each event within a product should determine the level of engagement).
+ * @param properties.componentType: The web component used to carry out the action on the Oak object
+ * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ * NB - This will be removed, but keeping to ease transition from AUC to 'product'
+ * @param properties.capabilityId: The Resource Adapter capability the teacher is using, such as adding scaffolding to a worksheet.
+ * @param properties.packageVersion: Version of the Resource Adapter UI package that sent the event, for comparing behaviour across releases.
+ * @param properties.adaptationId: UUID of the adaptation: one teacher's adapted copy of one lesson resource.
+ * 
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/eTfZt0ZG07cvPA7MYFTXa}
+ */
+export function adaptationRestartRequested(properties: AdaptationRestartRequestedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
+  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
+  eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
+  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
+  eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  eventPropertiesArray.push({id: "ajD7ZBm9O9N24Pg5nPo1x", name: "Capability Id", value: properties.capabilityId});
+  eventPropertiesArray.push({id: "yDQBVNy_diWjlbnPnqEFE", name: "Package Version", value: properties.packageVersion});
+  eventPropertiesArray.push({id: "Vz5VimpUTU6oblIwKdIX2", name: "Adaptation Id", value: properties.adaptationId});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "eTfZt0ZG07cvPA7MYFTXa", "13d5f0891f722d4a324aabfec22485f138ff44dd4b927f053d38cd1061236c48", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Adaptation Restart Requested", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("eTfZt0ZG07cvPA7MYFTXa", "Adaptation Restart Requested", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Adaptation Restart Requested", eventProperties, "eTfZt0ZG07cvPA7MYFTXa", "13d5f0891f722d4a324aabfec22485f138ff44dd4b927f053d38cd1061236c48");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Adaptation Restart Requested", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
+export interface NewSuggestionsRequestedProperties {
+  platform: PlatformValueType;
+  product: ProductValueType;
+  engagementIntent: EngagementIntentValueType;
+  componentType: ComponentTypeValueType;
+  eventVersion: EventVersionValueType;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  capabilityId: CapabilityIdValueType;
+  packageVersion: string;
+  adaptationId: string;
+}
+/**
+ * New Suggestions Requested: A teacher asked for a fresh set of suggestions.
+ * 
+ * When to trigger this event:
+ * 1. "Generate new suggestions" is clicked.
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/FjleVxg0iPPNsgNqzC86i/trigger/0l_WkgVDuA_gXfAw_b4-t
+ * 2. "Try again" is clicked after finding suggestions fails.
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/FjleVxg0iPPNsgNqzC86i/trigger/nWtD27XxtNn8H2oFDR_3A
+ * 
+ * @param properties the properties associated with this event
+ * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
+ * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
+ * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
+ * This property should be populated with a single value for each event/product combination (i.e. the instance of each event within a product should determine the level of engagement).
+ * @param properties.componentType: The web component used to carry out the action on the Oak object
+ * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ * NB - This will be removed, but keeping to ease transition from AUC to 'product'
+ * @param properties.capabilityId: The Resource Adapter capability the teacher is using, such as adding scaffolding to a worksheet.
+ * @param properties.packageVersion: Version of the Resource Adapter UI package that sent the event, for comparing behaviour across releases.
+ * @param properties.adaptationId: UUID of the adaptation: one teacher's adapted copy of one lesson resource.
+ * 
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/FjleVxg0iPPNsgNqzC86i}
+ */
+export function newSuggestionsRequested(properties: NewSuggestionsRequestedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
+  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
+  eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
+  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
+  eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  eventPropertiesArray.push({id: "ajD7ZBm9O9N24Pg5nPo1x", name: "Capability Id", value: properties.capabilityId});
+  eventPropertiesArray.push({id: "yDQBVNy_diWjlbnPnqEFE", name: "Package Version", value: properties.packageVersion});
+  eventPropertiesArray.push({id: "Vz5VimpUTU6oblIwKdIX2", name: "Adaptation Id", value: properties.adaptationId});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "FjleVxg0iPPNsgNqzC86i", "8ab4430bf147576db78bbd7a22539bc5a8d910c9e03994d55bea056d5668e57b", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("New Suggestions Requested", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("FjleVxg0iPPNsgNqzC86i", "New Suggestions Requested", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("New Suggestions Requested", eventProperties, "FjleVxg0iPPNsgNqzC86i", "8ab4430bf147576db78bbd7a22539bc5a8d910c9e03994d55bea056d5668e57b");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("New Suggestions Requested", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
+export interface SuggestionsDisplayedProperties {
+  platform: PlatformValueType;
+  product: ProductValueType;
+  engagementIntent: EngagementIntentValueType;
+  componentType: ComponentTypeValueType;
+  eventVersion: EventVersionValueType;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  capabilityId: CapabilityIdValueType;
+  packageVersion: string;
+  adaptationId: string;
+  jobId: string;
+  suggestionCount: number;
+  transformationKinds: string[];
+}
+/**
+ * Suggestions Displayed: Suggestions, or the lack of any, were shown to a teacher.
+ * 
+ * When to trigger this event:
+ * 1. A generation's suggestions are shown. Once per generation per dialog visit.
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/3UrwxvSrZQcAOiXWykZ1U/trigger/NGyw9-Hpo8yrfGbtyaYqu
+ * 2. "No scaffolds suggested" is shown (Suggestion Count: 0).
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/3UrwxvSrZQcAOiXWykZ1U/trigger/KsiR88LKe_pBsHEl2lUAn
+ * 
+ * @param properties the properties associated with this event
+ * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
+ * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
+ * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
+ * This property should be populated with a single value for each event/product combination (i.e. the instance of each event within a product should determine the level of engagement).
+ * @param properties.componentType: The web component used to carry out the action on the Oak object
+ * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ * NB - This will be removed, but keeping to ease transition from AUC to 'product'
+ * @param properties.capabilityId: The Resource Adapter capability the teacher is using, such as adding scaffolding to a worksheet.
+ * @param properties.packageVersion: Version of the Resource Adapter UI package that sent the event, for comparing behaviour across releases.
+ * @param properties.adaptationId: UUID of the adaptation: one teacher's adapted copy of one lesson resource.
+ * @param properties.jobId: UUID of the background job behind the event.
+ * @param properties.suggestionCount: How many suggestions the teacher was shown. 0 means none were found.
+ * @param properties.transformationKinds: The kinds of transformation suggested.
+ * 
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/3UrwxvSrZQcAOiXWykZ1U}
+ */
+export function suggestionsDisplayed(properties: SuggestionsDisplayedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
+  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
+  eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
+  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
+  eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  eventPropertiesArray.push({id: "ajD7ZBm9O9N24Pg5nPo1x", name: "Capability Id", value: properties.capabilityId});
+  eventPropertiesArray.push({id: "yDQBVNy_diWjlbnPnqEFE", name: "Package Version", value: properties.packageVersion});
+  eventPropertiesArray.push({id: "Vz5VimpUTU6oblIwKdIX2", name: "Adaptation Id", value: properties.adaptationId});
+  eventPropertiesArray.push({id: "n9ebKezfrQZPQThezlmOP", name: "Job Id", value: properties.jobId});
+  eventPropertiesArray.push({id: "u0oy_l0AW_6_1OWn69SXa", name: "Suggestion Count", value: properties.suggestionCount});
+  eventPropertiesArray.push({id: "ykioNtBHvbPRrA2DxRcD5", name: "Transformation Kinds", value: properties.transformationKinds});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "3UrwxvSrZQcAOiXWykZ1U", "e997ba8b62860585a0bd80874c41499c565a4c0afddb7a965967e888e13df4e7", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Suggestions Displayed", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("3UrwxvSrZQcAOiXWykZ1U", "Suggestions Displayed", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Suggestions Displayed", eventProperties, "3UrwxvSrZQcAOiXWykZ1U", "e997ba8b62860585a0bd80874c41499c565a4c0afddb7a965967e888e13df4e7");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Suggestions Displayed", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
+export interface TransformationRequestedProperties {
+  platform: PlatformValueType;
+  product: ProductValueType;
+  engagementIntent: EngagementIntentValueType;
+  componentType: ComponentTypeValueType;
+  eventVersion: EventVersionValueType;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  capabilityId: CapabilityIdValueType;
+  packageVersion: string;
+  adaptationId: string;
+  transformationKind: string;
+  supportLevel: SupportLevelValueType | null | undefined;
+}
+/**
+ * Transformation Requested: A teacher chose a suggested transformation.
+ * 
+ * When to trigger this event:
+ * 1. A suggested transformation button is clicked.
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/PcJ1rI3dpGgv01YvvuCLv/trigger/3Mg6rrUPfrVMBVc-GyEVt
+ * 
+ * @param properties the properties associated with this event
+ * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
+ * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
+ * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
+ * This property should be populated with a single value for each event/product combination (i.e. the instance of each event within a product should determine the level of engagement).
+ * @param properties.componentType: The web component used to carry out the action on the Oak object
+ * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ * NB - This will be removed, but keeping to ease transition from AUC to 'product'
+ * @param properties.capabilityId: The Resource Adapter capability the teacher is using, such as adding scaffolding to a worksheet.
+ * @param properties.packageVersion: Version of the Resource Adapter UI package that sent the event, for comparing behaviour across releases.
+ * @param properties.adaptationId: UUID of the adaptation: one teacher's adapted copy of one lesson resource.
+ * @param properties.transformationKind: The kind of change a transformation makes to the resource, such as adding a word bank.
+ * @param properties.supportLevel: The level of support a transformation gives.
+ * 
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/PcJ1rI3dpGgv01YvvuCLv}
+ */
+export function transformationRequested(properties: TransformationRequestedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
+  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
+  eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
+  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
+  eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  eventPropertiesArray.push({id: "ajD7ZBm9O9N24Pg5nPo1x", name: "Capability Id", value: properties.capabilityId});
+  eventPropertiesArray.push({id: "yDQBVNy_diWjlbnPnqEFE", name: "Package Version", value: properties.packageVersion});
+  eventPropertiesArray.push({id: "Vz5VimpUTU6oblIwKdIX2", name: "Adaptation Id", value: properties.adaptationId});
+  eventPropertiesArray.push({id: "6mDfmpiDcWoZqsiWufvhr", name: "Transformation Kind", value: properties.transformationKind});
+  properties.supportLevel !== undefined && properties.supportLevel !== null ?
+    eventPropertiesArray.push({id: "svGu2m5FVsbyO7_d20tOg", name: "Support Level", value: properties.supportLevel}) :
+    eventPropertiesArray.push({id: "svGu2m5FVsbyO7_d20tOg", name: "Support Level", value: null});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "PcJ1rI3dpGgv01YvvuCLv", "60acb32dffce5f7b7c311a1b66a56bfbf453ffeef2063870f47e60dc48f1be43", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Transformation Requested", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("PcJ1rI3dpGgv01YvvuCLv", "Transformation Requested", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Transformation Requested", eventProperties, "PcJ1rI3dpGgv01YvvuCLv", "60acb32dffce5f7b7c311a1b66a56bfbf453ffeef2063870f47e60dc48f1be43");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Transformation Requested", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
+export interface TransformationPreviewDisplayedProperties {
+  platform: PlatformValueType;
+  product: ProductValueType;
+  engagementIntent: EngagementIntentValueType;
+  componentType: ComponentTypeValueType;
+  eventVersion: EventVersionValueType;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  capabilityId: CapabilityIdValueType;
+  packageVersion: string;
+  adaptationId: string;
+  attemptId: string;
+  transformationKind: string;
+  supportLevel: SupportLevelValueType | null | undefined;
+}
+/**
+ * Transformation Preview Displayed: A generated transformation was shown for review.
+ * 
+ * When to trigger this event:
+ * 1. A generated transformation appears with Undo, Retry and Accept. Once per attempt per visit.
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/BdJ_3I_XQyX7s8UUQRGCK/trigger/lyVpp5tX9XhjfW2UFCW9F
+ * 
+ * @param properties the properties associated with this event
+ * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
+ * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
+ * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
+ * This property should be populated with a single value for each event/product combination (i.e. the instance of each event within a product should determine the level of engagement).
+ * @param properties.componentType: The web component used to carry out the action on the Oak object
+ * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ * NB - This will be removed, but keeping to ease transition from AUC to 'product'
+ * @param properties.capabilityId: The Resource Adapter capability the teacher is using, such as adding scaffolding to a worksheet.
+ * @param properties.packageVersion: Version of the Resource Adapter UI package that sent the event, for comparing behaviour across releases.
+ * @param properties.adaptationId: UUID of the adaptation: one teacher's adapted copy of one lesson resource.
+ * @param properties.attemptId: UUID of one generated version of a transformation in the resource adapter.
+ * @param properties.transformationKind: The kind of change a transformation makes to the resource, such as adding a word bank.
+ * @param properties.supportLevel: The level of support a transformation gives.
+ * 
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/BdJ_3I_XQyX7s8UUQRGCK}
+ */
+export function transformationPreviewDisplayed(properties: TransformationPreviewDisplayedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
+  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
+  eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
+  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
+  eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  eventPropertiesArray.push({id: "ajD7ZBm9O9N24Pg5nPo1x", name: "Capability Id", value: properties.capabilityId});
+  eventPropertiesArray.push({id: "yDQBVNy_diWjlbnPnqEFE", name: "Package Version", value: properties.packageVersion});
+  eventPropertiesArray.push({id: "Vz5VimpUTU6oblIwKdIX2", name: "Adaptation Id", value: properties.adaptationId});
+  eventPropertiesArray.push({id: "CMrjO3GVUGguuiCS88sVo", name: "Attempt Id", value: properties.attemptId});
+  eventPropertiesArray.push({id: "6mDfmpiDcWoZqsiWufvhr", name: "Transformation Kind", value: properties.transformationKind});
+  properties.supportLevel !== undefined && properties.supportLevel !== null ?
+    eventPropertiesArray.push({id: "svGu2m5FVsbyO7_d20tOg", name: "Support Level", value: properties.supportLevel}) :
+    eventPropertiesArray.push({id: "svGu2m5FVsbyO7_d20tOg", name: "Support Level", value: null});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "BdJ_3I_XQyX7s8UUQRGCK", "de41f477771f6dd4adfc7116b30de83b2822e856e8100c40b8f8011c4ed070d9", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Transformation Preview Displayed", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("BdJ_3I_XQyX7s8UUQRGCK", "Transformation Preview Displayed", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Transformation Preview Displayed", eventProperties, "BdJ_3I_XQyX7s8UUQRGCK", "de41f477771f6dd4adfc7116b30de83b2822e856e8100c40b8f8011c4ed070d9");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Transformation Preview Displayed", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
+export interface TransformationReviewRequestedProperties {
+  platform: PlatformValueType;
+  product: ProductValueType;
+  engagementIntent: EngagementIntentValueType;
+  componentType: ComponentTypeValueType;
+  eventVersion: EventVersionValueType;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  capabilityId: CapabilityIdValueType;
+  packageVersion: string;
+  adaptationId: string;
+  reviewAction: ReviewActionValueType;
+  transformationKind: string;
+  supportLevel: SupportLevelValueType | null | undefined;
+}
+/**
+ * Transformation Review Requested: A teacher chose what to do with a generated transformation.
+ * 
+ * When to trigger this event:
+ * 1. Undo, Retry or Accept is clicked.
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/v06WBORIxHZ865azX6HDb/trigger/Lz54Ukai6GVcAYjjF1XCK
+ * 
+ * @param properties the properties associated with this event
+ * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
+ * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
+ * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
+ * This property should be populated with a single value for each event/product combination (i.e. the instance of each event within a product should determine the level of engagement).
+ * @param properties.componentType: The web component used to carry out the action on the Oak object
+ * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ * NB - This will be removed, but keeping to ease transition from AUC to 'product'
+ * @param properties.capabilityId: The Resource Adapter capability the teacher is using, such as adding scaffolding to a worksheet.
+ * @param properties.packageVersion: Version of the Resource Adapter UI package that sent the event, for comparing behaviour across releases.
+ * @param properties.adaptationId: UUID of the adaptation: one teacher's adapted copy of one lesson resource.
+ * @param properties.reviewAction: The teacher's decision on a generated transformation.
+ * @param properties.transformationKind: The kind of change a transformation makes to the resource, such as adding a word bank.
+ * @param properties.supportLevel: The level of support a transformation gives.
+ * 
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/v06WBORIxHZ865azX6HDb}
+ */
+export function transformationReviewRequested(properties: TransformationReviewRequestedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
+  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
+  eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
+  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
+  eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  eventPropertiesArray.push({id: "ajD7ZBm9O9N24Pg5nPo1x", name: "Capability Id", value: properties.capabilityId});
+  eventPropertiesArray.push({id: "yDQBVNy_diWjlbnPnqEFE", name: "Package Version", value: properties.packageVersion});
+  eventPropertiesArray.push({id: "Vz5VimpUTU6oblIwKdIX2", name: "Adaptation Id", value: properties.adaptationId});
+  eventPropertiesArray.push({id: "eg6rKF7NBqvZAizx5J-Qx", name: "Review Action", value: properties.reviewAction});
+  eventPropertiesArray.push({id: "6mDfmpiDcWoZqsiWufvhr", name: "Transformation Kind", value: properties.transformationKind});
+  properties.supportLevel !== undefined && properties.supportLevel !== null ?
+    eventPropertiesArray.push({id: "svGu2m5FVsbyO7_d20tOg", name: "Support Level", value: properties.supportLevel}) :
+    eventPropertiesArray.push({id: "svGu2m5FVsbyO7_d20tOg", name: "Support Level", value: null});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "v06WBORIxHZ865azX6HDb", "f397e045725e28ddae73db8e736dc728cad7090c854952425acc47e65193da1e", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Transformation Review Requested", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("v06WBORIxHZ865azX6HDb", "Transformation Review Requested", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Transformation Review Requested", eventProperties, "v06WBORIxHZ865azX6HDb", "f397e045725e28ddae73db8e736dc728cad7090c854952425acc47e65193da1e");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Transformation Review Requested", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
+export interface TransformationReviewedProperties {
+  platform: PlatformValueType;
+  product: ProductValueType;
+  engagementIntent: EngagementIntentValueType;
+  componentType: ComponentTypeValueType;
+  eventVersion: EventVersionValueType;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  capabilityId: CapabilityIdValueType;
+  packageVersion: string;
+  adaptationId: string;
+  reviewAction: ReviewActionValueType;
+  transformationKind: string;
+  supportLevel: SupportLevelValueType | null | undefined;
+}
+/**
+ * Transformation Reviewed: A teacher's accept or undo was confirmed.
+ * 
+ * When to trigger this event:
+ * 1. The Resource Adapter confirms an Accept or Undo.
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/e658af78-a87c-4af9-a65a-83516cca3eee/trigger/w_rk3c0F6GW3-n1LHWBQ5
+ * 
+ * @param properties the properties associated with this event
+ * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
+ * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
+ * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
+ * This property should be populated with a single value for each event/product combination (i.e. the instance of each event within a product should determine the level of engagement).
+ * @param properties.componentType: The web component used to carry out the action on the Oak object
+ * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ * NB - This will be removed, but keeping to ease transition from AUC to 'product'
+ * @param properties.capabilityId: The Resource Adapter capability the teacher is using, such as adding scaffolding to a worksheet.
+ * @param properties.packageVersion: Version of the Resource Adapter UI package that sent the event, for comparing behaviour across releases.
+ * @param properties.adaptationId: UUID of the adaptation: one teacher's adapted copy of one lesson resource.
+ * @param properties.reviewAction: The teacher's decision on a generated transformation.
+ * @param properties.transformationKind: The kind of change a transformation makes to the resource, such as adding a word bank.
+ * @param properties.supportLevel: The level of support a transformation gives.
+ * 
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/e658af78-a87c-4af9-a65a-83516cca3eee}
+ */
+export function transformationReviewed(properties: TransformationReviewedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
+  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
+  eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
+  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
+  eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  eventPropertiesArray.push({id: "ajD7ZBm9O9N24Pg5nPo1x", name: "Capability Id", value: properties.capabilityId});
+  eventPropertiesArray.push({id: "yDQBVNy_diWjlbnPnqEFE", name: "Package Version", value: properties.packageVersion});
+  eventPropertiesArray.push({id: "Vz5VimpUTU6oblIwKdIX2", name: "Adaptation Id", value: properties.adaptationId});
+  eventPropertiesArray.push({id: "eg6rKF7NBqvZAizx5J-Qx", name: "Review Action", value: properties.reviewAction});
+  eventPropertiesArray.push({id: "6mDfmpiDcWoZqsiWufvhr", name: "Transformation Kind", value: properties.transformationKind});
+  properties.supportLevel !== undefined && properties.supportLevel !== null ?
+    eventPropertiesArray.push({id: "svGu2m5FVsbyO7_d20tOg", name: "Support Level", value: properties.supportLevel}) :
+    eventPropertiesArray.push({id: "svGu2m5FVsbyO7_d20tOg", name: "Support Level", value: null});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "e658af78-a87c-4af9-a65a-83516cca3eee", "52d8041e890b50b4639f888cea300507a9f7d1a3b058cb00575a65d65b8a93d4", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Transformation Reviewed", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("e658af78-a87c-4af9-a65a-83516cca3eee", "Transformation Reviewed", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Transformation Reviewed", eventProperties, "e658af78-a87c-4af9-a65a-83516cca3eee", "52d8041e890b50b4639f888cea300507a9f7d1a3b058cb00575a65d65b8a93d4");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Transformation Reviewed", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
+export interface SuggestionDismissalRequestedProperties {
+  platform: PlatformValueType;
+  product: ProductValueType;
+  engagementIntent: EngagementIntentValueType;
+  componentType: ComponentTypeValueType;
+  eventVersion: EventVersionValueType;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  capabilityId: CapabilityIdValueType;
+  packageVersion: string;
+  adaptationId: string;
+  transformationKinds: string[];
+}
+/**
+ * Suggestion Dismissal Requested: A teacher dismissed the suggestions for part of a resource.
+ * 
+ * When to trigger this event:
+ * 1. "No scaffold required" is clicked.
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/P16XQCeQBaeq3o_oEbOtx/trigger/5f6C4jqqBMaPwXey86_hi
+ * 
+ * @param properties the properties associated with this event
+ * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
+ * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
+ * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
+ * This property should be populated with a single value for each event/product combination (i.e. the instance of each event within a product should determine the level of engagement).
+ * @param properties.componentType: The web component used to carry out the action on the Oak object
+ * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ * NB - This will be removed, but keeping to ease transition from AUC to 'product'
+ * @param properties.capabilityId: The Resource Adapter capability the teacher is using, such as adding scaffolding to a worksheet.
+ * @param properties.packageVersion: Version of the Resource Adapter UI package that sent the event, for comparing behaviour across releases.
+ * @param properties.adaptationId: UUID of the adaptation: one teacher's adapted copy of one lesson resource.
+ * @param properties.transformationKinds: The kinds of transformation suggested.
+ * 
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/P16XQCeQBaeq3o_oEbOtx}
+ */
+export function suggestionDismissalRequested(properties: SuggestionDismissalRequestedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
+  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
+  eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
+  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
+  eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  eventPropertiesArray.push({id: "ajD7ZBm9O9N24Pg5nPo1x", name: "Capability Id", value: properties.capabilityId});
+  eventPropertiesArray.push({id: "yDQBVNy_diWjlbnPnqEFE", name: "Package Version", value: properties.packageVersion});
+  eventPropertiesArray.push({id: "Vz5VimpUTU6oblIwKdIX2", name: "Adaptation Id", value: properties.adaptationId});
+  eventPropertiesArray.push({id: "ykioNtBHvbPRrA2DxRcD5", name: "Transformation Kinds", value: properties.transformationKinds});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "P16XQCeQBaeq3o_oEbOtx", "55e3773bbe536fb74b2b762b02387b741f264b287ef0fdcc679ef3fe761a0929", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Suggestion Dismissal Requested", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("P16XQCeQBaeq3o_oEbOtx", "Suggestion Dismissal Requested", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Suggestion Dismissal Requested", eventProperties, "P16XQCeQBaeq3o_oEbOtx", "55e3773bbe536fb74b2b762b02387b741f264b287ef0fdcc679ef3fe761a0929");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Suggestion Dismissal Requested", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
+export interface TransformationRemovalRequestedProperties {
+  platform: PlatformValueType;
+  product: ProductValueType;
+  engagementIntent: EngagementIntentValueType;
+  componentType: ComponentTypeValueType;
+  eventVersion: EventVersionValueType;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  capabilityId: CapabilityIdValueType;
+  packageVersion: string;
+  adaptationId: string;
+}
+/**
+ * Transformation Removal Requested: A teacher removed an accepted transformation.
+ * 
+ * When to trigger this event:
+ * 1. "Remove" is clicked on an added scaffold.
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Q-tB4gh330vZuIKQkgUpW/trigger/wg_tsVGJb_MNmQhhoCTM6
+ * 
+ * @param properties the properties associated with this event
+ * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
+ * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
+ * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
+ * This property should be populated with a single value for each event/product combination (i.e. the instance of each event within a product should determine the level of engagement).
+ * @param properties.componentType: The web component used to carry out the action on the Oak object
+ * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ * NB - This will be removed, but keeping to ease transition from AUC to 'product'
+ * @param properties.capabilityId: The Resource Adapter capability the teacher is using, such as adding scaffolding to a worksheet.
+ * @param properties.packageVersion: Version of the Resource Adapter UI package that sent the event, for comparing behaviour across releases.
+ * @param properties.adaptationId: UUID of the adaptation: one teacher's adapted copy of one lesson resource.
+ * 
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Q-tB4gh330vZuIKQkgUpW}
+ */
+export function transformationRemovalRequested(properties: TransformationRemovalRequestedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
+  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
+  eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
+  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
+  eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  eventPropertiesArray.push({id: "ajD7ZBm9O9N24Pg5nPo1x", name: "Capability Id", value: properties.capabilityId});
+  eventPropertiesArray.push({id: "yDQBVNy_diWjlbnPnqEFE", name: "Package Version", value: properties.packageVersion});
+  eventPropertiesArray.push({id: "Vz5VimpUTU6oblIwKdIX2", name: "Adaptation Id", value: properties.adaptationId});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "Q-tB4gh330vZuIKQkgUpW", "275738134d13cce56fc4c5fd1b71b74ebcce41145a251cfc4c81ab3d7673a499", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Transformation Removal Requested", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("Q-tB4gh330vZuIKQkgUpW", "Transformation Removal Requested", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Transformation Removal Requested", eventProperties, "Q-tB4gh330vZuIKQkgUpW", "275738134d13cce56fc4c5fd1b71b74ebcce41145a251cfc4c81ab3d7673a499");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Transformation Removal Requested", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
+export interface AdaptationRequestFailedProperties {
+  platform: PlatformValueType;
+  product: ProductValueType;
+  engagementIntent: EngagementIntentValueType;
+  componentType: ComponentTypeValueType;
+  eventVersion: EventVersionValueType;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  capabilityId: CapabilityIdValueType;
+  packageVersion: string;
+  adaptationId: string | null | undefined;
+  requestAction: RequestActionValueType;
+  retryTarget: RetryTargetValueType | null | undefined;
+}
+/**
+ * Adaptation Request Failed: A Resource Adapter request failed.
+ * 
+ * When to trigger this event:
+ * 1. A request fails, for example when the worksheet cannot be loaded. No error text is sent.
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/4bYM8g0PUrb_7i24aE_oc/trigger/o2TE3fhvJStRZjCwrsw7M
+ * 
+ * @param properties the properties associated with this event
+ * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
+ * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
+ * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
+ * This property should be populated with a single value for each event/product combination (i.e. the instance of each event within a product should determine the level of engagement).
+ * @param properties.componentType: The web component used to carry out the action on the Oak object
+ * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ * NB - This will be removed, but keeping to ease transition from AUC to 'product'
+ * @param properties.capabilityId: The Resource Adapter capability the teacher is using, such as adding scaffolding to a worksheet.
+ * @param properties.packageVersion: Version of the Resource Adapter UI package that sent the event, for comparing behaviour across releases.
+ * @param properties.adaptationId: UUID of the adaptation: one teacher's adapted copy of one lesson resource.
+ * @param properties.requestAction: The Resource Adapter request involved.
+ * @param properties.retryTarget: What a retry is for.
+ * 
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/4bYM8g0PUrb_7i24aE_oc}
+ */
+export function adaptationRequestFailed(properties: AdaptationRequestFailedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
+  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
+  eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
+  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
+  eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  eventPropertiesArray.push({id: "ajD7ZBm9O9N24Pg5nPo1x", name: "Capability Id", value: properties.capabilityId});
+  eventPropertiesArray.push({id: "yDQBVNy_diWjlbnPnqEFE", name: "Package Version", value: properties.packageVersion});
+  properties.adaptationId !== undefined && properties.adaptationId !== null ?
+    eventPropertiesArray.push({id: "Vz5VimpUTU6oblIwKdIX2", name: "Adaptation Id", value: properties.adaptationId}) :
+    eventPropertiesArray.push({id: "Vz5VimpUTU6oblIwKdIX2", name: "Adaptation Id", value: null});
+  eventPropertiesArray.push({id: "cRnzXVYLwKjRoBpz0qOsF", name: "Request Action", value: properties.requestAction});
+  properties.retryTarget !== undefined && properties.retryTarget !== null ?
+    eventPropertiesArray.push({id: "-jrVMK9TK3fi4Yu-YFgJl", name: "Retry Target", value: properties.retryTarget}) :
+    eventPropertiesArray.push({id: "-jrVMK9TK3fi4Yu-YFgJl", name: "Retry Target", value: null});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "4bYM8g0PUrb_7i24aE_oc", "fd1f51649cecfe4ff3ebc8940924e2a47eba0c549b3587df48f2523a10ade9bc", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Adaptation Request Failed", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("4bYM8g0PUrb_7i24aE_oc", "Adaptation Request Failed", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Adaptation Request Failed", eventProperties, "4bYM8g0PUrb_7i24aE_oc", "fd1f51649cecfe4ff3ebc8940924e2a47eba0c549b3587df48f2523a10ade9bc");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Adaptation Request Failed", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
+export interface AdaptationStepFailedProperties {
+  platform: PlatformValueType;
+  product: ProductValueType;
+  engagementIntent: EngagementIntentValueType;
+  componentType: ComponentTypeValueType;
+  eventVersion: EventVersionValueType;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  capabilityId: CapabilityIdValueType;
+  packageVersion: string;
+  adaptationId: string;
+  jobId: string;
+  jobKind: JobKindValueType;
+}
+/**
+ * Adaptation Step Failed: A background step of an adaptation failed.
+ * 
+ * When to trigger this event:
+ * 1. A failed background step is shown, such as "We couldn't find scaffolds". No failure text is sent.
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/k803PvlRvYdIw_thQryOV/trigger/F6a9ROVFTFHfEjgHxQkKo
+ * 
+ * @param properties the properties associated with this event
+ * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
+ * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
+ * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
+ * This property should be populated with a single value for each event/product combination (i.e. the instance of each event within a product should determine the level of engagement).
+ * @param properties.componentType: The web component used to carry out the action on the Oak object
+ * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ * NB - This will be removed, but keeping to ease transition from AUC to 'product'
+ * @param properties.capabilityId: The Resource Adapter capability the teacher is using, such as adding scaffolding to a worksheet.
+ * @param properties.packageVersion: Version of the Resource Adapter UI package that sent the event, for comparing behaviour across releases.
+ * @param properties.adaptationId: UUID of the adaptation: one teacher's adapted copy of one lesson resource.
+ * @param properties.jobId: UUID of the background job behind the event.
+ * @param properties.jobKind: The kind of background job: e.g. generating suggestions, applying one, or removing, retrying or dismissing a transformation.
+ * 
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/k803PvlRvYdIw_thQryOV}
+ */
+export function adaptationStepFailed(properties: AdaptationStepFailedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
+  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
+  eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
+  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
+  eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  eventPropertiesArray.push({id: "ajD7ZBm9O9N24Pg5nPo1x", name: "Capability Id", value: properties.capabilityId});
+  eventPropertiesArray.push({id: "yDQBVNy_diWjlbnPnqEFE", name: "Package Version", value: properties.packageVersion});
+  eventPropertiesArray.push({id: "Vz5VimpUTU6oblIwKdIX2", name: "Adaptation Id", value: properties.adaptationId});
+  eventPropertiesArray.push({id: "n9ebKezfrQZPQThezlmOP", name: "Job Id", value: properties.jobId});
+  eventPropertiesArray.push({id: "LKCI6opMEryVso5TnzNRZ", name: "Job Kind", value: properties.jobKind});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "k803PvlRvYdIw_thQryOV", "72a836b67e3c95e5514de7da39dabb312c0c47c9269cf0cf51260cffa0a4dfc6", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Adaptation Step Failed", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("k803PvlRvYdIw_thQryOV", "Adaptation Step Failed", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Adaptation Step Failed", eventProperties, "k803PvlRvYdIw_thQryOV", "72a836b67e3c95e5514de7da39dabb312c0c47c9269cf0cf51260cffa0a4dfc6");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Adaptation Step Failed", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
+export interface AdaptedResourceDownloadedProperties {
+  platform: PlatformValueType;
+  product: ProductValueType;
+  engagementIntent: EngagementIntentValueType;
+  componentType: ComponentTypeValueType;
+  eventVersion: EventVersionValueType;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  capabilityId: CapabilityIdValueType;
+  packageVersion: string;
+  adaptationId: string;
+  format: FormatValueType;
+}
+/**
+ * Adapted Resource Downloaded: A teacher downloaded their adapted resource.
+ * 
+ * When to trigger this event:
+ * 1. "Download worksheet" is clicked and the file is handed to the browser.
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/5ZfBeMUtKqTp1w2nuKO75/trigger/juKHbGTInNpftwWGKxoAb
+ * 
+ * @param properties the properties associated with this event
+ * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
+ * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
+ * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
+ * This property should be populated with a single value for each event/product combination (i.e. the instance of each event within a product should determine the level of engagement).
+ * @param properties.componentType: The web component used to carry out the action on the Oak object
+ * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ * NB - This will be removed, but keeping to ease transition from AUC to 'product'
+ * @param properties.capabilityId: The Resource Adapter capability the teacher is using, such as adding scaffolding to a worksheet.
+ * @param properties.packageVersion: Version of the Resource Adapter UI package that sent the event, for comparing behaviour across releases.
+ * @param properties.adaptationId: UUID of the adaptation: one teacher's adapted copy of one lesson resource.
+ * @param properties.format: File format of the download.
+ * 
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/5ZfBeMUtKqTp1w2nuKO75}
+ */
+export function adaptedResourceDownloaded(properties: AdaptedResourceDownloadedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
+  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
+  eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
+  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
+  eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  eventPropertiesArray.push({id: "ajD7ZBm9O9N24Pg5nPo1x", name: "Capability Id", value: properties.capabilityId});
+  eventPropertiesArray.push({id: "yDQBVNy_diWjlbnPnqEFE", name: "Package Version", value: properties.packageVersion});
+  eventPropertiesArray.push({id: "Vz5VimpUTU6oblIwKdIX2", name: "Adaptation Id", value: properties.adaptationId});
+  eventPropertiesArray.push({id: "ROXeg8rPMRe6s05z1-9qG", name: "Format", value: properties.format});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "5ZfBeMUtKqTp1w2nuKO75", "68dce7df068fc444fbc6ace2142a7f54f4943601a009ae7846113fae7d69cf53", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Adapted Resource Downloaded", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("5ZfBeMUtKqTp1w2nuKO75", "Adapted Resource Downloaded", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Adapted Resource Downloaded", eventProperties, "5ZfBeMUtKqTp1w2nuKO75", "68dce7df068fc444fbc6ace2142a7f54f4943601a009ae7846113fae7d69cf53");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Adapted Resource Downloaded", (Object as any).assign({}, eventProperties));
   } else {
     // do nothing
   }
@@ -13161,6 +14431,7 @@ export default {
   AvoEnv,
   initAvo,
   avoInspectorApiKey,
+  RetryTarget,
   SearchFilterMatchType,
   SingleSignOnService,
   FilterModificationType,
@@ -13184,16 +14455,22 @@ export default {
   ResourceType,
   TierName,
   Product,
+  JobKind,
   PageName,
   Platform,
   NavigationType,
+  Format,
   ContentGuidanceWarning,
   Phase,
   UserRoleType,
   PupilExperienceLessonActivity,
   FilterType,
   ShareMedium,
+  CapabilityId,
   SearchSource,
+  RequestAction,
+  StartMode,
+  ReviewAction,
   TeachingMaterialType,
   Pathway,
   Audience,
@@ -13201,6 +14478,7 @@ export default {
   NavigatedFrom,
   KeyStageTitle,
   AccessLevel,
+  SupportLevel,
   LearningTier,
   SearchResultType,
   EngagementIntent,
@@ -13306,7 +14584,22 @@ export default {
   curriculumResourcesAccessed,
   teachWithOakAccessed,
   teachWithOakDownloaded,
+  resourceAdapterOpened,
+  resourceAdapterClosed,
+  adaptationStarted,
+  adaptationRestartRequested,
+  newSuggestionsRequested,
+  suggestionsDisplayed,
+  transformationRequested,
+  transformationPreviewDisplayed,
+  transformationReviewRequested,
+  transformationReviewed,
+  suggestionDismissalRequested,
+  transformationRemovalRequested,
+  adaptationRequestFailed,
+  adaptationStepFailed,
+  adaptedResourceDownloaded,
 }
 
 // AVOMODULEMAP:"Avo"
-// AVOEVENTMAP:["newsletterSignUpCompleted","classroomSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","unitAccessed","webinarPageViewed","pageview","lessonResourceDownloadStarted","searchAccessed","searchResultOpened","searchJourneyInitiated","curriculumVisualiserAccessed","unitOverviewAccessed","onwardContentSelected","lessonShared","lessonShareStarted","searchRefined","searchResultExpanded","lessonCompleted","lessonActivityCompleted","lessonActivityCompletedIntroduction","lessonActivityCompletedStarterQuiz","lessonActivityCompletedLessonVideo","lessonActivityCompletedExitQuiz","lessonActivityCompletedLessonAudio","lessonStarted","lessonActivityStarted","lessonActivityStartedIntroduction","lessonActivityStartedStarterQuiz","lessonActivityStartedLessonVideo","lessonActivityStartedExitQuiz","lessonActivityStartedLessonAudio","curriculumResourcesDownloaded","lessonActivityAbandoned","lessonActivityAbandonedStarterQuiz","lessonActivityAbandonedIntroduction","lessonActivityAbandonedLessonVideo","lessonActivityAbandonedExitQuiz","lessonActivityAbandonedLessonAudio","lessonAssistantAccessed","lessonAccessed","lessonAccessedPupilJourney","browseRefined","browseRefinedAccessed","lessonActivityDownloaded","lessonActivityDownloadedWorksheet","contentGuidanceAccepted","contentGuidanceDeclined","activityResultsShared","lessonSummaryReviewed","userSignUpCompleted","userOnboardingCompleted","userSignIn","userSignOut","lessonAbandoned","browseAccessed","questionAttemptSubmitted","teacherShareInitiated","teacherShareActivated","teacherShareConverted","unitDownloaded","teacherNoteDialogueOpened","teacherNoteSaved","curriculumVisualiserExited","curriculumVisualiserTabAccessed","unitOverviewExplored","productHomepageAccessed","curriculumLandingPageAccessed","curriculumExplainerExplored","curriculumResourcesDownloadRefined","searchFilterModified","lessonMediaClipsStarted","mediaClipsPlaylistPlayed","contentSaved","contentUnsaved","createTeachingMaterialsInitiated","teachingMaterialsSelected","teachingMaterialsRefined","teachingMaterialDownloaded","contentBlockNotificationDisplayed","userOnboardingProgressed","aboutUsAccessed","aboutUsExplored","aboutUsContactInitiated","classroomSignInCompleted","classroomSignInStarted","classroomLessonSelected","classroomLessonPreviewed","classroomLessonsAttached","classroomAddOnOpened","programmeRefined","unitRefined","programmeAccessed","unitDownloadStarted","scrolledTo","exitIntended","curriculumResourcesAccessed","teachWithOakAccessed","teachWithOakDownloaded"]
+// AVOEVENTMAP:["newsletterSignUpCompleted","classroomSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","unitAccessed","webinarPageViewed","pageview","lessonResourceDownloadStarted","searchAccessed","searchResultOpened","searchJourneyInitiated","curriculumVisualiserAccessed","unitOverviewAccessed","onwardContentSelected","lessonShared","lessonShareStarted","searchRefined","searchResultExpanded","lessonCompleted","lessonActivityCompleted","lessonActivityCompletedIntroduction","lessonActivityCompletedStarterQuiz","lessonActivityCompletedLessonVideo","lessonActivityCompletedExitQuiz","lessonActivityCompletedLessonAudio","lessonStarted","lessonActivityStarted","lessonActivityStartedIntroduction","lessonActivityStartedStarterQuiz","lessonActivityStartedLessonVideo","lessonActivityStartedExitQuiz","lessonActivityStartedLessonAudio","curriculumResourcesDownloaded","lessonActivityAbandoned","lessonActivityAbandonedStarterQuiz","lessonActivityAbandonedIntroduction","lessonActivityAbandonedLessonVideo","lessonActivityAbandonedExitQuiz","lessonActivityAbandonedLessonAudio","lessonAssistantAccessed","lessonAccessed","lessonAccessedPupilJourney","browseRefined","browseRefinedAccessed","lessonActivityDownloaded","lessonActivityDownloadedWorksheet","contentGuidanceAccepted","contentGuidanceDeclined","activityResultsShared","lessonSummaryReviewed","userSignUpCompleted","userOnboardingCompleted","userSignIn","userSignOut","lessonAbandoned","browseAccessed","questionAttemptSubmitted","teacherShareInitiated","teacherShareActivated","teacherShareConverted","unitDownloaded","teacherNoteDialogueOpened","teacherNoteSaved","curriculumVisualiserExited","curriculumVisualiserTabAccessed","unitOverviewExplored","productHomepageAccessed","curriculumLandingPageAccessed","curriculumExplainerExplored","curriculumResourcesDownloadRefined","searchFilterModified","lessonMediaClipsStarted","mediaClipsPlaylistPlayed","contentSaved","contentUnsaved","createTeachingMaterialsInitiated","teachingMaterialsSelected","teachingMaterialsRefined","teachingMaterialDownloaded","contentBlockNotificationDisplayed","userOnboardingProgressed","aboutUsAccessed","aboutUsExplored","aboutUsContactInitiated","classroomSignInCompleted","classroomSignInStarted","classroomLessonSelected","classroomLessonPreviewed","classroomLessonsAttached","classroomAddOnOpened","programmeRefined","unitRefined","programmeAccessed","unitDownloadStarted","scrolledTo","exitIntended","curriculumResourcesAccessed","teachWithOakAccessed","teachWithOakDownloaded","resourceAdapterOpened","resourceAdapterClosed","adaptationStarted","adaptationRestartRequested","newSuggestionsRequested","suggestionsDisplayed","transformationRequested","transformationPreviewDisplayed","transformationReviewRequested","transformationReviewed","suggestionDismissalRequested","transformationRemovalRequested","adaptationRequestFailed","adaptationStepFailed","adaptedResourceDownloaded"]
