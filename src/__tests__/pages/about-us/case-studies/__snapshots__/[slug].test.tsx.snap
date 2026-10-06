@@ -979,7 +979,7 @@ exports[`pages/about-us/case-studies/[slug].tsx does not render written case stu
                     class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
                   >
                     <div
-                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
+                      class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
                     >
                       <a
                         class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -5008,7 +5008,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                       <h2
                         class="sc-bdvwhi sc-gsDMPd hPWTKU hpBtVy"
                       >
-                        <div
+                        <span
                           class="sc-bdvwhi sc-gsDMPd fHThTV gYQTzD"
                         >
                           <span
@@ -5016,7 +5016,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                           >
                             TEST_LABEL_1
                           </span>
-                        </div>
+                        </span>
                         <span
                           class="sc-ctqRxX fWywND"
                           id="#test-anchor-slug-1"
@@ -5039,7 +5039,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                       <h2
                         class="sc-bdvwhi sc-gsDMPd hPWTKU hpBtVy"
                       >
-                        <div
+                        <span
                           class="sc-bdvwhi sc-gsDMPd fHThTV gYQTzD"
                         >
                           <span
@@ -5047,7 +5047,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                           >
                             TEST_LABEL_2
                           </span>
-                        </div>
+                        </span>
                         <span
                           class="sc-ctqRxX fWywND"
                           id="#test-anchor-slug-2"
@@ -7333,7 +7333,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                       <h2
                         class="sc-bdvwhi sc-gsDMPd hPWTKU hpBtVy"
                       >
-                        <div
+                        <span
                           class="sc-bdvwhi sc-gsDMPd fHThTV gYQTzD"
                         >
                           <span
@@ -7341,7 +7341,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                           >
                             TEST_LABEL_1
                           </span>
-                        </div>
+                        </span>
                         <span
                           class="sc-ctqRxX fWywND"
                           id="#test-anchor-slug-1"
@@ -7364,7 +7364,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                       <h2
                         class="sc-bdvwhi sc-gsDMPd hPWTKU hpBtVy"
                       >
-                        <div
+                        <span
                           class="sc-bdvwhi sc-gsDMPd fHThTV gYQTzD"
                         >
                           <span
@@ -7372,7 +7372,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                           >
                             TEST_LABEL_2
                           </span>
-                        </div>
+                        </span>
                         <span
                           class="sc-ctqRxX fWywND"
                           id="#test-anchor-slug-2"
@@ -7684,7 +7684,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                     class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
                   >
                     <div
-                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
+                      class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
                     >
                       <a
                         class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -7742,7 +7742,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                     class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
                   >
                     <div
-                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
+                      class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
                     >
                       <a
                         class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -7800,7 +7800,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                     class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
                   >
                     <div
-                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
+                      class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
                     >
                       <a
                         class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -9823,7 +9823,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                       <h2
                         class="sc-bdvwhi sc-gsDMPd hPWTKU hpBtVy"
                       >
-                        <div
+                        <span
                           class="sc-bdvwhi sc-gsDMPd fHThTV gYQTzD"
                         >
                           <span
@@ -9831,7 +9831,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                           >
                             TEST_LABEL_1
                           </span>
-                        </div>
+                        </span>
                         <span
                           class="sc-ctqRxX fWywND"
                           id="#test-anchor-slug-1"
@@ -9854,7 +9854,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                       <h2
                         class="sc-bdvwhi sc-gsDMPd hPWTKU hpBtVy"
                       >
-                        <div
+                        <span
                           class="sc-bdvwhi sc-gsDMPd fHThTV gYQTzD"
                         >
                           <span
@@ -9862,7 +9862,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                           >
                             TEST_LABEL_2
                           </span>
-                        </div>
+                        </span>
                         <span
                           class="sc-ctqRxX fWywND"
                           id="#test-anchor-slug-2"
@@ -10205,7 +10205,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                     class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
                   >
                     <div
-                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
+                      class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
                     >
                       <a
                         class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -10263,7 +10263,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                     class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
                   >
                     <div
-                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
+                      class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
                     >
                       <a
                         class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -10321,7 +10321,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                     class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
                   >
                     <div
-                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
+                      class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
                     >
                       <a
                         class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"

@@ -214,6 +214,7 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                                 label={contentBlock.label}
                                 $background="bg-decorative2-main"
                                 useSpan={true}
+                                as="span"
                               />
                             )}
                             <OakAnchorTarget
