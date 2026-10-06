@@ -7,8 +7,6 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { getUnitDownloadFileExistence } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
 import errorReporter from "@/common-lib/error-reporter";
 
-export const UNIT_DOWNLOAD_EXISTENCE_REVALIDATE_SECONDS = 300;
-
 const reportError = errorReporter("unit-download-existence");
 
 export const getCachedUnitData = cache(
@@ -26,10 +24,8 @@ export const getCachedUnitData = cache(
 const getCachedUnitDownloadFileExistence = cacheData(
   getUnitDownloadFileExistence,
   ["teachers-unit-download-existence"],
-  { revalidate: UNIT_DOWNLOAD_EXISTENCE_REVALIDATE_SECONDS },
 );
 
-// Don't cache errors, retry on next request
 export const getUnitDownloadExistence = async (unitFileId: string) => {
   try {
     return await getCachedUnitDownloadFileExistence(unitFileId);

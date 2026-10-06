@@ -14,7 +14,7 @@ import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 
 type LessonsPageParams = { slug: string; unitSlug: string };
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
 
 export { generateMetadata } from "./generateMetadata";
 
