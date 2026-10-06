@@ -5333,6 +5333,9 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                         </div>
                       </div>
                     </div>
+                    <div
+                      class="sc-bdvwhi hPWTKU"
+                    />
                   </div>
                   <div
                     class="sc-bdvwhi dSWIFQ"
@@ -7778,6 +7781,9 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                         </div>
                       </div>
                     </div>
+                    <div
+                      class="sc-bdvwhi hPWTKU"
+                    />
                   </div>
                   <div
                     class="sc-bdvwhi dSWIFQ"
@@ -10388,6 +10394,9 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                         </div>
                       </div>
                     </div>
+                    <div
+                      class="sc-bdvwhi hPWTKU"
+                    />
                   </div>
                   <div
                     class="sc-bdvwhi dSWIFQ"

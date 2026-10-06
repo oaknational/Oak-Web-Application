@@ -36,6 +36,7 @@ import PostPortableText from "@/components/GenericPagesComponents/PostPortableTe
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import { CaseStudyGetInTouch } from "@/components/GenericPagesComponents/CaseStudyGetInTouch";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
+import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
 
 // to do - this data retrieval will be decoupled from oak's impact in coming tickets
 export type AboutUsOaksImpactCaseStudyPageProps = {
@@ -264,6 +265,7 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                           />
                         </OakFlex>
                       ))}
+                      <TrackScrolledTo eventKey="case_study_content_end" />
                     </OakFlex>
                   )}
 
