@@ -5196,7 +5196,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                         width="240"
                       />
                       <div
-                        class="sc-bdvwhi iTIjHb"
+                        class="sc-bdvwhi hpbfuw"
                       >
                         <div
                           class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
@@ -7641,7 +7641,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                         width="240"
                       />
                       <div
-                        class="sc-bdvwhi iTIjHb"
+                        class="sc-bdvwhi hpbfuw"
                       >
                         <div
                           class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
@@ -10251,7 +10251,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                         width="240"
                       />
                       <div
-                        class="sc-bdvwhi iTIjHb"
+                        class="sc-bdvwhi hpbfuw"
                       >
                         <div
                           class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
