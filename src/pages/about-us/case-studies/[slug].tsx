@@ -29,7 +29,7 @@ import { CaseStudyHeader } from "@/components/GenericPagesComponents/CaseStudyHe
 import { OaksImpactCaseStudyContentLayout } from "@/components/GenericPagesComponents/OaksImpactCaseStudyContentLayout";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText/PortableText";
+import PostPortableText from "@/components/GenericPagesComponents/PostPortableText/PostPortableText";
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import { CaseStudyGetInTouch } from "@/components/GenericPagesComponents/CaseStudyGetInTouch";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
@@ -197,8 +197,9 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                               {contentBlock.heading}
                             </OakHeading>
                           </OakFlex>
-                          <PortableTextWithDefaults
-                            value={contentBlock.contentRaw ?? undefined}
+                          <PostPortableText
+                            portableText={contentBlock.contentRaw ?? []}
+                            location="marketing"
                           />
                         </OakFlex>
                       ))}
