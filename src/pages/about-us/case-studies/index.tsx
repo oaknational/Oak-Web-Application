@@ -86,13 +86,16 @@ export const AboutUsCaseStudyLibrary: NextPage<
               >
                 {items.map((item) => {
                   return (
-                    <OakCard
-                      key={item.href}
-                      aspectRatio="4/3"
-                      cardOrientation={["column", "row", "row"]}
-                      showImage={[false, true, true]}
-                      {...item}
-                    />
+                    <OakBox as="article">
+                      <OakCard
+                        key={item.href}
+                        headingLevel="div"
+                        aspectRatio="4/3"
+                        cardOrientation={["column", "row", "row"]}
+                        showImage={[false, true, true]}
+                        {...item}
+                      />
+                    </OakBox>
                   );
                 })}
               </OakFlex>
