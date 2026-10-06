@@ -3086,12 +3086,8 @@ exports[`Teachers Page Page component renders 1`] = `
                 </div>
               </div>
               <span
-<<<<<<< HEAD
-                class="sc-aXZVg kvjdhA sc-770b20bf-0 fqgLVK"
+                class="sc-bdvwhi LoEut sc-72a9c0fa-0 hUWMDx"
                 data-chromatic="ignore"
-=======
-                class="sc-bdvwhi LoEut sc-cc003eb3-0 iCQXgT"
->>>>>>> main
                 data-percy-hide="contents"
               >
                 <img
