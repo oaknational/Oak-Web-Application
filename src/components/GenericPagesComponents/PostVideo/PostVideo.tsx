@@ -15,7 +15,7 @@ const PostVideo = (props: PostVideoProps) => {
   }
 
   return (
-    <OakBox $mt={"spacing-56"}>
+    <OakBox $mt={"spacing-56"} $width="100%">
       <OakVideo
         videoSlot={
           <VideoPlayer

@@ -1,5 +1,6 @@
 import {
   MissingComponentHandler,
+  PortableTextComponent,
   PortableTextComponents,
 } from "@portabletext/react";
 import { FC } from "react";
@@ -37,11 +38,13 @@ const logMissingPortableTextComponents: MissingComponentHandler = (
 type PostPortableTextContext = {
   footnotes: Footnote[];
   location?: VideoLocationValueType;
+  blockOverrides?: Record<string, PortableTextComponent<"block">>;
 };
 
 const postPortableTextComponents = ({
   location,
   footnotes,
+  blockOverrides,
 }: PostPortableTextContext): PortableTextComponents => ({
   block: {
     sectionHeading: PostSectionHeading,
@@ -76,6 +79,7 @@ const postPortableTextComponents = ({
         {props.children}
       </OakHeading>
     ),
+    ...blockOverrides,
   },
   types: {
     imageWithAltText: PostImageWithAltText,
@@ -98,15 +102,17 @@ const postPortableTextComponents = ({
 type PostPortableTextProps = {
   portableText: PortableTextJSON;
   location?: VideoLocationValueType;
+  blockOverrides?: Record<string, PortableTextComponent<"block">>;
 };
 
 export const PostPortableText: FC<PostPortableTextProps> = (props) => {
-  const { portableText, location } = props;
+  const { portableText, location, blockOverrides } = props;
 
   const footnotes = extractFootnotes(portableText);
   const portableTextComponents = postPortableTextComponents({
     location,
     footnotes,
+    blockOverrides,
   });
 
   return (

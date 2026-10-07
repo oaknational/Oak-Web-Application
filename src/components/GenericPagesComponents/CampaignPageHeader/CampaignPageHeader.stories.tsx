@@ -4,8 +4,10 @@ import { Meta, StoryObj } from "@storybook/nextjs";
 import { CampaignPageHeader } from "./CampaignPageHeader";
 
 import { mockImageAsset } from "@/__tests__/__helpers__/cms";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const meta: Meta<typeof CampaignPageHeader> = {
+  decorators: [TeacherBrowseAnalyticsDecorator],
   component: CampaignPageHeader,
   tags: ["autodocs"],
 };

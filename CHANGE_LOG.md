@@ -1,3 +1,69 @@
+# [1.1233.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1232.0...v1.1233.0) (2026-10-07)
+
+
+### Bug Fixes
+
+* bump oak-components focus border radius ([b83da1b](https://github.com/oaknational/Oak-Web-Application/commit/b83da1b10433f169f2de5e68f7116e1bfc7c46eb))
+* capitalise tags on case study cards ([e5dd115](https://github.com/oaknational/Oak-Web-Application/commit/e5dd115ee3a9835a826dbcc570c28cce5ee875d2))
+* case study library bg colour ([d40a1f9](https://github.com/oaknational/Oak-Web-Application/commit/d40a1f951dee831ebde021d856d3ed9b2f41a23c))
+* case study page spacing ([61c29a9](https://github.com/oaknational/Oak-Web-Application/commit/61c29a96d965e0842c4dac5b03e3fb8ff6d5a611))
+* case study section headings ([6dd928f](https://github.com/oaknational/Oak-Web-Application/commit/6dd928f887e0492bc6e58611094116cdbd68bc1c))
+* case study spacing ([d445490](https://github.com/oaknational/Oak-Web-Application/commit/d4454906739e52e2403b3b9e9603f6928c2f91cc))
+* case study summary spacing ([95e4b8e](https://github.com/oaknational/Oak-Web-Application/commit/95e4b8ebfe315a4e33463e13a9c3e3a319a2e810))
+* move key for case study articles ([be10e3d](https://github.com/oaknational/Oak-Web-Application/commit/be10e3d80f1aca2fbfab9a073a10e809f134a883))
+* post video container fill ([a6fe018](https://github.com/oaknational/Oak-Web-Application/commit/a6fe018a5d7fcb2d86c1878d0b611e508f81051e))
+* use correct heading tags and style for case study portable text ([7611306](https://github.com/oaknational/Oak-Web-Application/commit/7611306a5f7ea8c1ec9134a373d4c80e260c4211))
+
+
+### Features
+
+* case study headings use span tags ([2c949b3](https://github.com/oaknational/Oak-Web-Application/commit/2c949b315f104b82595307e08b72c9c8519d3603))
+* use articles in case study library ([bef3e0b](https://github.com/oaknational/Oak-Web-Application/commit/bef3e0b58af4499f24e5d48a672b827c850950e8))
+
+# [1.1232.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1231.0...v1.1232.0) (2026-10-06)
+
+
+### Bug Fixes
+
+* search journey initiated event sends from the correct topnav component ([2ffe137](https://github.com/oaknational/Oak-Web-Application/commit/2ffe137f50f465372119dcd0b3bd98dd0290e515))
+
+
+### Features
+
+* add search events to analytics store ([da37a6b](https://github.com/oaknational/Oak-Web-Application/commit/da37a6b25b6c983b60a19892aaa8a8e06c416d97))
+* add search journey initiated event to search bar in top nav ([875c394](https://github.com/oaknational/Oak-Web-Application/commit/875c39443fc6b4cb727a1b00b994a7a6a7a5ceca))
+* merge in main avo branch ([c9bbcb4](https://github.com/oaknational/Oak-Web-Application/commit/c9bbcb439818a68d603f5556e0b262de74d459c9))
+* pull avo branch, add new properties ([f038da5](https://github.com/oaknational/Oak-Web-Application/commit/f038da51ca97167df87c13c308fb1ded7a0a07e0))
+* search page events use analytics store ([a3bfcad](https://github.com/oaknational/Oak-Web-Application/commit/a3bfcad9a07add1444b0491865572b913349d8d9))
+* send search opened event instantly ([fcad475](https://github.com/oaknational/Oak-Web-Application/commit/fcad475aba5db2dfba26f95bbcf0f16792069e6b))
+
+# [1.1231.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1230.0...v1.1231.0) (2026-10-06)
+
+
+### Features
+
+* add scroll to event to end of case study content ([9e1f854](https://github.com/oaknational/Oak-Web-Application/commit/9e1f854219aff6acc2de49babfb414aff8d7adf5))
+* use snake case in scroll to event key name ([396eb7c](https://github.com/oaknational/Oak-Web-Application/commit/396eb7cbb275616f7ae8f304bf5a13c121e954ab))
+
+# [1.1230.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1229.0...v1.1230.0) (2026-10-06)
+
+
+### Bug Fixes
+
+* add bottom padding on to stop nav running into get in touch panel ([7ffe27c](https://github.com/oaknational/Oak-Web-Application/commit/7ffe27cb021ae58dfb5c71c2db682857dd756eb8))
+* add consistent padding top for case study content ([811f44d](https://github.com/oaknational/Oak-Web-Application/commit/811f44d896f3c44bf8e94096107f3bd4971d1c2e))
+* case study contents font tokens ([8005dcb](https://github.com/oaknational/Oak-Web-Application/commit/8005dcbeca98a6ef24be591b47df963ccb4b5567))
+* remove default export ([70ac8c9](https://github.com/oaknational/Oak-Web-Application/commit/70ac8c9af87a4a6d6ef3edc4682a8d1e614212c6))
+
+
+### Features
+
+* add CaseStudyNav component ([8ffbada](https://github.com/oaknational/Oak-Web-Application/commit/8ffbada680d6d347e4c0350e7a76f62190d45207))
+* add scroll margin top to case study sections ([e315f11](https://github.com/oaknational/Oak-Web-Application/commit/e315f11d650a9f03799020aadf39449dee0b1604))
+* bring nav into case study individual page ([e80c7b6](https://github.com/oaknational/Oak-Web-Application/commit/e80c7b6d72bda0f3b8ff08b966733e0588c424b2))
+* make nav follow mobile design ([50cacf2](https://github.com/oaknational/Oak-Web-Application/commit/50cacf2978030dd9c1b73d1f5db2a6f64c272a89))
+* use contents title to label side nav ([19756ee](https://github.com/oaknational/Oak-Web-Application/commit/19756ee12bc09685008597c5b0c367c4407e5870))
+
 # [1.1229.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1228.0...v1.1229.0) (2026-10-05)
 
 

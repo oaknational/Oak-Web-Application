@@ -74,8 +74,8 @@ describe("CaseStudiesSection", () => {
     );
 
     const caseStudiesWithTag = otherCaseStudies.filter((cs) => cs.tag);
-    expect(getAllByText("primary")).toHaveLength(caseStudiesWithTag.length);
-    expect(container).toHaveTextContent("primary");
+    expect(getAllByText("Primary")).toHaveLength(caseStudiesWithTag.length);
+    expect(container).toHaveTextContent("Primary");
   });
 
   it("doesn't render view all link when not enabled", () => {
