@@ -1,3 +1,28 @@
+# [1.1232.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1231.0...v1.1232.0) (2026-10-06)
+
+
+### Bug Fixes
+
+* search journey initiated event sends from the correct topnav component ([2ffe137](https://github.com/oaknational/Oak-Web-Application/commit/2ffe137f50f465372119dcd0b3bd98dd0290e515))
+
+
+### Features
+
+* add search events to analytics store ([da37a6b](https://github.com/oaknational/Oak-Web-Application/commit/da37a6b25b6c983b60a19892aaa8a8e06c416d97))
+* add search journey initiated event to search bar in top nav ([875c394](https://github.com/oaknational/Oak-Web-Application/commit/875c39443fc6b4cb727a1b00b994a7a6a7a5ceca))
+* merge in main avo branch ([c9bbcb4](https://github.com/oaknational/Oak-Web-Application/commit/c9bbcb439818a68d603f5556e0b262de74d459c9))
+* pull avo branch, add new properties ([f038da5](https://github.com/oaknational/Oak-Web-Application/commit/f038da51ca97167df87c13c308fb1ded7a0a07e0))
+* search page events use analytics store ([a3bfcad](https://github.com/oaknational/Oak-Web-Application/commit/a3bfcad9a07add1444b0491865572b913349d8d9))
+* send search opened event instantly ([fcad475](https://github.com/oaknational/Oak-Web-Application/commit/fcad475aba5db2dfba26f95bbcf0f16792069e6b))
+
+# [1.1231.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1230.0...v1.1231.0) (2026-10-06)
+
+
+### Features
+
+* add scroll to event to end of case study content ([9e1f854](https://github.com/oaknational/Oak-Web-Application/commit/9e1f854219aff6acc2de49babfb414aff8d7adf5))
+* use snake case in scroll to event key name ([396eb7c](https://github.com/oaknational/Oak-Web-Application/commit/396eb7cbb275616f7ae8f304bf5a13c121e954ab))
+
 # [1.1230.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1229.0...v1.1230.0) (2026-10-06)
 
 

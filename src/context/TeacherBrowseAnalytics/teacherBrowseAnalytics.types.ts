@@ -124,6 +124,31 @@ export type VideoTrackingProperties = {
   videoLocation: VideoLocationValueType | null | undefined;
 };
 
+type SearchResultContentFields = {
+  keyStageTitle: KeyStageTitleValueType;
+  keyStageSlug: string;
+  subjectTitle: string;
+  subjectSlug: string;
+  unitName: string;
+  unitSlug: string;
+  lessonName: string;
+  lessonSlug: string;
+};
+
+type SearchResultReleaseFields = {
+  lessonReleaseCohort: LessonReleaseCohortValueType;
+  lessonReleaseDate: string;
+};
+
+// Search result properties vary per hit, so they are supplied by the caller
+export type SearchResultContext = SearchResultContentFields &
+  SearchResultReleaseFields;
+
+// Suggestion results resolve to a key stage only, with no unit or lesson
+export type NullableSearchResultContext = {
+  [K in keyof SearchResultContentFields]: SearchResultContentFields[K] | null;
+} & SearchResultReleaseFields;
+
 // All Track Fns used in the teacher browse journey
 export type TeacherBrowseTrackFns = {
   // NAVIGATION
@@ -251,7 +276,7 @@ export type TeacherBrowseTrackFns = {
     activeFilters: Record<string, string>; // TD add filters to state
     searchTerm: string; // TD add query to state
   }) => void;
-  searchExpanded: (props: {
+  searchResultExpanded: (props: {
     searchRank: number;
     searchFilterOptionSelected: string[];
     searchResultCount: number;

@@ -20,7 +20,6 @@ import {
   FilterTypeValueType,
   KeyStageTitleValueType,
   SearchFilterMatchTypeValueType,
-  SearchFilterModifiedProperties,
 } from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
@@ -110,28 +109,12 @@ export const getFilterType = (slug: string): FilterTypeValueType => {
 export const trackSearchModified =
   (
     query: string,
-    searchFilterModified: (props: SearchFilterModifiedProperties) => void,
+    searchFilterModified: (
+      props: TrackSearchModifiedProps & { searchTerm: string },
+    ) => void,
   ) =>
-  ({
-    checked,
-    filterType,
-    filterValue,
-    searchFilterMatchType,
-  }: TrackSearchModifiedProps) => {
-    const filterModificationType = checked ? "remove" : "add";
-    searchFilterModified({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "refine",
-      componentType: "filter_link",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      filterModificationType,
-      filterType,
-      filterValue,
-      searchTerm: query,
-      searchFilterMatchType,
-    });
+  (props: TrackSearchModifiedProps) => {
+    searchFilterModified({ ...props, searchTerm: query });
   };
 
 export const isFilterItem = <T extends { slug: string }>(
