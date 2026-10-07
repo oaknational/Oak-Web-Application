@@ -2869,7 +2869,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
                           <div
                             class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                             data-percy-hide="contents"
-                            style="box-sizing: content-box;"
+                            style="aspect-ratio: 16/9; box-sizing: content-box;"
                           />
                         </div>
                       </div>
@@ -5001,7 +5001,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                           <div
                             class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                             data-percy-hide="contents"
-                            style="box-sizing: content-box;"
+                            style="aspect-ratio: 16/9; box-sizing: content-box;"
                           />
                         </div>
                       </div>
@@ -5210,7 +5210,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                               <div
                                 class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                                 data-percy-hide="contents"
-                                style="box-sizing: content-box;"
+                                style="aspect-ratio: 16/9; box-sizing: content-box;"
                               />
                             </div>
                           </div>
@@ -7449,7 +7449,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                           <div
                             class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                             data-percy-hide="contents"
-                            style="box-sizing: content-box;"
+                            style="aspect-ratio: 16/9; box-sizing: content-box;"
                           />
                         </div>
                       </div>
@@ -7658,7 +7658,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                               <div
                                 class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                                 data-percy-hide="contents"
-                                style="box-sizing: content-box;"
+                                style="aspect-ratio: 16/9; box-sizing: content-box;"
                               />
                             </div>
                           </div>
@@ -10062,7 +10062,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                           <div
                             class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                             data-percy-hide="contents"
-                            style="box-sizing: content-box;"
+                            style="aspect-ratio: 16/9; box-sizing: content-box;"
                           />
                         </div>
                       </div>
@@ -10271,7 +10271,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                               <div
                                 class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                                 data-percy-hide="contents"
-                                style="box-sizing: content-box;"
+                                style="aspect-ratio: 16/9; box-sizing: content-box;"
                               />
                             </div>
                           </div>
