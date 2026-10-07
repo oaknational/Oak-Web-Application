@@ -1,3 +1,11 @@
+## [1.1233.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1233.0...v1.1233.1) (2026-10-07)
+
+
+### Bug Fixes
+
+* **mcp:** add exact-path redirect from /mcp to /ai-plugin ([7a9b0d6](https://github.com/oaknational/Oak-Web-Application/commit/7a9b0d6a581dff308c2dadb46b001c26c824c511))
+* **mcp:** remove redundant /mcp/carousel compat rewrite ([c7dd0bf](https://github.com/oaknational/Oak-Web-Application/commit/c7dd0bfe6150bd23212076eeef602363625f1105))
+
 # [1.1233.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1232.0...v1.1233.0) (2026-10-07)
 
 
