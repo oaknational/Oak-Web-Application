@@ -7,7 +7,6 @@ import {
   OakGridArea,
   OakHeading,
   OakLink,
-  OakSpan,
 } from "@oaknational/oak-components";
 
 import { getCaseStudyTagBackground } from "./getCaseStudyTagBackground";
@@ -54,15 +53,19 @@ export const CaseStudiesSection = ({
                   </OakHeading>
                 </OakFlex>
                 {showViewAllLink && (
-                  <OakLink
-                    variant="secondary"
-                    iconName="chevron-right"
-                    isTrailingIcon={true}
-                    href={resolveOakHref({ page: "about-case-study-library" })}
-                    $font={"heading-7"}
-                  >
-                    <OakSpan $textWrap="nowrap">View all case studies</OakSpan>
-                  </OakLink>
+                  <OakBox $textWrap="nowrap">
+                    <OakLink
+                      variant="secondary"
+                      iconName="chevron-right"
+                      isTrailingIcon={true}
+                      href={resolveOakHref({
+                        page: "about-case-study-library",
+                      })}
+                      $font={"heading-7"}
+                    >
+                      View all case studies
+                    </OakLink>
+                  </OakBox>
                 )}
               </OakFlex>
             </OakGridArea>
