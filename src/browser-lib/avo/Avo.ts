@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "eyej51HPbCUJDYut23qU",
+          "ac": "gowmootXmhHmQVdZWeLM",
           "br": "UUXYzp_GZqs_k8cF1nnnA",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "eyej51HPbCUJDYut23qU",
+          "ac": "gowmootXmhHmQVdZWeLM",
           "br": "UUXYzp_GZqs_k8cF1nnnA",
           "en": env,
           "ty": type,
@@ -13056,9 +13056,9 @@ export interface ResourceAdapterOpenedProperties {
  * 
  * When to trigger this event:
  * 1. The launcher button is clicked.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/qgX2wCDfp08a-XdB8wqWI/trigger/VXiPc-Tu0L8-0oEKpAEBd
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/qgX2wCDfp08a-XdB8wqWI/trigger/VXiPc-Tu0L8-0oEKpAEBd
  * 2. A capability is chosen from the "Adapt with AI" menu. Opening the menu alone does not fire it.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/qgX2wCDfp08a-XdB8wqWI/trigger/xjkodz79HxtDRsPkOyd_L
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/qgX2wCDfp08a-XdB8wqWI/trigger/xjkodz79HxtDRsPkOyd_L
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -13071,7 +13071,7 @@ export interface ResourceAdapterOpenedProperties {
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.capabilityId: The Resource Adapter capability the teacher is using, such as adding scaffolding to a worksheet.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/qgX2wCDfp08a-XdB8wqWI}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/qgX2wCDfp08a-XdB8wqWI}
  */
 export function resourceAdapterOpened(properties: ResourceAdapterOpenedProperties) {
   // @ts-ignore
@@ -13127,7 +13127,7 @@ export interface ResourceAdapterClosedProperties {
  * 
  * When to trigger this event:
  * 1. The teacher closes the dialog. Leaving the page does not fire it.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/o1tdWQMgpTfYj8YIhH5um/trigger/_0OB7VT-SYSUmcDORuywn
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/o1tdWQMgpTfYj8YIhH5um/trigger/_0OB7VT-SYSUmcDORuywn
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -13141,7 +13141,7 @@ export interface ResourceAdapterClosedProperties {
  * @param properties.capabilityId: The Resource Adapter capability the teacher is using, such as adding scaffolding to a worksheet.
  * @param properties.packageVersion: Version of the Resource Adapter UI package that sent the event, for comparing behaviour across releases.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/o1tdWQMgpTfYj8YIhH5um}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/o1tdWQMgpTfYj8YIhH5um}
  */
 export function resourceAdapterClosed(properties: ResourceAdapterClosedProperties) {
   // @ts-ignore
@@ -13200,9 +13200,9 @@ export interface AdaptationStartedProperties {
  * 
  * When to trigger this event:
  * 1. The dialog opens a new adaptation (Start Mode: new).
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/CZWgvyrvCYNTvk6nKfaKm/trigger/XyUsQBj2WdjpgKnv31spa
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/CZWgvyrvCYNTvk6nKfaKm/trigger/XyUsQBj2WdjpgKnv31spa
  * 2. "Carry on" is clicked and the saved adaptation loads (Start Mode: resumed).
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/CZWgvyrvCYNTvk6nKfaKm/trigger/Q_Q60BPknGkV07tLpHXrU
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/CZWgvyrvCYNTvk6nKfaKm/trigger/Q_Q60BPknGkV07tLpHXrU
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -13218,7 +13218,7 @@ export interface AdaptationStartedProperties {
  * @param properties.adaptationId: UUID of the adaptation: one teacher's adapted copy of one lesson resource.
  * @param properties.startMode: Whether the teacher started a new adaptation or carried on with a saved one.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/CZWgvyrvCYNTvk6nKfaKm}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/CZWgvyrvCYNTvk6nKfaKm}
  */
 export function adaptationStarted(properties: AdaptationStartedProperties) {
   // @ts-ignore
@@ -13278,11 +13278,11 @@ export interface AdaptationRestartRequestedProperties {
  * 
  * When to trigger this event:
  * 1. "Remove all scaffolds" is clicked.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/eTfZt0ZG07cvPA7MYFTXa/trigger/AE0ctewD_AjN_I1hV49lO
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/eTfZt0ZG07cvPA7MYFTXa/trigger/AE0ctewD_AjN_I1hV49lO
  * 2. "Start from the original" is clicked.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/eTfZt0ZG07cvPA7MYFTXa/trigger/WwRAYFOUXSl4gu3tQkT0I
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/eTfZt0ZG07cvPA7MYFTXa/trigger/WwRAYFOUXSl4gu3tQkT0I
  * 3. "Start again" is clicked after a step fails.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/eTfZt0ZG07cvPA7MYFTXa/trigger/3aZw-SlT70s_tA02s85L2
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/eTfZt0ZG07cvPA7MYFTXa/trigger/3aZw-SlT70s_tA02s85L2
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -13297,7 +13297,7 @@ export interface AdaptationRestartRequestedProperties {
  * @param properties.packageVersion: Version of the Resource Adapter UI package that sent the event, for comparing behaviour across releases.
  * @param properties.adaptationId: UUID of the adaptation: one teacher's adapted copy of one lesson resource.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/eTfZt0ZG07cvPA7MYFTXa}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/eTfZt0ZG07cvPA7MYFTXa}
  */
 export function adaptationRestartRequested(properties: AdaptationRestartRequestedProperties) {
   // @ts-ignore
@@ -13356,9 +13356,9 @@ export interface NewSuggestionsRequestedProperties {
  * 
  * When to trigger this event:
  * 1. "Generate new suggestions" is clicked.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/FjleVxg0iPPNsgNqzC86i/trigger/0l_WkgVDuA_gXfAw_b4-t
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/FjleVxg0iPPNsgNqzC86i/trigger/0l_WkgVDuA_gXfAw_b4-t
  * 2. "Try again" is clicked after finding suggestions fails.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/FjleVxg0iPPNsgNqzC86i/trigger/nWtD27XxtNn8H2oFDR_3A
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/FjleVxg0iPPNsgNqzC86i/trigger/nWtD27XxtNn8H2oFDR_3A
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -13373,7 +13373,7 @@ export interface NewSuggestionsRequestedProperties {
  * @param properties.packageVersion: Version of the Resource Adapter UI package that sent the event, for comparing behaviour across releases.
  * @param properties.adaptationId: UUID of the adaptation: one teacher's adapted copy of one lesson resource.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/FjleVxg0iPPNsgNqzC86i}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/FjleVxg0iPPNsgNqzC86i}
  */
 export function newSuggestionsRequested(properties: NewSuggestionsRequestedProperties) {
   // @ts-ignore
@@ -13435,9 +13435,9 @@ export interface SuggestionsDisplayedProperties {
  * 
  * When to trigger this event:
  * 1. A generation's suggestions are shown. Once per generation per dialog visit.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/3UrwxvSrZQcAOiXWykZ1U/trigger/NGyw9-Hpo8yrfGbtyaYqu
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/3UrwxvSrZQcAOiXWykZ1U/trigger/NGyw9-Hpo8yrfGbtyaYqu
  * 2. "No scaffolds suggested" is shown (Suggestion Count: 0).
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/3UrwxvSrZQcAOiXWykZ1U/trigger/KsiR88LKe_pBsHEl2lUAn
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/3UrwxvSrZQcAOiXWykZ1U/trigger/KsiR88LKe_pBsHEl2lUAn
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -13455,7 +13455,7 @@ export interface SuggestionsDisplayedProperties {
  * @param properties.suggestionCount: How many suggestions the teacher was shown. 0 means none were found.
  * @param properties.transformationKinds: The kinds of transformation suggested.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/3UrwxvSrZQcAOiXWykZ1U}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/3UrwxvSrZQcAOiXWykZ1U}
  */
 export function suggestionsDisplayed(properties: SuggestionsDisplayedProperties) {
   // @ts-ignore
@@ -13519,7 +13519,7 @@ export interface TransformationRequestedProperties {
  * 
  * When to trigger this event:
  * 1. A suggested transformation button is clicked.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/PcJ1rI3dpGgv01YvvuCLv/trigger/3Mg6rrUPfrVMBVc-GyEVt
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/PcJ1rI3dpGgv01YvvuCLv/trigger/3Mg6rrUPfrVMBVc-GyEVt
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -13536,7 +13536,7 @@ export interface TransformationRequestedProperties {
  * @param properties.transformationKind: The kind of change a transformation makes to the resource, such as adding a word bank.
  * @param properties.supportLevel: The level of support a transformation gives.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/PcJ1rI3dpGgv01YvvuCLv}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/PcJ1rI3dpGgv01YvvuCLv}
  */
 export function transformationRequested(properties: TransformationRequestedProperties) {
   // @ts-ignore
@@ -13602,7 +13602,7 @@ export interface TransformationPreviewDisplayedProperties {
  * 
  * When to trigger this event:
  * 1. A generated transformation appears with Undo, Retry and Accept. Once per attempt per visit.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/BdJ_3I_XQyX7s8UUQRGCK/trigger/lyVpp5tX9XhjfW2UFCW9F
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/BdJ_3I_XQyX7s8UUQRGCK/trigger/lyVpp5tX9XhjfW2UFCW9F
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -13620,7 +13620,7 @@ export interface TransformationPreviewDisplayedProperties {
  * @param properties.transformationKind: The kind of change a transformation makes to the resource, such as adding a word bank.
  * @param properties.supportLevel: The level of support a transformation gives.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/BdJ_3I_XQyX7s8UUQRGCK}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/BdJ_3I_XQyX7s8UUQRGCK}
  */
 export function transformationPreviewDisplayed(properties: TransformationPreviewDisplayedProperties) {
   // @ts-ignore
@@ -13687,7 +13687,7 @@ export interface TransformationReviewRequestedProperties {
  * 
  * When to trigger this event:
  * 1. Undo, Retry or Accept is clicked.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/v06WBORIxHZ865azX6HDb/trigger/Lz54Ukai6GVcAYjjF1XCK
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/v06WBORIxHZ865azX6HDb/trigger/Lz54Ukai6GVcAYjjF1XCK
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -13705,7 +13705,7 @@ export interface TransformationReviewRequestedProperties {
  * @param properties.transformationKind: The kind of change a transformation makes to the resource, such as adding a word bank.
  * @param properties.supportLevel: The level of support a transformation gives.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/v06WBORIxHZ865azX6HDb}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/v06WBORIxHZ865azX6HDb}
  */
 export function transformationReviewRequested(properties: TransformationReviewRequestedProperties) {
   // @ts-ignore
@@ -13772,7 +13772,7 @@ export interface TransformationReviewedProperties {
  * 
  * When to trigger this event:
  * 1. The Resource Adapter confirms an Accept or Undo.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/e658af78-a87c-4af9-a65a-83516cca3eee/trigger/w_rk3c0F6GW3-n1LHWBQ5
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/e658af78-a87c-4af9-a65a-83516cca3eee/trigger/w_rk3c0F6GW3-n1LHWBQ5
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -13790,7 +13790,7 @@ export interface TransformationReviewedProperties {
  * @param properties.transformationKind: The kind of change a transformation makes to the resource, such as adding a word bank.
  * @param properties.supportLevel: The level of support a transformation gives.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/e658af78-a87c-4af9-a65a-83516cca3eee}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/e658af78-a87c-4af9-a65a-83516cca3eee}
  */
 export function transformationReviewed(properties: TransformationReviewedProperties) {
   // @ts-ignore
@@ -13855,7 +13855,7 @@ export interface SuggestionDismissalRequestedProperties {
  * 
  * When to trigger this event:
  * 1. "No scaffold required" is clicked.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/P16XQCeQBaeq3o_oEbOtx/trigger/5f6C4jqqBMaPwXey86_hi
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/P16XQCeQBaeq3o_oEbOtx/trigger/5f6C4jqqBMaPwXey86_hi
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -13871,7 +13871,7 @@ export interface SuggestionDismissalRequestedProperties {
  * @param properties.adaptationId: UUID of the adaptation: one teacher's adapted copy of one lesson resource.
  * @param properties.transformationKinds: The kinds of transformation suggested.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/P16XQCeQBaeq3o_oEbOtx}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/P16XQCeQBaeq3o_oEbOtx}
  */
 export function suggestionDismissalRequested(properties: SuggestionDismissalRequestedProperties) {
   // @ts-ignore
@@ -13931,7 +13931,7 @@ export interface TransformationRemovalRequestedProperties {
  * 
  * When to trigger this event:
  * 1. "Remove" is clicked on an added scaffold.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Q-tB4gh330vZuIKQkgUpW/trigger/wg_tsVGJb_MNmQhhoCTM6
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/Q-tB4gh330vZuIKQkgUpW/trigger/wg_tsVGJb_MNmQhhoCTM6
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -13946,7 +13946,7 @@ export interface TransformationRemovalRequestedProperties {
  * @param properties.packageVersion: Version of the Resource Adapter UI package that sent the event, for comparing behaviour across releases.
  * @param properties.adaptationId: UUID of the adaptation: one teacher's adapted copy of one lesson resource.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Q-tB4gh330vZuIKQkgUpW}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/Q-tB4gh330vZuIKQkgUpW}
  */
 export function transformationRemovalRequested(properties: TransformationRemovalRequestedProperties) {
   // @ts-ignore
@@ -14007,7 +14007,7 @@ export interface AdaptationRequestFailedProperties {
  * 
  * When to trigger this event:
  * 1. A request fails, for example when the worksheet cannot be loaded. No error text is sent.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/4bYM8g0PUrb_7i24aE_oc/trigger/o2TE3fhvJStRZjCwrsw7M
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/4bYM8g0PUrb_7i24aE_oc/trigger/o2TE3fhvJStRZjCwrsw7M
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -14024,7 +14024,7 @@ export interface AdaptationRequestFailedProperties {
  * @param properties.requestAction: The Resource Adapter request involved.
  * @param properties.retryTarget: What a retry is for.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/4bYM8g0PUrb_7i24aE_oc}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/4bYM8g0PUrb_7i24aE_oc}
  */
 export function adaptationRequestFailed(properties: AdaptationRequestFailedProperties) {
   // @ts-ignore
@@ -14091,7 +14091,7 @@ export interface AdaptationStepFailedProperties {
  * 
  * When to trigger this event:
  * 1. A failed background step is shown, such as "We couldn't find scaffolds". No failure text is sent.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/k803PvlRvYdIw_thQryOV/trigger/F6a9ROVFTFHfEjgHxQkKo
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/k803PvlRvYdIw_thQryOV/trigger/F6a9ROVFTFHfEjgHxQkKo
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -14108,7 +14108,7 @@ export interface AdaptationStepFailedProperties {
  * @param properties.jobId: UUID of the background job behind the event.
  * @param properties.jobKind: The kind of background job: e.g. generating suggestions, applying one, or removing, retrying or dismissing a transformation.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/k803PvlRvYdIw_thQryOV}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/k803PvlRvYdIw_thQryOV}
  */
 export function adaptationStepFailed(properties: AdaptationStepFailedProperties) {
   // @ts-ignore
@@ -14170,7 +14170,7 @@ export interface AdaptedResourceDownloadedProperties {
  * 
  * When to trigger this event:
  * 1. "Download worksheet" is clicked and the file is handed to the browser.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/5ZfBeMUtKqTp1w2nuKO75/trigger/juKHbGTInNpftwWGKxoAb
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/5ZfBeMUtKqTp1w2nuKO75/trigger/juKHbGTInNpftwWGKxoAb
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -14186,7 +14186,7 @@ export interface AdaptedResourceDownloadedProperties {
  * @param properties.adaptationId: UUID of the adaptation: one teacher's adapted copy of one lesson resource.
  * @param properties.format: File format of the download.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/5ZfBeMUtKqTp1w2nuKO75}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/UUXYzp_GZqs_k8cF1nnnA/events/5ZfBeMUtKqTp1w2nuKO75}
  */
 export function adaptedResourceDownloaded(properties: AdaptedResourceDownloadedProperties) {
   // @ts-ignore
@@ -14402,4 +14402,4 @@ export default {
 }
 
 // AVOMODULEMAP:"Avo"
-// AVOEVENTMAP:["newsletterSignUpCompleted","classroomSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","unitAccessed","webinarPageViewed","pageview","lessonResourceDownloadStarted","searchAccessed","searchResultOpened","searchJourneyInitiated","curriculumVisualiserAccessed","lessonShared","lessonShareStarted","searchRefined","searchResultExpanded","lessonCompleted","lessonActivityCompleted","lessonActivityCompletedIntroduction","lessonActivityCompletedStarterQuiz","lessonActivityCompletedLessonVideo","lessonActivityCompletedExitQuiz","lessonActivityCompletedLessonAudio","lessonStarted","lessonActivityStarted","lessonActivityStartedIntroduction","lessonActivityStartedStarterQuiz","lessonActivityStartedLessonVideo","lessonActivityStartedExitQuiz","lessonActivityStartedLessonAudio","curriculumResourcesDownloaded","lessonActivityAbandoned","lessonActivityAbandonedStarterQuiz","lessonActivityAbandonedIntroduction","lessonActivityAbandonedLessonVideo","lessonActivityAbandonedExitQuiz","lessonActivityAbandonedLessonAudio","lessonAssistantAccessed","lessonAccessed","lessonAccessedPupilJourney","browseRefined","browseRefinedAccessed","lessonActivityDownloaded","lessonActivityDownloadedWorksheet","contentGuidanceAccepted","contentGuidanceDeclined","activityResultsShared","lessonSummaryReviewed","userSignUpCompleted","userOnboardingCompleted","userSignIn","userSignOut","lessonAbandoned","browseAccessed","questionAttemptSubmitted","teacherShareInitiated","teacherShareActivated","teacherShareConverted","unitDownloaded","teacherNoteDialogueOpened","teacherNoteSaved","curriculumVisualiserExited","curriculumVisualiserTabAccessed","unitOverviewExplored","productHomepageAccessed","curriculumLandingPageAccessed","curriculumExplainerExplored","curriculumResourcesDownloadRefined","searchFilterModified","lessonMediaClipsStarted","mediaClipsPlaylistPlayed","contentSaved","contentUnsaved","createTeachingMaterialsInitiated","teachingMaterialsSelected","teachingMaterialsRefined","teachingMaterialDownloaded","contentBlockNotificationDisplayed","userOnboardingProgressed","aboutUsAccessed","aboutUsExplored","aboutUsContactInitiated","classroomSignInCompleted","classroomSignInStarted","classroomLessonSelected","classroomLessonPreviewed","classroomLessonsAttached","classroomAddOnOpened","programmeRefined","unitRefined","programmeAccessed","unitDownloadStarted","scrolledTo","exitIntended","curriculumResourcesAccessed","teachWithOakAccessed","teachWithOakDownloaded"]
+// AVOEVENTMAP:["newsletterSignUpCompleted","classroomSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","unitAccessed","webinarPageViewed","pageview","lessonResourceDownloadStarted","searchAccessed","searchResultOpened","searchJourneyInitiated","curriculumVisualiserAccessed","lessonShared","lessonShareStarted","searchRefined","searchResultExpanded","lessonCompleted","lessonActivityCompleted","lessonActivityCompletedIntroduction","lessonActivityCompletedStarterQuiz","lessonActivityCompletedLessonVideo","lessonActivityCompletedExitQuiz","lessonActivityCompletedLessonAudio","lessonStarted","lessonActivityStarted","lessonActivityStartedIntroduction","lessonActivityStartedStarterQuiz","lessonActivityStartedLessonVideo","lessonActivityStartedExitQuiz","lessonActivityStartedLessonAudio","curriculumResourcesDownloaded","lessonActivityAbandoned","lessonActivityAbandonedStarterQuiz","lessonActivityAbandonedIntroduction","lessonActivityAbandonedLessonVideo","lessonActivityAbandonedExitQuiz","lessonActivityAbandonedLessonAudio","lessonAssistantAccessed","lessonAccessed","lessonAccessedPupilJourney","browseRefined","browseRefinedAccessed","lessonActivityDownloaded","lessonActivityDownloadedWorksheet","contentGuidanceAccepted","contentGuidanceDeclined","activityResultsShared","lessonSummaryReviewed","userSignUpCompleted","userOnboardingCompleted","userSignIn","userSignOut","lessonAbandoned","browseAccessed","questionAttemptSubmitted","teacherShareInitiated","teacherShareActivated","teacherShareConverted","unitDownloaded","teacherNoteDialogueOpened","teacherNoteSaved","curriculumVisualiserExited","curriculumVisualiserTabAccessed","unitOverviewExplored","productHomepageAccessed","curriculumLandingPageAccessed","curriculumExplainerExplored","curriculumResourcesDownloadRefined","searchFilterModified","lessonMediaClipsStarted","mediaClipsPlaylistPlayed","contentSaved","contentUnsaved","createTeachingMaterialsInitiated","teachingMaterialsSelected","teachingMaterialsRefined","teachingMaterialDownloaded","contentBlockNotificationDisplayed","userOnboardingProgressed","aboutUsAccessed","aboutUsExplored","aboutUsContactInitiated","classroomSignInCompleted","classroomSignInStarted","classroomLessonSelected","classroomLessonPreviewed","classroomLessonsAttached","classroomAddOnOpened","programmeRefined","unitRefined","programmeAccessed","unitDownloadStarted","scrolledTo","exitIntended","curriculumResourcesAccessed","teachWithOakAccessed","teachWithOakDownloaded","resourceAdapterOpened","resourceAdapterClosed","adaptationStarted","adaptationRestartRequested","newSuggestionsRequested","suggestionsDisplayed","transformationRequested","transformationPreviewDisplayed","transformationReviewRequested","transformationReviewed","suggestionDismissalRequested","transformationRemovalRequested","adaptationRequestFailed","adaptationStepFailed","adaptedResourceDownloaded"]

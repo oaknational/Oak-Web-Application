@@ -358,7 +358,7 @@ function _avo_invoke_payload(body: any) {
 _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, messages: {tag: string, propertyId: string}[], origin: string) {
   try {
     _avo_invoke_payload({
-      "ac": "eyej51HPbCUJDYut23qU",
+      "ac": "gowmootXmhHmQVdZWeLM",
       "br": "UUXYzp_GZqs_k8cF1nnnA",
       "en": env,
       "ev": eventId,
@@ -376,7 +376,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
 _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages: {tag: string, propertyId: string}[], origin: string) {
   try {
     _avo_invoke_payload({
-      "ac": "eyej51HPbCUJDYut23qU",
+      "ac": "gowmootXmhHmQVdZWeLM",
       "br": "UUXYzp_GZqs_k8cF1nnnA",
       "en": env,
       "ty": type,
