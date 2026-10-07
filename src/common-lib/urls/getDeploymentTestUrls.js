@@ -16,7 +16,7 @@ function getDeploymentTestUrls() {
     "/about-us/oaks-curricula",
     "/about-us/oaks-impact",
     "/about-us/case-studies",
-    "/about-us/case-studies/giving-teachers-a-starting-point-with-safe-curriculum-aligned-ai-tools",
+    "/about-us/case-studies/how-lift-firth-park-is-building-teaching-consistency-and-learner-confidence-in-spanish-with-oak",
     "/about-us/meet-the-team",
     "/about-us/meet-the-team/john-roberts?section=leadership",
     "/about-us/get-involved",
