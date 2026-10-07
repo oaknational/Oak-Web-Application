@@ -98,8 +98,11 @@ const renderDownloadSuccessView = (
   return renderWithProviders()(
     <DownloadSuccessView
       lesson={baseLesson}
-      exists
-      fileSize="1.2MB"
+      unitDownloadExistence={{
+        checkFailed: false,
+        exists: true,
+        fileSize: "1.2MB",
+      }}
       {...props}
     />,
   );
@@ -184,7 +187,20 @@ describe("DownloadSuccessView", () => {
 
   it("renders the unit download button when the unit download exists", () => {
     setUseUserReturn(mockLoggedIn);
-    renderDownloadSuccessView({ exists: true });
+    renderDownloadSuccessView({
+      unitDownloadExistence: { checkFailed: false, exists: true },
+    });
+
+    expect(
+      screen.getByRole("button", { name: "Download complete unit" }),
+    ).toBeInTheDocument();
+  });
+
+  it("renders the unit download button when the availability check failed", () => {
+    setUseUserReturn(mockLoggedIn);
+    renderDownloadSuccessView({
+      unitDownloadExistence: { checkFailed: true, exists: undefined },
+    });
 
     expect(
       screen.getByRole("button", { name: "Download complete unit" }),
@@ -193,7 +209,9 @@ describe("DownloadSuccessView", () => {
 
   it("omits the unit download button when the unit download does not exist", () => {
     setUseUserReturn(mockLoggedIn);
-    renderDownloadSuccessView({ exists: false });
+    renderDownloadSuccessView({
+      unitDownloadExistence: { checkFailed: false, exists: false },
+    });
 
     expect(
       screen.queryByRole("button", { name: "Download complete unit" }),

@@ -18,6 +18,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { UnitDownloadExistence } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 type DownloadSuccessViewLesson = {
   lessonTitle: string;
@@ -34,14 +35,12 @@ type DownloadSuccessViewLesson = {
 export type DownloadSuccessViewProps = {
   lesson: DownloadSuccessViewLesson;
 } & {
-  exists: boolean;
-  fileSize?: string;
+  unitDownloadExistence: UnitDownloadExistence;
 };
 
 export function DownloadSuccessView({
   lesson,
-  exists,
-  fileSize,
+  unitDownloadExistence,
 }: Readonly<DownloadSuccessViewProps>) {
   const {
     lessonSlug,
@@ -143,8 +142,7 @@ export function DownloadSuccessView({
                       </OakBox>
                     </OakSpan>
                   }
-                  downloadExists={exists}
-                  fileSize={fileSize}
+                  unitDownloadExistence={unitDownloadExistence}
                 />
               }
             />

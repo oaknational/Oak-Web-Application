@@ -36,6 +36,15 @@ jest.mock("@oaknational/oak-components", () => ({
 const mockUnitDownloadStarted = jest.fn();
 const mockUnitDownloaded = jest.fn();
 
+const reportError = jest.fn();
+jest.mock("@/common-lib/error-reporter", () => ({
+  __esModule: true,
+  default:
+    () =>
+    (...args: unknown[]) =>
+      reportError(...args),
+}));
+
 jest.mock(
   "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider",
   () => ({
@@ -84,8 +93,11 @@ const renderUnitDownloadButton = (
       unitFileId="mockSlug"
       showNewTag
       geoRestricted={false}
-      downloadExists
-      fileSize="1.2MB"
+      unitDownloadExistence={{
+        checkFailed: false,
+        exists: true,
+        fileSize: "1.2MB",
+      }}
       {...props}
     />,
   );
@@ -96,6 +108,7 @@ describe("UnitDownloadButton", () => {
     setBreakpoint();
     mockUnitDownloadStarted.mockClear();
     mockUnitDownloaded.mockClear();
+    reportError.mockClear();
   });
 
   it("should render a continue button when logged in but not onboarded", () => {
@@ -168,6 +181,60 @@ describe("UnitDownloadButton", () => {
     expect(setShowDownloadMessage).toHaveBeenCalledWith(false);
     expect(setShowIncompleteMessage).toHaveBeenCalledWith(false);
   });
+  it("reports the error when the download fails", async () => {
+    const { createUnitDownloadLink } = jest.requireMock(
+      "@/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink",
+    );
+    const error = new Error("network error");
+    createUnitDownloadLink.mockRejectedValueOnce(error);
+
+    renderUnitDownloadButton();
+    await userEvent
+      .setup()
+      .click(screen.getByRole("button", { name: "Download" }));
+
+    expect(reportError).toHaveBeenCalledWith(error, {
+      unitFileId: "mockSlug",
+      existenceCheckFailed: false,
+    });
+  });
+  it("records a failed server-side existence check when reporting", async () => {
+    const { createUnitDownloadLink } = jest.requireMock(
+      "@/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink",
+    );
+    const error = new Error("network error");
+    createUnitDownloadLink.mockRejectedValueOnce(error);
+
+    renderUnitDownloadButton({
+      unitDownloadExistence: { checkFailed: true, exists: undefined },
+    });
+    await userEvent
+      .setup()
+      .click(screen.getByRole("button", { name: "Download" }));
+
+    expect(reportError).toHaveBeenCalledWith(error, {
+      unitFileId: "mockSlug",
+      existenceCheckFailed: true,
+    });
+  });
+  it("still shows the button when the availability check failed", () => {
+    renderUnitDownloadButton({
+      unitDownloadExistence: { checkFailed: true, exists: undefined },
+    });
+
+    expect(
+      screen.getByRole("button", { name: "Download" }),
+    ).toBeInTheDocument();
+  });
+  it("hides the button when the download is known to be absent", () => {
+    renderUnitDownloadButton({
+      unitDownloadExistence: { checkFailed: false, exists: false },
+    });
+
+    expect(
+      screen.queryByRole("button", { name: "Download" }),
+    ).not.toBeInTheDocument();
+  });
   // The breakpoint switch is CSS, which jsdom can't evaluate, so these assert the
   // emitted rules rather than which label is visible at a given width.
   it("shows the long label at every breakpoint when stuck", () => {
@@ -192,6 +259,14 @@ describe("UnitDownloadButton", () => {
       "display",
       "inline",
     );
+  });
+  it("omits the file size entirely when it is unknown", () => {
+    renderUnitDownloadButton({
+      unitDownloadExistence: { checkFailed: false, exists: true },
+      isStuck: true,
+    });
+    expect(screen.getByText("Download")).toBeInTheDocument();
+    expect(screen.queryByText(/\.zip/)).not.toBeInTheDocument();
   });
 
   describe("analytics events", () => {

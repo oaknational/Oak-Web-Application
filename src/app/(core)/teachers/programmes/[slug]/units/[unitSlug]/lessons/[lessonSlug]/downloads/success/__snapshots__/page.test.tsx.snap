@@ -35,7 +35,6 @@ exports[`LessonDownloadsSuccessPage fetches unit data and renders success confir
   }
 >
   <DownloadSuccessView
-    exists={false}
     lesson={
       {
         "containsGeorestrictedLessons": false,
@@ -95,6 +94,13 @@ exports[`LessonDownloadsSuccessPage fetches unit data and renders success confir
         "year": "7",
         "yearGroupSlug": "year-7",
         "yearGroupTitle": "Year 7",
+      }
+    }
+    unitDownloadExistence={
+      {
+        "checkFailed": false,
+        "exists": true,
+        "fileSize": "1.2MB",
       }
     }
   />

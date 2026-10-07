@@ -16,6 +16,10 @@ import createAndClickHiddenDownloadLink from "@/components/SharedComponents/help
 import { createUnitDownloadLink } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import errorReporter from "@/common-lib/error-reporter";
+import { UnitDownloadExistence } from "@/components/TeacherComponents/types/downloadAndShare.types";
+
+const reportError = errorReporter("unit-download-button");
 
 // Long text shows when stuck, on desktop, or - only where the caller opts in
 // via longTextOnMobile (e.g. the full-width unit header button) - on mobile.
@@ -26,21 +30,23 @@ const DownloadLabel = ({
   longTextOnMobile,
   isStuck,
 }: {
-  longerText: string;
+  longerText?: string;
   longTextOnMobile?: boolean;
   isStuck?: boolean;
 }) => (
   <OakSpan>
     <OakSpan>Download </OakSpan>
-    <OakBox
-      $display={
-        isStuck
-          ? "inline"
-          : [longTextOnMobile ? "inline" : "none", "none", "inline"]
-      }
-    >
-      {longerText}
-    </OakBox>
+    {longerText && (
+      <OakBox
+        $display={
+          isStuck
+            ? "inline"
+            : [longTextOnMobile ? "inline" : "none", "none", "inline"]
+        }
+      >
+        {longerText}
+      </OakBox>
+    )}
   </OakSpan>
 );
 
@@ -171,7 +177,7 @@ const DownloadButton = ({
     <DownloadLabel
       isStuck={isStuck}
       longTextOnMobile={longTextOnMobile}
-      longerText={`(.zip ${fileSize})`}
+      longerText={fileSize ? `(.zip ${fileSize})` : undefined}
     />
   );
 
@@ -252,7 +258,7 @@ export type UnitDownloadButtonProps = {
   downloadInProgress: boolean;
   showNewTag: boolean;
   geoRestricted: boolean;
-  downloadExists: boolean;
+  unitDownloadExistence: UnitDownloadExistence;
   size?: "small";
   fileSize?: string;
   buttonLabel?: ReactNode;
@@ -270,7 +276,8 @@ export type UnitDownloadButtonProps = {
  * If there is no download for this unit, or unit download is disabled, the button will not be shown (ie. legacy units)
  */
 export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
-  const { unitFileId, geoRestricted, downloadExists, fileSize } = props;
+  const { unitFileId, geoRestricted, unitDownloadExistence } = props;
+  const { exists, fileSize, checkFailed } = unitDownloadExistence;
   const { isSignedIn, user } = useUser();
   const auth = useAuth();
   const pathname = usePathname();
@@ -305,18 +312,22 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
         createAndClickHiddenDownloadLink(downloadLink);
         onDownloadSuccess();
       }
-    } catch (_error) {
+    } catch (error) {
       setShowDownloadMessage(false);
       setShowIncompleteMessage(false);
       setDownloadError(true);
+      void reportError(error, {
+        unitFileId,
+        existenceCheckFailed: checkFailed,
+      });
     }
     setDownloadInProgress(false);
   };
 
-  const showDownloadButton = downloadExists;
+  // Fail open: `undefined` means the availability check failed, so show the button and let
+  // a genuinely missing file surface as a download error on click.
+  const showDownloadButton = exists !== false;
 
-  // Not gated on isLoaded: while Clerk resolves, treat the user as signed out so the
-  // server and first client render agree and signed-out users never see a label swap.
   const showSignInButton = showDownloadButton && !isSignedIn;
 
   const showOnboardButton =

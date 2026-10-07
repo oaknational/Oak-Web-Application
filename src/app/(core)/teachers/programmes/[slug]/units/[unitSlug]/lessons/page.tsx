@@ -26,7 +26,7 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
   const data = await getCachedUnitData(programmeSlug, unitSlug);
 
   const programmeState = getProgrammeStateForUnit(data);
-  const { exists, fileSize } = await getUnitDownloadExistence(
+  const unitDownloadExistence = await getUnitDownloadExistence(
     getUnitDownloadFileId(data.unitTitle, data.unitvariantId),
   );
 
@@ -35,7 +35,7 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
       programmeState={programmeState}
       accessLevel="unit"
     >
-      <UnitView {...data} downloadExists={exists} fileSize={fileSize} />
+      <UnitView {...data} unitDownloadExistence={unitDownloadExistence} />
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };

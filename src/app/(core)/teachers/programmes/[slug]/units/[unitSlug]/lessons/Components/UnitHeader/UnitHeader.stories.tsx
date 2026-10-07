@@ -53,8 +53,11 @@ const coreProps: UnitHeaderProps = {
   phase: "secondary",
   subjectIcon: "subject-computer-science",
   unitDownloadFileId: "1",
-  downloadExists: true,
-  fileSize: "100MB",
+  unitDownloadExistence: {
+    checkFailed: false,
+    exists: true,
+    fileSize: "100MB",
+  },
   nextUnit: { title: "unit 3", slug: "unit-3" },
   prevUnit: { title: "unit 1", slug: "unit-1" },
   programmeSlug: "computer-science-ks4-aqa",

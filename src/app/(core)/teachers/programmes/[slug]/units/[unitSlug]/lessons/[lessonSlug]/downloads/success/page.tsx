@@ -77,7 +77,7 @@ const InnerLessonDownloadsSuccessPage = async (
   }
 
   const programmeState = getProgrammeStateForLesson(data);
-  const { exists, fileSize } = await getUnitDownloadExistence(
+  const unitDownloadExistence = await getUnitDownloadExistence(
     getUnitDownloadFileId(data.unitTitle, data.unitvariantId),
   );
 
@@ -86,7 +86,10 @@ const InnerLessonDownloadsSuccessPage = async (
       programmeState={programmeState}
       accessLevel="lesson"
     >
-      <DownloadSuccessView lesson={data} exists={exists} fileSize={fileSize} />
+      <DownloadSuccessView
+        lesson={data}
+        unitDownloadExistence={unitDownloadExistence}
+      />
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };

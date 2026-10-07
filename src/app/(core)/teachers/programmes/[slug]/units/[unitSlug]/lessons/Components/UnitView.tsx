@@ -11,10 +11,10 @@ import { SubjectIcon } from "@/components/TeacherComponents/Header/Header";
 import { useUnitDownloadButtonState } from "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton";
 import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
+import { UnitDownloadExistence } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 type UnitViewProps = TeachersUnitOverviewData & {
-  downloadExists: boolean;
-  fileSize?: string;
+  unitDownloadExistence: UnitDownloadExistence;
 };
 
 export const UnitView = (props: UnitViewProps) => {
@@ -53,8 +53,7 @@ export const UnitView = (props: UnitViewProps) => {
           />
         }
         downloadButtonState={downloadButtonState}
-        downloadExists={props.downloadExists}
-        fileSize={props.fileSize}
+        unitDownloadExistence={props.unitDownloadExistence}
       />
       <OakBox $ph="spacing-40">
         <OakBox $mh="auto" $width={"100%"} $maxWidth={"spacing-1280"}>

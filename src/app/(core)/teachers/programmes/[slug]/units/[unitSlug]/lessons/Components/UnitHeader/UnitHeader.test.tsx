@@ -52,8 +52,11 @@ const defaultProps: UnitHeaderProps = {
   subjectIcon: "subject-maths",
   programmeSlug: "maths-ks4-higher",
   subjectPhaseSlug: "maths-secondary",
-  downloadExists: true,
-  fileSize: "1.2MB",
+  unitDownloadExistence: {
+    checkFailed: false,
+    exists: true,
+    fileSize: "1.2MB",
+  },
   downloadButtonState: {
     downloadError: false,
     setDownloadError: jest.fn(),
