@@ -1,3 +1,4 @@
+import { capitalize } from "lodash";
 import {
   OakBox,
   OakCard,
@@ -99,7 +100,11 @@ export const CaseStudiesSection = ({
                     !showTags && caseStudy.video ? "Watch the video" : undefined
                   }
                   cardWidth={"100%"}
-                  tagName={showTags ? (caseStudy.tag ?? undefined) : undefined}
+                  tagName={
+                    showTags
+                      ? capitalize(caseStudy.tag ?? undefined)
+                      : undefined
+                  }
                   tagBackground={
                     showTags
                       ? getCaseStudyTagBackground(caseStudy.tag)

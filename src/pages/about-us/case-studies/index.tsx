@@ -1,3 +1,4 @@
+import { capitalize } from "lodash";
 import { NextPage, GetServerSideProps } from "next";
 import {
   OakImage,
@@ -38,7 +39,7 @@ export const AboutUsCaseStudyLibrary: NextPage<
       slug: caseStudy.slug.current,
     }),
     imageSrc: getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? "",
-    tagName: caseStudy.tag ?? undefined,
+    tagName: capitalize(caseStudy.tag ?? undefined),
     tagBackground: getCaseStudyTagBackground(caseStudy.tag),
   }));
 
@@ -81,17 +82,19 @@ export const AboutUsCaseStudyLibrary: NextPage<
                 $flexDirection="column"
                 $pa={["spacing-16", "spacing-20", "spacing-20"]}
                 $borderRadius="border-radius-l"
-                $background="bg-decorative2-very-subdued"
+                $background="bg-decorative2-subdued"
               >
                 {items.map((item) => {
                   return (
-                    <OakCard
-                      key={item.href}
-                      aspectRatio="4/3"
-                      cardOrientation={["column", "row", "row"]}
-                      showImage={[false, true, true]}
-                      {...item}
-                    />
+                    <OakBox as="article" key={item.href}>
+                      <OakCard
+                        headingLevel="div"
+                        aspectRatio="4/3"
+                        cardOrientation={["column", "row", "row"]}
+                        showImage={[false, true, true]}
+                        {...item}
+                      />
+                    </OakBox>
                   );
                 })}
               </OakFlex>
