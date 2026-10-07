@@ -1,19 +1,19 @@
+import { GetServerSidePropsContext } from "next/dist/types";
+import { within } from "@testing-library/react";
+
+import {
+  caseStudy,
+  caseStudyFixture,
+  otherCaseStudies,
+  videoCaseStudy,
+} from "@/__tests__/pages/about-us/case-studies/case-studies.fixtures";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import CMSClient from "@/node-lib/cms";
-import {
-  OaksImpactCaseStudyPage,
-  OaksImpactPage,
-} from "@/common-lib/cms-types/aboutPages";
-import { portableTextFromString } from "@/__tests__/__helpers__/cms";
-import { getFallbackBlockingConfig } from "@/node-lib/isr";
-import { mockPortableTextBlocks } from "@/fixtures/curriculum/programmeSequenceYearData.fixtures";
+import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import AboutUsCaseStudy, {
-  getStaticPaths,
-  getStaticProps,
+  getServerSideProps,
 } from "@/pages/about-us/case-studies/[slug]";
-
-let mockShouldSkipInitialBuild = false;
 
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   __esModule: true,
@@ -22,127 +22,68 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   },
 }));
 
-jest.mock("@/node-lib/isr", () => ({
-  ...jest.requireActual("@/node-lib/isr"),
-  get shouldSkipInitialBuild() {
-    return mockShouldSkipInitialBuild;
-  },
-  getFallbackBlockingConfig: jest.fn(),
+jest.mock("@/utils/featureFlagChecks/server", () => ({
+  isFeatureFlagEnabledServer: jest.fn(),
 }));
 
 jest.mock("@/node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
-const mockGetFallbackBlockingConfig = jest.mocked(getFallbackBlockingConfig);
-
-function caseStudyFixture(slug: string) {
-  return {
-    image: {
-      altText: "Test image alt text",
-      asset: {
-        _id: "test-image-asset-id",
-        url: "https://example.com/test-image.jpg",
-      },
-    },
-    slug: {
-      current: slug,
-    },
-    textRaw: portableTextFromString("testing"),
-    video: {
-      title: "Test Video",
-      video: {
-        asset: {
-          assetId: "test-asset-id",
-          playbackId: "test-playback-id",
-          thumbTime: null,
-        },
-      },
-      transcript: [mockPortableTextBlocks[0]],
-    },
-    publishedAt: "2023-01-01",
-  };
-}
-
-const mockPageData: OaksImpactCaseStudyPage = {
-  caseStudiesSection: {
-    caseStudies: [
-      caseStudyFixture("test-slug-1"),
-      caseStudyFixture("test-slug-2"),
-      caseStudyFixture("test-slug-3"),
-    ],
-  },
-};
-
-const mockImpactPageData: OaksImpactPage = {
-  header: {
-    introText: "Oaks Impact intro",
-    video: {
-      title: "Oaks Impact video",
-      video: {
-        asset: {
-          assetId: "123",
-          playbackId: "123",
-          thumbTime: null,
-        },
-      },
-      transcript: [mockPortableTextBlocks[0]],
-    },
-    videoDescription: "Oaks Impact video description",
-  },
-  statsSection: {
-    textBlock: {
-      title: "Oaks Impact stats heading",
-      bodyPortableText: [],
-    },
-    stats: [],
-  },
-  caseStudiesSection: mockPageData.caseStudiesSection,
-  schoolQuotes: {
-    heading: "Oaks Impact school quotes heading",
-    cards: [],
-  },
-};
+const mockIsFeatureFlagEnabledServer = jest.mocked(isFeatureFlagEnabledServer);
 
 beforeEach(() => {
   jest.clearAllMocks();
-  jest.resetModules();
-  mockShouldSkipInitialBuild = false;
-  mockGetFallbackBlockingConfig.mockReturnValue({
-    fallback: "blocking",
-    paths: [],
-  });
-  mockCMSClient.oaksImpactCaseStudyPage.mockResolvedValue(mockPageData);
-  mockCMSClient.oaksImpactPage.mockResolvedValue(mockImpactPageData);
+  mockIsFeatureFlagEnabledServer.mockResolvedValue(true);
+  mockCMSClient.caseStudyPage.mockResolvedValue(caseStudy);
+  mockCMSClient.caseStudyLibraryPage.mockResolvedValue(otherCaseStudies);
 });
 
 describe("pages/about-us/case-studies/[slug].tsx", () => {
-  it("renders title", async () => {
-    const { container, getAllByRole } = renderWithProviders()(
+  it("renders a case study with written content and embedded media correctly", async () => {
+    const { container, getByRole } = renderWithProviders()(
       <AboutUsCaseStudy
-        isCaseStudiesFeatEnabled={false}
-        pageData={{
-          caseStudy: mockPageData.caseStudiesSection.caseStudies[0]!,
-          otherCaseStudies:
-            mockPageData.caseStudiesSection.caseStudies.slice(1),
-        }}
+        isCaseStudiesFeatEnabled={true}
+        pageData={{ caseStudy, otherCaseStudies: [] }}
         topNav={topNavFixture}
       />,
     );
 
     expect(container).toMatchSnapshot();
-    expect(getAllByRole("navigation")[1]).toHaveTextContent("Oak's impact");
-    expect(getAllByRole("navigation")[1]).not.toHaveTextContent("Case studies");
+    expect(container).toHaveTextContent("TEST_TITLE_1");
+    expect(container).toHaveTextContent("TEST_TEXT_RAW");
+    expect(container).toHaveTextContent("TEST_SUMMARY_1");
+    expect(container).toHaveTextContent("TEST_PERSON_NAME");
+    expect(container).toHaveTextContent("TEST_JOB_ROLE");
+    expect(container).toHaveTextContent("TEST_INSTITUTION_NAME");
+
+    expect(container).toHaveTextContent("TEST_HEADING_1");
+    expect(container).toHaveTextContent("TEST_CONTENT_1");
+    expect(container).toHaveTextContent("TEST_HEADING_2");
+    expect(container).toHaveTextContent("Text alongside media");
+    expect(
+      getByRole("img", { name: "A classroom using Oak" }),
+    ).toBeInTheDocument();
+    expect(container).toHaveTextContent("Embedded video transcript");
+  });
+
+  it("renders a case study with video only correctly", async () => {
+    const { container } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={true}
+        pageData={{ caseStudy: videoCaseStudy, otherCaseStudies: [] }}
+        topNav={topNavFixture}
+      />,
+    );
+
+    expect(container).toMatchSnapshot();
+    expect(container).toHaveTextContent("TEST_TITLE_VIDEO");
   });
 
   it("renders correct breadcrumb when case studies feature flag is enabled", async () => {
     const { getAllByRole } = renderWithProviders()(
       <AboutUsCaseStudy
         isCaseStudiesFeatEnabled={true}
-        pageData={{
-          caseStudy: mockPageData.caseStudiesSection.caseStudies[0]!,
-          otherCaseStudies:
-            mockPageData.caseStudiesSection.caseStudies.slice(1),
-        }}
+        pageData={{ caseStudy, otherCaseStudies: [] }}
         topNav={topNavFixture}
       />,
     );
@@ -151,21 +92,140 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
     expect(getAllByRole("navigation")[1]).not.toHaveTextContent("Oak's impact");
   });
 
-  describe("getStaticProps", () => {
-    it("returns props data", async () => {
-      const propsResult = await getStaticProps({
-        params: { slug: "test-slug-1" },
-      });
+  it("renders the other case studies", async () => {
+    const { container, getAllByRole, queryByRole } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={true}
+        pageData={{ caseStudy, otherCaseStudies }}
+        topNav={topNavFixture}
+      />,
+    );
 
-      expect(propsResult).toMatchObject({
-        props: {
-          topNav: topNavFixture,
-        },
-      });
-    });
+    const otherCaseStudiesLinks = getAllByRole("link", {
+      name: /TEST_TITLE_/,
+    }).map((link) => link.getAttribute("href"));
 
+    expect(container).toMatchSnapshot();
+    expect(otherCaseStudiesLinks).toEqual([
+      "/about-us/case-studies/test-2",
+      "/about-us/case-studies/test-3",
+      "/about-us/case-studies/test-video",
+    ]);
+    expect(otherCaseStudiesLinks).toHaveLength(3);
+    expect(
+      queryByRole("link", { name: "View all case studies" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("shows 'View all case studies' when more than three other case studies exist", async () => {
+    const { container, getAllByRole, getByRole } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={true}
+        pageData={{
+          caseStudy,
+          otherCaseStudies: [...otherCaseStudies, caseStudyFixture(4)],
+        }}
+        topNav={topNavFixture}
+      />,
+    );
+
+    const otherCaseStudiesLinks = getAllByRole("link", {
+      name: /TEST_TITLE_/,
+    }).map((link) => link.getAttribute("href"));
+
+    expect(container).toMatchSnapshot();
+    expect(otherCaseStudiesLinks).toEqual([
+      "/about-us/case-studies/test-2",
+      "/about-us/case-studies/test-3",
+      "/about-us/case-studies/test-video",
+    ]);
+    expect(otherCaseStudiesLinks).toHaveLength(3);
+    expect(
+      getByRole("link", { name: "View all case studies" }),
+    ).toBeInTheDocument();
+  });
+
+  it("does not render written case studies in other case studies section when feature flag is not enabled", async () => {
+    const { container, getAllByRole } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={false}
+        pageData={{ caseStudy, otherCaseStudies }}
+        topNav={topNavFixture}
+      />,
+    );
+
+    const otherCaseStudiesLinks = getAllByRole("link", {
+      name: /TEST_TITLE_/,
+    }).map((link) => link.getAttribute("href"));
+
+    expect(container).toMatchSnapshot();
+    expect(otherCaseStudiesLinks).toEqual([
+      "/about-us/case-studies/test-video",
+    ]);
+    expect(otherCaseStudiesLinks).not.toContain(
+      "/about-us/case-studies/test-2",
+    );
+    expect(otherCaseStudiesLinks).toHaveLength(1);
+  });
+
+  it("renders a sidebar nav with label names when there are at least two content sections and the feature flag is enabled", () => {
+    const { getByLabelText } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={true}
+        pageData={{ caseStudy, otherCaseStudies: [] }}
+        topNav={topNavFixture}
+      />,
+    );
+
+    const nav = getByLabelText("Contents");
+    const navLinks = within(nav).getAllByRole("link");
+
+    expect(nav).toBeVisible();
+    expect(navLinks).toHaveLength(2);
+    expect(navLinks[0]).toHaveTextContent("TEST_LABEL_1");
+    expect(navLinks[0]).toHaveAttribute(
+      "href",
+      `#${caseStudy.content[0]?.anchorSlug.current}`,
+    );
+  });
+
+  it("does not render a sidebar nav when there are less than two content sections", () => {
+    const caseStudyWithOneContentSection = {
+      ...caseStudy,
+      content: caseStudy.content.slice(0, 1),
+    };
+
+    const { queryByLabelText } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={true}
+        pageData={{
+          caseStudy: caseStudyWithOneContentSection,
+          otherCaseStudies: [],
+        }}
+        topNav={topNavFixture}
+      />,
+    );
+    expect(queryByLabelText("Contents")).toBeNull();
+  });
+
+  it("does not render a sidebar nav when the feature flag is disabled", () => {
+    const { queryByLabelText } = renderWithProviders()(
+      <AboutUsCaseStudy
+        isCaseStudiesFeatEnabled={false}
+        pageData={{ caseStudy, otherCaseStudies: [] }}
+        topNav={topNavFixture}
+      />,
+    );
+    expect(queryByLabelText("Contents")).toBeNull();
+  });
+
+  describe("getServerSideProps", () => {
     it("returns notFound when the slug is missing", async () => {
-      const propsResult = await getStaticProps({});
+      const propsResult = await getServerSideProps({
+        req: {
+          cookies: {},
+        },
+      } as GetServerSidePropsContext<{ slug: string }>);
 
       expect(propsResult).toMatchObject({
         notFound: true,
@@ -173,11 +233,14 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
     });
 
     it("returns notFound when CMS returns null", async () => {
-      mockCMSClient.oaksImpactCaseStudyPage.mockResolvedValueOnce(null);
+      mockCMSClient.caseStudyPage.mockResolvedValueOnce(null);
 
-      const propsResult = await getStaticProps({
+      const propsResult = await getServerSideProps({
+        req: {
+          cookies: {},
+        },
         params: { slug: "test-slug-1" },
-      });
+      } as GetServerSidePropsContext<{ slug: string }>);
 
       expect(propsResult).toMatchObject({
         notFound: true,
@@ -185,30 +248,64 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
     });
   });
 
-  describe("getStaticPaths", () => {
-    it("returns the paths of all case studies", async () => {
-      const pathsResult = await getStaticPaths();
+  // describe("getStaticProps", () => {
+  //   it("returns props data", async () => {
+  //     const propsResult = await getStaticProps({
+  //       params: { slug: "test-slug-1" },
+  //     });
 
-      expect(pathsResult).toEqual({
-        fallback: "blocking",
-        paths: [
-          { params: { slug: "test-slug-1" } },
-          { params: { slug: "test-slug-2" } },
-          { params: { slug: "test-slug-3" } },
-        ],
-      });
-    });
+  //     expect(propsResult).toMatchObject({
+  //       props: {
+  //         topNav: topNavFixture,
+  //       },
+  //     });
+  //   });
 
-    it("returns the fallback blocking config when initial build is skipped", async () => {
-      mockShouldSkipInitialBuild = true;
+  //   it("returns notFound when the slug is missing", async () => {
+  //     const propsResult = await getStaticProps({});
 
-      const pathsResult = await getStaticPaths();
+  //     expect(propsResult).toMatchObject({
+  //       notFound: true,
+  //     });
+  //   });
 
-      expect(mockGetFallbackBlockingConfig).toHaveBeenCalled();
-      expect(pathsResult).toEqual({
-        fallback: "blocking",
-        paths: [],
-      });
-    });
-  });
+  //   it("returns notFound when CMS returns null", async () => {
+  //     mockCMSClient.oaksImpactCaseStudyPage.mockResolvedValueOnce(null);
+
+  //     const propsResult = await getStaticProps({
+  //       params: { slug: "test-slug-1" },
+  //     });
+
+  //     expect(propsResult).toMatchObject({
+  //       notFound: true,
+  //     });
+  //   });
+  // });
+
+  // describe("getStaticPaths", () => {
+  //   it("returns the paths of all case studies", async () => {
+  //     const pathsResult = await getStaticPaths();
+
+  //     expect(pathsResult).toEqual({
+  //       fallback: "blocking",
+  //       paths: [
+  //         { params: { slug: "test-slug-1" } },
+  //         { params: { slug: "test-slug-2" } },
+  //         { params: { slug: "test-slug-3" } },
+  //       ],
+  //     });
+  //   });
+
+  //   it("returns the fallback blocking config when initial build is skipped", async () => {
+  //     mockShouldSkipInitialBuild = true;
+
+  //     const pathsResult = await getStaticPaths();
+
+  //     expect(mockGetFallbackBlockingConfig).toHaveBeenCalled();
+  //     expect(pathsResult).toEqual({
+  //       fallback: "blocking",
+  //       paths: [],
+  //     });
+  //   });
+  // });
 });

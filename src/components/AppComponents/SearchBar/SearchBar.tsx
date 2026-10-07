@@ -2,8 +2,12 @@ import Link from "next/link";
 
 import { OakTertiaryButton, OakFormInput, OakBox } from "@/styles/oakThemeApp";
 import { resolveOakHref } from "@/common-lib/urls/urls";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const SearchBar = () => {
+  const { searchJourneyInitiated } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
   return (
     <>
       {/* Desktop we show a form to search */}
@@ -36,6 +40,12 @@ const SearchBar = () => {
             aria-label="Submit search"
             type="submit"
             iconName="search"
+            onClick={() => {
+              searchJourneyInitiated({
+                context: "search",
+                searchSource: "top nav",
+              });
+            }}
           />
         </OakBox>
       </OakBox>

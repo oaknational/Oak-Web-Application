@@ -28,6 +28,7 @@ import {
   oaksImpactPageSchema,
   oaksImpactCaseStudyPageSchema,
   caseStudyLibraryPageSchema,
+  caseStudyPageSchema,
   nationalCurriculumInsightsSubjectLookupParamsSchema,
   implementationGuidesSchema,
 } from "../../../common-lib/cms-types";
@@ -280,6 +281,11 @@ const getSanityClient = () => ({
     sanityGraphqlApi.caseStudyLibraryPage,
     caseStudyLibraryPageSchema,
     (result) => result.allCaseStudy,
+  ),
+  caseStudyPage: getSingleton(
+    sanityGraphqlApi.caseStudyPage,
+    caseStudyPageSchema,
+    (result) => result.allCaseStudy?.[0],
   ),
   implementationGuides: getSingleton(
     sanityGraphqlApi.implementationGuides,

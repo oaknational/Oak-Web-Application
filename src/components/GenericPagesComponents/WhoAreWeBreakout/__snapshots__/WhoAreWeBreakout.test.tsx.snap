@@ -4,17 +4,17 @@ exports[`WhoAreWeBreakout renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-gEvEer sc-6f48e47b-0 kIMXhD iDBIXi dySDoq"
+      class="sc-bdvwhi sc-gsDMPd sc-6f48e47b-0 jQRcFa Bakex dfSzls"
     >
       <div
-        class="sc-aXZVg sc-gEvEer gnBOnU fXHtRp"
+        class="sc-bdvwhi sc-gsDMPd jUlrhR kkGnDS"
       >
         <span
-          class="sc-aXZVg kvjdhA"
+          class="sc-bdvwhi LoEut"
         >
           <img
             alt="test"
-            class="sc-iGgWBj fygrEH"
+            class="sc-jRQBiJ iumtav"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -26,10 +26,10 @@ exports[`WhoAreWeBreakout renders correctly 1`] = `
         </span>
       </div>
       <div
-        class="sc-aXZVg sc-gEvEer gtjHPG jwSfkN"
+        class="sc-bdvwhi sc-gsDMPd gfRkFf LwAWe"
       >
         <p
-          class="sc-ikkxIA kpoHkn"
+          class="sc-hGPAwl eSUvZb"
         >
           TESTING_CONTENT
         </p>

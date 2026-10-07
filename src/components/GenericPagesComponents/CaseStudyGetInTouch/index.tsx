@@ -2,31 +2,47 @@ import {
   OakFlex,
   OakBox,
   OakHeading,
+  OakHeadingTag,
   OakP,
   OakSecondaryButton,
   OakImage,
-  OakHeadingProps,
 } from "@oaknational/oak-components";
+
+type HeadingStartLevel = 1 | 2 | 3 | 4 | 5;
+
+const headingTagsByStartLevel = {
+  1: ["h1", "h2"],
+  2: ["h2", "h3"],
+  3: ["h3", "h4"],
+  4: ["h4", "h5"],
+  5: ["h5", "h6"],
+} as const satisfies Record<
+  HeadingStartLevel,
+  readonly [OakHeadingTag, OakHeadingTag]
+>;
 
 export type CaseStudyGetInTouchProps = {
   href: string;
   name: string;
   role: string;
-  schoolOrMat: string;
+  institutionName: string;
   imageUrl: string;
   imageAlt?: string;
-  headingTag?: OakHeadingProps["tag"];
+  headingStartLevel?: HeadingStartLevel;
 };
 
 export function CaseStudyGetInTouch({
   href,
   name,
   role,
-  schoolOrMat,
+  institutionName,
   imageUrl,
   imageAlt,
-  headingTag = "h1",
+  headingStartLevel = 1,
 }: Readonly<CaseStudyGetInTouchProps>) {
+  const [headingTag, nextHeadingTag] =
+    headingTagsByStartLevel[headingStartLevel];
+
   return (
     <OakFlex $gap={"spacing-32"} $flexDirection={["column", "row", "row"]}>
       <OakBox $width="spacing-240" $minWidth="spacing-240">
@@ -49,7 +65,7 @@ export function CaseStudyGetInTouch({
           $color={"text-primary"}
           $font={["heading-6", "heading-5", "heading-5"]}
         >
-          Thank you to {name}, {role} at {schoolOrMat} for sharing their
+          Thank you to {name}, {role} at {institutionName} for sharing their
           feedback to inform this case study
         </OakHeading>
         <OakFlex $flexDirection={"column"} $gap={"spacing-32"}>
@@ -58,7 +74,7 @@ export function CaseStudyGetInTouch({
             $gap={["spacing-12", "spacing-16", "spacing-16"]}
           >
             <OakHeading
-              tag={"h1"}
+              tag={nextHeadingTag}
               $color={"text-primary"}
               $font={["heading-6", "heading-5", "heading-5"]}
             >

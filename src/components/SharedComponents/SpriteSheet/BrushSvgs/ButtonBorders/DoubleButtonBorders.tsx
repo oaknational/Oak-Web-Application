@@ -20,50 +20,50 @@ const focus = css`
 `;
 
 /* TOP */
-const buttonBorderTop = css`
+const buttonBorderTop = css<{ background: ButtonBackground }>`
   ${buttonBorder}
   height: 5px;
   left: 0;
   width: 100%;
 `;
 
-const topInner = css`
+const topInner = css<{ background: ButtonBackground }>`
   ${buttonBorderTop}
   bottom: calc(100% - 2px);
 `;
-const topMiddle = css`
+const topMiddle = css<{ background: ButtonBackground }>`
   ${buttonBorderTop}
   ${focus}
   bottom: calc(100% + 1px);
   color: ${() => getColorByName("lemon")};
 `;
-const topOuter = css`
+const topOuter = css<{ background: ButtonBackground }>`
   ${buttonBorderTop} ${focus}
   bottom: calc(100% + 4px);
   color: ${() => getColorByName("grey60")};
 `;
 
 /* RIGHT */
-const buttonBorderRight = css`
+const buttonBorderRight = css<{ background: ButtonBackground }>`
   ${buttonBorder}
   width: 9px;
   left: 100%;
 `;
 
-const rightInner = css`
+const rightInner = css<{ background: ButtonBackground }>`
   ${buttonBorderRight}
   top: -3px;
   left: calc(100% - 5px);
   height: calc(100% + 3px);
 `;
-const rightMiddle = css`
+const rightMiddle = css<{ background: ButtonBackground }>`
   ${buttonBorderRight} ${focus}
   top: -5px;
   left: calc(100% - 2px);
   height: calc(100% + 7px);
   color: ${() => getColorByName("lemon")};
 `;
-const rightOuter = css`
+const rightOuter = css<{ background: ButtonBackground }>`
   ${buttonBorderRight} ${focus}
   color: ${() => getColorByName("grey60")};
   width: 12px;
@@ -74,7 +74,7 @@ const rightOuter = css`
 `;
 
 /* BOTTOM */
-const buttonBorderBottom = css`
+const buttonBorderBottom = css<{ background: ButtonBackground }>`
   ${buttonBorder}
   height: 6px;
   top: 100%;
@@ -82,18 +82,18 @@ const buttonBorderBottom = css`
   width: calc(100% + 6px);
 `;
 
-const bottomInner = css`
+const bottomInner = css<{ background: ButtonBackground }>`
   ${buttonBorderBottom}
   top: calc(100% - 4px);
   width: 100%;
 `;
-const bottomMiddle = css`
+const bottomMiddle = css<{ background: ButtonBackground }>`
   ${buttonBorderBottom} ${focus}
   width: calc(100% + 4px);
   top: calc(100% - 1px);
   color: ${() => getColorByName("lemon")};
 `;
-const bottomOuter = css`
+const bottomOuter = css<{ background: ButtonBackground }>`
   ${buttonBorderBottom} ${focus}
   width: calc(100% + 5px);
   top: calc(100% + 1px);
@@ -101,25 +101,25 @@ const bottomOuter = css`
 `;
 
 /* LEFT */
-const buttonBorderLeft = css`
+const buttonBorderLeft = css<{ background: ButtonBackground }>`
   ${buttonBorder}
   width: 7px;
 `;
 
-const leftInner = css`
+const leftInner = css<{ background: ButtonBackground }>`
   ${buttonBorderLeft}
   top: -1px;
   right: calc(100% - 3px);
   height: calc(100% + 3px);
 `;
-const leftMiddle = css`
+const leftMiddle = css<{ background: ButtonBackground }>`
   ${buttonBorderLeft} ${focus}
   top: -4px;
   right: calc(100% - 1px);
   height: calc(100% + 8px);
   color: ${() => getColorByName("lemon")};
 `;
-const leftOuter = css`
+const leftOuter = css<{ background: ButtonBackground }>`
   ${buttonBorderLeft} ${focus}
   color: ${() => getColorByName("grey60")};
   width: 10px;
@@ -128,40 +128,48 @@ const leftOuter = css`
   height: calc(100% + 14px);
 `;
 
-const ButtonBorderTopInner = styled(OakSvg)`
+const ButtonBorderTopInner = styled(OakSvg)<{ background: ButtonBackground }>`
   ${topInner}
 `;
-const ButtonBorderTopMiddle = styled(OakSvg)`
+const ButtonBorderTopMiddle = styled(OakSvg)<{ background: ButtonBackground }>`
   ${topMiddle}
 `;
-const ButtonBorderTopOuter = styled(OakSvg)`
+const ButtonBorderTopOuter = styled(OakSvg)<{ background: ButtonBackground }>`
   ${topOuter}
 `;
-const ButtonBorderRightInner = styled(OakSvg)`
+const ButtonBorderRightInner = styled(OakSvg)<{ background: ButtonBackground }>`
   ${rightInner}
 `;
-const ButtonBorderRightMiddle = styled(OakSvg)`
+const ButtonBorderRightMiddle = styled(OakSvg)<{
+  background: ButtonBackground;
+}>`
   ${rightMiddle}
 `;
-const ButtonBorderRightOuter = styled(OakSvg)`
+const ButtonBorderRightOuter = styled(OakSvg)<{ background: ButtonBackground }>`
   ${rightOuter}
 `;
-const ButtonBorderBottomInner = styled(OakSvg)`
+const ButtonBorderBottomInner = styled(OakSvg)<{
+  background: ButtonBackground;
+}>`
   ${bottomInner}
 `;
-const ButtonBorderBottomMiddle = styled(OakSvg)`
+const ButtonBorderBottomMiddle = styled(OakSvg)<{
+  background: ButtonBackground;
+}>`
   ${bottomMiddle}
 `;
-const ButtonBorderBottomOuter = styled(OakSvg)`
+const ButtonBorderBottomOuter = styled(OakSvg)<{
+  background: ButtonBackground;
+}>`
   ${bottomOuter}
 `;
-const ButtonBorderLeftInner = styled(OakSvg)`
+const ButtonBorderLeftInner = styled(OakSvg)<{ background: ButtonBackground }>`
   ${leftInner}
 `;
-const ButtonBorderLeftMiddle = styled(OakSvg)`
+const ButtonBorderLeftMiddle = styled(OakSvg)<{ background: ButtonBackground }>`
   ${leftMiddle}
 `;
-const ButtonBorderLeftOuter = styled(OakSvg)`
+const ButtonBorderLeftOuter = styled(OakSvg)<{ background: ButtonBackground }>`
   ${leftOuter}
 `;
 
