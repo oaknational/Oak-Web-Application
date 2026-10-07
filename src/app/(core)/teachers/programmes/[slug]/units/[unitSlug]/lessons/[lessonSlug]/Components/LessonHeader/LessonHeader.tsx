@@ -32,6 +32,7 @@ const LessonHeader = (props: LessonHeaderProps) => {
     currentLessonSlug,
     loginRequired,
     georestricted,
+    ...restProps
   } = props;
   const { lessonResourceDownloadStarted } = useTeacherBrowseAnalytics(
     (store) => store.track,
@@ -40,7 +41,7 @@ const LessonHeader = (props: LessonHeaderProps) => {
   return (
     <>
       <Header
-        {...props}
+        {...restProps}
         layoutVariant="large"
         backgroundColorLevel={1}
         useSubduedBackground

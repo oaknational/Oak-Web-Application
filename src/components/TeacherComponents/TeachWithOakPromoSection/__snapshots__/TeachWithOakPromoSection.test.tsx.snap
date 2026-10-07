@@ -6,49 +6,49 @@ exports[`TeachWithOakPromoSection renders correctly 1`] = `
     data-overlay-container="true"
   >
     <div
-      class="sc-aXZVg iNGvke"
+      class="sc-bdvwhi cqfEAN"
     >
       <div
-        class="sc-aXZVg sc-jGKxIK eIUCsj efAcwU"
+        class="sc-bdvwhi sc-bXTeWK hpVQPd hhvrej"
       >
         <a
-          class="sc-aXZVg sc-gEvEer sc-bpUBKd fdJxNw dXoawi KLExA"
+          class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fugdSh fbAqCR hsiEZu"
           href="/teachers/teach-with-oak?returnTo=%2Ftest%2Furl&lessonName=Lesson+Name&unitName=Unit+Name"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-iHmpnF jPvJsJ jFNgPm"
+            class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
           >
             <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+              class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
             >
               <h2
-                class="sc-eldPxv ibGcSM"
+                class="sc-bkkgYE jxvseu"
               >
                 Ever wondered why our lessons are structured this way?
               </h2>
               <p
-                class="sc-ikkxIA cKYkIH"
+                class="sc-hGPAwl elFTWr"
               >
                 See how explanation, checks for understanding, practice and feedback work together to support pupils' learning.
               </p>
             </div>
             <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+              class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
             >
               <div
-                class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
+                class="sc-bdvwhi sc-gsDMPd hPWTKU eWbmLh"
               >
                 <span
-                  class="sc-eqUAAy dECBeo"
+                  class="sc-dkPwfY hmZYGI"
                 >
                   See the thinking
                 </span>
                 <span
-                  class="sc-aXZVg jJQFnr"
+                  class="sc-bdvwhi cERAFe"
                 >
                   <img
                     alt=""
-                    class="sc-iGgWBj cMzyFO"
+                    class="sc-jRQBiJ eMsccW"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -64,27 +64,27 @@ exports[`TeachWithOakPromoSection renders correctly 1`] = `
     </div>
     <div
       aria-live="polite"
-      class="sc-aXZVg sc-gEvEer sc-372e3d03-0 huaWfm hpzNYH fYWdOt"
+      class="sc-bdvwhi sc-gsDMPd sc-b7a27f76-0 kjWDfr htLMtM krUohl"
     />
   </div>
   <div
-    class="sc-aXZVg ehCqNw"
+    class="sc-bdvwhi gFnpsF"
   >
     <div
-      class="sc-aXZVg hdJUDP"
+      class="sc-bdvwhi iwVUCi"
       data-testid="cookie-banner"
     >
       <div
-        class="sc-aXZVg hKtyTC"
+        class="sc-bdvwhi iIozLH"
       >
         <div
-          class="sc-aXZVg sc-gEvEer gfKbxO hPCrxg"
+          class="sc-bdvwhi sc-gsDMPd egBoar iKjTsb"
         >
           <div
-            class="sc-aXZVg bURnqS"
+            class="sc-bdvwhi fIxCDL"
           >
             <strong
-              class="sc-eqUAAy jPKsIw"
+              class="sc-dkPwfY iyMjBM"
             >
               This site uses cookies to store information on your computer.
             </strong>
@@ -92,40 +92,40 @@ exports[`TeachWithOakPromoSection renders correctly 1`] = `
             Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer jPvJsJ buEORy"
+            class="sc-bdvwhi sc-gsDMPd hPWTKU gyKdMN"
           >
             <div
-              class="sc-aXZVg sc-gEvEer eapQdf uEMma"
+              class="sc-bdvwhi sc-gsDMPd lmXuba eWbmLh"
             >
               <button
-                class="sc-fHjqPf fFAulo"
+                class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
                 data-testid="cookie-banner-reject"
                 type="button"
               >
                 <span
-                  class="sc-eqUAAy iGfTGj"
+                  class="sc-dkPwfY fgmEIT"
                 >
                   Reject non-essential cookies
                 </span>
               </button>
             </div>
             <div
-              class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
             >
               <div
-                class="sc-aXZVg kpXzs grey-shadow"
+                class="sc-bdvwhi kAFHfV grey-shadow"
               />
               <div
-                class="sc-aXZVg kpXzs yellow-shadow"
+                class="sc-bdvwhi kAFHfV yellow-shadow"
               />
               <button
-                class="sc-dcJsrY sc-jXbUNg bALQkH khQbhv internal-button"
+                class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
                 >
                   <span
-                    class="sc-eqUAAy edqVpV"
+                    class="sc-dkPwfY kXQhTZ"
                   >
                     Cookie settings
                   </span>
@@ -133,23 +133,23 @@ exports[`TeachWithOakPromoSection renders correctly 1`] = `
               </button>
             </div>
             <div
-              class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
             >
               <div
-                class="sc-aXZVg kpXzs grey-shadow"
+                class="sc-bdvwhi kAFHfV grey-shadow"
               />
               <div
-                class="sc-aXZVg kpXzs yellow-shadow"
+                class="sc-bdvwhi kAFHfV yellow-shadow"
               />
               <button
-                class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
+                class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
                 data-testid="cookie-banner-accept"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
                 >
                   <span
-                    class="sc-eqUAAy edqVpV"
+                    class="sc-dkPwfY kXQhTZ"
                   >
                     Accept all cookies
                   </span>

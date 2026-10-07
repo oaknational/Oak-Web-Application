@@ -527,7 +527,7 @@ _avo_invoke = function _avo_invoke(
 ) {
   try {
     _avo_invoke_payload({
-      ac: "FOXnIjzZ420wzGFB6L6i",
+      ac: "U1yECwTL0qODVmrr2Gsr",
       br: "master",
       en: env,
       ev: eventId,
@@ -556,7 +556,7 @@ _avo_invoke_meta = function _avo_invoke_meta(
 ) {
   try {
     _avo_invoke_payload({
-      ac: "FOXnIjzZ420wzGFB6L6i",
+      ac: "U1yECwTL0qODVmrr2Gsr",
       br: "master",
       en: env,
       ty: type,

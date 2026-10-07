@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext } from "next/types";
-import slugify from "slugify";
 
+import { otherCaseStudies } from "@/__tests__/pages/about-us/case-studies/case-studies.fixtures";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import CaseStudyLibraryPage, {
@@ -17,39 +17,8 @@ jest.mock("@/utils/featureFlagChecks/server", () => ({
   isFeatureFlagEnabledServer: jest.fn(() => false),
 }));
 
-function fixtureCaseStudy(title: string) {
-  const slug = slugify(title);
-  return {
-    title,
-    video: {
-      title: title,
-      video: {
-        asset: {
-          assetId: `asset-${slug}`,
-          playbackId: `playback-${slug}`,
-          thumbTime: null,
-        },
-      },
-    },
-    slug: {
-      current: slug,
-    },
-    image: {
-      asset: {
-        _id: slug,
-        url: `http://localhost/${slug}`,
-      },
-    },
-    publishedAt: new Date(0).toISOString(),
-  };
-}
-
 const mockPageData: AboutUsCaseStudyLibraryPageProps["pageData"] = {
-  caseStudies: [
-    fixtureCaseStudy(`Test 1`),
-    fixtureCaseStudy(`Test 2`),
-    fixtureCaseStudy(`Test 3`),
-  ],
+  caseStudies: otherCaseStudies,
 };
 
 describe("pages/about-us/case-studies/index.tsx", () => {
@@ -66,9 +35,9 @@ describe("pages/about-us/case-studies/index.tsx", () => {
       <CaseStudyLibraryPage topNav={topNavFixture} pageData={mockPageData} />,
     );
 
-    expect(container).toHaveTextContent("Test 1");
-    expect(container).toHaveTextContent("Test 2");
-    expect(container).toHaveTextContent("Test 3");
+    expect(container).toHaveTextContent("TEST_TITLE_2");
+    expect(container).toHaveTextContent("TEST_TITLE_3");
+    expect(container).toHaveTextContent("TEST_TITLE_VIDEO");
 
     expect(container).toMatchSnapshot();
   });
