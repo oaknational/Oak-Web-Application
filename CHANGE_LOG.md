@@ -1,3 +1,10 @@
+## [1.1233.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1233.1...v1.1233.2) (2026-10-07)
+
+
+### Bug Fixes
+
+* subject picker container height ([5e2e346](https://github.com/oaknational/Oak-Web-Application/commit/5e2e346846b844e8821d00828d8b6b124f1cf8d2))
+
 ## [1.1233.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1233.0...v1.1233.1) (2026-10-07)
 
 
