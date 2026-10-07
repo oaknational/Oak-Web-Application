@@ -800,7 +800,7 @@ exports[`pages/about-us/case-studies/[slug].tsx does not render written case stu
                   class="sc-bdvwhi hPWTKU"
                 >
                   <div
-                    class="sc-bdvwhi eXLAVP"
+                    class="sc-bdvwhi Flphu"
                   >
                     <div
                       class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
@@ -979,7 +979,7 @@ exports[`pages/about-us/case-studies/[slug].tsx does not render written case stu
                     class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
                   >
                     <div
-                      class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
+                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
                     >
                       <a
                         class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -2855,7 +2855,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
                   class="sc-bdvwhi hPWTKU"
                 >
                   <div
-                    class="sc-bdvwhi eXLAVP"
+                    class="sc-bdvwhi Flphu"
                   >
                     <div
                       class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
@@ -4837,7 +4837,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                           Summary
                         </div>
                         <p
-                          class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                          class="sc-hGPAwl gpFakR"
                         >
                           TEST_SUMMARY_1
                         </p>
@@ -4987,7 +4987,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                   class="sc-bdvwhi hPWTKU"
                 >
                   <div
-                    class="sc-bdvwhi eXLAVP"
+                    class="sc-bdvwhi Flphu"
                   >
                     <div
                       class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
@@ -5126,30 +5126,30 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                     </div>
                   </div>
                   <div
-                    class="sc-bdvwhi sc-gsDMPd eXLAVP cosniT"
+                    class="sc-bdvwhi sc-gsDMPd eXLAVP ga-DXyn"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd JknFv jMMTBg"
+                      class="sc-bdvwhi sc-gsDMPd bNskZW jMMTBg"
                       id="test-anchor-slug-1"
                     >
-                      <div
+                      <h2
                         class="sc-bdvwhi sc-gsDMPd hPWTKU hpBtVy"
                       >
-                        <div
+                        <span
                           class="sc-bdvwhi sc-gsDMPd fHThTV gYQTzD"
                         >
-                          <div
+                          <span
                             class="sc-bdvwhi hPWTKU"
                           >
                             TEST_LABEL_1
-                          </div>
-                        </div>
-                        <div
-                          class="sc-bkkgYE hDGBsv"
+                          </span>
+                        </span>
+                        <span
+                          class="sc-dkPwfY hNoGFQ"
                         >
                           TEST_HEADING_1
-                        </div>
-                      </div>
+                        </span>
+                      </h2>
                       <p
                         class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
                       >
@@ -5157,27 +5157,27 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                       </p>
                     </div>
                     <div
-                      class="sc-bdvwhi sc-gsDMPd JknFv jMMTBg"
+                      class="sc-bdvwhi sc-gsDMPd bNskZW jMMTBg"
                       id="test-anchor-slug-2"
                     >
-                      <div
+                      <h2
                         class="sc-bdvwhi sc-gsDMPd hPWTKU hpBtVy"
                       >
-                        <div
+                        <span
                           class="sc-bdvwhi sc-gsDMPd fHThTV gYQTzD"
                         >
-                          <div
+                          <span
                             class="sc-bdvwhi hPWTKU"
                           >
                             TEST_LABEL_2
-                          </div>
-                        </div>
-                        <div
-                          class="sc-bkkgYE hDGBsv"
+                          </span>
+                        </span>
+                        <span
+                          class="sc-dkPwfY hNoGFQ"
                         >
                           TEST_HEADING_2
-                        </div>
-                      </div>
+                        </span>
+                      </h2>
                       <p
                         class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
                       >
@@ -5196,7 +5196,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                         width="240"
                       />
                       <div
-                        class="sc-bdvwhi iTIjHb"
+                        class="sc-bdvwhi hpbfuw"
                       >
                         <div
                           class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
@@ -5338,7 +5338,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                     />
                   </div>
                   <div
-                    class="sc-bdvwhi jMJXUQ"
+                    class="sc-bdvwhi dSWIFQ"
                   >
                     <div
                       class="sc-bdvwhi sc-gsDMPd hPWTKU ebZWkb"
@@ -7285,7 +7285,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                           Summary
                         </div>
                         <p
-                          class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                          class="sc-hGPAwl gpFakR"
                         >
                           TEST_SUMMARY_1
                         </p>
@@ -7435,7 +7435,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                   class="sc-bdvwhi hPWTKU"
                 >
                   <div
-                    class="sc-bdvwhi eXLAVP"
+                    class="sc-bdvwhi Flphu"
                   >
                     <div
                       class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
@@ -7574,30 +7574,30 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                     </div>
                   </div>
                   <div
-                    class="sc-bdvwhi sc-gsDMPd eXLAVP cosniT"
+                    class="sc-bdvwhi sc-gsDMPd eXLAVP ga-DXyn"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd JknFv jMMTBg"
+                      class="sc-bdvwhi sc-gsDMPd bNskZW jMMTBg"
                       id="test-anchor-slug-1"
                     >
-                      <div
+                      <h2
                         class="sc-bdvwhi sc-gsDMPd hPWTKU hpBtVy"
                       >
-                        <div
+                        <span
                           class="sc-bdvwhi sc-gsDMPd fHThTV gYQTzD"
                         >
-                          <div
+                          <span
                             class="sc-bdvwhi hPWTKU"
                           >
                             TEST_LABEL_1
-                          </div>
-                        </div>
-                        <div
-                          class="sc-bkkgYE hDGBsv"
+                          </span>
+                        </span>
+                        <span
+                          class="sc-dkPwfY hNoGFQ"
                         >
                           TEST_HEADING_1
-                        </div>
-                      </div>
+                        </span>
+                      </h2>
                       <p
                         class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
                       >
@@ -7605,27 +7605,27 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                       </p>
                     </div>
                     <div
-                      class="sc-bdvwhi sc-gsDMPd JknFv jMMTBg"
+                      class="sc-bdvwhi sc-gsDMPd bNskZW jMMTBg"
                       id="test-anchor-slug-2"
                     >
-                      <div
+                      <h2
                         class="sc-bdvwhi sc-gsDMPd hPWTKU hpBtVy"
                       >
-                        <div
+                        <span
                           class="sc-bdvwhi sc-gsDMPd fHThTV gYQTzD"
                         >
-                          <div
+                          <span
                             class="sc-bdvwhi hPWTKU"
                           >
                             TEST_LABEL_2
-                          </div>
-                        </div>
-                        <div
-                          class="sc-bkkgYE hDGBsv"
+                          </span>
+                        </span>
+                        <span
+                          class="sc-dkPwfY hNoGFQ"
                         >
                           TEST_HEADING_2
-                        </div>
-                      </div>
+                        </span>
+                      </h2>
                       <p
                         class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
                       >
@@ -7644,7 +7644,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                         width="240"
                       />
                       <div
-                        class="sc-bdvwhi iTIjHb"
+                        class="sc-bdvwhi hpbfuw"
                       >
                         <div
                           class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
@@ -7786,7 +7786,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                     />
                   </div>
                   <div
-                    class="sc-bdvwhi jMJXUQ"
+                    class="sc-bdvwhi dSWIFQ"
                   >
                     <div
                       class="sc-bdvwhi sc-gsDMPd hPWTKU ebZWkb"
@@ -7930,7 +7930,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                     class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
                   >
                     <div
-                      class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
+                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
                     >
                       <a
                         class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -7976,7 +7976,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                               <div
                                 class="sc-bdvwhi hPWTKU"
                               >
-                                primary
+                                Primary
                               </div>
                             </div>
                           </div>
@@ -7988,7 +7988,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                     class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
                   >
                     <div
-                      class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
+                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
                     >
                       <a
                         class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -8034,7 +8034,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                               <div
                                 class="sc-bdvwhi hPWTKU"
                               >
-                                primary
+                                Primary
                               </div>
                             </div>
                           </div>
@@ -8046,7 +8046,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                     class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
                   >
                     <div
-                      class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
+                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
                     >
                       <a
                         class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -9898,7 +9898,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                           Summary
                         </div>
                         <p
-                          class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                          class="sc-hGPAwl gpFakR"
                         >
                           TEST_SUMMARY_1
                         </p>
@@ -10048,7 +10048,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                   class="sc-bdvwhi hPWTKU"
                 >
                   <div
-                    class="sc-bdvwhi eXLAVP"
+                    class="sc-bdvwhi Flphu"
                   >
                     <div
                       class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
@@ -10187,30 +10187,30 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                     </div>
                   </div>
                   <div
-                    class="sc-bdvwhi sc-gsDMPd eXLAVP cosniT"
+                    class="sc-bdvwhi sc-gsDMPd eXLAVP ga-DXyn"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd JknFv jMMTBg"
+                      class="sc-bdvwhi sc-gsDMPd bNskZW jMMTBg"
                       id="test-anchor-slug-1"
                     >
-                      <div
+                      <h2
                         class="sc-bdvwhi sc-gsDMPd hPWTKU hpBtVy"
                       >
-                        <div
+                        <span
                           class="sc-bdvwhi sc-gsDMPd fHThTV gYQTzD"
                         >
-                          <div
+                          <span
                             class="sc-bdvwhi hPWTKU"
                           >
                             TEST_LABEL_1
-                          </div>
-                        </div>
-                        <div
-                          class="sc-bkkgYE hDGBsv"
+                          </span>
+                        </span>
+                        <span
+                          class="sc-dkPwfY hNoGFQ"
                         >
                           TEST_HEADING_1
-                        </div>
-                      </div>
+                        </span>
+                      </h2>
                       <p
                         class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
                       >
@@ -10218,27 +10218,27 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                       </p>
                     </div>
                     <div
-                      class="sc-bdvwhi sc-gsDMPd JknFv jMMTBg"
+                      class="sc-bdvwhi sc-gsDMPd bNskZW jMMTBg"
                       id="test-anchor-slug-2"
                     >
-                      <div
+                      <h2
                         class="sc-bdvwhi sc-gsDMPd hPWTKU hpBtVy"
                       >
-                        <div
+                        <span
                           class="sc-bdvwhi sc-gsDMPd fHThTV gYQTzD"
                         >
-                          <div
+                          <span
                             class="sc-bdvwhi hPWTKU"
                           >
                             TEST_LABEL_2
-                          </div>
-                        </div>
-                        <div
-                          class="sc-bkkgYE hDGBsv"
+                          </span>
+                        </span>
+                        <span
+                          class="sc-dkPwfY hNoGFQ"
                         >
                           TEST_HEADING_2
-                        </div>
-                      </div>
+                        </span>
+                      </h2>
                       <p
                         class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
                       >
@@ -10257,7 +10257,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                         width="240"
                       />
                       <div
-                        class="sc-bdvwhi iTIjHb"
+                        class="sc-bdvwhi hpbfuw"
                       >
                         <div
                           class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
@@ -10399,7 +10399,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                     />
                   </div>
                   <div
-                    class="sc-bdvwhi jMJXUQ"
+                    class="sc-bdvwhi dSWIFQ"
                   >
                     <div
                       class="sc-bdvwhi sc-gsDMPd hPWTKU ebZWkb"
@@ -10574,7 +10574,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                     class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
                   >
                     <div
-                      class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
+                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
                     >
                       <a
                         class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -10620,7 +10620,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                               <div
                                 class="sc-bdvwhi hPWTKU"
                               >
-                                primary
+                                Primary
                               </div>
                             </div>
                           </div>
@@ -10632,7 +10632,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                     class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
                   >
                     <div
-                      class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
+                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
                     >
                       <a
                         class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -10678,7 +10678,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                               <div
                                 class="sc-bdvwhi hPWTKU"
                               >
-                                primary
+                                Primary
                               </div>
                             </div>
                           </div>
@@ -10690,7 +10690,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                     class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
                   >
                     <div
-                      class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
+                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
                     >
                       <a
                         class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
