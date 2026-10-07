@@ -15,6 +15,7 @@ function getDeploymentTestUrls() {
     "/about-us/who-we-are",
     "/about-us/oaks-curricula",
     "/about-us/oaks-impact",
+    "/about-us/case-studies",
     "/about-us/case-studies/giving-teachers-a-starting-point-with-safe-curriculum-aligned-ai-tools",
     "/about-us/meet-the-team",
     "/about-us/meet-the-team/john-roberts?section=leadership",
