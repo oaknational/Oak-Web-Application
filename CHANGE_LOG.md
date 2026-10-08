@@ -1,3 +1,28 @@
+# [1.1235.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1234.0...v1.1235.0) (2026-10-08)
+
+
+### Bug Fixes
+
+* imports ([e159039](https://github.com/oaknational/Oak-Web-Application/commit/e159039b3f468967003c511c4912cac234a87c2a))
+* remove duplicate test URL ([642bfb6](https://github.com/oaknational/Oak-Web-Application/commit/642bfb69d3f1fec5908425b599ed8386ad4cb61c))
+* remove duplicate url ([31e8bcf](https://github.com/oaknational/Oak-Web-Application/commit/31e8bcf19b7367a57203dd0cd050247f27eb0de7))
+* remove duplicate url ([940ee26](https://github.com/oaknational/Oak-Web-Application/commit/940ee26ed713cdd835fc8b4949d018a6f1a47bff))
+* update regex to remove backtracking ([dd19e44](https://github.com/oaknational/Oak-Web-Application/commit/dd19e4479a6f5c38b7ee272add4fdc33592ebade))
+
+
+### Features
+
+* add chromatic script ([fd15f48](https://github.com/oaknational/Oak-Web-Application/commit/fd15f488346566c8bd633fcb34073e9e05731a4b))
+* add chromatic to playwright config ([bd51bde](https://github.com/oaknational/Oak-Web-Application/commit/bd51bdec97a19373bbd59871b8c07f55872fac20))
+* chromatic ignore same elements as percy ([2f9bd8a](https://github.com/oaknational/Oak-Web-Application/commit/2f9bd8ad6b6cc84cc247e274ce7e94012bfc3e4a))
+* include project name in takesnapshot to distinguish devices in chromatic ([c8114e0](https://github.com/oaknational/Oak-Web-Application/commit/c8114e0872936227d68608d5518b14fdc8a61927))
+* include sign in VRT with custom timeout ([5409f2c](https://github.com/oaknational/Oak-Web-Application/commit/5409f2cf23f8647a1fda1f1163c42f47c97c9139))
+* install chromatic ([f0aedf8](https://github.com/oaknational/Oak-Web-Application/commit/f0aedf8f8be07e63a582d1af328bf41393732b2b))
+* move visual tests ([f6f292c](https://github.com/oaknational/Oak-Web-Application/commit/f6f292c49cb0ccc7474a804d78b0c780d164938f))
+* update docs with testing info for e2e testing scripts ([f681760](https://github.com/oaknational/Oak-Web-Application/commit/f6817607c8850d2e2864f3607eb77acb79dcce3c))
+* update visual tests to latest iphone ([078ae8c](https://github.com/oaknational/Oak-Web-Application/commit/078ae8cbc2a9749da03246dc8cbf6e44f6b143f0))
+* use screenshot css to hide matomo ([10c52b6](https://github.com/oaknational/Oak-Web-Application/commit/10c52b6fb814cbde2d38c4b500e47b4afda07283))
+
 # [1.1234.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1233.2...v1.1234.0) (2026-10-08)
 
 
