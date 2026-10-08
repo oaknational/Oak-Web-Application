@@ -1,3 +1,22 @@
+# [1.1234.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1233.2...v1.1234.0) (2026-10-08)
+
+
+### Bug Fixes
+
+* add avo resolveOakHref ([15bd633](https://github.com/oaknational/Oak-Web-Application/commit/15bd633c3e0adca1c952fccede67e17f6d37c919))
+* remove /about-us/case-studies from exclude ([9bc94dd](https://github.com/oaknational/Oak-Web-Application/commit/9bc94ddce3eae766a014002528c105d69140f3a2))
+* resolve to right slug for case studies ([7faf5ac](https://github.com/oaknational/Oak-Web-Application/commit/7faf5ac9e45ef50db8ae07a0be2c92a5ed5c7110))
+* snaps ([f777c72](https://github.com/oaknational/Oak-Web-Application/commit/f777c7254e291e53985093bf41a98543edd5bb91))
+* snaps ([15cfc53](https://github.com/oaknational/Oak-Web-Application/commit/15cfc53eb343a8ed7b972b90dec4128d6716b437))
+* wrapping of "View all case studies" link ([b51fe89](https://github.com/oaknational/Oak-Web-Application/commit/b51fe897b83fef3aadea9cd07e99127432ca5d3c))
+
+
+### Features
+
+* add /about-us/case-studies to the sitemap ([2daf649](https://github.com/oaknational/Oak-Web-Application/commit/2daf6492c2489f6ac621792bd4ffc10d651dbbaf))
+* added "Case studies" to header/footer ([5636543](https://github.com/oaknational/Oak-Web-Application/commit/56365435400e9d0fd914c9a9dc35cacc04a2ab71))
+* enable "case-studies-v2" by default and enabling the feature for all ([a4cf21c](https://github.com/oaknational/Oak-Web-Application/commit/a4cf21cea778cebd1f2f692648e874313cdcd1b1))
+
 ## [1.1233.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1233.1...v1.1233.2) (2026-10-07)
 
 
