@@ -39,9 +39,13 @@ type OakWebApplicationProps = AppProps & {
 
 function GleapButton() {
   const [isOpened, setIsOpened] = useState(false);
+  const [shouldShowButton, setShouldShowButton] = useState(false);
   useEffect(() => {
     const initGleap = async () => {
       const { default: Gleap } = await import("gleap");
+      Gleap.on("initialized", () => {
+        setShouldShowButton(true);
+      });
       Gleap.on("open", () => {
         setIsOpened(true);
       });
@@ -66,6 +70,7 @@ function GleapButton() {
       aria-label="Feedback panel"
       aria-expanded={isOpened}
       style={{
+        display: shouldShowButton ? "block" : "none",
         position: "fixed",
         zIndex: 9999,
         right: 20,
