@@ -1,3 +1,10 @@
+## [1.1237.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1237.0...v1.1237.1) (2026-10-08)
+
+
+### Bug Fixes
+
+* case study nav hover colour ([61b5682](https://github.com/oaknational/Oak-Web-Application/commit/61b5682c7a6dd9caec00caad5a1c1efcec17cfa5))
+
 # [1.1237.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1236.0...v1.1237.0) (2026-10-08)
 
 
