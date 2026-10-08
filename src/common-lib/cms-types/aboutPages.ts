@@ -190,7 +190,7 @@ export const oaksImpactPageSchoolQuotesSchema = z.object({
 });
 
 export const oaksImpactPageSchema = z.object({
-  caseStudy: z
+  content: z
     .tuple([
       z.object({
         header: oaksImpactPageHeaderSchema,
@@ -199,7 +199,7 @@ export const oaksImpactPageSchema = z.object({
       }),
     ])
     .transform((caseStudy) => caseStudy[0]),
-  otherCaseStudies: z.array(caseStudyCardSchema),
+  caseStudies: z.array(caseStudyCardSchema),
   seo: seoSchema.nullish(),
 });
 

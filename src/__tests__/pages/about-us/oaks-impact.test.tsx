@@ -21,7 +21,7 @@ jest.mock("../../../node-lib/cms");
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
 const mockPageData: OaksImpactPageProps["pageData"] = {
-  caseStudy: {
+  content: {
     header: {
       introText: "Oaks Impact intro",
       video: {
@@ -49,7 +49,7 @@ const mockPageData: OaksImpactPageProps["pageData"] = {
       cards: [],
     },
   },
-  otherCaseStudies: [
+  caseStudies: [
     {
       video: {
         title: "Test 1",
