@@ -76,5 +76,6 @@ query oaksImpactPage($isDraftFilter: Sanity_DocumentFilter) {
       ...ImageWithAltText
     }
     title
+    tag
   }
 }
