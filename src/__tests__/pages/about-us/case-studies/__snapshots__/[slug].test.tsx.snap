@@ -1309,6 +1309,20 @@ exports[`pages/about-us/case-studies/[slug].tsx does not render written case stu
                       >
                         <a
                           class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/about-us/case-studies"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Case studies
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/about-us/get-involved"
                         >
                           <span
@@ -1768,7 +1782,7 @@ exports[`pages/about-us/case-studies/[slug].tsx does not render written case stu
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-cc003eb3-0 iCQXgT"
+              class="sc-bdvwhi LoEut sc-aa95c44-0 fIryuT"
               data-percy-hide="contents"
             >
               <img
@@ -3292,6 +3306,20 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
                       >
                         <a
                           class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/about-us/case-studies"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Case studies
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/about-us/get-involved"
                         >
                           <span
@@ -3751,7 +3779,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-cc003eb3-0 iCQXgT"
+              class="sc-bdvwhi LoEut sc-aa95c44-0 fIryuT"
               data-percy-hide="contents"
             >
               <img
@@ -5740,6 +5768,20 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                       >
                         <a
                           class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/about-us/case-studies"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Case studies
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/about-us/get-involved"
                         >
                           <span
@@ -6199,7 +6241,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-cc003eb3-0 iCQXgT"
+              class="sc-bdvwhi LoEut sc-aa95c44-0 fIryuT"
               data-percy-hide="contents"
             >
               <img
@@ -8353,6 +8395,20 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                       >
                         <a
                           class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/about-us/case-studies"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Case studies
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/about-us/get-involved"
                         >
                           <span
@@ -8812,7 +8868,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-cc003eb3-0 iCQXgT"
+              class="sc-bdvwhi LoEut sc-aa95c44-0 fIryuT"
               data-percy-hide="contents"
             >
               <img
@@ -10533,37 +10589,37 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                           Explore more case studies
                         </h2>
                       </div>
-                      <a
-                        class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
-                        href="/about-us/case-studies"
+                      <div
+                        class="sc-bdvwhi fUaIBc"
                       >
-                        <span
-                          class="sc-dkPwfY fgmEIT"
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
+                          href="/about-us/case-studies"
                         >
                           <span
-                            class="sc-dkPwfY bgkePr"
+                            class="sc-dkPwfY fgmEIT"
                           >
                             View all case studies
                           </span>
-                        </span>
-                        <div
-                          class="sc-bdvwhi hUeWJD"
-                        >
-                          <span
-                            class="sc-bdvwhi cqHYAi sc-fKVoIy gNZMCw"
+                          <div
+                            class="sc-bdvwhi hUeWJD"
                           >
-                            <img
-                              alt=""
-                              class="sc-jRQBiJ eMsccW"
-                              data-nimg="fill"
-                              decoding="async"
-                              loading="lazy"
-                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
-                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                            />
-                          </span>
-                        </div>
-                      </a>
+                            <span
+                              class="sc-bdvwhi cqHYAi sc-fKVoIy gNZMCw"
+                            >
+                              <img
+                                alt=""
+                                class="sc-jRQBiJ eMsccW"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </span>
+                          </div>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -10989,6 +11045,20 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                             class="sc-dkPwfY fgmEIT"
                           >
                             Oak's impact
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/about-us/case-studies"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Case studies
                           </span>
                         </a>
                       </li>
@@ -11456,7 +11526,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-cc003eb3-0 iCQXgT"
+              class="sc-bdvwhi LoEut sc-aa95c44-0 fIryuT"
               data-percy-hide="contents"
             >
               <img

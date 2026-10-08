@@ -3507,6 +3507,20 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                       >
                         <a
                           class="c73 "
+                          href="/about-us/case-studies"
+                        >
+                          <span
+                            class="c25"
+                          >
+                            Case studies
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c109"
+                      >
+                        <a
+                          class="c73 "
                           href="/about-us/get-involved"
                         >
                           <span
