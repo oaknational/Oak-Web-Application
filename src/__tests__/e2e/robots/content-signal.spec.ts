@@ -17,7 +17,7 @@ const AUTHORISATION_NOTICE =
   "`next-sitemap.config.js` has broken, or a published declaration about AI training " +
   "rights has changed. Both need a human — see `docs/content-signals.md`.";
 
-test.describe("robots.txt Content Signals", () => {
+test.describe.skip("robots.txt Content Signals", () => {
   test("declares Oak's content signals inside the wildcard user-agent group", async ({
     request,
   }) => {

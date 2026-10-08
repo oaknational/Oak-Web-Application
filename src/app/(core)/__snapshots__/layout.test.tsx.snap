@@ -83,6 +83,11 @@ exports[`core layout renders correctly 1`] = `
                 "title": "Who we are",
               },
               {
+                "href": "/about-us/meet-the-team",
+                "slug": "about-meet-the-team",
+                "title": "Meet the team",
+              },
+              {
                 "href": "/about-us/oaks-curricula",
                 "slug": "about-oaks-curricula",
                 "title": "Oak's curricula",
@@ -93,14 +98,14 @@ exports[`core layout renders correctly 1`] = `
                 "title": "Oak's impact",
               },
               {
+                "href": "/about-us/case-studies",
+                "slug": "about-case-study-library",
+                "title": "Case studies",
+              },
+              {
                 "href": "/about-us/get-involved",
                 "slug": "about-get-involved",
                 "title": "Get involved",
-              },
-              {
-                "href": "/about-us/meet-the-team",
-                "slug": "about-meet-the-team",
-                "title": "Meet the team",
               },
               {
                 "href": "/contact-us",

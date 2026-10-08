@@ -44,6 +44,7 @@ exports[`OaksImpactHeader renders correctly 1`] = `
                 >
                   <div
                     class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
+                    data-chromatic="ignore"
                     data-percy-hide="contents"
                     style="box-sizing: content-box;"
                   />

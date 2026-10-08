@@ -1,3 +1,84 @@
+# [1.1235.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1234.0...v1.1235.0) (2026-10-08)
+
+
+### Bug Fixes
+
+* imports ([e159039](https://github.com/oaknational/Oak-Web-Application/commit/e159039b3f468967003c511c4912cac234a87c2a))
+* remove duplicate test URL ([642bfb6](https://github.com/oaknational/Oak-Web-Application/commit/642bfb69d3f1fec5908425b599ed8386ad4cb61c))
+* remove duplicate url ([31e8bcf](https://github.com/oaknational/Oak-Web-Application/commit/31e8bcf19b7367a57203dd0cd050247f27eb0de7))
+* remove duplicate url ([940ee26](https://github.com/oaknational/Oak-Web-Application/commit/940ee26ed713cdd835fc8b4949d018a6f1a47bff))
+* update regex to remove backtracking ([dd19e44](https://github.com/oaknational/Oak-Web-Application/commit/dd19e4479a6f5c38b7ee272add4fdc33592ebade))
+
+
+### Features
+
+* add chromatic script ([fd15f48](https://github.com/oaknational/Oak-Web-Application/commit/fd15f488346566c8bd633fcb34073e9e05731a4b))
+* add chromatic to playwright config ([bd51bde](https://github.com/oaknational/Oak-Web-Application/commit/bd51bdec97a19373bbd59871b8c07f55872fac20))
+* chromatic ignore same elements as percy ([2f9bd8a](https://github.com/oaknational/Oak-Web-Application/commit/2f9bd8ad6b6cc84cc247e274ce7e94012bfc3e4a))
+* include project name in takesnapshot to distinguish devices in chromatic ([c8114e0](https://github.com/oaknational/Oak-Web-Application/commit/c8114e0872936227d68608d5518b14fdc8a61927))
+* include sign in VRT with custom timeout ([5409f2c](https://github.com/oaknational/Oak-Web-Application/commit/5409f2cf23f8647a1fda1f1163c42f47c97c9139))
+* install chromatic ([f0aedf8](https://github.com/oaknational/Oak-Web-Application/commit/f0aedf8f8be07e63a582d1af328bf41393732b2b))
+* move visual tests ([f6f292c](https://github.com/oaknational/Oak-Web-Application/commit/f6f292c49cb0ccc7474a804d78b0c780d164938f))
+* update docs with testing info for e2e testing scripts ([f681760](https://github.com/oaknational/Oak-Web-Application/commit/f6817607c8850d2e2864f3607eb77acb79dcce3c))
+* update visual tests to latest iphone ([078ae8c](https://github.com/oaknational/Oak-Web-Application/commit/078ae8cbc2a9749da03246dc8cbf6e44f6b143f0))
+* use screenshot css to hide matomo ([10c52b6](https://github.com/oaknational/Oak-Web-Application/commit/10c52b6fb814cbde2d38c4b500e47b4afda07283))
+
+# [1.1234.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1233.2...v1.1234.0) (2026-10-08)
+
+
+### Bug Fixes
+
+* add avo resolveOakHref ([15bd633](https://github.com/oaknational/Oak-Web-Application/commit/15bd633c3e0adca1c952fccede67e17f6d37c919))
+* remove /about-us/case-studies from exclude ([9bc94dd](https://github.com/oaknational/Oak-Web-Application/commit/9bc94ddce3eae766a014002528c105d69140f3a2))
+* resolve to right slug for case studies ([7faf5ac](https://github.com/oaknational/Oak-Web-Application/commit/7faf5ac9e45ef50db8ae07a0be2c92a5ed5c7110))
+* snaps ([f777c72](https://github.com/oaknational/Oak-Web-Application/commit/f777c7254e291e53985093bf41a98543edd5bb91))
+* snaps ([15cfc53](https://github.com/oaknational/Oak-Web-Application/commit/15cfc53eb343a8ed7b972b90dec4128d6716b437))
+* wrapping of "View all case studies" link ([b51fe89](https://github.com/oaknational/Oak-Web-Application/commit/b51fe897b83fef3aadea9cd07e99127432ca5d3c))
+
+
+### Features
+
+* add /about-us/case-studies to the sitemap ([2daf649](https://github.com/oaknational/Oak-Web-Application/commit/2daf6492c2489f6ac621792bd4ffc10d651dbbaf))
+* added "Case studies" to header/footer ([5636543](https://github.com/oaknational/Oak-Web-Application/commit/56365435400e9d0fd914c9a9dc35cacc04a2ab71))
+* enable "case-studies-v2" by default and enabling the feature for all ([a4cf21c](https://github.com/oaknational/Oak-Web-Application/commit/a4cf21cea778cebd1f2f692648e874313cdcd1b1))
+
+## [1.1233.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1233.1...v1.1233.2) (2026-10-07)
+
+
+### Bug Fixes
+
+* subject picker container height ([5e2e346](https://github.com/oaknational/Oak-Web-Application/commit/5e2e346846b844e8821d00828d8b6b124f1cf8d2))
+
+## [1.1233.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1233.0...v1.1233.1) (2026-10-07)
+
+
+### Bug Fixes
+
+* **mcp:** add exact-path redirect from /mcp to /ai-plugin ([7a9b0d6](https://github.com/oaknational/Oak-Web-Application/commit/7a9b0d6a581dff308c2dadb46b001c26c824c511))
+* **mcp:** remove redundant /mcp/carousel compat rewrite ([c7dd0bf](https://github.com/oaknational/Oak-Web-Application/commit/c7dd0bfe6150bd23212076eeef602363625f1105))
+
+# [1.1233.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1232.0...v1.1233.0) (2026-10-07)
+
+
+### Bug Fixes
+
+* bump oak-components focus border radius ([b83da1b](https://github.com/oaknational/Oak-Web-Application/commit/b83da1b10433f169f2de5e68f7116e1bfc7c46eb))
+* capitalise tags on case study cards ([e5dd115](https://github.com/oaknational/Oak-Web-Application/commit/e5dd115ee3a9835a826dbcc570c28cce5ee875d2))
+* case study library bg colour ([d40a1f9](https://github.com/oaknational/Oak-Web-Application/commit/d40a1f951dee831ebde021d856d3ed9b2f41a23c))
+* case study page spacing ([61c29a9](https://github.com/oaknational/Oak-Web-Application/commit/61c29a96d965e0842c4dac5b03e3fb8ff6d5a611))
+* case study section headings ([6dd928f](https://github.com/oaknational/Oak-Web-Application/commit/6dd928f887e0492bc6e58611094116cdbd68bc1c))
+* case study spacing ([d445490](https://github.com/oaknational/Oak-Web-Application/commit/d4454906739e52e2403b3b9e9603f6928c2f91cc))
+* case study summary spacing ([95e4b8e](https://github.com/oaknational/Oak-Web-Application/commit/95e4b8ebfe315a4e33463e13a9c3e3a319a2e810))
+* move key for case study articles ([be10e3d](https://github.com/oaknational/Oak-Web-Application/commit/be10e3d80f1aca2fbfab9a073a10e809f134a883))
+* post video container fill ([a6fe018](https://github.com/oaknational/Oak-Web-Application/commit/a6fe018a5d7fcb2d86c1878d0b611e508f81051e))
+* use correct heading tags and style for case study portable text ([7611306](https://github.com/oaknational/Oak-Web-Application/commit/7611306a5f7ea8c1ec9134a373d4c80e260c4211))
+
+
+### Features
+
+* case study headings use span tags ([2c949b3](https://github.com/oaknational/Oak-Web-Application/commit/2c949b315f104b82595307e08b72c9c8519d3603))
+* use articles in case study library ([bef3e0b](https://github.com/oaknational/Oak-Web-Application/commit/bef3e0b58af4499f24e5d48a672b827c850950e8))
+
 # [1.1232.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1231.0...v1.1232.0) (2026-10-06)
 
 
