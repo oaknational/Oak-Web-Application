@@ -205,17 +205,6 @@ export const oaksImpactPageSchema = z.object({
 
 export type OaksImpactPage = z.infer<typeof oaksImpactPageSchema>;
 
-// Individual Case Study Page - to be updated to be independent of Oak's impact in following tickets
-export const oaksImpactCaseStudyPageSchema = z.object({
-  caseStudiesSection: z.object({
-    caseStudies: z.array(caseStudySchema),
-  }),
-});
-
-export type OaksImpactCaseStudyPage = z.infer<
-  typeof oaksImpactCaseStudyPageSchema
->;
-
 // Case Studies Library Page
 export const caseStudyLibraryPageSchema = z.array(caseStudySchema);
 

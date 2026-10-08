@@ -26,7 +26,6 @@ import {
   oaksCurriculaPageSchema,
   teamMemberSchema,
   oaksImpactPageSchema,
-  oaksImpactCaseStudyPageSchema,
   caseStudyLibraryPageSchema,
   caseStudyPageSchema,
   nationalCurriculumInsightsSubjectLookupParamsSchema,
@@ -271,11 +270,6 @@ const getSanityClient = () => ({
     sanityGraphqlApi.oaksImpactPage,
     oaksImpactPageSchema,
     (result) => result,
-  ),
-  oaksImpactCaseStudyPage: getSingleton(
-    sanityGraphqlApi.oaksImpactCaseStudyPage,
-    oaksImpactCaseStudyPageSchema,
-    (result) => result?.allNewAboutCorePageOaksImpact?.[0],
   ),
   caseStudyLibraryPage: getList(
     sanityGraphqlApi.caseStudyLibraryPage,

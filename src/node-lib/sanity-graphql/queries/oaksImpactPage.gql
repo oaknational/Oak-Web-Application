@@ -27,21 +27,6 @@ query oaksImpactPage($isDraftFilter: Sanity_DocumentFilter) {
         textRaw
       }
     }
-    caseStudiesSection {
-      caseStudies {
-        video {
-          ...Video
-        }
-        slug {
-          current
-        }
-        image {
-          ...ImageWithAltText
-        }
-        textRaw
-        title
-      }
-    }
     schoolQuotes {
       heading
       cards {
