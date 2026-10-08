@@ -1,5 +1,32 @@
 import { test, expect } from "../fixtures";
 
+/**
+ * Minimal stand-in for clerk.browser.js, resolving immediately as signed out.
+ *
+ * Clerk v7 reads `__internal_lastEmittedResources` (not the listener payload)
+ * for `useUser`/`useAuth`, and `getToken()` awaits a `status` event emitted by
+ * `Clerk.on`, so both have to be present or the downloads form never becomes
+ * interactive.
+ */
+const clerkStubScript = `(function () {
+  var client = { activeSessions: [], sessions: [], signInAttempt: null, signUpAttempt: null };
+  var resources = { user: null, session: null, client: client, organization: null };
+  window.Clerk = {
+    loaded: true,
+    status: "ready",
+    user: null,
+    session: null,
+    organization: null,
+    client: client,
+    __internal_lastEmittedResources: resources,
+    load: function () { return Promise.resolve(); },
+    addListener: function (fn) { setTimeout(function () { fn(resources); }, 0); return function () {}; },
+    removeListener: function () {},
+    on: function (event, handler) { if (event === "status") { handler("ready"); } },
+    off: function () {},
+  };
+})();`;
+
 test("teacher can click download all resources on lesson page", async ({
   lessonPage,
 }) => {
@@ -29,7 +56,7 @@ test("teacher can complete download flow and download lesson assets", async ({
     await route.fulfill({
       status: 200,
       contentType: "application/javascript",
-      body: `(function(){const c={activeSessions:[],sessions:[],signInAttempt:null,signUpAttempt:null};window.Clerk={loaded:true,user:null,session:null,client:c,load:()=>Promise.resolve(),addListener:(fn)=>{setTimeout(()=>fn({user:null,session:null,client:c}),0);return()=>{}},removeListener:()=>{}};})();`,
+      body: clerkStubScript,
     });
   });
 

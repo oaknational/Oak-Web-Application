@@ -65,7 +65,7 @@ describe("resolveSanityReferences", () => {
   it("calls api.blogPortableTextReferences with each referenced ID", async () => {
     await resolveSanityReferences(mockObjWithReferences);
 
-    expect(sanityGraphqlApi.portableTextReferences).toBeCalledWith({
+    expect(sanityGraphqlApi.portableTextReferences).toHaveBeenCalledWith({
       ids: ["ref1", "ref2"],
     });
   });
@@ -90,7 +90,7 @@ it("throws an OakError with metadata when it can't match refs to responses", asy
 
   await expect(
     async () => await resolveSanityReferences(mockObjWithReferences),
-  ).rejects.toThrowError(new OakError({ code: "cms/invalid-reference-data" }));
+  ).rejects.toThrow(new OakError({ code: "cms/invalid-reference-data" }));
 
   expect(capturedError.meta).toEqual({
     portableTextPath: ["foo", "bar", "post"],
