@@ -1564,7 +1564,8 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-aa95c44-0 fIryuT"
+              class="sc-bdvwhi LoEut sc-5012a3f4-0 bfVxIC"
+              data-chromatic="ignore"
               data-percy-hide="contents"
             >
               <img

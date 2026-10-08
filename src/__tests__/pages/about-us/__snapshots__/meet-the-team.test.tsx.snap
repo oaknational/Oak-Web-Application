@@ -5691,6 +5691,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
             </div>
             <span
               class="c186 c187"
+              data-chromatic="ignore"
               data-percy-hide="contents"
             >
               <img

@@ -813,6 +813,7 @@ exports[`pages/about-us/case-studies/[slug].tsx does not render written case stu
                         >
                           <div
                             class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
+                            data-chromatic="ignore"
                             data-percy-hide="contents"
                             style="aspect-ratio: 16/9; box-sizing: content-box;"
                           />
@@ -1782,7 +1783,8 @@ exports[`pages/about-us/case-studies/[slug].tsx does not render written case stu
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-aa95c44-0 fIryuT"
+              class="sc-bdvwhi LoEut sc-5012a3f4-0 bfVxIC"
+              data-chromatic="ignore"
               data-percy-hide="contents"
             >
               <img
@@ -2882,6 +2884,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
                         >
                           <div
                             class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
+                            data-chromatic="ignore"
                             data-percy-hide="contents"
                             style="aspect-ratio: 16/9; box-sizing: content-box;"
                           />
@@ -3779,7 +3782,8 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-aa95c44-0 fIryuT"
+              class="sc-bdvwhi LoEut sc-5012a3f4-0 bfVxIC"
+              data-chromatic="ignore"
               data-percy-hide="contents"
             >
               <img
@@ -5028,6 +5032,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                         >
                           <div
                             class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
+                            data-chromatic="ignore"
                             data-percy-hide="contents"
                             style="aspect-ratio: 16/9; box-sizing: content-box;"
                           />
@@ -5237,6 +5242,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                             >
                               <div
                                 class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
+                                data-chromatic="ignore"
                                 data-percy-hide="contents"
                                 style="aspect-ratio: 16/9; box-sizing: content-box;"
                               />
@@ -6241,7 +6247,8 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-aa95c44-0 fIryuT"
+              class="sc-bdvwhi LoEut sc-5012a3f4-0 bfVxIC"
+              data-chromatic="ignore"
               data-percy-hide="contents"
             >
               <img
@@ -7490,6 +7497,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                         >
                           <div
                             class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
+                            data-chromatic="ignore"
                             data-percy-hide="contents"
                             style="aspect-ratio: 16/9; box-sizing: content-box;"
                           />
@@ -7699,6 +7707,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                             >
                               <div
                                 class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
+                                data-chromatic="ignore"
                                 data-percy-hide="contents"
                                 style="aspect-ratio: 16/9; box-sizing: content-box;"
                               />
@@ -8868,7 +8877,8 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-aa95c44-0 fIryuT"
+              class="sc-bdvwhi LoEut sc-5012a3f4-0 bfVxIC"
+              data-chromatic="ignore"
               data-percy-hide="contents"
             >
               <img
@@ -10117,6 +10127,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                         >
                           <div
                             class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
+                            data-chromatic="ignore"
                             data-percy-hide="contents"
                             style="aspect-ratio: 16/9; box-sizing: content-box;"
                           />
@@ -10326,6 +10337,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                             >
                               <div
                                 class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
+                                data-chromatic="ignore"
                                 data-percy-hide="contents"
                                 style="aspect-ratio: 16/9; box-sizing: content-box;"
                               />
@@ -11526,7 +11538,8 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-aa95c44-0 fIryuT"
+              class="sc-bdvwhi LoEut sc-5012a3f4-0 bfVxIC"
+              data-chromatic="ignore"
               data-percy-hide="contents"
             >
               <img
