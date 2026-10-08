@@ -22,7 +22,7 @@ export const AboutUsJoinResearchPanel: NextPage<
       accessLevel="homepage"
     >
       <Layout
-        seoProps={getSeoProps({ title: "Case Studies" })}
+        seoProps={getSeoProps({ title: "Join the research panel" })}
         $background={"bg-primary"}
         topNavProps={topNav}
       >
