@@ -262,6 +262,12 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                             portableText={contentBlock.contentRaw ?? []}
                             location="marketing"
                             blockOverrides={caseStudyPortableTextBlockOverrides}
+                            styleOverrides={{
+                              quote: {
+                                hasLeftBorder: true,
+                                color: "bg-decorative2-main",
+                              },
+                            }}
                           />
                         </OakFlex>
                       ))}

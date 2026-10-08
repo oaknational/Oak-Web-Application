@@ -4,7 +4,7 @@ import {
   PortableTextComponents,
 } from "@portabletext/react";
 import { FC } from "react";
-import { OakHeading } from "@oaknational/oak-components";
+import { OakHeading, OakQuoteProps } from "@oaknational/oak-components";
 
 import PostBlockCallout from "@/components/GenericPagesComponents/PostBlockCallout";
 import PostCallout from "@/components/GenericPagesComponents/PostCallout";
@@ -37,14 +37,16 @@ const logMissingPortableTextComponents: MissingComponentHandler = (
 
 type PostPortableTextContext = {
   footnotes: Footnote[];
-  location?: VideoLocationValueType;
-  blockOverrides?: Record<string, PortableTextComponent<"block">>;
-};
+} & Pick<
+  PostPortableTextProps,
+  "location" | "blockOverrides" | "styleOverrides"
+>;
 
 const postPortableTextComponents = ({
   location,
   footnotes,
   blockOverrides,
+  styleOverrides,
 }: PostPortableTextContext): PortableTextComponents => ({
   block: {
     sectionHeading: PostSectionHeading,
@@ -88,7 +90,7 @@ const postPortableTextComponents = ({
       <PostTextAndMedia {...props} location={location} />
     ),
     formWrapper: PostForm,
-    quote: PostQuote,
+    quote: (props) => <PostQuote {...props} {...styleOverrides?.quote} />,
     callout: PostCallout,
     cta: PostCta,
   },
@@ -103,16 +105,20 @@ type PostPortableTextProps = {
   portableText: PortableTextJSON;
   location?: VideoLocationValueType;
   blockOverrides?: Record<string, PortableTextComponent<"block">>;
+  styleOverrides?: {
+    quote?: Pick<OakQuoteProps, "hasLeftBorder" | "color">;
+  };
 };
 
 export const PostPortableText: FC<PostPortableTextProps> = (props) => {
-  const { portableText, location, blockOverrides } = props;
+  const { portableText, location, blockOverrides, styleOverrides } = props;
 
   const footnotes = extractFootnotes(portableText);
   const portableTextComponents = postPortableTextComponents({
     location,
     footnotes,
     blockOverrides,
+    styleOverrides,
   });
 
   return (
