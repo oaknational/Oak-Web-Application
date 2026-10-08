@@ -1,10 +1,5 @@
 import { NextPage, GetServerSideProps } from "next";
-import {
-  OakBox,
-  OakHeading,
-  OakPrimaryButton,
-} from "@oaknational/oak-components";
-import { PortableText } from "@portabletext/react";
+import { OakBox } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -18,8 +13,8 @@ import {
   JoinResearchPanelPageBlock,
   JoinResearchPanelPageBlockType,
 } from "@/common-lib/cms-types";
-import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import CMSImage from "@/components/SharedComponents/CMSImage";
+import JoinResearchPanelPageHeader from "@/components/GenericPagesComponents/JoinResearchPanelHeader";
+import JoinResearchPanelPageDefault from "@/components/GenericPagesComponents/JoinResearchPanelDefault";
 
 export type AboutUsJoinResearchPanelPageProps = {
   pageData: JoinResearchPanelPage;
@@ -29,37 +24,6 @@ export type AboutUsJoinResearchPanelPageProps = {
 export const AboutUsJoinResearchPanel: NextPage<
   AboutUsJoinResearchPanelPageProps
 > = ({ topNav, pageData }) => {
-  const JoinResearchPanelPageHeader = ({
-    title,
-    bodyRaw,
-    image,
-    button,
-  }: JoinResearchPanelPageBlock<"JoinResearchPanelPageHeader">) => (
-    <OakBox>
-      <OakHeading tag="h1"> {title} </OakHeading>
-      <PortableText value={bodyRaw} />
-      <OakPrimaryButton
-        element="a"
-        href={getLinkHref(button)}
-        iconName="external"
-        isTrailingIcon
-      >
-        {button.label}
-      </OakPrimaryButton>
-      <CMSImage image={image} />
-    </OakBox>
-  );
-
-  const JoinResearchPanelPageDefault = (
-    block: JoinResearchPanelPageBlock<JoinResearchPanelPageBlockType>,
-  ) => {
-    return (
-      <OakBox>
-        <code>{JSON.stringify(block, null, 2)}</code>
-      </OakBox>
-    );
-  };
-
   const pageComponents: {
     [K in JoinResearchPanelPageBlockType]: (
       block: JoinResearchPanelPageBlock<K>,
