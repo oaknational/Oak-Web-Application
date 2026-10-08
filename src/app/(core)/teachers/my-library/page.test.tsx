@@ -17,10 +17,13 @@ jest.mock("next/navigation", () => ({
   usePathname: jest.fn(),
   useRouter: jest.fn(),
   useSearchParams: jest.fn(),
-  redirect: jest.fn(),
+  redirect: jest.fn((url: string) => {
+    throw new Error(`NEXT_REDIRECT;${url}`);
+  }),
 }));
 
 const redirectToSignUp = jest.fn();
+const getToken = jest.fn();
 const mockAuth = jest.fn();
 const mockCurrentUser = jest.fn();
 jest.mock("@clerk/nextjs/server", () => ({
@@ -28,11 +31,22 @@ jest.mock("@clerk/nextjs/server", () => ({
   currentUser: () => mockCurrentUser(),
 }));
 
-jest.mock("@/node-lib/educator-api/helpers/saveUnits/useMyLibrary", () => ({
-  useMyLibrary: jest.fn(() => ({
-    collectionData: [],
-    isLoading: false,
-  })),
+const mockGetMyLibraryCollections = jest.fn();
+jest.mock(
+  "@/node-lib/educator-api/helpers/saveUnits/getMyLibraryCollections",
+  () => ({
+    getMyLibraryCollections: (...args: unknown[]) =>
+      mockGetMyLibraryCollections(...args),
+  }),
+);
+
+const reportError = jest.fn();
+jest.mock("@/common-lib/error-reporter", () => ({
+  __esModule: true,
+  default:
+    () =>
+    (...args: unknown[]) =>
+      reportError(...args),
 }));
 
 const render = renderWithProviders();
@@ -40,10 +54,15 @@ const render = renderWithProviders();
 describe("app/(core)/teachers/my-library", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    mockAuth.mockResolvedValue({ userId: "user-123", redirectToSignUp });
+    mockAuth.mockResolvedValue({
+      userId: "user-123",
+      getToken,
+      redirectToSignUp,
+    });
     mockCurrentUser.mockResolvedValue({
       publicMetadata: { owa: { isOnboarded: true } },
     });
+    mockGetMyLibraryCollections.mockResolvedValue([]);
   });
 
   it("should render a header", async () => {
@@ -60,6 +79,22 @@ describe("app/(core)/teachers/my-library", () => {
       name: "No units yet",
     });
     expect(noSavedContent).toBeInTheDocument();
+    expect(mockGetMyLibraryCollections).toHaveBeenCalledWith(
+      getToken,
+      "user-123",
+    );
+  });
+
+  it("should report the error and render without collections when the fetch fails", async () => {
+    mockGetMyLibraryCollections.mockRejectedValue(new Error("boom"));
+
+    render(await MyLibraryPage());
+
+    expect(reportError).toHaveBeenCalled();
+    expect(
+      await screen.findByRole("heading", { name: "My library" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByText("No units yet")).not.toBeInTheDocument();
   });
 
   it("should redirect to sign up when signed out", async () => {
@@ -78,11 +113,12 @@ describe("app/(core)/teachers/my-library", () => {
       publicMetadata: { owa: { isOnboarded: false } },
     });
 
-    await MyLibraryPage();
+    await expect(MyLibraryPage()).rejects.toThrow("NEXT_REDIRECT");
 
     expect(redirect).toHaveBeenCalledWith(
       "/onboarding?returnTo=%2Fteachers%2Fmy-library",
     );
+    expect(mockGetMyLibraryCollections).not.toHaveBeenCalled();
   });
 
   it("should generate the correct metadata", () => {
