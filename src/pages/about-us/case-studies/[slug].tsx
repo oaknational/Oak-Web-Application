@@ -347,7 +347,6 @@ export const getServerSideProps: GetServerSideProps<
 
   const otherCaseStudies = await CMSClient.caseStudyLibraryPage({
     slug,
-    // limit: 3, TO DO: this can be put back in when the feature is switched on, maybe change to 4 as it may exclude slug?
   });
 
   const results: GetStaticPropsResult<AboutUsOaksImpactCaseStudyPageProps> = {

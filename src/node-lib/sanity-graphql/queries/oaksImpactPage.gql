@@ -1,5 +1,5 @@
 query oaksImpactPage($isDraftFilter: Sanity_DocumentFilter) {
-  allNewAboutCorePageOaksImpact(
+  caseStudy: allNewAboutCorePageOaksImpact(
     where: {
       _: $isDraftFilter
       _id: { matches: "*newAboutCorePage.oaksImpact" }
@@ -60,5 +60,21 @@ query oaksImpactPage($isDraftFilter: Sanity_DocumentFilter) {
         }
       }
     }
+  }
+  otherCaseStudies: allCaseStudy(
+    where: { _: $isDraftFilter }
+    sort: { publishedAt: DESC }
+    limit: 3
+  ) {
+    video {
+      ...Video
+    }
+    slug {
+      current
+    }
+    image {
+      ...ImageWithAltText
+    }
+    title
   }
 }

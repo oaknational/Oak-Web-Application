@@ -2,9 +2,11 @@ import { screen } from "@testing-library/dom";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
-import OaksImpact, { getStaticProps } from "@/pages/about-us/oaks-impact";
+import OaksImpact, {
+  getStaticProps,
+  OaksImpactPageProps,
+} from "@/pages/about-us/oaks-impact";
 import CMSClient from "@/node-lib/cms";
-import { OaksImpactPage } from "@/common-lib/cms-types/aboutPages";
 import { mockPortableTextBlocks } from "@/fixtures/curriculum/programmeSequenceYearData.fixtures";
 
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
@@ -18,36 +20,67 @@ jest.mock("../../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
-const mockPageData: OaksImpactPage = {
-  header: {
-    introText: "Oaks Impact intro",
-    video: {
-      title: "Oaks Impact video",
+const mockPageData: OaksImpactPageProps["pageData"] = {
+  caseStudy: {
+    header: {
+      introText: "Oaks Impact intro",
       video: {
-        asset: {
-          assetId: "123",
-          playbackId: "123",
-          thumbTime: null,
+        title: "Oaks Impact video",
+        video: {
+          asset: {
+            assetId: "123",
+            playbackId: "123",
+            thumbTime: null,
+          },
         },
+        transcript: [mockPortableTextBlocks[0]],
       },
-      transcript: [mockPortableTextBlocks[0]],
+      videoDescription: "Oaks Impact video description",
     },
-    videoDescription: "Oaks Impact video description",
-  },
-  statsSection: {
-    textBlock: {
-      title: "Oaks Impact stats heading",
-      bodyPortableText: [],
+    statsSection: {
+      textBlock: {
+        title: "Oaks Impact stats heading",
+        bodyPortableText: [],
+      },
+      stats: [],
     },
-    stats: [],
+    schoolQuotes: {
+      heading: "Oaks Impact school quotes heading",
+      cards: [],
+    },
   },
-  caseStudiesSection: {
-    caseStudies: [],
-  },
-  schoolQuotes: {
-    heading: "Oaks Impact school quotes heading",
-    cards: [],
-  },
+  otherCaseStudies: [
+    {
+      video: {
+        title: "Test 1",
+      },
+      slug: {
+        current: "test-1",
+      },
+      image: {},
+      title: "Test 1",
+    },
+    {
+      video: {
+        title: "Test 2",
+      },
+      slug: {
+        current: "test-2",
+      },
+      image: {},
+      title: "Test 2",
+    },
+    {
+      video: {
+        title: "Test 3",
+      },
+      slug: {
+        current: "test-3",
+      },
+      image: {},
+      title: "Test 3",
+    },
+  ],
 };
 
 beforeEach(() => {

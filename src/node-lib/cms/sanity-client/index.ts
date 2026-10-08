@@ -270,7 +270,7 @@ const getSanityClient = () => ({
   oaksImpactPage: getSingleton(
     sanityGraphqlApi.oaksImpactPage,
     oaksImpactPageSchema,
-    (result) => result?.allNewAboutCorePageOaksImpact?.[0],
+    (result) => result,
   ),
   oaksImpactCaseStudyPage: getSingleton(
     sanityGraphqlApi.oaksImpactCaseStudyPage,

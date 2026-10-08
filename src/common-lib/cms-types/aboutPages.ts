@@ -173,10 +173,6 @@ export const oaksImpactPageStatsSectionSchema = z.object({
   stats: z.array(oaksImpactPageStatsSchema),
 });
 
-export const oaksImpactPageCaseStudiesSectionSchema = z.object({
-  caseStudies: z.array(caseStudyCardSchema),
-});
-
 export const oaksImpactSchoolQuoteCardSchema = z.object({
   logo: imageSchema,
   summary: z.string(),
@@ -194,10 +190,16 @@ export const oaksImpactPageSchoolQuotesSchema = z.object({
 });
 
 export const oaksImpactPageSchema = z.object({
-  header: oaksImpactPageHeaderSchema,
-  statsSection: oaksImpactPageStatsSectionSchema,
-  caseStudiesSection: oaksImpactPageCaseStudiesSectionSchema,
-  schoolQuotes: oaksImpactPageSchoolQuotesSchema,
+  caseStudy: z
+    .tuple([
+      z.object({
+        header: oaksImpactPageHeaderSchema,
+        statsSection: oaksImpactPageStatsSectionSchema,
+        schoolQuotes: oaksImpactPageSchoolQuotesSchema,
+      }),
+    ])
+    .transform((caseStudy) => caseStudy[0]),
+  otherCaseStudies: z.array(caseStudyCardSchema),
   seo: seoSchema.nullish(),
 });
 
