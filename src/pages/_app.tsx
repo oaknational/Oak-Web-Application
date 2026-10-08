@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState, useEffect } from "react";
 import type { AppProps } from "next/app";
 import { Lexend } from "next/font/google";
 import { ThemeProvider } from "styled-components";
@@ -37,6 +37,47 @@ type OakWebApplicationProps = AppProps & {
   analyticsOptions: AnalyticsProviderProps;
 };
 
+function GleapButton() {
+  const [isOpened, setIsOpened] = useState(false);
+  useEffect(() => {
+    const initGleap = async () => {
+      const { default: Gleap } = await import("gleap");
+      Gleap.on("open", () => {
+        setIsOpened(true);
+      });
+      Gleap.on("close", () => {
+        setIsOpened(false);
+      });
+    };
+    initGleap();
+  }, []);
+  const toggleFeedback = async () => {
+    const { default: Gleap } = await import("gleap");
+    if (Gleap.isOpened()) {
+      Gleap.close();
+    } else {
+      Gleap.open();
+    }
+  };
+
+  return (
+    <button
+      onClick={toggleFeedback}
+      aria-label="Feedback panel"
+      aria-expanded={isOpened}
+      style={{
+        position: "fixed",
+        zIndex: 9999,
+        right: 20,
+        bottom: 20,
+        padding: 4,
+      }}
+    >
+      ?
+    </button>
+  );
+}
+
 const OakWebApplication: FC<OakWebApplicationProps> = ({
   Component,
   pageProps,
@@ -69,6 +110,7 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
                                 `}</style>
                                 <Component {...pageProps} />
                                 <AppHooks />
+                                <GleapButton />
                               </OakNotificationsProvider>
                             </SaveCountProvider>
                           </ToastProvider>

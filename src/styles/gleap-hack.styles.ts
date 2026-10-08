@@ -7,6 +7,10 @@ const posthogHackStyles = css`
   div[class^="bb-feedback-button"] {
     pointer-events: initial;
   }
+
+  .gleap-frame-container {
+    bottom: 66px !important;
+  }
 `;
 
 export default posthogHackStyles;
