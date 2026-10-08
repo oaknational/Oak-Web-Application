@@ -40,7 +40,7 @@ describe("SaveCount", () => {
     const link = screen.getByRole("link", {
       name: "My library: 10 saved units",
     });
-    expect(link.textContent).toContain("(10)");
+    expect(link).toHaveTextContent("(10)");
     setUseUserReturn(mockLoggedOut);
     rerender(<SaveCount />);
 
@@ -48,6 +48,6 @@ describe("SaveCount", () => {
       screen.getByRole("link", {
         name: "My library",
       }),
-    ).not.toContain("(10)");
+    ).not.toHaveTextContent("(10)");
   });
 });
