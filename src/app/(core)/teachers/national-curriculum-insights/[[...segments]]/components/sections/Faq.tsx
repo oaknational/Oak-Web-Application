@@ -30,15 +30,16 @@ export const NationalCurriculumInsightsFaq = ({
     data-insights-module="faq"
   >
     <OakBox $width="100%" $maxWidth="spacing-960" $mh="auto">
-      <OakHeading
-        $maxWidth="spacing-640"
-        tag="h2"
-        id="national-curriculum-insights-faq-heading"
-        $font="heading-4"
-        $mb="spacing-32"
-      >
-        {section.heading}
-      </OakHeading>
+      <OakBox $maxWidth="spacing-640">
+        <OakHeading
+          tag="h2"
+          id="national-curriculum-insights-faq-heading"
+          $font="heading-4"
+          $mb="spacing-32"
+        >
+          {section.heading}
+        </OakHeading>
+      </OakBox>
       <OakFlex $flexDirection="column" $textAlign="left" $gap="spacing-0">
         {section.items.map((item, index) => (
           <OakBox key={item.question} $position="relative">

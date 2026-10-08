@@ -3,8 +3,10 @@ import { Meta, StoryObj } from "@storybook/nextjs";
 import { SearchSuggestionBanner as Component } from "./SearchSuggestionBanner";
 
 import { SearchIntent } from "@/common-lib/schemas/search-intent";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const meta: Meta<typeof Component> = {
+  decorators: [TeacherBrowseAnalyticsDecorator],
   component: Component,
   argTypes: {},
 };

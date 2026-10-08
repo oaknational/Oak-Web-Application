@@ -148,6 +148,8 @@ describe("SearchSuggestionBanner", () => {
     await user.click(link);
     expect(mockSearchResultOpened).toHaveBeenCalledWith({
       analyticsUseCase: "Teacher",
+      accessLevel: "search",
+      navigationType: "narrow",
       context: "search",
       keyStageSlug: "ks2",
       keyStageTitle: "Key stage 2",
