@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`pages/about-us/case-studies/[slug].tsx does not render written case studies in other case studies section when feature flag is not enabled 1`] = `
 <div>
@@ -815,7 +815,7 @@ exports[`pages/about-us/case-studies/[slug].tsx does not render written case stu
                             class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                             data-chromatic="ignore"
                             data-percy-hide="contents"
-                            style="box-sizing: content-box;"
+                            style="aspect-ratio: 16/9; box-sizing: content-box;"
                           />
                         </div>
                       </div>
@@ -2886,7 +2886,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
                             class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                             data-chromatic="ignore"
                             data-percy-hide="contents"
-                            style="box-sizing: content-box;"
+                            style="aspect-ratio: 16/9; box-sizing: content-box;"
                           />
                         </div>
                       </div>
@@ -5034,7 +5034,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                             class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                             data-chromatic="ignore"
                             data-percy-hide="contents"
-                            style="box-sizing: content-box;"
+                            style="aspect-ratio: 16/9; box-sizing: content-box;"
                           />
                         </div>
                       </div>
@@ -5244,7 +5244,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                                 class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                                 data-chromatic="ignore"
                                 data-percy-hide="contents"
-                                style="box-sizing: content-box;"
+                                style="aspect-ratio: 16/9; box-sizing: content-box;"
                               />
                             </div>
                           </div>
@@ -7499,7 +7499,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                             class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                             data-chromatic="ignore"
                             data-percy-hide="contents"
-                            style="box-sizing: content-box;"
+                            style="aspect-ratio: 16/9; box-sizing: content-box;"
                           />
                         </div>
                       </div>
@@ -7709,7 +7709,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                                 class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                                 data-chromatic="ignore"
                                 data-percy-hide="contents"
-                                style="box-sizing: content-box;"
+                                style="aspect-ratio: 16/9; box-sizing: content-box;"
                               />
                             </div>
                           </div>
@@ -10129,7 +10129,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                             class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                             data-chromatic="ignore"
                             data-percy-hide="contents"
-                            style="box-sizing: content-box;"
+                            style="aspect-ratio: 16/9; box-sizing: content-box;"
                           />
                         </div>
                       </div>
@@ -10339,7 +10339,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                                 class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                                 data-chromatic="ignore"
                                 data-percy-hide="contents"
-                                style="box-sizing: content-box;"
+                                style="aspect-ratio: 16/9; box-sizing: content-box;"
                               />
                             </div>
                           </div>
