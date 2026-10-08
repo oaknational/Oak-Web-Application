@@ -663,160 +663,172 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
               class="sc-bdvwhi sc-gsDMPd QzlgI hwmZvg"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd bVZBWW cNirtN"
+                class="sc-bdvwhi sc-gsDMPd jRsqVQ cNirtN"
               >
-                <div
-                  class="sc-bdvwhi sc-bXTeWK ccVrhi bnMUc"
+                <article
+                  class="sc-bdvwhi hPWTKU"
                 >
-                  <a
-                    class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR kemcJO"
-                    href="/about-us/case-studies/test-2"
+                  <div
+                    class="sc-bdvwhi sc-bXTeWK ldqnbP jIhKcl"
                   >
-                    <div
-                      class="sc-bdvwhi hKHXmg"
-                    >
-                      <span
-                        class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
-                      >
-                        <img
-                          alt=""
-                          class="sc-jRQBiJ hssYEG"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          sizes="100vw"
-                          src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
-                      </span>
-                    </div>
-                    <div
-                      class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
+                    <a
+                      class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR kemcJO"
+                      href="/about-us/case-studies/test-2"
                     >
                       <div
-                        class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                        class="sc-bdvwhi hKHXmg"
                       >
-                        <h3
-                          class="sc-bkkgYE jxvseu"
+                        <span
+                          class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
                         >
-                          TEST_TITLE_2
-                        </h3>
+                          <img
+                            alt=""
+                            class="sc-jRQBiJ hssYEG"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            sizes="100vw"
+                            src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
+                            srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
                       </div>
                       <div
-                        class="sc-bdvwhi sc-gsDMPd hPWTKU eESQcF"
+                        class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
                       >
                         <div
-                          class="sc-bdvwhi sc-gsDMPd qIlM gYQTzD"
+                          class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
                         >
                           <div
-                            class="sc-bdvwhi hPWTKU"
+                            class="sc-bkkgYE jxvseu"
                           >
-                            primary
+                            TEST_TITLE_2
+                          </div>
+                        </div>
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd hPWTKU eESQcF"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd qIlM gYQTzD"
+                          >
+                            <div
+                              class="sc-bdvwhi hPWTKU"
+                            >
+                              Primary
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </a>
-                </div>
-                <div
-                  class="sc-bdvwhi sc-bXTeWK ccVrhi bnMUc"
+                    </a>
+                  </div>
+                </article>
+                <article
+                  class="sc-bdvwhi hPWTKU"
                 >
-                  <a
-                    class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR kemcJO"
-                    href="/about-us/case-studies/test-3"
+                  <div
+                    class="sc-bdvwhi sc-bXTeWK ldqnbP jIhKcl"
                   >
-                    <div
-                      class="sc-bdvwhi hKHXmg"
-                    >
-                      <span
-                        class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
-                      >
-                        <img
-                          alt=""
-                          class="sc-jRQBiJ hssYEG"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          sizes="100vw"
-                          src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
-                      </span>
-                    </div>
-                    <div
-                      class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
+                    <a
+                      class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR kemcJO"
+                      href="/about-us/case-studies/test-3"
                     >
                       <div
-                        class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                        class="sc-bdvwhi hKHXmg"
                       >
-                        <h3
-                          class="sc-bkkgYE jxvseu"
+                        <span
+                          class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
                         >
-                          TEST_TITLE_3
-                        </h3>
+                          <img
+                            alt=""
+                            class="sc-jRQBiJ hssYEG"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            sizes="100vw"
+                            src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
+                            srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
                       </div>
                       <div
-                        class="sc-bdvwhi sc-gsDMPd hPWTKU eESQcF"
+                        class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
                       >
                         <div
-                          class="sc-bdvwhi sc-gsDMPd qIlM gYQTzD"
+                          class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
                         >
                           <div
-                            class="sc-bdvwhi hPWTKU"
+                            class="sc-bkkgYE jxvseu"
                           >
-                            primary
+                            TEST_TITLE_3
+                          </div>
+                        </div>
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd hPWTKU eESQcF"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd qIlM gYQTzD"
+                          >
+                            <div
+                              class="sc-bdvwhi hPWTKU"
+                            >
+                              Primary
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </a>
-                </div>
-                <div
-                  class="sc-bdvwhi sc-bXTeWK ccVrhi bnMUc"
+                    </a>
+                  </div>
+                </article>
+                <article
+                  class="sc-bdvwhi hPWTKU"
                 >
-                  <a
-                    class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR kemcJO"
-                    href="/about-us/case-studies/test-video"
+                  <div
+                    class="sc-bdvwhi sc-bXTeWK ldqnbP jIhKcl"
                   >
-                    <div
-                      class="sc-bdvwhi hKHXmg"
-                    >
-                      <span
-                        class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
-                      >
-                        <img
-                          alt=""
-                          class="sc-jRQBiJ hssYEG"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          sizes="100vw"
-                          src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
-                      </span>
-                    </div>
-                    <div
-                      class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
+                    <a
+                      class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR kemcJO"
+                      href="/about-us/case-studies/test-video"
                     >
                       <div
-                        class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                        class="sc-bdvwhi hKHXmg"
                       >
-                        <h3
-                          class="sc-bkkgYE jxvseu"
+                        <span
+                          class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
                         >
-                          TEST_TITLE_VIDEO
-                        </h3>
+                          <img
+                            alt=""
+                            class="sc-jRQBiJ hssYEG"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            sizes="100vw"
+                            src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
+                            srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
                       </div>
                       <div
-                        class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
-                      />
-                    </div>
-                  </a>
-                </div>
+                        class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
+                      >
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                        >
+                          <div
+                            class="sc-bkkgYE jxvseu"
+                          >
+                            TEST_TITLE_VIDEO
+                          </div>
+                        </div>
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
+                        />
+                      </div>
+                    </a>
+                  </div>
+                </article>
               </div>
             </div>
           </div>
@@ -1071,6 +1083,20 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                             class="sc-dkPwfY fgmEIT"
                           >
                             Oak's impact
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/about-us/case-studies"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Case studies
                           </span>
                         </a>
                       </li>
@@ -1538,7 +1564,8 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-cc003eb3-0 iCQXgT"
+              class="sc-bdvwhi LoEut sc-5012a3f4-0 bfVxIC"
+              data-chromatic="ignore"
               data-percy-hide="contents"
             >
               <img

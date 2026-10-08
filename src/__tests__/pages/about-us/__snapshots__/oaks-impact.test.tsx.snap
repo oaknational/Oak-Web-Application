@@ -647,6 +647,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                       >
                         <div
                           class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
+                          data-chromatic="ignore"
                           data-percy-hide="contents"
                           style="box-sizing: content-box;"
                         />
@@ -836,6 +837,37 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         >
                           Case studies
                         </h2>
+                      </div>
+                      <div
+                        class="sc-bdvwhi fUaIBc"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
+                          href="/about-us/case-studies"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            View all case studies
+                          </span>
+                          <div
+                            class="sc-bdvwhi hUeWJD"
+                          >
+                            <span
+                              class="sc-bdvwhi cqHYAi sc-fKVoIy gNZMCw"
+                            >
+                              <img
+                                alt=""
+                                class="sc-jRQBiJ eMsccW"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </span>
+                          </div>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -1811,6 +1843,20 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                       >
                         <a
                           class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/about-us/case-studies"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Case studies
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/about-us/get-involved"
                         >
                           <span
@@ -2270,7 +2316,8 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-cc003eb3-0 iCQXgT"
+              class="sc-bdvwhi LoEut sc-5012a3f4-0 bfVxIC"
+              data-chromatic="ignore"
               data-percy-hide="contents"
             >
               <img
