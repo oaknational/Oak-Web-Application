@@ -6,7 +6,7 @@ exports[`PostVideo allow override of location 1`] = `
     data-overlay-container="true"
   >
     <div
-      class="sc-bdvwhi iTIjHb"
+      class="sc-bdvwhi hpbfuw"
     >
       <div
         class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
@@ -139,7 +139,7 @@ exports[`PostVideo should render correctly 1`] = `
     data-overlay-container="true"
   >
     <div
-      class="sc-bdvwhi iTIjHb"
+      class="sc-bdvwhi hpbfuw"
     >
       <div
         class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
