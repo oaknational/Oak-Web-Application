@@ -1,9 +1,9 @@
-// Relative URLs used by pa11y and percy
+// Relative URLs used by pa11y and Chromatic
 
 // Commented out urls have pa11y errors to be fixed in this ticket - https://github.com/oaknational/Oak-Web-Application/issues/1693
 
 function getDeploymentTestUrls() {
-  return [
+  const urls = [
     // Error pages
     "/404",
     // "/500", // Removing as current issue with 500 responses on Netlify previews means this always fails.
@@ -15,7 +15,8 @@ function getDeploymentTestUrls() {
     "/about-us/who-we-are",
     "/about-us/oaks-curricula",
     "/about-us/oaks-impact",
-    "/about-us/case-studies/giving-teachers-a-starting-point-with-safe-curriculum-aligned-ai-tools",
+    "/about-us/case-studies",
+    "/about-us/case-studies/how-lift-firth-park-is-building-teaching-consistency-and-learner-confidence-in-spanish-with-oak",
     "/about-us/meet-the-team",
     "/about-us/meet-the-team/john-roberts?section=leadership",
     "/about-us/get-involved",
@@ -45,6 +46,13 @@ function getDeploymentTestUrls() {
     "/teachers/programmes/history-primary/curriculum-explainer", // curriculum explainer
     "/teachers/programmes/history-primary/download", // download tab
 
+    // National Curriculum Insights pages
+    // "/teachers/national-curriculum-insights",
+    "/curriculum-change-explained/guidance",
+    // "/teachers/national-curriculum-insights/science",
+    // "/teachers/national-curriculum-insights/science/primary",
+    // "/teachers/national-curriculum-insights/science/primary/key-stage-1",
+
     // Unit pages
     "/teachers/programmes/art-primary-ks1/units/reclaimed-materials-drawing-and-sculpture/lessons", // primary
     "/teachers/programmes/combined-science-secondary-ks4-foundation-aqa/units/eukaryotic-and-prokaryotic-cells/lessons", // with tier and subject toggles
@@ -53,7 +61,6 @@ function getDeploymentTestUrls() {
     "/teachers/programmes/music-secondary-ks4-edexcel/units/intro-to-pop-music/lessons", // copyright content
 
     // Lesson pages
-    "/teachers/programmes/art-primary-ks1/units/reclaimed-materials-drawing-and-sculpture/lessons", //primary
     "/teachers/programmes/english-secondary-ks3/units/victorian-childhood-non-fiction-reading-and-writing/lessons/victorian-childhood-preparing-an-argument",
     "/teachers/programmes/combined-science-secondary-ks4-higher-aqa/units/measuring-waves/lessons/oscilloscope",
     "/teachers/programmes/physical-education-primary-ks2/units/invasion-games-principles-of-attack-and-defence-through-ball-games/lessons/passing-and-receiving-skills", // practical PE lesson
@@ -85,6 +92,8 @@ function getDeploymentTestUrls() {
     // "/pupils/programmes/biology-secondary-year-11-foundation-edexcel/units/classification-in-modern-biology/lessons/electron-microscopy-and-the-size-and-scale-of-cells/video",
     "/pupils/programmes/maths-secondary-year-7/units/expressions-and-equations/lessons/simplifying-before-multiplying-with-multiple-expressions/exit-quiz",
   ];
+
+  return urls;
 }
 
 module.exports = getDeploymentTestUrls;

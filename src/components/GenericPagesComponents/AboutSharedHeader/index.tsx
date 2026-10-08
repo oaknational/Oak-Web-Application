@@ -20,7 +20,7 @@ import { OwaImageProps } from "@/components/SharedComponents/OwaImage";
 const IllustrationPanel = styled(OakBox)<{ $showImageOverflow: boolean }>`
   height: ${({ $showImageOverflow }) =>
     $showImageOverflow ? "auto" : "410px"};
-  width: auto;
+  width: ${({ $showImageOverflow }) => ($showImageOverflow ? "100%" : "auto")};
   flex: ${({ $showImageOverflow }) =>
     $showImageOverflow ? "1 1 0" : "0 1 auto"};
   @media (max-width: 920px) {
@@ -109,6 +109,7 @@ export type AboutSharedHeaderProps = {
   children?: ReactNode;
   titleHighlight?: OakUiRoleToken;
   showImageOverflow?: boolean;
+  $background?: OakUiRoleToken;
 };
 export function AboutSharedHeader({
   title,
@@ -116,66 +117,77 @@ export function AboutSharedHeader({
   children,
   titleHighlight,
   showImageOverflow = false,
+  $background,
 }: Readonly<AboutSharedHeaderProps>) {
   return (
-    <NewGutterMaxWidth>
-      <OakFlex
-        $minWidth="spacing-0"
-        $flexBasis={[showImageOverflow ? 0 : "auto", "auto"]}
-        $alignItems="center"
-        $justifyContent="space-between"
-        $pt={["spacing-56", "spacing-72"]}
-        $pb={["spacing-56", "spacing-72"]}
-        $gap={
-          showImageOverflow
-            ? ["spacing-16"]
-            : ["spacing-0", "spacing-48", "spacing-240"]
-        }
-        $overflow={"hidden"}
-      >
+    <OakBox $background={$background} $width="100%">
+      <NewGutterMaxWidth>
         <OakFlex
           $minWidth="spacing-0"
-          $flexGrow={showImageOverflow ? 1 : 0}
-          $flexShrink={1}
-          $flexBasis={showImageOverflow ? "spacing-0" : "auto"}
-          $flexDirection={"column"}
-          $gap={"spacing-24"}
+          $flexBasis={[showImageOverflow ? 0 : "auto", "auto"]}
+          $flexDirection={[showImageOverflow ? "column" : "row", "row"]}
+          $alignItems="center"
+          $justifyContent="space-between"
+          $pt={["spacing-56", "spacing-72"]}
+          $pb={["spacing-56", "spacing-72"]}
+          $gap={
+            showImageOverflow
+              ? ["spacing-16"]
+              : ["spacing-0", "spacing-48", "spacing-240"]
+          }
+          $overflow={"hidden"}
         >
-          <OakHeading tag="h1" $font={["heading-4", "heading-2", "heading-2"]}>
-            <OakSpan
-              $background={titleHighlight ?? "bg-decorative1-main"}
-              $ph={"spacing-4"}
-              style={{
-                lineHeight: 1.25,
-                WebkitBoxDecorationBreak: "clone",
-                boxDecorationBreak: "clone",
-              }}
+          <OakFlex
+            $minWidth="spacing-0"
+            $flexGrow={showImageOverflow ? 1 : 0}
+            $flexShrink={1}
+            $flexBasis={showImageOverflow ? "spacing-0" : "auto"}
+            $flexDirection={"column"}
+            $gap={"spacing-24"}
+          >
+            <OakHeading
+              tag="h1"
+              $font={["heading-4", "heading-2", "heading-2"]}
             >
-              {title}
-            </OakSpan>
-          </OakHeading>
-          {typeof content === "string" ? (
-            <OakP
-              $font={["heading-light-5", "heading-light-3", "heading-light-3"]}
-            >
-              {content}
-            </OakP>
-          ) : (
-            <PortableTextWithDefaults
-              value={content}
-              withoutDefaultComponents={true}
-              components={portableTextComponents}
-            />
-          )}
+              <OakSpan
+                $background={titleHighlight ?? "bg-decorative1-main"}
+                $ph={"spacing-4"}
+                style={{
+                  lineHeight: 1.25,
+                  WebkitBoxDecorationBreak: "clone",
+                  boxDecorationBreak: "clone",
+                }}
+              >
+                {title}
+              </OakSpan>
+            </OakHeading>
+            {typeof content === "string" ? (
+              <OakP
+                $font={[
+                  "heading-light-5",
+                  "heading-light-3",
+                  "heading-light-3",
+                ]}
+              >
+                {content}
+              </OakP>
+            ) : (
+              <PortableTextWithDefaults
+                value={content}
+                withoutDefaultComponents={true}
+                components={portableTextComponents}
+              />
+            )}
+          </OakFlex>
+          <IllustrationPanel
+            $showImageOverflow={showImageOverflow}
+            $position="relative"
+            $zIndex={0}
+          >
+            {children}
+          </IllustrationPanel>
         </OakFlex>
-        <IllustrationPanel
-          $showImageOverflow={showImageOverflow}
-          $position="relative"
-          $zIndex={0}
-        >
-          {children}
-        </IllustrationPanel>
-      </OakFlex>
-    </NewGutterMaxWidth>
+      </NewGutterMaxWidth>
+    </OakBox>
   );
 }

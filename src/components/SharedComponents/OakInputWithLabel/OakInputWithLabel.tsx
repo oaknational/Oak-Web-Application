@@ -5,9 +5,9 @@ import {
   OakJauntyAngleLabel,
   OakTextInput,
   OakUiRoleToken,
+  parseSpacing,
 } from "@oaknational/oak-components";
 import { useState } from "react";
-import { RefCallBack } from "react-hook-form";
 
 export const getFormLabelBackground = (
   error: string | undefined,
@@ -33,7 +33,7 @@ export const OakInputWithLabel = ({
   label,
   onChange,
   onBlur,
-  ref,
+  value,
   required,
   placeholder = "",
   name,
@@ -45,7 +45,7 @@ export const OakInputWithLabel = ({
   error?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  ref?: RefCallBack;
+  value?: string;
   placeholder?: string;
   id: string;
   autocomplete?: string;
@@ -55,15 +55,21 @@ export const OakInputWithLabel = ({
   // value?: string;
 }) => {
   const [hasFocus, setHasFocus] = useState(false);
+  const errorId = `${id}-error`;
 
   return (
     <OakFlex $flexDirection="column" $width="100%">
       {error && (
-        <OakBox id={error} role="alert" $pb={["spacing-24"]}>
+        <OakBox
+          id={errorId}
+          role="alert"
+          aria-live="assertive"
+          $mb="spacing-20"
+        >
           <OakFieldError>{error}</OakFieldError>
         </OakBox>
       )}
-      <OakFlex $position="relative" $flexDirection="column" ref={ref}>
+      <OakFlex $position="relative" $flexDirection="column">
         <OakJauntyAngleLabel
           label={label + (required === true ? " (required)" : "")}
           $color={!!error || hasFocus ? "text-inverted" : "text-primary"}
@@ -74,13 +80,15 @@ export const OakInputWithLabel = ({
           $background={getFormLabelBackground(error, hasFocus, labelBackground)}
           $zIndex="in-front"
           $position="absolute"
-          $top={"-20px"}
-          $left={"5px"}
+          $left={"spacing-4"}
+          style={{ top: `-${parseSpacing("spacing-20")}` }}
           $borderRadius="border-radius-square"
           data-testid="jaunty-label"
         />
         <OakTextInput
           id={id}
+          aria-describedby={error ? errorId : undefined}
+          value={value}
           data-testid="text-input"
           placeholder={placeholder}
           onChange={onChange}

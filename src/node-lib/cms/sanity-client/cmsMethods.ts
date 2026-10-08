@@ -14,6 +14,7 @@ export type Params = {
 
 export type ListParams = Params & {
   limit?: number;
+  slug?: string;
 };
 
 /**
@@ -54,6 +55,37 @@ export const getBySlug = <
      * that the correct type is inferred there
      *   - RM 28/11/22
      */
+    const pageData = getResultValue(response as Response);
+
+    if (!pageData) {
+      return null;
+    }
+
+    const withResolvedReferences = await resolveEmbeddedReferences(pageData);
+
+    return parseResults(schema, withResolvedReferences, previewMode);
+  };
+};
+
+export const getByParams = <
+  Method extends GQLMethod,
+  Response extends Awaited<ReturnType<Method>>,
+  Data extends Record<string, unknown> | undefined,
+  Schema extends z.ZodType,
+>(
+  graphqlMethod: Method,
+  schema: Schema,
+  getResultValue: (res: Response) => Data,
+) => {
+  return async (
+    params: Params & Omit<NonNullable<Parameters<Method>[0]>, "isDraftFilter">,
+  ) => {
+    const { previewMode, ...graphqlParams } = params;
+    const response = await graphqlMethod({
+      isDraftFilter: getDraftFilterParam(previewMode),
+      ...graphqlParams,
+    } as Parameters<Method>[0]);
+
     const pageData = getResultValue(response as Response);
 
     if (!pageData) {

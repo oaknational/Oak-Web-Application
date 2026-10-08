@@ -4,22 +4,22 @@ exports[`CurricUnitCard changes color when highlighed 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-fTFjTM jJROoH bSgmkz"
+      class="sc-bdvwhi sc-bXTeWK elSKXy CYQjY"
     >
       <a
-        class="sc-a6022ff2-0 ejmuOd"
+        class="sc-79137fc-0 evxJPM"
         data-testid="unit-info-link"
         href="/"
       >
         <div
-          class="sc-aXZVg sc-gEvEer bPsLdw bktafW"
+          class="sc-bdvwhi sc-gsDMPd gHhcuN cIPGhJ"
           data-testid="unit-card"
         >
           <div
-            class="sc-aXZVg sc-gEvEer jPvJsJ gWvaOf"
+            class="sc-bdvwhi sc-gsDMPd hPWTKU kirjqU"
           >
             <div
-              class="sc-eldPxv sc-ef43f00b-0 iyzmge ebOXeQ pa11y-ignore"
+              class="sc-bkkgYE sc-6dbd7f46-0 Xaaow iNOHaR"
             >
               <span
                 aria-hidden="true"
@@ -28,16 +28,16 @@ exports[`CurricUnitCard changes color when highlighed 1`] = `
               </span>
             </div>
             <span
-              class="sc-eqUAAy bngpZa"
+              class="sc-dkPwfY cSKbCa"
             >
               Something nice
             </span>
             <div
-              class="sc-aXZVg QBMYh"
+              class="sc-bdvwhi hFUkks"
               data-testid="options-tag"
             >
               <span
-                class="sc-eqUAAy bxYkAr"
+                class="sc-dkPwfY kSuBdj"
                 color="lavender"
               >
                 2 unit options
@@ -45,22 +45,22 @@ exports[`CurricUnitCard changes color when highlighed 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer gVcrhT ioiTMB"
+            class="sc-bdvwhi sc-gsDMPd dkETdW dHhGIq"
           >
             <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ fUsBHa"
+              class="sc-bdvwhi sc-gsDMPd hPWTKU lawjtZ"
             >
               <div
-                class="sc-aXZVg sc-dAbbOL gKNTgg cyWODS"
+                class="sc-bdvwhi sc-dlVwtM flamfx kbIIFQ"
               >
                 Unit info
               </div>
               <span
-                class="sc-aXZVg jJQFnr"
+                class="sc-bdvwhi cERAFe"
               >
                 <img
                   alt=""
-                  class="sc-iGgWBj lcrpYX"
+                  class="sc-jRQBiJ fZPumv"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"
@@ -81,22 +81,22 @@ exports[`CurricUnitCard highlighted state 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-fTFjTM jJROoH bSgmkz"
+      class="sc-bdvwhi sc-bXTeWK elSKXy CYQjY"
     >
       <a
-        class="sc-a6022ff2-0 QTKhP"
+        class="sc-79137fc-0 gWZnYK"
         data-testid="unit-info-link"
         href="/"
       >
         <div
-          class="sc-aXZVg sc-gEvEer eOeBOY bktafW"
+          class="sc-bdvwhi sc-gsDMPd cyLTDJ cIPGhJ"
           data-testid="highlighted-unit-card"
         >
           <div
-            class="sc-aXZVg sc-gEvEer jPvJsJ gWvaOf"
+            class="sc-bdvwhi sc-gsDMPd hPWTKU kirjqU"
           >
             <div
-              class="sc-eldPxv sc-ef43f00b-0 iyzmge ebOXeQ pa11y-ignore"
+              class="sc-bkkgYE sc-6dbd7f46-0 Xaaow iNOHaR"
             >
               <span
                 aria-hidden="true"
@@ -105,16 +105,16 @@ exports[`CurricUnitCard highlighted state 1`] = `
               </span>
             </div>
             <span
-              class="sc-eqUAAy bngpZa"
+              class="sc-dkPwfY cSKbCa"
             >
               Something nice
             </span>
             <div
-              class="sc-aXZVg QBMYh"
+              class="sc-bdvwhi hFUkks"
               data-testid="options-tag"
             >
               <span
-                class="sc-eqUAAy bxYkAr"
+                class="sc-dkPwfY kSuBdj"
                 color="lavender"
               >
                 2 unit options
@@ -122,22 +122,22 @@ exports[`CurricUnitCard highlighted state 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer gVcrhT ioiTMB"
+            class="sc-bdvwhi sc-gsDMPd dkETdW dHhGIq"
           >
             <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ fUsBHa"
+              class="sc-bdvwhi sc-gsDMPd hPWTKU lawjtZ"
             >
               <div
-                class="sc-aXZVg sc-dAbbOL gKNTgg cyWODS"
+                class="sc-bdvwhi sc-dlVwtM flamfx kbIIFQ"
               >
                 Unit info
               </div>
               <span
-                class="sc-aXZVg jJQFnr"
+                class="sc-bdvwhi cERAFe"
               >
                 <img
                   alt=""
-                  class="sc-iGgWBj bOyFfb"
+                  class="sc-jRQBiJ buswnv"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"
@@ -163,22 +163,22 @@ exports[`CurricUnitCard index is correct 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-fTFjTM jJROoH bSgmkz"
+      class="sc-bdvwhi sc-bXTeWK elSKXy CYQjY"
     >
       <a
-        class="sc-a6022ff2-0 ejmuOd"
+        class="sc-79137fc-0 evxJPM"
         data-testid="unit-info-link"
         href="/"
       >
         <div
-          class="sc-aXZVg sc-gEvEer bPsLdw bktafW"
+          class="sc-bdvwhi sc-gsDMPd gHhcuN cIPGhJ"
           data-testid="unit-card"
         >
           <div
-            class="sc-aXZVg sc-gEvEer jPvJsJ gWvaOf"
+            class="sc-bdvwhi sc-gsDMPd hPWTKU kirjqU"
           >
             <div
-              class="sc-eldPxv sc-ef43f00b-0 iyzmge ebOXeQ pa11y-ignore"
+              class="sc-bkkgYE sc-6dbd7f46-0 Xaaow iNOHaR"
             >
               <span
                 aria-hidden="true"
@@ -187,16 +187,16 @@ exports[`CurricUnitCard index is correct 1`] = `
               </span>
             </div>
             <span
-              class="sc-eqUAAy bngpZa"
+              class="sc-dkPwfY cSKbCa"
             >
               Something nice
             </span>
             <div
-              class="sc-aXZVg QBMYh"
+              class="sc-bdvwhi hFUkks"
               data-testid="options-tag"
             >
               <span
-                class="sc-eqUAAy bxYkAr"
+                class="sc-dkPwfY kSuBdj"
                 color="lavender"
               >
                 2 unit options
@@ -204,22 +204,22 @@ exports[`CurricUnitCard index is correct 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer gVcrhT ioiTMB"
+            class="sc-bdvwhi sc-gsDMPd dkETdW dHhGIq"
           >
             <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ fUsBHa"
+              class="sc-bdvwhi sc-gsDMPd hPWTKU lawjtZ"
             >
               <div
-                class="sc-aXZVg sc-dAbbOL gKNTgg cyWODS"
+                class="sc-bdvwhi sc-dlVwtM flamfx kbIIFQ"
               >
                 Unit info
               </div>
               <span
-                class="sc-aXZVg jJQFnr"
+                class="sc-bdvwhi cERAFe"
               >
                 <img
                   alt=""
-                  class="sc-iGgWBj lcrpYX"
+                  class="sc-jRQBiJ fZPumv"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"
@@ -240,22 +240,22 @@ exports[`CurricUnitCard render 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-fTFjTM jJROoH bSgmkz"
+      class="sc-bdvwhi sc-bXTeWK elSKXy CYQjY"
     >
       <a
-        class="sc-a6022ff2-0 ejmuOd"
+        class="sc-79137fc-0 evxJPM"
         data-testid="unit-info-link"
         href="/"
       >
         <div
-          class="sc-aXZVg sc-gEvEer bPsLdw bktafW"
+          class="sc-bdvwhi sc-gsDMPd gHhcuN cIPGhJ"
           data-testid="unit-card"
         >
           <div
-            class="sc-aXZVg sc-gEvEer jPvJsJ gWvaOf"
+            class="sc-bdvwhi sc-gsDMPd hPWTKU kirjqU"
           >
             <div
-              class="sc-eldPxv sc-ef43f00b-0 iyzmge ebOXeQ pa11y-ignore"
+              class="sc-bkkgYE sc-6dbd7f46-0 Xaaow iNOHaR"
             >
               <span
                 aria-hidden="true"
@@ -264,16 +264,16 @@ exports[`CurricUnitCard render 1`] = `
               </span>
             </div>
             <span
-              class="sc-eqUAAy bngpZa"
+              class="sc-dkPwfY cSKbCa"
             >
               Something nice
             </span>
             <div
-              class="sc-aXZVg QBMYh"
+              class="sc-bdvwhi hFUkks"
               data-testid="options-tag"
             >
               <span
-                class="sc-eqUAAy bxYkAr"
+                class="sc-dkPwfY kSuBdj"
                 color="lavender"
               >
                 2 unit options
@@ -281,22 +281,22 @@ exports[`CurricUnitCard render 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer gVcrhT ioiTMB"
+            class="sc-bdvwhi sc-gsDMPd dkETdW dHhGIq"
           >
             <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ fUsBHa"
+              class="sc-bdvwhi sc-gsDMPd hPWTKU lawjtZ"
             >
               <div
-                class="sc-aXZVg sc-dAbbOL gKNTgg cyWODS"
+                class="sc-bdvwhi sc-dlVwtM flamfx kbIIFQ"
               >
                 Unit info
               </div>
               <span
-                class="sc-aXZVg jJQFnr"
+                class="sc-bdvwhi cERAFe"
               >
                 <img
                   alt=""
-                  class="sc-iGgWBj lcrpYX"
+                  class="sc-jRQBiJ fZPumv"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"

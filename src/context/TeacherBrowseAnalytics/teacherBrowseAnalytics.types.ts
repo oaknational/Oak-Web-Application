@@ -23,7 +23,6 @@ import {
   ActiveFilters,
 } from "@/browser-lib/avo/Avo";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import { Thread, Unit } from "@/utils/curriculum/types";
 
 // Core programme properties used at all browse levels
 export type CoreProgrammeState = {
@@ -37,6 +36,7 @@ export type CoreProgrammeState = {
 // Expanded programme factor state used at unit and lesson browse levels
 export type ProgrammeFactorState = CoreProgrammeState & {
   year: ProgrammeFields["year"];
+  yearGroupSlug: ProgrammeFields["year_slug"];
   yearGroupTitle: ProgrammeFields["year_description"];
   keyStageSlug: ProgrammeFields["keystage_slug"];
   keyStageTitle: ProgrammeFields["keystage_description"];
@@ -101,6 +101,8 @@ export type UnitPathwayData = ProgrammePathwayData & {
   pathway: PathwayValueType | null;
   unitName: string;
   unitSlug: string;
+  yearGroupName: string;
+  yearGroupSlug: string;
 };
 
 export type LessonPathwayData = UnitPathwayData & {
@@ -109,8 +111,6 @@ export type LessonPathwayData = UnitPathwayData & {
   lessonReleaseDate: string;
   lessonReleaseCohort: LessonReleaseCohortValueType;
   releaseGroup: string;
-  yearGroupName: string;
-  yearGroupSlug: string;
 };
 
 export type VideoTrackingProperties = {
@@ -124,6 +124,31 @@ export type VideoTrackingProperties = {
   isMuted: boolean;
   videoLocation: VideoLocationValueType | null | undefined;
 };
+
+type SearchResultContentFields = {
+  keyStageTitle: KeyStageTitleValueType;
+  keyStageSlug: string;
+  subjectTitle: string;
+  subjectSlug: string;
+  unitName: string;
+  unitSlug: string;
+  lessonName: string;
+  lessonSlug: string;
+};
+
+type SearchResultReleaseFields = {
+  lessonReleaseCohort: LessonReleaseCohortValueType;
+  lessonReleaseDate: string;
+};
+
+// Search result properties vary per hit, so they are supplied by the caller
+export type SearchResultContext = SearchResultContentFields &
+  SearchResultReleaseFields;
+
+// Suggestion results resolve to a key stage only, with no unit or lesson
+export type NullableSearchResultContext = {
+  [K in keyof SearchResultContentFields]: SearchResultContentFields[K] | null;
+} & SearchResultReleaseFields;
 
 // All Track Fns used in the teacher browse journey
 export type TeacherBrowseTrackFns = {
@@ -164,11 +189,6 @@ export type TeacherBrowseTrackFns = {
   }) => void;
   unitDownloaded: () => void;
   unitDownloadStarted: () => void;
-  unitOverviewAccessed: (
-    unit: Unit,
-    isHighlighted: boolean,
-    selectedThread: Thread | undefined,
-  ) => void;
   unitSequenceRefined: (props: {
     selectedThread?: { slug: string; title: string }; // TD add filters to state
     subjectCategory?: string; // TD add filters to state
@@ -260,7 +280,7 @@ export type TeacherBrowseTrackFns = {
     activeFilters: Record<string, string>; // TD add filters to state
     searchTerm: string; // TD add query to state
   }) => void;
-  searchExpanded: (props: {
+  searchResultExpanded: (props: {
     searchRank: number;
     searchFilterOptionSelected: string[];
     searchResultCount: number;

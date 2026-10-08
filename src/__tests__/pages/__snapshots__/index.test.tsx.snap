@@ -69,35 +69,35 @@ exports[`Teachers Page Page component renders 1`] = `
         </script>
       </fake-head>
       <div
-        class="sc-aXZVg sc-gEvEer cnUakV fUxOFh"
+        class="sc-bdvwhi sc-gsDMPd idbbhg cvDmZS"
       >
         <header
-          class="sc-aXZVg jPKaSh"
+          class="sc-bdvwhi jWxyY"
           data-testid="app-topnav"
         >
           <div
-            class="sc-aXZVg jnwsCM"
+            class="sc-bdvwhi ifFSgR"
           >
             <div
-              class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
             >
               <div
-                class="sc-aXZVg kpXzs grey-shadow"
+                class="sc-bdvwhi kAFHfV grey-shadow"
               />
               <div
-                class="sc-aXZVg kpXzs yellow-shadow"
+                class="sc-bdvwhi kAFHfV yellow-shadow"
               />
               <a
-                class="sc-dcJsrY sc-jXbUNg bALQkH khQbhv internal-button"
+                class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
                 data-testid="skip-link"
                 href="#main"
                 style="position: absolute; left: -10000px;"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
                 >
                   <span
-                    class="sc-eqUAAy edqVpV"
+                    class="sc-dkPwfY kXQhTZ"
                   >
                     Skip to content
                   </span>
@@ -106,27 +106,27 @@ exports[`Teachers Page Page component renders 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer hqsIRw hybeqs"
+            class="sc-bdvwhi sc-gsDMPd hZQFXJ ijSRAr"
           >
             <div
-              class="sc-aXZVg sc-kpDqfm drtsaa bPwdwY"
+              class="sc-bdvwhi sc-iqsgXZ bZiwHb gxchUF"
             >
               <div
-                class="sc-aXZVg kpXzs grey-shadow"
+                class="sc-bdvwhi kAFHfV grey-shadow"
               />
               <div
-                class="sc-aXZVg kpXzs yellow-shadow"
+                class="sc-bdvwhi kAFHfV yellow-shadow"
               />
               <a
                 aria-current="true"
-                class="sc-dcJsrY sc-jXbUNg jRcshf khQbhv internal-button"
+                class="sc-eCIkAO sc-jrQAon canKaL eGeOxA internal-button"
                 href="/"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
                 >
                   <span
-                    class="sc-eqUAAy iIwSBe"
+                    class="sc-dkPwfY jASiOm"
                   >
                     Teachers
                   </span>
@@ -134,34 +134,34 @@ exports[`Teachers Page Page component renders 1`] = `
               </a>
             </div>
             <div
-              class="sc-aXZVg sc-kpDqfm drtsaa cvxBYX"
+              class="sc-bdvwhi sc-iqsgXZ bZiwHb hjfwPa"
             >
               <div
-                class="sc-aXZVg kpXzs grey-shadow"
+                class="sc-bdvwhi kAFHfV grey-shadow"
               />
               <div
-                class="sc-aXZVg kpXzs yellow-shadow"
+                class="sc-bdvwhi kAFHfV yellow-shadow"
               />
               <a
                 aria-current="false"
-                class="sc-dcJsrY sc-jXbUNg dVgulv dglRoS internal-button"
+                class="sc-eCIkAO sc-jrQAon gjfqHX fODyRh internal-button"
                 href="/pupils/years"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
                 >
                   <span
-                    class="sc-eqUAAy iIwSBe"
+                    class="sc-dkPwfY jASiOm"
                   >
                     Go to 
                     pupils
                   </span>
                   <span
-                    class="sc-aXZVg jJQFnr"
+                    class="sc-bdvwhi cERAFe"
                   >
                     <img
                       alt=""
-                      class="sc-iGgWBj cMzyFO"
+                      class="sc-jRQBiJ eMsccW"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -174,22 +174,22 @@ exports[`Teachers Page Page component renders 1`] = `
             </div>
           </div>
           <nav
-            class="sc-aXZVg sc-gEvEer klFMcy eiZVBl"
+            class="sc-bdvwhi sc-gsDMPd fgPPqL eDsKsK"
           >
             <a
               aria-label="Home"
-              class="sc-fHjqPf bwIJQB"
+              class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
               href="/"
             >
               <span
-                class="sc-eqUAAy iGfTGj"
+                class="sc-dkPwfY fgmEIT"
               >
                 <span
-                  class="sc-aXZVg etAHNY"
+                  class="sc-bdvwhi fBJYrN"
                 >
                   <img
                     alt=""
-                    class="sc-iGgWBj dZvqhO"
+                    class="sc-jRQBiJ hssYEG"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -198,11 +198,11 @@ exports[`Teachers Page Page component renders 1`] = `
                   />
                 </span>
                 <span
-                  class="sc-aXZVg bmLRQH"
+                  class="sc-bdvwhi gJJZuS"
                 >
                   <img
                     alt=""
-                    class="sc-iGgWBj dZvqhO"
+                    class="sc-jRQBiJ hssYEG"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -213,40 +213,40 @@ exports[`Teachers Page Page component renders 1`] = `
               </span>
             </a>
             <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ cYAnxJ"
+              class="sc-bdvwhi sc-gsDMPd hPWTKU cWjqBO"
               data-testid="teachers-subnav"
               id="teachers-subnav"
             >
               <div
-                class="sc-aXZVg jPvJsJ"
+                class="sc-bdvwhi hPWTKU"
               >
                 <ul
-                  class="sc-feUZmu kYfkoY"
+                  class="sc-kfPsKX zyInc"
                 >
                   <li
-                    class="sc-fPXMVe ishrdH"
+                    class="sc-ieedpP bVasfV"
                   >
                     <div
-                      class="sc-aXZVg sc-kpDqfm bhFzn bPwdwY"
+                      class="sc-bdvwhi sc-iqsgXZ giIlgC gxchUF"
                     >
                       <div
-                        class="sc-aXZVg kpXzs grey-shadow"
+                        class="sc-bdvwhi kAFHfV grey-shadow"
                       />
                       <div
-                        class="sc-aXZVg kpXzs yellow-shadow"
+                        class="sc-bdvwhi kAFHfV yellow-shadow"
                       />
                       <button
                         aria-expanded="false"
                         aria-haspopup="true"
-                        class="sc-dcJsrY sc-jXbUNg hodcpD kwUki internal-button"
+                        class="sc-eCIkAO sc-jrQAon TVMnz lhNPft internal-button"
                         data-testid="teachers-primary"
                         id="teachers-primary"
                       >
                         <div
-                          class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
+                          class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
                         >
                           <span
-                            class="sc-eqUAAy kJIzWq"
+                            class="sc-dkPwfY iVFbem"
                           >
                             Primary
                           </span>
@@ -255,29 +255,29 @@ exports[`Teachers Page Page component renders 1`] = `
                     </div>
                   </li>
                   <li
-                    class="sc-fPXMVe ishrdH"
+                    class="sc-ieedpP bVasfV"
                   >
                     <div
-                      class="sc-aXZVg sc-kpDqfm bhFzn bPwdwY"
+                      class="sc-bdvwhi sc-iqsgXZ giIlgC gxchUF"
                     >
                       <div
-                        class="sc-aXZVg kpXzs grey-shadow"
+                        class="sc-bdvwhi kAFHfV grey-shadow"
                       />
                       <div
-                        class="sc-aXZVg kpXzs yellow-shadow"
+                        class="sc-bdvwhi kAFHfV yellow-shadow"
                       />
                       <button
                         aria-expanded="false"
                         aria-haspopup="true"
-                        class="sc-dcJsrY sc-jXbUNg hodcpD kwUki internal-button"
+                        class="sc-eCIkAO sc-jrQAon TVMnz lhNPft internal-button"
                         data-testid="teachers-secondary"
                         id="teachers-secondary"
                       >
                         <div
-                          class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
+                          class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
                         >
                           <span
-                            class="sc-eqUAAy kJIzWq"
+                            class="sc-dkPwfY iVFbem"
                           >
                             Secondary
                           </span>
@@ -286,29 +286,29 @@ exports[`Teachers Page Page component renders 1`] = `
                     </div>
                   </li>
                   <li
-                    class="sc-fPXMVe ishrdH"
+                    class="sc-ieedpP bVasfV"
                   >
                     <div
-                      class="sc-aXZVg sc-kpDqfm bhFzn bPwdwY"
+                      class="sc-bdvwhi sc-iqsgXZ giIlgC gxchUF"
                     >
                       <div
-                        class="sc-aXZVg kpXzs grey-shadow"
+                        class="sc-bdvwhi kAFHfV grey-shadow"
                       />
                       <div
-                        class="sc-aXZVg kpXzs yellow-shadow"
+                        class="sc-bdvwhi kAFHfV yellow-shadow"
                       />
                       <button
                         aria-expanded="false"
                         aria-haspopup="true"
-                        class="sc-dcJsrY sc-jXbUNg hodcpD kwUki internal-button"
+                        class="sc-eCIkAO sc-jrQAon TVMnz lhNPft internal-button"
                         data-testid="teachers-guidance"
                         id="teachers-guidance"
                       >
                         <div
-                          class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
+                          class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
                         >
                           <span
-                            class="sc-eqUAAy kJIzWq"
+                            class="sc-dkPwfY iVFbem"
                           >
                             Guidance
                           </span>
@@ -317,29 +317,29 @@ exports[`Teachers Page Page component renders 1`] = `
                     </div>
                   </li>
                   <li
-                    class="sc-fPXMVe ishrdH"
+                    class="sc-ieedpP bVasfV"
                   >
                     <div
-                      class="sc-aXZVg sc-kpDqfm bhFzn bPwdwY"
+                      class="sc-bdvwhi sc-iqsgXZ giIlgC gxchUF"
                     >
                       <div
-                        class="sc-aXZVg kpXzs grey-shadow"
+                        class="sc-bdvwhi kAFHfV grey-shadow"
                       />
                       <div
-                        class="sc-aXZVg kpXzs yellow-shadow"
+                        class="sc-bdvwhi kAFHfV yellow-shadow"
                       />
                       <button
                         aria-expanded="false"
                         aria-haspopup="true"
-                        class="sc-dcJsrY sc-jXbUNg hodcpD kwUki internal-button"
+                        class="sc-eCIkAO sc-jrQAon TVMnz lhNPft internal-button"
                         data-testid="teachers-aboutUs"
                         id="teachers-aboutUs"
                       >
                         <div
-                          class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
+                          class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
                         >
                           <span
-                            class="sc-eqUAAy kJIzWq"
+                            class="sc-dkPwfY iVFbem"
                           >
                             About us
                           </span>
@@ -348,38 +348,38 @@ exports[`Teachers Page Page component renders 1`] = `
                     </div>
                   </li>
                   <li
-                    class="sc-fPXMVe ishrdH"
+                    class="sc-ieedpP bVasfV"
                   >
                     <div
-                      class="sc-aXZVg sc-kpDqfm bhFzn bPwdwY"
+                      class="sc-bdvwhi sc-iqsgXZ giIlgC gxchUF"
                     >
                       <div
-                        class="sc-aXZVg kpXzs grey-shadow"
+                        class="sc-bdvwhi kAFHfV grey-shadow"
                       />
                       <div
-                        class="sc-aXZVg kpXzs yellow-shadow"
+                        class="sc-bdvwhi kAFHfV yellow-shadow"
                       />
                       <a
                         aria-label="Ai experiments (this will open in a new tab)"
-                        class="sc-dcJsrY sc-jXbUNg hodcpD kwUki internal-button"
+                        class="sc-eCIkAO sc-jrQAon TVMnz lhNPft internal-button"
                         href="https://labs.thenational.academy"
                         id="teachers-labs"
                         target="_blank"
                       >
                         <div
-                          class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
+                          class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
                         >
                           <span
-                            class="sc-eqUAAy kJIzWq"
+                            class="sc-dkPwfY iVFbem"
                           >
                             Ai experiments
                           </span>
                           <span
-                            class="sc-aXZVg jJQFnr"
+                            class="sc-bdvwhi cERAFe"
                           >
                             <img
                               alt=""
-                              class="sc-iGgWBj lcrpYX"
+                              class="sc-jRQBiJ fZPumv"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
@@ -394,24 +394,24 @@ exports[`Teachers Page Page component renders 1`] = `
                 </ul>
               </div>
               <div
-                class="sc-aXZVg sc-gEvEer jPvJsJ QOrzQ"
+                class="sc-bdvwhi sc-gsDMPd hPWTKU gCyLHX"
               >
                 <form
                   action="/teachers/search"
-                  class="sc-aXZVg jlFxNP"
+                  class="sc-bdvwhi bsEZhu"
                   method="get"
                   role="search"
                 >
                   <div
-                    class="sc-aXZVg ksEYoI"
+                    class="sc-bdvwhi aIwlt"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-kdBSHD kTJpCI uEMma hwfiFr"
+                      class="sc-bdvwhi sc-gsDMPd sc-cTAoCz fgcOpf eWbmLh gkqGfv"
                     >
                       <input
                         aria-invalid="false"
                         aria-label="Lesson and unit search"
-                        class="sc-lcIPJg dAbEtD"
+                        class="sc-efQVjI iOeTAG"
                         name="term"
                         placeholder="Search"
                         type="search"
@@ -419,32 +419,32 @@ exports[`Teachers Page Page component renders 1`] = `
                     </div>
                   </div>
                   <div
-                    class="sc-aXZVg cRRfLr"
+                    class="sc-bdvwhi eOvzlK"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-jlZhew hCgIGG iDBIXi dbLRDh"
+                      class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex bTnqgZ"
                     >
                       <button
                         aria-label="Submit search"
-                        class="sc-dcJsrY sc-dAlyuH dAja-dp eGtIkY"
+                        class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
                         type="submit"
                       >
                         <div
-                          class="sc-aXZVg sc-gEvEer jPvJsJ btEZOP"
+                          class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
                         >
                           <div
-                            class="sc-aXZVg sc-gEvEer imSyhC jMLdOa icon-container"
+                            class="sc-bdvwhi sc-gsDMPd gCFyZH gbgSUZ icon-container"
                           >
                             <div
-                              class="sc-aXZVg cEcrAy shadow"
+                              class="sc-bdvwhi joRFWv shadow"
                             />
                             <span
-                              class="sc-aXZVg jJQFnr"
+                              class="sc-bdvwhi cERAFe"
                               data-icon-for="button"
                             >
                               <img
                                 alt=""
-                                class="sc-iGgWBj bOyFfb"
+                                class="sc-jRQBiJ buswnv"
                                 data-nimg="fill"
                                 decoding="async"
                                 loading="lazy"
@@ -454,7 +454,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             </span>
                           </div>
                           <span
-                            class="sc-eqUAAy bngpZa"
+                            class="sc-dkPwfY cSKbCa"
                           />
                         </div>
                       </button>
@@ -462,32 +462,32 @@ exports[`Teachers Page Page component renders 1`] = `
                   </div>
                 </form>
                 <div
-                  class="sc-aXZVg jWPIhU"
+                  class="sc-bdvwhi jiFgkN"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-jlZhew hCgIGG iDBIXi dbLRDh"
+                    class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex bTnqgZ"
                   >
                     <a
                       aria-label="Search"
-                      class="sc-dcJsrY sc-dAlyuH dAja-dp eGtIkY"
+                      class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
                       href="/teachers/search"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ btEZOP"
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
                       >
                         <div
-                          class="sc-aXZVg sc-gEvEer imSyhC jMLdOa icon-container"
+                          class="sc-bdvwhi sc-gsDMPd gCFyZH gbgSUZ icon-container"
                         >
                           <div
-                            class="sc-aXZVg cEcrAy shadow"
+                            class="sc-bdvwhi joRFWv shadow"
                           />
                           <span
-                            class="sc-aXZVg jJQFnr"
+                            class="sc-bdvwhi cERAFe"
                             data-icon-for="button"
                           >
                             <img
                               alt=""
-                              class="sc-iGgWBj bOyFfb"
+                              class="sc-jRQBiJ buswnv"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
@@ -497,7 +497,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           </span>
                         </div>
                         <span
-                          class="sc-eqUAAy bngpZa"
+                          class="sc-dkPwfY cSKbCa"
                         />
                       </div>
                     </a>
@@ -505,19 +505,19 @@ exports[`Teachers Page Page component renders 1`] = `
                 </div>
                 <a
                   aria-label="My library"
-                  class="sc-dcJsrY sc-dGCmGc fIyhTG kNXJqf"
+                  class="sc-eCIkAO sc-hYQmIO leuZXC iqPAvY"
                   href="/teachers/my-library"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer dEZDij gdDWLp oak-save-count"
+                    class="sc-bdvwhi sc-gsDMPd evZLCm igJqEq oak-save-count"
                   >
                     <span
-                      class="sc-aXZVg hGfwDH"
+                      class="sc-bdvwhi dsdZgi"
                       data-testid="bookmark-outlined"
                     >
                       <img
                         alt=""
-                        class="sc-iGgWBj cMzyFO"
+                        class="sc-jRQBiJ eMsccW"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -526,29 +526,29 @@ exports[`Teachers Page Page component renders 1`] = `
                       />
                     </span>
                     <div
-                      class="sc-aXZVg jlAZlD"
+                      class="sc-bdvwhi nQgAu"
                     >
                       My library
                     </div>
                   </div>
                 </a>
                 <div
-                  class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                  class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
                 >
                   <div
-                    class="sc-aXZVg kpXzs grey-shadow"
+                    class="sc-bdvwhi kAFHfV grey-shadow"
                   />
                   <div
-                    class="sc-aXZVg kpXzs yellow-shadow"
+                    class="sc-bdvwhi kAFHfV yellow-shadow"
                   />
                   <button
-                    class="sc-dcJsrY sc-jXbUNg bVEHjt dcSnMW internal-button"
+                    class="sc-eCIkAO sc-jrQAon jtKaqd bXRQbB internal-button"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
                     >
                       <span
-                        class="sc-eqUAAy kJIzWq"
+                        class="sc-dkPwfY iVFbem"
                       >
                         Sign in
                       </span>
@@ -558,32 +558,32 @@ exports[`Teachers Page Page component renders 1`] = `
               </div>
             </div>
             <div
-              class="sc-aXZVg bvgpQB"
+              class="sc-bdvwhi bppgzs"
             >
               <div
-                class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
               >
                 <div
-                  class="sc-aXZVg kpXzs grey-shadow"
+                  class="sc-bdvwhi kAFHfV grey-shadow"
                 />
                 <div
-                  class="sc-aXZVg kpXzs yellow-shadow"
+                  class="sc-bdvwhi kAFHfV yellow-shadow"
                 />
                 <button
                   aria-expanded="false"
                   aria-label="Open navigation menu"
-                  class="sc-dcJsrY sc-jXbUNg hqcqVi khQbhv internal-button"
+                  class="sc-eCIkAO sc-jrQAon cyLqiG eGeOxA internal-button"
                   data-testid="top-nav-hamburger-button"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer jPvJsJ btEZOP"
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
                   >
                     <span
-                      class="sc-aXZVg jJQFnr"
+                      class="sc-bdvwhi cERAFe"
                     >
                       <img
                         alt=""
-                        class="sc-iGgWBj lcrpYX"
+                        class="sc-jRQBiJ fZPumv"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -592,7 +592,7 @@ exports[`Teachers Page Page component renders 1`] = `
                       />
                     </span>
                     <span
-                      class="sc-eqUAAy edqVpV"
+                      class="sc-dkPwfY kXQhTZ"
                     />
                   </div>
                 </button>
@@ -601,24 +601,24 @@ exports[`Teachers Page Page component renders 1`] = `
           </nav>
         </header>
         <main
-          class="sc-aXZVg sc-gEvEer bwVgbu fUxOFh"
+          class="sc-bdvwhi sc-gsDMPd jtiAen cvDmZS"
           id="main"
         >
           <div
-            class="sc-aXZVg jPvJsJ"
+            class="sc-bdvwhi hPWTKU"
             role="banner"
           >
             <div
-              class="sc-aXZVg sc-gEvEer eHqUtn jMLdOa"
+              class="sc-bdvwhi sc-gsDMPd dlqybO gbgSUZ"
             >
               <div
-                class="sc-aXZVg sc-gEvEer fSjzPB iaWdor"
+                class="sc-bdvwhi sc-gsDMPd cGNkYI exciDE"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer uyUcC jVmVJV"
+                  class="sc-bdvwhi sc-gsDMPd hhNAar jnKJpK"
                 >
                   <p
-                    class="sc-ikkxIA fqNJfa"
+                    class="sc-hGPAwl dsYCxW"
                   >
                     Oak is now used in 
                     <strong>
@@ -628,37 +628,37 @@ exports[`Teachers Page Page component renders 1`] = `
                   </p>
                 </div>
                 <div
-                  class="sc-aXZVg sc-gEvEer sc-jEACwC hCgIGG iDBIXi eitCDZ"
+                  class="sc-bdvwhi sc-gsDMPd sc-ksdwth gyHFon Bakex fnQopp"
                 >
                   <a
-                    class="sc-dcJsrY sc-cwHptR hLVsma flGUwh"
+                    class="sc-eCIkAO sc-bqiQyc fqeNIm iKPRnI"
                     href="/about-us/oaks-impact"
                     title="Explore our impact"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer jGIKct kejpBe"
+                      class="sc-bdvwhi sc-gsDMPd fiFqxI fzOhMJ"
                     >
                       <span
-                        class="sc-eqUAAy dECBeo"
+                        class="sc-dkPwfY hmZYGI"
                       >
                         <span
-                          class="sc-eqUAAy bngpZa"
+                          class="sc-dkPwfY cSKbCa"
                         >
                           Explore our impact
                         </span>
                       </span>
                       <div
-                        class="sc-aXZVg sc-gEvEer jUIAOv jMLdOa icon-container"
+                        class="sc-bdvwhi sc-gsDMPd jGKTIi gbgSUZ icon-container"
                       >
                         <div
-                          class="sc-aXZVg jPKaSh"
+                          class="sc-bdvwhi jWxyY"
                         >
                           <span
-                            class="sc-aXZVg kRJEbH shadow"
+                            class="sc-bdvwhi hLzDmG shadow"
                           >
                             <img
                               alt=""
-                              class="sc-iGgWBj jTBcsL"
+                              class="sc-jRQBiJ gNTPxL"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
@@ -667,11 +667,11 @@ exports[`Teachers Page Page component renders 1`] = `
                             />
                           </span>
                           <span
-                            class="sc-aXZVg ePZGjH highlight"
+                            class="sc-bdvwhi cLfKlK highlight"
                           >
                             <img
                               alt=""
-                              class="sc-iGgWBj eAlrJj"
+                              class="sc-jRQBiJ jkAeRD"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
@@ -680,12 +680,12 @@ exports[`Teachers Page Page component renders 1`] = `
                             />
                           </span>
                           <span
-                            class="sc-aXZVg jJQFnr"
+                            class="sc-bdvwhi cERAFe"
                             data-icon-for="button"
                           >
                             <img
                               alt=""
-                              class="sc-iGgWBj gCSzNz"
+                              class="sc-jRQBiJ hUAHnf"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
@@ -702,46 +702,46 @@ exports[`Teachers Page Page component renders 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer bjNEZk ccwEJG"
+            class="sc-bdvwhi sc-gsDMPd iolTRh gEEEZl"
           >
             <div
-              class="sc-aXZVg lecJBe"
+              class="sc-bdvwhi dA-DELb"
             >
               <div
-                class="sc-aXZVg sc-gEvEer hLVGmq kOvPyX"
+                class="sc-bdvwhi sc-gsDMPd juCSL jfdfik"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
                 >
                   <h1
-                    class="sc-eldPxv EOFmE"
+                    class="sc-bkkgYE kwGONG"
                   >
                     <div
-                      class="sc-aXZVg cnGAvF"
+                      class="sc-bdvwhi dWCVkE"
                     >
                       Helping you deliver 
                     </div>
                     <div
-                      class="sc-aXZVg cnGAvF"
+                      class="sc-bdvwhi dWCVkE"
                     >
                       a world-class curriculum
                     </div>
                   </h1>
                   <div
-                    class="sc-aXZVg sc-dAbbOL bQfdSl ebLlFz"
+                    class="sc-bdvwhi sc-dlVwtM feZyjk fuRyxh"
                   >
                     Free, national curriculum-aligned resources designed by subject experts, openly available to support innovation.
                   </div>
                 </div>
                 <div
-                  class="sc-aXZVg sc-gEvEer bwVgbu daEtut"
+                  class="sc-bdvwhi sc-gsDMPd jtiAen eChlAW"
                 >
                   <div
-                    class="sc-aXZVg sc-b4caafee-0 bwVgbu rzmOs"
+                    class="sc-bdvwhi sc-b4caafee-0 jtiAen beswLS"
                   >
                     <img
                       alt=""
-                      class="sc-ba397cd3-0 jpVCKX"
+                      class="sc-ba397cd3-0 igiEGH"
                       data-nimg="1"
                       decoding="async"
                       height="313"
@@ -753,57 +753,57 @@ exports[`Teachers Page Page component renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-aXZVg bwVgbu"
+                  class="sc-bdvwhi jtiAen"
                 >
                   <h2
-                    class="sc-eldPxv iCeCTD"
+                    class="sc-bkkgYE iDnUit"
                   >
                     Explore curriculum plans and teaching resources
                   </h2>
                   <nav
                     aria-labelledby="teachers-subject-picker-mobile"
-                    class="sc-aXZVg bwVgbu"
+                    class="sc-bdvwhi jtiAen"
                   >
                     <div
-                      class="sc-aXZVg knfbhp"
+                      class="sc-bdvwhi jSGPyU"
                       id="teachers-subject-picker-mobile"
                     >
                       Choose a curriculum
                     </div>
                     <div
-                      class="sc-aXZVg irslqC"
+                      class="sc-bdvwhi dfVDRn"
                       data-testid="lot-picker"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer kCqVJh dPBUXN"
+                        class="sc-bdvwhi sc-gsDMPd gTzLfY fhpkRe"
                       >
                         <div
-                          class="sc-aXZVg sc-gEvEer bwVgbu ulgVP"
+                          class="sc-bdvwhi sc-gsDMPd jtiAen bdlsww"
                         >
                           <div
-                            class="sc-aXZVg sc-gEvEer Clfe dWiVFs"
+                            class="sc-bdvwhi sc-gsDMPd itnzEL iXPaQn"
                             style="width: 50%;"
                           >
                             <div
-                              class="sc-aXZVg sc-fTFjTM sc-c435d711-1 eAVyBL VBMEN kNJGDD"
+                              class="sc-bdvwhi sc-bXTeWK sc-f0455c2c-1 eRfXEK jlFrQG iNrxLE"
                             >
                               <button
                                 aria-expanded="false"
-                                class="sc-c435d711-3 gFIRgW"
+                                class="sc-f0455c2c-3 dyTpvy"
                                 data-testid="subject-picker-button"
                                 title="Subject"
                               >
                                 <div
-                                  class="sc-aXZVg gEIFQm"
+                                  class="sc-bdvwhi cTdqVL"
                                 >
                                   <span
-                                    class="sc-eqUAAy dhmOzB"
+                                    class="sc-dkPwfY llFgDF"
                                     data-testid="subject-picker-button-heading"
                                   >
                                     Subject
                                   </span>
                                   <p
-                                    class="sc-ikkxIA jkEPvG"
+                                    class="sc-hGPAwl xxZLO"
                                   >
                                     Select
                                   </p>
@@ -812,16 +812,16 @@ exports[`Teachers Page Page component renders 1`] = `
                             </div>
                           </div>
                           <div
-                            class="sc-aXZVg iFEEky"
+                            class="sc-bdvwhi hgzKsn"
                           >
                             <div
                               aria-hidden="true"
-                              class="sc-aXZVg jPvJsJ"
+                              class="sc-bdvwhi hPWTKU"
                               data-testid="brush-borders"
                             >
                               <svg
                                 aria-hidden="true"
-                                class="sc-8c07ce1d-0 caUSIC"
+                                class="sc-9296ad1a-0 eeDSIf"
                                 height="100%"
                                 name="box-border-left"
                                 style="width: 3px;"
@@ -847,70 +847,70 @@ exports[`Teachers Page Page component renders 1`] = `
                             </div>
                           </div>
                           <div
-                            class="sc-aXZVg jPKaSh"
+                            class="sc-bdvwhi jWxyY"
                             style="width: 50%;"
                           >
                             <div
-                              class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
+                              class="sc-bdvwhi sc-gsDMPd itnzEL bYYpbR"
                             >
                               <div
-                                class="sc-aXZVg sc-fTFjTM sc-c435d711-1 hWaSHT VBMEN kNJGDD"
+                                class="sc-bdvwhi sc-bXTeWK sc-f0455c2c-1 NRtFW jlFrQG iNrxLE"
                               >
                                 <div
-                                  class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
+                                  class="sc-bdvwhi sc-gsDMPd hPWTKU jXqXXp"
                                 >
                                   <button
                                     aria-expanded="false"
-                                    class="sc-c435d711-3 gFIRgW"
+                                    class="sc-f0455c2c-3 dyTpvy"
                                     data-testid="phase-picker-button"
                                     title="Phase"
                                   >
                                     <div
-                                      class="sc-aXZVg eRMbhw"
+                                      class="sc-bdvwhi ggRoDJ"
                                     >
                                       <span
-                                        class="sc-eqUAAy dhmOzB"
+                                        class="sc-dkPwfY llFgDF"
                                         data-testid="phase-picker-button-heading"
                                       >
                                         School phase
                                       </span>
                                       <div
-                                        class="sc-aXZVg jUaOuR"
+                                        class="sc-bdvwhi kONsyo"
                                       >
                                         Select
                                       </div>
                                     </div>
                                   </button>
                                   <div
-                                    class="sc-aXZVg sc-gEvEer hzMHDf fKNXyu"
+                                    class="sc-bdvwhi sc-gsDMPd gceOgu hGfQdd"
                                   >
                                     <div
-                                      class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                                      class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
                                     >
                                       <div
-                                        class="sc-aXZVg kpXzs grey-shadow"
+                                        class="sc-bdvwhi kAFHfV grey-shadow"
                                       />
                                       <div
-                                        class="sc-aXZVg kpXzs yellow-shadow"
+                                        class="sc-bdvwhi kAFHfV yellow-shadow"
                                       />
                                       <button
-                                        class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
+                                        class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
                                         data-testid="lot-picker-view-curriculum-button"
                                       >
                                         <div
-                                          class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                                          class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
                                         >
                                           <span
-                                            class="sc-eqUAAy edqVpV"
+                                            class="sc-dkPwfY kXQhTZ"
                                           >
                                             View
                                           </span>
                                           <span
-                                            class="sc-aXZVg jJQFnr"
+                                            class="sc-bdvwhi cERAFe"
                                           >
                                             <img
                                               alt=""
-                                              class="sc-iGgWBj bOyFfb"
+                                              class="sc-jRQBiJ buswnv"
                                               data-nimg="fill"
                                               decoding="async"
                                               loading="lazy"
@@ -932,21 +932,21 @@ exports[`Teachers Page Page component renders 1`] = `
                   </nav>
                 </div>
                 <div
-                  class="sc-aXZVg sc-gEvEer geqbDx dMxcPU"
+                  class="sc-bdvwhi sc-gsDMPd frkKSo hnYwnv"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer fkzhFl hwFdrX"
+                    class="sc-bdvwhi sc-gsDMPd fiwzWI hdQbeU"
                   >
                     <div
-                      class="sc-aXZVg gLhIPK"
+                      class="sc-bdvwhi fJjfMf"
                     >
                       <span
                         aria-hidden="true"
-                        class="sc-aXZVg jJQFnr"
+                        class="sc-bdvwhi cERAFe"
                       >
                         <img
                           alt=""
-                          class="sc-iGgWBj cMzyFO"
+                          class="sc-jRQBiJ eMsccW"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
@@ -956,24 +956,24 @@ exports[`Teachers Page Page component renders 1`] = `
                       </span>
                     </div>
                     <p
-                      class="sc-ikkxIA jlqRlb"
+                      class="sc-hGPAwl kxOiJj"
                     >
                       Teaching resources
                     </p>
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer fkzhFl hwFdrX"
+                    class="sc-bdvwhi sc-gsDMPd fiwzWI hdQbeU"
                   >
                     <div
-                      class="sc-aXZVg gLhIPK"
+                      class="sc-bdvwhi fJjfMf"
                     >
                       <span
                         aria-hidden="true"
-                        class="sc-aXZVg jJQFnr"
+                        class="sc-bdvwhi cERAFe"
                       >
                         <img
                           alt=""
-                          class="sc-iGgWBj cMzyFO"
+                          class="sc-jRQBiJ eMsccW"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
@@ -983,24 +983,24 @@ exports[`Teachers Page Page component renders 1`] = `
                       </span>
                     </div>
                     <p
-                      class="sc-ikkxIA jlqRlb"
+                      class="sc-hGPAwl kxOiJj"
                     >
                       Curriculum plans
                     </p>
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer fkzhFl hwFdrX"
+                    class="sc-bdvwhi sc-gsDMPd fiwzWI hdQbeU"
                   >
                     <div
-                      class="sc-aXZVg fTbvbR"
+                      class="sc-bdvwhi jEJhnM"
                     >
                       <span
                         aria-hidden="true"
-                        class="sc-aXZVg fjkwRj"
+                        class="sc-bdvwhi cqHYAi"
                       >
                         <img
                           alt=""
-                          class="sc-iGgWBj cMzyFO"
+                          class="sc-jRQBiJ eMsccW"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
@@ -1010,7 +1010,7 @@ exports[`Teachers Page Page component renders 1`] = `
                       </span>
                     </div>
                     <p
-                      class="sc-ikkxIA jlqRlb"
+                      class="sc-hGPAwl kxOiJj"
                     >
                       AI tools
                     </p>
@@ -1019,47 +1019,47 @@ exports[`Teachers Page Page component renders 1`] = `
               </div>
             </div>
             <div
-              class="sc-aXZVg iDyLbh"
+              class="sc-bdvwhi gUdFHA"
             >
               <div
-                class="sc-aXZVg sc-gEvEer ddpWHI bOZoqp"
+                class="sc-bdvwhi sc-gsDMPd kfKAWJ tHAgC"
               >
                 <div
-                  class="sc-aXZVg clLXha"
+                  class="sc-bdvwhi glcwX"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
                   >
                     <h1
-                      class="sc-eldPxv EOFmE"
+                      class="sc-bkkgYE kwGONG"
                     >
                       <div
-                        class="sc-aXZVg cnGAvF"
+                        class="sc-bdvwhi dWCVkE"
                       >
                         Helping you deliver 
                       </div>
                       <div
-                        class="sc-aXZVg cnGAvF"
+                        class="sc-bdvwhi dWCVkE"
                       >
                         a world-class curriculum
                       </div>
                     </h1>
                     <div
-                      class="sc-aXZVg sc-dAbbOL bQfdSl ebLlFz"
+                      class="sc-bdvwhi sc-dlVwtM feZyjk fuRyxh"
                     >
                       Free, national curriculum-aligned resources designed by subject experts, openly available to support innovation.
                     </div>
                   </div>
                 </div>
                 <div
-                  class="sc-aXZVg clLXha"
+                  class="sc-bdvwhi glcwX"
                 >
                   <div
-                    class="sc-aXZVg sc-b4caafee-0 bwVgbu rzmOs"
+                    class="sc-bdvwhi sc-b4caafee-0 jtiAen beswLS"
                   >
                     <img
                       alt=""
-                      class="sc-ba397cd3-0 jpVCKX"
+                      class="sc-ba397cd3-0 igiEGH"
                       data-nimg="1"
                       decoding="async"
                       height="313"
@@ -1072,57 +1072,57 @@ exports[`Teachers Page Page component renders 1`] = `
                 </div>
               </div>
               <div
-                class="sc-aXZVg bwVgbu"
+                class="sc-bdvwhi jtiAen"
               >
                 <h2
-                  class="sc-eldPxv iCeCTD"
+                  class="sc-bkkgYE iDnUit"
                 >
                   Explore curriculum plans and teaching resources
                 </h2>
                 <nav
                   aria-labelledby="teachers-subject-picker-tablet"
-                  class="sc-aXZVg bwVgbu"
+                  class="sc-bdvwhi jtiAen"
                 >
                   <div
-                    class="sc-aXZVg knfbhp"
+                    class="sc-bdvwhi jSGPyU"
                     id="teachers-subject-picker-tablet"
                   >
                     Choose a curriculum
                   </div>
                   <div
-                    class="sc-aXZVg irslqC"
+                    class="sc-bdvwhi dfVDRn"
                     data-testid="lot-picker"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer kCqVJh dPBUXN"
+                      class="sc-bdvwhi sc-gsDMPd gTzLfY fhpkRe"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer bwVgbu ulgVP"
+                        class="sc-bdvwhi sc-gsDMPd jtiAen bdlsww"
                       >
                         <div
-                          class="sc-aXZVg sc-gEvEer Clfe dWiVFs"
+                          class="sc-bdvwhi sc-gsDMPd itnzEL iXPaQn"
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-aXZVg sc-fTFjTM sc-c435d711-1 eAVyBL VBMEN kNJGDD"
+                            class="sc-bdvwhi sc-bXTeWK sc-f0455c2c-1 eRfXEK jlFrQG iNrxLE"
                           >
                             <button
                               aria-expanded="false"
-                              class="sc-c435d711-3 gFIRgW"
+                              class="sc-f0455c2c-3 dyTpvy"
                               data-testid="subject-picker-button"
                               title="Subject"
                             >
                               <div
-                                class="sc-aXZVg gEIFQm"
+                                class="sc-bdvwhi cTdqVL"
                               >
                                 <span
-                                  class="sc-eqUAAy dhmOzB"
+                                  class="sc-dkPwfY llFgDF"
                                   data-testid="subject-picker-button-heading"
                                 >
                                   Subject
                                 </span>
                                 <p
-                                  class="sc-ikkxIA jkEPvG"
+                                  class="sc-hGPAwl xxZLO"
                                 >
                                   Select
                                 </p>
@@ -1131,16 +1131,16 @@ exports[`Teachers Page Page component renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="sc-aXZVg iFEEky"
+                          class="sc-bdvwhi hgzKsn"
                         >
                           <div
                             aria-hidden="true"
-                            class="sc-aXZVg jPvJsJ"
+                            class="sc-bdvwhi hPWTKU"
                             data-testid="brush-borders"
                           >
                             <svg
                               aria-hidden="true"
-                              class="sc-8c07ce1d-0 caUSIC"
+                              class="sc-9296ad1a-0 eeDSIf"
                               height="100%"
                               name="box-border-left"
                               style="width: 3px;"
@@ -1166,70 +1166,70 @@ exports[`Teachers Page Page component renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="sc-aXZVg jPKaSh"
+                          class="sc-bdvwhi jWxyY"
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
+                            class="sc-bdvwhi sc-gsDMPd itnzEL bYYpbR"
                           >
                             <div
-                              class="sc-aXZVg sc-fTFjTM sc-c435d711-1 hWaSHT VBMEN kNJGDD"
+                              class="sc-bdvwhi sc-bXTeWK sc-f0455c2c-1 NRtFW jlFrQG iNrxLE"
                             >
                               <div
-                                class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
+                                class="sc-bdvwhi sc-gsDMPd hPWTKU jXqXXp"
                               >
                                 <button
                                   aria-expanded="false"
-                                  class="sc-c435d711-3 gFIRgW"
+                                  class="sc-f0455c2c-3 dyTpvy"
                                   data-testid="phase-picker-button"
                                   title="Phase"
                                 >
                                   <div
-                                    class="sc-aXZVg eRMbhw"
+                                    class="sc-bdvwhi ggRoDJ"
                                   >
                                     <span
-                                      class="sc-eqUAAy dhmOzB"
+                                      class="sc-dkPwfY llFgDF"
                                       data-testid="phase-picker-button-heading"
                                     >
                                       School phase
                                     </span>
                                     <div
-                                      class="sc-aXZVg jUaOuR"
+                                      class="sc-bdvwhi kONsyo"
                                     >
                                       Select
                                     </div>
                                   </div>
                                 </button>
                                 <div
-                                  class="sc-aXZVg sc-gEvEer hzMHDf fKNXyu"
+                                  class="sc-bdvwhi sc-gsDMPd gceOgu hGfQdd"
                                 >
                                   <div
-                                    class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                                    class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
                                   >
                                     <div
-                                      class="sc-aXZVg kpXzs grey-shadow"
+                                      class="sc-bdvwhi kAFHfV grey-shadow"
                                     />
                                     <div
-                                      class="sc-aXZVg kpXzs yellow-shadow"
+                                      class="sc-bdvwhi kAFHfV yellow-shadow"
                                     />
                                     <button
-                                      class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
+                                      class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
                                       data-testid="lot-picker-view-curriculum-button"
                                     >
                                       <div
-                                        class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                                        class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
                                       >
                                         <span
-                                          class="sc-eqUAAy edqVpV"
+                                          class="sc-dkPwfY kXQhTZ"
                                         >
                                           View
                                         </span>
                                         <span
-                                          class="sc-aXZVg jJQFnr"
+                                          class="sc-bdvwhi cERAFe"
                                         >
                                           <img
                                             alt=""
-                                            class="sc-iGgWBj bOyFfb"
+                                            class="sc-jRQBiJ buswnv"
                                             data-nimg="fill"
                                             decoding="async"
                                             loading="lazy"
@@ -1251,21 +1251,21 @@ exports[`Teachers Page Page component renders 1`] = `
                 </nav>
               </div>
               <div
-                class="sc-aXZVg sc-gEvEer geqbDx dMxcPU"
+                class="sc-bdvwhi sc-gsDMPd frkKSo hnYwnv"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer fkzhFl hwFdrX"
+                  class="sc-bdvwhi sc-gsDMPd fiwzWI hdQbeU"
                 >
                   <div
-                    class="sc-aXZVg gLhIPK"
+                    class="sc-bdvwhi fJjfMf"
                   >
                     <span
                       aria-hidden="true"
-                      class="sc-aXZVg jJQFnr"
+                      class="sc-bdvwhi cERAFe"
                     >
                       <img
                         alt=""
-                        class="sc-iGgWBj cMzyFO"
+                        class="sc-jRQBiJ eMsccW"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -1275,24 +1275,24 @@ exports[`Teachers Page Page component renders 1`] = `
                     </span>
                   </div>
                   <p
-                    class="sc-ikkxIA jlqRlb"
+                    class="sc-hGPAwl kxOiJj"
                   >
                     Teaching resources
                   </p>
                 </div>
                 <div
-                  class="sc-aXZVg sc-gEvEer fkzhFl hwFdrX"
+                  class="sc-bdvwhi sc-gsDMPd fiwzWI hdQbeU"
                 >
                   <div
-                    class="sc-aXZVg gLhIPK"
+                    class="sc-bdvwhi fJjfMf"
                   >
                     <span
                       aria-hidden="true"
-                      class="sc-aXZVg jJQFnr"
+                      class="sc-bdvwhi cERAFe"
                     >
                       <img
                         alt=""
-                        class="sc-iGgWBj cMzyFO"
+                        class="sc-jRQBiJ eMsccW"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -1302,24 +1302,24 @@ exports[`Teachers Page Page component renders 1`] = `
                     </span>
                   </div>
                   <p
-                    class="sc-ikkxIA jlqRlb"
+                    class="sc-hGPAwl kxOiJj"
                   >
                     Curriculum plans
                   </p>
                 </div>
                 <div
-                  class="sc-aXZVg sc-gEvEer fkzhFl hwFdrX"
+                  class="sc-bdvwhi sc-gsDMPd fiwzWI hdQbeU"
                 >
                   <div
-                    class="sc-aXZVg fTbvbR"
+                    class="sc-bdvwhi jEJhnM"
                   >
                     <span
                       aria-hidden="true"
-                      class="sc-aXZVg fjkwRj"
+                      class="sc-bdvwhi cqHYAi"
                     >
                       <img
                         alt=""
-                        class="sc-iGgWBj cMzyFO"
+                        class="sc-jRQBiJ eMsccW"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -1329,7 +1329,7 @@ exports[`Teachers Page Page component renders 1`] = `
                     </span>
                   </div>
                   <p
-                    class="sc-ikkxIA jlqRlb"
+                    class="sc-hGPAwl kxOiJj"
                   >
                     AI tools
                   </p>
@@ -1337,89 +1337,89 @@ exports[`Teachers Page Page component renders 1`] = `
               </div>
             </div>
             <div
-              class="sc-aXZVg bUHUGh"
+              class="sc-bdvwhi hkOFqI"
             >
               <div
-                class="sc-aXZVg sc-gEvEer ddpWHI cZXQLy"
+                class="sc-bdvwhi sc-gsDMPd kfKAWJ eunlcp"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer clLXha fLgPAy"
+                  class="sc-bdvwhi sc-gsDMPd glcwX gQfmsJ"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
                   >
                     <h1
-                      class="sc-eldPxv EOFmE"
+                      class="sc-bkkgYE kwGONG"
                     >
                       <div
-                        class="sc-aXZVg cnGAvF"
+                        class="sc-bdvwhi dWCVkE"
                       >
                         Helping you deliver 
                       </div>
                       <div
-                        class="sc-aXZVg cnGAvF"
+                        class="sc-bdvwhi dWCVkE"
                       >
                         a world-class curriculum
                       </div>
                     </h1>
                     <div
-                      class="sc-aXZVg sc-dAbbOL bQfdSl ebLlFz"
+                      class="sc-bdvwhi sc-dlVwtM feZyjk fuRyxh"
                     >
                       Free, national curriculum-aligned resources designed by subject experts, openly available to support innovation.
                     </div>
                   </div>
                   <div
-                    class="sc-aXZVg bwVgbu"
+                    class="sc-bdvwhi jtiAen"
                   >
                     <h2
-                      class="sc-eldPxv iCeCTD"
+                      class="sc-bkkgYE iDnUit"
                     >
                       Explore curriculum plans and teaching resources
                     </h2>
                     <nav
                       aria-labelledby="teachers-subject-picker-desktop"
-                      class="sc-aXZVg bwVgbu"
+                      class="sc-bdvwhi jtiAen"
                     >
                       <div
-                        class="sc-aXZVg knfbhp"
+                        class="sc-bdvwhi jSGPyU"
                         id="teachers-subject-picker-desktop"
                       >
                         Choose a curriculum
                       </div>
                       <div
-                        class="sc-aXZVg irslqC"
+                        class="sc-bdvwhi dfVDRn"
                         data-testid="lot-picker"
                       >
                         <div
-                          class="sc-aXZVg sc-gEvEer kCqVJh dPBUXN"
+                          class="sc-bdvwhi sc-gsDMPd gTzLfY fhpkRe"
                         >
                           <div
-                            class="sc-aXZVg sc-gEvEer bwVgbu ulgVP"
+                            class="sc-bdvwhi sc-gsDMPd jtiAen bdlsww"
                           >
                             <div
-                              class="sc-aXZVg sc-gEvEer Clfe dWiVFs"
+                              class="sc-bdvwhi sc-gsDMPd itnzEL iXPaQn"
                               style="width: 50%;"
                             >
                               <div
-                                class="sc-aXZVg sc-fTFjTM sc-c435d711-1 eAVyBL VBMEN kNJGDD"
+                                class="sc-bdvwhi sc-bXTeWK sc-f0455c2c-1 eRfXEK jlFrQG iNrxLE"
                               >
                                 <button
                                   aria-expanded="false"
-                                  class="sc-c435d711-3 gFIRgW"
+                                  class="sc-f0455c2c-3 dyTpvy"
                                   data-testid="subject-picker-button"
                                   title="Subject"
                                 >
                                   <div
-                                    class="sc-aXZVg gEIFQm"
+                                    class="sc-bdvwhi cTdqVL"
                                   >
                                     <span
-                                      class="sc-eqUAAy dhmOzB"
+                                      class="sc-dkPwfY llFgDF"
                                       data-testid="subject-picker-button-heading"
                                     >
                                       Subject
                                     </span>
                                     <p
-                                      class="sc-ikkxIA jkEPvG"
+                                      class="sc-hGPAwl xxZLO"
                                     >
                                       Select
                                     </p>
@@ -1428,16 +1428,16 @@ exports[`Teachers Page Page component renders 1`] = `
                               </div>
                             </div>
                             <div
-                              class="sc-aXZVg iFEEky"
+                              class="sc-bdvwhi hgzKsn"
                             >
                               <div
                                 aria-hidden="true"
-                                class="sc-aXZVg jPvJsJ"
+                                class="sc-bdvwhi hPWTKU"
                                 data-testid="brush-borders"
                               >
                                 <svg
                                   aria-hidden="true"
-                                  class="sc-8c07ce1d-0 caUSIC"
+                                  class="sc-9296ad1a-0 eeDSIf"
                                   height="100%"
                                   name="box-border-left"
                                   style="width: 3px;"
@@ -1463,70 +1463,70 @@ exports[`Teachers Page Page component renders 1`] = `
                               </div>
                             </div>
                             <div
-                              class="sc-aXZVg jPKaSh"
+                              class="sc-bdvwhi jWxyY"
                               style="width: 50%;"
                             >
                               <div
-                                class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
+                                class="sc-bdvwhi sc-gsDMPd itnzEL bYYpbR"
                               >
                                 <div
-                                  class="sc-aXZVg sc-fTFjTM sc-c435d711-1 hWaSHT VBMEN kNJGDD"
+                                  class="sc-bdvwhi sc-bXTeWK sc-f0455c2c-1 NRtFW jlFrQG iNrxLE"
                                 >
                                   <div
-                                    class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
+                                    class="sc-bdvwhi sc-gsDMPd hPWTKU jXqXXp"
                                   >
                                     <button
                                       aria-expanded="false"
-                                      class="sc-c435d711-3 gFIRgW"
+                                      class="sc-f0455c2c-3 dyTpvy"
                                       data-testid="phase-picker-button"
                                       title="Phase"
                                     >
                                       <div
-                                        class="sc-aXZVg eRMbhw"
+                                        class="sc-bdvwhi ggRoDJ"
                                       >
                                         <span
-                                          class="sc-eqUAAy dhmOzB"
+                                          class="sc-dkPwfY llFgDF"
                                           data-testid="phase-picker-button-heading"
                                         >
                                           School phase
                                         </span>
                                         <div
-                                          class="sc-aXZVg jUaOuR"
+                                          class="sc-bdvwhi kONsyo"
                                         >
                                           Select
                                         </div>
                                       </div>
                                     </button>
                                     <div
-                                      class="sc-aXZVg sc-gEvEer hzMHDf fKNXyu"
+                                      class="sc-bdvwhi sc-gsDMPd gceOgu hGfQdd"
                                     >
                                       <div
-                                        class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                                        class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
                                       >
                                         <div
-                                          class="sc-aXZVg kpXzs grey-shadow"
+                                          class="sc-bdvwhi kAFHfV grey-shadow"
                                         />
                                         <div
-                                          class="sc-aXZVg kpXzs yellow-shadow"
+                                          class="sc-bdvwhi kAFHfV yellow-shadow"
                                         />
                                         <button
-                                          class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
+                                          class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
                                           data-testid="lot-picker-view-curriculum-button"
                                         >
                                           <div
-                                            class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                                            class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
                                           >
                                             <span
-                                              class="sc-eqUAAy edqVpV"
+                                              class="sc-dkPwfY kXQhTZ"
                                             >
                                               View
                                             </span>
                                             <span
-                                              class="sc-aXZVg jJQFnr"
+                                              class="sc-bdvwhi cERAFe"
                                             >
                                               <img
                                                 alt=""
-                                                class="sc-iGgWBj bOyFfb"
+                                                class="sc-jRQBiJ buswnv"
                                                 data-nimg="fill"
                                                 decoding="async"
                                                 loading="lazy"
@@ -1549,14 +1549,14 @@ exports[`Teachers Page Page component renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-aXZVg sc-gEvEer clLXha hrIDCC"
+                  class="sc-bdvwhi sc-gsDMPd glcwX enBTAV"
                 >
                   <div
-                    class="sc-aXZVg sc-b4caafee-0 bwVgbu rzmOs"
+                    class="sc-bdvwhi sc-b4caafee-0 jtiAen beswLS"
                   >
                     <img
                       alt=""
-                      class="sc-ba397cd3-0 jpVCKX"
+                      class="sc-ba397cd3-0 igiEGH"
                       data-nimg="1"
                       decoding="async"
                       height="313"
@@ -1567,21 +1567,21 @@ exports[`Teachers Page Page component renders 1`] = `
                     />
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer geqbDx dMxcPU"
+                    class="sc-bdvwhi sc-gsDMPd frkKSo hnYwnv"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer fkzhFl hwFdrX"
+                      class="sc-bdvwhi sc-gsDMPd fiwzWI hdQbeU"
                     >
                       <div
-                        class="sc-aXZVg gLhIPK"
+                        class="sc-bdvwhi fJjfMf"
                       >
                         <span
                           aria-hidden="true"
-                          class="sc-aXZVg jJQFnr"
+                          class="sc-bdvwhi cERAFe"
                         >
                           <img
                             alt=""
-                            class="sc-iGgWBj cMzyFO"
+                            class="sc-jRQBiJ eMsccW"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -1591,24 +1591,24 @@ exports[`Teachers Page Page component renders 1`] = `
                         </span>
                       </div>
                       <p
-                        class="sc-ikkxIA jlqRlb"
+                        class="sc-hGPAwl kxOiJj"
                       >
                         Teaching resources
                       </p>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer fkzhFl hwFdrX"
+                      class="sc-bdvwhi sc-gsDMPd fiwzWI hdQbeU"
                     >
                       <div
-                        class="sc-aXZVg gLhIPK"
+                        class="sc-bdvwhi fJjfMf"
                       >
                         <span
                           aria-hidden="true"
-                          class="sc-aXZVg jJQFnr"
+                          class="sc-bdvwhi cERAFe"
                         >
                           <img
                             alt=""
-                            class="sc-iGgWBj cMzyFO"
+                            class="sc-jRQBiJ eMsccW"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -1618,24 +1618,24 @@ exports[`Teachers Page Page component renders 1`] = `
                         </span>
                       </div>
                       <p
-                        class="sc-ikkxIA jlqRlb"
+                        class="sc-hGPAwl kxOiJj"
                       >
                         Curriculum plans
                       </p>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer fkzhFl hwFdrX"
+                      class="sc-bdvwhi sc-gsDMPd fiwzWI hdQbeU"
                     >
                       <div
-                        class="sc-aXZVg fTbvbR"
+                        class="sc-bdvwhi jEJhnM"
                       >
                         <span
                           aria-hidden="true"
-                          class="sc-aXZVg fjkwRj"
+                          class="sc-bdvwhi cqHYAi"
                         >
                           <img
                             alt=""
-                            class="sc-iGgWBj cMzyFO"
+                            class="sc-jRQBiJ eMsccW"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -1645,7 +1645,7 @@ exports[`Teachers Page Page component renders 1`] = `
                         </span>
                       </div>
                       <p
-                        class="sc-ikkxIA jlqRlb"
+                        class="sc-hGPAwl kxOiJj"
                       >
                         AI tools
                       </p>
@@ -1656,45 +1656,45 @@ exports[`Teachers Page Page component renders 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-brPLxw hjiwHg fUxOFh"
+            class="sc-bdvwhi sc-gsDMPd sc-jOxwkF dZvqSF cvDmZS"
           >
             <div
-              class="sc-aXZVg dnHcpg"
+              class="sc-bdvwhi fROjdB"
             >
               <div
-                class="sc-aXZVg sc-gEvEer dtxWuS jKdezf"
+                class="sc-bdvwhi sc-gsDMPd bpjVbf blXCbU"
               >
                 <h2
-                  class="sc-eldPxv fDwzvW"
+                  class="sc-bkkgYE bGbWBA"
                 >
                   Stay up to date
                 </h2>
                 <div
-                  class="sc-aXZVg sc-gEvEer jPvJsJ fjNQtm"
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU dRPKud"
                 >
                   <div
-                    class="sc-aXZVg sc-dAbbOL lgAxeN eZDdgy"
+                    class="sc-bdvwhi sc-dlVwtM dXXguc gGdZTY"
                   >
                     <a
-                      class="sc-fHjqPf cTauop sc-iHmpnF"
+                      class="sc-iwjfEg ieUBNG sc-dkYSqe"
                       href="/webinars"
                     >
                       <span
-                        class="sc-eqUAAy iGfTGj"
+                        class="sc-dkPwfY fgmEIT"
                       >
                         All webinars
                       </span>
                     </a>
                   </div>
                   <div
-                    class="sc-aXZVg sc-dAbbOL eUsGfA eZDdgy"
+                    class="sc-bdvwhi sc-dlVwtM inpApF gGdZTY"
                   >
                     <a
-                      class="sc-fHjqPf cTauop sc-iHmpnF"
+                      class="sc-iwjfEg ieUBNG sc-dkYSqe"
                       href="/blog"
                     >
                       <span
-                        class="sc-eqUAAy iGfTGj"
+                        class="sc-dkPwfY fgmEIT"
                       >
                         All blogs
                       </span>
@@ -1703,28 +1703,28 @@ exports[`Teachers Page Page component renders 1`] = `
                 </div>
               </div>
               <div
-                class="sc-aXZVg sc-gEvEer sc-a760817f-0 jPvJsJ blEyxD ewUlqh"
+                class="sc-bdvwhi sc-gsDMPd sc-a760817f-0 hPWTKU jMMTBg iyemNg"
               >
                 <ul
-                  class="sc-feUZmu hrllQw"
+                  class="sc-kfPsKX hKUEXo"
                 >
                   <li
-                    class="sc-fPXMVe ishrdH"
+                    class="sc-ieedpP bVasfV"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer cAsJR jCoank"
+                      class="sc-bdvwhi sc-gsDMPd gxLECK pmGvr"
                     >
                       <div
-                        class="sc-aXZVg dfZjKX"
+                        class="sc-bdvwhi edZcJO"
                       >
                         <div
                           aria-hidden="true"
-                          class="sc-aXZVg jPvJsJ"
+                          class="sc-bdvwhi hPWTKU"
                           data-testid="brush-borders"
                         >
                           <svg
                             aria-hidden="true"
-                            class="sc-8c07ce1d-0 fhgLSt"
+                            class="sc-9296ad1a-0 kEGjos"
                             height="100%"
                             name="box-border-top"
                             style="height: 3px;"
@@ -1749,7 +1749,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="sc-8c07ce1d-0 fhgLSt"
+                            class="sc-9296ad1a-0 kEGjos"
                             height="100%"
                             name="box-border-right"
                             style="width: 3px; height: 100%;"
@@ -1774,7 +1774,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="sc-8c07ce1d-0 fhgLSt"
+                            class="sc-9296ad1a-0 kEGjos"
                             height="100%"
                             name="box-border-bottom"
                             style="height: 3px; width: 90%;"
@@ -1799,7 +1799,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="sc-8c07ce1d-0 fhgLSt"
+                            class="sc-9296ad1a-0 kEGjos"
                             height="100%"
                             name="box-border-left"
                             style="width: 3px;"
@@ -1824,77 +1824,79 @@ exports[`Teachers Page Page component renders 1`] = `
                           </svg>
                         </div>
                         <div
-                          class="sc-aXZVg glUVYV"
+                          class="sc-bdvwhi jaCykQ"
                         >
                           <div
-                            class="sc-436db7ec-0 jNKBhm"
+                            class="sc-436db7ec-0 funYHR"
+                            ratio="3:2"
                           >
                             <div
-                              class="sc-436db7ec-1 hQTwG"
+                              class="sc-436db7ec-1 jCQyhc"
                             />
                           </div>
                         </div>
                       </div>
                       <div
-                        class="sc-aXZVg sc-gEvEer bwVgbu blEyxD"
+                        class="sc-bdvwhi sc-gsDMPd jtiAen jMMTBg"
                       >
                         <div
-                          class="sc-aXZVg sc-gEvEer bwVgbu nVDQV"
+                          class="sc-bdvwhi sc-gsDMPd jtiAen eFMdVa"
                         >
                           <span
-                            class="sc-eqUAAy icIexW"
+                            class="sc-dkPwfY leSQeG"
                           >
                             <a
-                              class="sc-fHjqPf bwIJQB"
+                              class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
                               href="/blog/categories/some-category"
                             >
                               <span
-                                class="sc-eqUAAy iGfTGj"
+                                class="sc-dkPwfY fgmEIT"
                               >
                                 Some category
                               </span>
                             </a>
                           </span>
                           <p
-                            class="sc-ikkxIA eoLWsn"
+                            class="sc-hGPAwl fagwPP"
                           >
                             1 December 2021
                           </p>
                         </div>
                         <h3
-                          class="sc-eldPxv dQwkSK"
+                          class="sc-bkkgYE jXYjOw"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-iwjfEg ieUBNG sc-dkYSqe"
                             href="/blog/some-blog-post"
                             title="Some blog post"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Some blog post
                             </span>
                           </a>
                         </h3>
                         <p
-                          class="sc-ikkxIA fFwQEL"
+                          class="sc-hGPAwl eVhmCL"
                         >
                           <span
-                            class="sc-b8a6ebf4-0 hiVcrG"
+                            class="sc-b8a6ebf4-0 iJQpBf"
+                            lines="2"
                           />
                         </p>
                       </div>
                     </div>
                   </li>
                   <li
-                    class="sc-fPXMVe ishrdH"
+                    class="sc-ieedpP bVasfV"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-gFVvzn cZnPVv iDBIXi"
+                      class="sc-bdvwhi sc-gsDMPd sc-ZOvtA iXoBDW Bakex"
                       focusable="false"
                     >
                       <svg
-                        class="sc-kAkpmW gIJHRH"
+                        class="sc-jIkVsP ShMXb"
                         height="100%"
                         preserveAspectRatio="none"
                         viewBox="0 0 866 8"
@@ -1912,19 +1914,19 @@ exports[`Teachers Page Page component renders 1`] = `
                       </svg>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer cAsJR jCoank"
+                      class="sc-bdvwhi sc-gsDMPd gxLECK pmGvr"
                     >
                       <div
-                        class="sc-aXZVg dfZjKX"
+                        class="sc-bdvwhi edZcJO"
                       >
                         <div
                           aria-hidden="true"
-                          class="sc-aXZVg jPvJsJ"
+                          class="sc-bdvwhi hPWTKU"
                           data-testid="brush-borders"
                         >
                           <svg
                             aria-hidden="true"
-                            class="sc-8c07ce1d-0 fhgLSt"
+                            class="sc-9296ad1a-0 kEGjos"
                             height="100%"
                             name="box-border-top"
                             style="height: 3px;"
@@ -1949,7 +1951,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="sc-8c07ce1d-0 fhgLSt"
+                            class="sc-9296ad1a-0 kEGjos"
                             height="100%"
                             name="box-border-right"
                             style="width: 3px; height: 100%;"
@@ -1974,7 +1976,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="sc-8c07ce1d-0 fhgLSt"
+                            class="sc-9296ad1a-0 kEGjos"
                             height="100%"
                             name="box-border-bottom"
                             style="height: 3px; width: 90%;"
@@ -1999,7 +2001,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="sc-8c07ce1d-0 fhgLSt"
+                            class="sc-9296ad1a-0 kEGjos"
                             height="100%"
                             name="box-border-left"
                             style="width: 3px;"
@@ -2024,63 +2026,65 @@ exports[`Teachers Page Page component renders 1`] = `
                           </svg>
                         </div>
                         <div
-                          class="sc-aXZVg glUVYV"
+                          class="sc-bdvwhi jaCykQ"
                         >
                           <div
-                            class="sc-436db7ec-0 jNKBhm"
+                            class="sc-436db7ec-0 funYHR"
+                            ratio="3:2"
                           >
                             <div
-                              class="sc-436db7ec-1 hQTwG"
+                              class="sc-436db7ec-1 jCQyhc"
                             />
                           </div>
                         </div>
                       </div>
                       <div
-                        class="sc-aXZVg sc-gEvEer bwVgbu blEyxD"
+                        class="sc-bdvwhi sc-gsDMPd jtiAen jMMTBg"
                       >
                         <div
-                          class="sc-aXZVg sc-gEvEer bwVgbu nVDQV"
+                          class="sc-bdvwhi sc-gsDMPd jtiAen eFMdVa"
                         >
                           <span
-                            class="sc-eqUAAy icIexW"
+                            class="sc-dkPwfY leSQeG"
                           >
                             <a
-                              class="sc-fHjqPf bwIJQB"
+                              class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
                               href="/blog/categories/some-category"
                             >
                               <span
-                                class="sc-eqUAAy iGfTGj"
+                                class="sc-dkPwfY fgmEIT"
                               >
                                 Some category
                               </span>
                             </a>
                           </span>
                           <p
-                            class="sc-ikkxIA eoLWsn"
+                            class="sc-hGPAwl fagwPP"
                           >
                             1 December 2021
                           </p>
                         </div>
                         <h3
-                          class="sc-eldPxv dQwkSK"
+                          class="sc-bkkgYE jXYjOw"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-iwjfEg ieUBNG sc-dkYSqe"
                             href="/blog/some-other-post"
                             title="Some other post"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Some other post
                             </span>
                           </a>
                         </h3>
                         <p
-                          class="sc-ikkxIA fFwQEL"
+                          class="sc-hGPAwl eVhmCL"
                         >
                           <span
-                            class="sc-b8a6ebf4-0 hiVcrG"
+                            class="sc-b8a6ebf4-0 iJQpBf"
+                            lines="2"
                           />
                         </p>
                       </div>
@@ -2091,32 +2095,32 @@ exports[`Teachers Page Page component renders 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer iiejHs iDBIXi"
+            class="sc-bdvwhi sc-gsDMPd kzhjuJ Bakex"
           >
             <div
-              class="sc-aXZVg sc-gEvEer sc-brPLxw iyyYQE cpAmbR"
+              class="sc-bdvwhi sc-gsDMPd sc-jOxwkF bWuAGZ jCEHKK"
             >
               <div
-                class="sc-aXZVg sc-gEvEer dySIYP iDBIXi"
+                class="sc-bdvwhi sc-gsDMPd euwVTq Bakex"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer sc-d650a570-0 ePSBwI fUxOFh"
+                  class="sc-bdvwhi sc-gsDMPd sc-d650a570-0 WhkHR cvDmZS"
                 >
                   <div
-                    class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
+                    class="sc-bdvwhi sc-jObTYW hPWTKU jmGxKU"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi nZkbm"
+                      class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex erCqWa"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer ddpWHI hvoolO"
+                        class="sc-bdvwhi sc-gsDMPd kfKAWJ MPeNZ"
                       >
                         <span
-                          class="sc-aXZVg kcHYmp"
+                          class="sc-bdvwhi PMdzg"
                         >
                           <img
                             alt=""
-                            class="sc-iGgWBj cMzyFO"
+                            class="sc-jRQBiJ eMsccW"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -2125,24 +2129,26 @@ exports[`Teachers Page Page component renders 1`] = `
                           />
                         </span>
                         <h2
-                          class="sc-eldPxv iyzmge"
+                          class="sc-bkkgYE Xaaow"
                         >
                           Don’t miss out
                         </h2>
                       </div>
                       <p
-                        class="sc-ikkxIA ehiyrn"
+                        class="sc-hGPAwl cwzhGz"
                         color="text-primary"
                         id="react-use-id-test-result-newsletter-form-description"
                       >
-                        Join over 100k teachers and get free resources and other helpful content by email. Unsubscribe at any time. Read our
+                        Join over 
+                        200k
+                         teachers and get free resources and other helpful content by email. Unsubscribe at any time. Read our
                          
                         <a
-                          class="sc-fHjqPf bwIJQB"
+                          class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
                           href="/legal/privacy-policy"
                         >
                           <span
-                            class="sc-eqUAAy iGfTGj"
+                            class="sc-dkPwfY fgmEIT"
                           >
                             privacy policy
                           </span>
@@ -2151,519 +2157,196 @@ exports[`Teachers Page Page component renders 1`] = `
                       </p>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-esYiGF hwPWvG iDBIXi nZkbm"
+                      class="sc-bdvwhi sc-gsDMPd sc-dPiIMO kariTn Bakex erCqWa"
                     >
                       <form
                         aria-describedby="react-use-id-test-result-newsletter-form-description"
-                        class="sc-afc76bc-0 cGNZHC"
+                        class="sc-bdvwhi sc-gsDMPd jtiAen cIPGhJ"
                         novalidate=""
                       >
                         <div
-                          class="sc-ad0ad6f5-0 sc-213e351e-0 sc-eb7a8b1-2 bVSHII BtlXC koYngz"
+                          class="sc-bdvwhi bpjVbf"
                         >
                           <div
-                            class="sc-ad0ad6f5-0 sc-213e351e-0 fwrGSw cUwoYe"
+                            class="sc-bdvwhi sc-gsDMPd jtiAen cIPGhJ"
                           >
                             <div
-                              aria-hidden="true"
-                              class="sc-aXZVg jPvJsJ"
-                              data-testid="brush-borders"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="sc-8c07ce1d-0 gshgpE"
-                                height="100%"
-                                name="box-border-top"
-                                style="height: 3px;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 365.46 2.75"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="sc-8c07ce1d-0 gshgpE"
-                                height="100%"
-                                name="box-border-right"
-                                style="width: 3px; height: 90%;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 2.89 330.09"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M2.7 2.21c-.12-.76.36-2.63-1.15-2.13C.77.03-.13.13.01.85c.18 14.09.05 309.32.1 328.06 0 .15.3 1.07.28 1.18h2.5C2.85 303.49 2.6 17.84 2.7 2.21Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M1.87 1.07s.09.4.09 1.21c.11 3.3-.51-1.31-.09-1.21ZM1.25 44.05c-.47-.05-.49-1.38-.04-1.78.85-.76.2 1.8.04 1.78ZM.91 1.65c.08 2.14.7 4.95-.31 2.59-.13-.84.18-5.42.31-2.59ZM1.05 65.78c-.47-.05.11-8.31.56-9.46.4-1.07-.4 9.48-.56 9.46ZM1.76 54.4c-.47-.05-.76-.69.03-.65 1.14.07.13.67-.03.65Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="sc-8c07ce1d-0 gshgpE"
-                                height="100%"
-                                name="box-border-bottom"
-                                style="height: 3px; width: 100%;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 365.46 2.75"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="sc-8c07ce1d-0 gshgpE"
-                                height="100%"
-                                name="box-border-left"
-                                style="width: 3px;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 2.72 359.41"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M2.56 26.03c-.14-7.28.05-12.58 0-18.65C2.48 3.63 2.28.24 2.51 0H.02c.13 3.41 1.04 10.2.02 14.63-.1 9.52.02 311.42-.03 344.78h2.5c-.87-4.14.68-328.77.05-333.38Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M1.78 73.31c-.48-1.02.43-5.62.43-4.84.01.69.38 4.88-.43 4.84ZM1.56 142.12c1.14.07.13.67-.03.65-.47-.05-.76-.69.03-.65ZM1.65 196.21c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM2.48 27.51c0 .49 0 1.87-.11 3.12-.37 6.22-.42-1.85.11-3.12ZM2.01 65.86c.39.51.58 1.99-.23 1.95-.48-1.02-.25-2.56.23-1.95ZM1.02 132.42c-.47-.05-.49-1.39-.04-1.78.85-.76.2 1.8.04 1.78ZM.79 5.27c.07-1.81.65 1.18.59 5.76C1.27 17.8.69 6.25.79 5.27ZM.33 47.73c-.33-1.44.48-7.29.21-2.86-.12.57-.13 5.57-.21 2.86ZM.96 94.76c.28.95-.15 5.38-.31 5.36-.47-.05.08-6.12.31-5.36ZM1.23 100.12c-.07.9-.41 1.95-.58 1.95-.47-.05.64-2.73.58-1.95ZM1.38 144.69c.4-1.07-.4 9.48-.56 9.46-.47-.05.12-8.31.56-9.46ZM1.24 197.97c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM1.81 209.98c-.36-1.74-.84-7.52-.52-8.14l.5-1.57c.25.43.05 9.87.02 9.71ZM1.85 158.2c-.47-.05-.11-4.72.13-3.97.33 1.09.03 3.99-.13 3.97Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                            </div>
-                            <div
-                              class="sc-ad0ad6f5-0 sc-213e351e-0 gkBGDY cUwoYe"
+                              class="sc-bdvwhi sc-gsDMPd jWxyY cIPGhJ"
                             >
                               <label
-                                aria-hidden="true"
-                                class="sc-a4f8e51b-0 sc-eb7a8b1-1 fNLaOe kPgTac"
-                                color="black"
-                                data-testid="rotated-input-label"
+                                class="sc-bdvwhi eGhSPA"
+                                data-testid="jaunty-label"
                                 for="react-use-id-test-result-newsletter-signup-name"
-                                id="react-use-id-test-result-newsletter-signup-name-label"
+                                id="Name-label"
+                                style="top: -1.25rem;"
                               >
-                                <span
-                                  class="sc-eqUAAy iGfTGj"
-                                >
-                                  Name
-                                   
-                                  <span
-                                    class="sc-eqUAAy dECBeo"
-                                  >
-                                    (required)
-                                  </span>
-                                </span>
+                                Name (required)
                               </label>
+                              <div
+                                class="sc-bdvwhi sc-gsDMPd sc-clIAoS ibUPwR gEAnZR gqKaCP"
+                              >
+                                <div
+                                  class="sc-bdvwhi sc-gsDMPd hPWTKU kkGnDS"
+                                >
+                                  <input
+                                    autocomplete="name"
+                                    class="sc-efQVjI bktjgD"
+                                    data-testid="text-input"
+                                    id="react-use-id-test-result-newsletter-signup-name"
+                                    name="name"
+                                    placeholder="Anna Smith"
+                                    type="text"
+                                    value=""
+                                  />
+                                </div>
+                              </div>
                             </div>
-                            <input
-                              aria-invalid="false"
-                              aria-labelledby="react-use-id-test-result-newsletter-signup-name-label"
-                              autocomplete="name"
-                              class="sc-7244e9af-0 sc-eb7a8b1-3 hYiqbt iOkuPT"
-                              id="react-use-id-test-result-newsletter-signup-name"
-                              name="name"
-                              placeholder="Anna Smith"
-                              required=""
-                            />
-                            <svg
-                              aria-hidden="true"
-                              class="sc-1bff3534-0 jyYiig sc-eb7a8b1-0 bzXzya"
-                              height="100%"
-                              name="underline-1"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#underline-1"
-                              />
-                            </svg>
                           </div>
                         </div>
                         <div
-                          class="sc-ad0ad6f5-0 sc-213e351e-0 sc-eb7a8b1-2 bVSHII BtlXC koYngz"
+                          class="sc-bdvwhi bpjVbf"
                         >
                           <div
-                            class="sc-ad0ad6f5-0 sc-213e351e-0 fwrGSw cUwoYe"
+                            class="sc-bdvwhi sc-gsDMPd jtiAen cIPGhJ"
                           >
                             <div
-                              aria-hidden="true"
-                              class="sc-aXZVg jPvJsJ"
-                              data-testid="brush-borders"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="sc-8c07ce1d-0 gshgpE"
-                                height="100%"
-                                name="box-border-top"
-                                style="height: 3px;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 365.46 2.75"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="sc-8c07ce1d-0 gshgpE"
-                                height="100%"
-                                name="box-border-right"
-                                style="width: 3px; height: 90%;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 2.89 330.09"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M2.7 2.21c-.12-.76.36-2.63-1.15-2.13C.77.03-.13.13.01.85c.18 14.09.05 309.32.1 328.06 0 .15.3 1.07.28 1.18h2.5C2.85 303.49 2.6 17.84 2.7 2.21Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M1.87 1.07s.09.4.09 1.21c.11 3.3-.51-1.31-.09-1.21ZM1.25 44.05c-.47-.05-.49-1.38-.04-1.78.85-.76.2 1.8.04 1.78ZM.91 1.65c.08 2.14.7 4.95-.31 2.59-.13-.84.18-5.42.31-2.59ZM1.05 65.78c-.47-.05.11-8.31.56-9.46.4-1.07-.4 9.48-.56 9.46ZM1.76 54.4c-.47-.05-.76-.69.03-.65 1.14.07.13.67-.03.65Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="sc-8c07ce1d-0 gshgpE"
-                                height="100%"
-                                name="box-border-bottom"
-                                style="height: 3px; width: 100%;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 365.46 2.75"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="sc-8c07ce1d-0 gshgpE"
-                                height="100%"
-                                name="box-border-left"
-                                style="width: 3px;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 2.72 359.41"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M2.56 26.03c-.14-7.28.05-12.58 0-18.65C2.48 3.63 2.28.24 2.51 0H.02c.13 3.41 1.04 10.2.02 14.63-.1 9.52.02 311.42-.03 344.78h2.5c-.87-4.14.68-328.77.05-333.38Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M1.78 73.31c-.48-1.02.43-5.62.43-4.84.01.69.38 4.88-.43 4.84ZM1.56 142.12c1.14.07.13.67-.03.65-.47-.05-.76-.69.03-.65ZM1.65 196.21c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM2.48 27.51c0 .49 0 1.87-.11 3.12-.37 6.22-.42-1.85.11-3.12ZM2.01 65.86c.39.51.58 1.99-.23 1.95-.48-1.02-.25-2.56.23-1.95ZM1.02 132.42c-.47-.05-.49-1.39-.04-1.78.85-.76.2 1.8.04 1.78ZM.79 5.27c.07-1.81.65 1.18.59 5.76C1.27 17.8.69 6.25.79 5.27ZM.33 47.73c-.33-1.44.48-7.29.21-2.86-.12.57-.13 5.57-.21 2.86ZM.96 94.76c.28.95-.15 5.38-.31 5.36-.47-.05.08-6.12.31-5.36ZM1.23 100.12c-.07.9-.41 1.95-.58 1.95-.47-.05.64-2.73.58-1.95ZM1.38 144.69c.4-1.07-.4 9.48-.56 9.46-.47-.05.12-8.31.56-9.46ZM1.24 197.97c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM1.81 209.98c-.36-1.74-.84-7.52-.52-8.14l.5-1.57c.25.43.05 9.87.02 9.71ZM1.85 158.2c-.47-.05-.11-4.72.13-3.97.33 1.09.03 3.99-.13 3.97Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                            </div>
-                            <div
-                              class="sc-ad0ad6f5-0 sc-213e351e-0 gkBGDY cUwoYe"
+                              class="sc-bdvwhi sc-gsDMPd jWxyY cIPGhJ"
                             >
                               <label
-                                aria-hidden="true"
-                                class="sc-a4f8e51b-0 sc-eb7a8b1-1 fNLaOe kPgTac"
-                                color="black"
-                                data-testid="rotated-input-label"
+                                class="sc-bdvwhi eGhSPA"
+                                data-testid="jaunty-label"
                                 for="react-use-id-test-result-newsletter-signup-email"
-                                id="react-use-id-test-result-newsletter-signup-email-label"
+                                id="Email-label"
+                                style="top: -1.25rem;"
                               >
-                                <span
-                                  class="sc-eqUAAy iGfTGj"
-                                >
-                                  Email
-                                   
-                                  <span
-                                    class="sc-eqUAAy dECBeo"
-                                  >
-                                    (required)
-                                  </span>
-                                </span>
+                                Email (required)
                               </label>
+                              <div
+                                class="sc-bdvwhi sc-gsDMPd sc-clIAoS ibUPwR gEAnZR gqKaCP"
+                              >
+                                <div
+                                  class="sc-bdvwhi sc-gsDMPd hPWTKU kkGnDS"
+                                >
+                                  <input
+                                    autocomplete="email"
+                                    class="sc-efQVjI bktjgD"
+                                    data-testid="text-input"
+                                    id="react-use-id-test-result-newsletter-signup-email"
+                                    name="email"
+                                    placeholder="anna@amail.com"
+                                    type="text"
+                                    value=""
+                                  />
+                                </div>
+                              </div>
                             </div>
-                            <input
-                              aria-invalid="false"
-                              aria-labelledby="react-use-id-test-result-newsletter-signup-email-label"
-                              autocomplete="email"
-                              class="sc-7244e9af-0 sc-eb7a8b1-3 hYiqbt iOkuPT"
-                              id="react-use-id-test-result-newsletter-signup-email"
-                              name="email"
-                              placeholder="anna@amail.com"
-                              required=""
-                            />
-                            <svg
-                              aria-hidden="true"
-                              class="sc-1bff3534-0 jyYiig sc-eb7a8b1-0 bzXzya"
-                              height="100%"
-                              name="underline-1"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#underline-1"
-                              />
-                            </svg>
                           </div>
                         </div>
                         <div
-                          class="sc-aXZVg sc-gEvEer sc-677bff7e-1 hGrRGA bktafW cdoKln"
+                          class="sc-bdvwhi kHQhzQ"
                         >
+                          <label
+                            class="sc-bdvwhi jMFyqC"
+                            for="react-use-id-test-result-newsletter-signup-userrole"
+                            id="react-use-id-test-result-role-label"
+                            style="top: -1.25rem;"
+                          >
+                            Role
+                          </label>
                           <div
-                            aria-hidden="true"
-                            class="sc-aXZVg jPvJsJ"
-                            data-testid="brush-borders"
+                            class="sc-bdvwhi sc-gsDMPd sc-hiwNGW wiZya enStEb drQjAO"
                           >
-                            <svg
-                              aria-hidden="true"
-                              class="sc-8c07ce1d-0 gshgpE"
-                              height="100%"
-                              name="box-border-top"
-                              style="height: 3px;"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <select
+                              class="sc-jeqZuJ gupyXh"
+                              id="react-use-id-test-result-newsletter-signup-userrole"
+                              name="userRole"
                             >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 365.46 2.75"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                  fill="currentColor"
-                                />
-                                <path
-                                  d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                            <svg
-                              aria-hidden="true"
-                              class="sc-8c07ce1d-0 gshgpE"
-                              height="100%"
-                              name="box-border-right"
-                              style="width: 3px; height: 90%;"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 2.89 330.09"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M2.7 2.21c-.12-.76.36-2.63-1.15-2.13C.77.03-.13.13.01.85c.18 14.09.05 309.32.1 328.06 0 .15.3 1.07.28 1.18h2.5C2.85 303.49 2.6 17.84 2.7 2.21Z"
-                                  fill="currentColor"
-                                />
-                                <path
-                                  d="M1.87 1.07s.09.4.09 1.21c.11 3.3-.51-1.31-.09-1.21ZM1.25 44.05c-.47-.05-.49-1.38-.04-1.78.85-.76.2 1.8.04 1.78ZM.91 1.65c.08 2.14.7 4.95-.31 2.59-.13-.84.18-5.42.31-2.59ZM1.05 65.78c-.47-.05.11-8.31.56-9.46.4-1.07-.4 9.48-.56 9.46ZM1.76 54.4c-.47-.05-.76-.69.03-.65 1.14.07.13.67-.03.65Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                            <svg
-                              aria-hidden="true"
-                              class="sc-8c07ce1d-0 gshgpE"
-                              height="100%"
-                              name="box-border-bottom"
-                              style="height: 3px; width: 100%;"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 365.46 2.75"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                  fill="currentColor"
-                                />
-                                <path
-                                  d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                            <svg
-                              aria-hidden="true"
-                              class="sc-8c07ce1d-0 gshgpE"
-                              height="100%"
-                              name="box-border-left"
-                              style="width: 3px;"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 2.72 359.41"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M2.56 26.03c-.14-7.28.05-12.58 0-18.65C2.48 3.63 2.28.24 2.51 0H.02c.13 3.41 1.04 10.2.02 14.63-.1 9.52.02 311.42-.03 344.78h2.5c-.87-4.14.68-328.77.05-333.38Z"
-                                  fill="currentColor"
-                                />
-                                <path
-                                  d="M1.78 73.31c-.48-1.02.43-5.62.43-4.84.01.69.38 4.88-.43 4.84ZM1.56 142.12c1.14.07.13.67-.03.65-.47-.05-.76-.69.03-.65ZM1.65 196.21c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM2.48 27.51c0 .49 0 1.87-.11 3.12-.37 6.22-.42-1.85.11-3.12ZM2.01 65.86c.39.51.58 1.99-.23 1.95-.48-1.02-.25-2.56.23-1.95ZM1.02 132.42c-.47-.05-.49-1.39-.04-1.78.85-.76.2 1.8.04 1.78ZM.79 5.27c.07-1.81.65 1.18.59 5.76C1.27 17.8.69 6.25.79 5.27ZM.33 47.73c-.33-1.44.48-7.29.21-2.86-.12.57-.13 5.57-.21 2.86ZM.96 94.76c.28.95-.15 5.38-.31 5.36-.47-.05.08-6.12.31-5.36ZM1.23 100.12c-.07.9-.41 1.95-.58 1.95-.47-.05.64-2.73.58-1.95ZM1.38 144.69c.4-1.07-.4 9.48-.56 9.46-.47-.05.12-8.31.56-9.46ZM1.24 197.97c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM1.81 209.98c-.36-1.74-.84-7.52-.52-8.14l.5-1.57c.25.43.05 9.87.02 9.71ZM1.85 158.2c-.47-.05-.11-4.72.13-3.97.33 1.09.03 3.99-.13 3.97Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </div>
-                          <svg
-                            aria-hidden="true"
-                            class="sc-1bff3534-0 jyYiig sc-eb7a8b1-0 sc-677bff7e-0 bzXzya jBvFpR"
-                            height="100%"
-                            name="underline-1"
-                            width="100%"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <use
-                              xlink:href="/images/sprite/sprite.svg#underline-1"
-                            />
-                          </svg>
-                          <div
-                            class="sc-aXZVg sc-gEvEer hDBMCe iDBIXi"
-                          >
-                            <label
-                              class="sc-a4f8e51b-0 sc-eb7a8b1-1 fNLaOe kPgTac"
-                              color="black"
-                              id="react-use-id-test-result"
-                            >
-                              Role
-                            </label>
-                          </div>
-                          <button
-                            aria-expanded="false"
-                            aria-haspopup="listbox"
-                            aria-invalid="false"
-                            aria-labelledby="react-use-id-test-result react-use-id-test-result-button"
-                            class="sc-ce4d7bd4-0 sc-677bff7e-2 kYyTPx cDibXR"
-                            data-testid="select"
-                            id="react-use-id-test-result-button"
-                            type="button"
-                          >
-                            <div
-                              class="sc-aXZVg sc-gEvEer sc-677bff7e-3 dtlNgu uEMma isoIGx"
-                            >
-                              <span
-                                class="sc-eqUAAy sc-677bff7e-4 dqLrko hLKQXa"
-                                data-testid="select-span"
-                                id="react-use-id-test-result-value"
-                                title="What describes you best?"
+                              <option
+                                class="sc-lcerzc KbDSy"
+                                disabled=""
+                                value=""
                               >
                                 What describes you best?
-                              </span>
-                            </div>
-                            <span
-                              class="sc-aXZVg jJQFnr"
-                            >
-                              <img
-                                alt=""
-                                class="sc-iGgWBj cMzyFO"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </span>
-                          </button>
-                        </div>
-                        <div
-                          class="sc-aXZVg sc-kpDqfm XxueL cvxBYX"
-                        >
-                          <div
-                            class="sc-aXZVg kpXzs grey-shadow"
-                          />
-                          <div
-                            class="sc-aXZVg kpXzs yellow-shadow"
-                          />
-                          <button
-                            class="sc-dcJsrY sc-jXbUNg hYgkIy dglRoS internal-button"
-                          >
+                              </option>
+                              <option
+                                class="sc-lcerzc fXAwTA"
+                                value="Teacher"
+                              >
+                                Teacher
+                              </option>
+                              <option
+                                class="sc-lcerzc fXAwTA"
+                                value="Parent"
+                              >
+                                Parent
+                              </option>
+                              <option
+                                class="sc-lcerzc fXAwTA"
+                                value="Student"
+                              >
+                                Pupil
+                              </option>
+                              <option
+                                class="sc-lcerzc fXAwTA"
+                                value="Other"
+                              >
+                                Other
+                              </option>
+                            </select>
                             <div
-                              class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                              class="sc-bdvwhi sc-gsDMPd sc-eJwVsk cLyMbm hmfoti hnEKkz"
                             >
                               <span
-                                class="sc-eqUAAy edqVpV"
+                                class="sc-bdvwhi cqHYAi"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954058/icons/pay71thmhhylj7z28sj1.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd sc-nVikz cLyMbm hmfoti kNYApR"
+                            >
+                              <span
+                                class="sc-bdvwhi cqHYAi"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="sc-bdvwhi sc-iqsgXZ fFlNLS hjfwPa"
+                        >
+                          <div
+                            class="sc-bdvwhi kAFHfV grey-shadow"
+                          />
+                          <div
+                            class="sc-bdvwhi kAFHfV yellow-shadow"
+                          />
+                          <button
+                            class="sc-eCIkAO sc-jrQAon cINIls fODyRh internal-button"
+                            type="submit"
+                          >
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                            >
+                              <span
+                                class="sc-dkPwfY kXQhTZ"
                               >
                                 Sign up to the newsletter
                               </span>
@@ -2672,12 +2355,12 @@ exports[`Teachers Page Page component renders 1`] = `
                         </div>
                         <p
                           aria-live="assertive"
-                          class="sc-ikkxIA icCFPc"
+                          class="sc-hGPAwl hClGMw"
                           role="alert"
                         />
                         <p
                           aria-live="polite"
-                          class="sc-ikkxIA dFRhgx"
+                          class="sc-hGPAwl jWVoxl"
                         />
                       </form>
                     </div>
@@ -2688,14 +2371,14 @@ exports[`Teachers Page Page component renders 1`] = `
           </div>
         </main>
         <footer
-          class="sc-aXZVg gSjcjC"
+          class="sc-bdvwhi dBuXGv"
         >
           <div
-            class="sc-aXZVg sc-gEvEer kZbpVo iDBIXi"
+            class="sc-bdvwhi sc-gsDMPd fYnWSp Bakex"
           >
             <svg
               aria-hidden="true"
-              class="sc-fqkvVR jMJGxE"
+              class="sc-hKwBjT hahISD"
               height="100%"
               name="header-underline"
               width="100%"
@@ -2718,38 +2401,37 @@ exports[`Teachers Page Page component renders 1`] = `
             id="site-footer"
           >
             <div
-              class="sc-aXZVg sc-gEvEer sc-brPLxw leSQlB iqPJZh"
+              class="sc-bdvwhi sc-gsDMPd sc-jOxwkF gSXAop fKSZmO"
             >
               <div
-                class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
+                class="sc-bdvwhi sc-jObTYW hPWTKU dUcAno"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi kyzhPb"
+                  class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer cJVcct bktafW"
+                    class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
                   >
                     <h2
-                      class="sc-eldPxv chhjIg"
+                      class="sc-bkkgYE bVNEJW"
                     >
                       Pupils
                     </h2>
                     <div
-                      class="sc-aXZVg sc-dAbbOL jUaOuR LIOqA"
+                      class="sc-bdvwhi sc-dlVwtM kONsyo cpiTBW"
                     >
                       <ul
                         role="list"
                       >
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/pupils/years"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Learn online
                             </span>
@@ -2759,75 +2441,86 @@ exports[`Teachers Page Page component renders 1`] = `
                     </div>
                   </div>
                   <div
-                    class="sc-aXZVg bVCZuB"
+                    class="sc-bdvwhi dhvEAg"
                   />
                   <div
-                    class="sc-aXZVg sc-gEvEer cJVcct bktafW"
+                    class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
                   >
                     <h2
-                      class="sc-eldPxv chhjIg"
+                      class="sc-bkkgYE bVNEJW"
                     >
                       Teachers
                     </h2>
                     <div
-                      class="sc-aXZVg sc-dAbbOL jUaOuR LIOqA"
+                      class="sc-bdvwhi sc-dlVwtM kONsyo cpiTBW"
                     >
                       <ul
                         role="list"
                       >
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/teachers/eyfs/maths"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               EYFS
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/lesson-planning"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Plan a lesson
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
-                            href="https://labs.thenational.academy"
-                            target="_blank"
-                            variant="secondary"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            href="/teachers/teach-with-oak"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
+                            >
+                              Teach with Oak
+                            </span>
+                          </a>
+                        </li>
+                        <li
+                          class="sc-ieedpP irmxny"
+                        >
+                          <a
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            href="https://labs.thenational.academy"
+                            target="_blank"
+                          >
+                            <span
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Aila, Oak’s AI lesson assistant
                             </span>
                             <div
-                              class="sc-aXZVg zBzRC"
+                              class="sc-bdvwhi hUeWJD"
                             >
                               <span
-                                class="sc-aXZVg fjkwRj sc-fUnMCh esqnRZ"
+                                class="sc-bdvwhi cqHYAi sc-fKVoIy gNZMCw"
                               >
                                 <img
                                   alt=""
-                                  class="sc-iGgWBj cMzyFO"
+                                  class="sc-jRQBiJ eMsccW"
                                   data-nimg="fill"
                                   decoding="async"
                                   loading="lazy"
@@ -2839,15 +2532,14 @@ exports[`Teachers Page Page component renders 1`] = `
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/blog"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Blog
                             </span>
@@ -2858,136 +2550,143 @@ exports[`Teachers Page Page component renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi kyzhPb"
+                  class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer cJVcct bktafW"
+                    class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
                   >
                     <h2
-                      class="sc-eldPxv chhjIg"
+                      class="sc-bkkgYE bVNEJW"
                     >
                       Oak
                     </h2>
                     <div
-                      class="sc-aXZVg sc-dAbbOL jUaOuR LIOqA"
+                      class="sc-bdvwhi sc-dlVwtM kONsyo cpiTBW"
                     >
                       <ul
                         role="list"
                       >
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Home
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/about-us/who-we-are"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               About us
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/about-us/oaks-curricula"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Oak's curricula
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/about-us/oaks-impact"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Oak's impact
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
-                            href="/about-us/get-involved"
-                            variant="secondary"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            href="/about-us/case-studies"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
+                            >
+                              Case studies
+                            </span>
+                          </a>
+                        </li>
+                        <li
+                          class="sc-ieedpP irmxny"
+                        >
+                          <a
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            href="/about-us/get-involved"
+                          >
+                            <span
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Get involved
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/about-us/meet-the-team"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Meet the team
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
                             aria-label="Careers (opens in a new tab)"
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="https://jobs.thenational.academy"
                             target="_blank"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Careers
                             </span>
                             <div
-                              class="sc-aXZVg zBzRC"
+                              class="sc-bdvwhi hUeWJD"
                             >
                               <span
-                                class="sc-aXZVg fjkwRj sc-fUnMCh esqnRZ"
+                                class="sc-bdvwhi cqHYAi sc-fKVoIy gNZMCw"
                               >
                                 <img
                                   alt=""
-                                  class="sc-iGgWBj cMzyFO"
+                                  class="sc-jRQBiJ eMsccW"
                                   data-nimg="fill"
                                   decoding="async"
                                   loading="lazy"
@@ -2999,44 +2698,42 @@ exports[`Teachers Page Page component renders 1`] = `
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/contact-us"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Contact us
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
                             aria-label="Help (opens in a new tab)"
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="https://support.thenational.academy"
                             target="_blank"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Help
                             </span>
                             <div
-                              class="sc-aXZVg zBzRC"
+                              class="sc-bdvwhi hUeWJD"
                             >
                               <span
-                                class="sc-aXZVg fjkwRj sc-fUnMCh esqnRZ"
+                                class="sc-bdvwhi cqHYAi sc-fKVoIy gNZMCw"
                               >
                                 <img
                                   alt=""
-                                  class="sc-iGgWBj cMzyFO"
+                                  class="sc-jRQBiJ eMsccW"
                                   data-nimg="fill"
                                   decoding="async"
                                   loading="lazy"
@@ -3048,44 +2745,42 @@ exports[`Teachers Page Page component renders 1`] = `
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/webinars"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Webinars
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
                             aria-label="Status (opens in a new tab)"
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="https://status.thenational.academy"
                             target="_blank"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Status
                             </span>
                             <div
-                              class="sc-aXZVg zBzRC"
+                              class="sc-bdvwhi hUeWJD"
                             >
                               <span
-                                class="sc-aXZVg fjkwRj sc-fUnMCh esqnRZ"
+                                class="sc-bdvwhi cqHYAi sc-fKVoIy gNZMCw"
                               >
                                 <img
                                   alt=""
-                                  class="sc-iGgWBj cMzyFO"
+                                  class="sc-jRQBiJ eMsccW"
                                   data-nimg="fill"
                                   decoding="async"
                                   loading="lazy"
@@ -3101,165 +2796,156 @@ exports[`Teachers Page Page component renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi kyzhPb"
+                  class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer cJVcct bktafW"
+                    class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
                   >
                     <h2
-                      class="sc-eldPxv chhjIg"
+                      class="sc-bkkgYE bVNEJW"
                     >
                       Legal
                     </h2>
                     <div
-                      class="sc-aXZVg sc-dAbbOL jUaOuR LIOqA"
+                      class="sc-bdvwhi sc-dlVwtM kONsyo cpiTBW"
                     >
                       <ul
                         role="list"
                       >
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/legal/terms-and-conditions"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Terms & conditions
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/legal/privacy-policy"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Privacy policy
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/legal/cookie-policy"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Cookie policy
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <button
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Manage cookie settings
                             </span>
                           </button>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/legal/copyright-notice"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Copyright notice
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/legal/accessibility-statement"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Accessibility statement
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/legal/safeguarding-statement"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Safeguarding statement
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/legal/physical-activity-disclaimer"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Physical activity disclaimer
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/legal/complaints"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Complaints
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-fPXMVe jFJaNg"
+                          class="sc-ieedpP irmxny"
                         >
                           <a
-                            class="sc-fHjqPf cTauop"
+                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                             href="/legal/freedom-of-information-requests"
-                            variant="secondary"
                           >
                             <span
-                              class="sc-eqUAAy iGfTGj"
+                              class="sc-dkPwfY fgmEIT"
                             >
                               Freedom of information requests
                             </span>
@@ -3270,20 +2956,20 @@ exports[`Teachers Page Page component renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi kyzhPb"
+                  class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer cJVcct iTnuPX"
+                    class="sc-bdvwhi sc-gsDMPd QtWkM eaUsps"
                   >
                     <div
-                      class="sc-aXZVg ksEYoI"
+                      class="sc-bdvwhi aIwlt"
                     >
                       <span
-                        class="sc-aXZVg gUbYeJ"
+                        class="sc-bdvwhi jvcCKw"
                       >
                         <img
                           alt=""
-                          class="sc-iGgWBj dZvqhO"
+                          class="sc-jRQBiJ hssYEG"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
@@ -3293,32 +2979,32 @@ exports[`Teachers Page Page component renders 1`] = `
                       </span>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer eDgYHq cyVLlt"
+                      class="sc-bdvwhi sc-gsDMPd lpkWFL dipirq"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer sc-jlZhew hCgIGG iDBIXi aPmvC sc-87a4cc0c-0 veTZX"
+                        class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
                       >
                         <a
                           aria-label="instagram for Oak National Academy"
-                          class="sc-dcJsrY sc-dAlyuH dAja-dp eGtIkY"
+                          class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
                           href="https://instagram.com/oaknational"
                         >
                           <div
-                            class="sc-aXZVg sc-gEvEer jPvJsJ btEZOP"
+                            class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
                           >
                             <div
-                              class="sc-aXZVg sc-gEvEer kJHaEW jMLdOa icon-container"
+                              class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
                             >
                               <div
-                                class="sc-aXZVg focDaC shadow"
+                                class="sc-bdvwhi fZgcUH shadow"
                               />
                               <span
-                                class="sc-aXZVg jJQFnr"
+                                class="sc-bdvwhi cERAFe"
                                 data-icon-for="button"
                               >
                                 <img
                                   alt=""
-                                  class="sc-iGgWBj lcrpYX"
+                                  class="sc-jRQBiJ fZPumv"
                                   data-nimg="fill"
                                   decoding="async"
                                   loading="lazy"
@@ -3328,35 +3014,35 @@ exports[`Teachers Page Page component renders 1`] = `
                               </span>
                             </div>
                             <span
-                              class="sc-eqUAAy bngpZa"
+                              class="sc-dkPwfY cSKbCa"
                             />
                           </div>
                         </a>
                       </div>
                       <div
-                        class="sc-aXZVg sc-gEvEer sc-jlZhew hCgIGG iDBIXi aPmvC sc-87a4cc0c-0 veTZX"
+                        class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
                       >
                         <a
                           aria-label="facebook for Oak National Academy"
-                          class="sc-dcJsrY sc-dAlyuH dAja-dp eGtIkY"
+                          class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
                           href="https://facebook.com/oaknationalacademy"
                         >
                           <div
-                            class="sc-aXZVg sc-gEvEer jPvJsJ btEZOP"
+                            class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
                           >
                             <div
-                              class="sc-aXZVg sc-gEvEer kJHaEW jMLdOa icon-container"
+                              class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
                             >
                               <div
-                                class="sc-aXZVg focDaC shadow"
+                                class="sc-bdvwhi fZgcUH shadow"
                               />
                               <span
-                                class="sc-aXZVg jJQFnr"
+                                class="sc-bdvwhi cERAFe"
                                 data-icon-for="button"
                               >
                                 <img
                                   alt=""
-                                  class="sc-iGgWBj lcrpYX"
+                                  class="sc-jRQBiJ fZPumv"
                                   data-nimg="fill"
                                   decoding="async"
                                   loading="lazy"
@@ -3366,35 +3052,35 @@ exports[`Teachers Page Page component renders 1`] = `
                               </span>
                             </div>
                             <span
-                              class="sc-eqUAAy bngpZa"
+                              class="sc-dkPwfY cSKbCa"
                             />
                           </div>
                         </a>
                       </div>
                       <div
-                        class="sc-aXZVg sc-gEvEer sc-jlZhew hCgIGG iDBIXi aPmvC sc-87a4cc0c-0 veTZX"
+                        class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
                       >
                         <a
                           aria-label="linkedIn for Oak National Academy"
-                          class="sc-dcJsrY sc-dAlyuH dAja-dp eGtIkY"
+                          class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
                           href="https://www.linkedin.com/company/oak-national-academy"
                         >
                           <div
-                            class="sc-aXZVg sc-gEvEer jPvJsJ btEZOP"
+                            class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
                           >
                             <div
-                              class="sc-aXZVg sc-gEvEer kJHaEW jMLdOa icon-container"
+                              class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
                             >
                               <div
-                                class="sc-aXZVg focDaC shadow"
+                                class="sc-bdvwhi fZgcUH shadow"
                               />
                               <span
-                                class="sc-aXZVg jJQFnr"
+                                class="sc-bdvwhi cERAFe"
                                 data-icon-for="button"
                               >
                                 <img
                                   alt=""
-                                  class="sc-iGgWBj lcrpYX"
+                                  class="sc-jRQBiJ fZPumv"
                                   data-nimg="fill"
                                   decoding="async"
                                   loading="lazy"
@@ -3404,7 +3090,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               </span>
                             </div>
                             <span
-                              class="sc-eqUAAy bngpZa"
+                              class="sc-dkPwfY cSKbCa"
                             />
                           </div>
                         </a>
@@ -3414,12 +3100,13 @@ exports[`Teachers Page Page component renders 1`] = `
                 </div>
               </div>
               <span
-                class="sc-aXZVg kvjdhA sc-47b54219-0 hJhbMg"
+                class="sc-bdvwhi LoEut sc-5012a3f4-0 bfVxIC"
+                data-chromatic="ignore"
                 data-percy-hide="contents"
               >
                 <img
                   alt="Cyber Essentials Logo"
-                  class="sc-iGgWBj dZvqhO"
+                  class="sc-jRQBiJ hssYEG"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"
@@ -3430,35 +3117,35 @@ exports[`Teachers Page Page component renders 1`] = `
                 />
               </span>
               <div
-                class="sc-aXZVg sc-gEvEer cVaMvu hhSdgc"
+                class="sc-bdvwhi sc-gsDMPd kqRHNX EzdvD"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer ga-DDcm inHsCV"
+                  class="sc-bdvwhi sc-gsDMPd jZUEdv fbHgES"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-jlZhew hCgIGG iDBIXi aPmvC sc-87a4cc0c-0 veTZX"
+                    class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
                   >
                     <a
                       aria-label="instagram for Oak National Academy"
-                      class="sc-dcJsrY sc-dAlyuH dAja-dp eGtIkY"
+                      class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
                       href="https://instagram.com/oaknational"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ btEZOP"
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
                       >
                         <div
-                          class="sc-aXZVg sc-gEvEer kJHaEW jMLdOa icon-container"
+                          class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
                         >
                           <div
-                            class="sc-aXZVg focDaC shadow"
+                            class="sc-bdvwhi fZgcUH shadow"
                           />
                           <span
-                            class="sc-aXZVg jJQFnr"
+                            class="sc-bdvwhi cERAFe"
                             data-icon-for="button"
                           >
                             <img
                               alt=""
-                              class="sc-iGgWBj lcrpYX"
+                              class="sc-jRQBiJ fZPumv"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
@@ -3468,35 +3155,35 @@ exports[`Teachers Page Page component renders 1`] = `
                           </span>
                         </div>
                         <span
-                          class="sc-eqUAAy bngpZa"
+                          class="sc-dkPwfY cSKbCa"
                         />
                       </div>
                     </a>
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-jlZhew hCgIGG iDBIXi aPmvC sc-87a4cc0c-0 veTZX"
+                    class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
                   >
                     <a
                       aria-label="facebook for Oak National Academy"
-                      class="sc-dcJsrY sc-dAlyuH dAja-dp eGtIkY"
+                      class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
                       href="https://facebook.com/oaknationalacademy"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ btEZOP"
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
                       >
                         <div
-                          class="sc-aXZVg sc-gEvEer kJHaEW jMLdOa icon-container"
+                          class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
                         >
                           <div
-                            class="sc-aXZVg focDaC shadow"
+                            class="sc-bdvwhi fZgcUH shadow"
                           />
                           <span
-                            class="sc-aXZVg jJQFnr"
+                            class="sc-bdvwhi cERAFe"
                             data-icon-for="button"
                           >
                             <img
                               alt=""
-                              class="sc-iGgWBj lcrpYX"
+                              class="sc-jRQBiJ fZPumv"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
@@ -3506,35 +3193,35 @@ exports[`Teachers Page Page component renders 1`] = `
                           </span>
                         </div>
                         <span
-                          class="sc-eqUAAy bngpZa"
+                          class="sc-dkPwfY cSKbCa"
                         />
                       </div>
                     </a>
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-jlZhew hCgIGG iDBIXi aPmvC sc-87a4cc0c-0 veTZX"
+                    class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
                   >
                     <a
                       aria-label="linkedIn for Oak National Academy"
-                      class="sc-dcJsrY sc-dAlyuH dAja-dp eGtIkY"
+                      class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
                       href="https://www.linkedin.com/company/oak-national-academy"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ btEZOP"
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
                       >
                         <div
-                          class="sc-aXZVg sc-gEvEer kJHaEW jMLdOa icon-container"
+                          class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
                         >
                           <div
-                            class="sc-aXZVg focDaC shadow"
+                            class="sc-bdvwhi fZgcUH shadow"
                           />
                           <span
-                            class="sc-aXZVg jJQFnr"
+                            class="sc-bdvwhi cERAFe"
                             data-icon-for="button"
                           >
                             <img
                               alt=""
-                              class="sc-iGgWBj lcrpYX"
+                              class="sc-jRQBiJ fZPumv"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
@@ -3544,21 +3231,21 @@ exports[`Teachers Page Page component renders 1`] = `
                           </span>
                         </div>
                         <span
-                          class="sc-eqUAAy bngpZa"
+                          class="sc-dkPwfY cSKbCa"
                         />
                       </div>
                     </a>
                   </div>
                 </div>
                 <div
-                  class="sc-aXZVg jWPIhU"
+                  class="sc-bdvwhi jiFgkN"
                 >
                   <span
-                    class="sc-aXZVg gUbYeJ"
+                    class="sc-bdvwhi jvcCKw"
                   >
                     <img
                       alt=""
-                      class="sc-iGgWBj dZvqhO"
+                      class="sc-jRQBiJ hssYEG"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -3568,15 +3255,15 @@ exports[`Teachers Page Page component renders 1`] = `
                   </span>
                 </div>
                 <div
-                  class="sc-aXZVg sc-gEvEer cJVcct bktafW"
+                  class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
                 >
                   <p
-                    class="sc-ikkxIA cfEVLw"
+                    class="sc-hGPAwl jolmBg"
                   >
                     © Oak National Academy Limited, No 14174888
                   </p>
                   <p
-                    class="sc-ikkxIA VkUrP"
+                    class="sc-hGPAwl cYCozb"
                   >
                     1 Scott Place, 2 Hardman Street, Manchester, M3 3AA
                   </p>
@@ -3585,11 +3272,11 @@ exports[`Teachers Page Page component renders 1`] = `
             </div>
           </nav>
           <span
-            class="sc-aXZVg egdcFh"
+            class="sc-bdvwhi jNDbOw"
           >
             <img
               alt=""
-              class="sc-iGgWBj ifVXRY"
+              class="sc-jRQBiJ dqjNXU"
               data-nimg="fill"
               decoding="async"
               loading="lazy"
@@ -3597,44 +3284,31 @@ exports[`Teachers Page Page component renders 1`] = `
               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
             />
           </span>
-          <span
-            class="sc-aXZVg dtaJPf"
-          >
-            <img
-              alt=""
-              class="sc-iGgWBj Ozuza"
-              data-nimg="fill"
-              decoding="async"
-              loading="lazy"
-              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734537039/OWA/ui-graphics/looping-line-4_xtjj4r.svg"
-              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-            />
-          </span>
         </footer>
       </div>
       <div
         aria-live="polite"
-        class="sc-aXZVg sc-gEvEer sc-372e3d03-0 huaWfm hpzNYH fYWdOt"
+        class="sc-bdvwhi sc-gsDMPd sc-b7a27f76-0 kjWDfr htLMtM krUohl"
       />
     </div>
     <div
-      class="sc-aXZVg ehCqNw"
+      class="sc-bdvwhi gFnpsF"
     >
       <div
-        class="sc-aXZVg hdJUDP"
+        class="sc-bdvwhi iwVUCi"
         data-testid="cookie-banner"
       >
         <div
-          class="sc-aXZVg hKtyTC"
+          class="sc-bdvwhi iIozLH"
         >
           <div
-            class="sc-aXZVg sc-gEvEer gfKbxO hPCrxg"
+            class="sc-bdvwhi sc-gsDMPd egBoar iKjTsb"
           >
             <div
-              class="sc-aXZVg bURnqS"
+              class="sc-bdvwhi fIxCDL"
             >
               <strong
-                class="sc-eqUAAy jPKsIw"
+                class="sc-dkPwfY iyMjBM"
               >
                 This site uses cookies to store information on your computer.
               </strong>
@@ -3642,40 +3316,40 @@ exports[`Teachers Page Page component renders 1`] = `
               Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
             </div>
             <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ buEORy"
+              class="sc-bdvwhi sc-gsDMPd hPWTKU gyKdMN"
             >
               <div
-                class="sc-aXZVg sc-gEvEer eapQdf uEMma"
+                class="sc-bdvwhi sc-gsDMPd lmXuba eWbmLh"
               >
                 <button
-                  class="sc-fHjqPf kaaNKh"
+                  class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
                   data-testid="cookie-banner-reject"
                   type="button"
                 >
                   <span
-                    class="sc-eqUAAy iGfTGj"
+                    class="sc-dkPwfY fgmEIT"
                   >
                     Reject non-essential cookies
                   </span>
                 </button>
               </div>
               <div
-                class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
               >
                 <div
-                  class="sc-aXZVg kpXzs grey-shadow"
+                  class="sc-bdvwhi kAFHfV grey-shadow"
                 />
                 <div
-                  class="sc-aXZVg kpXzs yellow-shadow"
+                  class="sc-bdvwhi kAFHfV yellow-shadow"
                 />
                 <button
-                  class="sc-dcJsrY sc-jXbUNg bALQkH khQbhv internal-button"
+                  class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
                   >
                     <span
-                      class="sc-eqUAAy edqVpV"
+                      class="sc-dkPwfY kXQhTZ"
                     >
                       Cookie settings
                     </span>
@@ -3683,23 +3357,23 @@ exports[`Teachers Page Page component renders 1`] = `
                 </button>
               </div>
               <div
-                class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
               >
                 <div
-                  class="sc-aXZVg kpXzs grey-shadow"
+                  class="sc-bdvwhi kAFHfV grey-shadow"
                 />
                 <div
-                  class="sc-aXZVg kpXzs yellow-shadow"
+                  class="sc-bdvwhi kAFHfV yellow-shadow"
                 />
                 <button
-                  class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
+                  class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
                   data-testid="cookie-banner-accept"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
                   >
                     <span
-                      class="sc-eqUAAy edqVpV"
+                      class="sc-dkPwfY kXQhTZ"
                     >
                       Accept all cookies
                     </span>

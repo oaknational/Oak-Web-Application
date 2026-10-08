@@ -21,6 +21,14 @@ jest.mock("next/dist/client/router", () => require("next-router-mock"));
 const render = renderWithProviders();
 
 describe("ResourcePageSchoolDetails", () => {
+  beforeEach(() => {
+    jest.spyOn(global, "fetch").mockResolvedValue(new Response("[]"));
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   it("Renders a school picker", async () => {
     render(<ResourcePageSchoolDetails {...props} />);
 

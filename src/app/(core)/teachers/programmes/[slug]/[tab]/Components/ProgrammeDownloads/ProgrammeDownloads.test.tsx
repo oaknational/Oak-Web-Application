@@ -66,14 +66,6 @@ jest.mock("./useHubspotCurriculumDownloads", () => ({
 }));
 
 jest.mock(
-  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit",
-  () => ({
-    __esModule: true,
-    default: () => ({ onSubmit: jest.fn() }),
-  }),
-);
-
-jest.mock(
   "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads",
   () => ({
     __esModule: true,
@@ -242,7 +234,7 @@ describe("Programme Downloads", () => {
         curriculumQuality: {
           asset: {
             extension: "pdf",
-            size: 1000,
+            size: 1024,
             url: "https://example.com/whats-included.pdf",
           },
         },
@@ -250,7 +242,7 @@ describe("Programme Downloads", () => {
       fileSizes: [
         {
           downloadId: "curriculumPlan",
-          size: 2000,
+          size: 2048,
           tier: null,
           childSubject: null,
         },

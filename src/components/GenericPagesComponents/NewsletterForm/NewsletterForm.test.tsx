@@ -30,15 +30,10 @@ describe("NewsletterForm", () => {
     await user.keyboard("email@example.com");
     // tab => dropdown select
     await user.tab();
-    // open dropdown select
-    await user.keyboard("{Enter}");
-    await user.keyboard("{arrowdown}");
-    await user.keyboard("{arrowdown}");
-    // confirm select value
-    await user.keyboard("{Enter}");
-
-    // hack to wait for dropdown to close
-    await waitForNextTick();
+    const roleSelect = document.getElementById(
+      "1-newsletter-signup-userrole",
+    ) as HTMLSelectElement;
+    await user.selectOptions(roleSelect, "Student");
 
     await user.tab();
     await user.keyboard("{Enter}");
@@ -51,6 +46,11 @@ describe("NewsletterForm", () => {
       email: "email@example.com",
       userRole: "Student",
     });
+  });
+  test("role select has an accessible name", () => {
+    const { getByRole } = render(<NewsletterForm id="1" onSubmit={onSubmit} />);
+
+    expect(getByRole("combobox", { name: "Role" })).toBeInTheDocument();
   });
   test("should display error hint on submit if no name is entered", async () => {
     const { getByPlaceholderText, getByRole } = render(

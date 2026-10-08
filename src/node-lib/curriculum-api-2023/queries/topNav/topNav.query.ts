@@ -14,6 +14,8 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import OakError from "@/errors/OakError";
 
+const reportError = errorReporter("curriculum-api-2023::topNav");
+
 const topNavQuery = (sdk: Sdk) => {
   const cachedTopNav = cacheData(sdk.topNav, [
     "curriculum-api",
@@ -38,7 +40,7 @@ const topNavQuery = (sdk: Sdk) => {
       const error = new OakError({
         code: "curriculum-api/internal-error",
       });
-      errorReporter("curriculum-api-2023::topNav")(error, {
+      void reportError(error, {
         severity: "error",
         res,
         errorMessage: parsed.error,
@@ -71,29 +73,38 @@ const topNavQuery = (sdk: Sdk) => {
       guidance: {
         title: "Guidance",
         slug: "guidance",
-        children: [
-          {
-            title: "Plan a lesson",
-            slug: "lesson-planning",
-            href: resolveOakHref({ page: "lesson-planning" }),
-          },
-          {
-            title: "Blogs",
-            slug: "blog-index",
-            href: resolveOakHref({ page: "blog-index" }),
-          },
-          {
-            title: "Webinars",
-            slug: "webinar-index",
-            href: resolveOakHref({ page: "webinar-index" }),
-          },
-          {
-            title: "Help",
-            slug: "help",
-            href: resolveOakHref({ page: "help" }),
-            external: true,
-          },
-        ],
+        children: (
+          [
+            {
+              title: "Curriculum change explained",
+              slug: "curriculum-change-explained",
+            },
+            {
+              title: "Teach with Oak",
+              slug: "teach-with-oak",
+            },
+            {
+              title: "Plan a lesson",
+              slug: "lesson-planning",
+            },
+            {
+              title: "Blogs",
+              slug: "blog-index",
+            },
+            {
+              title: "Webinars",
+              slug: "webinar-index",
+            },
+            {
+              title: "Help",
+              slug: "help",
+              external: true,
+            },
+          ] as const
+        ).map((link) => ({
+          ...link,
+          href: resolveOakHref({ page: link.slug }),
+        })),
       },
       aboutUs: {
         title: "About us",
@@ -103,6 +114,11 @@ const topNavQuery = (sdk: Sdk) => {
             title: "Who we are",
             slug: "about-who-we-are",
             href: resolveOakHref({ page: "about-who-we-are" }),
+          },
+          {
+            title: "Meet the team",
+            slug: "about-meet-the-team",
+            href: resolveOakHref({ page: "about-meet-the-team" }),
           },
           {
             title: "Oak's curricula",
@@ -115,14 +131,14 @@ const topNavQuery = (sdk: Sdk) => {
             href: resolveOakHref({ page: "about-oaks-impact" }),
           },
           {
+            title: "Case studies",
+            slug: "about-case-study-library",
+            href: resolveOakHref({ page: "about-case-study-library" }),
+          },
+          {
             title: "Get involved",
             slug: "about-get-involved",
             href: resolveOakHref({ page: "about-get-involved" }),
-          },
-          {
-            title: "Meet the team",
-            slug: "about-meet-the-team",
-            href: resolveOakHref({ page: "about-meet-the-team" }),
           },
           {
             title: "Contact us",

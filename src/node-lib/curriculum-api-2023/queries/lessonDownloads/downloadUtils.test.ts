@@ -95,6 +95,6 @@ describe("constructDownloadsArray()", () => {
       (download) => download.exists === true,
     );
 
-    expect(filteredDownloads.length).toEqual(6);
+    expect(filteredDownloads).toHaveLength(6);
   });
 });

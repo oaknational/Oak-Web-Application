@@ -129,7 +129,11 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         headers: [
           {
             key: "Link",
-            value: '</.well-known/api-catalog>; rel="api-catalog"',
+            value: [
+              '</.well-known/api-catalog>; rel="api-catalog"',
+              '</.well-known/ard.json>; rel="ard"',
+              '</.well-known/ai-catalog.json>; rel="ai-catalog"',
+            ].join(", "),
           },
         ],
       },
@@ -178,10 +182,10 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
             key: "Content-Security-Policy-Report-Only",
             value: cspHeader.replaceAll(/\n/g, ""),
           },
-          // {
-          //   key: "Content-Security-Policy",
-          //   value: "frame-ancestors 'self' https://classroom.google.com;",
-          // },
+          {
+            key: "Content-Security-Policy",
+            value: "frame-ancestors 'self' https://classroom.google.com;",
+          },
           // {
           //   key: "x-vercel-set-bypass-cookie",
           //   value: "samesitenone",
@@ -203,7 +207,6 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
       "@ooxml-tools/units",
       "@ooxml-tools/xml",
       "@oaknational/oak-components",
-      "pretty-bytes",
     ],
 
     webpack: function getWebpackConfig(
@@ -425,6 +428,14 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         },
       ];
 
+      const campaignRedirects = [
+        {
+          source: "/campaigns/curriculum-and-assessment-review",
+          destination: "/curriculum-change-explained/guidance",
+          permanent: true,
+        },
+      ];
+
       const aboutUsRedirects = [
         {
           source: "/about-us/leadership",
@@ -498,11 +509,21 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         },
       ];
 
+      const mcpRedirects = [
+        {
+          source: "/mcp",
+          destination: "/ai-plugin",
+          permanent: true,
+        },
+      ];
+
       return [
         ...pupilsRedirects,
+        ...campaignRedirects,
         ...aboutUsRedirects,
         ...eyfsRedirects,
         ...integratedJourneyRedirects,
+        ...mcpRedirects,
       ];
     },
     async rewrites() {
@@ -513,24 +534,15 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           source: "/.well-known/api-catalog",
           destination: "/api/well-known/api-catalog",
         },
-      ];
-      // The MCP submission carousel images now live under /ai-plugin/carousel,
-      // but Anthropic's directory listing stores the old /mcp/carousel URLs and
-      // refetches them itself, indefinitely. This is a REWRITE, not a redirect,
-      // so those stored URLs keep returning 200 with the same bytes and no
-      // redirect — which is what src/tests/e2e/mcp/carousel-assets.spec.ts
-      // asserts on Oak's behalf.
-      //
-      // REMOVAL CONDITION: delete this once the three image URLs on the
-      // Anthropic listing have been updated to /ai-plugin/carousel and the old
-      // URLs are confirmed no longer fetched. That listing edit is an owner
-      // action in the submission portal (editable after submission; only the
-      // slug is permanent) and has no PR of its own — MCP-689. The deletion
-      // itself is MCP-690, blocked by it.
-      const carouselCompatRewrites = [
+        // Both the ARD path and its predecessor: deployed consumers still use
+        // the older one, so removing either loses reach. docs/agent-discovery.md.
         {
-          source: "/mcp/carousel/:file",
-          destination: "/ai-plugin/carousel/:file",
+          source: "/.well-known/ard.json",
+          destination: "/api/well-known/ard",
+        },
+        {
+          source: "/.well-known/ai-catalog.json",
+          destination: "/api/well-known/ard",
         },
       ];
       // Reverse proxy posthog in development to avoid localhost CORS issues in Chrome https://posthog.com/docs/advanced/proxy/nextjs
@@ -551,11 +563,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
               },
             ]
           : [];
-      return [
-        ...wellKnownRewrites,
-        ...carouselCompatRewrites,
-        ...developmentRewrites,
-      ];
+      return [...wellKnownRewrites, ...developmentRewrites];
     },
     // Required for the posthog reverse proxy, but interferes with static URL redirections so we don't want this applied on production
     skipTrailingSlashRedirect: releaseStage === "development",

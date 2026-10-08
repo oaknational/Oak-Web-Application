@@ -3,60 +3,62 @@
 exports[`OakModalNew should match snapshot 1`] = `
 <div>
   <dialog
-    class="sc-692ca-0 jfQDcn"
+    class="sc-692ca-0 dooUgR"
     data-testid="modal"
     style="z-index: 320;"
   >
     <div
-      class="sc-aXZVg sc-fd1b6bd3-0 iqMKsy jsTHOJ"
+      class="sc-bdvwhi sc-fd1b6bd3-0 dmtxon eGCTVv"
+      state="exited"
     />
     <div
-      class="sc-aXZVg sc-gEvEer sc-702fbad0-0 fupLqk iDBIXi igbdss"
+      class="sc-bdvwhi sc-gsDMPd sc-702fbad0-0 dEAQwx Bakex hlsnwG"
       data-testid="sidebar-modal"
       direction="right"
+      state="exited"
     >
       <div
-        class="sc-aXZVg sc-gEvEer jQIJvB fUxOFh"
+        class="sc-bdvwhi sc-gsDMPd bCXwjg cvDmZS"
       >
         <div
-          class="sc-aXZVg sc-gEvEer gGHOyW jMLdOa"
+          class="sc-bdvwhi sc-gsDMPd eBvxeL gbgSUZ"
         >
           <h3
-            class="sc-eldPxv cJhFlm"
+            class="sc-bkkgYE inHuLM"
             data-testid="modal-title"
           >
             test_title
           </h3>
           <div
-            class="sc-aXZVg jSzFug"
+            class="sc-bdvwhi bKmQTp"
           >
             <div
-              class="sc-aXZVg sc-5f217d9c-0 jPvJsJ dKjzSU"
+              class="sc-bdvwhi sc-5f217d9c-0 hPWTKU jXhdCS"
             >
               <div
-                class="sc-aXZVg sc-gEvEer sc-jlZhew hCgIGG iDBIXi aPmvC"
+                class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm"
               >
                 <button
                   aria-label="Close"
-                  class="sc-dcJsrY sc-dAlyuH dAja-dp eGtIkY"
+                  class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
                   data-testid="close-modal-button"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer jPvJsJ btEZOP"
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer kJHaEW jMLdOa icon-container"
+                      class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
                     >
                       <div
-                        class="sc-aXZVg focDaC shadow"
+                        class="sc-bdvwhi fZgcUH shadow"
                       />
                       <span
-                        class="sc-aXZVg jJQFnr"
+                        class="sc-bdvwhi cERAFe"
                         data-icon-for="button"
                       >
                         <img
                           alt=""
-                          class="sc-iGgWBj lcrpYX"
+                          class="sc-jRQBiJ fZPumv"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
@@ -66,7 +68,7 @@ exports[`OakModalNew should match snapshot 1`] = `
                       </span>
                     </div>
                     <span
-                      class="sc-eqUAAy bngpZa"
+                      class="sc-dkPwfY cSKbCa"
                     />
                   </div>
                 </button>
@@ -75,13 +77,13 @@ exports[`OakModalNew should match snapshot 1`] = `
           </div>
         </div>
         <div
-          class="sc-aXZVg sc-gEvEer cWFjzT eUIBLO"
+          class="sc-bdvwhi sc-gsDMPd fmfVeK guMakF"
           data-testid="modal-content"
         >
           test_content
         </div>
         <div
-          class="sc-aXZVg sc-gEvEer bpIhDm cSOHri"
+          class="sc-bdvwhi sc-gsDMPd hMPiqv VwEyx"
           data-testid="modal-footer"
         >
           test_footer

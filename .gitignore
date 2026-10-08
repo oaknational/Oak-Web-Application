@@ -63,9 +63,6 @@ firestore-data/
 firebase-export*/
 firestore-debug.log
 
-# Local Netlify folder
-.netlify
-
 # typescript
 *.tsbuildinfo
 
@@ -83,8 +80,6 @@ doctor-storybook.log
 public/robots.txt
 public/sitemap*.xml
 
-# Local Netlify folder
-.netlify
 
 # Images/graphics protected by IP
 public/images/sprite/*

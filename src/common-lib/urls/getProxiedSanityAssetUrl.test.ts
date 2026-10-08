@@ -1,4 +1,6 @@
-import getProxiedSanityAssetUrl from "./getProxiedSanityAssetUrl";
+import getProxiedSanityAssetUrl, {
+  normaliseSanityAssetCDNHost,
+} from "./getProxiedSanityAssetUrl";
 
 describe("getProxiedSanityAssetUrl", () => {
   test("should return url with proxied cdn host", () => {
@@ -16,6 +18,15 @@ describe("getProxiedSanityAssetUrl", () => {
         "https://www.thenational.academy/something-else",
       ),
     ).toEqual("https://www.thenational.academy/something-else");
+  });
+  test("normalises configured hosts and URLs", () => {
+    expect(normaliseSanityAssetCDNHost("cdn.sanity.io")).toBe("cdn.sanity.io");
+    expect(normaliseSanityAssetCDNHost("https://cdn.sanity.io/")).toBe(
+      "cdn.sanity.io",
+    );
+    expect(normaliseSanityAssetCDNHost("http://cdn.sanity.io///")).toBe(
+      "cdn.sanity.io",
+    );
   });
   test("should return null if null passed", () => {
     expect(getProxiedSanityAssetUrl(null)).toEqual(null);

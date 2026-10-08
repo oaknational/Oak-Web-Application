@@ -8,7 +8,7 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/AppLayout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
-import { OaksImpactCaseStudies } from "@/components/GenericPagesComponents/OaksImpactCaseStudies";
+import { CaseStudiesSection } from "@/components/GenericPagesComponents/CaseStudiesSection";
 import { SupportYou } from "@/components/GenericPagesComponents/SupportYou";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -20,6 +20,7 @@ import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
 import { OaksImpactHeader } from "@/components/GenericPagesComponents/OaksImpactHeader";
 import useTrackExitIntended from "@/hooks/useTrackExitIntended";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
@@ -28,6 +29,9 @@ export type OaksImpactPageProps = {
 
 const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
   useTrackExitIntended();
+  const isCaseStudiesFeatEnabled =
+    isFeatureFlagEnabledStatic("case-studies-v2");
+
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={null}
@@ -46,9 +50,11 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
             videoDescription={pageData.header.videoDescription}
           />
           <OaksImpactStats {...pageData.statsSection} />
-          <OaksImpactCaseStudies
+          <CaseStudiesSection
+            showViewAllLink={isCaseStudiesFeatEnabled}
             title="Case studies"
             caseStudies={pageData.caseStudiesSection.caseStudies}
+            showTags={false}
           />
           <OaksImpactSchoolQuotesSection {...pageData.schoolQuotes} />
           <TrackScrolledTo eventKey="support_you" />

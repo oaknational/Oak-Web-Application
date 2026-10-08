@@ -32,10 +32,11 @@ const state: TeacherBrowseAnalyticsStore = {
     curriculumResourcesDownloadRefined: () =>
       console.log("curriculumResourcesDownloadRefined fired"),
     onwardContentSelected: () => console.log("onwardContentSelected fired"),
+    teachWithOakAccessed: () => console.log("teachwithOakAccessed fired"),
+    teachWithOakDownloaded: () => console.log("teachWithOakDownloaded fired"),
     teachingMaterialsSelected: () =>
       console.log("teachingMaterialsSelected fired"),
     unitDownloadStarted: () => console.log("unitDownloadStarted fired"),
-    unitOverviewAccessed: () => console.log("unitOverviewAccessed fired"),
     programmeAccessed: () => console.log("programmeAccessed fired"),
     programmeRefined: () => console.log("programmeRefined fired"),
     unitRefined: () => console.log("unitRefined fired"),
@@ -46,7 +47,14 @@ const state: TeacherBrowseAnalyticsStore = {
     lessonResourcesDownloaded: () =>
       console.log("lessonResourcesDownloaded fired"),
     lessonAccessed: () => console.log("lessonAccessed fired"),
+    lessonAssistantAccessed: () => console.log("lessonAssistantAccessed fired"),
     unitAccessed: () => console.log("unitAccessed fired"),
+    searchJourneyInitiated: () => console.log("searchJourneyInitiated fired"),
+    searchAccessed: () => console.log("searchAccessed fired"),
+    searchRefined: () => console.log("searchRefined fired"),
+    searchResultExpanded: () => console.log("searchResultExpanded fired"),
+    searchResultOpened: () => console.log("searchResultOpened fired"),
+    searchFilterModified: () => console.log("searchFilterModified fired"),
   },
 };
 

@@ -540,15 +540,3 @@ export const sortMediaClipsByOrder = (a: MediaClip, b: MediaClip) => {
   }
   return 0;
 };
-
-export function convertBytesToMegabytes(bytes: number): string {
-  if (!+bytes) return "0 B";
-
-  const k = 1024;
-  const decimals = 2;
-  const sizes = ["B", "KB", "MB", "GB"];
-
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-  return `${Number.parseFloat((bytes / Math.pow(k, i)).toFixed(decimals))} ${sizes[i]}`;
-}

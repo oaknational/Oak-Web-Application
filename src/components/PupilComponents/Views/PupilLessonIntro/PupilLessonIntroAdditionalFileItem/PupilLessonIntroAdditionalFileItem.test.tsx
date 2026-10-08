@@ -15,6 +15,6 @@ describe("PupilLessonIntroAdditionalFileItem", () => {
     );
 
     expect(document.body).toHaveTextContent("Worksheet");
-    expect(document.body).toHaveTextContent("12.83 MB (PDF)");
+    expect(document.body).toHaveTextContent("12.8 MB (PDF)");
   });
 });
