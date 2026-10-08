@@ -1,11 +1,9 @@
 import { kebabCase } from "lodash";
 
-import { getUserListContent } from "../../queries/getUserListContent/getUserListContent";
 import { UserlistContentApiResponse } from "../../queries/getUserListContent/getUserListContent.types";
 
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import type { CollectionData } from "@/components/TeacherViews/MyLibrary/MyLibrary";
-import { GetToken } from "clerk";
 
 export const buildCollectionData = (
   savedProgrammeUnits: UserlistContentApiResponse,
@@ -71,9 +69,3 @@ export const buildCollectionData = (
         a.subheading.localeCompare(b.subheading)
       );
     });
-
-export const getMyLibraryCollections = async (
-  getToken: GetToken,
-  userId: string,
-): Promise<CollectionData> =>
-  buildCollectionData(await getUserListContent(getToken, userId));

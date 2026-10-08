@@ -31,14 +31,22 @@ jest.mock("@clerk/nextjs/server", () => ({
   currentUser: () => mockCurrentUser(),
 }));
 
-const mockGetMyLibraryCollections = jest.fn();
+const mockGetUserListContent = jest.fn();
 jest.mock(
-  "@/node-lib/educator-api/helpers/saveUnits/getMyLibraryCollections",
+  "@/node-lib/educator-api/queries/getUserListContent/getUserListContent",
   () => ({
-    getMyLibraryCollections: (...args: unknown[]) =>
-      mockGetMyLibraryCollections(...args),
+    getUserListContent: (...args: unknown[]) => mockGetUserListContent(...args),
   }),
 );
+
+// Echo the server data back so the view renders from its SWR fallback
+jest.mock("@/node-lib/educator-api/helpers/useGetEducatorData", () => ({
+  useGetEducatorData: (_url: string, config?: { fallbackData?: unknown }) => ({
+    data: config?.fallbackData,
+    isLoading: false,
+    mutate: jest.fn(),
+  }),
+}));
 
 const reportError = jest.fn();
 jest.mock("@/common-lib/error-reporter", () => ({
@@ -62,7 +70,7 @@ describe("app/(core)/teachers/my-library", () => {
     mockCurrentUser.mockResolvedValue({
       publicMetadata: { owa: { isOnboarded: true } },
     });
-    mockGetMyLibraryCollections.mockResolvedValue([]);
+    mockGetUserListContent.mockResolvedValue({});
   });
 
   it("should render a header", async () => {
@@ -79,14 +87,11 @@ describe("app/(core)/teachers/my-library", () => {
       name: "No units yet",
     });
     expect(noSavedContent).toBeInTheDocument();
-    expect(mockGetMyLibraryCollections).toHaveBeenCalledWith(
-      getToken,
-      "user-123",
-    );
+    expect(mockGetUserListContent).toHaveBeenCalledWith(getToken, "user-123");
   });
 
   it("should report the error and render without collections when the fetch fails", async () => {
-    mockGetMyLibraryCollections.mockRejectedValue(new Error("boom"));
+    mockGetUserListContent.mockRejectedValue(new Error("boom"));
 
     render(await MyLibraryPage());
 
@@ -118,7 +123,7 @@ describe("app/(core)/teachers/my-library", () => {
     expect(redirect).toHaveBeenCalledWith(
       "/onboarding?returnTo=%2Fteachers%2Fmy-library",
     );
-    expect(mockGetMyLibraryCollections).not.toHaveBeenCalled();
+    expect(mockGetUserListContent).not.toHaveBeenCalled();
   });
 
   it("should generate the correct metadata", () => {

@@ -2,15 +2,15 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { auth, currentUser } from "@clerk/nextjs/server";
 
+import { MyLibraryView } from "./MyLibraryView";
+
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import { resolveOakHref } from "@/common-lib/urls";
-import MyLibrary, {
-  CollectionData,
-} from "@/components/TeacherViews/MyLibrary/MyLibrary";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
-import { getMyLibraryCollections } from "@/node-lib/educator-api/helpers/saveUnits/getMyLibraryCollections";
+import { getUserListContent } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent";
+import { UserlistContentApiResponse } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
 
 const reportError = errorReporter("educatorApi");
 
@@ -46,10 +46,10 @@ const MyLibraryPage = async () => {
     );
   }
 
-  // Render the empty library rather than an error page if the saved units can't be fetched
-  let collectionData: CollectionData | null = null;
+  // Fall back to fetching client-side rather than erroring the whole page
+  let savedUnits: UserlistContentApiResponse | null = null;
   try {
-    collectionData = await getMyLibraryCollections(getToken, userId);
+    savedUnits = await getUserListContent(getToken, userId);
   } catch (err) {
     reportError(
       new OakError({
@@ -64,7 +64,7 @@ const MyLibraryPage = async () => {
       programmeState={null}
       accessLevel="my_library"
     >
-      <MyLibrary collectionData={collectionData} />
+      <MyLibraryView savedUnits={savedUnits} />
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };

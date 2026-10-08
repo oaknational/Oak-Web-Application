@@ -1,6 +1,6 @@
 import { UserlistContentApiResponse } from "../../queries/getUserListContent/getUserListContent.types";
 
-import { buildCollectionData } from "./getMyLibraryCollections";
+import { buildCollectionData } from "./buildCollectionData";
 
 import userListContentFixture from "@/node-lib/educator-api/fixtures/userListContent.fixture";
 
