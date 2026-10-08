@@ -37,24 +37,22 @@ export const getUserListContent = async (
 
       const uniqueProgrammeIdentifier = `${programmeSlug}${useSubjectCategory ? "-" + subjectCategory : ""}`;
 
-      if (!acc[uniqueProgrammeIdentifier]) {
-        acc[uniqueProgrammeIdentifier] = {
-          programmeSlug,
-          subject: browseData.subject,
-          subjectSlug: browseData.subject_slug,
-          subjectCategory: useSubjectCategory ? subjectCategory : null,
-          subjectParent: browseData.subject_parent,
-          keystage: browseData.keystage,
-          keystageSlug: browseData.keystage_slug,
-          phaseSlug: browseData.phase_slug,
-          pathway: browseData.pathway,
-          pathwaySlug: browseData.pathway_slug,
-          tier: browseData.tier,
-          examboard: browseData.examboard,
-          examboardSlug: browseData.examboard_slug,
-          units: [],
-        };
-      }
+      acc[uniqueProgrammeIdentifier] ??= {
+        programmeSlug,
+        subject: browseData.subject,
+        subjectSlug: browseData.subject_slug,
+        subjectCategory: useSubjectCategory ? subjectCategory : null,
+        subjectParent: browseData.subject_parent,
+        keystage: browseData.keystage,
+        keystageSlug: browseData.keystage_slug,
+        phaseSlug: browseData.phase_slug,
+        pathway: browseData.pathway,
+        pathwaySlug: browseData.pathway_slug,
+        tier: browseData.tier,
+        examboard: browseData.examboard,
+        examboardSlug: browseData.examboard_slug,
+        units: [],
+      };
       acc[uniqueProgrammeIdentifier].units.push({
         unitSlug: contentList.unit_slug,
         unitTitle: browseData.unit_title,

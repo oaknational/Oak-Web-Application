@@ -27,7 +27,9 @@ export const buildCollectionData = (
         phaseSlug,
       } = programmeData;
 
-      const subjectCategoryHeading = `${subjectCategory ? `${subjectCategory} ` : ""}`;
+      const subjectCategoryHeading = subjectCategory
+        ? `${subjectCategory} `
+        : "";
 
       const subheading = `${subjectCategoryHeading}${examboard ? examboard + " " : ""}${tier ? tier + " " : ""}${pathway ? pathway + " " : ""}${keystage}`;
 

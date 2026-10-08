@@ -51,7 +51,7 @@ const MyLibraryPage = async () => {
   try {
     savedUnits = await getUserListContent(getToken, userId);
   } catch (err) {
-    reportError(
+    void reportError(
       new OakError({
         code: "educator-api/failed-to-get-saved-units",
         meta: { userId, error: err },
