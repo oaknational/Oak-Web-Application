@@ -317,7 +317,6 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     curriculumDownloadsTabData,
     mvRefreshTime,
     fileSizes,
-    featureFlags: {},
     implementationGuides,
     nonCurriculum: cachedProgrammeData.programmeUnitsData.nonCurriculum,
     activeFlags,

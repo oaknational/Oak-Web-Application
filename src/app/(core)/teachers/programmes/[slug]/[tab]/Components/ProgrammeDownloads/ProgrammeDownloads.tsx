@@ -53,7 +53,6 @@ export type ProgrammeDownloadsProps = {
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   implementationGuides: ImplementationGuides | null;
-  featureFlags: Record<string, boolean>;
   fileSizes?: {
     downloadId: string;
     size: number;
