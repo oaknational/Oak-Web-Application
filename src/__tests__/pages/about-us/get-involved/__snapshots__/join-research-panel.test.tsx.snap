@@ -2573,7 +2573,9 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
         >
           Join the research panel
           <div>
-            <pre>
+            <div
+              class="c9"
+            >
               <h1
                 class="c69"
               >
@@ -2633,10 +2635,12 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                 style="color: transparent;"
                 width="240"
               />
-            </pre>
+            </div>
           </div>
           <div>
-            <pre>
+            <div
+              class="c9"
+            >
               <code>
                 {
   "__typename": "JoinResearchPanelPageCallout",
@@ -2669,10 +2673,12 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   ]
 }
               </code>
-            </pre>
+            </div>
           </div>
           <div>
-            <pre>
+            <div
+              class="c9"
+            >
               <code>
                 {
   "__typename": "JoinResearchPanelPageInfo",
@@ -2701,10 +2707,12 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   ]
 }
               </code>
-            </pre>
+            </div>
           </div>
           <div>
-            <pre>
+            <div
+              class="c9"
+            >
               <code>
                 {
   "__typename": "JoinResearchPanelPageJourney",
@@ -2737,10 +2745,12 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   }
 }
               </code>
-            </pre>
+            </div>
           </div>
           <div>
-            <pre>
+            <div
+              class="c9"
+            >
               <code>
                 {
   "__typename": "JoinResearchPanelPageInfo",
@@ -2769,10 +2779,12 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   ]
 }
               </code>
-            </pre>
+            </div>
           </div>
           <div>
-            <pre>
+            <div
+              class="c9"
+            >
               <code>
                 {
   "__typename": "JoinResearchPanelPagePeople",
@@ -2806,10 +2818,12 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   ]
 }
               </code>
-            </pre>
+            </div>
           </div>
           <div>
-            <pre>
+            <div
+              class="c9"
+            >
               <code>
                 {
   "__typename": "JoinResearchPanelPageFaqs",
@@ -2836,10 +2850,12 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   ]
 }
               </code>
-            </pre>
+            </div>
           </div>
           <div>
-            <pre>
+            <div
+              class="c9"
+            >
               <code>
                 {
   "__typename": "JoinResearchPanelPageContactUs",
@@ -2851,7 +2867,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   }
 }
               </code>
-            </pre>
+            </div>
           </div>
         </div>
       </main>

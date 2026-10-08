@@ -35,7 +35,7 @@ export const AboutUsJoinResearchPanel: NextPage<
     image,
     button,
   }: JoinResearchPanelPageBlock<"JoinResearchPanelPageHeader">) => (
-    <pre>
+    <OakBox>
       <OakHeading tag="h1"> {title} </OakHeading>
       <PortableText value={bodyRaw} />
       <OakPrimaryButton
@@ -47,16 +47,16 @@ export const AboutUsJoinResearchPanel: NextPage<
         {button.label}
       </OakPrimaryButton>
       <CMSImage image={image} />
-    </pre>
+    </OakBox>
   );
 
   const JoinResearchPanelPageDefault = (
     block: JoinResearchPanelPageBlock<JoinResearchPanelPageBlockType>,
   ) => {
     return (
-      <pre>
+      <OakBox>
         <code>{JSON.stringify(block, null, 2)}</code>
-      </pre>
+      </OakBox>
     );
   };
 
@@ -92,8 +92,10 @@ export const AboutUsJoinResearchPanel: NextPage<
       >
         <OakBox $zIndex={"neutral"} $color={"text-primary"}>
           Join the research panel
-          {pageData.blocks.map((block) => {
-            return <div key={block.__typename}>{renderBlock(block)}</div>;
+          {pageData.blocks.map((block, i) => {
+            return (
+              <div key={`${block.__typename}-${i}`}>{renderBlock(block)}</div>
+            );
           })}
         </OakBox>
       </Layout>
@@ -112,10 +114,10 @@ export const getServerSideProps: GetServerSideProps<
     return { notFound: true };
   }
 
-  // const isPreviewMode = context.preview === true;
+  const isPreviewMode = context.preview === true;
 
   const pageData = await CMSClient.joinResearchPanelPage({
-    previewMode: true,
+    previewMode: isPreviewMode,
   });
 
   if (!pageData) {
