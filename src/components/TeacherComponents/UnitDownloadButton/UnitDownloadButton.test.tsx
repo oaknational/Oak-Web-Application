@@ -36,6 +36,11 @@ jest.mock("@oaknational/oak-components", () => ({
 const mockUnitDownloadStarted = jest.fn();
 const mockUnitDownloaded = jest.fn();
 
+const setCurrentToastProps = jest.fn();
+jest.mock("@/context/OakNotifications/useOakNotificationsContext", () => ({
+  useOakNotificationsContext: () => ({ setCurrentToastProps }),
+}));
+
 const reportError = jest.fn();
 jest.mock("@/common-lib/error-reporter", () => ({
   __esModule: true,
@@ -109,6 +114,7 @@ describe("UnitDownloadButton", () => {
     mockUnitDownloadStarted.mockClear();
     mockUnitDownloaded.mockClear();
     reportError.mockClear();
+    setCurrentToastProps.mockClear();
   });
 
   it("should render a continue button when logged in but not onboarded", () => {
@@ -197,6 +203,32 @@ describe("UnitDownloadButton", () => {
       unitFileId: "mockSlug",
       existenceCheckFailed: false,
     });
+  });
+  it("shows an error toast when the download fails", async () => {
+    const { createUnitDownloadLink } = jest.requireMock(
+      "@/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink",
+    );
+    createUnitDownloadLink.mockRejectedValueOnce(new Error("network error"));
+
+    renderUnitDownloadButton();
+    await userEvent
+      .setup()
+      .click(screen.getByRole("button", { name: "Download" }));
+
+    expect(setCurrentToastProps).toHaveBeenCalledWith({
+      variant: "error",
+      message: "Failed to download unit. Please try again.",
+      autoDismiss: false,
+      showIcon: true,
+    });
+  });
+  it("does not show an error toast when the download succeeds", async () => {
+    renderUnitDownloadButton();
+    await userEvent
+      .setup()
+      .click(screen.getByRole("button", { name: "Download" }));
+
+    expect(setCurrentToastProps).not.toHaveBeenCalled();
   });
   it("records a failed server-side existence check when reporting", async () => {
     const { createUnitDownloadLink } = jest.requireMock(

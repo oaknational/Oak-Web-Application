@@ -18,6 +18,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import errorReporter from "@/common-lib/error-reporter";
 import { UnitDownloadExistence } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 
 const reportError = errorReporter("unit-download-button");
 
@@ -281,6 +282,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   const { isSignedIn, user } = useUser();
   const auth = useAuth();
   const pathname = usePathname();
+  const { setCurrentToastProps } = useOakNotificationsContext();
   const { unitDownloadStarted } = useTeacherBrowseAnalytics(
     (store) => store.track,
   );
@@ -316,6 +318,12 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
       setShowDownloadMessage(false);
       setShowIncompleteMessage(false);
       setDownloadError(true);
+      setCurrentToastProps({
+        variant: "error",
+        message: "Failed to download unit. Please try again.",
+        autoDismiss: false,
+        showIcon: true,
+      });
       void reportError(error, {
         unitFileId,
         existenceCheckFailed: checkFailed,
