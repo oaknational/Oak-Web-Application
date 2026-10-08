@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`pages/about/who-we-are.tsx renders 1`] = `
 .c0 {
@@ -5296,6 +5296,20 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       >
                         <a
                           class="c184 "
+                          href="/about-us/case-studies"
+                        >
+                          <span
+                            class="c25"
+                          >
+                            Case studies
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c183"
+                      >
+                        <a
+                          class="c184 "
                           href="/about-us/get-involved"
                         >
                           <span
@@ -5756,6 +5770,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
             </div>
             <span
               class="c84 c197"
+              data-chromatic="ignore"
               data-percy-hide="contents"
             >
               <img

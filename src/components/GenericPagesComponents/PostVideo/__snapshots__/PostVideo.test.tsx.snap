@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`PostVideo allow override of location 1`] = `
 <div>
@@ -6,7 +6,7 @@ exports[`PostVideo allow override of location 1`] = `
     data-overlay-container="true"
   >
     <div
-      class="sc-bdvwhi iTIjHb"
+      class="sc-bdvwhi hpbfuw"
     >
       <div
         class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
@@ -139,7 +139,7 @@ exports[`PostVideo should render correctly 1`] = `
     data-overlay-container="true"
   >
     <div
-      class="sc-bdvwhi iTIjHb"
+      class="sc-bdvwhi hpbfuw"
     >
       <div
         class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"

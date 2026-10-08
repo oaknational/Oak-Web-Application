@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1`] = `
 <body>
@@ -40,7 +40,7 @@ exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1
               class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex lcZKPm"
             >
               <div
-                class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
+                class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
               >
                 <a
                   class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -111,7 +111,7 @@ exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1
               class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex bfRFGW"
             >
               <div
-                class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
+                class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
               >
                 <a
                   class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -226,7 +226,7 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
               class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
             >
               <div
-                class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
+                class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
               >
                 <a
                   class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -297,7 +297,7 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
               class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
             >
               <div
-                class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
+                class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
               >
                 <a
                   class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -368,7 +368,7 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
               class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
             >
               <div
-                class="sc-bdvwhi sc-bXTeWK cirfqN bnMUc"
+                class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
               >
                 <a
                   class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
