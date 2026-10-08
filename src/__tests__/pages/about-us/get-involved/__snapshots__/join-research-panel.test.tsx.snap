@@ -2806,6 +2806,20 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                       >
                         <a
                           class="c82 "
+                          href="/about-us/case-studies"
+                        >
+                          <span
+                            class="c25"
+                          >
+                            Case studies
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c81"
+                      >
+                        <a
+                          class="c82 "
                           href="/about-us/get-involved"
                         >
                           <span
@@ -3266,6 +3280,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
             </div>
             <span
               class="c96 c97"
+              data-chromatic="ignore"
               data-percy-hide="contents"
             >
               <img
