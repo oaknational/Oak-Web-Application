@@ -1,3 +1,10 @@
+## [1.1238.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1238.0...v1.1238.1) (2026-10-08)
+
+
+### Bug Fixes
+
+* title in /about-us/get-involved/join-research-panel ([aa74f41](https://github.com/oaknational/Oak-Web-Application/commit/aa74f41a148986923d72edb0cbd8d8dc4a227f20))
+
 # [1.1238.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1237.1...v1.1238.0) (2026-10-08)
 
 
