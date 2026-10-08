@@ -61,7 +61,7 @@ describe("MyLibrary", () => {
   it("renders a header and no content when there is no collection data", () => {
     render(<MyLibrary collectionData={[]} />);
     expect(screen.getByText("My library")).toBeInTheDocument();
-    expect(screen.queryByText("No units yet")).toBeInTheDocument();
+    expect(screen.getByText("No units yet")).toBeInTheDocument();
   });
   it("renders a side menu with the correct items", () => {
     render(<MyLibrary collectionData={generateMockCollectionData(5)} />);
