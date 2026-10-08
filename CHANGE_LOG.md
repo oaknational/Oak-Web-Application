@@ -1,3 +1,10 @@
+# [1.1238.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1237.1...v1.1238.0) (2026-10-08)
+
+
+### Features
+
+* changed link in "Join the research panel" when feature flag enabled ([a67563c](https://github.com/oaknational/Oak-Web-Application/commit/a67563ce9d00d8f1ff8ee39109dbe1e3b698f960))
+
 ## [1.1237.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1237.0...v1.1237.1) (2026-10-08)
 
 
