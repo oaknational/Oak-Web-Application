@@ -1,3 +1,10 @@
+# [1.1236.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1235.0...v1.1236.0) (2026-10-08)
+
+
+### Features
+
+* added join-research-panel skeleton page behind feature flag ([06db8db](https://github.com/oaknational/Oak-Web-Application/commit/06db8db24de6907961c35ae55d52cf70cae22625))
+
 # [1.1235.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1234.0...v1.1235.0) (2026-10-08)
 
 
