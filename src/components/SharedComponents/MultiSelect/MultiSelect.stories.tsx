@@ -1,8 +1,7 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import { expect, fn, userEvent, within } from "storybook/test";
+import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 import { OakBox } from "@oaknational/oak-components";
-import { waitFor } from "@testing-library/dom";
 
 import { MultiSelect } from "./MultiSelect";
 

@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 .c0 {
@@ -4872,7 +4872,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                                 class="c129"
                                 height="100%"
                                 name="box-border-left"
-                                style="width: 3px;"
+                                style="right: unset; width: 3px;"
                                 width="100%"
                                 xmlns="http://www.w3.org/2000/svg"
                               >
@@ -6044,6 +6044,20 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       >
                         <a
                           class="c218 "
+                          href="/about-us/case-studies"
+                        >
+                          <span
+                            class="c25"
+                          >
+                            Case studies
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c217"
+                      >
+                        <a
+                          class="c218 "
                           href="/about-us/get-involved"
                         >
                           <span
@@ -6504,6 +6518,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
             </div>
             <span
               class="c156 c231"
+              data-chromatic="ignore"
               data-percy-hide="contents"
             >
               <img

@@ -13,8 +13,8 @@ export default async function middleware(
 }
 
 /**
- * Clerk middleware causes page latency, we're only enabling it for API routes or pages where
- * we need to access the user session in the backend
+ * Clerk middleware causes page latency, we're only enabling it for API routes
+ * and pages carrying a Clerk handshake token.
  */
 
 export const config: MiddlewareConfig = {
@@ -25,5 +25,14 @@ export const config: MiddlewareConfig = {
     "/(api|trpc)((?!/classroom))(.*)",
     // Pages which resolve the signed-in user on the server
     "/teachers/my-library",
+    // Enable middleware when we need to process a clerk handshake token
+    {
+      source: "/((?!_next).*)",
+      has: [{ type: "query", key: "__clerk_handshake" }],
+    },
+    {
+      source: "/((?!_next).*)",
+      has: [{ type: "query", key: "__clerk_handshake_nonce" }],
+    },
   ],
 };
