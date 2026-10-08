@@ -3,7 +3,6 @@ import { createNextApiMocks } from "../../../__helpers__/createNextApiMocks";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { createUnit } from "@/fixtures/curriculum/unit";
-import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 
 const fetch = jest.spyOn(global, "fetch") as jest.Mock;
 
@@ -381,12 +380,6 @@ describe("/api/curriculum-downloads", () => {
   });
 
   test("sanity implementation toolkit documents", async () => {
-    (isFeatureFlagEnabledServer as jest.Mock).mockImplementation(
-      (_cookies, flag) => {
-        return flag === "implementation-guides" ? true : false;
-      },
-    );
-
     curriculumSequenceMock.mockResolvedValue(mockSequenceData);
     const { req, res } = createNextApiMocks({
       query: {

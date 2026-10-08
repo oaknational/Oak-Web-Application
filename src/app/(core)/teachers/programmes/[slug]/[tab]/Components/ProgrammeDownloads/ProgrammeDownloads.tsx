@@ -68,7 +68,6 @@ export const ProgrammeDownloads = ({
   curriculumSelectionSlugs,
   mvRefreshTime,
   implementationGuides,
-  featureFlags,
   fileSizes,
 }: ProgrammeDownloadsProps) => {
   const { curriculumResourcesDownloadRefined, curriculumResourcesDownloaded } =
@@ -88,13 +87,10 @@ export const ProgrammeDownloads = ({
         return true;
       }
       if (group === "implementation-guide") {
-        return (
-          implementationGuides?.[id as keyof ImplementationGuides] &&
-          featureFlags["implementation-guides"]
-        );
+        return implementationGuides?.[id as keyof ImplementationGuides];
       }
     }).map(({ id }) => id);
-  }, [curriculumUnitsFormattedData, implementationGuides, featureFlags]);
+  }, [curriculumUnitsFormattedData, implementationGuides]);
 
   const curriculumDownloadsWithLabels = DOWNLOAD_TYPE_LABELS.filter(
     ({ id, group }) => {
@@ -355,11 +351,9 @@ export const ProgrammeDownloads = ({
                   <OakFlex $gap={"spacing-32"} $flexDirection={"column"}>
                     {curriculumDownloadsWithLabels.length > 0 && (
                       <OakFlex $gap={"spacing-16"} $flexDirection={["column"]}>
-                        {featureFlags["implementation-guides"] && (
-                          <OakFlex $gap="spacing-8">
-                            Explore the curriculum
-                          </OakFlex>
-                        )}
+                        <OakFlex $gap="spacing-8">
+                          Explore the curriculum
+                        </OakFlex>
                         <OakFlex
                           $gap={"spacing-16"}
                           $flexDirection={["column", "column", "row"]}

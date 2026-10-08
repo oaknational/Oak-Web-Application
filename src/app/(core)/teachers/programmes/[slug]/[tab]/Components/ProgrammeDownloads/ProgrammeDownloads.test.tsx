@@ -212,9 +212,7 @@ describe("Programme Downloads", () => {
             },
           },
         },
-        featureFlags: {
-          "implementation-guides": true,
-        },
+        featureFlags: {},
       });
 
       const region = (await findAllByRole("region"))[1]!;
@@ -247,9 +245,7 @@ describe("Programme Downloads", () => {
           childSubject: null,
         },
       ],
-      featureFlags: {
-        "implementation-guides": true,
-      },
+      featureFlags: {},
     });
 
     const region = (await findAllByRole("region"))[1]!;

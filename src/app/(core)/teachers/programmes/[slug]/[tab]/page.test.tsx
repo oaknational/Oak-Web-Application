@@ -12,7 +12,6 @@ import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixt
 import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 const defaultParams = new URLSearchParams("");
@@ -308,12 +307,6 @@ describe("Programme page tabs", () => {
       },
       ks4OptionFilterDimensions: {},
     });
-
-    (isFeatureFlagEnabledServer as jest.Mock).mockImplementation(
-      (_cookies, flag) => {
-        return flag === "implementation-guides" ? true : false;
-      },
-    );
 
     const { container } = renderWithProviders()(
       (await ProgrammePageTabs({

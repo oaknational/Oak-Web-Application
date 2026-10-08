@@ -172,9 +172,7 @@ export const ProgrammeView = ({
             tabs={TAB_NAMES.map((tab) => ({
               label: tab,
               type: "link",
-              showPromo:
-                featureFlags["implementation-guides"] &&
-                tabNameToSlug[tab] === "download",
+              showPromo: tabNameToSlug[tab] === "download",
               href: resolveOakHref({
                 page: "teacher-programme",
                 subjectPhaseSlug,
@@ -185,21 +183,20 @@ export const ProgrammeView = ({
               }),
             }))}
           />
-          {["units", "curriculum-explainer"].includes(activeTab) &&
-            featureFlags["implementation-guides"] && (
-              <ImplementationGuideCallout
-                subject={curriculumSelectionSlugs.subjectSlug}
-                subjectTitle={subjectTitle}
-                phase={curriculumSelectionSlugs.phaseSlug}
-                phaseTitle={phaseTitle}
-                activeFlags={activeFlags}
-                onClick={() =>
-                  curriculumResourcesAccessed({
-                    componentType: ComponentType.IMPLEMENTATION_GUIDE_CALLOUT,
-                  })
-                }
-              />
-            )}
+          {["units", "curriculum-explainer"].includes(activeTab) && (
+            <ImplementationGuideCallout
+              subject={curriculumSelectionSlugs.subjectSlug}
+              subjectTitle={subjectTitle}
+              phase={curriculumSelectionSlugs.phaseSlug}
+              phaseTitle={phaseTitle}
+              activeFlags={activeFlags}
+              onClick={() =>
+                curriculumResourcesAccessed({
+                  componentType: ComponentType.IMPLEMENTATION_GUIDE_CALLOUT,
+                })
+              }
+            />
+          )}
         </OakMaxWidth>
       )}
       <TabContent
