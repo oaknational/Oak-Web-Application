@@ -6044,6 +6044,20 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       >
                         <a
                           class="c218 "
+                          href="/about-us/case-studies"
+                        >
+                          <span
+                            class="c25"
+                          >
+                            Case studies
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c217"
+                      >
+                        <a
+                          class="c218 "
                           href="/about-us/get-involved"
                         >
                           <span

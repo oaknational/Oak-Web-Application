@@ -11,9 +11,11 @@ import {
   OakFlex,
   OakBreadcrumbWithoutHref,
   OakBreadcrumb,
+  OakSpan,
 } from "@oaknational/oak-components";
 import { format } from "date-fns";
 import { createRef, useMemo } from "react";
+import { PortableTextComponent } from "@portabletext/react";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { OaksImpactCaseStudyPage } from "@/common-lib/cms-types/aboutPages";
@@ -34,6 +36,7 @@ import PostPortableText from "@/components/GenericPagesComponents/PostPortableTe
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import { CaseStudyGetInTouch } from "@/components/GenericPagesComponents/CaseStudyGetInTouch";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
+import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
 
 // to do - this data retrieval will be decoupled from oak's impact in coming tickets
 export type AboutUsOaksImpactCaseStudyPageProps = {
@@ -106,6 +109,27 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
     { text: title },
   ];
 
+  const caseStudyPortableTextBlockOverrides: Record<
+    string,
+    PortableTextComponent<"block">
+  > = {
+    heading1: (props) => (
+      <OakHeading tag="h3" $font="heading-5" $mt={["spacing-32", "spacing-40"]}>
+        {props.children}
+      </OakHeading>
+    ),
+    heading2: (props) => (
+      <OakHeading tag="h4" $font="heading-6" $mt={["spacing-32", "spacing-40"]}>
+        {props.children}
+      </OakHeading>
+    ),
+    heading3: (props) => (
+      <OakHeading tag="h5" $font="heading-7" $mt={["spacing-32", "spacing-40"]}>
+        {props.children}
+      </OakHeading>
+    ),
+  };
+
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={null}
@@ -169,7 +193,10 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
               }
             >
               {caseStudy.video && (
-                <OakBox $pb="spacing-100" $position={"relative"}>
+                <OakBox
+                  $pb={["spacing-72", "spacing-100"]}
+                  $position={"relative"}
+                >
                   <OakVideo
                     videoSlot={
                       caseStudy.video.video.asset && (
@@ -195,7 +222,7 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                   {caseStudy.content && caseStudy.content.length > 0 && (
                     <OakFlex
                       $flexDirection="column"
-                      $gap="spacing-100"
+                      $gap={["spacing-72", "spacing-100"]}
                       $pb="spacing-100"
                       $position={"relative"}
                     >
@@ -209,7 +236,7 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                             sectionRefs[contentBlock.anchorSlug?.current ?? ""]
                           }
                           id={contentBlock.anchorSlug?.current}
-                          $scrollMarginTop="spacing-12"
+                          $scrollMarginTop={["spacing-24", "spacing-24"]}
                           $flexDirection="column"
                           $alignItems="flex-start"
                         >
@@ -217,30 +244,35 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                             $alignItems="flex-start"
                             $flexDirection="column"
                             $gap="spacing-8"
+                            as="h2"
                           >
                             {contentBlock.label && (
                               <OakTagFunctional
                                 label={contentBlock.label}
                                 $background="bg-decorative2-main"
+                                useSpan={true}
+                                as="span"
                               />
                             )}
-                            <OakHeading tag="div" $font="heading-4">
+                            <OakSpan $font={["heading-5", "heading-4"]}>
                               {contentBlock.heading}
-                            </OakHeading>
+                            </OakSpan>
                           </OakFlex>
                           <PostPortableText
                             portableText={contentBlock.contentRaw ?? []}
                             location="marketing"
+                            blockOverrides={caseStudyPortableTextBlockOverrides}
                           />
                         </OakFlex>
                       ))}
+                      <TrackScrolledTo eventKey="case_study_content_end" />
                     </OakFlex>
                   )}
 
                   {caseStudy.showGetInTouchPanel &&
                     caseStudy.getInTouchPanel && (
                       <OakBox
-                        $pv="spacing-100"
+                        $pv={["spacing-72", "spacing-100"]}
                         $bt="border-solid-m"
                         $borderColor="border-neutral-lighter"
                       >

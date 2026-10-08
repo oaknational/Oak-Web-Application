@@ -194,6 +194,12 @@ export const LayoutSiteFooterInner: FC = () => {
           track: trackAboutUsFooter,
         },
         {
+          text: "Case studies",
+          type: "link" as const,
+          href: resolveOakHref({ page: "about-case-study-library" }),
+          track: trackAboutUsFooter,
+        },
+        {
           text: "Get involved",
           type: "link",
           href: resolveOakHref({ page: "about-get-involved" }),

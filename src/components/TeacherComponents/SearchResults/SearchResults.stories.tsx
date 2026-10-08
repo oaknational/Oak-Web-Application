@@ -3,11 +3,12 @@ import { Meta, StoryObj } from "@storybook/nextjs";
 import Component from "./SearchResults";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 import { hitsFixture as hits } from "@/context/Search/search-api/2023/searchResults.fixture";
 import keyStagesFixture from "@/node-lib/curriculum-api-2023/fixtures/keyStages.fixture";
 
 const meta = {
-  decorators: [AnalyticsDecorator],
+  decorators: [AnalyticsDecorator, TeacherBrowseAnalyticsDecorator],
   component: Component,
   argTypes: {},
 } satisfies Meta<typeof Component>;

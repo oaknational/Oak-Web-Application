@@ -1,3 +1,84 @@
+# [1.1234.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1233.2...v1.1234.0) (2026-10-08)
+
+
+### Bug Fixes
+
+* add avo resolveOakHref ([15bd633](https://github.com/oaknational/Oak-Web-Application/commit/15bd633c3e0adca1c952fccede67e17f6d37c919))
+* remove /about-us/case-studies from exclude ([9bc94dd](https://github.com/oaknational/Oak-Web-Application/commit/9bc94ddce3eae766a014002528c105d69140f3a2))
+* resolve to right slug for case studies ([7faf5ac](https://github.com/oaknational/Oak-Web-Application/commit/7faf5ac9e45ef50db8ae07a0be2c92a5ed5c7110))
+* snaps ([f777c72](https://github.com/oaknational/Oak-Web-Application/commit/f777c7254e291e53985093bf41a98543edd5bb91))
+* snaps ([15cfc53](https://github.com/oaknational/Oak-Web-Application/commit/15cfc53eb343a8ed7b972b90dec4128d6716b437))
+* wrapping of "View all case studies" link ([b51fe89](https://github.com/oaknational/Oak-Web-Application/commit/b51fe897b83fef3aadea9cd07e99127432ca5d3c))
+
+
+### Features
+
+* add /about-us/case-studies to the sitemap ([2daf649](https://github.com/oaknational/Oak-Web-Application/commit/2daf6492c2489f6ac621792bd4ffc10d651dbbaf))
+* added "Case studies" to header/footer ([5636543](https://github.com/oaknational/Oak-Web-Application/commit/56365435400e9d0fd914c9a9dc35cacc04a2ab71))
+* enable "case-studies-v2" by default and enabling the feature for all ([a4cf21c](https://github.com/oaknational/Oak-Web-Application/commit/a4cf21cea778cebd1f2f692648e874313cdcd1b1))
+
+## [1.1233.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1233.1...v1.1233.2) (2026-10-07)
+
+
+### Bug Fixes
+
+* subject picker container height ([5e2e346](https://github.com/oaknational/Oak-Web-Application/commit/5e2e346846b844e8821d00828d8b6b124f1cf8d2))
+
+## [1.1233.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1233.0...v1.1233.1) (2026-10-07)
+
+
+### Bug Fixes
+
+* **mcp:** add exact-path redirect from /mcp to /ai-plugin ([7a9b0d6](https://github.com/oaknational/Oak-Web-Application/commit/7a9b0d6a581dff308c2dadb46b001c26c824c511))
+* **mcp:** remove redundant /mcp/carousel compat rewrite ([c7dd0bf](https://github.com/oaknational/Oak-Web-Application/commit/c7dd0bfe6150bd23212076eeef602363625f1105))
+
+# [1.1233.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1232.0...v1.1233.0) (2026-10-07)
+
+
+### Bug Fixes
+
+* bump oak-components focus border radius ([b83da1b](https://github.com/oaknational/Oak-Web-Application/commit/b83da1b10433f169f2de5e68f7116e1bfc7c46eb))
+* capitalise tags on case study cards ([e5dd115](https://github.com/oaknational/Oak-Web-Application/commit/e5dd115ee3a9835a826dbcc570c28cce5ee875d2))
+* case study library bg colour ([d40a1f9](https://github.com/oaknational/Oak-Web-Application/commit/d40a1f951dee831ebde021d856d3ed9b2f41a23c))
+* case study page spacing ([61c29a9](https://github.com/oaknational/Oak-Web-Application/commit/61c29a96d965e0842c4dac5b03e3fb8ff6d5a611))
+* case study section headings ([6dd928f](https://github.com/oaknational/Oak-Web-Application/commit/6dd928f887e0492bc6e58611094116cdbd68bc1c))
+* case study spacing ([d445490](https://github.com/oaknational/Oak-Web-Application/commit/d4454906739e52e2403b3b9e9603f6928c2f91cc))
+* case study summary spacing ([95e4b8e](https://github.com/oaknational/Oak-Web-Application/commit/95e4b8ebfe315a4e33463e13a9c3e3a319a2e810))
+* move key for case study articles ([be10e3d](https://github.com/oaknational/Oak-Web-Application/commit/be10e3d80f1aca2fbfab9a073a10e809f134a883))
+* post video container fill ([a6fe018](https://github.com/oaknational/Oak-Web-Application/commit/a6fe018a5d7fcb2d86c1878d0b611e508f81051e))
+* use correct heading tags and style for case study portable text ([7611306](https://github.com/oaknational/Oak-Web-Application/commit/7611306a5f7ea8c1ec9134a373d4c80e260c4211))
+
+
+### Features
+
+* case study headings use span tags ([2c949b3](https://github.com/oaknational/Oak-Web-Application/commit/2c949b315f104b82595307e08b72c9c8519d3603))
+* use articles in case study library ([bef3e0b](https://github.com/oaknational/Oak-Web-Application/commit/bef3e0b58af4499f24e5d48a672b827c850950e8))
+
+# [1.1232.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1231.0...v1.1232.0) (2026-10-06)
+
+
+### Bug Fixes
+
+* search journey initiated event sends from the correct topnav component ([2ffe137](https://github.com/oaknational/Oak-Web-Application/commit/2ffe137f50f465372119dcd0b3bd98dd0290e515))
+
+
+### Features
+
+* add search events to analytics store ([da37a6b](https://github.com/oaknational/Oak-Web-Application/commit/da37a6b25b6c983b60a19892aaa8a8e06c416d97))
+* add search journey initiated event to search bar in top nav ([875c394](https://github.com/oaknational/Oak-Web-Application/commit/875c39443fc6b4cb727a1b00b994a7a6a7a5ceca))
+* merge in main avo branch ([c9bbcb4](https://github.com/oaknational/Oak-Web-Application/commit/c9bbcb439818a68d603f5556e0b262de74d459c9))
+* pull avo branch, add new properties ([f038da5](https://github.com/oaknational/Oak-Web-Application/commit/f038da51ca97167df87c13c308fb1ded7a0a07e0))
+* search page events use analytics store ([a3bfcad](https://github.com/oaknational/Oak-Web-Application/commit/a3bfcad9a07add1444b0491865572b913349d8d9))
+* send search opened event instantly ([fcad475](https://github.com/oaknational/Oak-Web-Application/commit/fcad475aba5db2dfba26f95bbcf0f16792069e6b))
+
+# [1.1231.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1230.0...v1.1231.0) (2026-10-06)
+
+
+### Features
+
+* add scroll to event to end of case study content ([9e1f854](https://github.com/oaknational/Oak-Web-Application/commit/9e1f854219aff6acc2de49babfb414aff8d7adf5))
+* use snake case in scroll to event key name ([396eb7c](https://github.com/oaknational/Oak-Web-Application/commit/396eb7cbb275616f7ae8f304bf5a13c121e954ab))
+
 # [1.1230.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1229.0...v1.1230.0) (2026-10-06)
 
 
