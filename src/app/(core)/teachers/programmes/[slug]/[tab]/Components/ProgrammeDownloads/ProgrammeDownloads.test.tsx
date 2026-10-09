@@ -148,7 +148,6 @@ const defaultProps = {
     nonCurriculum: false,
   },
   implementationGuides: {},
-  featureFlags: {},
 };
 const renderComponent = (overrides: Partial<ProgrammeDownloadsProps>) => {
   return renderWithProviders()(
@@ -212,9 +211,6 @@ describe("Programme Downloads", () => {
             },
           },
         },
-        featureFlags: {
-          "implementation-guides": true,
-        },
       });
 
       const region = (await findAllByRole("region"))[1]!;
@@ -247,9 +243,6 @@ describe("Programme Downloads", () => {
           childSubject: null,
         },
       ],
-      featureFlags: {
-        "implementation-guides": true,
-      },
     });
 
     const region = (await findAllByRole("region"))[1]!;

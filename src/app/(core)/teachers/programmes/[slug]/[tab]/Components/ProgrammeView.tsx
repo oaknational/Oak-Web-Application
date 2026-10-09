@@ -61,7 +61,6 @@ export type ProgrammePageProps = {
   tabSlug: TabSlug;
   ks4Options: Ks4Option[];
   ks4OptionFilterDimensions: Record<string, Ks4OptionFilterDimension>;
-  featureFlags: Record<string, boolean>;
   implementationGuides: ImplementationGuides | null;
   fileSizes: ProgrammeDownloadsProps["fileSizes"];
   activeFlags: string[];
@@ -80,7 +79,6 @@ export const ProgrammeView = ({
   subjectPhaseSlug,
   ks4Options,
   ks4OptionFilterDimensions,
-  featureFlags,
   implementationGuides,
   fileSizes,
   activeFlags,
@@ -172,9 +170,7 @@ export const ProgrammeView = ({
             tabs={TAB_NAMES.map((tab) => ({
               label: tab,
               type: "link",
-              showPromo:
-                featureFlags["implementation-guides"] &&
-                tabNameToSlug[tab] === "download",
+              showPromo: tabNameToSlug[tab] === "download",
               href: resolveOakHref({
                 page: "teacher-programme",
                 subjectPhaseSlug,
@@ -185,21 +181,20 @@ export const ProgrammeView = ({
               }),
             }))}
           />
-          {["units", "curriculum-explainer"].includes(activeTab) &&
-            featureFlags["implementation-guides"] && (
-              <ImplementationGuideCallout
-                subject={curriculumSelectionSlugs.subjectSlug}
-                subjectTitle={subjectTitle}
-                phase={curriculumSelectionSlugs.phaseSlug}
-                phaseTitle={phaseTitle}
-                activeFlags={activeFlags}
-                onClick={() =>
-                  curriculumResourcesAccessed({
-                    componentType: ComponentType.IMPLEMENTATION_GUIDE_CALLOUT,
-                  })
-                }
-              />
-            )}
+          {["units", "curriculum-explainer"].includes(activeTab) && (
+            <ImplementationGuideCallout
+              subject={curriculumSelectionSlugs.subjectSlug}
+              subjectTitle={subjectTitle}
+              phase={curriculumSelectionSlugs.phaseSlug}
+              phaseTitle={phaseTitle}
+              activeFlags={activeFlags}
+              onClick={() =>
+                curriculumResourcesAccessed({
+                  componentType: ComponentType.IMPLEMENTATION_GUIDE_CALLOUT,
+                })
+              }
+            />
+          )}
         </OakMaxWidth>
       )}
       <TabContent
@@ -212,7 +207,6 @@ export const ProgrammeView = ({
         ks4Options={ks4Options}
         ks4OptionFilterDimensions={ks4OptionFilterDimensions}
         implementationGuides={implementationGuides}
-        featureFlags={featureFlags}
         fileSizes={fileSizes}
       />
     </>
@@ -229,11 +223,9 @@ const TabContent = ({
   ks4Options,
   ks4OptionFilterDimensions,
   implementationGuides,
-  featureFlags,
   fileSizes,
 }: {
   tabSlug: TabSlug;
-  featureFlags: Record<string, boolean>;
 } & UnitSequenceViewProps & {
     curriculumCMSInfo: CurriculumOverviewSanityData | null;
     implementationGuides: ImplementationGuides | null;
@@ -260,7 +252,6 @@ const TabContent = ({
         curriculumDownloadsTabData={curriculumDownloadsTabData}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
         implementationGuides={implementationGuides}
-        featureFlags={featureFlags}
         fileSizes={fileSizes}
       />
     );
