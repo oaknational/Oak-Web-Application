@@ -3983,7 +3983,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
             <span
               class="c123 c124"
               data-chromatic="ignore"
-              data-percy-hide="contents"
             >
               <img
                 alt="Cyber Essentials Logo"

@@ -648,7 +648,6 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         <div
                           class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                           data-chromatic="ignore"
-                          data-percy-hide="contents"
                           style="aspect-ratio: 16/9; box-sizing: content-box;"
                         />
                       </div>
@@ -2370,9 +2369,8 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-5012a3f4-0 bfVxIC"
+              class="sc-bdvwhi LoEut sc-fac218d-0 toUnf"
               data-chromatic="ignore"
-              data-percy-hide="contents"
             >
               <img
                 alt="Cyber Essentials Logo"

@@ -6,7 +6,6 @@ minimumReleaseAgeExclude:
   - "@oaknational/oak-curriculum-schema"
 allowBuilds:
   "@clerk/shared": true
-  "@percy/core": true
   "@sentry/cli": true
   "@swc/core": true
   chromedriver: true

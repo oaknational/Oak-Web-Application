@@ -6573,7 +6573,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
             <span
               class="c156 c231"
               data-chromatic="ignore"
-              data-percy-hide="contents"
             >
               <img
                 alt="Cyber Essentials Logo"

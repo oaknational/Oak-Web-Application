@@ -203,7 +203,6 @@
     "@next/bundle-analyzer": "^15.5.2",
     "@next/env": "^15.3.0",
     "@next/eslint-plugin-next": "^15.3.0",
-    "@percy/cli": "^1.30.11",
     "@playwright/test": "^1.61.1",
     "@prettier/plugin-xml": "3.2.2",
     "@sanity/client": "^7.11.2",
