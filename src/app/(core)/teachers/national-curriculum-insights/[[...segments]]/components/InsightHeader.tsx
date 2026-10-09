@@ -122,6 +122,12 @@ const headerImage = (data: NationalCurriculumInsightsRouteData) => {
   }
 };
 
+const headerBackground = (data: NationalCurriculumInsightsRouteData) => {
+  if (data.route.kind === "subject") return "bg-decorative5-subdued";
+  if (data.route.kind === "subjectPhase") return "bg-decorative1-subdued";
+  return "bg-decorative3-very-subdued";
+};
+
 export const NationalCurriculumInsightsHeader = ({
   data,
   section,
@@ -131,12 +137,7 @@ export const NationalCurriculumInsightsHeader = ({
 }>) => {
   const breadcrumbs = headerBreadcrumbs(data);
   const image = headerImage(data);
-  const background =
-    data.route.kind === "subject"
-      ? "bg-decorative5-subdued"
-      : data.route.kind === "subjectPhase"
-        ? "bg-decorative1-subdued"
-        : "bg-decorative3-very-subdued";
+  const background = headerBackground(data);
 
   return (
     <OakBox
