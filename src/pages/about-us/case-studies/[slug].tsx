@@ -1,4 +1,4 @@
-import { NextPage, GetStaticPropsResult, GetServerSideProps } from "next";
+import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import {
   OakBreadcrumbs,
   OakBox,
@@ -41,7 +41,6 @@ import { CaseStudyGetInTouch } from "@/components/GenericPagesComponents/CaseStu
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
 
-// to do - this data retrieval will be decoupled from oak's impact in coming tickets
 export type AboutUsCaseStudyLibraryPageProps = {
   pageData: {
     caseStudy: CaseStudyPage;
@@ -352,7 +351,7 @@ export const getServerSideProps: GetServerSideProps<
     slug,
   });
 
-  const results: GetStaticPropsResult<AboutUsCaseStudyLibraryPageProps> = {
+  const results: GetServerSidePropsResult<AboutUsCaseStudyLibraryPageProps> = {
     props: {
       pageData: {
         caseStudy,
