@@ -1,7 +1,10 @@
 import { useUser } from "@clerk/nextjs";
-import useSWR from "swr";
+import useSWR, { SWRConfiguration } from "swr";
 
-export const useGetEducatorData = <T>(url: string) => {
+export const useGetEducatorData = <T>(
+  url: string,
+  config?: SWRConfiguration<T>,
+) => {
   const { isSignedIn } = useUser();
   const { data, error, isLoading, mutate } = useSWR<T>(
     isSignedIn ? url : null,
@@ -16,6 +19,7 @@ export const useGetEducatorData = <T>(url: string) => {
       const data = await response.json();
       return data;
     },
+    config,
   );
 
   return {
