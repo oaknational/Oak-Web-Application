@@ -1,5 +1,4 @@
 import { NextPage, GetServerSideProps } from "next";
-import { OakBox } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -44,6 +43,7 @@ export const AboutUsJoinResearchPanel: NextPage<
     return pageComponents[block.__typename](block);
   }
 
+  console.log(pageData.blocks);
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={null}
@@ -54,14 +54,11 @@ export const AboutUsJoinResearchPanel: NextPage<
         $background={"bg-primary"}
         topNavProps={topNav}
       >
-        <OakBox $zIndex={"neutral"} $color={"text-primary"}>
-          Join the research panel
-          {pageData.blocks.map((block, i) => {
-            return (
-              <div key={`${block.__typename}-${i}`}>{renderBlock(block)}</div>
-            );
-          })}
-        </OakBox>
+        {pageData.blocks.map((block, i) => {
+          return (
+            <div key={`${block.__typename}-${i}`}>{renderBlock(block)}</div>
+          );
+        })}
       </Layout>
     </TeacherBrowseAnalyticsStoreProvider>
   );
