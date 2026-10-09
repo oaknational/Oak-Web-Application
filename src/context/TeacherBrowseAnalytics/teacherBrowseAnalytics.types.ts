@@ -11,7 +11,6 @@ import {
   SearchFilterMatchTypeType,
   MediaClipsButtonNameValueType,
   TeachingMaterialTypeValueType,
-  OnwardIntentValueType,
   SearchSourceValueType,
   TeacherSchoolManualEntryDetails,
   UserAccountVerificationStatusValueType,
@@ -226,9 +225,6 @@ export type TeacherBrowseTrackFns = {
   createTeachingMaterialsInitiated: (props: { isLoggedIn: boolean }) => void;
   teachingMaterialsSelected: (props: {
     teachingMaterialType: TeachingMaterialTypeValueType;
-  }) => void;
-  onwardContentSelected: (props: {
-    onwardIntent: OnwardIntentValueType;
   }) => void;
   videoPlayed: (props: VideoTrackingProperties) => void;
   videoStarted: (props: VideoTrackingProperties) => void;

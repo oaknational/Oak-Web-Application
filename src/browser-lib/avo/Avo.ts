@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "SehNgawzDn9NNFMkXN8q",
+          "ac": "BUtfB5qKMfJttbKj94T4",
           "br": "master",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "SehNgawzDn9NNFMkXN8q",
+          "ac": "BUtfB5qKMfJttbKj94T4",
           "br": "master",
           "en": env,
           "ty": type,
@@ -1351,14 +1351,6 @@ export const MediaClipsButtonName = {
 } as const;
 export type MediaClipsButtonNameType = typeof MediaClipsButtonName;
 export type MediaClipsButtonNameValueType = MediaClipsButtonNameType[keyof MediaClipsButtonNameType];
-
-export const OnwardIntent = {
-  'VIEW_UNIT': 'view-unit',
-  'VIEW_LESSON': 'view-lesson',
-  'DOWNLOAD_LESSON_RESOURCES': 'download-lesson-resources',
-} as const;
-export type OnwardIntentType = typeof OnwardIntent;
-export type OnwardIntentValueType = OnwardIntentType[keyof OnwardIntentType];
 
 export const SchoolOption = {
   'HOMESCHOOL': 'Homeschool',
@@ -3493,195 +3485,6 @@ export function curriculumVisualiserAccessed(properties: CurriculumVisualiserAcc
     }
     // destination PostHogEU
     PostHogEU.logEvent("Curriculum Visualiser Accessed", (Object as any).assign({}, eventProperties));
-  } else {
-    // do nothing
-  }
-}
-
-export interface UnitOverviewAccessedProperties {
-  unitName: string;
-  unitSlug: string;
-  subjectTitle: string;
-  subjectSlug: string;
-  yearGroupName: string;
-  yearGroupSlug: string;
-  threadTitle: string | null | undefined;
-  threadSlug: string | null | undefined;
-  platform: PlatformValueType;
-  product: ProductValueType;
-  engagementIntent: EngagementIntentValueType;
-  componentType: ComponentTypeValueType;
-  eventVersion: EventVersionValueType;
-  analyticsUseCase: AnalyticsUseCaseValueType;
-  unitHighlighted: boolean;
-  isUnitPublished: boolean;
-  journeyId: string | null | undefined;
-  accessLevel: AccessLevelValueType;
-  navigationType: NavigationTypeValueType;
-}
-/**
- * Unit Overview Accessed: A user of the curriculum visualiser views information relating to a highlighted (or non-highlighted) unit
- * 
- * When to trigger this event:
- * 1. Unit info div is selected on div corresponding to a particular unit (in this case one that is highlighted a resulted of the selected thread)
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/OnjKTo8kYs/trigger/I6HnzeUNk
- * 
- * @param properties the properties associated with this event
- * @param properties.unitName: Title of the current unit.
- * @param properties.unitSlug: Human-readable unique ID of the current unit.
- * @param properties.subjectTitle: Title of the current subject.
- * @param properties.subjectSlug: Human-readable unique ID of the current subject.
- * @param properties.yearGroupName: Name of the current year group.
- * @param properties.yearGroupSlug: Human-readable unique ID of the current year group.
- * @param properties.threadTitle: The title (in plain English including spaces) of a thread corresponding to a sequence of lessons across units
- * @param properties.threadSlug: The human readable identifier (n-kebab-case) for a sequence of lessons
- * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
- * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
- * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
- * This property should be populated with a single value for each event/product combination (i.e. the instance of each event within a product should determine the level of engagement).
- * @param properties.componentType: The web component used to carry out the action on the Oak object
- * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
- * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
- * NB - This will be removed, but keeping to ease transition from AUC to 'product'
- * @param properties.unitHighlighted: A boolean describing whether a given unit is highlighted when unit information is viewed
- * @param properties.isUnitPublished: A boolean describing whether the unit has been published and therefore it is possible to click through to the unit listing page (i.e. the 'See lessons in Unit' button is active)
- * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
- * @param properties.accessLevel: Indicates where the user is going from when navigating content, whether zooming in, out, or across.
- * @param properties.navigationType: How a user is navigating our content, zooming in, out, or across.
- * Indicates the direction of movement and what it represents.
- * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/OnjKTo8kYs}
- */
-export function unitOverviewAccessed(properties: UnitOverviewAccessedProperties) {
-  // @ts-ignore
-  let eventPropertiesArray: array = [];
-  eventPropertiesArray.push({id: "YfsvSpyEEd", name: "Unit Name", value: properties.unitName});
-  eventPropertiesArray.push({id: "r4GW5No741", name: "Unit Slug", value: properties.unitSlug});
-  eventPropertiesArray.push({id: "-MoOjO43sV", name: "Subject Title", value: properties.subjectTitle});
-  eventPropertiesArray.push({id: "8GyPDAapC-", name: "Subject Slug", value: properties.subjectSlug});
-  eventPropertiesArray.push({id: "mIpfmyUTSY", name: "Year Group Name", value: properties.yearGroupName});
-  eventPropertiesArray.push({id: "ySTg1Sz9in", name: "Year Group Slug", value: properties.yearGroupSlug});
-  properties.threadTitle !== undefined && properties.threadTitle !== null ?
-    eventPropertiesArray.push({id: "5vqHiL5Sh", name: "Thread Title", value: properties.threadTitle}) :
-    eventPropertiesArray.push({id: "5vqHiL5Sh", name: "Thread Title", value: null});
-  properties.threadSlug !== undefined && properties.threadSlug !== null ?
-    eventPropertiesArray.push({id: "E1mlACg_OT", name: "Thread Slug", value: properties.threadSlug}) :
-    eventPropertiesArray.push({id: "E1mlACg_OT", name: "Thread Slug", value: null});
-  eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
-  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
-  eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
-  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
-  eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
-  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
-  eventPropertiesArray.push({id: "WIkFSM1sX", name: "Unit Highlighted", value: properties.unitHighlighted});
-  eventPropertiesArray.push({id: "nWQ6pH3L0", name: "Is Unit Published", value: properties.isUnitPublished});
-  properties.journeyId !== undefined && properties.journeyId !== null ?
-    eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: properties.journeyId}) :
-    eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: null});
-  eventPropertiesArray.push({id: "qf_a_ttCPfRkzKQyLStvY", name: "Access Level", value: properties.accessLevel});
-  eventPropertiesArray.push({id: "MSzgvcM11YCYl-3H4YNVa", name: "Navigation Type", value: properties.navigationType});
-  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
-  // @ts-ignore
-  let userPropertiesArray: array = [];
-  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
-  // assert properties
-  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
-    let messages: AvoAssertMessage[] = [];
-    // debug console in Avo
-    if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "OnjKTo8kYs", "b8b5afbe72116b7b2c9949e1776941225498fc6cb0696e1c7c04394b852209f7", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
-    }
-    InternalAvoLogger.logEventSent("Unit Overview Accessed", eventProperties, userProperties);
-    if (__WEB_DEBUGGER__) {
-      // Avo web debugger
-      _avo_debugger_log("OnjKTo8kYs", "Unit Overview Accessed", messages, eventPropertiesArray, userPropertiesArray, []);
-    }
-  }
-  if (!__AVO_NOOP__) {
-    if (__INSPECTOR__ != null) {
-      // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Overview Accessed", eventProperties, "OnjKTo8kYs", "b8b5afbe72116b7b2c9949e1776941225498fc6cb0696e1c7c04394b852209f7");
-    }
-    // destination PostHogEU
-    PostHogEU.logEvent("Unit Overview Accessed", (Object as any).assign({}, eventProperties));
-  } else {
-    // do nothing
-  }
-}
-
-export interface OnwardContentSelectedProperties {
-  unitName: string;
-  unitSlug: string;
-  lessonName: string;
-  lessonSlug: string;
-  lessonReleaseCohort: LessonReleaseCohortValueType;
-  lessonReleaseDate: string;
-  onwardIntent: OnwardIntentValueType;
-  journeyId: string | null | undefined;
-  navigationType: NavigationTypeValueType;
-  accessLevel: AccessLevelValueType;
-}
-/**
- * Onward Content Selected: Triggered when user continues their journey following the presentation of potential content of interest. In case of download or lesson view, lesson fields are populated. In case of unit being viewed unit fields are populated.
- * 
- * When to trigger this event:
- * 1. Onward Content presentation screen following the download of a resource. Any of the links highlighted below would trigger this event.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/H9jrWEk8wy/trigger/t_FkWxgTH
- * 
- * @param properties the properties associated with this event
- * @param properties.unitName: Title of the current unit.
- * @param properties.unitSlug: Human-readable unique ID of the current unit.
- * @param properties.lessonName: Name of the current lesson.
- * @param properties.lessonSlug: Human-readable unique ID of the current lesson.
- * @param properties.lessonReleaseCohort: Determines which cycle of lesson creation
- * @param properties.lessonReleaseDate: The date in which the lesson was published
- * @param properties.onwardIntent: Describes the intent of the action when a user journey continues following the presentation of relevant content
- * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
- * @param properties.navigationType: How a user is navigating our content, zooming in, out, or across.
- * Indicates the direction of movement and what it represents.
- * @param properties.accessLevel: Indicates where the user is going from when navigating content, whether zooming in, out, or across.
- * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/H9jrWEk8wy}
- */
-export function onwardContentSelected(properties: OnwardContentSelectedProperties) {
-  // @ts-ignore
-  let eventPropertiesArray: array = [];
-  eventPropertiesArray.push({id: "YfsvSpyEEd", name: "Unit Name", value: properties.unitName});
-  eventPropertiesArray.push({id: "r4GW5No741", name: "Unit Slug", value: properties.unitSlug});
-  eventPropertiesArray.push({id: "vbCKXJ6xRQ", name: "Lesson Name", value: properties.lessonName});
-  eventPropertiesArray.push({id: "1FiHL77eSX", name: "Lesson Slug", value: properties.lessonSlug});
-  eventPropertiesArray.push({id: "1MWGICtAX6RYKgkHCdzQe", name: "Lesson Release Cohort", value: properties.lessonReleaseCohort});
-  eventPropertiesArray.push({id: "RLjiajchvo1_cecbBI4ol", name: "Lesson Release Date", value: properties.lessonReleaseDate});
-  eventPropertiesArray.push({id: "CC9YnUSeo", name: "Onward Intent", value: properties.onwardIntent});
-  properties.journeyId !== undefined && properties.journeyId !== null ?
-    eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: properties.journeyId}) :
-    eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: null});
-  eventPropertiesArray.push({id: "MSzgvcM11YCYl-3H4YNVa", name: "Navigation Type", value: properties.navigationType});
-  eventPropertiesArray.push({id: "qf_a_ttCPfRkzKQyLStvY", name: "Access Level", value: properties.accessLevel});
-  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
-  // @ts-ignore
-  let userPropertiesArray: array = [];
-  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
-  // assert properties
-  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
-    let messages: AvoAssertMessage[] = [];
-    // debug console in Avo
-    if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "H9jrWEk8wy", "d8456a4793aee6d6fdf5c12b0c0137d8f1f59d6eed10a77b629c65741b705b68", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
-    }
-    InternalAvoLogger.logEventSent("Onward Content Selected", eventProperties, userProperties);
-    if (__WEB_DEBUGGER__) {
-      // Avo web debugger
-      _avo_debugger_log("H9jrWEk8wy", "Onward Content Selected", messages, eventPropertiesArray, userPropertiesArray, []);
-    }
-  }
-  if (!__AVO_NOOP__) {
-    if (__INSPECTOR__ != null) {
-      // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Onward Content Selected", eventProperties, "H9jrWEk8wy", "d8456a4793aee6d6fdf5c12b0c0137d8f1f59d6eed10a77b629c65741b705b68");
-    }
-    // destination PostHogEU
-    PostHogEU.logEvent("Onward Content Selected", (Object as any).assign({}, eventProperties));
   } else {
     // do nothing
   }
@@ -14448,7 +14251,6 @@ export default {
   ClientEnvironment,
   ComponentType,
   MediaClipsButtonName,
-  OnwardIntent,
   SchoolOption,
   AnalyticsUseCase,
   QuestionResult,
@@ -14498,8 +14300,6 @@ export default {
   searchResultOpened,
   searchJourneyInitiated,
   curriculumVisualiserAccessed,
-  unitOverviewAccessed,
-  onwardContentSelected,
   lessonShared,
   lessonShareStarted,
   searchRefined,
@@ -14603,4 +14403,4 @@ export default {
 }
 
 // AVOMODULEMAP:"Avo"
-// AVOEVENTMAP:["newsletterSignUpCompleted","classroomSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","unitAccessed","webinarPageViewed","pageview","lessonResourceDownloadStarted","searchAccessed","searchResultOpened","searchJourneyInitiated","curriculumVisualiserAccessed","unitOverviewAccessed","onwardContentSelected","lessonShared","lessonShareStarted","searchRefined","searchResultExpanded","lessonCompleted","lessonActivityCompleted","lessonActivityCompletedIntroduction","lessonActivityCompletedStarterQuiz","lessonActivityCompletedLessonVideo","lessonActivityCompletedExitQuiz","lessonActivityCompletedLessonAudio","lessonStarted","lessonActivityStarted","lessonActivityStartedIntroduction","lessonActivityStartedStarterQuiz","lessonActivityStartedLessonVideo","lessonActivityStartedExitQuiz","lessonActivityStartedLessonAudio","curriculumResourcesDownloaded","lessonActivityAbandoned","lessonActivityAbandonedStarterQuiz","lessonActivityAbandonedIntroduction","lessonActivityAbandonedLessonVideo","lessonActivityAbandonedExitQuiz","lessonActivityAbandonedLessonAudio","lessonAssistantAccessed","lessonAccessed","lessonAccessedPupilJourney","browseRefined","browseRefinedAccessed","lessonActivityDownloaded","lessonActivityDownloadedWorksheet","contentGuidanceAccepted","contentGuidanceDeclined","activityResultsShared","lessonSummaryReviewed","userSignUpCompleted","userOnboardingCompleted","userSignIn","userSignOut","lessonAbandoned","browseAccessed","questionAttemptSubmitted","teacherShareInitiated","teacherShareActivated","teacherShareConverted","unitDownloaded","teacherNoteDialogueOpened","teacherNoteSaved","curriculumVisualiserExited","curriculumVisualiserTabAccessed","unitOverviewExplored","productHomepageAccessed","curriculumLandingPageAccessed","curriculumExplainerExplored","curriculumResourcesDownloadRefined","searchFilterModified","lessonMediaClipsStarted","mediaClipsPlaylistPlayed","contentSaved","contentUnsaved","createTeachingMaterialsInitiated","teachingMaterialsSelected","teachingMaterialsRefined","teachingMaterialDownloaded","contentBlockNotificationDisplayed","userOnboardingProgressed","aboutUsAccessed","aboutUsExplored","aboutUsContactInitiated","classroomSignInCompleted","classroomSignInStarted","classroomLessonSelected","classroomLessonPreviewed","classroomLessonsAttached","classroomAddOnOpened","programmeRefined","unitRefined","programmeAccessed","unitDownloadStarted","scrolledTo","exitIntended","curriculumResourcesAccessed","teachWithOakAccessed","teachWithOakDownloaded","resourceAdapterOpened","resourceAdapterClosed","adaptationStarted","adaptationRestartRequested","newSuggestionsRequested","suggestionsDisplayed","transformationRequested","transformationPreviewDisplayed","transformationReviewRequested","transformationReviewed","suggestionDismissalRequested","transformationRemovalRequested","adaptationRequestFailed","adaptationStepFailed","adaptedResourceDownloaded"]
+// AVOEVENTMAP:["newsletterSignUpCompleted","classroomSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","unitAccessed","webinarPageViewed","pageview","lessonResourceDownloadStarted","searchAccessed","searchResultOpened","searchJourneyInitiated","curriculumVisualiserAccessed","lessonShared","lessonShareStarted","searchRefined","searchResultExpanded","lessonCompleted","lessonActivityCompleted","lessonActivityCompletedIntroduction","lessonActivityCompletedStarterQuiz","lessonActivityCompletedLessonVideo","lessonActivityCompletedExitQuiz","lessonActivityCompletedLessonAudio","lessonStarted","lessonActivityStarted","lessonActivityStartedIntroduction","lessonActivityStartedStarterQuiz","lessonActivityStartedLessonVideo","lessonActivityStartedExitQuiz","lessonActivityStartedLessonAudio","curriculumResourcesDownloaded","lessonActivityAbandoned","lessonActivityAbandonedStarterQuiz","lessonActivityAbandonedIntroduction","lessonActivityAbandonedLessonVideo","lessonActivityAbandonedExitQuiz","lessonActivityAbandonedLessonAudio","lessonAssistantAccessed","lessonAccessed","lessonAccessedPupilJourney","browseRefined","browseRefinedAccessed","lessonActivityDownloaded","lessonActivityDownloadedWorksheet","contentGuidanceAccepted","contentGuidanceDeclined","activityResultsShared","lessonSummaryReviewed","userSignUpCompleted","userOnboardingCompleted","userSignIn","userSignOut","lessonAbandoned","browseAccessed","questionAttemptSubmitted","teacherShareInitiated","teacherShareActivated","teacherShareConverted","unitDownloaded","teacherNoteDialogueOpened","teacherNoteSaved","curriculumVisualiserExited","curriculumVisualiserTabAccessed","unitOverviewExplored","productHomepageAccessed","curriculumLandingPageAccessed","curriculumExplainerExplored","curriculumResourcesDownloadRefined","searchFilterModified","lessonMediaClipsStarted","mediaClipsPlaylistPlayed","contentSaved","contentUnsaved","createTeachingMaterialsInitiated","teachingMaterialsSelected","teachingMaterialsRefined","teachingMaterialDownloaded","contentBlockNotificationDisplayed","userOnboardingProgressed","aboutUsAccessed","aboutUsExplored","aboutUsContactInitiated","classroomSignInCompleted","classroomSignInStarted","classroomLessonSelected","classroomLessonPreviewed","classroomLessonsAttached","classroomAddOnOpened","programmeRefined","unitRefined","programmeAccessed","unitDownloadStarted","scrolledTo","exitIntended","curriculumResourcesAccessed","teachWithOakAccessed","teachWithOakDownloaded","resourceAdapterOpened","resourceAdapterClosed","adaptationStarted","adaptationRestartRequested","newSuggestionsRequested","suggestionsDisplayed","transformationRequested","transformationPreviewDisplayed","transformationReviewRequested","transformationReviewed","suggestionDismissalRequested","transformationRemovalRequested","adaptationRequestFailed","adaptationStepFailed","adaptedResourceDownloaded"]
