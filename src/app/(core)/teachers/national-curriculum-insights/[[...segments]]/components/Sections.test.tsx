@@ -256,7 +256,7 @@ describe("National Curriculum Insights sections", () => {
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 
-  it("renders the subject illustration supplied by Sanity", async () => {
+  it("keeps the header illustration out of the subject headline panel", async () => {
     const data = await getData(["science"]);
     if (!data.subject) {
       throw new Error("Expected the Science subject");
@@ -275,19 +275,10 @@ describe("National Curriculum Insights sections", () => {
     );
 
     expect(
-      screen.getByRole("region", { name: "Science overview" })
-        .firstElementChild,
-    ).toHaveStyle({
-      display: "grid",
-      "row-gap": "1.5rem",
-      "grid-template-columns": "minmax(0, 1fr)",
-    });
-
-    expect(
-      screen.getByRole("img", {
-        name: "A teacher discussing the curriculum",
-      }),
-    ).toHaveAttribute("src", expect.stringContaining("example-100x100.png"));
+      screen.getByRole("region", { name: "Science overview" }),
+    ).toHaveStyle({ display: "flex", "background-color": "#ffffff" });
+    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+    expect(screen.getByText("Science copy.")).toBeInTheDocument();
   });
 
   it("renders the configurable editorial, media, table and form sections", async () => {

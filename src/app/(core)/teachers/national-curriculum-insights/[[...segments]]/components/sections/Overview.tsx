@@ -21,6 +21,7 @@ import {
   portableTextComponents,
   SectionMaxWidth,
 } from "./shared";
+import { NationalCurriculumInsightsHeadlines } from "./Headlines";
 
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 
@@ -50,6 +51,16 @@ const overviewPageKind = (
 };
 
 export const NationalCurriculumInsightsOverview = ({
+  section,
+  data,
+}: ContextualSectionProps<"NationalCurriculumInsightsOverviewSection">) =>
+  data.route.kind === "hub" || data.route.kind === "guidance" ? (
+    <LegacyOverview section={section} data={data} />
+  ) : (
+    <NationalCurriculumInsightsHeadlines section={section} data={data} />
+  );
+
+const LegacyOverview = ({
   section,
   data,
 }: ContextualSectionProps<"NationalCurriculumInsightsOverviewSection">) => {
