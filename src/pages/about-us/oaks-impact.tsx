@@ -28,6 +28,7 @@ export type OaksImpactPageProps = {
 };
 
 const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
+  const { content, caseStudies } = pageData;
   useTrackExitIntended();
   const isCaseStudiesFeatEnabled =
     isFeatureFlagEnabledStatic("case-studies-v2");
@@ -45,18 +46,18 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
         <AboutUsLayout>
           <OaksImpactHeader
             title="Oak's impact"
-            body={pageData.header.introText}
-            video={pageData.header.video}
-            videoDescription={pageData.header.videoDescription}
+            body={content.header.introText}
+            video={content.header.video}
+            videoDescription={content.header.videoDescription}
           />
-          <OaksImpactStats {...pageData.statsSection} />
+          <OaksImpactStats {...content.statsSection} />
           <CaseStudiesSection
             showViewAllLink={isCaseStudiesFeatEnabled}
             title="Case studies"
-            caseStudies={pageData.caseStudiesSection.caseStudies}
-            showTags={false}
+            caseStudies={caseStudies}
+            showTags={true}
           />
-          <OaksImpactSchoolQuotesSection {...pageData.schoolQuotes} />
+          <OaksImpactSchoolQuotesSection {...content.schoolQuotes} />
           <TrackScrolledTo eventKey="support_you" />
           <SupportYou
             headingTag="h2"

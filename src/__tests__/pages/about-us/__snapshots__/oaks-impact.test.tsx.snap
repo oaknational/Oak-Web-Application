@@ -874,7 +874,95 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                 </div>
                 <ul
                   class="sc-bdvwhi sc-jObTYW eZfdqr boCgwA"
-                />
+                >
+                  <li
+                    class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
+                    >
+                      <a
+                        class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
+                        href="/about-us/case-studies/test-1"
+                      >
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                          >
+                            <div
+                              class="sc-bkkgYE jxvseu"
+                            >
+                              Test 1
+                            </div>
+                          </div>
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
+                          />
+                        </div>
+                      </a>
+                    </div>
+                  </li>
+                  <li
+                    class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
+                    >
+                      <a
+                        class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
+                        href="/about-us/case-studies/test-2"
+                      >
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                          >
+                            <div
+                              class="sc-bkkgYE jxvseu"
+                            >
+                              Test 2
+                            </div>
+                          </div>
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
+                          />
+                        </div>
+                      </a>
+                    </div>
+                  </li>
+                  <li
+                    class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
+                    >
+                      <a
+                        class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
+                        href="/about-us/case-studies/test-3"
+                      >
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                          >
+                            <div
+                              class="sc-bkkgYE jxvseu"
+                            >
+                              Test 3
+                            </div>
+                          </div>
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
+                          />
+                        </div>
+                      </a>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
