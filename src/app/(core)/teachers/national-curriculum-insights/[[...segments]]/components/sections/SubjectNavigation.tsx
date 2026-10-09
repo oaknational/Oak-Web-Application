@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  isValidIconName,
   OakBox,
   OakFlex,
   OakHeading,
@@ -15,16 +14,15 @@ import {
 import Link from "next/link";
 import styled from "styled-components";
 
-import type { NationalCurriculumInsightsRouteData } from "../../helpers/getRouteData";
+import { normaliseSubjectIcon } from "../../helpers/subjectIcon";
 
 import { ContextualSectionProps, SectionMaxWidth } from "./shared";
+import { NationalCurriculumInsightsSubjectPhaseChips } from "./SubjectPhaseChips";
 
 import {
   nationalCurriculumInsightsSubjectHref,
   nationalCurriculumInsightsSubjectPhaseHref,
 } from "@/common-lib/urls/nationalCurriculumInsights";
-
-type Subject = NationalCurriculumInsightsRouteData["subjects"][number];
 
 type Phase = "primary" | "secondary";
 
@@ -48,20 +46,19 @@ const HubSubjectItem = styled(OakBox)`
   }
 `;
 
-const normaliseSubjectIcon = (subject: Subject) => {
-  const preferred = `subject-${subject.slug}`;
-  if (isValidIconName(preferred)) {
-    return preferred;
-  }
-
-  const mapped = `subject-${subject.curriculumSubjectSlugs[0]}`;
-  return isValidIconName(mapped) ? mapped : "question-mark";
-};
-
 export const NationalCurriculumInsightsSubjectNavigation = ({
   section,
   data,
 }: ContextualSectionProps<"NationalCurriculumInsightsSubjectNavigationSection">) => {
+  if (section.variant === "phaseChips") {
+    return (
+      <NationalCurriculumInsightsSubjectPhaseChips
+        section={section}
+        data={data}
+      />
+    );
+  }
+
   if (data.subjects.length === 0) return null;
 
   if (data.route.kind !== "hub") {
