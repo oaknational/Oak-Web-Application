@@ -43,7 +43,6 @@ export const AboutUsJoinResearchPanel: NextPage<
     return pageComponents[block.__typename](block);
   }
 
-  console.log(pageData.blocks);
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={null}
