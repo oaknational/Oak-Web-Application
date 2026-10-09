@@ -11,9 +11,9 @@ import {
 
 export const dynamic = "force-dynamic";
 
-type PageProps = {
+type PageProps = Readonly<{
   params: Promise<{ segments?: string[] }>;
-};
+}>;
 
 export const generateMetadata = async ({
   params,
