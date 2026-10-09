@@ -1,3 +1,37 @@
+# [1.1239.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1238.1...v1.1239.0) (2026-10-09)
+
+
+### Bug Fixes
+
+* move to Avo branch "featadopt-2315-add-explore-more-about-oak-to-case-studies" for testing ([5c1fdfd](https://github.com/oaknational/Oak-Web-Application/commit/5c1fdfdbccd4cdd0dae239ae6b7f93db20c53e5c))
+
+
+### Features
+
+* added "Case studies" to explore more section ([333ebd1](https://github.com/oaknational/Oak-Web-Application/commit/333ebd1b7e0b92b6ea87f032a4f8f306c44d9bbb))
+* pull avo main ([c1869e6](https://github.com/oaknational/Oak-Web-Application/commit/c1869e6d5db30b9f635270acd6e9083dbf1607de))
+
+## [1.1238.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1238.0...v1.1238.1) (2026-10-08)
+
+
+### Bug Fixes
+
+* title in /about-us/get-involved/join-research-panel ([aa74f41](https://github.com/oaknational/Oak-Web-Application/commit/aa74f41a148986923d72edb0cbd8d8dc4a227f20))
+
+# [1.1238.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1237.1...v1.1238.0) (2026-10-08)
+
+
+### Features
+
+* changed link in "Join the research panel" when feature flag enabled ([a67563c](https://github.com/oaknational/Oak-Web-Application/commit/a67563ce9d00d8f1ff8ee39109dbe1e3b698f960))
+
+## [1.1237.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1237.0...v1.1237.1) (2026-10-08)
+
+
+### Bug Fixes
+
+* case study nav hover colour ([61b5682](https://github.com/oaknational/Oak-Web-Application/commit/61b5682c7a6dd9caec00caad5a1c1efcec17cfa5))
+
 # [1.1237.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1236.0...v1.1237.0) (2026-10-08)
 
 
