@@ -1,3 +1,12 @@
+# [1.1241.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1240.0...v1.1241.0) (2026-10-09)
+
+
+### Features
+
+* join research panel query and schemas ([f83c15c](https://github.com/oaknational/Oak-Web-Application/commit/f83c15c36e4dce8310734dea6aefa2767682324a))
+* preview mode and unique keys ([95729a2](https://github.com/oaknational/Oak-Web-Application/commit/95729a2ca3fef78b5bda1670d9b321f7df8ea9be))
+* render simple data on research panel skeleton ([511ae2f](https://github.com/oaknational/Oak-Web-Application/commit/511ae2ffa241232812e3b547c642dea1cb23f1a7))
+
 # [1.1240.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1239.0...v1.1240.0) (2026-10-09)
 
 
