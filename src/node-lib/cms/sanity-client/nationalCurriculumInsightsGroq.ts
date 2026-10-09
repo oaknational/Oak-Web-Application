@@ -91,6 +91,7 @@ const modulesProjection = `modules[]{
   authorRole,
   authorImage ${imageProjection},
   statusHeading,
+  lastUpdatedAt,
   statusMessage,
   imagePosition,
   mirrorImage,
