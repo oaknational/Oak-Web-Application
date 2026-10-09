@@ -1,4 +1,4 @@
-import { NextPage, GetStaticPropsResult, GetServerSideProps } from "next";
+import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import {
   OakBreadcrumbs,
   OakBox,
@@ -8,15 +8,20 @@ import {
   OakHandDrawnHR,
   OakTagFunctional,
   OakHeading,
-  OakAnchorTarget,
   OakFlex,
   OakBreadcrumbWithoutHref,
   OakBreadcrumb,
+  OakSpan,
 } from "@oaknational/oak-components";
 import { format } from "date-fns";
+import { createRef, useMemo } from "react";
+import { PortableTextComponent } from "@portabletext/react";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import { OaksImpactCaseStudyPage } from "@/common-lib/cms-types/aboutPages";
+import {
+  CaseStudyPage,
+  CaseStudyLibraryPage,
+} from "@/common-lib/cms-types/aboutPages";
 import CMSClient from "@/node-lib/cms";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import Layout from "@/components/AppComponents/AppLayout";
@@ -26,30 +31,47 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { CaseStudyHeader } from "@/components/GenericPagesComponents/CaseStudyHeader";
+import { CaseStudyNav } from "@/components/GenericPagesComponents/CaseStudyNav";
 import { OaksImpactCaseStudyContentLayout } from "@/components/GenericPagesComponents/OaksImpactCaseStudyContentLayout";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText/PortableText";
+import PostPortableText from "@/components/GenericPagesComponents/PostPortableText/PostPortableText";
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import { CaseStudyGetInTouch } from "@/components/GenericPagesComponents/CaseStudyGetInTouch";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
+import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
 
-// to do - this data retrieval will be decoupled from oak's impact in coming tickets
-export type AboutUsOaksImpactCaseStudyPageProps = {
+export type AboutUsCaseStudyLibraryPageProps = {
   pageData: {
-    caseStudy: OaksImpactCaseStudyPage["caseStudiesSection"]["caseStudies"][number];
-    otherCaseStudies: OaksImpactCaseStudyPage["caseStudiesSection"]["caseStudies"];
+    caseStudy: CaseStudyPage;
+    otherCaseStudies: CaseStudyLibraryPage;
   };
   topNav: TopNavProps;
   isCaseStudiesFeatEnabled: boolean;
 };
 
-const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
+const AboutUsCaseStudy: NextPage<AboutUsCaseStudyLibraryPageProps> = ({
   pageData: { caseStudy, otherCaseStudies },
   topNav,
   isCaseStudiesFeatEnabled,
 }) => {
   const { setCurrentToastProps } = useOakNotificationsContext();
+  const menuLinks = useMemo(
+    () =>
+      (caseStudy.content ?? []).flatMap(({ label, anchorSlug }) =>
+        label && anchorSlug?.current
+          ? [{ label, anchor: anchorSlug.current }]
+          : [],
+      ),
+    [caseStudy.content],
+  );
+  const sectionRefs = useMemo(
+    () =>
+      Object.fromEntries(
+        menuLinks.map(({ anchor }) => [anchor, createRef<HTMLDivElement>()]),
+      ),
+    [menuLinks],
+  );
 
   if (!isCaseStudiesFeatEnabled) {
     otherCaseStudies = otherCaseStudies.filter(
@@ -88,6 +110,27 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
         },
     { text: title },
   ];
+
+  const caseStudyPortableTextBlockOverrides: Record<
+    string,
+    PortableTextComponent<"block">
+  > = {
+    heading1: (props) => (
+      <OakHeading tag="h3" $font="heading-5" $mt={["spacing-32", "spacing-40"]}>
+        {props.children}
+      </OakHeading>
+    ),
+    heading2: (props) => (
+      <OakHeading tag="h4" $font="heading-6" $mt={["spacing-32", "spacing-40"]}>
+        {props.children}
+      </OakHeading>
+    ),
+    heading3: (props) => (
+      <OakHeading tag="h5" $font="heading-7" $mt={["spacing-32", "spacing-40"]}>
+        {props.children}
+      </OakHeading>
+    ),
+  };
 
   return (
     <TeacherBrowseAnalyticsStoreProvider
@@ -139,9 +182,23 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
             </NewGutterMaxWidth>
           </OakBox>
           <NewGutterMaxWidth>
-            <OaksImpactCaseStudyContentLayout>
+            <OaksImpactCaseStudyContentLayout
+              menu={
+                isCaseStudiesFeatEnabled && menuLinks.length >= 2 ? (
+                  <OakBox
+                    $height="100%"
+                    $pb={["spacing-0", "spacing-800", "spacing-640"]}
+                  >
+                    <CaseStudyNav links={menuLinks} sectionRefs={sectionRefs} />
+                  </OakBox>
+                ) : undefined
+              }
+            >
               {caseStudy.video && (
-                <OakBox $pv="spacing-100" $position={"relative"}>
+                <OakBox
+                  $pb={["spacing-72", "spacing-100"]}
+                  $position={"relative"}
+                >
                   <OakVideo
                     videoSlot={
                       caseStudy.video.video.asset && (
@@ -167,49 +224,57 @@ const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
                   {caseStudy.content && caseStudy.content.length > 0 && (
                     <OakFlex
                       $flexDirection="column"
-                      $gap="spacing-100"
+                      $gap={["spacing-72", "spacing-100"]}
                       $pb="spacing-100"
                       $position={"relative"}
                     >
                       {caseStudy.content.map((contentBlock) => (
                         <OakFlex
-                          key={contentBlock.heading}
+                          key={
+                            contentBlock.anchorSlug?.current ??
+                            contentBlock.heading
+                          }
+                          ref={
+                            sectionRefs[contentBlock.anchorSlug?.current ?? ""]
+                          }
+                          id={contentBlock.anchorSlug?.current}
+                          $scrollMarginTop={["spacing-24", "spacing-24"]}
                           $flexDirection="column"
                           $alignItems="flex-start"
                         >
                           <OakFlex
-                            $as="h2"
                             $alignItems="flex-start"
                             $flexDirection="column"
                             $gap="spacing-8"
+                            as="h2"
                           >
                             {contentBlock.label && (
-                              <>
-                                <OakTagFunctional
-                                  label={contentBlock.label}
-                                  $background="bg-decorative2-main"
-                                />{" "}
-                              </>
+                              <OakTagFunctional
+                                label={contentBlock.label}
+                                $background="bg-decorative2-main"
+                                useSpan={true}
+                                as="span"
+                              />
                             )}
-                            <OakAnchorTarget
-                              id={`#${contentBlock.anchorSlug?.current}`}
-                            />
-                            <OakHeading tag="div" $font="heading-4">
+                            <OakSpan $font={["heading-5", "heading-4"]}>
                               {contentBlock.heading}
-                            </OakHeading>
+                            </OakSpan>
                           </OakFlex>
-                          <PortableTextWithDefaults
-                            value={contentBlock.contentRaw ?? undefined}
+                          <PostPortableText
+                            portableText={contentBlock.contentRaw ?? []}
+                            location="marketing"
+                            blockOverrides={caseStudyPortableTextBlockOverrides}
                           />
                         </OakFlex>
                       ))}
+                      <TrackScrolledTo eventKey="case_study_content_end" />
                     </OakFlex>
                   )}
 
                   {caseStudy.showGetInTouchPanel &&
                     caseStudy.getInTouchPanel && (
                       <OakBox
-                        $pv="spacing-100"
+                        $pv={["spacing-72", "spacing-100"]}
                         $bt="border-solid-m"
                         $borderColor="border-neutral-lighter"
                       >
@@ -255,7 +320,7 @@ type URLParams = {
 };
 
 export const getServerSideProps: GetServerSideProps<
-  AboutUsOaksImpactCaseStudyPageProps,
+  AboutUsCaseStudyLibraryPageProps,
   URLParams
 > = async (context) => {
   const isCaseStudiesFeatEnabled = await isFeatureFlagEnabledServer(
@@ -284,10 +349,9 @@ export const getServerSideProps: GetServerSideProps<
 
   const otherCaseStudies = await CMSClient.caseStudyLibraryPage({
     slug,
-    // limit: 3, TO DO: this can be put back in when the feature is switched on, maybe change to 4 as it may exclude slug?
   });
 
-  const results: GetStaticPropsResult<AboutUsOaksImpactCaseStudyPageProps> = {
+  const results: GetServerSidePropsResult<AboutUsCaseStudyLibraryPageProps> = {
     props: {
       pageData: {
         caseStudy,

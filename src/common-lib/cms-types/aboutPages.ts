@@ -13,6 +13,7 @@ import { portableTextSchema } from "./portableText";
 import { teamMemberSchema } from "./teamMember";
 import { textBlockSchema } from "./blocks";
 import { caseStudyCardSchema, caseStudySchema } from "./caseStudy";
+import { CTASchema } from "./cta";
 
 // Oak's Curricula Page
 export const oaksCurriculaPageHeaderSchema = z.object({
@@ -155,6 +156,130 @@ export const getInvolvedPageSchema = z.object({
 
 export type GetInvolvedPage = z.infer<typeof getInvolvedPageSchema>;
 
+// Join Research Panel Page
+export const joinResearchPanelPageBlockTypeSchema = z.enum([
+  "JoinResearchPanelPageHeader",
+  "JoinResearchPanelPageCallout",
+  "JoinResearchPanelPageInfo",
+  "JoinResearchPanelPageJourney",
+  "JoinResearchPanelPagePeople",
+  "JoinResearchPanelPageFaqs",
+  "JoinResearchPanelPageContactUs",
+]);
+
+export type JoinResearchPanelPageBlockType = z.infer<
+  typeof joinResearchPanelPageBlockTypeSchema
+>;
+
+export const joinResearchPanelHeaderSchema = z.object({
+  __typename: z.literal(
+    joinResearchPanelPageBlockTypeSchema.enum.JoinResearchPanelPageHeader,
+  ),
+  title: z.string(),
+  bodyRaw: portableTextSchema,
+  image: imageSchema,
+  button: CTASchema,
+});
+
+export const joinResearchPanelCalloutSchema = z.object({
+  __typename: z.literal(
+    joinResearchPanelPageBlockTypeSchema.enum.JoinResearchPanelPageCallout,
+  ),
+  title: z.string(),
+  items: z.array(
+    z.object({
+      icon: imageSchema,
+      bodyRaw: portableTextSchema,
+    }),
+  ),
+});
+
+export const joinResearchPanelInfoSchema = z.object({
+  __typename: z.literal(
+    joinResearchPanelPageBlockTypeSchema.enum.JoinResearchPanelPageInfo,
+  ),
+  title: z.string(),
+  image: imageSchema,
+  bodyRaw: portableTextSchema,
+});
+
+export const joinResearchPanelJourneySchema = z.object({
+  __typename: z.literal(
+    joinResearchPanelPageBlockTypeSchema.enum.JoinResearchPanelPageJourney,
+  ),
+  title: z.string(),
+  steps: z.array(
+    z.object({
+      title: z.string(),
+      descriptionRaw: portableTextSchema,
+    }),
+  ),
+  button: CTASchema,
+});
+
+export const joinResearchPanelPeopleSchema = z.object({
+  __typename: z.literal(
+    joinResearchPanelPageBlockTypeSchema.enum.JoinResearchPanelPagePeople,
+  ),
+  title: z.string(),
+  members: z.array(
+    z.object({
+      name: z.string(),
+      image: imageSchema,
+      bodyRaw: portableTextSchema,
+    }),
+  ),
+});
+
+export const joinResearchPanelFaqsSchema = z.object({
+  __typename: z.literal(
+    joinResearchPanelPageBlockTypeSchema.enum.JoinResearchPanelPageFaqs,
+  ),
+  items: z.array(
+    z.object({
+      question: z.string(),
+      answerRaw: portableTextSchema,
+    }),
+  ),
+});
+
+export const joinResearchPanelContactUsSchema = z.object({
+  __typename: z.literal(
+    joinResearchPanelPageBlockTypeSchema.enum.JoinResearchPanelPageContactUs,
+  ),
+  title: z.string(),
+  button: CTASchema,
+});
+
+export const joinResearchPanelPageBlockSchema = z.discriminatedUnion(
+  "__typename",
+  [
+    joinResearchPanelHeaderSchema,
+    joinResearchPanelCalloutSchema,
+    joinResearchPanelInfoSchema,
+    joinResearchPanelJourneySchema,
+    joinResearchPanelPeopleSchema,
+    joinResearchPanelFaqsSchema,
+    joinResearchPanelContactUsSchema,
+  ],
+);
+
+export type JoinResearchPanelPageBlock<
+  T extends JoinResearchPanelPageBlockType,
+> = z.infer<typeof joinResearchPanelPageBlockSchema> & {
+  __typename: T;
+};
+
+export type JoinResearchPanelPageBlocks = z.infer<
+  typeof joinResearchPanelPageBlockSchema
+>;
+
+export const joinResearchPanelPageSchema = z.object({
+  blocks: z.array(joinResearchPanelPageBlockSchema),
+});
+
+export type JoinResearchPanelPage = z.infer<typeof joinResearchPanelPageSchema>;
+
 // Oak's Impact Page
 export const oaksImpactPageHeaderSchema = z.object({
   introText: z.string(),
@@ -171,10 +296,6 @@ export const oaksImpactPageStatsSchema = z.object({
 export const oaksImpactPageStatsSectionSchema = z.object({
   textBlock: textBlockSchema,
   stats: z.array(oaksImpactPageStatsSchema),
-});
-
-export const oaksImpactPageCaseStudiesSectionSchema = z.object({
-  caseStudies: z.array(caseStudyCardSchema),
 });
 
 export const oaksImpactSchoolQuoteCardSchema = z.object({
@@ -194,25 +315,20 @@ export const oaksImpactPageSchoolQuotesSchema = z.object({
 });
 
 export const oaksImpactPageSchema = z.object({
-  header: oaksImpactPageHeaderSchema,
-  statsSection: oaksImpactPageStatsSectionSchema,
-  caseStudiesSection: oaksImpactPageCaseStudiesSectionSchema,
-  schoolQuotes: oaksImpactPageSchoolQuotesSchema,
+  content: z
+    .tuple([
+      z.object({
+        header: oaksImpactPageHeaderSchema,
+        statsSection: oaksImpactPageStatsSectionSchema,
+        schoolQuotes: oaksImpactPageSchoolQuotesSchema,
+      }),
+    ])
+    .transform((caseStudy) => caseStudy[0]),
+  caseStudies: z.array(caseStudyCardSchema),
   seo: seoSchema.nullish(),
 });
 
 export type OaksImpactPage = z.infer<typeof oaksImpactPageSchema>;
-
-// Individual Case Study Page - to be updated to be independent of Oak's impact in following tickets
-export const oaksImpactCaseStudyPageSchema = z.object({
-  caseStudiesSection: z.object({
-    caseStudies: z.array(caseStudySchema),
-  }),
-});
-
-export type OaksImpactCaseStudyPage = z.infer<
-  typeof oaksImpactCaseStudyPageSchema
->;
 
 // Case Studies Library Page
 export const caseStudyLibraryPageSchema = z.array(caseStudySchema);

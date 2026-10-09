@@ -1,6 +1,7 @@
-import PromoBannerWithVideo from "../PromoBannerWithVideo";
+import { useUser } from "@clerk/nextjs";
 
-import useAnalytics from "@/context/Analytics/useAnalytics";
+import { useTeacherBrowseAnalytics } from "../../../context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import PromoBannerWithVideo from "../PromoBannerWithVideo";
 
 const composeAilaLink = ({
   keyStage,
@@ -39,7 +40,10 @@ const SignPostToAila = ({
   searchExpression?: string;
 }) => {
   const videoPlaybackID = "XjKNXfXcZqEIb3sRmgqqw901S3AoN8mllBS5yUnKSvb4";
-  const { track } = useAnalytics();
+  const { lessonAssistantAccessed } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
+  const { isSignedIn, isLoaded } = useUser();
   return (
     <PromoBannerWithVideo
       title={title}
@@ -49,11 +53,7 @@ const SignPostToAila = ({
       href={composeAilaLink({ keyStage, subject, unitTitle, searchExpression })}
       videoPlaybackID={videoPlaybackID}
       onClick={() => {
-        track.lessonAssistantAccessed({
-          product: "ai lesson assistant",
-          isLoggedIn: false,
-          componentType: "search_get_started_button",
-        });
+        lessonAssistantAccessed({ isLoggedIn: isLoaded && isSignedIn });
       }}
     />
   );

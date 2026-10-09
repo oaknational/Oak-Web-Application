@@ -1,7 +1,9 @@
-import { caseStudiesSectionFixture } from "./CaseStudiesSection.fixtures";
-
 import { CaseStudiesSection } from ".";
 
+import {
+  caseStudy,
+  otherCaseStudies,
+} from "@/__tests__/pages/about-us/case-studies/case-studies.fixtures";
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProvidersByName(["oakTheme"]);
@@ -11,7 +13,7 @@ describe("CaseStudiesSection", () => {
     const { baseElement, getByRole, getAllByRole } = render(
       <CaseStudiesSection
         title={"Case studies"}
-        caseStudies={caseStudiesSectionFixture}
+        caseStudies={otherCaseStudies}
       />,
     );
 
@@ -24,7 +26,7 @@ describe("CaseStudiesSection", () => {
     const { baseElement, getByRole, getAllByRole } = render(
       <CaseStudiesSection
         title={"Case studies"}
-        caseStudies={caseStudiesSectionFixture.slice(0, 2)}
+        caseStudies={otherCaseStudies.slice(0, 2)}
       />,
     );
 
@@ -34,24 +36,7 @@ describe("CaseStudiesSection", () => {
   });
 
   it("renders only the first 3 case studies when more are provided", () => {
-    const caseStudiesWithFourth = [
-      ...caseStudiesSectionFixture,
-      {
-        video: {
-          title: "Case study 4",
-        },
-        slug: {
-          current: "case-study-4",
-        },
-        image: {
-          asset: {
-            _id: "id-4",
-            url: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336494/samples/food/spices.jpg",
-          },
-        },
-        text: "Some text about case study 4",
-      },
-    ];
+    const caseStudiesWithFourth = [caseStudy, ...otherCaseStudies];
 
     const { getAllByRole } = render(
       <CaseStudiesSection
@@ -64,34 +49,40 @@ describe("CaseStudiesSection", () => {
   });
 
   it("renders 'Watch the video' link when the case study contains a video and showTags is false", () => {
-    const { getAllByText } = render(
+    const { container, getAllByText } = render(
       <CaseStudiesSection
         title={"Case studies"}
-        caseStudies={caseStudiesSectionFixture}
+        caseStudies={otherCaseStudies}
         showTags={false}
       />,
     );
 
-    expect(getAllByText("Watch the video")).toHaveLength(3);
+    const caseStudiesWithVideo = otherCaseStudies.filter((cs) => cs.video);
+    expect(getAllByText("Watch the video")).toHaveLength(
+      caseStudiesWithVideo.length,
+    );
+    expect(container).toHaveTextContent("Watch the video");
   });
 
   it("renders the card tags when showTags is true", () => {
-    const { getAllByText } = render(
+    const { container, getAllByText } = render(
       <CaseStudiesSection
         title={"Case studies"}
-        caseStudies={caseStudiesSectionFixture}
+        caseStudies={otherCaseStudies}
         showTags={true}
       />,
     );
 
-    expect(getAllByText("primary")).toHaveLength(3);
+    const caseStudiesWithTag = otherCaseStudies.filter((cs) => cs.tag);
+    expect(getAllByText("Primary")).toHaveLength(caseStudiesWithTag.length);
+    expect(container).toHaveTextContent("Primary");
   });
 
   it("doesn't render view all link when not enabled", () => {
     const { queryByRole } = render(
       <CaseStudiesSection
         title={"Case studies"}
-        caseStudies={caseStudiesSectionFixture}
+        caseStudies={otherCaseStudies}
       />,
     );
 
@@ -104,7 +95,7 @@ describe("CaseStudiesSection", () => {
     const { getByRole } = render(
       <CaseStudiesSection
         title={"Case studies"}
-        caseStudies={caseStudiesSectionFixture}
+        caseStudies={otherCaseStudies}
         showViewAllLink={true}
       />,
     );

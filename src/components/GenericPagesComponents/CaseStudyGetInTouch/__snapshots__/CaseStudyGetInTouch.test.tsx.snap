@@ -1,22 +1,22 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`CaseStudyGetInTouch renders 1`] = `
 <div>
   <div
-    class="sc-aXZVg sc-gEvEer jPvJsJ fpgFKY"
+    class="sc-bdvwhi sc-gsDMPd hPWTKU ebZWkb"
   >
     <div
-      class="sc-aXZVg hGgMBa"
+      class="sc-bdvwhi gJDpgH"
     >
       <div
-        class="sc-aXZVg RHGIM"
+        class="sc-bdvwhi fVxOKl"
       >
         <span
-          class="sc-aXZVg kQNEcu"
+          class="sc-bdvwhi blqSgr"
         >
           <img
             alt="Example image"
-            class="sc-iGgWBj dZvqhO"
+            class="sc-jRQBiJ hssYEG"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -27,10 +27,10 @@ exports[`CaseStudyGetInTouch renders 1`] = `
       </div>
     </div>
     <div
-      class="sc-aXZVg sc-gEvEer jPvJsJ cuuNOT"
+      class="sc-bdvwhi sc-gsDMPd hPWTKU cqpdmg"
     >
       <h1
-        class="sc-eldPxv fjdFhT"
+        class="sc-bkkgYE fPuywJ"
       >
         Thank you to 
         John Doe
@@ -41,52 +41,52 @@ exports[`CaseStudyGetInTouch renders 1`] = `
          for sharing their feedback to inform this case study
       </h1>
       <div
-        class="sc-aXZVg sc-gEvEer jPvJsJ iwFTtF"
+        class="sc-bdvwhi sc-gsDMPd hPWTKU vrLXS"
       >
         <div
-          class="sc-aXZVg sc-gEvEer jPvJsJ dUCWjO"
+          class="sc-bdvwhi sc-gsDMPd hPWTKU gjSJbJ"
         >
           <h2
-            class="sc-eldPxv fjdFhT"
+            class="sc-bkkgYE fPuywJ"
           >
             Connect me to schools like this one
           </h2>
           <p
-            class="sc-ikkxIA bevdi"
+            class="sc-hGPAwl gjGOEe"
           >
             Interested in exploring how Oak could work for your school or trust? We'll connect you with educators on a similar journey, so you can ask questions, hear about their experiences and learn what has worked for them.
           </p>
         </div>
         <div
-          class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+          class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
         >
           <div
-            class="sc-aXZVg kpXzs grey-shadow"
+            class="sc-bdvwhi kAFHfV grey-shadow"
           />
           <div
-            class="sc-aXZVg kpXzs yellow-shadow"
+            class="sc-bdvwhi kAFHfV yellow-shadow"
           />
           <a
             aria-label="Get in touch (opens in a new tab)"
-            class="sc-dcJsrY sc-jXbUNg bALQkH khQbhv internal-button"
+            class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
             href="#"
             rel="noreferrer"
             target="_blank"
           >
             <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+              class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
             >
               <span
-                class="sc-eqUAAy edqVpV"
+                class="sc-dkPwfY kXQhTZ"
               >
                 Get in touch
               </span>
               <span
-                class="sc-aXZVg jJQFnr"
+                class="sc-bdvwhi cERAFe"
               >
                 <img
                   alt=""
-                  class="sc-iGgWBj lcrpYX"
+                  class="sc-jRQBiJ fZPumv"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"

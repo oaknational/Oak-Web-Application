@@ -18,7 +18,11 @@ export const McpCapabilities = () => (
     <OakUL $reset $display="flex" $flexDirection="column" $gap="spacing-24">
       {mcpCapabilities.items.map((capability) => (
         <OakLI key={capability.title}>
-          <OakFlex $alignItems="center" $gap="spacing-24">
+          <OakFlex
+            $flexDirection={["column", "row", "row"]}
+            $alignItems={["flex-start", "center", "center"]}
+            $gap="spacing-24"
+          >
             <OakFlex
               $background={capability.background}
               $borderRadius="border-radius-m2"
