@@ -1,3 +1,15 @@
+# [1.1240.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1239.0...v1.1240.0) (2026-10-09)
+
+
+### Bug Fixes
+
+* added missing tags to case studies on oaks-impact page ([c2b38c9](https://github.com/oaknational/Oak-Web-Application/commit/c2b38c967682529d0d467bb9c6fc55454c0a8f22))
+
+
+### Features
+
+* change oaks-impact to only show most recent blog posts ([ee6cc05](https://github.com/oaknational/Oak-Web-Application/commit/ee6cc05607e44d6b41fe2fe2d26c763c32932f50))
+
 # [1.1239.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1238.1...v1.1239.0) (2026-10-09)
 
 
