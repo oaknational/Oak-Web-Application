@@ -8,6 +8,9 @@ import { NationalCurriculumInsightsDownload } from "./Download";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { parseNationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
+import { LS_KEY_INSIGHTS_DOWNLOAD_SELECTION } from "@/config/localStorageKeys";
+
+beforeEach(() => window.localStorage.clear());
 
 const mockReportError = jest.fn();
 jest.mock("@/common-lib/error-reporter", () => ({
@@ -289,7 +292,10 @@ describe("Insights download submission", () => {
       expect(mockFetch).toHaveBeenCalledWith(
         `/api/national-curriculum-insights/download?selection=science%3Aprimary${multiple ? "&selection=science%3Asecondary" : ""}`,
       );
-      expect(download).toBeEnabled();
+      expect(download).toBeDisabled();
+      expect(
+        window.localStorage.getItem(LS_KEY_INSIGHTS_DOWNLOAD_SELECTION),
+      ).toBe("null");
     },
   );
 
@@ -308,7 +314,7 @@ describe("Insights download submission", () => {
     expect(mockFetch).toHaveBeenCalledTimes(1);
     complete(downloadResponse("Science.docx"));
     await waitFor(() => expect(downloads).toEqual(["Science.docx"]));
-    expect(download).toBeEnabled();
+    expect(download).toBeDisabled();
   });
 
   it("reports a network failure, retains the selection and allows retry", async () => {
