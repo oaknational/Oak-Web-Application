@@ -31,7 +31,7 @@ import CMSClient from "@/node-lib/cms";
 import getPageProps from "@/node-lib/getPageProps";
 import { OaksCurriculaPage } from "@/common-lib/cms-types/aboutPages";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
-import { SupportYou } from "@/components/GenericPagesComponents/SupportYou";
+import { AboutCalloutWithCta } from "@/components/GenericPagesComponents/AboutCalloutWithCta";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type OaksCurriculaPageProps = {
@@ -229,7 +229,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
               </OakFlex>
             </NewGutterMaxWidth>
           )}
-          <SupportYou
+          <AboutCalloutWithCta
             link={{
               text: "Get in touch with an expert",
               href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
