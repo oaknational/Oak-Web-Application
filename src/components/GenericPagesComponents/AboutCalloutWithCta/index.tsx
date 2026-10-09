@@ -8,24 +8,39 @@ import {
   OakP,
   OakHeadingProps,
   OakImage,
+  OakBoxProps,
 } from "@oaknational/oak-components";
+import { PortableTextReactComponents } from "@portabletext/react";
 
+import type { PortableTextJSON } from "@/common-lib/cms-types";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { Image } from "@/common-lib/cms-types";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
-export type SupportYouProps = {
+export type AboutCalloutWithCtaProps = {
   link: {
     text: string;
     href: string;
   };
   headingTag?: OakHeadingProps["tag"];
   title?: string;
-  text?: string;
+  text?: string | PortableTextJSON;
   image?: Image;
+  $pv?: OakBoxProps["$pv"];
+  $pb?: OakBoxProps["$pb"];
+  hideImageOnMobile?: boolean;
 };
 
-export function SupportYou({
+const portableTextComponents: Partial<PortableTextReactComponents> = {
+  block: {
+    normal: (props) => {
+      return <OakP $font="body-1">{props.children}</OakP>;
+    },
+  },
+};
+
+export function AboutCalloutWithCta({
   link,
   headingTag = "h2",
   title = "Discover how Oak can support you",
@@ -36,9 +51,12 @@ export function SupportYou({
       url: "https://cdn.sanity.io/images/cuvjke51/production/f5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png",
     },
   },
-}: Readonly<SupportYouProps>) {
+  $pb,
+  $pv = ["spacing-56", "spacing-80", "spacing-80"],
+  hideImageOnMobile = false,
+}: Readonly<AboutCalloutWithCtaProps>) {
   return (
-    <OakBox $pv={["spacing-56", "spacing-80", "spacing-80"]}>
+    <OakBox $pv={$pv} $pb={$pb}>
       <NewGutterMaxWidth>
         <OakGrid $rg="spacing-24" $cg="spacing-16">
           <OakGridArea $colSpan={[12, 6, 5]}>
@@ -55,7 +73,14 @@ export function SupportYou({
                 >
                   {title}
                 </OakHeading>
-                <OakP $font="body-1">{text}</OakP>
+                {typeof text === "string" ? (
+                  <OakP $font="body-1">{text}</OakP>
+                ) : (
+                  <PortableTextWithDefaults
+                    value={text}
+                    components={portableTextComponents}
+                  />
+                )}
               </OakFlex>
               <OakFlex $flexDirection="column">
                 <OakPrimaryButton
@@ -71,7 +96,11 @@ export function SupportYou({
               </OakFlex>
             </OakFlex>
           </OakGridArea>
-          <OakGridArea $colStart={[0, 7, 7]} $colSpan={[12, 6, 6]}>
+          <OakGridArea
+            $colStart={[0, 7, 7]}
+            $colSpan={[12, 6, 6]}
+            $display={hideImageOnMobile ? ["none", "flex", "flex"] : "flex"}
+          >
             <OakFlex $flexGrow={1} $aspectRatio={"4/3"}>
               <OakImage
                 $objectFit={"contain"}

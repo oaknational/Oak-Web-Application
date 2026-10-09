@@ -1,0 +1,199 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`JoinResearchPanelHeader it renders correct data 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-bdvwhi iatEdD"
+    >
+      <div
+        class="sc-bdvwhi bkHejD"
+      >
+        <nav
+          aria-label="Breadcrumb"
+          class="sc-bdvwhi ejVpib"
+        >
+          <ul
+            class="sc-hAcEkO dJRkLd"
+          >
+            <li
+              class="sc-kYHdiH YiXOT"
+            >
+              <a
+                class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                href="/"
+                style="overflow: hidden;"
+              >
+                <span
+                  class="sc-dkPwfY fgmEIT"
+                >
+                  <div
+                    class="sc-bdvwhi bzawnc"
+                  >
+                    Home
+                  </div>
+                </span>
+              </a>
+            </li>
+            <li
+              class="sc-kYHdiH YiXOT"
+            >
+              <span
+                class="sc-bdvwhi gWngyq"
+              >
+                <img
+                  alt=""
+                  class="sc-jRQBiJ eMsccW"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+              <a
+                class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                href="/about-us/get-involved"
+                style="overflow: hidden;"
+              >
+                <span
+                  class="sc-dkPwfY fgmEIT"
+                >
+                  <div
+                    class="sc-bdvwhi bzawnc"
+                  >
+                    Get involved
+                  </div>
+                </span>
+              </a>
+            </li>
+            <li
+              class="sc-kYHdiH YiXOT"
+            >
+              <span
+                class="sc-bdvwhi gWngyq"
+              >
+                <img
+                  alt=""
+                  class="sc-jRQBiJ eMsccW"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+              <div
+                aria-current="page"
+                class="sc-bdvwhi bzawnc"
+              >
+                Join the Oak research panel
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div
+      class="sc-bdvwhi gTrDVx"
+    >
+      <div
+        class="sc-bdvwhi iatEdD"
+      >
+        <div
+          class="sc-bdvwhi sc-jObTYW hPWTKU gKJERn"
+        >
+          <div
+            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex giCKOa"
+          >
+            <div
+              class="sc-bdvwhi sc-gsDMPd hPWTKU csSWlB"
+            >
+              <div
+                class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+              >
+                <h1
+                  class="sc-bkkgYE hBiIpc"
+                >
+                  Join the Oak research panel
+                </h1>
+                <p
+                  class="sc-hGPAwl lcuFqC"
+                >
+                  Your feedback is essential to help us understand the realities of teaching and learning. By listening to teachers like you, we learn about your preferences, challenges and needs, and can use these insights to shape Oak curriculum resources, lessons and tools.
+                </p>
+              </div>
+              <div
+                class="sc-bdvwhi sc-gsDMPd hPWTKU cIPGhJ"
+              >
+                <div
+                  class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+                >
+                  <div
+                    class="sc-bdvwhi kAFHfV grey-shadow"
+                  />
+                  <div
+                    class="sc-bdvwhi kAFHfV yellow-shadow"
+                  />
+                  <a
+                    aria-label="Join the research panel (opens in new tab)"
+                    class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                    href="https://example.com"
+                    target="_blank"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                    >
+                      <span
+                        class="sc-dkPwfY kXQhTZ"
+                      >
+                        Join the research panel
+                      </span>
+                      <span
+                        class="sc-bdvwhi cERAFe"
+                      >
+                        <img
+                          alt=""
+                          class="sc-jRQBiJ buswnv"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO cUChIo exNRnp fqHsID"
+          >
+            <div
+              class="sc-bdvwhi sc-gsDMPd dumZsJ kkGnDS"
+            >
+              <span
+                class="sc-bdvwhi LoEut"
+              >
+                <img
+                  alt=""
+                  class="sc-jRQBiJ hssYEG"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  sizes="100vw"
+                  src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=3840&q=75"
+                  srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=3840&q=75 3840w"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

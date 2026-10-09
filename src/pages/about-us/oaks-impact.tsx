@@ -9,7 +9,7 @@ import Layout from "@/components/AppComponents/AppLayout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
 import { CaseStudiesSection } from "@/components/GenericPagesComponents/CaseStudiesSection";
-import { SupportYou } from "@/components/GenericPagesComponents/SupportYou";
+import { AboutCalloutWithCta } from "@/components/GenericPagesComponents/AboutCalloutWithCta";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import { OaksImpactStats } from "@/components/GenericPagesComponents/OaksImpactStats";
@@ -59,7 +59,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
           />
           <OaksImpactSchoolQuotesSection {...content.schoolQuotes} />
           <TrackScrolledTo eventKey="support_you" />
-          <SupportYou
+          <AboutCalloutWithCta
             headingTag="h2"
             link={{
               text: "Get in touch with an expert",

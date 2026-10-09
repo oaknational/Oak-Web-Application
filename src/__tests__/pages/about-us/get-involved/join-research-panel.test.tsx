@@ -1,10 +1,10 @@
 import { GetServerSidePropsContext } from "next";
 import "jest-styled-components";
 
-import renderWithProviders from "../../../__helpers__/renderWithProviders";
-
 import joinResearchPanelPageFixture from "./join-research-panel.fixtures";
 
+import "@/__tests__/__helpers__/ResizeObserverMock";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import AboutUsJoinResearchPanel, {
   getServerSideProps,
 } from "@/pages/about-us/get-involved/join-research-panel";

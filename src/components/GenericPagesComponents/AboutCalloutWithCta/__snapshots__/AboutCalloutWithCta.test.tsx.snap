@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`SupportYou renders correctly 1`] = `
+exports[`AboutCalloutWithCta renders correctly 1`] = `
 <body>
   <div>
     <div
@@ -78,7 +78,7 @@ exports[`SupportYou renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fqHsID"
+            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO eIMKEQ Bakex fqHsID"
           >
             <div
               class="sc-bdvwhi sc-gsDMPd dumZsJ kkGnDS"
