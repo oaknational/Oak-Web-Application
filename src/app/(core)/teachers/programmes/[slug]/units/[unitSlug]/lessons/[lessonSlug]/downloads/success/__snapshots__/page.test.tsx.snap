@@ -96,6 +96,13 @@ exports[`LessonDownloadsSuccessPage fetches unit data and renders success confir
         "yearGroupTitle": "Year 7",
       }
     }
+    unitDownloadExistence={
+      {
+        "checkFailed": false,
+        "exists": true,
+        "fileSize": "1.2MB",
+      }
+    }
   />
 </TeacherBrowseAnalyticsStoreProvider>
 `;

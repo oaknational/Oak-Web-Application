@@ -1,7 +1,10 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getCachedUnitData } from "../../../getCachedUnitData";
+import {
+  getCachedUnitData,
+  getUnitDownloadExistence,
+} from "../../../getCachedUnitData";
 
 import { DownloadSuccessView } from "./Components/DownloadSuccessView";
 
@@ -10,6 +13,7 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 
 type LessonDownloadsSuccessPageParams = {
   slug: string;
@@ -73,13 +77,19 @@ const InnerLessonDownloadsSuccessPage = async (
   }
 
   const programmeState = getProgrammeStateForLesson(data);
+  const unitDownloadExistence = await getUnitDownloadExistence(
+    getUnitDownloadFileId(data.unitTitle, data.unitvariantId),
+  );
 
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={programmeState}
       accessLevel="lesson"
     >
-      <DownloadSuccessView lesson={data} />
+      <DownloadSuccessView
+        lesson={data}
+        unitDownloadExistence={unitDownloadExistence}
+      />
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };

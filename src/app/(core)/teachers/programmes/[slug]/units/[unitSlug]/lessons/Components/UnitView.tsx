@@ -11,8 +11,13 @@ import { SubjectIcon } from "@/components/TeacherComponents/Header/Header";
 import { useUnitDownloadButtonState } from "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton";
 import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
+import { UnitDownloadExistence } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
-export const UnitView = (props: TeachersUnitOverviewData) => {
+type UnitViewProps = TeachersUnitOverviewData & {
+  unitDownloadExistence: UnitDownloadExistence;
+};
+
+export const UnitView = (props: UnitViewProps) => {
   const subjectIconName = `subject-${props.subjectSlug}` as SubjectIcon;
 
   const subjectPhaseSlug = getTeacherSubjectPhaseSlug({
@@ -48,6 +53,7 @@ export const UnitView = (props: TeachersUnitOverviewData) => {
           />
         }
         downloadButtonState={downloadButtonState}
+        unitDownloadExistence={props.unitDownloadExistence}
       />
       <OakBox $ph="spacing-40">
         <OakBox $mh="auto" $width={"100%"} $maxWidth={"spacing-1280"}>

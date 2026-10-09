@@ -20,6 +20,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { UnitHeaderNavFooter } from "@/components/TeacherComponents/HeaderNavFooter/UnitHeaderNavFooter/UnitHeaderNavFooter";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { UnitDownloadExistence } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 export type UnitHeaderProps = Omit<
   CompactHeaderProps,
@@ -33,6 +34,7 @@ export type UnitHeaderProps = Omit<
   subjectPhaseSlug: string;
   programmeSlug: string;
   downloadButtonState: ReturnType<typeof useUnitDownloadButtonState>;
+  unitDownloadExistence: UnitDownloadExistence;
 };
 
 /**
@@ -97,6 +99,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
             showNewTag={false}
             geoRestricted={Boolean(isGeorestrictedUnit)}
             size={isStuck ? "small" : undefined}
+            unitDownloadExistence={props.unitDownloadExistence}
           />
         </NegativeBorderBox>
       )
