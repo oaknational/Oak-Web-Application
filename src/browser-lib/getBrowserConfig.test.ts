@@ -48,7 +48,7 @@ describe("getBrowserConfig()", () => {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    expect(() => getBrowserConfig("nonExistentVarName")).toThrowError();
+    expect(() => getBrowserConfig("nonExistentVarName")).toThrow();
   });
   it("should throw on import if value not allowed", async () => {
     process.env.NEXT_PUBLIC_AXE_A11Y_LOGGING =
