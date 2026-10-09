@@ -17,6 +17,7 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type GetInvolvedPageProps = {
   pageData: GetInvolvedPage;
@@ -62,7 +63,9 @@ export const GetInvolved: NextPage<GetInvolvedPageProps> = ({
                   joinResearchPanelFeatureFlagEnabled
                     ? {
                         text: "Join the research panel",
-                        link: "/about-us/get-involved/join-research-panel",
+                        link: resolveOakHref({
+                          page: "about-join-research-panel",
+                        }),
                         external: false,
                         componentType: "join_research_panel",
                       }
