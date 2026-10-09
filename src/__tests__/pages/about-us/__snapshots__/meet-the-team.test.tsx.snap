@@ -4676,6 +4676,60 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           </div>
                         </a>
                       </li>
+                      <li
+                        class="c117 c99"
+                      >
+                        <a
+                          href="/about-us/case-studies"
+                          style="outline: none;"
+                          target="_self"
+                        >
+                          <div
+                            class="c118 c119 c120"
+                            data-testid="who-we-are-explore-item"
+                          >
+                            <div
+                              class="c9 c46"
+                            >
+                              <span
+                                class="c121"
+                              >
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953657/icons/hz4l3iq6i68kazvkvorq.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                            <div
+                              class="c122 c123"
+                            >
+                              Case studies
+                            </div>
+                            <div
+                              class="c9 c46"
+                            >
+                              <span
+                                class="c124"
+                              >
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
                     </ul>
                   </nav>
                 </div>
