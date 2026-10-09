@@ -1,3 +1,22 @@
+# [1.1242.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1241.0...v1.1242.0) (2026-10-09)
+
+
+### Bug Fixes
+
+* multiselect story with waitfor imported twice ([0fc3cd3](https://github.com/oaknational/Oak-Web-Application/commit/0fc3cd32222ecfc6b8ced3618e2ea34c13501a53))
+* storybook focus test multiselect ([4253c61](https://github.com/oaknational/Oak-Web-Application/commit/4253c6182559a08f08ed19c7893935bd69047379))
+
+
+### Features
+
+* **analytics:** deprecate onwardContentSelected ([6784143](https://github.com/oaknational/Oak-Web-Application/commit/6784143f4d3971ec9cd4725493611dcdd0c3785a))
+* **analytics:** send journey properties with the accessed events ([394e7ed](https://github.com/oaknational/Oak-Web-Application/commit/394e7edbebb0f20b1bd36ce2b0aab4e370fba460))
+* **analytics:** track lessonAccessed in place of onwardContentSelected ([fb08579](https://github.com/oaknational/Oak-Web-Application/commit/fb08579714639f984fd5afc8aa41334cc3ec4efb))
+* pull avo main again after merge conflict ([7725f0e](https://github.com/oaknational/Oak-Web-Application/commit/7725f0ecac3eaf04024ff397f5835ab9d25cc6cb))
+* pull latest avo main changes ([c92e94b](https://github.com/oaknational/Oak-Web-Application/commit/c92e94b8feb39e41ea8511d33a7e9de6166f0e3e))
+* pull main branch ([ba6f204](https://github.com/oaknational/Oak-Web-Application/commit/ba6f2048595f41f3e38b02bdcd6d993197b868b3))
+* re-pull avo with main changes ([fcec4bc](https://github.com/oaknational/Oak-Web-Application/commit/fcec4bcc6c659be84ecf8f4756b84728c25efa19))
+
 # [1.1241.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1240.0...v1.1241.0) (2026-10-09)
 
 
