@@ -23,9 +23,9 @@ export const NationalCurriculumInsightsPhaseCards = ({
   const subject = data.subject;
   if (!subject || data.route.kind === "subjectPhaseKeyStage") return null;
 
-  const availablePhases = subject.tabs.map(({ kind }) => kind);
+  const availablePhases = new Set(subject.tabs.map(({ kind }) => kind));
   const cards = section.cards.filter(
-    ({ phase }) => phase !== data.activeTab && availablePhases.includes(phase),
+    ({ phase }) => phase !== data.activeTab && availablePhases.has(phase),
   );
   if (!cards.length) return null;
 
