@@ -26,6 +26,7 @@ import styled from "styled-components";
 import type { NationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
 
 import { NationalCurriculumInsightsSelect } from "./Select";
+import { useDownloadSelection } from "./useDownloadSelection";
 
 import type { NationalCurriculumInsightsModule } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import { EDU_ROLES } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
@@ -49,7 +50,6 @@ type DownloadFormValues = {
   role: string;
   email: string;
   acceptedTerms: boolean;
-  selectedValues: string[];
 };
 
 const HeaderButton = styled(OakBox)`
@@ -245,6 +245,8 @@ export const NationalCurriculumInsightsDownload = ({
   const formId = useId().replace(/:/g, "");
   const expandedRef = useRef<HTMLFormElement>(null);
   const downloadInFlight = useRef(false);
+  const { selectedValues, changeSelection, resetSelection } =
+    useDownloadSelection(data);
   const sticky = data.route.kind === "hub";
   const layoutProps = getDownloadLayoutProps(sticky);
   const [expanded, setExpanded] = useState(false);
@@ -259,12 +261,10 @@ export const NationalCurriculumInsightsDownload = ({
       role: "",
       email: "",
       acceptedTerms: false,
-      selectedValues: [],
     },
     shouldUnregister: false,
   });
-  const { name, school, schoolNotListed, role, acceptedTerms, selectedValues } =
-    watch();
+  const { name, school, schoolNotListed, role, acceptedTerms } = watch();
   const [downloading, setDownloading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -337,6 +337,7 @@ export const NationalCurriculumInsightsDownload = ({
       } finally {
         URL.revokeObjectURL(url);
       }
+      resetSelection();
     } catch (downloadError) {
       if (downloadError instanceof TypeError) {
         void reportError(
@@ -630,28 +631,22 @@ export const NationalCurriculumInsightsDownload = ({
                 <OakP $font="body-2">{section.downloadsIntroduction}</OakP>
               </OakBox>
               <OakBox $width="100%" $mt="spacing-24">
-                <Controller
-                  control={control}
-                  name="selectedValues"
-                  render={({ field }) => (
-                    <MultiSelect
-                      id={`${formId}-subjects`}
-                      groups={groups}
-                      selectedValues={field.value}
-                      onChange={field.onChange}
-                      placeholder="Select subjects"
-                      mobileTitle="Download subjects"
-                      hideMobileHeader
-                      size="large"
-                      mobileConfirmLabel="Confirm selection"
-                      onMobileConfirm={() => setMobileStage("details")}
-                      selectedItemsLabel="Selected subjects"
-                      groupSelectLabel={(group) =>
-                        `All ${group.label.toLowerCase()} subjects`
-                      }
-                      data-testid="curriculum-insights-subjects"
-                    />
-                  )}
+                <MultiSelect
+                  id={`${formId}-subjects`}
+                  groups={groups}
+                  selectedValues={selectedValues}
+                  onChange={changeSelection}
+                  placeholder="Select subjects"
+                  mobileTitle="Download subjects"
+                  hideMobileHeader
+                  size="large"
+                  mobileConfirmLabel="Confirm selection"
+                  onMobileConfirm={() => setMobileStage("details")}
+                  selectedItemsLabel="Selected subjects"
+                  groupSelectLabel={(group) =>
+                    `All ${group.label.toLowerCase()} subjects`
+                  }
+                  data-testid="curriculum-insights-subjects"
                 />
               </OakBox>
             </OakGridArea>
