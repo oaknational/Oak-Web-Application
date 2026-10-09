@@ -111,12 +111,14 @@ const nationalCurriculumInsightsPhaseCardsSectionSchema = z.object({
 const nationalCurriculumInsightsKeyStageCardSchema = z.object({
   keyStage: nationalCurriculumInsightsKeyStageSchema,
   heading: z.string().min(1),
-  linkLabel: z.string().min(1),
+  linkLabel: z.string().min(1).nullish(),
 });
 
 const nationalCurriculumInsightsKeyStageCardsSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsKeyStageCardsSection"),
   cards: z.array(nationalCurriculumInsightsKeyStageCardSchema).min(1),
+  heading: z.string().nullish(),
+  linkFromSubjectOverview: z.boolean().nullish(),
 });
 
 const nationalCurriculumInsightsPromotionalHeadingSectionSchema = z.object({
