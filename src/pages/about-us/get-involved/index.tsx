@@ -67,7 +67,6 @@ export const GetInvolved: NextPage<GetInvolvedPageProps> = ({
                           page: "about-join-research-panel",
                         }),
                         external: false,
-                        componentType: "join_research_panel",
                       }
                     : {
                         text: "Join the research panel",
