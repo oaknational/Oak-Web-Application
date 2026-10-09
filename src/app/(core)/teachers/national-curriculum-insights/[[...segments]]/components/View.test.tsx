@@ -52,10 +52,7 @@ describe("NationalCurriculumInsightsView", () => {
     });
     expect(
       within(primarySubjects).getByRole("link", { name: "Science" }),
-    ).toHaveAttribute(
-      "href",
-      "/teachers/national-curriculum-insights/science/primary",
-    );
+    ).toHaveAttribute("href", "/curriculum-change-explained/science/primary");
   });
 
   it("does not render tab navigation unless the editor adds the module", async () => {
@@ -87,10 +84,7 @@ describe("NationalCurriculumInsightsView", () => {
     );
     expect(
       screen.getByRole("link", { name: "Science Primary changes" }),
-    ).toHaveAttribute(
-      "href",
-      "/teachers/national-curriculum-insights/science/primary",
-    );
+    ).toHaveAttribute("href", "/curriculum-change-explained/science/primary");
   });
 
   it("selects the Primary tab and renders Primary page content", async () => {
@@ -156,7 +150,7 @@ describe("NationalCurriculumInsightsView", () => {
       screen.getByRole("link", { name: /Changes to science in key stage 1/ }),
     ).toHaveAttribute(
       "href",
-      "/teachers/national-curriculum-insights/science/primary/key-stage-1",
+      "/curriculum-change-explained/science/primary/ks1",
     );
   });
 

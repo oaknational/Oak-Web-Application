@@ -698,10 +698,7 @@ describe("National Curriculum Insights sections", () => {
 
     expect(
       screen.getByRole("link", { name: /Primary science/ }),
-    ).toHaveAttribute(
-      "href",
-      "/teachers/national-curriculum-insights/science/primary",
-    );
+    ).toHaveAttribute("href", "/curriculum-change-explained/science/primary");
 
     rerender(
       <NationalCurriculumInsightsKeyStageCards
@@ -727,7 +724,7 @@ describe("National Curriculum Insights sections", () => {
       screen.getByRole("link", { name: /Key stage 1 science/ }),
     ).toHaveAttribute(
       "href",
-      "/teachers/national-curriculum-insights/science/primary/key-stage-1",
+      "/curriculum-change-explained/science/primary/ks1",
     );
     expect(
       screen.queryByRole("link", { name: /Key stage 4 science/ }),
@@ -749,7 +746,7 @@ describe("National Curriculum Insights sections", () => {
     );
     expect(screen.getByRole("link", { name: "Science" })).toHaveAttribute(
       "href",
-      "/teachers/national-curriculum-insights/science/primary",
+      "/curriculum-change-explained/science/primary",
     );
     expect(
       screen.queryByRole("link", { name: "Mathematics" }),
@@ -817,7 +814,7 @@ describe("National Curriculum Insights sections", () => {
     expect(heroGrid.children[1]).toHaveStyle({ order: "2" });
     expect(
       screen.getByRole("link", { name: /National curriculum insights/ }),
-    ).toHaveAttribute("href", "/teachers/national-curriculum-insights");
+    ).toHaveAttribute("href", "/curriculum-change-explained");
 
     rerender(
       <NationalCurriculumInsightsHero

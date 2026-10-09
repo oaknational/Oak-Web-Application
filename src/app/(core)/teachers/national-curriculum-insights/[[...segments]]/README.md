@@ -2,11 +2,13 @@
 
 The route mirrors the independently editable Sanity hierarchy:
 
-- `/teachers/national-curriculum-insights` reads the hub document and its own ordered `modules`.
+- `/curriculum-change-explained` reads the hub document and its own ordered `modules`.
 - `/curriculum-change-explained/guidance` reads the separate guidance document, whether or not the hub is published. The previous guidance URL redirects here.
-- `/teachers/national-curriculum-insights/<subject>` reads the subject itself as its Overview page.
-- `/teachers/national-curriculum-insights/<subject>/primary` and `/secondary` read the corresponding referenced page when the subject has that tab.
-- `/teachers/national-curriculum-insights/<subject>/<phase>/key-stage-1` reads a key-stage page referenced by that phase. Only configured key stages resolve.
+- `/curriculum-change-explained/<subject>` reads the subject itself as its Overview page.
+- `/curriculum-change-explained/<subject>/primary` and `/secondary` read the corresponding referenced page when the subject has that tab.
+- `/curriculum-change-explained/<subject>/<phase>/ks1` to `/ks4` read key-stage pages referenced by that phase. Only configured key stages resolve.
+
+The previous `/teachers/national-curriculum-insights` routes still redirect public visitors to guidance. Authenticated draft preview can read those routes. Launch redirects and sitemap changes are separate from the new route implementation.
 
 The subject document is also its Overview page and owns the modules rendered at the subject root. Its ordered Primary and Secondary entries reference separate phase documents with their own ordered `modules`. Each phase can then reference an ordered set of independent key-stage pages. Navigation is outside all module arrays, so editors can reorder page content without changing the subject, phase or key-stage hierarchy and its canonical URLs. There is no `/overview` segment and no phase-first route.
 
