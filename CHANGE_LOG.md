@@ -1,3 +1,16 @@
+# [1.1239.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1238.1...v1.1239.0) (2026-10-09)
+
+
+### Bug Fixes
+
+* move to Avo branch "featadopt-2315-add-explore-more-about-oak-to-case-studies" for testing ([5c1fdfd](https://github.com/oaknational/Oak-Web-Application/commit/5c1fdfdbccd4cdd0dae239ae6b7f93db20c53e5c))
+
+
+### Features
+
+* added "Case studies" to explore more section ([333ebd1](https://github.com/oaknational/Oak-Web-Application/commit/333ebd1b7e0b92b6ea87f032a4f8f306c44d9bbb))
+* pull avo main ([c1869e6](https://github.com/oaknational/Oak-Web-Application/commit/c1869e6d5db30b9f635270acd6e9083dbf1607de))
+
 ## [1.1238.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1238.0...v1.1238.1) (2026-10-08)
 
 
