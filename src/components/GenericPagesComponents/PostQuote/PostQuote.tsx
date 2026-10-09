@@ -13,12 +13,16 @@ const PostQuote = (
     return null;
   }
 
+  const fullRole = [props.value.role, props.value.organisation]
+    .filter(Boolean)
+    .join(", ");
+
   return (
     <OakBox $mt="spacing-48">
       <OakQuote
         quote={props.value.text.trim()}
         authorName={props.value.attribution ?? undefined}
-        authorTitle={props.value.role ?? undefined}
+        authorTitle={fullRole}
         hasLeftBorder={hasLeftBorder}
         color={color}
       />
