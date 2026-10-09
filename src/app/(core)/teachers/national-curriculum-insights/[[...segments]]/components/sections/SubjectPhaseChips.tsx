@@ -57,8 +57,8 @@ export const NationalCurriculumInsightsSubjectPhaseChips = ({
       if (!subject) return [];
       if (
         link.keyStage &&
-        (!nationalCurriculumInsightsKeyStagesForPhase[phase].some(
-          (keyStage) => keyStage === link.keyStage,
+        (![...nationalCurriculumInsightsKeyStagesForPhase[phase]].includes(
+          link.keyStage,
         ) ||
           !subject.tabs
             .find(({ kind }) => kind === phase)
