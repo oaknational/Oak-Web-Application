@@ -248,6 +248,28 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
     });
   });
 
+  describe("getServerSideProps", () => {
+    it("returns props data", async () => {
+      const propsResult = await getServerSideProps({
+        req: {
+          cookies: {},
+        },
+        params: { slug: "test-slug-1" },
+      } as GetServerSidePropsContext<{ slug: string }>);
+
+      expect(propsResult).toMatchObject({
+        props: {
+          pageData: {
+            caseStudy,
+            otherCaseStudies,
+          },
+          topNav: topNavFixture,
+          isCaseStudiesFeatEnabled: true,
+        },
+      });
+    });
+  });
+
   // describe("getStaticProps", () => {
   //   it("returns props data", async () => {
   //     const propsResult = await getStaticProps({
