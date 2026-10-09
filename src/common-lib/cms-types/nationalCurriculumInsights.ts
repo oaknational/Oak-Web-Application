@@ -100,7 +100,7 @@ const nationalCurriculumInsightsOverviewSectionSchema = z.object({
 const nationalCurriculumInsightsPhaseCardSchema = z.object({
   phase: nationalCurriculumInsightsPhaseSchema,
   heading: z.string().min(1),
-  linkLabel: z.string().min(1),
+  linkLabel: z.string().min(1).nullish(),
 });
 
 const nationalCurriculumInsightsPhaseCardsSectionSchema = z.object({
