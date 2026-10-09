@@ -697,10 +697,10 @@ describe("National Curriculum Insights sections", () => {
     );
 
     expect(
-      screen.getByRole("link", { name: /Primary science/ }),
+      screen.getByRole("link", { name: /Secondary science/ }),
     ).toHaveAttribute(
       "href",
-      "/teachers/national-curriculum-insights/science/primary",
+      "/teachers/national-curriculum-insights/science/secondary",
     );
 
     rerender(
