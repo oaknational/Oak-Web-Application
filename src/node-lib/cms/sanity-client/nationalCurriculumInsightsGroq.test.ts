@@ -90,6 +90,35 @@ const hubFixture = {
 };
 
 describe("nationalCurriculumInsightsGroq", () => {
+  it("keeps phase links in the page's perspective and filters unavailable destinations", () => {
+    expect(nationalCurriculumInsightsHubQuery).toContain(
+      "defined(subject->_id) && phase in subject->tabs[defined(page->_id)].kind",
+    );
+    expect(nationalCurriculumInsightsHubQuery).toContain(
+      '"subjectSlug": subject->slug.current',
+    );
+  });
+
+  it.each([
+    undefined,
+    null,
+    [],
+    [
+      {
+        title: "Science",
+        subjectSlug: { current: "science" },
+        phase: "primary",
+        iconName: null,
+      },
+    ],
+  ])("accepts optional phase link configuration: %p", async (phaseLinks) => {
+    mockFetch.mockResolvedValueOnce({ ...hubFixture, phaseLinks });
+    const result = await getNationalCurriculumInsightsHub();
+    expect(result?.phaseLinks?.[0]?.subjectSlug).toBe(
+      phaseLinks?.[0] ? "science" : undefined,
+    );
+  });
+
   it.each([
     nationalCurriculumInsightsHubQuery,
     nationalCurriculumInsightsGuidancePageQuery,

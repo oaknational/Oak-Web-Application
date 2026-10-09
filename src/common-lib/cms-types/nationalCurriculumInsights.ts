@@ -134,6 +134,8 @@ const nationalCurriculumInsightsPhaseNavigationSectionSchema = z.object({
 
 const nationalCurriculumInsightsSubjectNavigationSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsSubjectNavigationSection"),
+  variant: z.enum(["catalogue", "phaseChips"]).nullish(),
+  heading: z.string().min(1).nullish(),
   phases: z.array(nationalCurriculumInsightsPhaseSchema).min(1),
   primaryHeading: z.string().min(1),
   secondaryHeading: z.string().min(1),
@@ -363,6 +365,9 @@ export const nationalCurriculumInsightsPageSchema = z
 export const nationalCurriculumInsightsPageSummarySchema = z.object({
   pageType: nationalCurriculumInsightsPhaseSchema,
   title: z.string().min(1),
+  availableKeyStages: z
+    .array(nationalCurriculumInsightsKeyStageSchema)
+    .nullish(),
   ...documentSchema.shape,
 });
 
@@ -444,6 +449,17 @@ export const nationalCurriculumInsightsHubSchema = z
     title: z.string().min(1),
     summary: z.string().min(1),
     subjects: z.array(nationalCurriculumInsightsSubjectSummarySchema),
+    phaseLinks: z
+      .array(
+        z.object({
+          title: z.string().min(1),
+          phase: nationalCurriculumInsightsPhaseSchema,
+          subjectSlug: slugSchema,
+          iconName: z.string().nullish(),
+          keyStage: nationalCurriculumInsightsKeyStageSchema.nullish(),
+        }),
+      )
+      .nullish(),
     modules: z.array(nationalCurriculumInsightsModuleSchema).min(1),
     ...documentSchema.shape,
   })
