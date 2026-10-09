@@ -57,6 +57,7 @@ export function CaseStudyNav({
                 isSelected={anchor === (currentSectionId ?? links[0]?.anchor)}
                 $pt={"spacing-8"}
                 $pb={"spacing-8"}
+                hoverBorderColor="bg-decorative2-main"
               />
             </OakBox>
           </OakLI>

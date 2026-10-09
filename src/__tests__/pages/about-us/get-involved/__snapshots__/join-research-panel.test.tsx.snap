@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 .c0 {
@@ -1972,7 +1972,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   >
     <fake-head>
       <title>
-        Case Studies | NEXT_PUBLIC_SEO_APP_NAME
+        Join the research panel | NEXT_PUBLIC_SEO_APP_NAME
       </title>
       <meta
         content="index,follow"
@@ -1995,7 +1995,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
         name="twitter:creator"
       />
       <meta
-        content="Case Studies | NEXT_PUBLIC_SEO_APP_NAME"
+        content="Join the research panel | NEXT_PUBLIC_SEO_APP_NAME"
         property="og:title"
       />
       <meta

@@ -68,6 +68,14 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
       }),
       componentType: "get_involved" as const,
     },
+    {
+      iconName: "books" as const,
+      title: "Case studies",
+      href: resolveOakHref({
+        page: "about-case-study-library",
+      }),
+      componentType: "case_studies" as const,
+    },
   ];
 
   const filteredExploreItems = allExploreItems.filter(

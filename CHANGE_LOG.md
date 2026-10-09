@@ -1,3 +1,68 @@
+# [1.1239.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1238.1...v1.1239.0) (2026-10-09)
+
+
+### Bug Fixes
+
+* move to Avo branch "featadopt-2315-add-explore-more-about-oak-to-case-studies" for testing ([5c1fdfd](https://github.com/oaknational/Oak-Web-Application/commit/5c1fdfdbccd4cdd0dae239ae6b7f93db20c53e5c))
+
+
+### Features
+
+* added "Case studies" to explore more section ([333ebd1](https://github.com/oaknational/Oak-Web-Application/commit/333ebd1b7e0b92b6ea87f032a4f8f306c44d9bbb))
+* pull avo main ([c1869e6](https://github.com/oaknational/Oak-Web-Application/commit/c1869e6d5db30b9f635270acd6e9083dbf1607de))
+
+## [1.1238.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1238.0...v1.1238.1) (2026-10-08)
+
+
+### Bug Fixes
+
+* title in /about-us/get-involved/join-research-panel ([aa74f41](https://github.com/oaknational/Oak-Web-Application/commit/aa74f41a148986923d72edb0cbd8d8dc4a227f20))
+
+# [1.1238.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1237.1...v1.1238.0) (2026-10-08)
+
+
+### Features
+
+* changed link in "Join the research panel" when feature flag enabled ([a67563c](https://github.com/oaknational/Oak-Web-Application/commit/a67563ce9d00d8f1ff8ee39109dbe1e3b698f960))
+
+## [1.1237.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1237.0...v1.1237.1) (2026-10-08)
+
+
+### Bug Fixes
+
+* case study nav hover colour ([61b5682](https://github.com/oaknational/Oak-Web-Application/commit/61b5682c7a6dd9caec00caad5a1c1efcec17cfa5))
+
+# [1.1237.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1236.0...v1.1237.0) (2026-10-08)
+
+
+### Bug Fixes
+
+* audit script not workigng with pnpm ([feec027](https://github.com/oaknational/Oak-Web-Application/commit/feec0270ce8dd6b09b5a30e43caad4c7a46b805f))
+* currentSectionIdProvider test ([002d55c](https://github.com/oaknational/Oak-Web-Application/commit/002d55c3b9a0389ef89b5eaf436327ff1ef657ca))
+* currentSectionIdProvider test ([7df8244](https://github.com/oaknational/Oak-Web-Application/commit/7df8244bb51c4f9b17caf7474e5360a93527b989))
+* format error ([07e79e8](https://github.com/oaknational/Oak-Web-Application/commit/07e79e844f865db62dc1a951d9a2c530ea66b08d))
+* lesson links go to overview page ([6a79323](https://github.com/oaknational/Oak-Web-Application/commit/6a79323d309922f147463a311ca6e7d365339d39))
+* lint error and duplicate test ([59e0c89](https://github.com/oaknational/Oak-Web-Application/commit/59e0c8912d9c6c57712d7a9b4d6e2a3c3251899c))
+* location mock in analyticsProvider test ([be21264](https://github.com/oaknational/Oak-Web-Application/commit/be21264fdb3ee93502800307da2d1952ff441712))
+* location mock in analyticsProvider test ([27bd4d3](https://github.com/oaknational/Oak-Web-Application/commit/27bd4d3d3ebaf1a1b2b06ec4341ef18abfadfeee))
+* mock apis in tests ([11e1e3e](https://github.com/oaknational/Oak-Web-Application/commit/11e1e3e57b7ed6f4c4f0848dadf7cbbd0b242833))
+* mock apis in tests ([b8e9a38](https://github.com/oaknational/Oak-Web-Application/commit/b8e9a38711f20936694a973c533e7ca79a36d597))
+* performSearch test ([da34cd4](https://github.com/oaknational/Oak-Web-Application/commit/da34cd4a1cabdfcba06ca5897e6d971b8aceda7f))
+* performSearch test ([1db8853](https://github.com/oaknational/Oak-Web-Application/commit/1db88531458b7392bc733904b4336041d05f1a6b))
+* school selection test ([5330bab](https://github.com/oaknational/Oak-Web-Application/commit/5330bab491560597a0f57684ff4907388345ca3d))
+* school selection test ([10e473d](https://github.com/oaknational/Oak-Web-Application/commit/10e473da37abb6bf32de832d5e918788e9d8dde4))
+* secrity patches, non-breaking ([9cc98fa](https://github.com/oaknational/Oak-Web-Application/commit/9cc98fac1e61117c2d9152243d7c824fcc7ef672))
+* storybook focus test multiselect ([7fd56eb](https://github.com/oaknational/Oak-Web-Application/commit/7fd56eb3f4aa578ef2d25d98d59c10ec6f9d3901))
+* update FocusWrap test ([0b30f34](https://github.com/oaknational/Oak-Web-Application/commit/0b30f34783c8a43de483effcf844d239fd854502))
+* update FocusWrap test ([29b9d91](https://github.com/oaknational/Oak-Web-Application/commit/29b9d919127379027395c0b686dfc7aaf669b734))
+* use String.raw in eslint config ([41f8fd7](https://github.com/oaknational/Oak-Web-Application/commit/41f8fd78c50e534e1f397331733cd692aa2e3301))
+
+
+### Features
+
+* enable middleware when clerk handshake token is present ([9bea9df](https://github.com/oaknational/Oak-Web-Application/commit/9bea9dfaf53a3325014124c8e72208bee0a00e4f))
+* mark fire-and-forget async function calls in synchronous functions with void operater ([7b246b4](https://github.com/oaknational/Oak-Web-Application/commit/7b246b4046d4bb5a36445d0545c13f434ba2cdd9))
+
 # [1.1236.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1235.0...v1.1236.0) (2026-10-08)
 
 

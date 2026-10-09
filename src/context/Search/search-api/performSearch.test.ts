@@ -3,6 +3,11 @@ import { SearchHit } from "../search.types";
 import { performSearch } from "./performSearch";
 import * as fetchResults2023 from "./2023/fetchResults";
 
+jest.mock("@/common-lib/error-reporter/bugsnagNotify", () => ({
+  __esModule: true,
+  default: jest.fn().mockResolvedValue(undefined),
+}));
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 const mockResults2023: SearchHit[] = [{ foo: "bar-2023" }];
@@ -23,8 +28,9 @@ describe("performSearch", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  test("should call onStart on start", () => {
-    performSearch({
+  test("should call onStart on start", async () => {
+    fetchResults2023Spy.mockResolvedValue([]);
+    await performSearch({
       query: {
         term: "test",
       },
