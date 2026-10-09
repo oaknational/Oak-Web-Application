@@ -874,7 +874,95 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                 </div>
                 <ul
                   class="sc-bdvwhi sc-jObTYW eZfdqr boCgwA"
-                />
+                >
+                  <li
+                    class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
+                    >
+                      <a
+                        class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
+                        href="/about-us/case-studies/test-1"
+                      >
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                          >
+                            <div
+                              class="sc-bkkgYE jxvseu"
+                            >
+                              Test 1
+                            </div>
+                          </div>
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
+                          />
+                        </div>
+                      </a>
+                    </div>
+                  </li>
+                  <li
+                    class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
+                    >
+                      <a
+                        class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
+                        href="/about-us/case-studies/test-2"
+                      >
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                          >
+                            <div
+                              class="sc-bkkgYE jxvseu"
+                            >
+                              Test 2
+                            </div>
+                          </div>
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
+                          />
+                        </div>
+                      </a>
+                    </div>
+                  </li>
+                  <li
+                    class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
+                    >
+                      <a
+                        class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
+                        href="/about-us/case-studies/test-3"
+                      >
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                          >
+                            <div
+                              class="sc-bkkgYE jxvseu"
+                            >
+                              Test 3
+                            </div>
+                          </div>
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
+                          />
+                        </div>
+                      </a>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -1302,6 +1390,60 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                           </div>
                         </a>
                       </li>
+                      <li
+                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
+                      >
+                        <a
+                          href="/about-us/case-studies"
+                          style="outline: none;"
+                          target="_self"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd sc-e82709a-0 hcfMxe ezaUKt lkvaED"
+                            data-testid="who-we-are-explore-item"
+                          >
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU Bakex"
+                            >
+                              <span
+                                class="sc-bdvwhi gaaoSG"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953657/icons/hz4l3iq6i68kazvkvorq.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd eKftaO kkGnDS"
+                            >
+                              Case studies
+                            </div>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU Bakex"
+                            >
+                              <span
+                                class="sc-bdvwhi cqHYAi"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
                     </ul>
                   </nav>
                 </div>
@@ -1316,7 +1458,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
               class="sc-bdvwhi iatEdD"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-8dbb083c-0 hPWTKU Bakex jvNycD"
+                class="sc-bdvwhi sc-gsDMPd sc-b2eee06e-0 hPWTKU Bakex kFbKoF"
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd sc-d650a570-0 WhkHR cvDmZS"
