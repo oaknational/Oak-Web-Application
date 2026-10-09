@@ -1,11 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomApi";
+import type { SubmitPupilProgressResult } from "@/browser-lib/google-classroom/googleClassroomApi";
 import { mapToSubmitPupilProgress } from "@/browser-lib/google-classroom/mapToSubmitPupilProgress";
 import type { ClassroomProgressContext } from "@/browser-lib/google-classroom/classroomAssignmentContext";
-import { usePupilLessonProgress } from "@/context/PupilLessonProgress";
+import {
+  LessonSectionResults,
+  usePupilLessonProgress,
+} from "@/context/PupilLessonProgress";
 
 type ClassroomProgressSyncArgs = {
   courseId: string | null;
@@ -17,13 +21,11 @@ type ClassroomProgressSyncArgs = {
   isReady: boolean;
 };
 
-/**
- * Writes pupil progress back to the Google Classroom assignment on every
- * section result change — i.e. after each quiz question, not only when a
- * section completes — so a pupil who closes the lesson part-way resumes where
- * they left off. No-op for non-Classroom pupils, before resolution, or when the
- * assignment is read-only.
- */
+const noClassroomSubmission = () => Promise.resolve(null);
+const staleClassroomProgressError = new Error(
+  "classroom progress context changed",
+);
+
 export const useClassroomProgressSync = ({
   courseId,
   itemId,
@@ -33,6 +35,131 @@ export const useClassroomProgressSync = ({
   isReadOnly,
   isReady,
 }: ClassroomProgressSyncArgs) => {
+  const queueRef = useRef<Promise<void>>(Promise.resolve());
+  const generationRef = useRef(0);
+  const inFlightRef = useRef(
+    new Map<string, Promise<SubmitPupilProgressResult | null>>(),
+  );
+  const lastSuccessfulRef = useRef<{
+    key: string;
+    result: SubmitPupilProgressResult;
+  } | null>(null);
+  const readOnlyResultRef = useRef<SubmitPupilProgressResult | null>(null);
+
+  const submitProgress = useCallback(
+    (
+      sectionResults: LessonSectionResults,
+    ): Promise<SubmitPupilProgressResult | null> => {
+      if (!isReady || isReadOnly) {
+        return readOnlyResultRef.current
+          ? Promise.resolve(readOnlyResultRef.current)
+          : Promise.reject(new Error("Classroom progress is not writable"));
+      }
+      if (
+        !courseId ||
+        !itemId ||
+        !attachmentId ||
+        !submissionId ||
+        !pupilLoginHint
+      ) {
+        return courseId || itemId || attachmentId
+          ? Promise.reject(
+              new Error("Classroom progress context is incomplete"),
+            )
+          : Promise.resolve(null);
+      }
+
+      const progressContext: ClassroomProgressContext = {
+        courseId,
+        itemId,
+        attachmentId,
+        submissionId,
+        pupilLoginHint,
+      };
+      const payload = mapToSubmitPupilProgress(progressContext, sectionResults);
+      const key = JSON.stringify(payload);
+      const lastSuccessful = lastSuccessfulRef.current;
+      if (lastSuccessful?.key === key) {
+        return Promise.resolve(lastSuccessful.result);
+      }
+
+      const inFlight = inFlightRef.current.get(key);
+      if (inFlight) return inFlight;
+
+      const generation = generationRef.current;
+      const request = queueRef.current.then(async () => {
+        if (generation !== generationRef.current) {
+          throw staleClassroomProgressError;
+        }
+        if (readOnlyResultRef.current) return readOnlyResultRef.current;
+
+        const result = await googleClassroomApi.submitPupilProgress(payload);
+        if (generation !== generationRef.current) {
+          throw staleClassroomProgressError;
+        }
+
+        lastSuccessfulRef.current = { key, result };
+        if (result.status === "READ_ONLY") {
+          readOnlyResultRef.current = result;
+          usePupilLessonProgress.getState().setReadOnly(true);
+        }
+        return result;
+      });
+      queueRef.current = request.then(
+        () => undefined,
+        () => undefined,
+      );
+      inFlightRef.current.set(key, request);
+      void request.then(
+        () => {
+          if (inFlightRef.current.get(key) === request) {
+            inFlightRef.current.delete(key);
+          }
+        },
+        () => {
+          if (inFlightRef.current.get(key) === request) {
+            inFlightRef.current.delete(key);
+          }
+        },
+      );
+
+      return request;
+    },
+    [
+      attachmentId,
+      courseId,
+      isReadOnly,
+      isReady,
+      itemId,
+      pupilLoginHint,
+      submissionId,
+    ],
+  );
+
+  useEffect(() => {
+    generationRef.current += 1;
+    queueRef.current = Promise.resolve();
+    inFlightRef.current.clear();
+    lastSuccessfulRef.current = null;
+    readOnlyResultRef.current = null;
+
+    usePupilLessonProgress
+      .getState()
+      .setSubmitClassroomProgress(submitProgress);
+
+    return () => {
+      generationRef.current += 1;
+      if (
+        usePupilLessonProgress.getState().submitClassroomProgress ===
+        submitProgress
+      ) {
+        usePupilLessonProgress
+          .getState()
+          .setSubmitClassroomProgress(noClassroomSubmission);
+      }
+    };
+  }, [submitProgress]);
+
   useEffect(() => {
     if (!isReady || isReadOnly) return;
     if (
@@ -45,28 +172,12 @@ export const useClassroomProgressSync = ({
       return;
     }
 
-    const progressContext: ClassroomProgressContext = {
-      courseId,
-      itemId,
-      attachmentId,
-      submissionId,
-      pupilLoginHint,
-    };
-
     return usePupilLessonProgress.subscribe(
       (state) => state.sectionResults,
       (sectionResults) => {
-        try {
-          const payload = mapToSubmitPupilProgress(
-            progressContext,
-            sectionResults,
-          );
-          void googleClassroomApi.submitPupilProgress(payload).catch(() => {
-            // Submission failed — progress sync failed, lesson continues for next sync.
-          });
-        } catch {
-          // Payload could not be built (unexpected shape) — skip this submission.
-        }
+        void Promise.resolve()
+          .then(() => submitProgress(sectionResults))
+          .catch(() => undefined);
       },
     );
   }, [
@@ -77,5 +188,6 @@ export const useClassroomProgressSync = ({
     attachmentId,
     submissionId,
     pupilLoginHint,
+    submitProgress,
   ]);
 };

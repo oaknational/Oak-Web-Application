@@ -101,8 +101,8 @@ export const usePupilIntroExperience = ({
   /*****************************
    * Page interaction handlers *
    *****************************/
-  const handleProceed = async () => {
-    if (!(await ensureCanProgress())) return;
+  const handleProceed = () => {
+    if (!ensureCanProgress()) return;
 
     if (!sectionResults.intro?.isComplete) {
       setIsCompletingAndRedirecting(true);

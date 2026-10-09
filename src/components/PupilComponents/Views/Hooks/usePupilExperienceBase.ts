@@ -8,12 +8,6 @@ import { usePupilLessonProgress } from "@/context/PupilLessonProgress";
 export const usePupilExperienceBase = () => {
   const router = useRouter();
   const isReadOnly = usePupilLessonProgress((state) => state.isReadOnly);
-  const refreshReadOnlyFromStore = usePupilLessonProgress(
-    (state) => state.refreshReadOnly,
-  );
-  const setReadOnlyFromStore = usePupilLessonProgress(
-    (state) => state.setReadOnly,
-  );
 
   const currentSearchParams = useMemo(
     () => new URLSearchParams(router.asPath.split("?")[1]),
@@ -43,24 +37,15 @@ export const usePupilExperienceBase = () => {
     goToSection("review");
   }, [goToSection, isReadOnly, router.asPath]);
 
-  const ensureCanProgress = useCallback(async () => {
+  const ensureCanProgress = useCallback(() => {
     if (isReadOnly) {
       goToSection("review");
       return false;
     }
 
-    const nextIsReadOnly = refreshReadOnlyFromStore
-      ? await refreshReadOnlyFromStore()
-      : false;
-    if (setReadOnlyFromStore) setReadOnlyFromStore(nextIsReadOnly);
-
-    if (nextIsReadOnly) {
-      goToSection("review");
-      return false;
-    }
-
+    // destination hydration refreshes submission state asynchronously
     return true;
-  }, [goToSection, isReadOnly, refreshReadOnlyFromStore, setReadOnlyFromStore]);
+  }, [goToSection, isReadOnly]);
 
   return {
     router,

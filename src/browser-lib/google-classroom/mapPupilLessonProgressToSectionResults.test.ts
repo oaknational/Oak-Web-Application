@@ -1,6 +1,28 @@
 import { mapPupilLessonProgressToSectionResults } from "./mapPupilLessonProgressToSectionResults";
 
 describe("mapPupilLessonProgressToSectionResults", () => {
+  it.each([false, true, undefined])(
+    "restores exit completion only when its grade is not pending (%s)",
+    (exitQuizGradeSubmitted) => {
+      const exitQuiz = {
+        grade: 1,
+        numQuestions: 1,
+        isComplete: true,
+        questionResults: [{ mode: "feedback", grade: 1, pupilAnswer: "earth" }],
+      };
+      const result = mapPupilLessonProgressToSectionResults({
+        exitQuiz,
+        exitQuizGradeSubmitted,
+      } as never);
+
+      expect(result["exit-quiz"]).toEqual({
+        ...exitQuiz,
+        isComplete: exitQuizGradeSubmitted !== false,
+      });
+      expect(exitQuiz.isComplete).toBe(true);
+    },
+  );
+
   it("maps all supported sections to lesson engine section keys", () => {
     const starterQuiz = {
       grade: 2,

@@ -48,27 +48,16 @@ export const getInitialQuestionIndex = (
   initialQuestionResults: QuestionState[] | undefined,
   questionsArray: QuestionsArray,
 ) => {
-  const nextQuestionIndex =
-    initialQuestionResults?.findIndex((item) => item.mode !== "feedback") ?? 0;
+  const nextQuestionIndex = questionsArray.findIndex(
+    (_, index) => initialQuestionResults?.[index]?.mode !== "feedback",
+  );
 
-  if (nextQuestionIndex === -1 && Boolean(initialQuestionResults?.length)) {
-    return questionsArray.length;
+  if (nextQuestionIndex === -1) {
+    // Checked answers do not mean the pupil has pressed Continue lesson yet.
+    return Math.max(questionsArray.length - 1, 0);
   }
 
-  return Math.max(nextQuestionIndex, 0);
-};
-
-/**
- * Determines whether the hydrated question results represent a completed quiz.
- *
- * @param initialQuestionResults - Previously saved question results, if available.
- * @returns `true` when every saved question is already in feedback mode.
- */
-export const getIsHydratedComplete = (
-  initialQuestionResults: QuestionState[] | undefined,
-) => {
-  if (!initialQuestionResults?.length) return false;
-  return initialQuestionResults.every((item) => item.mode === "feedback");
+  return nextQuestionIndex;
 };
 
 /**
@@ -163,14 +152,17 @@ export const buildPersistedQuizResult = ({
  * @param params - The values required to initialise quiz state.
  * @param params.questionsArray - The questions in the quiz section.
  * @param params.initialQuestionResults - Previously saved question results, if available.
+ * @param params.initialIsComplete - Whether the section was explicitly completed.
  * @returns The initial quiz store state derived from the provided inputs.
  */
 export const createInitialQuizState = ({
   questionsArray,
   initialQuestionResults,
+  initialIsComplete = false,
 }: {
   questionsArray: QuestionsArray;
   initialQuestionResults?: QuestionState[];
+  initialIsComplete?: boolean;
 }) => ({
   questionState: getInitialQuestionState({
     questionsArray,
@@ -182,7 +174,7 @@ export const createInitialQuizState = ({
   ),
   numQuestions: questionsArray.length,
   numInteractiveQuestions: getInteractiveQuestions(questionsArray).length,
-  isHydratedComplete: getIsHydratedComplete(initialQuestionResults),
+  isHydratedComplete: initialIsComplete,
 });
 
 /**

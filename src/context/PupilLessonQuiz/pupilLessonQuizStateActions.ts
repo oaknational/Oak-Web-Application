@@ -33,6 +33,7 @@ export const getDefaultPupilLessonQuizState = () => ({
  * @param args.section - The current quiz section.
  * @param args.questionsArray - The questions in the quiz section.
  * @param args.initialQuestionResults - Previously saved question results, if available.
+ * @param args.initialIsComplete - Whether the section was explicitly completed.
  * @returns The state patch required to initialise the quiz store.
  */
 export const initialiseQuizAction = (
@@ -42,6 +43,7 @@ export const initialiseQuizAction = (
     section,
     questionsArray,
     initialQuestionResults,
+    initialIsComplete,
   }: PupilLessonQuizInitArgs,
 ) => ({
   lessonSlug,
@@ -49,6 +51,7 @@ export const initialiseQuizAction = (
   ...createInitialQuizState({
     questionsArray,
     initialQuestionResults,
+    initialIsComplete,
   }),
 });
 

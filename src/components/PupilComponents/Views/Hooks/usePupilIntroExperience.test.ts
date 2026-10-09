@@ -72,11 +72,16 @@ beforeEach(() => {
 
 describe("usePupilIntroExperience", () => {
   it("on first proceed: completes the intro section, tracks completion, and navigates to overview", async () => {
+    const refreshReadOnly = jest.fn(
+      () => new Promise<boolean>(() => undefined),
+    );
+    usePupilLessonProgress.getState().setRefreshReadOnly(refreshReadOnly);
     const { result } = renderIntro();
     await act(async () => {
       await result.current.handleProceed();
     });
 
+    expect(refreshReadOnly).not.toHaveBeenCalled();
     expect(track.trackIntroCompleted).toHaveBeenCalledTimes(1);
     expect(
       usePupilLessonProgress.getState().sectionResults.intro?.isComplete,
@@ -103,16 +108,19 @@ describe("usePupilIntroExperience", () => {
     );
   });
 
-  it("redirects to review without completing intro when progression discovers read-only state", async () => {
-    usePupilLessonProgress
-      .getState()
-      .setRefreshReadOnly(jest.fn().mockResolvedValue(true));
+  it("redirects to review without completing intro when cached state is read-only", async () => {
+    const refreshReadOnly = jest.fn(
+      () => new Promise<boolean>(() => undefined),
+    );
+    usePupilLessonProgress.getState().setRefreshReadOnly(refreshReadOnly);
+    usePupilLessonProgress.getState().setReadOnly(true);
 
     const { result } = renderIntro();
     await act(async () => {
       await result.current.handleProceed();
     });
 
+    expect(refreshReadOnly).not.toHaveBeenCalled();
     expect(track.trackIntroCompleted).not.toHaveBeenCalled();
     expect(
       usePupilLessonProgress.getState().sectionResults.intro?.isComplete,

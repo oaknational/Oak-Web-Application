@@ -67,11 +67,16 @@ describe("usePupilVideoExperience", () => {
   });
 
   it("on first proceed: completes the video section, tracks completion, and navigates", async () => {
+    const refreshReadOnly = jest.fn(
+      () => new Promise<boolean>(() => undefined),
+    );
+    usePupilLessonProgress.getState().setRefreshReadOnly(refreshReadOnly);
     const { result } = renderVideo();
     await act(async () => {
       await result.current.handleProceed();
     });
 
+    expect(refreshReadOnly).not.toHaveBeenCalled();
     expect(
       usePupilLessonProgress.getState().sectionResults.video?.isComplete,
     ).toBe(true);
@@ -81,16 +86,19 @@ describe("usePupilVideoExperience", () => {
     );
   });
 
-  it("redirects to review without completing video when progression discovers read-only state", async () => {
-    usePupilLessonProgress
-      .getState()
-      .setRefreshReadOnly(jest.fn().mockResolvedValue(true));
+  it("redirects to review without completing video when cached state is read-only", async () => {
+    const refreshReadOnly = jest.fn(
+      () => new Promise<boolean>(() => undefined),
+    );
+    usePupilLessonProgress.getState().setRefreshReadOnly(refreshReadOnly);
+    usePupilLessonProgress.getState().setReadOnly(true);
 
     const { result } = renderVideo();
     await act(async () => {
       await result.current.handleProceed();
     });
 
+    expect(refreshReadOnly).not.toHaveBeenCalled();
     expect(
       usePupilLessonProgress.getState().sectionResults.video?.isComplete,
     ).toBeUndefined();

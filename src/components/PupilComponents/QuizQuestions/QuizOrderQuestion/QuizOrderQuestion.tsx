@@ -107,10 +107,17 @@ export const QuizOrderQuestion = ({
       Array.isArray(questionState.feedback),
       "question feedback is not an array",
     );
+    const feedbackOrder = Array.isArray(questionState.pupilAnswer)
+      ? questionState.pupilAnswer.map((id) => {
+          const item = initialItems.find((item) => item.id === String(id));
+          invariant(item, `saved order item '${id}' is missing`);
+          return item;
+        })
+      : currentOrder;
 
     return (
       <MathJaxWrap dynamic>
-        {currentOrder.map((item, index) => {
+        {feedbackOrder.map((item, index) => {
           const currentFeedback = questionState.feedback?.at(index);
           invariant(currentFeedback, "feedback is missing");
 
