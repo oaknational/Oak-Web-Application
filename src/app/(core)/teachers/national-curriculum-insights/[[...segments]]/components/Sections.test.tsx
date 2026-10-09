@@ -790,7 +790,7 @@ describe("National Curriculum Insights sections", () => {
     expect(screen.queryByRole("link")).not.toBeInTheDocument();
   });
 
-  it("renders hero metadata and breadcrumbs for every page level", async () => {
+  it("renders the editorial date and breadcrumbs for every page level", async () => {
     const subjectData = await getData(["science"]);
     const phaseData = await getData(["science", "primary"]);
     const keyStageData = await getData(["science", "primary", "key-stage-1"]);
@@ -803,18 +803,19 @@ describe("National Curriculum Insights sections", () => {
       authorRole: "Subject specialists",
       authorImage: contentImage,
       statusMessage: "Draft guidance",
+      lastUpdatedAt: "2026-09-10",
     };
 
     const { rerender } = renderWithTheme(
       <NationalCurriculumInsightsHero data={subjectData} section={hero} />,
     );
-    expect(screen.getByText("Curriculum team")).toBeInTheDocument();
-    expect(screen.getByText("Subject specialists")).toBeInTheDocument();
-    expect(screen.getByText("Draft guidance")).toBeInTheDocument();
-    const heroGrid = screen.getByRole("heading", {
-      name: hero.heading,
-    }).parentElement!.parentElement!.parentElement!;
-    expect(heroGrid.children[1]).toHaveStyle({ order: "2" });
+    expect(screen.queryByText("Curriculum team")).not.toBeInTheDocument();
+    expect(screen.queryByText("Subject specialists")).not.toBeInTheDocument();
+    expect(screen.queryByText("Draft guidance")).not.toBeInTheDocument();
+    expect(screen.getByText("10 September 2026")).toHaveAttribute(
+      "datetime",
+      "2026-09-10",
+    );
     expect(
       screen.getByRole("link", { name: /National curriculum insights/ }),
     ).toHaveAttribute("href", "/teachers/national-curriculum-insights");
@@ -831,7 +832,7 @@ describe("National Curriculum Insights sections", () => {
       />,
     );
     expect(screen.queryByText("Curriculum team")).not.toBeInTheDocument();
-    expect(screen.getByText("Draft guidance")).toBeInTheDocument();
+    expect(screen.getByText("10 September 2026")).toBeInTheDocument();
 
     rerender(
       <NationalCurriculumInsightsHero
@@ -839,7 +840,7 @@ describe("National Curriculum Insights sections", () => {
         section={{ ...hero, statusMessage: null }}
       />,
     );
-    expect(screen.getByText("Key stage 1")).toBeInTheDocument();
+    expect(screen.getByText("KS1")).toBeInTheDocument();
     expect(screen.queryByText("Draft guidance")).not.toBeInTheDocument();
   });
 });

@@ -90,6 +90,57 @@ const hubFixture = {
 };
 
 describe("nationalCurriculumInsightsGroq", () => {
+  it("reads the editorial header date without deriving it from document updates", async () => {
+    const hero = {
+      __typename: "NationalCurriculumInsightsHeroSection",
+      heading: "Changes to the national curriculum: science",
+      bodyPortableText: moduleFixture.contentPortableText,
+      lastUpdatedAt: "2026-09-10",
+    };
+    mockFetch.mockResolvedValueOnce({ ...subjectFixture, modules: [hero] });
+
+    const subject = await getNationalCurriculumInsightsSubjectBySlug("science");
+
+    expect(subject?.modules).toEqual([hero]);
+    expect(nationalCurriculumInsightsSubjectBySlugQuery).toContain(
+      "lastUpdatedAt,",
+    );
+  });
+
+  it("accepts headers without an editorial date", async () => {
+    mockFetch.mockResolvedValueOnce({
+      ...subjectFixture,
+      modules: [
+        {
+          __typename: "NationalCurriculumInsightsHeroSection",
+          heading: "Changes to the national curriculum: science",
+          bodyPortableText: moduleFixture.contentPortableText,
+          lastUpdatedAt: null,
+        },
+      ],
+    });
+    await expect(
+      getNationalCurriculumInsightsSubjectBySlug("science"),
+    ).resolves.not.toBeNull();
+  });
+
+  it("rejects an invalid editorial date", async () => {
+    mockFetch.mockResolvedValueOnce({
+      ...subjectFixture,
+      modules: [
+        {
+          __typename: "NationalCurriculumInsightsHeroSection",
+          heading: "Changes to the national curriculum: science",
+          bodyPortableText: moduleFixture.contentPortableText,
+          lastUpdatedAt: "2026-02-30",
+        },
+      ],
+    });
+    await expect(
+      getNationalCurriculumInsightsSubjectBySlug("science"),
+    ).rejects.toThrow();
+  });
+
   it.each([
     nationalCurriculumInsightsHubQuery,
     nationalCurriculumInsightsGuidancePageQuery,

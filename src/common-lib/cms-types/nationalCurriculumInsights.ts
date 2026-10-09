@@ -82,6 +82,7 @@ const nationalCurriculumInsightsHeroSectionSchema = z.object({
   authorRole: z.string().min(1).nullable().optional(),
   authorImage: imageSchema.nullable().optional(),
   statusHeading: z.string().min(1).nullable().optional(),
+  lastUpdatedAt: z.iso.date().nullable().optional(),
   statusMessage: z.string().min(1).nullable().optional(),
   ctaLabel: z.string().min(1).nullable().optional(),
   ctaHref: z.string().min(1).nullable().optional(),
