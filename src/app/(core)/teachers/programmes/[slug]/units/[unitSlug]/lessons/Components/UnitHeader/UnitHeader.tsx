@@ -58,6 +58,8 @@ const UnitHeader = (props: UnitHeaderProps) => {
     nextUnit,
     programmeSlug,
     downloadButtonState,
+    unitDownloadExistence,
+    heading,
   } = props;
   const { unitDownloaded } = useTeacherBrowseAnalytics((store) => store.track);
   const { setCurrentToastProps } = useOakNotificationsContext();
@@ -99,7 +101,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
             showNewTag={false}
             geoRestricted={Boolean(isGeorestrictedUnit)}
             size={isStuck ? "small" : undefined}
-            unitDownloadExistence={props.unitDownloadExistence}
+            unitDownloadExistence={unitDownloadExistence}
           />
         </NegativeBorderBox>
       )
@@ -115,7 +117,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
       <UnitHeaderNavFooter
         sentinelRef={sentinelRef}
         isStuck={isStuck}
-        title={props.heading}
+        title={heading}
         backgroundColorLevel={backgroundColorLevel}
         viewHref={resolveOakHref({
           page: "teacher-programme",
