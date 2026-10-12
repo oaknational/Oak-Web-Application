@@ -1,4 +1,4 @@
-import { NextPage, GetStaticPropsResult, GetServerSideProps } from "next";
+import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import {
   OakBreadcrumbs,
   OakBox,
@@ -18,7 +18,10 @@ import { createRef, useMemo } from "react";
 import { PortableTextComponent } from "@portabletext/react";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import { OaksImpactCaseStudyPage } from "@/common-lib/cms-types/aboutPages";
+import {
+  CaseStudyPage,
+  CaseStudyLibraryPage,
+} from "@/common-lib/cms-types/aboutPages";
 import CMSClient from "@/node-lib/cms";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import Layout from "@/components/AppComponents/AppLayout";
@@ -38,17 +41,16 @@ import { CaseStudyGetInTouch } from "@/components/GenericPagesComponents/CaseStu
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
 
-// to do - this data retrieval will be decoupled from oak's impact in coming tickets
-export type AboutUsOaksImpactCaseStudyPageProps = {
+export type AboutUsCaseStudyLibraryPageProps = {
   pageData: {
-    caseStudy: OaksImpactCaseStudyPage["caseStudiesSection"]["caseStudies"][number];
-    otherCaseStudies: OaksImpactCaseStudyPage["caseStudiesSection"]["caseStudies"];
+    caseStudy: CaseStudyPage;
+    otherCaseStudies: CaseStudyLibraryPage;
   };
   topNav: TopNavProps;
   isCaseStudiesFeatEnabled: boolean;
 };
 
-const AboutUsCaseStudy: NextPage<AboutUsOaksImpactCaseStudyPageProps> = ({
+const AboutUsCaseStudy: NextPage<AboutUsCaseStudyLibraryPageProps> = ({
   pageData: { caseStudy, otherCaseStudies },
   topNav,
   isCaseStudiesFeatEnabled,
@@ -318,7 +320,7 @@ type URLParams = {
 };
 
 export const getServerSideProps: GetServerSideProps<
-  AboutUsOaksImpactCaseStudyPageProps,
+  AboutUsCaseStudyLibraryPageProps,
   URLParams
 > = async (context) => {
   const isCaseStudiesFeatEnabled = await isFeatureFlagEnabledServer(
@@ -347,10 +349,9 @@ export const getServerSideProps: GetServerSideProps<
 
   const otherCaseStudies = await CMSClient.caseStudyLibraryPage({
     slug,
-    // limit: 3, TO DO: this can be put back in when the feature is switched on, maybe change to 4 as it may exclude slug?
   });
 
-  const results: GetStaticPropsResult<AboutUsOaksImpactCaseStudyPageProps> = {
+  const results: GetServerSidePropsResult<AboutUsCaseStudyLibraryPageProps> = {
     props: {
       pageData: {
         caseStudy,

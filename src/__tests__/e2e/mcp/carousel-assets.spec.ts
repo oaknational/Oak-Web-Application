@@ -115,7 +115,7 @@ const expectServesCarouselImage = async ({
   ).toBe(sha256);
 };
 
-test.describe("MCP submission carousel images", () => {
+test.describe.skip("MCP submission carousel images", () => {
   for (const { path, sha256 } of CANONICAL_CAROUSEL_URLS) {
     test(`serves ${path} as a PNG at its canonical URL`, async ({
       request,

@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 .c0 {
@@ -3149,6 +3149,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                   </div>
                   <div
                     class="c88"
+                    style="width: fit-content;"
                   >
                     <div
                       class="c89 c90"
@@ -3499,6 +3500,20 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                             class="c25"
                           >
                             Oak's impact
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c109"
+                      >
+                        <a
+                          class="c73 "
+                          href="/about-us/case-studies"
+                        >
+                          <span
+                            class="c25"
+                          >
+                            Case studies
                           </span>
                         </a>
                       </li>
@@ -3967,6 +3982,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
             </div>
             <span
               class="c123 c124"
+              data-chromatic="ignore"
               data-percy-hide="contents"
             >
               <img

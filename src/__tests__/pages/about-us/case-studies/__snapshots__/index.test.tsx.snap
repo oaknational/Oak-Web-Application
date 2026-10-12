@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
 <div>
@@ -1091,6 +1091,20 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                       >
                         <a
                           class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/about-us/case-studies"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Case studies
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/about-us/get-involved"
                         >
                           <span
@@ -1550,7 +1564,8 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-cc003eb3-0 iCQXgT"
+              class="sc-bdvwhi LoEut sc-5012a3f4-0 bfVxIC"
+              data-chromatic="ignore"
               data-percy-hide="contents"
             >
               <img

@@ -119,7 +119,7 @@ describe("ResourcePageSchoolDetails", () => {
     // HACK: wait for next tick
     await waitForNextTick();
     rerender(<ResourcePageSchoolDetails {...props} />);
-    expect(setSchool).toBeCalled();
+    expect(setSchool).toHaveBeenCalled();
   });
 
   it("links school field errors to the combobox and not-listed checkbox", () => {

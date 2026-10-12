@@ -194,6 +194,12 @@ export const LayoutSiteFooterInner: FC = () => {
           track: trackAboutUsFooter,
         },
         {
+          text: "Case studies",
+          type: "link" as const,
+          href: resolveOakHref({ page: "about-case-study-library" }),
+          track: trackAboutUsFooter,
+        },
+        {
           text: "Get involved",
           type: "link",
           href: resolveOakHref({ page: "about-get-involved" }),
@@ -347,6 +353,7 @@ export const LayoutSiteFooterInner: FC = () => {
           <StyledLogo
             alt="Cyber Essentials Logo"
             data-percy-hide="contents"
+            data-chromatic="ignore"
             src={getCloudinaryImageUrl(
               "v1751992190/OWA/illustrations/Cyber-Essentials-Logo_ryiskg.png",
             )}

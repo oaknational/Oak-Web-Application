@@ -28,8 +28,8 @@ describe("getSignedVideoToken", () => {
           "123",
           "signed",
         ),
-    ).rejects.toThrowError(new OakError({ code: "video/fetch-signed-token" }));
-    expect(reportError).toBeCalled();
+    ).rejects.toThrow(new OakError({ code: "video/fetch-signed-token" }));
+    expect(reportError).toHaveBeenCalled();
   });
   test("should return json is res.ok ", async () => {
     fetch.mockResolvedValue({

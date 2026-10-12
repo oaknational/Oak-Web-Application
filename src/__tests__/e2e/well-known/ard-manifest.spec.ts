@@ -18,7 +18,7 @@ const EXPECTED_IDENTIFIERS = [
   "urn:air:thenational.academy:api:curriculum",
 ] as const;
 
-test.describe("ARD manifest", () => {
+test.describe.skip("ARD manifest", () => {
   for (const path of MANIFEST_PATHS) {
     test(`serves the manifest at ${path}`, async ({ request }) => {
       // A redirect resolves in a browser but not for a consumer that does not

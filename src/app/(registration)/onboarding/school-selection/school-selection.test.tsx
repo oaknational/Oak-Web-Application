@@ -11,6 +11,8 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => false,
 }));
 
+jest.mock("@/components/TeacherComponents/OnboardingForm/onboardingActions");
+
 jest.mock("next/navigation", () => ({
   ...jest.requireActual("next/navigation"),
   usePathname: jest.fn(() => "/onboarding"),

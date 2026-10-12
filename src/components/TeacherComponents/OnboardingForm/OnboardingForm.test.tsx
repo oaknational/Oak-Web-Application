@@ -19,6 +19,8 @@ import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 import type { OnboardingSchema } from "@/common-lib/schemas/onboarding";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
+fetchMock.doMock();
+
 const setEmailInLocalStorage = jest.fn();
 const setSchoolInLocalStorage = jest.fn();
 const setTermsInLocalStorage = jest.fn();
@@ -46,12 +48,6 @@ type OnboardingFormState = DefaultValues<OnboardingFormProps>;
 const mockPush = jest.fn();
 
 describe("Onboarding form", () => {
-  beforeAll(() => {
-    fetchMock.enableMocks();
-  });
-  afterAll(() => {
-    fetchMock.disableMocks();
-  });
   beforeEach(() => {
     setUseUserReturn(mockLoggedIn);
     mockPush.mockClear();
