@@ -1,13 +1,14 @@
 import { randomInt } from "node:crypto";
 
 /**
- * Sanity's edge occasionally returns transient 5xx responses, and pooled
- * keep-alive sockets can be closed by Sanity between our (infrequent, cached)
- * requests, which surfaces as `TypeError: fetch failed`. Retry those briefly.
+ * Sanity's edge occasionally returns transient 429/502/503/504 responses, and
+ * pooled keep-alive sockets can be closed by Sanity between our (infrequent,
+ * cached) requests, which surfaces as `TypeError: fetch failed`. Retry those
+ * briefly.
  *
- * Anything else (4xx, or GraphQL errors returned with a 200) is passed
- * straight through, and the final attempt's result is returned as-is so
- * persistent failures are still reported.
+ * Anything else (other 4xx, 500, or GraphQL errors returned with a 200) is
+ * passed straight through, and the final attempt's result is returned as-is
+ * so persistent failures are still reported.
  */
 const RETRY_DELAYS_MS = [200, 600];
 const RETRYABLE_STATUSES = new Set([429, 502, 503, 504]);
