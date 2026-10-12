@@ -390,8 +390,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 .c128 {
-  position: relative;
-  padding: 1.5rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   padding-top: 1.5rem;
@@ -3444,68 +3442,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   <div
     data-overlay-container="true"
   >
-    <fake-head>
-      <title>
-        Meet the Team | NEXT_PUBLIC_SEO_APP_NAME
-      </title>
-      <meta
-        content="index,follow"
-        name="robots"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_DESCRIPTION"
-        name="description"
-      />
-      <meta
-        content="summary_large_image"
-        name="twitter:card"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE"
-        name="twitter:site"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE"
-        name="twitter:creator"
-      />
-      <meta
-        content="Meet the Team | NEXT_PUBLIC_SEO_APP_NAME"
-        property="og:title"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_DESCRIPTION"
-        property="og:description"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_URL/"
-        property="og:url"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2026"
-        property="og:image"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_NAME"
-        property="og:site_name"
-      />
-      <link
-        href="NEXT_PUBLIC_SEO_APP_URL"
-        rel="canonical"
-      />
-    </fake-head>
-    <fake-head>
-      <link
-        href="/favicon.ico"
-        rel="icon"
-      />
-    </fake-head>
-    <fake-head>
-      <script
-        type="application/ld+json"
-      >
-        {"@context":"https://schema.org","@type":"Organization","name":"NEXT_PUBLIC_SEO_APP_NAME","url":"NEXT_PUBLIC_SEO_APP_URL","sameAs":["NEXT_PUBLIC_SEO_APP_FACEBOOK","NEXT_PUBLIC_SEO_APP_TWITTER"],"logo":"NEXT_PUBLIC_SEO_APP_URLNEXT_PUBLIC_SEO_APP_LOGO"}
-      </script>
-    </fake-head>
     <div
       class="c0 c1"
     >
@@ -4716,7 +4652,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 class="c9 c46 c127"
               >
                 <div
-                  class="c128 c1"
+                  class="c128 c46"
                 >
                   <div
                     class="c9 c129"

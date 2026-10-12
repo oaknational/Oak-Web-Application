@@ -5,68 +5,6 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
   <div
     data-overlay-container="true"
   >
-    <fake-head>
-      <title>
-        Oak's impact | NEXT_PUBLIC_SEO_APP_NAME
-      </title>
-      <meta
-        content="index,follow"
-        name="robots"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_DESCRIPTION"
-        name="description"
-      />
-      <meta
-        content="summary_large_image"
-        name="twitter:card"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE"
-        name="twitter:site"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE"
-        name="twitter:creator"
-      />
-      <meta
-        content="Oak's impact | NEXT_PUBLIC_SEO_APP_NAME"
-        property="og:title"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_DESCRIPTION"
-        property="og:description"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_URL/"
-        property="og:url"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2026"
-        property="og:image"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_NAME"
-        property="og:site_name"
-      />
-      <link
-        href="NEXT_PUBLIC_SEO_APP_URL"
-        rel="canonical"
-      />
-    </fake-head>
-    <fake-head>
-      <link
-        href="/favicon.ico"
-        rel="icon"
-      />
-    </fake-head>
-    <fake-head>
-      <script
-        type="application/ld+json"
-      >
-        {"@context":"https://schema.org","@type":"Organization","name":"NEXT_PUBLIC_SEO_APP_NAME","url":"NEXT_PUBLIC_SEO_APP_URL","sameAs":["NEXT_PUBLIC_SEO_APP_FACEBOOK","NEXT_PUBLIC_SEO_APP_TWITTER"],"logo":"NEXT_PUBLIC_SEO_APP_URLNEXT_PUBLIC_SEO_APP_LOGO"}
-      </script>
-    </fake-head>
     <div
       class="sc-bdvwhi sc-gsDMPd idbbhg cvDmZS"
     >
@@ -677,7 +615,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                             class="sc-bdvwhi kAFHfV yellow-shadow"
                           />
                           <button
-                            aria-controls=":r0:"
+                            aria-controls="_r_0_"
                             aria-expanded="false"
                             class="sc-eCIkAO sc-jrQAon bTvgVX fWKlKk internal-button"
                           >
@@ -724,7 +662,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                             class="sc-bdvwhi kAFHfV yellow-shadow"
                           />
                           <button
-                            aria-controls=":r0:"
+                            aria-controls="_r_0_"
                             aria-expanded="false"
                             class="sc-eCIkAO sc-jrQAon bTvgVX fWKlKk internal-button"
                           >
@@ -758,7 +696,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                     <div
                       class="sc-bdvwhi sc-gsDMPd fAkWzj fHSnPP"
                       data-testid="oak-video-transcript-container"
-                      id=":r0:"
+                      id="_r_0_"
                     >
                       <div
                         class="sc-bdvwhi sc-gsDMPd gbxNuO edEJAr"
@@ -1279,7 +1217,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                 class="sc-bdvwhi sc-gsDMPd sc-8dbb083c-0 hPWTKU Bakex jvNycD"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd sc-d650a570-0 WhkHR cvDmZS"
+                  class="sc-bdvwhi sc-gsDMPd sc-d650a570-0 dfhYVh Bakex"
                 >
                   <div
                     class="sc-bdvwhi sc-jObTYW hPWTKU jmGxKU"

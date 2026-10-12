@@ -62,7 +62,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
                   checked=""
                   class="sc-AjlSJ jqijis"
                   data-testid="all-years-radio"
-                  id=":r0:"
+                  id="_r_0_"
                   name="yearreact-use-id-test-result"
                   type="radio"
                   value="0"
@@ -74,7 +74,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             </span>
             <label
               class="sc-jJoSXA sc-hiCkpJ sc-gWWZvT khdcrp hFXBsz hkjJYD"
-              for=":r0:"
+              for="_r_0_"
               pointer-events="none"
             >
               All
@@ -92,7 +92,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
                 <input
                   class="sc-AjlSJ jqijis"
                   data-testid="year-radio"
-                  id=":r1:"
+                  id="_r_1_"
                   name="yearreact-use-id-test-result"
                   type="radio"
                   value="1"
@@ -104,7 +104,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             </span>
             <label
               class="sc-jJoSXA sc-hiCkpJ sc-gWWZvT khdcrp hFXBsz hkjJYD"
-              for=":r1:"
+              for="_r_1_"
               pointer-events="none"
             >
               Year 1
@@ -122,7 +122,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
                 <input
                   class="sc-AjlSJ jqijis"
                   data-testid="year-radio"
-                  id=":r2:"
+                  id="_r_2_"
                   name="yearreact-use-id-test-result"
                   type="radio"
                   value="2"
@@ -134,7 +134,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             </span>
             <label
               class="sc-jJoSXA sc-hiCkpJ sc-gWWZvT khdcrp hFXBsz hkjJYD"
-              for=":r2:"
+              for="_r_2_"
               pointer-events="none"
             >
               Year 2

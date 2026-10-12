@@ -1,12 +1,496 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`core layout renders correctly 1`] = `
-<React.Fragment>
-  <SimulateErrorControls
-    errorBoundaryLevel="core"
-  />
-  <styled.div>
-    children
-  </styled.div>
-</React.Fragment>
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {
+    "children": [
+      {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "errorBoundaryLevel": "core",
+        },
+        "type": [Function],
+      },
+      {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "children": "children",
+        },
+        "type": {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": [],
+          "componentStyle": et {
+            "baseHash": -1869633490,
+            "baseStyle": undefined,
+            "componentId": "sc-bdvwhi",
+            "rules": [
+              "
+  ",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              " 
+  ",
+              [Function],
+              " 
+  ",
+              [Function],
+              " 
+  ",
+              [Function],
+              " 
+  ",
+              [Function],
+              " 
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+",
+              "
+  ",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+",
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              ";
+",
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  font-family:
+    --var(google-font), Lexend, sans-serif; //  FIXME: this should be a css variable ?
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+  ",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+",
+              "
+  ",
+              [Function],
+              "
+",
+              "
+",
+            ],
+          },
+          "foldedComponentIds": "",
+          "render": [Function],
+          "shouldForwardProp": undefined,
+          "styledComponentId": "sc-bdvwhi",
+          "target": "div",
+          "warnTooManyClasses": [Function],
+        },
+      },
+    ],
+  },
+  "type": Symbol(react.fragment),
+}
 `;

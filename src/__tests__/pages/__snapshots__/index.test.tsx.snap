@@ -6,68 +6,6 @@ exports[`Teachers Page Page component renders 1`] = `
     <div
       data-overlay-container="true"
     >
-      <fake-head>
-        <title>
-          Free, time-saving teacher resources | Oak National Academy
-        </title>
-        <meta
-          content="index,follow"
-          name="robots"
-        />
-        <meta
-          content="Explore our free, time-saving teacher resources from Oak National Academy. Browse and download worksheets, quizzes and slides from KS1 to KS4. "
-          name="description"
-        />
-        <meta
-          content="summary_large_image"
-          name="twitter:card"
-        />
-        <meta
-          content="NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE"
-          name="twitter:site"
-        />
-        <meta
-          content="NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE"
-          name="twitter:creator"
-        />
-        <meta
-          content="Free, time-saving teacher resources | Oak National Academy"
-          property="og:title"
-        />
-        <meta
-          content="Explore our free, time-saving teacher resources from Oak National Academy. Browse and download worksheets, quizzes and slides from KS1 to KS4. "
-          property="og:description"
-        />
-        <meta
-          content="NEXT_PUBLIC_SEO_APP_URL/"
-          property="og:url"
-        />
-        <meta
-          content="NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2026"
-          property="og:image"
-        />
-        <meta
-          content="NEXT_PUBLIC_SEO_APP_NAME"
-          property="og:site_name"
-        />
-        <link
-          href="NEXT_PUBLIC_SEO_APP_URL"
-          rel="canonical"
-        />
-      </fake-head>
-      <fake-head>
-        <link
-          href="/favicon.ico"
-          rel="icon"
-        />
-      </fake-head>
-      <fake-head>
-        <script
-          type="application/ld+json"
-        >
-          {"@context":"https://schema.org","@type":"Organization","name":"NEXT_PUBLIC_SEO_APP_NAME","url":"NEXT_PUBLIC_SEO_APP_URL","sameAs":["NEXT_PUBLIC_SEO_APP_FACEBOOK","NEXT_PUBLIC_SEO_APP_TWITTER"],"logo":"NEXT_PUBLIC_SEO_APP_URLNEXT_PUBLIC_SEO_APP_LOGO"}
-        </script>
-      </fake-head>
       <div
         class="sc-bdvwhi sc-gsDMPd idbbhg cvDmZS"
       >
@@ -785,11 +723,11 @@ exports[`Teachers Page Page component renders 1`] = `
                             style="width: 50%;"
                           >
                             <div
-                              class="sc-bdvwhi sc-bXTeWK sc-653cbb4a-1 eRfXEK jlFrQG eEfsLG"
+                              class="sc-bdvwhi sc-bXTeWK sc-857e07b4-1 eRfXEK jlFrQG eeWUZq"
                             >
                               <button
                                 aria-expanded="false"
-                                class="sc-653cbb4a-3 bUrHsI"
+                                class="sc-857e07b4-3 gNwDoQ"
                                 data-testid="subject-picker-button"
                                 title="Subject"
                               >
@@ -854,14 +792,14 @@ exports[`Teachers Page Page component renders 1`] = `
                               class="sc-bdvwhi sc-gsDMPd itnzEL bYYpbR"
                             >
                               <div
-                                class="sc-bdvwhi sc-bXTeWK sc-653cbb4a-1 NRtFW jlFrQG eEfsLG"
+                                class="sc-bdvwhi sc-bXTeWK sc-857e07b4-1 NRtFW jlFrQG eeWUZq"
                               >
                                 <div
                                   class="sc-bdvwhi sc-gsDMPd hPWTKU jXqXXp"
                                 >
                                   <button
                                     aria-expanded="false"
-                                    class="sc-653cbb4a-3 bUrHsI"
+                                    class="sc-857e07b4-3 gNwDoQ"
                                     data-testid="phase-picker-button"
                                     title="Phase"
                                   >
@@ -1104,11 +1042,11 @@ exports[`Teachers Page Page component renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-bdvwhi sc-bXTeWK sc-653cbb4a-1 eRfXEK jlFrQG eEfsLG"
+                            class="sc-bdvwhi sc-bXTeWK sc-857e07b4-1 eRfXEK jlFrQG eeWUZq"
                           >
                             <button
                               aria-expanded="false"
-                              class="sc-653cbb4a-3 bUrHsI"
+                              class="sc-857e07b4-3 gNwDoQ"
                               data-testid="subject-picker-button"
                               title="Subject"
                             >
@@ -1173,14 +1111,14 @@ exports[`Teachers Page Page component renders 1`] = `
                             class="sc-bdvwhi sc-gsDMPd itnzEL bYYpbR"
                           >
                             <div
-                              class="sc-bdvwhi sc-bXTeWK sc-653cbb4a-1 NRtFW jlFrQG eEfsLG"
+                              class="sc-bdvwhi sc-bXTeWK sc-857e07b4-1 NRtFW jlFrQG eeWUZq"
                             >
                               <div
                                 class="sc-bdvwhi sc-gsDMPd hPWTKU jXqXXp"
                               >
                                 <button
                                   aria-expanded="false"
-                                  class="sc-653cbb4a-3 bUrHsI"
+                                  class="sc-857e07b4-3 gNwDoQ"
                                   data-testid="phase-picker-button"
                                   title="Phase"
                                 >
@@ -1401,11 +1339,11 @@ exports[`Teachers Page Page component renders 1`] = `
                               style="width: 50%;"
                             >
                               <div
-                                class="sc-bdvwhi sc-bXTeWK sc-653cbb4a-1 eRfXEK jlFrQG eEfsLG"
+                                class="sc-bdvwhi sc-bXTeWK sc-857e07b4-1 eRfXEK jlFrQG eeWUZq"
                               >
                                 <button
                                   aria-expanded="false"
-                                  class="sc-653cbb4a-3 bUrHsI"
+                                  class="sc-857e07b4-3 gNwDoQ"
                                   data-testid="subject-picker-button"
                                   title="Subject"
                                 >
@@ -1470,14 +1408,14 @@ exports[`Teachers Page Page component renders 1`] = `
                                 class="sc-bdvwhi sc-gsDMPd itnzEL bYYpbR"
                               >
                                 <div
-                                  class="sc-bdvwhi sc-bXTeWK sc-653cbb4a-1 NRtFW jlFrQG eEfsLG"
+                                  class="sc-bdvwhi sc-bXTeWK sc-857e07b4-1 NRtFW jlFrQG eeWUZq"
                                 >
                                   <div
                                     class="sc-bdvwhi sc-gsDMPd hPWTKU jXqXXp"
                                   >
                                     <button
                                       aria-expanded="false"
-                                      class="sc-653cbb4a-3 bUrHsI"
+                                      class="sc-857e07b4-3 gNwDoQ"
                                       data-testid="phase-picker-button"
                                       title="Phase"
                                     >
@@ -2104,7 +2042,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 class="sc-bdvwhi sc-gsDMPd euwVTq Bakex"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd sc-d650a570-0 WhkHR cvDmZS"
+                  class="sc-bdvwhi sc-gsDMPd sc-d650a570-0 dfhYVh Bakex"
                 >
                   <div
                     class="sc-bdvwhi sc-jObTYW hPWTKU jmGxKU"
