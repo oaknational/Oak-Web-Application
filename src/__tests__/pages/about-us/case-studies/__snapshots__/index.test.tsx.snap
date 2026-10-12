@@ -638,7 +638,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                   class="sc-bdvwhi sc-a5a405e2-0 hFUkks csQayX"
                 >
                   <span
-                    class="sc-bdvwhi jQonzV"
+                    class="sc-bdvwhi ihgFby"
                   >
                     <img
                       alt=""
@@ -829,6 +829,651 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                     </a>
                   </div>
                 </article>
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-bdvwhi lobJCn"
+            style="margin-top: -72px;"
+          >
+            <div
+              class="sc-bdvwhi gmTPNF"
+            >
+              <span
+                class="sc-bdvwhi ejFVPF"
+                style="pointer-events: none;"
+              >
+                <img
+                  alt=""
+                  class="sc-jRQBiJ eMsccW"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763546694/ui-graphics/confetti-background_xbvfrc.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+              <div
+                class="sc-bdvwhi iatEdD"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd smuqg iEQOJT"
+                >
+                  <h2
+                    class="sc-bkkgYE inLCwb"
+                    id="react-use-id-test-result"
+                  >
+                    Explore more about Oak
+                  </h2>
+                  <nav
+                    aria-labelledby="react-use-id-test-result"
+                  >
+                    <ul
+                      class="sc-e82709a-1 dHuEVS"
+                    >
+                      <li
+                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
+                      >
+                        <a
+                          href="/about-us/who-we-are"
+                          style="outline: none;"
+                          target="_self"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd sc-e82709a-0 hcfMxe ezaUKt lkvaED"
+                            data-testid="who-we-are-explore-item"
+                          >
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU Bakex"
+                            >
+                              <span
+                                class="sc-bdvwhi gaaoSG"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1711468346/logo-mark.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd eKftaO kkGnDS"
+                            >
+                              About Oak
+                            </div>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU Bakex"
+                            >
+                              <span
+                                class="sc-bdvwhi cqHYAi"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
+                      >
+                        <a
+                          href="/about-us/oaks-curricula"
+                          style="outline: none;"
+                          target="_self"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd sc-e82709a-0 hcfMxe ezaUKt lkvaED"
+                            data-testid="who-we-are-explore-item"
+                          >
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU Bakex"
+                            >
+                              <span
+                                class="sc-bdvwhi gaaoSG"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd eKftaO kkGnDS"
+                            >
+                              Oak's curricula
+                            </div>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU Bakex"
+                            >
+                              <span
+                                class="sc-bdvwhi cqHYAi"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
+                      >
+                        <a
+                          href="/about-us/oaks-impact"
+                          style="outline: none;"
+                          target="_self"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd sc-e82709a-0 hcfMxe ezaUKt lkvaED"
+                            data-testid="who-we-are-explore-item"
+                          >
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU Bakex"
+                            >
+                              <span
+                                class="sc-bdvwhi gaaoSG"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393164/icons/data-illustration_ukwdxg.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd eKftaO kkGnDS"
+                            >
+                              Oak's impact
+                            </div>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU Bakex"
+                            >
+                              <span
+                                class="sc-bdvwhi cqHYAi"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
+                      >
+                        <a
+                          href="/about-us/meet-the-team"
+                          style="outline: none;"
+                          target="_self"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd sc-e82709a-0 hcfMxe ezaUKt lkvaED"
+                            data-testid="who-we-are-explore-item"
+                          >
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU Bakex"
+                            >
+                              <span
+                                class="sc-bdvwhi gaaoSG"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393167/icons/snackbreak_illustration_fguw7l.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd eKftaO kkGnDS"
+                            >
+                              Meet the team
+                            </div>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU Bakex"
+                            >
+                              <span
+                                class="sc-bdvwhi cqHYAi"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
+                      >
+                        <a
+                          href="/about-us/get-involved"
+                          style="outline: none;"
+                          target="_self"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd sc-e82709a-0 hcfMxe ezaUKt lkvaED"
+                            data-testid="who-we-are-explore-item"
+                          >
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU Bakex"
+                            >
+                              <span
+                                class="sc-bdvwhi gaaoSG"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393163/icons/chatting-illustration_l52zaf.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd eKftaO kkGnDS"
+                            >
+                              Get involved
+                            </div>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU Bakex"
+                            >
+                              <span
+                                class="sc-bdvwhi cqHYAi"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
+                      >
+                        <a
+                          href="/about-us/case-studies"
+                          style="outline: none;"
+                          target="_self"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd sc-e82709a-0 hcfMxe ezaUKt lkvaED"
+                            data-testid="who-we-are-explore-item"
+                          >
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU Bakex"
+                            >
+                              <span
+                                class="sc-bdvwhi gaaoSG"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953657/icons/hz4l3iq6i68kazvkvorq.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd eKftaO kkGnDS"
+                            >
+                              Case studies
+                            </div>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU Bakex"
+                            >
+                              <span
+                                class="sc-bdvwhi cqHYAi"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-bdvwhi dBtxsI"
+            id="newsletter-signup"
+          >
+            <div
+              class="sc-bdvwhi iatEdD"
+            >
+              <div
+                class="sc-bdvwhi sc-gsDMPd sc-b2eee06e-0 hPWTKU Bakex kFbKoF"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd sc-d650a570-0 WhkHR cvDmZS"
+                >
+                  <div
+                    class="sc-bdvwhi sc-jObTYW hPWTKU jmGxKU"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex erCqWa"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd kfKAWJ MPeNZ"
+                      >
+                        <span
+                          class="sc-bdvwhi PMdzg"
+                        >
+                          <img
+                            alt=""
+                            class="sc-jRQBiJ eMsccW"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953622/icons/jifivg9xxm7sb0fjdilm.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                        <h2
+                          class="sc-bkkgYE Xaaow"
+                        >
+                          Don’t miss out
+                        </h2>
+                      </div>
+                      <p
+                        class="sc-hGPAwl cwzhGz"
+                        color="text-primary"
+                        id="react-use-id-test-result-newsletter-form-description"
+                      >
+                        Join over 
+                        200k
+                         teachers and get free resources and other helpful content by email. Unsubscribe at any time. Read our
+                         
+                        <a
+                          class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
+                          href="/legal/privacy-policy"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            privacy policy
+                          </span>
+                        </a>
+                        .
+                      </p>
+                    </div>
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd sc-dPiIMO kariTn Bakex erCqWa"
+                    >
+                      <form
+                        aria-describedby="react-use-id-test-result-newsletter-form-description"
+                        class="sc-bdvwhi sc-gsDMPd jtiAen cIPGhJ"
+                        novalidate=""
+                      >
+                        <div
+                          class="sc-bdvwhi bpjVbf"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd jtiAen cIPGhJ"
+                          >
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd jWxyY cIPGhJ"
+                            >
+                              <label
+                                class="sc-bdvwhi eGhSPA"
+                                data-testid="jaunty-label"
+                                for="react-use-id-test-result-newsletter-signup-name"
+                                id="Name-label"
+                                style="top: -1.25rem;"
+                              >
+                                Name (required)
+                              </label>
+                              <div
+                                class="sc-bdvwhi sc-gsDMPd sc-clIAoS ibUPwR gEAnZR gqKaCP"
+                              >
+                                <div
+                                  class="sc-bdvwhi sc-gsDMPd hPWTKU kkGnDS"
+                                >
+                                  <input
+                                    autocomplete="name"
+                                    class="sc-efQVjI bktjgD"
+                                    data-testid="text-input"
+                                    id="react-use-id-test-result-newsletter-signup-name"
+                                    name="name"
+                                    placeholder="Anna Smith"
+                                    type="text"
+                                    value=""
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="sc-bdvwhi bpjVbf"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd jtiAen cIPGhJ"
+                          >
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd jWxyY cIPGhJ"
+                            >
+                              <label
+                                class="sc-bdvwhi eGhSPA"
+                                data-testid="jaunty-label"
+                                for="react-use-id-test-result-newsletter-signup-email"
+                                id="Email-label"
+                                style="top: -1.25rem;"
+                              >
+                                Email (required)
+                              </label>
+                              <div
+                                class="sc-bdvwhi sc-gsDMPd sc-clIAoS ibUPwR gEAnZR gqKaCP"
+                              >
+                                <div
+                                  class="sc-bdvwhi sc-gsDMPd hPWTKU kkGnDS"
+                                >
+                                  <input
+                                    autocomplete="email"
+                                    class="sc-efQVjI bktjgD"
+                                    data-testid="text-input"
+                                    id="react-use-id-test-result-newsletter-signup-email"
+                                    name="email"
+                                    placeholder="anna@amail.com"
+                                    type="text"
+                                    value=""
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="sc-bdvwhi kHQhzQ"
+                        >
+                          <label
+                            class="sc-bdvwhi jMFyqC"
+                            for="react-use-id-test-result-newsletter-signup-userrole"
+                            id="react-use-id-test-result-role-label"
+                            style="top: -1.25rem;"
+                          >
+                            Role
+                          </label>
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd sc-hiwNGW wiZya enStEb drQjAO"
+                          >
+                            <select
+                              class="sc-jeqZuJ gupyXh"
+                              id="react-use-id-test-result-newsletter-signup-userrole"
+                              name="userRole"
+                            >
+                              <option
+                                class="sc-lcerzc KbDSy"
+                                disabled=""
+                                value=""
+                              >
+                                What describes you best?
+                              </option>
+                              <option
+                                class="sc-lcerzc fXAwTA"
+                                value="Teacher"
+                              >
+                                Teacher
+                              </option>
+                              <option
+                                class="sc-lcerzc fXAwTA"
+                                value="Parent"
+                              >
+                                Parent
+                              </option>
+                              <option
+                                class="sc-lcerzc fXAwTA"
+                                value="Student"
+                              >
+                                Pupil
+                              </option>
+                              <option
+                                class="sc-lcerzc fXAwTA"
+                                value="Other"
+                              >
+                                Other
+                              </option>
+                            </select>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd sc-eJwVsk cLyMbm hmfoti hnEKkz"
+                            >
+                              <span
+                                class="sc-bdvwhi cqHYAi"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954058/icons/pay71thmhhylj7z28sj1.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd sc-nVikz cLyMbm hmfoti kNYApR"
+                            >
+                              <span
+                                class="sc-bdvwhi cqHYAi"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="sc-bdvwhi sc-iqsgXZ fFlNLS hjfwPa"
+                        >
+                          <div
+                            class="sc-bdvwhi kAFHfV grey-shadow"
+                          />
+                          <div
+                            class="sc-bdvwhi kAFHfV yellow-shadow"
+                          />
+                          <button
+                            class="sc-eCIkAO sc-jrQAon cINIls fODyRh internal-button"
+                            type="submit"
+                          >
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                            >
+                              <span
+                                class="sc-dkPwfY kXQhTZ"
+                              >
+                                Sign up to the newsletter
+                              </span>
+                            </div>
+                          </button>
+                        </div>
+                        <p
+                          aria-live="assertive"
+                          class="sc-hGPAwl hClGMw"
+                          role="alert"
+                        />
+                        <p
+                          aria-live="polite"
+                          class="sc-hGPAwl jWVoxl"
+                        />
+                      </form>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
