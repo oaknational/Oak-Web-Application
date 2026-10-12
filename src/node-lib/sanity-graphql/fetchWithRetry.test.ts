@@ -58,7 +58,7 @@ describe("fetchWithRetry", () => {
     },
   );
 
-  it("waits the base delay plus up to 50% jitter before retrying", async () => {
+  it("waits the fixed delay before retrying", async () => {
     fetchSpy
       .mockResolvedValueOnce(response(503))
       .mockResolvedValueOnce(response(200));
@@ -68,7 +68,7 @@ describe("fetchWithRetry", () => {
     await jest.advanceTimersByTimeAsync(199);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
 
-    await jest.advanceTimersByTimeAsync(101);
+    await jest.advanceTimersByTimeAsync(1);
     expect(fetchSpy).toHaveBeenCalledTimes(2);
     await expect(promise).resolves.toHaveProperty("status", 200);
   });

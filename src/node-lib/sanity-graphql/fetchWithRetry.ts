@@ -1,5 +1,3 @@
-import { randomInt } from "node:crypto";
-
 /**
  * Sanity's edge occasionally returns transient 429/502/503/504 responses, and
  * pooled keep-alive sockets can be closed by Sanity between our (infrequent,
@@ -38,9 +36,7 @@ const fetchAttempt = async (
     }
   }
 
-  // Up to 50% jitter so concurrent retries don't all land at once
-  const delay = RETRY_DELAYS_MS[attempt]!;
-  await sleep(delay + randomInt(Math.floor(delay / 2) + 1));
+  await sleep(RETRY_DELAYS_MS[attempt]!);
   return fetchAttempt(input, init, attempt + 1);
 };
 
