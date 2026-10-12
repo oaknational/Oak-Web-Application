@@ -261,7 +261,6 @@ export type UnitDownloadButtonProps = {
   geoRestricted: boolean;
   unitDownloadExistence: UnitDownloadExistence;
   size?: "small";
-  fileSize?: string;
   buttonLabel?: ReactNode;
   ariaLabel?: string;
   isStuck?: boolean;
