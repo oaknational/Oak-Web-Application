@@ -10,8 +10,6 @@ export const metadata: Metadata = {
     "Connect the AI assistant you already use to Oak’s free curriculum content, designed for schools in the UK.",
 };
 
-export const dynamic = "force-static";
-
 const InnerMcpPage = async () => <McpView />;
 
 const McpPage = withPageErrorHandling(InnerMcpPage, "mcp-page::app");

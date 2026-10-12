@@ -1,10 +1,8 @@
 /** @jest-environment node */
 import { draftMode } from "next/headers";
+import dynamic from "next/dynamic";
 
-import CurriculumChangeGuidancePage, {
-  dynamic,
-  generateMetadata,
-} from "./page";
+import CurriculumChangeGuidancePage, { generateMetadata } from "./page";
 
 import { getNationalCurriculumInsightsRouteData } from "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/helpers/getRouteData";
 

@@ -1,7 +1,6 @@
 import { groupBy } from "lodash";
 import { UnitsListingView } from "@oaknational/google-classroom-addon/ui";
 import { notFound } from "next/navigation";
-import React from "react";
 
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
