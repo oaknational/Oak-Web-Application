@@ -10,8 +10,6 @@ import { UnitDownloadExistence } from "@/components/TeacherComponents/types/down
 
 const reportError = errorReporter("unit-download-existence");
 
-const RETRY_DELAYS_MS = [250, 500];
-
 export const getCachedUnitData = cache(
   cacheData(
     async (programmeSlug: string, unitSlug: string) => {
@@ -24,21 +22,8 @@ export const getCachedUnitData = cache(
   ),
 );
 
-const fetchUnitDownloadFileExistence = (
-  unitFileId: string,
-  attempt = 0,
-): ReturnType<typeof getUnitDownloadFileExistence> =>
-  getUnitDownloadFileExistence(unitFileId).catch(async (error) => {
-    const delayMs = RETRY_DELAYS_MS[attempt];
-    if (delayMs === undefined) {
-      throw error;
-    }
-    await new Promise((resolve) => setTimeout(resolve, delayMs));
-    return fetchUnitDownloadFileExistence(unitFileId, attempt + 1);
-  });
-
 const getCachedUnitDownloadFileExistence = cacheData(
-  fetchUnitDownloadFileExistence,
+  getUnitDownloadFileExistence,
   ["teachers-unit-download-existence"],
 );
 
