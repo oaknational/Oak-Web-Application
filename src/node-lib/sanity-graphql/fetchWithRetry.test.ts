@@ -58,6 +58,21 @@ describe("fetchWithRetry", () => {
     },
   );
 
+  it("waits the base delay plus up to 50% jitter before retrying", async () => {
+    fetchSpy
+      .mockResolvedValueOnce(response(503))
+      .mockResolvedValueOnce(response(200));
+
+    const promise = fetchWithRetry("https://example.com/graphql");
+
+    await jest.advanceTimersByTimeAsync(199);
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+
+    await jest.advanceTimersByTimeAsync(101);
+    expect(fetchSpy).toHaveBeenCalledTimes(2);
+    await expect(promise).resolves.toHaveProperty("status", 200);
+  });
+
   it("retries when fetch fails with a network error", async () => {
     const socketError = Object.assign(new Error("other side closed"), {
       code: "UND_ERR_SOCKET",

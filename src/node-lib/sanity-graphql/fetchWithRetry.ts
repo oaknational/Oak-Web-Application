@@ -1,3 +1,5 @@
+import { randomInt } from "node:crypto";
+
 /**
  * Sanity's edge occasionally returns transient 5xx responses, and pooled
  * keep-alive sockets can be closed by Sanity between our (infrequent, cached)
@@ -15,24 +17,31 @@ const isNetworkError = (err: unknown) => err instanceof TypeError;
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export const fetchWithRetry: typeof fetch = async (input, init) => {
-  for (let attempt = 0; ; attempt++) {
-    const canRetry = attempt < RETRY_DELAYS_MS.length;
+const fetchAttempt = async (
+  input: Parameters<typeof fetch>[0],
+  init: Parameters<typeof fetch>[1],
+  attempt: number,
+): Promise<Response> => {
+  const canRetry = attempt < RETRY_DELAYS_MS.length;
 
-    try {
-      const response = await fetch(input, init);
-      if (!canRetry || !RETRYABLE_STATUSES.has(response.status)) {
-        return response;
-      }
-      // Free the connection before retrying
-      await response.body?.cancel();
-    } catch (err) {
-      if (!canRetry || !isNetworkError(err)) {
-        throw err;
-      }
+  try {
+    const response = await fetch(input, init);
+    if (!canRetry || !RETRYABLE_STATUSES.has(response.status)) {
+      return response;
     }
-
-    const delay = RETRY_DELAYS_MS[attempt]!;
-    await sleep(delay + Math.random() * delay * 0.5);
+    // Free the connection before retrying
+    await response.body?.cancel();
+  } catch (err) {
+    if (!canRetry || !isNetworkError(err)) {
+      throw err;
+    }
   }
+
+  // Up to 50% jitter so concurrent retries don't all land at once
+  const delay = RETRY_DELAYS_MS[attempt]!;
+  await sleep(delay + randomInt(Math.floor(delay / 2) + 1));
+  return fetchAttempt(input, init, attempt + 1);
 };
+
+export const fetchWithRetry: typeof fetch = (input, init) =>
+  fetchAttempt(input, init, 0);
