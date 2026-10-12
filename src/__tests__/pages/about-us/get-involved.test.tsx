@@ -16,6 +16,8 @@ import {
 } from "@/__tests__/__helpers__/cms";
 import CMSClient from "@/node-lib/cms";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
+
 jest.mock("../../../node-lib/cms");
 jest.mock("@mux/mux-player-react/lazy", () => {
   return forwardRef((props, ref) => {
@@ -23,6 +25,10 @@ jest.mock("@mux/mux-player-react/lazy", () => {
     return <div data-testid="mux-player-mock" />;
   });
 });
+
+jest.mock("@/utils/featureFlagChecks/static", () => ({
+  isFeatureFlagEnabledStatic: jest.fn(() => false),
+}));
 
 const testGetInvolvedPageData: GetInvolvedPageProps["pageData"] = {
   ...testAboutPageBaseData,
@@ -56,11 +62,29 @@ describe("pages/about/get-involved.tsx", () => {
   });
 
   it("renders", () => {
-    const { container } = renderWithProviders()(
+    const { container, getByRole } = renderWithProviders()(
       <GetInvolved pageData={testGetInvolvedPageData} topNav={topNavFixture} />,
     );
 
+    expect(
+      getByRole("link", { name: "Join the research panel external" }),
+    ).toHaveAttribute(
+      "href",
+      "https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd",
+    );
     expect(container).toMatchSnapshot();
+  });
+
+  it("join panel link changes when feature flag is enabled", () => {
+    (isFeatureFlagEnabledStatic as jest.Mock).mockImplementation(() => true);
+
+    const { getByRole } = renderWithProviders()(
+      <GetInvolved pageData={testGetInvolvedPageData} topNav={topNavFixture} />,
+    );
+
+    expect(
+      getByRole("link", { name: "Join the research panel" }),
+    ).toHaveAttribute("href", "/about-us/get-involved/join-research-panel");
   });
 
   describe("getStaticProps", () => {

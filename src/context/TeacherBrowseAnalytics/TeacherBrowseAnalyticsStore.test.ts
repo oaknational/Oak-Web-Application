@@ -19,7 +19,6 @@ import {
   KeyStageTitleValueType,
   LessonReleaseCohortValueType,
   MediaClipsButtonName,
-  OnwardIntent,
   TeachingMaterialType,
   VideoLocation,
 } from "@/browser-lib/avo/Avo";
@@ -43,7 +42,6 @@ const createAvoMock = () => {
     lessonResourcesDownloaded: jest.fn(),
     lessonShareStarted: jest.fn(),
     mediaClipsPlaylistPlayed: jest.fn(),
-    onwardContentSelected: jest.fn(),
     programmeAccessed: jest.fn(),
     teachingMaterialsSelected: jest.fn(),
     unitAccessed: jest.fn(),
@@ -582,7 +580,6 @@ describe("TeacherBrowseAnalyticsStore", () => {
     ],
     ["lessonShareStarted", undefined],
     ["mediaClipsPlaylistPlayed", mediaClipsPlaylistPayload],
-    ["onwardContentSelected", { onwardIntent: OnwardIntent.VIEW_LESSON }],
     [
       "teachingMaterialsSelected",
       { teachingMaterialType: TeachingMaterialType.EXIT_QUIZ },

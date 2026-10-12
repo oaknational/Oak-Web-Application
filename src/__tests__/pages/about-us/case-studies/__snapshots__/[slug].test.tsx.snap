@@ -4979,7 +4979,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                             class="sc-bdvwhi hKHXmg"
                           >
                             <a
-                              class="sc-dcgwbM ktiIPk sc-ehIKbO wsLXE"
+                              class="sc-dcgwbM gyScBt sc-ehIKbO wsLXE"
                               href="#test-anchor-slug-2"
                             >
                               <div
@@ -7444,7 +7444,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                             class="sc-bdvwhi hKHXmg"
                           >
                             <a
-                              class="sc-dcgwbM ktiIPk sc-ehIKbO wsLXE"
+                              class="sc-dcgwbM gyScBt sc-ehIKbO wsLXE"
                               href="#test-anchor-slug-2"
                             >
                               <div
@@ -10074,7 +10074,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                             class="sc-bdvwhi hKHXmg"
                           >
                             <a
-                              class="sc-dcgwbM ktiIPk sc-ehIKbO wsLXE"
+                              class="sc-dcgwbM gyScBt sc-ehIKbO wsLXE"
                               href="#test-anchor-slug-2"
                             >
                               <div

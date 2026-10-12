@@ -1,3 +1,77 @@
+# [1.1242.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1241.0...v1.1242.0) (2026-10-09)
+
+
+### Bug Fixes
+
+* multiselect story with waitfor imported twice ([0fc3cd3](https://github.com/oaknational/Oak-Web-Application/commit/0fc3cd32222ecfc6b8ced3618e2ea34c13501a53))
+* storybook focus test multiselect ([4253c61](https://github.com/oaknational/Oak-Web-Application/commit/4253c6182559a08f08ed19c7893935bd69047379))
+
+
+### Features
+
+* **analytics:** deprecate onwardContentSelected ([6784143](https://github.com/oaknational/Oak-Web-Application/commit/6784143f4d3971ec9cd4725493611dcdd0c3785a))
+* **analytics:** send journey properties with the accessed events ([394e7ed](https://github.com/oaknational/Oak-Web-Application/commit/394e7edbebb0f20b1bd36ce2b0aab4e370fba460))
+* **analytics:** track lessonAccessed in place of onwardContentSelected ([fb08579](https://github.com/oaknational/Oak-Web-Application/commit/fb08579714639f984fd5afc8aa41334cc3ec4efb))
+* pull avo main again after merge conflict ([7725f0e](https://github.com/oaknational/Oak-Web-Application/commit/7725f0ecac3eaf04024ff397f5835ab9d25cc6cb))
+* pull latest avo main changes ([c92e94b](https://github.com/oaknational/Oak-Web-Application/commit/c92e94b8feb39e41ea8511d33a7e9de6166f0e3e))
+* pull main branch ([ba6f204](https://github.com/oaknational/Oak-Web-Application/commit/ba6f2048595f41f3e38b02bdcd6d993197b868b3))
+* re-pull avo with main changes ([fcec4bc](https://github.com/oaknational/Oak-Web-Application/commit/fcec4bcc6c659be84ecf8f4756b84728c25efa19))
+
+# [1.1241.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1240.0...v1.1241.0) (2026-10-09)
+
+
+### Features
+
+* join research panel query and schemas ([f83c15c](https://github.com/oaknational/Oak-Web-Application/commit/f83c15c36e4dce8310734dea6aefa2767682324a))
+* preview mode and unique keys ([95729a2](https://github.com/oaknational/Oak-Web-Application/commit/95729a2ca3fef78b5bda1670d9b321f7df8ea9be))
+* render simple data on research panel skeleton ([511ae2f](https://github.com/oaknational/Oak-Web-Application/commit/511ae2ffa241232812e3b547c642dea1cb23f1a7))
+
+# [1.1240.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1239.0...v1.1240.0) (2026-10-09)
+
+
+### Bug Fixes
+
+* added missing tags to case studies on oaks-impact page ([c2b38c9](https://github.com/oaknational/Oak-Web-Application/commit/c2b38c967682529d0d467bb9c6fc55454c0a8f22))
+
+
+### Features
+
+* change oaks-impact to only show most recent blog posts ([ee6cc05](https://github.com/oaknational/Oak-Web-Application/commit/ee6cc05607e44d6b41fe2fe2d26c763c32932f50))
+
+# [1.1239.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1238.1...v1.1239.0) (2026-10-09)
+
+
+### Bug Fixes
+
+* move to Avo branch "featadopt-2315-add-explore-more-about-oak-to-case-studies" for testing ([5c1fdfd](https://github.com/oaknational/Oak-Web-Application/commit/5c1fdfdbccd4cdd0dae239ae6b7f93db20c53e5c))
+
+
+### Features
+
+* added "Case studies" to explore more section ([333ebd1](https://github.com/oaknational/Oak-Web-Application/commit/333ebd1b7e0b92b6ea87f032a4f8f306c44d9bbb))
+* pull avo main ([c1869e6](https://github.com/oaknational/Oak-Web-Application/commit/c1869e6d5db30b9f635270acd6e9083dbf1607de))
+
+## [1.1238.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1238.0...v1.1238.1) (2026-10-08)
+
+
+### Bug Fixes
+
+* title in /about-us/get-involved/join-research-panel ([aa74f41](https://github.com/oaknational/Oak-Web-Application/commit/aa74f41a148986923d72edb0cbd8d8dc4a227f20))
+
+# [1.1238.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1237.1...v1.1238.0) (2026-10-08)
+
+
+### Features
+
+* changed link in "Join the research panel" when feature flag enabled ([a67563c](https://github.com/oaknational/Oak-Web-Application/commit/a67563ce9d00d8f1ff8ee39109dbe1e3b698f960))
+
+## [1.1237.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1237.0...v1.1237.1) (2026-10-08)
+
+
+### Bug Fixes
+
+* case study nav hover colour ([61b5682](https://github.com/oaknational/Oak-Web-Application/commit/61b5682c7a6dd9caec00caad5a1c1efcec17cfa5))
+
 # [1.1237.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1236.0...v1.1237.0) (2026-10-08)
 
 
