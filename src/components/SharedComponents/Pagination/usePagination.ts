@@ -11,7 +11,7 @@ export type PaginationProps = {
   totalPages: number;
   prevPageUrlObject?: { pathname: string; query?: Record<string, string> };
   nextPageUrlObject?: { pathname: string; query?: Record<string, string> };
-  firstItemRef?: RefObject<HTMLAnchorElement> | null;
+  firstItemRef?: RefObject<HTMLAnchorElement | null> | null;
   paginationTitle?: string;
   prevHref: string;
   nextHref: string;

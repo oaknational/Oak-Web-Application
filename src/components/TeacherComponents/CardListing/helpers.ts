@@ -47,6 +47,6 @@ export const getCardListingLinkProps = ({
     return { "data-disabled": true, as: "div" as const };
   } else {
     // otherwise use a link element
-    return { href, onClick: onClickLink, variant: "secondary" };
+    return { href, onClick: onClickLink, variant: "secondary" as const };
   }
 };
