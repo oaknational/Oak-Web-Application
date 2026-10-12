@@ -16,7 +16,7 @@ jest.mock("next/server", () => ({
 
 describe("getMvRefreshTime", () => {
   it("should query the api", async () => {
-    await getMvRefreshTime();
+    await getMvRefreshTime({ withCache: false });
     expect(curriculumApi2023.default.refreshedMVTime).toHaveBeenCalled();
   });
 
@@ -24,7 +24,7 @@ describe("getMvRefreshTime", () => {
     (
       curriculumApi2023.default.refreshedMVTime as jest.Mock
     ).mockResolvedValueOnce([]);
-    await getMvRefreshTime();
+    await getMvRefreshTime({ withCache: false });
     expect(connection).toHaveBeenCalled();
     expect(mockErrorReporter).toHaveBeenCalledWith(
       "Could not find MV refresh time for curriculum downloads cache",
@@ -42,7 +42,7 @@ describe("getMvRefreshTime", () => {
         },
       ],
     });
-    const mvTime = await getMvRefreshTime();
+    const mvTime = await getMvRefreshTime({ withCache: false });
     expect(mvTime).toEqual(1720396803016);
   });
 
@@ -61,7 +61,7 @@ describe("getMvRefreshTime", () => {
         },
       ],
     });
-    const mvTime = await getMvRefreshTime();
+    const mvTime = await getMvRefreshTime({ withCache: false });
     expect(mvTime).toEqual(1720310404016);
   });
 });
