@@ -1,12 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getAuth } from "@clerk/nextjs/server";
 
-import { getAuthenticatedEducatorApi } from "@/node-lib/educator-api";
 import errorReporter from "@/common-lib/error-reporter";
-import {
-  getUserListContentResponse,
-  UserlistContentApiResponse,
-} from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
+import { getUserListContent } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent";
 import OakError from "@/errors/OakError";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -22,68 +18,8 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
     return res.status(401).json({});
   }
 
-  const educatorApi = await getAuthenticatedEducatorApi(getToken);
-
   try {
-    const result = await educatorApi.getUserListContent({
-      userId,
-    });
-    const parsedUnits = getUserListContentResponse.parse(result);
-
-    const myLibraryData = parsedUnits.content_lists.reduce((acc, unit) => {
-      const contentList = unit.content;
-      const browseData = contentList?.browse_mv[0];
-      if (contentList && browseData) {
-        const programmeSlug = contentList.programme_slug;
-        const lessons = browseData.lessons.map((lesson) => ({
-          slug: lesson.slug,
-          title: lesson.title,
-          state: lesson._state,
-          order: lesson.order,
-        }));
-
-        // Subject categories are not included in the programme slug but we want to keep them distinct
-        const subjectCategory = browseData.subject_categories?.[0];
-        const useSubjectCategory =
-          subjectCategory && subjectCategory !== browseData.subject;
-
-        const uniqueProgrammeIdentifier = `${programmeSlug}${useSubjectCategory ? "-" + subjectCategory : ""}`;
-
-        if (!acc[uniqueProgrammeIdentifier]) {
-          acc[uniqueProgrammeIdentifier] = {
-            programmeSlug,
-            subject: browseData.subject,
-            subjectSlug: browseData.subject_slug,
-            subjectCategory: useSubjectCategory ? subjectCategory : null,
-            subjectParent: browseData.subject_parent,
-            keystage: browseData.keystage,
-            keystageSlug: browseData.keystage_slug,
-            phaseSlug: browseData.phase_slug,
-            pathway: browseData.pathway,
-            pathwaySlug: browseData.pathway_slug,
-            tier: browseData.tier,
-            examboard: browseData.examboard,
-            examboardSlug: browseData.examboard_slug,
-            units: [],
-          };
-        }
-        acc[uniqueProgrammeIdentifier].units.push({
-          unitSlug: contentList.unit_slug,
-          unitTitle: browseData.unit_title,
-          optionalityTitle: browseData.optionality_title || null,
-          savedAt: unit.created_at,
-          lessons,
-          unitOrder: browseData.unit_order,
-          yearOrder: browseData.year_order,
-          year: browseData.year,
-          yearSlug: browseData.year_slug,
-          tier: browseData.tier,
-          examboard: browseData.examboard,
-          pathway: browseData.pathway,
-        });
-      }
-      return acc;
-    }, {} as UserlistContentApiResponse);
+    const myLibraryData = await getUserListContent(getToken, userId);
 
     return res.status(200).json(myLibraryData);
   } catch (err) {
