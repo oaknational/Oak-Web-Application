@@ -1,3 +1,17 @@
+# [1.1244.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1243.0...v1.1244.0) (2026-10-12)
+
+
+### Bug Fixes
+
+* sonarcloud errors ([790c902](https://github.com/oaknational/Oak-Web-Application/commit/790c9028ca488ef9c9c0993443585ad3222bea3f))
+
+
+### Features
+
+* fetch my library data server-side ([31e2d5c](https://github.com/oaknational/Oak-Web-Application/commit/31e2d5c0dda54f332b98857d0fc27a51aeef7969))
+* re-fetch data when stale ([86f089f](https://github.com/oaknational/Oak-Web-Application/commit/86f089fcfc7ccdb73bf5c5cc7ae2bac4c48f78cd))
+* run auth checks server-side ([80923dd](https://github.com/oaknational/Oak-Web-Application/commit/80923dd8efa676b800a8db75d0998b3fa4c3049e))
+
 # [1.1243.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1242.0...v1.1243.0) (2026-10-12)
 
 
