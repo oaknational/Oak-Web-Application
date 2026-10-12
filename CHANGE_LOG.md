@@ -1,3 +1,13 @@
+# [1.1243.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1242.0...v1.1243.0) (2026-10-12)
+
+
+### Features
+
+* add toast on download error ([6c13ac2](https://github.com/oaknational/Oak-Web-Application/commit/6c13ac23ef4985b901427abfc0018404b97eb6f1))
+* back to static on unit and download success pages ([b6c9058](https://github.com/oaknational/Oak-Web-Application/commit/b6c905838bed8539d8f2a26de377ba665e313626))
+* prevent flashing on unit download button ([dfd429c](https://github.com/oaknational/Oak-Web-Application/commit/dfd429c8ae612626d7c300ba1e0eef374e6e5852))
+* refactor existence check props, improve error reporting ([1d42253](https://github.com/oaknational/Oak-Web-Application/commit/1d4225367b1cd8ada7d85e4853f7b88898e1f602))
+
 # [1.1242.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1241.0...v1.1242.0) (2026-10-09)
 
 
