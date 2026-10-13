@@ -165,8 +165,8 @@ const AboutUsCaseStudy: NextPage<AboutUsCaseStudyLibraryPageProps> = ({
                         "d MMMM y",
                       )}
                       onCopyLink={onCopyLink}
-                      summary={caseStudy.summaryRaw} // TODO: does this need a fallback?
-                      tag={caseStudy.tag} // TODO: does this need a fallback?
+                      summary={caseStudy.summaryRaw}
+                      tag={caseStudy.tag}
                     />
                   </OakGridArea>
                 </OakGrid>
