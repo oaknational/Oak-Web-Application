@@ -32,7 +32,7 @@ import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutter
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { CaseStudyHeader } from "@/components/GenericPagesComponents/CaseStudyHeader";
 import { CaseStudyNav } from "@/components/GenericPagesComponents/CaseStudyNav";
-import { OaksImpactCaseStudyContentLayout } from "@/components/GenericPagesComponents/OaksImpactCaseStudyContentLayout";
+import { CaseStudyContentLayout } from "@/components/GenericPagesComponents/CaseStudyContentLayout";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import PostPortableText from "@/components/GenericPagesComponents/PostPortableText/PostPortableText";
@@ -182,7 +182,7 @@ const AboutUsCaseStudy: NextPage<AboutUsCaseStudyLibraryPageProps> = ({
             </NewGutterMaxWidth>
           </OakBox>
           <NewGutterMaxWidth>
-            <OaksImpactCaseStudyContentLayout
+            <CaseStudyContentLayout
               menu={
                 isCaseStudiesFeatEnabled && menuLinks.length >= 2 ? (
                   <OakBox
@@ -297,8 +297,7 @@ const AboutUsCaseStudy: NextPage<AboutUsCaseStudyLibraryPageProps> = ({
                       </OakBox>
                     )}
                 </>
-              )}
-            </OaksImpactCaseStudyContentLayout>
+            </CaseStudyContentLayout>
           </NewGutterMaxWidth>
 
           <CaseStudiesSection
