@@ -1,19 +1,18 @@
 import { useUser } from "@clerk/nextjs";
 
-import { OnboardingFormValues } from "../OnboardingForm.schema";
-import { extractUrnAndSchool } from "../../helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
-
-import {
-  onboardingRoleOptions,
-  OnboardingRoleValue,
-} from "./onboardingRoleOptions";
+import { OnboardingTrackingProps } from "../TeacherBrowseAnalyticsStore";
 
 import {
   ComponentTypeValueType,
   UserAccountVerificationStatusValueType,
   UserRoleTypeValueType,
 } from "@/browser-lib/avo/Avo";
-import { OnboardingTrackingProps } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsStore";
+import { OnboardingFormValues } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
+import {
+  onboardingRoleOptions,
+  OnboardingRoleValue,
+} from "@/components/TeacherComponents/OnboardingForm/onboardingActions/onboardingRoleOptions";
+import { extractUrnAndSchool } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import { UserResource } from "clerk";
 
 /* Reported for manually entered schools or as a fallback when the URN cannot be extracted

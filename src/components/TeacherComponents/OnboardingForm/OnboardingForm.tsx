@@ -31,7 +31,6 @@ import {
   onboardUser,
   setOnboardingLocalStorage,
   submitOnboardingHubspotData,
-  collectOnboardingTrackingProps,
 } from "./onboardingActions";
 import {
   decodeOnboardingDataQueryParam,
@@ -42,6 +41,7 @@ import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { collectOnboardingTrackingProps } from "@/context/TeacherBrowseAnalytics/utils/collectOnboardingTrackingProps";
 import useUtmParams from "@/hooks/useUtmParams";
 import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
 import getHubspotUserToken from "@/browser-lib/hubspot/forms/getHubspotUserToken";
