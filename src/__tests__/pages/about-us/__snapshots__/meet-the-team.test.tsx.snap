@@ -390,6 +390,8 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 .c128 {
+  position: relative;
+  padding: 1.5rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   padding-top: 1.5rem;
@@ -4652,7 +4654,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 class="c9 c46 c127"
               >
                 <div
-                  class="c128 c46"
+                  class="c128 c1"
                 >
                   <div
                     class="c9 c129"

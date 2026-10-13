@@ -459,7 +459,7 @@ describe("TeacherNotesModal", () => {
         expect.objectContaining({
           progressSaved: true,
         }),
-        {},
+        undefined,
       );
     });
 

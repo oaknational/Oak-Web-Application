@@ -52,6 +52,10 @@ jest.mock("next/headers", () => ({
   })),
 }));
 
+jest.mock("next/server", () => ({
+  connection: jest.fn(),
+}));
+
 jest.mock("@/node-lib/cms", () => ({
   __esModule: true,
   default: {

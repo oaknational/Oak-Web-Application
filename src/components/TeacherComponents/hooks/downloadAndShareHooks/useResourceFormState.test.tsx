@@ -379,14 +379,6 @@ describe("useResourceFormState", () => {
           useResourceFormState(invalidProps as UseResourceFormStateProps),
         ),
       ).toThrow("Invalid resource type");
-      const consoleErrorCalls = (console.error as ReturnType<typeof jest.fn>)
-        .mock.calls;
-      expect(consoleErrorCalls[0]?.[0].message).toEqual(
-        "Uncaught [Error: Invalid resource type]",
-      );
-      expect(consoleErrorCalls[1]?.[0].message).toEqual(
-        "Uncaught [Error: Invalid resource type]",
-      );
     });
   });
 });

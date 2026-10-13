@@ -1,8 +1,10 @@
 /** @jest-environment node */
 import { draftMode } from "next/headers";
-import dynamic from "next/dynamic";
 
-import CurriculumChangeGuidancePage, { generateMetadata } from "./page";
+import CurriculumChangeGuidancePage, {
+  generateMetadata,
+  instant,
+} from "./page";
 
 import { getNationalCurriculumInsightsRouteData } from "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/helpers/getRouteData";
 
@@ -31,8 +33,8 @@ describe("curriculum change guidance route", () => {
     });
   });
 
-  it("renders at request time without a loading page", () => {
-    expect(dynamic).toBe("force-dynamic");
+  it("allows request-time blocking for draft-mode content", () => {
+    expect(instant).toBe(false);
   });
 
   it("uses the independent guidance route and canonical URL", async () => {
