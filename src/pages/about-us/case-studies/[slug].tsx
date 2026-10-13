@@ -293,7 +293,6 @@ const AboutUsCaseStudy: NextPage<AboutUsCaseStudyLibraryPageProps> = ({
           <CaseStudiesSection
             title="Explore more case studies"
             caseStudies={otherCaseStudies}
-            showTags={true} //TODO: can we remove this now?
           />
         </OakBox>
       </Layout>

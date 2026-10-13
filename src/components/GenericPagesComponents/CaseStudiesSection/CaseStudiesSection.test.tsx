@@ -10,7 +10,7 @@ const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CaseStudiesSection", () => {
   it("renders correctly when 3 case studies are provided", () => {
-    const { baseElement, getByRole, getAllByRole } = render(
+    const { baseElement, getByRole, getAllByRole, getAllByText } = render(
       <CaseStudiesSection
         title={"Case studies"}
         caseStudies={otherCaseStudies}
@@ -20,6 +20,7 @@ describe("CaseStudiesSection", () => {
     expect(baseElement).toMatchSnapshot();
     expect(getByRole("heading", { name: "Case studies" })).toBeInTheDocument();
     expect(getAllByRole("listitem")).toHaveLength(3);
+    expect(getAllByText("Primary")).toHaveLength(2);
   });
 
   it("renders correctly when 2 case studies are provided", () => {
@@ -46,36 +47,6 @@ describe("CaseStudiesSection", () => {
     );
 
     expect(getAllByRole("listitem")).toHaveLength(3);
-  });
-
-  it("renders 'Watch the video' link when the case study contains a video and showTags is false", () => {
-    const { container, getAllByText } = render(
-      <CaseStudiesSection
-        title={"Case studies"}
-        caseStudies={otherCaseStudies}
-        showTags={false}
-      />,
-    );
-
-    const caseStudiesWithVideo = otherCaseStudies.filter((cs) => cs.video);
-    expect(getAllByText("Watch the video")).toHaveLength(
-      caseStudiesWithVideo.length,
-    );
-    expect(container).toHaveTextContent("Watch the video");
-  });
-
-  it("renders the card tags when showTags is true", () => {
-    const { container, getAllByText } = render(
-      <CaseStudiesSection
-        title={"Case studies"}
-        caseStudies={otherCaseStudies}
-        showTags={true}
-      />,
-    );
-
-    const caseStudiesWithTag = otherCaseStudies.filter((cs) => cs.tag);
-    expect(getAllByText("Primary")).toHaveLength(caseStudiesWithTag.length);
-    expect(container).toHaveTextContent("Primary");
   });
 
   it("renders view all link", () => {

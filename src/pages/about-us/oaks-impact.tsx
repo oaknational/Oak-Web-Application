@@ -48,11 +48,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
             videoDescription={content.header.videoDescription}
           />
           <OaksImpactStats {...content.statsSection} />
-          <CaseStudiesSection
-            title="Case studies"
-            caseStudies={caseStudies}
-            showTags={true} // TODO: do we want to remove this now or wait till we remove this section from sanity?
-          />
+          <CaseStudiesSection title="Case studies" caseStudies={caseStudies} />
           <OaksImpactSchoolQuotesSection {...content.schoolQuotes} />
           <TrackScrolledTo eventKey="support_you" />
           <SupportYou
