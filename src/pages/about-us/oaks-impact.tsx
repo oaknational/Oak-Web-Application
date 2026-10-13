@@ -20,7 +20,6 @@ import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
 import { OaksImpactHeader } from "@/components/GenericPagesComponents/OaksImpactHeader";
 import useTrackExitIntended from "@/hooks/useTrackExitIntended";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
@@ -30,8 +29,6 @@ export type OaksImpactPageProps = {
 const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
   const { content, caseStudies } = pageData;
   useTrackExitIntended();
-  const isCaseStudiesFeatEnabled =
-    isFeatureFlagEnabledStatic("case-studies-v2");
 
   return (
     <TeacherBrowseAnalyticsStoreProvider
@@ -52,10 +49,9 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
           />
           <OaksImpactStats {...content.statsSection} />
           <CaseStudiesSection
-            showViewAllLink={isCaseStudiesFeatEnabled}
             title="Case studies"
             caseStudies={caseStudies}
-            showTags={true}
+            showTags={true} // TODO: do we want to remove this now or wait till we remove this section from sanity?
           />
           <OaksImpactSchoolQuotesSection {...content.schoolQuotes} />
           <TrackScrolledTo eventKey="support_you" />
