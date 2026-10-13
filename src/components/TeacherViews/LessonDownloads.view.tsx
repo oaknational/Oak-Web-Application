@@ -76,16 +76,13 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
   const { setCurrentToastProps } = useOakNotificationsContext();
   const router = useRouter();
   const {
-    lessonTitle,
     lessonSlug,
     downloads,
     additionalFiles,
     expired,
-    isLegacy,
     legacyCopyrightContent,
     updatedAt,
     actions,
-    lessonReleaseDate,
     loginRequired,
     geoRestricted,
   } = lesson;
@@ -270,10 +267,6 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
         </OakBox>
         {showGeoBlocked && (
           <LessonDownloadRegionBlocked
-            lessonName={lessonTitle}
-            lessonSlug={lessonSlug}
-            lessonReleaseDate={lessonReleaseDate ?? "unreleased"}
-            isLegacy={isLegacy}
             href={resolveOakHref({
               page: "lesson-overview",
               lessonSlug,
@@ -345,10 +338,6 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
             lessonDownloads={downloadsFilteredByCopyright}
             additionalFiles={additionalFiles}
             showGeoBlocked={showGeoBlocked}
-            lessonSlug={lessonSlug}
-            lessonTitle={lessonTitle}
-            lessonReleaseDate={lessonReleaseDate}
-            isLegacy={isLegacy}
           />
         )}
       </OakMaxWidth>
