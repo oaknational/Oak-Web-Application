@@ -235,6 +235,53 @@ describe("hubspotSubmitForm", () => {
         },
       );
     });
+
+    it("retries a transient fallback failure without resubmitting the primary form", async () => {
+      const primaryResponse = await invalidEmailFailure.response;
+      const fallbackResponse = await fallbackFormSuccess.response;
+      const fetchMock = jest
+        .fn()
+        .mockResolvedValueOnce(primaryResponse)
+        .mockRejectedValueOnce(new Error("temporary fallback network error"))
+        .mockResolvedValueOnce(fallbackResponse);
+      global.fetch = fetchMock as unknown as typeof fetch;
+
+      await expect(
+        hubspotSubmitForm({ hubspotFormId, payload }),
+      ).rejects.toThrow(
+        "Thank you, that's been received, but please check as your email doesn't look quite right.",
+      );
+
+      expect(fetchMock).toHaveBeenCalledTimes(3);
+      expect(fetchMock.mock.calls.map(([url]) => url)).toEqual([
+        primaryFormEndpoint,
+        fallbackFormEndpoint,
+        fallbackFormEndpoint,
+      ]);
+      expect(reportError).not.toHaveBeenCalled();
+    });
+
+    it("does not retry the primary form after reporting an exhausted fallback", async () => {
+      const primaryResponse = await invalidEmailFailure.response;
+      const fetchMock = jest
+        .fn()
+        .mockResolvedValueOnce(primaryResponse)
+        .mockRejectedValueOnce(new Error("temporary fallback network error"))
+        .mockRejectedValueOnce(new Error("fallback network unavailable"));
+      global.fetch = fetchMock as unknown as typeof fetch;
+
+      await expect(
+        hubspotSubmitForm({ hubspotFormId, payload }),
+      ).rejects.toThrow("Failed to connect.");
+
+      expect(fetchMock).toHaveBeenCalledTimes(3);
+      expect(fetchMock.mock.calls.map(([url]) => url)).toEqual([
+        primaryFormEndpoint,
+        fallbackFormEndpoint,
+        fallbackFormEndpoint,
+      ]);
+      expect(reportError).toHaveBeenCalledTimes(1);
+    });
   });
 
   describe("primary form fails with other hubspot error (not INVALID_EMAIL)", () => {

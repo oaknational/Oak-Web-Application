@@ -284,8 +284,8 @@ const submitWithRetry = async (
           });
 
     if (
-      !props.isFallbackAttempt &&
       attempt < retryCount &&
+      !oakError.hasBeenReported &&
       isRetryableError(oakError)
     ) {
       await new Promise((resolve) => setTimeout(resolve, retryDelayMs));
