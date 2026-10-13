@@ -231,6 +231,7 @@ describe("hubspotSubmitForm", () => {
             isFallbackAttempt: true,
           },
           responseBody: hubspotErrorData,
+          responseStatusCode: 400,
         },
       );
     });
@@ -286,8 +287,10 @@ describe("hubspotSubmitForm", () => {
           hubspotError: hubspotErrorData,
           responseBody: hubspotErrorData,
           isInvalidEmail: false,
+          responseStatusCode: 400,
         },
       );
+      expect(fakeFetch.asMock).toHaveBeenCalledTimes(1);
     });
     it("should throw with the correct error message", async () => {
       global.fetch = getFakeFetch([inputTooLargeFailure]).asFetch;
@@ -355,8 +358,25 @@ describe("hubspotSubmitForm", () => {
   });
 
   describe("Network error", () => {
+    test("retries once and does not report a recovered network error", async () => {
+      const successResponse = await primaryFormSuccess.response;
+      const fetchMock = jest
+        .fn()
+        .mockRejectedValueOnce(new Error("temporary network error"))
+        .mockResolvedValueOnce(successResponse);
+      global.fetch = fetchMock as unknown as typeof fetch;
+
+      await expect(hubspotSubmitForm({ hubspotFormId, payload })).resolves.toBe(
+        "Thanks that worked the first time",
+      );
+
+      expect(fetchMock).toHaveBeenCalledTimes(2);
+      expect(reportError).not.toHaveBeenCalled();
+    });
+
     test("user is displayed correct message", async () => {
-      global.fetch = getFakeFetchWithNetworkError().asFetch;
+      const fakeFetch = getFakeFetchWithNetworkError();
+      global.fetch = fakeFetch.asFetch;
       let errorMessage = "";
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });
@@ -366,6 +386,8 @@ describe("hubspotSubmitForm", () => {
         errorMessage = error.message;
       }
       expect(errorMessage).toBe("Failed to connect.");
+      expect(fakeFetch.asMock).toHaveBeenCalledTimes(2);
+      expect(reportError).toHaveBeenCalledTimes(1);
     });
   });
 });

@@ -94,7 +94,7 @@ type HubspotSubmitFormProps = {
  * 6. It might then be that the user sees they have in fact entered their email wrong, and inputs the correct one
  * 7. Or it might be that they think "But that is my email address"
  */
-const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
+const submitHubspotFormAttempt = async (props: HubspotSubmitFormProps) => {
   const { hubspotFormId, payload, isFallbackAttempt = false } = props;
   const errorMeta: ErrorMeta = { props };
 
@@ -136,6 +136,7 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
     }
 
     if (!res.ok) {
+      errorMeta.responseStatusCode = res.status;
       const responseBody = await res.json();
       errorMeta.responseBody = responseBody;
 
@@ -242,11 +243,69 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
             meta: errorMeta,
           });
 
-    if (oakError.config.shouldNotify) {
-      reportError(oakError, oakError.meta);
-    }
     throw oakError;
   }
+};
+
+const retryCount = 2;
+const retryDelayMs = 250;
+
+const isRetryableError = (error: OakError) => {
+  if (error.code === "misc/network-error") return true;
+
+  const hubspotErrors = (
+    error.meta?.hubspotError as
+      | { errors?: { errorType?: string }[] }
+      | undefined
+  )?.errors;
+  if (hubspotErrors?.some(({ errorType }) => errorType === "ERROR 429")) {
+    return true;
+  }
+
+  const responseStatusCode = error.meta?.responseStatusCode;
+  return (
+    responseStatusCode === 429 ||
+    (typeof responseStatusCode === "number" &&
+      responseStatusCode >= 500 &&
+      responseStatusCode < 600)
+  );
+};
+
+const submitWithRetry = async (
+  props: HubspotSubmitFormProps,
+  attempt = 1,
+): Promise<string | undefined> => {
+  try {
+    return await submitHubspotFormAttempt(props);
+  } catch (error) {
+    const oakError =
+      error instanceof OakError
+        ? error
+        : new OakError({
+            code: "hubspot/unknown",
+            originalError: error,
+          });
+
+    if (
+      !props.isFallbackAttempt &&
+      attempt < retryCount &&
+      isRetryableError(oakError)
+    ) {
+      await new Promise((resolve) => setTimeout(resolve, retryDelayMs));
+      return submitWithRetry(props, attempt + 1);
+    }
+
+    if (oakError.config.shouldNotify && !oakError.hasBeenReported) {
+      void reportError(oakError, oakError.meta);
+      oakError.hasBeenReported = true;
+    }
+
+    throw oakError;
+  }
+};
+
+const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
+  return submitWithRetry(props);
 };
 
 export default hubspotSubmitForm;
