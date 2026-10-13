@@ -20,14 +20,12 @@ export type CaseStudiesSectionProps = {
   title: string;
   caseStudies: CaseStudyCard[];
   showTags?: boolean;
-  showViewAllLink?: boolean;
 };
 
 export const CaseStudiesSection = ({
   title,
   caseStudies,
   showTags = false,
-  showViewAllLink,
 }: CaseStudiesSectionProps) => {
   return (
     <OakBox $background={"bg-decorative2-subdued"}>
@@ -52,21 +50,19 @@ export const CaseStudiesSection = ({
                     {title}
                   </OakHeading>
                 </OakFlex>
-                {showViewAllLink && (
-                  <OakBox $textWrap="nowrap">
-                    <OakLink
-                      variant="secondary"
-                      iconName="chevron-right"
-                      isTrailingIcon={true}
-                      href={resolveOakHref({
-                        page: "about-case-study-library",
-                      })}
-                      $font={"heading-7"}
-                    >
-                      View all case studies
-                    </OakLink>
-                  </OakBox>
-                )}
+                <OakBox $textWrap="nowrap">
+                  <OakLink
+                    variant="secondary"
+                    iconName="chevron-right"
+                    isTrailingIcon={true}
+                    href={resolveOakHref({
+                      page: "about-case-study-library",
+                    })}
+                    $font={"heading-7"}
+                  >
+                    View all case studies
+                  </OakLink>
+                </OakBox>
               </OakFlex>
             </OakGridArea>
           </OakGrid>
