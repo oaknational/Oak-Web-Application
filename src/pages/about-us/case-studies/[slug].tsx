@@ -1,4 +1,9 @@
-import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
+import {
+  NextPage,
+  GetStaticPathsResult,
+  GetStaticProps,
+  GetStaticPropsResult,
+} from "next";
 import {
   OakBreadcrumbs,
   OakBox,
@@ -300,15 +305,31 @@ type URLParams = {
   slug: string;
 };
 
-export const getServerSideProps: GetServerSideProps<
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
+
+  const caseStudies = await CMSClient.caseStudyLibraryPage();
+  const paths = caseStudies.map((caseStudy) => ({
+    params: { slug: caseStudy.slug.current },
+  }));
+
+  const config: GetStaticPathsResult<URLParams> = {
+    fallback: "blocking",
+    paths,
+  };
+  return config;
+};
+
+export const getStaticProps: GetStaticProps<
   AboutUsCaseStudyLibraryPageProps,
   URLParams
 > = async (context) => {
-  const isCaseStudiesFeatEnabled = await isFeatureFlagEnabledServer(
-    context.req.cookies,
-    "case-studies-v2",
-  );
-
+  return getPageProps({
+    page: "about-case-study::getStaticProps",
+    context,
+    getProps: async () => {
       const slug = context.params?.slug;
       if (!slug) {
         return { notFound: true };
@@ -321,26 +342,27 @@ export const getServerSideProps: GetServerSideProps<
       });
 
       if (!caseStudy) {
-    return {
-      notFound: true,
-    };
+        return { notFound: true };
       }
 
+      const topNav = await curriculumApi2023.topNav();
       const otherCaseStudies = await CMSClient.caseStudyLibraryPage({
         slug,
+        previewMode: isPreviewMode,
       });
 
-  const results: GetServerSidePropsResult<AboutUsCaseStudyLibraryPageProps> = {
+      const results: GetStaticPropsResult<AboutUsCaseStudyLibraryPageProps> = {
         props: {
           pageData: {
             caseStudy,
             otherCaseStudies,
           },
           topNav,
-      isCaseStudiesFeatEnabled,
         },
       };
       return results;
+    },
+  });
 };
 
 export default AboutUsCaseStudy;
