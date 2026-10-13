@@ -13,7 +13,10 @@ const state: TeacherBrowseAnalyticsStore = {
   avo: { ...noopTrackingFns, NavigatedFrom },
   journeyId: "mockJourneyId",
   accessLevel: "unit",
+  posthogDistinctId: "mockPosthogDistinctId",
   track: {
+    contentBlockNotificationDisplayed: () =>
+      console.log("contentBlockNotificationDisplayed fired"),
     createTeachingMaterialsInitiated: () =>
       console.log("createTeachingMaterialsInitiated fired"),
     lessonMediaClipsStarted: () => console.log("lessonMediaClipsStarted fired"),
@@ -54,6 +57,9 @@ const state: TeacherBrowseAnalyticsStore = {
     searchResultExpanded: () => console.log("searchResultExpanded fired"),
     searchResultOpened: () => console.log("searchResultOpened fired"),
     searchFilterModified: () => console.log("searchFilterModified fired"),
+    userOnboardingCompleted: () => console.log("userOnboardingCompleted fired"),
+    userOnboardingProgressed: () =>
+      console.log("userOnboardingProgressed fired"),
   },
 };
 
