@@ -158,7 +158,6 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
     it("returns props data", async () => {
       const propsResult = await getStaticProps({
         params: { slug: "test-slug-1" },
-        revalidateReason: "build",
       });
 
       expect(propsResult).toMatchObject({
@@ -173,7 +172,6 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
       await getStaticProps({
         params: { slug: "test-slug-1" },
         preview: true,
-        revalidateReason: "build",
       });
 
       expect(mockCMSClient.caseStudyPage).toHaveBeenCalledWith({
@@ -187,7 +185,7 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
     });
 
     it("returns notFound when the slug is missing", async () => {
-      const propsResult = await getStaticProps({ revalidateReason: "build" });
+      const propsResult = await getStaticProps({});
 
       expect(propsResult).toMatchObject({
         notFound: true,
@@ -199,7 +197,6 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
 
       const propsResult = await getStaticProps({
         params: { slug: "test-slug-1" },
-        revalidateReason: "build",
       });
 
       expect(propsResult).toMatchObject({

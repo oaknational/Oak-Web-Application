@@ -121,7 +121,7 @@ export const getStaticProps: GetStaticProps<
 
       const topNav = await curriculumApi2023.topNav();
 
-      if (!caseStudyLibraryPage) {
+      if (!caseStudyLibraryPage?.length) {
         return {
           notFound: true,
         };
