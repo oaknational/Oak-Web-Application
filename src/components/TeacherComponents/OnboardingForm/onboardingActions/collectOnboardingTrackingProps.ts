@@ -11,10 +11,9 @@ import {
 import {
   ComponentTypeValueType,
   UserAccountVerificationStatusValueType,
-  UserOnboardingCompletedProperties,
-  UserOnboardingProgressedProperties,
   UserRoleTypeValueType,
 } from "@/browser-lib/avo/Avo";
+import { OnboardingTrackingProps } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsStore";
 import { UserResource } from "clerk";
 
 /* Reported for manually entered schools or as a fallback when the URN cannot be extracted
@@ -25,24 +24,17 @@ const DUMMY_URN = "000000";
  * Produces onboarding tracking properties from the user and onboarding form
  */
 export function collectOnboardingTrackingProps(
-  distinctUserId: string,
   user: NonNullable<ReturnType<typeof useUser>["user"]>,
   data: OnboardingFormValues,
   nativeEvent: object | undefined,
-): UserOnboardingCompletedProperties & UserOnboardingProgressedProperties {
+): OnboardingTrackingProps {
   const signUpDate = (user.createdAt ?? new Date())?.toISOString().slice(0, 10);
   const userDetailsLastModifiedDate = (user.updatedAt ?? new Date())
     .toISOString()
     .slice(0, 10);
 
   return {
-    platform: "owa",
-    product: "user account management",
-    engagementIntent: "explore",
     componentType: pickComponentType(nativeEvent),
-    eventVersion: "2.0.0",
-    analyticsUseCase: "Teacher",
-    userId_: distinctUserId,
     signUpDate,
     userRoleType: pickUserRole(data),
     teacherSchoolUrn: pickSchoolUrn(data),

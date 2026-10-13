@@ -41,6 +41,7 @@ import {
 import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import useUtmParams from "@/hooks/useUtmParams";
 import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
 import getHubspotUserToken from "@/browser-lib/hubspot/forms/getHubspotUserToken";
@@ -66,6 +67,8 @@ const OnboardingForm = ({
   const searchParams = useSearchParams();
   const utmParams = useUtmParams();
   const { posthogDistinctId } = useAnalytics();
+  const { userOnboardingCompleted, userOnboardingProgressed } =
+    useTeacherBrowseAnalytics((store) => store.track);
   const { user } = useUser();
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -73,7 +76,6 @@ const OnboardingForm = ({
   const [userSubscribedInHubspot, setUserSubscribedInHubspot] = useState<
     boolean | undefined
   >(undefined);
-  const { track } = useAnalytics();
   // Accumulate onboarding data from all steps
   const collectedOnboardingData = decodeOnboardingDataQueryParam(searchParams);
 
@@ -110,10 +112,8 @@ const OnboardingForm = ({
 
     if ("worksInSchool" in data) {
       user &&
-        posthogDistinctId &&
-        track.userOnboardingProgressed(
+        userOnboardingProgressed(
           collectOnboardingTrackingProps(
-            posthogDistinctId,
             user,
             latestOnboardingData,
             event?.nativeEvent,
@@ -128,10 +128,8 @@ const OnboardingForm = ({
       );
     } else if (isSchoolSelectData(data) && showNewsletterSignUp) {
       user &&
-        posthogDistinctId &&
-        track.userOnboardingProgressed(
+        userOnboardingProgressed(
           collectOnboardingTrackingProps(
-            posthogDistinctId,
             user,
             latestOnboardingData,
             event?.nativeEvent,
@@ -149,10 +147,8 @@ const OnboardingForm = ({
       try {
         await onboardUser({ isTeacher });
         user &&
-          posthogDistinctId &&
-          track.userOnboardingCompleted(
+          userOnboardingCompleted(
             collectOnboardingTrackingProps(
-              posthogDistinctId,
               user,
               latestOnboardingData,
               event?.nativeEvent,
