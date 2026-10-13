@@ -78,25 +78,11 @@ describe("CaseStudiesSection", () => {
     expect(container).toHaveTextContent("Primary");
   });
 
-  it("doesn't render view all link when not enabled", () => {
-    const { queryByRole } = render(
-      <CaseStudiesSection
-        title={"Case studies"}
-        caseStudies={otherCaseStudies}
-      />,
-    );
-
-    expect(
-      queryByRole("link", { name: /View all case studies/i }),
-    ).not.toBeInTheDocument();
-  });
-
-  it("renders view all link when enabled", () => {
+  it("renders view all link", () => {
     const { getByRole } = render(
       <CaseStudiesSection
         title={"Case studies"}
         caseStudies={otherCaseStudies}
-        showViewAllLink={true}
       />,
     );
 
