@@ -5,8 +5,6 @@ import { createLessonAttemptPayloadSchema } from "@/node-lib/pupil-api/types";
 import { pupilDatastore } from "@/node-lib/pupil-api/pupilDataStore";
 import errorReporter from "@/common-lib/error-reporter";
 
-export const revalidate = 60;
-
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const attemptId = searchParams.get("attempt_id");

@@ -4,8 +4,6 @@ import errorReporter from "@/common-lib/error-reporter";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { buildTeachersSitemapEntries } from "@/pages-helpers/teacher/sitemap-pages/sitemapPagesHelper";
 
-export const revalidate = 7200;
-
 const reportError = errorReporter("teachers-sitemap::app");
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
