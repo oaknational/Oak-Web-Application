@@ -60,10 +60,6 @@ import getFormattedDetailsForTracking, {
 import { convertUnitSlugToTitle } from "@/app/(core)/teachers/search/helpers";
 import { DOWNLOAD_TYPE_LABELS } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 
-/**
- * Onboarding properties which can only be derived from the signed in user and
- * the form they are completing. Everything else is supplied by the store.
- */
 export type OnboardingTrackingProps = Omit<
   UserOnboardingCompletedProperties & UserOnboardingProgressedProperties,
   | "platform"

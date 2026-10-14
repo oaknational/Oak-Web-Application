@@ -18,8 +18,8 @@ interface LessonDownloadRegionBlockedProps {
 export function LessonDownloadRegionBlocked({
   href,
 }: Readonly<LessonDownloadRegionBlockedProps>) {
-  const contentBlockNotificationDisplayed = useTeacherBrowseAnalytics(
-    (store) => store.track.contentBlockNotificationDisplayed,
+  const { contentBlockNotificationDisplayed } = useTeacherBrowseAnalytics(
+    (store) => store.track,
   );
   useEffect(() => {
     contentBlockNotificationDisplayed({

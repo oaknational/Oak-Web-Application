@@ -144,8 +144,8 @@ const ComplexCopyrightRestrictionBanner = (
     geoRestricted: isGeorestricted ?? false,
   });
 
-  const contentBlockNotificationDisplayed = useTeacherBrowseAnalytics(
-    (store) => store.track.contentBlockNotificationDisplayed,
+  const { contentBlockNotificationDisplayed } = useTeacherBrowseAnalytics(
+    (store) => store.track,
   );
 
   const isUnit = (componentType && componentType === "lesson_listing") ?? false;
