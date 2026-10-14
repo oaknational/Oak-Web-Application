@@ -1,7 +1,3 @@
-/**
- * @see https://legacydocs.hubxspot.com/docs/methods/forms/submit_form
- */
-
 import { z } from "zod";
 
 import errorReporter from "../../../common-lib/error-reporter";
@@ -74,26 +70,7 @@ type HubspotSubmitFormProps = {
   payload: HubspotPayload;
   isFallbackAttempt?: boolean;
 };
-/**
- * @description
- * Function which, using hubspot cookie, sends data to a hubspot form
- * using the form id.
- *
- * Note:
- *
- * https://community.hubspot.com/t5/Lead-Capture-Tools/Failing-validation-in-hubspot-form-for-emails/td-p/18446
- *
- * Due to the above issue with hubspot's email validation, we implement a fallback form
- * for collecting "invalid" emails. The journey is something along these lines:
- *
- * 1. A user submits a form
- * 2. If we get a Hubspot error "INVALID_EMAIL", this can either be correct (a typo or a false email), or it can be incorrect (a perfectly valid email). We have no way of knowing which it is, so either way we:
- * 3. Show an error to the user saying "That email doesn't look right, please check and try again",
- * 4. And we send the email address to the fallback form in Hubspot.
- * 5. I think should not report the error to Bugsnag, as we're capturing/handling it a different way
- * 6. It might then be that the user sees they have in fact entered their email wrong, and inputs the correct one
- * 7. Or it might be that they think "But that is my email address"
- */
+
 const fetchHubspotFormResponse = async (
   url: string,
   payload: HubspotPayload,
@@ -156,6 +133,7 @@ const getFallbackPayload = (
   };
 };
 
+// A successful fallback still throws hubspot/invalid-email for the caller to handle.
 const submitInvalidEmailFallback = async (
   payload: HubspotPayload,
   errorMeta: ErrorMeta,
@@ -180,6 +158,7 @@ const submitInvalidEmailFallback = async (
   }
 };
 
+// INVALID_EMAIL includes HubSpot's DNS and blocklist checks, so it doesn't prove the address is malformed.
 const throwHubspotResponseError = async (
   response: Response,
   props: HubspotSubmitFormProps,
@@ -216,6 +195,7 @@ const throwHubspotResponseError = async (
   });
 };
 
+// Normalize unexpected failures so retry and reporting handle them consistently.
 const submitHubspotFormAttempt = async (props: HubspotSubmitFormProps) => {
   const { hubspotFormId, payload } = props;
   const errorMeta: ErrorMeta = { props };
