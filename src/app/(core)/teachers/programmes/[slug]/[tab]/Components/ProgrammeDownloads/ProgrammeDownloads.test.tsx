@@ -197,7 +197,7 @@ describe("Programme Downloads", () => {
   });
 
   describe("implementation guides", () => {
-    test("should show implementation guides when they are available (and enabled)", async () => {
+    test("should show implementation guides when they are available", async () => {
       const { findAllByRole } = renderComponent({
         curriculumDownloadsTabData: {
           ...defaultProps.curriculumDownloadsTabData,

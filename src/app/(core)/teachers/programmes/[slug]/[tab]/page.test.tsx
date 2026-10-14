@@ -38,10 +38,6 @@ jest.mock("next/navigation", () => {
   };
 });
 
-jest.mock("@/utils/featureFlagChecks/server", () => ({
-  isFeatureFlagEnabledServer: jest.fn(() => false),
-}));
-
 jest.mock("next/headers", () => ({
   draftMode: jest.fn().mockResolvedValue({
     isEnabled: true,
@@ -273,7 +269,7 @@ describe("Programme page tabs", () => {
     expect(CMSClient.curriculumOverviewPage).toHaveBeenCalled();
   });
 
-  it("shows info banner if feature flag is enabled", async () => {
+  it("shows implementation guides banner", async () => {
     jest.mocked(getSubjectPhaseOptions).mockResolvedValue({
       subjects: filterValidCurriculumPhaseOptions([
         {

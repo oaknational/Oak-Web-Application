@@ -41,9 +41,6 @@ const refreshedMVTimeMock = jest.fn<
     ],
   };
 });
-jest.mock("@/utils/featureFlagChecks/server", () => ({
-  isFeatureFlagEnabledServer: jest.fn(() => false),
-}));
 
 const mockSequenceData = {
   units: [
