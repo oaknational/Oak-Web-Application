@@ -1,3 +1,14 @@
+# [1.1245.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1244.2...v1.1245.0) (2026-10-14)
+
+
+### Features
+
+* add updated generated types ([e591e92](https://github.com/oaknational/Oak-Web-Application/commit/e591e92e6d92dc5e0fd02782583d27a02b20401a))
+* blog post portable text uses oak quote ([c7bccc8](https://github.com/oaknational/Oak-Web-Application/commit/c7bccc86360bedaf81c0bab048c62c15766d2d47))
+* case studies portable text renders oak quote with style overrides ([c75e7d6](https://github.com/oaknational/Oak-Web-Application/commit/c75e7d640cb764a6ffb70d19cb204eb936a2c784))
+* remove has left border override from portable text quotes ([eb27017](https://github.com/oaknational/Oak-Web-Application/commit/eb270172d7f97d9f28f7b185807902a21c8dbaf2))
+* use quote org where present ([53ffbfe](https://github.com/oaknational/Oak-Web-Application/commit/53ffbfe26e58e7367c410e199adf2c03866f7e28))
+
 ## [1.1244.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1244.1...v1.1244.2) (2026-10-14)
 
 ## [1.1244.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1244.0...v1.1244.1) (2026-10-12)
