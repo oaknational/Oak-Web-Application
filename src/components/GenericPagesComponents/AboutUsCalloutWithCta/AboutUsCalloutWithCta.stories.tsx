@@ -1,11 +1,11 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
 
-import { AboutCalloutWithCta as Component } from ".";
+import { AboutUsCalloutWithCta as Component } from ".";
 
 const meta: Meta<typeof Component> = {
   component: Component,
   tags: ["autodocs"],
-  title: "Components/GenericPagesComponents/AboutCalloutWithCta",
+  title: "Components/GenericPagesComponents/AboutUsCalloutWithCta",
   args: {
     link: {
       text: "Get in touch with an expert",

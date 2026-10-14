@@ -17,7 +17,7 @@ import { Image } from "@/common-lib/cms-types";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
-export type AboutCalloutWithCtaProps = {
+export type AboutUsCalloutWithCtaProps = {
   link: {
     text: string;
     href: string;
@@ -37,7 +37,7 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
   },
 };
 
-export function AboutCalloutWithCta({
+export function AboutUsCalloutWithCta({
   link,
   headingTag = "h2",
   title = "Discover how Oak can support you",
@@ -49,7 +49,7 @@ export function AboutCalloutWithCta({
     },
   },
   $imageDisplay = "flex",
-}: Readonly<AboutCalloutWithCtaProps>) {
+}: Readonly<AboutUsCalloutWithCtaProps>) {
   return (
     <NewGutterMaxWidth>
       <OakGrid $rg="spacing-24" $cg="spacing-16">

@@ -31,7 +31,7 @@ import CMSClient from "@/node-lib/cms";
 import getPageProps from "@/node-lib/getPageProps";
 import { OaksCurriculaPage } from "@/common-lib/cms-types/aboutPages";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
-import { AboutCalloutWithCta } from "@/components/GenericPagesComponents/AboutCalloutWithCta";
+import { AboutUsCalloutWithCta } from "@/components/GenericPagesComponents/AboutUsCalloutWithCta";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type OaksCurriculaPageProps = {
@@ -230,7 +230,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
             </NewGutterMaxWidth>
           )}
           <OakBox $pv={["spacing-56", "spacing-80", "spacing-80"]}>
-            <AboutCalloutWithCta
+            <AboutUsCalloutWithCta
               link={{
                 text: "Get in touch with an expert",
                 href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",

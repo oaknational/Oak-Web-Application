@@ -1,6 +1,6 @@
 import { OakBox, OakBreadcrumbs } from "@oaknational/oak-components";
 
-import { AboutCalloutWithCta } from "../AboutCalloutWithCta";
+import { AboutUsCalloutWithCta } from "../AboutUsCalloutWithCta";
 import { NewGutterMaxWidth } from "../NewGutterMaxWidth";
 
 import { JoinResearchPanelPageBlock } from "@/common-lib/cms-types";
@@ -38,7 +38,7 @@ export default function JoinResearchPanelPageHeader({
         $pt={"spacing-32"}
         $pb={["spacing-56", "spacing-72", "spacing-72"]}
       >
-        <AboutCalloutWithCta
+        <AboutUsCalloutWithCta
           headingTag="h1"
           title={title}
           text={bodyRaw}

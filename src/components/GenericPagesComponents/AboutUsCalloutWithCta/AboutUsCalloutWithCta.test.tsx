@@ -1,13 +1,13 @@
-import { AboutCalloutWithCta } from ".";
+import { AboutUsCalloutWithCta } from ".";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
-describe("AboutCalloutWithCta", () => {
-  it("renders correctly", () => {
+describe("AboutUsCalloutWithCta", () => {
+  it("renders default content correctly", () => {
     const { baseElement, getByRole } = render(
-      <AboutCalloutWithCta
+      <AboutUsCalloutWithCta
         link={{
           text: "Get in touch with an expert",
           href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
