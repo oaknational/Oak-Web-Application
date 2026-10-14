@@ -88,6 +88,11 @@ export const withRetries = <T>(
     .waitAndRetry(retryCount)
     .executeForPromise(() => action())
     .catch((error: unknown) => {
+      const status = getResponseStatus(error);
+      // A 403 is an expected response (e.g. WAF block), not an error state
+      if (status === 403) {
+        throw error;
+      }
       // Report once, after the final failed attempt, then let callers handle it
       void reportError(
         new OakError({
@@ -98,7 +103,7 @@ export const withRetries = <T>(
           meta: {
             queryName: operationName,
             variables,
-            status: getResponseStatus(error),
+            status,
           },
         }),
       );

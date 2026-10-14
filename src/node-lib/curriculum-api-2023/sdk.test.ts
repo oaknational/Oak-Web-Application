@@ -112,8 +112,17 @@ describe("curriculum-api-2023 sdk", () => {
       expect(mockErrorReporter).not.toHaveBeenCalled();
     });
 
-    it("does not retry a 403 and reports it once with the original error, variables and status", async () => {
+    it("does not retry or report a 403", async () => {
       const error = clientError(403);
+      const action = jest.fn().mockRejectedValue(error);
+
+      await expect(callWithRetries(action)).rejects.toBe(error);
+      expect(action).toHaveBeenCalledTimes(1);
+      expect(mockErrorReporter).not.toHaveBeenCalled();
+    });
+
+    it("does not retry a 400 and reports it once with the original error, variables and status", async () => {
+      const error = clientError(400);
       const action = jest.fn().mockRejectedValue(error);
 
       await expect(callWithRetries(action)).rejects.toBe(error);
@@ -127,7 +136,7 @@ describe("curriculum-api-2023 sdk", () => {
       expect(reported.meta).toEqual({
         queryName: "testQuery",
         variables,
-        status: 403,
+        status: 400,
       });
     });
 
@@ -248,15 +257,23 @@ describe("curriculum-api-2023 sdk", () => {
       expect(mockErrorReporter).not.toHaveBeenCalled();
     });
 
-    it("does not retry a WAF 403", async () => {
+    it("does not retry or report a WAF 403", async () => {
       fetchSpy.mockResolvedValue(jsonResponse(403, { message: "Forbidden" }));
+
+      await expect(callLessonShare()).rejects.toBeInstanceOf(ClientError);
+      expect(fetchSpy).toHaveBeenCalledTimes(1);
+      expect(mockErrorReporter).not.toHaveBeenCalled();
+    });
+
+    it("does not retry a 500 and reports it once", async () => {
+      fetchSpy.mockResolvedValue(jsonResponse(500, { message: "Error" }));
 
       await expect(callLessonShare()).rejects.toBeInstanceOf(ClientError);
       expect(fetchSpy).toHaveBeenCalledTimes(1);
       expect(mockErrorReporter).toHaveBeenCalledTimes(1);
       expect(mockErrorReporter.mock.calls[0][0].meta).toMatchObject({
         queryName: "lessonShare",
-        status: 403,
+        status: 500,
       });
     });
   });
