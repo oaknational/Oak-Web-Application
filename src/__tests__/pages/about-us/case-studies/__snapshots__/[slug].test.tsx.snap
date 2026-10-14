@@ -994,6 +994,1366 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
                                 data-nimg="fill"
                                 decoding="async"
                                 loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </span>
+                          </div>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/contact-us"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Contact us
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          aria-label="Help (opens in a new tab)"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="https://support.thenational.academy"
+                          target="_blank"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Help
+                          </span>
+                          <div
+                            class="sc-bdvwhi hUeWJD"
+                          >
+                            <span
+                              class="sc-bdvwhi cqHYAi sc-fKVoIy gNZMCw"
+                            >
+                              <img
+                                alt=""
+                                class="sc-jRQBiJ eMsccW"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </span>
+                          </div>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/webinars"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Webinars
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          aria-label="Status (opens in a new tab)"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="https://status.thenational.academy"
+                          target="_blank"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Status
+                          </span>
+                          <div
+                            class="sc-bdvwhi hUeWJD"
+                          >
+                            <span
+                              class="sc-bdvwhi cqHYAi sc-fKVoIy gNZMCw"
+                            >
+                              <img
+                                alt=""
+                                class="sc-jRQBiJ eMsccW"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </span>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                >
+                  <h2
+                    class="sc-bkkgYE bVNEJW"
+                  >
+                    Legal
+                  </h2>
+                  <div
+                    class="sc-bdvwhi sc-dlVwtM kONsyo cpiTBW"
+                  >
+                    <ul
+                      role="list"
+                    >
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/legal/terms-and-conditions"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Terms & conditions
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/legal/privacy-policy"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Privacy policy
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/legal/cookie-policy"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Cookie policy
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <button
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Manage cookie settings
+                          </span>
+                        </button>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/legal/copyright-notice"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Copyright notice
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/legal/accessibility-statement"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Accessibility statement
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/legal/safeguarding-statement"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Safeguarding statement
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/legal/physical-activity-disclaimer"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Physical activity disclaimer
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/legal/complaints"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Complaints
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/legal/freedom-of-information-requests"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Freedom of information requests
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd QtWkM eaUsps"
+                >
+                  <div
+                    class="sc-bdvwhi aIwlt"
+                  >
+                    <span
+                      class="sc-bdvwhi jvcCKw"
+                    >
+                      <img
+                        alt=""
+                        class="sc-jRQBiJ hssYEG"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1765468420/OakLogoWithText.svg"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
+                    </span>
+                  </div>
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd lpkWFL dipirq"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
+                    >
+                      <a
+                        aria-label="instagram for Oak National Academy"
+                        class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                        href="https://instagram.com/oaknational"
+                      >
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                          >
+                            <div
+                              class="sc-bdvwhi fZgcUH shadow"
+                            />
+                            <span
+                              class="sc-bdvwhi cERAFe"
+                              data-icon-for="button"
+                            >
+                              <img
+                                alt=""
+                                class="sc-jRQBiJ fZPumv"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954343/icons/ayfeljric0kkimdymvva.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </span>
+                          </div>
+                          <span
+                            class="sc-dkPwfY cSKbCa"
+                          />
+                        </div>
+                      </a>
+                    </div>
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
+                    >
+                      <a
+                        aria-label="facebook for Oak National Academy"
+                        class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                        href="https://facebook.com/oaknationalacademy"
+                      >
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                          >
+                            <div
+                              class="sc-bdvwhi fZgcUH shadow"
+                            />
+                            <span
+                              class="sc-bdvwhi cERAFe"
+                              data-icon-for="button"
+                            >
+                              <img
+                                alt=""
+                                class="sc-jRQBiJ fZPumv"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895330/icons/iojlvh3o5lshy2jupyph.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </span>
+                          </div>
+                          <span
+                            class="sc-dkPwfY cSKbCa"
+                          />
+                        </div>
+                      </a>
+                    </div>
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
+                    >
+                      <a
+                        aria-label="linkedIn for Oak National Academy"
+                        class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                        href="https://www.linkedin.com/company/oak-national-academy"
+                      >
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                          >
+                            <div
+                              class="sc-bdvwhi fZgcUH shadow"
+                            />
+                            <span
+                              class="sc-bdvwhi cERAFe"
+                              data-icon-for="button"
+                            >
+                              <img
+                                alt=""
+                                class="sc-jRQBiJ fZPumv"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953592/icons/leqneklorqqzb1zo6rf1.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </span>
+                          </div>
+                          <span
+                            class="sc-dkPwfY cSKbCa"
+                          />
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span
+              class="sc-bdvwhi LoEut sc-82a69116-0 kSePHC"
+              data-chromatic="ignore"
+              data-percy-hide="contents"
+            >
+              <img
+                alt="Cyber Essentials Logo"
+                class="sc-jRQBiJ hssYEG"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                sizes="100vw"
+                src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=3840&q=75"
+                srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=3840&q=75 3840w"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </span>
+            <div
+              class="sc-bdvwhi sc-gsDMPd kqRHNX EzdvD"
+            >
+              <div
+                class="sc-bdvwhi sc-gsDMPd jZUEdv fbHgES"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
+                >
+                  <a
+                    aria-label="instagram for Oak National Academy"
+                    class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                    href="https://instagram.com/oaknational"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                      >
+                        <div
+                          class="sc-bdvwhi fZgcUH shadow"
+                        />
+                        <span
+                          class="sc-bdvwhi cERAFe"
+                          data-icon-for="button"
+                        >
+                          <img
+                            alt=""
+                            class="sc-jRQBiJ fZPumv"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954343/icons/ayfeljric0kkimdymvva.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </div>
+                      <span
+                        class="sc-dkPwfY cSKbCa"
+                      />
+                    </div>
+                  </a>
+                </div>
+                <div
+                  class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
+                >
+                  <a
+                    aria-label="facebook for Oak National Academy"
+                    class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                    href="https://facebook.com/oaknationalacademy"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                      >
+                        <div
+                          class="sc-bdvwhi fZgcUH shadow"
+                        />
+                        <span
+                          class="sc-bdvwhi cERAFe"
+                          data-icon-for="button"
+                        >
+                          <img
+                            alt=""
+                            class="sc-jRQBiJ fZPumv"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895330/icons/iojlvh3o5lshy2jupyph.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </div>
+                      <span
+                        class="sc-dkPwfY cSKbCa"
+                      />
+                    </div>
+                  </a>
+                </div>
+                <div
+                  class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
+                >
+                  <a
+                    aria-label="linkedIn for Oak National Academy"
+                    class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                    href="https://www.linkedin.com/company/oak-national-academy"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                      >
+                        <div
+                          class="sc-bdvwhi fZgcUH shadow"
+                        />
+                        <span
+                          class="sc-bdvwhi cERAFe"
+                          data-icon-for="button"
+                        >
+                          <img
+                            alt=""
+                            class="sc-jRQBiJ fZPumv"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953592/icons/leqneklorqqzb1zo6rf1.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </div>
+                      <span
+                        class="sc-dkPwfY cSKbCa"
+                      />
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="sc-bdvwhi jiFgkN"
+              >
+                <span
+                  class="sc-bdvwhi jvcCKw"
+                >
+                  <img
+                    alt=""
+                    class="sc-jRQBiJ hssYEG"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1765468420/OakLogoWithText.svg"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
+                </span>
+              </div>
+              <div
+                class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+              >
+                <p
+                  class="sc-hGPAwl jolmBg"
+                >
+                  © Oak National Academy Limited, No 14174888
+                </p>
+                <p
+                  class="sc-hGPAwl cYCozb"
+                >
+                  1 Scott Place, 2 Hardman Street, Manchester, M3 3AA
+                </p>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <span
+          class="sc-bdvwhi jNDbOw"
+        >
+          <img
+            alt=""
+            class="sc-jRQBiJ dqjNXU"
+            data-nimg="fill"
+            decoding="async"
+            loading="lazy"
+            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734537015/OWA/ui-graphics/looping-line-3_b8dque.svg"
+            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+          />
+        </span>
+      </footer>
+    </div>
+    <div
+      aria-live="polite"
+      class="sc-bdvwhi sc-gsDMPd sc-b7a27f76-0 kjWDfr htLMtM krUohl"
+    />
+  </div>
+  <div
+    class="sc-bdvwhi gFnpsF"
+  >
+    <div
+      class="sc-bdvwhi iwVUCi"
+      data-testid="cookie-banner"
+    >
+      <div
+        class="sc-bdvwhi iIozLH"
+      >
+        <div
+          class="sc-bdvwhi sc-gsDMPd egBoar iKjTsb"
+        >
+          <div
+            class="sc-bdvwhi fIxCDL"
+          >
+            <strong
+              class="sc-dkPwfY iyMjBM"
+            >
+              This site uses cookies to store information on your computer.
+            </strong>
+             
+            Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
+          </div>
+          <div
+            class="sc-bdvwhi sc-gsDMPd hPWTKU gyKdMN"
+          >
+            <div
+              class="sc-bdvwhi sc-gsDMPd lmXuba eWbmLh"
+            >
+              <button
+                class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
+                data-testid="cookie-banner-reject"
+                type="button"
+              >
+                <span
+                  class="sc-dkPwfY fgmEIT"
+                >
+                  Reject non-essential cookies
+                </span>
+              </button>
+            </div>
+            <div
+              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+            >
+              <div
+                class="sc-bdvwhi kAFHfV grey-shadow"
+              />
+              <div
+                class="sc-bdvwhi kAFHfV yellow-shadow"
+              />
+              <button
+                class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                >
+                  <span
+                    class="sc-dkPwfY kXQhTZ"
+                  >
+                    Cookie settings
+                  </span>
+                </div>
+              </button>
+            </div>
+            <div
+              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+            >
+              <div
+                class="sc-bdvwhi kAFHfV grey-shadow"
+              />
+              <div
+                class="sc-bdvwhi kAFHfV yellow-shadow"
+              />
+              <button
+                class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                data-testid="cookie-banner-accept"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                >
+                  <span
+                    class="sc-dkPwfY kXQhTZ"
+                  >
+                    Accept all cookies
+                  </span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video only correctly 1`] = `
+<div>
+  <div
+    data-overlay-container="true"
+  >
+    <fake-head>
+      <title>
+        TEST_TITLE_VIDEO | NEXT_PUBLIC_SEO_APP_NAME
+      </title>
+      <meta
+        content="index,follow"
+        name="robots"
+      />
+      <meta
+        content="NEXT_PUBLIC_SEO_APP_DESCRIPTION"
+        name="description"
+      />
+      <meta
+        content="summary_large_image"
+        name="twitter:card"
+      />
+      <meta
+        content="NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE"
+        name="twitter:site"
+      />
+      <meta
+        content="NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE"
+        name="twitter:creator"
+      />
+      <meta
+        content="TEST_TITLE_VIDEO | NEXT_PUBLIC_SEO_APP_NAME"
+        property="og:title"
+      />
+      <meta
+        content="NEXT_PUBLIC_SEO_APP_DESCRIPTION"
+        property="og:description"
+      />
+      <meta
+        content="NEXT_PUBLIC_SEO_APP_URL/"
+        property="og:url"
+      />
+      <meta
+        content="NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2026"
+        property="og:image"
+      />
+      <meta
+        content="NEXT_PUBLIC_SEO_APP_NAME"
+        property="og:site_name"
+      />
+      <link
+        href="NEXT_PUBLIC_SEO_APP_URL"
+        rel="canonical"
+      />
+    </fake-head>
+    <fake-head>
+      <link
+        href="/favicon.ico"
+        rel="icon"
+      />
+    </fake-head>
+    <fake-head>
+      <script
+        type="application/ld+json"
+      >
+        {"@context":"https://schema.org","@type":"Organization","name":"NEXT_PUBLIC_SEO_APP_NAME","url":"NEXT_PUBLIC_SEO_APP_URL","sameAs":["NEXT_PUBLIC_SEO_APP_FACEBOOK","NEXT_PUBLIC_SEO_APP_TWITTER"],"logo":"NEXT_PUBLIC_SEO_APP_URLNEXT_PUBLIC_SEO_APP_LOGO"}
+      </script>
+    </fake-head>
+    <div
+      class="sc-bdvwhi sc-gsDMPd idbbhg cvDmZS"
+    >
+      <header
+        class="sc-bdvwhi jWxyY"
+        data-testid="app-topnav"
+      >
+        <div
+          class="sc-bdvwhi ifFSgR"
+        >
+          <div
+            class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+          >
+            <div
+              class="sc-bdvwhi kAFHfV grey-shadow"
+            />
+            <div
+              class="sc-bdvwhi kAFHfV yellow-shadow"
+            />
+            <a
+              class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
+              data-testid="skip-link"
+              href="#main"
+              style="position: absolute; left: -10000px;"
+            >
+              <div
+                class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+              >
+                <span
+                  class="sc-dkPwfY kXQhTZ"
+                >
+                  Skip to content
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div
+          class="sc-bdvwhi sc-gsDMPd hZQFXJ ijSRAr"
+        >
+          <div
+            class="sc-bdvwhi sc-iqsgXZ bZiwHb gxchUF"
+          >
+            <div
+              class="sc-bdvwhi kAFHfV grey-shadow"
+            />
+            <div
+              class="sc-bdvwhi kAFHfV yellow-shadow"
+            />
+            <a
+              aria-current="true"
+              class="sc-eCIkAO sc-jrQAon canKaL eGeOxA internal-button"
+              href="/"
+            >
+              <div
+                class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+              >
+                <span
+                  class="sc-dkPwfY jASiOm"
+                >
+                  Teachers
+                </span>
+              </div>
+            </a>
+          </div>
+          <div
+            class="sc-bdvwhi sc-iqsgXZ bZiwHb hjfwPa"
+          >
+            <div
+              class="sc-bdvwhi kAFHfV grey-shadow"
+            />
+            <div
+              class="sc-bdvwhi kAFHfV yellow-shadow"
+            />
+            <a
+              aria-current="false"
+              class="sc-eCIkAO sc-jrQAon gjfqHX fODyRh internal-button"
+              href="/pupils/years"
+            >
+              <div
+                class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+              >
+                <span
+                  class="sc-dkPwfY jASiOm"
+                >
+                  Go to 
+                  pupils
+                </span>
+                <span
+                  class="sc-bdvwhi cERAFe"
+                >
+                  <img
+                    alt=""
+                    class="sc-jRQBiJ eMsccW"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1765890807/icons/pencil.svg"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <nav
+          class="sc-bdvwhi sc-gsDMPd fgPPqL eDsKsK"
+        >
+          <a
+            aria-label="Home"
+            class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
+            href="/"
+          >
+            <span
+              class="sc-dkPwfY fgmEIT"
+            >
+              <span
+                class="sc-bdvwhi fBJYrN"
+              >
+                <img
+                  alt=""
+                  class="sc-jRQBiJ hssYEG"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1711468346/logo-mark.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+              <span
+                class="sc-bdvwhi gJJZuS"
+              >
+                <img
+                  alt=""
+                  class="sc-jRQBiJ hssYEG"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1765468420/OakLogoWithText.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+            </span>
+          </a>
+          <div
+            class="sc-bdvwhi sc-gsDMPd hPWTKU cWjqBO"
+            data-testid="teachers-subnav"
+            id="teachers-subnav"
+          >
+            <div
+              class="sc-bdvwhi hPWTKU"
+            >
+              <ul
+                class="sc-kfPsKX zyInc"
+              >
+                <li
+                  class="sc-ieedpP bVasfV"
+                >
+                  <div
+                    class="sc-bdvwhi sc-iqsgXZ giIlgC gxchUF"
+                  >
+                    <div
+                      class="sc-bdvwhi kAFHfV grey-shadow"
+                    />
+                    <div
+                      class="sc-bdvwhi kAFHfV yellow-shadow"
+                    />
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      class="sc-eCIkAO sc-jrQAon TVMnz lhNPft internal-button"
+                      data-testid="teachers-primary"
+                      id="teachers-primary"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
+                      >
+                        <span
+                          class="sc-dkPwfY iVFbem"
+                        >
+                          Primary
+                        </span>
+                      </div>
+                    </button>
+                  </div>
+                </li>
+                <li
+                  class="sc-ieedpP bVasfV"
+                >
+                  <div
+                    class="sc-bdvwhi sc-iqsgXZ giIlgC gxchUF"
+                  >
+                    <div
+                      class="sc-bdvwhi kAFHfV grey-shadow"
+                    />
+                    <div
+                      class="sc-bdvwhi kAFHfV yellow-shadow"
+                    />
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      class="sc-eCIkAO sc-jrQAon TVMnz lhNPft internal-button"
+                      data-testid="teachers-secondary"
+                      id="teachers-secondary"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
+                      >
+                        <span
+                          class="sc-dkPwfY iVFbem"
+                        >
+                          Secondary
+                        </span>
+                      </div>
+                    </button>
+                  </div>
+                </li>
+                <li
+                  class="sc-ieedpP bVasfV"
+                >
+                  <div
+                    class="sc-bdvwhi sc-iqsgXZ giIlgC gxchUF"
+                  >
+                    <div
+                      class="sc-bdvwhi kAFHfV grey-shadow"
+                    />
+                    <div
+                      class="sc-bdvwhi kAFHfV yellow-shadow"
+                    />
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      class="sc-eCIkAO sc-jrQAon TVMnz lhNPft internal-button"
+                      data-testid="teachers-guidance"
+                      id="teachers-guidance"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
+                      >
+                        <span
+                          class="sc-dkPwfY iVFbem"
+                        >
+                          Guidance
+                        </span>
+                      </div>
+                    </button>
+                  </div>
+                </li>
+                <li
+                  class="sc-ieedpP bVasfV"
+                >
+                  <div
+                    class="sc-bdvwhi sc-iqsgXZ giIlgC gxchUF"
+                  >
+                    <div
+                      class="sc-bdvwhi kAFHfV grey-shadow"
+                    />
+                    <div
+                      class="sc-bdvwhi kAFHfV yellow-shadow"
+                    />
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      class="sc-eCIkAO sc-jrQAon TVMnz lhNPft internal-button"
+                      data-testid="teachers-aboutUs"
+                      id="teachers-aboutUs"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
+                      >
+                        <span
+                          class="sc-dkPwfY iVFbem"
+                        >
+                          About us
+                        </span>
+                      </div>
+                    </button>
+                  </div>
+                </li>
+                <li
+                  class="sc-ieedpP bVasfV"
+                >
+                  <div
+                    class="sc-bdvwhi sc-iqsgXZ giIlgC gxchUF"
+                  >
+                    <div
+                      class="sc-bdvwhi kAFHfV grey-shadow"
+                    />
+                    <div
+                      class="sc-bdvwhi kAFHfV yellow-shadow"
+                    />
+                    <a
+                      aria-label="Ai experiments (this will open in a new tab)"
+                      class="sc-eCIkAO sc-jrQAon TVMnz lhNPft internal-button"
+                      href="https://labs.thenational.academy"
+                      id="teachers-labs"
+                      target="_blank"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
+                      >
+                        <span
+                          class="sc-dkPwfY iVFbem"
+                        >
+                          Ai experiments
+                        </span>
+                        <span
+                          class="sc-bdvwhi cERAFe"
+                        >
+                          <img
+                            alt=""
+                            class="sc-jRQBiJ fZPumv"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </div>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="sc-bdvwhi sc-gsDMPd hPWTKU gCyLHX"
+            >
+              <form
+                action="/teachers/search"
+                class="sc-bdvwhi bsEZhu"
+                method="get"
+                role="search"
+              >
+                <div
+                  class="sc-bdvwhi aIwlt"
+                >
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd sc-cTAoCz fgcOpf eWbmLh gkqGfv"
+                  >
+                    <input
+                      aria-invalid="false"
+                      aria-label="Lesson and unit search"
+                      class="sc-efQVjI iOeTAG"
+                      name="term"
+                      placeholder="Search"
+                      type="search"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="sc-bdvwhi eOvzlK"
+                >
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex bTnqgZ"
+                  >
+                    <button
+                      aria-label="Submit search"
+                      class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                      type="submit"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                      >
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd gCFyZH gbgSUZ icon-container"
+                        >
+                          <div
+                            class="sc-bdvwhi joRFWv shadow"
+                          />
+                          <span
+                            class="sc-bdvwhi cERAFe"
+                            data-icon-for="button"
+                          >
+                            <img
+                              alt=""
+                              class="sc-jRQBiJ buswnv"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
+                          </span>
+                        </div>
+                        <span
+                          class="sc-dkPwfY cSKbCa"
+                        />
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </form>
+              <div
+                class="sc-bdvwhi jiFgkN"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex bTnqgZ"
+                >
+                  <a
+                    aria-label="Search"
+                    class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                    href="/teachers/search"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd gCFyZH gbgSUZ icon-container"
+                      >
+                        <div
+                          class="sc-bdvwhi joRFWv shadow"
+                        />
+                        <span
+                          class="sc-bdvwhi cERAFe"
+                          data-icon-for="button"
+                        >
+                          <img
+                            alt=""
+                            class="sc-jRQBiJ buswnv"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </div>
+                      <span
+                        class="sc-dkPwfY cSKbCa"
+                      />
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <a
+                aria-label="My library"
+                class="sc-eCIkAO sc-hYQmIO leuZXC iqPAvY"
+                href="/teachers/my-library"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd evZLCm igJqEq oak-save-count"
+                >
+                  <span
+                    class="sc-bdvwhi dsdZgi"
+                    data-testid="bookmark-outlined"
+                  >
+                    <img
+                      alt=""
+                      class="sc-jRQBiJ eMsccW"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734519491/icons/bookmark-outlined_rxe5v0.svg"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
+                  <div
+                    class="sc-bdvwhi nQgAu"
+                  >
+                    My library
+                  </div>
+                </div>
+              </a>
+              <div
+                class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+              >
+                <div
+                  class="sc-bdvwhi kAFHfV grey-shadow"
+                />
+                <div
+                  class="sc-bdvwhi kAFHfV yellow-shadow"
+                />
+                <button
+                  class="sc-eCIkAO sc-jrQAon jtKaqd bXRQbB internal-button"
+                >
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
+                  >
+                    <span
+                      class="sc-dkPwfY iVFbem"
+                    >
+                      Sign in
+                    </span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-bdvwhi bppgzs"
+          >
+            <div
+              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+            >
+              <div
+                class="sc-bdvwhi kAFHfV grey-shadow"
+              />
+              <div
+                class="sc-bdvwhi kAFHfV yellow-shadow"
+              />
+              <button
+                aria-expanded="false"
+                aria-label="Open navigation menu"
+                class="sc-eCIkAO sc-jrQAon cyLqiG eGeOxA internal-button"
+                data-testid="top-nav-hamburger-button"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                >
+                  <span
+                    class="sc-bdvwhi cERAFe"
+                  >
+                    <img
+                      alt=""
+                      class="sc-jRQBiJ fZPumv"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895123/icons/jaqdnomtbhqvjcap962u.svg"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
+                  <span
+                    class="sc-dkPwfY kXQhTZ"
+                  />
+                </div>
+              </button>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <main
+        class="sc-bdvwhi sc-gsDMPd jtiAen cvDmZS"
+        id="main"
+      >
+        <div
+          class="sc-bdvwhi huCsb"
+        >
+          <div
+            class="sc-bdvwhi idzuHd"
+          >
+            <div
+              class="sc-bdvwhi iatEdD"
+            >
+              <div
+                class="sc-bdvwhi iKyILh"
+              >
+                <div
+                  class="sc-bdvwhi sc-jObTYW hPWTKU jLVqBn"
+                >
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex eCoFjI"
+                  >
+                    <div
+                      class="sc-bdvwhi jBilhI"
+                    >
+                      <nav
+                        aria-label="Breadcrumb"
+                        class="sc-bdvwhi ejVpib"
+                      >
+                        <ul
+                          class="sc-hAcEkO dJRkLd"
+                        >
+                          <li
+                            class="sc-kYHdiH YiXOT"
+                          >
+                            <a
+                              class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                              href="/"
+                              style="overflow: hidden;"
+                            >
+                              <span
+                                class="sc-dkPwfY fgmEIT"
+                              >
+                                <div
+                                  class="sc-bdvwhi bzawnc"
+                                >
+                                  Home
+                                </div>
+                              </span>
+                            </a>
+                          </li>
+                          <li
+                            class="sc-kYHdiH YiXOT"
+                          >
+                            <span
+                              class="sc-bdvwhi gWngyq"
+                            >
+                              <img
+                                alt=""
+                                class="sc-jRQBiJ eMsccW"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
                                 src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
                                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
@@ -1742,7 +3102,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-5012a3f4-0 bfVxIC"
+              class="sc-bdvwhi LoEut sc-82a69116-0 kSePHC"
               data-chromatic="ignore"
               data-percy-hide="contents"
             >
@@ -3490,6 +4850,1366 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                                 data-nimg="fill"
                                 decoding="async"
                                 loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </span>
+                          </div>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/contact-us"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Contact us
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          aria-label="Help (opens in a new tab)"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="https://support.thenational.academy"
+                          target="_blank"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Help
+                          </span>
+                          <div
+                            class="sc-bdvwhi hUeWJD"
+                          >
+                            <span
+                              class="sc-bdvwhi cqHYAi sc-fKVoIy gNZMCw"
+                            >
+                              <img
+                                alt=""
+                                class="sc-jRQBiJ eMsccW"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </span>
+                          </div>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/webinars"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Webinars
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          aria-label="Status (opens in a new tab)"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="https://status.thenational.academy"
+                          target="_blank"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Status
+                          </span>
+                          <div
+                            class="sc-bdvwhi hUeWJD"
+                          >
+                            <span
+                              class="sc-bdvwhi cqHYAi sc-fKVoIy gNZMCw"
+                            >
+                              <img
+                                alt=""
+                                class="sc-jRQBiJ eMsccW"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </span>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                >
+                  <h2
+                    class="sc-bkkgYE bVNEJW"
+                  >
+                    Legal
+                  </h2>
+                  <div
+                    class="sc-bdvwhi sc-dlVwtM kONsyo cpiTBW"
+                  >
+                    <ul
+                      role="list"
+                    >
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/legal/terms-and-conditions"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Terms & conditions
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/legal/privacy-policy"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Privacy policy
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/legal/cookie-policy"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Cookie policy
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <button
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Manage cookie settings
+                          </span>
+                        </button>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/legal/copyright-notice"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Copyright notice
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/legal/accessibility-statement"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Accessibility statement
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/legal/safeguarding-statement"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Safeguarding statement
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/legal/physical-activity-disclaimer"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Physical activity disclaimer
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/legal/complaints"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Complaints
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-ieedpP irmxny"
+                      >
+                        <a
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          href="/legal/freedom-of-information-requests"
+                        >
+                          <span
+                            class="sc-dkPwfY fgmEIT"
+                          >
+                            Freedom of information requests
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd QtWkM eaUsps"
+                >
+                  <div
+                    class="sc-bdvwhi aIwlt"
+                  >
+                    <span
+                      class="sc-bdvwhi jvcCKw"
+                    >
+                      <img
+                        alt=""
+                        class="sc-jRQBiJ hssYEG"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1765468420/OakLogoWithText.svg"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
+                    </span>
+                  </div>
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd lpkWFL dipirq"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
+                    >
+                      <a
+                        aria-label="instagram for Oak National Academy"
+                        class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                        href="https://instagram.com/oaknational"
+                      >
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                          >
+                            <div
+                              class="sc-bdvwhi fZgcUH shadow"
+                            />
+                            <span
+                              class="sc-bdvwhi cERAFe"
+                              data-icon-for="button"
+                            >
+                              <img
+                                alt=""
+                                class="sc-jRQBiJ fZPumv"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954343/icons/ayfeljric0kkimdymvva.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </span>
+                          </div>
+                          <span
+                            class="sc-dkPwfY cSKbCa"
+                          />
+                        </div>
+                      </a>
+                    </div>
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
+                    >
+                      <a
+                        aria-label="facebook for Oak National Academy"
+                        class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                        href="https://facebook.com/oaknationalacademy"
+                      >
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                          >
+                            <div
+                              class="sc-bdvwhi fZgcUH shadow"
+                            />
+                            <span
+                              class="sc-bdvwhi cERAFe"
+                              data-icon-for="button"
+                            >
+                              <img
+                                alt=""
+                                class="sc-jRQBiJ fZPumv"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895330/icons/iojlvh3o5lshy2jupyph.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </span>
+                          </div>
+                          <span
+                            class="sc-dkPwfY cSKbCa"
+                          />
+                        </div>
+                      </a>
+                    </div>
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
+                    >
+                      <a
+                        aria-label="linkedIn for Oak National Academy"
+                        class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                        href="https://www.linkedin.com/company/oak-national-academy"
+                      >
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                          >
+                            <div
+                              class="sc-bdvwhi fZgcUH shadow"
+                            />
+                            <span
+                              class="sc-bdvwhi cERAFe"
+                              data-icon-for="button"
+                            >
+                              <img
+                                alt=""
+                                class="sc-jRQBiJ fZPumv"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953592/icons/leqneklorqqzb1zo6rf1.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </span>
+                          </div>
+                          <span
+                            class="sc-dkPwfY cSKbCa"
+                          />
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span
+              class="sc-bdvwhi LoEut sc-82a69116-0 kSePHC"
+              data-chromatic="ignore"
+              data-percy-hide="contents"
+            >
+              <img
+                alt="Cyber Essentials Logo"
+                class="sc-jRQBiJ hssYEG"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                sizes="100vw"
+                src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=3840&q=75"
+                srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=3840&q=75 3840w"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </span>
+            <div
+              class="sc-bdvwhi sc-gsDMPd kqRHNX EzdvD"
+            >
+              <div
+                class="sc-bdvwhi sc-gsDMPd jZUEdv fbHgES"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
+                >
+                  <a
+                    aria-label="instagram for Oak National Academy"
+                    class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                    href="https://instagram.com/oaknational"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                      >
+                        <div
+                          class="sc-bdvwhi fZgcUH shadow"
+                        />
+                        <span
+                          class="sc-bdvwhi cERAFe"
+                          data-icon-for="button"
+                        >
+                          <img
+                            alt=""
+                            class="sc-jRQBiJ fZPumv"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954343/icons/ayfeljric0kkimdymvva.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </div>
+                      <span
+                        class="sc-dkPwfY cSKbCa"
+                      />
+                    </div>
+                  </a>
+                </div>
+                <div
+                  class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
+                >
+                  <a
+                    aria-label="facebook for Oak National Academy"
+                    class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                    href="https://facebook.com/oaknationalacademy"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                      >
+                        <div
+                          class="sc-bdvwhi fZgcUH shadow"
+                        />
+                        <span
+                          class="sc-bdvwhi cERAFe"
+                          data-icon-for="button"
+                        >
+                          <img
+                            alt=""
+                            class="sc-jRQBiJ fZPumv"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895330/icons/iojlvh3o5lshy2jupyph.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </div>
+                      <span
+                        class="sc-dkPwfY cSKbCa"
+                      />
+                    </div>
+                  </a>
+                </div>
+                <div
+                  class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
+                >
+                  <a
+                    aria-label="linkedIn for Oak National Academy"
+                    class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                    href="https://www.linkedin.com/company/oak-national-academy"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                      >
+                        <div
+                          class="sc-bdvwhi fZgcUH shadow"
+                        />
+                        <span
+                          class="sc-bdvwhi cERAFe"
+                          data-icon-for="button"
+                        >
+                          <img
+                            alt=""
+                            class="sc-jRQBiJ fZPumv"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953592/icons/leqneklorqqzb1zo6rf1.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </div>
+                      <span
+                        class="sc-dkPwfY cSKbCa"
+                      />
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="sc-bdvwhi jiFgkN"
+              >
+                <span
+                  class="sc-bdvwhi jvcCKw"
+                >
+                  <img
+                    alt=""
+                    class="sc-jRQBiJ hssYEG"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1765468420/OakLogoWithText.svg"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
+                </span>
+              </div>
+              <div
+                class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+              >
+                <p
+                  class="sc-hGPAwl jolmBg"
+                >
+                  © Oak National Academy Limited, No 14174888
+                </p>
+                <p
+                  class="sc-hGPAwl cYCozb"
+                >
+                  1 Scott Place, 2 Hardman Street, Manchester, M3 3AA
+                </p>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <span
+          class="sc-bdvwhi jNDbOw"
+        >
+          <img
+            alt=""
+            class="sc-jRQBiJ dqjNXU"
+            data-nimg="fill"
+            decoding="async"
+            loading="lazy"
+            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734537015/OWA/ui-graphics/looping-line-3_b8dque.svg"
+            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+          />
+        </span>
+      </footer>
+    </div>
+    <div
+      aria-live="polite"
+      class="sc-bdvwhi sc-gsDMPd sc-b7a27f76-0 kjWDfr htLMtM krUohl"
+    />
+  </div>
+  <div
+    class="sc-bdvwhi gFnpsF"
+  >
+    <div
+      class="sc-bdvwhi iwVUCi"
+      data-testid="cookie-banner"
+    >
+      <div
+        class="sc-bdvwhi iIozLH"
+      >
+        <div
+          class="sc-bdvwhi sc-gsDMPd egBoar iKjTsb"
+        >
+          <div
+            class="sc-bdvwhi fIxCDL"
+          >
+            <strong
+              class="sc-dkPwfY iyMjBM"
+            >
+              This site uses cookies to store information on your computer.
+            </strong>
+             
+            Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
+          </div>
+          <div
+            class="sc-bdvwhi sc-gsDMPd hPWTKU gyKdMN"
+          >
+            <div
+              class="sc-bdvwhi sc-gsDMPd lmXuba eWbmLh"
+            >
+              <button
+                class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
+                data-testid="cookie-banner-reject"
+                type="button"
+              >
+                <span
+                  class="sc-dkPwfY fgmEIT"
+                >
+                  Reject non-essential cookies
+                </span>
+              </button>
+            </div>
+            <div
+              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+            >
+              <div
+                class="sc-bdvwhi kAFHfV grey-shadow"
+              />
+              <div
+                class="sc-bdvwhi kAFHfV yellow-shadow"
+              />
+              <button
+                class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                >
+                  <span
+                    class="sc-dkPwfY kXQhTZ"
+                  >
+                    Cookie settings
+                  </span>
+                </div>
+              </button>
+            </div>
+            <div
+              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+            >
+              <div
+                class="sc-bdvwhi kAFHfV grey-shadow"
+              />
+              <div
+                class="sc-bdvwhi kAFHfV yellow-shadow"
+              />
+              <button
+                class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                data-testid="cookie-banner-accept"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                >
+                  <span
+                    class="sc-dkPwfY kXQhTZ"
+                  >
+                    Accept all cookies
+                  </span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1`] = `
+<div>
+  <div
+    data-overlay-container="true"
+  >
+    <fake-head>
+      <title>
+        TEST_TITLE_1 | NEXT_PUBLIC_SEO_APP_NAME
+      </title>
+      <meta
+        content="index,follow"
+        name="robots"
+      />
+      <meta
+        content="NEXT_PUBLIC_SEO_APP_DESCRIPTION"
+        name="description"
+      />
+      <meta
+        content="summary_large_image"
+        name="twitter:card"
+      />
+      <meta
+        content="NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE"
+        name="twitter:site"
+      />
+      <meta
+        content="NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE"
+        name="twitter:creator"
+      />
+      <meta
+        content="TEST_TITLE_1 | NEXT_PUBLIC_SEO_APP_NAME"
+        property="og:title"
+      />
+      <meta
+        content="NEXT_PUBLIC_SEO_APP_DESCRIPTION"
+        property="og:description"
+      />
+      <meta
+        content="NEXT_PUBLIC_SEO_APP_URL/"
+        property="og:url"
+      />
+      <meta
+        content="NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2026"
+        property="og:image"
+      />
+      <meta
+        content="NEXT_PUBLIC_SEO_APP_NAME"
+        property="og:site_name"
+      />
+      <link
+        href="NEXT_PUBLIC_SEO_APP_URL"
+        rel="canonical"
+      />
+    </fake-head>
+    <fake-head>
+      <link
+        href="/favicon.ico"
+        rel="icon"
+      />
+    </fake-head>
+    <fake-head>
+      <script
+        type="application/ld+json"
+      >
+        {"@context":"https://schema.org","@type":"Organization","name":"NEXT_PUBLIC_SEO_APP_NAME","url":"NEXT_PUBLIC_SEO_APP_URL","sameAs":["NEXT_PUBLIC_SEO_APP_FACEBOOK","NEXT_PUBLIC_SEO_APP_TWITTER"],"logo":"NEXT_PUBLIC_SEO_APP_URLNEXT_PUBLIC_SEO_APP_LOGO"}
+      </script>
+    </fake-head>
+    <div
+      class="sc-bdvwhi sc-gsDMPd idbbhg cvDmZS"
+    >
+      <header
+        class="sc-bdvwhi jWxyY"
+        data-testid="app-topnav"
+      >
+        <div
+          class="sc-bdvwhi ifFSgR"
+        >
+          <div
+            class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+          >
+            <div
+              class="sc-bdvwhi kAFHfV grey-shadow"
+            />
+            <div
+              class="sc-bdvwhi kAFHfV yellow-shadow"
+            />
+            <a
+              class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
+              data-testid="skip-link"
+              href="#main"
+              style="position: absolute; left: -10000px;"
+            >
+              <div
+                class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+              >
+                <span
+                  class="sc-dkPwfY kXQhTZ"
+                >
+                  Skip to content
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div
+          class="sc-bdvwhi sc-gsDMPd hZQFXJ ijSRAr"
+        >
+          <div
+            class="sc-bdvwhi sc-iqsgXZ bZiwHb gxchUF"
+          >
+            <div
+              class="sc-bdvwhi kAFHfV grey-shadow"
+            />
+            <div
+              class="sc-bdvwhi kAFHfV yellow-shadow"
+            />
+            <a
+              aria-current="true"
+              class="sc-eCIkAO sc-jrQAon canKaL eGeOxA internal-button"
+              href="/"
+            >
+              <div
+                class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+              >
+                <span
+                  class="sc-dkPwfY jASiOm"
+                >
+                  Teachers
+                </span>
+              </div>
+            </a>
+          </div>
+          <div
+            class="sc-bdvwhi sc-iqsgXZ bZiwHb hjfwPa"
+          >
+            <div
+              class="sc-bdvwhi kAFHfV grey-shadow"
+            />
+            <div
+              class="sc-bdvwhi kAFHfV yellow-shadow"
+            />
+            <a
+              aria-current="false"
+              class="sc-eCIkAO sc-jrQAon gjfqHX fODyRh internal-button"
+              href="/pupils/years"
+            >
+              <div
+                class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+              >
+                <span
+                  class="sc-dkPwfY jASiOm"
+                >
+                  Go to 
+                  pupils
+                </span>
+                <span
+                  class="sc-bdvwhi cERAFe"
+                >
+                  <img
+                    alt=""
+                    class="sc-jRQBiJ eMsccW"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1765890807/icons/pencil.svg"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <nav
+          class="sc-bdvwhi sc-gsDMPd fgPPqL eDsKsK"
+        >
+          <a
+            aria-label="Home"
+            class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
+            href="/"
+          >
+            <span
+              class="sc-dkPwfY fgmEIT"
+            >
+              <span
+                class="sc-bdvwhi fBJYrN"
+              >
+                <img
+                  alt=""
+                  class="sc-jRQBiJ hssYEG"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1711468346/logo-mark.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+              <span
+                class="sc-bdvwhi gJJZuS"
+              >
+                <img
+                  alt=""
+                  class="sc-jRQBiJ hssYEG"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1765468420/OakLogoWithText.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+            </span>
+          </a>
+          <div
+            class="sc-bdvwhi sc-gsDMPd hPWTKU cWjqBO"
+            data-testid="teachers-subnav"
+            id="teachers-subnav"
+          >
+            <div
+              class="sc-bdvwhi hPWTKU"
+            >
+              <ul
+                class="sc-kfPsKX zyInc"
+              >
+                <li
+                  class="sc-ieedpP bVasfV"
+                >
+                  <div
+                    class="sc-bdvwhi sc-iqsgXZ giIlgC gxchUF"
+                  >
+                    <div
+                      class="sc-bdvwhi kAFHfV grey-shadow"
+                    />
+                    <div
+                      class="sc-bdvwhi kAFHfV yellow-shadow"
+                    />
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      class="sc-eCIkAO sc-jrQAon TVMnz lhNPft internal-button"
+                      data-testid="teachers-primary"
+                      id="teachers-primary"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
+                      >
+                        <span
+                          class="sc-dkPwfY iVFbem"
+                        >
+                          Primary
+                        </span>
+                      </div>
+                    </button>
+                  </div>
+                </li>
+                <li
+                  class="sc-ieedpP bVasfV"
+                >
+                  <div
+                    class="sc-bdvwhi sc-iqsgXZ giIlgC gxchUF"
+                  >
+                    <div
+                      class="sc-bdvwhi kAFHfV grey-shadow"
+                    />
+                    <div
+                      class="sc-bdvwhi kAFHfV yellow-shadow"
+                    />
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      class="sc-eCIkAO sc-jrQAon TVMnz lhNPft internal-button"
+                      data-testid="teachers-secondary"
+                      id="teachers-secondary"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
+                      >
+                        <span
+                          class="sc-dkPwfY iVFbem"
+                        >
+                          Secondary
+                        </span>
+                      </div>
+                    </button>
+                  </div>
+                </li>
+                <li
+                  class="sc-ieedpP bVasfV"
+                >
+                  <div
+                    class="sc-bdvwhi sc-iqsgXZ giIlgC gxchUF"
+                  >
+                    <div
+                      class="sc-bdvwhi kAFHfV grey-shadow"
+                    />
+                    <div
+                      class="sc-bdvwhi kAFHfV yellow-shadow"
+                    />
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      class="sc-eCIkAO sc-jrQAon TVMnz lhNPft internal-button"
+                      data-testid="teachers-guidance"
+                      id="teachers-guidance"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
+                      >
+                        <span
+                          class="sc-dkPwfY iVFbem"
+                        >
+                          Guidance
+                        </span>
+                      </div>
+                    </button>
+                  </div>
+                </li>
+                <li
+                  class="sc-ieedpP bVasfV"
+                >
+                  <div
+                    class="sc-bdvwhi sc-iqsgXZ giIlgC gxchUF"
+                  >
+                    <div
+                      class="sc-bdvwhi kAFHfV grey-shadow"
+                    />
+                    <div
+                      class="sc-bdvwhi kAFHfV yellow-shadow"
+                    />
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      class="sc-eCIkAO sc-jrQAon TVMnz lhNPft internal-button"
+                      data-testid="teachers-aboutUs"
+                      id="teachers-aboutUs"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
+                      >
+                        <span
+                          class="sc-dkPwfY iVFbem"
+                        >
+                          About us
+                        </span>
+                      </div>
+                    </button>
+                  </div>
+                </li>
+                <li
+                  class="sc-ieedpP bVasfV"
+                >
+                  <div
+                    class="sc-bdvwhi sc-iqsgXZ giIlgC gxchUF"
+                  >
+                    <div
+                      class="sc-bdvwhi kAFHfV grey-shadow"
+                    />
+                    <div
+                      class="sc-bdvwhi kAFHfV yellow-shadow"
+                    />
+                    <a
+                      aria-label="Ai experiments (this will open in a new tab)"
+                      class="sc-eCIkAO sc-jrQAon TVMnz lhNPft internal-button"
+                      href="https://labs.thenational.academy"
+                      id="teachers-labs"
+                      target="_blank"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
+                      >
+                        <span
+                          class="sc-dkPwfY iVFbem"
+                        >
+                          Ai experiments
+                        </span>
+                        <span
+                          class="sc-bdvwhi cERAFe"
+                        >
+                          <img
+                            alt=""
+                            class="sc-jRQBiJ fZPumv"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </div>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="sc-bdvwhi sc-gsDMPd hPWTKU gCyLHX"
+            >
+              <form
+                action="/teachers/search"
+                class="sc-bdvwhi bsEZhu"
+                method="get"
+                role="search"
+              >
+                <div
+                  class="sc-bdvwhi aIwlt"
+                >
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd sc-cTAoCz fgcOpf eWbmLh gkqGfv"
+                  >
+                    <input
+                      aria-invalid="false"
+                      aria-label="Lesson and unit search"
+                      class="sc-efQVjI iOeTAG"
+                      name="term"
+                      placeholder="Search"
+                      type="search"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="sc-bdvwhi eOvzlK"
+                >
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex bTnqgZ"
+                  >
+                    <button
+                      aria-label="Submit search"
+                      class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                      type="submit"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                      >
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd gCFyZH gbgSUZ icon-container"
+                        >
+                          <div
+                            class="sc-bdvwhi joRFWv shadow"
+                          />
+                          <span
+                            class="sc-bdvwhi cERAFe"
+                            data-icon-for="button"
+                          >
+                            <img
+                              alt=""
+                              class="sc-jRQBiJ buswnv"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
+                          </span>
+                        </div>
+                        <span
+                          class="sc-dkPwfY cSKbCa"
+                        />
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </form>
+              <div
+                class="sc-bdvwhi jiFgkN"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex bTnqgZ"
+                >
+                  <a
+                    aria-label="Search"
+                    class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                    href="/teachers/search"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd gCFyZH gbgSUZ icon-container"
+                      >
+                        <div
+                          class="sc-bdvwhi joRFWv shadow"
+                        />
+                        <span
+                          class="sc-bdvwhi cERAFe"
+                          data-icon-for="button"
+                        >
+                          <img
+                            alt=""
+                            class="sc-jRQBiJ buswnv"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </div>
+                      <span
+                        class="sc-dkPwfY cSKbCa"
+                      />
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <a
+                aria-label="My library"
+                class="sc-eCIkAO sc-hYQmIO leuZXC iqPAvY"
+                href="/teachers/my-library"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd evZLCm igJqEq oak-save-count"
+                >
+                  <span
+                    class="sc-bdvwhi dsdZgi"
+                    data-testid="bookmark-outlined"
+                  >
+                    <img
+                      alt=""
+                      class="sc-jRQBiJ eMsccW"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734519491/icons/bookmark-outlined_rxe5v0.svg"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
+                  <div
+                    class="sc-bdvwhi nQgAu"
+                  >
+                    My library
+                  </div>
+                </div>
+              </a>
+              <div
+                class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+              >
+                <div
+                  class="sc-bdvwhi kAFHfV grey-shadow"
+                />
+                <div
+                  class="sc-bdvwhi kAFHfV yellow-shadow"
+                />
+                <button
+                  class="sc-eCIkAO sc-jrQAon jtKaqd bXRQbB internal-button"
+                >
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
+                  >
+                    <span
+                      class="sc-dkPwfY iVFbem"
+                    >
+                      Sign in
+                    </span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-bdvwhi bppgzs"
+          >
+            <div
+              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+            >
+              <div
+                class="sc-bdvwhi kAFHfV grey-shadow"
+              />
+              <div
+                class="sc-bdvwhi kAFHfV yellow-shadow"
+              />
+              <button
+                aria-expanded="false"
+                aria-label="Open navigation menu"
+                class="sc-eCIkAO sc-jrQAon cyLqiG eGeOxA internal-button"
+                data-testid="top-nav-hamburger-button"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                >
+                  <span
+                    class="sc-bdvwhi cERAFe"
+                  >
+                    <img
+                      alt=""
+                      class="sc-jRQBiJ fZPumv"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895123/icons/jaqdnomtbhqvjcap962u.svg"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
+                  <span
+                    class="sc-dkPwfY kXQhTZ"
+                  />
+                </div>
+              </button>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <main
+        class="sc-bdvwhi sc-gsDMPd jtiAen cvDmZS"
+        id="main"
+      >
+        <div
+          class="sc-bdvwhi huCsb"
+        >
+          <div
+            class="sc-bdvwhi idzuHd"
+          >
+            <div
+              class="sc-bdvwhi iatEdD"
+            >
+              <div
+                class="sc-bdvwhi iKyILh"
+              >
+                <div
+                  class="sc-bdvwhi sc-jObTYW hPWTKU jLVqBn"
+                >
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex eCoFjI"
+                  >
+                    <div
+                      class="sc-bdvwhi jBilhI"
+                    >
+                      <nav
+                        aria-label="Breadcrumb"
+                        class="sc-bdvwhi ejVpib"
+                      >
+                        <ul
+                          class="sc-hAcEkO dJRkLd"
+                        >
+                          <li
+                            class="sc-kYHdiH YiXOT"
+                          >
+                            <a
+                              class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                              href="/"
+                              style="overflow: hidden;"
+                            >
+                              <span
+                                class="sc-dkPwfY fgmEIT"
+                              >
+                                <div
+                                  class="sc-bdvwhi bzawnc"
+                                >
+                                  Home
+                                </div>
+                              </span>
+                            </a>
+                          </li>
+                          <li
+                            class="sc-kYHdiH YiXOT"
+                          >
+                            <span
+                              class="sc-bdvwhi gWngyq"
+                            >
+                              <img
+                                alt=""
+                                class="sc-jRQBiJ eMsccW"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
                                 src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
                                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
@@ -4238,7 +6958,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-5012a3f4-0 bfVxIC"
+              class="sc-bdvwhi LoEut sc-82a69116-0 kSePHC"
               data-chromatic="ignore"
               data-percy-hide="contents"
             >
@@ -6899,7 +9619,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-5012a3f4-0 bfVxIC"
+              class="sc-bdvwhi LoEut sc-82a69116-0 kSePHC"
               data-chromatic="ignore"
               data-percy-hide="contents"
             >

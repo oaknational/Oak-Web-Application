@@ -1,3 +1,71 @@
+# [1.1249.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1248.0...v1.1249.0) (2026-10-14)
+
+
+### Bug Fixes
+
+* snap ([71182f9](https://github.com/oaknational/Oak-Web-Application/commit/71182f9c2b9ab0a85e3c057a6ff5969ad1431dc1))
+
+
+### Features
+
+* use AboutUsLayout for case studies ([07b72fc](https://github.com/oaknational/Oak-Web-Application/commit/07b72fcbd91e4e02571108a04371e53151059393))
+
+# [1.1248.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1247.1...v1.1248.0) (2026-10-14)
+
+
+### Features
+
+* add header component to join research panel page ([0894489](https://github.com/oaknational/Oak-Web-Application/commit/0894489ee3534ce496d4077e84240c807535fbe2))
+* improve default component styling ([88dea92](https://github.com/oaknational/Oak-Web-Application/commit/88dea925a3856656cd3498b672ab0e985bb4e8d3))
+* join research panel header component ([911962a](https://github.com/oaknational/Oak-Web-Application/commit/911962ae9bc87c20e72fe9c2b7e2e2a79145314e))
+* make support you component reusable ([32d414c](https://github.com/oaknational/Oak-Web-Application/commit/32d414cb519eed4b5d229d394dc2f586393c56ae))
+* update research panel header fixture ([af21d53](https://github.com/oaknational/Oak-Web-Application/commit/af21d534c7c3e41fd3ce28b1afa9ba7fba8bc6d4))
+* update snapshot ([9e21889](https://github.com/oaknational/Oak-Web-Application/commit/9e2188999f34206cd733abcba31724e3400d22fc))
+
+## [1.1247.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1247.0...v1.1247.1) (2026-10-14)
+
+
+### Bug Fixes
+
+* partial fix for perf issues on units page ([ad54c51](https://github.com/oaknational/Oak-Web-Application/commit/ad54c519741b1c28b27f8deb9dbb514c1fc4d012))
+
+# [1.1247.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1246.0...v1.1247.0) (2026-10-14)
+
+
+### Bug Fixes
+
+* add a retry mechanism to onboarding hubspot submit ([cfe2e3f](https://github.com/oaknational/Oak-Web-Application/commit/cfe2e3ffefa0b2d5b2d666b7760caef2163506db))
+* allow users with no school details to fill in the form ([07d7e09](https://github.com/oaknational/Oak-Web-Application/commit/07d7e09ffde05ba2320d10bd553ea20efe4150b3))
+* don't retry fallback errors ([ebf13f2](https://github.com/oaknational/Oak-Web-Application/commit/ebf13f29c4ea17ef3462e11cef000e3ef4dae81e))
+
+
+### Features
+
+* update error messaging in onboarding failure toast ([8a4e303](https://github.com/oaknational/Oak-Web-Application/commit/8a4e3033809ebbeb9cc0bb554f2a58072df6d16c))
+
+# [1.1246.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1245.0...v1.1246.0) (2026-10-14)
+
+
+### Bug Fixes
+
+* remove about us contact initiated event from internal button ([0836338](https://github.com/oaknational/Oak-Web-Application/commit/0836338b4f315c91c6fb608891fc486e50fd4d7e))
+
+
+### Features
+
+* use avo page config to link to research panel page ([72b07bf](https://github.com/oaknational/Oak-Web-Application/commit/72b07bf93f8a30ff627f576901abb701c010e1c5))
+
+# [1.1245.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1244.2...v1.1245.0) (2026-10-14)
+
+
+### Features
+
+* add updated generated types ([e591e92](https://github.com/oaknational/Oak-Web-Application/commit/e591e92e6d92dc5e0fd02782583d27a02b20401a))
+* blog post portable text uses oak quote ([c7bccc8](https://github.com/oaknational/Oak-Web-Application/commit/c7bccc86360bedaf81c0bab048c62c15766d2d47))
+* case studies portable text renders oak quote with style overrides ([c75e7d6](https://github.com/oaknational/Oak-Web-Application/commit/c75e7d640cb764a6ffb70d19cb204eb936a2c784))
+* remove has left border override from portable text quotes ([eb27017](https://github.com/oaknational/Oak-Web-Application/commit/eb270172d7f97d9f28f7b185807902a21c8dbaf2))
+* use quote org where present ([53ffbfe](https://github.com/oaknational/Oak-Web-Application/commit/53ffbfe26e58e7367c410e199adf2c03866f7e28))
+
 ## [1.1244.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1244.1...v1.1244.2) (2026-10-14)
 
 ## [1.1244.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1244.0...v1.1244.1) (2026-10-12)

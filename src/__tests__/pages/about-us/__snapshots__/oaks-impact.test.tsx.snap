@@ -1056,7 +1056,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fqHsID"
+                  class="sc-bdvwhi sc-gsDMPd sc-dPiIMO eIMKEQ Bakex fqHsID"
                 >
                   <div
                     class="sc-bdvwhi sc-gsDMPd dumZsJ kkGnDS"
@@ -2458,7 +2458,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-5012a3f4-0 bfVxIC"
+              class="sc-bdvwhi LoEut sc-82a69116-0 kSePHC"
               data-chromatic="ignore"
               data-percy-hide="contents"
             >

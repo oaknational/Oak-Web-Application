@@ -1,7 +1,7 @@
 import { notFound, redirect, RedirectType } from "next/navigation";
 import { Metadata } from "next";
 import { cache } from "react";
-import { cookies, draftMode } from "next/headers";
+import { draftMode } from "next/headers";
 
 import { ProgrammePageProps, ProgrammeView } from "./Components/ProgrammeView";
 import { isTabSlug } from "./tabSchema";
@@ -14,7 +14,6 @@ import {
 } from "./getProgrammeData";
 
 import LayoutPreviewControls from "@/components/AppComponents/LayoutPreviewControls";
-import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import {
   createDownloadsData,
   formatCurriculumUnitsData,
@@ -168,7 +167,6 @@ export async function generateMetadata({
 }
 
 const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
-  const cookieStore = await cookies();
   const activeFlags = await getActiveCookieFlags();
   const originalSearchParams = await props.searchParams!;
   const searchParams = validateServerSearchParams(originalSearchParams);
@@ -274,7 +272,6 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   // None of these depend on each other's results, so run them concurrently instead of as a waterfall
   const [
     { curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime },
-    isImplementationGuidesEnabled,
     implementationGuides,
     fileSizes,
   ] = await Promise.all([
@@ -286,12 +283,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
       programmePageSlug: `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
       isPreviewModeEnabled: isEnabled,
     }),
-    isFeatureFlagEnabledServer(
-      Object.fromEntries(
-        cookieStore.getAll().map(({ name, value }) => [name, value]),
-      ),
-      "implementation-guides",
-    ),
+
     getCachedImplementationGuides({
       subjectTitle: programmeUnitsData.subjectTitle,
       phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
@@ -325,9 +317,6 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     curriculumDownloadsTabData,
     mvRefreshTime,
     fileSizes,
-    featureFlags: {
-      "implementation-guides": isImplementationGuidesEnabled,
-    },
     implementationGuides,
     nonCurriculum: cachedProgrammeData.programmeUnitsData.nonCurriculum,
     activeFlags,

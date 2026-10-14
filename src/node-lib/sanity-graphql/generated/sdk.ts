@@ -800,7 +800,7 @@ export type BlockOrCodeOrCtaLinkOrImageOrNoticeOrTable = Block | Code | CtaLink 
 
 export type BlockOrImage = Block | Image;
 
-export type BlockOrImageWithAltTextOrVideo = Block | ImageWithAltText | Video;
+export type BlockOrImageWithAltTextOrQuoteOrVideo = Block | ImageWithAltText | Quote | Video;
 
 export type BlockOrVideo = Block | Video;
 
