@@ -1,3 +1,121 @@
+## [1.1247.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1247.0...v1.1247.1) (2026-10-14)
+
+
+### Bug Fixes
+
+* partial fix for perf issues on units page ([ad54c51](https://github.com/oaknational/Oak-Web-Application/commit/ad54c519741b1c28b27f8deb9dbb514c1fc4d012))
+
+# [1.1247.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1246.0...v1.1247.0) (2026-10-14)
+
+
+### Bug Fixes
+
+* add a retry mechanism to onboarding hubspot submit ([cfe2e3f](https://github.com/oaknational/Oak-Web-Application/commit/cfe2e3ffefa0b2d5b2d666b7760caef2163506db))
+* allow users with no school details to fill in the form ([07d7e09](https://github.com/oaknational/Oak-Web-Application/commit/07d7e09ffde05ba2320d10bd553ea20efe4150b3))
+* don't retry fallback errors ([ebf13f2](https://github.com/oaknational/Oak-Web-Application/commit/ebf13f29c4ea17ef3462e11cef000e3ef4dae81e))
+
+
+### Features
+
+* update error messaging in onboarding failure toast ([8a4e303](https://github.com/oaknational/Oak-Web-Application/commit/8a4e3033809ebbeb9cc0bb554f2a58072df6d16c))
+
+# [1.1246.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1245.0...v1.1246.0) (2026-10-14)
+
+
+### Bug Fixes
+
+* remove about us contact initiated event from internal button ([0836338](https://github.com/oaknational/Oak-Web-Application/commit/0836338b4f315c91c6fb608891fc486e50fd4d7e))
+
+
+### Features
+
+* use avo page config to link to research panel page ([72b07bf](https://github.com/oaknational/Oak-Web-Application/commit/72b07bf93f8a30ff627f576901abb701c010e1c5))
+
+# [1.1245.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1244.2...v1.1245.0) (2026-10-14)
+
+
+### Features
+
+* add updated generated types ([e591e92](https://github.com/oaknational/Oak-Web-Application/commit/e591e92e6d92dc5e0fd02782583d27a02b20401a))
+* blog post portable text uses oak quote ([c7bccc8](https://github.com/oaknational/Oak-Web-Application/commit/c7bccc86360bedaf81c0bab048c62c15766d2d47))
+* case studies portable text renders oak quote with style overrides ([c75e7d6](https://github.com/oaknational/Oak-Web-Application/commit/c75e7d640cb764a6ffb70d19cb204eb936a2c784))
+* remove has left border override from portable text quotes ([eb27017](https://github.com/oaknational/Oak-Web-Application/commit/eb270172d7f97d9f28f7b185807902a21c8dbaf2))
+* use quote org where present ([53ffbfe](https://github.com/oaknational/Oak-Web-Application/commit/53ffbfe26e58e7367c410e199adf2c03866f7e28))
+
+## [1.1244.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1244.1...v1.1244.2) (2026-10-14)
+
+## [1.1244.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1244.0...v1.1244.1) (2026-10-12)
+
+
+### Bug Fixes
+
+* **sanity-graphql:** address SonarCloud findings in fetchWithRetry ([3794ccc](https://github.com/oaknational/Oak-Web-Application/commit/3794ccc0fe14cf380d5682427013c9fb373a5861))
+* **sanity-graphql:** retry transient Sanity GraphQL failures ([cd8cdc8](https://github.com/oaknational/Oak-Web-Application/commit/cd8cdc80ea4c57908a3942d8dfa99013e7b7a5be))
+
+# [1.1244.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1243.0...v1.1244.0) (2026-10-12)
+
+
+### Bug Fixes
+
+* sonarcloud errors ([790c902](https://github.com/oaknational/Oak-Web-Application/commit/790c9028ca488ef9c9c0993443585ad3222bea3f))
+
+
+### Features
+
+* fetch my library data server-side ([31e2d5c](https://github.com/oaknational/Oak-Web-Application/commit/31e2d5c0dda54f332b98857d0fc27a51aeef7969))
+* re-fetch data when stale ([86f089f](https://github.com/oaknational/Oak-Web-Application/commit/86f089fcfc7ccdb73bf5c5cc7ae2bac4c48f78cd))
+* run auth checks server-side ([80923dd](https://github.com/oaknational/Oak-Web-Application/commit/80923dd8efa676b800a8db75d0998b3fa4c3049e))
+
+# [1.1243.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1242.0...v1.1243.0) (2026-10-12)
+
+
+### Features
+
+* add toast on download error ([6c13ac2](https://github.com/oaknational/Oak-Web-Application/commit/6c13ac23ef4985b901427abfc0018404b97eb6f1))
+* back to static on unit and download success pages ([b6c9058](https://github.com/oaknational/Oak-Web-Application/commit/b6c905838bed8539d8f2a26de377ba665e313626))
+* prevent flashing on unit download button ([dfd429c](https://github.com/oaknational/Oak-Web-Application/commit/dfd429c8ae612626d7c300ba1e0eef374e6e5852))
+* refactor existence check props, improve error reporting ([1d42253](https://github.com/oaknational/Oak-Web-Application/commit/1d4225367b1cd8ada7d85e4853f7b88898e1f602))
+
+# [1.1242.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1241.0...v1.1242.0) (2026-10-09)
+
+
+### Bug Fixes
+
+* multiselect story with waitfor imported twice ([0fc3cd3](https://github.com/oaknational/Oak-Web-Application/commit/0fc3cd32222ecfc6b8ced3618e2ea34c13501a53))
+* storybook focus test multiselect ([4253c61](https://github.com/oaknational/Oak-Web-Application/commit/4253c6182559a08f08ed19c7893935bd69047379))
+
+
+### Features
+
+* **analytics:** deprecate onwardContentSelected ([6784143](https://github.com/oaknational/Oak-Web-Application/commit/6784143f4d3971ec9cd4725493611dcdd0c3785a))
+* **analytics:** send journey properties with the accessed events ([394e7ed](https://github.com/oaknational/Oak-Web-Application/commit/394e7edbebb0f20b1bd36ce2b0aab4e370fba460))
+* **analytics:** track lessonAccessed in place of onwardContentSelected ([fb08579](https://github.com/oaknational/Oak-Web-Application/commit/fb08579714639f984fd5afc8aa41334cc3ec4efb))
+* pull avo main again after merge conflict ([7725f0e](https://github.com/oaknational/Oak-Web-Application/commit/7725f0ecac3eaf04024ff397f5835ab9d25cc6cb))
+* pull latest avo main changes ([c92e94b](https://github.com/oaknational/Oak-Web-Application/commit/c92e94b8feb39e41ea8511d33a7e9de6166f0e3e))
+* pull main branch ([ba6f204](https://github.com/oaknational/Oak-Web-Application/commit/ba6f2048595f41f3e38b02bdcd6d993197b868b3))
+* re-pull avo with main changes ([fcec4bc](https://github.com/oaknational/Oak-Web-Application/commit/fcec4bcc6c659be84ecf8f4756b84728c25efa19))
+
+# [1.1241.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1240.0...v1.1241.0) (2026-10-09)
+
+
+### Features
+
+* join research panel query and schemas ([f83c15c](https://github.com/oaknational/Oak-Web-Application/commit/f83c15c36e4dce8310734dea6aefa2767682324a))
+* preview mode and unique keys ([95729a2](https://github.com/oaknational/Oak-Web-Application/commit/95729a2ca3fef78b5bda1670d9b321f7df8ea9be))
+* render simple data on research panel skeleton ([511ae2f](https://github.com/oaknational/Oak-Web-Application/commit/511ae2ffa241232812e3b547c642dea1cb23f1a7))
+
+# [1.1240.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1239.0...v1.1240.0) (2026-10-09)
+
+
+### Bug Fixes
+
+* added missing tags to case studies on oaks-impact page ([c2b38c9](https://github.com/oaknational/Oak-Web-Application/commit/c2b38c967682529d0d467bb9c6fc55454c0a8f22))
+
+
+### Features
+
+* change oaks-impact to only show most recent blog posts ([ee6cc05](https://github.com/oaknational/Oak-Web-Application/commit/ee6cc05607e44d6b41fe2fe2d26c763c32932f50))
+
 # [1.1239.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1238.1...v1.1239.0) (2026-10-09)
 
 

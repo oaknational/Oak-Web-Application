@@ -228,6 +228,7 @@ type AboutUsMeetTheTeamBioLinkProps = {
   slug: string;
 };
 type AboutUsGetInvolvedLinkProps = { page: "about-get-involved" };
+type AboutUsJoinResearchPanelLinkProps = { page: "about-join-research-panel" };
 type AboutUsOaksCurriculaLinkProps = { page: "about-oaks-curricula" };
 type AboutUsOaksImpactLinkProps = { page: "about-oaks-impact" };
 type AboutUsCaseStudyLinkProps = { page: "about-case-study"; slug: string };
@@ -405,6 +406,7 @@ export type OakLinkProps =
   | AboutUsMeetTheTeamLinkProps
   | AboutUsMeetTheTeamBioLinkProps
   | AboutUsGetInvolvedLinkProps
+  | AboutUsJoinResearchPanelLinkProps
   | AboutUsOaksCurriculaLinkProps
   | AboutUsOaksImpactLinkProps
   | AboutUsCaseStudyLinkProps
@@ -609,6 +611,12 @@ export const OAK_PAGES: {
     analyticsPageName: "About Us: Get Involved",
     configType: "internal",
     pageType: "about-get-involved",
+  }),
+  "about-join-research-panel": createOakPageConfig({
+    pathPattern: "/about-us/get-involved/join-research-panel",
+    analyticsPageName: "About Us: Join Research Panel",
+    configType: "internal",
+    pageType: "about-join-research-panel",
   }),
   "about-oaks-curricula": createOakPageConfig({
     pathPattern: "/about-us/oaks-curricula",
