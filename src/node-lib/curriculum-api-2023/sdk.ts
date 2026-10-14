@@ -89,7 +89,7 @@ export const withRetries = <T>(
     .executeForPromise(() => action())
     .catch((error: unknown) => {
       // Report once, after the final failed attempt, then let callers handle it
-      reportError(
+      void reportError(
         new OakError({
           code: isTimeoutError(error)
             ? "graphql/timeout"
