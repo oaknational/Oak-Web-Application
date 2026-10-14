@@ -37,8 +37,6 @@ export const AsHeader: Story = {
         _id: "image-1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422-png",
       },
     },
-    $pv: "spacing-32",
-    $pb: ["spacing-56", "spacing-72", "spacing-72"],
     $imageDisplay: ["none", "flex", "flex"],
   },
 };

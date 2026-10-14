@@ -34,19 +34,22 @@ export default function JoinResearchPanelPageHeader({
           />
         </OakBox>
       </NewGutterMaxWidth>
-      <AboutCalloutWithCta
-        headingTag="h1"
-        title={title}
-        text={bodyRaw}
-        image={image}
-        link={{
-          text: button.label,
-          href: getLinkHref(button),
-        }}
-        $pv={"spacing-32"}
+      <OakBox
+        $pt={"spacing-32"}
         $pb={["spacing-56", "spacing-72", "spacing-72"]}
-        $imageDisplay={["none", "flex", "flex"]}
-      />
+      >
+        <AboutCalloutWithCta
+          headingTag="h1"
+          title={title}
+          text={bodyRaw}
+          image={image}
+          link={{
+            text: button.label,
+            href: getLinkHref(button),
+          }}
+          $imageDisplay={["none", "flex", "flex"]}
+        />
+      </OakBox>
     </>
   );
 }

@@ -244,7 +244,6 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 
 .c76 {
   padding-top: 2rem;
-  padding-bottom: 2rem;
   padding-bottom: 3.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }

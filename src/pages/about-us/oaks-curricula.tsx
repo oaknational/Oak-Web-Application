@@ -229,12 +229,14 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
               </OakFlex>
             </NewGutterMaxWidth>
           )}
-          <AboutCalloutWithCta
-            link={{
-              text: "Get in touch with an expert",
-              href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
-            }}
-          />
+          <OakBox $pv={["spacing-56", "spacing-80", "spacing-80"]}>
+            <AboutCalloutWithCta
+              link={{
+                text: "Get in touch with an expert",
+                href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
+              }}
+            />
+          </OakBox>
         </AboutUsLayout>
       </Layout>
     </TeacherBrowseAnalyticsStoreProvider>
