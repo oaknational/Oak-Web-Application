@@ -264,6 +264,11 @@ const AboutUsCaseStudy: NextPage<AboutUsCaseStudyLibraryPageProps> = ({
                             portableText={contentBlock.contentRaw ?? []}
                             location="marketing"
                             blockOverrides={caseStudyPortableTextBlockOverrides}
+                            styleOverrides={{
+                              quote: {
+                                color: "bg-decorative2-main",
+                              },
+                            }}
                           />
                         </OakFlex>
                       ))}

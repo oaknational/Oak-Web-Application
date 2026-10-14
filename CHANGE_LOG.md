@@ -1,3 +1,13 @@
+## [1.1244.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1244.1...v1.1244.2) (2026-10-14)
+
+## [1.1244.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1244.0...v1.1244.1) (2026-10-12)
+
+
+### Bug Fixes
+
+* **sanity-graphql:** address SonarCloud findings in fetchWithRetry ([3794ccc](https://github.com/oaknational/Oak-Web-Application/commit/3794ccc0fe14cf380d5682427013c9fb373a5861))
+* **sanity-graphql:** retry transient Sanity GraphQL failures ([cd8cdc8](https://github.com/oaknational/Oak-Web-Application/commit/cd8cdc80ea4c57908a3942d8dfa99013e7b7a5be))
+
 # [1.1244.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1243.0...v1.1244.0) (2026-10-12)
 
 
