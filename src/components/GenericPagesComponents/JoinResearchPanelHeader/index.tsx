@@ -1,9 +1,11 @@
-import { PortableText } from "@portabletext/react";
+import { OakBox, OakBreadcrumbs } from "@oaknational/oak-components";
 
-import { OakBox, OakHeading, OakPrimaryButton } from "@/styles/oakThemeApp";
-import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import CMSImage from "@/components/SharedComponents/CMSImage";
+import { AboutUsCalloutWithCta } from "../AboutUsCalloutWithCta";
+import { NewGutterMaxWidth } from "../NewGutterMaxWidth";
+
 import { JoinResearchPanelPageBlock } from "@/common-lib/cms-types";
+import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
+import { resolveOakHref } from "@/common-lib/urls/urls";
 
 export default function JoinResearchPanelPageHeader({
   title,
@@ -12,18 +14,42 @@ export default function JoinResearchPanelPageHeader({
   button,
 }: JoinResearchPanelPageBlock<"JoinResearchPanelPageHeader">) {
   return (
-    <OakBox>
-      <OakHeading tag="h1"> {title} </OakHeading>
-      <PortableText value={bodyRaw} />
-      <OakPrimaryButton
-        element="a"
-        href={getLinkHref(button)}
-        iconName="external"
-        isTrailingIcon
+    <>
+      <NewGutterMaxWidth>
+        <OakBox $pt={["spacing-24", "spacing-32", "spacing-32"]}>
+          <OakBreadcrumbs
+            breadcrumbs={[
+              {
+                href: resolveOakHref({ page: "home" }),
+                text: "Home",
+              },
+              {
+                href: resolveOakHref({ page: "about-get-involved" }),
+                text: "Get involved",
+              },
+              {
+                text: "Join the Oak research panel",
+              },
+            ]}
+          />
+        </OakBox>
+      </NewGutterMaxWidth>
+      <OakBox
+        $pt={"spacing-32"}
+        $pb={["spacing-56", "spacing-72", "spacing-72"]}
       >
-        {button.label}
-      </OakPrimaryButton>
-      <CMSImage image={image} />
-    </OakBox>
+        <AboutUsCalloutWithCta
+          headingTag="h1"
+          title={title}
+          text={bodyRaw}
+          image={image}
+          link={{
+            text: button.label,
+            href: getLinkHref(button),
+          }}
+          $imageDisplay={["none", "flex", "flex"]}
+        />
+      </OakBox>
+    </>
   );
 }
