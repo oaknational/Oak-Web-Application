@@ -1,3 +1,17 @@
+# [1.1247.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1246.0...v1.1247.0) (2026-10-14)
+
+
+### Bug Fixes
+
+* add a retry mechanism to onboarding hubspot submit ([cfe2e3f](https://github.com/oaknational/Oak-Web-Application/commit/cfe2e3ffefa0b2d5b2d666b7760caef2163506db))
+* allow users with no school details to fill in the form ([07d7e09](https://github.com/oaknational/Oak-Web-Application/commit/07d7e09ffde05ba2320d10bd553ea20efe4150b3))
+* don't retry fallback errors ([ebf13f2](https://github.com/oaknational/Oak-Web-Application/commit/ebf13f29c4ea17ef3462e11cef000e3ef4dae81e))
+
+
+### Features
+
+* update error messaging in onboarding failure toast ([8a4e303](https://github.com/oaknational/Oak-Web-Application/commit/8a4e3033809ebbeb9cc0bb554f2a58072df6d16c))
+
 # [1.1246.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1245.0...v1.1246.0) (2026-10-14)
 
 
