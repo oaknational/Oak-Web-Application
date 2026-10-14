@@ -1,0 +1,37 @@
+query caseStudyPage($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
+  allCaseStudy (
+    where: { _: $isDraftFilter, slug: { current: { eq: $slug } } }
+  ) {
+    title,
+    slug {
+      current
+    },
+    tag,
+    summaryRaw,
+    video {
+      ...Video
+    },
+    textRaw,
+    image {
+      ...ImageWithAltText
+    }
+    publishedAt,
+    content {
+      heading,
+      label,
+      anchorSlug {
+        current
+      }
+      contentRaw
+    }
+    showGetInTouchPanel,
+    getInTouchPanel {
+      personName,
+      personImage {
+        ...ImageWithAltText
+      }
+      jobRole,
+      institutionName
+    }
+  }
+}

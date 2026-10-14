@@ -18,7 +18,7 @@ type VisualCheckboxProps = {
 
 type VisualCheckboxWrapper = {
   checked: boolean;
-  hasError?: boolean;
+  $hasError?: boolean;
   variant?: CheckboxVariant;
   slim?: boolean;
   zIndex?: ZIndex;
@@ -74,7 +74,7 @@ const VisualCheckbox: FC<VisualCheckboxProps> = (props) => {
       checked={props.checked}
       variant={props.variant}
       data-testid="visual-checkbox"
-      hasError={props.hasError}
+      $hasError={props.hasError}
       slim={props.slim}
       zIndex={props.zIndex}
     >

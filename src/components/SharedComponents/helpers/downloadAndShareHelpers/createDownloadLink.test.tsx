@@ -110,7 +110,7 @@ describe("createLessonDownloadLink()", () => {
       isLegacyDownload: true,
     });
 
-    expect(global.fetch).toBeCalledWith(
+    expect(global.fetch).toHaveBeenCalledWith(
       "https://mockdownloads.com/api/lesson/lesson-slug/download?selection=exit-quiz-answers,worksheet-pdf",
       { headers: {} },
     );
@@ -122,7 +122,7 @@ describe("createLessonDownloadLink()", () => {
       isLegacyDownload: false,
     });
 
-    expect(global.fetch).toBeCalledWith(
+    expect(global.fetch).toHaveBeenCalledWith(
       "https://mockdownloads.com/api/lesson/lesson-slug/download?selection=exit-quiz-answers,worksheet-pdf",
       { headers: {} },
     );
@@ -156,7 +156,7 @@ describe("createLessonDownloadLink()", () => {
       authToken,
     });
 
-    expect(global.fetch).toBeCalledWith(
+    expect(global.fetch).toHaveBeenCalledWith(
       expect.any(String),
       expect.objectContaining({
         headers: {

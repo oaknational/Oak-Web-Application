@@ -1,6 +1,5 @@
 "use client";
 import {
-  OakTertiaryInvertedButton,
   OakFlex,
   parseSpacing,
   parseBorder,
@@ -8,18 +7,15 @@ import {
   OakBox,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
+import { Suspense } from "react";
 
-import { useReturnToLessonProps } from "../../getReturnToLessonLink";
-
-import { extractLessonAccessedPropsFromHref } from "./extractLessonAccessedPropsFromHref";
+import { BackToLessonButton } from "./BackToLessonButton/BackToLessonButton";
 
 import {
   AboutSharedHeader,
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
-import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
-import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const HeaderLayout = styled(OakFlex)`
   display: flex;
@@ -42,33 +38,14 @@ export function TeachWithOakHeader() {
     "v1789976818/teacher-journey/teach-with-oak-header-image.jpg",
   );
 
-  const { lessonAccessed } = useTeacherBrowseAnalytics((store) => store.track);
-
-  const returnToLessonProps = useReturnToLessonProps();
-
   return (
     <OakBox
       $mt={["spacing-56", "spacing-80", "spacing-56"]}
       $mb={["spacing-56", "spacing-80", "spacing-72"]}
     >
-      {returnToLessonProps && (
-        <NewGutterMaxWidth>
-          <OakTertiaryInvertedButton
-            element="a"
-            href={returnToLessonProps.returnTo}
-            iconName="arrow-left"
-            onClick={() => {
-              const lessonAccessedProps =
-                extractLessonAccessedPropsFromHref(returnToLessonProps);
-              if (lessonAccessedProps) {
-                lessonAccessed(lessonAccessedProps);
-              }
-            }}
-          >
-            Back to lesson
-          </OakTertiaryInvertedButton>
-        </NewGutterMaxWidth>
-      )}
+      <Suspense>
+        <BackToLessonButton />
+      </Suspense>
       <HeaderLayout>
         <AboutSharedHeader
           title={"The thinking behind Oak lessons"}

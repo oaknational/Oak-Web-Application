@@ -15,8 +15,8 @@ const StyledSvg = styled.svg<OakBoxProps>`
 export type SvgProps = OakBoxProps & {
   name: SvgName;
   className?: string;
-  hideOnMobileH?: boolean;
-  hideOnMobileV?: boolean;
+  $hideOnMobileH?: boolean;
+  $hideOnMobileV?: boolean;
   color?: OakUiRoleToken;
   filter?: string;
 };

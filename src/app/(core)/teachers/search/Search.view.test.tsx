@@ -393,6 +393,8 @@ describe("Search.page.tsx", () => {
     expect(searchResultOpened).toHaveBeenCalledTimes(1);
     expect(searchResultOpened).toHaveBeenCalledWith({
       analyticsUseCase: "Teacher",
+      accessLevel: "search",
+      navigationType: "narrow",
       keyStageSlug: "ks1",
       keyStageTitle: "Key stage 1",
       lessonName: "lesson title",
@@ -425,6 +427,8 @@ describe("Search.page.tsx", () => {
     expect(searchResultOpened).toHaveBeenCalledWith({
       context: "search",
       analyticsUseCase: "Teacher",
+      accessLevel: "search",
+      navigationType: "narrow",
       keyStageSlug: "ks1",
       keyStageTitle: "Key stage 1",
       lessonName: "lesson title",
@@ -466,6 +470,8 @@ describe("Search.page.tsx", () => {
     expect(searchResultExpanded).toHaveBeenCalledWith({
       context: "search",
       analyticsUseCase: "Teacher",
+      accessLevel: "search",
+      navigationType: "narrow",
       componentType: "search_result_item",
       engagementIntent: "refine",
       eventVersion: "2.0.0",
@@ -498,6 +504,8 @@ describe("Search.page.tsx", () => {
     expect(searchResultExpanded).toHaveBeenCalledWith({
       context: "search",
       analyticsUseCase: "Teacher",
+      accessLevel: "search",
+      navigationType: "narrow",
       componentType: "search_result_item",
       engagementIntent: "refine",
       eventVersion: "2.0.0",
@@ -533,6 +541,8 @@ describe("Search.page.tsx", () => {
     expect(searchRefined).toHaveBeenCalledWith({
       activeFilters: { subjects: "english" },
       analyticsUseCase: "Teacher",
+      accessLevel: "search",
+      navigationType: "narrow",
       componentType: "filter_link",
       engagementIntent: "refine",
       eventVersion: "2.0.0",

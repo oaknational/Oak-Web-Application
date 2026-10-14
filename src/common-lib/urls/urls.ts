@@ -228,9 +228,11 @@ type AboutUsMeetTheTeamBioLinkProps = {
   slug: string;
 };
 type AboutUsGetInvolvedLinkProps = { page: "about-get-involved" };
+type AboutUsJoinResearchPanelLinkProps = { page: "about-join-research-panel" };
 type AboutUsOaksCurriculaLinkProps = { page: "about-oaks-curricula" };
 type AboutUsOaksImpactLinkProps = { page: "about-oaks-impact" };
 type AboutUsCaseStudyLinkProps = { page: "about-case-study"; slug: string };
+type AboutUsCaseStudyLibraryLinkProps = { page: "about-case-study-library" };
 
 type CareersLinkProps = { page: "careers" };
 type ContactUsLinkProps = { page: "contact" };
@@ -260,6 +262,7 @@ type LabsTeachingMaterialsLinkProps = {
   page: "labs-teaching-materials";
   query?: UrlQueryObject;
 };
+type McpLinkProps = { page: "mcp" };
 type TeacherHubLinkProps = { page: "teacher-hub" };
 
 type OnboardingLinkProps = {
@@ -334,13 +337,22 @@ type EyfsPageLinkProps = {
   subjectSlug: string;
 };
 
-type TeachWithOakDownloadLinkProps = { page: "teach-with-oak-download" };
-
 export type TeachWithOakQueryProps = {
   returnTo: string;
   lessonName: string;
   unitName: string;
 };
+
+type TeachWithOakDownloadLinkProps = {
+  page: "teach-with-oak-download";
+  query?: TeachWithOakQueryProps;
+};
+
+type TeachWithOakDownloadSuccessLinkProps = {
+  page: "teach-with-oak-download-success";
+  query?: TeachWithOakQueryProps;
+};
+
 type TeachWithOakLinkProps = {
   page: "teach-with-oak";
   query?: TeachWithOakQueryProps;
@@ -360,6 +372,7 @@ export type OakLinkPropsRequiringPageOnly = Extract<
 export type OakLinkProps =
   | LabsLinkProps
   | LabsTeachingMaterialsLinkProps
+  | McpLinkProps
   | TeachersHomePageProps
   | LandingPageLinkProps
   | LessonDownloadsLinkProps
@@ -393,9 +406,11 @@ export type OakLinkProps =
   | AboutUsMeetTheTeamLinkProps
   | AboutUsMeetTheTeamBioLinkProps
   | AboutUsGetInvolvedLinkProps
+  | AboutUsJoinResearchPanelLinkProps
   | AboutUsOaksCurriculaLinkProps
   | AboutUsOaksImpactLinkProps
   | AboutUsCaseStudyLinkProps
+  | AboutUsCaseStudyLibraryLinkProps
   | CareersLinkProps
   | ContactUsLinkProps
   | HomeLinkProps
@@ -425,7 +440,8 @@ export type OakLinkProps =
   | GuideToOakLinkProps
   | FontHelpLinkProps
   | TeachWithOakLinkProps
-  | TeachWithOakDownloadLinkProps;
+  | TeachWithOakDownloadLinkProps
+  | TeachWithOakDownloadSuccessLinkProps;
 
 export type ExternalPageName =
   | "[external] Careers"
@@ -596,6 +612,12 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "about-get-involved",
   }),
+  "about-join-research-panel": createOakPageConfig({
+    pathPattern: "/about-us/get-involved/join-research-panel",
+    analyticsPageName: "About Us: Join Research Panel",
+    configType: "internal",
+    pageType: "about-join-research-panel",
+  }),
   "about-oaks-curricula": createOakPageConfig({
     pathPattern: "/about-us/oaks-curricula",
     analyticsPageName: "About Us: Oak's curricula",
@@ -613,6 +635,12 @@ export const OAK_PAGES: {
     analyticsPageName: "About Us: Case Study",
     configType: "internal",
     pageType: "about-case-study",
+  }),
+  "about-case-study-library": createOakPageConfig({
+    pathPattern: "/about-us/case-studies",
+    analyticsPageName: "About Us: Case Study Library",
+    configType: "internal",
+    pageType: "about-case-study-library",
   }),
   careers: createOakPageConfig({
     url: "https://app.beapplied.com/org/1574/oak-national-academy",
@@ -692,6 +720,12 @@ export const OAK_PAGES: {
     configType: "external",
     pageType: "labs-teaching-materials",
   }),
+  mcp: createOakPageConfig({
+    pathPattern: "/ai-plugin",
+    analyticsPageName: "AI Plugin",
+    configType: "internal",
+    pageType: "mcp",
+  }),
   "our-teachers": createOakPageConfig({
     url: "https://classroom.thenational.academy/teachers",
     analyticsPageName: "[external] Our teachers",
@@ -760,7 +794,7 @@ export const OAK_PAGES: {
   }),
   "pupil-lesson": createOakPageConfig({
     pathPattern:
-      "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
+      "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/overview",
     analyticsPageName: "Lesson",
     configType: "internal",
     pageType: "pupil-lesson",
@@ -990,6 +1024,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Teach With Oak",
     configType: "internal",
     pageType: "teach-with-oak-download",
+  }),
+  "teach-with-oak-download-success": createOakPageConfig({
+    pathPattern: "/teachers/teach-with-oak/downloads/success",
+    analyticsPageName: "Teach With Oak",
+    configType: "internal",
+    pageType: "teach-with-oak-download-success",
   }),
 };
 

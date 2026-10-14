@@ -72,7 +72,7 @@ const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
         <OakFocusIndicator
           $width={"100%"}
           $height={"100%"}
-          hoverBackground="bg-decorative6-main"
+          $hoverBackground="bg-decorative6-main"
         >
           <FocusTarget
             as="div"

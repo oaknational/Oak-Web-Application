@@ -93,7 +93,7 @@ describe("xlsxNationalCurriculum e2e", () => {
         year: "11",
         subject_slug: "physical-education",
         subject: "Physical education",
-        examboard: "edexcel",
+        examboard_slug: "edexcel",
         features: { national_curriculum_content: true },
       }),
     ];

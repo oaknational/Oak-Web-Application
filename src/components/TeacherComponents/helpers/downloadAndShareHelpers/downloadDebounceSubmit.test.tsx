@@ -36,7 +36,7 @@ describe("downloadDebounceSubmit", () => {
     downloadDebounceSubmit(
       props as unknown as DownloadDebouncedSubmitProps,
     ).catch((error) => {
-      expect(reportError).toBeCalled();
+      expect(reportError).toHaveBeenCalled();
       expect(error.code).toEqual("downloads/failed-to-fetch");
     });
   });
@@ -49,6 +49,6 @@ describe("downloadDebounceSubmit", () => {
       props as unknown as DownloadDebouncedSubmitProps,
     );
     expect(setIsAttemptingDownload).toHaveBeenCalledTimes(2);
-    expect(setEditDetailsClicked).toBeCalledWith(false);
+    expect(setEditDetailsClicked).toHaveBeenCalledWith(false);
   });
 });

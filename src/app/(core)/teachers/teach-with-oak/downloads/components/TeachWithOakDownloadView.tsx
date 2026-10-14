@@ -7,6 +7,9 @@ import {
   OakPrimaryButton,
 } from "@oaknational/oak-components";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+import { parseReturnToLessonParams } from "../../parseReturnToLessonParams";
 
 import { TeachWithOakResourceCards } from "./TeachWithOakResourceCards";
 
@@ -14,22 +17,26 @@ import { resolveOakHref } from "@/common-lib/urls";
 import DownloadPageWithAccordion from "@/components/TeacherComponents/DownloadPageWithAccordion";
 import downloadDebouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
-import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
+import { useTeachWithOakResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import useTeachWithOakDownload from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useTeachWithOakDownload";
 import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { TeachWithOakShortReadsDownloads } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/teachWithOakShortReads.schema";
+import { waitForLinkCallback } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 
 export const TeachWithOakDownloadView = ({
   resources,
+  returnToLessonProps,
 }: {
   resources: TeachWithOakShortReadsDownloads;
+  returnToLessonProps: ReturnType<typeof parseReturnToLessonParams>;
 }) => {
   const [isDownloadSuccessful, setIsDownloadSuccessful] = useState(false);
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
   const [apiError, setApiError] = useState<string | null>(null);
+  const router = useRouter();
 
   const {
     form,
@@ -48,9 +55,7 @@ export const TeachWithOakDownloadView = ({
     selectAllChecked,
     setEmailInLocalStorage,
     hubspotLoaded,
-  } = useResourceFormState({
-    type: "teach-with-oak",
-  });
+  } = useTeachWithOakResourceFormState();
 
   const { onSubmit } = useTeachWithOakDownload();
   const { onHubspotSubmit } = useHubspotSubmit();
@@ -75,12 +80,20 @@ export const TeachWithOakDownloadView = ({
         setEmailInLocalStorage("");
       }
 
-      setCurrentToastProps({
-        message: "Download started. This may take a few minutes",
-        variant: "success",
-        autoDismiss: true,
-        showClose: true,
-        showIcon: true,
+      waitForLinkCallback(() => {
+        setCurrentToastProps({
+          message: "Download started. This may take a few minutes",
+          variant: "success",
+          autoDismiss: true,
+          showClose: true,
+          showIcon: true,
+        });
+        router.replace(
+          resolveOakHref({
+            page: "teach-with-oak-download-success",
+            ...(returnToLessonProps && { query: returnToLessonProps }),
+          }),
+        );
       });
 
       // TD: Tracking

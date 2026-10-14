@@ -62,7 +62,11 @@ export function WhoAreWeExplore({
   const headingId = useId();
 
   return (
-    <OakBox $background={"bg-decorative1-main"} $position={"relative"}>
+    <OakBox
+      $background={"bg-decorative1-main"}
+      $position={"relative"}
+      $overflow={"hidden"}
+    >
       <OakIcon
         iconName="confetti"
         $position={"absolute"}

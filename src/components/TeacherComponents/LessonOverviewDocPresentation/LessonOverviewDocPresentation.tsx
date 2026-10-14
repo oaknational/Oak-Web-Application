@@ -5,9 +5,9 @@ import styled from "styled-components";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import errorReporter from "@/common-lib/error-reporter";
 
-const StyledIframe = styled.iframe<{ shouldZoom: boolean }>`
-  ${({ shouldZoom }) =>
-    shouldZoom === true &&
+const StyledIframe = styled.iframe<{ $shouldZoom: boolean }>`
+  ${({ $shouldZoom }) =>
+    $shouldZoom === true &&
     ` @media (min-width: 750px) {
           zoom: 0.8;
         }
@@ -44,7 +44,7 @@ const LessonOverviewDocPresentation: FC<LessonOverviewPresentationProps> = ({
   const srcUrl = convertToPreviewUrl(asset);
 
   if (!srcUrl) {
-    reportError(
+    void reportError(
       new Error(
         `Unable to generate google doc preview url for asset with url: ${asset}`,
       ),
@@ -68,7 +68,7 @@ const LessonOverviewDocPresentation: FC<LessonOverviewPresentationProps> = ({
             border: "none",
           }}
           loading="eager"
-          shouldZoom={isWorksheetLandscape ?? false}
+          $shouldZoom={isWorksheetLandscape ?? false}
           // We know the google docs aren't accessible.
           className="pa11y-ignore"
           // avoid focus traps

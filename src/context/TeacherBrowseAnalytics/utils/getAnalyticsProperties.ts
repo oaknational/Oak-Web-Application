@@ -1,12 +1,12 @@
 import { ProgrammeFields } from "@oaknational/oak-curriculum-schema";
 
 import {
-  ProgrammeState,
   ProgrammePathwayData,
   ProgrammeStateUnit,
   UnitPathwayData,
   ProgrammeStateLesson,
   LessonPathwayData,
+  CoreProgrammeState,
 } from "../teacherBrowseAnalytics.types";
 
 import { KeyStageTitleValueType, PhaseValueType } from "@/browser-lib/avo/Avo";
@@ -22,7 +22,7 @@ const convertKsTitle = (ks: ProgrammeFields["keystage_description"]) => {
 };
 
 export const getProgrammeAnalyticsProperties = (
-  programmeState: ProgrammeState,
+  programmeState: CoreProgrammeState,
 ): ProgrammePathwayData => {
   return {
     phase: programmeState.phaseSlug as PhaseValueType,
@@ -45,6 +45,8 @@ export const getUnitAnalyticsProperties = (
     tierName: programmeState.tierTitle,
     unitName: programmeState.unit.title,
     unitSlug: programmeState.unit.slug,
+    yearGroupSlug: programmeState.yearGroupSlug,
+    yearGroupName: programmeState.yearGroupTitle,
   };
 };
 
@@ -60,6 +62,6 @@ export const getLessonAnalyticsProperties = (
     lessonReleaseCohort: "2023-2026",
     releaseGroup: "2023",
     yearGroupName: programmeState.yearGroupTitle,
-    yearGroupSlug: `year-${programmeState.year}`,
+    yearGroupSlug: programmeState.yearGroupSlug,
   };
 };

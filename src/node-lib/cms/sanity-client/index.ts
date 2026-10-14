@@ -26,10 +26,11 @@ import {
   oaksCurriculaPageSchema,
   teamMemberSchema,
   oaksImpactPageSchema,
-  oaksImpactCaseStudyPageSchema,
   caseStudyLibraryPageSchema,
+  caseStudyPageSchema,
   nationalCurriculumInsightsSubjectLookupParamsSchema,
   implementationGuidesSchema,
+  joinResearchPanelPageSchema,
 } from "../../../common-lib/cms-types";
 import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
 import getProxiedSanityAssetUrl from "../../../common-lib/urls/getProxiedSanityAssetUrl";
@@ -194,6 +195,11 @@ const getSanityClient = () => ({
       return whoWeArePageData;
     },
   ),
+  joinResearchPanelPage: getSingleton(
+    sanityGraphqlApi.joinResearchPanelPage,
+    joinResearchPanelPageSchema,
+    (result) => result?.allNewAboutCorePageJoinResearchPanel?.[0],
+  ),
   contactPage: getSingleton(
     sanityGraphqlApi.contactCorePage,
     contactPageSchema,
@@ -269,17 +275,17 @@ const getSanityClient = () => ({
   oaksImpactPage: getSingleton(
     sanityGraphqlApi.oaksImpactPage,
     oaksImpactPageSchema,
-    (result) => result?.allNewAboutCorePageOaksImpact?.[0],
-  ),
-  oaksImpactCaseStudyPage: getSingleton(
-    sanityGraphqlApi.oaksImpactCaseStudyPage,
-    oaksImpactCaseStudyPageSchema,
-    (result) => result?.allNewAboutCorePageOaksImpact?.[0],
+    (result) => result,
   ),
   caseStudyLibraryPage: getList(
     sanityGraphqlApi.caseStudyLibraryPage,
     caseStudyLibraryPageSchema,
     (result) => result.allCaseStudy,
+  ),
+  caseStudyPage: getSingleton(
+    sanityGraphqlApi.caseStudyPage,
+    caseStudyPageSchema,
+    (result) => result.allCaseStudy?.[0],
   ),
   implementationGuides: getSingleton(
     sanityGraphqlApi.implementationGuides,

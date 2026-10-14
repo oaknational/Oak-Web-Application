@@ -88,4 +88,31 @@ describe("DownloadSuccessHeader", () => {
     backButton.click();
     expect(onBackClick).toHaveBeenCalled();
   });
+
+  it("renders no back link when returnTo is omitted", () => {
+    render(<DownloadSuccessHeader href="/programmes" />);
+
+    expect(
+      screen.queryByRole("link", { name: "Back to lesson" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "Back to lesson" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("hides the font installation instructions when showFontInstructions is false", () => {
+    render(
+      <DownloadSuccessHeader
+        href="/programmes"
+        returnTo="lesson"
+        showFontInstructions={false}
+      />,
+    );
+
+    expect(
+      screen.queryByRole("link", {
+        name: /install the Google Fonts 'Lexend' and 'Kalam'/,
+      }),
+    ).not.toBeInTheDocument();
+  });
 });

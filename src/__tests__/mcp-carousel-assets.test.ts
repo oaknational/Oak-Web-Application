@@ -24,13 +24,12 @@ import { join } from "node:path";
  * runs inside the required unit-test gate. Keep both: this one blocks the
  * merge, that one proves the URL actually serves.
  *
- * MCP-688: the files moved on disk to `public/ai-plugin/carousel`, and the
- * published `/mcp/carousel` URLs Anthropic holds are kept alive by a REWRITE in
- * `next.config.ts` — same bytes, same status, no redirect. This test follows the
- * bytes to their new location; the URL contract stays pinned as a literal in the
- * Playwright spec, which is the surface Anthropic actually fetches. Moving the
- * files is therefore safe; changing the published URL is not, until the listing
- * is updated.
+ * MCP-688 moved the files on disk to `public/ai-plugin/carousel`. MCP-689/690
+ * confirmed Anthropic's listing now fetches from `/ai-plugin/carousel` directly
+ * and removed the compat rewrite that used to keep the old `/mcp/carousel` URLs
+ * alive. This test follows the bytes at their published location; the URL
+ * contract stays pinned as a literal in the Playwright spec, which is the
+ * surface Anthropic actually fetches.
  */
 
 /**

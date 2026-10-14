@@ -120,7 +120,7 @@ export const unitOverviewDataSchema = z.object({
   parentSubject: programmeFieldsSchema.shape.subject_parent,
   subjectCategories: z.array(z.string()).nullable(),
   yearGroupTitle: programmeFieldsSchema.shape.year_description,
-  yearSlug: programmeFieldsSchema.shape.year_slug,
+  yearGroupSlug: programmeFieldsSchema.shape.year_slug,
   year: programmeFieldsSchema.shape.year,
   keyStageSlug: programmeFieldsSchema.shape.keystage_slug,
   keyStageTitle: programmeFieldsSchema.shape.keystage_description,

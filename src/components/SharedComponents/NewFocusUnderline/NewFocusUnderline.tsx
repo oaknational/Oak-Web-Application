@@ -17,11 +17,11 @@ export const newFocusUnderlineStyles = css`
     display: none;
   }
 
-  :focus {
+  &:focus {
     outline: none;
   }
 
-  :focus ${NewFocusUnderline} {
+  &:focus ${NewFocusUnderline} {
     position: absolute;
     display: block;
     right: 0;

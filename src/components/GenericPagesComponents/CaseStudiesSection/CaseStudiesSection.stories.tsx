@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
 
-import { caseStudiesSectionFixture } from "./CaseStudiesSection.fixtures";
-
 import { CaseStudiesSection as Component } from ".";
+
+import { otherCaseStudies } from "@/__tests__/pages/about-us/case-studies/case-studies.fixtures";
 
 const meta = {
   component: Component,
@@ -16,8 +16,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    title: "Explore more case studies",
-    caseStudies: caseStudiesSectionFixture,
+    title: "Case studies",
+    caseStudies: otherCaseStudies,
   },
   render: (args) => <Component {...args} />,
 };

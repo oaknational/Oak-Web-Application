@@ -14,6 +14,7 @@ export type Params = {
 
 export type ListParams = Params & {
   limit?: number;
+  slug?: string;
 };
 
 /**

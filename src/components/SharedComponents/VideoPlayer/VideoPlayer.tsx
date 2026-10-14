@@ -2,7 +2,12 @@ import React, { FC, useCallback, useEffect, useRef, useState } from "react";
 import MuxPlayer from "@mux/mux-player-react/lazy";
 import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
-import { OakP, OakFlex, OakUiRoleToken } from "@oaknational/oak-components";
+import {
+  OakP,
+  OakFlex,
+  OakImage,
+  OakUiRoleToken,
+} from "@oaknational/oak-components";
 
 import useVideoTracking, {
   VideoAnalyticsOverrides,
@@ -41,6 +46,7 @@ type VideoPlayerBaseProps = {
   playbackId: string;
   initialStartTime?: number;
   thumbnailTime?: number | null;
+  poster?: string;
   title: string;
   location: VideoLocationValueType;
   userEventCallback?: (event: VideoEventCallbackArgs) => void;
@@ -130,6 +136,7 @@ function VideoContainer({
       // snapshots loaded and some pending load depending on the timing
       // (race condition)
       data-percy-hide="contents"
+      data-chromatic="ignore"
       $alignItems={"center"}
       $justifyContent={"center"}
       $ba={omitBorder ? "border-solid-none" : "border-solid-l"}
@@ -148,6 +155,7 @@ function VideoContainer({
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const {
     thumbnailTime: thumbTime,
+    poster,
     initialStartTime = 0,
     title,
     location,
@@ -357,6 +365,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         start-time={startTime}
         tokens={tokens}
         thumbnailTime={thumbTime || undefined}
+        poster={poster}
         customDomain={"video.thenational.academy"}
         beaconCollectionDomain={"mux-litix.thenational.academy"}
         debug={debug}
@@ -404,7 +413,19 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
           aspectRatio: "16/9",
           overflow: "hidden",
         }}
-      />
+      >
+        {poster ? (
+          <OakImage
+            slot="poster"
+            src={poster}
+            alt=""
+            $width="100%"
+            $height="100%"
+            $objectFit="cover"
+            $background="bg-inverted"
+          />
+        ) : null}
+      </MuxPlayer>
     </VideoContainer>
   );
 };

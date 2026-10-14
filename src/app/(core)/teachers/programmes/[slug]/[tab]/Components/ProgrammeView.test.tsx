@@ -218,7 +218,7 @@ describe("ProgrammeView", () => {
       }),
     );
     renderProgrammeView({ tabSlug: "download" });
-    const content = screen.getByText("Download curriculum resources");
+    const content = screen.getByText("Downloads");
     expect(content).toBeInTheDocument();
   });
   it("navigates on tab click", async () => {
