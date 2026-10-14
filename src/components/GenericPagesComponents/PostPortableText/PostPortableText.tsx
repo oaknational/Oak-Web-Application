@@ -106,7 +106,7 @@ type PostPortableTextProps = {
   location?: VideoLocationValueType;
   blockOverrides?: Record<string, PortableTextComponent<"block">>;
   styleOverrides?: {
-    quote?: Pick<OakQuoteProps, "hasLeftBorder" | "color">;
+    quote?: Pick<OakQuoteProps, "color">;
   };
 };
 

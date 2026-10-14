@@ -4,10 +4,9 @@ import { OakQuote, OakBox, OakQuoteProps } from "@oaknational/oak-components";
 import { Quote } from "@/common-lib/cms-types";
 
 const PostQuote = (
-  props: PortableTextComponentProps<Quote> &
-    Pick<OakQuoteProps, "hasLeftBorder" | "color">,
+  props: PortableTextComponentProps<Quote> & Pick<OakQuoteProps, "color">,
 ) => {
-  const { hasLeftBorder = true, color = "bg-decorative1-main" } = props;
+  const { color = "bg-decorative1-main" } = props;
 
   if (!props.value?.text) {
     return null;
@@ -23,7 +22,6 @@ const PostQuote = (
         quote={props.value.text.trim()}
         authorName={props.value.attribution ?? undefined}
         authorTitle={fullRole}
-        hasLeftBorder={hasLeftBorder}
         color={color}
       />
     </OakBox>

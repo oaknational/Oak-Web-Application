@@ -266,7 +266,6 @@ const AboutUsCaseStudy: NextPage<AboutUsCaseStudyLibraryPageProps> = ({
                             blockOverrides={caseStudyPortableTextBlockOverrides}
                             styleOverrides={{
                               quote: {
-                                hasLeftBorder: true,
                                 color: "bg-decorative2-main",
                               },
                             }}
