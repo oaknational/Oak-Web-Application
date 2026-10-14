@@ -1,3 +1,15 @@
+# [1.1246.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1245.0...v1.1246.0) (2026-10-14)
+
+
+### Bug Fixes
+
+* remove about us contact initiated event from internal button ([0836338](https://github.com/oaknational/Oak-Web-Application/commit/0836338b4f315c91c6fb608891fc486e50fd4d7e))
+
+
+### Features
+
+* use avo page config to link to research panel page ([72b07bf](https://github.com/oaknational/Oak-Web-Application/commit/72b07bf93f8a30ff627f576901abb701c010e1c5))
+
 # [1.1245.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1244.2...v1.1245.0) (2026-10-14)
 
 
