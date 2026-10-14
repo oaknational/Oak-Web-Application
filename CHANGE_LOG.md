@@ -1,3 +1,10 @@
+## [1.1247.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1247.0...v1.1247.1) (2026-10-14)
+
+
+### Bug Fixes
+
+* partial fix for perf issues on units page ([ad54c51](https://github.com/oaknational/Oak-Web-Application/commit/ad54c519741b1c28b27f8deb9dbb514c1fc4d012))
+
 # [1.1247.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1246.0...v1.1247.0) (2026-10-14)
 
 
