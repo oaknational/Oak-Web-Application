@@ -62,6 +62,24 @@ export type TeacherBrowseAnalyticsStore = {
   accessLevel: AccessLevelValueType;
   avo: TrackFns;
   track: {
+    contentSaved: (data: {
+      keyStageTitle: KeyStageTitleValueType;
+      keyStageSlug: string;
+      subjectTitle: string;
+      subjectSlug: string;
+      contentType: string;
+      contentItemSlug: string;
+      componentType: ComponentTypeValueType;
+    }) => void;
+    contentUnsaved: (data: {
+      keyStageTitle: KeyStageTitleValueType;
+      keyStageSlug: string;
+      subjectTitle: string;
+      subjectSlug: string;
+      contentType: string;
+      contentItemSlug: string;
+      componentType: ComponentTypeValueType;
+    }) => void;
     createTeachingMaterialsInitiated: (props: { isLoggedIn: boolean }) => void;
     curriculumExplainerExplored: () => void;
     curriculumResourcesAccessed: (data: {
@@ -275,6 +293,24 @@ export const createTeacherBrowseAnalyticsStore = (
   return createStore<TeacherBrowseAnalyticsStore>()((_, get) => ({
     ...initialState,
     track: {
+      contentSaved: (data) => {
+        const { avo } = get();
+
+        avo.contentSaved({
+          ...coreProperties,
+          ...data,
+          engagementIntent: "use",
+        });
+      },
+      contentUnsaved: (data) => {
+        const { avo } = get();
+
+        avo.contentUnsaved({
+          ...coreProperties,
+          ...data,
+          engagementIntent: "use",
+        });
+      },
       createTeachingMaterialsInitiated: (data) => {
         const { avo, programmeState, journeyId } = get();
 
