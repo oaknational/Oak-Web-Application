@@ -191,7 +191,7 @@ const OnboardingForm = ({
         setCurrentToastProps({
           variant: "error",
           message:
-            "Sorry something went wrong with your sign up. Please try again later.",
+            "Sorry, something went wrong with your sign-up. You’ll need to complete account setup before you can access some features.",
           autoDismiss: false,
           showIcon: true,
         });
