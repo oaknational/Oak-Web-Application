@@ -1783,7 +1783,7 @@ exports[`pages/about-us/case-studies/[slug].tsx does not render written case stu
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-5012a3f4-0 bfVxIC"
+              class="sc-bdvwhi LoEut sc-82a69116-0 kSePHC"
               data-chromatic="ignore"
               data-percy-hide="contents"
             >
@@ -3782,7 +3782,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-5012a3f4-0 bfVxIC"
+              class="sc-bdvwhi LoEut sc-82a69116-0 kSePHC"
               data-chromatic="ignore"
               data-percy-hide="contents"
             >
@@ -6247,7 +6247,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-5012a3f4-0 bfVxIC"
+              class="sc-bdvwhi LoEut sc-82a69116-0 kSePHC"
               data-chromatic="ignore"
               data-percy-hide="contents"
             >
@@ -8877,7 +8877,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-5012a3f4-0 bfVxIC"
+              class="sc-bdvwhi LoEut sc-82a69116-0 kSePHC"
               data-chromatic="ignore"
               data-percy-hide="contents"
             >
@@ -11538,7 +11538,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-5012a3f4-0 bfVxIC"
+              class="sc-bdvwhi LoEut sc-82a69116-0 kSePHC"
               data-chromatic="ignore"
               data-percy-hide="contents"
             >
