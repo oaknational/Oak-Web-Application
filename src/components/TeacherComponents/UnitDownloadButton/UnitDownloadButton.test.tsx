@@ -109,6 +109,7 @@ const renderUnitDownloadButton = (
 
 describe("UnitDownloadButton", () => {
   beforeEach(() => {
+    window.localStorage.clear();
     setUseUserReturn(mockLoggedIn);
     setBreakpoint();
     mockUnitDownloadStarted.mockClear();
@@ -117,11 +118,15 @@ describe("UnitDownloadButton", () => {
     setCurrentToastProps.mockClear();
   });
 
-  it("should render a continue button when logged in but not onboarded", () => {
+  it("requires onboarding when Clerk metadata is incomplete", () => {
     setUseUserReturn(mockNotOnboardedUser);
     renderUnitDownloadButton();
     const button = screen.getByText("Sign up to download");
-    expect(button).toBeInTheDocument();
+
+    expect(button.closest("a")).toHaveAttribute(
+      "href",
+      expect.stringContaining("onboarding"),
+    );
   });
   it("should render a download button when logged in", () => {
     setUseUserReturn(mockLoggedIn);
