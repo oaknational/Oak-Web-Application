@@ -1,3 +1,21 @@
+## [1.1249.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1249.1...v1.1249.2) (2026-10-14)
+
+
+### Bug Fixes
+
+* adjust case-studies tests ([64d9295](https://github.com/oaknational/Oak-Web-Application/commit/64d929525ea96fc991eb019de16f253e963d6964))
+* remove feature flag ([e0307bc](https://github.com/oaknational/Oak-Web-Application/commit/e0307bc321907132b6cac1fe6131c330601d01a1))
+* remove showTags bool ([8f1bab3](https://github.com/oaknational/Oak-Web-Application/commit/8f1bab31a46e70c1232ec22390b0d49e8218e40a))
+* remove todos ([3da037e](https://github.com/oaknational/Oak-Web-Application/commit/3da037e6701a34fbd566d858e731127fb1ebaef7))
+* remove view all link bool ([cf10b4f](https://github.com/oaknational/Oak-Web-Application/commit/cf10b4f307ce31471401531bb942ae18b51dc24c))
+* rename case studies content o decouple from oak's impact ([9dbf459](https://github.com/oaknational/Oak-Web-Application/commit/9dbf4594b7c7020a2541420a4ac4f2217441e9c9))
+* render notfound when library page array is empty ([f2cd4c1](https://github.com/oaknational/Oak-Web-Application/commit/f2cd4c1682c8b5e85e7486d0d6d8758ab330f098))
+* snaps ([2376270](https://github.com/oaknational/Oak-Web-Application/commit/2376270f709bf53022ee361bf6db65365e500e4c))
+* snaps ([376e45a](https://github.com/oaknational/Oak-Web-Application/commit/376e45a350fe7fbfe83486b7e0075aaebf3c0a2d))
+* switch to static props and paths ([0f03583](https://github.com/oaknational/Oak-Web-Application/commit/0f0358343ec14b8eb38d8d047125e7fb2e4ac602))
+* tag name func ([d6875e2](https://github.com/oaknational/Oak-Web-Application/commit/d6875e2bb7c0af46293917cd2205fe9d8fce2ab1))
+* tests for caseStudiesSection ([88bf0de](https://github.com/oaknational/Oak-Web-Application/commit/88bf0debcb5528c8ade01d747d857f5003f9871a))
+
 ## [1.1249.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1249.0...v1.1249.1) (2026-10-14)
 
 # [1.1249.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1248.0...v1.1249.0) (2026-10-14)
