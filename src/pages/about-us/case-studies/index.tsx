@@ -1,5 +1,5 @@
 import { capitalize } from "lodash";
-import { NextPage, GetServerSideProps } from "next";
+import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { OakBox, OakCard, OakFlex } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -7,7 +7,6 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import Layout from "@/components/AppComponents/AppLayout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import CMSClient from "@/node-lib/cms";
 import { CaseStudyLibraryPage } from "@/common-lib/cms-types/aboutPages";
@@ -20,6 +19,7 @@ import {
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { getCaseStudyTagBackground } from "@/components/GenericPagesComponents/CaseStudiesSection/getCaseStudyTagBackground";
+import getPageProps from "@/node-lib/getPageProps";
 
 export type AboutUsCaseStudyLibraryPageProps = {
   pageData: {
@@ -100,38 +100,38 @@ export const AboutUsCaseStudyLibrary: NextPage<
   );
 };
 
-export const getServerSideProps: GetServerSideProps<
+export const getStaticProps: GetStaticProps<
   AboutUsCaseStudyLibraryPageProps
 > = async (context) => {
-  const isEnabled = await isFeatureFlagEnabledServer(
-    context.req.cookies,
-    "case-studies-v2",
-  );
-  if (!isEnabled) {
-    return { notFound: true };
-  }
+  return getPageProps({
+    page: "about-case-study-library::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-  const isPreviewMode = context.preview === true;
-  const caseStudyLibraryPage = await CMSClient.caseStudyLibraryPage({
-    previewMode: isPreviewMode,
-  });
+      const caseStudyLibraryPage = await CMSClient.caseStudyLibraryPage({
+        previewMode: isPreviewMode,
+      });
 
-  const topNav = await curriculumApi2023.topNav();
+      const topNav = await curriculumApi2023.topNav();
 
-  if (!caseStudyLibraryPage) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!caseStudyLibraryPage?.length) {
+        return {
+          notFound: true,
+        };
+      }
 
-  return {
-    props: {
-      pageData: {
-        caseStudies: caseStudyLibraryPage,
-      },
-      topNav,
+      const results: GetStaticPropsResult<AboutUsCaseStudyLibraryPageProps> = {
+        props: {
+          pageData: {
+            caseStudies: caseStudyLibraryPage,
+          },
+          topNav,
+        },
+      };
+      return results;
     },
-  };
+  });
 };
 
 export default AboutUsCaseStudyLibrary;
