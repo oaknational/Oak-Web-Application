@@ -136,6 +136,7 @@ export type TeacherBrowseAnalyticsStore = {
       mediaClipsCount: number;
       mediaClipIndex: number;
     }) => void;
+    newsletterSignUpCompleted: () => void;
     programmeAccessed: (props: {
       componentType: ComponentTypeValueType;
       navigationType?: NavigationTypeValueType;
@@ -613,6 +614,11 @@ export const createTeacherBrowseAnalyticsStore = (
           componentType: "media_clips_played",
           videoLocation: "media clips",
         });
+      },
+      newsletterSignUpCompleted: () => {
+        const { avo } = get();
+
+        avo.newsletterSignUpCompleted();
       },
       programmeAccessed: ({
         componentType,
