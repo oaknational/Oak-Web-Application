@@ -1,3 +1,15 @@
+# [1.1249.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1248.0...v1.1249.0) (2026-10-14)
+
+
+### Bug Fixes
+
+* snap ([71182f9](https://github.com/oaknational/Oak-Web-Application/commit/71182f9c2b9ab0a85e3c057a6ff5969ad1431dc1))
+
+
+### Features
+
+* use AboutUsLayout for case studies ([07b72fc](https://github.com/oaknational/Oak-Web-Application/commit/07b72fcbd91e4e02571108a04371e53151059393))
+
 # [1.1248.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1247.1...v1.1248.0) (2026-10-14)
 
 
