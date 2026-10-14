@@ -1,3 +1,34 @@
+# [1.1249.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1248.0...v1.1249.0) (2026-10-14)
+
+
+### Bug Fixes
+
+* snap ([71182f9](https://github.com/oaknational/Oak-Web-Application/commit/71182f9c2b9ab0a85e3c057a6ff5969ad1431dc1))
+
+
+### Features
+
+* use AboutUsLayout for case studies ([07b72fc](https://github.com/oaknational/Oak-Web-Application/commit/07b72fcbd91e4e02571108a04371e53151059393))
+
+# [1.1248.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1247.1...v1.1248.0) (2026-10-14)
+
+
+### Features
+
+* add header component to join research panel page ([0894489](https://github.com/oaknational/Oak-Web-Application/commit/0894489ee3534ce496d4077e84240c807535fbe2))
+* improve default component styling ([88dea92](https://github.com/oaknational/Oak-Web-Application/commit/88dea925a3856656cd3498b672ab0e985bb4e8d3))
+* join research panel header component ([911962a](https://github.com/oaknational/Oak-Web-Application/commit/911962ae9bc87c20e72fe9c2b7e2e2a79145314e))
+* make support you component reusable ([32d414c](https://github.com/oaknational/Oak-Web-Application/commit/32d414cb519eed4b5d229d394dc2f586393c56ae))
+* update research panel header fixture ([af21d53](https://github.com/oaknational/Oak-Web-Application/commit/af21d534c7c3e41fd3ce28b1afa9ba7fba8bc6d4))
+* update snapshot ([9e21889](https://github.com/oaknational/Oak-Web-Application/commit/9e2188999f34206cd733abcba31724e3400d22fc))
+
+## [1.1247.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1247.0...v1.1247.1) (2026-10-14)
+
+
+### Bug Fixes
+
+* partial fix for perf issues on units page ([ad54c51](https://github.com/oaknational/Oak-Web-Application/commit/ad54c519741b1c28b27f8deb9dbb514c1fc4d012))
+
 # [1.1247.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1246.0...v1.1247.0) (2026-10-14)
 
 
