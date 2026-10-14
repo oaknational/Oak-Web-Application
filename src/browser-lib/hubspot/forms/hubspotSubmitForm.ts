@@ -283,16 +283,24 @@ const submitWithRetry = async (
             originalError: error,
           });
 
-    if (
-      attempt < retryCount &&
-      !oakError.hasBeenReported &&
-      isRetryableError(oakError)
-    ) {
+    const {
+      hasBeenReported: errorHasBeenReported,
+      config: { shouldNotify: shouldNotifyError },
+    } = oakError;
+
+    const hasRetriesRemaining = attempt < retryCount;
+
+    const shouldRetry =
+      hasRetriesRemaining &&
+      !errorHasBeenReported &&
+      isRetryableError(oakError);
+
+    if (shouldRetry) {
       await new Promise((resolve) => setTimeout(resolve, retryDelayMs));
       return submitWithRetry(props, attempt + 1);
     }
 
-    if (oakError.config.shouldNotify && !oakError.hasBeenReported) {
+    if (shouldNotifyError && !errorHasBeenReported) {
       void reportError(oakError, oakError.meta);
       oakError.hasBeenReported = true;
     }
