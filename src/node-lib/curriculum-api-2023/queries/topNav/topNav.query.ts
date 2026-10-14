@@ -1,6 +1,5 @@
 import { type Sdk } from "../../sdk";
 
-import { getCachedTopNavData } from "./cachedTopNav";
 import { getPupilsNavData } from "./getPupilsNavData";
 import { getTeachersNavData } from "./getTeachersNavData";
 import {
@@ -18,19 +17,10 @@ const reportError = errorReporter("curriculum-api-2023::topNav");
 
 const topNavQuery = (
   sdk: Sdk,
-  cachedTopNav: typeof getCachedTopNavData = getCachedTopNavData,
+  fetchTopNav: () => ReturnType<Sdk["topNav"]> = () => sdk.topNav(),
 ) => {
-  /**
-   * @param withCache - whether to cache the query results (only officially supported under app router)
-   */
-  return async (options?: { withCache?: boolean }): Promise<TopNavProps> => {
-    let res: Awaited<ReturnType<typeof sdk.topNav>>;
-
-    if (options?.withCache) {
-      res = await cachedTopNav();
-    } else {
-      res = await sdk.topNav();
-    }
+  return async (): Promise<TopNavProps> => {
+    const res = await fetchTopNav();
 
     const parsed = topNavResponseSchema.safeParse(res);
 

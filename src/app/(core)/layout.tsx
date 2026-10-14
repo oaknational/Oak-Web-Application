@@ -5,7 +5,7 @@ import { cacheLife } from "next/cache";
 import LayoutSiteFooter from "@/components/AppComponents/LayoutSiteFooter";
 import TopNav from "@/components/AppComponents/TopNav/TopNav";
 import OakError from "@/errors/OakError";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import appRouterTopNavQuery from "@/node-lib/curriculum-api-2023/queries/topNav/appRouterTopNav.query";
 import { SimulateErrorControls } from "@/app/components/ErrorHandling/SimulateErrorControls";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
@@ -16,7 +16,7 @@ export default async function CoreLayout({
 }>) {
   cacheLife({ revalidate: 7200 });
   try {
-    const topNavProps = await curriculumApi2023.topNav({ withCache: true });
+    const topNavProps = await appRouterTopNavQuery();
 
     return (
       <>

@@ -7,10 +7,6 @@ import OakError from "@/errors/OakError";
 
 jest.mock("@/node-lib/curriculum-api-2023/sdk", () => {});
 
-jest.mock("@/node-lib/cache", () => ({
-  applyCachePolicy: jest.fn(),
-}));
-
 const mockErrorReporter = jest.fn();
 jest.mock("@/common-lib/error-reporter", () => ({
   __esModule: true,
@@ -43,14 +39,14 @@ describe("TopNavQuery", () => {
     expect(res.teachers?.aboutUs.children).toHaveLength(6);
   });
 
-  it("uses the cached topNav function when withCache is true", async () => {
+  it("uses the injected topNav data source", async () => {
     const mockTopNav = jest.fn(() => Promise.resolve(mockResponseData));
     const mockCachedTopNav = jest.fn(() => Promise.resolve(mockResponseData));
 
     const res = await topNavQuery(
       { ...sdk, topNav: mockTopNav },
       mockCachedTopNav,
-    )({ withCache: true });
+    )();
 
     expect(mockCachedTopNav).toHaveBeenCalled();
     expect(mockTopNav).not.toHaveBeenCalled();
