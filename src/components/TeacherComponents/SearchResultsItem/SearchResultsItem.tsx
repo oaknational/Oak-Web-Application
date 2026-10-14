@@ -121,10 +121,10 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
     },
   ) => {
     const isDesktop = useMediaQuery("desktop");
+    const { firstItemRef, ...rest } = props;
     return (
       <StyledFlexWithFocusState
-        {...props}
-        ref={props.firstItemRef}
+        ref={firstItemRef}
         $pa="spacing-24"
         $mb="spacing-32"
         $borderRadius="border-radius-m2"
@@ -137,6 +137,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
         $width="100%"
         $ba="border-solid-none"
         $color="text-primary"
+        {...rest}
       >
         {props.children}
       </StyledFlexWithFocusState>

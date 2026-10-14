@@ -2,6 +2,8 @@ import { Meta, StoryObj } from "@storybook/nextjs";
 
 import { CaseStudyHeader as Component } from ".";
 
+import { portableTextFromString } from "@/__tests__/__helpers__/cms";
+
 const meta = {
   component: Component,
   tags: ["autodocs"],
@@ -27,8 +29,9 @@ export const WithSummary: Story = {
     title: "Testing",
     tag: "Optional tag",
     publishedDate: "14 July 2026",
-    summary:
+    summary: portableTextFromString(
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris.",
+    ),
     onCopyLink: () => {},
   },
   render: (args) => <Component {...args} />,

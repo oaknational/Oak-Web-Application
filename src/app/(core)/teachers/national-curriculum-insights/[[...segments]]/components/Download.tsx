@@ -61,6 +61,10 @@ const Expanded = styled(OakBox)<{ $sticky: boolean }>`
   ${({ $sticky }) => ($sticky ? "overscroll-behavior: contain;" : "")}
 `;
 
+const DownloadSectionContainer = styled(OakFlex)<{ $sticky: boolean }>`
+  ${({ $sticky }) => ($sticky ? "max-height: 100dvh;" : "")}
+`;
+
 const getDownloadLayoutProps = (sticky: boolean) =>
   sticky
     ? ({
@@ -70,7 +74,6 @@ const getDownloadLayoutProps = (sticky: boolean) =>
           $left: "spacing-0",
           $right: "spacing-0",
           $zIndex: 20,
-          $maxHeight: "100dvh",
           $dropShadow: "drop-shadow-centred-standard",
         },
         expanded: { $minHeight: "spacing-0", $overflowY: "auto" },
@@ -336,7 +339,7 @@ export const NationalCurriculumInsightsDownload = ({
       }
     } catch (downloadError) {
       if (downloadError instanceof TypeError) {
-        reportError(
+        void reportError(
           new OakError({
             code: "downloads/failed-to-fetch",
             originalError: downloadError,
@@ -355,10 +358,11 @@ export const NationalCurriculumInsightsDownload = ({
   };
 
   return (
-    <OakFlex
+    <DownloadSectionContainer
       as="section"
       data-insights-module="downloads"
       {...layoutProps.section}
+      $sticky={sticky}
       $width="100%"
       $flexDirection="column"
       $background="bg-primary"
@@ -417,8 +421,8 @@ export const NationalCurriculumInsightsDownload = ({
                     $background="bg-decorative5-main"
                     $font="heading-7"
                     $position="absolute"
-                    $top={`-${parseSpacing("spacing-20")}`}
-                    $left="spacing-8"
+                    $left={"spacing-4"}
+                    style={{ top: `-${parseSpacing("spacing-20")}` }}
                     $zIndex="in-front"
                   />
                   <Controller
@@ -448,8 +452,8 @@ export const NationalCurriculumInsightsDownload = ({
                       $background="bg-decorative5-main"
                       $font="heading-7"
                       $position="absolute"
-                      $top={`-${parseSpacing("spacing-20")}`}
-                      $left="spacing-8"
+                      $left={"spacing-4"}
+                      style={{ top: `-${parseSpacing("spacing-20")}` }}
                       $zIndex="in-front"
                     />
                     <Controller
@@ -516,8 +520,8 @@ export const NationalCurriculumInsightsDownload = ({
                     $background="bg-decorative5-main"
                     $font="heading-7"
                     $position="absolute"
-                    $top={`-${parseSpacing("spacing-20")}`}
-                    $left="spacing-8"
+                    $left={"spacing-4"}
+                    style={{ top: `-${parseSpacing("spacing-20")}` }}
                     $zIndex="in-front"
                   />
                   <Controller
@@ -539,15 +543,17 @@ export const NationalCurriculumInsightsDownload = ({
                     )}
                   />
                 </OakBox>
-                <OakP $maxWidth="spacing-640" $font="body-3" $mv="spacing-0">
-                  Join over {NEWSLETTER_COUNT} teachers and get free resources
-                  and other helpful content by email. Unsubscribe at any time.
-                  Read our{" "}
-                  <OakLink href="/legal/privacy-policy" target="_blank">
-                    privacy policy
-                  </OakLink>
-                  .
-                </OakP>
+                <OakBox $maxWidth="spacing-640">
+                  <OakP $font="body-3" $mv="spacing-0">
+                    Join over {NEWSLETTER_COUNT} teachers and get free resources
+                    and other helpful content by email. Unsubscribe at any time.
+                    Read our{" "}
+                    <OakLink href="/legal/privacy-policy" target="_blank">
+                      privacy policy
+                    </OakLink>
+                    .
+                  </OakP>
+                </OakBox>
                 <OakFlex
                   $minHeight="spacing-56"
                   $alignItems="center"
@@ -659,6 +665,6 @@ export const NationalCurriculumInsightsDownload = ({
           />
         </Expanded>
       ) : null}
-    </OakFlex>
+    </DownloadSectionContainer>
   );
 };

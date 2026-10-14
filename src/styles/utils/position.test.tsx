@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { render } from "@testing-library/react";
 
-import position from "./position";
+import position, { PositionProps } from "./position";
 
 describe("position", () => {
   test("should correctly handle prop 'position' as string", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<PositionProps>`
       ${position}
     `;
     const { getByTestId } = render(
@@ -15,7 +15,7 @@ describe("position", () => {
     expect(getByTestId("test")).toHaveStyle("position: absolute");
   });
   test("should correctly handle prop 'position' as array", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<PositionProps>`
       ${position}
     `;
     const { getByTestId } = render(

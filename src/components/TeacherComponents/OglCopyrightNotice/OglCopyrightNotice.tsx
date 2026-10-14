@@ -13,13 +13,14 @@ type OglCopyrightNoticeProps = FontProps & {
   fullWidth?: boolean;
 };
 
-const PreAlbCopyright = (
-  props: FontProps & { openLinksExternally: boolean },
-) => (
-  <OakSpan $font="body-3" {...props}>
+const PreAlbCopyright = ({
+  openLinksExternally,
+  ...restProps
+}: FontProps & { openLinksExternally: boolean }) => (
+  <OakSpan $font="body-3" {...restProps}>
     This content is made available by Oak National Academy Limited and its
     partners and licensed under Oak’s{" "}
-    {props.openLinksExternally ? (
+    {openLinksExternally ? (
       <OakLink
         href={resolveOakHref({
           page: "legal",

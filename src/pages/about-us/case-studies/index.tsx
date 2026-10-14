@@ -1,3 +1,4 @@
+import { capitalize } from "lodash";
 import { NextPage, GetServerSideProps } from "next";
 import {
   OakImage,
@@ -19,6 +20,7 @@ import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl
 import { resolveOakHref } from "@/common-lib/urls";
 import { AboutSharedHeader } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
+import { getCaseStudyTagBackground } from "@/components/GenericPagesComponents/CaseStudiesSection/getCaseStudyTagBackground";
 
 export type AboutUsCaseStudyLibraryPageProps = {
   pageData: {
@@ -31,12 +33,14 @@ export const AboutUsCaseStudyLibrary: NextPage<
   AboutUsCaseStudyLibraryPageProps
 > = ({ pageData: { caseStudies }, topNav }) => {
   const items = caseStudies.map((caseStudy) => ({
-    heading: caseStudy.video.title,
+    heading: caseStudy.title ?? "",
     href: resolveOakHref({
       page: "about-case-study",
       slug: caseStudy.slug.current,
     }),
     imageSrc: getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? "",
+    tagName: capitalize(caseStudy.tag ?? undefined),
+    tagBackground: getCaseStudyTagBackground(caseStudy.tag),
   }));
 
   return (
@@ -78,17 +82,19 @@ export const AboutUsCaseStudyLibrary: NextPage<
                 $flexDirection="column"
                 $pa={["spacing-16", "spacing-20", "spacing-20"]}
                 $borderRadius="border-radius-l"
-                $background="bg-decorative2-very-subdued"
+                $background="bg-decorative2-subdued"
               >
                 {items.map((item) => {
                   return (
-                    <OakCard
-                      key={item.href}
-                      aspectRatio="4/3"
-                      cardOrientation={["column", "row", "row"]}
-                      showImage={[false, true, true]}
-                      {...item}
-                    />
+                    <OakBox as="article" key={item.href}>
+                      <OakCard
+                        headingLevel="div"
+                        aspectRatio="4/3"
+                        cardOrientation={["column", "row", "row"]}
+                        showImage={[false, true, true]}
+                        {...item}
+                      />
+                    </OakBox>
                   );
                 })}
               </OakFlex>

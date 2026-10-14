@@ -30,6 +30,7 @@ describe("getProgrammeState", () => {
       },
       year: "7",
       yearGroupTitle: "Year 7",
+      yearGroupSlug: "year-7",
     });
   });
   it("getProgrammeStateForUnit returns data in the correct shape for units with programme factors", () => {
@@ -62,6 +63,7 @@ describe("getProgrammeState", () => {
       },
       year: "7",
       yearGroupTitle: "Year 7",
+      yearGroupSlug: "year-7",
     });
   });
   it("getProgrammeStateForLesson returns data in the correct shape", () => {
@@ -97,6 +99,7 @@ describe("getProgrammeState", () => {
       },
       year: "7",
       yearGroupTitle: "Year 7",
+      yearGroupSlug: "year-7",
     });
   });
 });

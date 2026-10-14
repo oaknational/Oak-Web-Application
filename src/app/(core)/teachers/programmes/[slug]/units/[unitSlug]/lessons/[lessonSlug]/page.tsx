@@ -105,7 +105,6 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
         programmeSlug={data.programmeSlug}
         headerSlot={
           <Breadcrumbs
-            data={data}
             subjectPhaseSlug={getTeacherSubjectPhaseSlug({
               subjectSlug: data.subjectSlug,
               phaseSlug: data.phaseSlug,

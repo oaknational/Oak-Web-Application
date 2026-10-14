@@ -31,7 +31,7 @@ export const TeachWithOakResourceCards = ({
             <OakGridArea
               key={shortRead.type}
               $colSpan={[12, 12, 6]}
-              height="100%"
+              $height="100%"
             >
               <OakFlex $height="100%">
                 <OakResourceCard

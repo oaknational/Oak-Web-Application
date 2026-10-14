@@ -8,11 +8,11 @@ import { LessonShareResourceData } from "@/node-lib/curriculum-api-2023/queries/
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 export const CustomSizing = styled("div")<{
-  checked?: boolean;
-  useDownloadPageLayout?: boolean;
+  $checked?: boolean;
+  $useDownloadPageLayout?: boolean;
 }>`
   input {
-    border: ${(props) => (props.checked ? "0" : "default")};
+    border: ${(props) => (props.$checked ? "0" : "default")};
   }
 `;
 
@@ -63,8 +63,8 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
 
   return (
     <CustomSizing
-      checked={checked}
-      useDownloadPageLayout={useDownloadPageLayout}
+      $checked={checked}
+      $useDownloadPageLayout={useDownloadPageLayout}
     >
       <OakResourceCard
         id={id}

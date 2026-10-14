@@ -161,7 +161,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         $width={"100%"}
       >
         <Flex $width={"100%"} $position={"relative"}>
-          <BoxBorders gapPosition="rightTop" />
+          <BoxBorders $gapPosition="rightTop" />
           <Flex $position={"absolute"}>
             <RotatedInputLabel
               aria-hidden="true"

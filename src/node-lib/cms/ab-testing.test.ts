@@ -78,7 +78,7 @@ describe("ab-testing", () => {
         false,
       );
 
-      expect(sample).toBeCalledWith([control, variantA, variantB]);
+      expect(sample).toHaveBeenCalledWith([control, variantA, variantB]);
 
       // The random value returned from sample()
       const sampledResult = (sample as jest.Mock).mock.results?.[0]?.value;

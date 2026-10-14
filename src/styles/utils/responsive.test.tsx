@@ -1,9 +1,8 @@
 import styled, {
   css,
   DefaultTheme,
-  FlattenSimpleInterpolation,
+  RuleSet,
   Interpolation,
-  ThemedStyledProps,
 } from "styled-components";
 import { render } from "@testing-library/react";
 
@@ -11,6 +10,7 @@ import { OakColorName } from "../theme";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import responsive from "./responsive";
+import { PaddingProps } from "./spacing";
 
 type TestProps = {
   [k: string]: OakColorName | string | string[] | number | number[];
@@ -23,9 +23,13 @@ type TestProps = {
  * in order to compare it with the expected css values.
  */
 const stringify = (
-  cssArray:
-    | FlattenSimpleInterpolation
-    | Interpolation<ThemedStyledProps<TestProps, DefaultTheme>>,
+  cssArray: Interpolation<
+    RuleSet<
+      TestProps & {
+        theme: DefaultTheme;
+      }
+    >
+  >,
 ) =>
   (Array.isArray(cssArray) ? cssArray : [cssArray])
     ?.flatMap((str: unknown) => (typeof str === "string" ? str.trim() : str))
@@ -50,7 +54,7 @@ describe("responsive", () => {
       (props: TestProps) => props.pl,
       pxOrUndefined,
     )(props);
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<PaddingProps>`
       ${styles}
     `;
     const { getByTestId } = render(

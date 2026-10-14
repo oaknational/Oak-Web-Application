@@ -40,7 +40,7 @@ describe("cms/sanity-client/cmsMethods", () => {
 
     it("invokes the provided graphql client method", async () => {
       await singletonClientMethod();
-      expect(singletonGraphQLMethod).toBeCalled();
+      expect(singletonGraphQLMethod).toHaveBeenCalled();
     });
 
     it("returns the value from getResultValue", async () => {
@@ -61,26 +61,26 @@ describe("cms/sanity-client/cmsMethods", () => {
 
     it("attempts to resolve embedded portable text references", async () => {
       await singletonClientMethod();
-      expect(resolveSanityReferences).toBeCalled();
+      expect(resolveSanityReferences).toHaveBeenCalled();
     });
 
     it("does not fetch draft content by default", async () => {
       await singletonClientMethod();
-      expect(singletonGraphQLMethod).toBeCalledWith(
+      expect(singletonGraphQLMethod).toHaveBeenCalledWith(
         expect.objectContaining({ isDraftFilter: { is_draft: false } }),
       );
     });
 
     it("fetches draft content when previewMode flag is passed", async () => {
       await singletonClientMethod({ previewMode: true });
-      expect(singletonGraphQLMethod).toBeCalledWith(
+      expect(singletonGraphQLMethod).toHaveBeenCalledWith(
         expect.objectContaining({ isDraftFilter: { is_draft: undefined } }),
       );
     });
 
     it("passes previewMode flag to parseResults when false", async () => {
       await singletonClientMethod();
-      expect(parseResults).toBeCalledWith(
+      expect(parseResults).toHaveBeenCalledWith(
         expect.anything(),
         expect.anything(),
         /* isPreviewMode: */ undefined,
@@ -89,7 +89,7 @@ describe("cms/sanity-client/cmsMethods", () => {
 
     it("passes previewMode flag to parseResults when true", async () => {
       await singletonClientMethod({ previewMode: true });
-      expect(parseResults).toBeCalledWith(
+      expect(parseResults).toHaveBeenCalledWith(
         expect.anything(),
         expect.anything(),
         /* isPreviewMode: */ true,
@@ -109,7 +109,7 @@ describe("cms/sanity-client/cmsMethods", () => {
 
     it("invokes the provided graphql client method", async () => {
       await bySlugClientMethod("some-slug");
-      expect(bySlugGraphQLMethod).toBeCalled();
+      expect(bySlugGraphQLMethod).toHaveBeenCalled();
     });
 
     it("returns the value of getResultValue", async () => {
@@ -130,26 +130,26 @@ describe("cms/sanity-client/cmsMethods", () => {
 
     it("attempts to resolve embedded portable text references", async () => {
       await bySlugClientMethod("some-slug");
-      expect(resolveSanityReferences).toBeCalled();
+      expect(resolveSanityReferences).toHaveBeenCalled();
     });
 
     it("does not fetch draft content by default", async () => {
       await bySlugClientMethod("some-slug");
-      expect(bySlugGraphQLMethod).toBeCalledWith(
+      expect(bySlugGraphQLMethod).toHaveBeenCalledWith(
         expect.objectContaining({ isDraftFilter: { is_draft: false } }),
       );
     });
 
     it("fetches draft content when previewMode flag is passed", async () => {
       await bySlugClientMethod("some-slug", { previewMode: true });
-      expect(bySlugGraphQLMethod).toBeCalledWith(
+      expect(bySlugGraphQLMethod).toHaveBeenCalledWith(
         expect.objectContaining({ isDraftFilter: { is_draft: undefined } }),
       );
     });
 
     it("passes previewMode flag to parseResults when false", async () => {
       await bySlugClientMethod("some-slug");
-      expect(parseResults).toBeCalledWith(
+      expect(parseResults).toHaveBeenCalledWith(
         expect.anything(),
         expect.anything(),
         /* isPreviewMode: */ undefined,
@@ -158,7 +158,7 @@ describe("cms/sanity-client/cmsMethods", () => {
 
     it("passes previewMode flag to parseResults when true", async () => {
       await bySlugClientMethod("some-slug", { previewMode: true });
-      expect(parseResults).toBeCalledWith(
+      expect(parseResults).toHaveBeenCalledWith(
         expect.anything(),
         expect.anything(),
         /* isPreviewMode: */ true,
@@ -179,7 +179,7 @@ describe("cms/sanity-client/cmsMethods", () => {
 
     it("invokes the provided graphql client method", async () => {
       await listClientMethod();
-      expect(listGraphQLMethod).toBeCalled();
+      expect(listGraphQLMethod).toHaveBeenCalled();
     });
 
     it("returns the value of getResultValue", async () => {
@@ -200,26 +200,26 @@ describe("cms/sanity-client/cmsMethods", () => {
 
     it("attempts to resolve embedded portable text references", async () => {
       await listClientMethod();
-      expect(resolveSanityReferences).toBeCalled();
+      expect(resolveSanityReferences).toHaveBeenCalled();
     });
 
     it("does not fetch draft content by default", async () => {
       await listClientMethod();
-      expect(listGraphQLMethod).toBeCalledWith(
+      expect(listGraphQLMethod).toHaveBeenCalledWith(
         expect.objectContaining({ isDraftFilter: { is_draft: false } }),
       );
     });
 
     it("fetches draft content when previewMode flag is passed", async () => {
       await listClientMethod({ previewMode: true });
-      expect(listGraphQLMethod).toBeCalledWith(
+      expect(listGraphQLMethod).toHaveBeenCalledWith(
         expect.objectContaining({ isDraftFilter: { is_draft: undefined } }),
       );
     });
 
     it("passes previewMode flag to parseResults when false", async () => {
       await listClientMethod();
-      expect(parseResults).toBeCalledWith(
+      expect(parseResults).toHaveBeenCalledWith(
         expect.anything(),
         expect.anything(),
         /* isPreviewMode: */ undefined,
@@ -228,7 +228,7 @@ describe("cms/sanity-client/cmsMethods", () => {
 
     it("passes previewMode flag to parseResults when true", async () => {
       await listClientMethod({ previewMode: true });
-      expect(parseResults).toBeCalledWith(
+      expect(parseResults).toHaveBeenCalledWith(
         expect.anything(),
         expect.anything(),
         /* isPreviewMode: */ true,

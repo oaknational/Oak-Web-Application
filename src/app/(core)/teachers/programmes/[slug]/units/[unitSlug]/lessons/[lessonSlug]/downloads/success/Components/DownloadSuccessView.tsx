@@ -18,6 +18,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { UnitDownloadExistence } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 type DownloadSuccessViewLesson = {
   lessonTitle: string;
@@ -33,10 +34,13 @@ type DownloadSuccessViewLesson = {
 
 export type DownloadSuccessViewProps = {
   lesson: DownloadSuccessViewLesson;
+} & {
+  unitDownloadExistence: UnitDownloadExistence;
 };
 
 export function DownloadSuccessView({
   lesson,
+  unitDownloadExistence,
 }: Readonly<DownloadSuccessViewProps>) {
   const {
     lessonSlug,
@@ -49,7 +53,7 @@ export function DownloadSuccessView({
     lessonReleaseDate,
   } = lesson;
 
-  const { unitDownloaded, onwardContentSelected } = useTeacherBrowseAnalytics(
+  const { unitDownloaded, lessonAccessed } = useTeacherBrowseAnalytics(
     (store) => store.track,
   );
 
@@ -75,11 +79,13 @@ export function DownloadSuccessView({
           unitSlug,
         })}
         onBackClick={() =>
-          onwardContentSelected({
-            onwardIntent: "view-lesson",
+          lessonAccessed({
+            componentType: "back_a_step_button",
+            navigationType: "across",
             lessonName: lessonTitle,
             lessonSlug,
             lessonReleaseDate,
+            lessonReleaseCohort: "2023-2026",
           })
         }
         backgroundColorLevel={1}
@@ -138,6 +144,7 @@ export function DownloadSuccessView({
                       </OakBox>
                     </OakSpan>
                   }
+                  unitDownloadExistence={unitDownloadExistence}
                 />
               }
             />

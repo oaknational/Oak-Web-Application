@@ -7,9 +7,12 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 const render = renderWithProviders();
 
 const mockReturnToLessonLink = jest.fn().mockReturnValue(null);
-jest.mock("../getReturnToLessonLink", () => ({
-  useReturnToLessonProps: () => mockReturnToLessonLink(),
-}));
+jest.mock(
+  "@/app/(core)/teachers/teach-with-oak/returnToLessonProps/getReturnToLessonLink",
+  () => ({
+    useReturnToLessonProps: () => mockReturnToLessonLink(),
+  }),
+);
 
 describe("TeachWithOakView", () => {
   it("renders the lesson guidance and learning cycle content", () => {

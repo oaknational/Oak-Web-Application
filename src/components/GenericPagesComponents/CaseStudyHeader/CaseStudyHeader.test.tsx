@@ -1,5 +1,6 @@
 import { CaseStudyHeader } from ".";
 
+import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProvidersByName(["oakTheme"]);
@@ -24,7 +25,7 @@ describe("CaseStudyHeader", () => {
       <CaseStudyHeader
         title="TEST_TITLE"
         publishedDate="TEST_DATE"
-        summary="TEST_SUMMARY"
+        summary={portableTextFromString("TEST_SUMMARY")}
         onCopyLink={() => {}}
       />,
     );

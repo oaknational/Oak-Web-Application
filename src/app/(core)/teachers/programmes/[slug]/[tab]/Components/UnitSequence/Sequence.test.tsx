@@ -33,7 +33,6 @@ HTMLDialogElement.prototype.showModal = jest.fn();
 HTMLDialogElement.prototype.close = jest.fn();
 
 const CurricVisualiserFixture: ComponentProps<typeof ProgrammeSequence> = {
-  threadOptions: [],
   filters: {
     years: ["7", "8", "9", "10", "11"],
     tiers: [],

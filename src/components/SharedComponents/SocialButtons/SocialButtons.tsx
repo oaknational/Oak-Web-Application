@@ -70,9 +70,15 @@ const StyledIconButton = styled(OakTertiaryInvertedButton)`
 `;
 
 const SocialButtons: FC<SocialButtonsProps> = (props) => {
-  const { for: accountHolder, ...flexProps } = props;
+  const { for: accountHolder, ...restProps } = props;
   const id = useId();
   const socialsToShow = SOCIAL_NETWORKS.filter((network) => props[network]);
+
+  const flexProps = Object.fromEntries(
+    Object.entries(restProps).filter(
+      ([key]) => !SOCIAL_NETWORKS.includes(key as SocialNetwork),
+    ),
+  );
 
   if (socialsToShow.length === 0) {
     return null;

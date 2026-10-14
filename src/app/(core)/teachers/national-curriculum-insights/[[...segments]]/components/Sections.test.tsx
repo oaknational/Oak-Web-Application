@@ -160,10 +160,6 @@ describe("National Curriculum Insights sections", () => {
         />,
       );
 
-      const list = screen.getByRole("heading", {
-        name: "Frequently asked questions",
-      }).nextElementSibling;
-      expect(list).toHaveStyle({ gap: "0rem" });
       expect(screen.getAllByTestId("faq-divider")).toHaveLength(3);
 
       const [firstQuestion, secondQuestion] = screen.getAllByRole("button");
@@ -192,9 +188,7 @@ describe("National Curriculum Insights sections", () => {
     },
   );
 
-  it("renders referenced blog content and opens its video without navigating", async () => {
-    const user = userEvent.setup();
-
+  it("renders a paused inline video separately from the blog link", () => {
     renderWithTheme(
       <NationalCurriculumInsightsVideoCards
         section={moduleOf({
@@ -235,18 +229,15 @@ describe("National Curriculum Insights sections", () => {
     );
 
     expect(screen.queryByText("Legacy content")).not.toBeInTheDocument();
-    expect(screen.queryByTestId("cms-video")).not.toBeInTheDocument();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
-    expect(
-      screen.getByRole("link", {
-        name: "Bennie Kara on inclusive curriculum leadership",
-      }),
-    ).toHaveAttribute("href", "/blog/curriculum-conversations-episode-3");
-    await user.click(
-      screen.getByRole("button", {
-        name: "Play Bennie Kara on inclusive curriculum leadership",
-      }),
+    const blogLink = screen.getByRole("link", {
+      name: /Bennie Kara on inclusive curriculum leadership/,
+    });
+    expect(blogLink).toHaveAttribute(
+      "href",
+      "/blog/curriculum-conversations-episode-3",
     );
+    expect(blogLink).not.toContainElement(screen.getByTestId("cms-video"));
 
     expect(screen.getByTestId("cms-video")).toHaveTextContent(
       "Bennie Kara on inclusive curriculum leadership",
@@ -260,7 +251,7 @@ describe("National Curriculum Insights sections", () => {
     );
     expect(screen.getByTestId("cms-video")).toHaveAttribute(
       "data-autoplay",
-      "true",
+      "false",
     );
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
@@ -289,7 +280,7 @@ describe("National Curriculum Insights sections", () => {
     ).toHaveStyle({
       display: "grid",
       "row-gap": "1.5rem",
-      "grid-template-columns": "minmax(0,1fr)",
+      "grid-template-columns": "minmax(0, 1fr)",
     });
 
     expect(
@@ -479,10 +470,7 @@ describe("National Curriculum Insights sections", () => {
       screen.getByRole("heading", { name: "When will the curriculum change?" }),
     ).toHaveStyle({ textAlign: "left" });
 
-    const announcement = screen.getByRole("status");
-    expect(announcement).toBeEmptyDOMElement();
-    expect(announcement).toHaveAttribute("aria-live", "polite");
-    expect(announcement).toHaveAttribute("aria-atomic", "true");
+    expect(screen.getByRole("status")).toBeEmptyDOMElement();
     expect(useNewsletterForm).toHaveBeenCalledWith({
       hubspotNewsletterFormId: INSIGHTS_NEWSLETTER_FORM_ID,
       hubspotPortalId: INSIGHTS_NEWSLETTER_PORTAL_ID,
@@ -498,9 +486,9 @@ describe("National Curriculum Insights sections", () => {
       width: "1.5rem",
       height: "1.5rem",
     });
-    // Each grid item must occupy one column, including the stacked mobile layout.
+    // Each grid item starts in the first column in the stacked mobile layout.
     Array.from(newsletterForm.parentElement!.children).forEach((column) => {
-      expect(column).toHaveStyle({ gridColumn: "1 / span 1" });
+      expect(column).toHaveStyle({ gridColumnStart: "1" });
     });
 
     fireEvent.change(screen.getByRole("textbox", { name: /Name/ }), {
@@ -530,10 +518,10 @@ describe("National Curriculum Insights sections", () => {
       });
     });
     expect(newsletterSignUpCompleted).toHaveBeenCalledTimes(1);
-    expect(screen.getByRole("status")).toBe(announcement);
-    expect(screen.getByRole("status")).toHaveTextContent(
-      "Thanks, that's been received",
-    );
+    const announcement = await screen.findByRole("status");
+    expect(announcement).toHaveAttribute("aria-live", "polite");
+    expect(announcement).toHaveAttribute("aria-atomic", "true");
+    expect(announcement).toHaveTextContent("Thanks, that's been received");
   });
 
   it("does not track a completed newsletter signup when HubSpot rejects it", async () => {

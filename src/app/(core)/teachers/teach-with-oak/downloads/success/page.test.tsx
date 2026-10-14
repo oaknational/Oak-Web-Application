@@ -1,7 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-import { notFound } from "next/navigation";
 import type { ReactElement } from "react";
 import { screen } from "@testing-library/dom";
 
@@ -9,10 +8,7 @@ import TeachWithOakDownloadSuccessPage from "./page";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
-import { getFeatureFlagValue } from "@/utils/featureFlags";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-
-jest.mock("@/utils/featureFlags");
 
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   __esModule: true,
@@ -62,7 +58,6 @@ describe("Teach with Oak download success page", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockSearchParams.mockReturnValue(new URLSearchParams());
-    jest.mocked(getFeatureFlagValue).mockResolvedValue("enabled");
     jest
       .mocked(curriculumApi2023.curriculumPhaseOptions)
       .mockResolvedValue(curriculumPhaseOptionsFixture());
@@ -71,10 +66,6 @@ describe("Teach with Oak download success page", () => {
   test("renders the subject phase picker when there is no lesson to return to", async () => {
     await renderPage();
 
-    expect(getFeatureFlagValue).toHaveBeenCalledWith(
-      "teachers-teach-with-oak",
-      "string",
-    );
     expect(
       screen.getByRole("heading", { name: "Thanks for downloading!" }),
     ).toBeInTheDocument();
@@ -99,17 +90,5 @@ describe("Teach with Oak download success page", () => {
         name: "Explore curriculum plans and teaching resources",
       }),
     ).not.toBeInTheDocument();
-  });
-
-  test("returns a not-found response when the feature is disabled", async () => {
-    jest.mocked(getFeatureFlagValue).mockResolvedValue("");
-
-    await expect(
-      TeachWithOakDownloadSuccessPage({
-        params: Promise.resolve({}),
-        searchParams: Promise.resolve({}),
-      }),
-    ).rejects.toThrow("NEXT_HTTP_ERROR_FALLBACK;404");
-    expect(notFound).toHaveBeenCalledTimes(1);
   });
 });

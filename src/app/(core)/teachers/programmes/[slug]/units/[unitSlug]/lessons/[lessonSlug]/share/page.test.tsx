@@ -1,6 +1,8 @@
 /**
  * @jest-environment node
  */
+import type { ReactElement } from "react";
+
 import LessonSharePage, { generateMetadata } from "./page";
 
 import lessonShareFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonShare.fixture";
@@ -98,12 +100,49 @@ describe("LessonSharePage", () => {
       unitSlug: defaultParams.unitSlug,
       lessonSlug: defaultParams.lessonSlug,
     });
-    expect(result).toMatchObject({
-      props: {
-        lesson: lessonShareFixture,
-        breadcrumbsSlot: expect.anything(),
-      },
-    });
+    expect(result).toBeDefined();
+
+    if (
+      !result ||
+      typeof result === "string" ||
+      typeof result === "number" ||
+      typeof result === "boolean" ||
+      Array.isArray(result)
+    ) {
+      throw new Error("Expected LessonSharePage to return a React element");
+    }
+
+    const pageElement = result as ReactElement<{
+      accessLevel: string;
+      programmeState: {
+        programmeSlug: string;
+        subjectSlug: string;
+        unit: { slug: string; title: string };
+        lesson: { slug: string; title: string };
+      };
+      children: ReactElement<{
+        lesson: typeof lessonShareFixture;
+        breadcrumbsSlot: React.ReactNode;
+      }>;
+    }>;
+
+    expect(pageElement.props.accessLevel).toBe("lesson");
+    expect(pageElement.props.programmeState).toEqual(
+      expect.objectContaining({
+        programmeSlug: defaultParams.slug,
+        subjectSlug: "maths",
+        unit: expect.objectContaining({
+          slug: defaultParams.unitSlug,
+          title: "Geometry",
+        }),
+        lesson: expect.objectContaining({
+          slug: defaultParams.lessonSlug,
+          title: "Introduction to Geometry",
+        }),
+      }),
+    );
+    expect(pageElement.props.children.props.lesson).toEqual(lessonShareFixture);
+    expect(pageElement.props.children.props.breadcrumbsSlot).toBeTruthy();
   });
 
   it("returns 404 for restricted lessons", async () => {

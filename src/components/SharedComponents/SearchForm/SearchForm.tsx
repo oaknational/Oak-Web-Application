@@ -15,7 +15,7 @@ import {
 } from "@oaknational/oak-components";
 
 import spacing, { SpacingProps } from "@/styles/utils/spacing";
-import useAnalytics from "@/context/Analytics/useAnalytics";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { ContextValueType, SearchSourceValueType } from "@/browser-lib/avo/Avo";
 
 const StyledForm = styled(OakFlex)<OakFlexProps & SpacingProps>`
@@ -39,7 +39,7 @@ const SearchForm: FC<SearchFormProps> = (props) => {
     searchContext,
   } = props;
   const [value, setValue] = useState(searchTerm);
-  const { track } = useAnalytics();
+  const track = useTeacherBrowseAnalytics((store) => store.track);
 
   // Keep searchTerm in sync with the value of the input
   useEffect(() => {

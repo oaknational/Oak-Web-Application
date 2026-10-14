@@ -20,6 +20,7 @@ import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
 import { OaksImpactHeader } from "@/components/GenericPagesComponents/OaksImpactHeader";
 import useTrackExitIntended from "@/hooks/useTrackExitIntended";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
@@ -27,7 +28,11 @@ export type OaksImpactPageProps = {
 };
 
 const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
+  const { content, caseStudies } = pageData;
   useTrackExitIntended();
+  const isCaseStudiesFeatEnabled =
+    isFeatureFlagEnabledStatic("case-studies-v2");
+
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={null}
@@ -41,16 +46,18 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
         <AboutUsLayout>
           <OaksImpactHeader
             title="Oak's impact"
-            body={pageData.header.introText}
-            video={pageData.header.video}
-            videoDescription={pageData.header.videoDescription}
+            body={content.header.introText}
+            video={content.header.video}
+            videoDescription={content.header.videoDescription}
           />
-          <OaksImpactStats {...pageData.statsSection} />
+          <OaksImpactStats {...content.statsSection} />
           <CaseStudiesSection
+            showViewAllLink={isCaseStudiesFeatEnabled}
             title="Case studies"
-            caseStudies={pageData.caseStudiesSection.caseStudies}
+            caseStudies={caseStudies}
+            showTags={true}
           />
-          <OaksImpactSchoolQuotesSection {...pageData.schoolQuotes} />
+          <OaksImpactSchoolQuotesSection {...content.schoolQuotes} />
           <TrackScrolledTo eventKey="support_you" />
           <SupportYou
             headingTag="h2"

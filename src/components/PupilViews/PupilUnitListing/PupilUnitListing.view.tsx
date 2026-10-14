@@ -144,6 +144,9 @@ export const PupilViewsUnitListing = ({
                   tierName: unit.programmeFields.tierDescription,
                   examBoard: unit.programmeFields.examboard,
                   pathway: unit.programmeFields.pathwayDescription,
+                  navigationType: undefined,
+                  journeyId: undefined,
+                  accessLevel: undefined,
                 });
               }}
             />

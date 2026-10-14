@@ -51,18 +51,18 @@ const TruncatedFlex = styled(OakFlex)`
 `;
 
 const OakFocusIndicatorAlt = styled(OakFocusIndicator)<{
-  assertFocus: boolean;
+  $assertFocus: boolean;
 }>`
   box-shadow: ${(props) =>
-    props.assertFocus ? `rgb(87, 87, 87) 0px 0px 0px 0.125rem` : "none"};
-  z-index: ${(props) => (props.assertFocus ? "2" : "")};
+    props.$assertFocus ? `rgb(87, 87, 87) 0px 0px 0px 0.125rem` : "none"};
+  z-index: ${(props) => (props.$assertFocus ? "2" : "")};
 
   /*
    * Don't show a ring around the view button, because the user can't interact with it
    */
   &:has([data-testid="lot-picker-view-curriculum-button"]:focus-visible) {
     box-shadow: ${(props) =>
-      props.assertFocus ? `rgb(87, 87, 87) 0px 0px 0px 0.125rem` : "none"};
+      props.$assertFocus ? `rgb(87, 87, 87) 0px 0px 0px 0.125rem` : "none"};
   }
 `;
 
@@ -214,13 +214,13 @@ const ButtonContainer = styled.div`
       border: 1px solid var(--Tokens-Border-border-neutral-lighter, #cacaca);
       background: var(--Tokens-Background-bg-primary, #fff);
 
-      :focus-visible {
+      &:focus-visible {
         box-shadow:
           0px 0px 0px 2px #ffe555,
           0px 0px 0px 5px #575757;
       }
 
-      :active {
+      &:active {
         border-radius: var(--Border-Radius-border-radius-s, 4px);
         border: 1px solid var(--Tokens-Border-border-neutral-lighter, #cacaca);
         background: var(--Tokens-Background-bg-primary, #fff);
@@ -229,7 +229,7 @@ const ButtonContainer = styled.div`
           4px 4px 0px 0px #575757;
       }
 
-      :hover {
+      &:hover {
         border-radius: var(--Border-Radius-border-radius-s, 4px);
         border: 1px solid var(--Tokens-Border-border-neutral-lighter, #cacaca);
         background: var(--Tokens-Background-bg-neutral, #f2f2f2);
@@ -253,7 +253,7 @@ const ButtonContainer = styled.div`
       background-color: #222222;
       color: #fff;
 
-      :hover {
+      &:hover {
         background: #222222;
         color: #fff;
 
@@ -317,7 +317,7 @@ const SubjectContainerWrapper = styled.div`
 
   @media (min-width: 749px) {
     padding-left: 0px;
-    max-height: auto;
+    max-height: 100%;
     overflow-y: visible;
   }
 `;
@@ -674,8 +674,8 @@ type DesktopSubjectPickerProps = {
   isSelected: (option: Subject | Phase | KS4Option) => boolean;
   onSelectSubject: (subject: CurriculumPhaseOption) => void;
   onClose: () => void;
-  onFocusStart: () => Promise<void>;
-  onFocusEnd: () => Promise<void>;
+  onFocusStart: () => void;
+  onFocusEnd: () => void;
 };
 
 function DesktopSubjectPicker({
@@ -813,8 +813,8 @@ type DesktopPhasePickerProps = {
   onSelectPhase: (phase: Phase) => void;
   onSelectKS4Option: (option: KS4Option) => void;
   onClose: () => void;
-  onFocusStart: () => Promise<void>;
-  onFocusEnd: () => Promise<void>;
+  onFocusStart: () => void;
+  onFocusEnd: () => void;
 };
 
 function DesktopPhasePicker({
@@ -1278,7 +1278,7 @@ const SubjectPhasePicker = ({
     }
   };
 
-  const onFocusSubjectStart = async () => {
+  const onFocusSubjectStart = () => {
     setShowSubjects(false);
   };
 
@@ -1417,7 +1417,7 @@ const SubjectPhasePicker = ({
         ? pagesRouter.push({ pathname: newPathname })
         : Promise.resolve(appRouter.push(newPathname));
 
-      navigation.finally(() => {
+      void navigation.finally(() => {
         setIsNavigating(false);
         setShowPhases(false);
       });
@@ -1536,9 +1536,9 @@ const SubjectPhasePicker = ({
               style={{ width: "50%" }}
             >
               <OakFocusIndicatorAlt
-                dropShadow="drop-shadow-centered-grey"
-                assertFocus={showSubjects}
-                activeDropShadow="drop-shadow-none"
+                $dropShadow="drop-shadow-centered-grey"
+                $assertFocus={showSubjects}
+                $activeDropShadow="drop-shadow-none"
                 $width="100%"
                 $bblr={["border-radius-square", "border-radius-s"]}
                 $bbrr={["border-radius-square", "border-radius-s"]}
@@ -1607,9 +1607,9 @@ const SubjectPhasePicker = ({
                 $background={showPhases ? "bg-primary" : null}
               >
                 <OakFocusIndicatorAlt
-                  dropShadow="drop-shadow-centered-grey"
-                  assertFocus={showPhases}
-                  activeDropShadow="drop-shadow-none"
+                  $dropShadow="drop-shadow-centered-grey"
+                  $assertFocus={showPhases}
+                  $activeDropShadow="drop-shadow-none"
                   $width="100%"
                   $bblr={["border-radius-square", "border-radius-s"]}
                   $bbrr={["border-radius-square", "border-radius-s"]}
