@@ -94,7 +94,9 @@ export const CaseStudiesSection = ({
                   }
                   aspectRatio="4/3"
                   cardWidth={"100%"}
-                  tagName={capitalize(caseStudy.tag ?? undefined)}
+                  tagName={
+                    caseStudy.tag ? capitalize(caseStudy.tag) : undefined
+                  }
                   tagBackground={getCaseStudyTagBackground(caseStudy.tag)}
                 />
               </OakGridArea>
