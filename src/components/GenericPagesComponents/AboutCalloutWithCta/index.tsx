@@ -9,6 +9,7 @@ import {
   OakHeadingProps,
   OakImage,
   OakBoxProps,
+  OakImageProps,
 } from "@oaknational/oak-components";
 import { PortableTextReactComponents } from "@portabletext/react";
 
@@ -29,7 +30,7 @@ export type AboutCalloutWithCtaProps = {
   image?: Image;
   $pv?: OakBoxProps["$pv"];
   $pb?: OakBoxProps["$pb"];
-  hideImageOnMobile?: boolean;
+  $imageDisplay?: OakImageProps["$display"];
 };
 
 const portableTextComponents: Partial<PortableTextReactComponents> = {
@@ -53,7 +54,7 @@ export function AboutCalloutWithCta({
   },
   $pb,
   $pv = ["spacing-56", "spacing-80", "spacing-80"],
-  hideImageOnMobile = false,
+  $imageDisplay = "flex",
 }: Readonly<AboutCalloutWithCtaProps>) {
   return (
     <OakBox $pv={$pv} $pb={$pb}>
@@ -99,7 +100,7 @@ export function AboutCalloutWithCta({
           <OakGridArea
             $colStart={[0, 7, 7]}
             $colSpan={[12, 6, 6]}
-            $display={hideImageOnMobile ? ["none", "flex", "flex"] : "flex"}
+            $display={$imageDisplay}
           >
             <OakFlex $flexGrow={1} $aspectRatio={"4/3"}>
               <OakImage

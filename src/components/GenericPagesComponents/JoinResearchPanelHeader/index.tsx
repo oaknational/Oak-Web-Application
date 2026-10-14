@@ -45,7 +45,7 @@ export default function JoinResearchPanelPageHeader({
         }}
         $pv={"spacing-32"}
         $pb={["spacing-56", "spacing-72", "spacing-72"]}
-        hideImageOnMobile={true}
+        $imageDisplay={["none", "flex", "flex"]}
       />
     </>
   );
