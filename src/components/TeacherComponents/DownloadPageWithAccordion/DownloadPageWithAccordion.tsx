@@ -40,15 +40,15 @@ import { DownloadTypeLabel } from "@/components/CurriculumComponents/CurriculumD
 
 type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
   ResourcePageSchoolDetailsProps & {
-    geoRestricted: boolean;
-    loginRequired: boolean;
-    downloadsRestricted: boolean;
+    geoRestricted?: boolean;
+    loginRequired?: boolean;
+    downloadsRestricted?: boolean;
     handleToggleSelectAll: () => void;
     selectAllChecked: boolean;
     errors: FieldErrors<ResourceFormValues>;
     cardGroup: React.ReactNode;
     showLoading: boolean;
-    showNoResources: boolean;
+    showNoResources?: boolean;
     schoolId?: string;
     register: UseFormRegister<ResourceFormValues>;
     control: Control<ResourceFormValues>;
@@ -57,36 +57,40 @@ type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
     cta: React.ReactNode;
     triggerForm: UseFormTrigger<ResourceFormValues>;
     apiError?: string | null;
-    copyrightYear: string;
+    copyrightYear?: string;
     showTermsAgreement: boolean;
     showRiskAssessmentBanner?: boolean;
     lessonDownloads?: LessonDownloadsPageData["downloads"];
     curriculumDownloads?: DownloadTypeLabel[];
     additionalFiles?: LessonDownloadsPageData["additionalFiles"];
     validationSummaryKey?: number;
+    initialOpen?: boolean;
+    teachWithOak?: boolean;
   };
 
 export type DownloadWrapperProps = {
-  isLoading: boolean;
-  showGeoBlocked: boolean;
-  lessonSlug: string;
-  lessonTitle: string;
-  lessonReleaseDate: string | null;
-  isLegacy: boolean;
+  isLoading?: boolean;
+  showGeoBlocked?: boolean;
+  lessonSlug?: string;
+  lessonTitle?: string;
+  lessonReleaseDate?: string | null;
+  isLegacy?: boolean;
+  heading?: string;
 } & DownloadPageWithAccordionProps;
 
 const DownloadPageWithAccordion: FC<DownloadWrapperProps> = (
   props: DownloadWrapperProps,
 ) => {
   const {
-    isLoading,
-    showGeoBlocked,
+    isLoading = false,
+    showGeoBlocked = false,
     geoRestricted,
     loginRequired,
     lessonSlug,
-    lessonReleaseDate,
+    lessonReleaseDate = null,
     lessonTitle,
-    isLegacy,
+    isLegacy = false,
+    heading,
   } = props;
   return (
     <OakGrid>
@@ -97,7 +101,7 @@ const DownloadPageWithAccordion: FC<DownloadWrapperProps> = (
         $gap={"spacing-48"}
       >
         <OakHeading tag="h1" $font={["heading-5", "heading-4"]}>
-          Download
+          {heading ?? "Download"}
         </OakHeading>
         {isLoading ? (
           <OakBox $minHeight="spacing-480">
@@ -153,6 +157,8 @@ export const DownloadPageWithAccordionContent = (
     | "cta"
     | "apiError"
     | "validationSummaryKey"
+    | "initialOpen"
+    | "teachWithOak"
   >,
 ) => {
   const {
@@ -184,6 +190,8 @@ export const DownloadPageWithAccordionContent = (
     cta,
     apiError,
     validationSummaryKey,
+    initialOpen,
+    teachWithOak,
   } = props;
 
   const hasFormErrors = Object.keys(errors).length > 0;
@@ -203,15 +211,17 @@ export const DownloadPageWithAccordionContent = (
         {errors?.resources?.message}
       </FieldError>
       <OakResourcesAccordion
+        showCheckbox={!teachWithOak}
         subheading={getAccordionText({
           lessonDownloads,
           additionalFiles,
           curriculumDownloads,
+          teachWithOak,
         })}
         handleToggleSelectAll={handleToggleSelectAll}
         selectAllChecked={selectAllChecked}
         id="downloads-accordion"
-        initialOpen={!selectAllChecked}
+        initialOpen={initialOpen ?? !selectAllChecked}
       >
         <OakBox $pa={"spacing-0"} $ba={"border-solid-none"} as={"fieldset"}>
           <OakBox
@@ -253,7 +263,9 @@ export const DownloadPageWithAccordionContent = (
                 showSavedDetails={showSavedDetails}
                 handleEditDetailsCompletedClick={onEditClick}
                 showPostAlbCopyright={showPostAlbCopyright}
-                oglCopyrightYear={copyrightYear}
+                oglCopyrightYear={
+                  copyrightYear ?? new Date().getFullYear().toString()
+                }
                 useDownloadPageLayout
               />
               {showRiskAssessmentBanner && (
@@ -322,7 +334,7 @@ export const DownloadPageWithAccordionContent = (
             fullWidth
             showPostAlbCopyright={showPostAlbCopyright}
             openLinksExternally={true}
-            copyrightYear={copyrightYear}
+            copyrightYear={copyrightYear ?? new Date().getFullYear().toString()}
           />
         </>
       )}

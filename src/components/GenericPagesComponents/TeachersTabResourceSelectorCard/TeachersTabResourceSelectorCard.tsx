@@ -50,7 +50,7 @@ const TeachersTabResourceSelectorCard: FC<
           </OakTypography>
         </OakFlex>
       </OakFlex>
-      <BoxBorders $color={"text-primary"} gapPosition={"rightTop"} />
+      <BoxBorders $color={"text-primary"} $gapPosition={"rightTop"} />
     </Card>
   );
 };

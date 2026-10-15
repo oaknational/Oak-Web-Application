@@ -5,6 +5,7 @@ import {
   OakHeading,
   OakJauntyAngleLabel,
   OakP,
+  parseSpacing,
 } from "@oaknational/oak-components";
 import { useState } from "react";
 
@@ -67,8 +68,8 @@ function InteractiveWrapper(
         $color="text-primary"
         $zIndex="in-front"
         $position="absolute"
-        $top={"-20px"}
-        $left={"5px"}
+        $left={"spacing-4"}
+        style={{ top: `-${parseSpacing("spacing-20")}` }}
         $borderRadius="border-radius-square"
       />
       <Component {...args} value={value} onChange={setValue} />
@@ -92,8 +93,8 @@ function ValidationDemo() {
           $color="text-primary"
           $zIndex="in-front"
           $position="absolute"
-          $top={"-20px"}
-          $left={"5px"}
+          $left={"spacing-4"}
+          style={{ top: `-${parseSpacing("spacing-20")}` }}
           $borderRadius="border-radius-square"
         />
         <Component
@@ -139,8 +140,8 @@ function MultipleInputsDemo() {
             $color="text-primary"
             $zIndex="in-front"
             $position="absolute"
-            $top={"-20px"}
-            $left={"5px"}
+            $left={"spacing-4"}
+            style={{ top: `-${parseSpacing("spacing-20")}` }}
             $borderRadius="border-radius-square"
           />
           <Component
@@ -169,8 +170,8 @@ function MultipleInputsDemo() {
             $color="text-primary"
             $zIndex="in-front"
             $position="absolute"
-            $top={"-20px"}
-            $left={"5px"}
+            $left={"spacing-4"}
+            style={{ top: `-${parseSpacing("spacing-20")}` }}
             $borderRadius="border-radius-square"
           />
           <Component
@@ -199,8 +200,8 @@ function MultipleInputsDemo() {
             $color="text-primary"
             $zIndex="in-front"
             $position="absolute"
-            $top={"-20px"}
-            $left={"5px"}
+            $left={"spacing-4"}
+            style={{ top: `-${parseSpacing("spacing-20")}` }}
             $borderRadius="border-radius-square"
           />
           <Component

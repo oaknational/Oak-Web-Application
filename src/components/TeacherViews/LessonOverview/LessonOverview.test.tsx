@@ -9,14 +9,18 @@ import {
   LessonOverviewProps,
 } from "./LessonOverview.view";
 
-import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import {
   mockLoggedIn,
   mockLoggedOut,
   mockUserWithDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import renderWithProviders, {
+  allProviders,
+} from "@/__tests__/__helpers__/renderWithProviders";
+import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
+import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 
 jest.mock("next/navigation");
 
@@ -46,10 +50,24 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
-const renderLessonOverview = (props?: Partial<LessonOverviewProps>) =>
-  renderWithProviders()(
+const renderLessonOverview = (
+  props?: Partial<LessonOverviewProps>,
+  analyticsLesson = teachersLessonOverviewFixture(),
+) =>
+  renderWithProviders({
+    ...allProviders,
+    teacherBrowseAnalytics: {
+      programmeState: getProgrammeStateForLesson(analyticsLesson),
+      accessLevel: "lesson",
+    },
+  })(
     <LessonOverview
-      lesson={{ ...lessonOverviewFixture(), isCanonical: false }}
+      lesson={{
+        ...teachersLessonOverviewFixture(),
+        isLegacy: false,
+        pathways: [],
+        isCanonical: false,
+      }}
       isBeta={false}
       {...props}
     />,
@@ -186,23 +204,27 @@ describe("lessonOverview.view", () => {
       },
     );
     it("should handle no release date when lessonResourceDownloadStarted is called", () => {
-      renderLessonOverview({
-        lesson: {
-          ...lessonOverviewFixture({
-            lessonReleaseDate: undefined,
-            isLegacy: false,
-          }),
+      renderLessonOverview(
+        {
+          lesson: {
+            ...lessonOverviewFixture({
+              lessonReleaseDate: undefined,
+              isLegacy: false,
+            }),
 
-          isCanonical: false,
-          hasMediaClips: true,
+            isCanonical: false,
+            hasMediaClips: true,
+          },
         },
-      });
+        teachersLessonOverviewFixture({ lessonReleaseDate: undefined }),
+      );
       const downloadLink = screen.getByText("Download lesson slides");
       act(() => {
         downloadLink.click();
       });
       expect(lessonResourceDownloadStarted).toHaveBeenCalledWith(
         expect.objectContaining({
+          lessonReleaseDate: "unpublished",
           unitName: "Cells",
           unitSlug: "cells",
           yearGroupName: "Year 7",
@@ -218,16 +240,20 @@ describe("lessonOverview.view", () => {
       );
     });
     it("should handle no release date when lessonMediaClipsStarted is called", () => {
-      renderLessonOverview({
-        lesson: {
-          ...lessonOverviewFixture({
-            lessonReleaseDate: undefined,
+      renderLessonOverview(
+        {
+          lesson: {
+            ...teachersLessonOverviewFixture({
+              lessonReleaseDate: undefined,
+            }),
             isLegacy: false,
-          }),
-          isCanonical: false,
-          hasMediaClips: true,
+            pathways: [],
+            isCanonical: false,
+            hasMediaClips: true,
+          },
         },
-      });
+        teachersLessonOverviewFixture({ lessonReleaseDate: undefined }),
+      );
       const playAllButton = screen.getByText("Play all");
       playAllButton.click();
       expect(lessonMediaClipsStarted).toHaveBeenCalledWith({
@@ -252,7 +278,7 @@ describe("lessonOverview.view", () => {
         unitSlug: "cells",
         lessonName: "Structure of cells",
         lessonSlug: "lesson-3-structure-of-cells",
-        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+        lessonReleaseDate: "unpublished",
         lessonReleaseCohort: "2023-2026",
         releaseGroup: "2023",
         yearGroupName: "Year 7",

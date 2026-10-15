@@ -17,11 +17,11 @@ export const ks4Setup = {
       units: [
         createUnit({
           year: "10",
-          tier: tierFoundation.tier_slug,
+          tier_slug: tierFoundation.tier_slug,
         }),
         createUnit({
           year: "10",
-          tier: tierHigher.tier_slug,
+          tier_slug: tierHigher.tier_slug,
         }),
       ],
       keystage: "ks4",
@@ -56,11 +56,11 @@ export const ks3and4Setup = {
       units: [
         createUnit({
           year: "7",
-          tier: tierFoundation.tier_slug,
+          tier_slug: tierFoundation.tier_slug,
         }),
         createUnit({
           year: "7",
-          tier: tierHigher.tier_slug,
+          tier_slug: tierHigher.tier_slug,
         }),
       ],
       keystage: "ks3",
@@ -76,11 +76,11 @@ export const ks3and4Setup = {
       units: [
         createUnit({
           year: "8",
-          tier: tierFoundation.tier_slug,
+          tier_slug: tierFoundation.tier_slug,
         }),
         createUnit({
           year: "8",
-          tier: tierHigher.tier_slug,
+          tier_slug: tierHigher.tier_slug,
         }),
       ],
       keystage: "ks3",
@@ -96,11 +96,11 @@ export const ks3and4Setup = {
       units: [
         createUnit({
           year: "9",
-          tier: tierFoundation.tier_slug,
+          tier_slug: tierFoundation.tier_slug,
         }),
         createUnit({
           year: "9",
-          tier: tierHigher.tier_slug,
+          tier_slug: tierHigher.tier_slug,
         }),
       ],
       keystage: "ks3",
@@ -116,11 +116,11 @@ export const ks3and4Setup = {
       units: [
         createUnit({
           year: "10",
-          tier: tierFoundation.tier_slug,
+          tier_slug: tierFoundation.tier_slug,
         }),
         createUnit({
           year: "10",
-          tier: tierHigher.tier_slug,
+          tier_slug: tierHigher.tier_slug,
         }),
       ],
       keystage: "ks4",

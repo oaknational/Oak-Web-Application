@@ -1,0 +1,137 @@
+import { capitalize } from "lodash";
+import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
+import { OakBox, OakCard, OakFlex } from "@oaknational/oak-components";
+
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import Layout from "@/components/AppComponents/AppLayout";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
+import CMSClient from "@/node-lib/cms";
+import { CaseStudyLibraryPage } from "@/common-lib/cms-types/aboutPages";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
+import { resolveOakHref } from "@/common-lib/urls";
+import {
+  AboutSharedHeader,
+  AboutSharedHeaderImage,
+} from "@/components/GenericPagesComponents/AboutSharedHeader";
+import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
+import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
+import { getCaseStudyTagBackground } from "@/components/GenericPagesComponents/CaseStudiesSection/getCaseStudyTagBackground";
+import getPageProps from "@/node-lib/getPageProps";
+
+export type AboutUsCaseStudyLibraryPageProps = {
+  pageData: {
+    caseStudies: CaseStudyLibraryPage;
+  };
+  topNav: TopNavProps;
+};
+
+export const AboutUsCaseStudyLibrary: NextPage<
+  AboutUsCaseStudyLibraryPageProps
+> = ({ pageData: { caseStudies }, topNav }) => {
+  const items = caseStudies.map((caseStudy) => ({
+    heading: caseStudy.title ?? "",
+    href: resolveOakHref({
+      page: "about-case-study",
+      slug: caseStudy.slug.current,
+    }),
+    imageSrc: getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? "",
+    tagName: capitalize(caseStudy.tag ?? undefined),
+    tagBackground: getCaseStudyTagBackground(caseStudy.tag),
+  }));
+
+  return (
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
+    >
+      <Layout
+        seoProps={getSeoProps({ title: "Case Studies" })}
+        $background={"bg-primary"}
+        topNavProps={topNav}
+      >
+        <AboutUsLayout>
+          <AboutSharedHeader
+            $background="bg-decorative2-main"
+            titleHighlight={"bg-primary"}
+            title="Case studies"
+            content="Explore how schools and trusts are using Oak to tackle their biggest challenges"
+          >
+            <AboutSharedHeaderImage
+              imageUrl={getCloudinaryImageUrl(
+                "v1788884308/647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png",
+              )}
+            />
+          </AboutSharedHeader>
+          <NewGutterMaxWidth>
+            <OakFlex
+              $pv={["spacing-56", "spacing-80", "spacing-80"]}
+              $alignItems="flex-start"
+            >
+              <OakFlex
+                $maxWidth="spacing-960"
+                $gap="spacing-16"
+                $flexDirection="column"
+                $pa={["spacing-16", "spacing-20", "spacing-20"]}
+                $borderRadius="border-radius-l"
+                $background="bg-decorative2-subdued"
+              >
+                {items.map((item) => {
+                  return (
+                    <OakBox as="article" key={item.href}>
+                      <OakCard
+                        headingLevel="div"
+                        aspectRatio="4/3"
+                        cardOrientation={["column", "row", "row"]}
+                        showImage={[false, true, true]}
+                        {...item}
+                      />
+                    </OakBox>
+                  );
+                })}
+              </OakFlex>
+            </OakFlex>
+          </NewGutterMaxWidth>
+        </AboutUsLayout>
+      </Layout>
+    </TeacherBrowseAnalyticsStoreProvider>
+  );
+};
+
+export const getStaticProps: GetStaticProps<
+  AboutUsCaseStudyLibraryPageProps
+> = async (context) => {
+  return getPageProps({
+    page: "about-case-study-library::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
+
+      const caseStudyLibraryPage = await CMSClient.caseStudyLibraryPage({
+        previewMode: isPreviewMode,
+      });
+
+      const topNav = await curriculumApi2023.topNav();
+
+      if (!caseStudyLibraryPage?.length) {
+        return {
+          notFound: true,
+        };
+      }
+
+      const results: GetStaticPropsResult<AboutUsCaseStudyLibraryPageProps> = {
+        props: {
+          pageData: {
+            caseStudies: caseStudyLibraryPage,
+          },
+          topNav,
+        },
+      };
+      return results;
+    },
+  });
+};
+
+export default AboutUsCaseStudyLibrary;

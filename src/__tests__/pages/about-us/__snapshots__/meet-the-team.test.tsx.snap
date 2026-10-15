@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`pages/about/meet-the-team.tsx renders 1`] = `
 .c0 {
@@ -21,8 +21,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 .c4 {
   position: relative;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   height: auto;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -111,8 +109,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 .c40 {
   position: relative;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   padding: 0.5rem;
   color: #222222;
@@ -124,9 +120,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -142,8 +135,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 .c45 {
   position: relative;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   font-family: --var(google-font),Lexend,sans-serif;
 }
@@ -174,8 +165,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 .c59 {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   min-width: 2rem;
   height: 2rem;
@@ -187,9 +176,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -213,7 +199,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c94 {
+.c96 {
   padding: 0rem;
   margin: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -241,13 +227,25 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 .c70 {
   overflow: hidden;
+  min-width: 0rem;
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
   overflow: hidden;
 }
 
+.c72 {
+  min-width: 0rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
 .c77 {
+  position: relative;
+  font-family: --var(google-font),Lexend,sans-serif;
+  z-index: 0;
+}
+
+.c79 {
   position: relative;
   width: 22.5rem;
   height: 100%;
@@ -255,13 +253,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c78 {
+.c80 {
   padding-bottom: 5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c80 {
-  position: -webkit-sticky;
+.c82 {
   position: sticky;
   top: 1.25rem;
   min-width: 11.25rem;
@@ -270,7 +267,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c86 {
+.c88 {
   position: relative;
   width: 1.5rem;
   min-width: 1.5rem;
@@ -281,52 +278,52 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c89 {
+.c91 {
   padding: 1rem;
   background: #fff7cc;
   border-radius: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c96 {
+.c98 {
   width: 100%;
   height: 100%;
+  border-radius: 0.5rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c100 {
+  height: 100%;
+  padding: 1rem;
   background: #ffffff;
   border-radius: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c98 {
-  height: 100%;
-  padding: 1rem;
-  font-family: --var(google-font),Lexend,sans-serif;
-}
-
-.c106 {
+.c108 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
-.c108 {
+.c110 {
   overflow: hidden;
   padding-top: 4.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
   overflow: hidden;
 }
 
-.c109 {
+.c111 {
   position: relative;
+  overflow: hidden;
   background: #bef2bd;
   font-family: --var(google-font),Lexend,sans-serif;
+  overflow: hidden;
 }
 
-.c110 {
+.c112 {
   position: absolute;
   top: 0rem;
   left: 0rem;
@@ -335,32 +332,30 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   height: 100%;
   min-height: 100%;
   display: none;
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
   transform: scale(1);
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c111 {
+.c113 {
   position: relative;
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c115 {
+.c117 {
   border-radius: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c117 {
+.c118 {
   padding: 1rem;
   background: #ffffff;
   border-radius: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c120 {
+.c121 {
   position: relative;
   width: 3.5rem;
   min-width: 3.5rem;
@@ -370,18 +365,15 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c121 {
+.c122 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 500;
   font-size: 1.125rem;
   line-height: 1.75rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
-.c123 {
+.c124 {
   position: relative;
   width: 2rem;
   min-width: 2rem;
@@ -391,14 +383,14 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c124 {
+.c125 {
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
   background: #dff9de;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c126 {
+.c127 {
   position: relative;
   padding: 1.5rem;
   padding-left: 1.5rem;
@@ -410,12 +402,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c129 {
+.c130 {
   margin-bottom: 1.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c131 {
+.c132 {
   position: relative;
   width: 3.5rem;
   min-width: 3.5rem;
@@ -429,36 +421,104 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c134 {
+.c135 {
   margin-top: 0.75rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c150 {
-  position: relative;
-  margin-top: 2rem;
-  background: #ffffff;
+.c137 {
+  width: 100%;
+  margin-bottom: 3rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c154 {
+.c138 {
   position: absolute;
+  left: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  color: #222222;
+  background: #ffe555;
+  border-radius: 0rem;
+  transform: rotate(-1.5deg);
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  letter-spacing: 0.0115rem;
+  z-index: 1;
+}
+
+.c139 {
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  color: #222222;
+  background: #ffffff;
+  border: 0.125rem solid;
+  border-color: #222222;
+  border-radius: 0.25rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c139:hover {
+  cursor: pointer;
+}
+
+.c143 {
+  position: relative;
+  width: 100%;
+  margin-top: 0rem;
+  margin-bottom: 0.5rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c144 {
+  position: absolute;
+  left: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  color: #222222;
+  background: #ffe555;
+  border-radius: 0rem;
+  transform: rotate(-1.5deg);
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  letter-spacing: 0.0115rem;
+  z-index: 1;
+}
+
+.c145 {
+  position: relative;
+  display: block;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c152 {
+  position: absolute;
+  top: 0rem;
+  right: 0.75rem;
+  bottom: 0rem;
+  pointer-events: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
 .c157 {
-  padding-top: 0.5rem;
-  font-family: --var(google-font),Lexend,sans-serif;
-}
-
-.c161 {
   position: relative;
   width: 100%;
   height: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c165 {
+.c161 {
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -468,17 +528,17 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   z-index: 0;
 }
 
-.c166 {
+.c162 {
   position: relative;
   height: 0.25rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c168 {
+.c164 {
   width: 100%;
-  max-width: 30rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  max-width: 80rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
   padding-top: 1rem;
   margin: auto;
   margin-left: auto;
@@ -486,35 +546,32 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c171 {
+.c168 {
   margin-top: 2rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c173 {
+.c170 {
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
-.c177 {
+.c174 {
   margin-top: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c178 {
+.c175 {
   padding-left: 0.25rem;
-  display: inline-block;
+  display: inline;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c182 {
+.c179 {
   position: relative;
   width: 10rem;
   height: 4rem;
@@ -523,15 +580,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c183 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c180 {
   display: flex;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c187 {
+.c184 {
   position: relative;
   width: 2rem;
   min-width: 2rem;
@@ -542,7 +596,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c188 {
+.c185 {
   position: absolute;
   top: 0rem;
   width: 100%;
@@ -553,14 +607,14 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c189 {
+.c186 {
   position: relative;
   width: 100%;
   display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c191 {
+.c188 {
   width: 100%;
   padding-top: 0.75rem;
   margin-top: 2rem;
@@ -568,12 +622,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c193 {
+.c190 {
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c197 {
+.c194 {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -584,32 +638,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   height: 100%;
   min-height: 100%;
   display: none;
-  -webkit-transform: none;
-  -ms-transform: none;
   transform: none;
   font-family: --var(google-font),Lexend,sans-serif;
   z-index: -1;
 }
 
-.c199 {
-  position: absolute;
-  top: 0rem;
-  right: 0rem;
-  bottom: 0rem;
-  left: 0rem;
-  width: 100%;
-  min-width: 100%;
-  height: 100%;
-  min-height: 100%;
-  display: block;
-  -webkit-transform: translate(0%,32%);
-  -ms-transform: translate(0%,32%);
-  transform: translate(0%,32%);
-  font-family: --var(google-font),Lexend,sans-serif;
-  z-index: -1;
-}
-
-.c201 {
+.c196 {
   position: fixed;
   right: 0rem;
   width: 100%;
@@ -619,15 +653,14 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   z-index: 300;
 }
 
-.c204 {
-  position: -webkit-sticky;
+.c199 {
   position: sticky;
   bottom: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
   z-index: 299;
 }
 
-.c205 {
+.c200 {
   color: #222222;
   background: #f2f2f2;
   border-top: 0.063rem solid;
@@ -635,13 +668,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c206 {
+.c201 {
   margin-left: auto;
   margin-right: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c207 {
+.c202 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   margin-left: 1rem;
@@ -649,507 +682,262 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c209 {
+.c204 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
-.c212 {
+.c207 {
   font-family: --var(google-font),Lexend,sans-serif;
   white-space: nowrap;
 }
 
 .c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
 .c10 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 0.5rem;
 }
 
 .c13 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 1rem;
 }
 
 .c23 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 1.5rem;
 }
 
 .c29 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
 .c34 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 0.25rem;
 }
 
 .c37 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 1.5rem;
 }
 
 .c41 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
 .c46 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
 .c50 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 0rem;
 }
 
 .c52 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
 .c60 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 0.25rem;
 }
 
-.c151 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c136 {
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
 }
 
 .c71 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
+  flex-direction: row;
   align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
+  flex-basis: auto;
   gap: 0rem;
 }
 
-.c72 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c73 {
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
   gap: 1.5rem;
 }
 
-.c79 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c81 {
   display: flex;
   gap: 0rem;
 }
 
-.c84 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c86 {
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-column-gap: 1rem;
   column-gap: 1rem;
 }
 
-.c88 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c90 {
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
   gap: 2rem;
 }
 
-.c90 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c92 {
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   gap: 2rem;
 }
 
-.c91 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c93 {
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  gap: 1rem;
-}
-
-.c99 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
   gap: 1rem;
 }
 
 .c101 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
+  gap: 1rem;
+}
+
+.c103 {
+  display: flex;
   flex-direction: column;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
   gap: 1rem;
 }
 
-.c104 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c106 {
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
   justify-content: flex-end;
   gap: 1rem;
 }
 
-.c112 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c114 {
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   gap: 2rem;
 }
 
-.c118 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c119 {
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 1rem;
 }
 
-.c122 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c123 {
   display: flex;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c130 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c131 {
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
-.c169 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c140 {
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.c146 {
+  display: block;
+  align-items: center;
+  gap: 1rem;
+}
+
+.c153 {
+  display: flex;
+  align-content: center;
+}
+
+.c165 {
+  display: flex;
   flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c181 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c178 {
   display: flex;
-  -webkit-box-pack: left;
-  -webkit-justify-content: left;
-  -ms-flex-pack: left;
   justify-content: left;
 }
 
-.c184 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c181 {
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 1rem;
 }
 
-.c192 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c189 {
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
   align-items: flex-start;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
   justify-content: flex-start;
 }
 
-.c194 {
+.c191 {
   display: none;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 1rem;
 }
 
-.c202 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c197 {
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 0.75rem;
 }
 
-.c208 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c203 {
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
   align-items: flex-start;
   gap: 1.5rem;
 }
 
-.c211 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c206 {
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
   justify-content: flex-end;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
   gap: 0.75rem;
 }
@@ -1159,9 +947,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
   text-align: left;
 }
@@ -1171,9 +956,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
   text-align: left;
 }
@@ -1187,9 +969,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
   text-align: left;
 }
@@ -1199,70 +978,46 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
-.c74 {
+.c75 {
   background: #ffe555;
   padding-left: 0.25rem;
   padding-right: 0.25rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c85 {
+.c87 {
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
-.c105 {
+.c107 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
-.c159 {
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 300;
-  font-size: 1rem;
-  line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
-  letter-spacing: -0.005rem;
-}
-
-.c210 {
+.c205 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
-.c167 {
+.c163 {
   position: absolute;
   top: 0rem;
   left: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
-  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
@@ -1435,9 +1190,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
   color: #ffffff;
   background: #222222;
@@ -1485,7 +1237,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   cursor: default;
 }
 
-.c162 {
+.c158 {
   background: none;
   color: inherit;
   border: none;
@@ -1502,19 +1254,19 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   padding-right: 1rem;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  margin-top: 1.5rem;
+  margin-top: 0rem;
   display: inline-block;
   border: 0.125rem solid;
   border-color: #222222;
   border-radius: 0.25rem;
 }
 
-.c162:disabled {
+.c158:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c214 {
+.c209 {
   background: none;
   color: inherit;
   border: none;
@@ -1537,7 +1289,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c214:disabled {
+.c209:disabled {
   pointer-events: none;
   cursor: default;
 }
@@ -1547,26 +1299,17 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 .c36 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   object-fit: contain;
 }
 
 .c54 {
-  -webkit-filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
   filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
   object-fit: contain;
 }
 
-.c198 {
-  -webkit-filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
+.c195 {
   filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
-  object-fit: fill;
-}
-
-.c200 {
-  -webkit-filter: brightness(0) saturate(100%) invert(95%) sepia(3%) saturate(1596%) hue-rotate(279deg) brightness(95%) contrast(87%);
-  filter: brightness(0) saturate(100%) invert(95%) sepia(3%) saturate(1596%) hue-rotate(279deg) brightness(95%) contrast(87%);
   object-fit: fill;
 }
 
@@ -1586,7 +1329,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 .c8:hover {
-  -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #222222;
   background: #f2f2f2;
@@ -1624,7 +1366,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 .c19:hover {
-  -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #ffffff;
   background: #575757;
@@ -1662,7 +1403,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 .c33:hover {
-  -webkit-text-decoration: none;
   text-decoration: none;
   color: #222222;
   background: #f2f2f2;
@@ -1700,7 +1440,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 .c64:hover {
-  -webkit-text-decoration: none;
   text-decoration: none;
   color: #ffffff;
   background: #575757;
@@ -1732,16 +1471,16 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 .c5 .grey-shadow:has(+ * + .internal-button:focus-visible) {
-  box-shadow: 0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
 .c5 .yellow-shadow:has(+ .internal-button:focus-visible) {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%);
 }
 
 .c5 .yellow-shadow:has(+ .internal-button:hover),
-.c5 .yellow-shadow:has(+ .internal-button:hover:not(:focus-visible,:active)) {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
+.c5 .yellow-shadow:has(+ .internal-button:hover:not(:focus-visible, :active)) {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%);
 }
 
 .c5 .grey-shadow:has(+ * + .internal-button:hover) {
@@ -1749,23 +1488,23 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 .c5 .grey-shadow:has(+ * + .internal-button:active) {
-  box-shadow: 0.25rem 0.25rem 0 rgba(87,87,87,100%);
+  box-shadow: 0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
 .c5 .yellow-shadow:has(+ .internal-button:active) {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%);
 }
 
 .c15 .grey-shadow:has(+ * + .internal-button:focus-visible) {
-  box-shadow: 0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
 .c15 .yellow-shadow:has(+ .internal-button:focus-visible) {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%);
 }
 
 .c15 .yellow-shadow:has(+ .internal-button:hover),
-.c15 .yellow-shadow:has(+ .internal-button:hover:not(:focus-visible,:active)) {
+.c15 .yellow-shadow:has(+ .internal-button:hover:not(:focus-visible, :active)) {
   box-shadow: none;
 }
 
@@ -1774,11 +1513,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 .c15 .grey-shadow:has(+ * + .internal-button:active) {
-  box-shadow: 0.25rem 0.25rem 0 rgba(87,87,87,100%);
+  box-shadow: 0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
 .c15 .yellow-shadow:has(+ .internal-button:active) {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%);
 }
 
 .c49 {
@@ -1787,7 +1526,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 .c49:hover {
-  -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #575757;
 }
@@ -1800,118 +1538,100 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   color: #808080;
 }
 
-.c47 > :first-child:focus-visible .shadow {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+.c47 >:first-of-type:focus-visible .shadow {
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c47 > :first-child:hover .shadow {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
+.c47 >:first-of-type:hover .shadow {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%);
 }
 
-.c47 > :first-child:active .shadow {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%), 0.25rem 0.25rem 0 rgba(87,87,87,100%);
+.c47 >:first-of-type:active .shadow {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%),0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
-.c47 > :first-child:disabled .icon-container {
+.c47 >:first-of-type:disabled .icon-container {
   background: #808080;
 }
 
-.c47 > :first-child:hover .icon-container {
+.c47 >:first-of-type:hover .icon-container {
   background: #575757;
 }
 
-.c47 > :first-child:active .icon-container {
+.c47 >:first-of-type:active .icon-container {
   background: #222222;
 }
 
-.c185 > :first-child:focus-visible .shadow {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+.c182 >:first-of-type:focus-visible .shadow {
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c185 > :first-child:hover .shadow {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
+.c182 >:first-of-type:hover .shadow {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%);
 }
 
-.c185 > :first-child:active .shadow {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%), 0.25rem 0.25rem 0 rgba(87,87,87,100%);
+.c182 >:first-of-type:active .shadow {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%),0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
-.c185 > :first-child:disabled .icon-container {
+.c182 >:first-of-type:disabled .icon-container {
   background: #e4e4e4;
 }
 
-.c185 > :first-child:hover .icon-container {
+.c182 >:first-of-type:hover .icon-container {
   background: #ffffff;
 }
 
-.c185 > :first-child:active .icon-container {
+.c182 >:first-of-type:active .icon-container {
   background: #ffffff;
 }
 
-.c73 {
+.c74 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 2rem;
   line-height: 2.5rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
-.c92 {
+.c94 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.5rem;
   line-height: 2rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
-.c102 {
+.c104 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.25rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
-.c113 {
+.c115 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.5rem;
   line-height: 2rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
   text-align: center;
 }
 
-.c132 {
+.c133 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.5rem;
   line-height: 2rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
-.c172 {
+.c169 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
   margin-bottom: 0.5rem;
   color: #222222;
@@ -1925,7 +1645,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   display: revert;
 }
 
-.c175 {
+.c172 {
   margin-top: 0.75rem;
   display: revert;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -1934,105 +1654,81 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   display: revert;
 }
 
-.c75 {
+.c76 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 400;
   font-size: 1.5rem;
   line-height: 2rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
-.c93 {
+.c95 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1.125rem;
   line-height: 1.75rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
-.c103 {
+.c105 {
   font-family: --var(google-font),Lexend,sans-serif;
   color: #222222;
 }
 
-.c133 {
+.c134 {
   font-family: --var(google-font),Lexend,sans-serif;
   margin-right: 0rem;
   margin-bottom: 1.5rem;
 }
 
-.c163 {
+.c159 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
   color: #dd0035;
   margin-top: 0rem;
 }
 
-.c164 {
+.c160 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
   margin-top: 0rem;
 }
 
-.c195 {
+.c192 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
-.c196 {
+.c193 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.75rem;
   line-height: 1rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
-.c107 {
+.c109 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
-.c174 {
+.c171 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -2041,43 +1737,26 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   padding: 0;
   margin: 0;
   display: block;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   font-family: --var(google-font),Lexend,sans-serif;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 0.75rem;
 }
 
-.c81 {
+.c83 {
   list-style: none;
   padding: 0;
   margin: 0;
   display: block;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   font-family: --var(google-font),Lexend,sans-serif;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   gap: 1rem;
 }
 
-.c180 {
+.c177 {
   width: 1.25em;
   min-width: 1.25em;
   height: 1.25em;
@@ -2086,45 +1765,38 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 .c24 {
   display: inline;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
+  text-align: left;
   align-items: center;
   gap: 0.25rem;
   outline: none;
   border-radius: 0.375rem;
   padding: 0.25rem;
   margin: -0.25rem;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   font: inherit;
   background: none;
   border: none;
-  -webkit-text-decoration: underline;
   text-decoration: underline;
   cursor: pointer;
   color: #0d24c4;
   overflow-wrap: break-word;
 }
 
-.c24 .c179 {
-  -webkit-filter: invert(21%) sepia(90%) saturate(3220%) hue-rotate(232deg) brightness(71%) contrast(127%);
+.c24 .c176 {
   filter: invert(21%) sepia(90%) saturate(3220%) hue-rotate(232deg) brightness(71%) contrast(127%);
   display: inline-block;
   vertical-align: text-top;
 }
 
 .c24:focus-visible {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
 .c24:visited {
   color: #081676;
 }
 
-.c24:visited .c179 {
-  -webkit-filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
+.c24:visited .c176 {
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
 
@@ -2133,8 +1805,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   outline: 1px solid #081676;
 }
 
-.c24:active .c179 {
-  -webkit-filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
+.c24:active .c176 {
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
 
@@ -2143,152 +1814,75 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   color: #808080;
 }
 
-.c24[disabled] .c179 {
-  -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
+.c24[disabled] .c176 {
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c176 {
+.c173 {
   display: inline;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
+  text-align: left;
   align-items: center;
   gap: 0.25rem;
   outline: none;
   border-radius: 0.375rem;
   padding: 0.25rem;
   margin: -0.25rem;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   font: inherit;
   background: none;
   border: none;
-  -webkit-text-decoration: none;
   text-decoration: none;
   cursor: pointer;
   color: #222222;
   overflow-wrap: break-word;
 }
 
-.c176 .c179 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+.c173 .c176 {
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   display: inline-block;
   vertical-align: text-top;
 }
 
-.c176:focus-visible {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+.c173:focus-visible {
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c176:visited {
+.c173:visited {
   color: #222222;
 }
 
-.c176:visited .c179 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+.c173:visited .c176 {
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c176:active {
+.c173:active {
   color: #222222;
   outline: 1px solid #222222;
 }
 
-.c176:active .c179 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+.c173:active .c176 {
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c176[disabled] {
+.c173[disabled] {
   cursor: not-allowed;
   color: #808080;
 }
 
-.c176[disabled] .c179 {
-  -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
+.c173[disabled] .c176 {
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c213 {
-  display: inline;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 0.25rem;
-  outline: none;
-  border-radius: 0.375rem;
-  padding: 0.25rem;
-  margin: -0.25rem;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+.c208 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  background: none;
-  border: none;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  cursor: pointer;
-  color: #222222;
-  overflow-wrap: break-word;
-}
-
-.c213 .c179 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  display: inline-block;
-  vertical-align: text-top;
-}
-
-.c213:focus-visible {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
-}
-
-.c213:visited {
-  color: #222222;
-}
-
-.c213:visited .c179 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-}
-
-.c213:active {
-  color: #222222;
-  outline: 1px solid #222222;
-}
-
-.c213:active .c179 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-}
-
-.c213[disabled] {
-  cursor: not-allowed;
-  color: #808080;
-}
-
-.c213[disabled] .c179 {
-  -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
-  filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
 .c43 {
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
-  appearance: none !important;
+  appearance: none!important;
   border: 0;
   border-radius: 0;
   border-color: transparent;
@@ -2301,18 +1895,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   width: 100%;
 }
 
-.c43::-webkit-input-placeholder {
-  color: #575757;
-}
-
-.c43::-moz-placeholder {
-  color: #575757;
-}
-
-.c43:-ms-input-placeholder {
-  color: #575757;
-}
-
 .c43::placeholder {
   color: #575757;
 }
@@ -2321,12 +1903,41 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 .c43::-webkit-search-cancel-button,
 .c43::-webkit-search-results-button,
 .c43::-webkit-search-results-decoration {
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
 }
 
 .c43:disabled {
+  cursor: not-allowed;
+}
+
+.c142 {
+  appearance: none!important;
+  border: 0;
+  border-radius: 0;
+  border-color: transparent;
+  box-shadow: none;
+  font-family: inherit;
+  background: transparent;
+  outline: none;
+  color: inherit;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+  width: 100%;
+  height: 3.5rem;
+}
+
+.c142::placeholder {
+  color: #575757;
+}
+
+.c142::-webkit-search-decoration,
+.c142::-webkit-search-cancel-button,
+.c142::-webkit-search-results-button,
+.c142::-webkit-search-results-decoration {
+  appearance: none;
+}
+
+.c142:disabled {
   cursor: not-allowed;
 }
 
@@ -2343,115 +1954,241 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   background: #ffffff;
 }
 
-.c95 {
+.c97 {
   display: grid;
-  grid-template-columns: repeat(12,1fr);
+  grid-template-columns: repeat(12, 1fr);
   width: 100%;
   row-gap: 1rem;
-  -webkit-column-gap: 1rem;
   column-gap: 1rem;
-  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-}
-
-.c127 {
-  display: grid;
-  grid-template-columns: repeat(12,1fr);
-  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .c128 {
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  width: 100%;
+}
+
+.c166 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  width: 100%;
+  column-gap: 1.5rem;
+}
+
+.c129 {
   flex-direction: column;
   grid-column: span 12;
   grid-row: span undefined;
   grid-row: span 1;
 }
 
-.c170 {
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
+.c167 {
   flex-direction: column;
   grid-column: span 12;
   grid-row: span undefined;
   grid-row: span 1;
 }
 
-.c97 {
+.c148 {
+  border: none;
+  outline: none;
+  width: 100%;
+  appearance: none;
+  appearance: base-select;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  padding-right: 3.5rem;
+  border: 0.125rem solid;
+  border-color: #222222;
+  border-radius: 0.25rem;
+  color: #222222;
+  background: #ffffff;
+}
+
+.c148:focus {
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
+}
+
+.c148::picker(select) {
+  appearance: none;
+  appearance: base-select;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  overflow: visible;
+  border: 0.125rem solid;
+  border-color: #222222;
+  border-radius: 0.25rem;
+  color: #222222;
+  background: #ffffff;
+  border-top: none;
+}
+
+.c148::picker(select) {
+  top: calc(anchor(bottom) - 2px);
+  left: anchor(0);
+}
+
+.c148::picker-icon {
+  display: none;
+}
+
+.c148:open {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.c148:open::picker(select) {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.c154 {
+  user-select: none;
+}
+
+.c156 {
+  user-select: none;
+}
+
+.c147 select~.c155 {
+  display: block;
+}
+
+.c147 select:open~.c155 {
+  display: none;
+}
+
+.c147 select~.c151 {
+  display: none;
+}
+
+.c147 select:open~.c151 {
+  display: block;
+}
+
+.c149 {
+  cursor: pointer;
+  border: none;
+  color: #222222;
+  outline: none;
+  font: 1rem;
+  font-weight: 300;
+  border-radius: 0.125rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.c149:focus {
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
+}
+
+.c149:disabled {
+  background: #e4e4e4;
+  color: #575757;
+  cursor: not-allowed;
+}
+
+.c149:active:not(:disabled) {
+  background: initial;
+}
+
+.c149::checkmark {
+  display: none;
+}
+
+.c150 {
+  cursor: pointer;
+  border: none;
+  color: #222222;
+  outline: none;
+  font: 1rem;
+  font-weight: 500;
+  border-radius: 0.125rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.c150:focus {
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
+}
+
+.c150:disabled {
+  background: #e4e4e4;
+  color: #575757;
+  cursor: not-allowed;
+}
+
+.c150:active:not(:disabled) {
+  background: initial;
+}
+
+.c150::checkmark {
+  display: none;
+}
+
+.c141 {
+  background: #ffffff;
+}
+
+.c141:hover {
+  cursor: text;
+}
+
+.c141:focus-within {
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
+}
+
+.c99 {
   list-style: none;
   margin: 0;
   padding: 0;
   box-shadow: none;
 }
 
-.c97:has(a:hover,button:hover) {
-  background-color: #f2f2f2;
+.c99:has(a:hover, button:hover) {
   box-shadow: none;
 }
 
-.c97:has( a, button) {
+.c99:has(   a,   button ) {
   border-radius: 0.5rem;
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c97:has( a, button)  a,
-.c97:has( a, button) button {
+.c99:has(   a,   button ) a,
+.c99:has(   a,   button ) button {
   outline: none;
 }
 
-.c97:has(a:active,button:active) {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%),0.25rem 0.25rem 0 rgba(87,87,87,100%);
+.c99:has(a:active, button:active) {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%),0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
-.c116 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  box-shadow: none;
-}
-
-.c116:has(a:hover,button:hover) {
-  box-shadow: none;
-}
-
-.c116:has( a, button) {
-  border-radius: 0.5rem;
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
-}
-
-.c116:has( a, button)  a,
-.c116:has( a, button) button {
-  outline: none;
-}
-
-.c116:has(a:active,button:active) {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%),0.25rem 0.25rem 0 rgba(87,87,87,100%);
-}
-
-.c100 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c102 {
   display: flex;
   gap: 1rem;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
 }
 
-.c100:hover h1,
-.c100:hover h2,
-.c100:hover h3,
-.c100:hover h4,
-.c100:hover h5,
-.c100:hover h6,
-.c100:hover span {
-  -webkit-text-decoration: underline;
+.c102:hover {
+  background: #f2f2f2;
+}
+
+.c102:hover h1,
+.c102:hover h2,
+.c102:hover h3,
+.c102:hover h4,
+.c102:hover h5,
+.c102:hover h6,
+.c102:hover span {
   text-decoration: underline;
 }
 
-.c100:hover span {
-  -webkit-text-decoration-thickness: 18%;
+.c102:hover span {
   text-decoration-thickness: 18%;
 }
 
@@ -2460,1675 +2197,1222 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 .c58:focus-visible .oak-save-count {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c82 {
-  -webkit-text-decoration: none;
+.c84 {
   text-decoration: none;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   outline: none;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-column-gap: 1rem;
   column-gap: 1rem;
   padding-left: 0rem;
   padding-right: 0rem;
 }
 
-.c82:focus-visible {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+.c84:focus-visible {
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
   border-color: transparent;
   border-radius: 4px;
 }
 
-.c87 {
-  -webkit-text-decoration: none;
+.c89 {
   text-decoration: none;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   outline: none;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-column-gap: 1rem;
   column-gap: 1rem;
   padding-left: 0rem;
   padding-right: 0rem;
 }
 
-.c87:focus-visible {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+.c89:focus-visible {
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
   border-color: transparent;
   border-radius: 4px;
 }
 
-.c83 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c85 {
   display: flex;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
 
-.c203 {
+.c198 {
   top: 152px;
 }
 
-.c186 .icon-container > *:first-child {
+.c183 .icon-container>*:first-child {
   border: 0;
 }
 
-.c190 {
+.c187 {
   height: 87px;
   width: 77px;
   margin-top: 2rem;
 }
 
-.c155 {
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  text-align: left;
-  font-family: unset;
-}
-
-.c76 {
+.c78 {
   height: 410px;
   width: auto;
+  flex: 0 1 auto;
 }
 
-.c119:hover {
+.c120:hover {
   box-shadow: 2px 2px 0 0 #ffe555;
 }
 
-.c114 {
+.c116 {
   margin: 0;
   padding: 0;
   list-style: none;
   display: grid;
   row-gap: 1rem;
-  -webkit-column-gap: 1rem;
   column-gap: 1rem;
   grid-auto-rows: 1fr;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
 
-.c147 {
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-  font-family: --var(google-font),Lexend,sans-serif;
-}
-
-.c136 {
-  width: 100%;
-  margin-bottom: 2rem;
-  background-color: #fff;
-  color: #222222;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c136::-webkit-scrollbar-track {
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c136::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c136::-webkit-scrollbar-thumb {
-  border-radius: 15px;
-  background-color: #999999;
-}
-
-.c139 {
-  position: relative;
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c139::-webkit-scrollbar-track {
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c139::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c139::-webkit-scrollbar-thumb {
-  border-radius: 15px;
-  background-color: #999999;
-}
-
-.c141 {
-  position: absolute;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c141::-webkit-scrollbar-track {
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c141::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c141::-webkit-scrollbar-thumb {
-  border-radius: 15px;
-  background-color: #999999;
-}
-
-.c137 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c140 {
-  position: absolute;
-  top: 0rem;
-  right: 0rem;
-  bottom: 0rem;
-  left: 0rem;
-  object-fit: cover;
-  font-family: --var(google-font),Lexend,sans-serif;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.c145 {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: 0;
-  border-radius: 0;
-  border-color: transparent;
-  box-shadow: none;
-  font-family: fontFamily;
-}
-
-.c145::-webkit-input-placeholder {
-  color: #575757;
-}
-
-.c145::-moz-placeholder {
-  color: #575757;
-}
-
-.c145:-ms-input-placeholder {
-  color: #575757;
-}
-
-.c145::placeholder {
-  color: #575757;
-}
-
-.c145::-webkit-search-decoration,
-.c145::-webkit-search-cancel-button,
-.c145::-webkit-search-results-button,
-.c145::-webkit-search-results-decoration {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-.c143 {
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115em;
-  -moz-letter-spacing: 0.0115em;
-  -ms-letter-spacing: 0.0115em;
-  letter-spacing: 0.0115em;
-}
-
-.c149 {
-  display: none;
-  position: absolute;
-  bottom: -4px;
-  left: -2px;
-  right: 0;
-  height: 4px;
-  color: #ffe555;
-  -webkit-filter: drop-shadow(2px 2px 0 rgb(0 0 0));
-  filter: drop-shadow(2px 2px 0 rgb(0 0 0));
-  z-index: 1;
-}
-
-.c144 {
-  position: relative;
-  padding: 4px 8px;
-  -webkit-transform: rotate(-2deg) translateY(-16px) translateX(8px);
-  -ms-transform: rotate(-2deg) translateY(-16px) translateX(8px);
-  transform: rotate(-2deg) translateY(-16px) translateX(8px);
-  display: block;
-  background: #ffe555;
-  color: #222222;
-}
-
-.c138:focus-within .c142 {
-  background: #374cf1;
-  color: #fff;
-}
-
-.c138:focus-within .c148 {
-  display: inline;
-}
-
-.c146 {
-  color: #222222;
-  height: 60px;
-  border-radius: 8px;
-  border-color: #2d2d2d;
-  border-width: 1px;
-  padding-left: 12px;
-  padding: 16px;
-  padding-top: 20px;
-  font-size: 16px;
-  font-family: fontFamily;
-  font-weight: 300;
-  width: 100%;
-  outline: none;
-}
-
-.c146::-webkit-input-placeholder {
-  font-size: 16px;
-  font-weight: 300;
-  font-family: fontFamily;
-  color: #575757;
-  opacity: 1;
-}
-
-.c146::-moz-placeholder {
-  font-size: 16px;
-  font-weight: 300;
-  font-family: fontFamily;
-  color: #575757;
-  opacity: 1;
-}
-
-.c146:-ms-input-placeholder {
-  font-size: 16px;
-  font-weight: 300;
-  font-family: fontFamily;
-  color: #575757;
-  opacity: 1;
-}
-
-.c146::placeholder {
-  font-size: 16px;
-  font-weight: 300;
-  font-family: fontFamily;
-  color: #575757;
-  opacity: 1;
-}
-
-.c146:valid:not([value=""]) {
-  border-color: #2d2d2d;
-}
-
-.c146:valid:not([value=""])::-webkit-input-placeholder {
-  font-size: 16px;
-  color: #575757;
-}
-
-.c146:valid:not([value=""])::-moz-placeholder {
-  font-size: 16px;
-  color: #575757;
-}
-
-.c146:valid:not([value=""]):-ms-input-placeholder {
-  font-size: 16px;
-  color: #575757;
-}
-
-.c146:valid:not([value=""])::placeholder {
-  font-size: 16px;
-  color: #575757;
-}
-
-.c153 {
-  display: none;
-}
-
-.c152:focus-within .c142 {
-  background: #374cf1;
-  color: #fff;
-}
-
-.c156 {
-  color: #222222;
-  height: 60px;
-  padding-left: 16px;
-  padding-right: 8px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  width: 100%;
-  text-align: left;
-  font-size: 16px;
-  background: transparent;
-  border: none;
-  outline: none;
-  font-size: 14px;
-  color: #575757;
-}
-
-.c158 {
-  max-width: calc(100% - 20px);
-}
-
-.c160 {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  min-width: 0;
-  overflow: hidden;
-}
-
-.c135 {
-  width: 100%;
-  font-family: --var(google-font),Lexend,sans-serif;
-}
-
-.c125 {
+.c126 {
   max-width: 100%;
   justify-self: center;
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c12 {
     padding-left: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c12 {
     padding-right: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c14 {
-    width: -webkit-max-content;
-    width: -moz-max-content;
     width: max-content;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c22 {
     padding-left: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c22 {
     padding-right: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c22 {
     padding-top: 1.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c22 {
     padding-bottom: 1.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c26 {
     display: none;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c28 {
     display: block;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c38 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c39 {
     display: block;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c44 {
     position: absolute;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c44 {
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c56 {
     display: none;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c59 {
     padding-left: 0.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c59 {
     padding-right: 0.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c62 {
     display: contents;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c65 {
     display: block;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c65 {
     display: none;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
 
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
 
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c69 {
     padding-left: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c69 {
     padding-right: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c70 {
     padding-top: 4.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c70 {
     padding-bottom: 4.5rem;
   }
 }
 
-@media (min-width:750px) {
-  .c80 {
+@media (min-width: 750px) {
+  .c82 {
     display: block;
   }
 }
 
-@media (min-width:1280px) {
-  .c80 {
+@media (min-width: 1280px) {
+  .c82 {
     display: block;
   }
 }
 
-@media (min-width:750px) {
-  .c86 {
+@media (min-width: 750px) {
+  .c88 {
     display: none;
   }
 }
 
-@media (min-width:750px) {
-  .c89 {
+@media (min-width: 750px) {
+  .c91 {
     padding: 1.5rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c89 {
+@media (min-width: 1280px) {
+  .c91 {
     padding: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
-  .c106 {
+@media (min-width: 750px) {
+  .c108 {
     font-weight: 300;
   }
 }
 
-@media (min-width:1280px) {
-  .c106 {
+@media (min-width: 1280px) {
+  .c108 {
     font-weight: 300;
   }
 }
 
-@media (min-width:750px) {
-  .c106 {
+@media (min-width: 750px) {
+  .c108 {
     font-size: 1.125rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c106 {
+@media (min-width: 1280px) {
+  .c108 {
     font-size: 1.125rem;
   }
 }
 
-@media (min-width:750px) {
-  .c106 {
+@media (min-width: 750px) {
+  .c108 {
     line-height: 1.75rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c106 {
+@media (min-width: 1280px) {
+  .c108 {
     line-height: 1.75rem;
   }
 }
 
-@media (min-width:750px) {
-  .c106 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
+@media (min-width: 750px) {
+  .c108 {
     letter-spacing: -0.005rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c106 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
+@media (min-width: 1280px) {
+  .c108 {
     letter-spacing: -0.005rem;
   }
 }
 
-@media (min-width:750px) {
-  .c110 {
+@media (min-width: 750px) {
+  .c112 {
     display: block;
   }
 }
 
-@media (min-width:750px) {
-  .c110 {
-    -webkit-transform: scale(1.1) translateX(-0.65%) translateY(4%);
-    -ms-transform: scale(1.1) translateX(-0.65%) translateY(4%);
+@media (min-width: 750px) {
+  .c112 {
     transform: scale(1.1) translateX(-0.65%) translateY(4%);
   }
 }
 
-@media (min-width:1280px) {
-  .c110 {
-    -webkit-transform: scale(1.4) translateY(4%);
-    -ms-transform: scale(1.4) translateY(4%);
+@media (min-width: 1280px) {
+  .c112 {
     transform: scale(1.4) translateY(4%);
   }
 }
 
-@media (min-width:750px) {
-  .c111 {
+@media (min-width: 750px) {
+  .c113 {
     padding-top: 5rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c111 {
+@media (min-width: 1280px) {
+  .c113 {
     padding-top: 5rem;
   }
 }
 
-@media (min-width:750px) {
-  .c111 {
+@media (min-width: 750px) {
+  .c113 {
     padding-bottom: 5rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c111 {
+@media (min-width: 1280px) {
+  .c113 {
     padding-bottom: 5rem;
   }
 }
 
-@media (min-width:750px) {
-  .c126 {
+@media (min-width: 750px) {
+  .c127 {
     padding-top: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
-  .c126 {
+@media (min-width: 750px) {
+  .c127 {
     padding-bottom: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
-  .c168 {
-    max-width: 80rem;
+@media (min-width: 750px) {
+  .c164 {
+    padding-left: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
-  .c168 {
+@media (min-width: 1280px) {
+  .c164 {
+    padding-left: 2.5rem;
+  }
+}
+
+@media (min-width: 750px) {
+  .c164 {
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .c164 {
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 750px) {
+  .c164 {
     padding-top: 5rem;
   }
 }
 
-@media (min-width:750px) {
-  .c171 {
+@media (min-width: 750px) {
+  .c168 {
     margin-top: 0rem;
   }
 }
 
-@media (min-width:750px) {
-  .c177 {
+@media (min-width: 750px) {
+  .c174 {
     margin-top: 2rem;
   }
 }
 
-@media (min-width:750px) {
-  .c183 {
+@media (min-width: 750px) {
+  .c180 {
     display: none;
   }
 }
 
-@media (min-width:750px) {
-  .c191 {
+@media (min-width: 750px) {
+  .c188 {
     padding-top: 0rem;
   }
 }
 
-@media (min-width:750px) {
-  .c193 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
+@media (min-width: 750px) {
+  .c190 {
     display: flex;
   }
 }
 
-@media (min-width:750px) {
-  .c197 {
+@media (min-width: 750px) {
+  .c194 {
     display: block;
   }
 }
 
-@media (min-width:750px) {
-  .c197 {
-    -webkit-transform: translate(25%,25%) scale(0.7) rotate(-10deg);
-    -ms-transform: translate(25%,25%) scale(0.7) rotate(-10deg);
-    transform: translate(25%,25%) scale(0.7) rotate(-10deg);
+@media (min-width: 750px) {
+  .c194 {
+    transform: translate(25%, 25%) scale(0.7) rotate(-10deg);
   }
 }
 
-@media (min-width:1280px) {
-  .c197 {
-    -webkit-transform: translate(25%,15%) rotate(-10deg);
-    -ms-transform: translate(25%,15%) rotate(-10deg);
-    transform: translate(25%,15%) rotate(-10deg);
+@media (min-width: 1280px) {
+  .c194 {
+    transform: translate(25%, 15%) rotate(-10deg);
   }
 }
 
-@media (min-width:750px) {
-  .c199 {
-    display: none;
-  }
-}
-
-@media (min-width:750px) {
-  .c201 {
+@media (min-width: 750px) {
+  .c196 {
     right: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
-  .c201 {
-    width: -webkit-max-content;
-    width: -moz-max-content;
+@media (min-width: 750px) {
+  .c196 {
     width: max-content;
   }
 }
 
-@media (min-width:750px) {
-  .c201 {
+@media (min-width: 750px) {
+  .c196 {
     padding-left: 0rem;
   }
 }
 
-@media (min-width:750px) {
-  .c201 {
+@media (min-width: 750px) {
+  .c196 {
     padding-right: 0rem;
   }
 }
 
-@media (min-width:750px) {
-  .c207 {
+@media (min-width: 750px) {
+  .c202 {
     margin-left: 1.5rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c207 {
+@media (min-width: 1280px) {
+  .c202 {
     margin-left: 3.5rem;
   }
 }
 
-@media (min-width:750px) {
-  .c207 {
+@media (min-width: 750px) {
+  .c202 {
     margin-right: 1.5rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c207 {
+@media (min-width: 1280px) {
+  .c202 {
     margin-right: 3.5rem;
   }
 }
 
-@media (min-width:750px) {
-  .c209 {
+@media (min-width: 750px) {
+  .c204 {
     font-weight: 300;
   }
 }
 
-@media (min-width:750px) {
-  .c209 {
+@media (min-width: 750px) {
+  .c204 {
     font-size: 1rem;
   }
 }
 
-@media (min-width:750px) {
-  .c209 {
+@media (min-width: 750px) {
+  .c204 {
     line-height: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
-  .c209 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
+@media (min-width: 750px) {
+  .c204 {
     letter-spacing: -0.005rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c13 {
-    -webkit-box-pack: left;
-    -webkit-justify-content: left;
-    -ms-flex-pack: left;
     justify-content: left;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c37 {
     gap: 1rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c37 {
     gap: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c60 {
-    -webkit-box-pack: initial;
-    -webkit-justify-content: initial;
-    -ms-flex-pack: initial;
     justify-content: initial;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
 
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
 
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
+  .c71 {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 750px) {
+  .c71 {
+    flex-basis: auto;
+  }
+}
+
+@media (min-width: 750px) {
   .c71 {
     gap: 3rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c71 {
     gap: 15rem;
   }
 }
 
-@media (min-width:750px) {
-  .c79 {
+@media (min-width: 750px) {
+  .c81 {
     gap: 1rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c79 {
+@media (min-width: 1280px) {
+  .c81 {
     gap: 1rem;
   }
 }
 
-@media (min-width:750px) {
-  .c84 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
+@media (min-width: 750px) {
+  .c86 {
     flex-direction: column;
   }
 }
 
-@media (min-width:750px) {
-  .c84 {
-    -webkit-column-gap: 0.25rem;
+@media (min-width: 750px) {
+  .c86 {
     column-gap: 0.25rem;
   }
 }
 
-@media (min-width:750px) {
-  .c88 {
+@media (min-width: 750px) {
+  .c90 {
     gap: 3.5rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c88 {
+@media (min-width: 1280px) {
+  .c90 {
     gap: 3.5rem;
   }
 }
 
-@media (min-width:750px) {
-  .c112 {
+@media (min-width: 750px) {
+  .c114 {
     gap: 3.5rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c112 {
+@media (min-width: 1280px) {
+  .c114 {
     gap: 3.5rem;
   }
 }
 
-@media (min-width:750px) {
-  .c181 {
-    -webkit-box-pack: right;
-    -webkit-justify-content: right;
-    -ms-flex-pack: right;
+@media (min-width: 750px) {
+  .c178 {
     justify-content: right;
   }
 }
 
-@media (min-width:750px) {
-  .c184 {
+@media (min-width: 750px) {
+  .c181 {
     display: none;
   }
 }
 
-@media (min-width:750px) {
-  .c192 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
+@media (min-width: 750px) {
+  .c189 {
     flex-direction: row;
   }
 }
 
-@media (min-width:750px) {
-  .c192 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
+@media (min-width: 750px) {
+  .c189 {
     align-items: center;
   }
 }
 
-@media (min-width:750px) {
-  .c192 {
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
+@media (min-width: 750px) {
+  .c189 {
     justify-content: space-between;
   }
 }
 
-@media (min-width:750px) {
-  .c194 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
+@media (min-width: 750px) {
+  .c191 {
     display: flex;
   }
 }
 
-@media (min-width:750px) {
-  .c202 {
-    -webkit-align-items: flex-end;
-    -webkit-box-align: flex-end;
-    -ms-flex-align: flex-end;
+@media (min-width: 750px) {
+  .c197 {
     align-items: flex-end;
   }
 }
 
-@media (min-width:750px) {
-  .c208 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
+@media (min-width: 750px) {
+  .c203 {
     flex-direction: column;
   }
 }
 
-@media (min-width:1280px) {
-  .c208 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
+@media (min-width: 1280px) {
+  .c203 {
     flex-direction: row;
   }
 }
 
-@media (min-width:750px) {
-  .c208 {
-    -webkit-align-items: flex-start;
-    -webkit-box-align: flex-start;
-    -ms-flex-align: flex-start;
+@media (min-width: 750px) {
+  .c203 {
     align-items: flex-start;
   }
 }
 
-@media (min-width:1280px) {
-  .c208 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
+@media (min-width: 1280px) {
+  .c203 {
     align-items: center;
   }
 }
 
-@media (min-width:750px) {
-  .c208 {
+@media (min-width: 750px) {
+  .c203 {
     gap: 1.5rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c208 {
+@media (min-width: 1280px) {
+  .c203 {
     gap: 2rem;
   }
 }
 
-@media (min-width:750px) {
-  .c211 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
+@media (min-width: 750px) {
+  .c206 {
     flex-direction: row;
   }
 }
 
-@media (min-width:750px) {
-  .c211 {
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
+@media (min-width: 750px) {
+  .c206 {
     flex-wrap: wrap;
   }
 }
 
-@media (min-width:1280px) {
-  .c211 {
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
+@media (min-width: 1280px) {
+  .c206 {
     flex-wrap: nowrap;
   }
 }
 
-@media (min-width:750px) {
-  .c211 {
+@media (min-width: 750px) {
+  .c206 {
     gap: 2rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c17 {
     font-weight: 600;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c17 {
     font-weight: 600;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c17 {
     font-size: 1rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c17 {
     font-size: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c17 {
     line-height: 1.25rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c17 {
     line-height: 1.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c17 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c17 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:750px) {
-  .c210 {
+@media (min-width: 750px) {
+  .c205 {
     font-weight: 500;
   }
 }
 
-@media (min-width:750px) {
-  .c210 {
+@media (min-width: 750px) {
+  .c205 {
     font-size: 1rem;
   }
 }
 
-@media (min-width:750px) {
-  .c210 {
+@media (min-width: 750px) {
+  .c205 {
     line-height: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
-  .c210 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
+@media (min-width: 750px) {
+  .c205 {
     letter-spacing: -0.005rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c16 {
     padding-left: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c16 {
     padding-right: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c18 {
     padding-left: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c18 {
     padding-right: 1rem;
   }
 }
 
-@media (min-width:750px) {
-  .c73 {
+@media (min-width: 750px) {
+  .c74 {
     font-weight: 600;
   }
 }
 
-@media (min-width:1280px) {
-  .c73 {
+@media (min-width: 1280px) {
+  .c74 {
     font-weight: 600;
   }
 }
 
-@media (min-width:750px) {
-  .c73 {
+@media (min-width: 750px) {
+  .c74 {
     font-size: 3rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c73 {
+@media (min-width: 1280px) {
+  .c74 {
     font-size: 3rem;
   }
 }
 
-@media (min-width:750px) {
-  .c73 {
+@media (min-width: 750px) {
+  .c74 {
     line-height: 3.5rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c73 {
+@media (min-width: 1280px) {
+  .c74 {
     line-height: 3.5rem;
   }
 }
 
-@media (min-width:750px) {
-  .c73 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
+@media (min-width: 750px) {
+  .c74 {
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c73 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
+@media (min-width: 1280px) {
+  .c74 {
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:750px) {
-  .c92 {
+@media (min-width: 750px) {
+  .c94 {
     font-weight: 600;
   }
 }
 
-@media (min-width:1280px) {
-  .c92 {
+@media (min-width: 1280px) {
+  .c94 {
     font-weight: 600;
   }
 }
 
-@media (min-width:750px) {
-  .c92 {
+@media (min-width: 750px) {
+  .c94 {
     font-size: 2.5rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c92 {
+@media (min-width: 1280px) {
+  .c94 {
     font-size: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
-  .c92 {
+@media (min-width: 750px) {
+  .c94 {
     line-height: 3rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c92 {
+@media (min-width: 1280px) {
+  .c94 {
     line-height: 3rem;
   }
 }
 
-@media (min-width:750px) {
-  .c92 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
+@media (min-width: 750px) {
+  .c94 {
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c92 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
+@media (min-width: 1280px) {
+  .c94 {
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:750px) {
-  .c113 {
+@media (min-width: 750px) {
+  .c115 {
     font-weight: 600;
   }
 }
 
-@media (min-width:1280px) {
-  .c113 {
+@media (min-width: 1280px) {
+  .c115 {
     font-weight: 600;
   }
 }
 
-@media (min-width:750px) {
-  .c113 {
+@media (min-width: 750px) {
+  .c115 {
     font-size: 2rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c113 {
+@media (min-width: 1280px) {
+  .c115 {
     font-size: 2rem;
   }
 }
 
-@media (min-width:750px) {
-  .c113 {
+@media (min-width: 750px) {
+  .c115 {
     line-height: 2.5rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c113 {
+@media (min-width: 1280px) {
+  .c115 {
     line-height: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
-  .c113 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
+@media (min-width: 750px) {
+  .c115 {
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c113 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
+@media (min-width: 1280px) {
+  .c115 {
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:750px) {
-  .c75 {
+@media (min-width: 750px) {
+  .c76 {
     font-weight: 400;
   }
 }
 
-@media (min-width:1280px) {
-  .c75 {
+@media (min-width: 1280px) {
+  .c76 {
     font-weight: 400;
   }
 }
 
-@media (min-width:750px) {
-  .c75 {
+@media (min-width: 750px) {
+  .c76 {
     font-size: 2.5rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c75 {
+@media (min-width: 1280px) {
+  .c76 {
     font-size: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
-  .c75 {
+@media (min-width: 750px) {
+  .c76 {
     line-height: 3rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c75 {
+@media (min-width: 1280px) {
+  .c76 {
     line-height: 3rem;
   }
 }
 
-@media (min-width:750px) {
-  .c75 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
+@media (min-width: 750px) {
+  .c76 {
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c75 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
+@media (min-width: 1280px) {
+  .c76 {
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:750px) {
-  .c133 {
+@media (min-width: 750px) {
+  .c134 {
     margin-right: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
-  .c107 {
+@media (min-width: 750px) {
+  .c109 {
     font-weight: 300;
   }
 }
 
-@media (min-width:1280px) {
-  .c107 {
+@media (min-width: 1280px) {
+  .c109 {
     font-weight: 300;
   }
 }
 
-@media (min-width:750px) {
-  .c107 {
+@media (min-width: 750px) {
+  .c109 {
     font-size: 1.125rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c107 {
+@media (min-width: 1280px) {
+  .c109 {
     font-size: 1.125rem;
   }
 }
 
-@media (min-width:750px) {
-  .c107 {
+@media (min-width: 750px) {
+  .c109 {
     line-height: 1.75rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c107 {
+@media (min-width: 1280px) {
+  .c109 {
     line-height: 1.75rem;
   }
 }
 
-@media (min-width:750px) {
-  .c107 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
+@media (min-width: 750px) {
+  .c109 {
     letter-spacing: -0.005rem;
   }
 }
 
-@media (min-width:1280px) {
-  .c107 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
+@media (min-width: 1280px) {
+  .c109 {
     letter-spacing: -0.005rem;
   }
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   .c24:hover,
   .c24:visited:hover {
     color: #0a1d9d;
-    -webkit-text-decoration: underline;
     text-decoration: underline;
-    -webkit-text-decoration-thickness: 18%;
     text-decoration-thickness: 18%;
   }
 
-  .c24:hover .c179,
-  .c24:visited:hover .c179 {
-    -webkit-filter: invert(16%) sepia(72%) saturate(7176%) hue-rotate(239deg) brightness(61%) contrast(109%);
+  .c24:hover .c176,
+  .c24:visited:hover .c176 {
     filter: invert(16%) sepia(72%) saturate(7176%) hue-rotate(239deg) brightness(61%) contrast(109%);
   }
 }
 
-@media (hover:hover) {
-  .c176:hover,
-  .c176:visited:hover {
+@media (hover: hover) {
+  .c173:hover,
+  .c173:visited:hover {
     color: #222222;
-    -webkit-text-decoration: underline;
     text-decoration: underline;
-    -webkit-text-decoration-thickness: 18%;
     text-decoration-thickness: 18%;
   }
 
-  .c176:hover .c179,
-  .c176:visited:hover .c179 {
-    -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+  .c173:hover .c176,
+  .c173:visited:hover .c176 {
     filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   }
 }
 
-@media (hover:hover) {
-  .c213:hover,
-  .c213:visited:hover {
-    color: #222222;
-    -webkit-text-decoration: underline;
-    text-decoration: underline;
-    -webkit-text-decoration-thickness: 18%;
-    text-decoration-thickness: 18%;
-  }
-
-  .c213:hover .c179,
-  .c213:visited:hover .c179 {
-    -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-    filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  }
-}
-
-@media (max-width:750px) {
+@media (max-width: 750px) {
   .c43 {
     font-size: 16px;
   }
 }
 
-@media (hover:hover) {
+@media (max-width: 750px) {
+  .c142 {
+    font-size: 16px;
+  }
+}
+
+@media (hover: hover) {
   .c42:hover:not(:focus-within) {
     background: #f2f2f2;
     border-color: #808080;
   }
 }
 
-@media (min-width:750px) {
-  .c128 {
+@media (min-width: 750px) {
+  .c129 {
     grid-column: span 6;
   }
 }
 
-@media (min-width:750px) {
-  .c170 {
+@media (min-width: 750px) {
+  .c167 {
     grid-column: span 3;
   }
 }
 
-@media (min-width:750px) {
-  .c82 {
+@media (hover: hover) {
+  .c148:hover:not(:focus-within) {
+    background: #f2f2f2;
+  }
+}
+
+@media (hover: hover) {
+  .c141:hover:not(:focus-within) {
+    background: #f2f2f2;
+  }
+}
+
+@media (min-width: 750px) {
+  .c84 {
     border-left: 4px solid #222222;
   }
 
-  .c82:hover {
-    -webkit-text-decoration: underline;
+  .c84:hover {
     text-decoration: underline;
     border-color: #575757;
   }
 }
 
-@media (min-width:750px) {
-  .c82 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
+@media (min-width: 750px) {
+  .c84 {
     flex-direction: column;
   }
 }
 
-@media (min-width:750px) {
-  .c82 {
-    -webkit-align-items: flex-start;
-    -webkit-box-align: flex-start;
-    -ms-flex-align: flex-start;
+@media (min-width: 750px) {
+  .c84 {
     align-items: flex-start;
   }
 }
 
-@media (min-width:750px) {
-  .c82 {
+@media (min-width: 750px) {
+  .c84 {
     padding-left: 0.75rem;
   }
 }
 
-@media (min-width:750px) {
-  .c82 {
+@media (min-width: 750px) {
+  .c84 {
     padding-right: 0.75rem;
   }
 }
 
-@media (min-width:750px) {
-  .c87 {
+@media (min-width: 750px) {
+  .c89 {
     border-left: 4px solid transparent;
   }
 
-  .c87:hover {
-    -webkit-text-decoration: underline;
+  .c89:hover {
     text-decoration: underline;
     border-color: #bef2bd;
   }
 }
 
-@media (min-width:750px) {
-  .c87 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
+@media (min-width: 750px) {
+  .c89 {
     flex-direction: column;
   }
 }
 
-@media (min-width:750px) {
-  .c87 {
-    -webkit-align-items: flex-start;
-    -webkit-box-align: flex-start;
-    -ms-flex-align: flex-start;
+@media (min-width: 750px) {
+  .c89 {
     align-items: flex-start;
   }
 }
 
-@media (min-width:750px) {
-  .c87 {
+@media (min-width: 750px) {
+  .c89 {
     padding-left: 0.75rem;
   }
 }
 
-@media (min-width:750px) {
-  .c87 {
+@media (min-width: 750px) {
+  .c89 {
     padding-right: 0.75rem;
   }
 }
 
 @media (max-width:920px) {
-  .c76 {
+  .c78 {
     display: none;
   }
 }
 
 @media (max-width:800px) {
-  .c114 {
+  .c116 {
     grid-template-columns: repeat(1,1fr);
   }
 }
 
-@media (max-width:750px) {
-  .c146 {
-    font-size: 16px;
-  }
-}
-
 @media (min-width:750px) {
-  .c125 {
+  .c126 {
     max-width: 870px;
   }
 }
@@ -4309,7 +3593,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
         >
           <a
             aria-label="Home"
-            class="c24"
+            class="c24 "
             href="/"
           >
             <span
@@ -4739,47 +4023,52 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
           class="c68"
         >
           <div
-            class="c69"
+            class="c67"
           >
             <div
-              class="c70 c71"
+              class="c69"
             >
               <div
-                class="c9 c72"
+                class="c70 c71"
               >
-                <h1
-                  class="c73"
+                <div
+                  class="c72 c73"
                 >
-                  <span
+                  <h1
                     class="c74"
                   >
-                    Meet the team
+                    <span
+                      class="c75"
+                      style="line-height: 1.25; box-decoration-break: clone;"
+                    >
+                      Meet the team
+                    </span>
+                  </h1>
+                  <p
+                    class="c76"
+                  >
+                    Learn more about the experts from across education, technology, school support and education who make up our leadership team and board.
+                  </p>
+                </div>
+                <div
+                  class="c77 c78"
+                >
+                  <span
+                    class="c79"
+                  >
+                    <img
+                      alt=""
+                      class="c27"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      sizes="100vw"
+                      src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=3840&q=75"
+                      srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=3840&q=75 3840w"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
                   </span>
-                </h1>
-                <p
-                  class="c75"
-                >
-                  Learn more about the experts from across education, technology, school support and education who make up our leadership team and board.
-                </p>
-              </div>
-              <div
-                class="c9 c76"
-              >
-                <span
-                  class="c77"
-                >
-                  <img
-                    alt=""
-                    class="c27"
-                    data-nimg="fill"
-                    decoding="async"
-                    loading="lazy"
-                    sizes="100vw"
-                    src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=3840&q=75"
-                    srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=3840&q=75 3840w"
-                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                  />
-                </span>
+                </div>
               </div>
             </div>
           </div>
@@ -4787,37 +4076,37 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
             class="c69"
           >
             <div
-              class="c78 c79"
+              class="c80 c81"
             >
               <div
-                class="c78"
+                class="c80"
               >
                 <nav
                   aria-label="page sections"
-                  class="c80"
+                  class="c82"
                 >
                   <ul
-                    class="c81"
+                    class="c83"
                   >
                     <li
                       class="c31"
                     >
                       <a
                         aria-current="true"
-                        class="c82 c83"
+                        class="c84 c85"
                         href="#our-leadership"
                       >
                         <div
-                          class="c9 c84"
+                          class="c9 c86"
                         >
                           <span
-                            class="c85"
+                            class="c87"
                           >
                             Our leadership
                           </span>
                         </div>
                         <span
-                          class="c86"
+                          class="c88"
                         >
                           <img
                             alt=""
@@ -4835,20 +4124,20 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       class="c31"
                     >
                       <a
-                        class="c87 c83"
+                        class="c89 c85"
                         href="#our-board"
                       >
                         <div
-                          class="c9 c84"
+                          class="c9 c86"
                         >
                           <span
-                            class="c85"
+                            class="c87"
                           >
                             Our board
                           </span>
                         </div>
                         <span
-                          class="c86"
+                          class="c88"
                         >
                           <img
                             alt=""
@@ -4866,20 +4155,20 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       class="c31"
                     >
                       <a
-                        class="c87 c83"
+                        class="c89 c85"
                         href="#documents"
                       >
                         <div
-                          class="c9 c84"
+                          class="c9 c86"
                         >
                           <span
-                            class="c85"
+                            class="c87"
                           >
                             Documents
                           </span>
                         </div>
                         <span
-                          class="c86"
+                          class="c88"
                         >
                           <img
                             alt=""
@@ -4897,64 +4186,64 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 </nav>
               </div>
               <div
-                class="c9 c88"
+                class="c9 c90"
               >
                 <div
-                  class="c89"
+                  class="c91"
                   id="our-leadership"
                 >
                   <div
-                    class="c9 c90"
+                    class="c9 c92"
                   >
                     <div
-                      class="c9 c91"
+                      class="c9 c93"
                     >
                       <h2
-                        class="c92"
+                        class="c94"
                       >
                         Our leadership
                       </h2>
                       <p
-                        class="c93"
+                        class="c95"
                       >
                         Our leadership team brings together experts to deliver the best support to teachers and value for money for the public.
                       </p>
                     </div>
                     <ul
-                      class="c94 c95"
+                      class="c96 c97"
                     >
                       <li
-                        class="c96 c97"
+                        class="c98 c99"
                       >
                         <a
-                          class="c98 c99 c100"
+                          class="c100 c101 c102"
                           href="/about-us/meet-the-team/ed-southall?section=leadership"
                         >
                           <div
-                            class="c9 c101"
+                            class="c9 c103"
                           >
                             <div
-                              class="c9 c91"
+                              class="c9 c93"
                             >
                               <h3
-                                class="c102"
+                                class="c104"
                               >
                                 Ed Southall
                               </h3>
                               <p
-                                class="c103"
+                                class="c105"
                               >
                                 Subject Lead (maths)
                               </p>
                             </div>
                             <div
-                              class="c9 c104"
+                              class="c9 c106"
                             >
                               <div
                                 class="c9 c41"
                               >
                                 <span
-                                  class="c105"
+                                  class="c107"
                                 >
                                   See bio
                                 </span>
@@ -4980,61 +4269,61 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c89"
+                  class="c91"
                   id="our-board"
                 >
                   <div
-                    class="c9 c90"
+                    class="c9 c92"
                   >
                     <div
-                      class="c9 c91"
+                      class="c9 c93"
                     >
                       <h2
-                        class="c92"
+                        class="c94"
                       >
                         Our board
                       </h2>
                       <p
-                        class="c93"
+                        class="c95"
                       >
                         Our Board oversees all of our work at Oak National Academy. They provide strategic direction and safeguard our independence.
                       </p>
                     </div>
                     <ul
-                      class="c94 c95"
+                      class="c96 c97"
                     >
                       <li
-                        class="c96 c97"
+                        class="c98 c99"
                       >
                         <a
-                          class="c98 c99 c100"
+                          class="c100 c101 c102"
                           href="/about-us/meet-the-team/ed-southall?section=board"
                         >
                           <div
-                            class="c9 c101"
+                            class="c9 c103"
                           >
                             <div
-                              class="c9 c91"
+                              class="c9 c93"
                             >
                               <h3
-                                class="c102"
+                                class="c104"
                               >
                                 Ed Southall
                               </h3>
                               <p
-                                class="c103"
+                                class="c105"
                               >
                                 Subject Lead (maths)
                               </p>
                             </div>
                             <div
-                              class="c9 c104"
+                              class="c9 c106"
                             >
                               <div
                                 class="c9 c41"
                               >
                                 <span
-                                  class="c105"
+                                  class="c107"
                                 >
                                   See bio
                                 </span>
@@ -5060,15 +4349,15 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c9 c91"
+                  class="c9 c93"
                 >
                   <h2
-                    class="c92"
+                    class="c94"
                   >
                     Governance
                   </h2>
                   <div
-                    class="c106 c107"
+                    class="c108 c109"
                   >
                     <p>
                       Test governance text
@@ -5079,14 +4368,14 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
             </div>
           </div>
           <div
-            class="c108"
+            class="c110"
             style="margin-top: -72px;"
           >
             <div
-              class="c109"
+              class="c111"
             >
               <span
-                class="c110"
+                class="c112"
                 style="pointer-events: none;"
               >
                 <img
@@ -5103,10 +4392,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 class="c69"
               >
                 <div
-                  class="c111 c112"
+                  class="c113 c114"
                 >
                   <h2
-                    class="c113"
+                    class="c115"
                     id="react-use-id-test-result"
                   >
                     Explore more about Oak
@@ -5115,24 +4404,25 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                     aria-labelledby="react-use-id-test-result"
                   >
                     <ul
-                      class="c114"
+                      class="c116"
                     >
                       <li
-                        class="c115 c116"
+                        class="c117 c99"
                       >
                         <a
                           href="/about-us/who-we-are"
                           style="outline: none;"
+                          target="_self"
                         >
                           <div
-                            class="c117 c118 c119"
+                            class="c118 c119 c120"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
                               class="c9 c46"
                             >
                               <span
-                                class="c120"
+                                class="c121"
                               >
                                 <img
                                   alt=""
@@ -5146,7 +4436,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               </span>
                             </div>
                             <div
-                              class="c121 c122"
+                              class="c122 c123"
                             >
                               About Oak
                             </div>
@@ -5154,7 +4444,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               class="c9 c46"
                             >
                               <span
-                                class="c123"
+                                class="c124"
                               >
                                 <img
                                   alt=""
@@ -5171,21 +4461,22 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c115 c116"
+                        class="c117 c99"
                       >
                         <a
                           href="/about-us/oaks-curricula"
                           style="outline: none;"
+                          target="_self"
                         >
                           <div
-                            class="c117 c118 c119"
+                            class="c118 c119 c120"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
                               class="c9 c46"
                             >
                               <span
-                                class="c120"
+                                class="c121"
                               >
                                 <img
                                   alt=""
@@ -5199,7 +4490,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               </span>
                             </div>
                             <div
-                              class="c121 c122"
+                              class="c122 c123"
                             >
                               Oak's curricula
                             </div>
@@ -5207,7 +4498,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               class="c9 c46"
                             >
                               <span
-                                class="c123"
+                                class="c124"
                               >
                                 <img
                                   alt=""
@@ -5224,21 +4515,22 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c115 c116"
+                        class="c117 c99"
                       >
                         <a
                           href="/about-us/oaks-impact"
                           style="outline: none;"
+                          target="_self"
                         >
                           <div
-                            class="c117 c118 c119"
+                            class="c118 c119 c120"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
                               class="c9 c46"
                             >
                               <span
-                                class="c120"
+                                class="c121"
                               >
                                 <img
                                   alt=""
@@ -5252,7 +4544,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               </span>
                             </div>
                             <div
-                              class="c121 c122"
+                              class="c122 c123"
                             >
                               Oak's impact
                             </div>
@@ -5260,7 +4552,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               class="c9 c46"
                             >
                               <span
-                                class="c123"
+                                class="c124"
                               >
                                 <img
                                   alt=""
@@ -5277,21 +4569,22 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c115 c116"
+                        class="c117 c99"
                       >
                         <a
                           href="/about-us/meet-the-team"
                           style="outline: none;"
+                          target="_self"
                         >
                           <div
-                            class="c117 c118 c119"
+                            class="c118 c119 c120"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
                               class="c9 c46"
                             >
                               <span
-                                class="c120"
+                                class="c121"
                               >
                                 <img
                                   alt=""
@@ -5305,7 +4598,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               </span>
                             </div>
                             <div
-                              class="c121 c122"
+                              class="c122 c123"
                             >
                               Meet the team
                             </div>
@@ -5313,7 +4606,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               class="c9 c46"
                             >
                               <span
-                                class="c123"
+                                class="c124"
                               >
                                 <img
                                   alt=""
@@ -5330,21 +4623,22 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c115 c116"
+                        class="c117 c99"
                       >
                         <a
                           href="/about-us/get-involved"
                           style="outline: none;"
+                          target="_self"
                         >
                           <div
-                            class="c117 c118 c119"
+                            class="c118 c119 c120"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
                               class="c9 c46"
                             >
                               <span
-                                class="c120"
+                                class="c121"
                               >
                                 <img
                                   alt=""
@@ -5358,7 +4652,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               </span>
                             </div>
                             <div
-                              class="c121 c122"
+                              class="c122 c123"
                             >
                               Get involved
                             </div>
@@ -5366,7 +4660,61 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               class="c9 c46"
                             >
                               <span
-                                class="c123"
+                                class="c124"
+                              >
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      <li
+                        class="c117 c99"
+                      >
+                        <a
+                          href="/about-us/case-studies"
+                          style="outline: none;"
+                          target="_self"
+                        >
+                          <div
+                            class="c118 c119 c120"
+                            data-testid="who-we-are-explore-item"
+                          >
+                            <div
+                              class="c9 c46"
+                            >
+                              <span
+                                class="c121"
+                              >
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953657/icons/hz4l3iq6i68kazvkvorq.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                            <div
+                              class="c122 c123"
+                            >
+                              Case studies
+                            </div>
+                            <div
+                              class="c9 c46"
+                            >
+                              <span
+                                class="c124"
                               >
                                 <img
                                   alt=""
@@ -5389,29 +4737,29 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
             </div>
           </div>
           <div
-            class="c124"
+            class="c125"
             id="newsletter-signup"
           >
             <div
               class="c69"
             >
               <div
-                class="c9 c46 c125"
+                class="c9 c46 c126"
               >
                 <div
-                  class="c126 c1"
+                  class="c127 c1"
                 >
                   <div
-                    class="c9 c127"
+                    class="c9 c128"
                   >
                     <div
-                      class="c9 c46 c128"
+                      class="c9 c46 c129"
                     >
                       <div
-                        class="c129 c130"
+                        class="c130 c131"
                       >
                         <span
-                          class="c131"
+                          class="c132"
                         >
                           <img
                             alt=""
@@ -5424,20 +4772,22 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           />
                         </span>
                         <h2
-                          class="c132"
+                          class="c133"
                         >
                           Don’t miss out
                         </h2>
                       </div>
                       <p
-                        class="c133"
+                        class="c134"
                         color="text-primary"
                         id="react-use-id-test-result-newsletter-form-description"
                       >
-                        Join over 100k teachers and get free resources and other helpful content by email. Unsubscribe at any time. Read our
+                        Join over 
+                        200k
+                         teachers and get free resources and other helpful content by email. Unsubscribe at any time. Read our
                          
                         <a
-                          class="c24"
+                          class="c24 "
                           href="/legal/privacy-policy"
                         >
                           <span
@@ -5450,504 +4800,180 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       </p>
                     </div>
                     <div
-                      class="c134 c46 c128"
+                      class="c135 c46 c129"
                     >
                       <form
                         aria-describedby="react-use-id-test-result-newsletter-form-description"
-                        class="c135"
+                        class="c67 c136"
                         novalidate=""
                       >
                         <div
-                          class="c136 c137 c138"
+                          class="c137"
                         >
                           <div
-                            class="c139 "
+                            class="c67 c136"
                           >
                             <div
-                              aria-hidden="true"
-                              class="c9"
-                              data-testid="brush-borders"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="c140"
-                                height="100%"
-                                name="box-border-top"
-                                style="height: 3px;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 365.46 2.75"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="c140"
-                                height="100%"
-                                name="box-border-right"
-                                style="width: 3px; height: 90%;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 2.89 330.09"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M2.7 2.21c-.12-.76.36-2.63-1.15-2.13C.77.03-.13.13.01.85c.18 14.09.05 309.32.1 328.06 0 .15.3 1.07.28 1.18h2.5C2.85 303.49 2.6 17.84 2.7 2.21Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M1.87 1.07s.09.4.09 1.21c.11 3.3-.51-1.31-.09-1.21ZM1.25 44.05c-.47-.05-.49-1.38-.04-1.78.85-.76.2 1.8.04 1.78ZM.91 1.65c.08 2.14.7 4.95-.31 2.59-.13-.84.18-5.42.31-2.59ZM1.05 65.78c-.47-.05.11-8.31.56-9.46.4-1.07-.4 9.48-.56 9.46ZM1.76 54.4c-.47-.05-.76-.69.03-.65 1.14.07.13.67-.03.65Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="c140"
-                                height="100%"
-                                name="box-border-bottom"
-                                style="height: 3px; width: 100%;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 365.46 2.75"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="c140"
-                                height="100%"
-                                name="box-border-left"
-                                style="width: 3px;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 2.72 359.41"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M2.56 26.03c-.14-7.28.05-12.58 0-18.65C2.48 3.63 2.28.24 2.51 0H.02c.13 3.41 1.04 10.2.02 14.63-.1 9.52.02 311.42-.03 344.78h2.5c-.87-4.14.68-328.77.05-333.38Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M1.78 73.31c-.48-1.02.43-5.62.43-4.84.01.69.38 4.88-.43 4.84ZM1.56 142.12c1.14.07.13.67-.03.65-.47-.05-.76-.69.03-.65ZM1.65 196.21c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM2.48 27.51c0 .49 0 1.87-.11 3.12-.37 6.22-.42-1.85.11-3.12ZM2.01 65.86c.39.51.58 1.99-.23 1.95-.48-1.02-.25-2.56.23-1.95ZM1.02 132.42c-.47-.05-.49-1.39-.04-1.78.85-.76.2 1.8.04 1.78ZM.79 5.27c.07-1.81.65 1.18.59 5.76C1.27 17.8.69 6.25.79 5.27ZM.33 47.73c-.33-1.44.48-7.29.21-2.86-.12.57-.13 5.57-.21 2.86ZM.96 94.76c.28.95-.15 5.38-.31 5.36-.47-.05.08-6.12.31-5.36ZM1.23 100.12c-.07.9-.41 1.95-.58 1.95-.47-.05.64-2.73.58-1.95ZM1.38 144.69c.4-1.07-.4 9.48-.56 9.46-.47-.05.12-8.31.56-9.46ZM1.24 197.97c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM1.81 209.98c-.36-1.74-.84-7.52-.52-8.14l.5-1.57c.25.43.05 9.87.02 9.71ZM1.85 158.2c-.47-.05-.11-4.72.13-3.97.33 1.09.03 3.99-.13 3.97Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                            </div>
-                            <div
-                              class="c141 "
+                              class="c2 c136"
                             >
                               <label
-                                aria-hidden="true"
-                                class="c142 c143 c144"
-                                color="black"
-                                data-testid="rotated-input-label"
+                                class="c138"
+                                data-testid="jaunty-label"
                                 for="react-use-id-test-result-newsletter-signup-name"
-                                id="react-use-id-test-result-newsletter-signup-name-label"
+                                id="Name-label"
+                                style="top: -1.25rem;"
                               >
-                                <span
-                                  class="c25"
-                                >
-                                  Name
-                                   
-                                  <span
-                                    class="c105"
-                                  >
-                                    (required)
-                                  </span>
-                                </span>
+                                Name (required)
                               </label>
+                              <div
+                                class="c139 c140 c141"
+                              >
+                                <div
+                                  class="c9 c123"
+                                >
+                                  <input
+                                    autocomplete="name"
+                                    class="c142"
+                                    data-testid="text-input"
+                                    id="react-use-id-test-result-newsletter-signup-name"
+                                    name="name"
+                                    placeholder="Anna Smith"
+                                    type="text"
+                                    value=""
+                                  />
+                                </div>
+                              </div>
                             </div>
-                            <input
-                              aria-invalid="false"
-                              aria-labelledby="react-use-id-test-result-newsletter-signup-name-label"
-                              autocomplete="name"
-                              class="c145 c146"
-                              id="react-use-id-test-result-newsletter-signup-name"
-                              name="name"
-                              placeholder="Anna Smith"
-                              required=""
-                            />
-                            <svg
-                              aria-hidden="true"
-                              class="c147 c148 c149"
-                              height="100%"
-                              name="underline-1"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#underline-1"
-                              />
-                            </svg>
                           </div>
                         </div>
                         <div
-                          class="c136 c137 c138"
+                          class="c137"
                         >
                           <div
-                            class="c139 "
+                            class="c67 c136"
                           >
                             <div
-                              aria-hidden="true"
-                              class="c9"
-                              data-testid="brush-borders"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="c140"
-                                height="100%"
-                                name="box-border-top"
-                                style="height: 3px;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 365.46 2.75"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="c140"
-                                height="100%"
-                                name="box-border-right"
-                                style="width: 3px; height: 90%;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 2.89 330.09"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M2.7 2.21c-.12-.76.36-2.63-1.15-2.13C.77.03-.13.13.01.85c.18 14.09.05 309.32.1 328.06 0 .15.3 1.07.28 1.18h2.5C2.85 303.49 2.6 17.84 2.7 2.21Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M1.87 1.07s.09.4.09 1.21c.11 3.3-.51-1.31-.09-1.21ZM1.25 44.05c-.47-.05-.49-1.38-.04-1.78.85-.76.2 1.8.04 1.78ZM.91 1.65c.08 2.14.7 4.95-.31 2.59-.13-.84.18-5.42.31-2.59ZM1.05 65.78c-.47-.05.11-8.31.56-9.46.4-1.07-.4 9.48-.56 9.46ZM1.76 54.4c-.47-.05-.76-.69.03-.65 1.14.07.13.67-.03.65Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="c140"
-                                height="100%"
-                                name="box-border-bottom"
-                                style="height: 3px; width: 100%;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 365.46 2.75"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="c140"
-                                height="100%"
-                                name="box-border-left"
-                                style="width: 3px;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 2.72 359.41"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M2.56 26.03c-.14-7.28.05-12.58 0-18.65C2.48 3.63 2.28.24 2.51 0H.02c.13 3.41 1.04 10.2.02 14.63-.1 9.52.02 311.42-.03 344.78h2.5c-.87-4.14.68-328.77.05-333.38Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M1.78 73.31c-.48-1.02.43-5.62.43-4.84.01.69.38 4.88-.43 4.84ZM1.56 142.12c1.14.07.13.67-.03.65-.47-.05-.76-.69.03-.65ZM1.65 196.21c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM2.48 27.51c0 .49 0 1.87-.11 3.12-.37 6.22-.42-1.85.11-3.12ZM2.01 65.86c.39.51.58 1.99-.23 1.95-.48-1.02-.25-2.56.23-1.95ZM1.02 132.42c-.47-.05-.49-1.39-.04-1.78.85-.76.2 1.8.04 1.78ZM.79 5.27c.07-1.81.65 1.18.59 5.76C1.27 17.8.69 6.25.79 5.27ZM.33 47.73c-.33-1.44.48-7.29.21-2.86-.12.57-.13 5.57-.21 2.86ZM.96 94.76c.28.95-.15 5.38-.31 5.36-.47-.05.08-6.12.31-5.36ZM1.23 100.12c-.07.9-.41 1.95-.58 1.95-.47-.05.64-2.73.58-1.95ZM1.38 144.69c.4-1.07-.4 9.48-.56 9.46-.47-.05.12-8.31.56-9.46ZM1.24 197.97c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM1.81 209.98c-.36-1.74-.84-7.52-.52-8.14l.5-1.57c.25.43.05 9.87.02 9.71ZM1.85 158.2c-.47-.05-.11-4.72.13-3.97.33 1.09.03 3.99-.13 3.97Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                            </div>
-                            <div
-                              class="c141 "
+                              class="c2 c136"
                             >
                               <label
-                                aria-hidden="true"
-                                class="c142 c143 c144"
-                                color="black"
-                                data-testid="rotated-input-label"
+                                class="c138"
+                                data-testid="jaunty-label"
                                 for="react-use-id-test-result-newsletter-signup-email"
-                                id="react-use-id-test-result-newsletter-signup-email-label"
+                                id="Email-label"
+                                style="top: -1.25rem;"
                               >
-                                <span
-                                  class="c25"
-                                >
-                                  Email
-                                   
-                                  <span
-                                    class="c105"
-                                  >
-                                    (required)
-                                  </span>
-                                </span>
+                                Email (required)
                               </label>
+                              <div
+                                class="c139 c140 c141"
+                              >
+                                <div
+                                  class="c9 c123"
+                                >
+                                  <input
+                                    autocomplete="email"
+                                    class="c142"
+                                    data-testid="text-input"
+                                    id="react-use-id-test-result-newsletter-signup-email"
+                                    name="email"
+                                    placeholder="anna@amail.com"
+                                    type="text"
+                                    value=""
+                                  />
+                                </div>
+                              </div>
                             </div>
-                            <input
-                              aria-invalid="false"
-                              aria-labelledby="react-use-id-test-result-newsletter-signup-email-label"
-                              autocomplete="email"
-                              class="c145 c146"
-                              id="react-use-id-test-result-newsletter-signup-email"
-                              name="email"
-                              placeholder="anna@amail.com"
-                              required=""
-                            />
-                            <svg
-                              aria-hidden="true"
-                              class="c147 c148 c149"
-                              height="100%"
-                              name="underline-1"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#underline-1"
-                              />
-                            </svg>
                           </div>
                         </div>
                         <div
-                          class="c150 c151 c152"
+                          class="c143"
                         >
+                          <label
+                            class="c144"
+                            for="react-use-id-test-result-newsletter-signup-userrole"
+                            id="react-use-id-test-result-role-label"
+                            style="top: -1.25rem;"
+                          >
+                            Role
+                          </label>
                           <div
-                            aria-hidden="true"
-                            class="c9"
-                            data-testid="brush-borders"
+                            class="c145 c146 c147"
                           >
-                            <svg
-                              aria-hidden="true"
-                              class="c140"
-                              height="100%"
-                              name="box-border-top"
-                              style="height: 3px;"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <select
+                              class="c148"
+                              id="react-use-id-test-result-newsletter-signup-userrole"
+                              name="userRole"
                             >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 365.46 2.75"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                  fill="currentColor"
-                                />
-                                <path
-                                  d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                            <svg
-                              aria-hidden="true"
-                              class="c140"
-                              height="100%"
-                              name="box-border-right"
-                              style="width: 3px; height: 90%;"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 2.89 330.09"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M2.7 2.21c-.12-.76.36-2.63-1.15-2.13C.77.03-.13.13.01.85c.18 14.09.05 309.32.1 328.06 0 .15.3 1.07.28 1.18h2.5C2.85 303.49 2.6 17.84 2.7 2.21Z"
-                                  fill="currentColor"
-                                />
-                                <path
-                                  d="M1.87 1.07s.09.4.09 1.21c.11 3.3-.51-1.31-.09-1.21ZM1.25 44.05c-.47-.05-.49-1.38-.04-1.78.85-.76.2 1.8.04 1.78ZM.91 1.65c.08 2.14.7 4.95-.31 2.59-.13-.84.18-5.42.31-2.59ZM1.05 65.78c-.47-.05.11-8.31.56-9.46.4-1.07-.4 9.48-.56 9.46ZM1.76 54.4c-.47-.05-.76-.69.03-.65 1.14.07.13.67-.03.65Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                            <svg
-                              aria-hidden="true"
-                              class="c140"
-                              height="100%"
-                              name="box-border-bottom"
-                              style="height: 3px; width: 100%;"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 365.46 2.75"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                  fill="currentColor"
-                                />
-                                <path
-                                  d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                            <svg
-                              aria-hidden="true"
-                              class="c140"
-                              height="100%"
-                              name="box-border-left"
-                              style="width: 3px;"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 2.72 359.41"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M2.56 26.03c-.14-7.28.05-12.58 0-18.65C2.48 3.63 2.28.24 2.51 0H.02c.13 3.41 1.04 10.2.02 14.63-.1 9.52.02 311.42-.03 344.78h2.5c-.87-4.14.68-328.77.05-333.38Z"
-                                  fill="currentColor"
-                                />
-                                <path
-                                  d="M1.78 73.31c-.48-1.02.43-5.62.43-4.84.01.69.38 4.88-.43 4.84ZM1.56 142.12c1.14.07.13.67-.03.65-.47-.05-.76-.69.03-.65ZM1.65 196.21c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM2.48 27.51c0 .49 0 1.87-.11 3.12-.37 6.22-.42-1.85.11-3.12ZM2.01 65.86c.39.51.58 1.99-.23 1.95-.48-1.02-.25-2.56.23-1.95ZM1.02 132.42c-.47-.05-.49-1.39-.04-1.78.85-.76.2 1.8.04 1.78ZM.79 5.27c.07-1.81.65 1.18.59 5.76C1.27 17.8.69 6.25.79 5.27ZM.33 47.73c-.33-1.44.48-7.29.21-2.86-.12.57-.13 5.57-.21 2.86ZM.96 94.76c.28.95-.15 5.38-.31 5.36-.47-.05.08-6.12.31-5.36ZM1.23 100.12c-.07.9-.41 1.95-.58 1.95-.47-.05.64-2.73.58-1.95ZM1.38 144.69c.4-1.07-.4 9.48-.56 9.46-.47-.05.12-8.31.56-9.46ZM1.24 197.97c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM1.81 209.98c-.36-1.74-.84-7.52-.52-8.14l.5-1.57c.25.43.05 9.87.02 9.71ZM1.85 158.2c-.47-.05-.11-4.72.13-3.97.33 1.09.03 3.99-.13 3.97Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </div>
-                          <svg
-                            aria-hidden="true"
-                            class="c147 c148 c149 c153"
-                            height="100%"
-                            name="underline-1"
-                            width="100%"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <use
-                              xlink:href="/images/sprite/sprite.svg#underline-1"
-                            />
-                          </svg>
-                          <div
-                            class="c154 c46"
-                          >
-                            <label
-                              class="c142 c143 c144"
-                              color="black"
-                              id="react-use-id-test-result"
-                            >
-                              Role
-                            </label>
-                          </div>
-                          <button
-                            aria-expanded="false"
-                            aria-haspopup="listbox"
-                            aria-invalid="false"
-                            aria-labelledby="react-use-id-test-result react-use-id-test-result-button"
-                            class="c155 c156"
-                            data-testid="select"
-                            id="react-use-id-test-result-button"
-                            type="button"
-                          >
-                            <div
-                              class="c157 c41 c158"
-                            >
-                              <span
-                                class="c159 c160"
-                                data-testid="select-span"
-                                id="react-use-id-test-result-value"
-                                title="What describes you best?"
+                              <option
+                                class="c149"
+                                disabled=""
+                                value=""
                               >
                                 What describes you best?
+                              </option>
+                              <option
+                                class="c150"
+                                value="Teacher"
+                              >
+                                Teacher
+                              </option>
+                              <option
+                                class="c150"
+                                value="Parent"
+                              >
+                                Parent
+                              </option>
+                              <option
+                                class="c150"
+                                value="Student"
+                              >
+                                Pupil
+                              </option>
+                              <option
+                                class="c150"
+                                value="Other"
+                              >
+                                Other
+                              </option>
+                            </select>
+                            <div
+                              class="c151 c152 c153 c154"
+                            >
+                              <span
+                                class="c124"
+                              >
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954058/icons/pay71thmhhylj7z28sj1.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
                               </span>
                             </div>
-                            <span
-                              class="c20"
+                            <div
+                              class="c155 c152 c153 c156"
                             >
-                              <img
-                                alt=""
-                                class="c21"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </span>
-                          </button>
+                              <span
+                                class="c124"
+                              >
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
                         </div>
                         <div
-                          class="c161 c5"
+                          class="c157 c5"
                         >
                           <div
                             class="c6 grey-shadow"
@@ -5956,7 +4982,8 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             class="c6 yellow-shadow"
                           />
                           <button
-                            class="c162 c19 internal-button"
+                            class="c158 c19 internal-button"
+                            type="submit"
                           >
                             <div
                               class="c9 c10"
@@ -5971,12 +4998,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </div>
                         <p
                           aria-live="assertive"
-                          class="c163"
+                          class="c159"
                           role="alert"
                         />
                         <p
                           aria-live="polite"
-                          class="c164"
+                          class="c160"
                         />
                       </form>
                     </div>
@@ -5988,14 +5015,14 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
         </div>
       </main>
       <footer
-        class="c165"
+        class="c161"
       >
         <div
-          class="c166 c46"
+          class="c162 c46"
         >
           <svg
             aria-hidden="true"
-            class="c167"
+            class="c163"
             height="100%"
             name="header-underline"
             width="100%"
@@ -6018,35 +5045,34 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
           id="site-footer"
         >
           <div
-            class="c168 c169"
+            class="c164 c165"
           >
             <div
-              class="c9 c127"
+              class="c9 c166"
             >
               <div
-                class="c9 c46 c170"
+                class="c9 c46 c167"
               >
                 <div
-                  class="c171 c151"
+                  class="c168 c136"
                 >
                   <h2
-                    class="c172"
+                    class="c169"
                   >
                     Pupils
                   </h2>
                   <div
-                    class="c173 c174"
+                    class="c170 c171"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
                           href="/pupils/years"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6059,29 +5085,28 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c177"
+                  class="c174"
                 />
                 <div
-                  class="c171 c151"
+                  class="c168 c136"
                 >
                   <h2
-                    class="c172"
+                    class="c169"
                   >
                     Teachers
                   </h2>
                   <div
-                    class="c173 c174"
+                    class="c170 c171"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
                           href="/teachers/eyfs/maths"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6091,12 +5116,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
                           href="/lesson-planning"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6106,13 +5130,26 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
+                          href="/teachers/teach-with-oak"
+                        >
+                          <span
+                            class="c25"
+                          >
+                            Teach with Oak
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c172"
+                      >
+                        <a
+                          class="c173 "
                           href="https://labs.thenational.academy"
                           target="_blank"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6120,10 +5157,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             Aila, Oak’s AI lesson assistant
                           </span>
                           <div
-                            class="c178"
+                            class="c175"
                           >
                             <span
-                              class="c123 c179 c180"
+                              class="c124 c176 c177"
                             >
                               <img
                                 alt=""
@@ -6139,12 +5176,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
                           href="/blog"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6158,29 +5194,28 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c170"
+                class="c9 c46 c167"
               >
                 <div
-                  class="c171 c151"
+                  class="c168 c136"
                 >
                   <h2
-                    class="c172"
+                    class="c169"
                   >
                     Oak
                   </h2>
                   <div
-                    class="c173 c174"
+                    class="c170 c171"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
                           href="/"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6190,12 +5225,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
                           href="/about-us/who-we-are"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6205,12 +5239,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
                           href="/about-us/oaks-curricula"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6220,12 +5253,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
                           href="/about-us/oaks-impact"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6235,12 +5267,25 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
+                          href="/about-us/case-studies"
+                        >
+                          <span
+                            class="c25"
+                          >
+                            Case studies
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c172"
+                      >
+                        <a
+                          class="c173 "
                           href="/about-us/get-involved"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6250,12 +5295,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
                           href="/about-us/meet-the-team"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6265,14 +5309,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
                           aria-label="Careers (opens in a new tab)"
-                          class="c176"
+                          class="c173 "
                           href="https://jobs.thenational.academy"
                           target="_blank"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6280,10 +5323,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             Careers
                           </span>
                           <div
-                            class="c178"
+                            class="c175"
                           >
                             <span
-                              class="c123 c179 c180"
+                              class="c124 c176 c177"
                             >
                               <img
                                 alt=""
@@ -6299,12 +5342,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
                           href="/contact-us"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6314,14 +5356,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
                           aria-label="Help (opens in a new tab)"
-                          class="c176"
+                          class="c173 "
                           href="https://support.thenational.academy"
                           target="_blank"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6329,10 +5370,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             Help
                           </span>
                           <div
-                            class="c178"
+                            class="c175"
                           >
                             <span
-                              class="c123 c179 c180"
+                              class="c124 c176 c177"
                             >
                               <img
                                 alt=""
@@ -6348,12 +5389,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
                           href="/webinars"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6363,14 +5403,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
                           aria-label="Status (opens in a new tab)"
-                          class="c176"
+                          class="c173 "
                           href="https://status.thenational.academy"
                           target="_blank"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6378,10 +5417,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             Status
                           </span>
                           <div
-                            class="c178"
+                            class="c175"
                           >
                             <span
-                              class="c123 c179 c180"
+                              class="c124 c176 c177"
                             >
                               <img
                                 alt=""
@@ -6401,29 +5440,28 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c170"
+                class="c9 c46 c167"
               >
                 <div
-                  class="c171 c151"
+                  class="c168 c136"
                 >
                   <h2
-                    class="c172"
+                    class="c169"
                   >
                     Legal
                   </h2>
                   <div
-                    class="c173 c174"
+                    class="c170 c171"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
                           href="/legal/terms-and-conditions"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6433,12 +5471,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
                           href="/legal/privacy-policy"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6448,12 +5485,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
                           href="/legal/cookie-policy"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6463,10 +5499,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <button
-                          class="c176"
+                          class="c173 "
                         >
                           <span
                             class="c25"
@@ -6476,12 +5512,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </button>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
                           href="/legal/copyright-notice"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6491,12 +5526,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
                           href="/legal/accessibility-statement"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6506,12 +5540,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
                           href="/legal/safeguarding-statement"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6521,12 +5554,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
                           href="/legal/physical-activity-disclaimer"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6536,12 +5568,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
                           href="/legal/complaints"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6551,12 +5582,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c175"
+                        class="c172"
                       >
                         <a
-                          class="c176"
+                          class="c173 "
                           href="/legal/freedom-of-information-requests"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6570,16 +5600,16 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c170"
+                class="c9 c46 c167"
               >
                 <div
-                  class="c171 c181"
+                  class="c168 c178"
                 >
                   <div
                     class="c39"
                   >
                     <span
-                      class="c182"
+                      class="c179"
                     >
                       <img
                         alt=""
@@ -6593,10 +5623,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                     </span>
                   </div>
                   <div
-                    class="c183 c184"
+                    class="c180 c181"
                   >
                     <div
-                      class="c45 c46 c185 c186"
+                      class="c45 c46 c182 c183"
                     >
                       <a
                         aria-label="instagram for Oak National Academy"
@@ -6607,10 +5637,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c187 c52 icon-container"
+                            class="c184 c52 icon-container"
                           >
                             <div
-                              class="c188 shadow"
+                              class="c185 shadow"
                             />
                             <span
                               class="c20"
@@ -6634,7 +5664,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       </a>
                     </div>
                     <div
-                      class="c45 c46 c185 c186"
+                      class="c45 c46 c182 c183"
                     >
                       <a
                         aria-label="facebook for Oak National Academy"
@@ -6645,10 +5675,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c187 c52 icon-container"
+                            class="c184 c52 icon-container"
                           >
                             <div
-                              class="c188 shadow"
+                              class="c185 shadow"
                             />
                             <span
                               class="c20"
@@ -6672,7 +5702,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       </a>
                     </div>
                     <div
-                      class="c45 c46 c185 c186"
+                      class="c45 c46 c182 c183"
                     >
                       <a
                         aria-label="linkedIn for Oak National Academy"
@@ -6683,10 +5713,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c187 c52 icon-container"
+                            class="c184 c52 icon-container"
                           >
                             <div
-                              class="c188 shadow"
+                              class="c185 shadow"
                             />
                             <span
                               class="c20"
@@ -6714,7 +5744,8 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
               </div>
             </div>
             <span
-              class="c189 c190"
+              class="c186 c187"
+              data-chromatic="ignore"
               data-percy-hide="contents"
             >
               <img
@@ -6730,13 +5761,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
               />
             </span>
             <div
-              class="c191 c192"
+              class="c188 c189"
             >
               <div
-                class="c193 c194"
+                class="c190 c191"
               >
                 <div
-                  class="c45 c46 c185 c186"
+                  class="c45 c46 c182 c183"
                 >
                   <a
                     aria-label="instagram for Oak National Academy"
@@ -6747,10 +5778,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c187 c52 icon-container"
+                        class="c184 c52 icon-container"
                       >
                         <div
-                          class="c188 shadow"
+                          class="c185 shadow"
                         />
                         <span
                           class="c20"
@@ -6774,7 +5805,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                   </a>
                 </div>
                 <div
-                  class="c45 c46 c185 c186"
+                  class="c45 c46 c182 c183"
                 >
                   <a
                     aria-label="facebook for Oak National Academy"
@@ -6785,10 +5816,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c187 c52 icon-container"
+                        class="c184 c52 icon-container"
                       >
                         <div
-                          class="c188 shadow"
+                          class="c185 shadow"
                         />
                         <span
                           class="c20"
@@ -6812,7 +5843,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                   </a>
                 </div>
                 <div
-                  class="c45 c46 c185 c186"
+                  class="c45 c46 c182 c183"
                 >
                   <a
                     aria-label="linkedIn for Oak National Academy"
@@ -6823,10 +5854,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c187 c52 icon-container"
+                        class="c184 c52 icon-container"
                       >
                         <div
-                          class="c188 shadow"
+                          class="c185 shadow"
                         />
                         <span
                           class="c20"
@@ -6854,7 +5885,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 class="c56"
               >
                 <span
-                  class="c182"
+                  class="c179"
                 >
                   <img
                     alt=""
@@ -6868,15 +5899,15 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 </span>
               </div>
               <div
-                class="c171 c151"
+                class="c168 c136"
               >
                 <p
-                  class="c195"
+                  class="c192"
                 >
                   © Oak National Academy Limited, No 14174888
                 </p>
                 <p
-                  class="c196"
+                  class="c193"
                 >
                   1 Scott Place, 2 Hardman Street, Manchester, M3 3AA
                 </p>
@@ -6885,11 +5916,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
           </div>
         </nav>
         <span
-          class="c197"
+          class="c194"
         >
           <img
             alt=""
-            class="c198"
+            class="c195"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -6897,44 +5928,31 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
           />
         </span>
-        <span
-          class="c199"
-        >
-          <img
-            alt=""
-            class="c200"
-            data-nimg="fill"
-            decoding="async"
-            loading="lazy"
-            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734537039/OWA/ui-graphics/looping-line-4_xtjj4r.svg"
-            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-          />
-        </span>
       </footer>
     </div>
     <div
       aria-live="polite"
-      class="c201 c202 c203"
+      class="c196 c197 c198"
     />
   </div>
   <div
-    class="c204"
+    class="c199"
   >
     <div
-      class="c205"
+      class="c200"
       data-testid="cookie-banner"
     >
       <div
-        class="c206"
+        class="c201"
       >
         <div
-          class="c207 c208"
+          class="c202 c203"
         >
           <div
-            class="c209"
+            class="c204"
           >
             <strong
-              class="c210"
+              class="c205"
             >
               This site uses cookies to store information on your computer.
             </strong>
@@ -6942,13 +5960,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
             Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
           </div>
           <div
-            class="c9 c211"
+            class="c9 c206"
           >
             <div
-              class="c212 c41"
+              class="c207 c41"
             >
               <button
-                class="c213"
+                class="c173 c208"
                 data-testid="cookie-banner-reject"
                 type="button"
               >
@@ -6992,7 +6010,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 class="c6 yellow-shadow"
               />
               <button
-                class="c214 c19 internal-button"
+                class="c209 c19 internal-button"
                 data-testid="cookie-banner-accept"
               >
                 <div

@@ -27,12 +27,12 @@ jest.mock("next/navigation", () => ({
   usePathname: jest.fn(() => "/"),
 }));
 
-const unitOverviewAccessedMock = jest.fn();
+const unitAccessedMock = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      unitOverviewAccessed: unitOverviewAccessedMock,
+      unitAccessed: unitAccessedMock,
     },
   }),
 }));
@@ -91,7 +91,7 @@ describe("ProgrammeUnitList", () => {
     expect(list).toBeInTheDocument();
   });
 
-  it("calls track.unitOverviewAccessed when a unit link is clicked", async () => {
+  it("calls track.unitAccessed when a unit link is clicked", async () => {
     render(<ProgrammeUnitList {...defaultProps} />);
 
     const link = screen.getByRole("link", { name: /Unit One/i });
@@ -99,8 +99,8 @@ describe("ProgrammeUnitList", () => {
       link.click();
     });
 
-    expect(unitOverviewAccessedMock).toHaveBeenCalledTimes(1);
-    expect(unitOverviewAccessedMock).toHaveBeenCalledWith(
+    expect(unitAccessedMock).toHaveBeenCalledTimes(1);
+    expect(unitAccessedMock).toHaveBeenCalledWith(
       expect.objectContaining({
         unitName: "Unit One",
         unitSlug: "unit-one",

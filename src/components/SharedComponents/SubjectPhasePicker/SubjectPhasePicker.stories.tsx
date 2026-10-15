@@ -13,7 +13,9 @@ const meta: Meta<typeof Component> = {
   argTypes: {},
   parameters: {
     nextjs: {
-      appDirectory: false,
+      // The component always calls useRouter from next/navigation, so the
+      // app router mocks must exist even though it also supports the pages router.
+      appDirectory: true,
     },
   },
 };

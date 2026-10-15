@@ -90,6 +90,7 @@ export const teachersLessonOverviewSchema =
     phaseTitle: programmeFieldsSchema.shape.phase_description,
     pathwaySlug: programmeFieldsSchema.shape.pathway_slug,
     yearGroupTitle: programmeFieldsSchema.shape.year_description,
+    yearGroupSlug: programmeFieldsSchema.shape.year_slug,
     year: programmeFieldsSchema.shape.year,
     examBoardTitle: programmeFieldsSchema.shape.examboard,
     examBoardSlug: programmeFieldsSchema.shape.examboard_slug,

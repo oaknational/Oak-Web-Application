@@ -11,6 +11,7 @@ jest.mock("next/navigation", () => ({
   notFound: () => {
     throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
   },
+  unstable_rethrow: jest.fn(),
 }));
 
 const mockLessonMediaClips = jest.fn();

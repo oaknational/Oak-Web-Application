@@ -29,7 +29,7 @@ describe("formToZod.ts", () => {
       const schema = fieldToZod(field);
 
       expect(schema.parse("ross")).toEqual("ross");
-      expect(schema.parse(undefined)).toEqual(undefined);
+      expect(schema.parse(undefined)).toBeUndefined();
     });
 
     it("marks required `string` type fields as non-empty", () => {
@@ -61,7 +61,7 @@ describe("formToZod.ts", () => {
 
       const schema = fieldToZod(field);
 
-      expect(schema.parse("")).toEqual(undefined);
+      expect(schema.parse("")).toBeUndefined();
     });
 
     it("handles `select` type fields", () => {
@@ -101,7 +101,7 @@ describe("formToZod.ts", () => {
 
       const schema = fieldToZod(field);
 
-      expect(schema.parse("")).toEqual(undefined);
+      expect(schema.parse("")).toBeUndefined();
 
       expect(() => {
         schema.parse("not-in-allowed");

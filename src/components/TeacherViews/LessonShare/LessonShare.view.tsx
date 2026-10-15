@@ -18,7 +18,7 @@ import SharePageLayout from "@/components/TeacherComponents/SharePageLayout";
 import LessonShareCardGroup from "@/components/TeacherComponents/LessonShareCardGroup";
 import LessonShareLinks from "@/components/TeacherComponents/LessonShareLinks";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
-import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
+import usePersistResourceFormDetails from "@/components/TeacherComponents/hooks/downloadAndShareHooks/usePersistResourceFormDetails";
 import {
   ResourceFormValues,
   ResourceType,
@@ -133,14 +133,14 @@ export function LessonShare(props: Readonly<LessonShareProps>) {
 
   const onboardingStatus = useOnboardingStatus();
 
-  const { onSubmit } = useResourceFormSubmit();
+  const { persistResourceFormDetails } = usePersistResourceFormDetails();
   const { onHubspotSubmit } = useHubspotSubmit();
 
   const onFormSubmit = async (
     data: ResourceFormValues,
     shareMedium: ShareMediumValueType,
   ): Promise<void> => {
-    await onSubmit({ data, slug: props.lesson.lessonSlug, type: "share" });
+    persistResourceFormDetails(data);
     await onHubspotSubmit(data);
 
     if (editDetailsClicked && !data.email) {

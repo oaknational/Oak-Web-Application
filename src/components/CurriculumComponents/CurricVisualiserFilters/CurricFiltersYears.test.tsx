@@ -98,7 +98,7 @@ describe("CurricFiltersYears", () => {
     );
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
-    expect(elements.length).toEqual(3);
+    expect(elements).toHaveLength(3);
 
     // 10
     act(() => elements[1]!.click());
@@ -200,7 +200,7 @@ describe("CurricFiltersYears", () => {
     );
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
-    expect(elements.length).toEqual(5);
+    expect(elements).toHaveLength(5);
 
     // 10-core
     act(() => elements[1]!.click());

@@ -10,9 +10,12 @@ jest.mock("./startGleap", () => ({
   default: (...args: unknown[]) => startGleap(...args),
   hasLoaded: () => hasLoaded(),
 }));
-Object.defineProperty(window, "location", {
-  value: { reload: jest.fn() },
-});
+jest.mock("./reloadPage", () => ({
+  __esModule: true,
+  default: (...args: unknown[]) => reloadMock(...args),
+}));
+
+const reloadMock = jest.fn();
 
 describe("useGleap", () => {
   beforeEach(() => {
@@ -50,7 +53,7 @@ describe("useGleap", () => {
       );
       hasLoaded.mockImplementationOnce(() => true);
       rerender({ enabled: false });
-      expect(window.location.reload).toHaveBeenCalled();
+      expect(reloadMock).toHaveBeenCalled();
     });
   });
 });

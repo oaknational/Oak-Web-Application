@@ -16,7 +16,7 @@ import Banners from "../SharedComponents/Banners";
 import { waitForLinkCallback } from "../SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 
 import useLessonDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck";
-import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
+import useLessonDownload from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownload";
 import {
   DownloadResourceType,
   ResourceFormValues,
@@ -158,6 +158,11 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
   });
 
   const onboardingStatus = useOnboardingStatus();
+  const hasUsableSchoolDetails = Boolean(schoolIdFromLocalStorage);
+  const needsSchoolDetails =
+    onboardingStatus === "onboarded" &&
+    hubspotLoaded &&
+    !hasUsableSchoolDetails;
 
   const noResourcesSelected =
     form.watch().resources === undefined || form.watch().resources.length === 0;
@@ -167,7 +172,7 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
 
   const [apiError, setApiError] = useState<string | null>(null);
 
-  const { onSubmit } = useResourceFormSubmit();
+  const { onSubmit } = useLessonDownload();
 
   const { onHubspotSubmit } = useHubspotSubmit();
 
@@ -191,7 +196,6 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
         setIsAttemptingDownload,
         setEditDetailsClicked,
         onSubmit,
-        type: "download",
         isLegacyDownload,
       });
 
@@ -297,7 +301,9 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
             school={schoolNameFromLocalStorage}
             schoolId={schoolIdFromLocalStorage}
             setSchool={setSchool}
-            showSavedDetails={shouldDisplayDetailsCompleted}
+            showSavedDetails={
+              shouldDisplayDetailsCompleted && hasUsableSchoolDetails
+            }
             onEditClick={handleEditDetailsCompletedClick}
             register={form.register}
             control={form.control}
@@ -309,7 +315,8 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
             withHomeschool={true}
             showTermsAgreement={
               onboardingStatus === "not-onboarded" ||
-              onboardingStatus === "unknown"
+              onboardingStatus === "unknown" ||
+              needsSchoolDetails
             }
             isLoading={onboardingStatus === "loading"}
             cardGroup={

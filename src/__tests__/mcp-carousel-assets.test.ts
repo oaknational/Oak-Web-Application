@@ -23,10 +23,22 @@ import { join } from "node:path";
  * `main`, so on its own it reports a break without preventing one. This test
  * runs inside the required unit-test gate. Keep both: this one blocks the
  * merge, that one proves the URL actually serves.
+ *
+ * MCP-688 moved the files on disk to `public/ai-plugin/carousel`. MCP-689/690
+ * confirmed Anthropic's listing now fetches from `/ai-plugin/carousel` directly
+ * and removed the compat rewrite that used to keep the old `/mcp/carousel` URLs
+ * alive. This test follows the bytes at their published location; the URL
+ * contract stays pinned as a literal in the Playwright spec, which is the
+ * surface Anthropic actually fetches.
  */
 
-/** Repository-root-relative path to the published directory. */
-const CAROUSEL_DIR = join(process.cwd(), "public", "mcp", "carousel");
+/**
+ * Repository-root-relative path to the published directory.
+ *
+ * This is where the bytes live, NOT the URL contract — see the Playwright spec
+ * for that. The two are decoupled by the rewrite in `next.config.ts`.
+ */
+const CAROUSEL_DIR = join(process.cwd(), "public", "ai-plugin", "carousel");
 
 /**
  * Each published filename paired with the SHA-256 of its own bytes.

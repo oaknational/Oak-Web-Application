@@ -26,14 +26,22 @@ import {
   oaksCurriculaPageSchema,
   teamMemberSchema,
   oaksImpactPageSchema,
-  oaksImpactCaseStudyPageSchema,
+  caseStudyLibraryPageSchema,
+  caseStudyPageSchema,
+  nationalCurriculumInsightsSubjectLookupParamsSchema,
   implementationGuidesSchema,
+  joinResearchPanelPageSchema,
 } from "../../../common-lib/cms-types";
 import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
 import getProxiedSanityAssetUrl from "../../../common-lib/urls/getProxiedSanityAssetUrl";
 import { getABTestSchema } from "../../../common-lib/cms-types/abTest";
 
-import { getSingleton, getBySlug, getList } from "./cmsMethods";
+import { getSingleton, getBySlug, getList, type Params } from "./cmsMethods";
+import {
+  getNationalCurriculumInsightsGuidancePage,
+  getNationalCurriculumInsightsHub,
+  getNationalCurriculumInsightsSubjectBySlug,
+} from "./nationalCurriculumInsightsGroq";
 
 import { planALessonPageSchema } from "@/common-lib/cms-types/planALessonPage";
 import { campaignPageSchema } from "@/common-lib/cms-types/campaignPage";
@@ -187,6 +195,11 @@ const getSanityClient = () => ({
       return whoWeArePageData;
     },
   ),
+  joinResearchPanelPage: getSingleton(
+    sanityGraphqlApi.joinResearchPanelPage,
+    joinResearchPanelPageSchema,
+    (result) => result?.allNewAboutCorePageJoinResearchPanel?.[0],
+  ),
   contactPage: getSingleton(
     sanityGraphqlApi.contactCorePage,
     contactPageSchema,
@@ -222,6 +235,28 @@ const getSanityClient = () => ({
     curriculumOverviewCMSSchema,
     (result) => result?.allCurriculumInfoPageOverview?.[0],
   ),
+  nationalCurriculumInsightsHub: (params: Params = {}) =>
+    getNationalCurriculumInsightsHub(params),
+  nationalCurriculumInsightsGuidancePage: (params: Params = {}) =>
+    getNationalCurriculumInsightsGuidancePage(params),
+  nationalCurriculumInsightsSubjectBySlug: (
+    subjectSlug: string,
+    params: Params = {},
+  ) => {
+    const lookupParams =
+      nationalCurriculumInsightsSubjectLookupParamsSchema.safeParse({
+        subjectSlug,
+      });
+
+    if (!lookupParams.success) {
+      return Promise.resolve(null);
+    }
+
+    return getNationalCurriculumInsightsSubjectBySlug(
+      lookupParams.data.subjectSlug,
+      params,
+    );
+  },
   campaigns: getList(
     sanityGraphqlApi.allCampaignPages,
     z.array(campaignPageSchema),
@@ -240,18 +275,23 @@ const getSanityClient = () => ({
   oaksImpactPage: getSingleton(
     sanityGraphqlApi.oaksImpactPage,
     oaksImpactPageSchema,
-    (result) => result?.allNewAboutCorePageOaksImpact?.[0],
+    (result) => result,
+  ),
+  caseStudyLibraryPage: getList(
+    sanityGraphqlApi.caseStudyLibraryPage,
+    caseStudyLibraryPageSchema,
+    (result) => result.allCaseStudy,
+  ),
+  caseStudyPage: getSingleton(
+    sanityGraphqlApi.caseStudyPage,
+    caseStudyPageSchema,
+    (result) => result.allCaseStudy?.[0],
   ),
   implementationGuides: getSingleton(
     sanityGraphqlApi.implementationGuides,
     implementationGuidesSchema,
     (result) =>
       result?.allCurriculumInfoPageOverview?.[0]?.implementationGuides ?? {},
-  ),
-  oaksImpactCaseStudyPage: getSingleton(
-    sanityGraphqlApi.oaksImpactCaseStudyPage,
-    oaksImpactCaseStudyPageSchema,
-    (result) => result?.allNewAboutCorePageOaksImpact?.[0],
   ),
   meetTheTeamPage: getSingleton(
     sanityGraphqlApi.meetTheTeamPage,

@@ -213,7 +213,7 @@ describe("generateYearTitle", () => {
             createUnit({
               year: "10",
               subject: "Physical education",
-              examboard: "Core",
+              examboard_slug: "Core",
             }),
           ],
         }),
@@ -472,7 +472,7 @@ describe("isExamboardSlug", () => {
 
 describe("getSubjectOveride", () => {
   test("override", () => {
-    expect(getSubjectOveride("english", "10", "aqa")).toEqual(undefined);
+    expect(getSubjectOveride("english", "10", "aqa")).toBeUndefined();
   });
 
   test("non-override", () => {

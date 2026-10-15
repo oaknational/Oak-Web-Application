@@ -21,6 +21,14 @@ jest.mock("next/dist/client/router", () => require("next-router-mock"));
 const render = renderWithProviders();
 
 describe("ResourcePageSchoolDetails", () => {
+  beforeEach(() => {
+    jest.spyOn(global, "fetch").mockResolvedValue(new Response("[]"));
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   it("Renders a school picker", async () => {
     render(<ResourcePageSchoolDetails {...props} />);
 
@@ -111,7 +119,7 @@ describe("ResourcePageSchoolDetails", () => {
     // HACK: wait for next tick
     await waitForNextTick();
     rerender(<ResourcePageSchoolDetails {...props} />);
-    expect(setSchool).toBeCalled();
+    expect(setSchool).toHaveBeenCalled();
   });
 
   it("links school field errors to the combobox and not-listed checkbox", () => {

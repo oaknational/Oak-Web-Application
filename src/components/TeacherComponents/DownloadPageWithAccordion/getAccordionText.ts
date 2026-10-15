@@ -5,11 +5,17 @@ export const getAccordionText = ({
   lessonDownloads,
   additionalFiles,
   curriculumDownloads,
+  teachWithOak,
 }: {
   lessonDownloads?: LessonDownloadsPageData["downloads"];
   additionalFiles?: LessonDownloadsPageData["additionalFiles"];
   curriculumDownloads?: DownloadTypeLabel[];
+  teachWithOak?: boolean;
 }) => {
+  if (teachWithOak) {
+    return "Explanation, CfU, practice, feedback guides";
+  }
+
   const resources = [];
   const resourceTypes: Record<string, string> = {
     presentation: "slides",

@@ -55,7 +55,7 @@ type ProviderPropsByName = {
   oakNotifications: Record<string, never>;
   saveCount: Record<string, never>;
   teacherBrowseAnalytics: {
-    programmeState?: ProgrammeState;
+    programmeState?: ProgrammeState | null;
     accessLevel?: AccessLevelValueType;
   };
 };

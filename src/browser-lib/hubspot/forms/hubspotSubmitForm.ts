@@ -1,7 +1,3 @@
-/**
- * @see https://legacydocs.hubxspot.com/docs/methods/forms/submit_form
- */
-
 import { z } from "zod";
 
 import errorReporter from "../../../common-lib/error-reporter";
@@ -70,167 +66,150 @@ export type HubspotPayload = {
 
 type HubspotSubmitFormProps = {
   hubspotFormId: string;
+  hubspotPortalId?: string;
   payload: HubspotPayload;
   isFallbackAttempt?: boolean;
 };
-/**
- * @description
- * Function which, using hubspot cookie, sends data to a hubspot form
- * using the form id.
- *
- * Note:
- *
- * https://community.hubspot.com/t5/Lead-Capture-Tools/Failing-validation-in-hubspot-form-for-emails/td-p/18446
- *
- * Due to the above issue with hubspot's email validation, we implement a fallback form
- * for collecting "invalid" emails. The journey is something along these lines:
- *
- * 1. A user submits a form
- * 2. If we get a Hubspot error "INVALID_EMAIL", this can either be correct (a typo or a false email), or it can be incorrect (a perfectly valid email). We have no way of knowing which it is, so either way we:
- * 3. Show an error to the user saying "That email doesn't look right, please check and try again",
- * 4. And we send the email address to the fallback form in Hubspot.
- * 5. I think should not report the error to Bugsnag, as we're capturing/handling it a different way
- * 6. It might then be that the user sees they have in fact entered their email wrong, and inputs the correct one
- * 7. Or it might be that they think "But that is my email address"
- */
-const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
-  const { hubspotFormId, payload, isFallbackAttempt = false } = props;
+
+const fetchHubspotFormResponse = async (
+  url: string,
+  payload: HubspotPayload,
+  errorMeta: ErrorMeta,
+): Promise<Response> => {
+  try {
+    return await fetch(url, {
+      method: "post",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+  } catch (error) {
+    throw new OakError({
+      code: "misc/network-error",
+      originalError: error,
+      meta: errorMeta,
+    });
+  }
+};
+
+const getHubspotSuccessMessage = async (
+  response: Response,
+  errorMeta: ErrorMeta,
+) => {
+  const responseBody = await response.json();
+  errorMeta.responseBody = responseBody;
+
+  try {
+    return hubspotSuccessSchema.parse(responseBody).inlineMessage;
+  } catch (_error) {
+    return undefined;
+  }
+};
+
+const getFallbackPayload = (
+  payload: HubspotPayload,
+  errorMeta: ErrorMeta,
+): HubspotPayload => {
+  const emailField = payload.fields.find((field) => field.name === "email");
+  const emailTextOnly = emailField?.value?.split("@")[0];
+
+  if (!emailTextOnly) {
+    throw new OakError({
+      code: "hubspot/invalid-email",
+      meta: errorMeta,
+    });
+  }
+
+  return {
+    ...payload,
+    fields: [
+      ...payload.fields,
+      {
+        name: "emailTextOnly",
+        value: emailTextOnly,
+      },
+    ],
+  };
+};
+
+// A successful fallback still throws hubspot/invalid-email for the caller to handle.
+const submitInvalidEmailFallback = async (
+  payload: HubspotPayload,
+  errorMeta: ErrorMeta,
+): Promise<never> => {
+  try {
+    await hubspotSubmitForm({
+      hubspotFormId: hubspotFallbackFormId,
+      payload: getFallbackPayload(payload, errorMeta),
+      isFallbackAttempt: true,
+    });
+    throw new OakError({ code: "hubspot/invalid-email" });
+  } catch (fallbackFormError) {
+    if (fallbackFormError instanceof OakError) {
+      throw fallbackFormError;
+    }
+
+    throw new OakError({
+      code: "hubspot/unknown",
+      originalError: fallbackFormError,
+      meta: errorMeta,
+    });
+  }
+};
+
+// INVALID_EMAIL includes HubSpot's DNS and blocklist checks, so it doesn't prove the address is malformed.
+const throwHubspotResponseError = async (
+  response: Response,
+  props: HubspotSubmitFormProps,
+  errorMeta: ErrorMeta,
+): Promise<never> => {
+  errorMeta.responseStatusCode = response.status;
+
+  let hubspotError: z.infer<typeof hubspotErrorSchema>;
+  try {
+    const responseBody = await response.json();
+    errorMeta.responseBody = responseBody;
+    hubspotError = hubspotErrorSchema.parse(responseBody);
+  } catch (error) {
+    throw new OakError({
+      code: "hubspot/unknown",
+      originalError: error,
+      meta: errorMeta,
+    });
+  }
+
+  errorMeta.hubspotError = hubspotError;
+  const isInvalidEmail = hubspotError.errors.some(
+    (err) => err.errorType === "INVALID_EMAIL",
+  );
+  errorMeta.isInvalidEmail = isInvalidEmail;
+
+  if (isInvalidEmail && !props.isFallbackAttempt) {
+    return submitInvalidEmailFallback(props.payload, errorMeta);
+  }
+
+  throw new OakError({
+    code: "hubspot/unknown",
+    meta: errorMeta,
+  });
+};
+
+// Normalize unexpected failures so retry and reporting handle them consistently.
+const submitHubspotFormAttempt = async (props: HubspotSubmitFormProps) => {
+  const { hubspotFormId, payload } = props;
   const errorMeta: ErrorMeta = { props };
 
   try {
     errorMeta.payload = payload;
+    const url = `${hubspotFormSubmissionUrl}/${props.hubspotPortalId ?? hubspotPortalId}/${hubspotFormId}`;
+    const response = await fetchHubspotFormResponse(url, payload, errorMeta);
 
-    // Cloudflare worker proxy forwards hubspot-forms.thenational.academy -> api.hsforms.com
-    const url = `${hubspotFormSubmissionUrl}/${hubspotPortalId}/${hubspotFormId}`;
-
-    let res: Response;
-
-    try {
-      res = await fetch(url, {
-        method: "post",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-    } catch (error) {
-      throw new OakError({
-        code: "misc/network-error",
-        originalError: error,
-        meta: errorMeta,
-      });
+    if (response.ok) {
+      return await getHubspotSuccessMessage(response, errorMeta);
     }
 
-    if (res.ok) {
-      const responseBody = await res.json();
-      errorMeta.responseBody = responseBody;
-
-      try {
-        const hubspotSuccess = hubspotSuccessSchema.parse(responseBody);
-
-        return hubspotSuccess.inlineMessage;
-      } catch (_error) {
-        // Not an issue, form responded with 200 but optional inlineMessage was not present
-      }
-    }
-
-    if (!res.ok) {
-      const responseBody = await res.json();
-      errorMeta.responseBody = responseBody;
-
-      try {
-        const hubspotError = hubspotErrorSchema.parse(responseBody);
-        errorMeta.hubspotError = hubspotError;
-        const isInvalidEmail = hubspotError.errors.some(
-          (err) => err.errorType === "INVALID_EMAIL",
-        );
-        errorMeta.isInvalidEmail = isInvalidEmail;
-
-        if (isInvalidEmail && !isFallbackAttempt) {
-          /**
-           * For INVALID_EMAIL errors, attempt to send data to the fallback form
-           */
-          try {
-            const emailTextOnly = (payload: HubspotPayload) => {
-              const emailField = payload.fields.find(
-                (field) => field.name === "email",
-              );
-              if (!emailField) {
-                throw new OakError({
-                  code: "hubspot/invalid-email",
-                  meta: errorMeta,
-                });
-              }
-              const emailTextOnly = emailField.value?.split("@")[0];
-              if (!emailTextOnly) {
-                throw new OakError({
-                  code: "hubspot/invalid-email",
-                  meta: errorMeta,
-                });
-              }
-              return {
-                ...payload,
-                fields: [
-                  ...payload.fields,
-                  {
-                    name: "emailTextOnly",
-                    value: emailTextOnly,
-                  },
-                ],
-              };
-            };
-            const fallbackPayload = emailTextOnly(payload);
-
-            await hubspotSubmitForm({
-              hubspotFormId: hubspotFallbackFormId,
-              payload: fallbackPayload,
-              isFallbackAttempt: true,
-            });
-            /**
-             * In this case we have successfully sent the user's information to
-             * the fallback form, however hubspot has signalled that the email
-             * might not be right.
-             */
-            throw new OakError({ code: "hubspot/invalid-email" });
-          } catch (fallbackFormError) {
-            if (fallbackFormError instanceof OakError) {
-              throw fallbackFormError;
-            }
-            /**
-             * In this case we have not been able to collect the user's
-             * information
-             */
-            throw new OakError({
-              code: "hubspot/unknown",
-              originalError: fallbackFormError,
-              meta: errorMeta,
-            });
-          }
-        }
-        /**
-         * Either we have received a hubspot error other than INVALID_EMAIL
-         * or we've received INVALID_EMAIL in response to the fallback form
-         * (which should never happen is the fallback form doesn't have an
-         * email field.
-         */
-        throw new OakError({
-          code: "hubspot/unknown",
-          meta: errorMeta,
-        });
-      } catch (error) {
-        if (error instanceof OakError) {
-          throw error;
-        }
-        /**
-         * We've received an error but not been able to parse it as a hubspot error
-         */
-        throw new OakError({
-          code: "hubspot/unknown",
-          originalError: error,
-          meta: errorMeta,
-        });
-      }
-    }
+    return await throwHubspotResponseError(response, props, errorMeta);
   } catch (error) {
     const oakError =
       error instanceof OakError
@@ -241,11 +220,77 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
             meta: errorMeta,
           });
 
-    if (oakError.config.shouldNotify) {
-      reportError(oakError, oakError.meta);
-    }
     throw oakError;
   }
+};
+
+const retryCount = 2;
+const retryDelayMs = 250;
+
+const isRetryableError = (error: OakError) => {
+  if (error.code === "misc/network-error") return true;
+
+  const hubspotErrors = (
+    error.meta?.hubspotError as
+      | { errors?: { errorType?: string }[] }
+      | undefined
+  )?.errors;
+  if (hubspotErrors?.some(({ errorType }) => errorType === "ERROR 429")) {
+    return true;
+  }
+
+  const responseStatusCode = error.meta?.responseStatusCode;
+  return (
+    responseStatusCode === 429 ||
+    (typeof responseStatusCode === "number" &&
+      responseStatusCode >= 500 &&
+      responseStatusCode < 600)
+  );
+};
+
+const submitWithRetry = async (
+  props: HubspotSubmitFormProps,
+  attempt = 1,
+): Promise<string | undefined> => {
+  try {
+    return await submitHubspotFormAttempt(props);
+  } catch (error) {
+    const oakError =
+      error instanceof OakError
+        ? error
+        : new OakError({
+            code: "hubspot/unknown",
+            originalError: error,
+          });
+
+    const {
+      hasBeenReported: errorHasBeenReported,
+      config: { shouldNotify: shouldNotifyError },
+    } = oakError;
+
+    const hasRetriesRemaining = attempt < retryCount;
+
+    const shouldRetry =
+      hasRetriesRemaining &&
+      !errorHasBeenReported &&
+      isRetryableError(oakError);
+
+    if (shouldRetry) {
+      await new Promise((resolve) => setTimeout(resolve, retryDelayMs));
+      return submitWithRetry(props, attempt + 1);
+    }
+
+    if (shouldNotifyError && !errorHasBeenReported) {
+      void reportError(oakError, oakError.meta);
+      oakError.hasBeenReported = true;
+    }
+
+    throw oakError;
+  }
+};
+
+const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
+  return submitWithRetry(props);
 };
 
 export default hubspotSubmitForm;

@@ -2,8 +2,15 @@ import createAndClickHiddenDownloadLink, {
   hideAndClickDownloadLink,
   createLink,
   waitForLinkCallback,
-  getDownloadLink,
 } from "./createAndClickHiddenDownloadLink";
+
+import { isInIframe } from "@/utils/iframe";
+
+jest.mock("@/utils/iframe", () => ({
+  isInIframe: jest.fn(),
+}));
+
+const mockIsInIframe = isInIframe as jest.MockedFunction<typeof isInIframe>;
 
 describe("hideAndClickDownloadLink()", () => {
   it("hides the link", () => {
@@ -35,29 +42,32 @@ describe("hideAndClickDownloadLink()", () => {
 
     expect(link.click).toHaveBeenCalledTimes(1);
   });
+
+  it("does not leave the link in the document", () => {
+    const link = createLink();
+    link.click = jest.fn();
+
+    hideAndClickDownloadLink("testUrl", link);
+
+    expect(link.isConnected).toBe(false);
+    expect(document.getElementById("resource-download-link")).toBeNull();
+  });
 });
 
 describe("createAndClickHiddenDownloadLink()", () => {
-  const originalTop = window.top;
   let windowOpenSpy: jest.SpyInstance;
 
   beforeEach(() => {
+    mockIsInIframe.mockReturnValue(false);
     windowOpenSpy = jest.spyOn(window, "open").mockImplementation(() => null);
   });
 
   afterEach(() => {
-    Object.defineProperty(window, "top", {
-      value: originalTop,
-      writable: true,
-    });
     windowOpenSpy.mockRestore();
   });
 
   it("opens download in a new tab when inside an iframe", () => {
-    Object.defineProperty(window, "top", {
-      value: {}, // different object from window.self
-      writable: true,
-    });
+    mockIsInIframe.mockReturnValue(true);
 
     createAndClickHiddenDownloadLink("testUrl");
 
@@ -65,17 +75,70 @@ describe("createAndClickHiddenDownloadLink()", () => {
   });
 
   it("creates a hidden download link when not in an iframe", () => {
-    Object.defineProperty(window, "top", {
-      value: window.self,
-      writable: true,
-    });
-
     const appendSpy = jest.spyOn(document.body, "appendChild");
     createAndClickHiddenDownloadLink("testUrl");
 
     expect(windowOpenSpy).not.toHaveBeenCalled();
     expect(appendSpy).toHaveBeenCalled();
     appendSpy.mockRestore();
+  });
+
+  it.each(["Science - primary.docx", "Curriculum insights.zip"])(
+    "preserves the supplied filename %s and removes a temporary link",
+    (filename) => {
+      const click = jest
+        .spyOn(HTMLAnchorElement.prototype, "click")
+        .mockImplementation(function (this: HTMLAnchorElement) {
+          expect(this.download).toBe(filename);
+          expect(this.href).toContain("blob:insights");
+          expect(document.body).toContainElement(this);
+        });
+
+      createAndClickHiddenDownloadLink("blob:insights", {
+        filename,
+        removeAfterClick: true,
+        openInNewTabWhenEmbedded: false,
+      });
+
+      expect(click).toHaveBeenCalledTimes(1);
+      expect(document.getElementById("resource-download-link")).toBeNull();
+      click.mockRestore();
+    },
+  );
+
+  it("can download a blob without opening a new tab in an embedded preview", () => {
+    mockIsInIframe.mockReturnValue(true);
+    const click = jest
+      .spyOn(HTMLAnchorElement.prototype, "click")
+      .mockImplementation(() => {});
+
+    createAndClickHiddenDownloadLink("blob:insights", {
+      filename: "Science.docx",
+      removeAfterClick: true,
+      openInNewTabWhenEmbedded: false,
+    });
+
+    expect(windowOpenSpy).not.toHaveBeenCalled();
+    expect(click).toHaveBeenCalledTimes(1);
+    expect(document.getElementById("resource-download-link")).toBeNull();
+    click.mockRestore();
+  });
+
+  it("removes a temporary link if clicking fails", () => {
+    const click = jest
+      .spyOn(HTMLAnchorElement.prototype, "click")
+      .mockImplementation(() => {
+        throw new Error("Download failed");
+      });
+
+    expect(() =>
+      createAndClickHiddenDownloadLink("blob:insights", {
+        removeAfterClick: true,
+        openInNewTabWhenEmbedded: false,
+      }),
+    ).toThrow("Download failed");
+    expect(document.getElementById("resource-download-link")).toBeNull();
+    click.mockRestore();
   });
 });
 
@@ -85,10 +148,8 @@ const setTimeoutMock = jest.spyOn(globalThis, "setTimeout");
 
 describe("waitForLinkCallback", () => {
   beforeEach(() => {
-    const previousLink = getDownloadLink();
-    if (previousLink) {
-      previousLink.remove();
-    }
+    // resets the "clicked" state held by the module
+    createLink();
   });
   test("runs a maximum number of times", () => {
     waitForLinkCallback(mockCallback);

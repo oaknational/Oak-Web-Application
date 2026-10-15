@@ -73,6 +73,7 @@ describe("AboutUsLayout", () => {
     expect(getByText("Oak's impact")).toBeInTheDocument();
     expect(getByText("Meet the team")).toBeInTheDocument();
     expect(getByText("Get involved")).toBeInTheDocument();
+    expect(getByText("Case studies")).toBeInTheDocument();
   });
 
   it("excludes 'About Oak' link when on who-we-are page", () => {
@@ -96,6 +97,7 @@ describe("AboutUsLayout", () => {
     expect(getByText("Oak's impact")).toBeInTheDocument();
     expect(getByText("Meet the team")).toBeInTheDocument();
     expect(getByText("Get involved")).toBeInTheDocument();
+    expect(getByText("Case studies")).toBeInTheDocument();
   });
 
   it("excludes 'Get involved' link when on get-involved page", () => {
@@ -119,6 +121,7 @@ describe("AboutUsLayout", () => {
     expect(getByText("Oak's curricula")).toBeInTheDocument();
     expect(getByText("Oak's impact")).toBeInTheDocument();
     expect(getByText("Meet the team")).toBeInTheDocument();
+    expect(getByText("Case studies")).toBeInTheDocument();
   });
 
   it("renders newsletter form", () => {
@@ -150,7 +153,7 @@ describe("AboutUsLayout", () => {
     const exploreItems = container.querySelectorAll(
       '[data-testid="who-we-are-explore-item"]',
     );
-    expect(exploreItems).toHaveLength(4);
+    expect(exploreItems).toHaveLength(5);
   });
 
   it("shows 5 links when current page does not match any explore item", () => {
@@ -170,6 +173,6 @@ describe("AboutUsLayout", () => {
     const exploreItems = container.querySelectorAll(
       '[data-testid="who-we-are-explore-item"]',
     );
-    expect(exploreItems).toHaveLength(5);
+    expect(exploreItems).toHaveLength(6);
   });
 });

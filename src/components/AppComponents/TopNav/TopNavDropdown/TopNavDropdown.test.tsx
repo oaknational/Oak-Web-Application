@@ -16,11 +16,13 @@ import { getOakUiColor } from "@/__tests__/__helpers__/getOakUiColor";
 const render = renderWithProviders();
 
 const mockProgrammeRefined = jest.fn();
+const mockTeachWithOakAccessed = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
       programmeRefined: (...args: []) => mockProgrammeRefined(...args),
+      teachWithOakAccessed: (...args: []) => mockTeachWithOakAccessed(...args),
     },
   }),
 }));
@@ -464,7 +466,8 @@ describe("TopNavDropdown", () => {
 
         const links = await screen.findAllByRole("link");
         expect(links[0]).toHaveTextContent("Plan a lesson");
-        expect(links[1]).toHaveTextContent("Blogs");
+        expect(links[1]).toHaveTextContent("Teach with Oak");
+        expect(links[2]).toHaveTextContent("Blogs");
       });
 
       it("calls onClose when clicking a guidance link", async () => {
@@ -529,6 +532,50 @@ describe("TopNavDropdown", () => {
 
         expect(externalLink).toHaveAttribute("target", "_blank");
       });
+    });
+
+    it("should track teach with oak accessed", async () => {
+      const { getByRole } = render(
+        <TopNavDropdown
+          teachers={topNavFixture.teachers!}
+          pupils={topNavFixture.pupils!}
+          activeArea="TEACHERS"
+          selectedMenu="guidance"
+          focusManager={teachersFocusManager}
+          onClose={onCloseMock}
+        />,
+      );
+      const user = userEvent.setup();
+
+      const teachWithOakLink = getByRole("link", { name: "Teach with Oak" });
+      teachWithOakLink.addEventListener("click", (e) => e.preventDefault());
+      await user.click(teachWithOakLink);
+
+      expect(mockTeachWithOakAccessed).toHaveBeenCalledWith(
+        expect.objectContaining({
+          componentType: "topnav-browse-button",
+        }),
+      );
+    });
+
+    it("does not track teach with oak accessed when clicking other links", async () => {
+      const { getByRole } = render(
+        <TopNavDropdown
+          teachers={topNavFixture.teachers!}
+          pupils={topNavFixture.pupils!}
+          activeArea="TEACHERS"
+          selectedMenu="guidance"
+          focusManager={teachersFocusManager}
+          onClose={onCloseMock}
+        />,
+      );
+      const user = userEvent.setup();
+
+      const blogsLink = getByRole("link", { name: "Blogs" });
+      blogsLink.addEventListener("click", (e) => e.preventDefault());
+      await user.click(blogsLink);
+
+      expect(mockTeachWithOakAccessed).not.toHaveBeenCalled();
     });
   });
 

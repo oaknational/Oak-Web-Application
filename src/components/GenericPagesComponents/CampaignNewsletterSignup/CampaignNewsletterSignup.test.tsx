@@ -225,6 +225,7 @@ describe("CampaignNewsletterSignup", () => {
       />,
     );
 
+    expect(console.error).not.toHaveBeenCalled();
     const eduRole = screen.getByTestId("newsletter-eduRole");
     expect(eduRole).toBeInTheDocument();
   });

@@ -1,4 +1,4 @@
-import { isArray, isString } from "lodash";
+import { isString } from "lodash";
 import {
   OakFlex,
   OakIcon,
@@ -27,13 +27,13 @@ const CorrectAnswerSection = (props: CorectAnswerSectionProps) => {
   return (
     <OakFlex $flexDirection={"column"}>
       <OakSpan $font={"body-3-bold"}>
-        {isArray(questionResult?.correctAnswer) &&
+        {Array.isArray(questionResult?.correctAnswer) &&
         questionResult?.correctAnswer.length > 1
           ? "Correct answers:"
           : "Correct answer:"}
       </OakSpan>
       <OakFlex $flexDirection={"column"}>
-        {isArray(questionResult?.correctAnswer) &&
+        {Array.isArray(questionResult?.correctAnswer) &&
           questionResult?.correctAnswer?.map((correctAnswer, index) => {
             const correctAnswerText = isString(correctAnswer)
               ? correctAnswer
@@ -108,29 +108,30 @@ export const QuizResultInner = (props: ResultsInnerProps) => {
             isDisabled={questionResult.mode !== "feedback"}
           />
         )}
-        {answers?.["multiple-choice"] && isArray(questionResult?.feedback) && (
-          <QuizResultMCQ
-            answers={answers["multiple-choice"]}
-            feedback={questionResult.feedback}
-            pupilAnswer={questionResult.pupilAnswer}
-          />
-        )}
+        {answers?.["multiple-choice"] &&
+          Array.isArray(questionResult?.feedback) && (
+            <QuizResultMCQ
+              answers={answers["multiple-choice"]}
+              feedback={questionResult.feedback}
+              pupilAnswer={questionResult.pupilAnswer}
+            />
+          )}
         {answers?.["short-answer"] &&
-          !isArray(questionResult?.feedback) &&
+          !Array.isArray(questionResult?.feedback) &&
           questionResult?.feedback && (
             <QuizResultShortAnswer
               pupilAnswer={questionResult.pupilAnswer}
               feedback={questionResult.feedback}
             />
           )}
-        {answers?.["order"] && isArray(questionResult?.feedback) && (
+        {answers?.["order"] && Array.isArray(questionResult?.feedback) && (
           <QuizResultOrder
             answers={answers["order"]}
             feedback={questionResult.feedback}
             pupilAnswers={questionResult.pupilAnswer}
           />
         )}
-        {answers?.["match"] && isArray(questionResult?.feedback) && (
+        {answers?.["match"] && Array.isArray(questionResult?.feedback) && (
           <QuizResultMatch
             answers={answers["match"]}
             feedback={questionResult.feedback}

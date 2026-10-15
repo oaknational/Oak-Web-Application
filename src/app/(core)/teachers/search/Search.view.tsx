@@ -26,8 +26,7 @@ import {
 import { SearchProps } from "@/components/TeacherViews/Search/search.view.types";
 import { ContentFilterToggle } from "@/components/TeacherViews/Search/ContentFilterToggle";
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import SearchFilters from "@/components/TeacherComponents/SearchFilters";
 import SearchActiveFilters from "@/components/TeacherComponents/SearchActiveFilters";
@@ -83,8 +82,7 @@ const Search: FC<SearchProps> = (props) => {
     setSearchStartTime,
     setQuery,
   } = props;
-  const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
+  const track = useTeacherBrowseAnalytics((store) => store.track);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -140,24 +138,14 @@ const Search: FC<SearchProps> = (props) => {
         const searchEndTime = performance.now();
         track.searchAccessed({
           searchTerm: query.term,
-          platform: "owa",
-          product: "teacher lesson resources",
-          engagementIntent: "refine",
           componentType: "search_button",
-          eventVersion: "2.0.0",
-          analyticsUseCase: "Teacher",
           searchResultCount: hitCount,
           searchResultsLoadTime: Math.floor(searchEndTime - searchStartTime),
         });
         setSearchStartTime(null);
       } else {
         track.searchRefined({
-          platform: "owa",
-          product: "teacher lesson resources",
-          engagementIntent: "refine",
           componentType: "filter_link",
-          eventVersion: "2.0.0",
-          analyticsUseCase: "Teacher",
           searchResultCount: hitCount,
           activeFilters: getActiveFilters(searchQueryParams),
           searchTerm: query.term,
@@ -165,7 +153,6 @@ const Search: FC<SearchProps> = (props) => {
       }
     }
   }, [
-    analyticsUseCase,
     hitCount,
     query.term,
     searchQueryParams,
@@ -199,27 +186,22 @@ const Search: FC<SearchProps> = (props) => {
           : removeHTMLTags(searchHit.title);
 
       track.searchResultExpanded({
-        analyticsUseCase: analyticsUseCase,
-        componentType: "search_result_item",
-        engagementIntent: "refine",
-        eventVersion: "2.0.0",
-        platform: "owa",
-        product: "teacher lesson resources",
-        context: "search",
-        keyStageSlug: searchHit.keyStageSlug,
-        keyStageTitle: searchHit.keyStageTitle,
-        subjectTitle: searchHit.subjectTitle,
-        subjectSlug: searchHit.subjectSlug,
-        unitName,
-        unitSlug: searchHit.buttonLinkProps.unitSlug,
         searchRank: searchRank,
         searchFilterOptionSelected,
         searchResultCount: hitCount,
         searchResultType: searchHit.type,
-        lessonName,
-        lessonSlug,
-        lessonReleaseDate: searchHit.legacy ? "2020-2023" : "2023-2026",
-        lessonReleaseCohort: searchHit.legacy ? "2020-2023" : "2023-2026",
+        searchResultContext: {
+          keyStageSlug: searchHit.keyStageSlug,
+          keyStageTitle: searchHit.keyStageTitle,
+          subjectTitle: searchHit.subjectTitle,
+          subjectSlug: searchHit.subjectSlug,
+          unitName,
+          unitSlug: searchHit.buttonLinkProps.unitSlug,
+          lessonName,
+          lessonSlug,
+          lessonReleaseDate: searchHit.legacy ? "2020-2023" : "2023-2026",
+          lessonReleaseCohort: searchHit.legacy ? "2020-2023" : "2023-2026",
+        },
       });
     }
   };
@@ -233,29 +215,29 @@ const Search: FC<SearchProps> = (props) => {
   }) => {
     if (searchHit && isKeyStageTitleValueType(searchHit.keyStageTitle)) {
       track.searchResultOpened({
-        keyStageSlug: searchHit.keyStageSlug || "",
-        keyStageTitle: searchHit.keyStageTitle,
-        subjectTitle: searchHit.subjectTitle,
-        subjectSlug: searchHit.subjectSlug,
-        unitName:
-          searchHit.type === "lesson"
-            ? removeHTMLTags(searchHit.unitTitle)
-            : removeHTMLTags(searchHit.title),
-        unitSlug: searchHit.buttonLinkProps.unitSlug,
-        analyticsUseCase: analyticsUseCase,
         searchRank: searchRank,
         searchFilterOptionSelected:
           getSortedSearchFiltersSelected(searchQueryParams),
         searchResultCount: hitCount,
         searchResultType: searchHit.type,
-        lessonName: removeHTMLTags(searchHit.title),
-        lessonSlug:
-          searchHit.type === "lesson"
-            ? searchHit.buttonLinkProps.lessonSlug
-            : null,
-        context: "search",
-        lessonReleaseDate: searchHit.legacy ? "2020-2023" : "2023-2026",
-        lessonReleaseCohort: searchHit.legacy ? "2020-2023" : "2023-2026",
+        searchResultContext: {
+          keyStageSlug: searchHit.keyStageSlug || "",
+          keyStageTitle: searchHit.keyStageTitle,
+          subjectTitle: searchHit.subjectTitle,
+          subjectSlug: searchHit.subjectSlug,
+          unitName:
+            searchHit.type === "lesson"
+              ? removeHTMLTags(searchHit.unitTitle)
+              : removeHTMLTags(searchHit.title),
+          unitSlug: searchHit.buttonLinkProps.unitSlug,
+          lessonName: removeHTMLTags(searchHit.title),
+          lessonSlug:
+            searchHit.type === "lesson"
+              ? searchHit.buttonLinkProps.lessonSlug
+              : null,
+          lessonReleaseDate: searchHit.legacy ? "2020-2023" : "2023-2026",
+          lessonReleaseCohort: searchHit.legacy ? "2020-2023" : "2023-2026",
+        },
       });
     }
   };

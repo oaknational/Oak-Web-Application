@@ -30,6 +30,7 @@ import LessonOverviewVocabButton from "@/components/TeacherComponents/LessonOver
 import LessonOverviewFilesNeeded from "@/components/TeacherComponents/LessonOverviewFilesNeeded";
 import { Slugs } from "@/components/TeacherComponents/LessonItemContainer/LessonItemContainer";
 import LessonInformationBox from "@/app/(core)/teachers/programmes/[slug]/units/[unitSlug]/lessons/[lessonSlug]/Components/LessonInformationBox/LessonInformationBox";
+import TeacherTipBox from "@/app/(core)/teachers/programmes/[slug]/units/[unitSlug]/lessons/[lessonSlug]/Components/TeacherTipBox/TeacherTipBox";
 import { resolveOakHref } from "@/common-lib/urls";
 
 type LessonOverviewDetailsProps = {
@@ -160,9 +161,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
             )}
             {useIntegratedJourneyLayout && (
               <OakFlex $flexDirection={"column"} $gap={"spacing-40"}>
-                {teacherTipList && (
-                  <LessonInformationBox teacherTip={teacherTipList} />
-                )}
+                {teacherTipList && <TeacherTipBox tips={teacherTipList} />}
                 <LessonInformationBox
                   licence={{ copyrightYear: updatedAt }}
                   equipment={equipment?.filter(Boolean)}

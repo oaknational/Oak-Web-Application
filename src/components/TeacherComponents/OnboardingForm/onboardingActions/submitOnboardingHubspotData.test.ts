@@ -100,11 +100,9 @@ describe("submitHubspotData", () => {
     reportError.mockReset();
     const oakError = new OakError({ code: "hubspot/not-loaded" });
 
-    jest
-      .spyOn(hubspotForms, "hubspotSubmitForm")
-      .mockRejectedValueOnce(oakError);
+    jest.spyOn(hubspotForms, "hubspotSubmitForm").mockRejectedValue(oakError);
 
-    await submitOnboardingHubspotData({
+    const result = await submitOnboardingHubspotData({
       hutk,
       utmParams,
       data,
@@ -113,7 +111,34 @@ describe("submitHubspotData", () => {
       userEmail,
     });
 
+    expect(result).toBe(false);
     expect(reportError).toHaveBeenCalledWith(oakError);
+    expect(hubspotForms.hubspotSubmitForm).toHaveBeenCalledTimes(1);
+  });
+
+  it("reports an unknown error when the submission fails", async () => {
+    reportError.mockReset();
+    const error = new Error("network error");
+
+    jest.spyOn(hubspotForms, "hubspotSubmitForm").mockRejectedValue(error);
+
+    const result = await submitOnboardingHubspotData({
+      hutk,
+      utmParams,
+      data,
+      userSubscribed,
+      posthogDistinctId,
+      userEmail,
+    });
+
+    expect(result).toBe(false);
+    expect(reportError).toHaveBeenCalledWith(
+      new OakError({
+        code: "hubspot/unknown",
+        originalError: error,
+      }),
+    );
+    expect(hubspotForms.hubspotSubmitForm).toHaveBeenCalledTimes(1);
   });
 
   it("wraps vanilla errors in OakError", async () => {
@@ -139,12 +164,12 @@ describe("submitHubspotData", () => {
     );
   });
 
-  test("should throw and report error if failed to submit to hubspot", async () => {
+  test("returns false and reports error if both submissions fail", async () => {
     (hubspotForms.hubspotSubmitForm as jest.Mock).mockRejectedValue(
       new OakError({ code: "hubspot/unknown" }),
     );
 
-    await submitOnboardingHubspotData({
+    const result = await submitOnboardingHubspotData({
       hutk,
       utmParams,
       data,
@@ -153,6 +178,7 @@ describe("submitHubspotData", () => {
       userEmail,
     });
 
+    expect(result).toBe(false);
     expect(reportError).toHaveBeenCalled();
   });
 });

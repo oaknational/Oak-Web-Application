@@ -14,6 +14,7 @@ export const POSTHOG_AUTOCAPTURE_URL_ALLOWLIST = [
   "/about-us/.*",
   "/contact-us",
   "/campaigns/.*",
+  "/ai-plugin",
 ];
 
 export const getPosthogInitConfig = ({

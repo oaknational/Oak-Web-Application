@@ -27,8 +27,6 @@ const SearchDropdown: FC<
     isToggleOpen: boolean;
     isHovered: boolean;
     label: string;
-    isExamBoardDropdown?: boolean;
-    isTierDropdown?: boolean;
     dropdownContent: PathwaySchemaCamel[];
   }
 > = (props) => {
@@ -89,7 +87,6 @@ const SearchDropdown: FC<
                   $textAlign="left"
                 >
                   <StyledOakLink
-                    {...props.buttonLinkProps}
                     onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                       onClick?.({ ...props, isToggleOpen });
                       e.stopPropagation();

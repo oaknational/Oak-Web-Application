@@ -92,6 +92,28 @@ describe("hubspotSubmitForm", () => {
     jest.clearAllMocks();
   });
   describe("succeeds", () => {
+    it("uses a per-form portal override without changing the global destination", async () => {
+      const overrideEndpoint = `https://hubspot-forms.thenational.academy/submissions/v3/integration/submit/campaign-portal/${hubspotFormId}`;
+      global.fetch = getFakeFetch([
+        buildMatcher(overrideEndpoint, {
+          status: 200,
+          inlineMessage: "Campaign received",
+        }),
+        primaryFormSuccess,
+      ]).asFetch;
+
+      await expect(
+        hubspotSubmitForm({
+          hubspotFormId,
+          hubspotPortalId: "campaign-portal",
+          payload,
+        }),
+      ).resolves.toBe("Campaign received");
+      await expect(hubspotSubmitForm({ hubspotFormId, payload })).resolves.toBe(
+        "Thanks that worked the first time",
+      );
+    });
+
     it("should fetch the correct url with the correct payload", async () => {
       global.fetch = getFakeFetch(primaryFormSuccess).asFetch;
 
@@ -209,8 +231,56 @@ describe("hubspotSubmitForm", () => {
             isFallbackAttempt: true,
           },
           responseBody: hubspotErrorData,
+          responseStatusCode: 400,
         },
       );
+    });
+
+    it("retries a transient fallback failure without resubmitting the primary form", async () => {
+      const primaryResponse = await invalidEmailFailure.response;
+      const fallbackResponse = await fallbackFormSuccess.response;
+      const fetchMock = jest
+        .fn()
+        .mockResolvedValueOnce(primaryResponse)
+        .mockRejectedValueOnce(new Error("temporary fallback network error"))
+        .mockResolvedValueOnce(fallbackResponse);
+      global.fetch = fetchMock as unknown as typeof fetch;
+
+      await expect(
+        hubspotSubmitForm({ hubspotFormId, payload }),
+      ).rejects.toThrow(
+        "Thank you, that's been received, but please check as your email doesn't look quite right.",
+      );
+
+      expect(fetchMock).toHaveBeenCalledTimes(3);
+      expect(fetchMock.mock.calls.map(([url]) => url)).toEqual([
+        primaryFormEndpoint,
+        fallbackFormEndpoint,
+        fallbackFormEndpoint,
+      ]);
+      expect(reportError).not.toHaveBeenCalled();
+    });
+
+    it("does not retry the primary form after reporting an exhausted fallback", async () => {
+      const primaryResponse = await invalidEmailFailure.response;
+      const fetchMock = jest
+        .fn()
+        .mockResolvedValueOnce(primaryResponse)
+        .mockRejectedValueOnce(new Error("temporary fallback network error"))
+        .mockRejectedValueOnce(new Error("fallback network unavailable"));
+      global.fetch = fetchMock as unknown as typeof fetch;
+
+      await expect(
+        hubspotSubmitForm({ hubspotFormId, payload }),
+      ).rejects.toThrow("Failed to connect.");
+
+      expect(fetchMock).toHaveBeenCalledTimes(3);
+      expect(fetchMock.mock.calls.map(([url]) => url)).toEqual([
+        primaryFormEndpoint,
+        fallbackFormEndpoint,
+        fallbackFormEndpoint,
+      ]);
+      expect(reportError).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -264,8 +334,10 @@ describe("hubspotSubmitForm", () => {
           hubspotError: hubspotErrorData,
           responseBody: hubspotErrorData,
           isInvalidEmail: false,
+          responseStatusCode: 400,
         },
       );
+      expect(fakeFetch.asMock).toHaveBeenCalledTimes(1);
     });
     it("should throw with the correct error message", async () => {
       global.fetch = getFakeFetch([inputTooLargeFailure]).asFetch;
@@ -333,8 +405,25 @@ describe("hubspotSubmitForm", () => {
   });
 
   describe("Network error", () => {
+    test("retries once and does not report a recovered network error", async () => {
+      const successResponse = await primaryFormSuccess.response;
+      const fetchMock = jest
+        .fn()
+        .mockRejectedValueOnce(new Error("temporary network error"))
+        .mockResolvedValueOnce(successResponse);
+      global.fetch = fetchMock as unknown as typeof fetch;
+
+      await expect(hubspotSubmitForm({ hubspotFormId, payload })).resolves.toBe(
+        "Thanks that worked the first time",
+      );
+
+      expect(fetchMock).toHaveBeenCalledTimes(2);
+      expect(reportError).not.toHaveBeenCalled();
+    });
+
     test("user is displayed correct message", async () => {
-      global.fetch = getFakeFetchWithNetworkError().asFetch;
+      const fakeFetch = getFakeFetchWithNetworkError();
+      global.fetch = fakeFetch.asFetch;
       let errorMessage = "";
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });
@@ -344,6 +433,8 @@ describe("hubspotSubmitForm", () => {
         errorMessage = error.message;
       }
       expect(errorMessage).toBe("Failed to connect.");
+      expect(fakeFetch.asMock).toHaveBeenCalledTimes(2);
+      expect(reportError).toHaveBeenCalledTimes(1);
     });
   });
 });

@@ -12,6 +12,7 @@ const mockTopNavProps = topNavFixture.teachers!;
 const render = renderWithProviders();
 
 const mockProgrammeRefined = jest.fn();
+const mockTeachWithOakAccessed = jest.fn();
 const mockPush = jest.fn();
 
 jest.mock("next/navigation", () => ({
@@ -24,6 +25,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   default: () => ({
     track: {
       programmeRefined: (...args: []) => mockProgrammeRefined(...args),
+      teachWithOakAccessed: (...args: []) => mockTeachWithOakAccessed(...args),
     },
   }),
 }));
@@ -278,6 +280,50 @@ describe("TeachersTopNavHamburger", () => {
         filterValue: "secondary",
       }),
     );
+  });
+
+  it("should track teach with oak accessed", async () => {
+    const { getByTestId, getByRole } = render(
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
+    );
+    const user = userEvent.setup();
+    const button = getByTestId("top-nav-hamburger-button");
+    await user.click(button);
+
+    const guidanceSubjectsButton = getByRole("button", {
+      name: "Guidance",
+    });
+    await user.click(guidanceSubjectsButton);
+
+    const teachWithOakLink = getByRole("link", { name: "Teach with Oak" });
+    teachWithOakLink.addEventListener("click", (e) => e.preventDefault());
+    await user.click(teachWithOakLink);
+
+    expect(mockTeachWithOakAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        componentType: "topnav-browse-button",
+      }),
+    );
+  });
+
+  it("does not track teach with oak accessed when clicking other links", async () => {
+    const { getByTestId, getByRole } = render(
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
+    );
+    const user = userEvent.setup();
+    const button = getByTestId("top-nav-hamburger-button");
+    await user.click(button);
+
+    const guidanceSubjectsButton = getByRole("button", {
+      name: "Guidance",
+    });
+    await user.click(guidanceSubjectsButton);
+
+    const blogsLink = getByRole("link", { name: "Blogs" });
+    blogsLink.addEventListener("click", (e) => e.preventDefault());
+    await user.click(blogsLink);
+
+    expect(mockTeachWithOakAccessed).not.toHaveBeenCalled();
   });
 
   it("should show EYFS with full accessible label in primary key stages list and back button", async () => {

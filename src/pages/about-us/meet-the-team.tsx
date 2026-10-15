@@ -24,7 +24,7 @@ import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout
 import { MeetTheTeamContainer } from "@/components/GenericPagesComponents/MeetTheTeamContainer";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
-import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
+import { formatBytes } from "@/utils/formatBytes";
 import MeetTheTeamNav from "@/components/GenericPagesComponents/MeetTheTeamNav";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
@@ -167,9 +167,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                     anchor="documents"
                   >
                     {documents2.files.map((doc) => {
-                      const fileSize = convertBytesToMegabytes(
-                        doc.file.asset.size,
-                      );
+                      const fileSize = formatBytes(doc.file.asset.size);
                       return (
                         <OakCard
                           as="li"

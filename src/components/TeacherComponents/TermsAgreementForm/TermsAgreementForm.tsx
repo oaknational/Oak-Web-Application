@@ -14,6 +14,7 @@ import {
   OakLink,
   OakTextInput,
   OakJauntyAngleLabel,
+  parseSpacing,
 } from "@oaknational/oak-components";
 
 import FieldError from "@/components/SharedComponents/FieldError";
@@ -26,6 +27,7 @@ import {
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { resolveOakHref } from "@/common-lib/urls";
+import { NEWSLETTER_COUNT } from "@/components/GenericPagesComponents/NewsletterForm/newsletterConstants";
 
 export type TermsAgreementFormProps = {
   form: {
@@ -147,8 +149,8 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                   }
                   $zIndex="in-front"
                   $position="absolute"
-                  $top={"-20px"}
-                  $left={"5px"}
+                  $left={"spacing-4"}
+                  style={{ top: `-${parseSpacing("spacing-20")}` }}
                   $borderRadius="border-radius-square"
                   data-testid="jaunty-label"
                 />
@@ -160,7 +162,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                   placeholder="Enter email address here"
                   onFocus={() => setEmailHasFocus(true)}
                   onBlur={(e) => {
-                    emailProps.onBlur(e);
+                    void emailProps.onBlur(e);
                     setEmailHasFocus(false);
                   }}
                   {...getEmailFieldErrorAriaProps(hasEmailError)}
@@ -174,9 +176,9 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                 $mb={"spacing-48"}
                 data-testid="newsletter-policy"
               >
-                Join over 200k teachers and get free resources and other helpful
-                content by email. Oak is free, and always will be. Unsubscribe
-                at any time. Read our{" "}
+                Join over {NEWSLETTER_COUNT} teachers and get free resources and
+                other helpful content by email. Oak is free, and always will be.
+                Unsubscribe at any time. Read our{" "}
                 <OakLink
                   href={resolveOakHref({
                     page: "legal",
@@ -199,7 +201,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                     e: ChangeEvent<HTMLInputElement>,
                   ) => {
                     onChange(e.target.checked);
-                    form.trigger();
+                    void form.trigger();
                   };
                   return (
                     <ResourcePageTermsAndConditionsCheckbox

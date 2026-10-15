@@ -1,6 +1,5 @@
 "use client";
 
-import prettyBytes from "pretty-bytes";
 import {
   OakBox,
   OakResourceCard,
@@ -42,10 +41,11 @@ import { DelayedLoadingSpinner } from "@/components/TeacherComponents/SharePageL
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { doUnitsHaveNc, flatUnitsFromYearData } from "@/utils/curriculum/units";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
+import useCurriculumDownload from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useCurriculumDownload";
 import downloadDebouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
 import { ImplementationGuides } from "@/common-lib/cms-types";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { formatBytes } from "@/utils/formatBytes";
 
 export type ProgrammeDownloadsProps = {
   mvRefreshTime: number;
@@ -53,7 +53,6 @@ export type ProgrammeDownloadsProps = {
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   implementationGuides: ImplementationGuides | null;
-  featureFlags: Record<string, boolean>;
   fileSizes?: {
     downloadId: string;
     size: number;
@@ -68,7 +67,6 @@ export const ProgrammeDownloads = ({
   curriculumSelectionSlugs,
   mvRefreshTime,
   implementationGuides,
-  featureFlags,
   fileSizes,
 }: ProgrammeDownloadsProps) => {
   const { curriculumResourcesDownloadRefined, curriculumResourcesDownloaded } =
@@ -88,13 +86,10 @@ export const ProgrammeDownloads = ({
         return true;
       }
       if (group === "implementation-guide") {
-        return (
-          implementationGuides?.[id as keyof ImplementationGuides] &&
-          featureFlags["implementation-guides"]
-        );
+        return implementationGuides?.[id as keyof ImplementationGuides];
       }
     }).map(({ id }) => id);
-  }, [curriculumUnitsFormattedData, implementationGuides, featureFlags]);
+  }, [curriculumUnitsFormattedData, implementationGuides]);
 
   const curriculumDownloadsWithLabels = DOWNLOAD_TYPE_LABELS.filter(
     ({ id, group }) => {
@@ -207,7 +202,7 @@ export const ProgrammeDownloads = ({
     curriculumResourcesDownloadRefined({ tierSlug, childSubjectSlug });
   };
 
-  const { onSubmit } = useResourceFormSubmit();
+  const { onSubmit } = useCurriculumDownload();
 
   const onFormSubmit = async (data: ResourceFormValues): Promise<void> => {
     setSubmitError(undefined);
@@ -218,7 +213,6 @@ export const ProgrammeDownloads = ({
         setIsAttemptingDownload: setIsSubmitting,
         setEditDetailsClicked,
         onSubmit,
-        type: "curriculum",
         mvRefreshTime,
         slugs: curriculumSelectionSlugs,
         tierSlug: tierSelected,
@@ -323,7 +317,7 @@ export const ProgrammeDownloads = ({
               </OakTertiaryInvertedButton>
             )}
             <OakHeading tag="h2" $font={"heading-4"}>
-              Download curriculum resources
+              Downloads
             </OakHeading>
             {isLoading ? (
               <OakBox $minHeight="spacing-480">
@@ -351,13 +345,14 @@ export const ProgrammeDownloads = ({
                 triggerForm={form.trigger}
                 validationSummaryKey={form.submitCount}
                 apiError={submitError}
+                initialOpen={true}
                 cardGroup={
                   <OakFlex $gap={"spacing-32"} $flexDirection={"column"}>
                     {curriculumDownloadsWithLabels.length > 0 && (
                       <OakFlex $gap={"spacing-16"} $flexDirection={["column"]}>
-                        {featureFlags["implementation-guides"] && (
-                          <OakFlex $gap="spacing-8">Curriculum</OakFlex>
-                        )}
+                        <OakFlex $gap="spacing-8">
+                          Explore the curriculum
+                        </OakFlex>
                         <OakFlex
                           $gap={"spacing-16"}
                           $flexDirection={["column", "column", "row"]}
@@ -389,9 +384,7 @@ export const ProgrammeDownloads = ({
                                       checked={fieldValue.includes(download.id)}
                                       fileSize={
                                         fileSize
-                                          ? prettyBytes(
-                                              fileSize.size,
-                                            ).toUpperCase()
+                                          ? formatBytes(fileSize.size)
                                           : "—"
                                       }
                                       description={download.fileExt}
@@ -414,7 +407,7 @@ export const ProgrammeDownloads = ({
                     {implementationGuideDownloadsWithLabels.length > 0 && (
                       <OakFlex $gap={"spacing-16"} $flexDirection="column">
                         <OakFlex $gap="spacing-8" $alignItems="center">
-                          Implementation toolkit
+                          Explore our implementation guides
                           <OakPromoTag />
                         </OakFlex>
                         <OakGrid $rg={"spacing-16"} $cg={"spacing-16"}>
@@ -451,9 +444,7 @@ export const ProgrammeDownloads = ({
                                         )}
                                         fileSize={
                                           fileSize
-                                            ? prettyBytes(
-                                                fileSize,
-                                              ).toUpperCase()
+                                            ? formatBytes(fileSize)
                                             : undefined
                                         }
                                         description={download.fileExt}

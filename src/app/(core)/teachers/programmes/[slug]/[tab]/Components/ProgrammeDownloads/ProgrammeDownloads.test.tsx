@@ -66,14 +66,6 @@ jest.mock("./useHubspotCurriculumDownloads", () => ({
 }));
 
 jest.mock(
-  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit",
-  () => ({
-    __esModule: true,
-    default: () => ({ onSubmit: jest.fn() }),
-  }),
-);
-
-jest.mock(
   "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads",
   () => ({
     __esModule: true,
@@ -156,7 +148,6 @@ const defaultProps = {
     nonCurriculum: false,
   },
   implementationGuides: {},
-  featureFlags: {},
 };
 const renderComponent = (overrides: Partial<ProgrammeDownloadsProps>) => {
   return renderWithProviders()(
@@ -206,8 +197,8 @@ describe("Programme Downloads", () => {
   });
 
   describe("implementation guides", () => {
-    test("should show implementation guides when they are available (and enabled)", async () => {
-      const { findByRole, findAllByRole } = renderComponent({
+    test("should show implementation guides when they are available", async () => {
+      const { findAllByRole } = renderComponent({
         curriculumDownloadsTabData: {
           ...defaultProps.curriculumDownloadsTabData,
         },
@@ -220,17 +211,7 @@ describe("Programme Downloads", () => {
             },
           },
         },
-        featureFlags: {
-          "implementation-guides": true,
-        },
       });
-
-      const buttonEl = await findByRole("button", {
-        name: /All resources selected/,
-      });
-      const user = userEvent.setup();
-
-      await user.click(buttonEl);
 
       const region = (await findAllByRole("region"))[1]!;
 
@@ -241,7 +222,7 @@ describe("Programme Downloads", () => {
   });
 
   test("should show file sizes", async () => {
-    const { findByRole, findAllByRole } = renderComponent({
+    const { findAllByRole } = renderComponent({
       curriculumDownloadsTabData: {
         ...defaultProps.curriculumDownloadsTabData,
       },
@@ -249,7 +230,7 @@ describe("Programme Downloads", () => {
         curriculumQuality: {
           asset: {
             extension: "pdf",
-            size: 1000,
+            size: 1024,
             url: "https://example.com/whats-included.pdf",
           },
         },
@@ -257,22 +238,12 @@ describe("Programme Downloads", () => {
       fileSizes: [
         {
           downloadId: "curriculumPlan",
-          size: 2000,
+          size: 2048,
           tier: null,
           childSubject: null,
         },
       ],
-      featureFlags: {
-        "implementation-guides": true,
-      },
     });
-
-    const buttonEl = await findByRole("button", {
-      name: /All resources selected/,
-    });
-    const user = userEvent.setup();
-
-    await user.click(buttonEl);
 
     const region = (await findAllByRole("region"))[1]!;
 

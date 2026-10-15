@@ -105,7 +105,7 @@ describe("<SearchResults />", () => {
 
     const searchElement = getAllByTestId("search-list-item");
 
-    expect(searchElement.length).toEqual(4);
+    expect(searchElement).toHaveLength(4);
   });
 
   test("it renders pagination if there are more results than 20 results", () => {

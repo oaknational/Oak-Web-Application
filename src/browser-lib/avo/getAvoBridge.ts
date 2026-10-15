@@ -21,6 +21,11 @@ type AnalyticsServices = {
  */
 const SEND_INSTANTLY_EVENTS: ReadonlySet<string> = new Set<string>([
   "User Onboarding Completed",
+  "Teach With Oak Accessed",
+  "Lesson Accessed",
+  "Unit Accessed",
+  "Programme Accessed",
+  "Search Result Opened",
 ]);
 /**
  * getAvoBridge returns the bridge between Avo and our analytics services.
@@ -46,7 +51,7 @@ const getAvoBridge = ({ posthog }: AnalyticsServices) => {
       const error = new Error(
         "Could not track event. Event properties not an object",
       );
-      reportError(error, {
+      void reportError(error, {
         severity: "warning",
         eventName,
         eventProperties,

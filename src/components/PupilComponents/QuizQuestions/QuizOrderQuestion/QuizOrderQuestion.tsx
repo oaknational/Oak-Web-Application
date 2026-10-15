@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from "react";
-import { isArray } from "lodash";
 import {
   OakCodeRenderer,
   OakDraggableFeedback,
@@ -105,7 +104,7 @@ export const QuizOrderQuestion = ({
 
   if (questionState.feedback) {
     invariant(
-      isArray(questionState.feedback),
+      Array.isArray(questionState.feedback),
       "question feedback is not an array",
     );
 

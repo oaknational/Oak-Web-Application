@@ -1,20 +1,25 @@
 import React from "react";
 import { StoryFn, Meta } from "@storybook/nextjs";
 
-import Component from "./LayoutSiteFooter";
+import { LayoutSiteFooterInner } from "./LayoutSiteFooter";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 import CookieConsentDecorator from "@/storybook-decorators/CookieConsentDecorator";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 export default {
-  decorators: [CookieConsentDecorator, AnalyticsDecorator],
-  component: Component,
+  decorators: [
+    CookieConsentDecorator,
+    AnalyticsDecorator,
+    TeacherBrowseAnalyticsDecorator,
+  ],
+  component: LayoutSiteFooterInner,
   argTypes: {},
-} as Meta<typeof Component>;
+} as Meta<typeof LayoutSiteFooterInner>;
 
-const Template: StoryFn<typeof Component> = (args) => (
+const Template: StoryFn<typeof LayoutSiteFooterInner> = (args) => (
   <div style={{ background: "lightGrey", padding: "100px" }}>
-    <Component {...args} />
+    <LayoutSiteFooterInner {...args} />
   </div>
 );
 

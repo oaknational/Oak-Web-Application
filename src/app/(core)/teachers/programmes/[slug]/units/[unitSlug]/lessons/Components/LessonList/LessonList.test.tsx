@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react";
 import type { ComponentProps } from "react";
+import userEvent from "@testing-library/user-event";
 
 import LessonList from "./LessonList";
 
@@ -68,7 +69,20 @@ const defaultProps: LessonListProps = {
   lessons: fixtureData.lessons,
 };
 
+const mockLessonAccessed = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      lessonAccessed: (...args: unknown[]) => mockLessonAccessed(...args),
+    },
+  }),
+}));
+
 describe("LessonList", () => {
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
   it("renders unit and lesson summary content", () => {
     render(<LessonList {...defaultProps} />);
 
@@ -144,5 +158,21 @@ describe("LessonList", () => {
     render(<LessonList {...defaultProps} selectedLessonIndex={1} />);
 
     expect(screen.queryByText("Current lesson")).toBeInTheDocument();
+  });
+
+  it("calls lessonAccessed when a lesson is clicked", async () => {
+    render(<LessonList {...defaultProps} />);
+    const firstLessonLink = screen.getByRole("link", {
+      name: /Introduction to cells/i,
+    });
+
+    firstLessonLink.addEventListener("click", (e) => e.preventDefault());
+
+    const user = userEvent.setup();
+    await user.click(firstLessonLink);
+
+    expect(mockLessonAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({ lessonName: "Introduction to cells" }),
+    );
   });
 });

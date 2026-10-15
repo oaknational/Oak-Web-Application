@@ -10,6 +10,7 @@ jest.mock("next/navigation", () => ({
   notFound: () => {
     throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
   },
+  unstable_rethrow: jest.fn(),
 }));
 
 const mockTeachersUnitOverview = jest.fn();
@@ -20,6 +21,15 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
       mockTeachersUnitOverview(...args),
   },
 }));
+
+const mockGetUnitDownloadFileExistence = jest.fn();
+jest.mock(
+  "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
+  () => ({
+    getUnitDownloadFileExistence: (...args: unknown[]) =>
+      mockGetUnitDownloadFileExistence(...args),
+  }),
+);
 
 const unitFixture = {
   ...teachersUnitOverviewFixture(),
@@ -43,6 +53,10 @@ const defaultParams = {
 describe("LessonDownloadsSuccessPage", () => {
   beforeEach(() => {
     mockTeachersUnitOverview.mockResolvedValue(unitFixture);
+    mockGetUnitDownloadFileExistence.mockResolvedValue({
+      exists: true,
+      fileSize: "1.2MB",
+    });
   });
 
   it("fetches unit data and renders success confirmation", async () => {

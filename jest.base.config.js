@@ -22,18 +22,21 @@ module.exports = {
   // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
   moduleDirectories: ["node_modules", "<rootDir>/", "src"],
   // Add more setup options before each test is run
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.js", "jest-fetch-mock/setup"],
   testEnvironment: "jest-environment-jsdom",
   testPathIgnorePatterns: [
-    "(\\.|/)(fixtures?)\\.[jt]sx?$",
+    String.raw`(\.|/)(fixtures?)\.[jt]sx?$`,
     "src/__tests__/__helpers__/*",
-    "src/tests/e2e/",
+    "src/__tests__/e2e/",
+    "src/__tests__/visual/",
     ".storybook/storybook.*.test.js$",
-    ".netlify/*",
     ".yalc/*",
   ],
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
+    "^styled-jsx/style$": require.resolve("styled-jsx/style", {
+      paths: [require.resolve("next/package.json")],
+    }),
     // Force module uuid to resolve with the CJS entry point, because Jest does not support package.json.exports. See https://github.com/uuidjs/uuid/issues/451
     "^uuid$": require.resolve("uuid"),
     "^@oaknational/oak-components$": require.resolve(

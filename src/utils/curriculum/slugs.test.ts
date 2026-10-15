@@ -136,7 +136,7 @@ describe("parseSubjectPhaseSlug", () => {
   it("should reject an invalid slug", () => {
     const slug = "not_a_valid_slug";
     const parsed = parseSubjectPhaseSlug(slug);
-    expect(parsed).toEqual(undefined);
+    expect(parsed).toBeUndefined();
   });
 });
 
@@ -302,7 +302,7 @@ describe("getKs4RedirectSlug", () => {
         phaseSlug: "secondary",
         ks4OptionSlug: "aqa",
       }),
-    ).toEqual(undefined);
+    ).toBeUndefined();
   });
 
   it("return undefined if no match", () => {
@@ -312,7 +312,7 @@ describe("getKs4RedirectSlug", () => {
         phaseSlug: "secondary",
         ks4OptionSlug: null,
       }),
-    ).toEqual(undefined);
+    ).toBeUndefined();
   });
 
   it("return correct default when specified", () => {
@@ -403,8 +403,8 @@ describe("createTeacherProgrammeSlug", () => {
   });
   test("unit data with exam board and tier returns the correct programme slug", () => {
     const unitData = createUnit({
-      examboard: "aqa",
-      tier: "foundation",
+      examboard_slug: "aqa",
+      tier_slug: "foundation",
       year: "10",
     });
     expect(createTeacherProgrammeSlug(unitData, "aqa", "foundation")).toEqual(

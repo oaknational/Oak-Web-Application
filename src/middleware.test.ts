@@ -1,6 +1,6 @@
 import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
 
-import middleware from "./middleware";
+import middleware, { config } from "./middleware";
 
 const mockClerkHandler = jest.fn(() => NextResponse.next());
 const mockClerkMiddleware = jest.fn(() => mockClerkHandler);
@@ -28,31 +28,6 @@ describe("middleware", () => {
     jest.clearAllMocks();
   });
 
-  it("routes the downloads/success page through experimentMiddleware", async () => {
-    const req = buildRequest(
-      "/teachers/programmes/maths/units/algebra/lessons/solving-equations/downloads/success",
-    );
-
-    await middleware(req, mockEvent);
-
-    expect(mockExperimentMiddleware).toHaveBeenCalledWith({
-      request: req,
-      featureFlag: "download-success-header-compact",
-    });
-    expect(mockClerkMiddleware).not.toHaveBeenCalled();
-  });
-
-  it("does not route the variant page itself back through experimentMiddleware", async () => {
-    const req = buildRequest(
-      "/teachers/programmes/maths/units/algebra/lessons/solving-equations/downloads/success/variant",
-    );
-
-    await middleware(req, mockEvent);
-
-    expect(mockExperimentMiddleware).not.toHaveBeenCalled();
-    expect(mockClerkMiddleware).toHaveBeenCalled();
-  });
-
   it("falls back to clerkMiddleware for other routes", async () => {
     const req = buildRequest("/api/some-route");
 
@@ -62,4 +37,13 @@ describe("middleware", () => {
     expect(mockClerkMiddleware).toHaveBeenCalled();
     expect(mockClerkHandler).toHaveBeenCalledWith(req, mockEvent);
   });
+
+  it.each(["__clerk_handshake", "__clerk_handshake_nonce"])(
+    "matches any page carrying a %s param so the handshake can be resolved",
+    (key) => {
+      expect(config.matcher).toContainEqual(
+        expect.objectContaining({ has: [{ type: "query", key }] }),
+      );
+    },
+  );
 });

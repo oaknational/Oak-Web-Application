@@ -24,8 +24,13 @@ describe("/.well-known/api-catalog", () => {
       expect(typeof entry.anchor).toBe("string");
       expect(entry.anchor).toMatch(/^https:\/\//);
 
-      // Each documented relation is an array of { href, ... } link objects.
+      // RFC 9727 doesn't require every relation on every entry — an entry
+      // with no machine-readable schema or health check omits
+      // `service-desc` / `status` rather than inventing one. Whichever
+      // relations an entry declares are arrays of { href, ... } link
+      // objects.
       for (const relation of ["service-desc", "service-doc", "status"]) {
+        if (!(relation in entry)) continue;
         expect(Array.isArray(entry[relation])).toBe(true);
         for (const link of entry[relation]) {
           expect(link.href).toMatch(/^https:\/\//);
@@ -53,5 +58,23 @@ describe("/.well-known/api-catalog", () => {
     expect(openApi.status[0].href).toBe(
       "https://open-api.thenational.academy/api/health",
     );
+  });
+
+  it("advertises the Oak Curriculum MCP server with its landing page and health check", async () => {
+    const response = GET();
+    const body = await response.json();
+
+    const mcp = body.linkset.find(
+      (entry: { anchor: string }) =>
+        entry.anchor === "https://mcp.thenational.academy/mcp",
+    );
+
+    expect(mcp).toBeDefined();
+    expect(mcp["service-doc"][0].href).toBe(
+      "https://www.thenational.academy/ai-plugin",
+    );
+    expect(mcp.status[0].href).toBe("https://mcp.thenational.academy/healthz");
+    // No OpenAPI-style schema document exists for the MCP server.
+    expect(mcp["service-desc"]).toBeUndefined();
   });
 });
