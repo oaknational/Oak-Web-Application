@@ -43,4 +43,22 @@ describe("TopBanner", () => {
     );
     expect(link).toHaveAttribute("title", "Explore our impact");
   });
+
+  it("should not render the cta if ctaText is not provided", () => {
+    const { queryByRole } = renderWithProviders()(
+      <TopBanner topBanner={{ ...topBannerFixture, ctaText: undefined }} />,
+    );
+
+    const link = queryByRole("link");
+    expect(link).not.toBeInTheDocument();
+  });
+
+  it("should not render the cta if ctaLink is not provided", () => {
+    const { queryByRole } = renderWithProviders()(
+      <TopBanner topBanner={{ ...topBannerFixture, ctaLink: undefined }} />,
+    );
+
+    const link = queryByRole("link");
+    expect(link).not.toBeInTheDocument();
+  });
 });
