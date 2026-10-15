@@ -10,7 +10,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useId, useRef } from "react";
 
 import type { Ks4OptionFilterDimension } from "../../../buildKs4OptionFilterDimensions";
-import { useGetKs4OptionFocusNavigationQuery } from "../KS4OptionFocus/KS4OptionFocusScope";
+import { useKS4OptionFocusScopeVariant } from "../KS4OptionFocus/KS4OptionFocusScope";
+import { useProgrammeNavigation } from "../../../../../ProgrammeNavigationProvider";
 
 import {
   getPreservedQuery,
@@ -46,8 +47,8 @@ export function ProgrammeFiltersKs4Options({
   const { programmeRefined } = useTeacherBrowseAnalytics(
     (store) => store.track,
   );
-  const getKs4OptionFocusNavigationQuery =
-    useGetKs4OptionFocusNavigationQuery();
+  const { setNavigationIntent } = useProgrammeNavigation();
+  const scope = useKS4OptionFocusScopeVariant();
   const { pathwayOptions, examBoardOptions } = partitionKs4Options(ks4Options);
   const showPathway = shouldDisplayPathwayFilter(slugs, filters, ks4Options);
   const showExamBoard = shouldDisplayExamBoardFilter(
@@ -60,7 +61,7 @@ export function ProgrammeFiltersKs4Options({
     return null;
   }
 
-  function buildKs4OptionHref(selectedSlug: string, restoreFocus = true) {
+  function buildKs4OptionHref(selectedSlug: string) {
     const subjectPhaseSlug = getSubjectPhaseSlugForKs4Option(
       slugs,
       selectedSlug,
@@ -70,10 +71,11 @@ export function ProgrammeFiltersKs4Options({
       page: "teacher-programme",
       subjectPhaseSlug,
       tab: "units",
-      query: {
-        ...getPreservedQuery(filters, selectedSlug, ks4OptionFilterDimensions),
-        ...getKs4OptionFocusNavigationQuery(selectedSlug, restoreFocus),
-      },
+      query: getPreservedQuery(
+        filters,
+        selectedSlug,
+        ks4OptionFilterDimensions,
+      ),
     });
   }
 
@@ -88,7 +90,12 @@ export function ProgrammeFiltersKs4Options({
       filterType,
       filterValue: selectedSlug,
     });
-    const url = buildKs4OptionHref(selectedSlug, restoreFocus);
+    const url = buildKs4OptionHref(selectedSlug);
+    setNavigationIntent({
+      destination: { ...slugs, ks4OptionSlug: selectedSlug },
+      restoreFocus,
+      reopenFiltersModal: scope === "modal",
+    });
     router.replace(url, { scroll: false });
   }
 

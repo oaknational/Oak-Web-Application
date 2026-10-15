@@ -22,12 +22,22 @@ import { BrowseFilters } from "@/context/BrowseFilters/types";
 import { createFilter } from "@/context/BrowseFilters/utils/fixtures";
 
 const mockReplace = jest.fn();
+const mockPrefetch = jest.fn();
+const mockSetNavigationIntent = jest.fn();
+const mockConsumeNavigationIntent = jest.fn(() => null);
+
+jest.mock("../../../../../ProgrammeNavigationProvider", () => ({
+  useProgrammeNavigation: () => ({
+    setNavigationIntent: mockSetNavigationIntent,
+    consumeNavigationIntent: mockConsumeNavigationIntent,
+  }),
+}));
 
 jest.mock("next/navigation", () => ({
   __esModule: true,
   useRouter: () => ({
     replace: mockReplace,
-    prefetch: jest.fn(),
+    prefetch: mockPrefetch,
   }),
   useSearchParams: () => new URLSearchParams(""),
   usePathname: () => "/teachers/programmes/english-secondary-ocr/units",
@@ -377,6 +387,8 @@ describe("getPreservedQuery", () => {
 describe("ProgrammeFiltersKs4Options", () => {
   beforeEach(() => {
     mockReplace.mockClear();
+    mockPrefetch.mockClear();
+    mockSetNavigationIntent.mockClear();
   });
   it("renders pathway options with GCSE before Core for citizenship", () => {
     const { getAllByRole } = renderKs4Options(
@@ -498,11 +510,15 @@ describe("ProgrammeFiltersKs4Options", () => {
           query: {
             keystages: "ks4",
             years: "10",
-            focus_ks4option: interaction === "keyboard" ? "edexcel" : undefined,
           },
         }),
         { scroll: false },
       );
+      expect(mockSetNavigationIntent).toHaveBeenCalledWith({
+        destination: { ...defaultSlugs, ks4OptionSlug: "edexcel" },
+        restoreFocus: interaction === "keyboard",
+        reopenFiltersModal: false,
+      });
     },
   );
 
@@ -571,7 +587,7 @@ describe("ProgrammeFiltersKs4Options", () => {
       const { getAllByRole } = renderKs4Options(
         defaultFilters,
         <ProgrammePageFiltersModalProvider>
-          <KS4OptionFocusProvider>
+          <KS4OptionFocusProvider slugs={defaultSlugs}>
             <KS4OptionFocusScope variant="modal">
               <ProgrammeFiltersKs4Options
                 slugs={defaultSlugs}
@@ -600,11 +616,29 @@ describe("ProgrammeFiltersKs4Options", () => {
           query: {
             keystages: "ks4",
             years: "10",
-            focus_ks4option: keyboard ? "edexcel" : undefined,
-            open_filters_modal: "1",
           },
         }),
         { scroll: false },
+      );
+      expect(mockSetNavigationIntent).toHaveBeenCalledWith({
+        destination: { ...defaultSlugs, ks4OptionSlug: "edexcel" },
+        restoreFocus: keyboard,
+        reopenFiltersModal: true,
+      });
+      const prefetchedUrls = new Set(
+        mockPrefetch.mock.calls.map(([url]) => url),
+      );
+      expect(prefetchedUrls).toEqual(
+        new Set(
+          ["edexcel", "ocr"].map((slug) =>
+            resolveOakHref({
+              page: "teacher-programme",
+              subjectPhaseSlug: `english-secondary-${slug}`,
+              tab: "units",
+              query: { keystages: "ks4", years: "10" },
+            }),
+          ),
+        ),
       );
     },
   );
