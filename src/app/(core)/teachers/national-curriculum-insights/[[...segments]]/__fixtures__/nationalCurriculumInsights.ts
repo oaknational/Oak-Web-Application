@@ -90,6 +90,7 @@ const createPage = ({
 }): NationalCurriculumInsightsPage => ({
   id: `nationalCurriculumInsightsPage-${subjectSlug}-${pageType}`,
   pageType,
+  downloadLayout: "keyStages",
   title: `${subjectTitle} ${pageType} page`,
   summary: `Independent ${pageType} content for ${subjectTitle}.`,
   modules: pageModules(pageType, subjectTitle),

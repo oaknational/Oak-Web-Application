@@ -434,7 +434,11 @@ const nationalCurriculumInsightsKeyStagePageReferenceSchema = z
 export const nationalCurriculumInsightsPageSchema = z
   .object({
     pageType: nationalCurriculumInsightsPhaseSchema,
+    downloadLayout: z.enum(["phase", "keyStages", "singleKeyStage"]).nullish(),
     keyStages: z.array(nationalCurriculumInsightsKeyStagePageReferenceSchema),
+    expectedKeyStages: z
+      .array(nationalCurriculumInsightsKeyStageSchema)
+      .nullish(),
     ...nationalCurriculumInsightsPageContentSchema.shape,
     ...documentSchema.shape,
   })
