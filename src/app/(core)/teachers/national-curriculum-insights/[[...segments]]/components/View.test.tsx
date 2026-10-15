@@ -139,7 +139,6 @@ describe("NationalCurriculumInsightsView", () => {
         {
           keyStage: "KS1",
           heading: "Changes to science in key stage 1",
-          linkLabel: "Read insights",
         },
       ],
     });

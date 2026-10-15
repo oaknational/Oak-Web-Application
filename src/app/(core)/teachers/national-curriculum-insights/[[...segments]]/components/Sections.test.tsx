@@ -775,12 +775,10 @@ describe("National Curriculum Insights sections", () => {
             {
               keyStage: "KS1",
               heading: "Key stage 1 science",
-              linkLabel: "Explore key stage 1",
             },
             {
               keyStage: "KS4",
               heading: "Key stage 4 science",
-              linkLabel: "Explore key stage 4",
             },
           ],
         })}
@@ -827,7 +825,6 @@ describe("National Curriculum Insights sections", () => {
             {
               keyStage: "KS1",
               heading: "Key stage 1 science",
-              linkLabel: "Explore key stage 1",
             },
           ],
         })}

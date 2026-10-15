@@ -63,6 +63,7 @@ const modulesProjection = `modules[]{
     _type == "nationalCurriculumInsightsDownloadSection" => "NationalCurriculumInsightsDownloadSection"
   ),
   heading,
+  linkFromSubjectOverview,
   mobileHeading,
   headingStyle,
   variant,
