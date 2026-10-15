@@ -49,7 +49,7 @@ describe("PupilUnitsSection", () => {
     expect(getAllByText("All")).toHaveLength(2);
   });
 
-  it("filters units by filter items (Unit-0)", () => {
+  it("filters units by Biology", () => {
     const { getByText } = render(
       <PupilUnitsSection
         units={units}
@@ -68,7 +68,7 @@ describe("PupilUnitsSection", () => {
     expect(() => getByText("Unit-2")).toThrow();
   });
 
-  it("filters units by filter items (Unit-1)", () => {
+  it("filters units by Chemistry", () => {
     const { getByText } = render(
       <PupilUnitsSection
         units={units}
