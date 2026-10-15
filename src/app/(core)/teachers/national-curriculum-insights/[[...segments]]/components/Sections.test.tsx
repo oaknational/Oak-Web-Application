@@ -485,7 +485,6 @@ describe("National Curriculum Insights sections", () => {
             benefits: ["New guidance", "Subject updates"],
             illustration: contentImage,
             privacyPortableText: body,
-            formId: "curriculum-updates",
             buttonLabel: "Join the mailing list",
           })}
         />
@@ -595,7 +594,6 @@ describe("National Curriculum Insights sections", () => {
             "newsletter-privacy",
             "Read our privacy policy.",
           ),
-          formId: "curriculum-updates",
           buttonLabel: "Join the mailing list",
         })}
       />,
