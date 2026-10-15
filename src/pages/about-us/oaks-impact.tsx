@@ -21,7 +21,6 @@ import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
 import { OaksImpactHeader } from "@/components/GenericPagesComponents/OaksImpactHeader";
 import useTrackExitIntended from "@/hooks/useTrackExitIntended";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
@@ -31,8 +30,6 @@ export type OaksImpactPageProps = {
 const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
   const { content, caseStudies } = pageData;
   useTrackExitIntended();
-  const isCaseStudiesFeatEnabled =
-    isFeatureFlagEnabledStatic("case-studies-v2");
 
   return (
     <TeacherBrowseAnalyticsStoreProvider
@@ -52,12 +49,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
             videoDescription={content.header.videoDescription}
           />
           <OaksImpactStats {...content.statsSection} />
-          <CaseStudiesSection
-            showViewAllLink={isCaseStudiesFeatEnabled}
-            title="Case studies"
-            caseStudies={caseStudies}
-            showTags={true}
-          />
+          <CaseStudiesSection title="Case studies" caseStudies={caseStudies} />
           <OaksImpactSchoolQuotesSection {...content.schoolQuotes} />
           <TrackScrolledTo eventKey="support_you" />
           <OakBox $pv={["spacing-56", "spacing-80", "spacing-80"]}>

@@ -9,6 +9,7 @@ import { LessonShare } from "@/components/TeacherViews/LessonShare/LessonShare.v
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
+import { cacheData } from "@/node-lib/cache";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import type { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
@@ -24,17 +25,20 @@ type LessonSharePageParams = {
 export const dynamic = "force-static";
 
 const getCachedLessonShareData = cache(
-  async (
-    programmeSlug: string,
-    unitSlug: string,
-    lessonSlug: string,
-  ): Promise<LessonShareData> => {
-    return curriculumApi2023.lessonShare({
-      programmeSlug,
-      unitSlug,
-      lessonSlug,
-    });
-  },
+  cacheData(
+    async (
+      programmeSlug: string,
+      unitSlug: string,
+      lessonSlug: string,
+    ): Promise<LessonShareData> => {
+      return curriculumApi2023.lessonShare({
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      });
+    },
+    ["lesson-share"],
+  ),
 );
 
 export async function generateMetadata(
