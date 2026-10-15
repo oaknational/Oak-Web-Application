@@ -164,6 +164,20 @@ const nationalCurriculumInsightsFaqSectionSchema = z.object({
     .min(1),
 });
 
+const nationalCurriculumInsightsPreparationSectionSchema = z.object({
+  __typename: z.literal("NationalCurriculumInsightsPreparationSection"),
+  heading: z.string().trim().min(1),
+  steps: z
+    .array(z.object({ id: z.string().min(1), text: z.string().trim().min(1) }))
+    .length(3)
+    .refine(
+      (steps) => new Set(steps.map((step) => step.id)).size === 3,
+      "Every preparation step needs a unique ID",
+    ),
+  attribution: z.string().trim().min(1),
+  role: z.string().trim().min(1),
+  image: imageSchema.nullable().optional(),
+});
 const nationalCurriculumInsightsRichTextSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsRichTextSection"),
   heading: z.string().min(1),
@@ -264,6 +278,7 @@ export const nationalCurriculumInsightsModuleSchema = z.discriminatedUnion(
     nationalCurriculumInsightsNewsletterSectionSchema,
     nationalCurriculumInsightsFaqSectionSchema,
     nationalCurriculumInsightsRichTextSectionSchema,
+    nationalCurriculumInsightsPreparationSectionSchema,
     nationalCurriculumInsightsImageTextSectionSchema,
     nationalCurriculumInsightsGuidanceIntroSectionSchema,
     nationalCurriculumInsightsVideoCardsSectionSchema,

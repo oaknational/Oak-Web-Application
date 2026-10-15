@@ -13,6 +13,7 @@ import type { NationalCurriculumInsightsRouteData } from "../helpers/getRouteDat
 import { NationalCurriculumInsightsHero } from "./Hero";
 import { NationalCurriculumInsightsDownload } from "./Download";
 import {
+  NationalCurriculumInsightsPreparation,
   NationalCurriculumInsightsFaq,
   NationalCurriculumInsightsGuidanceIntro,
   NationalCurriculumInsightsImageText,
@@ -92,6 +93,13 @@ const ModuleView = ({
       );
     case "NationalCurriculumInsightsFaqSection":
       return <NationalCurriculumInsightsFaq section={module} data={data} />;
+    case "NationalCurriculumInsightsPreparationSection":
+      return (
+        <NationalCurriculumInsightsPreparation
+          section={module}
+          variant={data.activeKeyStage ? "keyStage" : "phase"}
+        />
+      );
     case "NationalCurriculumInsightsRichTextSection":
       return <NationalCurriculumInsightsRichText section={module} />;
     case "NationalCurriculumInsightsImageTextSection":
