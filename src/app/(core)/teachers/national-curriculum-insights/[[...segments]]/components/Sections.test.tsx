@@ -632,6 +632,21 @@ describe("National Curriculum Insights sections", () => {
     expect(portrait).toHaveAttribute("alt", "");
   });
 
+  it("keeps the paragraph break in the guidance quote", () => {
+    renderWithTheme(
+      <NationalCurriculumInsightsQuote
+        section={moduleOf({
+          __typename: "NationalCurriculumInsightsQuoteSection",
+          quote: "A refreshed curriculum.\n\nSupport for teachers.",
+          attribution: "Professor Becky Francis CBE",
+        })}
+      />,
+    );
+
+    expect(screen.getByText("“A refreshed curriculum.")).toBeInTheDocument();
+    expect(screen.getByText("Support for teachers.”")).toBeInTheDocument();
+  });
+
   it("uses the CMS benefits artwork and mirror setting without overriding editor-selected images", async () => {
     const data = await getData(["guidance"]);
     const section = moduleOf({

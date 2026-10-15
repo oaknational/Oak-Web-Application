@@ -94,7 +94,12 @@ const ModuleView = ({
     case "NationalCurriculumInsightsGuidanceIntroSection":
       return <NationalCurriculumInsightsGuidanceIntro section={module} />;
     case "NationalCurriculumInsightsVideoCardsSection":
-      return <NationalCurriculumInsightsVideoCards section={module} />;
+      return (
+        <NationalCurriculumInsightsVideoCards
+          section={module}
+          isGuidance={data.route.kind === "guidance"}
+        />
+      );
     case "NationalCurriculumInsightsQuoteSection":
       return <NationalCurriculumInsightsQuote section={module} />;
     case "NationalCurriculumInsightsTableSection":

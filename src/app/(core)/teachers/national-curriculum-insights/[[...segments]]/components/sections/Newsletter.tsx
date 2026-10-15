@@ -125,9 +125,18 @@ export const NationalCurriculumInsightsNewsletter = ({
         $mh="auto"
         $width="100%"
         $maxWidth="spacing-1280"
-        $ph={["spacing-0", "spacing-0", "spacing-100"]}
+        $ph={[
+          "spacing-0",
+          "spacing-0",
+          isGuidance ? "spacing-80" : "spacing-100",
+        ]}
       >
         <OakGrid
+          $pr={[
+            "spacing-0",
+            "spacing-0",
+            isGuidance ? "spacing-56" : "spacing-0",
+          ]}
           $gridTemplateColumns={[
             "minmax(0, 1fr)",
             "minmax(0, 1fr)",
@@ -147,6 +156,11 @@ export const NationalCurriculumInsightsNewsletter = ({
             $mh="auto"
             $flexDirection="column"
             $gap="spacing-16"
+            $mt={[
+              "spacing-0",
+              "spacing-0",
+              isGuidance ? "spacing-72" : "spacing-0",
+            ]}
           >
             <OakFlex $alignItems="center" $gap="spacing-12">
               <OakImage

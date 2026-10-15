@@ -342,7 +342,9 @@ export const NationalCurriculumInsightsHero = ({
             hasEditorialImage
               ? "minmax(0, 5fr) minmax(0, 4fr)"
               : "repeat(3, minmax(0, 1fr))",
-            "minmax(0, 8fr) minmax(0, 5fr)",
+            pageKind === "guidance"
+              ? "minmax(0, 43rem) minmax(0, 29.125rem) minmax(0, 1fr)"
+              : "minmax(0, 8fr) minmax(0, 5fr)",
           ]}
           $alignItems={[
             "stretch",
@@ -360,7 +362,7 @@ export const NationalCurriculumInsightsHero = ({
           >
             <OakFlex
               $width="100%"
-              $maxWidth="spacing-640"
+              $maxWidth={pageKind === "guidance" ? "100%" : "spacing-640"}
               $flexDirection="column"
               $gap="spacing-24"
               $pb={[
@@ -383,14 +385,20 @@ export const NationalCurriculumInsightsHero = ({
                   section.heading
                 )}
               </OakHeading>
-              <PortableTextWithDefaults
-                value={section.bodyPortableText}
-                components={
-                  pageKind === "guidance"
-                    ? guidanceHeroPortableTextComponents
-                    : heroPortableTextComponents
-                }
-              />
+              <OakFlex
+                $maxWidth="spacing-640"
+                $flexDirection="column"
+                $gap="spacing-24"
+              >
+                <PortableTextWithDefaults
+                  value={section.bodyPortableText}
+                  components={
+                    pageKind === "guidance"
+                      ? guidanceHeroPortableTextComponents
+                      : heroPortableTextComponents
+                  }
+                />
+              </OakFlex>
               {section.ctaLabel && section.ctaHref ? (
                 <OakLink href={section.ctaHref} iconName="arrow-right">
                   {section.ctaLabel}

@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react";
 import "jest-styled-components";
+import userEvent from "@testing-library/user-event";
 
 import { NationalCurriculumInsightsVideoCards } from "./VideoCards";
 
@@ -50,6 +51,55 @@ const post = {
 
 beforeEach(() => {
   jest.clearAllMocks();
+});
+
+it("uses compact type and independent playback on the guidance page", async () => {
+  const user = userEvent.setup();
+  renderWithTheme(
+    <NationalCurriculumInsightsVideoCards
+      section={{ ...section, posts: [post] }}
+      isGuidance
+    />,
+  );
+
+  expect(screen.getByRole("heading", { name: post.title })).toHaveStyleRule(
+    "font-size",
+    "1rem",
+  );
+  expect(screen.getByText(post.summary)).toHaveStyleRule(
+    "font-size",
+    "0.875rem",
+  );
+  expect(VideoPlayer).not.toHaveBeenCalled();
+  await user.click(screen.getByRole("button", { name: `Play ${post.title}` }));
+  expect(VideoPlayer).toHaveBeenCalledWith(
+    expect.objectContaining({
+      autoPlay: true,
+      autoFocusPlayButton: true,
+      poster: getProxiedSanityAssetUrl(post.image.asset.url),
+    }),
+    expect.anything(),
+  );
+  expect(
+    screen.getByRole("link", { name: /Inclusive curriculum leadership/ }),
+  ).not.toContainElement(screen.getByTestId("video-player"));
+});
+
+it("keeps a poster and blog link when a guidance post has no inline video", () => {
+  renderWithTheme(
+    <NationalCurriculumInsightsVideoCards
+      section={{ ...section, posts: [{ ...post, video: null }] }}
+      isGuidance
+    />,
+  );
+
+  expect(VideoPlayer).not.toHaveBeenCalled();
+  expect(
+    screen.getByRole("img", { name: post.image.altText }),
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole("link", { name: /Inclusive curriculum leadership/ }),
+  ).toHaveAttribute("href", `/blog/${post.slug}`);
 });
 
 it("uses the selected blog image as the inline video poster", () => {
