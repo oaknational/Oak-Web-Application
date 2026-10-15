@@ -20,6 +20,30 @@ const baseState: QuestionState = {
 };
 
 describe("QuizMultiQuestion", () => {
+  it("restores saved checked answers and their feedback when reopened", () => {
+    const { getAllByRole, getByAltText } = renderWithTheme(
+      <QuizMultiQuestion
+        section="exit-quiz"
+        questionData={mcqTextQuestion}
+        questionState={{
+          ...baseState,
+          mode: "feedback",
+          pupilAnswer: [0, 2],
+          feedback: ["incorrect", "correct", "correct", "correct"],
+        }}
+        isReadOnly={false}
+        onChange={jest.fn()}
+      />,
+    );
+    getAllByRole("checkbox").forEach((checkbox, index) => {
+      expect(checkbox).toBeDisabled();
+      if ([0, 2].includes(index)) expect(checkbox).toBeChecked();
+      else expect(checkbox).not.toBeChecked();
+    });
+    expect(getByAltText("Incorrect")).toBeInTheDocument();
+    expect(getByAltText("Correct")).toBeInTheDocument();
+  });
+
   it("shows the number of correct answers to select in the label", () => {
     const { getByText } = renderWithTheme(
       <QuizMultiQuestion

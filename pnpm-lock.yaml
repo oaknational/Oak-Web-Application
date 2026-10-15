@@ -110,8 +110,8 @@ importers:
         specifier: 3.10.2
         version: 3.10.2(@types/react-dom@18.3.0)(@types/react@18.2.79)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@oaknational/google-classroom-addon':
-        specifier: ^1.33.0
-        version: 1.33.0(e4ba8886786febc81006bbe396b3dc5c)
+        specifier: ^1.34.1
+        version: 1.34.1(e4ba8886786febc81006bbe396b3dc5c)
       '@oaknational/oak-components':
         specifier: ^3.23.0
         version: 3.23.0(@portabletext/react@4.0.3(react@18.3.1))(@tiptap/core@2.14.0(@tiptap/pm@2.14.0))(@tiptap/pm@2.14.0)(@types/react@18.2.79)(next-cloudinary@6.16.0(next@15.5.26(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(@types/node@22.19.17)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.26(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(@types/node@22.19.17)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.5.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
@@ -728,6 +728,9 @@ importers:
       typescript-plugin-css-modules:
         specifier: ^5.2.0
         version: 5.2.0(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.19))(@types/node@22.19.17)(typescript@5.9.3))(typescript@5.9.3)
+      uuid:
+        specifier: ^11.1.0
+        version: 11.1.0
       wait-on:
         specifier: ^9.0.10
         version: 9.0.10
@@ -3808,8 +3811,8 @@ packages:
     resolution: {integrity: sha512-s9SgS+p3a9Eohe68cSI3fi+hpcZUmXq5P7w0kMlAsWVtR7XbK3ptkZqKT2cK1zLDObJ3sR+8P59sJE0w/KTL1g==}
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
 
-  '@oaknational/google-classroom-addon@1.33.0':
-    resolution: {integrity: sha512-6tTljlVl+fgYpn9l6LcDwQZovAAxodF569HdmLzKCljA/SmnG4Bhlx5rItH/5humAx0xg5koi+PMjAWFWvymbA==}
+  '@oaknational/google-classroom-addon@1.34.1':
+    resolution: {integrity: sha512-u4uz7DczGlycS8siLApbqPV5P5UNT4o8X6YGtUmLrxKIDSkn1Y48M05FeffB1zCtXHfIydDmX04C8A9cEYIoLQ==}
     peerDependencies:
       '@google-cloud/firestore': '>=7.11.2'
       '@googleapis/classroom': 4.9.0
@@ -19595,7 +19598,7 @@ snapshots:
     dependencies:
       infer-owner: 1.0.4
 
-  '@oaknational/google-classroom-addon@1.33.0(e4ba8886786febc81006bbe396b3dc5c)':
+  '@oaknational/google-classroom-addon@1.34.1(e4ba8886786febc81006bbe396b3dc5c)':
     dependencies:
       '@google-cloud/firestore': 7.11.6
       '@googleapis/classroom': 4.9.0

@@ -18,6 +18,23 @@ const baseState: QuestionState = {
 };
 
 describe("QuizShortQuestion", () => {
+  it.each(["earth", "wrong answer"])(
+    "restores the saved answer '%s' when reopened",
+    (pupilAnswer) => {
+      const { getByRole } = renderWithTheme(
+        <QuizShortQuestion
+          section="exit-quiz"
+          questionData={shortQuestion}
+          questionState={{ ...baseState, mode: "feedback", pupilAnswer }}
+          isReadOnly={false}
+          onChange={jest.fn()}
+        />,
+      );
+      expect(getByRole("textbox")).toHaveValue(pupilAnswer);
+      expect(getByRole("textbox")).toBeDisabled();
+    },
+  );
+
   it("renders the input with the expected id", () => {
     const { getByRole } = renderWithTheme(
       <QuizShortQuestion

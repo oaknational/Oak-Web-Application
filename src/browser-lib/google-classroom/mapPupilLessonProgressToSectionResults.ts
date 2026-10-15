@@ -23,7 +23,14 @@ export const mapPupilLessonProgressToSectionResults = (
         lessonProgress.starterQuiz as LessonSectionResults["starter-quiz"],
     }),
     ...(isRecord(lessonProgress.exitQuiz) && {
-      "exit-quiz": lessonProgress.exitQuiz as LessonSectionResults["exit-quiz"],
+      "exit-quiz": {
+        ...lessonProgress.exitQuiz,
+        // The add-on persists answers before sending the grade. Keep a failed
+        // grade submission retryable after refreshing or reopening the lesson.
+        isComplete:
+          lessonProgress.exitQuiz.isComplete &&
+          lessonProgress.exitQuizGradeSubmitted !== false,
+      } as LessonSectionResults["exit-quiz"],
     }),
     ...(isRecord(lessonProgress.video) && {
       video: lessonProgress.video as LessonSectionResults["video"],

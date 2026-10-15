@@ -130,9 +130,10 @@ export const QuizMatchQuestion = ({
       <StyledUL>
         {matchItems.map(({ id, label, announcement }, index) => {
           const currentFeedback = questionState.feedback?.at(index);
-          const choice = choiceItems.find(
-            (item) => item.id === currentMatches[index],
-          );
+          const choiceId = Array.isArray(questionState.pupilAnswer)
+            ? questionState.pupilAnswer[index]
+            : currentMatches[index];
+          const choice = choiceItems.find((item) => item.id === choiceId);
           const correctChoice = choiceItems.at(index);
           invariant(
             currentFeedback,

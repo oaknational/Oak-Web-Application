@@ -186,6 +186,11 @@ export type AddOnContextArgs = {
   attachmentId: string;
 };
 
+export type SubmitPupilProgressResult = {
+  progress: PupilLessonProgress;
+  status: "PERSISTED" | "READ_ONLY" | "GRADE_SUBMITTED";
+};
+
 const getAddOnContext = async (
   args: AddOnContextArgs,
 ): Promise<AddOnContextResponse | null> => {
@@ -205,14 +210,20 @@ const getAddOnContext = async (
 
 const submitPupilProgress = async (
   args: UpsertPupilLessonProgressArgs,
-): Promise<void> => {
+): Promise<SubmitPupilProgressResult> => {
   const headers = await getOakGCAuthHeaders(true);
-  await sendRequest<void, UpsertPupilLessonProgressArgs>(
-    "/api/classroom/pupil/progress/submit",
-    "POST",
-    args,
-    headers,
-  );
+  const result = await sendRequest<
+    SubmitPupilProgressResult,
+    UpsertPupilLessonProgressArgs
+  >("/api/classroom/pupil/progress/submit", "POST", args, headers);
+  if (
+    args.exitQuiz?.isComplete &&
+    result.status === "PERSISTED" &&
+    result.progress.exitQuizGradeSubmitted === false
+  ) {
+    throw new Error("Classroom grade has not been submitted");
+  }
+  return result;
 };
 
 type GetPupilLessonProgressArgs = {

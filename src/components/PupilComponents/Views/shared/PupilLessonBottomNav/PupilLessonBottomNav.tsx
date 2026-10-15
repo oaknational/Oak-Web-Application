@@ -7,6 +7,7 @@ export type PupilLessonBottomNavProps = {
   proceedLabel: string;
   onProceed: () => void;
   disabled?: boolean;
+  isLoading?: boolean;
   testId?: string;
 };
 
@@ -14,6 +15,7 @@ export const PupilLessonBottomNav = ({
   proceedLabel,
   onProceed,
   disabled,
+  isLoading,
   testId = "proceed-to-next-section",
 }: PupilLessonBottomNavProps) => {
   return (
@@ -25,6 +27,7 @@ export const PupilLessonBottomNav = ({
         isTrailingIcon
         data-testid={testId}
         disabled={disabled}
+        isLoading={isLoading}
       >
         {proceedLabel}
       </OakPrimaryButton>

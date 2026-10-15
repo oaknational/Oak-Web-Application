@@ -110,4 +110,30 @@ describe("QuizOrderQuestion", () => {
     );
     expect(getAllByTestId("order-item-feedback")).toHaveLength(4);
   });
+
+  it("restores the saved order alongside its feedback when reopened", () => {
+    const { getAllByTestId } = renderWithTheme(
+      <QuizOrderQuestion
+        section="exit-quiz"
+        questionData={orderQuestion}
+        questionState={{
+          ...baseState,
+          mode: "feedback",
+          pupilAnswer: [1, 2, 3, 4],
+          feedback: ["correct", "correct", "correct", "correct"],
+        }}
+        isReadOnly={false}
+        onChange={jest.fn()}
+        onQuestionModeChange={jest.fn()}
+      />,
+    );
+    expect(
+      getAllByTestId("order-item-feedback").map((item) => item.textContent),
+    ).toEqual([
+      "Edward the Confessor was exiled in Normandy.",
+      "Edward the Confessor became king.",
+      "Harold Godwinson travelled to Normandy.",
+      "Edward the Confessor died.",
+    ]);
+  });
 });

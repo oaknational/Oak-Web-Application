@@ -42,6 +42,9 @@ export const QuizSingleQuestion = ({
   const [scaled, setScaled] = useState<boolean[]>(answers.map(() => false));
   const isFeedbackMode = questionState.mode === "feedback";
   const isExitQuizReadOnly = isReadOnly && section === "exit-quiz";
+  const savedAnswer = Array.isArray(questionState.pupilAnswer)
+    ? questionState.pupilAnswer[0]
+    : questionState.pupilAnswer;
 
   const toggleScaledAt = useCallback((index: number) => {
     setScaled((prev) =>
@@ -64,6 +67,11 @@ export const QuizSingleQuestion = ({
       </OakFlex>
       <OakRadioGroup
         name={questionData.questionUid || "mcq-single-answer"}
+        defaultValue={
+          typeof savedAnswer === "number"
+            ? `${questionData.questionUid}: ${savedAnswer}`
+            : undefined
+        }
         $flexDirection="column"
         $gap="spacing-16"
         onChange={onChange}
