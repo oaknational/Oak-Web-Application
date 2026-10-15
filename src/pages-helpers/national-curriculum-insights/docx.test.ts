@@ -29,6 +29,17 @@ describe("National Curriculum Insights documents", () => {
             modules: [
               ...tab.page.modules,
               {
+                __typename: "NationalCurriculumInsightsSubjectLinksSection",
+                heading: "Subject overview navigation",
+                links: [
+                  {
+                    title: "History navigation link",
+                    subjectSlug: "history",
+                    iconName: "subject-history",
+                  },
+                ],
+              },
+              {
                 __typename: "NationalCurriculumInsightsDownloadSection",
                 barHeading: "Curriculum download form",
                 barCtaLabel: "Download guidance",
@@ -56,6 +67,8 @@ describe("National Curriculum Insights documents", () => {
     expect(documentXml).not.toContain("Independent KS3 content");
     expect(documentXml).not.toContain("Independent KS4 content");
     expect(documentXml).not.toContain("Curriculum download form");
+    expect(documentXml).not.toContain("Subject overview navigation");
+    expect(documentXml).not.toContain("History navigation link");
   });
 
   it("packages separately generated subject documents into a zip", async () => {

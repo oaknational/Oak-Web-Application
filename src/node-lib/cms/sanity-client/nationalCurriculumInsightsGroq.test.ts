@@ -94,6 +94,17 @@ describe("nationalCurriculumInsightsGroq", () => {
     nationalCurriculumInsightsHubQuery,
     nationalCurriculumInsightsGuidancePageQuery,
     nationalCurriculumInsightsSubjectBySlugQuery,
+  ])(
+    "resolves subject overview links using the page's document perspective",
+    (query) => {
+      expect(query).toContain("links[defined(subject->_id)]");
+      expect(query).toContain('"subjectSlug": subject->slug.current');
+    },
+  );
+  it.each([
+    nationalCurriculumInsightsHubQuery,
+    nationalCurriculumInsightsGuidancePageQuery,
+    nationalCurriculumInsightsSubjectBySlugQuery,
   ])("resolves internal links in every module's rich text", (query) => {
     for (const field of [
       "body",

@@ -158,6 +158,7 @@ const moduleXml = (module: NationalCurriculumInsightsModule): string => {
       return paragraph(module.heading, "Heading2");
     case "NationalCurriculumInsightsPhaseNavigationSection":
     case "NationalCurriculumInsightsSubjectNavigationSection":
+    case "NationalCurriculumInsightsSubjectLinksSection":
     case "NationalCurriculumInsightsNewsletterSection":
     case "NationalCurriculumInsightsDownloadSection":
       return "";
