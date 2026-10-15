@@ -91,10 +91,18 @@ export type NationalCurriculumInsightsHeroSection = z.infer<
   typeof nationalCurriculumInsightsHeroSectionSchema
 >;
 
+const nationalCurriculumInsightsQuoteSchema = z.object({
+  quote: z.string().min(1),
+  attribution: z.string().min(1),
+  role: z.string().min(1).nullable().optional(),
+  image: imageSchema.nullable().optional(),
+});
+
 const nationalCurriculumInsightsOverviewSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsOverviewSection"),
   heading: z.string().min(1),
   bodyPortableText: portableTextSchema,
+  quote: nationalCurriculumInsightsQuoteSchema.nullable().optional(),
 });
 
 const nationalCurriculumInsightsPhaseCardSchema = z.object({
@@ -227,13 +235,10 @@ const nationalCurriculumInsightsVideoCardsSectionSchema = z
     "A video cards section must contain at least one blog post or legacy card",
   );
 
-const nationalCurriculumInsightsQuoteSectionSchema = z.object({
-  __typename: z.literal("NationalCurriculumInsightsQuoteSection"),
-  quote: z.string().min(1),
-  attribution: z.string().min(1),
-  role: z.string().min(1).nullable().optional(),
-  image: imageSchema.nullable().optional(),
-});
+const nationalCurriculumInsightsQuoteSectionSchema =
+  nationalCurriculumInsightsQuoteSchema.extend({
+    __typename: z.literal("NationalCurriculumInsightsQuoteSection"),
+  });
 
 const nationalCurriculumInsightsTableSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsTableSection"),
