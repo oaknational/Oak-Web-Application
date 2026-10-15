@@ -42,7 +42,7 @@ export default function TopBanner({
             $gap={["spacing-0", "spacing-4"]}
             $minWidth={["fit-content"]}
           >
-            {topBanner?.messagePortableText && (
+            {topBanner.messagePortableText && (
               <PortableTextWithDefaults
                 value={topBanner.messagePortableText}
                 components={{
@@ -57,15 +57,15 @@ export default function TopBanner({
               />
             )}
           </OakFlex>
-          {topBanner?.ctaText && topBanner?.ctaLink && (
+          {topBanner.ctaText && topBanner.ctaLink && (
             <OakSmallTertiaryInvertedButton
               element={Link}
-              href={topBanner?.ctaLink}
-              title={topBanner?.ctaText}
+              href={topBanner.ctaLink}
+              title={topBanner.ctaText}
               iconName="chevron-right"
               isTrailingIcon={true}
             >
-              <OakSpan $font={"heading-7"}>{topBanner?.ctaText}</OakSpan>
+              <OakSpan $font={"heading-7"}>{topBanner.ctaText}</OakSpan>
             </OakSmallTertiaryInvertedButton>
           )}
         </OakFlex>

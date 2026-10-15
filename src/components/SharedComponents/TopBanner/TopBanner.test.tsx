@@ -44,18 +44,22 @@ describe("TopBanner", () => {
     expect(link).toHaveAttribute("title", "Explore our impact");
   });
 
-  it("should not render the cta if ctaText is not provided", () => {
-    const { queryByRole } = renderWithProviders()(
-      <TopBanner topBanner={{ ...topBannerFixture, ctaText: undefined }} />,
+  it("should not render the message text if not provided", () => {
+    const { queryByText } = renderWithProviders()(
+      <TopBanner
+        topBanner={{ ...topBannerFixture, messagePortableText: null }}
+      />,
     );
 
-    const link = queryByRole("link");
-    expect(link).not.toBeInTheDocument();
+    const message = queryByText("Oak is now used in 72% of schools");
+    expect(message).not.toBeInTheDocument();
   });
 
-  it("should not render the cta if ctaLink is not provided", () => {
+  it("should not render the cta if cta data is not provided", () => {
     const { queryByRole } = renderWithProviders()(
-      <TopBanner topBanner={{ ...topBannerFixture, ctaLink: undefined }} />,
+      <TopBanner
+        topBanner={{ ...topBannerFixture, ctaText: null, ctaLink: null }}
+      />,
     );
 
     const link = queryByRole("link");
