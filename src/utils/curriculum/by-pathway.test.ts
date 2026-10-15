@@ -7,11 +7,11 @@ import { createPathway } from "@/fixtures/curriculum/pathway";
 describe("getModes", () => {
   const coreKs4Option = { slug: "core", title: "Core" };
   const gcseKs4Option = { slug: "gcse", title: "GCSE" };
-  it("", () => {
+  it("all", () => {
     expect(getModes(false, [gcseKs4Option])).toEqual(["all"]);
   });
 
-  it("", () => {
+  it("code/non_core", () => {
     expect(getModes(true, [coreKs4Option, gcseKs4Option])).toEqual([
       "core",
       "non_core",
