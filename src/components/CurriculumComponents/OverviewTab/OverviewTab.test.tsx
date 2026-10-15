@@ -51,7 +51,7 @@ describe("Component - Overview Tab", () => {
     expect(queryByTestId("video-guide")).not.toBeInTheDocument();
   });
 
-  test("multiple curriculum partners", async () => {
+  test("multiple curriculum partners with portable text", async () => {
     const fixture = curriculumOverviewTabFixture();
     fixture.curriculumCMSInfo.curriculumPartnerOverviews = [
       {

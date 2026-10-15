@@ -1,7 +1,7 @@
 import { areLessonsAvailable } from "./lessons";
 
 describe("areLessonsAvailable", () => {
-  it("returns true when lessons are available", () => {
+  it("returns true when lessons are available (with new)", () => {
     const someAvailableLessons = [
       {
         title: "Lesson 1",
@@ -15,7 +15,7 @@ describe("areLessonsAvailable", () => {
     expect(areLessonsAvailable(someAvailableLessons)).toEqual(true);
   });
 
-  it("returns true when lessons are available", () => {
+  it("returns true when lessons are available (only published)", () => {
     const allAvailableLessons = [
       {
         title: "Lesson 1",
