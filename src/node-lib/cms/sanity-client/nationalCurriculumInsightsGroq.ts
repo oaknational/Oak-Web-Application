@@ -53,6 +53,7 @@ const modulesProjection = `modules[]{
     _type == "nationalCurriculumInsightsSubjectNavigationSection" => "NationalCurriculumInsightsSubjectNavigationSection",
     _type == "nationalCurriculumInsightsNewsletterSection" => "NationalCurriculumInsightsNewsletterSection",
     _type == "nationalCurriculumInsightsFaqSection" => "NationalCurriculumInsightsFaqSection",
+    _type == "nationalCurriculumInsightsChecklistSection" => "NationalCurriculumInsightsChecklistSection",
     _type == "nationalCurriculumInsightsRichTextSection" => "NationalCurriculumInsightsRichTextSection",
     _type == "nationalCurriculumInsightsImageTextSection" => "NationalCurriculumInsightsImageTextSection",
     _type == "nationalCurriculumInsightsGuidanceIntroSection" => "NationalCurriculumInsightsGuidanceIntroSection",
@@ -62,6 +63,7 @@ const modulesProjection = `modules[]{
     _type == "nationalCurriculumInsightsDownloadSection" => "NationalCurriculumInsightsDownloadSection"
   ),
   heading,
+  audience,
   mobileHeading,
   headingStyle,
   variant,
@@ -118,6 +120,8 @@ const modulesProjection = `modules[]{
     ] => image ${imageProjection}
   ),
   items[]{
+    "id": _key,
+    "contentPortableText": content${insightsPortableTextProjection},
     question,
     "answerPortableText": answer${insightsPortableTextProjection}
   },
