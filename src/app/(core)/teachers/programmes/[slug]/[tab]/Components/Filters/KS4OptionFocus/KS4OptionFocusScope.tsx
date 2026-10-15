@@ -20,7 +20,8 @@ export function useGetKs4OptionFocusNavigationQuery() {
   const variant = useKS4OptionFocusScopeVariant();
 
   return useCallback(
-    (slug: string) => getKs4OptionFocusNavigationQuery(slug, variant),
+    (slug: string, restoreFocus = true) =>
+      getKs4OptionFocusNavigationQuery(slug, variant, restoreFocus),
     [variant],
   );
 }

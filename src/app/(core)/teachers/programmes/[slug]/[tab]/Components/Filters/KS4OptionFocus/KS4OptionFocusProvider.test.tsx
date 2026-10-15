@@ -151,7 +151,30 @@ describe("KS4OptionFocusProvider", () => {
     });
 
     expect(focusSpy).not.toHaveBeenCalled();
+    focusSpy.mockRestore();
+  });
 
+  it("reopens the modal without restoring radio focus for pointer navigation", async () => {
+    useSearchParamsMock.mockReturnValue(
+      new URLSearchParams(`keystages=ks4&${OPEN_FILTERS_MODAL_QUERY_PARAM}=1`),
+    );
+    const focusSpy = jest.spyOn(HTMLInputElement.prototype, "focus");
+    const ModalHarness = () => {
+      const { isOpen } = useProgrammePageFiltersModal();
+      return <span data-testid="modal-open">{String(isOpen)}</span>;
+    };
+
+    const { getByTestId } = renderWithProviders(<ModalHarness />);
+
+    await waitFor(() => {
+      expect(getByTestId("modal-open")).toHaveTextContent("true");
+      expect(replaceStateMock).toHaveBeenCalledWith(
+        null,
+        "",
+        "/teachers/programmes/english-secondary-ocr/units?keystages=ks4",
+      );
+    });
+    expect(focusSpy).not.toHaveBeenCalled();
     focusSpy.mockRestore();
   });
 

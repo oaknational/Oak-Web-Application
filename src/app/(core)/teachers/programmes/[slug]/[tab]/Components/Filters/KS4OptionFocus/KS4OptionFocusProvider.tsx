@@ -37,8 +37,8 @@ const KS4OptionFocusContext = createContext<KS4OptionFocusContextValue | null>(
  * KS4 option selection navigates to a new programme slug, remounting the filter
  * and dropping focus. Descendants append ephemeral query params
  * {@link FOCUS_KS4_OPTION_QUERY_PARAM} (and {@link OPEN_FILTERS_MODAL_QUERY_PARAM}
- * from the modal tree) on push; this provider reads those params on load,
- * re-opens the mobile filters modal when needed, focuses the matching radio in
+ * from the modal tree) on navigation; only keyboard selections request focus.
+ * This provider re-opens the mobile filters modal when needed, focuses the matching radio in
  * the correct scope, then strips the params from the URL.
  */
 export function KS4OptionFocusProvider({
@@ -83,16 +83,25 @@ export function KS4OptionFocusProvider({
     }
 
     const focusSlug = searchParams.get(FOCUS_KS4_OPTION_QUERY_PARAM);
-    if (!focusSlug) {
+    const reopenModal = searchParams.get(OPEN_FILTERS_MODAL_QUERY_PARAM);
+    if (!focusSlug && !reopenModal) {
       return;
     }
 
     hasReadRestoreParams.current = true;
 
-    if (searchParams.get(OPEN_FILTERS_MODAL_QUERY_PARAM)) {
+    if (reopenModal) {
+      setModalOpen(true);
+      if (!focusSlug) {
+        globalThis.history.replaceState(
+          null,
+          "",
+          stripEphemeralFocusParams(searchParams),
+        );
+        return;
+      }
       isMobileRestore.current = true;
       setPendingFocusSlug(focusSlug);
-      setModalOpen(true);
       return;
     }
 

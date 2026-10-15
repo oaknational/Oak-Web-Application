@@ -1,4 +1,4 @@
-import { act } from "@testing-library/react";
+import { act, fireEvent } from "@testing-library/react";
 import type { ReactElement } from "react";
 
 import { KS4OptionFocusProvider, KS4OptionFocusScope } from "../KS4OptionFocus";
@@ -464,41 +464,47 @@ describe("ProgrammeFiltersKs4Options", () => {
         query: {
           keystages: "ks4",
           years: "10",
-          focus_ks4option: "gcse",
         },
       }),
       { scroll: false },
     );
   });
 
-  it("navigates to the selected exam board slug and preserves KS4 query params", () => {
-    const { getAllByRole } = renderKs4Options(
-      defaultFilters,
-      <ProgrammeFiltersKs4Options
-        slugs={defaultSlugs}
-        ks4Options={examBoardOptions}
-        ks4OptionFilterDimensions={ks4OptionFilterDimensions}
-      />,
-    );
+  it.each(["keyboard", "mouse", "touch"])(
+    "only requests focus restoration for keyboard selection (%s)",
+    (interaction) => {
+      const { getAllByRole } = renderKs4Options(
+        defaultFilters,
+        <ProgrammeFiltersKs4Options
+          slugs={defaultSlugs}
+          ks4Options={examBoardOptions}
+          ks4OptionFilterDimensions={ks4OptionFilterDimensions}
+        />,
+      );
 
-    const radios = getAllByRole("radio") as HTMLInputElement[];
+      const radios = getAllByRole("radio") as HTMLInputElement[];
 
-    act(() => radios[1]!.click());
+      fireEvent.keyDown(radios[1]!, { key: "ArrowRight" });
+      if (interaction !== "keyboard") {
+        fireEvent.pointerDown(radios[1]!, { pointerType: interaction });
+      }
+      act(() => radios[1]!.click());
 
-    expect(mockReplace).toHaveBeenCalledWith(
-      resolveOakHref({
-        page: "teacher-programme",
-        subjectPhaseSlug: "english-secondary-edexcel",
-        tab: "units",
-        query: {
-          keystages: "ks4",
-          years: "10",
-          focus_ks4option: "edexcel",
-        },
-      }),
-      { scroll: false },
-    );
-  });
+      expect(mockReplace).toHaveBeenCalledWith(
+        resolveOakHref({
+          page: "teacher-programme",
+          subjectPhaseSlug: "english-secondary-edexcel",
+          tab: "units",
+          query: {
+            keystages: "ks4",
+            years: "10",
+            focus_ks4option: interaction === "keyboard" ? "edexcel" : undefined,
+          },
+        }),
+        { scroll: false },
+      );
+    },
+  );
 
   it("navigates from core to exam board for computing", () => {
     const { getAllByRole } = renderKs4Options(
@@ -526,7 +532,6 @@ describe("ProgrammeFiltersKs4Options", () => {
         query: {
           keystages: "ks4",
           years: "10",
-          focus_ks4option: "ocr",
         },
       }),
       { scroll: false },
@@ -554,48 +559,55 @@ describe("ProgrammeFiltersKs4Options", () => {
         tab: "units",
         query: {
           keystages: "ks4",
-          focus_ks4option: "edexcel",
         },
       }),
       { scroll: false },
     );
   });
 
-  it("navigates with open_filters_modal when inside modal scope", () => {
-    const { getAllByRole } = renderKs4Options(
-      defaultFilters,
-      <ProgrammePageFiltersModalProvider>
-        <KS4OptionFocusProvider>
-          <KS4OptionFocusScope variant="modal">
-            <ProgrammeFiltersKs4Options
-              slugs={defaultSlugs}
-              ks4Options={examBoardOptions}
-              ks4OptionFilterDimensions={ks4OptionFilterDimensions}
-            />
-          </KS4OptionFocusScope>
-        </KS4OptionFocusProvider>
-      </ProgrammePageFiltersModalProvider>,
-    );
+  it.each([true, false])(
+    "reopens the modal independently of keyboard focus restoration (%s)",
+    (keyboard) => {
+      const { getAllByRole } = renderKs4Options(
+        defaultFilters,
+        <ProgrammePageFiltersModalProvider>
+          <KS4OptionFocusProvider>
+            <KS4OptionFocusScope variant="modal">
+              <ProgrammeFiltersKs4Options
+                slugs={defaultSlugs}
+                ks4Options={examBoardOptions}
+                ks4OptionFilterDimensions={ks4OptionFilterDimensions}
+              />
+            </KS4OptionFocusScope>
+          </KS4OptionFocusProvider>
+        </ProgrammePageFiltersModalProvider>,
+      );
 
-    const radios = getAllByRole("radio") as HTMLInputElement[];
+      const radios = getAllByRole("radio") as HTMLInputElement[];
 
-    act(() => radios[1]!.click());
+      if (keyboard) {
+        fireEvent.keyDown(radios[1]!, { key: " " });
+      } else {
+        fireEvent.pointerDown(radios[1]!, { pointerType: "mouse" });
+      }
+      act(() => radios[1]!.click());
 
-    expect(mockReplace).toHaveBeenCalledWith(
-      resolveOakHref({
-        page: "teacher-programme",
-        subjectPhaseSlug: "english-secondary-edexcel",
-        tab: "units",
-        query: {
-          keystages: "ks4",
-          years: "10",
-          focus_ks4option: "edexcel",
-          open_filters_modal: "1",
-        },
-      }),
-      { scroll: false },
-    );
-  });
+      expect(mockReplace).toHaveBeenCalledWith(
+        resolveOakHref({
+          page: "teacher-programme",
+          subjectPhaseSlug: "english-secondary-edexcel",
+          tab: "units",
+          query: {
+            keystages: "ks4",
+            years: "10",
+            focus_ks4option: keyboard ? "edexcel" : undefined,
+            open_filters_modal: "1",
+          },
+        }),
+        { scroll: false },
+      );
+    },
+  );
 
   it("renders nothing when the visibility condition is not met", () => {
     const { queryByRole } = renderKs4Options(

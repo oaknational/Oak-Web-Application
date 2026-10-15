@@ -30,9 +30,10 @@ export type KS4OptionFocusScopeVariant = "page" | "modal";
 export function getKs4OptionFocusNavigationQuery(
   slug: string,
   variant: KS4OptionFocusScopeVariant,
+  restoreFocus = true,
 ) {
   return {
-    [FOCUS_KS4_OPTION_QUERY_PARAM]: slug,
+    ...(restoreFocus ? { [FOCUS_KS4_OPTION_QUERY_PARAM]: slug } : undefined),
     ...(variant === "modal"
       ? { [OPEN_FILTERS_MODAL_QUERY_PARAM]: "1" }
       : undefined),
