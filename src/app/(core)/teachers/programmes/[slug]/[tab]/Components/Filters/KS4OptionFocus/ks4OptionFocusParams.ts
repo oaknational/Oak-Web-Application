@@ -22,7 +22,7 @@ export function focusExamBoardRadio(
   const radio = scopeElement?.querySelector<HTMLInputElement>(
     `input[type="radio"][value="${slug}"]`,
   );
-  radio?.focus();
+  radio?.focus({ preventScroll: true });
 }
 
 export type KS4OptionFocusScopeVariant = "page" | "modal";

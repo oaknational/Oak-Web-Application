@@ -21,10 +21,12 @@ import { BrowseFiltersProvider } from "@/context/BrowseFilters";
 import { BrowseFilters } from "@/context/BrowseFilters/types";
 import { createFilter } from "@/context/BrowseFilters/utils/fixtures";
 
+const mockReplace = jest.fn();
+
 jest.mock("next/navigation", () => ({
   __esModule: true,
   useRouter: () => ({
-    replace: jest.fn(),
+    replace: mockReplace,
     prefetch: jest.fn(),
   }),
   useSearchParams: () => new URLSearchParams(""),
@@ -373,13 +375,8 @@ describe("getPreservedQuery", () => {
 });
 
 describe("ProgrammeFiltersKs4Options", () => {
-  // Mock window history
-  let pushSpy: jest.SpyInstance;
   beforeEach(() => {
-    pushSpy = jest.spyOn(globalThis.history, "pushState");
-  });
-  afterEach(() => {
-    pushSpy.mockRestore();
+    mockReplace.mockClear();
   });
   it("renders pathway options with GCSE before Core for citizenship", () => {
     const { getAllByRole } = renderKs4Options(
@@ -459,9 +456,7 @@ describe("ProgrammeFiltersKs4Options", () => {
 
     act(() => radios[0]!.click());
 
-    expect(pushSpy).toHaveBeenCalledWith(
-      null,
-      "",
+    expect(mockReplace).toHaveBeenCalledWith(
       resolveOakHref({
         page: "teacher-programme",
         subjectPhaseSlug: "citizenship-secondary-gcse",
@@ -472,6 +467,7 @@ describe("ProgrammeFiltersKs4Options", () => {
           focus_ks4option: "gcse",
         },
       }),
+      { scroll: false },
     );
   });
 
@@ -489,9 +485,7 @@ describe("ProgrammeFiltersKs4Options", () => {
 
     act(() => radios[1]!.click());
 
-    expect(pushSpy).toHaveBeenCalledWith(
-      null,
-      "",
+    expect(mockReplace).toHaveBeenCalledWith(
       resolveOakHref({
         page: "teacher-programme",
         subjectPhaseSlug: "english-secondary-edexcel",
@@ -502,6 +496,7 @@ describe("ProgrammeFiltersKs4Options", () => {
           focus_ks4option: "edexcel",
         },
       }),
+      { scroll: false },
     );
   });
 
@@ -523,9 +518,7 @@ describe("ProgrammeFiltersKs4Options", () => {
 
     act(() => radios[2]!.click());
 
-    expect(pushSpy).toHaveBeenCalledWith(
-      null,
-      "",
+    expect(mockReplace).toHaveBeenCalledWith(
       resolveOakHref({
         page: "teacher-programme",
         subjectPhaseSlug: "computing-secondary-ocr",
@@ -536,6 +529,7 @@ describe("ProgrammeFiltersKs4Options", () => {
           focus_ks4option: "ocr",
         },
       }),
+      { scroll: false },
     );
   });
 
@@ -553,9 +547,7 @@ describe("ProgrammeFiltersKs4Options", () => {
 
     act(() => radios[1]!.click());
 
-    expect(pushSpy).toHaveBeenCalledWith(
-      null,
-      "",
+    expect(mockReplace).toHaveBeenCalledWith(
       resolveOakHref({
         page: "teacher-programme",
         subjectPhaseSlug: "english-secondary-edexcel",
@@ -565,6 +557,7 @@ describe("ProgrammeFiltersKs4Options", () => {
           focus_ks4option: "edexcel",
         },
       }),
+      { scroll: false },
     );
   });
 
@@ -588,9 +581,7 @@ describe("ProgrammeFiltersKs4Options", () => {
 
     act(() => radios[1]!.click());
 
-    expect(pushSpy).toHaveBeenCalledWith(
-      null,
-      "",
+    expect(mockReplace).toHaveBeenCalledWith(
       resolveOakHref({
         page: "teacher-programme",
         subjectPhaseSlug: "english-secondary-edexcel",
@@ -602,6 +593,7 @@ describe("ProgrammeFiltersKs4Options", () => {
           open_filters_modal: "1",
         },
       }),
+      { scroll: false },
     );
   });
 
