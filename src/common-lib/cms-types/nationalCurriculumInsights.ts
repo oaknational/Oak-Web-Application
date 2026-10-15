@@ -192,40 +192,22 @@ const nationalCurriculumInsightsGuidanceIntroSectionSchema = z.object({
   statusLabel: z.string().min(1).nullable().optional(),
 });
 
-const nationalCurriculumInsightsVideoCardsSectionSchema = z
-  .object({
-    __typename: z.literal("NationalCurriculumInsightsVideoCardsSection"),
-    heading: z.string().min(1),
-    illustration: imageSchema.nullable().optional(),
-    introductionPortableText: portableTextSchema.nullable().optional(),
-    posts: z
-      .array(
-        z.object({
-          id: z.string().min(1),
-          title: z.string().min(1),
-          summary: z.string().min(1),
-          slug: z.string().min(1),
-          image: imageSchema,
-          video: videoSchema.nullable().optional(),
-        }),
-      )
-      .optional(),
-    cards: z
-      .array(
-        z.object({
-          heading: z.string().min(1),
-          description: z.string().min(1),
-          image: imageSchema,
-          videoUrl: z.url(),
-          duration: z.string().min(1).nullable().optional(),
-        }),
-      )
-      .optional(),
-  })
-  .refine(
-    ({ posts, cards }) => Array.isArray(posts) || Boolean(cards?.length),
-    "A video cards section must contain at least one blog post or legacy card",
-  );
+const nationalCurriculumInsightsVideoCardsSectionSchema = z.object({
+  __typename: z.literal("NationalCurriculumInsightsVideoCardsSection"),
+  heading: z.string().min(1),
+  illustration: imageSchema.nullable().optional(),
+  introductionPortableText: portableTextSchema.nullable().optional(),
+  posts: z.array(
+    z.object({
+      id: z.string().min(1),
+      title: z.string().min(1),
+      summary: z.string().min(1),
+      slug: z.string().min(1),
+      image: imageSchema,
+      video: videoSchema.nullable().optional(),
+    }),
+  ),
+});
 
 const nationalCurriculumInsightsQuoteSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsQuoteSection"),
