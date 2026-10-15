@@ -100,6 +100,35 @@ it("keeps a poster and blog link when a post has no inline video", () => {
   ).toHaveAttribute("href", `/blog/${post.slug}`);
 });
 
+it("starts only the selected video", async () => {
+  const user = userEvent.setup();
+  const secondPost = {
+    ...post,
+    id: "episode-4",
+    title: "Preparing for curriculum change",
+    slug: "curriculum-conversations-episode-4",
+  };
+  renderWithTheme(
+    <NationalCurriculumInsightsVideoCards
+      section={{ ...section, posts: [post, secondPost] }}
+    />,
+  );
+
+  await user.click(screen.getByRole("button", { name: `Play ${post.title}` }));
+
+  expect(screen.getAllByTestId("video-player")).toHaveLength(1);
+  expect(
+    screen.queryByRole("button", { name: `Play ${post.title}` }),
+  ).not.toBeInTheDocument();
+  expect(
+    screen.getByRole("button", { name: `Play ${secondPost.title}` }),
+  ).toBeInTheDocument();
+  expect(VideoPlayer).toHaveBeenLastCalledWith(
+    expect.objectContaining({ title: post.title, autoPlay: true }),
+    expect.anything(),
+  );
+});
+
 it("uses the selected blog image as the inline video poster", async () => {
   const user = userEvent.setup();
   renderWithTheme(

@@ -346,11 +346,7 @@ export const NationalCurriculumInsightsHero = ({
               ? "minmax(0, 43rem) minmax(0, 29.125rem) minmax(0, 1fr)"
               : "minmax(0, 8fr) minmax(0, 5fr)",
           ]}
-          $alignItems={[
-            "stretch",
-            hasEditorialImage ? "center" : "start",
-            hasEditorialImage ? "center" : "start",
-          ]}
+          $alignItems={["stretch", hasEditorialImage ? "center" : "start"]}
           $cg="spacing-16"
           $rg={["spacing-32", "spacing-24", "spacing-16"]}
         >

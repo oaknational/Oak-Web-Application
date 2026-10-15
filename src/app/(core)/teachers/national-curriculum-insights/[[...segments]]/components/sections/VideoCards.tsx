@@ -30,19 +30,104 @@ import {
 
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
+type InsightsBlogPost = NonNullable<
+  Extract<
+    InsightSection,
+    { __typename: "NationalCurriculumInsightsVideoCardsSection" }
+  >["posts"]
+>[number];
+
+const InsightsBlogPostMedia = ({ post }: { post: InsightsBlogPost }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  if (!post.video) {
+    return (
+      <OakImage
+        src={imageUrl(post.image)}
+        alt={imageAlt(post.image)}
+        $width="100%"
+        $aspectRatio="16 / 9"
+        $objectFit="cover"
+      />
+    );
+  }
+
+  if (!post.image.asset?.url || isPlaying) {
+    return (
+      <OakVideo
+        showTranscript={false}
+        videoSlot={
+          <VideoPlayer
+            playbackPolicy="public"
+            playbackId={post.video.video.asset.playbackId}
+            thumbnailTime={post.video.video.asset.thumbTime}
+            poster={post.image.asset?.url ? imageUrl(post.image) : undefined}
+            title={post.title}
+            location="blog"
+            omitBorder
+            autoPlay={isPlaying}
+            autoFocusPlayButton={isPlaying}
+          />
+        }
+      />
+    );
+  }
+
+  return (
+    <OakFocusIndicator $width="100%" $borderRadius="border-radius-m2">
+      <OakBox
+        as="button"
+        type="button"
+        aria-label={`Play ${post.title}`}
+        onClick={() => setIsPlaying(true)}
+        $position="relative"
+        $display="block"
+        $width="100%"
+        $aspectRatio="16 / 9"
+        $pa="spacing-0"
+        $ba="border-solid-none"
+      >
+        <OakImage
+          src={imageUrl(post.image)}
+          alt=""
+          $width="100%"
+          $height="100%"
+          $objectFit="cover"
+        />
+        <OakFlex
+          $position="absolute"
+          $inset="spacing-0"
+          $alignItems="center"
+          $justifyContent="center"
+        >
+          <OakFlex
+            $width="spacing-56"
+            $height="spacing-56"
+            $borderRadius="border-radius-circle"
+            $background="bg-btn-primary"
+            $alignItems="center"
+            $justifyContent="center"
+          >
+            <OakIcon
+              iconName="play"
+              $width="spacing-24"
+              $height="spacing-24"
+              $color="text-inverted"
+            />
+          </OakFlex>
+        </OakFlex>
+      </OakBox>
+    </OakFocusIndicator>
+  );
+};
+
 const InsightsBlogPostCard = ({
   post,
   episode,
 }: {
-  post: NonNullable<
-    Extract<
-      InsightSection,
-      { __typename: "NationalCurriculumInsightsVideoCardsSection" }
-    >["posts"]
-  >[number];
+  post: InsightsBlogPost;
   episode: number;
 }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
   const card = (
     <OakFocusIndicator $width="100%" $borderRadius="border-radius-m2">
       <OakFlex
@@ -92,79 +177,7 @@ const InsightsBlogPostCard = ({
         data-testid="guidance-inline-video"
       >
         <OakBox $borderRadius="border-radius-m2" $overflow="hidden">
-          {post.video && post.image.asset?.url && !isPlaying ? (
-            <OakFocusIndicator $width="100%" $borderRadius="border-radius-m2">
-              <OakBox
-                as="button"
-                type="button"
-                aria-label={`Play ${post.title}`}
-                onClick={() => setIsPlaying(true)}
-                $position="relative"
-                $display="block"
-                $width="100%"
-                $aspectRatio="16 / 9"
-                $pa="spacing-0"
-                $ba="border-solid-none"
-              >
-                <OakImage
-                  src={imageUrl(post.image)}
-                  alt=""
-                  $width="100%"
-                  $height="100%"
-                  $objectFit="cover"
-                />
-                <OakFlex
-                  $position="absolute"
-                  $inset="spacing-0"
-                  $alignItems="center"
-                  $justifyContent="center"
-                >
-                  <OakFlex
-                    $width="spacing-56"
-                    $height="spacing-56"
-                    $borderRadius="border-radius-circle"
-                    $background="bg-btn-primary"
-                    $alignItems="center"
-                    $justifyContent="center"
-                  >
-                    <OakIcon
-                      iconName="play"
-                      $width="spacing-24"
-                      $height="spacing-24"
-                      $color="text-inverted"
-                    />
-                  </OakFlex>
-                </OakFlex>
-              </OakBox>
-            </OakFocusIndicator>
-          ) : post.video ? (
-            <OakVideo
-              showTranscript={false}
-              videoSlot={
-                <VideoPlayer
-                  playbackPolicy="public"
-                  playbackId={post.video.video.asset.playbackId}
-                  thumbnailTime={post.video.video.asset.thumbTime}
-                  poster={
-                    post.image.asset?.url ? imageUrl(post.image) : undefined
-                  }
-                  title={post.title}
-                  location="blog"
-                  omitBorder
-                  autoPlay={isPlaying}
-                  autoFocusPlayButton={isPlaying}
-                />
-              }
-            />
-          ) : (
-            <OakImage
-              src={imageUrl(post.image)}
-              alt={imageAlt(post.image)}
-              $width="100%"
-              $aspectRatio="16 / 9"
-              $objectFit="cover"
-            />
-          )}
+          <InsightsBlogPostMedia post={post} />
         </OakBox>
       </OakBox>
       {card}
