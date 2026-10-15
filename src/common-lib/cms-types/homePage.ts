@@ -6,6 +6,12 @@ import { linkSchema } from "./cta";
 import { portableTextSchema } from "./portableText";
 import { campaignPromoBannerSchema } from "./campaignPage";
 
+const topBannerSchema = z.object({
+  messagePortableText: portableTextSchema.nullish(),
+  ctaText: z.string().nullish(),
+  ctaLink: z.url().nullish(),
+});
+
 const notificationSchema = z.discriminatedUnion("enabled", [
   z.object({ enabled: z.literal(false) }),
   z.object({
@@ -31,6 +37,7 @@ export const testimonialSchema = z.object({
 
 export const homePageSchema = z
   .object({
+    topBanner: topBannerSchema.nullish(),
     heading: z.string(),
     summaryPortableText: portableTextSchema,
     pupilsImage: imageSchema.nullish(),
