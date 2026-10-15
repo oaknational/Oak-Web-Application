@@ -54,6 +54,7 @@ const modulesProjection = `modules[]{
     _type == "nationalCurriculumInsightsNewsletterSection" => "NationalCurriculumInsightsNewsletterSection",
     _type == "nationalCurriculumInsightsFaqSection" => "NationalCurriculumInsightsFaqSection",
     _type == "nationalCurriculumInsightsRichTextSection" => "NationalCurriculumInsightsRichTextSection",
+    _type == "nationalCurriculumInsightsConfidenceSection" => "NationalCurriculumInsightsConfidenceSection",
     _type == "nationalCurriculumInsightsImageTextSection" => "NationalCurriculumInsightsImageTextSection",
     _type == "nationalCurriculumInsightsGuidanceIntroSection" => "NationalCurriculumInsightsGuidanceIntroSection",
     _type == "nationalCurriculumInsightsVideoCardsSection" => "NationalCurriculumInsightsVideoCardsSection",
