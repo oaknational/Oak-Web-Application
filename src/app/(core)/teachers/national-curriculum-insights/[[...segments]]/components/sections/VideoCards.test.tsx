@@ -20,6 +20,7 @@ const section: Extract<
 > = {
   __typename: "NationalCurriculumInsightsVideoCardsSection",
   heading: "Curriculum conversations",
+  posts: [],
 };
 
 const post = {
@@ -206,29 +207,11 @@ it("uses the blog image on the card when there is no inline video", () => {
   ).toHaveAttribute("href", `/blog/${post.slug}`);
 });
 
-it("does not restore legacy videos when the selected blog posts are unpublished", () => {
+it("omits the section when no published blog posts resolve", () => {
   renderWithTheme(
     <NationalCurriculumInsightsVideoCards
-      section={{
-        __typename: "NationalCurriculumInsightsVideoCardsSection",
-        heading: "Curriculum conversations",
-        posts: [],
-        cards: [
-          {
-            heading: "Retired video",
-            description: "Previous preview",
-            videoUrl: "https://example.com/video",
-            image: {
-              asset: null,
-              altText: null,
-              isPresentational: true,
-              hotspot: null,
-            },
-          },
-        ],
-      }}
+      section={{ ...section, posts: [] }}
     />,
   );
   expect(screen.queryByRole("heading")).not.toBeInTheDocument();
-  expect(screen.queryByText("Retired video")).not.toBeInTheDocument();
 });
