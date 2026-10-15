@@ -8,7 +8,7 @@ import {
 } from "../helpers/newsletter";
 import { getNationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
 
-import { NationalCurriculumInsightsHero } from "./Hero";
+import { NationalCurriculumInsightsHeader } from "./InsightHeader";
 import { NationalCurriculumInsightsView } from "./View";
 import {
   NationalCurriculumInsightsFaq,
@@ -28,7 +28,7 @@ import {
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import type {
-  NationalCurriculumInsightsHeroSection,
+  NationalCurriculumInsightsHeaderSection,
   NationalCurriculumInsightsModule,
 } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import { parseNationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
@@ -855,56 +855,36 @@ describe("National Curriculum Insights sections", () => {
     expect(screen.queryByRole("link")).not.toBeInTheDocument();
   });
 
-  it("renders hero metadata and breadcrumbs for every page level", async () => {
+  it("renders the editorial date and breadcrumbs for every page level", async () => {
     const subjectData = await getData(["science"]);
     const phaseData = await getData(["science", "primary"]);
     const keyStageData = await getData(["science", "primary", "key-stage-1"]);
-    const hero: NationalCurriculumInsightsHeroSection = {
-      __typename: "NationalCurriculumInsightsHeroSection",
+    const hero: NationalCurriculumInsightsHeaderSection = {
+      __typename: "NationalCurriculumInsightsHeaderSection",
       heading: "Science curriculum changes",
       bodyPortableText: portableText("hero", "The latest curriculum detail."),
-      image: localImage,
-      authorName: "Curriculum team",
-      authorRole: "Subject specialists",
-      authorImage: contentImage,
-      statusMessage: "Draft guidance",
+      lastUpdatedAt: "2026-09-10",
     };
 
     const { rerender } = renderWithTheme(
-      <NationalCurriculumInsightsHero data={subjectData} section={hero} />,
+      <NationalCurriculumInsightsHeader data={subjectData} section={hero} />,
     );
-    expect(screen.getByText("Curriculum team")).toBeInTheDocument();
-    expect(screen.getByText("Subject specialists")).toBeInTheDocument();
-    expect(screen.getByText("Draft guidance")).toBeInTheDocument();
-    const heroGrid = screen.getByRole("heading", {
-      name: hero.heading,
-    }).parentElement!.parentElement!.parentElement!;
-    expect(heroGrid.children[1]).toHaveStyle({ order: "2" });
+    expect(screen.getByText("10 September 2026")).toHaveAttribute(
+      "datetime",
+      "2026-09-10",
+    );
     expect(
       screen.getByRole("link", { name: /National curriculum insights/ }),
     ).toHaveAttribute("href", "/curriculum-change-explained");
 
     rerender(
-      <NationalCurriculumInsightsHero
-        data={phaseData}
-        section={{
-          ...hero,
-          authorName: null,
-          authorRole: null,
-          authorImage: null,
-        }}
-      />,
+      <NationalCurriculumInsightsHeader data={phaseData} section={hero} />,
     );
-    expect(screen.queryByText("Curriculum team")).not.toBeInTheDocument();
-    expect(screen.getByText("Draft guidance")).toBeInTheDocument();
+    expect(screen.getByText("10 September 2026")).toBeInTheDocument();
 
     rerender(
-      <NationalCurriculumInsightsHero
-        data={keyStageData}
-        section={{ ...hero, statusMessage: null }}
-      />,
+      <NationalCurriculumInsightsHeader data={keyStageData} section={hero} />,
     );
-    expect(screen.getByText("Key stage 1")).toBeInTheDocument();
-    expect(screen.queryByText("Draft guidance")).not.toBeInTheDocument();
+    expect(screen.getByText("KS1")).toBeInTheDocument();
   });
 });

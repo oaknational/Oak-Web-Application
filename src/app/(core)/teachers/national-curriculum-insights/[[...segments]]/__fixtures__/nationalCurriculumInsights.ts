@@ -61,13 +61,12 @@ const pageModules = (
   subjectTitle: string,
 ): NationalCurriculumInsightsModule[] => [
   {
-    __typename: "NationalCurriculumInsightsHeroSection",
+    __typename: "NationalCurriculumInsightsHeaderSection",
     heading: pageHeading(pageType, subjectTitle),
     bodyPortableText: portableText(
       `${subjectTitle}-${pageType}-hero`,
       `Explore the proposed curriculum changes and what they mean for ${subjectTitle.toLowerCase()} teaching.`,
     ),
-    image: localImage,
   },
   {
     __typename: "NationalCurriculumInsightsRichTextSection",
