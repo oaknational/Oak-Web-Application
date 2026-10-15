@@ -8,44 +8,25 @@ import {
 } from "@oaknational/oak-components";
 import { useEffect } from "react";
 
-import useAnalytics from "@/context/Analytics/useAnalytics";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { COPYRIGHT_CONTACT_US_LINK } from "@/utils/copyrightLinks";
 
 interface LessonDownloadRegionBlockedProps {
-  lessonName: string;
-  lessonSlug: string;
-  lessonReleaseDate: string;
   href: string;
-  isLegacy: boolean;
 }
 
 export function LessonDownloadRegionBlocked({
-  lessonName,
-  lessonSlug,
-  lessonReleaseDate,
   href,
-  isLegacy,
 }: Readonly<LessonDownloadRegionBlockedProps>) {
-  const { track } = useAnalytics();
+  const { contentBlockNotificationDisplayed } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
   useEffect(() => {
-    track.contentBlockNotificationDisplayed({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "explore",
+    contentBlockNotificationDisplayed({
       componentType: "lesson_downloads",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      lessonName: lessonName,
-      lessonSlug: lessonSlug,
-      lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
-      lessonReleaseDate: lessonReleaseDate,
-      unitName: null,
-      unitSlug: null,
-      contentType: "lesson",
       accessBlockType: "Geo-restriction",
-      accessBlockDetails: {},
     });
-  }, [track, lessonName, lessonSlug, lessonReleaseDate, isLegacy]);
+  }, [contentBlockNotificationDisplayed]);
   return (
     <OakFlex
       $flexDirection={"column"}

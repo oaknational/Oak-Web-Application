@@ -1,13 +1,9 @@
-import { OnboardingFormProps } from "../OnboardingForm.schema";
-
-import { onboardingRoleOptions } from "./onboardingRoleOptions";
 import { collectOnboardingTrackingProps } from "./collectOnboardingTrackingProps";
 
 import { mockUser } from "@/__tests__/__helpers__/mockUser";
-import {
-  UserOnboardingCompletedProperties,
-  UserOnboardingProgressedProperties,
-} from "@/browser-lib/avo/Avo";
+import { OnboardingTrackingProps } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsStore";
+import { OnboardingFormProps } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
+import { onboardingRoleOptions } from "@/components/TeacherComponents/OnboardingForm/onboardingActions/onboardingRoleOptions";
 import { UserResource } from "clerk";
 
 type EmailAddressResource = UserResource["emailAddresses"][0];
@@ -16,13 +12,7 @@ describe(collectOnboardingTrackingProps, () => {
   const submitEvent = new SubmitEvent("submit");
 
   it.each<
-    [
-      string,
-      Partial<OnboardingFormProps>,
-      Partial<
-        UserOnboardingProgressedProperties & UserOnboardingCompletedProperties
-      >,
-    ]
+    [string, Partial<OnboardingFormProps>, Partial<OnboardingTrackingProps>]
   >([
     [
       "user",
@@ -30,7 +20,6 @@ describe(collectOnboardingTrackingProps, () => {
       {
         signUpDate: "2024-10-07",
         userDetailsLastModifiedDate: "2024-10-08",
-        userId_: "distinct-id-1234",
       },
     ],
     [
@@ -121,7 +110,6 @@ describe(collectOnboardingTrackingProps, () => {
     ],
   ])("tracks %s %p with props %p", (_, testFormProps, trackingProperties) => {
     const props = collectOnboardingTrackingProps(
-      "distinct-id-1234",
       mockUser,
       testFormProps as OnboardingFormProps,
       submitEvent,
@@ -130,15 +118,7 @@ describe(collectOnboardingTrackingProps, () => {
     expect(props).toEqual(expect.objectContaining(trackingProperties));
   });
 
-  it.each<
-    [
-      string,
-      UserResource,
-      Partial<
-        UserOnboardingProgressedProperties & UserOnboardingCompletedProperties
-      >,
-    ]
-  >([
+  it.each<[string, UserResource, Partial<OnboardingTrackingProps>]>([
     [
       "verified email",
       {
@@ -177,7 +157,6 @@ describe(collectOnboardingTrackingProps, () => {
     ],
   ])("tracks %s %p with props %p", (_, user, trackingProperties) => {
     const props = collectOnboardingTrackingProps(
-      "distinct-id-1234",
       user,
       {} as OnboardingFormProps,
       submitEvent,
@@ -194,7 +173,6 @@ describe(collectOnboardingTrackingProps, () => {
 
     expect(
       collectOnboardingTrackingProps(
-        "distinct-id-1234",
         mockUser,
         {} as OnboardingFormProps,
         submitEvent,
@@ -205,7 +183,6 @@ describe(collectOnboardingTrackingProps, () => {
 
     expect(
       collectOnboardingTrackingProps(
-        "distinct-id-1234",
         mockUser,
         {} as OnboardingFormProps,
         submitEvent,
