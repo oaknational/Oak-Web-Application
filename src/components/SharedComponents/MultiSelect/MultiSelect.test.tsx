@@ -70,9 +70,14 @@ describe("MultiSelect", () => {
 
       expect(screen.getByTestId("multi-select-panel")).toHaveStyle({
         position: "absolute",
-        [direction === "up" ? "bottom" : "top"]: "calc(100% + 0.25rem)",
-        "max-height": "min(60rem,70vh)",
+        [direction === "up" ? "bottom" : "top"]: "0.25rem",
+        "max-height": "30rem",
         "overflow-y": "auto",
+      });
+      expect(
+        screen.getByTestId("multi-select-panel").parentElement,
+      ).toHaveStyle({
+        [direction === "up" ? "top" : "bottom"]: "0rem",
       });
     },
   );
@@ -94,6 +99,7 @@ describe("MultiSelect", () => {
     renderWithTheme(<ControlledMultiSelect onChange={onChange} />);
 
     fireEvent.click(screen.getByTestId("multi-select-trigger"));
+    expect(onChange).not.toHaveBeenCalled();
     fireEvent.click(screen.getAllByRole("checkbox", { name: "One" })[0]!);
 
     expect(onChange).toHaveBeenLastCalledWith(["first-one"]);

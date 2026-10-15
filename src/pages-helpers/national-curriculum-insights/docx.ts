@@ -108,10 +108,16 @@ const tableXml = (rows: Array<{ cells: string[] }> | undefined): string => {
 
 const moduleXml = (module: NationalCurriculumInsightsModule): string => {
   switch (module.__typename) {
+    case "NationalCurriculumInsightsHeaderSection":
     case "NationalCurriculumInsightsHeroSection":
       return `${paragraph(module.heading, "Heading1")}${portableTextParagraphs(module.bodyPortableText)}`;
     case "NationalCurriculumInsightsOverviewSection":
       return `${paragraph(module.heading, "Heading2")}${portableTextParagraphs(module.bodyPortableText)}`;
+    case "NationalCurriculumInsightsChecklistSection":
+      return `${paragraph(module.heading, "Heading2")}${module.items.map((item) => `${paragraph("☐")}${portableTextParagraphs(item.contentPortableText)}`).join("")}`;
+    case "NationalCurriculumInsightsChangesSection":
+      return `${paragraph(module.heading, "Heading2")}${module.changes.map((change) => `${paragraph(change.title, "Heading3")}${paragraph(change.whyItMatters)}${portableTextParagraphs(change.detailPortableText)}`).join("")}`;
+    case "NationalCurriculumInsightsUnchangedSection":
     case "NationalCurriculumInsightsRichTextSection":
       return `${paragraph(module.heading, "Heading2")}${portableTextParagraphs(module.contentPortableText)}`;
     case "NationalCurriculumInsightsImageTextSection":

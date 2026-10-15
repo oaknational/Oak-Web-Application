@@ -15,3 +15,6 @@ export { NationalCurriculumInsightsRichText } from "./sections/RichText";
 export { NationalCurriculumInsightsTable } from "./sections/Table";
 export { NationalCurriculumInsightsNewsletter } from "./sections/Newsletter";
 export { NationalCurriculumInsightsFaq } from "./sections/Faq";
+export { NationalCurriculumInsightsChecklist } from "./sections/Checklist";
+export { NationalCurriculumInsightsChanges } from "./sections/Changes";
+export { NationalCurriculumInsightsUnchanged } from "./sections/Unchanged";
