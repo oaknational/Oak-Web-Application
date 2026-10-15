@@ -81,7 +81,14 @@ const ModuleView = ({
       );
     case "NationalCurriculumInsightsNewsletterSection":
       return (
-        <NationalCurriculumInsightsNewsletter section={module} data={data} />
+        <NationalCurriculumInsightsNewsletter
+          section={module}
+          variant={
+            data.route.kind === "hub" || data.route.kind === "guidance"
+              ? "plain"
+              : "highlighted"
+          }
+        />
       );
     case "NationalCurriculumInsightsFaqSection":
       return <NationalCurriculumInsightsFaq section={module} data={data} />;

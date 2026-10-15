@@ -9,6 +9,7 @@ import {
 import { getNationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
 
 import { NationalCurriculumInsightsHero } from "./Hero";
+import { NationalCurriculumInsightsView } from "./View";
 import {
   NationalCurriculumInsightsFaq,
   NationalCurriculumInsightsGuidanceIntro,
@@ -134,6 +135,53 @@ const moduleOf = <T extends NationalCurriculumInsightsModule["__typename"]>(
 ) => module;
 
 describe("National Curriculum Insights sections", () => {
+  it.each([
+    { segments: [], background: "#ffffff" },
+    { segments: ["guidance"], background: "#ffffff" },
+    { segments: ["science"], background: "#fff7cc" },
+    { segments: ["science", "primary"], background: "#fff7cc" },
+    {
+      segments: ["science", "primary", "key-stage-1"],
+      background: "#fff7cc",
+    },
+  ])(
+    "uses the newsletter presentation for $segments",
+    async ({ segments, background }) => {
+      const data = await getData(segments);
+      const modules = [
+        moduleOf({
+          __typename: "NationalCurriculumInsightsNewsletterSection",
+          heading: "Keep up to date",
+          introduction: "Get curriculum updates by email.",
+          benefits: ["New guidance"],
+          illustration: contentImage,
+          privacyPortableText: portableText(
+            "privacy",
+            "Read our privacy policy.",
+          ),
+          buttonLabel: "Join the mailing list",
+        }),
+      ];
+      if (data.route.kind === "hub" && data.hub) {
+        data.hub = { ...data.hub, modules };
+      } else if (data.page) {
+        data.page = { ...data.page, modules };
+      } else {
+        throw new Error("Expected the page fixture");
+      }
+
+      renderWithTheme(<NationalCurriculumInsightsView data={data} />);
+
+      expect(
+        screen.getByRole("region", { name: "Keep up to date" }),
+      ).toHaveStyle({ background });
+      expect(screen.getByText("Get curriculum updates by email.")).toHaveStyle({
+        fontSize: "1.125rem",
+        fontWeight: "300",
+      });
+    },
+  );
+
   it.each([undefined, ["guidance"], ["science", "primary"]])(
     "keeps joined FAQ rows independently expandable on route %j",
     async (segments) => {
@@ -188,7 +236,7 @@ describe("National Curriculum Insights sections", () => {
     },
   );
 
-  it("renders a paused inline video separately from the blog link", () => {
+  it("starts an inline video separately from the blog link", async () => {
     renderWithTheme(
       <NationalCurriculumInsightsVideoCards
         section={moduleOf({
@@ -237,6 +285,12 @@ describe("National Curriculum Insights sections", () => {
       "href",
       "/blog/curriculum-conversations-episode-3",
     );
+    expect(screen.queryByTestId("cms-video")).not.toBeInTheDocument();
+    await userEvent.setup().click(
+      screen.getByRole("button", {
+        name: "Play Bennie Kara on inclusive curriculum leadership",
+      }),
+    );
     expect(blogLink).not.toContainElement(screen.getByTestId("cms-video"));
 
     expect(screen.getByTestId("cms-video")).toHaveTextContent(
@@ -251,7 +305,7 @@ describe("National Curriculum Insights sections", () => {
     );
     expect(screen.getByTestId("cms-video")).toHaveAttribute(
       "data-autoplay",
-      "false",
+      "true",
     );
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
@@ -423,7 +477,7 @@ describe("National Curriculum Insights sections", () => {
           })}
         />
         <NationalCurriculumInsightsNewsletter
-          data={data}
+          variant="plain"
           section={moduleOf({
             __typename: "NationalCurriculumInsightsNewsletterSection",
             heading: "Keep up to date",
@@ -486,10 +540,10 @@ describe("National Curriculum Insights sections", () => {
       width: "1.5rem",
       height: "1.5rem",
     });
-    // Each grid item starts in the first column in the stacked mobile layout.
-    Array.from(newsletterForm.parentElement!.children).forEach((column) => {
-      expect(column).toHaveStyle({ gridColumnStart: "1" });
-    });
+    expect(
+      screen.getByText("New guidance").compareDocumentPosition(newsletterForm) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
 
     fireEvent.change(screen.getByRole("textbox", { name: /Name/ }), {
       target: { value: "Jamie Maxwell" },
@@ -526,12 +580,11 @@ describe("National Curriculum Insights sections", () => {
 
   it("does not track a completed newsletter signup when HubSpot rejects it", async () => {
     const user = userEvent.setup();
-    const data = await getData();
     submitNewsletter.mockRejectedValueOnce(new Error("HubSpot unavailable"));
 
     renderWithTheme(
       <NationalCurriculumInsightsNewsletter
-        data={data}
+        variant="highlighted"
         section={moduleOf({
           __typename: "NationalCurriculumInsightsNewsletterSection",
           heading: "Keep up to date",
@@ -630,6 +683,21 @@ describe("National Curriculum Insights sections", () => {
       expect.stringContaining("example-100x100.png"),
     );
     expect(portrait).toHaveAttribute("alt", "");
+  });
+
+  it("keeps the paragraph break in the guidance quote", () => {
+    renderWithTheme(
+      <NationalCurriculumInsightsQuote
+        section={moduleOf({
+          __typename: "NationalCurriculumInsightsQuoteSection",
+          quote: "A refreshed curriculum.\n\nSupport for teachers.",
+          attribution: "Professor Becky Francis CBE",
+        })}
+      />,
+    );
+
+    expect(screen.getByText("“A refreshed curriculum.")).toBeInTheDocument();
+    expect(screen.getByText("Support for teachers.”")).toBeInTheDocument();
   });
 
   it("uses the CMS benefits artwork and mirror setting without overriding editor-selected images", async () => {

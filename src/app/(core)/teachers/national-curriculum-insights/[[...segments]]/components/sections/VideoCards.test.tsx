@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react";
 import "jest-styled-components";
+import userEvent from "@testing-library/user-event";
 
 import { NationalCurriculumInsightsVideoCards } from "./VideoCards";
 
@@ -52,13 +53,102 @@ beforeEach(() => {
   jest.clearAllMocks();
 });
 
-it("uses the selected blog image as the inline video poster", () => {
+it("uses compact type and independent playback", async () => {
+  const user = userEvent.setup();
   renderWithTheme(
     <NationalCurriculumInsightsVideoCards
       section={{ ...section, posts: [post] }}
     />,
   );
 
+  expect(screen.getByRole("heading", { name: post.title })).toHaveStyleRule(
+    "font-size",
+    "1rem",
+  );
+  expect(screen.getByText(post.summary)).toHaveStyleRule(
+    "font-size",
+    "0.875rem",
+  );
+  expect(VideoPlayer).not.toHaveBeenCalled();
+  await user.click(screen.getByRole("button", { name: `Play ${post.title}` }));
+  expect(VideoPlayer).toHaveBeenCalledWith(
+    expect.objectContaining({
+      autoPlay: true,
+      autoFocusPlayButton: true,
+      poster: getProxiedSanityAssetUrl(post.image.asset.url),
+    }),
+    expect.anything(),
+  );
+  expect(
+    screen.getByRole("link", { name: /Inclusive curriculum leadership/ }),
+  ).not.toContainElement(screen.getByTestId("video-player"));
+});
+
+it("keeps a poster and blog link when a post has no inline video", () => {
+  renderWithTheme(
+    <NationalCurriculumInsightsVideoCards
+      section={{ ...section, posts: [{ ...post, video: null }] }}
+    />,
+  );
+
+  expect(VideoPlayer).not.toHaveBeenCalled();
+  expect(
+    screen.getByRole("img", { name: post.image.altText }),
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole("link", { name: /Inclusive curriculum leadership/ }),
+  ).toHaveAttribute("href", `/blog/${post.slug}`);
+});
+
+it("starts only the selected video", async () => {
+  const user = userEvent.setup();
+  const secondPost = {
+    ...post,
+    id: "episode-4",
+    title: "Preparing for curriculum change",
+    slug: "curriculum-conversations-episode-4",
+  };
+  renderWithTheme(
+    <NationalCurriculumInsightsVideoCards
+      section={{ ...section, posts: [post, secondPost] }}
+    />,
+  );
+
+  await user.click(screen.getByRole("button", { name: `Play ${post.title}` }));
+
+  expect(screen.getAllByTestId("video-player")).toHaveLength(1);
+  expect(
+    screen.queryByRole("button", { name: `Play ${post.title}` }),
+  ).not.toBeInTheDocument();
+  expect(
+    screen.getByRole("button", { name: `Play ${secondPost.title}` }),
+  ).toBeInTheDocument();
+  expect(VideoPlayer).toHaveBeenLastCalledWith(
+    expect.objectContaining({ title: post.title, autoPlay: true }),
+    expect.anything(),
+  );
+});
+
+it("uses the selected blog image as the inline video poster", async () => {
+  const user = userEvent.setup();
+  renderWithTheme(
+    <NationalCurriculumInsightsVideoCards
+      section={{ ...section, posts: [post] }}
+    />,
+  );
+
+  expect(
+    screen
+      .getByRole("button", { name: `Play ${post.title}` })
+      .querySelector("img"),
+  ).toHaveAttribute(
+    "src",
+    expect.stringContaining(
+      encodeURIComponent(getProxiedSanityAssetUrl(post.image.asset.url)),
+    ),
+  );
+  expect(VideoPlayer).not.toHaveBeenCalled();
+  await user.click(screen.getByRole("button", { name: `Play ${post.title}` }));
   expect(VideoPlayer).toHaveBeenCalledWith(
     expect.objectContaining({
       poster: getProxiedSanityAssetUrl(post.image.asset.url),
