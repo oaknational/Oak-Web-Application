@@ -108,6 +108,7 @@ const tableXml = (rows: Array<{ cells: string[] }> | undefined): string => {
 
 const moduleXml = (module: NationalCurriculumInsightsModule): string => {
   switch (module.__typename) {
+    case "NationalCurriculumInsightsHeaderSection":
     case "NationalCurriculumInsightsHeroSection":
       return `${paragraph(module.heading, "Heading1")}${portableTextParagraphs(module.bodyPortableText)}`;
     case "NationalCurriculumInsightsOverviewSection":

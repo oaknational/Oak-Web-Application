@@ -45,6 +45,7 @@ export const insightsPortableTextProjection = `[]{
 const modulesProjection = `modules[]{
   "__typename": select(
     _type == "nationalCurriculumInsightsHeroSection" => "NationalCurriculumInsightsHeroSection",
+    _type == "nationalCurriculumInsightsHeaderSection" => "NationalCurriculumInsightsHeaderSection",
     _type == "nationalCurriculumInsightsOverviewSection" => "NationalCurriculumInsightsOverviewSection",
     _type == "nationalCurriculumInsightsPhaseCardsSection" => "NationalCurriculumInsightsPhaseCardsSection",
     _type == "nationalCurriculumInsightsKeyStageCardsSection" => "NationalCurriculumInsightsKeyStageCardsSection",
@@ -87,11 +88,7 @@ const modulesProjection = `modules[]{
   "bodyPortableText": body${insightsPortableTextProjection},
   "contentPortableText": content${insightsPortableTextProjection},
   "introductionPortableText": introduction${insightsPortableTextProjection},
-  authorName,
-  authorRole,
-  authorImage ${imageProjection},
-  statusHeading,
-  statusMessage,
+  lastUpdatedAt,
   imagePosition,
   mirrorImage,
   background,
@@ -99,7 +96,7 @@ const modulesProjection = `modules[]{
   "ctaHref": select(
     (ctaHref match "/curriculum-change-explained/guidance*" || ctaHref match "/teachers/national-curriculum-insights/guidance*") &&
       !defined(*[_type == "nationalCurriculumInsightsGuidancePage" && _id in ["nationalCurriculumInsightsGuidancePage", "drafts.nationalCurriculumInsightsGuidancePage"]][0]._id) => null,
-    ctaHref == "/teachers/national-curriculum-insights" &&
+    ctaHref in ["/teachers/national-curriculum-insights", "/curriculum-change-explained"] &&
       !defined(*[_type == "nationalCurriculumInsightsHub" && _id in ["nationalCurriculumInsightsHub", "drafts.nationalCurriculumInsightsHub"]][0]._id) => null,
     ctaHref
   ),

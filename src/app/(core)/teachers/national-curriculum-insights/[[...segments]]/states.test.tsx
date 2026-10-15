@@ -16,6 +16,6 @@ describe("National Curriculum Insights route states", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: "Browse National Curriculum Insights" }),
-    ).toHaveAttribute("href", "/teachers/national-curriculum-insights");
+    ).toHaveAttribute("href", "/curriculum-change-explained");
   });
 });
