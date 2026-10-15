@@ -75,7 +75,6 @@ const modulesProjection = `modules[]{
   benefitsHeading,
   benefits,
   "privacyPortableText": privacyText${insightsPortableTextProjection},
-  formId,
   buttonLabel,
   barHeading,
   barCtaLabel,
