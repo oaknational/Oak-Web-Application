@@ -52,6 +52,7 @@ describe("node-lib/sanity-graphql/index.ts", () => {
     await import(".");
     expect(GraphQLClientSpy).toHaveBeenCalledWith(expect.any(String), {
       headers: { Authorization: "Bearer sanity-secret" },
+      fetch: expect.any(Function),
     });
   });
 

@@ -1,9 +1,6 @@
 import { StoryObj, Meta } from "@storybook/nextjs";
 import { OakBreadcrumbs } from "@oaknational/oak-components";
-import { fn, mocked } from "storybook/test";
-
-// Storybook v10 requires relative imports for mocks, not aliases: https://storybook.js.org/docs/8/writing-stories/mocking-data-and-modules/mocking-modules#mock-files
-import useUnitDownloadExistenceCheck from "../../../../../../../../../../components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
+import { fn } from "storybook/test";
 
 import UnitHeader, { UnitHeaderProps } from "./UnitHeader";
 
@@ -15,13 +12,6 @@ const meta: Meta<typeof UnitHeader> = {
   component: UnitHeader,
   tags: ["autodocs"],
   title: "App/Programmes/Units/UnitHeader",
-  beforeEach: () => {
-    mocked(useUnitDownloadExistenceCheck).mockReturnValue({
-      exists: true,
-      fileSize: "100MB",
-      hasCheckedFiles: true,
-    });
-  },
   argTypes: {
     subjectIcon: {
       options: [
@@ -63,6 +53,11 @@ const coreProps: UnitHeaderProps = {
   phase: "secondary",
   subjectIcon: "subject-computer-science",
   unitDownloadFileId: "1",
+  unitDownloadExistence: {
+    checkFailed: false,
+    exists: true,
+    fileSize: "100MB",
+  },
   nextUnit: { title: "unit 3", slug: "unit-3" },
   prevUnit: { title: "unit 1", slug: "unit-1" },
   programmeSlug: "computer-science-ks4-aqa",

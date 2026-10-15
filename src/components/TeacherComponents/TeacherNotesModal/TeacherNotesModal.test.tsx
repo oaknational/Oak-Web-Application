@@ -102,20 +102,14 @@ describe("TeacherNotesModal", () => {
       expect(result).toBe(false);
     });
 
-    it("should return true if the protocol is allowed", () => {
+    it("should return true if the https protocol is allowed", () => {
       const result = isAllowedUri("https://example.com", context);
       expect(result).toBe(true);
     });
 
-    it("should return true if the protocol is allowed", () => {
+    it("should return true if the http protocol is allowed", () => {
       const result = isAllowedUri("http://example.com", context);
       expect(result).toBe(true);
-    });
-
-    it("should return false if the URL is invalid", () => {
-      context.defaultValidate.mockReturnValueOnce(false);
-      const result = isAllowedUri("https://", context);
-      expect(result).toBe(false);
     });
 
     it("should return false if the URL is invalid", () => {
@@ -133,19 +127,14 @@ describe("TeacherNotesModal", () => {
   });
 
   describe("shouldAutoLink", () => {
-    it("should return true if the URL is valid", () => {
+    it("should return true if the URL is valid (with protocol)", () => {
       const result = shouldAutoLink("https://example.com");
       expect(result).toBe(true);
     });
 
-    it("should return true if the URL is valid", () => {
+    it("should return true if the URL is valid (no protocol)", () => {
       const result = shouldAutoLink("example.com");
       expect(result).toBe(true);
-    });
-
-    it("should return false if the URL is invalid", () => {
-      const result = shouldAutoLink("https://");
-      expect(result).toBe(false);
     });
 
     it("should return false if the URL is invalid", () => {

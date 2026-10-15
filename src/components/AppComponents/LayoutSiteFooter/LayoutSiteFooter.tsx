@@ -1,5 +1,5 @@
 "use client";
-import { FC } from "react";
+import { FC, memo } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -120,7 +120,7 @@ export type FooterSections = Record<
   FooterSection
 >;
 
-export const LayoutSiteFooterInner: FC = () => {
+export const LayoutSiteFooterInner: FC = memo(() => {
   const { teachWithOakAccessed } = useTeacherBrowseAnalytics(
     (store) => store.track,
   );
@@ -415,7 +415,7 @@ export const LayoutSiteFooterInner: FC = () => {
       />
     </OakBox>
   );
-};
+});
 
 const LayoutSiteFooter = () => {
   return (

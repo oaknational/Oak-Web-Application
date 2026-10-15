@@ -91,21 +91,4 @@ describe("select", () => {
     const buttonSpan = screen.getByTestId("select-span").textContent;
     expect(buttonSpan).toEqual("Parent");
   });
-
-  it("renders a drop down select", () => {
-    renderWithTheme(
-      <DropdownSelect
-        id="test-select"
-        listItems={roles}
-        name={"Name"}
-        placeholder={"Placeholder"}
-        label={"select me"}
-        onChange={setSelectedKey}
-      />,
-    );
-
-    const select = screen.getByTestId("select");
-
-    expect(select).toBeInTheDocument();
-  });
 });
