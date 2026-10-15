@@ -161,7 +161,7 @@ export const PupilViewsProgrammeListing = ({
     }
   });
 
-  const BrowseOptions = () => {
+  const browseOptions = () => {
     if (currentFactor === "none") {
       return <OakBox>No programme factors to be selected</OakBox>;
     }
@@ -293,7 +293,7 @@ export const PupilViewsProgrammeListing = ({
                 />
               }
             >
-              <BrowseOptions />
+              {browseOptions()}
             </OakPupilJourneyProgrammeOptions>
           </OakBox>
           <SignpostTeachersInlineBanner onClose={setFocusAfterClose} />
