@@ -6,7 +6,7 @@ import { linkSchema } from "./cta";
 import { portableTextSchema } from "./portableText";
 import { campaignPromoBannerSchema } from "./campaignPage";
 
-const topBannerSchema = z.object({
+export const topBannerSchema = z.object({
   messagePortableText: portableTextSchema.nullish(),
   ctaText: z.string().nullish(),
   ctaLink: z.url().nullish(),

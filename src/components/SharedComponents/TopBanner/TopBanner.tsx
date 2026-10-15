@@ -5,16 +5,22 @@ import {
   OakSpan,
   OakP,
 } from "@oaknational/oak-components";
+import { z } from "zod";
 import Link from "next/link";
 
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import { topBannerSchema } from "@/common-lib/cms-types";
 
-// to do - types
-export default function TopBanner({ topBanner }: { topBanner: any }) {
+export type TopBannerProps = z.infer<typeof topBannerSchema>;
 
+export default function TopBanner({
+  topBanner,
+}: {
+  topBanner: TopBannerProps;
+}) {
   if (!topBanner) {
     return;
-  };
+  }
 
   return (
     <OakBox role="banner">
@@ -57,14 +63,14 @@ export default function TopBanner({ topBanner }: { topBanner: any }) {
           </OakFlex>
           {topBanner?.ctaText && topBanner?.ctaLink && (
             <OakSmallTertiaryInvertedButton
-            element={Link}
-            href={topBanner?.ctaLink}
-            title={topBanner?.ctaText}
-            iconName="chevron-right"
-            isTrailingIcon={true}
-          >
-            <OakSpan $font={"heading-7"}>{topBanner?.ctaText}</OakSpan>
-          </OakSmallTertiaryInvertedButton>
+              element={Link}
+              href={topBanner?.ctaLink}
+              title={topBanner?.ctaText}
+              iconName="chevron-right"
+              isTrailingIcon={true}
+            >
+              <OakSpan $font={"heading-7"}>{topBanner?.ctaText}</OakSpan>
+            </OakSmallTertiaryInvertedButton>
           )}
         </OakFlex>
       </OakFlex>
