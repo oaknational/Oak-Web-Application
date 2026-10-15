@@ -7,7 +7,7 @@ import {
   OakRadioGroup,
 } from "@oaknational/oak-components";
 import { useRouter } from "next/navigation";
-import { useEffect, useId } from "react";
+import { useEffect, useId, useState } from "react";
 
 import type { Ks4OptionFilterDimension } from "../../../buildKs4OptionFilterDimensions";
 import { useGetKs4OptionFocusNavigationQuery } from "../KS4OptionFocus/KS4OptionFocusScope";
@@ -40,8 +40,8 @@ export function ProgrammeFiltersKs4Options({
   ks4Options,
   ks4OptionFilterDimensions,
 }: Readonly<ProgrammeFiltersKs4OptionsProps>) {
-  const router = useRouter();
   const { filters } = useBrowseFilters();
+  const [selectedSlug, setSelectedSlug] = useState(slugs.ks4OptionSlug ?? "");
   const { programmeRefined } = useTeacherBrowseAnalytics(
     (store) => store.track,
   );
@@ -86,10 +86,11 @@ export function ProgrammeFiltersKs4Options({
       filterType,
       filterValue: selectedSlug,
     });
-    router.replace(buildKs4OptionHref(selectedSlug));
+    setSelectedSlug(selectedSlug);
+    // Prevent a full page reload that would happen if using router.replace
+    const url = buildKs4OptionHref(selectedSlug);
+    globalThis.history.pushState(null, "", url);
   }
-
-  const selectedSlug = slugs.ks4OptionSlug ?? "";
 
   return (
     <>

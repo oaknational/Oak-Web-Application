@@ -21,12 +21,10 @@ import { BrowseFiltersProvider } from "@/context/BrowseFilters";
 import { BrowseFilters } from "@/context/BrowseFilters/types";
 import { createFilter } from "@/context/BrowseFilters/utils/fixtures";
 
-const replaceMock = jest.fn();
-
 jest.mock("next/navigation", () => ({
   __esModule: true,
   useRouter: () => ({
-    replace: replaceMock,
+    replace: jest.fn(),
     prefetch: jest.fn(),
   }),
   useSearchParams: () => new URLSearchParams(""),
@@ -375,10 +373,14 @@ describe("getPreservedQuery", () => {
 });
 
 describe("ProgrammeFiltersKs4Options", () => {
+  // Mock window history
+  let pushSpy: jest.SpyInstance;
   beforeEach(() => {
-    replaceMock.mockClear();
+    pushSpy = jest.spyOn(globalThis.history, "pushState");
   });
-
+  afterEach(() => {
+    pushSpy.mockRestore();
+  });
   it("renders pathway options with GCSE before Core for citizenship", () => {
     const { getAllByRole } = renderKs4Options(
       defaultFilters,
@@ -457,7 +459,9 @@ describe("ProgrammeFiltersKs4Options", () => {
 
     act(() => radios[0]!.click());
 
-    expect(replaceMock).toHaveBeenCalledWith(
+    expect(pushSpy).toHaveBeenCalledWith(
+      null,
+      "",
       resolveOakHref({
         page: "teacher-programme",
         subjectPhaseSlug: "citizenship-secondary-gcse",
@@ -485,7 +489,9 @@ describe("ProgrammeFiltersKs4Options", () => {
 
     act(() => radios[1]!.click());
 
-    expect(replaceMock).toHaveBeenCalledWith(
+    expect(pushSpy).toHaveBeenCalledWith(
+      null,
+      "",
       resolveOakHref({
         page: "teacher-programme",
         subjectPhaseSlug: "english-secondary-edexcel",
@@ -517,7 +523,9 @@ describe("ProgrammeFiltersKs4Options", () => {
 
     act(() => radios[2]!.click());
 
-    expect(replaceMock).toHaveBeenCalledWith(
+    expect(pushSpy).toHaveBeenCalledWith(
+      null,
+      "",
       resolveOakHref({
         page: "teacher-programme",
         subjectPhaseSlug: "computing-secondary-ocr",
@@ -545,7 +553,9 @@ describe("ProgrammeFiltersKs4Options", () => {
 
     act(() => radios[1]!.click());
 
-    expect(replaceMock).toHaveBeenCalledWith(
+    expect(pushSpy).toHaveBeenCalledWith(
+      null,
+      "",
       resolveOakHref({
         page: "teacher-programme",
         subjectPhaseSlug: "english-secondary-edexcel",
@@ -578,7 +588,9 @@ describe("ProgrammeFiltersKs4Options", () => {
 
     act(() => radios[1]!.click());
 
-    expect(replaceMock).toHaveBeenCalledWith(
+    expect(pushSpy).toHaveBeenCalledWith(
+      null,
+      "",
       resolveOakHref({
         page: "teacher-programme",
         subjectPhaseSlug: "english-secondary-edexcel",
