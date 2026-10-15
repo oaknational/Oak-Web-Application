@@ -171,6 +171,26 @@ const nationalCurriculumInsightsRichTextSectionSchema = z.object({
   contentPortableText: portableTextSchema,
 });
 
+const nationalCurriculumInsightsConfidenceSectionSchema = z.object({
+  __typename: z.literal("NationalCurriculumInsightsConfidenceSection"),
+  heading: z.string().trim().min(1),
+  bodyPortableText: portableTextSchema.refine(
+    (blocks) =>
+      blocks.some(
+        (block) =>
+          block?._type === "block" &&
+          Array.isArray(block.children) &&
+          block.children.some(
+            (child: { text?: string }) =>
+              typeof child?.text === "string" && child.text.trim(),
+          ),
+      ),
+    "Add non-empty preparation content",
+  ),
+  ctaLabel: z.string().trim().min(1),
+  ctaHref: z.string().trim().min(1),
+});
+
 const nationalCurriculumInsightsImageTextSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsImageTextSection"),
   heading: z.string().min(1),
@@ -264,6 +284,7 @@ export const nationalCurriculumInsightsModuleSchema = z.discriminatedUnion(
     nationalCurriculumInsightsNewsletterSectionSchema,
     nationalCurriculumInsightsFaqSectionSchema,
     nationalCurriculumInsightsRichTextSectionSchema,
+    nationalCurriculumInsightsConfidenceSectionSchema,
     nationalCurriculumInsightsImageTextSectionSchema,
     nationalCurriculumInsightsGuidanceIntroSectionSchema,
     nationalCurriculumInsightsVideoCardsSectionSchema,

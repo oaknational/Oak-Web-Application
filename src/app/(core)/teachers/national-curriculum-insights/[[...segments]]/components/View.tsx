@@ -13,6 +13,7 @@ import type { NationalCurriculumInsightsRouteData } from "../helpers/getRouteDat
 import { NationalCurriculumInsightsHero } from "./Hero";
 import { NationalCurriculumInsightsDownload } from "./Download";
 import {
+  NationalCurriculumInsightsConfidence,
   NationalCurriculumInsightsFaq,
   NationalCurriculumInsightsGuidanceIntro,
   NationalCurriculumInsightsImageText,
@@ -94,6 +95,8 @@ const ModuleView = ({
       return <NationalCurriculumInsightsFaq section={module} data={data} />;
     case "NationalCurriculumInsightsRichTextSection":
       return <NationalCurriculumInsightsRichText section={module} />;
+    case "NationalCurriculumInsightsConfidenceSection":
+      return <NationalCurriculumInsightsConfidence section={module} />;
     case "NationalCurriculumInsightsImageTextSection":
       return (
         <NationalCurriculumInsightsImageText section={module} data={data} />
