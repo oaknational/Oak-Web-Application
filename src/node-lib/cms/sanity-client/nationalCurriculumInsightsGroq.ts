@@ -52,12 +52,15 @@ const modulesProjection = `modules[]{
     _type == "nationalCurriculumInsightsPromotionalHeadingSection" => "NationalCurriculumInsightsPromotionalHeadingSection",
     _type == "nationalCurriculumInsightsPhaseNavigationSection" => "NationalCurriculumInsightsPhaseNavigationSection",
     _type == "nationalCurriculumInsightsSubjectNavigationSection" => "NationalCurriculumInsightsSubjectNavigationSection",
+    _type == "nationalCurriculumInsightsSubjectLinksSection" => "NationalCurriculumInsightsSubjectLinksSection",
     _type == "nationalCurriculumInsightsNewsletterSection" => "NationalCurriculumInsightsNewsletterSection",
     _type == "nationalCurriculumInsightsFaqSection" => "NationalCurriculumInsightsFaqSection",
     _type == "nationalCurriculumInsightsChecklistSection" => "NationalCurriculumInsightsChecklistSection",
     _type == "nationalCurriculumInsightsChangesSection" => "NationalCurriculumInsightsChangesSection",
     _type == "nationalCurriculumInsightsUnchangedSection" => "NationalCurriculumInsightsUnchangedSection",
+    _type == "nationalCurriculumInsightsPreparationSection" => "NationalCurriculumInsightsPreparationSection",
     _type == "nationalCurriculumInsightsRichTextSection" => "NationalCurriculumInsightsRichTextSection",
+    _type == "nationalCurriculumInsightsConfidenceSection" => "NationalCurriculumInsightsConfidenceSection",
     _type == "nationalCurriculumInsightsImageTextSection" => "NationalCurriculumInsightsImageTextSection",
     _type == "nationalCurriculumInsightsGuidanceIntroSection" => "NationalCurriculumInsightsGuidanceIntroSection",
     _type == "nationalCurriculumInsightsVideoCardsSection" => "NationalCurriculumInsightsVideoCardsSection",
@@ -67,6 +70,7 @@ const modulesProjection = `modules[]{
   ),
   heading,
   audience,
+  linkFromSubjectOverview,
   mobileHeading,
   headingStyle,
   variant,
@@ -76,6 +80,11 @@ const modulesProjection = `modules[]{
   phases,
   primaryHeading,
   secondaryHeading,
+  links[defined(subject->_id)]{
+    title,
+    "subjectSlug": subject->slug.current,
+    iconName
+  },
   introduction,
   benefitsHeading,
   benefits,
@@ -105,17 +114,24 @@ const modulesProjection = `modules[]{
     ctaHref
   ),
   statusLabel,
-  quote,
+  "quote": select(
+    _type == "nationalCurriculumInsightsOverviewSection" => quote{
+      quote,
+      attribution,
+      role,
+      image ${imageProjection}
+    },
+    quote
+  ),
   attribution,
   role,
-  videoUrl,
-  duration,
   "image": select(
     _type in [
       "nationalCurriculumInsightsHeroSection",
       "nationalCurriculumInsightsImageTextSection",
       "nationalCurriculumInsightsGuidanceIntroSection",
-      "nationalCurriculumInsightsQuoteSection"
+      "nationalCurriculumInsightsQuoteSection",
+      "nationalCurriculumInsightsPreparationSection"
     ] => image ${imageProjection}
   ),
   changes[]{
@@ -124,6 +140,7 @@ const modulesProjection = `modules[]{
     whyItMatters,
     "detailPortableText": detail${insightsPortableTextProjection}
   },
+  steps[]{"id":_key,text},
   items[]{
     "id": _key,
     "contentPortableText": content${insightsPortableTextProjection},
@@ -134,13 +151,7 @@ const modulesProjection = `modules[]{
     phase,
     keyStage,
     heading,
-    description,
     linkLabel,
-    videoUrl,
-    duration,
-    "image": select(
-      ^._type == "nationalCurriculumInsightsVideoCardsSection" => image ${imageProjection}
-    )
   },
   "posts": posts[defined(@->_id)]->{
     "id": _id,
@@ -169,7 +180,8 @@ const modulesProjection = `modules[]{
 const pageSummaryProjection = `{
   "id": _id,
   pageType,
-  title
+  title,
+  "availableKeyStages": coalesce(keyStages[defined(page->_id)].keyStage, [])
 }`;
 
 const keyStagePageProjection = `{
@@ -202,6 +214,16 @@ export const nationalCurriculumInsightsHubQuery = `
     "id": _id,
     title,
     summary,
+    "phaseLinks": coalesce(phaseLinks[
+      defined(subject->_id) && phase in subject->tabs[defined(page->_id)].kind &&
+      (!defined(keyStage) || keyStage in subject->tabs[kind == ^.phase][0].page->keyStages[defined(page->_id)].keyStage)
+    ]{
+      title,
+      phase,
+      iconName,
+      keyStage,
+      "subjectSlug": subject->slug.current
+    }, []),
     "subjects": coalesce(subjects[defined(@->_id)]->{
       "id": _id,
       title,

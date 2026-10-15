@@ -117,10 +117,13 @@ const moduleXml = (module: NationalCurriculumInsightsModule): string => {
       return `${paragraph(module.heading, "Heading2")}${module.items.map((item) => `${paragraph("☐")}${portableTextParagraphs(item.contentPortableText)}`).join("")}`;
     case "NationalCurriculumInsightsChangesSection":
       return `${paragraph(module.heading, "Heading2")}${module.changes.map((change) => `${paragraph(change.title, "Heading3")}${paragraph(change.whyItMatters)}${portableTextParagraphs(change.detailPortableText)}`).join("")}`;
+    case "NationalCurriculumInsightsPreparationSection":
+      return `${paragraph(module.heading, "Heading2")}${module.steps.map((step) => paragraph(step.text)).join("")}${paragraph(module.attribution)}${paragraph(module.role)}`;
     case "NationalCurriculumInsightsUnchangedSection":
     case "NationalCurriculumInsightsRichTextSection":
       return `${paragraph(module.heading, "Heading2")}${portableTextParagraphs(module.contentPortableText)}`;
     case "NationalCurriculumInsightsImageTextSection":
+    case "NationalCurriculumInsightsConfidenceSection":
       return `${paragraph(module.heading, "Heading2")}${portableTextParagraphs(module.bodyPortableText)}`;
     case "NationalCurriculumInsightsGuidanceIntroSection":
       return `${paragraph(module.heading, "Heading2")}${portableTextParagraphs(module.bodyPortableText)}`;
@@ -132,21 +135,12 @@ const moduleXml = (module: NationalCurriculumInsightsModule): string => {
         )
         .join("")}`;
     case "NationalCurriculumInsightsVideoCardsSection":
-      return `${paragraph(module.heading, "Heading2")}${portableTextParagraphs(module.introductionPortableText)}${
-        module.posts?.length
-          ? module.posts
-              .map(
-                (post) =>
-                  `${paragraph(post.title, "Heading3")}${paragraph(post.summary)}`,
-              )
-              .join("")
-          : (module.cards ?? [])
-              .map(
-                (card) =>
-                  `${paragraph(card.heading, "Heading3")}${paragraph(card.description)}`,
-              )
-              .join("")
-      }`;
+      return `${paragraph(module.heading, "Heading2")}${portableTextParagraphs(module.introductionPortableText)}${module.posts
+        .map(
+          (post) =>
+            `${paragraph(post.title, "Heading3")}${paragraph(post.summary)}`,
+        )
+        .join("")}`;
     case "NationalCurriculumInsightsQuoteSection": {
       const quotedText = `“${module.quote}”`;
       const role = module.role ? `, ${module.role}` : "";
@@ -157,13 +151,12 @@ const moduleXml = (module: NationalCurriculumInsightsModule): string => {
       return `${paragraph(module.heading, "Heading2")}${tableXml(module.table.rows)}`;
     case "NationalCurriculumInsightsPhaseCardsSection":
     case "NationalCurriculumInsightsKeyStageCardsSection":
-      return module.cards
-        .map((card) => paragraph(`${card.heading}: ${card.linkLabel}`))
-        .join("");
+      return module.cards.map((card) => paragraph(card.heading)).join("");
     case "NationalCurriculumInsightsPromotionalHeadingSection":
       return paragraph(module.heading, "Heading2");
     case "NationalCurriculumInsightsPhaseNavigationSection":
     case "NationalCurriculumInsightsSubjectNavigationSection":
+    case "NationalCurriculumInsightsSubjectLinksSection":
     case "NationalCurriculumInsightsNewsletterSection":
     case "NationalCurriculumInsightsDownloadSection":
       return "";

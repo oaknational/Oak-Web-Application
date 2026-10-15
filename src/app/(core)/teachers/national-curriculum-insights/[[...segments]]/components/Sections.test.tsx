@@ -263,20 +263,10 @@ describe("National Curriculum Insights sections", () => {
               },
             },
           ],
-          cards: [
-            {
-              heading: "Legacy content",
-              description: "This should not render when posts are selected.",
-              image: contentImage,
-              videoUrl: "https://example.com/legacy",
-              duration: null,
-            },
-          ],
         })}
       />,
     );
 
-    expect(screen.queryByText("Legacy content")).not.toBeInTheDocument();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     const blogLink = screen.getByRole("link", {
       name: /Bennie Kara on inclusive curriculum leadership/,
@@ -310,7 +300,7 @@ describe("National Curriculum Insights sections", () => {
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 
-  it("renders the subject illustration supplied by Sanity", async () => {
+  it("keeps the header illustration out of the subject headline panel", async () => {
     const data = await getData(["science"]);
     if (!data.subject) {
       throw new Error("Expected the Science subject");
@@ -329,19 +319,10 @@ describe("National Curriculum Insights sections", () => {
     );
 
     expect(
-      screen.getByRole("region", { name: "Science overview" })
-        .firstElementChild,
-    ).toHaveStyle({
-      display: "grid",
-      "row-gap": "1.5rem",
-      "grid-template-columns": "minmax(0, 1fr)",
-    });
-
-    expect(
-      screen.getByRole("img", {
-        name: "A teacher discussing the curriculum",
-      }),
-    ).toHaveAttribute("src", expect.stringContaining("example-100x100.png"));
+      screen.getByRole("region", { name: "Science overview" }),
+    ).toHaveStyle({ display: "flex", "background-color": "#ffffff" });
+    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+    expect(screen.getByText("Science copy.")).toBeInTheDocument();
   });
 
   it("renders the configurable editorial, media, table and form sections", async () => {
@@ -352,7 +333,7 @@ describe("National Curriculum Insights sections", () => {
     const { container } = renderWithTheme(
       <>
         <NationalCurriculumInsightsOverview
-          data={data}
+          data={await getData(["science"])}
           section={moduleOf({
             __typename: "NationalCurriculumInsightsOverviewSection",
             heading: "Curriculum overview",
@@ -396,20 +377,20 @@ describe("National Curriculum Insights sections", () => {
             __typename: "NationalCurriculumInsightsVideoCardsSection",
             heading: "Curriculum conversations",
             introductionPortableText: body,
-            cards: [
+            posts: [
               {
-                heading: "Introducing the changes",
-                description: "An introduction from the curriculum team.",
+                id: "introduction",
+                slug: "introduction",
+                title: "Introducing the changes",
+                summary: "An introduction from the curriculum team.",
                 image: contentImage,
-                videoUrl: "https://example.com/introduction",
-                duration: "12 mins",
               },
               {
-                heading: "Planning with the changes",
-                description: "How to use the updated curriculum.",
+                id: "planning",
+                slug: "planning",
+                title: "Planning with the changes",
+                summary: "How to use the updated curriculum.",
                 image: localImage,
-                videoUrl: "https://example.com/planning",
-                duration: null,
               },
             ],
           })}
@@ -419,13 +400,13 @@ describe("National Curriculum Insights sections", () => {
             __typename: "NationalCurriculumInsightsVideoCardsSection",
             heading: "One more conversation",
             introductionPortableText: null,
-            cards: [
+            posts: [
               {
-                heading: "A subject conversation",
-                description: "A subject specialist explains the changes.",
+                id: "subject",
+                slug: "subject",
+                title: "A subject conversation",
+                summary: "A subject specialist explains the changes.",
                 image: localImage,
-                videoUrl: "https://example.com/subject",
-                duration: null,
               },
             ],
           })}
@@ -507,7 +488,7 @@ describe("National Curriculum Insights sections", () => {
     ).toHaveAttribute("href", "/teachers");
     expect(
       screen.getByRole("link", { name: /Planning with the changes/ }),
-    ).toHaveAttribute("href", "https://example.com/planning");
+    ).toHaveAttribute("href", "/blog/planning");
     expect(screen.getByRole("table")).toHaveTextContent("Clearer sequencing");
     expect(
       screen.getByRole("heading", { name: "Frequently asked questions" }),
@@ -752,12 +733,10 @@ describe("National Curriculum Insights sections", () => {
             {
               phase: "primary",
               heading: "Primary science",
-              linkLabel: "Explore Primary",
             },
             {
               phase: "secondary",
               heading: "Secondary science",
-              linkLabel: "Explore Secondary",
             },
           ],
         })}
@@ -765,8 +744,8 @@ describe("National Curriculum Insights sections", () => {
     );
 
     expect(
-      screen.getByRole("link", { name: /Primary science/ }),
-    ).toHaveAttribute("href", "/curriculum-change-explained/science/primary");
+      screen.getByRole("link", { name: /Secondary science/ }),
+    ).toHaveAttribute("href", "/curriculum-change-explained/science/secondary");
 
     rerender(
       <NationalCurriculumInsightsKeyStageCards
@@ -777,12 +756,10 @@ describe("National Curriculum Insights sections", () => {
             {
               keyStage: "KS1",
               heading: "Key stage 1 science",
-              linkLabel: "Explore key stage 1",
             },
             {
               keyStage: "KS4",
               heading: "Key stage 4 science",
-              linkLabel: "Explore key stage 4",
             },
           ],
         })}
@@ -803,21 +780,21 @@ describe("National Curriculum Insights sections", () => {
         data={primaryData}
         section={moduleOf({
           __typename: "NationalCurriculumInsightsSubjectNavigationSection",
-          phases: ["primary", "secondary"],
+          heading: "Explore subjects",
+          phases: ["primary"],
           primaryHeading: "Primary subjects",
           secondaryHeading: "Secondary subjects",
         })}
       />,
     );
     expect(screen.getByRole("navigation")).toHaveAccessibleName(
-      "Explore curriculum changes by subject",
-    );
-    expect(screen.getByRole("link", { name: "Science" })).toHaveAttribute(
-      "href",
-      "/curriculum-change-explained/science/primary",
+      "Primary subjects",
     );
     expect(
-      screen.queryByRole("link", { name: "Mathematics" }),
+      screen.getByRole("link", { name: "Science primary" }),
+    ).toHaveAttribute("href", "/curriculum-change-explained/science/primary");
+    expect(
+      screen.queryByRole("link", { name: "Mathematics secondary" }),
     ).not.toBeInTheDocument();
 
     rerender(
@@ -829,7 +806,6 @@ describe("National Curriculum Insights sections", () => {
             {
               keyStage: "KS1",
               heading: "Key stage 1 science",
-              linkLabel: "Explore key stage 1",
             },
           ],
         })}
@@ -846,7 +822,6 @@ describe("National Curriculum Insights sections", () => {
             {
               phase: "primary",
               heading: "Primary science",
-              linkLabel: "Explore Primary",
             },
           ],
         })}

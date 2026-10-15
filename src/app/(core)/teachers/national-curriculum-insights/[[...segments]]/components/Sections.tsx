@@ -7,6 +7,7 @@ export {
 } from "./sections/JumpCards";
 export { NationalCurriculumInsightsPromotionalHeading } from "./sections/PromotionalHeading";
 export { NationalCurriculumInsightsSubjectNavigation } from "./sections/SubjectNavigation";
+export { NationalCurriculumInsightsSubjectLinks } from "./sections/SubjectLinks";
 export { NationalCurriculumInsightsImageText } from "./sections/ImageText";
 export { NationalCurriculumInsightsGuidanceIntro } from "./sections/GuidanceIntro";
 export { NationalCurriculumInsightsVideoCards } from "./sections/VideoCards";
@@ -18,3 +19,5 @@ export { NationalCurriculumInsightsFaq } from "./sections/Faq";
 export { NationalCurriculumInsightsChecklist } from "./sections/Checklist";
 export { NationalCurriculumInsightsChanges } from "./sections/Changes";
 export { NationalCurriculumInsightsUnchanged } from "./sections/Unchanged";
+export { NationalCurriculumInsightsPreparation } from "./sections/Preparation";
+export { NationalCurriculumInsightsConfidence } from "./sections/Confidence";

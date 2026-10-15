@@ -5,8 +5,8 @@ import { getNationalCurriculumInsightsRouteData } from "../helpers/getRouteData"
 
 import { NationalCurriculumInsightsView } from "./View";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { parseNationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const getData = async (segments?: string[]) => {
   const route = parseNationalCurriculumInsightsRoute(segments);
@@ -150,7 +150,7 @@ describe("NationalCurriculumInsightsView", () => {
       name: "Explore Primary curriculum changes",
     });
     expect(
-      within(primarySubjects).getByRole("link", { name: "Science" }),
+      within(primarySubjects).getByRole("link", { name: "Science primary" }),
     ).toHaveAttribute("href", "/curriculum-change-explained/science/primary");
   });
 
@@ -241,7 +241,6 @@ describe("NationalCurriculumInsightsView", () => {
         {
           keyStage: "KS1",
           heading: "Changes to science in key stage 1",
-          linkLabel: "Read insights",
         },
       ],
     });
@@ -286,18 +285,18 @@ describe("NationalCurriculumInsightsView", () => {
         __typename: "NationalCurriculumInsightsVideoCardsSection",
         heading: "Curriculum conversations",
         introductionPortableText: hero.bodyPortableText,
-        cards: [
+        posts: [
           {
-            heading: "A conversation about science",
-            description: "Hear from curriculum experts.",
+            id: "science-video",
+            slug: "science-video",
+            title: "A conversation about science",
+            summary: "Hear from curriculum experts.",
             image: hero.image ?? {
               altText: null,
               asset: null,
               hotspot: null,
               isPresentational: true,
             },
-            videoUrl: "https://example.com/science-video",
-            duration: "12 mins",
           },
         ],
       },
@@ -319,9 +318,33 @@ describe("NationalCurriculumInsightsView", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: /A conversation about science/ }),
-    ).toHaveAttribute("href", "https://example.com/science-video");
+    ).toHaveAttribute("href", "/blog/science-video");
     expect(container).toHaveTextContent(
       "The changes create a clearer learning journey.",
     );
+  });
+  it("renders the confidence callout with its curriculum link", async () => {
+    const data = await getData(["science", "primary"]);
+    data.page!.modules.push({
+      __typename: "NationalCurriculumInsightsConfidenceSection",
+      heading: "Prepare with confidence using Oak",
+      bodyPortableText: [
+        {
+          _type: "block",
+          children: [
+            { _type: "span", text: "Explore the current Science plans." },
+          ],
+        },
+      ],
+      ctaLabel: "Explore Science curriculum plans",
+      ctaHref: "/teachers/curriculum/science-primary/overview",
+    });
+    renderWithTheme(<NationalCurriculumInsightsView data={data} />);
+    expect(
+      screen.getByRole("region", { name: "Prepare with confidence using Oak" }),
+    ).toHaveTextContent("Explore the current Science plans.");
+    expect(
+      screen.getByRole("link", { name: "Explore Science curriculum plans" }),
+    ).toHaveAttribute("href", "/teachers/curriculum/science-primary/overview");
   });
 });

@@ -97,16 +97,23 @@ export type NationalCurriculumInsightsHeroSection = z.infer<
   typeof nationalCurriculumInsightsHeroSectionSchema
 >;
 
+const nationalCurriculumInsightsQuoteSchema = z.object({
+  quote: z.string().min(1),
+  attribution: z.string().min(1),
+  role: z.string().min(1).nullable().optional(),
+  image: imageSchema.nullable().optional(),
+});
+
 const nationalCurriculumInsightsOverviewSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsOverviewSection"),
   heading: z.string().min(1),
   bodyPortableText: portableTextSchema,
+  quote: nationalCurriculumInsightsQuoteSchema.nullable().optional(),
 });
 
 const nationalCurriculumInsightsPhaseCardSchema = z.object({
   phase: nationalCurriculumInsightsPhaseSchema,
   heading: z.string().min(1),
-  linkLabel: z.string().min(1),
 });
 
 const nationalCurriculumInsightsPhaseCardsSectionSchema = z.object({
@@ -117,12 +124,13 @@ const nationalCurriculumInsightsPhaseCardsSectionSchema = z.object({
 const nationalCurriculumInsightsKeyStageCardSchema = z.object({
   keyStage: nationalCurriculumInsightsKeyStageSchema,
   heading: z.string().min(1),
-  linkLabel: z.string().min(1),
 });
 
 const nationalCurriculumInsightsKeyStageCardsSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsKeyStageCardsSection"),
   cards: z.array(nationalCurriculumInsightsKeyStageCardSchema).min(1),
+  heading: z.string().nullish(),
+  linkFromSubjectOverview: z.boolean().nullish(),
 });
 
 const nationalCurriculumInsightsPromotionalHeadingSectionSchema = z.object({
@@ -140,6 +148,7 @@ const nationalCurriculumInsightsPhaseNavigationSectionSchema = z.object({
 
 const nationalCurriculumInsightsSubjectNavigationSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsSubjectNavigationSection"),
+  heading: z.string().min(1),
   phases: z.array(nationalCurriculumInsightsPhaseSchema).min(1),
   primaryHeading: z.string().min(1),
   secondaryHeading: z.string().min(1),
@@ -155,6 +164,18 @@ const nationalCurriculumInsightsNewsletterSectionSchema = z.object({
   privacyPortableText: portableTextSchema,
   formId: z.string().nullable().optional(),
   buttonLabel: z.string().min(1),
+});
+
+const nationalCurriculumInsightsSubjectLinksSectionSchema = z.object({
+  __typename: z.literal("NationalCurriculumInsightsSubjectLinksSection"),
+  heading: z.string().min(1),
+  links: z.array(
+    z.object({
+      title: z.string().min(1),
+      subjectSlug: z.string().min(1),
+      iconName: z.string().min(1),
+    }),
+  ),
 });
 
 const nationalCurriculumInsightsFaqSectionSchema = z.object({
@@ -248,11 +269,45 @@ const nationalCurriculumInsightsChecklistSectionSchema = z.object({
     ),
 });
 
+const nationalCurriculumInsightsPreparationSectionSchema = z.object({
+  __typename: z.literal("NationalCurriculumInsightsPreparationSection"),
+  heading: z.string().trim().min(1),
+  steps: z
+    .array(z.object({ id: z.string().min(1), text: z.string().trim().min(1) }))
+    .length(3)
+    .refine(
+      (steps) => new Set(steps.map((step) => step.id)).size === 3,
+      "Every preparation step needs a unique ID",
+    ),
+  attribution: z.string().trim().min(1),
+  role: z.string().trim().min(1),
+  image: imageSchema.nullable().optional(),
+});
 const nationalCurriculumInsightsRichTextSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsRichTextSection"),
   heading: z.string().min(1),
   headingStyle: z.enum(["section", "detail"]).default("section"),
   contentPortableText: portableTextSchema,
+});
+
+const nationalCurriculumInsightsConfidenceSectionSchema = z.object({
+  __typename: z.literal("NationalCurriculumInsightsConfidenceSection"),
+  heading: z.string().trim().min(1),
+  bodyPortableText: portableTextSchema.refine(
+    (blocks) =>
+      blocks.some(
+        (block) =>
+          block?._type === "block" &&
+          Array.isArray(block.children) &&
+          block.children.some(
+            (child: { text?: string }) =>
+              typeof child?.text === "string" && child.text.trim(),
+          ),
+      ),
+    "Add non-empty preparation content",
+  ),
+  ctaLabel: z.string().trim().min(1),
+  ctaHref: z.string().trim().min(1),
 });
 
 const nationalCurriculumInsightsImageTextSectionSchema = z.object({
@@ -276,48 +331,27 @@ const nationalCurriculumInsightsGuidanceIntroSectionSchema = z.object({
   statusLabel: z.string().min(1).nullable().optional(),
 });
 
-const nationalCurriculumInsightsVideoCardsSectionSchema = z
-  .object({
-    __typename: z.literal("NationalCurriculumInsightsVideoCardsSection"),
-    heading: z.string().min(1),
-    illustration: imageSchema.nullable().optional(),
-    introductionPortableText: portableTextSchema.nullable().optional(),
-    posts: z
-      .array(
-        z.object({
-          id: z.string().min(1),
-          title: z.string().min(1),
-          summary: z.string().min(1),
-          slug: z.string().min(1),
-          image: imageSchema,
-          video: videoSchema.nullable().optional(),
-        }),
-      )
-      .optional(),
-    cards: z
-      .array(
-        z.object({
-          heading: z.string().min(1),
-          description: z.string().min(1),
-          image: imageSchema,
-          videoUrl: z.url(),
-          duration: z.string().min(1).nullable().optional(),
-        }),
-      )
-      .optional(),
-  })
-  .refine(
-    ({ posts, cards }) => Array.isArray(posts) || Boolean(cards?.length),
-    "A video cards section must contain at least one blog post or legacy card",
-  );
-
-const nationalCurriculumInsightsQuoteSectionSchema = z.object({
-  __typename: z.literal("NationalCurriculumInsightsQuoteSection"),
-  quote: z.string().min(1),
-  attribution: z.string().min(1),
-  role: z.string().min(1).nullable().optional(),
-  image: imageSchema.nullable().optional(),
+const nationalCurriculumInsightsVideoCardsSectionSchema = z.object({
+  __typename: z.literal("NationalCurriculumInsightsVideoCardsSection"),
+  heading: z.string().min(1),
+  illustration: imageSchema.nullable().optional(),
+  introductionPortableText: portableTextSchema.nullable().optional(),
+  posts: z.array(
+    z.object({
+      id: z.string().min(1),
+      title: z.string().min(1),
+      summary: z.string().min(1),
+      slug: z.string().min(1),
+      image: imageSchema,
+      video: videoSchema.nullable().optional(),
+    }),
+  ),
 });
+
+const nationalCurriculumInsightsQuoteSectionSchema =
+  nationalCurriculumInsightsQuoteSchema.extend({
+    __typename: z.literal("NationalCurriculumInsightsQuoteSection"),
+  });
 
 const nationalCurriculumInsightsTableSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsTableSection"),
@@ -346,12 +380,15 @@ export const nationalCurriculumInsightsModuleSchema = z.discriminatedUnion(
     nationalCurriculumInsightsPromotionalHeadingSectionSchema,
     nationalCurriculumInsightsPhaseNavigationSectionSchema,
     nationalCurriculumInsightsSubjectNavigationSectionSchema,
+    nationalCurriculumInsightsSubjectLinksSectionSchema,
     nationalCurriculumInsightsNewsletterSectionSchema,
     nationalCurriculumInsightsFaqSectionSchema,
     nationalCurriculumInsightsRichTextSectionSchema,
     nationalCurriculumInsightsChecklistSectionSchema,
     nationalCurriculumInsightsChangesSectionSchema,
     nationalCurriculumInsightsUnchangedSectionSchema,
+    nationalCurriculumInsightsPreparationSectionSchema,
+    nationalCurriculumInsightsConfidenceSectionSchema,
     nationalCurriculumInsightsImageTextSectionSchema,
     nationalCurriculumInsightsGuidanceIntroSectionSchema,
     nationalCurriculumInsightsVideoCardsSectionSchema,
@@ -451,6 +488,9 @@ export const nationalCurriculumInsightsPageSchema = z
 export const nationalCurriculumInsightsPageSummarySchema = z.object({
   pageType: nationalCurriculumInsightsPhaseSchema,
   title: z.string().min(1),
+  availableKeyStages: z
+    .array(nationalCurriculumInsightsKeyStageSchema)
+    .nullish(),
   ...documentSchema.shape,
 });
 
@@ -532,6 +572,15 @@ export const nationalCurriculumInsightsHubSchema = z
     title: z.string().min(1),
     summary: z.string().min(1),
     subjects: z.array(nationalCurriculumInsightsSubjectSummarySchema),
+    phaseLinks: z.array(
+      z.object({
+        title: z.string().min(1),
+        phase: nationalCurriculumInsightsPhaseSchema,
+        subjectSlug: slugSchema,
+        iconName: z.string().nullish(),
+        keyStage: nationalCurriculumInsightsKeyStageSchema.nullish(),
+      }),
+    ),
     modules: z.array(nationalCurriculumInsightsModuleSchema).min(1),
     ...documentSchema.shape,
   })

@@ -18,6 +18,8 @@ import {
   NationalCurriculumInsightsChecklist,
   NationalCurriculumInsightsChanges,
   NationalCurriculumInsightsUnchanged,
+  NationalCurriculumInsightsPreparation,
+  NationalCurriculumInsightsConfidence,
   NationalCurriculumInsightsFaq,
   NationalCurriculumInsightsGuidanceIntro,
   NationalCurriculumInsightsImageText,
@@ -29,6 +31,7 @@ import {
   NationalCurriculumInsightsQuote,
   NationalCurriculumInsightsRichText,
   NationalCurriculumInsightsSubjectNavigation,
+  NationalCurriculumInsightsSubjectLinks,
   NationalCurriculumInsightsTable,
   NationalCurriculumInsightsVideoCards,
 } from "./Sections";
@@ -86,6 +89,10 @@ const ModuleView = ({
           data={data}
         />
       );
+    case "NationalCurriculumInsightsSubjectLinksSection":
+      return (
+        <NationalCurriculumInsightsSubjectLinks section={module} data={data} />
+      );
     case "NationalCurriculumInsightsNewsletterSection":
       return (
         <NationalCurriculumInsightsNewsletter
@@ -106,12 +113,21 @@ const ModuleView = ({
           variant={data.activeKeyStage ? "keyStage" : "phase"}
         />
       );
+    case "NationalCurriculumInsightsPreparationSection":
+      return (
+        <NationalCurriculumInsightsPreparation
+          section={module}
+          variant={data.activeKeyStage ? "keyStage" : "phase"}
+        />
+      );
     case "NationalCurriculumInsightsChangesSection":
       return <NationalCurriculumInsightsChanges section={module} />;
     case "NationalCurriculumInsightsUnchangedSection":
       return <NationalCurriculumInsightsUnchanged section={module} />;
     case "NationalCurriculumInsightsRichTextSection":
       return <NationalCurriculumInsightsRichText section={module} />;
+    case "NationalCurriculumInsightsConfidenceSection":
+      return <NationalCurriculumInsightsConfidence section={module} />;
     case "NationalCurriculumInsightsImageTextSection":
       return (
         <NationalCurriculumInsightsImageText section={module} data={data} />
