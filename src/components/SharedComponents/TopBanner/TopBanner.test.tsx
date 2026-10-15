@@ -2,37 +2,36 @@ import TopBanner from "./TopBanner";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-describe("TopBanner", () => {
-  const topBannerFixture = {
-    messagePortableText: [
-      {
-        _key: "967be59f8853",
-        _type: "block",
-        children: [
-          {
-            _key: "24221de4ae210",
-            _type: "span",
-            marks: [],
-            text: "Oak is now used in 72% of schools",
-          },
-        ],
-        markDefs: [],
-        style: "normal",
-      },
-    ],
-    ctaText: "Explore our impact",
-    ctaLink: "https://www.thenational.academy/about-us/oaks-impact",
-  };
+const topBannerFixture = {
+  messagePortableText: [
+    {
+      _key: "967be59f8853",
+      _type: "block",
+      children: [
+        {
+          _key: "24221de4ae210",
+          _type: "span",
+          marks: [],
+          text: "Oak is now used in 72% of schools",
+        },
+      ],
+      markDefs: [],
+      style: "normal",
+    },
+  ],
+  ctaText: "Explore our impact",
+  ctaLink: "https://www.thenational.academy/about-us/oaks-impact",
+};
 
+describe("TopBanner", () => {
   it("should render the top banner component correctly", () => {
-    const { container, getByRole, getByText } = renderWithProviders()(
+    const { getByRole, getByText } = renderWithProviders()(
       <TopBanner topBanner={topBannerFixture} />,
     );
 
-    expect(container).toBeInTheDocument();
-
     const banner = getByRole("banner");
     expect(banner).toBeInTheDocument();
+    expect(banner).toMatchSnapshot();
 
     const message = getByText("Oak is now used in 72% of schools");
     expect(banner).toContainElement(message);
