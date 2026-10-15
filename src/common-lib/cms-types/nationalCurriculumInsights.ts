@@ -164,6 +164,23 @@ const nationalCurriculumInsightsFaqSectionSchema = z.object({
     .min(1),
 });
 
+const nationalCurriculumInsightsUnchangedSectionSchema = z.object({
+  __typename: z.literal("NationalCurriculumInsightsUnchangedSection"),
+  heading: z.string().trim().min(1),
+  contentPortableText: portableTextSchema.refine(
+    (blocks) =>
+      blocks.some(
+        (block) =>
+          Array.isArray(block?.children) &&
+          block.children.some(
+            (child: { text?: string }) =>
+              typeof child?.text === "string" && child.text.trim(),
+          ),
+      ),
+    "Add non-empty continuity content",
+  ),
+});
+
 const nationalCurriculumInsightsRichTextSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsRichTextSection"),
   heading: z.string().min(1),
@@ -264,6 +281,7 @@ export const nationalCurriculumInsightsModuleSchema = z.discriminatedUnion(
     nationalCurriculumInsightsNewsletterSectionSchema,
     nationalCurriculumInsightsFaqSectionSchema,
     nationalCurriculumInsightsRichTextSectionSchema,
+    nationalCurriculumInsightsUnchangedSectionSchema,
     nationalCurriculumInsightsImageTextSectionSchema,
     nationalCurriculumInsightsGuidanceIntroSectionSchema,
     nationalCurriculumInsightsVideoCardsSectionSchema,
