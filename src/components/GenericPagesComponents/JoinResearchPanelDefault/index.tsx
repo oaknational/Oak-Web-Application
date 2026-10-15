@@ -1,4 +1,4 @@
-import { OakBox } from "@oaknational/oak-components";
+import { OakCodeRenderer } from "@oaknational/oak-components";
 
 import {
   JoinResearchPanelPageBlock,
@@ -9,8 +9,6 @@ export default function JoinResearchPanelPageDefault(
   block: JoinResearchPanelPageBlock<JoinResearchPanelPageBlockType>,
 ) {
   return (
-    <OakBox>
-      <code>{JSON.stringify(block, null, 2)}</code>
-    </OakBox>
+    <OakCodeRenderer string={"```" + JSON.stringify(block, null, 2) + "```"} />
   );
 }
