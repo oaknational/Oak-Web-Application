@@ -3,13 +3,14 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next/dist/types";
+import { OakBox } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/AppLayout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
 import { CaseStudiesSection } from "@/components/GenericPagesComponents/CaseStudiesSection";
-import { SupportYou } from "@/components/GenericPagesComponents/SupportYou";
+import { AboutUsCalloutWithCta } from "@/components/GenericPagesComponents/AboutUsCalloutWithCta";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import { OaksImpactStats } from "@/components/GenericPagesComponents/OaksImpactStats";
@@ -20,7 +21,6 @@ import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
 import { OaksImpactHeader } from "@/components/GenericPagesComponents/OaksImpactHeader";
 import useTrackExitIntended from "@/hooks/useTrackExitIntended";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
@@ -30,8 +30,6 @@ export type OaksImpactPageProps = {
 const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
   const { content, caseStudies } = pageData;
   useTrackExitIntended();
-  const isCaseStudiesFeatEnabled =
-    isFeatureFlagEnabledStatic("case-studies-v2");
 
   return (
     <TeacherBrowseAnalyticsStoreProvider
@@ -51,21 +49,18 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
             videoDescription={content.header.videoDescription}
           />
           <OaksImpactStats {...content.statsSection} />
-          <CaseStudiesSection
-            showViewAllLink={isCaseStudiesFeatEnabled}
-            title="Case studies"
-            caseStudies={caseStudies}
-            showTags={true}
-          />
+          <CaseStudiesSection title="Case studies" caseStudies={caseStudies} />
           <OaksImpactSchoolQuotesSection {...content.schoolQuotes} />
           <TrackScrolledTo eventKey="support_you" />
-          <SupportYou
-            headingTag="h2"
-            link={{
-              text: "Get in touch with an expert",
-              href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
-            }}
-          />
+          <OakBox $pv={["spacing-56", "spacing-80", "spacing-80"]}>
+            <AboutUsCalloutWithCta
+              headingTag="h2"
+              link={{
+                text: "Get in touch with an expert",
+                href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
+              }}
+            />
+          </OakBox>
         </AboutUsLayout>
       </Layout>
     </TeacherBrowseAnalyticsStoreProvider>

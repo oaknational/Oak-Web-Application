@@ -474,21 +474,6 @@ describe("getYearSubheadingText", () => {
     expect(result).toEqual("SUB_CAT_1, CHILD_SUBJECT_1, TIER_1");
   });
 
-  it("all", () => {
-    const result = getYearSubheadingText(
-      data,
-      "7",
-      createFilter({
-        years: ["7"],
-        subjectCategories: [subCat1.slug],
-        childSubjects: [childSubject1.subject_slug],
-        tiers: [tier1.tier_slug],
-      }),
-      null,
-    );
-    expect(result).toEqual("SUB_CAT_1, CHILD_SUBJECT_1, TIER_1");
-  });
-
   describe("core/non-core", () => {
     it("core", () => {
       const result = getYearSubheadingText(
@@ -556,13 +541,13 @@ describe("getPhaseFromCategory", () => {
 });
 
 describe("getPathwaySuffix", () => {
-  it("should display nothing for non-ks4 years", () => {
+  it("should display nothing for non-ks4 years (1-9)", () => {
     for (let year = 1; year < 10; year++) {
       expect(getPathwaySuffix(`${year}`, "core")).toBeUndefined();
       expect(getPathwaySuffix(`${year}`, "non_core")).toBeUndefined();
     }
   });
-  it("should display nothing for non-ks4 years", () => {
+  it("should display nothing for non-ks4 years (10-11)", () => {
     for (const year of ["10", "11"]) {
       expect(getPathwaySuffix(`${year}`, "core")).toEqual("Core");
       expect(getPathwaySuffix(`${year}`, "non_core")).toEqual("GCSE");

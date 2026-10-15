@@ -45,6 +45,7 @@ import { collectOnboardingTrackingProps } from "@/context/TeacherBrowseAnalytics
 import useUtmParams from "@/hooks/useUtmParams";
 import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
 import getHubspotUserToken from "@/browser-lib/hubspot/forms/getHubspotUserToken";
+import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 
 const OnboardingForm = ({
   forceHideNewsletterSignUp,
@@ -76,6 +77,7 @@ const OnboardingForm = ({
   const [userSubscribedInHubspot, setUserSubscribedInHubspot] = useState<
     boolean | undefined
   >(undefined);
+  const { setCurrentToastProps } = useOakNotificationsContext();
   // Accumulate onboarding data from all steps
   const collectedOnboardingData = decodeOnboardingDataQueryParam(searchParams);
 
@@ -143,30 +145,9 @@ const OnboardingForm = ({
     } else {
       setIsSubmitting(true);
       const isTeacher = "school" in data || "manualSchoolName" in data;
-
-      try {
-        await onboardUser({ isTeacher });
-        user &&
-          userOnboardingCompleted(
-            collectOnboardingTrackingProps(
-              user,
-              latestOnboardingData,
-              event?.nativeEvent,
-            ),
-          );
-
-        await user?.reload();
-      } catch (_error) {
-        setSubmitError("Something went wrong. Please try again.");
-        setIsSubmitting(false);
-        // No point in proceeding to hubspot sign-up if onboarding failed
-        return;
-      }
-
       const userSubscribed =
         userSubscribedInHubspot ||
         ("newsletterSignUp" in data && data.newsletterSignUp);
-
       const userEmail = user?.emailAddresses[0]?.emailAddress;
 
       await setOnboardingLocalStorage({
@@ -175,7 +156,7 @@ const OnboardingForm = ({
         userEmail,
       });
 
-      await submitOnboardingHubspotData({
+      const hubspotSubmissionSucceeded = await submitOnboardingHubspotData({
         hutk: getHubspotUserToken(),
         utmParams,
         data,
@@ -183,6 +164,35 @@ const OnboardingForm = ({
         posthogDistinctId,
         userEmail,
       });
+
+      if (hubspotSubmissionSucceeded) {
+        try {
+          await onboardUser({ isTeacher });
+          user &&
+            posthogDistinctId &&
+            userOnboardingCompleted(
+              collectOnboardingTrackingProps(
+                user,
+                latestOnboardingData,
+                event?.nativeEvent,
+              ),
+            );
+
+          await user?.reload();
+        } catch {
+          setSubmitError("Something went wrong. Please try again.");
+          setIsSubmitting(false);
+          return;
+        }
+      } else {
+        setCurrentToastProps({
+          variant: "error",
+          message:
+            "Sorry, something went wrong with your sign-up. You’ll need to complete account setup before you can access some features.",
+          autoDismiss: false,
+          showIcon: true,
+        });
+      }
 
       // Return the user to the page they originally arrived from
       // or to the home page as a fallback

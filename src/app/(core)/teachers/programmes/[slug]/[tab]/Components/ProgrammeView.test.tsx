@@ -143,7 +143,6 @@ const defaultProps = {
     subjectTitle: "Science",
     ks4OptionTitle: "AQA",
   },
-  featureFlags: {},
   implementationGuides: {},
   fileSizes: [],
   activeFlags: [],
