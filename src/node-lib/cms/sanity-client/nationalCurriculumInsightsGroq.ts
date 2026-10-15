@@ -104,7 +104,15 @@ const modulesProjection = `modules[]{
     ctaHref
   ),
   statusLabel,
-  quote,
+  "quote": select(
+    _type == "nationalCurriculumInsightsOverviewSection" => quote{
+      quote,
+      attribution,
+      role,
+      image ${imageProjection}
+    },
+    quote
+  ),
   attribution,
   role,
   videoUrl,
