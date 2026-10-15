@@ -1,3 +1,10 @@
+## [1.1249.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.1249.3...v1.1249.4) (2026-10-15)
+
+
+### Bug Fixes
+
+* **mathjax:** skip typesetting unmounted MathJax components ([b5971d9](https://github.com/oaknational/Oak-Web-Application/commit/b5971d98547095ab5cb8d9c40bcdccc8144fb261))
+
 ## [1.1249.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1249.2...v1.1249.3) (2026-10-15)
 
 
