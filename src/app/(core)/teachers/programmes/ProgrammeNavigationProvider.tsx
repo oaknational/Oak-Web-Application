@@ -65,10 +65,9 @@ export function ProgrammeNavigationProvider({
     (destination: CurriculumSelectionSlugs) => {
       const intent = pending.current?.intent;
       if (
-        !intent ||
-        intent.destination.subjectSlug !== destination.subjectSlug ||
-        intent.destination.phaseSlug !== destination.phaseSlug ||
-        intent.destination.ks4OptionSlug !== destination.ks4OptionSlug
+        intent?.destination.subjectSlug !== destination.subjectSlug ||
+        intent?.destination.phaseSlug !== destination.phaseSlug ||
+        intent?.destination.ks4OptionSlug !== destination.ks4OptionSlug
       ) {
         return null;
       }
