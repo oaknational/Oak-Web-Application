@@ -112,6 +112,8 @@ const moduleXml = (module: NationalCurriculumInsightsModule): string => {
       return `${paragraph(module.heading, "Heading1")}${portableTextParagraphs(module.bodyPortableText)}`;
     case "NationalCurriculumInsightsOverviewSection":
       return `${paragraph(module.heading, "Heading2")}${portableTextParagraphs(module.bodyPortableText)}`;
+    case "NationalCurriculumInsightsChecklistSection":
+      return `${paragraph(module.heading, "Heading2")}${module.items.map((item) => `${paragraph("☐")}${portableTextParagraphs(item.contentPortableText)}`).join("")}`;
     case "NationalCurriculumInsightsRichTextSection":
       return `${paragraph(module.heading, "Heading2")}${portableTextParagraphs(module.contentPortableText)}`;
     case "NationalCurriculumInsightsImageTextSection":
