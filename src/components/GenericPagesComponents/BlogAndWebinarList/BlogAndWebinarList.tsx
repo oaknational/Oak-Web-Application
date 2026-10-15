@@ -4,7 +4,7 @@ import {
   OakFlex,
   OakHeading,
   OakTypography,
-  OakSecondaryLink,
+  OakLink,
 } from "@oaknational/oak-components";
 import { FC } from "react";
 
@@ -59,14 +59,20 @@ const BlogAndWebinarList: FC<BlogAndWebinarListProps> = ({
             $font={"heading-7"}
             $textWrap={"nowrap"}
           >
-            <OakSecondaryLink href={resolveOakHref({ page: "webinar-index" })}>
+            <OakLink
+              variant="secondary"
+              href={resolveOakHref({ page: "webinar-index" })}
+            >
               All webinars
-            </OakSecondaryLink>
+            </OakLink>
           </OakTypography>
           <OakTypography $font={"heading-7"} $textWrap={"nowrap"}>
-            <OakSecondaryLink href={resolveOakHref({ page: "blog-index" })}>
+            <OakLink
+              variant="secondary"
+              href={resolveOakHref({ page: "blog-index" })}
+            >
               All blogs
-            </OakSecondaryLink>
+            </OakLink>
           </OakTypography>
         </OakFlex>
       </OakFlex>
