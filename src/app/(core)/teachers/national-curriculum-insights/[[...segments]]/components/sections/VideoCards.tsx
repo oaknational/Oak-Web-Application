@@ -30,10 +30,9 @@ import {
 
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
-const GuidanceBlogPostCard = ({
+const InsightsBlogPostCard = ({
   post,
   episode,
-  isGuidance,
 }: {
   post: NonNullable<
     Extract<
@@ -42,10 +41,9 @@ const GuidanceBlogPostCard = ({
     >["posts"]
   >[number];
   episode: number;
-  isGuidance: boolean;
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const card = isGuidance ? (
+  const card = (
     <OakFocusIndicator $width="100%" $borderRadius="border-radius-m2">
       <OakFlex
         as="a"
@@ -75,22 +73,7 @@ const GuidanceBlogPostCard = ({
         </OakFlex>
       </OakFlex>
     </OakFocusIndicator>
-  ) : (
-    <OakCard
-      heading={post.title}
-      href={`/blog/${post.slug}`}
-      subCopy={post.summary}
-      subCopyColor="text-subdued"
-      linkText={`Watch episode ${episode}`}
-      cardWidth="100%"
-      cardOrientation={post.video ? "column" : ["column", "row"]}
-      imageSrc={post.video ? undefined : imageUrl(post.image)}
-      imageAlt={imageAlt(post.image)}
-      aspectRatio="4/3"
-    />
   );
-
-  if (!post.video && !isGuidance) return card;
 
   return (
     <OakGrid
@@ -100,9 +83,7 @@ const GuidanceBlogPostCard = ({
       $gridTemplateColumns={[
         "minmax(0, 1fr)",
         "minmax(0, 2fr) minmax(0, 3fr)",
-        isGuidance
-          ? "minmax(0, 19rem) minmax(0, 1fr)"
-          : "minmax(0, 31fr) minmax(0, 69fr)",
+        "minmax(0, 19rem) minmax(0, 1fr)",
       ]}
     >
       <OakBox
@@ -111,7 +92,7 @@ const GuidanceBlogPostCard = ({
         data-testid="guidance-inline-video"
       >
         <OakBox $borderRadius="border-radius-m2" $overflow="hidden">
-          {post.video && isGuidance && !isPlaying ? (
+          {post.video && post.image.asset?.url && !isPlaying ? (
             <OakFocusIndicator $width="100%" $borderRadius="border-radius-m2">
               <OakBox
                 as="button"
@@ -170,8 +151,8 @@ const GuidanceBlogPostCard = ({
                   title={post.title}
                   location="blog"
                   omitBorder
-                  autoPlay={isGuidance && isPlaying}
-                  autoFocusPlayButton={isGuidance && isPlaying}
+                  autoPlay={isPlaying}
+                  autoFocusPlayButton={isPlaying}
                 />
               }
             />
@@ -193,10 +174,7 @@ const GuidanceBlogPostCard = ({
 
 export const NationalCurriculumInsightsVideoCards = ({
   section,
-  isGuidance = false,
-}: SectionProps<"NationalCurriculumInsightsVideoCardsSection"> & {
-  isGuidance?: boolean;
-}) => {
+}: SectionProps<"NationalCurriculumInsightsVideoCardsSection">) => {
   const headingId = useId();
   const posts = section.posts ?? [];
   const legacyCards = section.posts === undefined ? (section.cards ?? []) : [];
@@ -217,9 +195,7 @@ export const NationalCurriculumInsightsVideoCards = ({
     >
       <OakGrid
         $width="100%"
-        $gridTemplateColumns={
-          isGuidance ? "1fr minmax(0, 61.5rem) 1fr" : "1fr minmax(0, 60rem) 1fr"
-        }
+        $gridTemplateColumns="1fr minmax(0, 61.5rem) 1fr"
         $mh="auto"
       >
         <OakGridArea
@@ -283,11 +259,7 @@ export const NationalCurriculumInsightsVideoCards = ({
                 $justifyContent="center"
                 key={post.id}
               >
-                <GuidanceBlogPostCard
-                  post={post}
-                  episode={itemCount - index}
-                  isGuidance={isGuidance}
-                />
+                <InsightsBlogPostCard post={post} episode={itemCount - index} />
               </OakLI>
             ))}
             {legacyCards.map((card, index) => (

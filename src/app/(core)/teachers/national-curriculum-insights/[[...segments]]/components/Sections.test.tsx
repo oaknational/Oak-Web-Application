@@ -188,7 +188,7 @@ describe("National Curriculum Insights sections", () => {
     },
   );
 
-  it("renders a paused inline video separately from the blog link", () => {
+  it("starts an inline video separately from the blog link", async () => {
     renderWithTheme(
       <NationalCurriculumInsightsVideoCards
         section={moduleOf({
@@ -237,6 +237,12 @@ describe("National Curriculum Insights sections", () => {
       "href",
       "/blog/curriculum-conversations-episode-3",
     );
+    expect(screen.queryByTestId("cms-video")).not.toBeInTheDocument();
+    await userEvent.setup().click(
+      screen.getByRole("button", {
+        name: "Play Bennie Kara on inclusive curriculum leadership",
+      }),
+    );
     expect(blogLink).not.toContainElement(screen.getByTestId("cms-video"));
 
     expect(screen.getByTestId("cms-video")).toHaveTextContent(
@@ -251,7 +257,7 @@ describe("National Curriculum Insights sections", () => {
     );
     expect(screen.getByTestId("cms-video")).toHaveAttribute(
       "data-autoplay",
-      "false",
+      "true",
     );
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });

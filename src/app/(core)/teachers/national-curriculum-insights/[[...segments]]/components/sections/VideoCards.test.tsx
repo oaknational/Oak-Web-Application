@@ -53,12 +53,11 @@ beforeEach(() => {
   jest.clearAllMocks();
 });
 
-it("uses compact type and independent playback on the guidance page", async () => {
+it("uses compact type and independent playback", async () => {
   const user = userEvent.setup();
   renderWithTheme(
     <NationalCurriculumInsightsVideoCards
       section={{ ...section, posts: [post] }}
-      isGuidance
     />,
   );
 
@@ -85,11 +84,10 @@ it("uses compact type and independent playback on the guidance page", async () =
   ).not.toContainElement(screen.getByTestId("video-player"));
 });
 
-it("keeps a poster and blog link when a guidance post has no inline video", () => {
+it("keeps a poster and blog link when a post has no inline video", () => {
   renderWithTheme(
     <NationalCurriculumInsightsVideoCards
       section={{ ...section, posts: [{ ...post, video: null }] }}
-      isGuidance
     />,
   );
 
@@ -102,13 +100,26 @@ it("keeps a poster and blog link when a guidance post has no inline video", () =
   ).toHaveAttribute("href", `/blog/${post.slug}`);
 });
 
-it("uses the selected blog image as the inline video poster", () => {
+it("uses the selected blog image as the inline video poster", async () => {
+  const user = userEvent.setup();
   renderWithTheme(
     <NationalCurriculumInsightsVideoCards
       section={{ ...section, posts: [post] }}
     />,
   );
 
+  expect(
+    screen
+      .getByRole("button", { name: `Play ${post.title}` })
+      .querySelector("img"),
+  ).toHaveAttribute(
+    "src",
+    expect.stringContaining(
+      encodeURIComponent(getProxiedSanityAssetUrl(post.image.asset.url)),
+    ),
+  );
+  expect(VideoPlayer).not.toHaveBeenCalled();
+  await user.click(screen.getByRole("button", { name: `Play ${post.title}` }));
   expect(VideoPlayer).toHaveBeenCalledWith(
     expect.objectContaining({
       poster: getProxiedSanityAssetUrl(post.image.asset.url),
