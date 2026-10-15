@@ -1,3 +1,13 @@
+## [1.1249.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1249.2...v1.1249.3) (2026-10-15)
+
+
+### Bug Fixes
+
+* **curriculum-api:** don't report 403 responses from the sdk ([effa93a](https://github.com/oaknational/Oak-Web-Application/commit/effa93a14bd271e64a184dfc0c01364fbe8e0079))
+* **curriculum-api:** mark fire-and-forget error report with void ([e4e2fcd](https://github.com/oaknational/Oak-Web-Application/commit/e4e2fcd1176ad205e26d329f54d8e82a5490db7d))
+* **curriculum-api:** retry only transient failures, add timeout, report once ([d00198a](https://github.com/oaknational/Oak-Web-Application/commit/d00198a3990f75d08dea84eca7b4245d280a2b08))
+* **page-error-handling:** don't report 403 ClientErrors ([2182fcb](https://github.com/oaknational/Oak-Web-Application/commit/2182fcb0e5602292959296e67efd9b770e68b577))
+
 ## [1.1249.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1249.1...v1.1249.2) (2026-10-14)
 
 
