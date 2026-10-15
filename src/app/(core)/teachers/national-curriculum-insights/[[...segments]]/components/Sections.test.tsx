@@ -752,12 +752,10 @@ describe("National Curriculum Insights sections", () => {
             {
               phase: "primary",
               heading: "Primary science",
-              linkLabel: "Explore Primary",
             },
             {
               phase: "secondary",
               heading: "Secondary science",
-              linkLabel: "Explore Secondary",
             },
           ],
         })}
@@ -765,8 +763,8 @@ describe("National Curriculum Insights sections", () => {
     );
 
     expect(
-      screen.getByRole("link", { name: /Primary science/ }),
-    ).toHaveAttribute("href", "/curriculum-change-explained/science/primary");
+      screen.getByRole("link", { name: /Secondary science/ }),
+    ).toHaveAttribute("href", "/curriculum-change-explained/science/secondary");
 
     rerender(
       <NationalCurriculumInsightsKeyStageCards
@@ -846,7 +844,6 @@ describe("National Curriculum Insights sections", () => {
             {
               phase: "primary",
               heading: "Primary science",
-              linkLabel: "Explore Primary",
             },
           ],
         })}
