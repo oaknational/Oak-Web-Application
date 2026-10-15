@@ -18,10 +18,6 @@ export default function TopBanner({
 }: {
   topBanner: TopBannerProps;
 }) {
-  if (!topBanner) {
-    return;
-  }
-
   return (
     <OakBox role="banner">
       <OakFlex
