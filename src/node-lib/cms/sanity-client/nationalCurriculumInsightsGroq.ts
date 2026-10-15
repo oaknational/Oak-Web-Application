@@ -45,6 +45,7 @@ export const insightsPortableTextProjection = `[]{
 const modulesProjection = `modules[]{
   "__typename": select(
     _type == "nationalCurriculumInsightsHeroSection" => "NationalCurriculumInsightsHeroSection",
+    _type == "nationalCurriculumInsightsHeaderSection" => "NationalCurriculumInsightsHeaderSection",
     _type == "nationalCurriculumInsightsOverviewSection" => "NationalCurriculumInsightsOverviewSection",
     _type == "nationalCurriculumInsightsPhaseCardsSection" => "NationalCurriculumInsightsPhaseCardsSection",
     _type == "nationalCurriculumInsightsKeyStageCardsSection" => "NationalCurriculumInsightsKeyStageCardsSection",
@@ -54,6 +55,8 @@ const modulesProjection = `modules[]{
     _type == "nationalCurriculumInsightsNewsletterSection" => "NationalCurriculumInsightsNewsletterSection",
     _type == "nationalCurriculumInsightsFaqSection" => "NationalCurriculumInsightsFaqSection",
     _type == "nationalCurriculumInsightsChecklistSection" => "NationalCurriculumInsightsChecklistSection",
+    _type == "nationalCurriculumInsightsChangesSection" => "NationalCurriculumInsightsChangesSection",
+    _type == "nationalCurriculumInsightsUnchangedSection" => "NationalCurriculumInsightsUnchangedSection",
     _type == "nationalCurriculumInsightsRichTextSection" => "NationalCurriculumInsightsRichTextSection",
     _type == "nationalCurriculumInsightsImageTextSection" => "NationalCurriculumInsightsImageTextSection",
     _type == "nationalCurriculumInsightsGuidanceIntroSection" => "NationalCurriculumInsightsGuidanceIntroSection",
@@ -89,11 +92,7 @@ const modulesProjection = `modules[]{
   "bodyPortableText": body${insightsPortableTextProjection},
   "contentPortableText": content${insightsPortableTextProjection},
   "introductionPortableText": introduction${insightsPortableTextProjection},
-  authorName,
-  authorRole,
-  authorImage ${imageProjection},
-  statusHeading,
-  statusMessage,
+  lastUpdatedAt,
   imagePosition,
   mirrorImage,
   background,
@@ -119,6 +118,12 @@ const modulesProjection = `modules[]{
       "nationalCurriculumInsightsQuoteSection"
     ] => image ${imageProjection}
   ),
+  changes[]{
+    "id": _key,
+    title,
+    whyItMatters,
+    "detailPortableText": detail${insightsPortableTextProjection}
+  },
   items[]{
     "id": _key,
     "contentPortableText": content${insightsPortableTextProjection},

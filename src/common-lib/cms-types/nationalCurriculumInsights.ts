@@ -73,16 +73,22 @@ const nationalCurriculumInsightsTableSchema = z.object({
   rows: z.array(z.object({ cells: z.array(z.string()) })).min(1),
 });
 
+const nationalCurriculumInsightsHeaderSectionSchema = z.object({
+  __typename: z.literal("NationalCurriculumInsightsHeaderSection"),
+  heading: z.string().trim().min(1),
+  bodyPortableText: portableTextSchema,
+  lastUpdatedAt: z.iso.date().nullish(),
+});
+
+export type NationalCurriculumInsightsHeaderSection = z.infer<
+  typeof nationalCurriculumInsightsHeaderSectionSchema
+>;
+
 const nationalCurriculumInsightsHeroSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsHeroSection"),
   heading: z.string().min(1),
   bodyPortableText: portableTextSchema,
   image: imageSchema.nullable().optional(),
-  authorName: z.string().min(1).nullable().optional(),
-  authorRole: z.string().min(1).nullable().optional(),
-  authorImage: imageSchema.nullable().optional(),
-  statusHeading: z.string().min(1).nullable().optional(),
-  statusMessage: z.string().min(1).nullable().optional(),
   ctaLabel: z.string().min(1).nullable().optional(),
   ctaHref: z.string().min(1).nullable().optional(),
 });
@@ -162,6 +168,55 @@ const nationalCurriculumInsightsFaqSectionSchema = z.object({
       }),
     )
     .min(1),
+});
+
+const nationalCurriculumInsightsChangesSectionSchema = z.object({
+  __typename: z.literal("NationalCurriculumInsightsChangesSection"),
+  heading: z.string().trim().min(1),
+  changes: z
+    .array(
+      z.object({
+        id: z.string().min(1),
+        title: z.string().trim().min(1),
+        whyItMatters: z.string().trim().min(1),
+        detailPortableText: portableTextSchema.refine(
+          (blocks) =>
+            blocks.some(
+              (block) =>
+                block?._type === "block" &&
+                Array.isArray(block.children) &&
+                block.children.some(
+                  (child: { text?: string }) =>
+                    typeof child?.text === "string" && child.text.trim(),
+                ),
+            ),
+          "Add a non-empty explanation",
+        ),
+      }),
+    )
+    .min(2)
+    .max(6)
+    .refine(
+      (changes) => new Set(changes.map(({ id }) => id)).size === changes.length,
+      "Each change needs a unique ID",
+    ),
+});
+
+const nationalCurriculumInsightsUnchangedSectionSchema = z.object({
+  __typename: z.literal("NationalCurriculumInsightsUnchangedSection"),
+  heading: z.string().trim().min(1),
+  contentPortableText: portableTextSchema.refine(
+    (blocks) =>
+      blocks.some(
+        (block) =>
+          Array.isArray(block?.children) &&
+          block.children.some(
+            (child: { text?: string }) =>
+              typeof child?.text === "string" && child.text.trim(),
+          ),
+      ),
+    "Add non-empty continuity content",
+  ),
 });
 
 const nationalCurriculumInsightsChecklistSectionSchema = z.object({
@@ -284,6 +339,7 @@ export const nationalCurriculumInsightsModuleSchema = z.discriminatedUnion(
   "__typename",
   [
     nationalCurriculumInsightsHeroSectionSchema,
+    nationalCurriculumInsightsHeaderSectionSchema,
     nationalCurriculumInsightsOverviewSectionSchema,
     nationalCurriculumInsightsPhaseCardsSectionSchema,
     nationalCurriculumInsightsKeyStageCardsSectionSchema,
@@ -294,6 +350,8 @@ export const nationalCurriculumInsightsModuleSchema = z.discriminatedUnion(
     nationalCurriculumInsightsFaqSectionSchema,
     nationalCurriculumInsightsRichTextSectionSchema,
     nationalCurriculumInsightsChecklistSectionSchema,
+    nationalCurriculumInsightsChangesSectionSchema,
+    nationalCurriculumInsightsUnchangedSectionSchema,
     nationalCurriculumInsightsImageTextSectionSchema,
     nationalCurriculumInsightsGuidanceIntroSectionSchema,
     nationalCurriculumInsightsVideoCardsSectionSchema,

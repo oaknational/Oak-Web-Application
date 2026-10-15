@@ -11,9 +11,12 @@ import {
 import type { NationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
 
 import { NationalCurriculumInsightsHero } from "./Hero";
+import { NationalCurriculumInsightsHeader } from "./InsightHeader";
 import { NationalCurriculumInsightsDownload } from "./Download";
 import {
   NationalCurriculumInsightsChecklist,
+  NationalCurriculumInsightsChanges,
+  NationalCurriculumInsightsUnchanged,
   NationalCurriculumInsightsFaq,
   NationalCurriculumInsightsGuidanceIntro,
   NationalCurriculumInsightsImageText,
@@ -55,6 +58,8 @@ const ModuleView = ({
   data: NationalCurriculumInsightsRouteData;
 }) => {
   switch (module.__typename) {
+    case "NationalCurriculumInsightsHeaderSection":
+      return <NationalCurriculumInsightsHeader section={module} data={data} />;
     case "NationalCurriculumInsightsHeroSection":
       return <NationalCurriculumInsightsHero section={module} data={data} />;
     case "NationalCurriculumInsightsOverviewSection":
@@ -100,6 +105,10 @@ const ModuleView = ({
           variant={data.activeKeyStage ? "keyStage" : "phase"}
         />
       );
+    case "NationalCurriculumInsightsChangesSection":
+      return <NationalCurriculumInsightsChanges section={module} />;
+    case "NationalCurriculumInsightsUnchangedSection":
+      return <NationalCurriculumInsightsUnchanged section={module} />;
     case "NationalCurriculumInsightsRichTextSection":
       return <NationalCurriculumInsightsRichText section={module} />;
     case "NationalCurriculumInsightsImageTextSection":
@@ -172,7 +181,8 @@ const PageModuleList = ({
   }
 
   const heroIndex = data.page.modules.findIndex(
-    ({ __typename }) => __typename === "NationalCurriculumInsightsHeroSection",
+    ({ __typename }) =>
+      __typename === "NationalCurriculumInsightsHeaderSection",
   );
   const hero = heroIndex >= 0 ? data.page.modules[heroIndex] : null;
   const modules = data.page.modules.filter((_, index) => index !== heroIndex);
