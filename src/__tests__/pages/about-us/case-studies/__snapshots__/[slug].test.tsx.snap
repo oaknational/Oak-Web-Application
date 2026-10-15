@@ -5159,7 +5159,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                     </div>
                   </div>
                   <div
-                    class="sc-bdvwhi sc-gsDMPd eXLAVP ga-DXyn"
+                    class="sc-bdvwhi sc-gsDMPd jWxyY ga-DXyn"
                   >
                     <div
                       class="sc-bdvwhi sc-gsDMPd bNskZW jMMTBg"
@@ -7624,7 +7624,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                     </div>
                   </div>
                   <div
-                    class="sc-bdvwhi sc-gsDMPd eXLAVP ga-DXyn"
+                    class="sc-bdvwhi sc-gsDMPd jWxyY ga-DXyn"
                   >
                     <div
                       class="sc-bdvwhi sc-gsDMPd bNskZW jMMTBg"
@@ -10254,7 +10254,7 @@ exports[`pages/about-us/case-studies/[slug].tsx shows 'View all case studies' wh
                     </div>
                   </div>
                   <div
-                    class="sc-bdvwhi sc-gsDMPd eXLAVP ga-DXyn"
+                    class="sc-bdvwhi sc-gsDMPd jWxyY ga-DXyn"
                   >
                     <div
                       class="sc-bdvwhi sc-gsDMPd bNskZW jMMTBg"

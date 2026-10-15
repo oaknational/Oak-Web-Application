@@ -225,7 +225,6 @@ const AboutUsCaseStudy: NextPage<AboutUsCaseStudyLibraryPageProps> = ({
                     <OakFlex
                       $flexDirection="column"
                       $gap={["spacing-72", "spacing-100"]}
-                      $pb="spacing-100"
                       $position={"relative"}
                     >
                       {caseStudy.content.map((contentBlock) => (
