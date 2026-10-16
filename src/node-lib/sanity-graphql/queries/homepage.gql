@@ -9,6 +9,7 @@ query homepage($isDraftFilter: Sanity_DocumentFilter) {
       messagePortableText: messageRaw
       ctaText
       ctaLink
+      backgroundColour
     }
     heading
     summaryPortableText: summaryRaw

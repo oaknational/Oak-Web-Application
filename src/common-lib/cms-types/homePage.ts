@@ -10,6 +10,7 @@ export const topBannerSchema = z.object({
   messagePortableText: portableTextSchema.nullish(),
   ctaText: z.string().nullish(),
   ctaLink: z.url().nullish(),
+  backgroundColour: z.string().nullish(),
 });
 
 const notificationSchema = z.discriminatedUnion("enabled", [

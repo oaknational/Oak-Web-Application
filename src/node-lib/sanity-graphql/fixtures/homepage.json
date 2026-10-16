@@ -20,7 +20,8 @@
           }
         ],
         "ctaText": "Explore our impact",
-        "ctaLink": "https://www.thenational.academy/about-us/oaks-impact"
+        "ctaLink": "https://www.thenational.academy/about-us/oaks-impact",
+        "backgroundColour": "bg-decorative1-main"
       },
       "heading": "Oak is evolving",
       "summaryPortableText": [
