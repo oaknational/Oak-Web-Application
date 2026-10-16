@@ -13,7 +13,7 @@ const Component = ({
   message: string;
   ctaText: string;
   ctaLink: string;
-  backgroundColour: string;
+  backgroundColour: OakUiRoleToken;
 }) => (
   <TopBanner
     topBanner={{
