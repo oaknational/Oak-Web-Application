@@ -49,6 +49,7 @@ const props: HomePageProps = {
       ],
       ctaText: "Explore our impact",
       ctaLink: "https://www.thenational.academy/about-us/oaks-impact",
+      backgroundColour: "bg-decorative1-main",
     },
     summaryPortableText: [],
     campaignPromoBanner: {

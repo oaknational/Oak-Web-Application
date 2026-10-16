@@ -6,7 +6,7 @@ exports[`TopBanner should render the top banner component correctly 1`] = `
   role="banner"
 >
   <div
-    class="sc-bdvwhi sc-gsDMPd dlqybO gbgSUZ"
+    class="sc-bdvwhi sc-gsDMPd cKHYVb gbgSUZ"
   >
     <div
       class="sc-bdvwhi sc-gsDMPd cGNkYI exciDE"

@@ -21,6 +21,7 @@ const topBannerFixture = {
   ],
   ctaText: "Explore our impact",
   ctaLink: "https://www.thenational.academy/about-us/oaks-impact",
+  backgroundColour: "bg-decorative1-main" as const,
 };
 
 describe("TopBanner", () => {
@@ -42,6 +43,11 @@ describe("TopBanner", () => {
       "https://www.thenational.academy/about-us/oaks-impact",
     );
     expect(link).toHaveAttribute("title", "Explore our impact");
+
+    const backgroundColourAsRgb = "rgb(190, 242, 189)";
+    expect(banner.firstChild).toHaveStyle(
+      `background-color: ${backgroundColourAsRgb}`,
+    );
   });
 
   it("should not render the message text if not provided", () => {
