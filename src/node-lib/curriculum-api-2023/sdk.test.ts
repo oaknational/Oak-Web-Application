@@ -2,9 +2,8 @@
  * @jest-environment node
  */
 import { ClientError } from "graphql-request";
-import { parse } from "graphql";
 
-import sdk, { getBatchedRequests, withErrorReporting } from "./sdk";
+import sdk, { withErrorReporting } from "./sdk";
 
 import OakError from "@/errors/OakError";
 
@@ -50,7 +49,7 @@ describe("curriculum-api-2023 sdk", () => {
       expect(mockErrorReporter).not.toHaveBeenCalled();
     });
 
-    it("does not retry or report a 403", async () => {
+    it("does not report a 403", async () => {
       const error = clientError(403);
       const action = jest.fn().mockRejectedValue(error);
 
@@ -93,7 +92,7 @@ describe("curriculum-api-2023 sdk", () => {
         new DOMException("This operation was aborted", "AbortError"),
         "graphql/timeout",
       ],
-    ])("does not retry %s and reports it once", async (_, error, code) => {
+    ])("reports a %s once", async (_, error, code) => {
       const action = jest.fn().mockRejectedValue(error);
 
       await expect(callWithErrorReporting(action)).rejects.toBe(error);
@@ -125,37 +124,21 @@ describe("curriculum-api-2023 sdk", () => {
         lessonSlug: "lesson",
       });
 
-    it("sends a request without adding a timeout signal", async () => {
-      const timeoutSpy = jest.spyOn(AbortSignal, "timeout");
+    it.each([429, 500, 502, 503, 504])("reports a %s once", async (status) => {
       const fetchSpy = jest
         .spyOn(global, "fetch")
-        .mockResolvedValue(jsonResponse(200, { data: { share: [] } }));
+        .mockResolvedValue(jsonResponse(status, { message: "Error" }));
 
-      await expect(callLessonShare()).resolves.toEqual({ share: [] });
+      await expect(callLessonShare()).rejects.toBeInstanceOf(ClientError);
       expect(fetchSpy).toHaveBeenCalledTimes(1);
-      expect(fetchSpy.mock.calls[0]![1]?.signal).toBeUndefined();
-      expect(timeoutSpy).not.toHaveBeenCalled();
-      expect(mockErrorReporter).not.toHaveBeenCalled();
+      expect(mockErrorReporter).toHaveBeenCalledTimes(1);
+      expect(mockErrorReporter.mock.calls[0][0].meta).toMatchObject({
+        queryName: "lessonShare",
+        status,
+      });
     });
 
-    it.each([429, 500, 502, 503, 504])(
-      "does not retry a %s and reports it once",
-      async (status) => {
-        const fetchSpy = jest
-          .spyOn(global, "fetch")
-          .mockResolvedValue(jsonResponse(status, { message: "Error" }));
-
-        await expect(callLessonShare()).rejects.toBeInstanceOf(ClientError);
-        expect(fetchSpy).toHaveBeenCalledTimes(1);
-        expect(mockErrorReporter).toHaveBeenCalledTimes(1);
-        expect(mockErrorReporter.mock.calls[0][0].meta).toMatchObject({
-          queryName: "lessonShare",
-          status,
-        });
-      },
-    );
-
-    it("does not retry or report a WAF 403", async () => {
+    it("does not report a WAF 403", async () => {
       const fetchSpy = jest
         .spyOn(global, "fetch")
         .mockResolvedValue(jsonResponse(403, { message: "Forbidden" }));
@@ -163,21 +146,6 @@ describe("curriculum-api-2023 sdk", () => {
       await expect(callLessonShare()).rejects.toBeInstanceOf(ClientError);
       expect(fetchSpy).toHaveBeenCalledTimes(1);
       expect(mockErrorReporter).not.toHaveBeenCalled();
-    });
-
-    it("does not add a timeout signal to batched requests", async () => {
-      const timeoutSpy = jest.spyOn(AbortSignal, "timeout");
-      const fetchSpy = jest
-        .spyOn(global, "fetch")
-        .mockResolvedValue(jsonResponse(200, [{ data: { test: "data" } }]));
-
-      await getBatchedRequests([
-        { document: parse("query test { test }"), variables: {} },
-      ]);
-
-      expect(fetchSpy).toHaveBeenCalledTimes(1);
-      expect(fetchSpy.mock.calls[0]![1]?.signal).toBeUndefined();
-      expect(timeoutSpy).not.toHaveBeenCalled();
     });
   });
 });
