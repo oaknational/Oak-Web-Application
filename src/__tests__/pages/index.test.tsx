@@ -30,6 +30,27 @@ const props: HomePageProps = {
   pageData: {
     heading: "",
     id: "",
+    topBanner: {
+      messagePortableText: [
+        {
+          _key: "967be59f8853",
+          _type: "block",
+          children: [
+            {
+              _key: "24221de4ae210",
+              _type: "span",
+              marks: [],
+              text: "Oak is now used in 72% of schools",
+            },
+          ],
+          markDefs: [],
+          style: "normal",
+        },
+      ],
+      ctaText: "Explore our impact",
+      ctaLink: "https://www.thenational.academy/about-us/oaks-impact",
+      backgroundColour: "bg-decorative1-main",
+    },
     summaryPortableText: [],
     campaignPromoBanner: {
       headingPortableTextWithPromo: [],
@@ -69,6 +90,15 @@ describe("Teachers Page", () => {
     it("renders", () => {
       const { baseElement } = render(<Home {...props} />);
       expect(baseElement).toMatchSnapshot();
+    });
+
+    it("does not render TopBanner if topBanner data is not provided", () => {
+      const { queryByText } = renderWithProviders()(
+        <Home {...props} pageData={{ ...props.pageData, topBanner: null }} />,
+      );
+
+      const banner = queryByText("Oak is now used in 72% of schools");
+      expect(banner).not.toBeInTheDocument();
     });
   });
 

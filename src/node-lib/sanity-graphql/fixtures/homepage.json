@@ -2,6 +2,27 @@
   "allHomepage": [
     {
       "id": "homepage",
+      "topBanner": {
+        "messagePortableText": [
+          {
+            "_key": "967be59f8853",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "24221de4ae210",
+                "_type": "span",
+                "marks": [],
+                "text": "Oak is now used in 72% of schools"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ],
+        "ctaText": "Explore our impact",
+        "ctaLink": "https://www.thenational.academy/about-us/oaks-impact",
+        "backgroundColour": "bg-decorative1-main"
+      },
       "heading": "Oak is evolving",
       "summaryPortableText": [
         {

@@ -2,7 +2,7 @@ import { GetStaticProps, NextPage } from "next";
 
 import AppLayout from "@/components/AppComponents/AppLayout";
 import getPageProps from "@/node-lib/getPageProps";
-import Banners from "@/components/SharedComponents/Banners";
+import TopBanner from "@/components/SharedComponents/TopBanner";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 import CurriculumTab from "@/components/GenericPagesComponents/CurriculumTab";
 import {
@@ -26,6 +26,7 @@ const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
 const Curriculum: NextPage<
   HomePageProps & { curriculumPhaseOptions: SubjectPhasePickerData }
 > = (props) => {
+  const topBanner = props.pageData?.topBanner;
   const testimonials = props.pageData?.testimonials;
   const intro = props.pageData?.intro;
 
@@ -44,7 +45,7 @@ const Curriculum: NextPage<
         $background={"bg-primary"}
         topNavProps={props.topNav}
       >
-        <Banners />
+        {topBanner && <TopBanner topBanner={topBanner} />}
         <CurriculumTab
           aria-current="page"
           curriculumPhaseOptions={props.curriculumPhaseOptions}
