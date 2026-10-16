@@ -277,9 +277,6 @@ importers:
       path-to-regexp:
         specifier: ^6.2.1n
         version: 6.3.0
-      polly-js:
-        specifier: ^1.8.3
-        version: 1.8.3
       posthog-js:
         specifier: ^1.427.0
         version: 1.435.2(@types/react@18.2.79)(react@18.3.1)
@@ -12999,9 +12996,6 @@ packages:
     resolution: {integrity: sha512-DWnY5o3YbLWK4GovuAVwpqL+1VwGNdUGrRr++8j8PtQQzvAVZUIMjKQ90fY689sEJZJBbZVw1rXaOKSTitkzPQ==}
     engines: {node: '>=18'}
     hasBin: true
-
-  polly-js@1.8.3:
-    resolution: {integrity: sha512-pFgSsipKs5bxtXMM+Vfw2p8kOEZhJ+Z9xDZLbiMjjw57WZdlg+6eTZdSIHDycNii+4+7xmzCfryQVIqwgeYX4g==}
 
   portfinder@1.0.32:
     resolution: {integrity: sha512-on2ZJVVDXRADWE6jnQaX0ioEylzgBpQk8r55NE4wjXW1ZxO+BgDlY6DXwj20i0V8eB4SenDQ00WEaxfiIQPcxg==}
@@ -30971,8 +30965,6 @@ snapshots:
       playwright-core: 1.61.1
     optionalDependencies:
       fsevents: 2.3.2
-
-  polly-js@1.8.3: {}
 
   portfinder@1.0.32:
     dependencies:
