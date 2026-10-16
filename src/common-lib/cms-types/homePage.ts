@@ -1,4 +1,5 @@
 import * as z from "zod";
+import type { OakUiRoleToken } from "@oaknational/oak-components";
 
 import { documentSchema, imageSchema, seoSchema } from "./base";
 import { cardSchema, textAndMediaSchema } from "./blocks";
@@ -10,7 +11,9 @@ export const topBannerSchema = z.object({
   messagePortableText: portableTextSchema.nullish(),
   ctaText: z.string().nullish(),
   ctaLink: z.url().nullish(),
-  backgroundColour: z.string().nullish(),
+  backgroundColour: z.string().nullish() as z.ZodType<
+    OakUiRoleToken | null | undefined
+  >,
 });
 
 const notificationSchema = z.discriminatedUnion("enabled", [
