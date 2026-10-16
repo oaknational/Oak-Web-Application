@@ -7,17 +7,28 @@ import {
 } from "@oaknational/oak-components";
 import { z } from "zod";
 import Link from "next/link";
+import type { PortableTextComponents } from "@portabletext/react";
 
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { topBannerSchema } from "@/common-lib/cms-types";
 
 export type TopBannerProps = z.infer<typeof topBannerSchema>;
 
+const topBannerPortableTextComponents: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => (
+      <OakP $font="body-2" $mt="spacing-0">
+        {children}
+      </OakP>
+    ),
+  },
+};
+
 export default function TopBanner({
   topBanner,
-}: {
+}: Readonly<{
   topBanner: TopBannerProps;
-}) {
+}>) {
   return (
     <OakBox role="banner">
       <OakFlex
@@ -45,15 +56,7 @@ export default function TopBanner({
             {topBanner.messagePortableText && (
               <PortableTextWithDefaults
                 value={topBanner.messagePortableText}
-                components={{
-                  block: {
-                    normal: ({ children }) => (
-                      <OakP $font="body-2" $mt="spacing-0">
-                        {children}
-                      </OakP>
-                    ),
-                  },
-                }}
+                components={topBannerPortableTextComponents}
               />
             )}
           </OakFlex>
