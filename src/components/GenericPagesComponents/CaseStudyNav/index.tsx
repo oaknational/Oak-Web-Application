@@ -15,7 +15,7 @@ export function CaseStudyNav({
   sectionRefs,
 }: Readonly<{
   links: { label: string; anchor: string }[];
-  sectionRefs: Record<string, RefObject<HTMLDivElement>>;
+  sectionRefs: Record<string, RefObject<HTMLDivElement | null>>;
 }>) {
   const { currentSectionId } = useCurrentSection({ sectionRefs });
 

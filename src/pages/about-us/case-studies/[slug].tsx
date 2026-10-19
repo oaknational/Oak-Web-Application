@@ -225,9 +225,13 @@ const AboutUsCaseStudy: NextPage<AboutUsCaseStudyLibraryPageProps> = ({
                           contentBlock.anchorSlug?.current ??
                           contentBlock.heading
                         }
-                        ref={
-                          sectionRefs[contentBlock.anchorSlug?.current ?? ""]
-                        }
+                        ref={(element) => {
+                          const sectionRef =
+                            sectionRefs[contentBlock.anchorSlug?.current ?? ""];
+                          if (sectionRef) {
+                            sectionRef.current = element;
+                          }
+                        }}
                         id={contentBlock.anchorSlug?.current}
                         $scrollMarginTop={["spacing-24", "spacing-24"]}
                         $flexDirection="column"

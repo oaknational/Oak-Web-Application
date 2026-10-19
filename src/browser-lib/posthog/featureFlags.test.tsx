@@ -48,7 +48,7 @@ describe("hydration-safe feature flags", () => {
   });
 
   it("hydrates without a mismatch when flags differ from the server", async () => {
-    mockEnabled.mockReturnValue(undefined);
+    mockEnabled.mockReturnValue(false);
     mockVariant.mockReturnValue(undefined);
     const container = document.createElement("div");
     container.innerHTML = renderToString(<FlagConsumer />);
