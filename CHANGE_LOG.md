@@ -1,3 +1,16 @@
+# [1.1250.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1249.4...v1.1250.0) (2026-10-19)
+
+
+### Bug Fixes
+
+* add missing decorator to story ([f61a2b3](https://github.com/oaknational/Oak-Web-Application/commit/f61a2b3cdfbb7961458a52aed6e6882722eabc53))
+
+
+### Features
+
+* add newsletterSignUpCompleted to store ([79f5da3](https://github.com/oaknational/Oak-Web-Application/commit/79f5da3d4a8525a1a2940834913da9b73b56dbc8))
+* move content save events to analytics store ([1487547](https://github.com/oaknational/Oak-Web-Application/commit/14875470fe3d2a33fdbea03c59351886b2f42db3))
+
 ## [1.1249.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.1249.3...v1.1249.4) (2026-10-15)
 
 
