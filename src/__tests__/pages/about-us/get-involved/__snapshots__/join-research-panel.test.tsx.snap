@@ -5974,7 +5974,6 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
             <span
               class="c90 c135"
               data-chromatic="ignore"
-              data-percy-hide="contents"
             >
               <img
                 alt="Cyber Essentials Logo"

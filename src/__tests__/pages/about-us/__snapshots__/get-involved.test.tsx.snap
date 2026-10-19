@@ -6005,7 +6005,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
             <span
               class="c90 c189"
               data-chromatic="ignore"
-              data-percy-hide="contents"
             >
               <img
                 alt="Cyber Essentials Logo"
