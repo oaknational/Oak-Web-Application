@@ -11,6 +11,9 @@ import { GoogleClassroomSubjectIconHeader } from "@/components/GoogleClassroom/G
 import { UnitsContainer } from "@/components/TeacherComponents/UnitsContainer";
 import { GoogleClassroomUnitCards } from "@/components/GoogleClassroom/GoogleClassroomUnitCards";
 
+// TD: caching
+export const instant = false;
+
 async function getUnitsData(baseSlug: string) {
   try {
     return await curriculumApi2023.pupilUnitListingQuery({ baseSlug });

@@ -6,6 +6,9 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { GoogleClassroomSubjectIconHeader } from "@/components/GoogleClassroom/GoogleClassroomSubjectIconHeader";
 import { GoogleClassroomLessonListing } from "@/components/GoogleClassroom/GoogleClassroomLessonListing";
 
+// TD: caching
+export const instant = false;
+
 async function getLessonsData(programmeSlug: string, unitSlug: string) {
   try {
     return await curriculumApi2023.pupilLessonListingQuery({

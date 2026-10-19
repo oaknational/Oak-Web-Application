@@ -4,6 +4,9 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getAvailableProgrammeFactor } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
 import { GoogleClassroomOptions } from "@/components/GoogleClassroom/GoogleClassroomOptions";
 
+// TD: caching
+export const instant = false;
+
 async function GoogleClassroomOptionsPage({
   params,
 }: Readonly<{

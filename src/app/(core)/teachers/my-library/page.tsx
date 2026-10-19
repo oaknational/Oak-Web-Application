@@ -17,6 +17,9 @@ const reportError = errorReporter("educatorApi");
 const title = "My library";
 const description = "Save units to your own personal library";
 
+// TD: use suspense boundary to enable streaming
+export const instant = false;
+
 export const metadata: Metadata = {
   title,
   description,
