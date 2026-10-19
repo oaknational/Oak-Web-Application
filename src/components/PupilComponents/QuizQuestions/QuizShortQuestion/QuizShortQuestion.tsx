@@ -52,6 +52,11 @@ export const QuizShortQuestion = ({
         id={shortAnswerInputId(questionData.questionUid)}
         key={shortAnswerInputId(questionData.questionUid)}
         name={shortAnswerInputId(questionData.questionUid)}
+        defaultValue={
+          typeof questionState.pupilAnswer === "string"
+            ? questionState.pupilAnswer
+            : undefined
+        }
         onChange={onChange}
         disabled={isExitQuizReadOnly || questionState.mode === "feedback"}
         feedback={feedback}

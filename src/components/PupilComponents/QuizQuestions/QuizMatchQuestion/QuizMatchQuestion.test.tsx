@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { act } from "@testing-library/react";
+import { act, within } from "@testing-library/react";
 import * as oakComponents from "@oaknational/oak-components";
 
 import { QuizMatchQuestion } from "./QuizMatchQuestion";
@@ -137,5 +137,37 @@ describe("QuizMatchQuestion", () => {
       />,
     );
     expect(getAllByTestId("match-feedback")).toHaveLength(3);
+  });
+
+  it("restores the pupil's saved matches when reopened in feedback mode", () => {
+    const { getAllByTestId } = renderWithTheme(
+      <QuizMatchQuestion
+        section="starter-quiz"
+        questionData={matchQuestion}
+        questionState={{
+          ...baseState,
+          mode: "feedback",
+          pupilAnswer: ["2", "1", "0"],
+          feedback: ["incorrect", "correct", "incorrect"],
+        }}
+        isReadOnly={false}
+        onQuestionModeChange={jest.fn()}
+      />,
+    );
+    const rows = getAllByTestId("match-feedback");
+    const selectedChoices = [
+      "secondary consumer",
+      "primary consumer",
+      "producer",
+    ];
+    rows.forEach((row, index) => {
+      expect(
+        within(row).getByText(selectedChoices[index]!),
+      ).toBeInTheDocument();
+    });
+    expect(within(rows[0]!).getByText("Correct answer:")).toBeInTheDocument();
+    expect(
+      within(rows[1]!).queryByText("Correct answer:"),
+    ).not.toBeInTheDocument();
   });
 });

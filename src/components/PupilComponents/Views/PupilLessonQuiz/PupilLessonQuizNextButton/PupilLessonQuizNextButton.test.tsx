@@ -20,4 +20,16 @@ describe("PupilLessonQuizNextButton", () => {
     expect(document.body).toHaveTextContent("Next question");
     expect(onClick).toHaveBeenCalledTimes(1);
   });
+
+  it("disables the button while loading", () => {
+    render(
+      <PupilLessonQuizNextButton
+        label="Lesson review"
+        onClick={jest.fn()}
+        isLoading
+      />,
+    );
+
+    expect(document.querySelector("button")).toBeDisabled();
+  });
 });

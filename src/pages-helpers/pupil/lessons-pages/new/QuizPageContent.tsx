@@ -3,6 +3,8 @@ import {
   OakBackLink,
   OakCloudinaryConfigProvider,
   OakCodeRenderer,
+  OakFlex,
+  OakP,
   OakSpan,
 } from "@oaknational/oak-components";
 import { useShallow } from "zustand/react/shallow";
@@ -63,22 +65,32 @@ export const QuizPageContent = ({
   const initialiseKeyRef = useRef<string | null>(null);
   const sectionStartedAtRef = useRef(Date.now());
   const {
+    progressLessonSlug,
+    isHydratingInitialProgress,
     sectionResults,
     lessonReviewSections,
     lessonStarted,
     isReadOnly,
+    setReadOnly,
+    submitClassroomProgress,
     completeSection,
     updateSectionInProgressResult,
   } = usePupilLessonProgress(
     useShallow((state) => ({
+      progressLessonSlug: state.lessonSlug,
+      isHydratingInitialProgress: state.isHydratingInitialProgress,
       sectionResults: state.sectionResults,
       lessonReviewSections: state.lessonReviewSections,
       lessonStarted: state.lessonStarted,
       isReadOnly: state.isReadOnly,
+      setReadOnly: state.setReadOnly,
+      submitClassroomProgress: state.submitClassroomProgress,
       completeSection: state.completeSection,
       updateSectionInProgressResult: state.updateSectionInProgressResult,
     })),
   );
+  const isProgressReadyForLesson =
+    progressLessonSlug === lessonSlug && !isHydratingInitialProgress;
   const {
     storeLessonSlug,
     storeSection,
@@ -109,7 +121,9 @@ export const QuizPageContent = ({
     })),
   );
   const isStoreReadyForSection =
-    storeLessonSlug === lessonSlug && storeSection === section;
+    isProgressReadyForLesson &&
+    storeLessonSlug === lessonSlug &&
+    storeSection === section;
   const {
     trackSectionStarted,
     trackQuizQuestionAttempt,
@@ -129,9 +143,22 @@ export const QuizPageContent = ({
     questionIndex: number;
     pressed: boolean;
   }>({ questionIndex: currentQuestionIndex, pressed: false });
+  const [isCompleting, setIsCompleting] = useState(false);
+  const [hasSaveError, setHasSaveError] = useState(false);
+  const isCompletingRef = useRef(false);
+  const completionAttemptRef = useRef(0);
   const formId = "quiz-form";
 
+  useEffect(
+    () => () => {
+      completionAttemptRef.current += 1;
+      isCompletingRef.current = false;
+    },
+    [],
+  );
+
   useEffect(() => {
+    if (!isProgressReadyForLesson) return;
     const initialiseKey = `${lessonSlug}:${section}`;
     if (initialiseKeyRef.current === initialiseKey) return;
     initialiseKeyRef.current = initialiseKey;
@@ -142,8 +169,16 @@ export const QuizPageContent = ({
       section,
       questionsArray,
       initialQuestionResults: sectionResults[section]?.questionResults,
+      initialIsComplete: sectionResults[section]?.isComplete,
     });
-  }, [initialiseQuiz, lessonSlug, questionsArray, section, sectionResults]);
+  }, [
+    initialiseQuiz,
+    isProgressReadyForLesson,
+    lessonSlug,
+    questionsArray,
+    section,
+    sectionResults,
+  ]);
 
   useEffect(() => {
     if (!isStoreReadyForSection || !isHydratedComplete) return;
@@ -251,24 +286,13 @@ export const QuizPageContent = ({
     handleQuestionResult(result);
   };
 
-  const isQuizEffectivelyComplete = () => {
-    const nextStep = getQuizNextStep({
-      currentQuestionIndex,
-      numQuestions,
-      isReadOnly,
-    });
-    return (
-      nextStep.action === "complete-quiz" &&
-      currentQuestionState?.mode === "feedback"
-    );
-  };
-
-  const completeQuizAndTrack = () => {
-    completeSection(section);
-    const nextSectionResults = getCompletedQuizSectionResults({
+  const completeQuizAndTrack = (
+    nextSectionResults = getCompletedQuizSectionResults({
       section,
       sectionResults,
-    });
+    }),
+  ) => {
+    completeSection(section);
     if (!lessonStarted) {
       trackLessonStarted();
     }
@@ -289,6 +313,43 @@ export const QuizPageContent = ({
     return nextSectionResults;
   };
 
+  const finaliseQuiz = async () => {
+    if (!ensureCanProgress() || isCompletingRef.current) return null;
+
+    const nextSectionResults = getCompletedQuizSectionResults({
+      section,
+      sectionResults,
+    });
+
+    if (section === "exit-quiz") {
+      const completionAttempt = ++completionAttemptRef.current;
+      isCompletingRef.current = true;
+      setIsCompleting(true);
+      setHasSaveError(false);
+      try {
+        const result = await submitClassroomProgress(nextSectionResults);
+        if (completionAttemptRef.current !== completionAttempt) return null;
+        if (result?.status === "READ_ONLY") {
+          setReadOnly(true);
+          navigateToSection("review");
+          return null;
+        }
+      } catch {
+        if (completionAttemptRef.current === completionAttempt) {
+          setHasSaveError(true);
+        }
+        return null;
+      } finally {
+        if (completionAttemptRef.current === completionAttempt) {
+          isCompletingRef.current = false;
+          setIsCompleting(false);
+        }
+      }
+    }
+
+    return completeQuizAndTrack(nextSectionResults);
+  };
+
   const onNext = async () => {
     const nextStep = getQuizNextStep({
       currentQuestionIndex,
@@ -296,7 +357,7 @@ export const QuizPageContent = ({
       isReadOnly,
     });
 
-    // Use cached isReadOnly so Next question is not blocked on a network call.
+    // use cached state so next-question navigation stays immediate
     if (nextStep.action === "next-question") {
       handleNextQuestion();
       return;
@@ -308,9 +369,8 @@ export const QuizPageContent = ({
       return;
     }
 
-    if (!(await ensureCanProgress())) return;
-
-    const nextSectionResults = completeQuizAndTrack();
+    const nextSectionResults = await finaliseQuiz();
+    if (!nextSectionResults) return;
     navigateToSection(
       getQuizCompletionDestination({
         sectionResults: nextSectionResults,
@@ -319,13 +379,18 @@ export const QuizPageContent = ({
     );
   };
 
-  const onBack = async () => {
+  const onBack = () => {
+    if (isCompletingRef.current) {
+      completionAttemptRef.current += 1;
+      isCompletingRef.current = false;
+      setIsCompleting(false);
+      navigateToSection("overview");
+      return;
+    }
+
     const alreadyComplete = sectionResults[section]?.isComplete;
 
-    if (!alreadyComplete && isQuizEffectivelyComplete()) {
-      if (!(await ensureCanProgress())) return;
-      completeQuizAndTrack();
-    } else if (!alreadyComplete) {
+    if (!alreadyComplete) {
       if (!lessonStarted) {
         trackLessonStarted();
       }
@@ -435,14 +500,31 @@ export const QuizPageContent = ({
                   isTooltipOpen={currentQuestionState?.mode === "incomplete"}
                 />
               ) : (
-                <PupilLessonQuizNextButton
-                  label={pickQuizNavigationButtonLabel({
-                    currentQuestionIndex,
-                    numQuestions,
-                    currentSection: section,
-                  })}
-                  onClick={onNext}
-                />
+                <OakFlex
+                  $flexDirection="column"
+                  $gap="spacing-8"
+                  $width={["100%", "max-content"]}
+                  $alignItems={["stretch", "flex-end"]}
+                >
+                  {hasSaveError && (
+                    <OakP
+                      role="alert"
+                      aria-label="Quiz save failed"
+                      $font="body-3"
+                    >
+                      We couldn&apos;t save your quiz. Please try again.
+                    </OakP>
+                  )}
+                  <PupilLessonQuizNextButton
+                    label={pickQuizNavigationButtonLabel({
+                      currentQuestionIndex,
+                      numQuestions,
+                      currentSection: section,
+                    })}
+                    onClick={onNext}
+                    isLoading={isCompleting}
+                  />
+                </OakFlex>
               ),
           }}
           questionSlot={

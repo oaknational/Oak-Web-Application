@@ -27,8 +27,20 @@ describe("PupilLessonQuizStore", () => {
       lessonSlug: "intro-to-it",
       section: "starter-quiz",
       questionsArray: [
-        { questionType: "short-answer", questionUid: "q1" },
-        { questionType: "short-answer", questionUid: "q2" },
+        {
+          questionType: "short-answer",
+          questionUid: "q1",
+          questionId: 1,
+          order: 1,
+          _state: "published",
+        },
+        {
+          questionType: "short-answer",
+          questionUid: "q2",
+          questionId: 2,
+          order: 2,
+          _state: "published",
+        },
       ] as never,
       initialQuestionResults: [
         { mode: "feedback", offerHint: false, grade: 1 },
@@ -40,23 +52,92 @@ describe("PupilLessonQuizStore", () => {
     expect(store.getState().isHydratedComplete).toBe(false);
   });
 
-  it("marks hydrated quiz complete when all questions are already in feedback mode", () => {
-    const store = createPupilLessonQuizStore();
+  describe.each(["starter-quiz", "exit-quiz"] as const)(
+    "%s hydration",
+    (section) => {
+      const questionsArray = [
+        {
+          questionType: "short-answer",
+          questionUid: "q1",
+          questionId: 1,
+          order: 1,
+          _state: "published",
+        },
+        {
+          questionType: "short-answer",
+          questionUid: "q2",
+          questionId: 2,
+          order: 2,
+          _state: "published",
+        },
+      ] as const;
+      const checkedAnswer = {
+        mode: "feedback",
+        offerHint: false,
+        grade: 1,
+      } as const;
 
-    store.getState().initialiseQuiz({
-      lessonSlug: "intro-to-it",
-      section: "starter-quiz",
-      questionsArray: [
-        { questionType: "short-answer", questionUid: "q1" },
-      ] as never,
-      initialQuestionResults: [
-        { mode: "feedback", offerHint: false, grade: 1 },
-      ],
-    });
+      it("resumes the final checked question when the section was not completed", () => {
+        const store = createPupilLessonQuizStore();
+        store.getState().initialiseQuiz({
+          lessonSlug: "intro-to-it",
+          section,
+          questionsArray: [...questionsArray],
+          initialQuestionResults: [checkedAnswer, checkedAnswer],
+          initialIsComplete: false,
+        });
 
-    expect(store.getState().isHydratedComplete).toBe(true);
-    expect(store.getState().currentQuestionIndex).toBe(1);
-  });
+        expect(store.getState().isHydratedComplete).toBe(false);
+        expect(store.getState().currentQuestionIndex).toBe(1);
+        expect(store.getState().questionState[1]?.mode).toBe("feedback");
+      });
+
+      it("keeps the saved section completion state", () => {
+        const store = createPupilLessonQuizStore();
+        store.getState().initialiseQuiz({
+          lessonSlug: "intro-to-it",
+          section,
+          questionsArray: [...questionsArray],
+          initialQuestionResults: [checkedAnswer, checkedAnswer],
+          initialIsComplete: true,
+        });
+
+        expect(store.getState().isHydratedComplete).toBe(true);
+      });
+
+      it("resumes the first question missing from saved progress", () => {
+        const store = createPupilLessonQuizStore();
+        store.getState().initialiseQuiz({
+          lessonSlug: "intro-to-it",
+          section,
+          questionsArray: [...questionsArray],
+          initialQuestionResults: [checkedAnswer],
+        });
+
+        expect(store.getState().isHydratedComplete).toBe(false);
+        expect(store.getState().currentQuestionIndex).toBe(1);
+        expect(store.getState().questionState[1]?.mode).toBe("init");
+      });
+
+      it("does not resume beyond the current question list", () => {
+        const store = createPupilLessonQuizStore();
+        store.getState().initialiseQuiz({
+          lessonSlug: "intro-to-it",
+          section,
+          questionsArray: [...questionsArray],
+          initialQuestionResults: [
+            checkedAnswer,
+            checkedAnswer,
+            { mode: "init", offerHint: false, grade: 0 },
+          ],
+        });
+
+        expect(store.getState().isHydratedComplete).toBe(false);
+        expect(store.getState().currentQuestionIndex).toBe(1);
+        expect(store.getState().questionState).toHaveLength(2);
+      });
+    },
+  );
 
   it("updates the current question state and advances to the next question", () => {
     const store = createPupilLessonQuizStore();
