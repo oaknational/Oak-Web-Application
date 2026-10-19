@@ -9,11 +9,10 @@ import { LessonShare } from "@/components/TeacherViews/LessonShare/LessonShare.v
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
-import { applyCurriculumCachePolicy } from "@/node-lib/cache";
+import { curriculumApiWithCache } from "@/node-lib/cache";
 
 // We are using dynamic route segments so we can't enable instant navigation without
 // prefetching all possible routes with generateStaticParams. Longer term we'd want to
@@ -28,13 +27,9 @@ type LessonSharePageParams = {
 
 const getCachedLessonShareData = cache(
   async (programmeSlug: string, unitSlug: string, lessonSlug: string) => {
-    "use cache";
-    applyCurriculumCachePolicy();
-
-    return curriculumApi2023.lessonShare({
-      programmeSlug,
-      unitSlug,
-      lessonSlug,
+    return curriculumApiWithCache({
+      queryKey: "lessonShare",
+      args: [{ programmeSlug, unitSlug, lessonSlug }],
     });
   },
 );

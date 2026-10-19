@@ -28,6 +28,7 @@ import teachersPreviewLessonListingQuery from "./queries/teacherPreviewLessonLis
 import curriculumSequenceQuery from "./queries/curriculumSequence/curriculumSequence.query";
 import curriculumSequenceSlugsQuery from "./queries/curriculumSequenceSlugs/curriculumSequenceSlugs.query";
 import { lessonMediaClipsQuery } from "./queries/lessonMediaClips/lessonMediaClips.query";
+import type { LessonMediaClipsData } from "./queries/lessonMediaClips/lessonMediaClips.schema";
 import { betaLessonMediaClipsQuery } from "./queries/lessonBetaMediaClips/lessonBetaMediaClips.query";
 import curriculumPhaseOptionsQuery from "./queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
 import curriculumPhaseOptionsSchema from "./queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
@@ -119,6 +120,7 @@ const curriculumApi2023 = {
   lessonListing: lessonListingQuery(sdk),
   lessonDownloads: lessonDownloadsQuery(sdk),
   lessonMediaClips: lessonMediaClipsQuery(sdk),
+  teachersLessonMediaClips: lessonMediaClipsQuery(sdk)<LessonMediaClipsData>,
   lessonShare: lessonShareQuery(sdk),
   lessonOverview: lessonOverviewQuery(sdk),
   teachersLessonOverview: teachersLessonOverviewQuery(sdk),

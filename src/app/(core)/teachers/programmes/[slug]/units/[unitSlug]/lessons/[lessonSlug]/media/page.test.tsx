@@ -1,6 +1,8 @@
 /**
  * @jest-environment node
  */
+import { cacheLife, cacheTag } from "next/cache";
+
 import LessonMediaPage, { generateMetadata } from "./page";
 
 import { LessonMediaClipsData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
@@ -18,7 +20,8 @@ const mockLessonMediaClips = jest.fn();
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   __esModule: true,
   default: {
-    lessonMediaClips: (...args: unknown[]) => mockLessonMediaClips(...args),
+    teachersLessonMediaClips: (...args: unknown[]) =>
+      mockLessonMediaClips(...args),
   },
 }));
 
@@ -67,7 +70,23 @@ const defaultParams = {
 
 describe("LessonMediaPage", () => {
   beforeEach(() => {
+    jest.clearAllMocks();
     mockLessonMediaClips.mockResolvedValue(lessonMediaFixture);
+  });
+
+  it("loads browse media through the curriculum cache helper", async () => {
+    await LessonMediaPage({
+      params: Promise.resolve(defaultParams),
+      searchParams: Promise.resolve({}),
+    });
+
+    expect(mockLessonMediaClips).toHaveBeenCalledWith({
+      programmeSlug: defaultParams.slug,
+      unitSlug: defaultParams.unitSlug,
+      lessonSlug: defaultParams.lessonSlug,
+    });
+    expect(cacheLife).toHaveBeenCalledWith("curriculum");
+    expect(cacheTag).toHaveBeenCalledWith("curriculum-api");
   });
 
   it("returns 404 when media clips are missing", async () => {

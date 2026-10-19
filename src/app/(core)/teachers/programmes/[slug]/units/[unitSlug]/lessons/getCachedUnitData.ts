@@ -1,8 +1,10 @@
 import { cache } from "react";
 import { permanentRedirect } from "next/navigation";
 
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { applyCurriculumCachePolicy } from "@/node-lib/cache";
+import {
+  applyCurriculumCachePolicy,
+  curriculumApiWithCache,
+} from "@/node-lib/cache";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getUnitDownloadFileExistence } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
 import errorReporter from "@/common-lib/error-reporter";
@@ -12,21 +14,18 @@ const reportError = errorReporter("unit-download-existence");
 
 export const getCachedUnitData = cache(
   async (programmeSlug: string, unitSlug: string) => {
-    "use cache";
-    applyCurriculumCachePolicy();
-
-    return curriculumApi2023.teachersUnitOverview({
-      programmeSlug,
-      unitSlug,
+    return curriculumApiWithCache({
+      queryKey: "teachersUnitOverview",
+      args: [{ programmeSlug, unitSlug }],
     });
   },
 );
 
 export const getCachedProgrammesForUnit = cache(async (unitSlug: string) => {
-  "use cache";
-  applyCurriculumCachePolicy();
-
-  return curriculumApi2023.teachersUnitProgramme({ unitSlug });
+  return curriculumApiWithCache({
+    queryKey: "teachersUnitProgramme",
+    args: [{ unitSlug }],
+  });
 });
 
 const getCachedUnitDownloadFileExistence = cache(async (unitFileId: string) => {

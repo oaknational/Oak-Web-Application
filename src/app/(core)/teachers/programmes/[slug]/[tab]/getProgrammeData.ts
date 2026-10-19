@@ -4,13 +4,14 @@ import {
 } from "./buildKs4OptionFilterDimensions";
 import { getFileSizes } from "./Components/getFileSizes";
 
-import curriculumApi2023, {
+import type {
   CurriculumPhaseOptions,
   CurriculumUnit,
   CurriculumUnitsTabData,
 } from "@/node-lib/curriculum-api-2023";
 import {
   applyCurriculumCachePolicy,
+  curriculumApiWithCache,
   CURRICULUM_API_CACHE_TAG,
 } from "@/node-lib/cache";
 import {
@@ -33,11 +34,10 @@ export async function getCachedFileSizes(
 }
 
 async function getCachedCurriculumPhaseOptions() {
-  "use cache";
-  applyCurriculumCachePolicy({ tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG] });
-
-  return curriculumApi2023.curriculumPhaseOptions({
-    includeNonCurriculum: true,
+  return curriculumApiWithCache({
+    queryKey: "curriculumPhaseOptions",
+    args: [{ includeNonCurriculum: true }],
+    tags: [PAGE_KEY],
   });
 }
 
@@ -45,13 +45,10 @@ async function getCachedCurriculumOverview(
   subjectSlug: string,
   phaseSlug: string,
 ) {
-  "use cache";
-  applyCurriculumCachePolicy({ tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG] });
-
-  return curriculumApi2023.curriculumOverview({
-    subjectSlug,
-    phaseSlug,
-    includeNonCurriculum: true,
+  return curriculumApiWithCache({
+    queryKey: "curriculumOverview",
+    args: [{ subjectSlug, phaseSlug, includeNonCurriculum: true }],
+    tags: [PAGE_KEY],
   });
 }
 
@@ -61,16 +58,19 @@ async function getCachedCurriculumSequence(
   ks4OptionSlug: string | null,
   excludeCoreUnits: boolean,
 ) {
-  "use cache";
-  applyCurriculumCachePolicy({ tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG] });
-
-  return curriculumApi2023.curriculumSequence({
-    subjectSlug,
-    phaseSlug,
-    ks4OptionSlug,
-    includeNonCurriculum: true,
-    excludeUnitsWithNoPublishedLessons: true,
-    excludeCoreUnits,
+  return curriculumApiWithCache({
+    queryKey: "curriculumSequence",
+    args: [
+      {
+        subjectSlug,
+        phaseSlug,
+        ks4OptionSlug,
+        includeNonCurriculum: true,
+        excludeUnitsWithNoPublishedLessons: true,
+        excludeCoreUnits,
+      },
+    ],
+    tags: [PAGE_KEY],
   });
 }
 
@@ -78,13 +78,10 @@ async function getCachedCurriculumSequenceSlugs(
   subjectSlug: string,
   phaseSlug: string,
 ) {
-  "use cache";
-  applyCurriculumCachePolicy({ tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG] });
-
-  return curriculumApi2023.curriculumSequenceSlugs({
-    subjectSlug,
-    phaseSlug,
-    includeNonCurriculum: true,
+  return curriculumApiWithCache({
+    queryKey: "curriculumSequenceSlugs",
+    args: [{ subjectSlug, phaseSlug, includeNonCurriculum: true }],
+    tags: [PAGE_KEY],
   });
 }
 

@@ -2,6 +2,8 @@
  * @jest-environment node
  */
 
+import { cacheLife, cacheTag } from "next/cache";
+
 import {
   getProgrammeData,
   getSubjectOverride,
@@ -25,10 +27,6 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
     curriculumSequence: jest.fn(),
     curriculumSequenceSlugs: jest.fn(),
   },
-}));
-
-jest.mock("@/node-lib/cache", () => ({
-  applyCachePolicy: jest.fn(),
 }));
 
 const mockCurriculumApi = jest.mocked(curriculumApi2023);
@@ -114,6 +112,19 @@ describe("getProgrammeData", () => {
         excludeUnitsWithNoPublishedLessons: true,
         excludeCoreUnits: true,
       });
+    });
+
+    it("preserves the curriculum profile and programme invalidation tags", async () => {
+      await getProgrammeData("maths-primary", defaultSubjects());
+      await getSubjectPhaseOptions("maths-primary");
+
+      expect(cacheLife).toHaveBeenCalledTimes(3);
+      expect(cacheLife).toHaveBeenCalledWith("curriculum");
+      expect(cacheTag).toHaveBeenCalledTimes(3);
+      expect(cacheTag).toHaveBeenCalledWith(
+        "curriculum-api",
+        "programme-page-data",
+      );
     });
 
     it("should sort units with examboard versions first, then by order", async () => {

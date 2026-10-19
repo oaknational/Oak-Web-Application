@@ -3,9 +3,8 @@ import { Metadata } from "next";
 
 import { SearchView } from "./SearchView";
 
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { applyCurriculumCachePolicy } from "@/node-lib/cache";
+import { curriculumApiWithCache } from "@/node-lib/cache";
 
 export const metadata: Metadata = {
   title: "Search for Free Teaching Resources",
@@ -17,10 +16,7 @@ export const metadata: Metadata = {
 };
 
 const getCachedSearchPage = cache(async () => {
-  "use cache";
-  applyCurriculumCachePolicy();
-
-  return curriculumApi2023.searchPage();
+  return curriculumApiWithCache({ queryKey: "searchPage", args: [] });
 });
 
 async function SearchPage() {

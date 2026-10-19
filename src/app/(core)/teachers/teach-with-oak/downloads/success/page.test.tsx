@@ -17,10 +17,6 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   },
 }));
 
-jest.mock("@/node-lib/cache", () => ({
-  applyCachePolicy: jest.fn(),
-}));
-
 const mockSearchParams = jest.fn(() => new URLSearchParams());
 jest.mock("next/navigation", () => ({
   notFound: jest.fn(() => {
