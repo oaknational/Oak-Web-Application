@@ -40,6 +40,7 @@ import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnal
 import { getProgrammeStateForProgramme } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 import { getActiveCookieFlags } from "@/hooks/useCookieFlag/getActiveCookieFlags";
 import { getBrowseFilterState } from "@/context/BrowseFilters/utils/getBrowseFilterState";
+import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 
 export const instant = false;
 
@@ -264,7 +265,8 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
 
   // None of these depend on each other's results, so run them concurrently instead of as a waterfall
   const [
-    { curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime },
+    { curriculumCMSInfo, subjectPhaseSanityData },
+    mvRefreshTime,
     implementationGuides,
     fileSizes,
   ] = await Promise.all([
@@ -276,7 +278,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
       programmePageSlug: `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
       isPreviewModeEnabled: isEnabled,
     }),
-
+    getMvRefreshTime({ withCache: true }),
     getCachedImplementationGuides({
       subjectTitle: programmeUnitsData.subjectTitle,
       phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
@@ -289,7 +291,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   }
 
   if (!subjectPhaseSanityData) {
-    reportError(
+    void reportError(
       new OakError({
         code: "cms/missing-programme-page-data",
         meta: { subjectPhaseSlug },
