@@ -33,10 +33,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 import { BrowseFiltersProvider } from "@/context/BrowseFilters";
 import { redirectProgrammeSlugIfNeeded } from "@/utils/integratedJourney/legacyProgrammeUnitsRedirect";
-import {
-  applyCmsCachePolicy,
-  CURRICULUM_API_CACHE_TAG,
-} from "@/node-lib/cache";
+import { cmsWithCache, CURRICULUM_API_CACHE_TAG } from "@/node-lib/cache";
 import CMSClient from "@/node-lib/cms";
 import { validateServerSearchParams } from "@/utils/validateProgrammePageSearchParams";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
@@ -72,20 +69,25 @@ async function getCachedProgrammeCms({
   programmePageSlug,
   isPreviewModeEnabled,
 }: ProgrammeCmsParams) {
-  "use cache";
-  applyCmsCachePolicy();
-
   const [curriculumCMSInfo, subjectPhaseSanityData] = await Promise.all([
     nonCurriculum
       ? null
-      : CMSClient.curriculumOverviewPage({
-          previewMode: isPreviewModeEnabled,
-          subjectTitle,
-          phaseSlug,
+      : isPreviewModeEnabled
+        ? CMSClient.curriculumOverviewPage({
+            previewMode: true,
+            subjectTitle,
+            phaseSlug,
+          })
+        : cmsWithCache({
+            queryKey: "curriculumOverviewPage",
+            args: [{ previewMode: false, subjectTitle, phaseSlug }],
+          }),
+    isPreviewModeEnabled
+      ? CMSClient.programmePageBySlug(programmePageSlug, { previewMode: true })
+      : cmsWithCache({
+          queryKey: "programmePageBySlug",
+          args: [programmePageSlug, { previewMode: false }],
         }),
-    CMSClient.programmePageBySlug(programmePageSlug, {
-      previewMode: isPreviewModeEnabled,
-    }),
   ]);
 
   return { curriculumCMSInfo, subjectPhaseSanityData };
@@ -95,10 +97,11 @@ async function getCachedImplementationGuides(opts: {
   subjectTitle: string;
   phaseSlug: string;
 }) {
-  "use cache";
-  applyCmsCachePolicy({ tags: [CURRICULUM_API_CACHE_TAG] });
-
-  return CMSClient.implementationGuides(opts);
+  return cmsWithCache({
+    queryKey: "implementationGuides",
+    args: [opts],
+    tags: [CURRICULUM_API_CACHE_TAG],
+  });
 }
 
 export async function generateMetadata({

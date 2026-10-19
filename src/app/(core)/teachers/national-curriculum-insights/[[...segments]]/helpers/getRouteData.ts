@@ -12,7 +12,7 @@ import {
 } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import type { NationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
 import CMSClient from "@/node-lib/cms";
-import { applyCmsCachePolicy } from "@/node-lib/cache";
+import { cmsWithCache } from "@/node-lib/cache";
 import getServerConfig from "@/node-lib/getServerConfig";
 
 export type NationalCurriculumInsightsReader = Pick<
@@ -47,33 +47,26 @@ const cacheScope = [
 const cacheTags = ["national-curriculum-insights", cacheScope];
 
 async function getPublishedHub() {
-  "use cache";
-  applyCmsCachePolicy({
+  return cmsWithCache({
+    queryKey: "nationalCurriculumInsightsHub",
+    args: [{ previewMode: false }],
     tags: cacheTags,
   });
-
-  return CMSClient.nationalCurriculumInsightsHub({ previewMode: false });
 }
 
 async function getPublishedGuidancePage() {
-  "use cache";
-  applyCmsCachePolicy({
+  return cmsWithCache({
+    queryKey: "nationalCurriculumInsightsGuidancePage",
+    args: [{ previewMode: false }],
     tags: cacheTags,
-  });
-
-  return CMSClient.nationalCurriculumInsightsGuidancePage({
-    previewMode: false,
   });
 }
 
 async function getPublishedSubject(slug: string) {
-  "use cache";
-  applyCmsCachePolicy({
+  return cmsWithCache({
+    queryKey: "nationalCurriculumInsightsSubjectBySlug",
+    args: [slug, { previewMode: false }],
     tags: cacheTags,
-  });
-
-  return CMSClient.nationalCurriculumInsightsSubjectBySlug(slug, {
-    previewMode: false,
   });
 }
 

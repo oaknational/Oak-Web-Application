@@ -1,3 +1,5 @@
+import { cacheLife, cacheTag } from "next/cache";
+
 import { localNationalCurriculumInsightsFixtures } from "../__fixtures__/nationalCurriculumInsights";
 
 import {
@@ -9,12 +11,7 @@ import {
 import { parseNationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
 import type { NationalCurriculumInsightsModule } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import CMSClient from "@/node-lib/cms";
-import { applyCachePolicy } from "@/node-lib/cache";
 import getServerConfig from "@/node-lib/getServerConfig";
-
-jest.mock("@/node-lib/cache", () => ({
-  applyCachePolicy: jest.fn(),
-}));
 
 jest.mock("@/node-lib/cms", () => ({
   __esModule: true,
@@ -376,18 +373,18 @@ describe("getNationalCurriculumInsightsReader", () => {
     await reader.nationalCurriculumInsightsGuidancePage();
     await reader.nationalCurriculumInsightsSubjectBySlug("science");
 
-    expect(applyCachePolicy).toHaveBeenCalledTimes(3);
-    expect(applyCachePolicy).toHaveBeenCalledWith({
-      revalidate: getServerConfig("sanityRevalidateSeconds"),
-      tags: [
+    expect(cacheLife).toHaveBeenCalledTimes(3);
+    expect(cacheLife).toHaveBeenCalledWith("cms");
+    expect(cacheTag).toHaveBeenCalledTimes(3);
+    expect(cacheTag).toHaveBeenCalledWith(
+      "cms",
+      "national-curriculum-insights",
+      [
         "national-curriculum-insights",
-        [
-          "national-curriculum-insights",
-          getServerConfig("sanityProjectId"),
-          getServerConfig("sanityDataset"),
-        ].join(":"),
-      ],
-    });
+        getServerConfig("sanityProjectId"),
+        getServerConfig("sanityDataset"),
+      ].join(":"),
+    );
   });
 
   it("bypasses every persistent cache for draft reads", async () => {
@@ -399,7 +396,8 @@ describe("getNationalCurriculumInsightsReader", () => {
       previewMode: true,
     });
 
-    expect(applyCachePolicy).not.toHaveBeenCalled();
+    expect(cacheLife).not.toHaveBeenCalled();
+    expect(cacheTag).not.toHaveBeenCalled();
     expect(CMSClient.nationalCurriculumInsightsHub).toHaveBeenLastCalledWith({
       previewMode: true,
     });

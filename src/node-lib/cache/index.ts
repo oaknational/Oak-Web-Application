@@ -1,11 +1,13 @@
 import { cacheLife, cacheTag } from "next/cache";
 
+import CMSClient from "@/node-lib/cms";
 import curriculumApi, {
   type CurriculumApi,
 } from "@/node-lib/curriculum-api-2023";
 
 export const DEFAULT_PAGE_DATA_REVALIDATE_SECONDS = 7200;
 export const CURRICULUM_API_CACHE_TAG = "curriculum-api";
+export const CMS_CACHE_TAG = "cms";
 
 type CachePolicyOptions = {
   revalidate?: number;
@@ -17,6 +19,31 @@ type CurriculumQueryCacheProps<K extends keyof CurriculumApi> = {
   args: Parameters<CurriculumApi[K]>;
   tags?: string[];
 };
+
+type CmsClient = typeof CMSClient;
+
+type CmsQueryCacheProps<K extends keyof CmsClient> = {
+  queryKey: K;
+  args: Parameters<CmsClient[K]>;
+  tags?: string[];
+};
+
+/** Runs and caches a CMS query. Keep draft reads outside this shared cache. */
+export async function cmsWithCache<K extends keyof CmsClient>({
+  queryKey,
+  args,
+  tags = [],
+}: CmsQueryCacheProps<K>): Promise<Awaited<ReturnType<CmsClient[K]>>> {
+  "use cache";
+  cacheLife("cms");
+  cacheTag(CMS_CACHE_TAG, ...tags);
+  const queries: {
+    [Key in keyof CmsClient]: (
+      ...args: Parameters<CmsClient[Key]>
+    ) => ReturnType<CmsClient[Key]>;
+  } = CMSClient;
+  return await queries[queryKey](...args);
+}
 
 /** Runs and caches a curriculum query with optional additional invalidation tags. */
 export async function curriculumApiWithCache<K extends keyof CurriculumApi>({
@@ -38,14 +65,6 @@ export async function curriculumApiWithCache<K extends keyof CurriculumApi>({
 // For caching curriculum data with default parameters
 export function applyCurriculumCachePolicy(options: CachePolicyOptions = {}) {
   cacheLife("curriculum");
-  if (options.tags?.length) {
-    cacheTag(...options.tags);
-  }
-}
-
-// For caching CMS data with default parameters
-export function applyCmsCachePolicy(options: CachePolicyOptions = {}) {
-  cacheLife("cms");
   if (options.tags?.length) {
     cacheTag(...options.tags);
   }
