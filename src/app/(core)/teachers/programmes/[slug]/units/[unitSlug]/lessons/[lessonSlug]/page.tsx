@@ -16,7 +16,7 @@ import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
-import { applyCachePolicy } from "@/node-lib/cache";
+import { applyCurriculumCachePolicy } from "@/node-lib/cache";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
@@ -35,7 +35,7 @@ type LessonPageParams = {
 const getCachedLessonData = cache(
   async (programmeSlug: string, unitSlug: string, lessonSlug: string) => {
     "use cache";
-    applyCachePolicy();
+    applyCurriculumCachePolicy();
 
     return curriculumApi2023.teachersLessonOverview({
       programmeSlug,

@@ -14,7 +14,7 @@ export default async function CoreLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  cacheLife({ revalidate: 7200 });
+  cacheLife("curriculum");
   try {
     const topNavProps = await appRouterTopNavQuery();
 

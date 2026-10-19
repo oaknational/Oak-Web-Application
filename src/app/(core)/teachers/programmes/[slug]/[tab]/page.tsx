@@ -33,7 +33,10 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 import { BrowseFiltersProvider } from "@/context/BrowseFilters";
 import { redirectProgrammeSlugIfNeeded } from "@/utils/integratedJourney/legacyProgrammeUnitsRedirect";
-import { applyCachePolicy, CURRICULUM_API_CACHE_TAG } from "@/node-lib/cache";
+import {
+  applyCmsCachePolicy,
+  CURRICULUM_API_CACHE_TAG,
+} from "@/node-lib/cache";
 import CMSClient from "@/node-lib/cms";
 import { validateServerSearchParams } from "@/utils/validateProgrammePageSearchParams";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
@@ -70,7 +73,7 @@ async function getCachedProgrammeCms({
   isPreviewModeEnabled,
 }: ProgrammeCmsParams) {
   "use cache";
-  applyCachePolicy();
+  applyCmsCachePolicy();
 
   const [curriculumCMSInfo, subjectPhaseSanityData] = await Promise.all([
     nonCurriculum
@@ -93,7 +96,7 @@ async function getCachedImplementationGuides(opts: {
   phaseSlug: string;
 }) {
   "use cache";
-  applyCachePolicy({ tags: [CURRICULUM_API_CACHE_TAG] });
+  applyCmsCachePolicy({ tags: [CURRICULUM_API_CACHE_TAG] });
 
   return CMSClient.implementationGuides(opts);
 }

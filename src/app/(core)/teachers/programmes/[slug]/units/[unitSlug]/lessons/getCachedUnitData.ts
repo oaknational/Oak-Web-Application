@@ -2,7 +2,7 @@ import { cache } from "react";
 import { permanentRedirect } from "next/navigation";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { applyCachePolicy } from "@/node-lib/cache";
+import { applyCurriculumCachePolicy } from "@/node-lib/cache";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getUnitDownloadFileExistence } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
 import errorReporter from "@/common-lib/error-reporter";
@@ -13,7 +13,7 @@ const reportError = errorReporter("unit-download-existence");
 export const getCachedUnitData = cache(
   async (programmeSlug: string, unitSlug: string) => {
     "use cache";
-    applyCachePolicy();
+    applyCurriculumCachePolicy();
 
     return curriculumApi2023.teachersUnitOverview({
       programmeSlug,
@@ -24,14 +24,14 @@ export const getCachedUnitData = cache(
 
 export const getCachedProgrammesForUnit = cache(async (unitSlug: string) => {
   "use cache";
-  applyCachePolicy();
+  applyCurriculumCachePolicy();
 
   return curriculumApi2023.teachersUnitProgramme({ unitSlug });
 });
 
 const getCachedUnitDownloadFileExistence = cache(async (unitFileId: string) => {
   "use cache";
-  applyCachePolicy({ tags: ["teachers-unit-download-existence"] });
+  applyCurriculumCachePolicy({ tags: ["teachers-unit-download-existence"] });
 
   return getUnitDownloadFileExistence(unitFileId);
 });

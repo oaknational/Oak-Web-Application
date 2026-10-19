@@ -12,7 +12,7 @@ import {
 } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import type { NationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
 import CMSClient from "@/node-lib/cms";
-import { applyCachePolicy } from "@/node-lib/cache";
+import { applyCmsCachePolicy } from "@/node-lib/cache";
 import getServerConfig from "@/node-lib/getServerConfig";
 
 export type NationalCurriculumInsightsReader = Pick<
@@ -44,13 +44,11 @@ const cacheScope = [
   getServerConfig("sanityProjectId"),
   getServerConfig("sanityDataset"),
 ].join(":");
-const cacheRevalidateSeconds = getServerConfig("sanityRevalidateSeconds");
 const cacheTags = ["national-curriculum-insights", cacheScope];
 
 async function getPublishedHub() {
   "use cache";
-  applyCachePolicy({
-    revalidate: cacheRevalidateSeconds,
+  applyCmsCachePolicy({
     tags: cacheTags,
   });
 
@@ -59,8 +57,7 @@ async function getPublishedHub() {
 
 async function getPublishedGuidancePage() {
   "use cache";
-  applyCachePolicy({
-    revalidate: cacheRevalidateSeconds,
+  applyCmsCachePolicy({
     tags: cacheTags,
   });
 
@@ -71,8 +68,7 @@ async function getPublishedGuidancePage() {
 
 async function getPublishedSubject(slug: string) {
   "use cache";
-  applyCachePolicy({
-    revalidate: cacheRevalidateSeconds,
+  applyCmsCachePolicy({
     tags: cacheTags,
   });
 

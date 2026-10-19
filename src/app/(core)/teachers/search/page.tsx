@@ -5,7 +5,7 @@ import { SearchView } from "./SearchView";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { applyCachePolicy } from "@/node-lib/cache";
+import { applyCurriculumCachePolicy } from "@/node-lib/cache";
 
 export const metadata: Metadata = {
   title: "Search for Free Teaching Resources",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 const getCachedSearchPage = cache(async () => {
   "use cache";
-  applyCachePolicy();
+  applyCurriculumCachePolicy();
 
   return curriculumApi2023.searchPage();
 });

@@ -9,7 +9,10 @@ import curriculumApi2023, {
   CurriculumUnit,
   CurriculumUnitsTabData,
 } from "@/node-lib/curriculum-api-2023";
-import { applyCachePolicy, CURRICULUM_API_CACHE_TAG } from "@/node-lib/cache";
+import {
+  applyCurriculumCachePolicy,
+  CURRICULUM_API_CACHE_TAG,
+} from "@/node-lib/cache";
 import {
   parseSubjectPhaseSlug,
   type CurriculumSelectionSlugs,
@@ -24,14 +27,14 @@ export async function getCachedFileSizes(
   curriculumDownloadsTabData: Parameters<typeof getFileSizes>[1],
 ) {
   "use cache";
-  applyCachePolicy({ tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG] });
+  applyCurriculumCachePolicy({ tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG] });
 
   return getFileSizes(subjectPhaseKeystageSlugs, curriculumDownloadsTabData);
 }
 
 async function getCachedCurriculumPhaseOptions() {
   "use cache";
-  applyCachePolicy({ tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG] });
+  applyCurriculumCachePolicy({ tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG] });
 
   return curriculumApi2023.curriculumPhaseOptions({
     includeNonCurriculum: true,
@@ -43,7 +46,7 @@ async function getCachedCurriculumOverview(
   phaseSlug: string,
 ) {
   "use cache";
-  applyCachePolicy({ tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG] });
+  applyCurriculumCachePolicy({ tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG] });
 
   return curriculumApi2023.curriculumOverview({
     subjectSlug,
@@ -59,7 +62,7 @@ async function getCachedCurriculumSequence(
   excludeCoreUnits: boolean,
 ) {
   "use cache";
-  applyCachePolicy({ tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG] });
+  applyCurriculumCachePolicy({ tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG] });
 
   return curriculumApi2023.curriculumSequence({
     subjectSlug,
@@ -76,7 +79,7 @@ async function getCachedCurriculumSequenceSlugs(
   phaseSlug: string,
 ) {
   "use cache";
-  applyCachePolicy({ tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG] });
+  applyCurriculumCachePolicy({ tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG] });
 
   return curriculumApi2023.curriculumSequenceSlugs({
     subjectSlug,

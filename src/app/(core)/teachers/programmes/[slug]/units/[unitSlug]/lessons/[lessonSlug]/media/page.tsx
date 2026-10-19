@@ -12,7 +12,7 @@ import withPageErrorHandling, {
 import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { LessonMediaClipsData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import { applyCachePolicy } from "@/node-lib/cache";
+import { applyCurriculumCachePolicy } from "@/node-lib/cache";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
@@ -31,7 +31,7 @@ type LessonMediaPageParams = {
 const getCachedLessonMediaClipsData = cache(
   async (programmeSlug: string, unitSlug: string, lessonSlug: string) => {
     "use cache";
-    applyCachePolicy();
+    applyCurriculumCachePolicy();
 
     return curriculumApi2023.lessonMediaClips<LessonMediaClipsData>({
       programmeSlug,

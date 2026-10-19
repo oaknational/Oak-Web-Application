@@ -118,6 +118,18 @@ export default async (phase: string): Promise<NextConfig> => {
 
   const nextConfig: NextConfig = {
     cacheComponents: true,
+    cacheLife: {
+      curriculum: {
+        stale: 3600, // 1 hour
+        revalidate: 7200, // 2 hours
+        expire: 86400, // 1 day
+      },
+      cms: {
+        stale: 300, // 5 minutes
+        revalidate: 300, // 5 minutes
+        expire: 7200, // 2 hours
+      },
+    },
     headers: async () => [
       {
         // Advertise the RFC 9727 API catalog from the homepage so discovery

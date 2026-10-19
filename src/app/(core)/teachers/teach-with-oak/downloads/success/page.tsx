@@ -9,7 +9,7 @@ import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { applyCachePolicy } from "@/node-lib/cache";
+import { applyCurriculumCachePolicy } from "@/node-lib/cache";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 const cachedCurriculumPhaseOptions = cache(async () => {
   "use cache";
-  applyCachePolicy();
+  applyCurriculumCachePolicy();
 
   return curriculumApi2023.curriculumPhaseOptions();
 });
