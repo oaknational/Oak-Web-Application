@@ -5,9 +5,13 @@ import { getMvRefreshTime } from "./getMvRefreshTime";
 
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/curriculumApi2023Mock";
 const mockErrorReporter = jest.fn();
-jest.mock("@/common-lib/error-reporter", () =>
-  jest.fn(() => mockErrorReporter),
-);
+jest.mock("@/common-lib/error-reporter", () => ({
+  __esModule: true,
+  default:
+    () =>
+    (...args: []) =>
+      mockErrorReporter(...args),
+}));
 jest.mock("next/server", () => ({
   connection: jest.fn(),
 }));
