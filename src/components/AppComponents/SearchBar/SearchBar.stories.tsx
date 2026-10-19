@@ -2,7 +2,10 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 
 import Component from "./SearchBar";
 
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
+
 const meta: Meta<typeof Component> = {
+  decorators: [TeacherBrowseAnalyticsDecorator],
   component: Component,
 };
 

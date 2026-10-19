@@ -1,55 +1,17 @@
-import { GetServerSidePropsContext } from "next/types";
-import slugify from "slugify";
-
+import { otherCaseStudies } from "@/__tests__/pages/about-us/case-studies/case-studies.fixtures";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import CaseStudyLibraryPage, {
   AboutUsCaseStudyLibraryPageProps,
-  getServerSideProps,
+  getStaticProps,
 } from "@/pages/about-us/case-studies/index";
-import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import CMSClient from "@/node-lib/cms";
 
 jest.mock("@/node-lib/cms");
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
-jest.mock("@/utils/featureFlagChecks/server", () => ({
-  isFeatureFlagEnabledServer: jest.fn(() => false),
-}));
-
-function fixtureCaseStudy(title: string) {
-  const slug = slugify(title);
-  return {
-    title,
-    video: {
-      title: title,
-      video: {
-        asset: {
-          assetId: `asset-${slug}`,
-          playbackId: `playback-${slug}`,
-          thumbTime: null,
-        },
-      },
-    },
-    slug: {
-      current: slug,
-    },
-    image: {
-      asset: {
-        _id: slug,
-        url: `http://localhost/${slug}`,
-      },
-    },
-    publishedAt: new Date(0).toISOString(),
-  };
-}
-
 const mockPageData: AboutUsCaseStudyLibraryPageProps["pageData"] = {
-  caseStudies: [
-    fixtureCaseStudy(`Test 1`),
-    fixtureCaseStudy(`Test 2`),
-    fixtureCaseStudy(`Test 3`),
-  ],
+  caseStudies: otherCaseStudies,
 };
 
 describe("pages/about-us/case-studies/index.tsx", () => {
@@ -66,26 +28,16 @@ describe("pages/about-us/case-studies/index.tsx", () => {
       <CaseStudyLibraryPage topNav={topNavFixture} pageData={mockPageData} />,
     );
 
-    expect(container).toHaveTextContent("Test 1");
-    expect(container).toHaveTextContent("Test 2");
-    expect(container).toHaveTextContent("Test 3");
+    expect(container).toHaveTextContent("TEST_TITLE_2");
+    expect(container).toHaveTextContent("TEST_TITLE_3");
+    expect(container).toHaveTextContent("TEST_TITLE_VIDEO");
 
     expect(container).toMatchSnapshot();
   });
 
-  describe("getServerSideProps", () => {
-    it("returns data when enabled", async () => {
-      (isFeatureFlagEnabledServer as jest.Mock).mockImplementation(
-        (_cookies, flag) => {
-          return flag === "case-studies-v2" ? true : false;
-        },
-      );
-
-      const propsResult = await getServerSideProps({
-        req: {
-          cookies: {},
-        },
-      } as GetServerSidePropsContext);
+  describe("getStaticProps", () => {
+    it("should return props data", async () => {
+      const propsResult = await getStaticProps({});
 
       expect(propsResult).toMatchObject({
         props: {
@@ -95,14 +47,10 @@ describe("pages/about-us/case-studies/index.tsx", () => {
       });
     });
 
-    it("returns not-found when not enabled", async () => {
-      (isFeatureFlagEnabledServer as jest.Mock).mockImplementation(() => false);
+    it("should return notFound when CMS returns an empty array", async () => {
+      mockCMSClient.caseStudyLibraryPage.mockResolvedValueOnce([]);
 
-      const propsResult = await getServerSideProps({
-        req: {
-          cookies: {},
-        },
-      } as GetServerSidePropsContext);
+      const propsResult = await getStaticProps({});
 
       expect(propsResult).toMatchObject({
         notFound: true,

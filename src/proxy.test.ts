@@ -1,6 +1,6 @@
 import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
 
-import middleware from "./proxy";
+import proxy, { config } from "./proxy";
 
 const mockClerkHandler = jest.fn(() => NextResponse.next());
 const mockClerkMiddleware = jest.fn(() => mockClerkHandler);
@@ -31,10 +31,19 @@ describe("middleware", () => {
   it("falls back to clerkMiddleware for other routes", async () => {
     const req = buildRequest("/api/some-route");
 
-    await middleware(req, mockEvent);
+    await proxy(req, mockEvent);
 
     expect(mockExperimentMiddleware).not.toHaveBeenCalled();
     expect(mockClerkMiddleware).toHaveBeenCalled();
     expect(mockClerkHandler).toHaveBeenCalledWith(req, mockEvent);
   });
+
+  it.each(["__clerk_handshake", "__clerk_handshake_nonce"])(
+    "matches any page carrying a %s param so the handshake can be resolved",
+    (key) => {
+      expect(config.matcher).toContainEqual(
+        expect.objectContaining({ has: [{ type: "query", key }] }),
+      );
+    },
+  );
 });

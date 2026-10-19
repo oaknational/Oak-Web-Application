@@ -36,7 +36,7 @@ describe("TopNavQuery", () => {
     expect(
       res.teachers?.primary.keystages.children?.[0]?.children?.[0]?.href,
     ).toBeDefined();
-    expect(res.teachers?.aboutUs.children).toHaveLength(6);
+    expect(res.teachers?.aboutUs.children).toHaveLength(7);
   });
 
   it("uses the injected topNav data source", async () => {

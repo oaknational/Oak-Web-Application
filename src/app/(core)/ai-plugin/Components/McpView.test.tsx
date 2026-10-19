@@ -1,4 +1,5 @@
-import { within } from "@testing-library/react";
+import { act, fireEvent, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { McpView } from "./McpView";
 
@@ -10,15 +11,23 @@ import {
   mcpHowItWorks,
   mcpInstallPrompt,
   mcpIntro,
+  mcpLicence,
+  mcpMoreAssistantsNote,
   mcpOutputWarning,
   mcpResponsibleUse,
+  mcpSchoolSetup,
   mcpSupport,
+  mcpForDevelopers,
 } from "@/app/(core)/ai-plugin/mcpContent";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
 
 describe("McpView", () => {
+  afterEach(() => {
+    globalThis.history.replaceState(null, "", "/");
+  });
+
   it("renders the hero as the only h1", () => {
     const { getAllByRole } = render(<McpView />);
 
@@ -41,6 +50,7 @@ describe("McpView", () => {
       mcpAssistants.title,
       mcpResponsibleUse.title,
       mcpHowItWorks.title,
+      mcpForDevelopers.title,
       mcpFeedback.title,
     ]);
   });
@@ -58,7 +68,124 @@ describe("McpView", () => {
     });
   });
 
-  it("offers Claude and ChatGPT as assistants, each with its own Try link", () => {
+  it("lists ChatGPT before Claude in the hero", () => {
+    const { getAllByRole } = render(<McpView />);
+
+    const heroLinks = getAllByRole("link", { name: /Try in/ }).slice(0, 2);
+
+    expect(heroLinks[0]).toHaveTextContent("Try in ChatGPT");
+    expect(heroLinks[1]).toHaveTextContent("Try in Claude");
+  });
+
+  it("marks the tools that are coming soon in the hero", () => {
+    const { getByText } = render(<McpView />);
+
+    expect(getByText(mcpHero.comingSoon.label)).toBeInTheDocument();
+    mcpHero.comingSoon.tools.forEach((tool) => {
+      expect(getByText(tool)).toBeInTheDocument();
+    });
+  });
+
+  it("opens 'Choose your AI tool' on the Individual teacher tab", () => {
+    const { getByRole } = render(<McpView />);
+
+    const section = getByRole("region", { name: mcpAssistants.title });
+
+    expect(
+      within(section).getByRole("link", { name: "Individual teacher" }),
+    ).toHaveAttribute("aria-current", "page");
+    expect(
+      within(section).getByRole("link", { name: "School or trust" }),
+    ).not.toHaveAttribute("aria-current");
+  });
+
+  it("switches to the organisation setup on the School or trust tab", async () => {
+    const user = userEvent.setup({ delay: null });
+    const { getByRole } = render(<McpView />);
+
+    const section = getByRole("region", { name: mcpAssistants.title });
+    await user.click(
+      within(section).getByRole("link", { name: "School or trust" }),
+    );
+
+    expect(
+      within(section).getByRole("link", { name: "School or trust" }),
+    ).toHaveAttribute("aria-current", "page");
+    expect(
+      within(section).queryByRole("link", { name: /Try in/ }),
+    ).not.toBeInTheDocument();
+    mcpSchoolSetup.providers.forEach((provider) => {
+      expect(
+        within(section).getByRole("heading", { name: provider.name }),
+      ).toBeInTheDocument();
+      expect(
+        within(section).getByRole("link", {
+          name: new RegExp(provider.guideLabel),
+        }),
+      ).toHaveAttribute("href", provider.guideHref);
+    });
+  });
+
+  it("shows the more-tools banner under both tabs", async () => {
+    const user = userEvent.setup({ delay: null });
+    const { getByRole } = render(<McpView />);
+
+    const section = getByRole("region", { name: mcpAssistants.title });
+    expect(
+      within(section).getByText(mcpMoreAssistantsNote),
+    ).toBeInTheDocument();
+
+    await user.click(
+      within(section).getByRole("link", { name: "School or trust" }),
+    );
+    expect(
+      within(section).getByText(mcpMoreAssistantsNote),
+    ).toBeInTheDocument();
+  });
+
+  it("opens the tab named in the URL", () => {
+    globalThis.history.replaceState(null, "", "#school-or-trust");
+    const { getByRole } = render(<McpView />);
+
+    const section = getByRole("region", { name: mcpAssistants.title });
+
+    expect(
+      within(section).getByRole("link", { name: "School or trust" }),
+    ).toHaveAttribute("aria-current", "page");
+    expect(section.querySelector("#school-or-trust")).toBeInTheDocument();
+  });
+
+  it("puts the chosen tab in the URL, and follows the back button", async () => {
+    const user = userEvent.setup({ delay: null });
+    const { getByRole } = render(<McpView />);
+
+    const section = getByRole("region", { name: mcpAssistants.title });
+    await user.click(
+      within(section).getByRole("link", { name: "School or trust" }),
+    );
+    expect(globalThis.location.hash).toBe("#school-or-trust");
+
+    act(() => {
+      globalThis.history.replaceState(null, "", "#individual-teacher");
+      globalThis.dispatchEvent(new PopStateEvent("popstate"));
+    });
+    expect(
+      within(section).getByRole("link", { name: "Individual teacher" }),
+    ).toHaveAttribute("aria-current", "page");
+  });
+
+  it("leaves Ctrl/Cmd-clicks on a tab to the browser", () => {
+    const { getByRole } = render(<McpView />);
+
+    const section = getByRole("region", { name: mcpAssistants.title });
+    const tab = within(section).getByRole("link", { name: "School or trust" });
+
+    expect(fireEvent.click(tab, { ctrlKey: true })).toBe(true);
+    expect(fireEvent.click(tab, { metaKey: true })).toBe(true);
+    expect(fireEvent.click(tab)).toBe(false);
+  });
+
+  it("offers ChatGPT and Claude as assistants, each with its own Try link", () => {
     const { getByRole } = render(<McpView />);
 
     const section = getByRole("region", { name: mcpAssistants.title });
@@ -93,17 +220,50 @@ describe("McpView", () => {
     const { getByRole } = render(<McpView />);
 
     const section = getByRole("region", { name: mcpAssistants.title });
-    const steps = within(section).getAllByRole("listitem");
+    const steps = within(section)
+      .getAllByRole("list")
+      .filter((list) => list.tagName === "OL")
+      .flatMap((list) => within(list).getAllByRole("listitem"));
 
     const expectedStepCount = mcpAssistants.items.reduce(
       (total, assistant) => total + assistant.steps.length,
       0,
     );
     expect(steps).toHaveLength(expectedStepCount);
-    expect(steps[0]).toHaveTextContent("Try in Claude");
+    expect(steps[0]).toHaveTextContent("Try in ChatGPT");
     expect(steps[1]).toHaveTextContent("authorise Oak");
-    expect(steps[2]).toHaveTextContent("Try in ChatGPT");
+    expect(steps[2]).toHaveTextContent("Try in Claude");
     expect(steps[3]).toHaveTextContent("authorise Oak");
+  });
+
+  it("points developers at the plugin README", () => {
+    const { getByRole } = render(<McpView />);
+
+    const section = getByRole("region", { name: mcpForDevelopers.title });
+
+    expect(
+      within(section).getByRole("link", {
+        name: new RegExp(mcpForDevelopers.linkLabel),
+      }),
+    ).toHaveAttribute("href", mcpForDevelopers.linkHref);
+  });
+
+  it("links the licence and Oak's terms from 'How it works'", () => {
+    const { getByRole } = render(<McpView />);
+
+    const section = getByRole("region", { name: mcpHowItWorks.title });
+
+    expect(
+      within(section).getByRole("link", {
+        name: new RegExp(mcpLicence.licenceLink.label),
+      }),
+    ).toHaveAttribute("href", mcpLicence.licenceLink.href);
+    expect(
+      within(section).getByRole("link", {
+        name: new RegExp(mcpLicence.termsLink.label),
+      }),
+    ).toHaveAttribute("href", mcpLicence.termsLink.href);
+    expect(within(section).getByText(mcpLicence.ukOnly)).toBeInTheDocument();
   });
 
   it("renders both 'Oak provides' and 'The AI provider' lists in full", () => {
@@ -139,10 +299,23 @@ describe("McpView", () => {
     });
   });
 
-  it("warns that Oak does not endorse third-party output", () => {
-    const { getByText } = render(<McpView />);
+  it("warns that Oak does not endorse third-party output, straight after 'Use it responsibly'", () => {
+    const { getByText, getByRole } = render(<McpView />);
 
-    expect(getByText(mcpOutputWarning)).toBeInTheDocument();
+    const warning = getByText(mcpOutputWarning);
+    const responsibleUse = getByRole("region", {
+      name: mcpResponsibleUse.title,
+    });
+    const howItWorks = getByRole("region", { name: mcpHowItWorks.title });
+
+    expect(
+      responsibleUse.compareDocumentPosition(warning) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+    expect(
+      warning.compareDocumentPosition(howItWorks) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
   });
 
   it("points the feedback CTA at the feedback survey", () => {

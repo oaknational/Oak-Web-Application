@@ -1,3 +1,4 @@
+import { capitalize } from "lodash";
 import {
   OakBox,
   OakCard,
@@ -5,7 +6,10 @@ import {
   OakGrid,
   OakGridArea,
   OakHeading,
+  OakLink,
 } from "@oaknational/oak-components";
+
+import { getCaseStudyTagBackground } from "./getCaseStudyTagBackground";
 
 import { CaseStudyCard } from "@/common-lib/cms-types/caseStudy";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
@@ -34,9 +38,30 @@ export const CaseStudiesSection = ({
               $colSpan={caseStudies.length === 2 ? [12, 8, 8] : [12]}
               $colStart={caseStudies.length === 2 ? [1, 3, 3] : [1]}
             >
-              <OakHeading tag={"h2"} $font={["heading-5", "heading-3"]}>
-                {title}
-              </OakHeading>
+              <OakFlex
+                $flexDirection={["column", "row", "row"]}
+                $alignItems={["flex-start", "center", "center"]}
+                $gap={["spacing-12", "spacing-48", "spacing-48"]}
+              >
+                <OakFlex $flexGrow={1}>
+                  <OakHeading tag={"h2"} $font={["heading-5", "heading-3"]}>
+                    {title}
+                  </OakHeading>
+                </OakFlex>
+                <OakBox $textWrap="nowrap">
+                  <OakLink
+                    variant="secondary"
+                    iconName="chevron-right"
+                    isTrailingIcon={true}
+                    href={resolveOakHref({
+                      page: "about-case-study-library",
+                    })}
+                    $font={"heading-7"}
+                  >
+                    View all case studies
+                  </OakLink>
+                </OakBox>
+              </OakFlex>
             </OakGridArea>
           </OakGrid>
           <OakGrid
@@ -68,8 +93,11 @@ export const CaseStudiesSection = ({
                     getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? ""
                   }
                   aspectRatio="4/3"
-                  linkText={"Watch the video"}
                   cardWidth={"100%"}
+                  tagName={
+                    caseStudy.tag ? capitalize(caseStudy.tag) : undefined
+                  }
+                  tagBackground={getCaseStudyTagBackground(caseStudy.tag)}
                 />
               </OakGridArea>
             ))}

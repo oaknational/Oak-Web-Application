@@ -1,4 +1,5 @@
 import { notFound, unstable_rethrow } from "next/navigation";
+import { ClientError } from "graphql-request";
 
 import errorReporter, {
   initialiseBugsnag,
@@ -50,6 +51,11 @@ function withPageErrorHandling<T extends PageParams>(
       // dynamic API bailouts, PPR postpone, etc.) untouched before doing any async work,
       // otherwise Next.js can't detect them and the build fails instead of handling them.
       unstable_rethrow(error);
+
+      // A 403 (e.g. a WAF block) is an expected response, not an error state
+      if (error instanceof ClientError && error.response.status === 403) {
+        throw error;
+      }
 
       const { params } = props;
       await errorReporter(page)(error, {

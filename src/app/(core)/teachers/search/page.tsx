@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { SearchView } from "./SearchView";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { applyCachePolicy } from "@/node-lib/cache";
 
 export const metadata: Metadata = {
@@ -25,7 +26,14 @@ const getCachedSearchPage = cache(async () => {
 async function SearchPage() {
   const curriculumData = await getCachedSearchPage();
 
-  return <SearchView curriculumData={curriculumData} />;
+  return (
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel={"search"}
+    >
+      <SearchView curriculumData={curriculumData} />
+    </TeacherBrowseAnalyticsStoreProvider>
+  );
 }
 
 export default SearchPage;

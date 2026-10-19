@@ -317,7 +317,7 @@ const SubjectContainerWrapper = styled.div`
 
   @media (min-width: 749px) {
     padding-left: 0px;
-    max-height: auto;
+    max-height: 100%;
     overflow-y: visible;
   }
 `;

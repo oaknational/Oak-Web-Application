@@ -35,15 +35,9 @@ describe("SearchActiveFilters", () => {
     await userEvent.click(button);
     await waitFor(() => {
       expect(searchFilterModifiedMock).toHaveBeenLastCalledWith({
-        analyticsUseCase: "Teacher",
-        componentType: "filter_link",
-        engagementIntent: "refine",
-        eventVersion: "2.0.0",
-        filterModificationType: "remove",
+        checked: true,
         filterType: "Key stage filter",
         filterValue: ks,
-        platform: "owa",
-        product: "teacher lesson resources",
         searchFilterMatchType: "default",
         searchTerm: "macbeth",
       });
@@ -85,15 +79,9 @@ describe("SearchActiveFilters", () => {
     await userEvent.click(button);
     await waitFor(() => {
       expect(searchFilterModifiedMock).toHaveBeenLastCalledWith({
-        analyticsUseCase: "Teacher",
-        componentType: "filter_link",
-        engagementIntent: "refine",
-        eventVersion: "2.0.0",
-        filterModificationType: "remove",
+        checked: true,
         filterType: "Subject filter",
         filterValue: subject,
-        platform: "owa",
-        product: "teacher lesson resources",
         searchFilterMatchType: "default",
         searchTerm: "macbeth",
       });
@@ -139,15 +127,9 @@ describe("SearchActiveFilters", () => {
     await userEvent.click(button);
     await waitFor(() => {
       expect(searchFilterModifiedMock).toHaveBeenCalledWith({
-        analyticsUseCase: "Teacher",
-        componentType: "filter_link",
-        engagementIntent: "refine",
-        eventVersion: "2.0.0",
-        filterModificationType: "remove",
+        checked: true,
         filterType: "Content type filter",
         filterValue: ContentType,
-        platform: "owa",
-        product: "teacher lesson resources",
         searchFilterMatchType: "default",
         searchTerm: "macbeth",
       });
@@ -196,15 +178,9 @@ describe("SearchActiveFilters", () => {
     await userEvent.click(button);
     await waitFor(() => {
       expect(searchFilterModifiedMock).toHaveBeenCalledWith({
-        analyticsUseCase: "Teacher",
-        componentType: "filter_link",
-        engagementIntent: "refine",
-        eventVersion: "2.0.0",
-        filterModificationType: "remove",
+        checked: true,
         filterType: "Year filter",
         filterValue: "Year 10",
-        platform: "owa",
-        product: "teacher lesson resources",
         searchFilterMatchType: "default",
         searchTerm: "macbeth",
       });

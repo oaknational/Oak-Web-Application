@@ -32,6 +32,7 @@ const additionalAboutUsPaths = [
   "/about-us/oaks-impact",
   "/about-us/meet-the-team",
   "/about-us/get-involved",
+  "/about-us/case-studies",
 ];
 
 /**
@@ -116,7 +117,6 @@ module.exports = {
     "/about-oak",
     "/people-and-partners",
     "/contact",
-    "/about-us/case-studies",
   ].concat(
     // Exclude dynamically created sitemaps
     shouldSkipInitialBuild ? serversideSitemapPaths : [],

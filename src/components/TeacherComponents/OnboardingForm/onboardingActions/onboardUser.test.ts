@@ -6,14 +6,9 @@ import OakError from "@/errors/OakError";
 
 describe(onboardUser, () => {
   beforeAll(() => {
-    fetchMock.enableMocks();
     fetchMock.doMock(
       JSON.stringify({ owa: { isOnboarded: true, isTeacher: true } }),
     );
-  });
-
-  afterAll(() => {
-    fetchMock.disableMocks();
   });
 
   it("makes a request to mark the user as onboarded", async () => {

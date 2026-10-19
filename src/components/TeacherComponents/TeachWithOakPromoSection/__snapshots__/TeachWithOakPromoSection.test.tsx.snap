@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`TeachWithOakPromoSection renders correctly 1`] = `
 <div>
@@ -9,7 +9,7 @@ exports[`TeachWithOakPromoSection renders correctly 1`] = `
       class="sc-bdvwhi cqfEAN"
     >
       <div
-        class="sc-bdvwhi sc-bXTeWK ccVrhi bnMUc"
+        class="sc-bdvwhi sc-bXTeWK hpVQPd hhvrej"
       >
         <a
           class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fugdSh fbAqCR hsiEZu"

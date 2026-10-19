@@ -3,6 +3,7 @@ import {
   OakTagFunctional,
   OakHeading,
   OakLink,
+  OakP,
 } from "@oaknational/oak-components";
 import { PortableTextBlock } from "@portabletext/types";
 import upperFirst from "lodash/upperFirst";
@@ -72,7 +73,18 @@ export function CaseStudyHeader({
           <OakHeading tag={"div"} $font={["heading-7", "heading-6"]}>
             Summary
           </OakHeading>
-          <PortableTextWithDefaults value={summary} />
+          <PortableTextWithDefaults
+            value={summary}
+            components={{
+              block: {
+                normal: (props) => {
+                  return (
+                    <OakP $font={["body-2", "body-1"]}>{props.children}</OakP>
+                  );
+                },
+              },
+            }}
+          />
         </OakFlex>
       )}
     </OakFlex>

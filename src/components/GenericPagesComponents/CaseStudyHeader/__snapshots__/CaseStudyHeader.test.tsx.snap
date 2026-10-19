@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`CaseStudyHeader renders correctly 1`] = `
 <body>
@@ -114,7 +114,7 @@ exports[`CaseStudyHeader renders correctly with summary 1`] = `
           Summary
         </div>
         <p
-          class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+          class="sc-hGPAwl gpFakR"
         >
           TEST_SUMMARY
         </p>

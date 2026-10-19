@@ -1,5 +1,5 @@
 "use client";
-import { FC } from "react";
+import { FC, memo } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -120,7 +120,7 @@ export type FooterSections = Record<
   FooterSection
 >;
 
-export const LayoutSiteFooterInner: FC = () => {
+export const LayoutSiteFooterInner: FC = memo(() => {
   const { teachWithOakAccessed } = useTeacherBrowseAnalytics(
     (store) => store.track,
   );
@@ -191,6 +191,12 @@ export const LayoutSiteFooterInner: FC = () => {
           text: "Oak's impact",
           type: "link" as const,
           href: resolveOakHref({ page: "about-oaks-impact" }),
+          track: trackAboutUsFooter,
+        },
+        {
+          text: "Case studies",
+          type: "link" as const,
+          href: resolveOakHref({ page: "about-case-study-library" }),
           track: trackAboutUsFooter,
         },
         {
@@ -347,6 +353,7 @@ export const LayoutSiteFooterInner: FC = () => {
           <StyledLogo
             alt="Cyber Essentials Logo"
             data-percy-hide="contents"
+            data-chromatic="ignore"
             src={getCloudinaryImageUrl(
               "v1751992190/OWA/illustrations/Cyber-Essentials-Logo_ryiskg.png",
             )}
@@ -409,7 +416,7 @@ export const LayoutSiteFooterInner: FC = () => {
       />
     </OakBox>
   );
-};
+});
 
 const LayoutSiteFooter = () => {
   return (
