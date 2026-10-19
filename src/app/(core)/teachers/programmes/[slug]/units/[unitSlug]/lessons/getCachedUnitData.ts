@@ -1,10 +1,8 @@
 import { cache } from "react";
 import { permanentRedirect } from "next/navigation";
+import { cacheLife, cacheTag } from "next/cache";
 
-import {
-  applyCurriculumCachePolicy,
-  curriculumApiWithCache,
-} from "@/node-lib/cache";
+import { curriculumApiWithCache } from "@/node-lib/cache";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getUnitDownloadFileExistence } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
 import errorReporter from "@/common-lib/error-reporter";
@@ -30,7 +28,8 @@ export const getCachedProgrammesForUnit = cache(async (unitSlug: string) => {
 
 const getCachedUnitDownloadFileExistence = cache(async (unitFileId: string) => {
   "use cache";
-  applyCurriculumCachePolicy({ tags: ["teachers-unit-download-existence"] });
+  cacheLife("curriculum");
+  cacheTag("teachers-unit-download-existence");
 
   return getUnitDownloadFileExistence(unitFileId);
 });

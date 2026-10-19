@@ -1,3 +1,5 @@
+import { cacheLife, cacheTag } from "next/cache";
+
 import {
   buildKs4OptionFilterDimensions,
   type Ks4OptionFilterDimension,
@@ -10,7 +12,6 @@ import type {
   CurriculumUnitsTabData,
 } from "@/node-lib/curriculum-api-2023";
 import {
-  applyCurriculumCachePolicy,
   curriculumApiWithCache,
   CURRICULUM_API_CACHE_TAG,
 } from "@/node-lib/cache";
@@ -28,7 +29,8 @@ export async function getCachedFileSizes(
   curriculumDownloadsTabData: Parameters<typeof getFileSizes>[1],
 ) {
   "use cache";
-  applyCurriculumCachePolicy({ tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG] });
+  cacheLife("curriculum");
+  cacheTag(PAGE_KEY, CURRICULUM_API_CACHE_TAG);
 
   return getFileSizes(subjectPhaseKeystageSlugs, curriculumDownloadsTabData);
 }

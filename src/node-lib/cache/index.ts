@@ -5,14 +5,8 @@ import curriculumApi, {
   type CurriculumApi,
 } from "@/node-lib/curriculum-api-2023";
 
-export const DEFAULT_PAGE_DATA_REVALIDATE_SECONDS = 7200;
 export const CURRICULUM_API_CACHE_TAG = "curriculum-api";
 export const CMS_CACHE_TAG = "cms";
-
-type CachePolicyOptions = {
-  revalidate?: number;
-  tags?: string[];
-};
 
 type CurriculumQueryCacheProps<K extends keyof CurriculumApi> = {
   queryKey: K;
@@ -60,23 +54,4 @@ export async function curriculumApiWithCache<K extends keyof CurriculumApi>({
     ...args: Parameters<CurriculumApi[K]>
   ) => ReturnType<CurriculumApi[K]>;
   return await query(...args);
-}
-
-// For caching curriculum data with default parameters
-export function applyCurriculumCachePolicy(options: CachePolicyOptions = {}) {
-  cacheLife("curriculum");
-  if (options.tags?.length) {
-    cacheTag(...options.tags);
-  }
-}
-
-// For caching other requests with a custom revalidate time
-export function applyCachePolicy(options: CachePolicyOptions = {}): void {
-  cacheLife({
-    revalidate: options.revalidate ?? DEFAULT_PAGE_DATA_REVALIDATE_SECONDS,
-  });
-
-  if (options.tags?.length) {
-    cacheTag(...options.tags);
-  }
 }

@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { cache } from "react";
+import { cacheLife, cacheTag } from "next/cache";
 
 import { parseReturnToLessonParams } from "../parseReturnToLessonParams";
 
@@ -10,7 +11,6 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getTeachWithOakDownloadFileExistence } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
-import { applyCurriculumCachePolicy } from "@/node-lib/cache";
 
 // We use search params on the page so instant nav is not supported
 export const instant = false;
@@ -26,7 +26,8 @@ export const metadata: Metadata = {
 
 const cachedFileExistence = cache(async () => {
   "use cache";
-  applyCurriculumCachePolicy();
+  cacheLife("curriculum");
+  cacheTag("teach-with-oak-download");
 
   return getTeachWithOakDownloadFileExistence();
 });

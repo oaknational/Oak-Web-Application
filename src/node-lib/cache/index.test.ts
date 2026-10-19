@@ -3,7 +3,7 @@
  */
 import { cacheLife, cacheTag } from "next/cache";
 
-import { applyCachePolicy, cmsWithCache, curriculumApiWithCache } from ".";
+import { cmsWithCache, curriculumApiWithCache } from ".";
 
 import CMSClient from "@/node-lib/cms";
 import curriculumApi from "@/node-lib/curriculum-api-2023";
@@ -37,22 +37,6 @@ const mockCurriculumOverview = jest.mocked(curriculumApi.curriculumOverview);
 
 beforeEach(() => {
   jest.clearAllMocks();
-});
-
-describe("applyCachePolicy", () => {
-  it("applies the default revalidation period", () => {
-    applyCachePolicy();
-
-    expect(mockCacheLife).toHaveBeenCalledWith({ revalidate: 7200 });
-    expect(mockCacheTag).not.toHaveBeenCalled();
-  });
-
-  it("applies custom revalidation and tags", () => {
-    applyCachePolicy({ revalidate: 60, tags: ["programme", "curriculum"] });
-
-    expect(mockCacheLife).toHaveBeenCalledWith({ revalidate: 60 });
-    expect(mockCacheTag).toHaveBeenCalledWith("programme", "curriculum");
-  });
 });
 
 describe("applyCurriculumQueryCachePolicy", () => {
