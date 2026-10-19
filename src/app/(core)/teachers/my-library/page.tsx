@@ -28,8 +28,6 @@ export const metadata: Metadata = {
   twitter: getTwitterMetadata({ title, description }),
 };
 
-export const dynamic = "force-dynamic";
-
 const MyLibraryPage = async () => {
   const returnTo = resolveOakHref({ page: "my-library" });
   const { userId, getToken, redirectToSignUp } = await auth();
