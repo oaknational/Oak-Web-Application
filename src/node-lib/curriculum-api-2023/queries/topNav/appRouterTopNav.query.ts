@@ -1,5 +1,9 @@
-import { getCachedTopNavData } from "./cachedTopNav";
+import { curriculumApiWithCache } from "@/node-lib/cache";
 
-const appRouterTopNavQuery = getCachedTopNavData;
+const appRouterTopNavQuery = () =>
+  curriculumApiWithCache({
+    queryKey: "topNav",
+    args: [],
+  });
 
 export default appRouterTopNavQuery;

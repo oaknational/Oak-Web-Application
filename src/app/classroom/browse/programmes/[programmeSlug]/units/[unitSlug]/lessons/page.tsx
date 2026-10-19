@@ -1,19 +1,15 @@
 import { notFound } from "next/navigation";
-import React from "react";
 
 import OakError from "@/errors/OakError";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { GoogleClassroomSubjectIconHeader } from "@/components/GoogleClassroom/GoogleClassroomSubjectIconHeader";
 import { GoogleClassroomLessonListing } from "@/components/GoogleClassroom/GoogleClassroomLessonListing";
-
-// TD: caching
-export const instant = false;
+import { curriculumApiWithCache } from "@/node-lib/cache";
 
 async function getLessonsData(programmeSlug: string, unitSlug: string) {
   try {
-    return await curriculumApi2023.pupilLessonListingQuery({
-      programmeSlug,
-      unitSlug,
+    return await curriculumApiWithCache({
+      queryKey: "pupilLessonListingQuery",
+      args: [{ programmeSlug, unitSlug }],
     });
   } catch (error) {
     if (
