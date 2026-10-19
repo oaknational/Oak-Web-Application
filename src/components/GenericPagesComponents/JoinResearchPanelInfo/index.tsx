@@ -4,14 +4,33 @@ import {
   OakGridArea,
   OakHeading,
   OakImage,
+  OakLI,
   OakP,
 } from "@oaknational/oak-components";
+import { PortableTextComponents } from "@portabletext/react";
 
 import { NewGutterMaxWidth } from "../NewGutterMaxWidth";
 
 import { JoinResearchPanelPageBlock } from "@/common-lib/cms-types";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+
+const joinResearchPanelInfoPortableTextComponents: PortableTextComponents = {
+  block: {
+    normal: (props) => (
+      <OakP $font={["body-2", "body-1"]} $mt={["spacing-24", "spacing-32"]}>
+        {props.children}
+      </OakP>
+    ),
+  },
+  listItem: {
+    bullet: (props) => (
+      <OakLI $mt="spacing-12" $font={["list-item-2", "list-item-1"]}>
+        {props.children}
+      </OakLI>
+    ),
+  },
+};
 
 export default function JoinResearchPanelInfo({
   title,
@@ -36,18 +55,7 @@ export default function JoinResearchPanelInfo({
             </OakHeading>
             <PortableTextWithDefaults
               value={bodyRaw}
-              components={{
-                block: {
-                  normal: (props) => (
-                    <OakP
-                      $font={["body-2", "body-1"]}
-                      $mt={["spacing-24", "spacing-32"]}
-                    >
-                      {props.children}
-                    </OakP>
-                  ),
-                },
-              }}
+              components={joinResearchPanelInfoPortableTextComponents}
             />
           </OakFlex>
         </OakGridArea>
