@@ -133,6 +133,30 @@ const ShortReadsPage = () => {
                   Effective explanation makes new knowledge clear and
                   manageable, helping pupils build secure understanding.
                 </OakP>
+                <OakHeading
+                  $font="heading-4"
+                  tag="h2"
+                  $mb={"spacing-32"}
+                  id="check-for-understanding"
+                >
+                  Check for understanding in a nutshell
+                </OakHeading>
+                <OakHeading
+                  $font="heading-4"
+                  tag="h2"
+                  $mb={"spacing-32"}
+                  id="practice"
+                >
+                  Practice in a nutshell
+                </OakHeading>
+                <OakHeading
+                  $font="heading-4"
+                  tag="h2"
+                  $mb={"spacing-32"}
+                  id="feedback"
+                >
+                  Feedback in a nutshell
+                </OakHeading>
               </OakFlex>
             </OakFlex>
           </OakGridArea>
