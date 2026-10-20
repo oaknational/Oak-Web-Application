@@ -128,6 +128,7 @@ export const QuizRenderer = ({
       $pa={["spacing-0", "spacing-24"]}
       $width="100%"
       $height="100%"
+      data-chromatic="ignore"
     >
       {currentQuestionData && (
         <OakBox
