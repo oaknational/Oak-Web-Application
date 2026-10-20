@@ -1,4 +1,4 @@
-import { act } from "@testing-library/react";
+import { act, fireEvent } from "@testing-library/react";
 import type { ReactElement } from "react";
 
 import { KS4OptionFocusProvider, KS4OptionFocusScope } from "../KS4OptionFocus";
@@ -21,13 +21,23 @@ import { BrowseFiltersProvider } from "@/context/BrowseFilters";
 import { BrowseFilters } from "@/context/BrowseFilters/types";
 import { createFilter } from "@/context/BrowseFilters/utils/fixtures";
 
-const replaceMock = jest.fn();
+const mockReplace = jest.fn();
+const mockPrefetch = jest.fn();
+const mockSetNavigationIntent = jest.fn();
+const mockConsumeNavigationIntent = jest.fn(() => null);
+
+jest.mock("../../../../../ProgrammeNavigationProvider", () => ({
+  useProgrammeNavigation: () => ({
+    setNavigationIntent: mockSetNavigationIntent,
+    consumeNavigationIntent: mockConsumeNavigationIntent,
+  }),
+}));
 
 jest.mock("next/navigation", () => ({
   __esModule: true,
   useRouter: () => ({
-    replace: replaceMock,
-    prefetch: jest.fn(),
+    replace: mockReplace,
+    prefetch: mockPrefetch,
   }),
   useSearchParams: () => new URLSearchParams(""),
   usePathname: () => "/teachers/programmes/english-secondary-ocr/units",
@@ -376,9 +386,10 @@ describe("getPreservedQuery", () => {
 
 describe("ProgrammeFiltersKs4Options", () => {
   beforeEach(() => {
-    replaceMock.mockClear();
+    mockReplace.mockClear();
+    mockPrefetch.mockClear();
+    mockSetNavigationIntent.mockClear();
   });
-
   it("renders pathway options with GCSE before Core for citizenship", () => {
     const { getAllByRole } = renderKs4Options(
       defaultFilters,
@@ -457,7 +468,7 @@ describe("ProgrammeFiltersKs4Options", () => {
 
     act(() => radios[0]!.click());
 
-    expect(replaceMock).toHaveBeenCalledWith(
+    expect(mockReplace).toHaveBeenCalledWith(
       resolveOakHref({
         page: "teacher-programme",
         subjectPhaseSlug: "citizenship-secondary-gcse",
@@ -465,39 +476,51 @@ describe("ProgrammeFiltersKs4Options", () => {
         query: {
           keystages: "ks4",
           years: "10",
-          focus_ks4option: "gcse",
         },
       }),
+      { scroll: false },
     );
   });
 
-  it("navigates to the selected exam board slug and preserves KS4 query params", () => {
-    const { getAllByRole } = renderKs4Options(
-      defaultFilters,
-      <ProgrammeFiltersKs4Options
-        slugs={defaultSlugs}
-        ks4Options={examBoardOptions}
-        ks4OptionFilterDimensions={ks4OptionFilterDimensions}
-      />,
-    );
+  it.each(["keyboard", "mouse", "touch"])(
+    "only requests focus restoration for keyboard selection (%s)",
+    (interaction) => {
+      const { getAllByRole } = renderKs4Options(
+        defaultFilters,
+        <ProgrammeFiltersKs4Options
+          slugs={defaultSlugs}
+          ks4Options={examBoardOptions}
+          ks4OptionFilterDimensions={ks4OptionFilterDimensions}
+        />,
+      );
 
-    const radios = getAllByRole("radio") as HTMLInputElement[];
+      const radios = getAllByRole("radio") as HTMLInputElement[];
 
-    act(() => radios[1]!.click());
+      fireEvent.keyDown(radios[1]!, { key: "ArrowRight" });
+      if (interaction !== "keyboard") {
+        fireEvent.pointerDown(radios[1]!, { pointerType: interaction });
+      }
+      act(() => radios[1]!.click());
 
-    expect(replaceMock).toHaveBeenCalledWith(
-      resolveOakHref({
-        page: "teacher-programme",
-        subjectPhaseSlug: "english-secondary-edexcel",
-        tab: "units",
-        query: {
-          keystages: "ks4",
-          years: "10",
-          focus_ks4option: "edexcel",
-        },
-      }),
-    );
-  });
+      expect(mockReplace).toHaveBeenCalledWith(
+        resolveOakHref({
+          page: "teacher-programme",
+          subjectPhaseSlug: "english-secondary-edexcel",
+          tab: "units",
+          query: {
+            keystages: "ks4",
+            years: "10",
+          },
+        }),
+        { scroll: false },
+      );
+      expect(mockSetNavigationIntent).toHaveBeenCalledWith({
+        destination: { ...defaultSlugs, ks4OptionSlug: "edexcel" },
+        restoreFocus: interaction === "keyboard",
+        reopenFiltersModal: false,
+      });
+    },
+  );
 
   it("navigates from core to exam board for computing", () => {
     const { getAllByRole } = renderKs4Options(
@@ -517,7 +540,7 @@ describe("ProgrammeFiltersKs4Options", () => {
 
     act(() => radios[2]!.click());
 
-    expect(replaceMock).toHaveBeenCalledWith(
+    expect(mockReplace).toHaveBeenCalledWith(
       resolveOakHref({
         page: "teacher-programme",
         subjectPhaseSlug: "computing-secondary-ocr",
@@ -525,9 +548,9 @@ describe("ProgrammeFiltersKs4Options", () => {
         query: {
           keystages: "ks4",
           years: "10",
-          focus_ks4option: "ocr",
         },
       }),
+      { scroll: false },
     );
   });
 
@@ -545,53 +568,80 @@ describe("ProgrammeFiltersKs4Options", () => {
 
     act(() => radios[1]!.click());
 
-    expect(replaceMock).toHaveBeenCalledWith(
+    expect(mockReplace).toHaveBeenCalledWith(
       resolveOakHref({
         page: "teacher-programme",
         subjectPhaseSlug: "english-secondary-edexcel",
         tab: "units",
         query: {
           keystages: "ks4",
-          focus_ks4option: "edexcel",
         },
       }),
+      { scroll: false },
     );
   });
 
-  it("navigates with open_filters_modal when inside modal scope", () => {
-    const { getAllByRole } = renderKs4Options(
-      defaultFilters,
-      <ProgrammePageFiltersModalProvider>
-        <KS4OptionFocusProvider>
-          <KS4OptionFocusScope variant="modal">
-            <ProgrammeFiltersKs4Options
-              slugs={defaultSlugs}
-              ks4Options={examBoardOptions}
-              ks4OptionFilterDimensions={ks4OptionFilterDimensions}
-            />
-          </KS4OptionFocusScope>
-        </KS4OptionFocusProvider>
-      </ProgrammePageFiltersModalProvider>,
-    );
+  it.each([true, false])(
+    "reopens the modal independently of keyboard focus restoration (%s)",
+    (keyboard) => {
+      const { getAllByRole } = renderKs4Options(
+        defaultFilters,
+        <ProgrammePageFiltersModalProvider>
+          <KS4OptionFocusProvider slugs={defaultSlugs}>
+            <KS4OptionFocusScope variant="modal">
+              <ProgrammeFiltersKs4Options
+                slugs={defaultSlugs}
+                ks4Options={examBoardOptions}
+                ks4OptionFilterDimensions={ks4OptionFilterDimensions}
+              />
+            </KS4OptionFocusScope>
+          </KS4OptionFocusProvider>
+        </ProgrammePageFiltersModalProvider>,
+      );
 
-    const radios = getAllByRole("radio") as HTMLInputElement[];
+      const radios = getAllByRole("radio") as HTMLInputElement[];
 
-    act(() => radios[1]!.click());
+      if (keyboard) {
+        fireEvent.keyDown(radios[1]!, { key: " " });
+      } else {
+        fireEvent.pointerDown(radios[1]!, { pointerType: "mouse" });
+      }
+      act(() => radios[1]!.click());
 
-    expect(replaceMock).toHaveBeenCalledWith(
-      resolveOakHref({
-        page: "teacher-programme",
-        subjectPhaseSlug: "english-secondary-edexcel",
-        tab: "units",
-        query: {
-          keystages: "ks4",
-          years: "10",
-          focus_ks4option: "edexcel",
-          open_filters_modal: "1",
-        },
-      }),
-    );
-  });
+      expect(mockReplace).toHaveBeenCalledWith(
+        resolveOakHref({
+          page: "teacher-programme",
+          subjectPhaseSlug: "english-secondary-edexcel",
+          tab: "units",
+          query: {
+            keystages: "ks4",
+            years: "10",
+          },
+        }),
+        { scroll: false },
+      );
+      expect(mockSetNavigationIntent).toHaveBeenCalledWith({
+        destination: { ...defaultSlugs, ks4OptionSlug: "edexcel" },
+        restoreFocus: keyboard,
+        reopenFiltersModal: true,
+      });
+      const prefetchedUrls = new Set(
+        mockPrefetch.mock.calls.map(([url]) => url),
+      );
+      expect(prefetchedUrls).toEqual(
+        new Set(
+          ["edexcel", "ocr"].map((slug) =>
+            resolveOakHref({
+              page: "teacher-programme",
+              subjectPhaseSlug: `english-secondary-${slug}`,
+              tab: "units",
+              query: { keystages: "ks4", years: "10" },
+            }),
+          ),
+        ),
+      );
+    },
+  );
 
   it("renders nothing when the visibility condition is not met", () => {
     const { queryByRole } = renderKs4Options(

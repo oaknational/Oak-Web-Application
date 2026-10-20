@@ -310,8 +310,6 @@ type ProgrammePageProps = {
     years?: string;
     pathways?: string;
     threads?: string;
-    focus_ks4option?: string;
-    open_filters_modal?: string;
     subject_categories?: string;
   };
 };
