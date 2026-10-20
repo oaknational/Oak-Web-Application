@@ -3,9 +3,8 @@ name: Chromatic Visual Regression Test
 on:
   push:
     branches: [main]
-  workflow_dispatch:
-  # pull_request:
-  #   types: [opened, synchronize, reopened, ready_for_review]
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
 
 permissions:
   contents: read
