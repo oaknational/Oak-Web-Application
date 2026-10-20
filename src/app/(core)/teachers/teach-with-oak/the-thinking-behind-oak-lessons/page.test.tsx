@@ -13,28 +13,14 @@ describe("The thinking behind Oak lessons page", () => {
     [
       "The thinking behind Oak lessons",
       "Explanation in a nutshell",
-      "What?",
-      "Why?",
+      "Practice in a nutshell",
+      "Feedback in a nutshell",
     ].forEach((heading) => {
       expect(
         screen.getByRole("heading", { name: heading }),
       ).toBeInTheDocument();
     });
     expect(screen.getByRole("navigation", { name: "Contents" })).toBeVisible();
-  });
-
-  it("renders breadcrumbs with a link back to Teach With Oak", () => {
-    render(<ShortReadsPage />);
-
-    expect(
-      screen.getByRole("link", { name: "Teach With Oak" }),
-    ).toHaveAttribute("href", "/teachers/teach-with-oak");
-
-    expect(
-      screen.queryByRole("text", {
-        name: "The thinking behind Oak lessons",
-      }),
-    ).not.toBeInTheDocument();
   });
 
   it("provides a matching section for every contents link", () => {
@@ -50,5 +36,27 @@ describe("The thinking behind Oak lessons page", () => {
         expect(href).toMatch(/^#.+/);
         expect(document.getElementById(href!.slice(1))).toBeInTheDocument();
       });
+  });
+
+  it("links to the teach with oak page and shows the current page as non-clickable text", () => {
+    render(<ShortReadsPage />);
+
+    const breadcrumbs = within(
+      screen.getByRole("navigation", { name: "Breadcrumb" }),
+    );
+
+    expect(
+      breadcrumbs.getByRole("link", { name: "Teach With Oak" }),
+    ).toHaveAttribute("href", "/teachers/teach-with-oak");
+
+    expect(
+      breadcrumbs.getByText("The thinking behind Oak lessons"),
+    ).toHaveAttribute("aria-current", "page");
+
+    expect(
+      breadcrumbs.queryByRole("link", {
+        name: "The thinking behind Oak lessons",
+      }),
+    ).not.toBeInTheDocument();
   });
 });
