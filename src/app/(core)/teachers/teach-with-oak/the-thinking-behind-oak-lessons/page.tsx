@@ -18,7 +18,7 @@ const ShortReadsPage = () => {
     { label: "Teach With Oak", href: "/teachers/teach-with-oak" },
     {
       label: "The thinking behind Oak lessons",
-      href: "/teachers/teach-with-oak/short-reads",
+      href: "/teachers/teach-with-oak/the-thinking-behind-oak-lessons",
     },
   ];
 
@@ -27,25 +27,34 @@ const ShortReadsPage = () => {
       programmeState={null}
       accessLevel="homepage"
     >
-      <OakMaxWidth $mv={"spacing-16"}>
-        <OakBreadcrumbs breadcrumbs={breadcrumbs} />
+      <OakMaxWidth>
+        <OakFlex
+          $pt={["spacing-16"]}
+          $ml={["spacing-16", "spacing-0", "spacing-0"]}
+          $maxWidth={[null, "spacing-640", "spacing-640"]}
+        >
+          <OakBreadcrumbs breadcrumbs={breadcrumbs} />
+        </OakFlex>
       </OakMaxWidth>
       <OakFlex
         $display={["block", "block", "none"]}
         $pv={"spacing-24"}
-        $ph={["spacing-16", "spacing-0", "spacing-0"]}
+        $ml={["spacing-16", "spacing-0", "spacing-0"]}
       >
         <OakMaxWidth>
           <OakTertiaryOLNav
             items={[
-              { title: "Explanation", href: "" },
-              { title: "Check for understanding", href: "" },
-              { title: "Practice", href: "" },
-              { title: "Feedback", href: "" },
+              { title: "Explanation", href: "#explanation" },
+              {
+                title: "Check for understanding",
+                href: "#check-for-understanding",
+              },
+              { title: "Practice", href: "#practice" },
+              { title: "Feedback", href: "#feedback" },
             ]}
             ariaLabel="Contents"
             title={"Contents"}
-            anchorTarget={"short-reads-contents"}
+            anchorTarget={"the-thinking-behind-oak-lessons-contents"}
           />
         </OakMaxWidth>
       </OakFlex>
@@ -57,34 +66,37 @@ const ShortReadsPage = () => {
             $position={["static", "static", "sticky"]}
             $top={"spacing-56"}
             $display={["none", "none", "block"]}
+            $maxWidth={[null, "spacing-640", "spacing-640"]}
           >
             <OakTertiaryOLNav
               items={[
-                { title: "Explanation", href: "" },
-                { title: "Check for understanding", href: "" },
-                { title: "Practice", href: "" },
-                { title: "Feedback", href: "" },
+                { title: "Explanation", href: "#explanation" },
+                {
+                  title: "Check for understanding",
+                  href: "#check-for-understanding",
+                },
+                { title: "Practice", href: "#practice" },
+                { title: "Feedback", href: "#feedback" },
               ]}
               ariaLabel="Contents"
               title={"Contents"}
-              anchorTarget={"short-reads-contents"}
+              anchorTarget={"the-thinking-behind-oak-lessons-contents"}
             />
           </OakGridArea>
 
           <OakGridArea
             $colSpan={[12, 12, 6]}
             $colStart={[1, 1, 5]}
-            $mh={["spacing-16", null, null]}
             $justifyContent={"center"}
           >
             <OakFlex
               $width={"100%"}
               $flexDirection={"column"}
-              $alignItems={"center"}
+              $alignItems={["flex-start", "flex-start", "center"]}
             >
               <OakFlex
-                $minWidth={[null, "spacing-640"]}
-                $maxWidth={"spacing-640"}
+                $minWidth={[null, null, "spacing-640"]}
+                $maxWidth={[null, "spacing-640", "spacing-640"]}
                 $width={"100%"}
                 $flexDirection={"column"}
               >
@@ -95,7 +107,12 @@ const ShortReadsPage = () => {
                   See how our lessons are designed to support learning - and
                   make the most of them in your classroom.
                 </OakP>
-                <OakHeading $font="heading-4" tag="h2" $mb={"spacing-32"}>
+                <OakHeading
+                  $font="heading-4"
+                  tag="h2"
+                  $mb={"spacing-32"}
+                  id="explanation"
+                >
                   Explanation in a nutshell
                 </OakHeading>
                 <OakP $mb={"spacing-32"}>
