@@ -5134,6 +5134,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               >
                 <div
                   class="c179 c98"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c180"
@@ -5168,6 +5169,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 />
                 <div
                   class="c179 c98"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c180"
@@ -5277,6 +5279,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               >
                 <div
                   class="c179 c98"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c180"
@@ -5523,6 +5526,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               >
                 <div
                   class="c179 c98"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c180"

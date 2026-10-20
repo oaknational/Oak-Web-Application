@@ -5820,6 +5820,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
               >
                 <div
                   class="c112 c83"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c113"
@@ -5854,6 +5855,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                 />
                 <div
                   class="c112 c83"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c113"
@@ -5963,6 +5965,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
               >
                 <div
                   class="c112 c83"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c113"
@@ -6209,6 +6212,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
               >
                 <div
                   class="c112 c83"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c113"
