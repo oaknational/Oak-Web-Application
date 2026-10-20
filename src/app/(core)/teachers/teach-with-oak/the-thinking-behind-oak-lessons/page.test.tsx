@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { screen, within } from "@testing-library/react";
 
 import ShortReadsPage from "./page";
 
@@ -23,15 +23,32 @@ describe("The thinking behind Oak lessons page", () => {
     expect(screen.getByRole("navigation", { name: "Contents" })).toBeVisible();
   });
 
-  it("renders breadcrumbs", () => {
+  it("renders breadcrumbs with a link back to Teach With Oak", () => {
     render(<ShortReadsPage />);
-    const breadcrumbs = [
-      { label: "Teach With Oak", href: "/teachers/teach-with-oak" },
-      {
-        label: "The thinking behind Oak lessons",
-        href: "/teachers/teach-with-oak/short-reads",
-      },
-    ];
-    expect(breadcrumbs).toBeDefined();
+
+    expect(
+      screen.getByRole("link", { name: "Teach With Oak" }),
+    ).toHaveAttribute("href", "/teachers/teach-with-oak");
+
+    expect(
+      screen.queryByRole("text", {
+        name: "The thinking behind Oak lessons",
+      }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("provides a matching section for every contents link", () => {
+    render(<ShortReadsPage />);
+
+    const contents = screen.getByRole("navigation", { name: "Contents" });
+
+    within(contents)
+      .getAllByRole("link")
+      .forEach((link) => {
+        const href = link.getAttribute("href");
+
+        expect(href).toMatch(/^#.+/);
+        expect(document.getElementById(href!.slice(1))).toBeInTheDocument();
+      });
   });
 });
