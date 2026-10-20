@@ -1,6 +1,8 @@
 "use client";
 
 import {
+  OakBreadcrumbs,
+  OakBreadcrumbsProps,
   OakFlex,
   OakGrid,
   OakGridArea,
@@ -11,15 +13,11 @@ import {
 } from "@oaknational/oak-components";
 
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import OakBreadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 
 const ShortReadsPage = () => {
-  const breadcrumbs = [
-    { label: "Teach With Oak", href: "/teachers/teach-with-oak" },
-    {
-      label: "The thinking behind Oak lessons",
-      href: "/teachers/teach-with-oak/the-thinking-behind-oak-lessons",
-    },
+  const breadcrumbs: OakBreadcrumbsProps["breadcrumbs"] = [
+    { text: "Teach With Oak", href: "/teachers/teach-with-oak" },
+    { text: "The thinking behind Oak lessons" },
   ];
 
   return (
