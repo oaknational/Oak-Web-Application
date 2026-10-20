@@ -1,3 +1,20 @@
+## [1.1251.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1251.0...v1.1251.1) (2026-10-20)
+
+
+### Bug Fixes
+
+* remove padding at end of case studies content ([8b450da](https://github.com/oaknational/Oak-Web-Application/commit/8b450dae51a59a355cb17d284b8f637c003c3716))
+* responsive portable text headings ([65021b4](https://github.com/oaknational/Oak-Web-Application/commit/65021b443f08bfb77a6cc6760a1636dcacaec352))
+
+# [1.1251.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1250.1...v1.1251.0) (2026-10-20)
+
+
+### Features
+
+* remove retry mechanism on graphql sdk ([edfba93](https://github.com/oaknational/Oak-Web-Application/commit/edfba9346a3288e2eb4e4710e1bb7e4af5c7700a))
+
+## [1.1250.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1250.0...v1.1250.1) (2026-10-19)
+
 # [1.1250.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1249.4...v1.1250.0) (2026-10-19)
 
 
