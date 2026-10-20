@@ -118,6 +118,7 @@ export default async (phase: string): Promise<NextConfig> => {
 
   const nextConfig: NextConfig = {
     cacheComponents: true,
+    partialPrefetching: true,
     cacheLife: {
       curriculum: {
         stale: 3600, // 1 hour

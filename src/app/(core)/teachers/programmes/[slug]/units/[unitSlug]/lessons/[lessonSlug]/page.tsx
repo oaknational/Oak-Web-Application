@@ -21,7 +21,7 @@ import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnal
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
 // We are using dynamic route segments so we can't enable instant navigation without
-// prefetching all possible routes with generateStaticParams. Longer term we'd want to
+// prefetching routes with generateStaticParams. Longer term we'd want to
 // use Suspense boundaries to enable instant loading with data streaming
 export const instant = false;
 
