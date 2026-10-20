@@ -25,7 +25,7 @@ const IGNORED_MESSAGE_PATTERNS = [
  * Test if a user agent should be ignored for error reporting.
  */
 const matchesUserAgent = (ua: string) => {
-  const userAgentsToMatch = [/Detectify/i, /Percy/i];
+  const userAgentsToMatch = [/Detectify/i];
   if (userAgentsToMatch.some((regex) => regex.test(ua))) {
     return true;
   }

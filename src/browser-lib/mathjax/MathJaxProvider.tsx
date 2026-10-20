@@ -16,6 +16,7 @@ const MathJaxProvider = ({ children }: PropsWithChildren) => {
   const reportError = errorReporter("mathjax");
   return (
     <MathJaxContext
+      version={3}
       src={"/mathjax/tex-chtml.js"}
       config={config}
       onError={(e) =>
