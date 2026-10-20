@@ -92,7 +92,11 @@ export type FooterSection = {
 };
 const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
   return (
-    <OakFlex $flexDirection="column" $mt={["spacing-32", "spacing-0"]}>
+    <OakFlex
+      data-chromatic="ignore"
+      $flexDirection="column"
+      $mt={["spacing-32", "spacing-0"]}
+    >
       <OakHeading
         $mb="spacing-8"
         $font="heading-7"

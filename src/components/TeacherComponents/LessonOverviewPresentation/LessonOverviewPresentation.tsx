@@ -96,6 +96,7 @@ const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
               tabIndex={-1}
               aria-hidden="true"
               loading={loading}
+              data-chromatic="ignore"
             />
           </FocusTarget>
         </OakFocusIndicator>

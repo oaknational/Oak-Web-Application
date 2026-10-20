@@ -5887,6 +5887,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
               >
                 <div
                   class="c215 c97"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c216"
@@ -5921,6 +5922,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                 />
                 <div
                   class="c215 c97"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c216"
@@ -6030,6 +6032,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
               >
                 <div
                   class="c215 c97"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c216"
@@ -6276,6 +6279,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
               >
                 <div
                   class="c215 c97"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c216"

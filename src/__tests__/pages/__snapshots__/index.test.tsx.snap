@@ -2411,6 +2411,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 >
                   <div
                     class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                    data-chromatic="ignore"
                   >
                     <h2
                       class="sc-bkkgYE bVNEJW"
@@ -2445,6 +2446,7 @@ exports[`Teachers Page Page component renders 1`] = `
                   />
                   <div
                     class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                    data-chromatic="ignore"
                   >
                     <h2
                       class="sc-bkkgYE bVNEJW"
@@ -2554,6 +2556,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 >
                   <div
                     class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                    data-chromatic="ignore"
                   >
                     <h2
                       class="sc-bkkgYE bVNEJW"
@@ -2800,6 +2803,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 >
                   <div
                     class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                    data-chromatic="ignore"
                   >
                     <h2
                       class="sc-bkkgYE bVNEJW"
@@ -3100,7 +3104,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 </div>
               </div>
               <span
-                class="sc-bdvwhi LoEut sc-99912ec1-0 jbMtpJ"
+                class="sc-bdvwhi LoEut sc-32e20a39-0 bpfmaF"
                 data-chromatic="ignore"
               >
                 <img
