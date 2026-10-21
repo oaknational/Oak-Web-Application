@@ -1,6 +1,6 @@
 import { useUser } from "@clerk/nextjs";
 
-import { OnboardingTrackingProps } from "../TeacherBrowseAnalyticsStore";
+import { OnboardingTrackingProps } from "../teacherBrowseAnalytics.types";
 
 import {
   ComponentTypeValueType,
