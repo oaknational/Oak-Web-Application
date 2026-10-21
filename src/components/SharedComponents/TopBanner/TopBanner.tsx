@@ -25,14 +25,15 @@ const topBannerPortableTextComponents: PortableTextComponents = {
 };
 
 export default function TopBanner({
-  topBanner,
-}: Readonly<{
-  topBanner: TopBannerProps;
-}>) {
+  messagePortableTextWithPromo,
+  enabled,
+  cta,
+  backgroundColour,
+}: TopBannerProps) {
   return (
     <OakBox role="banner">
       <OakFlex
-        $background={topBanner.backgroundColour}
+        $background={backgroundColour}
         $justifyContent={["center"]}
         $alignItems={"center"}
         $pv={"spacing-8"}
@@ -53,26 +54,22 @@ export default function TopBanner({
             $gap={["spacing-0", "spacing-4"]}
             $minWidth={["fit-content"]}
           >
-            {topBanner.messagePortableTextWithPromo && (
+            {messagePortableTextWithPromo && (
               <PortableTextWithDefaults
-                value={topBanner.messagePortableTextWithPromo}
+                value={messagePortableTextWithPromo}
                 components={topBannerPortableTextComponents}
               />
             )}
           </OakFlex>
-          {topBanner.enabled && topBanner.cta && (
+          {enabled && cta && (
             <OakSmallTertiaryInvertedButton
               element={Link}
-              href={
-                topBanner.cta.linkType === "internal"
-                  ? topBanner.cta.internal
-                  : topBanner.cta.external
-              }
-              title={topBanner.cta.label}
+              href={cta.linkType === "internal" ? cta.internal : cta.external}
+              title={cta.label}
               iconName="chevron-right"
               isTrailingIcon={true}
             >
-              <OakSpan $font={"heading-7"}>{topBanner.cta.label}</OakSpan>
+              <OakSpan $font={"heading-7"}>{cta.label}</OakSpan>
             </OakSmallTertiaryInvertedButton>
           )}
         </OakFlex>

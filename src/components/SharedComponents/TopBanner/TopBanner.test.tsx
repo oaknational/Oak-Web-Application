@@ -6,7 +6,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 describe("TopBanner", () => {
   it("should render the top banner component correctly", () => {
     const { getByRole, getByText } = renderWithProviders()(
-      <TopBanner topBanner={topBannerFixture} />,
+      <TopBanner {...topBannerFixture} />,
     );
 
     const banner = getByRole("banner");
@@ -39,7 +39,7 @@ describe("TopBanner", () => {
     };
 
     const { getByRole } = renderWithProviders()(
-      <TopBanner topBanner={externalTopBannerFixture} />,
+      <TopBanner {...externalTopBannerFixture} />,
     );
 
     const link = getByRole("link");
@@ -48,9 +48,7 @@ describe("TopBanner", () => {
 
   it("should not render the message text if not provided", () => {
     const { queryByText } = renderWithProviders()(
-      <TopBanner
-        topBanner={{ ...topBannerFixture, messagePortableTextWithPromo: null }}
-      />,
+      <TopBanner {...topBannerFixture} messagePortableTextWithPromo={null} />,
     );
 
     const message = queryByText("Oak is now used in of schools!");
@@ -59,7 +57,7 @@ describe("TopBanner", () => {
 
   it("should not render the cta if cta is not enabled", () => {
     const { queryByRole } = renderWithProviders()(
-      <TopBanner topBanner={{ ...topBannerFixture, enabled: false }} />,
+      <TopBanner {...topBannerFixture} enabled={false} />,
     );
 
     const link = queryByRole("link");

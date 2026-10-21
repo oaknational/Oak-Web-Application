@@ -1,16 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 
-import TopBanner, { TopBannerProps } from "./TopBanner";
+import TopBanner from "./TopBanner";
 import { topBannerFixture } from "./TopBanner.fixture";
 
 import { OakUiRoleToken } from "@/styles/oakThemeApp";
 
-const TopBannerPreview = (args: Readonly<TopBannerProps>) => (
-  <TopBanner topBanner={args} />
-);
-
 const meta = {
-  component: TopBannerPreview,
+  component: TopBanner,
   tags: ["autodocs"],
   title: "Components/SharedComponents/TopBanner",
   argTypes: {
@@ -29,7 +25,7 @@ const meta = {
       defaultValue: "bg-decorative1-main",
     },
   },
-} satisfies Meta<typeof TopBannerPreview>;
+} satisfies Meta<typeof TopBanner>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
