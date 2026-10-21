@@ -6,9 +6,9 @@ import {
 } from "@oaknational/oak-components";
 import "jest-styled-components";
 
-import eyfs from "./docsApi/eyfs.json";
-import peGuide from "./docsApi/peGuide.json";
-import additionalMaterials from "./docsApi/additionalMaterials.json";
+import eyfs from "./docsApiResponseJson/eyfs.json";
+import peGuide from "./docsApiResponseJson/peGuide.json";
+import additionalMaterials from "./docsApiResponseJson/additionalMaterials.json";
 import { GoogleDocsApi } from "./GoogleDocsApi";
 import { GoogleDocsDocument, GoogleDocsRenderer } from "./GoogleDocsRenderer";
 
@@ -51,6 +51,60 @@ function renderContent(
 }
 
 describe("GoogleDocsRenderer", () => {
+  it.each([true, false])(
+    "selects header headings using the first-page setting (%s)",
+    (useFirstPageHeaderFooter) => {
+      renderContent([paragraph("Body content")], {
+        documentStyle: {
+          useFirstPageHeaderFooter,
+          firstPageHeaderId: "first",
+          defaultHeaderId: "default",
+        },
+        headers: {
+          first: {
+            content: [
+              paragraph("First-page title", { namedStyleType: "TITLE" }),
+            ],
+          },
+          default: {
+            content: [
+              paragraph("Running title", { namedStyleType: "HEADING_1" }),
+              paragraph("Page number"),
+            ],
+          },
+        },
+      });
+      expect(
+        screen.getByRole("heading", {
+          level: 1,
+          name: useFirstPageHeaderFooter ? "First-page title" : "Running title",
+        }),
+      ).toBeInTheDocument();
+      expect(screen.getAllByRole("heading")).toHaveLength(1);
+      expect(screen.queryByText("Page number")).not.toBeInTheDocument();
+      expect(screen.getByText("Body content")).toBeInTheDocument();
+    },
+  );
+
+  it.each([
+    { document: peGuide, heading: "Front crawl over increasing distance" },
+    { document: additionalMaterials, heading: "Getting ready to swim" },
+    { document: eyfs, heading: "One more than a number to 5" },
+  ])(
+    "renders the first-page header title once: $heading",
+    ({ document, heading }) => {
+      render(<GoogleDocsRenderer document={document} />);
+      expect(
+        screen.getAllByRole("heading", { level: 1, name: heading }),
+      ).toHaveLength(1);
+      expect(
+        screen.queryByText(
+          /Front crawl over increasing distance and water polo/,
+        ),
+      ).not.toBeInTheDocument();
+    },
+  );
+
   it("renders the EYFS example as an accessible article with headings, lists, tables and images", () => {
     const { container } = render(<GoogleDocsRenderer document={eyfs} />);
     expect(

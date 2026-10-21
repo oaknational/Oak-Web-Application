@@ -1,8 +1,8 @@
 import { OakBox, OakHeading } from "@oaknational/oak-components";
 
-import eyfs from "./docsApi/eyfs.json";
-import peGuide from "./docsApi/peGuide.json";
-import additionalMaterials from "./docsApi/additionalMaterials.json";
+import eyfs from "./docsApiResponseJson/eyfs.json";
+import peGuide from "./docsApiResponseJson/peGuide.json";
+import additionalMaterials from "./docsApiResponseJson/additionalMaterials.json";
 import { GoogleDocsDocument, GoogleDocsRenderer } from "./GoogleDocsRenderer";
 import type { ResourceFile } from "./TestView";
 

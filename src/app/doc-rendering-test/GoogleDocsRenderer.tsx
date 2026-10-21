@@ -97,6 +97,12 @@ type StructuralElement = {
 /** The Google Docs API fields used for semantic, rather than print, rendering. */
 export type GoogleDocsDocument = {
   title?: string;
+  documentStyle?: {
+    defaultHeaderId?: string;
+    firstPageHeaderId?: string;
+    useFirstPageHeaderFooter?: boolean;
+  };
+  headers?: Record<string, { content?: StructuralElement[] }>;
   body?: { content?: StructuralElement[] };
   namedStyles?: {
     styles?: { namedStyleType?: string; textStyle?: TextStyle }[];
@@ -637,7 +643,35 @@ function renderBlocks(
   return blocks.map((block, index) => <Fragment key={index}>{block}</Fragment>);
 }
 
-/** Renders body content; repeated print headers, footers and page breaks are omitted. */
+function headerHeadings(document: GoogleDocsDocument): Paragraph[] {
+  const style = document.documentStyle;
+  const headerId =
+    (style?.useFirstPageHeaderFooter && style.firstPageHeaderId) ||
+    style?.defaultHeaderId;
+  const content = headerId ? document.headers?.[headerId]?.content : undefined;
+  const collect = (elements: StructuralElement[]): Paragraph[] =>
+    elements.flatMap((element) => {
+      if (element.paragraph) {
+        const paragraph = element.paragraph;
+        return isHeading(paragraph.paragraphStyle?.namedStyleType ?? "") &&
+          paragraph.elements?.some((element) =>
+            element.textRun?.content?.trim(),
+          )
+          ? [paragraph]
+          : [];
+      }
+      return (
+        element.table?.tableRows?.flatMap(
+          (row) =>
+            row.tableCells?.flatMap((cell) => collect(cell.content ?? [])) ??
+            [],
+        ) ?? []
+      );
+    });
+  return collect(content ?? []);
+}
+
+/** Retains header headings once; repeated print headers, footers and page breaks are omitted. */
 export function GoogleDocsRenderer({
   document,
 }: {
@@ -656,6 +690,11 @@ export function GoogleDocsRenderer({
       $font="body-2"
       $color="text-primary"
     >
+      {headerHeadings(document).map((paragraph, index) => (
+        <Fragment key={`header-${index}`}>
+          {renderParagraph(paragraph, document)}
+        </Fragment>
+      ))}
       {renderBlocks(document.body.content, document)}
     </GoogleDocsContent>
   );

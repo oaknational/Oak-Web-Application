@@ -8,6 +8,90 @@ const wordDrawingNamespace =
   "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing";
 const wordNamespace =
   "http://schemas.openxmlformats.org/wordprocessingml/2006/main";
+const relationshipNamespace =
+  "http://schemas.openxmlformats.org/officeDocument/2006/relationships";
+
+async function restoreHeaderHeadings(zip: JSZip, xml: Document) {
+  const section = xml.getElementsByTagNameNS(wordNamespace, "sectPr")[0];
+  const references = Array.from(
+    section?.getElementsByTagNameNS(wordNamespace, "headerReference") ?? [],
+  );
+  const firstPage = section?.getElementsByTagNameNS(
+    wordNamespace,
+    "titlePg",
+  )[0];
+  const useFirstPage =
+    firstPage &&
+    !["0", "false", "off"].includes(
+      firstPage.getAttributeNS(wordNamespace, "val") ?? "",
+    );
+  const reference =
+    (useFirstPage &&
+      references.find(
+        (node) => node.getAttributeNS(wordNamespace, "type") === "first",
+      )) ||
+    references.find(
+      (node) => node.getAttributeNS(wordNamespace, "type") === "default",
+    );
+  if (!reference) return;
+  const relationships = zip.file("word/_rels/document.xml.rels");
+  if (!relationships) throw new Error("DOCX is missing document relationships");
+  const relations = new DOMParser().parseFromString(
+    await relationships.async("string"),
+    "application/xml",
+  );
+  const id = reference.getAttributeNS(relationshipNamespace, "id");
+  const relationship = Array.from(
+    relations.getElementsByTagNameNS("*", "Relationship"),
+  ).find((node) => node.getAttribute("Id") === id);
+  const target = relationship?.getAttribute("Target");
+  if (!target || relationship?.getAttribute("TargetMode") === "External") {
+    throw new Error("DOCX header relationship is invalid");
+  }
+  const path = new URL(
+    target,
+    "https://docx.local/word/document.xml",
+  ).pathname.slice(1);
+  const part = zip.file(path);
+  if (!part) throw new Error(`DOCX is missing header part: ${path}`);
+  const header = new DOMParser().parseFromString(
+    await part.async("string"),
+    "application/xml",
+  );
+  if (header.getElementsByTagName("parsererror").length) {
+    throw new Error("DOCX contains invalid header XML");
+  }
+  const body = xml.getElementsByTagNameNS(wordNamespace, "body")[0];
+  if (!body) throw new Error("DOCX is missing document body");
+  const first = body.firstChild;
+  for (const paragraph of Array.from(
+    header.getElementsByTagNameNS(wordNamespace, "p"),
+  )) {
+    const style = paragraph
+      .getElementsByTagNameNS(wordNamespace, "pStyle")[0]
+      ?.getAttributeNS(wordNamespace, "val");
+    const text = Array.from(
+      paragraph.getElementsByTagNameNS(wordNamespace, "t"),
+    )
+      .map((node) => node.textContent ?? "")
+      .join("");
+    if (!style || !/^(Title|Heading[1-6])$/i.test(style) || !text.trim())
+      continue;
+    // Copy heading text, not header drawings or relationships scoped to its part.
+    const heading = xml.createElementNS(wordNamespace, "w:p");
+    const properties = xml.createElementNS(wordNamespace, "w:pPr");
+    const headingStyle = xml.createElementNS(wordNamespace, "w:pStyle");
+    headingStyle.setAttributeNS(wordNamespace, "w:val", style);
+    properties.appendChild(headingStyle);
+    heading.appendChild(properties);
+    const run = xml.createElementNS(wordNamespace, "w:r");
+    const content = xml.createElementNS(wordNamespace, "w:t");
+    content.textContent = text;
+    run.appendChild(content);
+    heading.appendChild(run);
+    body.insertBefore(heading, first);
+  }
+}
 
 type SectionColour = (typeof sectionColours)[number];
 type CellStyle = {
@@ -123,6 +207,7 @@ type Drawing = {
   width?: number;
   height?: number;
   background: boolean;
+  pagePosition?: { x: number; y: number };
 };
 
 /**
@@ -140,6 +225,7 @@ export async function prepareMammothImages(arrayBuffer: ArrayBuffer) {
   if (xml.getElementsByTagName("parsererror").length) {
     throw new Error("DOCX contains invalid document XML");
   }
+  await restoreHeaderHeadings(zip, xml);
   const drawings = new Map<string, Drawing>();
   const pixels = (value: string | null) => {
     const emu = Number(value);
@@ -164,6 +250,22 @@ export async function prepareMammothImages(arrayBuffer: ArrayBuffer) {
       "anchor",
     )[0];
     const id = `mammoth-drawing-${drawings.size}`;
+    const pageOffset = (direction: "positionH" | "positionV") => {
+      const position = anchor?.getElementsByTagNameNS(
+        wordDrawingNamespace,
+        direction,
+      )[0];
+      if (position?.getAttribute("relativeFrom") !== "page") return undefined;
+      const value = position.getElementsByTagNameNS(
+        wordDrawingNamespace,
+        "posOffset",
+      )[0]?.textContent;
+      if (!value?.trim()) return undefined;
+      const offset = Number(value);
+      return Number.isFinite(offset) ? offset : undefined;
+    };
+    const x = pageOffset("positionH");
+    const y = pageOffset("positionV");
     drawings.set(id, {
       alt:
         properties.getAttribute("descr") ||
@@ -174,6 +276,7 @@ export async function prepareMammothImages(arrayBuffer: ArrayBuffer) {
       background: ["1", "true"].includes(
         anchor?.getAttribute("behindDoc") ?? "",
       ),
+      pagePosition: x !== undefined && y !== undefined ? { x, y } : undefined,
     });
     properties.setAttribute("descr", id);
   }
@@ -195,6 +298,12 @@ export async function prepareMammothImages(arrayBuffer: ArrayBuffer) {
               ...(metadata.height ? { height: String(metadata.height) } : {}),
               ...(metadata.background
                 ? { "data-docx-background": "true" }
+                : {}),
+              ...(metadata.pagePosition && !metadata.background
+                ? {
+                    "data-docx-page-x": String(metadata.pagePosition.x),
+                    "data-docx-page-y": String(metadata.pagePosition.y),
+                  }
                 : {}),
             }
           : {}),
@@ -265,6 +374,52 @@ export function restoreMammothCallouts(
     }
     paragraph.replaceWith(callout);
     callout.append(...content);
+  }
+  // Page-anchored icons share an anchor paragraph but belong to the following
+  // table's callouts in vertical page order, not drawing/XML order.
+  for (const paragraph of Array.from(
+    root.querySelectorAll("p, h1, h2, h3, h4, h5, h6"),
+  )) {
+    const icons = Array.from(
+      paragraph.querySelectorAll<HTMLImageElement>(
+        "img[data-docx-page-x][data-docx-page-y]",
+      ),
+    );
+    if (
+      icons.length < 2 ||
+      paragraph.textContent?.trim() ||
+      paragraph.querySelectorAll("img").length !== icons.length ||
+      !icons.every(
+        (icon) => icon.dataset.docxPageX === icons[0]?.dataset.docxPageX,
+      )
+    )
+      continue;
+    const table = paragraph.nextElementSibling;
+    if (!table?.matches(".docx-table")) continue;
+    const headings = Array.from(table.querySelectorAll(".docx-callout")).map(
+      (callout) => callout.querySelector("h1, h2, h3, h4, h5, h6"),
+    );
+    if (
+      headings.length !== icons.length ||
+      headings.some((heading) => !heading)
+    )
+      continue;
+    icons.sort(
+      (a, b) => Number(a.dataset.docxPageY) - Number(b.dataset.docxPageY),
+    );
+    icons.forEach((icon, index) => {
+      icon.classList.add("docx-callout-icon");
+      delete icon.dataset.docxPageX;
+      delete icon.dataset.docxPageY;
+      const callout = headings[index]!.parentElement!;
+      const text = document.createElement("div");
+      text.className = "docx-callout-text";
+      text.append(...Array.from(callout.childNodes));
+      callout.classList.add("docx-callout-with-icon");
+      callout.append(text, icon);
+    });
+    // Keep any bookmark targets at their original location.
+    if (!paragraph.querySelector("a[id]")) paragraph.remove();
   }
   return root.innerHTML;
 }

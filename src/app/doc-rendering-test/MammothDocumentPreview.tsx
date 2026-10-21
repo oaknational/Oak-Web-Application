@@ -167,6 +167,25 @@ export const MammothDocumentPreview = styled(OakBox)`
   .docx-callout > :last-child {
     margin-bottom: 0;
   }
+  .docx-callout-with-icon {
+    display: flex;
+    align-items: center;
+    gap: ${parseSpacing("spacing-8")};
+  }
+  .docx-callout-text {
+    flex: 1;
+    min-width: 0;
+  }
+  .docx-callout-text > :first-child,
+  .docx-callout-text > a[id] + :is(h1, h2, h3, h4, h5, h6) {
+    margin-top: 0;
+  }
+  .docx-callout-text > :last-child {
+    margin-bottom: 0;
+  }
+  .docx-callout-with-icon > .docx-callout-icon {
+    flex-shrink: 0;
+  }
 
   a {
     color: ${parseColor("text-link-active")};
