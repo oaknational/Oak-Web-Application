@@ -1,7 +1,8 @@
+import { OnboardingTrackingProps } from "../teacherBrowseAnalytics.types";
+
 import { collectOnboardingTrackingProps } from "./collectOnboardingTrackingProps";
 
 import { mockUser } from "@/__tests__/__helpers__/mockUser";
-import { OnboardingTrackingProps } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsStore";
 import { OnboardingFormProps } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
 import { onboardingRoleOptions } from "@/components/TeacherComponents/OnboardingForm/onboardingActions/onboardingRoleOptions";
 import { UserResource } from "clerk";
