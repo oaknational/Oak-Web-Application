@@ -35,6 +35,24 @@ export const joinResearchPanelCalloutBlockFixture: JoinResearchPanelPageBlock<"J
         },
         bodyRaw: portableTextFromString("Join the research panel callout"),
       },
+      {
+        icon: {
+          asset: {
+            _id: "image-b5ee98bf752dff246de88f50ad59e07131902189-80x80-svg",
+            url: "https://cdn.sanity.io/images/cuvjke51/production/b5ee98bf752dff246de88f50ad59e07131902189-80x80.svg",
+          },
+        },
+        bodyRaw: portableTextFromString("Join the research panel callout"),
+      },
+      {
+        icon: {
+          asset: {
+            _id: "image-8d46237f90341dc2f1ef9f99db370a97e3d014d9-72x54-svg",
+            url: "https://cdn.sanity.io/images/cuvjke51/production/8d46237f90341dc2f1ef9f99db370a97e3d014d9-72x54.svg",
+          },
+        },
+        bodyRaw: portableTextFromString("Join the research panel callout"),
+      },
     ],
   };
 

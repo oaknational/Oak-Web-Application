@@ -15,6 +15,7 @@ import {
 import JoinResearchPanelPageHeader from "@/components/GenericPagesComponents/JoinResearchPanelHeader";
 import JoinResearchPanelPageDefault from "@/components/GenericPagesComponents/JoinResearchPanelDefault";
 import JoinResearchPanelInfo from "@/components/GenericPagesComponents/JoinResearchPanelInfo";
+import JoinResearchPanelCallout from "@/components/GenericPagesComponents/JoinResearchPanelCallout";
 
 export type AboutUsJoinResearchPanelPageProps = {
   pageData: JoinResearchPanelPage;
@@ -30,7 +31,7 @@ export const AboutUsJoinResearchPanel: NextPage<
     ) => React.ReactNode;
   } = {
     JoinResearchPanelPageHeader: JoinResearchPanelPageHeader,
-    JoinResearchPanelPageCallout: JoinResearchPanelPageDefault,
+    JoinResearchPanelPageCallout: JoinResearchPanelCallout,
     JoinResearchPanelPageInfo: JoinResearchPanelInfo,
     JoinResearchPanelPageJourney: JoinResearchPanelPageDefault,
     JoinResearchPanelPagePeople: JoinResearchPanelPageDefault,
