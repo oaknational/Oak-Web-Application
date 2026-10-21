@@ -25,7 +25,7 @@ exports[`TopBanner should render the top banner component correctly 1`] = `
       >
         <a
           class="sc-eCIkAO sc-bqiQyc fqeNIm iKPRnI"
-          href="https://www.thenational.academy/about-us/oaks-impact"
+          href="https://www.google.com/"
           title="Explore our impact"
         >
           <div

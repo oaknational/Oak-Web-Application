@@ -31,7 +31,7 @@ const props: HomePageProps = {
     heading: "",
     id: "",
     topBanner: {
-      messagePortableText: [
+      messagePortableTextWithPromo: [
         {
           _key: "967be59f8853",
           _type: "block",
@@ -47,8 +47,13 @@ const props: HomePageProps = {
           style: "normal",
         },
       ],
-      ctaText: "Explore our impact",
-      ctaLink: "https://www.thenational.academy/about-us/oaks-impact",
+      enabled: true,
+      cta: {
+        label: "Explore our impact",
+        linkType: "internal",
+        external: "https://www.google.com/",
+        internal: "/about-us/oaks-impact",
+      },
       backgroundColour: "bg-decorative1-main",
     },
     summaryPortableText: [],

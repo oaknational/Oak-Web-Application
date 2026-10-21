@@ -2,8 +2,10 @@ import TopBanner from "./TopBanner";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
+// to do - put in fixture
+// to do - example with promo tag
 const topBannerFixture = {
-  messagePortableText: [
+  messagePortableTextWithPromo: [
     {
       _key: "967be59f8853",
       _type: "block",
@@ -19,8 +21,13 @@ const topBannerFixture = {
       style: "normal",
     },
   ],
-  ctaText: "Explore our impact",
-  ctaLink: "https://www.thenational.academy/about-us/oaks-impact",
+  enabled: true,
+  cta: {
+    label: "Explore our impact",
+    linkType: "external" as const,
+    external: "https://www.google.com/",
+    internal: "/about-us/oaks-impact",
+  },
   backgroundColour: "bg-decorative1-main" as const,
 };
 
@@ -38,10 +45,7 @@ describe("TopBanner", () => {
     expect(banner).toContainElement(message);
 
     const link = getByRole("link");
-    expect(link).toHaveAttribute(
-      "href",
-      "https://www.thenational.academy/about-us/oaks-impact",
-    );
+    expect(link).toHaveAttribute("href", "https://www.google.com/");
     expect(link).toHaveAttribute("title", "Explore our impact");
 
     const backgroundColourAsRgb = "rgb(190, 242, 189)";
@@ -50,10 +54,24 @@ describe("TopBanner", () => {
     );
   });
 
+  it("should render an internal link correctly", () => {
+    const internalTopBannerFixture = {
+      ...topBannerFixture,
+      cta: { ...topBannerFixture.cta, linkType: "internal" as const },
+    };
+
+    const { getByRole } = renderWithProviders()(
+      <TopBanner topBanner={internalTopBannerFixture} />,
+    );
+
+    const link = getByRole("link");
+    expect(link).toHaveAttribute("href", "/about-us/oaks-impact");
+  });
+
   it("should not render the message text if not provided", () => {
     const { queryByText } = renderWithProviders()(
       <TopBanner
-        topBanner={{ ...topBannerFixture, messagePortableText: null }}
+        topBanner={{ ...topBannerFixture, messagePortableTextWithPromo: null }}
       />,
     );
 
@@ -61,11 +79,9 @@ describe("TopBanner", () => {
     expect(message).not.toBeInTheDocument();
   });
 
-  it("should not render the cta if cta data is not provided", () => {
+  it("should not render the cta if cta is not enabled", () => {
     const { queryByRole } = renderWithProviders()(
-      <TopBanner
-        topBanner={{ ...topBannerFixture, ctaText: null, ctaLink: null }}
-      />,
+      <TopBanner topBanner={{ ...topBannerFixture, enabled: false }} />,
     );
 
     const link = queryByRole("link");
