@@ -369,18 +369,18 @@ function renderBlocks(
                     // Merged cells have zero-span placeholders in the API.
                     if (rowSpan === 0 || columnSpan === 0) return null;
                     return (
-                      <td
+                      <OakBox
+                        as="td"
                         key={cellIndex}
                         rowSpan={rowSpan}
                         colSpan={columnSpan}
-                        style={{
-                          verticalAlign: "top",
-                          padding: "12px",
-                          border: "1px solid currentColor",
-                        }}
+                        $pa="spacing-12"
+                        $ba="border-solid-s"
+                        $borderColor="border-primary"
+                        style={{ verticalAlign: "top" }}
                       >
                         {renderBlocks(cell.content ?? [], document)}
-                      </td>
+                      </OakBox>
                     );
                   })}
                 </tr>
