@@ -11,6 +11,8 @@ import {
   OakP,
   OakTertiaryOLNav,
 } from "@oaknational/oak-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
+import { notFound } from "next/navigation";
 
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
@@ -19,6 +21,10 @@ const ShortReadsPage = () => {
     { text: "Teach With Oak", href: "/teachers/teach-with-oak" },
     { text: "The thinking behind Oak lessons" },
   ];
+
+  const featureFlagEnabled =
+    useFeatureFlagEnabled("teachers-thinking-behind-oak-lessons") ?? false;
+  if (!featureFlagEnabled) return notFound();
 
   return (
     <TeacherBrowseAnalyticsStoreProvider
