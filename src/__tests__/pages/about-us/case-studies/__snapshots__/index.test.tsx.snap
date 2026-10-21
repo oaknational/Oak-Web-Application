@@ -2213,9 +2213,8 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-82a69116-0 kSePHC"
+              class="sc-bdvwhi LoEut sc-99912ec1-0 jbMtpJ"
               data-chromatic="ignore"
-              data-percy-hide="contents"
             >
               <img
                 alt="Cyber Essentials Logo"

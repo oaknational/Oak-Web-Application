@@ -5804,7 +5804,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
             <span
               class="c84 c198"
               data-chromatic="ignore"
-              data-percy-hide="contents"
             >
               <img
                 alt="Cyber Essentials Logo"
