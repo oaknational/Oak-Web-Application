@@ -12,16 +12,29 @@ import {
   parseLetterSpacing,
   parseLineHeight,
   parseSpacing,
+  parseBorder,
 } from "@oaknational/oak-components";
 import Mammoth from "mammoth/mammoth.browser";
 import { useEffect, useState } from "react";
 import DOMPurify from "dompurify";
 import styled, { css } from "styled-components";
 
-import { prepareMammothImages, restoreMammothCallouts } from "./mammothImages";
+import {
+  prepareMammothImages,
+  restoreMammothCallouts,
+  sectionColours,
+} from "./mammothImages";
 
 // Keep Mammoth's default list, footnote and link mappings after these rules.
 export const mammothStyleMap = [
+  // A paragraph can carry both a heading style and explicit list numbering.
+  ...[1, 2, 3, 4, 5].flatMap((level) => {
+    const parent = "ul|ol > li > ".repeat(level - 1);
+    return [
+      `p:unordered-list(${level}) => ${parent}ul > li:fresh`,
+      `p:ordered-list(${level}) => ${parent}ol > li:fresh`,
+    ];
+  }),
   "p.Title => h1.docx-title:fresh",
   "p.Subtitle => p.docx-subtitle:fresh",
   ...[1, 2, 3, 4, 5, 6].flatMap((level) => [
@@ -145,6 +158,30 @@ const DocumentContent = styled(OakBox)`
     margin-bottom: ${parseSpacing("spacing-24")};
   }
 
+  ${sectionColours.map(
+    (colour) => css`
+      .docx-section-${colour} {
+        border: ${parseBorder("border-solid-m")} ${parseColor(colour)};
+      }
+
+      .docx-fill-${colour} {
+        background-color: ${parseColor(colour)};
+      }
+
+      .docx-border-left-${colour} {
+        border-left: ${parseBorder("border-solid-m")} ${parseColor(colour)};
+      }
+
+      .docx-border-right-${colour} {
+        border-right: ${parseBorder("border-solid-m")} ${parseColor(colour)};
+      }
+    `,
+  )}
+
+  .docx-text-inverted {
+    color: ${parseColor("text-inverted")};
+  }
+
   table {
     width: 100%;
     border-collapse: collapse;
@@ -254,9 +291,8 @@ export const getParsedDocx = async (fileId: string, signal?: AbortSignal) => {
     throw new Error(`Google Docs export failed: ${response.statusText}`);
   }
 
-  const { arrayBuffer, convertImage } = await prepareMammothImages(
-    await response.arrayBuffer(),
-  );
+  const { arrayBuffer, convertImage, sectionBorders } =
+    await prepareMammothImages(await response.arrayBuffer());
   const result = await Mammoth.convertToHtml(
     { arrayBuffer },
     {
@@ -268,7 +304,10 @@ export const getParsedDocx = async (fileId: string, signal?: AbortSignal) => {
       convertImage,
     },
   );
-  return { ...result, value: restoreMammothCallouts(result.value) };
+  return {
+    ...result,
+    value: restoreMammothCallouts(result.value, sectionBorders),
+  };
 };
 
 type DocumentResult =

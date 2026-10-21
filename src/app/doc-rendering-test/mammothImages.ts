@@ -1,8 +1,121 @@
 import JSZip from "jszip";
 import Mammoth from "mammoth/mammoth.browser";
+import { oakColorTokens } from "@oaknational/oak-components";
 
 const wordDrawingNamespace =
   "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing";
+const wordNamespace =
+  "http://schemas.openxmlformats.org/wordprocessingml/2006/main";
+
+export const sectionColours = ["mint", "purple", "teal", "blue"] as const;
+type SectionColour = (typeof sectionColours)[number];
+type CellStyle = {
+  background?: SectionColour;
+  inverted: boolean;
+  left?: SectionColour;
+  right?: SectionColour;
+};
+type SectionStyle = {
+  border?: SectionColour;
+  cells: (CellStyle | undefined)[];
+};
+
+function readSectionColours(xml: Document): SectionStyle[] {
+  const colourToken = (hex: string | null) =>
+    sectionColours.find(
+      (token) =>
+        oakColorTokens[token].toLowerCase() === `#${hex?.toLowerCase()}`,
+    );
+  return Array.from(xml.getElementsByTagNameNS(wordNamespace, "tbl")).map(
+    (table) => {
+      const properties = Array.from(
+        table.getElementsByTagNameNS(wordNamespace, "tc"),
+      )
+        .filter((cell) => cell.closest("tbl") === table)
+        .map((cell) => cell.getElementsByTagNameNS(wordNamespace, "tcPr")[0]);
+      // Mammoth omits continuation cells covered by a vertical merge.
+      const cells = properties
+        .filter((property) => {
+          const merge = property?.getElementsByTagNameNS(
+            wordNamespace,
+            "vMerge",
+          )[0];
+          return (
+            !merge || merge.getAttributeNS(wordNamespace, "val") === "restart"
+          );
+        })
+        .map((property) => {
+          if (!property) return undefined;
+          const shading = property.getElementsByTagNameNS(
+            wordNamespace,
+            "shd",
+          )[0];
+          const background = colourToken(
+            shading?.getAttributeNS(wordNamespace, "fill") ?? null,
+          );
+          const borders = property.getElementsByTagNameNS(
+            wordNamespace,
+            "tcBorders",
+          )[0];
+          const verticalBorder = (side: "left" | "right") => {
+            const border = borders?.getElementsByTagNameNS(
+              wordNamespace,
+              side,
+            )[0];
+            const style = border?.getAttributeNS(wordNamespace, "val");
+            if (!style || style === "nil" || style === "none") return undefined;
+            return colourToken(
+              border?.getAttributeNS(wordNamespace, "color") ?? null,
+            );
+          };
+          const textColours = Array.from(
+            property.parentElement?.getElementsByTagNameNS(
+              wordNamespace,
+              "color",
+            ) ?? [],
+          );
+          return {
+            background,
+            left: verticalBorder("left"),
+            right: verticalBorder("right"),
+            inverted: textColours.some(
+              (colour) =>
+                colour.getAttributeNS(wordNamespace, "val")?.toLowerCase() ===
+                "ffffff",
+            ),
+          };
+        });
+      // Fully shaded heading bands are fills, not outlines around a section.
+      if (cells.length && cells.every((cell) => cell?.background)) {
+        return {
+          cells: cells.map(
+            (cell) =>
+              cell && {
+                background: cell.background,
+                inverted: cell.inverted,
+              },
+          ),
+        };
+      }
+      for (const property of properties) {
+        if (!property) continue;
+        const borders = property.getElementsByTagNameNS(
+          wordNamespace,
+          "tcBorders",
+        )[0];
+        for (const border of Array.from(borders?.children ?? [])) {
+          const style = border.getAttributeNS(wordNamespace, "val");
+          if (!style || style === "nil" || style === "none") continue;
+          const colour = colourToken(
+            border.getAttributeNS(wordNamespace, "color"),
+          );
+          if (colour) return { border: colour, cells };
+        }
+      }
+      return { cells };
+    },
+  );
+}
 
 type Drawing = {
   alt: string;
@@ -65,6 +178,7 @@ export async function prepareMammothImages(arrayBuffer: ArrayBuffer) {
   }
   zip.file("word/document.xml", new XMLSerializer().serializeToString(xml));
   return {
+    sectionBorders: readSectionColours(xml),
     arrayBuffer: await zip.generateAsync({ type: "arraybuffer" }),
     convertImage: Mammoth.images.imgElement(async (image) => {
       const metadata =
@@ -89,9 +203,37 @@ export async function prepareMammothImages(arrayBuffer: ArrayBuffer) {
 }
 
 /** Reunites decorative backgrounds with their heading and linked text. */
-export function restoreMammothCallouts(html: string) {
+export function restoreMammothCallouts(
+  html: string,
+  sectionBorders: SectionStyle[] = [],
+) {
   const root = document.createElement("div");
   root.innerHTML = html;
+  const tables = root.querySelectorAll("table");
+  if (
+    sectionBorders.some((style) => style.border || style.cells.some(Boolean)) &&
+    tables.length !== sectionBorders.length
+  ) {
+    throw new Error("DOCX section tables do not match the converted HTML");
+  }
+  tables.forEach((table, index) => {
+    const style = sectionBorders[index];
+    if (style?.border)
+      table.parentElement?.classList.add(`docx-section-${style.border}`);
+    const cells = Array.from(table.querySelectorAll("td, th")).filter(
+      (cell) => cell.closest("table") === table,
+    );
+    style?.cells.forEach((fill, cellIndex) => {
+      if (!fill) return;
+      const cell = cells[cellIndex];
+      if (!cell)
+        throw new Error("DOCX shaded cell is missing from converted HTML");
+      if (fill.background) cell.classList.add(`docx-fill-${fill.background}`);
+      if (fill.left) cell.classList.add(`docx-border-left-${fill.left}`);
+      if (fill.right) cell.classList.add(`docx-border-right-${fill.right}`);
+      if (fill.inverted) cell.classList.add("docx-text-inverted");
+    });
+  });
   for (const image of Array.from(
     root.querySelectorAll<HTMLImageElement>("img[data-docx-background]"),
   )) {
