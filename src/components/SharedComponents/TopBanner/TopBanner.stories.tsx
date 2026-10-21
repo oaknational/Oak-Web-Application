@@ -1,53 +1,22 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 
-import TopBanner from "./TopBanner";
+import TopBanner, { TopBannerProps } from "./TopBanner";
+import { topBannerFixture } from "./TopBanner.fixture";
 
 import { OakUiRoleToken } from "@/styles/oakThemeApp";
 
-const Component = ({
-  message,
-  ctaText,
-  ctaLink,
-  backgroundColour,
-}: {
-  message: string;
-  ctaText: string;
-  ctaLink: string;
-  backgroundColour: OakUiRoleToken;
-}) => (
-  <TopBanner
-    topBanner={{
-      messagePortableText: [
-        {
-          _key: "message",
-          _type: "block",
-          style: "normal",
-          markDefs: [],
-          children: [
-            {
-              _key: "text",
-              _type: "span",
-              marks: [],
-              text: message,
-            },
-          ],
-        },
-      ],
-      ctaText,
-      ctaLink,
-      backgroundColour,
-    }}
-  />
+const TopBannerPreview = (args: Readonly<TopBannerProps>) => (
+  <TopBanner topBanner={args} />
 );
 
 const meta = {
-  component: Component,
+  component: TopBannerPreview,
   tags: ["autodocs"],
   title: "Components/SharedComponents/TopBanner",
   argTypes: {
-    message: { control: "text" },
-    ctaText: { control: "text" },
-    ctaLink: { control: "text" },
+    messagePortableTextWithPromo: { control: "object" },
+    enabled: { control: "boolean" },
+    cta: { control: "object" },
     backgroundColour: {
       control: "select",
       options: [
@@ -60,16 +29,13 @@ const meta = {
       defaultValue: "bg-decorative1-main",
     },
   },
-} satisfies Meta<typeof Component>;
+} satisfies Meta<typeof TopBannerPreview>;
 
 export default meta;
-type Story = StoryObj<typeof Component>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    message: "Oak is now used in 72% of schools",
-    ctaText: "Explore our impact",
-    ctaLink: "https://www.thenational.academy/about-us/oaks-impact",
-    backgroundColour: "bg-decorative1-main",
+    ...topBannerFixture,
   },
 };
