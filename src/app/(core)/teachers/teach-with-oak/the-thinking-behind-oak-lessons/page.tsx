@@ -18,7 +18,7 @@ import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnal
 
 const ShortReadsPage = () => {
   const breadcrumbs: OakBreadcrumbsProps["breadcrumbs"] = [
-    { text: "Teach With Oak", href: "/teachers/teach-with-oak" },
+    { text: "Teach with Oak", href: "/teachers/teach-with-oak" },
     { text: "The thinking behind Oak lessons" },
   ];
 

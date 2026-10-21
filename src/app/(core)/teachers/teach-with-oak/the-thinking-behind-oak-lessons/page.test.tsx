@@ -76,7 +76,7 @@ describe("The thinking behind Oak lessons page", () => {
       );
 
       expect(
-        breadcrumbs.getByRole("link", { name: "Teach With Oak" }),
+        breadcrumbs.getByRole("link", { name: "Teach with Oak" }),
       ).toHaveAttribute("href", "/teachers/teach-with-oak");
 
       expect(
