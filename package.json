@@ -229,6 +229,7 @@
     "@types/express": "^5.0.6",
     "@types/jest": "^30.0.0",
     "@types/js-cookie": "^3.0.6",
+    "@types/jsdom": "^30.0.0",
     "@types/json-diff": "^1.0.3",
     "@types/lodash": "^4.17.18",
     "@types/micromatch": "^4.0.9",

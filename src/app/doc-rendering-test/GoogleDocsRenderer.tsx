@@ -66,6 +66,7 @@ type Paragraph = {
     namedStyleType?: string;
     headingId?: string;
     direction?: string;
+    shading?: { backgroundColor?: Colour };
   };
   bullet?: { listId?: string; nestingLevel?: number };
 };
@@ -361,6 +362,25 @@ function renderParagraph(paragraph: Paragraph, document: GoogleDocsDocument) {
         (!element.textRun && !element.pageBreak && !element.columnBreak),
     );
   if (!hasContent) return null;
+  const fill = colourHex(paragraph.paragraphStyle?.shading?.backgroundColor);
+  if (fill) {
+    return (
+      <OakBox
+        className="docx-paragraph-fill"
+        $pa="spacing-8"
+        $mb="spacing-12"
+        style={{ backgroundColor: fill }}
+      >
+        {renderParagraph(
+          {
+            ...paragraph,
+            paragraphStyle: { ...paragraph.paragraphStyle, shading: undefined },
+          },
+          document,
+        )}
+      </OakBox>
+    );
+  }
   const props = {
     id: paragraph.paragraphStyle?.headingId,
     dir:

@@ -13,6 +13,14 @@ export const GoogleDocsContent = styled(OakBox)`
     margin-top: 0;
   }
 
+  .docx-paragraph-fill > :first-child {
+    margin-top: 0;
+  }
+
+  .docx-paragraph-fill > :last-child {
+    margin-bottom: 0;
+  }
+
   td > :last-child,
   .docx-callout > :last-child {
     margin-bottom: 0;

@@ -10,7 +10,7 @@ import {
 } from "@oaknational/oak-components";
 import styled, { css } from "styled-components";
 
-export const sectionColours = ["mint", "purple", "teal", "blue"] as const;
+import { sectionColours } from "./mammothStyles";
 
 const fontStyles = (font: Parameters<typeof parseFontSize>[0]) => css`
   font-size: ${parseFontSize(font)};
@@ -126,6 +126,9 @@ export const MammothDocumentPreview = styled(OakBox)`
   .docx-text-inverted {
     color: ${parseColor("text-inverted")};
   }
+  .docx-paragraph-fill {
+    padding: ${parseSpacing("spacing-8")};
+  }
   table {
     width: 100%;
     border-collapse: collapse;
@@ -153,6 +156,27 @@ export const MammothDocumentPreview = styled(OakBox)`
     max-width: 100%;
     height: auto;
     vertical-align: middle;
+  }
+  .docx-labelled-image {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 0;
+  }
+  .docx-labelled-image > img {
+    display: block;
+  }
+  .docx-image-label {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    ${fontStyles("body-3-bold")}
+    color: ${parseColor("text-primary")};
+    white-space: normal;
   }
   .docx-callout {
     padding: ${parseSpacing("spacing-12")};

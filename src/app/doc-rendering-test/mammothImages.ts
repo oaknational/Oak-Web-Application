@@ -2,7 +2,14 @@ import JSZip from "jszip";
 import Mammoth from "mammoth/mammoth.browser";
 import { oakColorTokens } from "@oaknational/oak-components";
 
-import { sectionColours } from "./MammothDocumentPreview";
+import { sectionColours } from "./mammothStyles";
+
+type ConversionDom = {
+  DOMParser: typeof DOMParser;
+  XMLSerializer: typeof XMLSerializer;
+};
+
+type ParagraphFill = { colour: string; inverted: boolean };
 
 const wordDrawingNamespace =
   "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing";
@@ -11,7 +18,11 @@ const wordNamespace =
 const relationshipNamespace =
   "http://schemas.openxmlformats.org/officeDocument/2006/relationships";
 
-async function restoreHeaderHeadings(zip: JSZip, xml: Document) {
+async function restoreHeaderHeadings(
+  zip: JSZip,
+  xml: Document,
+  Parser: typeof DOMParser,
+) {
   const section = xml.getElementsByTagNameNS(wordNamespace, "sectPr")[0];
   const references = Array.from(
     section?.getElementsByTagNameNS(wordNamespace, "headerReference") ?? [],
@@ -36,7 +47,7 @@ async function restoreHeaderHeadings(zip: JSZip, xml: Document) {
   if (!reference) return;
   const relationships = zip.file("word/_rels/document.xml.rels");
   if (!relationships) throw new Error("DOCX is missing document relationships");
-  const relations = new DOMParser().parseFromString(
+  const relations = new Parser().parseFromString(
     await relationships.async("string"),
     "application/xml",
   );
@@ -54,7 +65,7 @@ async function restoreHeaderHeadings(zip: JSZip, xml: Document) {
   ).pathname.slice(1);
   const part = zip.file(path);
   if (!part) throw new Error(`DOCX is missing header part: ${path}`);
-  const header = new DOMParser().parseFromString(
+  const header = new Parser().parseFromString(
     await part.async("string"),
     "application/xml",
   );
@@ -207,6 +218,7 @@ type Drawing = {
   width?: number;
   height?: number;
   background: boolean;
+  labelBackground: boolean;
   pagePosition?: { x: number; y: number };
 };
 
@@ -214,18 +226,68 @@ type Drawing = {
  * Mammoth retains image bytes but discards drawing dimensions and positioning.
  * Temporary alt-text IDs carry that metadata through its image conversion API.
  */
-export async function prepareMammothImages(arrayBuffer: ArrayBuffer) {
+export async function prepareMammothImages(
+  arrayBuffer: ArrayBuffer,
+  dom: ConversionDom = { DOMParser, XMLSerializer },
+) {
   const zip = await JSZip.loadAsync(arrayBuffer);
   const part = zip.file("word/document.xml");
   if (!part) throw new Error("DOCX is missing word/document.xml");
-  const xml = new DOMParser().parseFromString(
+  const xml = new dom.DOMParser().parseFromString(
     await part.async("string"),
     "application/xml",
   );
   if (xml.getElementsByTagName("parsererror").length) {
     throw new Error("DOCX contains invalid document XML");
   }
-  await restoreHeaderHeadings(zip, xml);
+  await restoreHeaderHeadings(zip, xml, dom.DOMParser);
+  const paragraphFills = new Map<string, ParagraphFill>();
+  const bookmarks = Array.from(
+    xml.getElementsByTagNameNS(wordNamespace, "bookmarkStart"),
+  );
+  let bookmarkId = bookmarks.reduce(
+    (max, bookmark) =>
+      Math.max(max, Number(bookmark.getAttributeNS(wordNamespace, "id")) || 0),
+    0,
+  );
+  for (const paragraph of Array.from(
+    xml.getElementsByTagNameNS(wordNamespace, "p"),
+  )) {
+    const properties = Array.from(paragraph.children).find(
+      (node) => node.namespaceURI === wordNamespace && node.localName === "pPr",
+    );
+    const shading = properties?.getElementsByTagNameNS(wordNamespace, "shd")[0];
+    const fill = shading?.getAttributeNS(wordNamespace, "fill");
+    if (
+      !fill ||
+      !/^[a-f0-9]{6}$/i.test(fill) ||
+      shading?.getAttributeNS(wordNamespace, "val") === "nil" ||
+      !Array.from(paragraph.getElementsByTagNameNS(wordNamespace, "t")).some(
+        (node) => node.textContent?.trim(),
+      )
+    )
+      continue;
+    const name = `oak-paragraph-fill-${++bookmarkId}`;
+    paragraphFills.set(name, {
+      colour: `#${fill.toLowerCase()}`,
+      inverted: Array.from(
+        paragraph.getElementsByTagNameNS(wordNamespace, "color"),
+      ).some(
+        (node) =>
+          node.getAttributeNS(wordNamespace, "val")?.toLowerCase() === "ffffff",
+      ),
+    });
+    const start = xml.createElementNS(wordNamespace, "w:bookmarkStart");
+    start.setAttributeNS(wordNamespace, "w:id", String(bookmarkId));
+    start.setAttributeNS(wordNamespace, "w:name", name);
+    const end = xml.createElementNS(wordNamespace, "w:bookmarkEnd");
+    end.setAttributeNS(wordNamespace, "w:id", String(bookmarkId));
+    paragraph.insertBefore(
+      start,
+      properties?.nextSibling ?? paragraph.firstChild,
+    );
+    paragraph.insertBefore(end, start.nextSibling);
+  }
   const drawings = new Map<string, Drawing>();
   const pixels = (value: string | null) => {
     const emu = Number(value);
@@ -266,6 +328,22 @@ export async function prepareMammothImages(arrayBuffer: ArrayBuffer) {
     };
     const x = pageOffset("positionH");
     const y = pageOffset("positionV");
+    const horizontal = anchor?.getElementsByTagNameNS(
+      wordDrawingNamespace,
+      "positionH",
+    )[0];
+    const vertical = anchor?.getElementsByTagNameNS(
+      wordDrawingNamespace,
+      "positionV",
+    )[0];
+    const leftOffset = Number(
+      horizontal?.getElementsByTagNameNS(wordDrawingNamespace, "posOffset")[0]
+        ?.textContent,
+    );
+    const topOffset = Number(
+      vertical?.getElementsByTagNameNS(wordDrawingNamespace, "posOffset")[0]
+        ?.textContent,
+    );
     drawings.set(id, {
       alt:
         properties.getAttribute("descr") ||
@@ -276,12 +354,19 @@ export async function prepareMammothImages(arrayBuffer: ArrayBuffer) {
       background: ["1", "true"].includes(
         anchor?.getAttribute("behindDoc") ?? "",
       ),
+      labelBackground:
+        horizontal?.getAttribute("relativeFrom") === "column" &&
+        vertical?.getAttribute("relativeFrom") === "paragraph" &&
+        Number.isFinite(leftOffset) &&
+        Math.abs(leftOffset) <= 9525 &&
+        topOffset > 0,
       pagePosition: x !== undefined && y !== undefined ? { x, y } : undefined,
     });
     properties.setAttribute("descr", id);
   }
-  zip.file("word/document.xml", new XMLSerializer().serializeToString(xml));
+  zip.file("word/document.xml", new dom.XMLSerializer().serializeToString(xml));
   return {
+    paragraphFills,
     sectionBorders: readSectionColours(xml),
     arrayBuffer: await zip.generateAsync({ type: "arraybuffer" }),
     convertImage: Mammoth.images.imgElement(async (image) => {
@@ -298,6 +383,9 @@ export async function prepareMammothImages(arrayBuffer: ArrayBuffer) {
               ...(metadata.height ? { height: String(metadata.height) } : {}),
               ...(metadata.background
                 ? { "data-docx-background": "true" }
+                : {}),
+              ...(metadata.labelBackground
+                ? { "data-docx-label-background": "true" }
                 : {}),
               ...(metadata.pagePosition && !metadata.background
                 ? {
@@ -316,9 +404,66 @@ export async function prepareMammothImages(arrayBuffer: ArrayBuffer) {
 export function restoreMammothCallouts(
   html: string,
   sectionBorders: SectionStyle[] = [],
+  document: Document = window.document,
+  paragraphFills: ReadonlyMap<string, ParagraphFill> = new Map(),
 ) {
   const root = document.createElement("div");
   root.innerHTML = html;
+  const restoredFills = new Set<string>();
+  for (const bookmark of Array.from(root.querySelectorAll("a[id]"))) {
+    const name = Array.from(paragraphFills.keys()).find(
+      (key) => bookmark.id === key || bookmark.id.endsWith(`-${key}`),
+    );
+    if (!name) continue;
+    const paragraph = bookmark.closest("p, h1, h2, h3, h4, h5, h6, li");
+    if (!paragraph)
+      throw new Error("DOCX shaded paragraph is missing from converted HTML");
+    const { colour: fill, inverted } = paragraphFills.get(name)!;
+    if (!/^#[a-f0-9]{6}$/i.test(fill))
+      throw new Error("Invalid DOCX paragraph fill");
+    paragraph.classList.add("docx-paragraph-fill");
+    if (inverted) paragraph.classList.add("docx-text-inverted");
+    const token = sectionColours.find(
+      (colour) => oakColorTokens[colour] === fill,
+    );
+    if (token) paragraph.classList.add(`docx-fill-${token}`);
+    else paragraph.setAttribute("style", `background-color: ${fill}`);
+    bookmark.remove();
+    restoredFills.add(name);
+  }
+  if (restoredFills.size !== paragraphFills.size) {
+    throw new Error("DOCX paragraph fills do not match the converted HTML");
+  }
+  for (const heading of Array.from(
+    root.querySelectorAll(".docx-paragraph-fill"),
+  )) {
+    const label = heading.nextElementSibling;
+    if (
+      !label?.matches("p") ||
+      !/^[A-Z]$/.test(label.textContent?.trim() ?? "")
+    )
+      continue;
+    const images = [
+      ...heading.querySelectorAll<HTMLImageElement>(
+        "img[data-docx-label-background]",
+      ),
+      ...label.querySelectorAll<HTMLImageElement>(
+        "img[data-docx-label-background]",
+      ),
+    ];
+    if (images.length !== 1) continue;
+    const image = images[0]!;
+    const book = document.createElement("span");
+    book.className = "docx-labelled-image";
+    delete image.dataset.docxLabelBackground;
+    book.append(image);
+    const letter = document.createElement("span");
+    letter.className = "docx-image-label";
+    letter.append(...Array.from(label.childNodes));
+    book.append(letter);
+    label.classList.add("docx-section-label");
+    label.append(book);
+  }
   const tables = root.querySelectorAll("table");
   if (
     sectionBorders.some((style) => style.border || style.cells.some(Boolean)) &&
@@ -367,7 +512,9 @@ export function restoreMammothCallouts(
     if (!/^data:image\/[a-z0-9.+-]+;base64,[a-z0-9+/=]+$/i.test(src)) continue;
     const callout = document.createElement("div");
     callout.className = "docx-callout";
-    callout.style.backgroundImage = `url("${src}")`;
+    // JSDOM's CSS parser drops these data-URI backgrounds; the source is
+    // restricted to base64 image bytes above and sanitized after conversion.
+    callout.setAttribute("style", `background-image: url("${src}")`);
     // Preserve bookmark targets belonging to the original background paragraph.
     for (const bookmark of Array.from(paragraph.querySelectorAll("a[id]"))) {
       callout.append(bookmark);

@@ -9,13 +9,9 @@ import { useState } from "react";
 
 import { MammothJs } from "./MammothJs";
 import { GoogleDocsApi } from "./GoogleDocsApi";
+import { fileIds, type ResourceFile } from "./documentIds";
 
-export type ResourceFile = "eyfs" | "pe-guide" | "additional-materials";
-const fileIds: Record<ResourceFile, string> = {
-  eyfs: "1UgwlbRRUAjdLMsbOTdX56GI3bkHtECOEUFoggk22Rks",
-  "additional-materials": "1O8iiffZd4NJIq2jnAnebkHB-ONBsPGpLLTSBX90x84E",
-  "pe-guide": "1fDlNhHLHmmXobjp2MOGurojAuMjypllFjGnFE0AAtKs",
-};
+export type { ResourceFile } from "./documentIds";
 
 export const TestView = () => {
   const [activeDocument, setActiveDocument] = useState<ResourceFile>("eyfs");

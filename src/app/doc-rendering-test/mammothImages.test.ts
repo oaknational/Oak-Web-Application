@@ -8,6 +8,95 @@ const wordNamespace =
 const relationshipNamespace =
   "http://schemas.openxmlformats.org/officeDocument/2006/relationships";
 
+describe("section label images", () => {
+  const image =
+    '<img src="book.png" width="40" height="26" data-docx-label-background="true">';
+
+  it.each(["header", "label"])(
+    "places a book anchored to the %s below the shaded header with its letter on the left page",
+    (anchor) => {
+      const root = document.createElement("div");
+      root.innerHTML = restoreMammothCallouts(
+        `<p class="docx-paragraph-fill">Section${anchor === "header" ? image : ""}</p>
+         <p><strong> A</strong>${anchor === "label" ? image : ""}</p><p>Narrative</p>`,
+      );
+      const header = root.querySelector(".docx-paragraph-fill");
+      const label = header?.nextElementSibling;
+      expect(header?.querySelector("img")).toBeNull();
+      expect(label).toHaveClass("docx-section-label");
+      expect(
+        label?.querySelector(".docx-labelled-image > img"),
+      ).toHaveAttribute("width", "40");
+      expect(label?.querySelector(".docx-image-label")).toHaveTextContent("A");
+      expect(
+        label?.querySelector(".docx-image-label strong"),
+      ).toBeInTheDocument();
+      expect(root.querySelectorAll("img")).toHaveLength(1);
+      expect(root.querySelector("[data-docx-label-background]")).toBeNull();
+      expect(root).toHaveTextContent("Narrative");
+    },
+  );
+
+  it("does not move unrelated inline images or infer labels from narrative text", () => {
+    const html = `<p class="docx-paragraph-fill">Section${image}</p><p>A paragraph of narrative</p>`;
+    const root = document.createElement("div");
+    root.innerHTML = restoreMammothCallouts(html);
+    expect(root.querySelector(".docx-paragraph-fill img")).toBeInTheDocument();
+    expect(root.querySelector(".docx-labelled-image")).toBeNull();
+  });
+});
+
+describe("paragraph shading", () => {
+  it("preserves Oak and custom source fills without changing paragraph semantics", async () => {
+    const zip = new JSZip();
+    zip.file(
+      "word/document.xml",
+      `<w:document xmlns:w="${wordNamespace}"><w:body>
+        <w:p><w:pPr><w:shd w:fill="7F5DD3" w:val="clear"/></w:pPr>
+          <w:r><w:rPr><w:color w:val="FFFFFF"/></w:rPr><w:t>Custom purple</w:t></w:r>
+        </w:p>
+        <w:p><w:pPr><w:shd w:fill="037b7d"/></w:pPr><w:r><w:t>Oak teal</w:t></w:r></w:p>
+        <w:p><w:pPr><w:shd w:fill="auto"/></w:pPr><w:r><w:t>No fill</w:t></w:r></w:p>
+        <w:p><w:pPr><w:shd w:fill="374cf1" w:val="nil"/></w:pPr><w:r><w:t>Disabled fill</w:t></w:r></w:p>
+        <w:p><w:pPr><w:shd w:fill="FFFFFF"/></w:pPr><w:r><w:t> </w:t></w:r></w:p>
+      </w:body></w:document>`,
+    );
+    const prepared = await prepareMammothImages(
+      await zip.generateAsync({ type: "arraybuffer" }),
+    );
+    const converted = await Mammoth.convertToHtml(
+      { arrayBuffer: prepared.arrayBuffer },
+      { idPrefix: "mammoth-" },
+    );
+    const root = document.createElement("div");
+    root.innerHTML = restoreMammothCallouts(
+      converted.value,
+      prepared.sectionBorders,
+      document,
+      prepared.paragraphFills,
+    );
+    expect(prepared.paragraphFills.size).toBe(2);
+    expect(root.querySelectorAll("p.docx-paragraph-fill")).toHaveLength(2);
+    expect(root.querySelector("p")).toHaveStyle({ backgroundColor: "#7f5dd3" });
+    expect(root.querySelector("p")).toHaveClass("docx-text-inverted");
+    expect(root.querySelector(".docx-fill-teal")).toHaveTextContent("Oak teal");
+    expect(root.querySelector('a[id*="oak-paragraph-fill"]')).toBeNull();
+    expect(root).toHaveTextContent("No fill");
+    expect(root).toHaveTextContent("Disabled fill");
+  });
+
+  it("reports missing conversion markers rather than dropping source fills", () => {
+    expect(() =>
+      restoreMammothCallouts(
+        "<p>Text</p>",
+        [],
+        document,
+        new Map([["missing", { colour: "#037b7d", inverted: false }]]),
+      ),
+    ).toThrow("DOCX paragraph fills do not match");
+  });
+});
+
 async function headerDocument(firstPage: boolean) {
   const zip = new JSZip();
   zip.file(

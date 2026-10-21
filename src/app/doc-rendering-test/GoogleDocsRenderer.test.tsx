@@ -88,8 +88,11 @@ describe("GoogleDocsRenderer", () => {
 
   it.each([
     { document: peGuide, heading: "Front crawl over increasing distance" },
-    { document: additionalMaterials, heading: "Getting ready to swim" },
-    { document: eyfs, heading: "One more than a number to 5" },
+    {
+      document: additionalMaterials,
+      heading: "Owain Glyndwr, Prince of Wales",
+    },
+    { document: eyfs, heading: "Lorem Ipsum" },
   ])(
     "renders the first-page header title once: $heading",
     ({ document, heading }) => {
@@ -221,34 +224,25 @@ describe("GoogleDocsRenderer", () => {
     });
   });
 
-  it("renders additional-materials heading bands with fills and white text, not outlines", () => {
+  it("renders additional-materials paragraph shading with source colours and white text", () => {
     const { container } = render(
       <GoogleDocsRenderer document={additionalMaterials} />,
     );
-    expect(container.querySelector(".docx-fill-teal")).toHaveTextContent(
-      "Expectations and ground rules",
-    );
-    expect(container.querySelector(".docx-fill-blue")).toHaveTextContent(
-      "Entries, exits and regaining standing",
-    );
-    expect(
-      container.querySelector(".docx-fill-teal .docx-text-inverted"),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector(".docx-fill-blue .docx-text-inverted"),
-    ).toBeInTheDocument();
+    for (const [text, colour] of [
+      ["Owain’s uprising", "#7f5dd3"],
+      ["Further success", "#037b7d"],
+      ["The English fight back", "#374cf1"],
+    ] as const) {
+      const band = screen.getByText(text).closest(".docx-paragraph-fill");
+      expect(band).toHaveStyle({ backgroundColor: colour });
+      expect(band?.querySelector(".docx-text-inverted")).toBeInTheDocument();
+    }
+    expect(container.querySelectorAll(".docx-paragraph-fill")).toHaveLength(3);
     expect(
       container.querySelector(
         '[class*="docx-section-"], [class*="docx-border-"]',
       ),
     ).toBeNull();
-    const second = screen.getByText(/2 short blasts:/);
-    const list = second.closest("ul");
-    expect(second.closest("h3")).toBeNull();
-    expect(second.closest("strong")).toBeNull();
-    expect(list?.children).toHaveLength(4);
-    expect(list?.children[0]).toHaveTextContent("1 short whistle blast:");
-    expect(list?.children[3]).toHaveTextContent("1 long blast:");
   });
 
   it("ignores zero-width borders even if their colours match an Oak token", () => {
