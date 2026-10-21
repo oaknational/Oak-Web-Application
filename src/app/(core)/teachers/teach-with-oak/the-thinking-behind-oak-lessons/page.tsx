@@ -25,10 +25,9 @@ const ShortReadsPage = () => {
       programmeState={null}
       accessLevel="homepage"
     >
-      <OakMaxWidth>
+      <OakMaxWidth $ml={["spacing-16", "spacing-0", "spacing-0"]}>
         <OakFlex
           $pt={["spacing-16"]}
-          $ml={["spacing-16", "spacing-0", "spacing-0"]}
           $maxWidth={[null, "spacing-640", "spacing-640"]}
         >
           <OakBreadcrumbs breadcrumbs={breadcrumbs} />
@@ -36,10 +35,11 @@ const ShortReadsPage = () => {
       </OakMaxWidth>
       <OakFlex
         $display={["block", "block", "none"]}
-        $pv={"spacing-24"}
+        $pt={"spacing-24"}
+        $pb={"spacing-48"}
         $ml={["spacing-16", "spacing-0", "spacing-0"]}
       >
-        <OakMaxWidth>
+        <OakMaxWidth $mh={"spacing-0"}>
           <OakTertiaryOLNav
             items={[
               { title: "Explanation", href: "#explanation" },
@@ -56,7 +56,10 @@ const ShortReadsPage = () => {
           />
         </OakMaxWidth>
       </OakFlex>
-      <OakMaxWidth $height={"auto"}>
+      <OakMaxWidth
+        $height={"auto"}
+        $ml={["spacing-16", "spacing-0", "spacing-0"]}
+      >
         <OakGrid $mt={"spacing-48"} $position={"relative"}>
           <OakGridArea
             $colSpan={[12, 3]}
@@ -98,7 +101,11 @@ const ShortReadsPage = () => {
                 $width={"100%"}
                 $flexDirection={"column"}
               >
-                <OakHeading $font="heading-2" tag="h1" $mb={"spacing-48"}>
+                <OakHeading
+                  $font={["heading-4", "heading-3", "heading-2"]}
+                  tag="h1"
+                  $mb={"spacing-48"}
+                >
                   The thinking behind Oak lessons
                 </OakHeading>
                 <OakP $mb={"spacing-48"}>
@@ -106,7 +113,7 @@ const ShortReadsPage = () => {
                   make the most of them in your classroom.
                 </OakP>
                 <OakHeading
-                  $font="heading-4"
+                  $font={["heading-5", "heading-4", "heading-4"]}
                   tag="h2"
                   $mb={"spacing-32"}
                   id="explanation"
@@ -118,7 +125,11 @@ const ShortReadsPage = () => {
                   our design, with questions to help you reflect on what this
                   means for your classroom.
                 </OakP>
-                <OakHeading $font="heading-6" tag="h3" $mb={"spacing-16"}>
+                <OakHeading
+                  $font={["heading-7", "heading-6", "heading-6"]}
+                  tag="h3"
+                  $mb={"spacing-16"}
+                >
                   What?
                 </OakHeading>
                 <OakP $mb={"spacing-32"}>
@@ -126,7 +137,11 @@ const ShortReadsPage = () => {
                   knowledge to pupils and connects it with what they already
                   know.
                 </OakP>
-                <OakHeading $font="heading-6" tag="h3" $mb={"spacing-16"}>
+                <OakHeading
+                  $font={["heading-7", "heading-6", "heading-6"]}
+                  tag="h3"
+                  $mb={"spacing-16"}
+                >
                   Why?
                 </OakHeading>
                 <OakP $mb={"spacing-32"}>
@@ -134,7 +149,7 @@ const ShortReadsPage = () => {
                   manageable, helping pupils build secure understanding.
                 </OakP>
                 <OakHeading
-                  $font="heading-4"
+                  $font={["heading-5", "heading-4", "heading-4"]}
                   tag="h2"
                   $mb={"spacing-32"}
                   id="check-for-understanding"
@@ -142,7 +157,7 @@ const ShortReadsPage = () => {
                   Check for understanding in a nutshell
                 </OakHeading>
                 <OakHeading
-                  $font="heading-4"
+                  $font={["heading-5", "heading-4", "heading-4"]}
                   tag="h2"
                   $mb={"spacing-32"}
                   id="practice"
@@ -150,7 +165,7 @@ const ShortReadsPage = () => {
                   Practice in a nutshell
                 </OakHeading>
                 <OakHeading
-                  $font="heading-4"
+                  $font={["heading-5", "heading-4", "heading-4"]}
                   tag="h2"
                   $mb={"spacing-32"}
                   id="feedback"
