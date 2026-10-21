@@ -25,21 +25,28 @@ const ShortReadsPage = () => {
       programmeState={null}
       accessLevel="homepage"
     >
-      <OakMaxWidth $ml={["spacing-16", "auto", "auto"]}>
+      <OakMaxWidth $ph={["spacing-16", "spacing-12", "spacing-12"]}>
         <OakFlex
           $pt={["spacing-16"]}
-          $maxWidth={[null, "spacing-640", "spacing-640"]}
+          $width={"100%"}
+          $maxWidth={["100%", "spacing-640", "100%"]}
+          $mh={["spacing-0", "auto", "spacing-0"]}
         >
           <OakBreadcrumbs breadcrumbs={breadcrumbs} />
         </OakFlex>
       </OakMaxWidth>
-      <OakFlex
-        $display={["block", "block", "none"]}
-        $pt={"spacing-24"}
-        $pb={"spacing-24"}
-        $ml={["spacing-16", "spacing-0", "spacing-0"]}
+      <OakMaxWidth
+        $display={["flex", "flex", "none"]}
+        $ph={["spacing-16", "spacing-12", "spacing-12"]}
       >
-        <OakMaxWidth $mh={"spacing-0"}>
+        <OakFlex
+          $flexDirection={"column"}
+          $pt="spacing-24"
+          $pb="spacing-24"
+          $width={"100%"}
+          $maxWidth={["100%", "spacing-640", "spacing-640"]}
+          $mh="auto"
+        >
           <OakHeading
             id="short-read-contents-mobile"
             tag="h2"
@@ -61,9 +68,12 @@ const ShortReadsPage = () => {
             aria-labelledby="short-read-contents-mobile"
             anchorTarget={"the-thinking-behind-oak-lessons-contents"}
           />
-        </OakMaxWidth>
-      </OakFlex>
-      <OakMaxWidth $height={"auto"} $ml={["spacing-16", "auto", "auto"]}>
+        </OakFlex>
+      </OakMaxWidth>
+      <OakMaxWidth
+        $height={"auto"}
+        $ph={["spacing-16", "spacing-12", "spacing-12"]}
+      >
         <OakGrid $mt={"spacing-32"} $position={"relative"}>
           <OakGridArea
             $colSpan={[12, 3]}
@@ -104,7 +114,7 @@ const ShortReadsPage = () => {
             <OakFlex
               $width={"100%"}
               $flexDirection={"column"}
-              $alignItems={["flex-start", "flex-start", "center"]}
+              $alignItems={["flex-start", "center", "center"]}
             >
               <OakFlex
                 $minWidth={[null, null, "spacing-640"]}
