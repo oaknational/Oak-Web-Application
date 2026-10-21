@@ -53,6 +53,7 @@ export default function TopBanner({
             $alignItems={"center"}
             $gap={["spacing-0", "spacing-4"]}
             $minWidth={["fit-content"]}
+            $textAlign="center"
           >
             {messagePortableTextWithPromo && (
               <PortableTextWithDefaults
