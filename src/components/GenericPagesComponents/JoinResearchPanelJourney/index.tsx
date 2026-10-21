@@ -26,7 +26,7 @@ export default function JoinResearchPanelJourney({
   title,
   steps,
   button,
-}: JoinResearchPanelJourneyProps) {
+}: Readonly<JoinResearchPanelJourneyProps>) {
   return (
     <OakFlex
       $pv={["spacing-56", "spacing-80", "spacing-80"]}
@@ -59,7 +59,7 @@ export default function JoinResearchPanelJourney({
                 {steps.map((step, stepIndex) => {
                   return (
                     <OakFlex
-                      key={stepIndex}
+                      key={step.title}
                       $alignItems={"flex-start"}
                       $flexDirection={"column"}
                       $gap={"spacing-24"}
