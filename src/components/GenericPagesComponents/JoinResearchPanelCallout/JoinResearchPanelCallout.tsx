@@ -7,20 +7,20 @@ import AboutUsInfoCard from "../AboutUsInfoCard";
 import { JoinResearchPanelPageBlock } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
+const calloutPortableTextComponents: PortableTextComponents = {
+  block: {
+    normal: (props) => (
+      <OakP $font="heading-light-6" $mt="spacing-16">
+        {props.children}
+      </OakP>
+    ),
+  },
+};
+
 export default function JoinResearchPanelCallout({
   title,
   items,
 }: JoinResearchPanelPageBlock<"JoinResearchPanelPageCallout">) {
-  const calloutPortableTextComponents: PortableTextComponents = {
-    block: {
-      normal: (props) => (
-        <OakP $font="heading-light-6" $mt="spacing-16">
-          {props.children}
-        </OakP>
-      ),
-    },
-  };
-
   return (
     <OakFlex
       $background="bg-decorative3-very-subdued"
