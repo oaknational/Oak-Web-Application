@@ -33,7 +33,12 @@ export const joinResearchPanelCalloutBlockFixture: JoinResearchPanelPageBlock<"J
             url: "https://cdn.sanity.io/images/cuvjke51/production/0123c8cd16c86e1095af18a8f65d427d1c8dd2f9-80x80.svg",
           },
         },
-        bodyRaw: portableTextFromString("Join the research panel callout"),
+        bodyRaw: [
+          {
+            ...portableTextFromString("Join the research panel callout")[0],
+            _key: "key0001",
+          },
+        ],
       },
       {
         icon: {
@@ -42,7 +47,12 @@ export const joinResearchPanelCalloutBlockFixture: JoinResearchPanelPageBlock<"J
             url: "https://cdn.sanity.io/images/cuvjke51/production/b5ee98bf752dff246de88f50ad59e07131902189-80x80.svg",
           },
         },
-        bodyRaw: portableTextFromString("Join the research panel callout"),
+        bodyRaw: [
+          {
+            ...portableTextFromString("Join the research panel callout")[0],
+            _key: "key0002",
+          },
+        ],
       },
       {
         icon: {
@@ -51,7 +61,12 @@ export const joinResearchPanelCalloutBlockFixture: JoinResearchPanelPageBlock<"J
             url: "https://cdn.sanity.io/images/cuvjke51/production/8d46237f90341dc2f1ef9f99db370a97e3d014d9-72x54.svg",
           },
         },
-        bodyRaw: portableTextFromString("Join the research panel callout"),
+        bodyRaw: [
+          {
+            ...portableTextFromString("Join the research panel callout")[0],
+            _key: "key0003",
+          },
+        ],
       },
     ],
   };
