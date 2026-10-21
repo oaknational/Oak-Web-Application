@@ -40,9 +40,12 @@ export default function JoinResearchPanelCallout({
             $flexDirection={["column", "row"]}
           >
             {items.map((item) => (
-              <OakLI $listStyle={"none"} $display={"flex"}>
+              <OakLI
+                $listStyle={"none"}
+                $display={"flex"}
+                key={item.bodyRaw[0]._key}
+              >
                 <AboutUsInfoCard
-                  key={item.icon.altText}
                   icon={item.icon}
                   background="bg-primary"
                   iconHeight="spacing-80"
