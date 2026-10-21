@@ -609,14 +609,101 @@ exports[`Teachers Page Page component renders 1`] = `
             role="banner"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd kVvJoS gbgSUZ"
+              class="sc-bdvwhi sc-gsDMPd cKHYVb gbgSUZ"
             >
               <div
                 class="sc-bdvwhi sc-gsDMPd cGNkYI exciDE"
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd hhNAar jnKJpK"
-                />
+                >
+                  <p
+                    class="sc-hGPAwl eHjwIi"
+                  >
+                    Oak is now used in 
+                    <span
+                      style="display: inline-block; transform: rotate(-1.5deg); padding: 4px 8px; background: conic-gradient(from 90deg at 50% 50%, #BEF2BD 97.20000386238098deg, #F6E8A0 284.40000772476196deg, #B0E2DE 360deg);"
+                    >
+                      <strong
+                        class="sc-dkPwfY fgmEIT"
+                      >
+                        72%
+                      </strong>
+                    </span>
+                     of schools!
+                  </p>
+                </div>
+                <div
+                  class="sc-bdvwhi sc-gsDMPd sc-ksdwth gyHFon Bakex fnQopp"
+                >
+                  <a
+                    class="sc-eCIkAO sc-bqiQyc fqeNIm iKPRnI"
+                    href="/about-us/oaks-impact"
+                    title="Explore our impact"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd fiFqxI fzOhMJ"
+                    >
+                      <span
+                        class="sc-dkPwfY hmZYGI"
+                      >
+                        <span
+                          class="sc-dkPwfY cSKbCa"
+                        >
+                          Explore our impact
+                        </span>
+                      </span>
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd jGKTIi gbgSUZ icon-container"
+                      >
+                        <div
+                          class="sc-bdvwhi jWxyY"
+                        >
+                          <span
+                            class="sc-bdvwhi hLzDmG shadow"
+                          >
+                            <img
+                              alt=""
+                              class="sc-jRQBiJ gNTPxL"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
+                          </span>
+                          <span
+                            class="sc-bdvwhi cLfKlK highlight"
+                          >
+                            <img
+                              alt=""
+                              class="sc-jRQBiJ jkAeRD"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
+                          </span>
+                          <span
+                            class="sc-bdvwhi cERAFe"
+                            data-icon-for="button"
+                          >
+                            <img
+                              alt=""
+                              class="sc-jRQBiJ hUAHnf"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
