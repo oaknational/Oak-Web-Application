@@ -1,35 +1,7 @@
 import TopBanner from "./TopBanner";
+import { topBannerFixture } from "./TopBanner.fixture";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-
-// to do - put in fixture
-// to do - example with promo tag
-const topBannerFixture = {
-  messagePortableTextWithPromo: [
-    {
-      _key: "967be59f8853",
-      _type: "block",
-      children: [
-        {
-          _key: "24221de4ae210",
-          _type: "span",
-          marks: [],
-          text: "Oak is now used in 72% of schools",
-        },
-      ],
-      markDefs: [],
-      style: "normal",
-    },
-  ],
-  enabled: true,
-  cta: {
-    label: "Explore our impact",
-    linkType: "external" as const,
-    external: "https://www.google.com/",
-    internal: "/about-us/oaks-impact",
-  },
-  backgroundColour: "bg-decorative1-main" as const,
-};
 
 describe("TopBanner", () => {
   it("should render the top banner component correctly", () => {
@@ -41,11 +13,13 @@ describe("TopBanner", () => {
     expect(banner).toBeInTheDocument();
     expect(banner).toMatchSnapshot();
 
-    const message = getByText("Oak is now used in 72% of schools");
+    const message = getByText("Oak is now used in of schools!");
+    const promoTag = getByText("72%");
     expect(banner).toContainElement(message);
+    expect(banner).toContainElement(promoTag);
 
     const link = getByRole("link");
-    expect(link).toHaveAttribute("href", "https://www.google.com/");
+    expect(link).toHaveAttribute("href", "/about-us/oaks-impact");
     expect(link).toHaveAttribute("title", "Explore our impact");
 
     const backgroundColourAsRgb = "rgb(190, 242, 189)";
@@ -54,18 +28,22 @@ describe("TopBanner", () => {
     );
   });
 
-  it("should render an internal link correctly", () => {
-    const internalTopBannerFixture = {
+  it("should render an external link correctly", () => {
+    const externalTopBannerFixture = {
       ...topBannerFixture,
-      cta: { ...topBannerFixture.cta, linkType: "internal" as const },
+      cta: {
+        label: "Explore our impact",
+        linkType: "external" as const,
+        external: "https://www.google.com/",
+      },
     };
 
     const { getByRole } = renderWithProviders()(
-      <TopBanner topBanner={internalTopBannerFixture} />,
+      <TopBanner topBanner={externalTopBannerFixture} />,
     );
 
     const link = getByRole("link");
-    expect(link).toHaveAttribute("href", "/about-us/oaks-impact");
+    expect(link).toHaveAttribute("href", "https://www.google.com/");
   });
 
   it("should not render the message text if not provided", () => {
@@ -75,7 +53,7 @@ describe("TopBanner", () => {
       />,
     );
 
-    const message = queryByText("Oak is now used in 72% of schools");
+    const message = queryByText("Oak is now used in of schools!");
     expect(message).not.toBeInTheDocument();
   });
 

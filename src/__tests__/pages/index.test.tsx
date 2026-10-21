@@ -3,6 +3,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
 import { BlogPostPreview, WebinarPreview } from "@/common-lib/cms-types";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+import { topBannerFixture } from "@/components/SharedComponents/TopBanner/TopBanner.fixture";
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 
 const render = renderWithProviders();
@@ -30,32 +31,7 @@ const props: HomePageProps = {
   pageData: {
     heading: "",
     id: "",
-    topBanner: {
-      messagePortableTextWithPromo: [
-        {
-          _key: "967be59f8853",
-          _type: "block",
-          children: [
-            {
-              _key: "24221de4ae210",
-              _type: "span",
-              marks: [],
-              text: "Oak is now used in 72% of schools",
-            },
-          ],
-          markDefs: [],
-          style: "normal",
-        },
-      ],
-      enabled: true,
-      cta: {
-        label: "Explore our impact",
-        linkType: "internal",
-        external: "https://www.google.com/",
-        internal: "/about-us/oaks-impact",
-      },
-      backgroundColour: "bg-decorative1-main",
-    },
+    topBanner: topBannerFixture,
     summaryPortableText: [],
     campaignPromoBanner: {
       headingPortableTextWithPromo: [],
