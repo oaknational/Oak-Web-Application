@@ -99,7 +99,7 @@ jobs:
 
       - name: Check Chrome matches Puppeteer
         run: |
-          expected=$(node -p "require('puppeteer-core/lib/cjs/puppeteer/revisions.js').PUPPETEER_REVISIONS.chrome.split('.')[0]")
+          expected=$(node -p "require('puppeteer').PUPPETEER_REVISIONS.chrome.split('.')[0]")
           actual=$(/usr/bin/google-chrome --version | grep -oE '[0-9]+' | head -1)
           echo "Puppeteer expects Chrome $expected, runner has Chrome $actual"
           if [ "$expected" != "$actual" ]; then
@@ -111,7 +111,7 @@ jobs:
 
       - name: Check Chrome matches Puppeteer
         run: |
-          expected=$(node -p "require('puppeteer-core/lib/cjs/puppeteer/revisions.js').PUPPETEER_REVISIONS.chrome.split('.')[0]")
+          expected=$(node -p "require('puppeteer').PUPPETEER_REVISIONS.chrome.split('.')[0]")
           actual=$(/usr/bin/google-chrome --version | grep -oE '[0-9]+' | head -1)
           echo "Puppeteer expects Chrome $expected, runner has Chrome $actual"
           if [ "$expected" != "$actual" ]; then
