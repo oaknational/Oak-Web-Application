@@ -17,28 +17,16 @@ describe("GuidingPrinciples", () => {
         $background="bg-primary"
         accentColor="bg-decorative4-subdued"
         principles={testPrinciples}
+        title="TEST_TITLE"
+        text="TEST_TEXT"
       />,
     );
     expect(baseElement).toMatchSnapshot();
 
-    expect(getByRole("heading", { level: 2 })).toHaveTextContent(
-      "Our guiding principles",
-    );
+    expect(getByRole("heading", { level: 2 })).toHaveTextContent("TEST_TITLE");
 
     const headingEls = getAllByRole("heading", { level: 3 });
     expect(headingEls).toHaveLength(3);
-  });
-
-  it("renders default principles when none are provided", () => {
-    const { getAllByRole } = render(
-      <GuidingPrinciples
-        $background="bg-primary"
-        accentColor="bg-decorative4-subdued"
-      />,
-    );
-    const headingEls = getAllByRole("heading", { level: 3 });
-    expect(headingEls).toHaveLength(6);
-    expect(headingEls[0]).toHaveTextContent("Evidence-informed");
   });
 
   it("renders nothing when principles is an empty array", () => {
@@ -47,6 +35,8 @@ describe("GuidingPrinciples", () => {
         $background="bg-primary"
         accentColor="bg-decorative4-subdued"
         principles={[]}
+        title="TEST_TITLE"
+        text="TEST_TEXT"
       />,
     );
     expect(container.innerHTML).toBe("");
@@ -60,6 +50,8 @@ describe("GuidingPrinciples", () => {
         principles={testPrinciples}
         imageUrl="https://cdn.sanity.io/images/test.png"
         imageAlt="CMS image"
+        title="TEST_TITLE"
+        text="TEST_TEXT"
       />,
     );
     const img = baseElement.querySelector("img");
