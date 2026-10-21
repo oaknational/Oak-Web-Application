@@ -36,10 +36,18 @@ const ShortReadsPage = () => {
       <OakFlex
         $display={["block", "block", "none"]}
         $pt={"spacing-24"}
-        $pb={"spacing-48"}
+        $pb={"spacing-24"}
         $ml={["spacing-16", "spacing-0", "spacing-0"]}
       >
         <OakMaxWidth $mh={"spacing-0"}>
+          <OakHeading
+            id="short-read-contents-mobile"
+            tag="h2"
+            $font="heading-light-7"
+            $mb={"spacing-24"}
+          >
+            Contents
+          </OakHeading>
           <OakTertiaryOLNav
             items={[
               { title: "Explanation", href: "#explanation" },
@@ -50,8 +58,7 @@ const ShortReadsPage = () => {
               { title: "Practice", href: "#practice" },
               { title: "Feedback", href: "#feedback" },
             ]}
-            ariaLabel="Contents"
-            title={"Contents"}
+            aria-labelledby="short-read-contents-mobile"
             anchorTarget={"the-thinking-behind-oak-lessons-contents"}
           />
         </OakMaxWidth>
@@ -60,7 +67,7 @@ const ShortReadsPage = () => {
         $height={"auto"}
         $ml={["spacing-16", "spacing-0", "spacing-0"]}
       >
-        <OakGrid $mt={"spacing-48"} $position={"relative"}>
+        <OakGrid $mt={"spacing-32"} $position={"relative"}>
           <OakGridArea
             $colSpan={[12, 3]}
             $alignSelf={"start"}
@@ -69,6 +76,14 @@ const ShortReadsPage = () => {
             $display={["none", "none", "block"]}
             $maxWidth={[null, "spacing-640", "spacing-640"]}
           >
+            <OakHeading
+              id="short-read-contents"
+              tag="h2"
+              $font="heading-light-7"
+              $mb={"spacing-24"}
+            >
+              Contents
+            </OakHeading>
             <OakTertiaryOLNav
               items={[
                 { title: "Explanation", href: "#explanation" },
@@ -79,8 +94,7 @@ const ShortReadsPage = () => {
                 { title: "Practice", href: "#practice" },
                 { title: "Feedback", href: "#feedback" },
               ]}
-              ariaLabel="Contents"
-              title={"Contents"}
+              aria-labelledby="short-read-contents"
               anchorTarget={"the-thinking-behind-oak-lessons-contents"}
             />
           </OakGridArea>
