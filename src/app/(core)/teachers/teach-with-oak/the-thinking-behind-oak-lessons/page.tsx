@@ -31,11 +31,13 @@ const ShortReadsPage = () => {
       programmeState={null}
       accessLevel="teach_with_oak"
     >
-      <OakMaxWidth $ph={["spacing-16", "spacing-12", "spacing-12"]}>
-        <OakFlex $pt={"spacing-16"} $mh={"spacing-0"}>
-          <OakBreadcrumbs breadcrumbs={breadcrumbs} />
-        </OakFlex>
-      </OakMaxWidth>
+      <OakFlex
+        $pt={"spacing-24"}
+        $ml={["spacing-16", "spacing-12", "spacing-12"]}
+        $pb={["spacing-48", "spacing-48", "spacing-72"]}
+      >
+        <OakBreadcrumbs breadcrumbs={breadcrumbs} />
+      </OakFlex>
       <OakMaxWidth
         $display={["flex", "flex", "none"]}
         $ph={["spacing-16", "spacing-12", "spacing-12"]}
@@ -75,7 +77,7 @@ const ShortReadsPage = () => {
         $height={"auto"}
         $ph={["spacing-16", "spacing-12", "spacing-12"]}
       >
-        <OakGrid $mt={"spacing-32"} $position={"relative"}>
+        <OakGrid $position={"relative"}>
           <OakGridArea
             $colSpan={[12, 3]}
             $alignSelf={"start"}
