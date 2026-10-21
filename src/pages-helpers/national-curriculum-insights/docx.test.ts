@@ -17,6 +17,45 @@ if (!science) {
 }
 
 describe("National Curriculum Insights documents", () => {
+  it("includes every checklist item in editorial order", async () => {
+    const subject = {
+      ...science,
+      tabs: science.tabs.map((tab) => ({
+        ...tab,
+        page: {
+          ...tab.page,
+          modules: [
+            ...tab.page.modules,
+            {
+              __typename: "NationalCurriculumInsightsChecklistSection" as const,
+              audience: "teacher" as const,
+              heading: "Teacher checklist",
+              items: ["Review the topics.", "Plan a timeline."].map(
+                (text, index) => ({
+                  id: `action-${index}`,
+                  contentPortableText: [{ children: [{ text }] }],
+                }),
+              ),
+            },
+          ],
+        },
+      })),
+    };
+    const buffer = await generateNationalCurriculumInsightsDocx({
+      phase: "primary",
+      subject,
+    });
+    const zip = await JSZip.loadAsync(buffer);
+    const xml = await zip.file("word/document.xml")!.async("string");
+    expect(xml).toContain("Teacher checklist");
+    expect(xml).toContain("☐");
+    expect(xml).toContain("Review the topics.");
+    expect(xml).toContain("Plan a timeline.");
+    expect(xml.indexOf("Review the topics.")).toBeLessThan(
+      xml.indexOf("Plan a timeline."),
+    );
+  });
+
   it("includes a phase page and all of its key-stage pages in one document", async () => {
     const buffer = await generateNationalCurriculumInsightsDocx({
       phase: "primary",
