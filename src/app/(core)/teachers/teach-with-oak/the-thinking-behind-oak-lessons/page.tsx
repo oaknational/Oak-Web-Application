@@ -23,7 +23,7 @@ const ShortReadsPage = () => {
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={null}
-      accessLevel="homepage"
+      accessLevel="teach_with_oak"
     >
       <OakMaxWidth $ph={["spacing-16", "spacing-12", "spacing-12"]}>
         <OakFlex
