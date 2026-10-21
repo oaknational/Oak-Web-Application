@@ -13,13 +13,11 @@ export default function JoinResearchPanelCallout({
 }: JoinResearchPanelPageBlock<"JoinResearchPanelPageCallout">) {
   const calloutPortableTextComponents: PortableTextComponents = {
     block: {
-      normal: (props) => {
-        return (
-          <OakP $font="heading-light-6" $mt="spacing-16">
-            {props.children}
-          </OakP>
-        );
-      },
+      normal: (props) => (
+        <OakP $font="heading-light-6" $mt="spacing-16">
+          {props.children}
+        </OakP>
+      ),
     },
   };
 
@@ -43,7 +41,7 @@ export default function JoinResearchPanelCallout({
               <OakLI
                 $listStyle={"none"}
                 $display={"flex"}
-                key={item.bodyRaw[0]._key}
+                key={item.bodyRaw[0]?._key}
               >
                 <AboutUsInfoCard
                   icon={item.icon}
