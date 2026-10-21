@@ -29,7 +29,7 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
                 <div
                   class="sc-bdvwhi sc-gsDMPd hPWTKU cmTLPr"
                 >
-                  <div
+                  <h3
                     class="sc-bdvwhi sc-gsDMPd hPWTKU eCFEmk"
                   >
                     <div
@@ -37,12 +37,12 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
                     >
                       1
                     </div>
-                    <h3
+                    <div
                       class="sc-bkkgYE oUomb"
                     >
                       Sign up
-                    </h3>
-                  </div>
+                    </div>
+                  </h3>
                   <div
                     class="sc-bdvwhi hPWTKU"
                   >
@@ -56,7 +56,7 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
                 <div
                   class="sc-bdvwhi sc-gsDMPd hPWTKU cmTLPr"
                 >
-                  <div
+                  <h3
                     class="sc-bdvwhi sc-gsDMPd hPWTKU eCFEmk"
                   >
                     <div
@@ -64,12 +64,12 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
                     >
                       2
                     </div>
-                    <h3
+                    <div
                       class="sc-bkkgYE oUomb"
                     >
                       Take part
-                    </h3>
-                  </div>
+                    </div>
+                  </h3>
                   <div
                     class="sc-bdvwhi hPWTKU"
                   >
@@ -83,7 +83,7 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
                 <div
                   class="sc-bdvwhi sc-gsDMPd hPWTKU cmTLPr"
                 >
-                  <div
+                  <h3
                     class="sc-bdvwhi sc-gsDMPd hPWTKU eCFEmk"
                   >
                     <div
@@ -91,12 +91,12 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
                     >
                       3
                     </div>
-                    <h3
+                    <div
                       class="sc-bkkgYE oUomb"
                     >
                       What happens next
-                    </h3>
-                  </div>
+                    </div>
+                  </h3>
                   <div
                     class="sc-bdvwhi hPWTKU"
                   >

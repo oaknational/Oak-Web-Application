@@ -4185,7 +4185,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                       <div
                         class="c9 c118"
                       >
-                        <div
+                        <h3
                           class="c9 c119"
                         >
                           <div
@@ -4193,12 +4193,12 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                           >
                             1
                           </div>
-                          <h3
+                          <div
                             class="c121"
                           >
                             Join the research panel
-                          </h3>
-                        </div>
+                          </div>
+                        </h3>
                         <div
                           class="c9"
                         >

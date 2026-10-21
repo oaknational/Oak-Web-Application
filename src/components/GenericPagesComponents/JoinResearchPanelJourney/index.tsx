@@ -64,7 +64,11 @@ export default function JoinResearchPanelJourney({
                       $flexDirection={"column"}
                       $gap={"spacing-24"}
                     >
-                      <OakFlex $gap={"spacing-12"} $alignItems={"center"}>
+                      <OakFlex
+                        as="h3"
+                        $gap={"spacing-12"}
+                        $alignItems={"center"}
+                      >
                         <OakFlex
                           $background={"bg-decorative3-very-subdued"}
                           $borderRadius={"border-radius-circle"}
@@ -77,7 +81,7 @@ export default function JoinResearchPanelJourney({
                           {stepIndex + 1}
                         </OakFlex>
                         <OakHeading
-                          tag={"h3"}
+                          tag={"div"}
                           $color={"text-primary"}
                           $font={["heading-5", "heading-4", "heading-4"]}
                         >
