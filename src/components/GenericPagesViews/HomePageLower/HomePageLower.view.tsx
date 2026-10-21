@@ -19,7 +19,6 @@ import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import { blogToPostListItem } from "@/components/GenericPagesViews/BlogIndex.view";
 import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
 import { webinarToPostListItem } from "@/components/GenericPagesViews/WebinarsIndex.view";
-import useAnalytics from "@/context/Analytics/useAnalytics";
 import { Testimonials } from "@/components/GenericPagesComponents/Testimonials";
 import { HomePage } from "@/common-lib/cms-types";
 import { CampaignPromoBanner } from "@/components/GenericPagesComponents/CampaignPromoBanner/CampaignPromoBanner";
@@ -28,6 +27,7 @@ import { CampaignPromoBannerType } from "@/common-lib/cms-types/campaignPage";
 import { resolveOakHref } from "@/common-lib/urls";
 import { buildAboutUsAnalytics } from "@/utils/analytics-builders";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
   return post.type === "blog-post"
@@ -49,9 +49,11 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
   const blogListProps = usePostList({ items: posts, withImage: true });
   const { introVideo } = props;
 
-  const { track } = useAnalytics();
+  const { newsletterSignUpCompleted } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
   const newsletterFormProps = useNewsletterForm({
-    onSubmit: track.newsletterSignUpCompleted,
+    onSubmit: newsletterSignUpCompleted,
   });
 
   const showCampaignBanner = campaignPromoBanner?.media[0];

@@ -6,6 +6,7 @@ import { TrackFns } from "../Analytics/AnalyticsProvider";
 import {
   CoreProgrammeState,
   NullableSearchResultContext,
+  OnboardingTrackingProps,
   ProgrammeState,
   ProgrammeStateLesson,
   ProgrammeStateUnit,
@@ -29,8 +30,6 @@ import type {
   SearchResultTypeValueType,
   SearchSourceValueType,
   ContextValueType,
-  UserOnboardingCompletedProperties,
-  UserOnboardingProgressedProperties,
 } from "@/browser-lib/avo/Avo";
 import {
   AccessBlockTypeValueType,
@@ -60,16 +59,6 @@ import getFormattedDetailsForTracking, {
 import { convertUnitSlugToTitle } from "@/app/(core)/teachers/search/helpers";
 import { DOWNLOAD_TYPE_LABELS } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 
-export type OnboardingTrackingProps = Omit<
-  UserOnboardingCompletedProperties & UserOnboardingProgressedProperties,
-  | "platform"
-  | "product"
-  | "engagementIntent"
-  | "eventVersion"
-  | "analyticsUseCase"
-  | "userId_"
->;
-
 export type TeacherBrowseAnalyticsStore = {
   programmeState: ProgrammeState | null;
   journeyId: string | null;
@@ -80,6 +69,24 @@ export type TeacherBrowseAnalyticsStore = {
     contentBlockNotificationDisplayed: (props: {
       componentType: ComponentTypeValueType;
       accessBlockType: AccessBlockTypeValueType;
+    }) => void;
+    contentSaved: (data: {
+      keyStageTitle: KeyStageTitleValueType;
+      keyStageSlug: string;
+      subjectTitle: string;
+      subjectSlug: string;
+      contentType: string;
+      contentItemSlug: string;
+      componentType: ComponentTypeValueType;
+    }) => void;
+    contentUnsaved: (data: {
+      keyStageTitle: KeyStageTitleValueType;
+      keyStageSlug: string;
+      subjectTitle: string;
+      subjectSlug: string;
+      contentType: string;
+      contentItemSlug: string;
+      componentType: ComponentTypeValueType;
     }) => void;
     createTeachingMaterialsInitiated: (props: { isLoggedIn: boolean }) => void;
     curriculumExplainerExplored: () => void;
@@ -137,6 +144,7 @@ export type TeacherBrowseAnalyticsStore = {
       mediaClipsCount: number;
       mediaClipIndex: number;
     }) => void;
+    newsletterSignUpCompleted: () => void;
     programmeAccessed: (props: {
       componentType: ComponentTypeValueType;
       navigationType?: NavigationTypeValueType;
@@ -337,6 +345,24 @@ export const createTeacherBrowseAnalyticsStore = (
           lessonSlug: lessonProperties?.lessonSlug ?? null,
           lessonReleaseCohort: lessonProperties?.lessonReleaseCohort ?? null,
           lessonReleaseDate: lessonProperties?.lessonReleaseDate ?? null,
+        });
+      },
+      contentSaved: (data) => {
+        const { avo } = get();
+
+        avo.contentSaved({
+          ...coreProperties,
+          ...data,
+          engagementIntent: "use",
+        });
+      },
+      contentUnsaved: (data) => {
+        const { avo } = get();
+
+        avo.contentUnsaved({
+          ...coreProperties,
+          ...data,
+          engagementIntent: "use",
         });
       },
       createTeachingMaterialsInitiated: (data) => {
@@ -641,6 +667,11 @@ export const createTeacherBrowseAnalyticsStore = (
           componentType: "media_clips_played",
           videoLocation: "media clips",
         });
+      },
+      newsletterSignUpCompleted: () => {
+        const { avo } = get();
+
+        avo.newsletterSignUpCompleted();
       },
       programmeAccessed: ({
         componentType,

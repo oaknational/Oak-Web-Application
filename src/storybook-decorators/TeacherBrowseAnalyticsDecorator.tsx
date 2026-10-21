@@ -17,6 +17,8 @@ const state: TeacherBrowseAnalyticsStore = {
   track: {
     contentBlockNotificationDisplayed: () =>
       console.log("contentBlockNotificationDisplayed fired"),
+    contentSaved: () => console.log("contentSaved fired"),
+    contentUnsaved: () => console.log("contentUnsaved fired"),
     createTeachingMaterialsInitiated: () =>
       console.log("createTeachingMaterialsInitiated fired"),
     lessonMediaClipsStarted: () => console.log("lessonMediaClipsStarted fired"),
@@ -39,6 +41,8 @@ const state: TeacherBrowseAnalyticsStore = {
     teachingMaterialsSelected: () =>
       console.log("teachingMaterialsSelected fired"),
     unitDownloadStarted: () => console.log("unitDownloadStarted fired"),
+    newsletterSignUpCompleted: () =>
+      console.log("newsletterSignUpCompleted fired"),
     programmeAccessed: () => console.log("programmeAccessed fired"),
     programmeRefined: () => console.log("programmeRefined fired"),
     unitRefined: () => console.log("unitRefined fired"),

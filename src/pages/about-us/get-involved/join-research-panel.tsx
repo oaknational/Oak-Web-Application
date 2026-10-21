@@ -14,6 +14,7 @@ import {
 } from "@/common-lib/cms-types";
 import JoinResearchPanelPageHeader from "@/components/GenericPagesComponents/JoinResearchPanelHeader";
 import JoinResearchPanelPageDefault from "@/components/GenericPagesComponents/JoinResearchPanelDefault";
+import JoinResearchPanelInfo from "@/components/GenericPagesComponents/JoinResearchPanelInfo";
 
 export type AboutUsJoinResearchPanelPageProps = {
   pageData: JoinResearchPanelPage;
@@ -30,7 +31,7 @@ export const AboutUsJoinResearchPanel: NextPage<
   } = {
     JoinResearchPanelPageHeader: JoinResearchPanelPageHeader,
     JoinResearchPanelPageCallout: JoinResearchPanelPageDefault,
-    JoinResearchPanelPageInfo: JoinResearchPanelPageDefault,
+    JoinResearchPanelPageInfo: JoinResearchPanelInfo,
     JoinResearchPanelPageJourney: JoinResearchPanelPageDefault,
     JoinResearchPanelPagePeople: JoinResearchPanelPageDefault,
     JoinResearchPanelPageFaqs: JoinResearchPanelPageDefault,

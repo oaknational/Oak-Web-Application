@@ -80,7 +80,7 @@ export const UnitSequenceView = ({
           </OakHeading>
         </ScreenReaderOnly>
         <ProgrammePageFiltersModalProvider>
-          <KS4OptionFocusProvider>
+          <KS4OptionFocusProvider slugs={curriculumSelectionSlugs}>
             <OakBox $display={["block", "block", "none"]}>
               {shouldDisplayFilters && (
                 <ProgrammePageFiltersMobile
