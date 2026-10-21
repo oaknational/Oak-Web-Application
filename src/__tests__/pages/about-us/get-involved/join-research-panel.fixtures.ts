@@ -29,8 +29,8 @@ export const joinResearchPanelCalloutBlockFixture: JoinResearchPanelPageBlock<"J
       {
         icon: {
           asset: {
-            _id: "image-d16d5ceea1923b8cf31845affe93f9626f600c4c-240x320-png",
-            url: "https://cdn.sanity.io/images/cuvjke51/production/d16d5ceea1923b8cf31845affe93f9626f600c4c-240x320.png",
+            _id: "image-0123c8cd16c86e1095af18a8f65d427d1c8dd2f9-80x80-svg",
+            url: "https://cdn.sanity.io/images/cuvjke51/production/0123c8cd16c86e1095af18a8f65d427d1c8dd2f9-80x80.svg",
           },
         },
         bodyRaw: portableTextFromString("Join the research panel callout"),
@@ -40,16 +40,17 @@ export const joinResearchPanelCalloutBlockFixture: JoinResearchPanelPageBlock<"J
 
 export const joinResearchPanelInfoBlockFixture = (
   title?: string,
+  body?: string,
 ): JoinResearchPanelPageBlock<"JoinResearchPanelPageInfo"> => ({
   __typename: "JoinResearchPanelPageInfo",
   title: title ?? "Join the research panel",
   image: {
     asset: {
-      _id: "image-d16d5ceea1923b8cf31845affe93f9626f600c4c-240x320-png",
-      url: "https://cdn.sanity.io/images/cuvjke51/production/d16d5ceea1923b8cf31845affe93f9626f600c4c-240x320.png",
+      _id: "image-7499298e050630504fc8eb15bb8de2c864942575-633x486-png",
+      url: "https://cdn.sanity.io/images/cuvjke51/production/7499298e050630504fc8eb15bb8de2c864942575-633x486.png",
     },
   },
-  bodyRaw: portableTextFromString(title ?? "Join the research panel"),
+  bodyRaw: portableTextFromString(body ?? "Join the research panel"),
 });
 
 export const joinResearchPanelJourneyBlockFixture: JoinResearchPanelPageBlock<"JoinResearchPanelPageJourney"> =
