@@ -7,13 +7,28 @@ import { linkSchema } from "./cta";
 import { portableTextSchema } from "./portableText";
 import { campaignPromoBannerSchema } from "./campaignPage";
 
+const newCtaBaseSchema = z.object({
+  label: z.string().trim().min(1),
+});
+
+export const newCtaSchema = z.discriminatedUnion("linkType", [
+  newCtaBaseSchema.extend({
+    linkType: z.literal("internal"),
+    internal: z.string().startsWith("/").or(z.string().startsWith("#")),
+    external: z.string().nullish(),
+  }),
+  newCtaBaseSchema.extend({
+    linkType: z.literal("external"),
+    external: z.url().startsWith("http://").or(z.url().startsWith("https://")),
+    internal: z.string().nullish(),
+  }),
+]);
+
 export const topBannerSchema = z.object({
-  messagePortableText: portableTextSchema.nullish(),
-  ctaText: z.string().nullish(),
-  ctaLink: z.url().nullish(),
-  backgroundColour: z.string().nullish() as z.ZodType<
-    OakUiRoleToken | null | undefined
-  >,
+  messagePortableTextWithPromo: portableTextSchema.nullish(),
+  enabled: z.boolean(),
+  cta: newCtaSchema.nullish(),
+  backgroundColour: z.string() as z.ZodType<OakUiRoleToken>,
 });
 
 const notificationSchema = z.discriminatedUnion("enabled", [

@@ -6,9 +6,14 @@ query homepage($isDraftFilter: Sanity_DocumentFilter) {
   ) {
     id: _id
     topBanner {
-      messagePortableText: messageRaw
-      ctaText
-      ctaLink
+      messagePortableTextWithPromo: messageRaw
+      enabled
+      cta {
+        label
+        linkType
+        external
+        internal
+      }
       backgroundColour
     }
     heading

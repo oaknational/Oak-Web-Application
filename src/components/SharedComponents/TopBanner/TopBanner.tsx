@@ -32,7 +32,7 @@ export default function TopBanner({
   return (
     <OakBox role="banner">
       <OakFlex
-        $background={topBanner.backgroundColour ?? "bg-decorative1-main"}
+        $background={topBanner.backgroundColour}
         $justifyContent={["center"]}
         $alignItems={"center"}
         $pv={"spacing-8"}
@@ -53,22 +53,26 @@ export default function TopBanner({
             $gap={["spacing-0", "spacing-4"]}
             $minWidth={["fit-content"]}
           >
-            {topBanner.messagePortableText && (
+            {topBanner.messagePortableTextWithPromo && (
               <PortableTextWithDefaults
-                value={topBanner.messagePortableText}
+                value={topBanner.messagePortableTextWithPromo}
                 components={topBannerPortableTextComponents}
               />
             )}
           </OakFlex>
-          {topBanner.ctaText && topBanner.ctaLink && (
+          {topBanner.enabled && topBanner.cta && (
             <OakSmallTertiaryInvertedButton
               element={Link}
-              href={topBanner.ctaLink}
-              title={topBanner.ctaText}
+              href={
+                topBanner.cta.linkType === "internal"
+                  ? topBanner.cta.internal
+                  : topBanner.cta.external
+              }
+              title={topBanner.cta.label}
               iconName="chevron-right"
               isTrailingIcon={true}
             >
-              <OakSpan $font={"heading-7"}>{topBanner.ctaText}</OakSpan>
+              <OakSpan $font={"heading-7"}>{topBanner.cta.label}</OakSpan>
             </OakSmallTertiaryInvertedButton>
           )}
         </OakFlex>
