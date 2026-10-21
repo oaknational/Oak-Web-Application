@@ -43,7 +43,6 @@ export default function AboutUsInfoCard({
   background,
   borderColor = "border-decorative1-stronger",
 }: Readonly<AboutUsInfoCardProps>) {
-  console.log({ iconName, icon });
   return (
     <OakFlex
       $flexGrow={1}
