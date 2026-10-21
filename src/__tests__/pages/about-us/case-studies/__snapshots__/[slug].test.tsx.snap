@@ -814,7 +814,6 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
                           <div
                             class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                             data-chromatic="ignore"
-                            data-percy-hide="contents"
                             style="aspect-ratio: 16/9; box-sizing: content-box;"
                           />
                         </div>
@@ -1742,9 +1741,8 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-82a69116-0 kSePHC"
+              class="sc-bdvwhi LoEut sc-99912ec1-0 jbMtpJ"
               data-chromatic="ignore"
-              data-percy-hide="contents"
             >
               <img
                 alt="Cyber Essentials Logo"
@@ -2993,7 +2991,6 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                           <div
                             class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                             data-chromatic="ignore"
-                            data-percy-hide="contents"
                             style="aspect-ratio: 16/9; box-sizing: content-box;"
                           />
                         </div>
@@ -3119,7 +3116,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                     </div>
                   </div>
                   <div
-                    class="sc-bdvwhi sc-gsDMPd eXLAVP ga-DXyn"
+                    class="sc-bdvwhi sc-gsDMPd jWxyY ga-DXyn"
                   >
                     <div
                       class="sc-bdvwhi sc-gsDMPd bNskZW jMMTBg"
@@ -3203,7 +3200,6 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                               <div
                                 class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                                 data-chromatic="ignore"
-                                data-percy-hide="contents"
                                 style="aspect-ratio: 16/9; box-sizing: content-box;"
                               />
                             </div>
@@ -4238,9 +4234,8 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-82a69116-0 kSePHC"
+              class="sc-bdvwhi LoEut sc-99912ec1-0 jbMtpJ"
               data-chromatic="ignore"
-              data-percy-hide="contents"
             >
               <img
                 alt="Cyber Essentials Logo"
@@ -5489,7 +5484,6 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                           <div
                             class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                             data-chromatic="ignore"
-                            data-percy-hide="contents"
                             style="aspect-ratio: 16/9; box-sizing: content-box;"
                           />
                         </div>
@@ -5615,7 +5609,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                     </div>
                   </div>
                   <div
-                    class="sc-bdvwhi sc-gsDMPd eXLAVP ga-DXyn"
+                    class="sc-bdvwhi sc-gsDMPd jWxyY ga-DXyn"
                   >
                     <div
                       class="sc-bdvwhi sc-gsDMPd bNskZW jMMTBg"
@@ -5699,7 +5693,6 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                               <div
                                 class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                                 data-chromatic="ignore"
-                                data-percy-hide="contents"
                                 style="aspect-ratio: 16/9; box-sizing: content-box;"
                               />
                             </div>
@@ -6899,9 +6892,8 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-82a69116-0 kSePHC"
+              class="sc-bdvwhi LoEut sc-99912ec1-0 jbMtpJ"
               data-chromatic="ignore"
-              data-percy-hide="contents"
             >
               <img
                 alt="Cyber Essentials Logo"

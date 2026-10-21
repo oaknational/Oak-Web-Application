@@ -1,6 +1,8 @@
 /**
  * @jest-environment jsdom
  */
+import ProgrammesLayout from "../../layout";
+
 import { getProgrammeData, getSubjectPhaseOptions } from "./getProgrammeData";
 import ProgrammePageTabs, { generateMetadata } from "./page";
 
@@ -305,13 +307,17 @@ describe("Programme page tabs", () => {
     });
 
     const { container } = renderWithProviders()(
-      (await ProgrammePageTabs({
-        params: Promise.resolve({
-          slug: "maths",
-          tab: "units",
-        }),
-        searchParams: Promise.resolve({}),
-      })) as React.ReactElement,
+      <ProgrammesLayout>
+        {
+          (await ProgrammePageTabs({
+            params: Promise.resolve({
+              slug: "maths",
+              tab: "units",
+            }),
+            searchParams: Promise.resolve({}),
+          })) as React.ReactElement
+        }
+      </ProgrammesLayout>,
     );
     expect(container).toHaveTextContent("Download our implementation guides.");
   });
