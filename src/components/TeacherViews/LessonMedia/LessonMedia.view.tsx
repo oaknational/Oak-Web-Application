@@ -45,7 +45,6 @@ import {
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import { LEGACY_COHORT } from "@/config/cohort";
-import useAnalytics from "@/context/Analytics/useAnalytics";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type BaseLessonMedia = {
@@ -91,13 +90,12 @@ export const LessonMedia = (
     mediaClips,
     lessonOutline,
     actions,
-    lessonReleaseDate,
     loginRequired,
     geoRestricted,
   } = lesson;
 
-  const { track } = useAnalytics();
   const {
+    contentBlockNotificationDisplayed,
     mediaClipsPlaylistPlayed,
     videoFinished,
     videoPaused,
@@ -127,14 +125,8 @@ export const LessonMedia = (
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
 
-  const {
-    programmeSlug,
-    unitSlug,
-    subjectTitle,
-    yearTitle,
-    unitTitle,
-    lessonCohort,
-  } = commonPathway;
+  const { programmeSlug, unitSlug, subjectTitle, yearTitle, lessonCohort } =
+    commonPathway;
 
   const isLegacy = lessonCohort === LEGACY_COHORT;
 
@@ -202,33 +194,12 @@ export const LessonMedia = (
 
   useEffect(() => {
     if (showGeoBlocked) {
-      track.contentBlockNotificationDisplayed({
-        platform: "owa",
-        product: "teacher lesson resources",
-        engagementIntent: "explore",
+      contentBlockNotificationDisplayed({
         componentType: "lesson_media_clips",
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Teacher",
-        lessonName: lessonTitle ?? null,
-        lessonSlug: lessonSlug ?? null,
-        lessonReleaseCohort: "2023-2026",
-        lessonReleaseDate: lessonReleaseDate ?? null,
-        unitName: unitTitle ?? null,
-        unitSlug: unitSlug ?? null,
-        contentType: "lesson",
         accessBlockType: "Geo-restriction",
-        accessBlockDetails: {},
       });
     }
-  }, [
-    track,
-    showGeoBlocked,
-    lessonTitle,
-    lessonSlug,
-    lessonReleaseDate,
-    unitTitle,
-    unitSlug,
-  ]);
+  }, [contentBlockNotificationDisplayed, showGeoBlocked]);
 
   useEffect(() => {
     setCurrentClip(
