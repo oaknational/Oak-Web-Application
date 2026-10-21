@@ -7,7 +7,6 @@ import AboutUsInfoCard from "../AboutUsInfoCard";
 import { JoinResearchPanelPageBlock } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
-
 export default function JoinResearchPanelCallout({
   title,
   items,
@@ -23,8 +22,6 @@ export default function JoinResearchPanelCallout({
       },
     },
   };
-
-  console.log(items);
 
   return (
     <OakFlex
