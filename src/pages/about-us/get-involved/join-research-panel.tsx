@@ -16,6 +16,7 @@ import JoinResearchPanelPageHeader from "@/components/GenericPagesComponents/Joi
 import JoinResearchPanelPageDefault from "@/components/GenericPagesComponents/JoinResearchPanelDefault";
 import JoinResearchPanelPeople from "@/components/GenericPagesComponents/JoinResearchPanelPeople";
 import JoinResearchPanelInfo from "@/components/GenericPagesComponents/JoinResearchPanelInfo";
+import JoinResearchPanelJourney from "@/components/GenericPagesComponents/JoinResearchPanelJourney";
 
 export type AboutUsJoinResearchPanelPageProps = {
   pageData: JoinResearchPanelPage;
@@ -33,7 +34,7 @@ export const AboutUsJoinResearchPanel: NextPage<
     JoinResearchPanelPageHeader: JoinResearchPanelPageHeader,
     JoinResearchPanelPageCallout: JoinResearchPanelPageDefault,
     JoinResearchPanelPageInfo: JoinResearchPanelInfo,
-    JoinResearchPanelPageJourney: JoinResearchPanelPageDefault,
+    JoinResearchPanelPageJourney: JoinResearchPanelJourney,
     JoinResearchPanelPagePeople: JoinResearchPanelPeople,
     JoinResearchPanelPageFaqs: JoinResearchPanelPageDefault,
     JoinResearchPanelPageContactUs: JoinResearchPanelPageDefault,
