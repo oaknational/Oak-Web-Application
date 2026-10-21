@@ -6,7 +6,7 @@ import { joinResearchPanelHeaderBlockFixture } from "@/__tests__/pages/about-us/
 
 const meta: Meta<typeof JoinResearchPanelHeader> = {
   component: JoinResearchPanelHeader,
-  title: "Generic Pages Components/Join Research Panel Header",
+  title: "Components/GenericPagesComponents/JoinResearchPanelHeader",
   tags: ["autodocs"],
 } satisfies Meta<typeof JoinResearchPanelHeader>;
 

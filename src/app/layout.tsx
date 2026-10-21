@@ -55,7 +55,7 @@ export default function RootLayout({
         <link key={rel} rel={rel} href={href} />
       ))}
       <StyledComponentsRegistry>
-        {/* Pages Router uses #__next as the app root; add id to body for Pa11y CI and Percy to hook onto. */}
+        {/* Pages Router uses #__next as the app root; add id to body for Pa11y CI and Chromatic to hook onto. */}
         <body id="__next" style={{ margin: "0px" }}>
           <OakThemeProvider theme={oakDefaultTheme}>
             <CookieConsentProvider>

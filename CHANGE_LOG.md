@@ -1,3 +1,54 @@
+# [1.1252.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1251.1...v1.1252.0) (2026-10-21)
+
+
+### Bug Fixes
+
+* **search:** remove reception year group filters from search ([d3f1c1d](https://github.com/oaknational/Oak-Web-Application/commit/d3f1c1d81c6326702ba5dc7ca80053cbf2c9aff9))
+* use scroll param instead so the options still load ([ec7a5c2](https://github.com/oaknational/Oak-Web-Application/commit/ec7a5c2fb32285155d33a6bbe82b2e909c8cea49))
+
+
+### Features
+
+* add registration events to the teacher browse analytics store ([2522b15](https://github.com/oaknational/Oak-Web-Application/commit/2522b157ffb3ee760463112e9702ac488cd908f7))
+* add spacing between bullets in portable text ([a948454](https://github.com/oaknational/Oak-Web-Application/commit/a948454852d31c221e1b7e39981316ade7a85b75))
+* fire contentBlockNotificationDisplayed from the analytics store ([5d22111](https://github.com/oaknational/Oak-Web-Application/commit/5d22111d0aa704c2bef44a3e75b5aaf3058dcf71))
+* fire the onboarding events from the analytics store ([002ef2e](https://github.com/oaknational/Oak-Web-Application/commit/002ef2e6a5fa6317f5f94fd2279a84918ed43464))
+* join research panel info component ([14b54b5](https://github.com/oaknational/Oak-Web-Application/commit/14b54b5cbcb7758c84644a524efc437be975f732))
+* move collectOnboardingTrackingProps to the analytics store utils ([077f7cb](https://github.com/oaknational/Oak-Web-Application/commit/077f7cb05d268997543860232f905ce581b47fbb))
+* only show focus on keyboard interaction ([bccf8c1](https://github.com/oaknational/Oak-Web-Application/commit/bccf8c1e202ebf4440798358b67def940d7182ff))
+* use context to manage focus instead of params ([da5e4e8](https://github.com/oaknational/Oak-Web-Application/commit/da5e4e868fbf7bd0b7b6e39302bf2cd623350b0d))
+* use history to navigate without full page reload ([4942de4](https://github.com/oaknational/Oak-Web-Application/commit/4942de4c0ed1d171b280c6db4add650c5e1d22fe))
+
+## [1.1251.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1251.0...v1.1251.1) (2026-10-20)
+
+
+### Bug Fixes
+
+* remove padding at end of case studies content ([8b450da](https://github.com/oaknational/Oak-Web-Application/commit/8b450dae51a59a355cb17d284b8f637c003c3716))
+* responsive portable text headings ([65021b4](https://github.com/oaknational/Oak-Web-Application/commit/65021b443f08bfb77a6cc6760a1636dcacaec352))
+
+# [1.1251.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1250.1...v1.1251.0) (2026-10-20)
+
+
+### Features
+
+* remove retry mechanism on graphql sdk ([edfba93](https://github.com/oaknational/Oak-Web-Application/commit/edfba9346a3288e2eb4e4710e1bb7e4af5c7700a))
+
+## [1.1250.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1250.0...v1.1250.1) (2026-10-19)
+
+# [1.1250.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1249.4...v1.1250.0) (2026-10-19)
+
+
+### Bug Fixes
+
+* add missing decorator to story ([f61a2b3](https://github.com/oaknational/Oak-Web-Application/commit/f61a2b3cdfbb7961458a52aed6e6882722eabc53))
+
+
+### Features
+
+* add newsletterSignUpCompleted to store ([79f5da3](https://github.com/oaknational/Oak-Web-Application/commit/79f5da3d4a8525a1a2940834913da9b73b56dbc8))
+* move content save events to analytics store ([1487547](https://github.com/oaknational/Oak-Web-Application/commit/14875470fe3d2a33fdbea03c59351886b2f42db3))
+
 ## [1.1249.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.1249.3...v1.1249.4) (2026-10-15)
 
 

@@ -71,10 +71,6 @@ type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
 export type DownloadWrapperProps = {
   isLoading?: boolean;
   showGeoBlocked?: boolean;
-  lessonSlug?: string;
-  lessonTitle?: string;
-  lessonReleaseDate?: string | null;
-  isLegacy?: boolean;
   heading?: string;
 } & DownloadPageWithAccordionProps;
 
@@ -86,10 +82,6 @@ const DownloadPageWithAccordion: FC<DownloadWrapperProps> = (
     showGeoBlocked = false,
     geoRestricted,
     loginRequired,
-    lessonSlug,
-    lessonReleaseDate = null,
-    lessonTitle,
-    isLegacy = false,
     heading,
   } = props;
   return (
@@ -115,10 +107,6 @@ const DownloadPageWithAccordion: FC<DownloadWrapperProps> = (
             isGeorestricted={geoRestricted ?? undefined}
             isLoginRequired={loginRequired ?? undefined}
             componentType="lesson_downloads"
-            lessonName={lessonTitle}
-            lessonSlug={lessonSlug}
-            lessonReleaseDate={lessonReleaseDate}
-            isLessonLegacy={isLegacy}
           />
         )}
       </OakGridArea>
