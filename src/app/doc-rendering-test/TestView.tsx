@@ -12,7 +12,7 @@ import { GoogleDocsApi } from "./GoogleDocsApi";
 
 export type ResourceFile = "eyfs" | "pe-guide" | "additional-materials";
 const fileIds: Record<ResourceFile, string> = {
-  eyfs: "SX1Q634srMVFlIWFI3eay2u88YQ9mEfW8D8iBPQ",
+  eyfs: "1UgwlbRRUAjdLMsbOTdX56GI3bkHtECOEUFoggk22Rks",
   "additional-materials": "1O8iiffZd4NJIq2jnAnebkHB-ONBsPGpLLTSBX90x84E",
   "pe-guide": "1fDlNhHLHmmXobjp2MOGurojAuMjypllFjGnFE0AAtKs",
 };
@@ -61,10 +61,7 @@ export const TestView = () => {
       {preview === "google-docs-api" ? (
         <GoogleDocsApi resourceFile={activeDocument} />
       ) : (
-        <MammothJs
-          key={activeDocument}
-          fileId={activeDocument === "eyfs" ? null : fileIds[activeDocument]}
-        />
+        <MammothJs key={activeDocument} fileId={fileIds[activeDocument]} />
       )}
     </OakFlex>
   );

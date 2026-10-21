@@ -115,12 +115,7 @@ export const MammothJs = ({ fileId }: { fileId: string | null }) => {
     <OakFlex $flexDirection="column" $gap="spacing-20" $width="100%">
       <OakHeading tag="h2">Mammoth JS</OakHeading>
       <OakBox $ba="border-solid-m" $pa="spacing-24" $minWidth="spacing-0">
-        {!fileId ? (
-          <OakTypography role="status">
-            The EYFS document is not publicly available, so its DOCX export
-            cannot be previewed with Mammoth.
-          </OakTypography>
-        ) : currentResult && "error" in currentResult ? (
+        {currentResult && "error" in currentResult ? (
           <OakTypography role="alert">
             Unable to load the DOCX preview. Check that the document is publicly
             accessible.
