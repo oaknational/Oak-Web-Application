@@ -25,7 +25,7 @@ const ShortReadsPage = () => {
       programmeState={null}
       accessLevel="homepage"
     >
-      <OakMaxWidth $ml={["spacing-16", "spacing-0", "spacing-0"]}>
+      <OakMaxWidth $ml={["spacing-16", "auto", "auto"]}>
         <OakFlex
           $pt={["spacing-16"]}
           $maxWidth={[null, "spacing-640", "spacing-640"]}
@@ -63,10 +63,7 @@ const ShortReadsPage = () => {
           />
         </OakMaxWidth>
       </OakFlex>
-      <OakMaxWidth
-        $height={"auto"}
-        $ml={["spacing-16", "spacing-0", "spacing-0"]}
-      >
+      <OakMaxWidth $height={"auto"} $ml={["spacing-16", "auto", "auto"]}>
         <OakGrid $mt={"spacing-32"} $position={"relative"}>
           <OakGridArea
             $colSpan={[12, 3]}
