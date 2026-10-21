@@ -32,12 +32,7 @@ const ShortReadsPage = () => {
       accessLevel="teach_with_oak"
     >
       <OakMaxWidth $ph={["spacing-16", "spacing-12", "spacing-12"]}>
-        <OakFlex
-          $pt={["spacing-16"]}
-          $width={"100%"}
-          $maxWidth={["100%", "spacing-640", "100%"]}
-          $mh={["spacing-0", "auto", "spacing-0"]}
-        >
+        <OakFlex $pt={"spacing-16"} $mh={"spacing-0"}>
           <OakBreadcrumbs breadcrumbs={breadcrumbs} />
         </OakFlex>
       </OakMaxWidth>
