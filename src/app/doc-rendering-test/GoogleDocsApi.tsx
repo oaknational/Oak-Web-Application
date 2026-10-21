@@ -19,11 +19,13 @@ export function GoogleDocsApi({
 }) {
   const document = resourceDocs[resourceFile];
   return (
-    <OakBox $width="100%" $ba={"border-solid-m"}>
+    <OakBox $width="100%">
       <OakHeading tag="h2" $mb="spacing-16">
         Google Docs API
       </OakHeading>
-      <GoogleDocsRenderer document={document} />
+      <OakBox $ba="border-solid-m" $pa="spacing-24" $minWidth="spacing-0">
+        <GoogleDocsRenderer document={document} />
+      </OakBox>
     </OakBox>
   );
 }

@@ -1,4 +1,10 @@
 import { fireEvent, screen, within } from "@testing-library/react";
+import {
+  parseFontSize,
+  parseLineHeight,
+  parseSpacing,
+} from "@oaknational/oak-components";
+import "jest-styled-components";
 
 import eyfs from "./docsApi/eyfs.json";
 import peGuide from "./docsApi/peGuide.json";
@@ -91,8 +97,142 @@ describe("GoogleDocsRenderer", () => {
 
   it("renders the PE guide's inline and paragraph-anchored floating images", () => {
     const { container } = render(<GoogleDocsRenderer document={peGuide} />);
-    expect(container.querySelectorAll("img")).toHaveLength(9);
+    // Three decorative floating images now surround their linked content.
+    expect(container.querySelectorAll("img")).toHaveLength(6);
+    expect(container.querySelectorAll(".docx-callout")).toHaveLength(3);
     expect(container.querySelector("ol")).toBeInTheDocument();
+  });
+
+  it("uses Oak component typography and spacing independently of Mammoth styles", () => {
+    const { container } = render(<GoogleDocsRenderer document={peGuide} />);
+    const article = screen.getByRole("article");
+    expect(article).toHaveStyleRule(
+      "font-size",
+      String(parseFontSize("body-2")),
+    );
+    expect(article).toHaveStyleRule(
+      "line-height",
+      String(parseLineHeight("body-2")),
+    );
+    expect(screen.getByRole("heading", { name: "Warm up" })).toHaveStyleRule(
+      "font-size",
+      String(parseFontSize("heading-6")),
+    );
+    expect(container.querySelector(".docx-callout")).toHaveStyleRule(
+      "padding",
+      parseSpacing("spacing-12"),
+    );
+    expect(article).not.toHaveStyleRule(
+      "font-size",
+      String(parseFontSize("heading-6")),
+      { modifier: "h2" },
+    );
+  });
+
+  it("matches the PE guide's coloured outlines, vertical dividers and link callouts", () => {
+    const { container } = render(<GoogleDocsRenderer document={peGuide} />);
+    expect(
+      Array.from(container.querySelectorAll('[class*="docx-section-"]')).map(
+        (section) =>
+          Array.from(section.classList).find((name) =>
+            name.startsWith("docx-section-"),
+          ),
+      ),
+    ).toEqual([
+      "docx-section-mint",
+      "docx-section-purple",
+      "docx-section-teal",
+      "docx-section-blue",
+      "docx-section-mint",
+    ]);
+    for (const colour of ["purple", "teal", "blue"]) {
+      expect(
+        container.querySelector(`.docx-border-right-${colour}`),
+      ).toBeInTheDocument();
+      expect(
+        container.querySelector(`.docx-border-left-${colour}`),
+      ).toBeInTheDocument();
+    }
+    const callouts = container.querySelectorAll(".docx-callout");
+    expect(
+      Array.from(callouts).map((box) => box.querySelector("h3")?.textContent),
+    ).toEqual(["Demo videos", "Further guidance", "Risk assessment "]);
+    callouts.forEach((box) => {
+      expect(box.querySelector("a[href]")).toBeInTheDocument();
+      expect(box.querySelector("img")).toBeNull();
+      expect(box.getAttribute("style")).toContain("background-image:");
+    });
+    container.querySelectorAll("img").forEach((image) => {
+      expect(Number(image.getAttribute("width"))).toBeLessThanOrEqual(43);
+    });
+  });
+
+  it("renders additional-materials heading bands with fills and white text, not outlines", () => {
+    const { container } = render(
+      <GoogleDocsRenderer document={additionalMaterials} />,
+    );
+    expect(container.querySelector(".docx-fill-teal")).toHaveTextContent(
+      "Expectations and ground rules",
+    );
+    expect(container.querySelector(".docx-fill-blue")).toHaveTextContent(
+      "Entries, exits and regaining standing",
+    );
+    expect(
+      container.querySelector(".docx-fill-teal .docx-text-inverted"),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(".docx-fill-blue .docx-text-inverted"),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(
+        '[class*="docx-section-"], [class*="docx-border-"]',
+      ),
+    ).toBeNull();
+    const second = screen.getByText(/2 short blasts:/);
+    const list = second.closest("ul");
+    expect(second.closest("h3")).toBeNull();
+    expect(second.closest("strong")).toBeNull();
+    expect(list?.children).toHaveLength(4);
+    expect(list?.children[0]).toHaveTextContent("1 short whistle blast:");
+    expect(list?.children[3]).toHaveTextContent("1 long blast:");
+  });
+
+  it("ignores zero-width borders even if their colours match an Oak token", () => {
+    renderContent([
+      {
+        table: {
+          tableRows: [
+            {
+              tableCells: [
+                {
+                  content: [paragraph("No border")],
+                  tableCellStyle: {
+                    borderLeft: {
+                      width: { magnitude: 0 },
+                      color: {
+                        color: {
+                          rgbColor: {
+                            red: 132 / 255,
+                            green: 90 / 255,
+                            blue: 217 / 255,
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      },
+    ]);
+    expect(screen.getByText("No border").closest("td")).not.toHaveClass(
+      "docx-border-left-purple",
+    );
+    expect(screen.getByRole("table").parentElement).not.toHaveClass(
+      "docx-section-purple",
+    );
   });
 
   it("preserves an image anchored to an otherwise empty paragraph", () => {

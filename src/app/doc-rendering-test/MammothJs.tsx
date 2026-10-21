@@ -6,24 +6,13 @@ import {
   OakHeading,
   OakLoadingSpinner,
   OakTypography,
-  parseColor,
-  parseFontSize,
-  parseFontWeight,
-  parseLetterSpacing,
-  parseLineHeight,
-  parseSpacing,
-  parseBorder,
 } from "@oaknational/oak-components";
 import Mammoth from "mammoth/mammoth.browser";
 import { useEffect, useState } from "react";
 import DOMPurify from "dompurify";
-import styled, { css } from "styled-components";
 
-import {
-  prepareMammothImages,
-  restoreMammothCallouts,
-  sectionColours,
-} from "./mammothImages";
+import { prepareMammothImages, restoreMammothCallouts } from "./mammothImages";
+import { MammothDocumentPreview } from "./MammothDocumentPreview";
 
 // Keep Mammoth's default list, footnote and link mappings after these rules.
 export const mammothStyleMap = [
@@ -53,233 +42,6 @@ export const mammothStyleMap = [
   "strike => s",
   "table => div.docx-table:fresh > table:fresh",
 ];
-
-const fontStyles = (font: Parameters<typeof parseFontSize>[0]) => css`
-  font-size: ${parseFontSize(font)};
-  line-height: ${parseLineHeight(font)};
-  font-weight: ${parseFontWeight(font)};
-  letter-spacing: ${parseLetterSpacing(font)};
-`;
-
-const DocumentContent = styled(OakBox)`
-  ${fontStyles("body-2")}
-  font-family: inherit;
-  color: ${parseColor("text-primary")};
-  overflow-wrap: anywhere;
-
-  p {
-    margin: 0 0 ${parseSpacing("spacing-12")};
-    white-space: pre-wrap;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: ${parseSpacing("spacing-24")} 0 ${parseSpacing("spacing-8")};
-    break-after: avoid;
-  }
-
-  h1 {
-    ${fontStyles("heading-5")}
-  }
-
-  h2 {
-    ${fontStyles("heading-6")}
-  }
-
-  h3 {
-    ${fontStyles("heading-7")}
-  }
-
-  h4 {
-    ${fontStyles("body-2-bold")}
-  }
-
-  h5,
-  h6 {
-    ${fontStyles("body-3-bold")}
-  }
-
-  h6 {
-    font-style: italic;
-  }
-
-  .docx-title {
-    ${fontStyles("heading-4")}
-  }
-
-  .docx-subtitle {
-    ${fontStyles("heading-light-6")}
-  }
-
-  .docx-caption {
-    ${fontStyles("body-3")}
-    font-style: italic;
-  }
-
-  ul,
-  ol {
-    margin: 0 0 ${parseSpacing("spacing-12")};
-    padding-inline-start: ${parseSpacing("spacing-24")};
-  }
-
-  ul {
-    list-style-type: disc;
-  }
-
-  ul ul {
-    list-style-type: circle;
-  }
-
-  ul ul ul {
-    list-style-type: square;
-  }
-
-  ol {
-    list-style-type: decimal;
-  }
-
-  li {
-    margin-bottom: ${parseSpacing("spacing-4")};
-  }
-
-  li > ul,
-  li > ol {
-    margin-top: ${parseSpacing("spacing-4")};
-    margin-bottom: 0;
-  }
-
-  .docx-table {
-    max-width: 100%;
-    overflow-x: auto;
-    margin-bottom: ${parseSpacing("spacing-24")};
-  }
-
-  ${sectionColours.map(
-    (colour) => css`
-      .docx-section-${colour} {
-        border: ${parseBorder("border-solid-m")} ${parseColor(colour)};
-      }
-
-      .docx-fill-${colour} {
-        background-color: ${parseColor(colour)};
-      }
-
-      .docx-border-left-${colour} {
-        border-left: ${parseBorder("border-solid-m")} ${parseColor(colour)};
-      }
-
-      .docx-border-right-${colour} {
-        border-right: ${parseBorder("border-solid-m")} ${parseColor(colour)};
-      }
-    `,
-  )}
-
-  .docx-text-inverted {
-    color: ${parseColor("text-inverted")};
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: inherit;
-    line-height: inherit;
-  }
-
-  td,
-  th {
-    padding: ${parseSpacing("spacing-8")};
-    vertical-align: top;
-    text-align: start;
-    font-weight: normal;
-  }
-
-  td > :first-child,
-  th > :first-child,
-  > :first-child {
-    margin-top: 0;
-  }
-
-  td > :last-child,
-  th > :last-child {
-    margin-bottom: 0;
-  }
-
-  img {
-    display: inline-block;
-    max-width: 100%;
-    height: auto;
-    vertical-align: middle;
-  }
-
-  .docx-callout {
-    padding: ${parseSpacing("spacing-12")};
-    margin-bottom: ${parseSpacing("spacing-12")};
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-  }
-
-  .docx-callout > :first-child,
-  .docx-callout > a[id] + :is(h1, h2, h3, h4, h5, h6) {
-    margin-top: 0;
-  }
-
-  .docx-callout > :last-child {
-    margin-bottom: 0;
-  }
-
-  a {
-    color: ${parseColor("text-link-active")};
-    text-decoration: underline;
-    text-underline-offset: ${parseSpacing("spacing-2")};
-  }
-
-  a:visited {
-    color: ${parseColor("text-link-visited")};
-  }
-
-  a:hover,
-  a:focus-visible {
-    color: ${parseColor("text-link-hover")};
-  }
-
-  a:active {
-    color: ${parseColor("text-link-pressed")};
-  }
-
-  strong {
-    font-weight: ${parseFontWeight("body-2-bold")};
-  }
-
-  em {
-    font-style: italic;
-  }
-
-  u {
-    text-decoration: underline;
-  }
-
-  s {
-    text-decoration: line-through;
-  }
-
-  sup,
-  sub {
-    font-size: ${parseFontSize("body-4")};
-    line-height: 0;
-  }
-
-  sup {
-    vertical-align: super;
-  }
-
-  sub {
-    vertical-align: sub;
-  }
-`;
 
 export const getParsedDocx = async (fileId: string, signal?: AbortSignal) => {
   const response = await fetch(
@@ -365,7 +127,7 @@ export const MammothJs = ({ fileId }: { fileId: string | null }) => {
           </OakTypography>
         ) : currentResult && "html" in currentResult ? (
           <>
-            <DocumentContent
+            <MammothDocumentPreview
               as="article"
               aria-label="Mammoth document preview"
               dangerouslySetInnerHTML={{ __html: currentResult.html }}

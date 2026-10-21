@@ -7,9 +7,38 @@ import {
   OakLink,
   OakOL,
   OakP,
+  OakSpan,
   OakUL,
+  OakFontToken,
+  oakColorTokens,
 } from "@oaknational/oak-components";
 import { Fragment, ReactNode, useState } from "react";
+
+import {
+  GoogleDocsCell,
+  GoogleDocsContent,
+  GoogleDocsSection,
+} from "./GoogleDocsRenderer.styles";
+
+const sectionColours = ["mint", "purple", "teal", "blue"] as const;
+
+type Colour = {
+  color?: { rgbColor?: { red?: number; green?: number; blue?: number } };
+};
+type CellBorder = {
+  color?: Colour;
+  width?: { magnitude?: number; unit?: string };
+  dashStyle?: string;
+};
+type CellStyle = {
+  rowSpan?: number;
+  columnSpan?: number;
+  backgroundColor?: Colour;
+  borderLeft?: CellBorder;
+  borderRight?: CellBorder;
+  borderTop?: CellBorder;
+  borderBottom?: CellBorder;
+};
 
 type TextStyle = {
   [property: string]: unknown;
@@ -18,6 +47,7 @@ type TextStyle = {
   underline?: boolean;
   strikethrough?: boolean;
   baselineOffset?: string;
+  foregroundColor?: Colour;
   link?: { url?: string; headingId?: string; bookmarkId?: string };
 };
 
@@ -58,7 +88,7 @@ type StructuralElement = {
     tableRows?: {
       tableCells?: {
         content?: StructuralElement[];
-        tableCellStyle?: { rowSpan?: number; columnSpan?: number };
+        tableCellStyle?: CellStyle;
       }[];
     }[];
   };
@@ -96,6 +126,7 @@ export type GoogleDocsDocument = {
     {
       positionedObjectProperties?: {
         embeddedObject?: EmbeddedObject;
+        positioning?: { layout?: string };
       };
     }
   >;
@@ -110,6 +141,16 @@ const headingTags = {
   HEADING_5: "h5",
   HEADING_6: "h6",
 } as const;
+
+const headingFonts: Record<keyof typeof headingTags, OakFontToken> = {
+  TITLE: "heading-4",
+  HEADING_1: "heading-5",
+  HEADING_2: "heading-6",
+  HEADING_3: "heading-7",
+  HEADING_4: "body-2-bold",
+  HEADING_5: "body-3-bold",
+  HEADING_6: "body-3-bold",
+};
 
 const listTypes: Record<string, "A" | "a" | "I" | "i" | "1"> = {
   ALPHA: "A",
@@ -130,6 +171,39 @@ function safeUrl(url: string, image = false) {
   );
 }
 
+function colourHex(colour?: Colour) {
+  const rgb = colour?.color?.rgbColor;
+  if (!rgb) return undefined;
+  return `#${[rgb.red, rgb.green, rgb.blue]
+    .map((value) =>
+      Math.round((value ?? 0) * 255)
+        .toString(16)
+        .padStart(2, "0"),
+    )
+    .join("")}`;
+}
+
+function sectionColour(colour?: Colour) {
+  const hex = colourHex(colour);
+  return sectionColours.find((token) => oakColorTokens[token] === hex);
+}
+
+function borderColour(border?: CellBorder) {
+  return (border?.width?.magnitude ?? 0) > 0 && border?.dashStyle !== "NONE"
+    ? sectionColour(border?.color)
+    : undefined;
+}
+
+function positionedBackground(
+  paragraph: Paragraph | undefined,
+  document: GoogleDocsDocument,
+) {
+  return paragraph?.positionedObjectIds
+    ?.map((id) => document.positionedObjects?.[id]?.positionedObjectProperties)
+    .find((object) => object?.positioning?.layout === "BEHIND_TEXT")
+    ?.embeddedObject;
+}
+
 function renderText(content: string, style: TextStyle): ReactNode {
   let node: ReactNode = content.split(/[\n\v]/).map((line, index) => (
     <Fragment key={index}>
@@ -137,16 +211,38 @@ function renderText(content: string, style: TextStyle): ReactNode {
       {line}
     </Fragment>
   ));
-  if (style.bold) node = <strong>{node}</strong>;
-  if (style.italic) node = <em>{node}</em>;
-  if (style.underline) node = <u>{node}</u>;
-  if (style.strikethrough) node = <s>{node}</s>;
-  if (style.baselineOffset === "SUPERSCRIPT") node = <sup>{node}</sup>;
-  if (style.baselineOffset === "SUBSCRIPT") node = <sub>{node}</sub>;
+  if (style.bold)
+    node = (
+      <OakSpan as="strong" $font="body-2-bold">
+        {node}
+      </OakSpan>
+    );
+  if (style.italic) node = <OakSpan as="em">{node}</OakSpan>;
+  if (style.underline) node = <OakSpan as="u">{node}</OakSpan>;
+  if (style.strikethrough) node = <OakSpan as="s">{node}</OakSpan>;
+  if (style.baselineOffset === "SUPERSCRIPT")
+    node = (
+      <OakSpan as="sup" $font="body-4">
+        {node}
+      </OakSpan>
+    );
+  if (style.baselineOffset === "SUBSCRIPT")
+    node = (
+      <OakSpan as="sub" $font="body-4">
+        {node}
+      </OakSpan>
+    );
   const link = style.link;
   const href =
     link?.url ?? (link?.headingId ? `#${link.headingId}` : undefined);
   if (href && safeUrl(href)) node = <OakLink href={href}>{node}</OakLink>;
+  if (colourHex(style.foregroundColor) === "#ffffff") {
+    node = (
+      <OakSpan className="docx-text-inverted" $color="text-inverted">
+        {node}
+      </OakSpan>
+    );
+  }
   return node;
 }
 
@@ -165,7 +261,10 @@ function renderEmbeddedImage(object: EmbeddedObject | undefined) {
   const dimension = (value?: { magnitude?: number; unit?: string }) =>
     value?.magnitude === undefined
       ? undefined
-      : value.magnitude * (value.unit === "PT" ? 96 / 72 : 1);
+      : Math.max(
+          1,
+          Math.round(value.magnitude * (value.unit === "PT" ? 96 / 72 : 1)),
+        );
   return (
     <GoogleDocsImage
       key={src}
@@ -208,7 +307,9 @@ function GoogleDocsImage({
 
 function renderParagraph(paragraph: Paragraph, document: GoogleDocsDocument) {
   const elements = paragraph.elements ?? [];
-  const type = paragraph.paragraphStyle?.namedStyleType ?? "NORMAL_TEXT";
+  const type = paragraph.bullet
+    ? "NORMAL_TEXT"
+    : (paragraph.paragraphStyle?.namedStyleType ?? "NORMAL_TEXT");
   const inheritedStyle = document.namedStyles?.styles?.find(
     (style) => style.namedStyleType === type,
   )?.textStyle;
@@ -267,13 +368,24 @@ function renderParagraph(paragraph: Paragraph, document: GoogleDocsDocument) {
   }
   if (isHeading(type)) {
     return (
-      <OakHeading {...props} tag={headingTags[type]} $mb="spacing-16">
+      <OakHeading
+        {...props}
+        tag={headingTags[type]}
+        $font={headingFonts[type]}
+        $mt="spacing-24"
+        $mb="spacing-8"
+      >
         {content}
       </OakHeading>
     );
   }
   return (
-    <OakP {...props} $mb="spacing-12">
+    <OakP
+      {...props}
+      $font={type === "SUBTITLE" ? "heading-light-6" : "body-2"}
+      $mb="spacing-12"
+      $whiteSpace="pre-wrap"
+    >
       {content}
     </OakP>
   );
@@ -300,17 +412,31 @@ function renderList(
   const start = counters.get(counterKey) ?? properties?.startNumber ?? 1;
   counters.set(counterKey, start + list.items.length);
   const items = list.items.map((item, index) => (
-    <OakLI key={index} $font="body-2">
+    <OakLI key={index} $font="body-2" $mb="spacing-4">
       {renderParagraph(item.paragraph, document)}
       {item.children.map((child, index) => (
         <Fragment key={index}>{renderList(child, document, counters)}</Fragment>
       ))}
     </OakLI>
   ));
-  if (!ordered) return <OakUL $mb="spacing-16">{items}</OakUL>;
+  if (!ordered)
+    return (
+      <OakUL
+        $mb="spacing-12"
+        $pl="spacing-24"
+        $mt={list.level > 0 ? "spacing-4" : "spacing-0"}
+      >
+        {items}
+      </OakUL>
+    );
   const type = listTypes[properties.glyphType ?? ""];
   return (
-    <OakOL start={start} type={type} $mb="spacing-16">
+    <OakOL
+      start={start}
+      type={type}
+      $mb="spacing-12"
+      $mt={list.level > 0 ? "spacing-4" : "spacing-0"}
+    >
       {items}
     </OakOL>
   );
@@ -325,6 +451,56 @@ function renderBlocks(
   for (let index = 0; index < elements.length; index++) {
     const element = elements[index];
     if (!element) continue;
+    const background = positionedBackground(element.paragraph, document);
+    const backgroundSrc = background?.imageProperties?.contentUri;
+    const nextParagraph = elements[index + 1]?.paragraph;
+    if (
+      backgroundSrc &&
+      safeUrl(backgroundSrc, true) &&
+      !element.paragraph?.elements?.some(
+        (run) => run.textRun?.content?.trim() || run.inlineObjectElement,
+      ) &&
+      nextParagraph &&
+      isHeading(nextParagraph.paragraphStyle?.namedStyleType ?? "")
+    ) {
+      let end = index + 2;
+      while (end < elements.length) {
+        const next = elements[end];
+        if (
+          !next?.paragraph ||
+          isHeading(next.paragraph.paragraphStyle?.namedStyleType ?? "") ||
+          positionedBackground(next.paragraph, document)
+        )
+          break;
+        end++;
+      }
+      const section = elements.slice(index + 1, end);
+      if (
+        section.some((block) =>
+          block.paragraph?.elements?.some(
+            (run) => run.textRun?.textStyle?.link,
+          ),
+        )
+      ) {
+        blocks.push(
+          <OakBox
+            className="docx-callout"
+            $pa="spacing-12"
+            $mb="spacing-12"
+            id={element.paragraph?.paragraphStyle?.headingId}
+            style={{
+              backgroundImage: `url(${JSON.stringify(backgroundSrc)})`,
+              backgroundSize: "100% 100%",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            {renderBlocks(section, document)}
+          </OakBox>,
+        );
+        index = end - 1;
+        continue;
+      }
+    }
     if (element.paragraph?.bullet) {
       const roots: ListNode[] = [];
       const stack: ListNode[] = [];
@@ -357,9 +533,48 @@ function renderBlocks(
     } else if (element.paragraph) {
       blocks.push(renderParagraph(element.paragraph, document));
     } else if (element.table) {
+      const cells =
+        element.table.tableRows
+          ?.flatMap((row) => row.tableCells ?? [])
+          .filter(
+            (cell) =>
+              (cell.tableCellStyle?.rowSpan ?? 1) > 0 &&
+              (cell.tableCellStyle?.columnSpan ?? 1) > 0,
+          ) ?? [];
+      const filledBand =
+        cells.length > 0 &&
+        cells.every((cell) =>
+          sectionColour(cell.tableCellStyle?.backgroundColor),
+        );
+      const outline = filledBand
+        ? undefined
+        : cells
+            .flatMap((cell) => {
+              const style = cell.tableCellStyle;
+              return [
+                style?.borderTop,
+                style?.borderBottom,
+                style?.borderLeft,
+                style?.borderRight,
+              ].map(borderColour);
+            })
+            .find(Boolean);
       blocks.push(
-        <OakBox $overflowX="auto" $mb="spacing-24">
-          <table style={{ borderCollapse: "collapse", width: "100%" }}>
+        <GoogleDocsSection
+          $sectionColour={outline}
+          $ba={outline ? "border-solid-m" : undefined}
+          $maxWidth="100%"
+          $overflowX="auto"
+          $mb="spacing-24"
+          className={["docx-table", outline && `docx-section-${outline}`]
+            .filter(Boolean)
+            .join(" ")}
+        >
+          <OakBox
+            as="table"
+            $width="100%"
+            style={{ borderCollapse: "collapse" }}
+          >
             <tbody>
               {element.table.tableRows?.map((row, rowIndex) => (
                 <tr key={rowIndex}>
@@ -368,26 +583,46 @@ function renderBlocks(
                       cell.tableCellStyle ?? {};
                     // Merged cells have zero-span placeholders in the API.
                     if (rowSpan === 0 || columnSpan === 0) return null;
+                    const background = sectionColour(
+                      cell.tableCellStyle?.backgroundColor,
+                    );
+                    const left =
+                      !filledBand &&
+                      borderColour(cell.tableCellStyle?.borderLeft);
+                    const right =
+                      !filledBand &&
+                      borderColour(cell.tableCellStyle?.borderRight);
                     return (
-                      <OakBox
+                      <GoogleDocsCell
                         as="td"
+                        $pa="spacing-8"
+                        $fillColour={background}
+                        $bl={left ? "border-solid-m" : undefined}
+                        $br={right ? "border-solid-m" : undefined}
+                        $leftColour={left || undefined}
+                        $rightColour={right || undefined}
                         key={cellIndex}
                         rowSpan={rowSpan}
                         colSpan={columnSpan}
-                        $pa="spacing-12"
-                        $ba="border-solid-s"
-                        $borderColor="border-primary"
-                        style={{ verticalAlign: "top" }}
+                        className={
+                          [
+                            background && `docx-fill-${background}`,
+                            left && `docx-border-left-${left}`,
+                            right && `docx-border-right-${right}`,
+                          ]
+                            .filter(Boolean)
+                            .join(" ") || undefined
+                        }
                       >
                         {renderBlocks(cell.content ?? [], document)}
-                      </OakBox>
+                      </GoogleDocsCell>
                     );
                   })}
                 </tr>
               ))}
             </tbody>
-          </table>
-        </OakBox>,
+          </OakBox>
+        </GoogleDocsSection>,
       );
     } else if (element.tableOfContents) {
       blocks.push(
@@ -414,8 +649,14 @@ export function GoogleDocsRenderer({
     );
   }
   return (
-    <OakBox as="article" aria-label={document.title} $width="100%">
+    <GoogleDocsContent
+      as="article"
+      aria-label={document.title}
+      $width="100%"
+      $font="body-2"
+      $color="text-primary"
+    >
       {renderBlocks(document.body.content, document)}
-    </OakBox>
+    </GoogleDocsContent>
   );
 }

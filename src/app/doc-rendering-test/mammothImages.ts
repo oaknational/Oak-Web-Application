@@ -2,12 +2,13 @@ import JSZip from "jszip";
 import Mammoth from "mammoth/mammoth.browser";
 import { oakColorTokens } from "@oaknational/oak-components";
 
+import { sectionColours } from "./MammothDocumentPreview";
+
 const wordDrawingNamespace =
   "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing";
 const wordNamespace =
   "http://schemas.openxmlformats.org/wordprocessingml/2006/main";
 
-export const sectionColours = ["mint", "purple", "teal", "blue"] as const;
 type SectionColour = (typeof sectionColours)[number];
 type CellStyle = {
   background?: SectionColour;
