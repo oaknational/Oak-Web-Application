@@ -231,10 +231,11 @@ const PageModuleList = ({
               "NationalCurriculumInsightsChecklistSection" &&
               candidate.audience === module.audience)),
       ).length;
+    const suffix = previous ? "-" + (previous + 1) : "";
     return [
       {
         index,
-        id: `insights-${name}${previous ? `-${previous + 1}` : ""}`,
+        id: `insights-${name}${suffix}`,
         label,
         content: <ModuleView module={module} data={data} />,
       },
@@ -253,13 +254,10 @@ const PageModuleList = ({
     (hasPageDownload || sharedDownload) &&
       data.subjects.some(({ tabs }) => tabs.length > 0),
   );
-  const scope =
-    data.activeKeyStage ??
-    (data.activeTab === "primary"
-      ? "Primary"
-      : data.activeTab === "secondary"
-        ? "Secondary"
-        : "");
+  let phaseLabel = "";
+  if (data.activeTab === "primary") phaseLabel = "Primary";
+  if (data.activeTab === "secondary") phaseLabel = "Secondary";
+  const scope = data.activeKeyStage ?? phaseLabel;
   const articleHeading = [scope, data.subject?.title ?? data.page.title]
     .filter(Boolean)
     .join(" ");
@@ -282,24 +280,32 @@ const PageModuleList = ({
         </OakBox>
       )}
       <InsightsTabs section={navigation} data={data} />
-      {modules.map((module, index) =>
-        index === firstArticleIndex ? (
-          <NationalCurriculumInsightsArticle
-            key="article"
-            heading={articleHeading}
-            sections={articleSections}
-            hasDownload={hasDownload}
-          />
-        ) : articleSections.some((section) => section.index === index) ||
+      {modules.map((module, index) => {
+        if (index === firstArticleIndex) {
+          return (
+            <NationalCurriculumInsightsArticle
+              key="article"
+              heading={articleHeading}
+              sections={articleSections}
+              hasDownload={hasDownload}
+            />
+          );
+        }
+        if (
+          articleSections.some((section) => section.index === index) ||
           module.__typename ===
-            "NationalCurriculumInsightsPhaseNavigationSection" ? null : (
+            "NationalCurriculumInsightsPhaseNavigationSection"
+        ) {
+          return null;
+        }
+        return (
           <ModuleView
             key={`${module.__typename}-${index}`}
             module={module}
             data={data}
           />
-        ),
-      )}
+        );
+      })}
       {!hasPageDownload && sharedDownload ? (
         <ModuleView module={sharedDownload} data={data} />
       ) : null}
