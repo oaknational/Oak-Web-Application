@@ -182,56 +182,68 @@ const moduleXml = async (
     case "NationalCurriculumInsightsOverviewSection":
       return headlineXml(module, richText, "7C9AEC");
     case "NationalCurriculumInsightsChangesSection": {
-      let output = sectionHeading(module.heading);
-      for (const change of module.changes) {
-        output += paragraph(change.title, {
-          properties: safeXml`
-            <w:pPr>
-              <w:pStyle w:val="Heading4" />
-              <w:keepNext />
-              <w:pBdr>
-                <w:bottom
-                  w:val="single"
-                  w:color="7C9AEC"
-                  w:sz="6"
-                  w:space="6"
-                />
-              </w:pBdr>
-              <w:spacing w:before="360" w:after="160" />
-            </w:pPr>
-          `,
-        });
-        output += paragraph(change.whyItMatters, {
-          size: 14,
-          after: 120,
-          keepNext: true,
-        });
-        output += await richText.render(change.detailPortableText);
-      }
-      return output;
+      return module.changes.reduce(
+        async (previous, change) => {
+          const output = await previous;
+          const title = paragraph(change.title, {
+            properties: safeXml`
+              <w:pPr>
+                <w:pStyle w:val="Heading4" />
+                <w:keepNext />
+                <w:pBdr>
+                  <w:bottom
+                    w:val="single"
+                    w:color="7C9AEC"
+                    w:sz="6"
+                    w:space="6"
+                  />
+                </w:pBdr>
+                <w:spacing w:before="360" w:after="160" />
+              </w:pPr>
+            `,
+          });
+          const explanation = paragraph(change.whyItMatters, {
+            size: 14,
+            after: 120,
+            keepNext: true,
+          });
+          return (
+            output +
+            title +
+            explanation +
+            (await richText.render(change.detailPortableText))
+          );
+        },
+        Promise.resolve(sectionHeading(module.heading)),
+      );
     }
     case "NationalCurriculumInsightsUnchangedSection":
     case "NationalCurriculumInsightsRichTextSection":
       return `${sectionHeading(module.heading)}${await richText.render(module.contentPortableText)}`;
     case "NationalCurriculumInsightsChecklistSection": {
-      let output = sectionHeading(module.heading);
-      for (const item of module.items) {
-        output += await richText.render(item.contentPortableText, {
-          properties: safeXml`
-            <w:pPr>
-              <w:keepLines />
-              <w:widowControl />
-              <w:tabs>
-                <w:tab w:val="left" w:pos="680" />
-              </w:tabs>
-              <w:spacing w:after="200" w:line="300" w:lineRule="auto" />
-              <w:ind w:left="680" w:hanging="680" />
-            </w:pPr>
-          `,
-          prefix: `${wordText("☐", { size: 18 })}<w:r><w:tab /></w:r>`,
-        });
-      }
-      return output;
+      return module.items.reduce(
+        async (previous, item) => {
+          const output = await previous;
+          return (
+            output +
+            (await richText.render(item.contentPortableText, {
+              properties: safeXml`
+                <w:pPr>
+                  <w:keepLines />
+                  <w:widowControl />
+                  <w:tabs>
+                    <w:tab w:val="left" w:pos="680" />
+                  </w:tabs>
+                  <w:spacing w:after="200" w:line="300" w:lineRule="auto" />
+                  <w:ind w:left="680" w:hanging="680" />
+                </w:pPr>
+              `,
+              prefix: `${wordText("☐", { size: 18 })}<w:r><w:tab /></w:r>`,
+            }))
+          );
+        },
+        Promise.resolve(sectionHeading(module.heading)),
+      );
     }
     case "NationalCurriculumInsightsPreparationSection": {
       const estimatedLines = [
@@ -320,18 +332,22 @@ const moduleXml = async (
       return `${heading}${await richText.render(module.bodyPortableText)}${cta}`;
     }
     case "NationalCurriculumInsightsFaqSection": {
-      let output = closingHeading(module.heading);
-      for (const item of module.items) {
-        output += paragraph(item.question, {
-          style: "Heading3",
-          runStyle: insightsFaqQuestionStyle,
-          keepNext: true,
-          before: 240,
-          after: 120,
-        });
-        output += await richText.render(item.answerPortableText);
-      }
-      return output;
+      return module.items.reduce(
+        async (previous, item) => {
+          const output = await previous;
+          const question = paragraph(item.question, {
+            style: "Heading3",
+            runStyle: insightsFaqQuestionStyle,
+            keepNext: true,
+            before: 240,
+            after: 120,
+          });
+          return (
+            output + question + (await richText.render(item.answerPortableText))
+          );
+        },
+        Promise.resolve(closingHeading(module.heading)),
+      );
     }
     case "NationalCurriculumInsightsGuidanceIntroSection":
       return `${sectionHeading(module.heading)}${await richText.render(module.bodyPortableText)}`;
@@ -447,22 +463,27 @@ export const buildInsightsDocxContent = async ({
       `,
     });
     addEntry(label, group);
-    for (const section of source.modules.filter(isContentModule)) {
-      if (source === page && section === overview) continue;
-      await addSection(section, true);
-    }
+    await source.modules
+      .filter(isContentModule)
+      .reduce(async (previous, section) => {
+        await previous;
+        if (source === page && section === overview) return;
+        await addSection(section, true);
+      }, Promise.resolve());
   };
 
   if (stages.length) {
     const phaseContent = page.modules.filter(
       (module) => module !== overview && isContentModule(module),
     );
-    for (const section of phaseContent) {
+    await phaseContent.reduce(async (previous, section) => {
+      await previous;
       await addSection(section);
-    }
-    for (const { keyStage, page: keyStagePage } of stages) {
+    }, Promise.resolve());
+    await stages.reduce(async (previous, { keyStage, page: keyStagePage }) => {
+      await previous;
       await addPage(keyStagePage, `${keyStage} ${subjectTitle}`);
-    }
+    }, Promise.resolve());
   } else {
     await addPage(
       page,
@@ -475,10 +496,11 @@ export const buildInsightsDocxContent = async ({
     stages,
     sharedModules,
   });
-  for (const section of closing) {
+  await closing.reduce(async (previous, section) => {
+    await previous;
     if ("heading" in section && typeof section.heading === "string")
       addEntry(section.heading, await moduleXml(section, richText));
-  }
+  }, Promise.resolve());
 
   const contents = entries
     .map((entry) =>

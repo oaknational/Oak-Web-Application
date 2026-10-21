@@ -1,4 +1,4 @@
-import { join } from "path";
+import { join } from "node:path";
 
 import { format } from "date-fns";
 import { cdata, safeXml } from "@ooxml-tools/xml";
@@ -38,11 +38,15 @@ const phaseLabel = (phase: NationalCurriculumInsightsPhase) =>
   phase === "primary" ? "Primary" : "Secondary";
 
 const filenameSubject = (title: string) => {
-  const cleaned = title
+  const normalized = title
     .normalize("NFC")
     .replace(/[<>:"/\\|?*]|\p{Cc}/gu, " ")
-    .replace(/\s+/g, " ")
-    .replace(/^[. ]+|[. ]+$/g, "");
+    .replace(/\s+/g, " ");
+  let start = 0;
+  let end = normalized.length;
+  while (start < end && ". ".includes(normalized[start]!)) start += 1;
+  while (end > start && ". ".includes(normalized[end - 1]!)) end -= 1;
+  const cleaned = normalized.slice(start, end);
   let output = "";
   for (const character of cleaned) {
     if (Buffer.byteLength(output + character, "utf8") > 128) break;
@@ -133,13 +137,12 @@ export const generateNationalCurriculumInsightsDocx = async ({
     size: 14,
   });
   const editorialDate = header.lastUpdatedAt;
+  const formattedDate = editorialDate
+    ? format(new Date(editorialDate + "T12:00:00Z"), "d MMMM yyyy")
+    : "";
   const date = patterns.coverDateParagraph.replace(
     "{{editorialDate}}",
-    editorialDate
-      ? cdata(
-          `Last updated ${format(new Date(`${editorialDate}T12:00:00Z`), "d MMMM yyyy")}`,
-        )
-      : "",
+    editorialDate ? cdata(`Last updated ${formattedDate}`) : "",
   );
   const documentXml = safeXml`
     <root>

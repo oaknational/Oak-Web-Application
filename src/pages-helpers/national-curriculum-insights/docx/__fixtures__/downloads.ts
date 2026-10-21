@@ -205,6 +205,9 @@ export const createDownloadFixture = (
   stages: NationalCurriculumInsightsKeyStage[],
 ): NationalCurriculumInsightsSubject => {
   const title = stages.length ? "Science" : "Computing";
+  let downloadLayout: "phase" | "singleKeyStage" | "keyStages" = "keyStages";
+  if (stages.length === 0) downloadLayout = "phase";
+  if (stages.length === 1) downloadLayout = "singleKeyStage";
   const phaseModules = [
     {
       __typename: "NationalCurriculumInsightsHeaderSection" as const,
@@ -233,12 +236,7 @@ export const createDownloadFixture = (
         page: {
           id: `${title.toLowerCase()}-${phase}-fixture`,
           pageType: phase,
-          downloadLayout:
-            stages.length === 0
-              ? "phase"
-              : stages.length === 1
-                ? "singleKeyStage"
-                : "keyStages",
+          downloadLayout,
           title: "Internal phase document title",
           summary: "Phase guidance summary",
           modules: phaseModules,

@@ -36,13 +36,16 @@ export const fillInsightsDocxFurniture = async (
     }
     return element.elements?.some(replace) ?? false;
   };
-  const updated = await mapOverElements(footer as Element, async (element) => {
-    if (element.name !== "w:r" || !replace(element)) return element;
-    return xmlElementToJson(safeXml`
-      <w:hyperlink r:id="rIdGuidance">
-        ${jsonXmlToXmlString(element)}
-      </w:hyperlink>
-    `);
+  const updated = await mapOverElements(footer as Element, (element) => {
+    if (element.name !== "w:r" || !replace(element))
+      return Promise.resolve(element);
+    return Promise.resolve(
+      xmlElementToJson(safeXml`
+        <w:hyperlink r:id="rIdGuidance">
+          ${jsonXmlToXmlString(element)}
+        </w:hyperlink>
+      `),
+    );
   });
   zip.writeJson("word/footer1.xml", updated!);
   const relationships = await zip.readJson("word/_rels/footer1.xml.rels");

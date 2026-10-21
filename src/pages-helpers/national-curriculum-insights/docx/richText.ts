@@ -204,7 +204,7 @@ export const createInsightsDocxRichText = (
       if (depth > level) lists.delete(depth);
     }
     let list = lists.get(level);
-    if (!list || list.kind !== kind) {
+    if (list?.kind !== kind) {
       const ids = await insertNumbering(zip, {
         list: listDefinition(kind),
       });
@@ -229,26 +229,26 @@ export const createInsightsDocxRichText = (
     options: ParagraphOptions = {},
   ): Promise<string> => {
     if (!Array.isArray(value)) return "";
-    let output = "";
     const lists = new Map<number, WordList>();
     let first = true;
-    for (const block of value as Block[]) {
-      if (!block || (block._type && block._type !== "block")) continue;
-      if (!Array.isArray(block.children)) continue;
+    return (value as Block[]).reduce(async (previous, block) => {
+      const output = await previous;
+      if (!block || (block._type && block._type !== "block")) return output;
+      if (!Array.isArray(block.children)) return output;
       const content = block.children
         .map((span) => spanXml(span, block, options))
         .join("");
       const properties = await listProperties(block, lists, options.properties);
       const style = getParagraphStyle(block.style, options.style);
-      output += wordParagraph(content, {
+      const paragraph = wordParagraph(content, {
         ...options,
         style,
         properties,
         prefix: first ? options.prefix : undefined,
       });
       first = false;
-    }
-    return output;
+      return output + paragraph;
+    }, Promise.resolve(""));
   };
 
   return {
