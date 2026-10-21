@@ -277,6 +277,30 @@ describe("Insights download submission", () => {
     blob: async () => new Blob(["download"]),
   });
 
+  it.each<{ headers: Record<string, string>; filename: string }>([
+    {
+      headers: { "content-disposition": 'attachment; filename="Science.docx"' },
+      filename: "Science.docx",
+    },
+    {
+      headers: { "content-disposition": "attachment" },
+      filename: "Curriculum insights",
+    },
+    { headers: {}, filename: "Curriculum insights" },
+  ])(
+    "uses the available response filename: $filename",
+    async ({ headers, filename }) => {
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        headers: new Headers(headers),
+        blob: async () => new Blob(["download"]),
+      });
+      const { user, download } = await readyForm();
+      await user.click(download);
+      await waitFor(() => expect(downloads).toEqual([filename]));
+    },
+  );
+
   it("retains details, consent and selections when the panel is reopened", async () => {
     const { user } = await readyForm();
     await user.type(
