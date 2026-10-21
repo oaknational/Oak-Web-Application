@@ -1,4 +1,4 @@
-import { fireEvent, screen, waitFor } from "@testing-library/react";
+import { fireEvent, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { localNationalCurriculumInsightsFixtures } from "../__fixtures__/nationalCurriculumInsights";
@@ -128,6 +128,26 @@ describe("NationalCurriculumInsightsDownload", () => {
     expect(
       window.localStorage.getItem(LS_KEY_INSIGHTS_MANUAL_DOWNLOAD_SELECTION),
     ).toBeNull();
+  });
+
+  it("closes with the mobile Back button and returns focus to the opener", async () => {
+    const user = userEvent.setup();
+    renderWithTheme(
+      <NationalCurriculumInsightsDownload
+        data={await getData()}
+        section={section}
+      />,
+    );
+    const opener = screen.getByRole("button", {
+      name: /the national curriculum is changing/i,
+    });
+    await user.click(opener);
+    const dialog = screen.getByRole("dialog", {
+      name: "Curriculum guidance download",
+    });
+    await user.click(within(dialog).getByRole("button", { name: "Back" }));
+    expect(opener).toHaveAttribute("aria-expanded", "false");
+    await waitFor(() => expect(opener).toHaveFocus());
   });
 
   it("opens from a checklist on an insight page and preserves the exact manual selection", async () => {
