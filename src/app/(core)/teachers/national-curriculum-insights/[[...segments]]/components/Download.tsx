@@ -463,7 +463,7 @@ export const NationalCurriculumInsightsDownload = ({
             ) ?? [],
           ).filter((element) => element.getClientRects().length > 0);
           const first = controls[0];
-          const last = controls[controls.length - 1];
+          const last = controls.at(-1);
           if (
             event.shiftKey &&
             (document.activeElement === first ||
