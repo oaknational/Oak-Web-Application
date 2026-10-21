@@ -45,7 +45,7 @@ const Curriculum: NextPage<
         $background={"bg-primary"}
         topNavProps={props.topNav}
       >
-        {topBanner && <TopBanner topBanner={{ ...topBanner }} />}
+        {topBanner && <TopBanner {...topBanner} />}
         <CurriculumTab
           aria-current="page"
           curriculumPhaseOptions={props.curriculumPhaseOptions}

@@ -62,7 +62,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
         $background={"bg-primary"}
         topNavProps={topNav}
       >
-        {topBanner && <TopBanner topBanner={{ ...topBanner }} />}
+        {topBanner && <TopBanner {...topBanner} />}
         <TeachersTab
           curriculumPhaseOptions={curriculumPhaseOptions}
           aria-current="page"
