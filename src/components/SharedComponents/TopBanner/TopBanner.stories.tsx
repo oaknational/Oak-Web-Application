@@ -10,6 +10,7 @@ const meta = {
   tags: ["autodocs"],
   title: "Components/SharedComponents/TopBanner",
   argTypes: {
+    displayNewTag: { control: "boolean" },
     messagePortableTextWithPromo: { control: "object" },
     enabled: { control: "boolean" },
     cta: { control: "object" },

@@ -25,6 +25,7 @@ export const newCtaSchema = z.discriminatedUnion("linkType", [
 ]);
 
 export const topBannerSchema = z.object({
+  displayNewTag: z.boolean(),
   messagePortableTextWithPromo: portableTextSchema.nullish(),
   enabled: z.boolean(),
   cta: newCtaSchema.nullish(),

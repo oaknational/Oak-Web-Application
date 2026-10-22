@@ -1,6 +1,7 @@
 import type { TopBannerProps } from "./TopBanner";
 
 export const topBannerFixture: TopBannerProps = {
+  displayNewTag: true,
   messagePortableTextWithPromo: [
     {
       style: "normal",

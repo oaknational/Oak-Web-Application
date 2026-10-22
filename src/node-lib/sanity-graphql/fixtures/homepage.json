@@ -3,6 +3,7 @@
     {
       "id": "homepage",
       "topBanner": {
+        "displayNewTag": true,
         "messagePortableTextWithPromo": [
           {
             "_key": "967be59f8853",

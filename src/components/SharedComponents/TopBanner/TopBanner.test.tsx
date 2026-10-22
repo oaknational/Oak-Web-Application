@@ -13,6 +13,9 @@ describe("TopBanner", () => {
     expect(banner).toBeInTheDocument();
     expect(banner).toMatchSnapshot();
 
+    const newTag = getByText("New");
+    expect(banner).toContainElement(newTag);
+
     const message = getByText("Oak is now used in of schools!");
     const promoTag = getByText("72%");
     expect(banner).toContainElement(message);
@@ -44,6 +47,15 @@ describe("TopBanner", () => {
 
     const link = getByRole("link");
     expect(link).toHaveAttribute("href", "https://www.google.com/");
+  });
+
+  it("should not render the 'New' tag if not enabled", () => {
+    const { queryByText } = renderWithProviders()(
+      <TopBanner {...topBannerFixture} displayNewTag={false} />,
+    );
+
+    const newTag = queryByText("New");
+    expect(newTag).not.toBeInTheDocument();
   });
 
   it("should not render the message text if not provided", () => {

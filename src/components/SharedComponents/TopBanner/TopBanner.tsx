@@ -4,6 +4,7 @@ import {
   OakSmallTertiaryInvertedButton,
   OakSpan,
   OakP,
+  OakPromoTag,
 } from "@oaknational/oak-components";
 import { z } from "zod";
 import Link from "next/link";
@@ -25,6 +26,7 @@ const topBannerPortableTextComponents: PortableTextComponents = {
 };
 
 export default function TopBanner({
+  displayNewTag,
   messagePortableTextWithPromo,
   enabled,
   cta,
@@ -55,6 +57,7 @@ export default function TopBanner({
             $minWidth={["fit-content"]}
             $textAlign="center"
           >
+            {displayNewTag && <OakPromoTag />}
             {messagePortableTextWithPromo && (
               <PortableTextWithDefaults
                 value={messagePortableTextWithPromo}
