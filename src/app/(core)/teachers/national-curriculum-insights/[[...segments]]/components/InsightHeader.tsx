@@ -29,6 +29,7 @@ import {
   nationalCurriculumInsightsSubjectPhaseHref,
 } from "@/common-lib/urls/nationalCurriculumInsights";
 import formatDate from "@/utils/formatDate";
+import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { getImageDimensions } from "@/components/HooksAndUtils/sanityImageBuilder";
 
 const introductionComponents: PortableTextComponents = {
@@ -102,7 +103,7 @@ const headerImage = (data: NationalCurriculumInsightsRouteData) => {
         return { iconName: "homepage-three-pupils" as const, aspectRatio: 1 };
       }
       return {
-        src: `/images/curriculum-change-explained/${data.route.phase}.svg`,
+        src: getCloudinaryImageUrl("svg-illustrations/secondary_hsvcns.svg"),
         alt: "",
         aspectRatio: 1,
       };
