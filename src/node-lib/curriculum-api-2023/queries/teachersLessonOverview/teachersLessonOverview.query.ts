@@ -376,6 +376,7 @@ const teachersLessonOverviewQuery =
     const shouldHideCreateWithAi = getHideCreateWithAi({
       subject: browseData.programmeFields.subjectSlug,
       worksList: restrictedAndHighlyRestrictedWorksList,
+      restrictions: res.restrictions[0],
     });
 
     const staticLessonList = unitData.supplementaryData?.staticLessonList;

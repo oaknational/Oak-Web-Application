@@ -2,6 +2,7 @@ import {
   LessonBrowseDataByKs,
   LessonOverviewContent,
 } from "../../queries/lessonOverview/lessonOverview.schema";
+import { Restrictions } from "../../queries/teachersLessonOverview/teachersLessonOverview.schema";
 
 import { isRestrictedLessonId } from "./isRestrictedLessonId";
 import { hasRestrictedContentGuidance } from "./hasRestrictedContentGuidence";
@@ -11,7 +12,7 @@ interface WorksListItem {
 }
 
 // no content from these subjects can use create with AI
-const RESTRICTED_SUBJECTS = [
+export const RESTRICTED_SUBJECTS = new Set([
   "art",
   "design-technology",
   "french",
@@ -19,19 +20,46 @@ const RESTRICTED_SUBJECTS = [
   "german",
   "music",
   "spanish",
-];
+]);
+
+const restrictedLevels = new Set(["Restricted", "Highly restricted"]);
 
 export const getHideCreateWithAi = ({
   subject,
   worksList,
+  restrictions,
 }: {
   subject: string;
   worksList: WorksListItem[];
+  restrictions?: Restrictions;
 }) => {
   const hasRestrictedWorks = worksList.length > 0;
-  const isRestrictedSubject = RESTRICTED_SUBJECTS.includes(subject);
+  const isRestrictedSubject = RESTRICTED_SUBJECTS.has(subject);
+  const {
+    tpc_media_max_restriction: mediaRestriction,
+    tpc_downloadablefiles_max_restriction: downloadableFilesRestriction,
+    tpc_quizimages_max_restriction: quizImageRestrictions,
+    tpc_works_max_restriction: worksRestriction,
+  } = restrictions ?? {};
 
-  return isRestrictedSubject || hasRestrictedWorks;
+  const hasMediaRestriction =
+    mediaRestriction && restrictedLevels.has(mediaRestriction);
+  const hasdownloadableFilesRestriction =
+    downloadableFilesRestriction &&
+    restrictedLevels.has(downloadableFilesRestriction);
+  const hasQuizImageRestriction =
+    quizImageRestrictions && restrictedLevels.has(quizImageRestrictions);
+  const hasWorksRestriction =
+    worksRestriction && restrictedLevels.has(worksRestriction);
+
+  return Boolean(
+    isRestrictedSubject ||
+      hasRestrictedWorks ||
+      hasMediaRestriction ||
+      hasdownloadableFilesRestriction ||
+      hasQuizImageRestriction ||
+      hasWorksRestriction,
+  );
 };
 
 export const isExcludedFromTeachingMaterials = (

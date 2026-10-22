@@ -127,3 +127,12 @@ export type TeachersLessonBrowseDataByKs = Omit<
   SyntheticUnitvariantLessonsByKsCamel,
   "nullUnitvariantId" | "isLegacy"
 >;
+
+export const restrictionsSchema = z.object({
+  tpc_works_max_restriction: z.string().nullish(),
+  tpc_quizimages_max_restriction: z.string().nullish(),
+  tpc_media_max_restriction: z.string().nullish(),
+  tpc_downloadablefiles_max_restriction: z.string().nullish(),
+});
+
+export type Restrictions = z.infer<typeof restrictionsSchema>;
