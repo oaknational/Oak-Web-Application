@@ -109,7 +109,9 @@ const headerImage = (data: NationalCurriculumInsightsRouteData) => {
       };
     case "subjectPhaseKeyStage":
       return {
-        src: `/images/curriculum-change-explained/${nationalCurriculumInsightsKeyStageFromSlug(data.route.keyStageSlug).toLowerCase()}.png`,
+        src: getCloudinaryImageUrl(
+          `svg-illustrations/${nationalCurriculumInsightsKeyStageFromSlug(data.route.keyStageSlug).toLowerCase()}.png`,
+        ),
         alt: "",
         aspectRatio: {
           KS1: 2096 / 1372,
