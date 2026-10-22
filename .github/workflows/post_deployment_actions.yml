@@ -13,37 +13,37 @@ jobs:
     uses: ./.github/workflows/dump_event.yml
 
   # Do a find-and-replace to add a link to the deployment to the PR body
- # update_pr_description:
-    # Only want to run on success, otherwise it might be "pending", or "failure".
-    # Filter out Storybook deployments.
- #   if: ${{ (github.event.deployment.ref != 'main') && (github.event.deployment_status.state == 'success') && !endsWith(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment, 'storybook-console')}}
- #   name: Add deploy URL to PR description
- #   runs-on: ubuntu-24.04
- #   steps:
- #     - uses: actions/checkout@v4
-      # Note we can't use caching here, because caching needs GITHUB_REF to be defined,
-      # and Vercel deployment_status events set deployment.ref to the SHA, not the triggering
-      # branch or pull request.
-      # https://github.com/actions/cache/issues/319
- #     - name: Use Node.js
- #       uses: actions/setup-node@v4
- #       with:
- #         node-version: 22.x
- #         cache: "npm"
- #     - run: pnpm ci
- #
- #     - uses: ./.github/actions/ref_from_sha
- #       name: Get PR Ref from SHA
- #       id: ref_from_sha
- #       with:
- #         github_token: ${{ secrets.GITHUB_TOKEN }}
- #
- #     - uses: mcky/find-and-replace-pull-request-body@v1.1.6-mcky
- #       with:
- #         githubToken: ${{ secrets.GITHUB_TOKEN }}
- #         prNumber: ${{ steps.ref_from_sha.outputs.pr_number }}
- #         find: "{owa_deployment_url}"
- #         replace: ${{ github.event.deployment_status.environment_url }}
+  # update_pr_description:
+  # Only want to run on success, otherwise it might be "pending", or "failure".
+  # Filter out Storybook deployments.
+  #   if: ${{ (github.event.deployment.ref != 'main') && (github.event.deployment_status.state == 'success') && !endsWith(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment, 'storybook-console')}}
+  #   name: Add deploy URL to PR description
+  #   runs-on: ubuntu-24.04
+  #   steps:
+  #     - uses: actions/checkout@v4
+  # Note we can't use caching here, because caching needs GITHUB_REF to be defined,
+  # and Vercel deployment_status events set deployment.ref to the SHA, not the triggering
+  # branch or pull request.
+  # https://github.com/actions/cache/issues/319
+  #     - name: Use Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 22.x
+  #         cache: "npm"
+  #     - run: pnpm ci
+  #
+  #     - uses: ./.github/actions/ref_from_sha
+  #       name: Get PR Ref from SHA
+  #       id: ref_from_sha
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #
+  #     - uses: mcky/find-and-replace-pull-request-body@v1.1.6-mcky
+  #       with:
+  #         githubToken: ${{ secrets.GITHUB_TOKEN }}
+  #         prNumber: ${{ steps.ref_from_sha.outputs.pr_number }}
+  #         find: "{owa_deployment_url}"
+  #         replace: ${{ github.event.deployment_status.environment_url }}
 
   # Warm the caches on the test URLs
   # warm_caches:
@@ -118,70 +118,4 @@ jobs:
         with:
           description: Pa11y (${{github.event.deployment_status.environment}})
           state: ${{ steps.run_pa11y.outcome }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-  # Run Percy visual regression tests against preview and production deployments.
-  percy:
-    # needs: warm_caches
-    # Only want to run on success, otherwise it might be "pending", or "failure".
-    # Filter out Storybook deployments.
-    if: ${{ (github.event.deployment_status.state == 'success') && !endsWith(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment, 'storybook-console')}}
-    name: Percy
-    runs-on: ubuntu-24.04
-    timeout-minutes: 60
-    permissions:
-      contents: read
-      pull-requests: read
-      statuses: write
-
-    steps:
-      - uses: actions/checkout@v5
-
-      - name: setup pnpm
-        uses: pnpm/action-setup@08c4be7e2e672a47d11bd04269e27e5f3e8529cb #v6
-        with:
-          cache: true
-
-      - name: setup node
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          cache: "pnpm"
-
-      - run: pnpm install --ignore-scripts --verbose
-
-      - name: Log out URL
-        run: echo "${{ github.event.deployment_status.environment_url }}"
-
-      - uses: ./.github/actions/ref_from_sha
-        name: Get PR Ref from SHA
-        id: ref_from_sha
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: print branch name and PR number from sha
-        run: |
-          echo "${{ steps.ref_from_sha.outputs.branch_name }}"
-          echo "${{ steps.ref_from_sha.outputs.pr_number }}"
-
-      - uses: ./.github/actions/percy_snapshots
-        name: run percy
-        id: run_percy
-        with:
-          base_url: ${{ github.event.deployment_status.environment_url }}
-          branch_name: ${{ steps.ref_from_sha.outputs.branch_name }}
-          pr_number: ${{ steps.ref_from_sha.outputs.pr_number }}
-          percy_token: ${{ secrets.PERCY_TOKEN }}
-        env:
-          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
-          PERCY_PAGE_LOAD_TIMEOUT: 60000
-
-      # Set custom status so results preserved between multiple
-      # deployment events from same commit
-      - uses: ./.github/actions/custom_statuses
-        name: Set Percy check result
-        if: ${{ always() }}
-        with:
-          description: Percy (${{github.event.deployment_status.environment}})
-          state: ${{ steps.run_percy.outcome }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
