@@ -156,7 +156,8 @@ const modulesProjection = `modules[]{
 const pageSummaryProjection = `{
   "id": _id,
   pageType,
-  title
+  title,
+  "availableKeyStages": coalesce(keyStages[defined(page->_id)].keyStage, [])
 }`;
 
 const keyStagePageProjection = `{
@@ -189,6 +190,16 @@ export const nationalCurriculumInsightsHubQuery = `
     "id": _id,
     title,
     summary,
+    "phaseLinks": coalesce(phaseLinks[
+      defined(subject->_id) && phase in subject->tabs[defined(page->_id)].kind &&
+      (!defined(keyStage) || keyStage in subject->tabs[kind == ^.phase][0].page->keyStages[defined(page->_id)].keyStage)
+    ]{
+      title,
+      phase,
+      iconName,
+      keyStage,
+      "subjectSlug": subject->slug.current
+    }, []),
     "subjects": coalesce(subjects[defined(@->_id)]->{
       "id": _id,
       title,
