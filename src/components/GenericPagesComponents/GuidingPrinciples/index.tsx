@@ -43,7 +43,7 @@ export type GuidingPrinciplesProps = {
   text?: string | PortableTextJSON;
   imageUrl?: string;
   imageAlt?: string;
-  principles?: GuidingPrincipleItem[];
+  principles: GuidingPrincipleItem[];
 };
 export function GuidingPrinciples({
   accentColor,
@@ -52,7 +52,7 @@ export function GuidingPrinciples({
   text,
   imageUrl,
   imageAlt = "",
-  principles = [],
+  principles,
 }: Readonly<GuidingPrinciplesProps>) {
   if (principles.length === 0) {
     return null;
