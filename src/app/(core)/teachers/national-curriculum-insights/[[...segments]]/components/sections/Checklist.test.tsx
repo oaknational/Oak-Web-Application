@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 
 import { NationalCurriculumInsightsChecklist } from "./Checklist";
 
+import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { nationalCurriculumInsightsModuleSchema } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import { nationalCurriculumInsightsOpenDownloadEvent } from "@/common-lib/urls/nationalCurriculumInsightsDownload";
@@ -44,11 +45,15 @@ it("renders every action as a semantic list and decorates it with the template's
     illustrations.map(
       (image) =>
         new URL((image as HTMLImageElement).src).searchParams.get("url") ??
-        new URL((image as HTMLImageElement).src).pathname,
+        new URL((image as HTMLImageElement).src).href,
     ),
   ).toEqual([
-    "/images/national-curriculum-insights/checklist-tick-key-stage.svg",
-    "/images/national-curriculum-insights/checklist-tick-key-stage.svg",
+    new URL(
+      getCloudinaryImageUrl("svg-illustrations/checklist-tick-key-stage.svg"),
+    ).href,
+    new URL(
+      getCloudinaryImageUrl("svg-illustrations/checklist-tick-key-stage.svg"),
+    ).href,
   ]);
   illustrations.forEach((image) => expect(image).toHaveAttribute("alt", ""));
 });

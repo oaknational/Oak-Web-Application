@@ -12,6 +12,7 @@ import { NationalCurriculumInsightsPortableText } from "../PortableText";
 
 import { guidancePortableTextComponents, type SectionProps } from "./shared";
 
+import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { requestNationalCurriculumInsightsDownload } from "@/common-lib/urls/nationalCurriculumInsightsDownload";
 
 export const NationalCurriculumInsightsChecklist = ({
@@ -50,11 +51,11 @@ export const NationalCurriculumInsightsChecklist = ({
             >
               <OakFlex $flexShrink={0} $mt="spacing-4">
                 <OakImage
-                  src={
+                  src={getCloudinaryImageUrl(
                     variant === "keyStage"
-                      ? "/images/national-curriculum-insights/checklist-tick-key-stage.svg"
-                      : "/images/national-curriculum-insights/checklist-tick-phase.svg"
-                  }
+                      ? "svg-illustrations/checklist-tick-key-stage.svg"
+                      : "svg-illustrations/checklist-tick-phase.svg",
+                  )}
                   alt=""
                   aria-hidden="true"
                   $width="spacing-20"
