@@ -77,6 +77,7 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   loginRequired: z.boolean(),
   geoRestricted: z.boolean(),
   excludedFromTeachingMaterials: z.boolean(),
+  shouldHideCreateWithAi: z.boolean().optional(),
   subjectCategories: z
     .array(z.union([z.string(), z.number(), z.null()]))
     .nullish(),
