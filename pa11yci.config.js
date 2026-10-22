@@ -46,11 +46,7 @@ const config = {
       // Eslint should prevent us doing this in components we control.
       "list",
     ],
-    headers: {
-      "x-vercel-protection-bypass": vercelAutomationBypass,
-    },
     concurrency: 5,
-    // If running pa11y locally fails, comment out the following section
     chromeLaunchConfig: {
       args: [
         // Aims to prevent flakiness with "Failed to run" errors (GH Issue: https://github.com/pa11y/pa11y-ci/issues/198)
@@ -71,20 +67,19 @@ const relativeUrls = getDeploymentTestUrls();
 
 // Add the base URL to the relative URLs.
 config.urls = relativeUrls.map((relUrl) => {
-  // This is the current default.
-  if (typeof relUrl === "string") {
-    const pa11yUrl = new URL(relUrl, baseUrl).href;
-    return {
-      url: pa11yUrl,
-      timeout: 120000,
-      // Should help detect if we get served, e.g. a Cloudflare error page.
-      actions: ["wait for element #__next to be visible"],
-    };
-    // Return the already created URL config object.
-  } else {
-    relUrl.url = new URL(relUrl.url, baseUrl).href;
-    return relUrl;
-  }
+  const urlConfig = typeof relUrl === "object" ? relUrl : { url: relUrl };
+
+  const pa11yUrl = new URL(urlConfig.url, baseUrl);
+  pa11yUrl.searchParams.set(
+    "x-vercel-protection-bypass",
+    vercelAutomationBypass,
+  );
+  pa11yUrl.searchParams.set("x-vercel-set-bypass-cookie", "true");
+
+  return {
+    ...urlConfig,
+    url: pa11yUrl.href,
+  };
 });
 
 module.exports = config;
