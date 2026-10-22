@@ -6,22 +6,15 @@ import {
   OakHeading,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
-import { PortableTextBlock } from "@portabletext/types";
 
 import { NewGutterMaxWidth } from "../NewGutterMaxWidth";
 
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import { Link } from "@/common-lib/cms-types";
+import { JoinResearchPanelPageBlock } from "@/common-lib/cms-types";
 
-export type JoinResearchPanelJourneyProps = {
-  title: string;
-  steps: {
-    title: string;
-    descriptionRaw: PortableTextBlock[];
-  }[];
-  button: { label: string } & Link;
-};
+export type JoinResearchPanelJourneyProps =
+  JoinResearchPanelPageBlock<"JoinResearchPanelPageJourney">;
 export default function JoinResearchPanelJourney({
   title,
   steps,
