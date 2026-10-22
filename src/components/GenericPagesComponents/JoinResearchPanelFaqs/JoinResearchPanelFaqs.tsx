@@ -13,6 +13,7 @@ import { NewGutterMaxWidth } from "../NewGutterMaxWidth";
 import { JoinResearchPanelPageBlock } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type JoinResearchPanelFaqsProps = Omit<
   JoinResearchPanelPageBlock<"JoinResearchPanelPageFaqs">,
@@ -23,50 +24,56 @@ export default function JoinResearchPanelFaqs({
   items,
 }: Readonly<JoinResearchPanelFaqsProps>) {
   return (
-    <NewGutterMaxWidth>
-      <TrackScrolledTo eventKey="join_research_panel_faqs" />
-      <OakFlex
-        $flexDirection={"column"}
-        $gap="spacing-32"
-        $alignItems={"center"}
-      >
-        <OakHeading tag="h2" $font={["heading-5", "heading-4"]}>
-          Frequently asked questions
-        </OakHeading>
-        <OakGrid>
-          <OakGridArea
-            $colSpan={8}
-            $colStart={3}
-            $alignSelf={"flex-start"}
-            $flexDirection={"column"}
-          >
-            {items.map((item, i) => (
-              <OakBasicAccordion
-                header={
-                  <OakSpan
-                    $textAlign={"left"}
-                    $font={["heading-7", "heading-6"]}
-                  >
-                    {item.question}
-                  </OakSpan>
-                }
-                id={item.question}
-                $bl="border-solid-none"
-                $br="border-solid-none"
-                $bt={i === 0 ? "border-solid-m" : "border-solid-s"}
-                $bb={
-                  i === items.length - 1 ? "border-solid-m" : "border-solid-s"
-                }
-                $borderColor={"border-neutral-lighter"}
-              >
-                <OakBox $mt="spacing-20">
-                  <PortableTextWithDefaults value={item.answerRaw} />
-                </OakBox>
-              </OakBasicAccordion>
-            ))}
-          </OakGridArea>
-        </OakGrid>
-      </OakFlex>
-    </NewGutterMaxWidth>
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
+    >
+      <NewGutterMaxWidth>
+        <TrackScrolledTo eventKey="join_research_panel_faqs" />
+        <OakFlex
+          $flexDirection={"column"}
+          $gap="spacing-32"
+          $alignItems={"center"}
+        >
+          <OakHeading tag="h2" $font={["heading-5", "heading-4"]}>
+            Frequently asked questions
+          </OakHeading>
+          <OakGrid>
+            <OakGridArea
+              $colSpan={8}
+              $colStart={3}
+              $alignSelf={"flex-start"}
+              $flexDirection={"column"}
+            >
+              {items.map((item, i) => (
+                <OakBasicAccordion
+                  key={item.question}
+                  header={
+                    <OakSpan
+                      $textAlign={"left"}
+                      $font={["heading-7", "heading-6"]}
+                    >
+                      {item.question}
+                    </OakSpan>
+                  }
+                  id={item.question}
+                  $bl="border-solid-none"
+                  $br="border-solid-none"
+                  $bt={i === 0 ? "border-solid-m" : "border-solid-s"}
+                  $bb={
+                    i === items.length - 1 ? "border-solid-m" : "border-solid-s"
+                  }
+                  $borderColor={"border-neutral-lighter"}
+                >
+                  <OakBox $mt="spacing-20">
+                    <PortableTextWithDefaults value={item.answerRaw} />
+                  </OakBox>
+                </OakBasicAccordion>
+              ))}
+            </OakGridArea>
+          </OakGrid>
+        </OakFlex>
+      </NewGutterMaxWidth>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 }
