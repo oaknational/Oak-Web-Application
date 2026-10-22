@@ -56,6 +56,7 @@ describe("teachersLessonOverview()", () => {
             content: [_lessonContentFixture],
             unitData: [],
             tpcWorks: [],
+            restrictions: [],
           }),
         ),
       })({
@@ -75,6 +76,7 @@ describe("teachersLessonOverview()", () => {
             browseData: [],
             unitData: [],
             tpcWorks: [],
+            restrictions: [],
           }),
         ),
       })({
@@ -294,6 +296,7 @@ describe("teachersLessonOverview()", () => {
           content: [_lessonContentFixture],
           unitData: [_unitDataFixture],
           tpcWorks: [],
+          restrictions: [],
         }),
       ),
     })({
@@ -351,6 +354,7 @@ describe("teachersLessonOverview()", () => {
           content: [content],
           unitData: [unitData],
           tpcWorks: [],
+          restrictions: [],
         }),
       ),
     })({
@@ -414,6 +418,7 @@ describe("teachersLessonOverview()", () => {
           content: [content],
           unitData: [unitData],
           tpcWorks: [],
+          restrictions: [],
         }),
       ),
     })({
@@ -506,6 +511,7 @@ describe("teachersLessonOverview()", () => {
           content: [content],
           unitData: [unitData],
           tpcWorks: [],
+          restrictions: [],
         }),
       ),
     })({
@@ -536,6 +542,7 @@ describe("teachersLessonOverview()", () => {
             content: [],
             unitData: [],
             tpcWorks: [],
+            restrictions: [],
           }),
         ),
       })({
@@ -752,6 +759,7 @@ describe("hasMediaClips logic", () => {
           content: [_lessonContentFixture],
           unitData: [_unitDataFixture],
           tpcWorks: [],
+          restrictions: [],
         }),
       ),
     })({
