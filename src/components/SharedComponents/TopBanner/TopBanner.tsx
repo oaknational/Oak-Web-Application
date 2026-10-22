@@ -31,7 +31,7 @@ export default function TopBanner({
   enabled,
   cta,
   backgroundColour,
-}: TopBannerProps) {
+}: Readonly<TopBannerProps>) {
   return (
     <OakBox role="banner">
       <OakFlex
