@@ -1,8 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 
+import { joinResearchPanelInfoBlockFixture } from "./JoinResearchPanelInfo.fixtures";
+
 import JoinResearchPanelInfo from ".";
 
-import { joinResearchPanelInfoBlockFixture } from "@/__tests__/pages/about-us/get-involved/join-research-panel.fixtures";
 
 const meta = {
   component: JoinResearchPanelInfo,
