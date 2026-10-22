@@ -1,13 +1,9 @@
-/**
- * @jest-environment node
- */
-import { JSDOM } from "jsdom";
 import JSZip from "jszip";
 
 import { getParsedDocx } from "./getParsedDocx";
 
-describe("server DOCX callout conversion", () => {
-  it("retains decorative background images after server DOM processing and sanitization", async () => {
+describe("browser DOCX callout conversion", () => {
+  it("retains decorative background images after DOM processing and sanitization", async () => {
     const zip = new JSZip();
     const w = "http://schemas.openxmlformats.org/wordprocessingml/2006/main";
     const wp =
@@ -50,27 +46,26 @@ describe("server DOCX callout conversion", () => {
       </Types>`,
     );
     zip.file("word/media/background.png", "AAAA", { base64: true });
-    const fetch = jest
-      .spyOn(globalThis, "fetch")
-      .mockResolvedValue(
-        new Response(await zip.generateAsync({ type: "arraybuffer" })),
+    const response = new Response();
+    jest
+      .spyOn(response, "arrayBuffer")
+      .mockImplementation(async () =>
+        zip.generateAsync({ type: "arraybuffer" }),
       );
+    const fetch = jest.spyOn(globalThis, "fetch").mockResolvedValue(response);
     try {
       const result = await getParsedDocx("test-document");
-      const dom = new JSDOM(result.html);
-      try {
-        const callout = dom.window.document.querySelector(".docx-callout");
-        expect(callout?.getAttribute("style")).toContain(
-          'background-image: url("data:image/png;base64,AAAA")',
-        );
-        expect(callout?.querySelector("h3")?.textContent).toBe("Demo videos");
-        expect(callout?.querySelector("a[href]")?.getAttribute("href")).toBe(
-          "https://example.com",
-        );
-        expect(callout?.querySelector("img")).toBeNull();
-      } finally {
-        dom.window.close();
-      }
+      const root = document.createElement("div");
+      root.innerHTML = result.html;
+      const callout = root.querySelector(".docx-callout");
+      expect(callout?.getAttribute("style")).toContain(
+        'background-image: url("data:image/png;base64,AAAA")',
+      );
+      expect(callout?.querySelector("h3")?.textContent).toBe("Demo videos");
+      expect(callout?.querySelector("a[href]")?.getAttribute("href")).toBe(
+        "https://example.com",
+      );
+      expect(callout?.querySelector("img")).toBeNull();
     } finally {
       fetch.mockRestore();
     }
