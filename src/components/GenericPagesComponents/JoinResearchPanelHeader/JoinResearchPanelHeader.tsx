@@ -17,7 +17,7 @@ export default function JoinResearchPanelPageHeader({
   bodyRaw,
   image,
   button,
-}: JoinResearchPanelHeaderProps) {
+}: Readonly<JoinResearchPanelHeaderProps>) {
   return (
     <>
       <NewGutterMaxWidth>

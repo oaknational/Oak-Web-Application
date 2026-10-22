@@ -21,7 +21,7 @@ export type JoinResearchPanelFaqsProps = Omit<
 
 export default function JoinResearchPanelFaqs({
   items,
-}: JoinResearchPanelFaqsProps) {
+}: Readonly<JoinResearchPanelFaqsProps>) {
   return (
     <NewGutterMaxWidth>
       <TrackScrolledTo eventKey="join_research_panel_faqs" />

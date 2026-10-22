@@ -41,7 +41,7 @@ export default function JoinResearchPanelInfo({
   title,
   bodyRaw,
   image,
-}: JoinResearchPanelInfoProps) {
+}: Readonly<JoinResearchPanelInfoProps>) {
   return (
     <NewGutterMaxWidth>
       <OakGrid $rg="spacing-32" $pv={["spacing-56", "spacing-80"]}>
