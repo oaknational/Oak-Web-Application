@@ -17,10 +17,15 @@ const calloutPortableTextComponents: PortableTextComponents = {
   },
 };
 
+export type JoinResearchPanelCalloutProps = Omit<
+  JoinResearchPanelPageBlock<"JoinResearchPanelPageCallout">,
+  "__typename"
+>;
+
 export default function JoinResearchPanelCallout({
   title,
   items,
-}: JoinResearchPanelPageBlock<"JoinResearchPanelPageCallout">) {
+}: JoinResearchPanelCalloutProps) {
   return (
     <OakFlex
       $background="bg-decorative3-very-subdued"

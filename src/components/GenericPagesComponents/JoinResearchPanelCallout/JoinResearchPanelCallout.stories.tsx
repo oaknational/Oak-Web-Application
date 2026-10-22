@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 
+import { basic } from "./JoinResearchPanelCallout.fixtures";
+
 import JoinResearchPanelCallout from "./index";
 
-import { joinResearchPanelCalloutBlockFixture } from "@/__tests__/pages/about-us/get-involved/join-research-panel.fixtures";
 
 const meta = {
   component: JoinResearchPanelCallout,
@@ -15,5 +16,5 @@ export default meta;
 type Story = StoryObj<typeof JoinResearchPanelCallout>;
 
 export const Default: Story = {
-  args: joinResearchPanelCalloutBlockFixture,
+  args: basic,
 };

@@ -1,7 +1,8 @@
+import { basic as fixture } from "./JoinResearchPanelCallout.fixtures";
+
 import JoinResearchPanelCallout from ".";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
-import { joinResearchPanelCalloutBlockFixture as fixture } from "@/__tests__/pages/about-us/get-involved/join-research-panel.fixtures";
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
