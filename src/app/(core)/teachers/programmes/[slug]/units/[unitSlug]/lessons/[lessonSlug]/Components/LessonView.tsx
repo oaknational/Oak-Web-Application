@@ -55,6 +55,7 @@ export default function LessonView(
     actions,
     subjectCategories,
     excludedFromTeachingMaterials,
+    shouldHideCreateWithAi,
   } = props;
 
   const copyrightState = useComplexCopyright({
@@ -156,11 +157,6 @@ export default function LessonView(
               <ComplexCopyrightRestrictionBanner
                 isGeorestricted={geoRestricted}
                 isLoginRequired={loginRequired}
-                lessonName={lessonTitle}
-                lessonSlug={lessonSlug}
-                unitName={unitTitle}
-                unitSlug={unitSlug}
-                isLessonLegacy={false}
                 componentType="lesson_overview"
               />
               {showHeatwaveBanner && (
@@ -186,7 +182,9 @@ export default function LessonView(
               <LessonActionsBar
                 showPupilShare={showPupilShare}
                 createWithAiProps={
-                  contentRestricted || excludedFromTeachingMaterials
+                  contentRestricted ||
+                  excludedFromTeachingMaterials ||
+                  shouldHideCreateWithAi
                     ? undefined
                     : {
                         lessonSlug,
