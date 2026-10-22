@@ -241,8 +241,12 @@ describe("NationalCurriculumInsightsView", () => {
           ],
         },
       ],
-      ctaLabel: "Explore Science curriculum plans",
-      ctaHref: "/teachers/curriculum/science-primary/overview",
+      cta: {
+        label: "Explore Science curriculum plans",
+        linkType: "external",
+        external:
+          "https://www.thenational.academy/teachers/curriculum/science-primary/overview",
+      },
     });
     renderWithTheme(<NationalCurriculumInsightsView data={data} />);
     expect(
@@ -250,6 +254,9 @@ describe("NationalCurriculumInsightsView", () => {
     ).toHaveTextContent("Explore the current Science plans.");
     expect(
       screen.getByRole("link", { name: "Explore Science curriculum plans" }),
-    ).toHaveAttribute("href", "/teachers/curriculum/science-primary/overview");
+    ).toHaveAttribute(
+      "href",
+      "https://www.thenational.academy/teachers/curriculum/science-primary/overview",
+    );
   });
 });

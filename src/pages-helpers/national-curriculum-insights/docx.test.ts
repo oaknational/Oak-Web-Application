@@ -38,8 +38,12 @@ describe("National Curriculum Insights documents", () => {
                     ],
                   },
                 ],
-                ctaLabel: "Explore curriculum plans",
-                ctaHref: "/teachers/curriculum/science-primary/overview",
+                cta: {
+                  label: "Explore curriculum plans",
+                  linkType: "external",
+                  external:
+                    "https://www.thenational.academy/teachers/curriculum/science-primary/overview",
+                },
               },
             ],
           },

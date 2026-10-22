@@ -13,6 +13,8 @@ import { NationalCurriculumInsightsPortableText } from "../PortableText";
 
 import { guidancePortableTextComponents, type SectionProps } from "./shared";
 
+import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
+
 const confetti = [
   {
     name: "right",
@@ -101,12 +103,12 @@ export const NationalCurriculumInsightsConfidence = ({
       <OakFlex $width="100%" $maxWidth="spacing-360">
         <OakSecondaryButton
           element={Link}
-          href={section.ctaHref}
+          href={getLinkHref(section.cta)}
           iconName="arrow-right"
           isTrailingIcon
           width="100%"
         >
-          {section.ctaLabel}
+          {section.cta.label}
         </OakSecondaryButton>
       </OakFlex>
     </OakFlex>

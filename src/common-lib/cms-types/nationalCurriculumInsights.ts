@@ -1,6 +1,7 @@
 import * as z from "zod";
 
 import { documentSchema, imageSchema, slugSchema, videoSchema } from "./base";
+import { CTASchema } from "./cta";
 import { portableTextSchema } from "./portableText";
 
 export const nationalCurriculumInsightsPhaseSchema = z.enum([
@@ -187,8 +188,7 @@ const nationalCurriculumInsightsConfidenceSectionSchema = z.object({
       ),
     "Add non-empty preparation content",
   ),
-  ctaLabel: z.string().trim().min(1),
-  ctaHref: z.string().trim().min(1),
+  cta: CTASchema,
 });
 
 const nationalCurriculumInsightsImageTextSectionSchema = z.object({

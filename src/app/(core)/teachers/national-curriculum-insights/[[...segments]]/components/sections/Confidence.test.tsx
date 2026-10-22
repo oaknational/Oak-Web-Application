@@ -24,8 +24,12 @@ const section = {
       ],
     },
   ],
-  ctaLabel: "Explore curriculum plans",
-  ctaHref: "/teachers/curriculum/history-primary/overview",
+  cta: {
+    label: "Explore curriculum plans",
+    linkType: "external" as const,
+    external:
+      "https://www.thenational.academy/teachers/curriculum/history-primary/overview",
+  },
 };
 
 it("renders editable content and the page's curriculum plans link", () => {
@@ -33,9 +37,9 @@ it("renders editable content and the page's curriculum plans link", () => {
   expect(
     screen.getByRole("region", { name: section.heading }),
   ).toHaveTextContent("Use Oak to refresh your curriculum.");
-  expect(screen.getByRole("link", { name: section.ctaLabel })).toHaveAttribute(
+  expect(screen.getByRole("link", { name: section.cta.label })).toHaveAttribute(
     "href",
-    section.ctaHref,
+    section.cta.external,
   );
 });
 
@@ -77,6 +81,37 @@ it("preserves rich-text emphasis and resolved internal links", () => {
   expect(screen.getByText("our guidance").closest("strong")).not.toBeNull();
 });
 
+it.each([
+  {
+    cta: {
+      label: "Read the guidance",
+      linkType: "internal" as const,
+      internal: {
+        id: "guidance",
+        contentType: "newsPost" as const,
+        slug: "curriculum-change",
+      },
+    },
+    href: "/blog/curriculum-change",
+  },
+  {
+    cta: {
+      label: "Choose downloads",
+      linkType: "anchor" as const,
+      anchor: "downloads",
+    },
+    href: "#downloads",
+  },
+])("uses the shared link resolver for $cta.linkType CTAs", ({ cta, href }) => {
+  renderWithTheme(
+    <NationalCurriculumInsightsConfidence section={{ ...section, cta }} />,
+  );
+  expect(screen.getByRole("link", { name: cta.label })).toHaveAttribute(
+    "href",
+    href,
+  );
+});
+
 it("keeps the supplied confetti artwork decorative", () => {
   const { container } = renderWithTheme(
     <NationalCurriculumInsightsConfidence section={section} />,
@@ -97,8 +132,8 @@ it("rejects incomplete callouts before rendering", () => {
   ).toBe(true);
   for (const invalid of [
     { ...section, heading: " " },
-    { ...section, ctaLabel: " " },
-    { ...section, ctaHref: " " },
+    { ...section, cta: undefined },
+    { ...section, cta: { ...section.cta, external: " " } },
     { ...section, bodyPortableText: [] },
     {
       ...section,
