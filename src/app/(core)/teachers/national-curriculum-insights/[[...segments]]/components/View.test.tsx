@@ -26,6 +26,55 @@ const getData = async (segments?: string[]) => {
 };
 
 describe("NationalCurriculumInsightsView", () => {
+  it("renders phase-page key-stage cards before the phase-grouped subject links", async () => {
+    const routeData = await getData(["science", "primary"]);
+    const data = { ...routeData, page: { ...routeData.page! } };
+    const page = data.page!;
+    page.modules = [
+      {
+        __typename: "NationalCurriculumInsightsKeyStageCardsSection",
+        cards: [
+          { keyStage: "KS1", heading: "KS1 Science curriculum changes" },
+          { keyStage: "KS2", heading: "KS2 Science curriculum changes" },
+        ],
+      },
+      {
+        __typename: "NationalCurriculumInsightsSubjectNavigationSection",
+        heading: "See what's changing in your subject",
+        phases: ["primary", "secondary"],
+        primaryHeading: "Primary",
+        secondaryHeading: "Secondary",
+      },
+    ];
+    const { container } = renderWithTheme(
+      <NationalCurriculumInsightsView data={data} />,
+    );
+    expect(
+      screen.getByRole("link", { name: "KS1 Science curriculum changes" }),
+    ).toHaveAttribute(
+      "href",
+      "/curriculum-change-explained/science/primary/ks1",
+    );
+    expect(
+      screen.getByRole("link", { name: "KS2 Science curriculum changes" }),
+    ).toHaveAttribute(
+      "href",
+      "/curriculum-change-explained/science/primary/ks2",
+    );
+    for (const phase of ["Primary", "Secondary"]) {
+      expect(
+        screen.getByRole("navigation", {
+          name: phase,
+        }),
+      ).toBeVisible();
+    }
+    expect(
+      Array.from(container.querySelectorAll("[data-insights-module]")).map(
+        (element) => element.getAttribute("data-insights-module"),
+      ),
+    ).toEqual(["key-stage-cards", "subject-phase-chips"]);
+  });
+
   it.each([
     { segments: [] },
     { segments: ["guidance"] },
