@@ -36,6 +36,7 @@ describe("teachersLessonOverview()", () => {
           unit_slug: unitSlugTest,
           programme_slug: programmeSlugTest,
           is_legacy: false,
+          features: {},
           programme_slug_by_year: [programmeSlugTest],
         },
       });
@@ -260,6 +261,7 @@ describe("teachersLessonOverview()", () => {
           unit_slug: unitSlugTest,
           programme_slug: programmeSlugTest,
           is_legacy: false,
+          features: {},
           programme_slug_by_year: [programmeSlugTest],
         },
       });
@@ -332,6 +334,7 @@ describe("teachersLessonOverview()", () => {
         unit_slug: unitSlugTest,
         programme_slug: programmeSlugTest,
         order_in_unit: 2,
+        features: {},
         programme_slug_by_year: [programmeSlugTest],
       },
     });
@@ -374,6 +377,7 @@ describe("teachersLessonOverview()", () => {
         unit_slug: unitSlugTest,
         programme_slug: programmeSlugTest,
         order_in_unit: 2,
+        features: {},
         programme_slug_by_year: [programmeSlugTest],
       },
     });
@@ -446,6 +450,7 @@ describe("teachersLessonOverview()", () => {
         unit_slug: unitSlugTest,
         programme_slug: programmeSlugTest,
         order_in_unit: 4,
+        features: {},
         programme_slug_by_year: [programmeSlugTest],
       },
     });
@@ -720,6 +725,7 @@ describe("hasMediaClips logic", () => {
           programme_slug: programmeSlugTest,
           is_legacy: false,
           programme_slug_by_year: [programmeSlugTest],
+          features: {},
           lesson_data: {
             ...syntheticUnitvariantLessonsByKsFixture({}).lesson_data,
             ...mediaClipsFixture(),
