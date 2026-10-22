@@ -13,6 +13,7 @@ import { NationalCurriculumInsightsPortableText } from "../PortableText";
 
 import { guidancePortableTextComponents, type SectionProps } from "./shared";
 
+import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 
 const confetti = [
@@ -66,7 +67,9 @@ export const NationalCurriculumInsightsConfidence = ({
         >
           <OakBox
             as="img"
-            src={`/images/national-curriculum-insights/confidence-confetti-${asset.name}.svg`}
+            src={getCloudinaryImageUrl(
+              `ui-graphics/confidence-confetti-${asset.name}.svg`,
+            )}
             alt=""
             $maxWidth="unset"
             $transform={asset.transform}
@@ -85,7 +88,9 @@ export const NationalCurriculumInsightsConfidence = ({
       >
         <OakBox
           as="img"
-          src="/images/national-curriculum-insights/confidence-confetti-mobile.svg"
+          src={getCloudinaryImageUrl(
+            "ui-graphics/confidence-confetti-mobile.svg",
+          )}
           alt=""
           $maxWidth="unset"
           $transform="translateY(-43%) rotate(-175.32deg)"

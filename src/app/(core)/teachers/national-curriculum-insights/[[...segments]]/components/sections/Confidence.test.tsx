@@ -2,6 +2,7 @@ import { screen } from "@testing-library/react";
 
 import { NationalCurriculumInsightsConfidence } from "./Confidence";
 
+import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { nationalCurriculumInsightsModuleSchema } from "@/common-lib/cms-types/nationalCurriculumInsights";
 
@@ -120,7 +121,13 @@ it("keeps the supplied confetti artwork decorative", () => {
     ...container.querySelectorAll('img[src*="confidence-confetti"]'),
   ];
   expect(images).toHaveLength(4);
-  for (const image of images) {
+  for (const [index, image] of images.entries()) {
+    expect(image).toHaveAttribute(
+      "src",
+      getCloudinaryImageUrl(
+        `ui-graphics/confidence-confetti-${["right", "middle", "left", "mobile"][index]}.svg`,
+      ),
+    );
     expect(image).toHaveAttribute("alt", "");
     expect(image.closest('[aria-hidden="true"]')).not.toBeNull();
   }
