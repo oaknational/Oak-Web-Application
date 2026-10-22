@@ -112,7 +112,7 @@ jobs:
         run: pnpm run pa11y
         env:
           BASE_URL: ${{ github.event.deployment_status.environment_url }}
-          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.TEST_SECRET }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
 
       # Set a custom status because there may be more than one deployment_status
       # event due to alternatively themed deployments, and multiple runs of this
