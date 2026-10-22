@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
+import { oakIconNames } from "@oaknational/oak-components";
 
 import AboutUsInfoCard from "./AboutUsInfoCard";
 
@@ -11,15 +12,7 @@ const meta: Meta<typeof AboutUsInfoCard> = {
   argTypes: {
     iconName: {
       control: "select",
-      options: [
-        "search",
-        "video",
-        "filter",
-        "download",
-        "home",
-        "edit",
-        "tag-promotional",
-      ],
+      options: oakIconNames,
     },
   },
   parameters: {
