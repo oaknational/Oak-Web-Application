@@ -241,6 +241,18 @@ export async function prepareMammothImages(
     throw new Error("DOCX contains invalid document XML");
   }
   await restoreHeaderHeadings(zip, xml, dom.DOMParser);
+  // Mammoth checks for the element's presence rather than its OOXML boolean.
+  for (const header of Array.from(
+    xml.getElementsByTagNameNS(wordNamespace, "tblHeader"),
+  )) {
+    if (
+      ["0", "false", "off"].includes(
+        header.getAttributeNS(wordNamespace, "val")?.toLowerCase() ?? "",
+      )
+    ) {
+      header.remove();
+    }
+  }
   const paragraphFills = new Map<string, ParagraphFill>();
   const bookmarks = Array.from(
     xml.getElementsByTagNameNS(wordNamespace, "bookmarkStart"),
@@ -567,6 +579,29 @@ export function restoreMammothCallouts(
     });
     // Keep any bookmark targets at their original location.
     if (!paragraph.querySelector("a[id]")) paragraph.remove();
+  }
+  const hasLabel = (element: Element) =>
+    !!element.textContent?.replace(/[\s\u200b\ufeff]/g, "") ||
+    !!element.getAttribute("aria-label")?.trim() ||
+    Array.from(element.querySelectorAll("img[alt]")).some((image) =>
+      image.getAttribute("alt")?.trim(),
+    );
+  // Keep bookmarks, images and table geometry without exposing empty headings
+  // or empty header cells to assistive technology.
+  for (const element of Array.from(
+    root.querySelectorAll("h1, h2, h3, h4, h5, h6, th"),
+  )) {
+    if (hasLabel(element)) continue;
+    const replacement = document.createElement(
+      element.tagName === "TH" ? "td" : "p",
+    );
+    for (const attribute of Array.from(element.attributes)) {
+      if (attribute.name !== "scope" && attribute.name !== "abbr") {
+        replacement.setAttribute(attribute.name, attribute.value);
+      }
+    }
+    replacement.append(...Array.from(element.childNodes));
+    element.replaceWith(replacement);
   }
   return root.innerHTML;
 }

@@ -8,6 +8,86 @@ const wordNamespace =
 const relationshipNamespace =
   "http://schemas.openxmlformats.org/officeDocument/2006/relationships";
 
+describe("Mammoth accessibility semantics", () => {
+  it.each(["0", "false", "off"])(
+    "does not treat a disabled table header flag (%s) as a header",
+    async (value) => {
+      const zip = new JSZip();
+      zip.file(
+        "word/document.xml",
+        `<w:document xmlns:w="${wordNamespace}"><w:body><w:tbl>
+          <w:tr><w:trPr><w:tblHeader w:val="${value}"/></w:trPr>
+            <w:tc><w:p><w:r><w:t>Layout content</w:t></w:r></w:p></w:tc>
+          </w:tr>
+        </w:tbl></w:body></w:document>`,
+      );
+      const prepared = await prepareMammothImages(
+        await zip.generateAsync({ type: "arraybuffer" }),
+      );
+      const result = await Mammoth.convertToHtml({
+        arrayBuffer: prepared.arrayBuffer,
+      });
+      const root = document.createElement("div");
+      root.innerHTML = result.value;
+      expect(root.querySelector("th")).toBeNull();
+      expect(root.querySelector("td")).toHaveTextContent("Layout content");
+    },
+  );
+
+  it.each(["", ' w:val="1"', ' w:val="true"'])(
+    "retains genuine table header flags (%s)",
+    async (attribute) => {
+      const zip = new JSZip();
+      zip.file(
+        "word/document.xml",
+        `<w:document xmlns:w="${wordNamespace}"><w:body><w:tbl>
+          <w:tr><w:trPr><w:tblHeader${attribute}/></w:trPr>
+            <w:tc><w:p><w:r><w:t>Column heading</w:t></w:r></w:p></w:tc>
+          </w:tr>
+        </w:tbl></w:body></w:document>`,
+      );
+      const prepared = await prepareMammothImages(
+        await zip.generateAsync({ type: "arraybuffer" }),
+      );
+      const result = await Mammoth.convertToHtml({
+        arrayBuffer: prepared.arrayBuffer,
+      });
+      const root = document.createElement("div");
+      root.innerHTML = result.value;
+      expect(root.querySelector("th")).toHaveTextContent("Column heading");
+    },
+  );
+
+  it("replaces empty semantic elements without losing anchors, images, spans or styles", () => {
+    const root = document.createElement("div");
+    root.innerHTML = restoreMammothCallouts(
+      `<h2 id="empty-heading" class="source-heading"><a id="bookmark"></a><strong> </strong></h2>
+       <h3><img src="decoration.png" alt=""></h3>
+       <h2>Real heading</h2>
+       <h3><img src="meaningful.png" alt="Swimming demonstration"></h3>
+       <table><thead><tr>
+         <th scope="col" rowspan="2" colspan="2" class="docx-fill-mint"><a id="cell-bookmark"></a></th>
+         <th scope="col">Column heading</th>
+       </tr></thead></table>`,
+    );
+    expect(root.querySelector("#empty-heading")?.tagName).toBe("P");
+    expect(root.querySelector("#empty-heading")).toHaveClass("source-heading");
+    expect(root.querySelector("#bookmark")).toBeInTheDocument();
+    expect(
+      root.querySelector('p > img[src="decoration.png"]'),
+    ).toBeInTheDocument();
+    expect(root.querySelectorAll("h2, h3")).toHaveLength(2);
+    const cell = root.querySelector("td");
+    expect(cell).toHaveAttribute("rowspan", "2");
+    expect(cell).toHaveAttribute("colspan", "2");
+    expect(cell).toHaveClass("docx-fill-mint");
+    expect(cell).not.toHaveAttribute("scope");
+    expect(cell?.querySelector("#cell-bookmark")).toBeInTheDocument();
+    expect(root.querySelector("th")).toHaveTextContent("Column heading");
+    expect(root.querySelector("th")).toHaveAttribute("scope", "col");
+  });
+});
+
 describe("section label images", () => {
   const image =
     '<img src="book.png" width="40" height="26" data-docx-label-background="true">';

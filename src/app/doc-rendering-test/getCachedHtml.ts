@@ -17,7 +17,7 @@ export type DocumentResult =
     };
 
 // Bump this version when conversion rules or the cached result shape change.
-const readCachedDoc = cacheData(getParsedDocx, ["mammoth-preview", "v5"]);
+const readCachedDoc = cacheData(getParsedDocx, ["mammoth-preview", "v6"]);
 
 export async function getCachedDoc(fileId: string): Promise<DocumentResult> {
   try {

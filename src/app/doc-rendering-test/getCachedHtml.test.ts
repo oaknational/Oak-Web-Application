@@ -41,7 +41,7 @@ describe("getCachedDoc", () => {
     expect(parse).toHaveBeenCalledWith(fileIds["pe-guide"]);
     expect(cacheData).toHaveBeenCalledWith(getParsedDocx, [
       "mammoth-preview",
-      "v5",
+      "v6",
     ]);
   });
 
