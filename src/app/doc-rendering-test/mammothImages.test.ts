@@ -72,17 +72,15 @@ describe("Mammoth accessibility semantics", () => {
     );
     expect(root.querySelector("#empty-heading")?.tagName).toBe("P");
     expect(root.querySelector("#empty-heading")).toHaveClass("source-heading");
-    expect(root.querySelector("#bookmark")).toBeInTheDocument();
-    expect(
-      root.querySelector('p > img[src="decoration.png"]'),
-    ).toBeInTheDocument();
+    expect(root.querySelector("#bookmark")).not.toBeNull();
+    expect(root.querySelector('p > img[src="decoration.png"]')).not.toBeNull();
     expect(root.querySelectorAll("h2, h3")).toHaveLength(2);
     const cell = root.querySelector("td");
     expect(cell).toHaveAttribute("rowspan", "2");
     expect(cell).toHaveAttribute("colspan", "2");
     expect(cell).toHaveClass("docx-fill-mint");
     expect(cell).not.toHaveAttribute("scope");
-    expect(cell?.querySelector("#cell-bookmark")).toBeInTheDocument();
+    expect(cell?.querySelector("#cell-bookmark")).not.toBeNull();
     expect(root.querySelector("th")).toHaveTextContent("Column heading");
     expect(root.querySelector("th")).toHaveAttribute("scope", "col");
   });
@@ -108,9 +106,7 @@ describe("section label images", () => {
         label?.querySelector(".docx-labelled-image > img"),
       ).toHaveAttribute("width", "40");
       expect(label?.querySelector(".docx-image-label")).toHaveTextContent("A");
-      expect(
-        label?.querySelector(".docx-image-label strong"),
-      ).toBeInTheDocument();
+      expect(label?.querySelector(".docx-image-label strong")).not.toBeNull();
       expect(root.querySelectorAll("img")).toHaveLength(1);
       expect(root.querySelector("[data-docx-label-background]")).toBeNull();
       expect(root).toHaveTextContent("Narrative");
@@ -121,7 +117,7 @@ describe("section label images", () => {
     const html = `<p class="docx-paragraph-fill">Section${image}</p><p>A paragraph of narrative</p>`;
     const root = document.createElement("div");
     root.innerHTML = restoreMammothCallouts(html);
-    expect(root.querySelector(".docx-paragraph-fill img")).toBeInTheDocument();
+    expect(root.querySelector(".docx-paragraph-fill img")).not.toBeNull();
     expect(root.querySelector(".docx-labelled-image")).toBeNull();
   });
 });
