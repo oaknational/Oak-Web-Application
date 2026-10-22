@@ -30,7 +30,7 @@ export default function JoinResearchPanelPeople({
           {title}
         </OakHeading>
         <OakFlex
-          $gap={"spacing-16"}
+          $gap={["spacing-32", "spacing-16", "spacing-16"]}
           $flexDirection={["column", "column", "row"]}
         >
           {members.slice(0, 2).map((member) => {
