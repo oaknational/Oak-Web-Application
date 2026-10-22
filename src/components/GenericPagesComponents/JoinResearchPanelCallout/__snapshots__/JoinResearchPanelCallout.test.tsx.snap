@@ -18,10 +18,10 @@ exports[`JoinResearchPanelCallout it renders correct data 1`] = `
             Join the research panel callout
           </h2>
           <ul
-            class="sc-bdvwhi sc-gsDMPd bKxefW eBlGdP"
+            class="sc-bdvwhi sc-gsDMPd eZfdqr bBYlNX"
           >
             <li
-              class="sc-ieedpP lepvEn"
+              class="sc-aba4545a-0 iGNmWV"
             >
               <div
                 class="sc-bdvwhi sc-gsDMPd lcpAbU dErUkm"
@@ -47,7 +47,7 @@ exports[`JoinResearchPanelCallout it renders correct data 1`] = `
               </div>
             </li>
             <li
-              class="sc-ieedpP lepvEn"
+              class="sc-aba4545a-0 iGNmWV"
             >
               <div
                 class="sc-bdvwhi sc-gsDMPd lcpAbU dErUkm"
@@ -73,7 +73,7 @@ exports[`JoinResearchPanelCallout it renders correct data 1`] = `
               </div>
             </li>
             <li
-              class="sc-ieedpP lepvEn"
+              class="sc-aba4545a-0 iGNmWV"
             >
               <div
                 class="sc-bdvwhi sc-gsDMPd lcpAbU dErUkm"

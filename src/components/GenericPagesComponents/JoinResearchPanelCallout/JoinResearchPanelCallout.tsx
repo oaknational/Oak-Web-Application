@@ -1,5 +1,6 @@
-import { OakFlex, OakHeading, OakLI, OakP } from "@oaknational/oak-components";
+import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 import { PortableTextComponents } from "@portabletext/react";
+import styled from "styled-components";
 
 import { NewGutterMaxWidth } from "../NewGutterMaxWidth";
 import AboutUsInfoCard from "../AboutUsInfoCard";
@@ -22,6 +23,12 @@ export type JoinResearchPanelCalloutProps = Omit<
   "__typename"
 >;
 
+const StyledLi = styled.li`
+  display: flex;
+  flex: 1 1 0;
+  list-style: none;
+`;
+
 export default function JoinResearchPanelCallout({
   title,
   items,
@@ -38,16 +45,14 @@ export default function JoinResearchPanelCallout({
           </OakHeading>
           <OakFlex
             as="ul"
-            $pa="spacing-0"
-            $gap="spacing-16"
             $flexDirection={["column", "row"]}
+            $pa={"spacing-0"}
+            $ma={"spacing-0"}
+            $gap={"spacing-16"}
+            $alignItems="stretch"
           >
-            {items.map((item) => (
-              <OakLI
-                $listStyle={"none"}
-                $display={"flex"}
-                key={item.bodyRaw[0]?._key}
-              >
+            {items.slice(0, 4).map((item) => (
+              <StyledLi key={item.bodyRaw[0]?._key}>
                 <AboutUsInfoCard
                   icon={item.icon}
                   background="bg-primary"
@@ -60,7 +65,7 @@ export default function JoinResearchPanelCallout({
                     value={item.bodyRaw}
                   />
                 </AboutUsInfoCard>
-              </OakLI>
+              </StyledLi>
             ))}
           </OakFlex>
         </OakFlex>

@@ -199,6 +199,12 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
+.c94 {
+  padding: 0rem;
+  margin: 0rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
 .c67 {
   width: 100%;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -269,11 +275,6 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
   background: #e3e9fb;
-  font-family: --var(google-font),Lexend,sans-serif;
-}
-
-.c94 {
-  padding: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -618,6 +619,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 .c95 {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: 1rem;
 }
 
@@ -1399,15 +1401,6 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   display: revert;
 }
 
-.c96 {
-  display: flex;
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-family: --var(google-font),Lexend,sans-serif;
-  list-style: none;
-  display: flex;
-  display: flex;
-}
-
 .c131 {
   margin-top: 0.75rem;
   display: revert;
@@ -1757,6 +1750,12 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   height: 87px;
   width: 77px;
   margin-top: 2rem;
+}
+
+.c96 {
+  display: flex;
+  flex: 1 1 0;
+  list-style: none;
 }
 
 @media (min-width: 750px) {
