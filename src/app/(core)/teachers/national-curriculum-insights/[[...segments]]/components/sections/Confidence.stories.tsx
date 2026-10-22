@@ -25,8 +25,12 @@ const meta = {
         "Our free, adaptable resources cover every national curriculum subject from KS1-4, and already reflect many of the proposed changes. You'll find oracy woven into English, financial education in citizenship and maths, media literacy in RSHE, and climate and sustainability in geography and science.",
         "As the new programmes of study are confirmed, we'll have updated resources ready for you well before you need them in the classroom. So you can keep building on what works, with the confidence that comes from already knowing your way around Oak, as you prepare for September 2028 and the updated GCSEs that follow.",
       ]),
-      ctaLabel: "Explore curriculum plans",
-      ctaHref: "/teachers/curriculum/history-primary/overview",
+      cta: {
+        label: "Explore curriculum plans",
+        linkType: "external",
+        external:
+          "https://www.thenational.academy/teachers/curriculum/history-primary/overview",
+      },
     },
   },
   render: (args) => (

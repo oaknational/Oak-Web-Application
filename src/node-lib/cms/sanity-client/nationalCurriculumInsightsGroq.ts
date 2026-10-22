@@ -106,6 +106,20 @@ const modulesProjection = `modules[]{
   mirrorImage,
   background,
   ctaLabel,
+  _type == "nationalCurriculumInsightsConfidenceSection" => {
+    cta {
+      label,
+      linkType,
+      external,
+      anchor,
+      "internal": internal->{
+        "id": _id,
+        "contentType": _type,
+        "slug": slug.current,
+        file { asset->{ extension, size, url } }
+      }
+    }
+  },
   "ctaHref": select(
     (ctaHref match "/curriculum-change-explained/guidance*" || ctaHref match "/teachers/national-curriculum-insights/guidance*") &&
       !defined(*[_type == "nationalCurriculumInsightsGuidancePage" && _id in ["nationalCurriculumInsightsGuidancePage", "drafts.nationalCurriculumInsightsGuidancePage"]][0]._id) => null,
