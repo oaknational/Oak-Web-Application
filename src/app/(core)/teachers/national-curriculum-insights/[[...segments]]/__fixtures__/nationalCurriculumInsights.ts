@@ -193,6 +193,13 @@ const localHub: NationalCurriculumInsightsHub = {
   title: "National curriculum insights",
   summary: "Explore curriculum changes by subject and phase.",
   subjects: localSubjects.map(subjectSummary),
+  phaseLinks: localSubjects.flatMap((subject) =>
+    subject.tabs.map(({ kind }) => ({
+      title: subject.title,
+      subjectSlug: subject.slug,
+      phase: kind,
+    })),
+  ),
   modules: [
     {
       __typename: "NationalCurriculumInsightsHeroSection",
@@ -205,6 +212,7 @@ const localHub: NationalCurriculumInsightsHub = {
     },
     {
       __typename: "NationalCurriculumInsightsSubjectNavigationSection",
+      heading: "See what’s changing in your subject",
       phases: ["primary", "secondary"],
       primaryHeading: "Explore Primary curriculum changes",
       secondaryHeading: "Explore Secondary curriculum changes",

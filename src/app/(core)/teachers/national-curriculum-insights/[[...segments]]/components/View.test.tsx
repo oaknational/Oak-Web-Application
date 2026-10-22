@@ -51,7 +51,7 @@ describe("NationalCurriculumInsightsView", () => {
       name: "Explore Primary curriculum changes",
     });
     expect(
-      within(primarySubjects).getByRole("link", { name: "Science" }),
+      within(primarySubjects).getByRole("link", { name: "Science primary" }),
     ).toHaveAttribute("href", "/curriculum-change-explained/science/primary");
   });
 
