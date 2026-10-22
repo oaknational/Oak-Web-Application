@@ -153,8 +153,11 @@ export const sharedDownloadFixtureModules: NationalCurriculumInsightsModule[] =
           "Keep using your existing plans while you review the proposed changes and agree what to prioritise.",
         ),
       ],
-      ctaLabel: "Explore curriculum plans",
-      ctaHref: "/teachers/curriculum",
+      cta: {
+        label: "Explore curriculum plans",
+        linkType: "external",
+        external: "https://www.thenational.academy/teachers/curriculum",
+      },
     },
     {
       __typename: "NationalCurriculumInsightsFaqSection",

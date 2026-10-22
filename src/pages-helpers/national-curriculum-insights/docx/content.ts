@@ -19,6 +19,7 @@ import type {
   NationalCurriculumInsightsModule,
   NationalCurriculumInsightsPage,
 } from "@/common-lib/cms-types/nationalCurriculumInsights";
+import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 
 type RichText = ReturnType<typeof createInsightsDocxRichText>;
 type Overview = Extract<
@@ -316,13 +317,14 @@ const moduleXml = async (
     }
     case "NationalCurriculumInsightsConfidenceSection":
     case "NationalCurriculumInsightsImageTextSection": {
+      const { ctaHref, ctaLabel } =
+        module.__typename === "NationalCurriculumInsightsConfidenceSection"
+          ? { ctaHref: getLinkHref(module.cta), ctaLabel: module.cta.label }
+          : module;
       const cta =
-        module.ctaHref && module.ctaLabel
+        ctaHref && ctaLabel
           ? wordParagraph(
-              richText.link(
-                module.ctaHref,
-                wordText(module.ctaLabel, { bold: true }),
-              ),
+              richText.link(ctaHref, wordText(ctaLabel, { bold: true })),
             )
           : "";
       const heading =
