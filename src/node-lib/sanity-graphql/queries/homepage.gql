@@ -7,7 +7,7 @@ query homepage($isDraftFilter: Sanity_DocumentFilter) {
     id: _id
     topBanner {
       displayNewTag
-      messagePortableTextWithPromo: messageRaw
+      messagePortableText: messageRaw
       enabled
       cta {
         label

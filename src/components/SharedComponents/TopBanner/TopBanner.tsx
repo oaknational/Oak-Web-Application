@@ -27,7 +27,7 @@ const topBannerPortableTextComponents: PortableTextComponents = {
 
 export default function TopBanner({
   displayNewTag,
-  messagePortableTextWithPromo,
+  messagePortableText,
   enabled,
   cta,
   backgroundColour,
@@ -58,9 +58,9 @@ export default function TopBanner({
             $textAlign="center"
           >
             {displayNewTag && <OakPromoTag />}
-            {messagePortableTextWithPromo && (
+            {messagePortableText && (
               <PortableTextWithDefaults
-                value={messagePortableTextWithPromo}
+                value={messagePortableText}
                 components={topBannerPortableTextComponents}
               />
             )}

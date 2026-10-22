@@ -26,7 +26,7 @@ export const newCtaSchema = z.discriminatedUnion("linkType", [
 
 export const topBannerSchema = z.object({
   displayNewTag: z.boolean(),
-  messagePortableTextWithPromo: portableTextSchema.nullish(),
+  messagePortableText: portableTextSchema.nullish(),
   enabled: z.boolean(),
   cta: newCtaSchema.nullish(),
   backgroundColour: z.string() as z.ZodType<OakUiRoleToken>,

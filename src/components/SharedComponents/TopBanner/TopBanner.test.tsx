@@ -60,7 +60,7 @@ describe("TopBanner", () => {
 
   it("should not render the message text if not provided", () => {
     const { queryByText } = renderWithProviders()(
-      <TopBanner {...topBannerFixture} messagePortableTextWithPromo={null} />,
+      <TopBanner {...topBannerFixture} messagePortableText={null} />,
     );
 
     const message = queryByText("Oak is now used in of schools!");
