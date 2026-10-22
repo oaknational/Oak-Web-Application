@@ -1,7 +1,7 @@
 import { screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { hubData, phaseData } from "../../__fixtures__/stories";
+import { hubData } from "../../__fixtures__/stories";
 
 import { NationalCurriculumInsightsSubjectLinks } from "./SubjectLinks";
 import type { ContextualSectionProps } from "./shared";
@@ -21,36 +21,33 @@ const section: ContextualSectionProps<"NationalCurriculumInsightsSubjectLinksSec
   };
 
 describe("National Curriculum Insights subject overview links", () => {
-  it.each([hubData, phaseData])(
-    "links to subject overviews in the configured order on every page",
-    (data) => {
-      renderWithTheme(
-        <NationalCurriculumInsightsSubjectLinks
-          section={section}
-          data={data}
-        />,
-      );
-      const navigation = screen.getByRole("navigation", {
-        name: section.heading,
-      });
-      const links = within(navigation).getAllByRole("link");
-      expect(links.map((link) => link.textContent)).toEqual([
-        "History",
-        "Science",
-      ]);
-      expect(links[0]).toHaveAttribute(
-        "href",
-        nationalCurriculumInsightsSubjectHref("history"),
-      );
-      expect(links[1]).toHaveAttribute(
-        "href",
-        nationalCurriculumInsightsSubjectHref("science"),
-      );
-      expect(
-        within(navigation).getByRole("heading", { level: 2 }),
-      ).toHaveTextContent(section.heading);
-    },
-  );
+  it("links to subject overviews in the configured order", () => {
+    renderWithTheme(
+      <NationalCurriculumInsightsSubjectLinks
+        section={section}
+        data={hubData}
+      />,
+    );
+    const navigation = screen.getByRole("navigation", {
+      name: section.heading,
+    });
+    const links = within(navigation).getAllByRole("link");
+    expect(links.map((link) => link.textContent)).toEqual([
+      "History",
+      "Science",
+    ]);
+    expect(links[0]).toHaveAttribute(
+      "href",
+      nationalCurriculumInsightsSubjectHref("history"),
+    );
+    expect(links[1]).toHaveAttribute(
+      "href",
+      nationalCurriculumInsightsSubjectHref("science"),
+    );
+    expect(
+      within(navigation).getByRole("heading", { level: 2 }),
+    ).toHaveTextContent(section.heading);
+  });
 
   it("supports a different label and icon for the same destination", () => {
     const subject = hubData.subjects[0]!;

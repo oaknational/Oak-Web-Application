@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 
-import { hubData, phaseData } from "../../__fixtures__/stories";
+import { hubData } from "../../__fixtures__/stories";
 
 import { NationalCurriculumInsightsSubjectLinks } from "./SubjectLinks";
 
@@ -24,5 +24,4 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Hub: Story = {};
-export const Phase: Story = { args: { data: phaseData } };
+export const Default: Story = {};
