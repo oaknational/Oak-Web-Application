@@ -148,7 +148,7 @@ describe("NationalCurriculumInsightsHeader", () => {
       );
 
       expect(imageSource(headerIllustration())).toBe(
-        `/images/curriculum-change-explained/ks${keyStage}.png`,
+        getCloudinaryImageUrl(`svg-illustrations/ks${keyStage}.png`),
       );
       expect(screen.getByText(`KS${keyStage}`)).toBeInTheDocument();
       expect(screen.getByRole("link", { name: "Science" })).toHaveAttribute(
