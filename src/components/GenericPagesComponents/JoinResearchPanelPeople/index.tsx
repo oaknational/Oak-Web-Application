@@ -4,26 +4,21 @@ import {
   OakBox,
   OakImage,
 } from "@oaknational/oak-components";
-import { PortableTextBlock } from "@portabletext/react";
 
 import { NewGutterMaxWidth } from "../NewGutterMaxWidth";
 
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
-import { ImageWithAltText } from "@/node-lib/sanity-graphql/generated/sdk";
+import { JoinResearchPanelPageBlock } from "@/common-lib/cms-types/aboutPages";
 
-export type JoinResearchPanelPeopleProps = {
-  title: string;
-  members: {
-    name: string;
-    bodyRaw: PortableTextBlock[];
-    image: ImageWithAltText;
-  }[];
-};
+export type JoinResearchPanelPeopleProps = Omit<
+  JoinResearchPanelPageBlock<"JoinResearchPanelPagePeople">,
+  "__typename"
+>;
 export default function JoinResearchPanelPeople({
   title,
   members,
-}: JoinResearchPanelPeopleProps) {
+}: Readonly<JoinResearchPanelPeopleProps>) {
   return (
     <NewGutterMaxWidth>
       <OakFlex $flexDirection={"column"} $pb={"spacing-80"} $gap={"spacing-32"}>
