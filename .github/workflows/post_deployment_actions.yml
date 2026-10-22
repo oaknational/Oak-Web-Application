@@ -106,25 +106,13 @@ jobs:
             echo "::warning::Runner Chrome ($actual) does not match Puppeteer's Chrome ($expected); pa11y may be flaky"
           fi
 
-      - name: Install Puppeteer Chrome
-        run: pnpm exec puppeteer browsers install chrome
-
-      - name: Check Chrome matches Puppeteer
-        run: |
-          expected=$(node -p "require('puppeteer').PUPPETEER_REVISIONS.chrome.split('.')[0]")
-          actual=$(/usr/bin/google-chrome --version | grep -oE '[0-9]+' | head -1)
-          echo "Puppeteer expects Chrome $expected, runner has Chrome $actual"
-          if [ "$expected" != "$actual" ]; then
-            echo "::warning::Runner Chrome ($actual) does not match Puppeteer's Chrome ($expected); pa11y may be flaky"
-          fi
-
       # Run pa11y
       - name: Pa11y CI
         id: run_pa11y
         run: pnpm run pa11y
         env:
           BASE_URL: ${{ github.event.deployment_status.environment_url }}
-          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.TEST_SECRET }}
 
       # Set a custom status because there may be more than one deployment_status
       # event due to alternatively themed deployments, and multiple runs of this

@@ -10,6 +10,13 @@ const baseUrl = process.env.BASE_URL || "http://localhost:3000";
 const isLocalHost = new URL(baseUrl).host === "localhost:3000";
 
 const vercelAutomationBypass = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
+
+if (vercelAutomationBypass !== "not-very-secret") {
+  throw new Error();
+}
+
+console.log("vercelAutomationBypass", vercelAutomationBypass);
+
 if (!isLocalHost && !vercelAutomationBypass) {
   throw new TypeError(
     "Please specify Vercel bypass token header in envs\nfor background info see https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection#protection-bypass-for-automation",
