@@ -174,7 +174,7 @@ describe("National Curriculum Insights key-stage cards", () => {
     insightData,
     { ...insightData, activeKeyStage: "KS4" as const },
   ])(
-    "loads decorative local illustrations for every configured key stage",
+    "loads decorative Cloudinary illustrations for every configured key stage",
     (data) => {
       const { container } = renderWithTheme(
         <NationalCurriculumInsightsKeyStageCards
@@ -183,7 +183,7 @@ describe("National Curriculum Insights key-stage cards", () => {
         />,
       );
       const images = container.querySelectorAll(
-        'img[src*="curriculum-change-explained"]',
+        'img[src*="svg-illustrations/ks"]',
       );
       expect(images.length).toBeGreaterThan(0);
       images.forEach((image) => {

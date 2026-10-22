@@ -18,6 +18,7 @@ import {
   nationalCurriculumInsightsKeyStageSlug,
   type NationalCurriculumInsightsKeyStage,
 } from "@/common-lib/cms-types/nationalCurriculumInsights";
+import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { nationalCurriculumInsightsSubjectPhaseKeyStageHref } from "@/common-lib/urls/nationalCurriculumInsights";
 
 const illustration = (
@@ -46,7 +47,7 @@ const illustration = (
   }[image];
 
   return {
-    src: `/images/curriculum-change-explained/${image.toLowerCase()}.png`,
+    src: getCloudinaryImageUrl(`svg-illustrations/${image.toLowerCase()}.png`),
     aspectRatio,
     width,
     height,
