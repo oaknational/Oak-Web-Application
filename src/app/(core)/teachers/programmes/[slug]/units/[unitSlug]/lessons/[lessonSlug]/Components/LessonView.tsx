@@ -156,11 +156,6 @@ export default function LessonView(
               <ComplexCopyrightRestrictionBanner
                 isGeorestricted={geoRestricted}
                 isLoginRequired={loginRequired}
-                lessonName={lessonTitle}
-                lessonSlug={lessonSlug}
-                unitName={unitTitle}
-                unitSlug={unitSlug}
-                isLessonLegacy={false}
                 componentType="lesson_overview"
               />
               {showHeatwaveBanner && (

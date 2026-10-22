@@ -1,3 +1,38 @@
+# [1.1253.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1252.0...v1.1253.0) (2026-10-22)
+
+
+### Features
+
+* add auto margins ([f09426c](https://github.com/oaknational/Oak-Web-Application/commit/f09426c48dd8e0fee24deb88e0148b21fddf1969))
+* add base for short reads html page ([e513b32](https://github.com/oaknational/Oak-Web-Application/commit/e513b32bf058f5824608613343d68ba243ee2026))
+* add feature flag ([148392a](https://github.com/oaknational/Oak-Web-Application/commit/148392a2bfc6dc5a9efcbd4e5187f6881cd5faf8))
+* add missing titles and links ([2a981cb](https://github.com/oaknational/Oak-Web-Application/commit/2a981cb0bd671ab0f73f97c1b98d4feffe2c1753))
+* amend spacing to pr comments ([6ed24d7](https://github.com/oaknational/Oak-Web-Application/commit/6ed24d739b5b4ee193f3b28d4393d4061f9ca949))
+* amend url and breakpoints ([31291a8](https://github.com/oaknational/Oak-Web-Application/commit/31291a8f22a56ee89e741e4423c6fc87cad0c691))
+* reduce spacing and add labelled by to contents ([43ed886](https://github.com/oaknational/Oak-Web-Application/commit/43ed886bb95c1bb1ab55f4f95958b112a2b24a49))
+* update breadcrumb to use oak components version ([aa94ab5](https://github.com/oaknational/Oak-Web-Application/commit/aa94ab5a3724eed4eddf9de104b08ad790d401c1))
+
+# [1.1252.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1251.1...v1.1252.0) (2026-10-21)
+
+
+### Bug Fixes
+
+* **search:** remove reception year group filters from search ([d3f1c1d](https://github.com/oaknational/Oak-Web-Application/commit/d3f1c1d81c6326702ba5dc7ca80053cbf2c9aff9))
+* use scroll param instead so the options still load ([ec7a5c2](https://github.com/oaknational/Oak-Web-Application/commit/ec7a5c2fb32285155d33a6bbe82b2e909c8cea49))
+
+
+### Features
+
+* add registration events to the teacher browse analytics store ([2522b15](https://github.com/oaknational/Oak-Web-Application/commit/2522b157ffb3ee760463112e9702ac488cd908f7))
+* add spacing between bullets in portable text ([a948454](https://github.com/oaknational/Oak-Web-Application/commit/a948454852d31c221e1b7e39981316ade7a85b75))
+* fire contentBlockNotificationDisplayed from the analytics store ([5d22111](https://github.com/oaknational/Oak-Web-Application/commit/5d22111d0aa704c2bef44a3e75b5aaf3058dcf71))
+* fire the onboarding events from the analytics store ([002ef2e](https://github.com/oaknational/Oak-Web-Application/commit/002ef2e6a5fa6317f5f94fd2279a84918ed43464))
+* join research panel info component ([14b54b5](https://github.com/oaknational/Oak-Web-Application/commit/14b54b5cbcb7758c84644a524efc437be975f732))
+* move collectOnboardingTrackingProps to the analytics store utils ([077f7cb](https://github.com/oaknational/Oak-Web-Application/commit/077f7cb05d268997543860232f905ce581b47fbb))
+* only show focus on keyboard interaction ([bccf8c1](https://github.com/oaknational/Oak-Web-Application/commit/bccf8c1e202ebf4440798358b67def940d7182ff))
+* use context to manage focus instead of params ([da5e4e8](https://github.com/oaknational/Oak-Web-Application/commit/da5e4e868fbf7bd0b7b6e39302bf2cd623350b0d))
+* use history to navigate without full page reload ([4942de4](https://github.com/oaknational/Oak-Web-Application/commit/4942de4c0ed1d171b280c6db4add650c5e1d22fe))
+
 ## [1.1251.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1251.0...v1.1251.1) (2026-10-20)
 
 
