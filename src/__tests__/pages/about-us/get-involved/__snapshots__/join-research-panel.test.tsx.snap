@@ -308,7 +308,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 .c111 {
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
-  background: #bdcdf5;
+  background: #e3e9fb;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -322,7 +322,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 .c120 {
   width: 3.5rem;
   height: 3.5rem;
-  background: #e3e9fb;
+  background: #bdcdf5;
   border-radius: 6.25rem;
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;

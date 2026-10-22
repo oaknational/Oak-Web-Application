@@ -4,7 +4,7 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
 <body>
   <div>
     <div
-      class="sc-bdvwhi sc-gsDMPd fLdvbW eWbmLh"
+      class="sc-bdvwhi sc-gsDMPd hLDKhC eWbmLh"
     >
       <div
         class="sc-bdvwhi iatEdD"
@@ -33,7 +33,7 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
                     class="sc-bdvwhi sc-gsDMPd hPWTKU eCFEmk"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd geWHLB gbgSUZ"
+                      class="sc-bdvwhi sc-gsDMPd gLRlaJ gbgSUZ"
                     >
                       1
                     </div>
@@ -60,7 +60,7 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
                     class="sc-bdvwhi sc-gsDMPd hPWTKU eCFEmk"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd geWHLB gbgSUZ"
+                      class="sc-bdvwhi sc-gsDMPd gLRlaJ gbgSUZ"
                     >
                       2
                     </div>
@@ -87,7 +87,7 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
                     class="sc-bdvwhi sc-gsDMPd hPWTKU eCFEmk"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd geWHLB gbgSUZ"
+                      class="sc-bdvwhi sc-gsDMPd gLRlaJ gbgSUZ"
                     >
                       3
                     </div>
