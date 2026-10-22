@@ -13,8 +13,10 @@ import { PortableTextWithDefaults } from "@/components/SharedComponents/Portable
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import { JoinResearchPanelPageBlock } from "@/common-lib/cms-types";
 
-export type JoinResearchPanelJourneyProps =
-  JoinResearchPanelPageBlock<"JoinResearchPanelPageJourney">;
+export type JoinResearchPanelJourneyProps = Omit<
+  JoinResearchPanelPageBlock<"JoinResearchPanelPageJourney">,
+  "__typename"
+>;
 export default function JoinResearchPanelJourney({
   title,
   steps,
