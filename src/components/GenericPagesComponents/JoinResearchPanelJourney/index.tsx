@@ -24,7 +24,7 @@ export default function JoinResearchPanelJourney({
     <OakFlex
       $pv={["spacing-56", "spacing-80", "spacing-80"]}
       $alignItems="center"
-      $background={"bg-decorative3-very-subdued"}
+      $background={"bg-decorative3-subdued"}
     >
       <NewGutterMaxWidth>
         <OakGrid>
