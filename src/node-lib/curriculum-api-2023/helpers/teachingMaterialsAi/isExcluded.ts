@@ -10,6 +10,30 @@ interface WorksListItem {
   [key: string]: unknown;
 }
 
+// no content from these subjects can use create with AI
+const RESTRICTED_SUBJECTS = [
+  "art",
+  "design-technology",
+  "french",
+  "geography",
+  "german",
+  "music",
+  "spanish",
+];
+
+export const getHideCreateWithAi = ({
+  subject,
+  worksList,
+}: {
+  subject: string;
+  worksList: WorksListItem[];
+}) => {
+  const hasRestrictedWorks = worksList.length > 0;
+  const isRestrictedSubject = RESTRICTED_SUBJECTS.includes(subject);
+
+  return isRestrictedSubject || hasRestrictedWorks;
+};
+
 export const isExcludedFromTeachingMaterials = (
   browseData: LessonBrowseDataByKs["lessonData"],
   worksList: WorksListItem[], // all items are restricted or highly restricted

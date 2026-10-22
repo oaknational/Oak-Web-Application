@@ -102,6 +102,7 @@ export const teachersLessonOverviewSchema =
     loginRequired: z.boolean(),
     geoRestricted: z.boolean(),
     excludedFromTeachingMaterials: z.boolean(),
+    shouldHideCreateWithAi: z.boolean(),
     subjectCategories: z
       .array(z.union([z.string(), z.number(), z.null()]))
       .nullable(),
