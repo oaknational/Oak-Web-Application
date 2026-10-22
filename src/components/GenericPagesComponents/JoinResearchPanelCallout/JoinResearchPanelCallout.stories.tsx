@@ -4,7 +4,6 @@ import { basic } from "./JoinResearchPanelCallout.fixtures";
 
 import JoinResearchPanelCallout from "./index";
 
-
 const meta = {
   component: JoinResearchPanelCallout,
   title: "Components/GenericPagesComponents/JoinResearchPanelCallout",
