@@ -25,7 +25,7 @@ export type JoinResearchPanelCalloutProps = Omit<
 export default function JoinResearchPanelCallout({
   title,
   items,
-}: JoinResearchPanelCalloutProps) {
+}: Readonly<JoinResearchPanelCalloutProps>) {
   return (
     <OakFlex
       $background="bg-decorative3-very-subdued"
