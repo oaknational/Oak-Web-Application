@@ -37,7 +37,7 @@ export const getHideCreateWithAi = ({
 }) => {
   const hasRestrictedWorks = worksList.length > 0;
   const isRestrictedSubject = RESTRICTED_SUBJECTS.has(subject);
-  const hasCopyrightConflict = features["hasCopyrightConflict"] === true;
+  const hasCopyrightConflict = features?.["hasCopyrightConflict"] === true;
   const {
     tpc_media_max_restriction: mediaRestriction,
     tpc_downloadablefiles_max_restriction: downloadableFilesRestriction,
