@@ -14,6 +14,7 @@ import {
 import { CurriculumJumpCard } from "./CurriculumJumpCard";
 import type { ContextualSectionProps } from "./shared";
 
+import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { nationalCurriculumInsightsSubjectPhaseHref } from "@/common-lib/urls/nationalCurriculumInsights";
 
 export const NationalCurriculumInsightsPhaseCards = ({
@@ -68,7 +69,9 @@ export const NationalCurriculumInsightsPhaseCards = ({
                       />
                     ) : (
                       <OakImage
-                        src="/images/curriculum-change-explained/secondary.svg"
+                        src={getCloudinaryImageUrl(
+                          "svg-illustrations/secondary_hsvcns.svg",
+                        )}
                         alt=""
                         $width="spacing-72"
                         $height="spacing-72"

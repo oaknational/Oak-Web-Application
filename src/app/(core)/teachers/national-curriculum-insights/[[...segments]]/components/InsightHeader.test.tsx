@@ -12,6 +12,7 @@ import { NationalCurriculumInsightsHeader } from "./InsightHeader";
 
 import { nationalCurriculumInsightsSubjectHref } from "@/common-lib/urls/nationalCurriculumInsights";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import type { NationalCurriculumInsightsHeaderSection } from "@/common-lib/cms-types/nationalCurriculumInsights";
 
 const section: NationalCurriculumInsightsHeaderSection = {
@@ -117,8 +118,11 @@ describe("NationalCurriculumInsightsHeader", () => {
           new URL(generateOakIconURL("homepage-three-pupils")).href,
         );
       } else {
-        expect(imageSource(headerIllustration())).toBe(
-          `/images/curriculum-change-explained/${phase}.svg`,
+        expect(headerIllustration()).toHaveAttribute(
+          "src",
+          new URL(
+            getCloudinaryImageUrl("svg-illustrations/secondary_hsvcns.svg"),
+          ).href,
         );
       }
     },
@@ -144,7 +148,7 @@ describe("NationalCurriculumInsightsHeader", () => {
       );
 
       expect(imageSource(headerIllustration())).toBe(
-        `/images/curriculum-change-explained/ks${keyStage}.png`,
+        getCloudinaryImageUrl(`svg-illustrations/ks${keyStage}.png`),
       );
       expect(screen.getByText(`KS${keyStage}`)).toBeInTheDocument();
       expect(screen.getByRole("link", { name: "Science" })).toHaveAttribute(

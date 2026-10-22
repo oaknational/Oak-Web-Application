@@ -147,7 +147,7 @@ describe("National Curriculum Insights phase cards", () => {
     expect(screen.queryByRole("img")).not.toBeInTheDocument();
     expect(
       container.querySelector(
-        'img[src$="/images/curriculum-change-explained/secondary.svg"]',
+        'img[src$="/svg-illustrations/secondary_hsvcns.svg"]',
       ),
     ).toHaveAttribute("alt", "");
   });
