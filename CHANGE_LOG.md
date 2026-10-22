@@ -1,3 +1,17 @@
+# [1.1253.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1252.0...v1.1253.0) (2026-10-22)
+
+
+### Features
+
+* add auto margins ([f09426c](https://github.com/oaknational/Oak-Web-Application/commit/f09426c48dd8e0fee24deb88e0148b21fddf1969))
+* add base for short reads html page ([e513b32](https://github.com/oaknational/Oak-Web-Application/commit/e513b32bf058f5824608613343d68ba243ee2026))
+* add feature flag ([148392a](https://github.com/oaknational/Oak-Web-Application/commit/148392a2bfc6dc5a9efcbd4e5187f6881cd5faf8))
+* add missing titles and links ([2a981cb](https://github.com/oaknational/Oak-Web-Application/commit/2a981cb0bd671ab0f73f97c1b98d4feffe2c1753))
+* amend spacing to pr comments ([6ed24d7](https://github.com/oaknational/Oak-Web-Application/commit/6ed24d739b5b4ee193f3b28d4393d4061f9ca949))
+* amend url and breakpoints ([31291a8](https://github.com/oaknational/Oak-Web-Application/commit/31291a8f22a56ee89e741e4423c6fc87cad0c691))
+* reduce spacing and add labelled by to contents ([43ed886](https://github.com/oaknational/Oak-Web-Application/commit/43ed886bb95c1bb1ab55f4f95958b112a2b24a49))
+* update breadcrumb to use oak components version ([aa94ab5](https://github.com/oaknational/Oak-Web-Application/commit/aa94ab5a3724eed4eddf9de104b08ad790d401c1))
+
 # [1.1252.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1251.1...v1.1252.0) (2026-10-21)
 
 
