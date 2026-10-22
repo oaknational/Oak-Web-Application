@@ -377,6 +377,8 @@ const teachersLessonOverviewQuery =
       subject: browseData.programmeFields.subjectSlug,
       worksList: restrictedAndHighlyRestrictedWorksList,
       restrictions: res.restrictions[0],
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      features: browseData.features as any,
     });
 
     const staticLessonList = unitData.supplementaryData?.staticLessonList;

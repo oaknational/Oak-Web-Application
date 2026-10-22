@@ -28,13 +28,16 @@ export const getHideCreateWithAi = ({
   subject,
   worksList,
   restrictions,
+  features,
 }: {
   subject: string;
   worksList: WorksListItem[];
   restrictions?: Restrictions;
+  features: { hasCopyrightConflict?: boolean };
 }) => {
   const hasRestrictedWorks = worksList.length > 0;
   const isRestrictedSubject = RESTRICTED_SUBJECTS.has(subject);
+  const hasCopyrightConflict = features["hasCopyrightConflict"] === true;
   const {
     tpc_media_max_restriction: mediaRestriction,
     tpc_downloadablefiles_max_restriction: downloadableFilesRestriction,
@@ -58,7 +61,8 @@ export const getHideCreateWithAi = ({
       hasMediaRestriction ||
       hasdownloadableFilesRestriction ||
       hasQuizImageRestriction ||
-      hasWorksRestriction,
+      hasWorksRestriction ||
+      hasCopyrightConflict,
   );
 };
 
