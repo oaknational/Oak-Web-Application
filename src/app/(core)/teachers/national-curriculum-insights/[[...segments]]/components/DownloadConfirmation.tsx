@@ -10,6 +10,8 @@ import {
   OakP,
 } from "@oaknational/oak-components";
 
+import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
+
 export const NationalCurriculumInsightsDownloadConfirmation = () => (
   <OakGrid
     $maxWidth="spacing-1280"
@@ -32,7 +34,7 @@ export const NationalCurriculumInsightsDownloadConfirmation = () => (
         <OakFlex $flexDirection="column" $gap="spacing-16">
           <OakFlex $gap="spacing-16" $alignItems="center">
             <OakImage
-              src="/images/national-curriculum-insights/contact.svg"
+              src={getCloudinaryImageUrl("svg-illustrations/contact.svg")}
               alt=""
               width={40}
               height={40}
@@ -73,7 +75,9 @@ export const NationalCurriculumInsightsDownloadConfirmation = () => (
     </OakGridArea>
     <OakGridArea $colSpan={[12, 12, 6]} $order={[1, 1, 2]}>
       <OakImage
-        src="/images/national-curriculum-insights/download-confirmation.png"
+        src={getCloudinaryImageUrl(
+          "svg-illustrations/download-confirmation.png",
+        )}
         alt=""
         width={535}
         height={485}
