@@ -17,14 +17,14 @@ export const topBannerFixture: TopBannerProps = {
         {
           _key: "key0003",
           _type: "span",
-          marks: ["strong", "promoStamp"],
+          marks: ["strong"],
           text: "72%",
         },
         {
-          text: " of schools!",
           _key: "key0004",
           _type: "span",
           marks: [],
+          text: " of schools!",
         },
       ],
       markDefs: [],

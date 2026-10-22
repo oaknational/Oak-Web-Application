@@ -17,9 +17,9 @@ describe("TopBanner", () => {
     expect(banner).toContainElement(newTag);
 
     const message = getByText("Oak is now used in of schools!");
-    const promoTag = getByText("72%");
+    const boldSpan = getByText("72%");
     expect(banner).toContainElement(message);
-    expect(banner).toContainElement(promoTag);
+    expect(banner).toContainElement(boldSpan);
 
     const link = getByRole("link");
     expect(link).toHaveAttribute("href", "/about-us/oaks-impact");
