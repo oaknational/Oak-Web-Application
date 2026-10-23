@@ -114,7 +114,6 @@ const nationalCurriculumInsightsOverviewSectionSchema = z.object({
 const nationalCurriculumInsightsPhaseCardSchema = z.object({
   phase: nationalCurriculumInsightsPhaseSchema,
   heading: z.string().min(1),
-  linkLabel: z.string().min(1),
 });
 
 const nationalCurriculumInsightsPhaseCardsSectionSchema = z.object({

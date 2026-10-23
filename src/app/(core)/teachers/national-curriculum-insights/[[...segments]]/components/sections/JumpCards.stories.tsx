@@ -17,13 +17,11 @@ const meta = {
       cards: [
         {
           phase: "primary",
-          heading: "Primary Science",
-          linkLabel: "Explore primary changes",
+          heading: "Primary Science curriculum changes",
         },
         {
           phase: "secondary",
-          heading: "Secondary Science",
-          linkLabel: "Explore secondary changes",
+          heading: "Secondary Science curriculum changes",
         },
       ],
     },

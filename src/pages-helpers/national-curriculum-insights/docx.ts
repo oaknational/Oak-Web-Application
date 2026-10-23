@@ -152,9 +152,7 @@ const moduleXml = (module: NationalCurriculumInsightsModule): string => {
       return `${paragraph(module.heading, "Heading2")}${tableXml(module.table.rows)}`;
     case "NationalCurriculumInsightsPhaseCardsSection":
     case "NationalCurriculumInsightsKeyStageCardsSection":
-      return module.cards
-        .map((card) => paragraph(`${card.heading}: ${card.linkLabel}`))
-        .join("");
+      return module.cards.map((card) => paragraph(card.heading)).join("");
     case "NationalCurriculumInsightsPromotionalHeadingSection":
       return paragraph(module.heading, "Heading2");
     case "NationalCurriculumInsightsPhaseNavigationSection":

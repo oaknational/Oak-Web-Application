@@ -131,7 +131,6 @@ const modulesProjection = `modules[]{
     keyStage,
     heading,
     description,
-    linkLabel,
     videoUrl,
     duration,
     "image": select(
