@@ -151,3 +151,8 @@ variable "terraform_cloud_organisation" {
   type        = string
   default     = null
 }
+
+variable "sentry_organization_slug" {
+  description = "The slug of the Sentry organisation."
+  type        = string
+}

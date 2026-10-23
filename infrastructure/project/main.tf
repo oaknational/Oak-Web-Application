@@ -17,7 +17,7 @@ resource "terraform_data" "workspace_validation" {
 }
 
 module "vercel" {
-  source                  = "github.com/oaknational/oak-terraform-modules//modules/vercel_project?ref=v2.0.4"
+  source                  = "github.com/oaknational/oak-terraform-modules//modules/vercel_project?ref=infp-15"
   build_command           = try(local.build_config.build_command, null)
   build_machine_type      = try(local.build_config.build_machine_type, "standard")
   build_type              = local.build_config.build_type
@@ -39,4 +39,8 @@ module "vercel" {
     for ev in local.environment_variables : ev
     if ev.value != null && ev.value != ""
   ]
+
+  enable_sentry                    = true
+  sentry_organization_slug         = var.sentry_organization_slug
+  sentry_team_slug                 = var.sentry_organization_slug
 }
