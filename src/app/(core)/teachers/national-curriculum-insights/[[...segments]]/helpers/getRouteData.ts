@@ -113,19 +113,10 @@ const getGuidanceRouteData = async (
     return null;
   }
 
-  const needsCatalogue = page.modules.some(
-    ({ __typename }) =>
-      __typename === "NationalCurriculumInsightsSubjectNavigationSection" ||
-      __typename === "NationalCurriculumInsightsDownloadSection",
-  );
-  const hub = needsCatalogue
-    ? await reader.nationalCurriculumInsightsHub({ previewMode })
-    : null;
-
   return {
-    hub,
+    hub: null,
     route,
-    subjects: hub?.subjects ?? [],
+    subjects: [],
     subject: null,
     page,
     activeTab: null,

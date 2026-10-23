@@ -8,7 +8,8 @@ import {
 } from "../helpers/newsletter";
 import { getNationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
 
-import { NationalCurriculumInsightsHero } from "./Hero";
+import { NationalCurriculumInsightsHeader } from "./InsightHeader";
+import { NationalCurriculumInsightsView } from "./View";
 import {
   NationalCurriculumInsightsFaq,
   NationalCurriculumInsightsGuidanceIntro,
@@ -27,7 +28,7 @@ import {
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import type {
-  NationalCurriculumInsightsHeroSection,
+  NationalCurriculumInsightsHeaderSection,
   NationalCurriculumInsightsModule,
 } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import { parseNationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
@@ -134,6 +135,53 @@ const moduleOf = <T extends NationalCurriculumInsightsModule["__typename"]>(
 ) => module;
 
 describe("National Curriculum Insights sections", () => {
+  it.each([
+    { segments: [], background: "#ffffff" },
+    { segments: ["guidance"], background: "#ffffff" },
+    { segments: ["science"], background: "#fff7cc" },
+    { segments: ["science", "primary"], background: "#fff7cc" },
+    {
+      segments: ["science", "primary", "key-stage-1"],
+      background: "#fff7cc",
+    },
+  ])(
+    "uses the newsletter presentation for $segments",
+    async ({ segments, background }) => {
+      const data = await getData(segments);
+      const modules = [
+        moduleOf({
+          __typename: "NationalCurriculumInsightsNewsletterSection",
+          heading: "Keep up to date",
+          introduction: "Get curriculum updates by email.",
+          benefits: ["New guidance"],
+          illustration: contentImage,
+          privacyPortableText: portableText(
+            "privacy",
+            "Read our privacy policy.",
+          ),
+          buttonLabel: "Join the mailing list",
+        }),
+      ];
+      if (data.route.kind === "hub" && data.hub) {
+        data.hub = { ...data.hub, modules };
+      } else if (data.page) {
+        data.page = { ...data.page, modules };
+      } else {
+        throw new Error("Expected the page fixture");
+      }
+
+      renderWithTheme(<NationalCurriculumInsightsView data={data} />);
+
+      expect(
+        screen.getByRole("region", { name: "Keep up to date" }),
+      ).toHaveStyle({ background });
+      expect(screen.getByText("Get curriculum updates by email.")).toHaveStyle({
+        fontSize: "1.125rem",
+        fontWeight: "300",
+      });
+    },
+  );
+
   it.each([undefined, ["guidance"], ["science", "primary"]])(
     "keeps joined FAQ rows independently expandable on route %j",
     async (segments) => {
@@ -188,7 +236,7 @@ describe("National Curriculum Insights sections", () => {
     },
   );
 
-  it("renders a paused inline video separately from the blog link", () => {
+  it("starts an inline video separately from the blog link", async () => {
     renderWithTheme(
       <NationalCurriculumInsightsVideoCards
         section={moduleOf({
@@ -215,20 +263,10 @@ describe("National Curriculum Insights sections", () => {
               },
             },
           ],
-          cards: [
-            {
-              heading: "Legacy content",
-              description: "This should not render when posts are selected.",
-              image: contentImage,
-              videoUrl: "https://example.com/legacy",
-              duration: null,
-            },
-          ],
         })}
       />,
     );
 
-    expect(screen.queryByText("Legacy content")).not.toBeInTheDocument();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     const blogLink = screen.getByRole("link", {
       name: /Bennie Kara on inclusive curriculum leadership/,
@@ -236,6 +274,12 @@ describe("National Curriculum Insights sections", () => {
     expect(blogLink).toHaveAttribute(
       "href",
       "/blog/curriculum-conversations-episode-3",
+    );
+    expect(screen.queryByTestId("cms-video")).not.toBeInTheDocument();
+    await userEvent.setup().click(
+      screen.getByRole("button", {
+        name: "Play Bennie Kara on inclusive curriculum leadership",
+      }),
     );
     expect(blogLink).not.toContainElement(screen.getByTestId("cms-video"));
 
@@ -251,12 +295,12 @@ describe("National Curriculum Insights sections", () => {
     );
     expect(screen.getByTestId("cms-video")).toHaveAttribute(
       "data-autoplay",
-      "false",
+      "true",
     );
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 
-  it("renders the subject illustration supplied by Sanity", async () => {
+  it("keeps the header illustration out of the subject headline panel", async () => {
     const data = await getData(["science"]);
     if (!data.subject) {
       throw new Error("Expected the Science subject");
@@ -275,19 +319,10 @@ describe("National Curriculum Insights sections", () => {
     );
 
     expect(
-      screen.getByRole("region", { name: "Science overview" })
-        .firstElementChild,
-    ).toHaveStyle({
-      display: "grid",
-      "row-gap": "1.5rem",
-      "grid-template-columns": "minmax(0, 1fr)",
-    });
-
-    expect(
-      screen.getByRole("img", {
-        name: "A teacher discussing the curriculum",
-      }),
-    ).toHaveAttribute("src", expect.stringContaining("example-100x100.png"));
+      screen.getByRole("region", { name: "Science overview" }),
+    ).toHaveStyle({ display: "flex", "background-color": "#ffffff" });
+    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+    expect(screen.getByText("Science copy.")).toBeInTheDocument();
   });
 
   it("renders the configurable editorial, media, table and form sections", async () => {
@@ -298,7 +333,7 @@ describe("National Curriculum Insights sections", () => {
     const { container } = renderWithTheme(
       <>
         <NationalCurriculumInsightsOverview
-          data={data}
+          data={await getData(["science"])}
           section={moduleOf({
             __typename: "NationalCurriculumInsightsOverviewSection",
             heading: "Curriculum overview",
@@ -342,20 +377,20 @@ describe("National Curriculum Insights sections", () => {
             __typename: "NationalCurriculumInsightsVideoCardsSection",
             heading: "Curriculum conversations",
             introductionPortableText: body,
-            cards: [
+            posts: [
               {
-                heading: "Introducing the changes",
-                description: "An introduction from the curriculum team.",
+                id: "introduction",
+                slug: "introduction",
+                title: "Introducing the changes",
+                summary: "An introduction from the curriculum team.",
                 image: contentImage,
-                videoUrl: "https://example.com/introduction",
-                duration: "12 mins",
               },
               {
-                heading: "Planning with the changes",
-                description: "How to use the updated curriculum.",
+                id: "planning",
+                slug: "planning",
+                title: "Planning with the changes",
+                summary: "How to use the updated curriculum.",
                 image: localImage,
-                videoUrl: "https://example.com/planning",
-                duration: null,
               },
             ],
           })}
@@ -365,13 +400,13 @@ describe("National Curriculum Insights sections", () => {
             __typename: "NationalCurriculumInsightsVideoCardsSection",
             heading: "One more conversation",
             introductionPortableText: null,
-            cards: [
+            posts: [
               {
-                heading: "A subject conversation",
-                description: "A subject specialist explains the changes.",
+                id: "subject",
+                slug: "subject",
+                title: "A subject conversation",
+                summary: "A subject specialist explains the changes.",
                 image: localImage,
-                videoUrl: "https://example.com/subject",
-                duration: null,
               },
             ],
           })}
@@ -423,7 +458,7 @@ describe("National Curriculum Insights sections", () => {
           })}
         />
         <NationalCurriculumInsightsNewsletter
-          data={data}
+          variant="plain"
           section={moduleOf({
             __typename: "NationalCurriculumInsightsNewsletterSection",
             heading: "Keep up to date",
@@ -431,7 +466,6 @@ describe("National Curriculum Insights sections", () => {
             benefits: ["New guidance", "Subject updates"],
             illustration: contentImage,
             privacyPortableText: body,
-            formId: "curriculum-updates",
             buttonLabel: "Join the mailing list",
           })}
         />
@@ -453,7 +487,7 @@ describe("National Curriculum Insights sections", () => {
     ).toHaveAttribute("href", "/teachers");
     expect(
       screen.getByRole("link", { name: /Planning with the changes/ }),
-    ).toHaveAttribute("href", "https://example.com/planning");
+    ).toHaveAttribute("href", "/blog/planning");
     expect(screen.getByRole("table")).toHaveTextContent("Clearer sequencing");
     expect(
       screen.getByRole("heading", { name: "Frequently asked questions" }),
@@ -486,10 +520,10 @@ describe("National Curriculum Insights sections", () => {
       width: "1.5rem",
       height: "1.5rem",
     });
-    // Each grid item starts in the first column in the stacked mobile layout.
-    Array.from(newsletterForm.parentElement!.children).forEach((column) => {
-      expect(column).toHaveStyle({ gridColumnStart: "1" });
-    });
+    expect(
+      screen.getByText("New guidance").compareDocumentPosition(newsletterForm) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
 
     fireEvent.change(screen.getByRole("textbox", { name: /Name/ }), {
       target: { value: "Jamie Maxwell" },
@@ -526,12 +560,11 @@ describe("National Curriculum Insights sections", () => {
 
   it("does not track a completed newsletter signup when HubSpot rejects it", async () => {
     const user = userEvent.setup();
-    const data = await getData();
     submitNewsletter.mockRejectedValueOnce(new Error("HubSpot unavailable"));
 
     renderWithTheme(
       <NationalCurriculumInsightsNewsletter
-        data={data}
+        variant="highlighted"
         section={moduleOf({
           __typename: "NationalCurriculumInsightsNewsletterSection",
           heading: "Keep up to date",
@@ -542,7 +575,6 @@ describe("National Curriculum Insights sections", () => {
             "newsletter-privacy",
             "Read our privacy policy.",
           ),
-          formId: "curriculum-updates",
           buttonLabel: "Join the mailing list",
         })}
       />,
@@ -632,6 +664,21 @@ describe("National Curriculum Insights sections", () => {
     expect(portrait).toHaveAttribute("alt", "");
   });
 
+  it("keeps the paragraph break in the guidance quote", () => {
+    renderWithTheme(
+      <NationalCurriculumInsightsQuote
+        section={moduleOf({
+          __typename: "NationalCurriculumInsightsQuoteSection",
+          quote: "A refreshed curriculum.\n\nSupport for teachers.",
+          attribution: "Professor Becky Francis CBE",
+        })}
+      />,
+    );
+
+    expect(screen.getByText("“A refreshed curriculum.")).toBeInTheDocument();
+    expect(screen.getByText("Support for teachers.”")).toBeInTheDocument();
+  });
+
   it("uses the CMS benefits artwork and mirror setting without overriding editor-selected images", async () => {
     const data = await getData(["guidance"]);
     const section = moduleOf({
@@ -684,12 +731,10 @@ describe("National Curriculum Insights sections", () => {
             {
               phase: "primary",
               heading: "Primary science",
-              linkLabel: "Explore Primary",
             },
             {
               phase: "secondary",
               heading: "Secondary science",
-              linkLabel: "Explore Secondary",
             },
           ],
         })}
@@ -697,11 +742,8 @@ describe("National Curriculum Insights sections", () => {
     );
 
     expect(
-      screen.getByRole("link", { name: /Primary science/ }),
-    ).toHaveAttribute(
-      "href",
-      "/teachers/national-curriculum-insights/science/primary",
-    );
+      screen.getByRole("link", { name: /Secondary science/ }),
+    ).toHaveAttribute("href", "/curriculum-change-explained/science/secondary");
 
     rerender(
       <NationalCurriculumInsightsKeyStageCards
@@ -712,12 +754,10 @@ describe("National Curriculum Insights sections", () => {
             {
               keyStage: "KS1",
               heading: "Key stage 1 science",
-              linkLabel: "Explore key stage 1",
             },
             {
               keyStage: "KS4",
               heading: "Key stage 4 science",
-              linkLabel: "Explore key stage 4",
             },
           ],
         })}
@@ -727,7 +767,7 @@ describe("National Curriculum Insights sections", () => {
       screen.getByRole("link", { name: /Key stage 1 science/ }),
     ).toHaveAttribute(
       "href",
-      "/teachers/national-curriculum-insights/science/primary/key-stage-1",
+      "/curriculum-change-explained/science/primary/ks1",
     );
     expect(
       screen.queryByRole("link", { name: /Key stage 4 science/ }),
@@ -738,21 +778,21 @@ describe("National Curriculum Insights sections", () => {
         data={primaryData}
         section={moduleOf({
           __typename: "NationalCurriculumInsightsSubjectNavigationSection",
-          phases: ["primary", "secondary"],
+          heading: "Explore subjects",
+          phases: ["primary"],
           primaryHeading: "Primary subjects",
           secondaryHeading: "Secondary subjects",
         })}
       />,
     );
     expect(screen.getByRole("navigation")).toHaveAccessibleName(
-      "Explore curriculum changes by subject",
-    );
-    expect(screen.getByRole("link", { name: "Science" })).toHaveAttribute(
-      "href",
-      "/teachers/national-curriculum-insights/science/primary",
+      "Primary subjects",
     );
     expect(
-      screen.queryByRole("link", { name: "Mathematics" }),
+      screen.getByRole("link", { name: "Science primary" }),
+    ).toHaveAttribute("href", "/curriculum-change-explained/science/primary");
+    expect(
+      screen.queryByRole("link", { name: "Mathematics secondary" }),
     ).not.toBeInTheDocument();
 
     rerender(
@@ -764,7 +804,6 @@ describe("National Curriculum Insights sections", () => {
             {
               keyStage: "KS1",
               heading: "Key stage 1 science",
-              linkLabel: "Explore key stage 1",
             },
           ],
         })}
@@ -781,7 +820,6 @@ describe("National Curriculum Insights sections", () => {
             {
               phase: "primary",
               heading: "Primary science",
-              linkLabel: "Explore Primary",
             },
           ],
         })}
@@ -790,56 +828,36 @@ describe("National Curriculum Insights sections", () => {
     expect(screen.queryByRole("link")).not.toBeInTheDocument();
   });
 
-  it("renders hero metadata and breadcrumbs for every page level", async () => {
+  it("renders the editorial date and breadcrumbs for every page level", async () => {
     const subjectData = await getData(["science"]);
     const phaseData = await getData(["science", "primary"]);
     const keyStageData = await getData(["science", "primary", "key-stage-1"]);
-    const hero: NationalCurriculumInsightsHeroSection = {
-      __typename: "NationalCurriculumInsightsHeroSection",
+    const hero: NationalCurriculumInsightsHeaderSection = {
+      __typename: "NationalCurriculumInsightsHeaderSection",
       heading: "Science curriculum changes",
       bodyPortableText: portableText("hero", "The latest curriculum detail."),
-      image: localImage,
-      authorName: "Curriculum team",
-      authorRole: "Subject specialists",
-      authorImage: contentImage,
-      statusMessage: "Draft guidance",
+      lastUpdatedAt: "2026-09-10",
     };
 
     const { rerender } = renderWithTheme(
-      <NationalCurriculumInsightsHero data={subjectData} section={hero} />,
+      <NationalCurriculumInsightsHeader data={subjectData} section={hero} />,
     );
-    expect(screen.getByText("Curriculum team")).toBeInTheDocument();
-    expect(screen.getByText("Subject specialists")).toBeInTheDocument();
-    expect(screen.getByText("Draft guidance")).toBeInTheDocument();
-    const heroGrid = screen.getByRole("heading", {
-      name: hero.heading,
-    }).parentElement!.parentElement!.parentElement!;
-    expect(heroGrid.children[1]).toHaveStyle({ order: "2" });
+    expect(screen.getByText("10 September 2026")).toHaveAttribute(
+      "datetime",
+      "2026-09-10",
+    );
     expect(
       screen.getByRole("link", { name: /National curriculum insights/ }),
-    ).toHaveAttribute("href", "/teachers/national-curriculum-insights");
+    ).toHaveAttribute("href", "/curriculum-change-explained");
 
     rerender(
-      <NationalCurriculumInsightsHero
-        data={phaseData}
-        section={{
-          ...hero,
-          authorName: null,
-          authorRole: null,
-          authorImage: null,
-        }}
-      />,
+      <NationalCurriculumInsightsHeader data={phaseData} section={hero} />,
     );
-    expect(screen.queryByText("Curriculum team")).not.toBeInTheDocument();
-    expect(screen.getByText("Draft guidance")).toBeInTheDocument();
+    expect(screen.getByText("10 September 2026")).toBeInTheDocument();
 
     rerender(
-      <NationalCurriculumInsightsHero
-        data={keyStageData}
-        section={{ ...hero, statusMessage: null }}
-      />,
+      <NationalCurriculumInsightsHeader data={keyStageData} section={hero} />,
     );
-    expect(screen.getByText("Key stage 1")).toBeInTheDocument();
-    expect(screen.queryByText("Draft guidance")).not.toBeInTheDocument();
+    expect(screen.getByText("KS1")).toBeInTheDocument();
   });
 });

@@ -3,7 +3,6 @@
 import type { PortableTextComponents } from "@portabletext/react";
 import {
   OakBox,
-  OakBreadcrumbs,
   OakFlex,
   OakGrid,
   OakGridArea,
@@ -21,21 +20,16 @@ import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } fr
 import { SectionMaxWidth } from "./sections/shared";
 
 import type { NationalCurriculumInsightsHeroSection } from "@/common-lib/cms-types/nationalCurriculumInsights";
-import {
-  nationalCurriculumInsightsHubHref,
-  nationalCurriculumInsightsSubjectHref,
-  nationalCurriculumInsightsSubjectPhaseHref,
-} from "@/common-lib/urls/nationalCurriculumInsights";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 
 const DEFAULT_HERO_IMAGE = insightsAssetUrl("hero");
 
-type HeroPageKind = "hub" | "guidance" | "subject" | "phase" | "keyStage";
+type HeroPageKind = "hub" | "guidance";
 
 const heroPortableTextComponents: PortableTextComponents = {
   block: {
     normal: ({ children }) => (
-      <OakP $font="body-2" $mv="spacing-0">
+      <OakP $font="body-1" $mv="spacing-0">
         {children}
       </OakP>
     ),
@@ -52,75 +46,6 @@ const guidanceHeroPortableTextComponents: PortableTextComponents = {
   },
 };
 
-const heroBreadcrumbs = (data: NationalCurriculumInsightsRouteData) => {
-  const route = data.route;
-
-  if (
-    route.kind === "hub" ||
-    route.kind === "guidance" ||
-    !data.subject ||
-    !data.hub
-  ) {
-    return null;
-  }
-
-  const breadcrumbs: Array<{ href?: string; text: string }> = [
-    {
-      href: nationalCurriculumInsightsHubHref(),
-      text: data.hub.title,
-    },
-  ];
-
-  if (route.kind === "subject") {
-    breadcrumbs.push({ text: data.subject.title });
-  } else {
-    breadcrumbs.push({
-      href: nationalCurriculumInsightsSubjectHref(data.subject.slug),
-      text: data.subject.title,
-    });
-
-    const phaseLabel =
-      data.subject.tabs.find(({ kind }) => kind === route.phase)?.label ??
-      route.phase;
-
-    if (route.kind === "subjectPhase") {
-      breadcrumbs.push({ text: phaseLabel });
-    } else {
-      breadcrumbs.push(
-        {
-          href: nationalCurriculumInsightsSubjectPhaseHref(
-            data.subject.slug,
-            route.phase,
-          ),
-          text: phaseLabel,
-        },
-        {
-          text: `Key stage ${route.keyStageSlug.slice("key-stage-".length)}`,
-        },
-      );
-    }
-  }
-
-  return breadcrumbs as Parameters<typeof OakBreadcrumbs>[0]["breadcrumbs"];
-};
-
-const getHeroPageKind = (
-  data: NationalCurriculumInsightsRouteData,
-): HeroPageKind => {
-  switch (data.route.kind) {
-    case "hub":
-      return "hub";
-    case "guidance":
-      return "guidance";
-    case "subject":
-      return "subject";
-    case "subjectPhase":
-      return "phase";
-    case "subjectPhaseKeyStage":
-      return "keyStage";
-  }
-};
-
 const getHeroResponsiveProps = (
   pageKind: HeroPageKind,
 ): {
@@ -134,107 +59,14 @@ const getHeroResponsiveProps = (
   if (pageKind === "hub") {
     return {
       textOrder: [2, 1, 1],
-      headingFont: ["heading-4", "heading-4", "heading-1"],
-    };
-  }
-  if (pageKind === "guidance") {
-    return {
-      textOrder: [2, 2, 1],
-      headingFont: ["heading-4", "heading-3", "heading-3"],
+      headingFont: ["heading-4", "heading-4", "heading-3"],
     };
   }
   return {
-    textOrder: [1, 1, 1],
-    headingFont: ["heading-4", "heading-1", "heading-1"],
+    textOrder: [2, 2, 1],
+    headingFont: ["heading-4", "heading-3", "heading-3"],
   };
 };
-
-const optionalImageUrl = (
-  image: NationalCurriculumInsightsHeroSection["authorImage"],
-) => (image?.asset?.url ? getProxiedSanityAssetUrl(image.asset.url) : null);
-
-const HeroPageMeta = ({
-  data,
-  section,
-}: {
-  data: NationalCurriculumInsightsRouteData;
-  section: NationalCurriculumInsightsHeroSection;
-}) => {
-  if (
-    data.route.kind === "hub" ||
-    data.route.kind === "guidance" ||
-    (!section.authorName && !section.statusMessage)
-  ) {
-    return null;
-  }
-
-  const authorImageUrl = optionalImageUrl(section.authorImage);
-
-  return (
-    <OakFlex $flexDirection="column" $gap="spacing-24">
-      {section.authorName ? (
-        <OakFlex $alignItems="center" $gap="spacing-12">
-          {authorImageUrl ? (
-            <OakFlex
-              $position="relative"
-              $flexShrink={0}
-              $width="spacing-56"
-              $height="spacing-56"
-              $overflow="hidden"
-              $borderRadius="border-radius-circle"
-            >
-              <OakImage
-                src={authorImageUrl}
-                alt={section.authorImage?.altText ?? ""}
-                $width="100%"
-                $height="100%"
-                $objectFit="cover"
-              />
-            </OakFlex>
-          ) : null}
-          <OakFlex $flexDirection="column" $gap="spacing-4">
-            <OakP $font="heading-7" $mv="spacing-0">
-              {section.authorName}
-            </OakP>
-            {section.authorRole ? (
-              <OakP $font="body-3" $mv="spacing-0">
-                {section.authorRole}
-              </OakP>
-            ) : null}
-          </OakFlex>
-        </OakFlex>
-      ) : null}
-    </OakFlex>
-  );
-};
-
-const HeroUpdateCard = ({
-  section,
-}: {
-  section: NationalCurriculumInsightsHeroSection;
-}) =>
-  section.statusMessage ? (
-    <OakBox
-      $boxSizing="border-box"
-      $width="100%"
-      $mt={["spacing-0", "spacing-0", "spacing-32"]}
-      $ba="border-solid-s"
-      $borderColor="border-decorative2-stronger"
-      $background="bg-primary"
-      $borderRadius="border-radius-m2"
-      $pa="spacing-16"
-    >
-      <OakFlex $flexDirection="column" $gap="spacing-4">
-        <OakP $font="body-2-bold" $mv="spacing-0">
-          {section.statusHeading ??
-            "This page was last updated on July 7, 2026"}
-        </OakP>
-        <OakP $font="body-2" $mv="spacing-0">
-          {section.statusMessage}
-        </OakP>
-      </OakFlex>
-    </OakBox>
-  ) : null;
 
 const HubHeroImage = ({
   hasEditorialImage,
@@ -304,10 +136,11 @@ export const NationalCurriculumInsightsHero = ({
   data: NationalCurriculumInsightsRouteData;
   section: NationalCurriculumInsightsHeroSection;
 }) => {
+  if (data.route.kind !== "hub" && data.route.kind !== "guidance") return null;
+
   const isHub = data.route.kind === "hub";
   const hasEditorialImage = isHub || data.route.kind === "guidance";
-  const pageKind = getHeroPageKind(data);
-  const breadcrumbs = heroBreadcrumbs(data);
+  const pageKind = data.route.kind;
   const presentation = nationalCurriculumInsightsPresentation(data.route);
   const { textOrder, headingFont } = getHeroResponsiveProps(pageKind);
 
@@ -328,27 +161,18 @@ export const NationalCurriculumInsightsHero = ({
       data-testid="national-curriculum-insights-hero"
       data-insights-module="hero"
     >
-      <SectionMaxWidth
-        $mh="auto"
-        $flexDirection="column"
-        $gap={
-          breadcrumbs ? ["spacing-48", "spacing-20", "spacing-48"] : "spacing-0"
-        }
-      >
-        {breadcrumbs ? <OakBreadcrumbs breadcrumbs={breadcrumbs} /> : null}
+      <SectionMaxWidth $mh="auto" $flexDirection="column" $gap="spacing-0">
         <OakGrid
           $gridTemplateColumns={[
             "minmax(0, 1fr)",
             hasEditorialImage
               ? "minmax(0, 5fr) minmax(0, 4fr)"
               : "repeat(3, minmax(0, 1fr))",
-            "minmax(0, 8fr) minmax(0, 5fr)",
+            pageKind === "guidance"
+              ? "minmax(0, 43rem) minmax(0, 29.125rem) minmax(0, 1fr)"
+              : "minmax(0, 2fr) minmax(0, 1fr)",
           ]}
-          $alignItems={[
-            "stretch",
-            hasEditorialImage ? "center" : "start",
-            hasEditorialImage ? "center" : "start",
-          ]}
+          $alignItems={["stretch", hasEditorialImage ? "center" : "start"]}
           $cg="spacing-16"
           $rg={["spacing-32", "spacing-24", "spacing-16"]}
         >
@@ -360,7 +184,7 @@ export const NationalCurriculumInsightsHero = ({
           >
             <OakFlex
               $width="100%"
-              $maxWidth="spacing-640"
+              $maxWidth={pageKind === "guidance" ? "100%" : "spacing-640"}
               $flexDirection="column"
               $gap="spacing-24"
               $pb={[
@@ -383,33 +207,32 @@ export const NationalCurriculumInsightsHero = ({
                   section.heading
                 )}
               </OakHeading>
-              <PortableTextWithDefaults
-                value={section.bodyPortableText}
-                components={
-                  pageKind === "guidance"
-                    ? guidanceHeroPortableTextComponents
-                    : heroPortableTextComponents
-                }
-              />
+              <OakFlex
+                $maxWidth="spacing-640"
+                $flexDirection="column"
+                $gap="spacing-24"
+              >
+                <PortableTextWithDefaults
+                  value={section.bodyPortableText}
+                  components={
+                    pageKind === "guidance"
+                      ? guidanceHeroPortableTextComponents
+                      : heroPortableTextComponents
+                  }
+                />
+              </OakFlex>
               {section.ctaLabel && section.ctaHref ? (
                 <OakLink href={section.ctaHref} iconName="arrow-right">
                   {section.ctaLabel}
                 </OakLink>
               ) : null}
-              <HeroPageMeta data={data} section={section} />
             </OakFlex>
           </OakGridArea>
-          {hasEditorialImage ? (
-            <HubHeroImage
-              hasEditorialImage={hasEditorialImage}
-              isGuidance={pageKind === "guidance"}
-              section={section}
-            />
-          ) : (
-            <OakGridArea $colSpan={[1, 2, 1]} $order={2}>
-              <HeroUpdateCard section={section} />
-            </OakGridArea>
-          )}
+          <HubHeroImage
+            hasEditorialImage={hasEditorialImage}
+            isGuidance={pageKind === "guidance"}
+            section={section}
+          />
         </OakGrid>
       </SectionMaxWidth>
     </OakBox>

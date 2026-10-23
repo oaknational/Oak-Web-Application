@@ -1,5 +1,7 @@
 import { GET, POST } from "./route";
 
+import { NationalCurriculumInsightsDownloadUnavailableError } from "@/pages-helpers/national-curriculum-insights/downloadLayout";
+
 const mockHub = jest.fn();
 const mockSubjectBySlug = jest.fn();
 const mockGenerateDocx = jest.fn();
@@ -117,6 +119,52 @@ describe("national curriculum insights downloads", () => {
     expect(mockZipFromFiles).not.toHaveBeenCalled();
   });
 
+  it.each([
+    "Some required guidance is not published yet.",
+    "Guidance downloads are not set up for this subject yet.",
+    "Some required guidance is incomplete. Please try again later.",
+    "Shared guidance is not available yet.",
+  ])("returns a clear availability error: %s", async (message) => {
+    mockGenerateDocx.mockRejectedValueOnce(
+      new NationalCurriculumInsightsDownloadUnavailableError(message),
+    );
+    const response = await POST(
+      postRequest([{ subjectSlug: "science", phase: "primary" }]),
+    );
+    expect(response.status).toBe(400);
+    await expect(response.json()).resolves.toEqual({
+      error: message,
+    });
+    expect(mockZipFromFiles).not.toHaveBeenCalled();
+    expect(mockReportError).not.toHaveBeenCalled();
+  });
+
+  it("uses one download date when a request crosses midnight", async () => {
+    const downloadedAt = new Date(2026, 9, 13, 23, 59, 59);
+    jest.useFakeTimers().setSystemTime(downloadedAt);
+    try {
+      mockGenerateDocx.mockImplementationOnce(async () => {
+        jest.setSystemTime(new Date(2026, 9, 14, 0, 0, 1));
+        return Buffer.from("docx");
+      });
+      const response = await POST(
+        postRequest([
+          { subjectSlug: "science", phase: "primary" },
+          { subjectSlug: "maths", phase: "primary" },
+        ]),
+      );
+      expect(response.status).toBe(200);
+      expect(response.headers.get("x-filename")).toBe(
+        "National curriculum insights - 13-10-2026.zip",
+      );
+      expect(
+        mockGenerateDocx.mock.calls.map(([args]) => args.downloadedAt),
+      ).toEqual([downloadedAt, downloadedAt]);
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
   it("deduplicates selections and returns a zip for multiple documents", async () => {
     const response = await POST(
       postRequest([
@@ -138,6 +186,32 @@ describe("national curriculum insights downloads", () => {
         expect.objectContaining({ filename: "Maths - primary.docx" }),
       ]),
     );
+  });
+
+  it("keeps both documents when published titles would produce the same filename", async () => {
+    mockSubjectBySlug.mockImplementation(async (slug: string) => ({
+      id: `subject-${slug}`,
+      tabs: hub.subjects.find((subject) => subject.slug === slug)!.tabs,
+      slug: { current: slug },
+      title: "Shared subject title",
+    }));
+    const response = await POST(
+      postRequest([
+        { subjectSlug: "science", phase: "primary" },
+        { subjectSlug: "maths", phase: "primary" },
+      ]),
+    );
+    expect(response.status).toBe(200);
+    expect(mockZipFromFiles).toHaveBeenCalledWith([
+      {
+        filename: "Shared subject title - primary - science-1.docx",
+        buffer: Buffer.from("docx"),
+      },
+      {
+        filename: "Shared subject title - primary - maths-2.docx",
+        buffer: Buffer.from("docx"),
+      },
+    ]);
   });
 
   it("accepts valid GET selections", async () => {

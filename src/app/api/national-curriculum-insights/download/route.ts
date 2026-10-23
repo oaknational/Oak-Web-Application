@@ -11,12 +11,13 @@ import {
   nationalCurriculumInsightsDownloadFilename,
 } from "@/pages-helpers/national-curriculum-insights/docx";
 import { zipFromFiles } from "@/utils/curriculum/zip";
+import { NationalCurriculumInsightsDownloadUnavailableError } from "@/pages-helpers/national-curriculum-insights/downloadLayout";
 import OakError from "@/errors/OakError";
 import errorReporter from "@/common-lib/error-reporter";
 
 const reportError = errorReporter("national-curriculum-insights/download");
 
-class UnavailableSelectionError extends Error {}
+class UnavailableSelectionError extends NationalCurriculumInsightsDownloadUnavailableError {}
 
 const requestSchema = z.object({
   selections: z
@@ -51,6 +52,7 @@ const createDownload = async (selections: unknown) => {
   }
 
   try {
+    const downloadedAt = new Date();
     const reader = getNationalCurriculumInsightsReader();
     const hub = await reader.nationalCurriculumInsightsHub();
     if (!hub) {
@@ -90,23 +92,47 @@ const createDownload = async (selections: unknown) => {
         }
 
         return {
+          subjectSlug,
           filename: nationalCurriculumInsightsDownloadFilename({
             phase,
             subjectTitle: subject.title,
+            downloadedAt,
           }),
           buffer: await generateNationalCurriculumInsightsDocx({
             phase: phase as NationalCurriculumInsightsPhase,
             subject,
+            sharedModules: hub.modules,
+            downloadedAt,
           }),
         };
       }),
     );
 
-    const multiple = files.length > 1;
+    const filenameCounts = new Map<string, number>();
+    for (const { filename } of files) {
+      const key = filename.toLowerCase();
+      filenameCounts.set(key, (filenameCounts.get(key) ?? 0) + 1);
+    }
+    const namedFiles = files.map(
+      ({ subjectSlug, filename, buffer }, index) => ({
+        buffer,
+        filename:
+          filenameCounts.get(filename.toLowerCase()) === 1
+            ? filename
+            : filename.replace(
+                /\.docx$/,
+                ` - ${subjectSlug.slice(0, 40)}-${index + 1}.docx`,
+              ),
+      }),
+    );
+
+    const multiple = namedFiles.length > 1;
     const filename = multiple
-      ? `National curriculum insights - ${format(new Date(), "dd-MM-yyyy")}.zip`
-      : files[0]!.filename;
-    const output = multiple ? await zipFromFiles(files) : files[0]!.buffer;
+      ? `National curriculum insights - ${format(downloadedAt, "dd-MM-yyyy")}.zip`
+      : namedFiles[0]!.filename;
+    const output = multiple
+      ? await zipFromFiles(namedFiles)
+      : namedFiles[0]!.buffer;
 
     return new Response(new Uint8Array(output), {
       status: 200,
@@ -120,7 +146,7 @@ const createDownload = async (selections: unknown) => {
       },
     });
   } catch (error) {
-    if (error instanceof UnavailableSelectionError) {
+    if (error instanceof NationalCurriculumInsightsDownloadUnavailableError) {
       return jsonError(error.message, 400);
     }
     await reportError(

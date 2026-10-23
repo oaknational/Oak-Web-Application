@@ -42,18 +42,25 @@ export const insightsPortableTextProjection = `[]{
   }
 }`;
 
-const modulesProjection = `modules[]{
+const moduleProjection = `
   "__typename": select(
     _type == "nationalCurriculumInsightsHeroSection" => "NationalCurriculumInsightsHeroSection",
+    _type == "nationalCurriculumInsightsHeaderSection" => "NationalCurriculumInsightsHeaderSection",
     _type == "nationalCurriculumInsightsOverviewSection" => "NationalCurriculumInsightsOverviewSection",
     _type == "nationalCurriculumInsightsPhaseCardsSection" => "NationalCurriculumInsightsPhaseCardsSection",
     _type == "nationalCurriculumInsightsKeyStageCardsSection" => "NationalCurriculumInsightsKeyStageCardsSection",
     _type == "nationalCurriculumInsightsPromotionalHeadingSection" => "NationalCurriculumInsightsPromotionalHeadingSection",
     _type == "nationalCurriculumInsightsPhaseNavigationSection" => "NationalCurriculumInsightsPhaseNavigationSection",
     _type == "nationalCurriculumInsightsSubjectNavigationSection" => "NationalCurriculumInsightsSubjectNavigationSection",
+    _type == "nationalCurriculumInsightsSubjectLinksSection" => "NationalCurriculumInsightsSubjectLinksSection",
     _type == "nationalCurriculumInsightsNewsletterSection" => "NationalCurriculumInsightsNewsletterSection",
     _type == "nationalCurriculumInsightsFaqSection" => "NationalCurriculumInsightsFaqSection",
+    _type == "nationalCurriculumInsightsChangesSection" => "NationalCurriculumInsightsChangesSection",
+    _type == "nationalCurriculumInsightsUnchangedSection" => "NationalCurriculumInsightsUnchangedSection",
+    _type == "nationalCurriculumInsightsChecklistSection" => "NationalCurriculumInsightsChecklistSection",
+    _type == "nationalCurriculumInsightsPreparationSection" => "NationalCurriculumInsightsPreparationSection",
     _type == "nationalCurriculumInsightsRichTextSection" => "NationalCurriculumInsightsRichTextSection",
+    _type == "nationalCurriculumInsightsConfidenceSection" => "NationalCurriculumInsightsConfidenceSection",
     _type == "nationalCurriculumInsightsImageTextSection" => "NationalCurriculumInsightsImageTextSection",
     _type == "nationalCurriculumInsightsGuidanceIntroSection" => "NationalCurriculumInsightsGuidanceIntroSection",
     _type == "nationalCurriculumInsightsVideoCardsSection" => "NationalCurriculumInsightsVideoCardsSection",
@@ -62,6 +69,8 @@ const modulesProjection = `modules[]{
     _type == "nationalCurriculumInsightsDownloadSection" => "NationalCurriculumInsightsDownloadSection"
   ),
   heading,
+  linkFromSubjectOverview,
+  audience,
   mobileHeading,
   headingStyle,
   variant,
@@ -71,11 +80,15 @@ const modulesProjection = `modules[]{
   phases,
   primaryHeading,
   secondaryHeading,
+  links[defined(subject->_id)]{
+    title,
+    "subjectSlug": subject->slug.current,
+    iconName
+  },
   introduction,
   benefitsHeading,
   benefits,
   "privacyPortableText": privacyText${insightsPortableTextProjection},
-  formId,
   buttonLabel,
   barHeading,
   barCtaLabel,
@@ -87,37 +100,63 @@ const modulesProjection = `modules[]{
   "bodyPortableText": body${insightsPortableTextProjection},
   "contentPortableText": content${insightsPortableTextProjection},
   "introductionPortableText": introduction${insightsPortableTextProjection},
-  authorName,
-  authorRole,
-  authorImage ${imageProjection},
-  statusHeading,
-  statusMessage,
+  lastUpdatedAt,
   imagePosition,
   mirrorImage,
   background,
   ctaLabel,
+  _type == "nationalCurriculumInsightsConfidenceSection" => {
+    cta {
+      label,
+      linkType,
+      external,
+      anchor,
+      "internal": internal->{
+        "id": _id,
+        "contentType": _type,
+        "slug": slug.current,
+        file { asset->{ extension, size, url } }
+      }
+    }
+  },
   "ctaHref": select(
     (ctaHref match "/curriculum-change-explained/guidance*" || ctaHref match "/teachers/national-curriculum-insights/guidance*") &&
       !defined(*[_type == "nationalCurriculumInsightsGuidancePage" && _id in ["nationalCurriculumInsightsGuidancePage", "drafts.nationalCurriculumInsightsGuidancePage"]][0]._id) => null,
-    ctaHref == "/teachers/national-curriculum-insights" &&
+    ctaHref in ["/teachers/national-curriculum-insights", "/curriculum-change-explained"] &&
       !defined(*[_type == "nationalCurriculumInsightsHub" && _id in ["nationalCurriculumInsightsHub", "drafts.nationalCurriculumInsightsHub"]][0]._id) => null,
     ctaHref
   ),
   statusLabel,
-  quote,
+  "quote": select(
+    _type == "nationalCurriculumInsightsOverviewSection" => quote{
+      quote,
+      attribution,
+      role,
+      image ${imageProjection}
+    },
+    quote
+  ),
   attribution,
   role,
-  videoUrl,
-  duration,
   "image": select(
     _type in [
       "nationalCurriculumInsightsHeroSection",
       "nationalCurriculumInsightsImageTextSection",
       "nationalCurriculumInsightsGuidanceIntroSection",
-      "nationalCurriculumInsightsQuoteSection"
+      "nationalCurriculumInsightsQuoteSection",
+      "nationalCurriculumInsightsPreparationSection"
     ] => image ${imageProjection}
   ),
+  changes[]{
+    "id": _key,
+    title,
+    whyItMatters,
+    "detailPortableText": detail${insightsPortableTextProjection}
+  },
+  steps[]{"id":_key,text},
   items[]{
+    "id": _key,
+    "contentPortableText": content${insightsPortableTextProjection},
     question,
     "answerPortableText": answer${insightsPortableTextProjection}
   },
@@ -125,13 +164,7 @@ const modulesProjection = `modules[]{
     phase,
     keyStage,
     heading,
-    description,
     linkLabel,
-    videoUrl,
-    duration,
-    "image": select(
-      ^._type == "nationalCurriculumInsightsVideoCardsSection" => image ${imageProjection}
-    )
   },
   "posts": posts[defined(@->_id)]->{
     "id": _id,
@@ -155,12 +188,25 @@ const modulesProjection = `modules[]{
   table {
     rows[]{cells}
   }
+`;
+
+const modulesProjection = `modules[]{
+  ${moduleProjection},
+  _type == "nationalCurriculumInsightsArticleSection" => {
+    "__typename": "NationalCurriculumInsightsArticleSection",
+    sections[]{
+      ${moduleProjection},
+      "id": _key,
+      navigationLabel
+    }
+  }
 }`;
 
 const pageSummaryProjection = `{
   "id": _id,
   pageType,
-  title
+  title,
+  "availableKeyStages": coalesce(keyStages[defined(page->_id)].keyStage, [])
 }`;
 
 const keyStagePageProjection = `{
@@ -175,8 +221,10 @@ const keyStagePageProjection = `{
 const pageProjection = `{
   "id": _id,
   pageType,
+  downloadLayout,
   title,
   summary,
+  "expectedKeyStages": coalesce(keyStages[].keyStage, []),
   "keyStages": coalesce(keyStages[defined(page->_id)]{
     keyStage,
     label,
@@ -193,6 +241,16 @@ export const nationalCurriculumInsightsHubQuery = `
     "id": _id,
     title,
     summary,
+    "phaseLinks": coalesce(phaseLinks[
+      defined(subject->_id) && phase in subject->tabs[defined(page->_id)].kind &&
+      (!defined(keyStage) || keyStage in subject->tabs[kind == ^.phase][0].page->keyStages[defined(page->_id)].keyStage)
+    ]{
+      title,
+      phase,
+      iconName,
+      keyStage,
+      "subjectSlug": subject->slug.current
+    }, []),
     "subjects": coalesce(subjects[defined(@->_id)]->{
       "id": _id,
       title,

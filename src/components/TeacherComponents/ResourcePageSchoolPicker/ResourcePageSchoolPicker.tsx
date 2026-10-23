@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Item } from "react-stately";
 
 import { formatSchoolName } from "./formatSchoolName";
@@ -18,6 +18,7 @@ type ResourcePageSchoolPickerProps = Omit<
   errorId?: string;
   withHomeschool: boolean;
   placeholder?: string;
+  disabled?: boolean;
 };
 
 export type School = {
@@ -26,6 +27,9 @@ export type School = {
   la: string;
   postcode: string;
 };
+
+const schoolKey = (school: School) =>
+  school.urn === HOMESCHOOL_URN ? school.urn : `${school.urn}-${school.name}`;
 
 /**
  * A React aria combo box component school picker
@@ -39,15 +43,29 @@ export type School = {
  */
 
 const ResourcePageSchoolPicker: FC<ResourcePageSchoolPickerProps> = (props) => {
+  const [selectedSchool, setSelectedSchool] = useState<School>();
+  const schools =
+    selectedSchool &&
+    props.schoolPickerInputValue &&
+    !props.schools.some(
+      (school) => schoolKey(school) === schoolKey(selectedSchool),
+    )
+      ? [...props.schools, selectedSchool]
+      : props.schools;
+
   return (
     <ResourcePageSearchComboBox
+      isDisabled={props.disabled}
       errorId={props.errorId}
       hasError={props.hasError}
       label={props.label}
       inputValue={props.schoolPickerInputValue}
       onInputChange={props.setSchoolPickerInputValue}
-      defaultItems={props.schools || []}
+      defaultItems={schools}
       onSelectionChange={(value) => {
+        setSelectedSchool(
+          schools.find((school) => schoolKey(school) === value),
+        );
         if (value !== null) {
           props.setSelectedSchool(value);
         }
@@ -65,8 +83,6 @@ const ResourcePageSchoolPicker: FC<ResourcePageSchoolPickerProps> = (props) => {
           item.name,
           props.schoolPickerInputValue,
         );
-        const comboItemKey =
-          item.urn === HOMESCHOOL_URN ? item.urn : `${item.urn}-${item.name}`;
         const comboItem =
           item.urn === HOMESCHOOL_URN ? formattedHomeSchool : formattedSchool;
         const textValue =
@@ -75,7 +91,7 @@ const ResourcePageSchoolPicker: FC<ResourcePageSchoolPickerProps> = (props) => {
             : `${item.name}, ${item.la}, ${item.postcode}`;
 
         return (
-          <Item key={comboItemKey} textValue={String(textValue)}>
+          <Item key={schoolKey(item)} textValue={String(textValue)}>
             {comboItem}
           </Item>
         );

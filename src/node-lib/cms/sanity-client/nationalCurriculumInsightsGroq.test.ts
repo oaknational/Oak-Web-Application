@@ -77,6 +77,7 @@ const hubFixture = {
   title: "National curriculum insights",
   summary: "Explore curriculum changes",
   modules: [moduleFixture],
+  phaseLinks: [],
   subjects: [
     {
       ...subjectFixture,
@@ -90,6 +91,104 @@ const hubFixture = {
 };
 
 describe("nationalCurriculumInsightsGroq", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockCreateClient.mockReturnValue({ fetch: mockFetch } as never);
+  });
+
+  it("reads the editorial header date without deriving it from document updates", async () => {
+    const hero = {
+      __typename: "NationalCurriculumInsightsHeaderSection",
+      heading: "Changes to the national curriculum: science",
+      bodyPortableText: moduleFixture.contentPortableText,
+      lastUpdatedAt: "2026-09-10",
+    };
+    mockFetch.mockResolvedValueOnce({ ...subjectFixture, modules: [hero] });
+
+    const subject = await getNationalCurriculumInsightsSubjectBySlug("science");
+
+    expect(subject?.modules).toEqual([hero]);
+    expect(nationalCurriculumInsightsSubjectBySlugQuery).toContain(
+      "lastUpdatedAt,",
+    );
+  });
+
+  it("accepts headers without an editorial date", async () => {
+    mockFetch.mockResolvedValueOnce({
+      ...subjectFixture,
+      modules: [
+        {
+          __typename: "NationalCurriculumInsightsHeaderSection",
+          heading: "Changes to the national curriculum: science",
+          bodyPortableText: moduleFixture.contentPortableText,
+          lastUpdatedAt: null,
+        },
+      ],
+    });
+    await expect(
+      getNationalCurriculumInsightsSubjectBySlug("science"),
+    ).resolves.not.toBeNull();
+  });
+
+  it("rejects an invalid editorial date", async () => {
+    mockFetch.mockResolvedValueOnce({
+      ...subjectFixture,
+      modules: [
+        {
+          __typename: "NationalCurriculumInsightsHeaderSection",
+          heading: "Changes to the national curriculum: science",
+          bodyPortableText: moduleFixture.contentPortableText,
+          lastUpdatedAt: "2026-02-30",
+        },
+      ],
+    });
+    await expect(
+      getNationalCurriculumInsightsSubjectBySlug("science"),
+    ).rejects.toThrow();
+  });
+  it("keeps phase links in the page's perspective and filters unavailable destinations", () => {
+    expect(nationalCurriculumInsightsHubQuery).toContain(
+      "defined(subject->_id) && phase in subject->tabs[defined(page->_id)].kind",
+    );
+    expect(nationalCurriculumInsightsHubQuery).toContain(
+      '"subjectSlug": subject->slug.current',
+    );
+  });
+
+  it.each([
+    { phaseLinks: [] },
+    {
+      phaseLinks: [
+        {
+          title: "Science",
+          subjectSlug: "science",
+          phase: "primary",
+          iconName: null,
+        },
+      ],
+    },
+  ])(
+    "reads the configured phase links: $phaseLinks",
+    async ({ phaseLinks }) => {
+      mockFetch.mockResolvedValueOnce({ ...hubFixture, phaseLinks });
+      const result = await getNationalCurriculumInsightsHub();
+      expect(result?.phaseLinks?.[0]?.subjectSlug).toBe(
+        phaseLinks[0] ? "science" : undefined,
+      );
+    },
+  );
+
+  it.each([
+    nationalCurriculumInsightsHubQuery,
+    nationalCurriculumInsightsGuidancePageQuery,
+    nationalCurriculumInsightsSubjectBySlugQuery,
+  ])(
+    "resolves subject overview links using the page's document perspective",
+    (query) => {
+      expect(query).toContain("links[defined(subject->_id)]");
+      expect(query).toContain('"subjectSlug": subject->slug.current');
+    },
+  );
   it.each([
     nationalCurriculumInsightsHubQuery,
     nationalCurriculumInsightsGuidancePageQuery,
@@ -110,11 +209,6 @@ describe("nationalCurriculumInsightsGroq", () => {
     );
     expect(insightsPortableTextProjection).toContain('"contentType": _type');
     expect(insightsPortableTextProjection).toContain('"slug": slug.current');
-  });
-
-  beforeEach(() => {
-    jest.clearAllMocks();
-    mockCreateClient.mockReturnValue({ fetch: mockFetch } as never);
   });
 
   it("fetches the hub, ordered subject catalogue and hub modules", async () => {
@@ -153,6 +247,66 @@ describe("nationalCurriculumInsightsGroq", () => {
       { perspective: "published" },
     );
   });
+
+  it("reads the nested headline quote without changing standalone quote sections", async () => {
+    const quote = {
+      quote: "Clearer progression for pupils.",
+      attribution: "Science subject lead",
+      role: "Science Subject Lead",
+      image: {
+        asset: {
+          _id: "image-portrait-1000x1000-png",
+          url: "https://example.com/portrait.png",
+        },
+        isPresentational: true,
+      },
+    };
+    const overview = {
+      __typename: "NationalCurriculumInsightsOverviewSection",
+      heading: "The headlines in 60 seconds",
+      bodyPortableText: moduleFixture.contentPortableText,
+      quote,
+    };
+    const standaloneQuote = {
+      __typename: "NationalCurriculumInsightsQuoteSection",
+      ...quote,
+    };
+    mockFetch.mockResolvedValueOnce({
+      ...subjectFixture,
+      modules: [overview, standaloneQuote],
+    });
+
+    const result = await getNationalCurriculumInsightsSubjectBySlug("science");
+    expect(result?.modules).toEqual([overview, standaloneQuote]);
+    expect(nationalCurriculumInsightsSubjectBySlugQuery).toContain(
+      '"quote": select(',
+    );
+    expect(nationalCurriculumInsightsSubjectBySlugQuery).toContain(
+      '_type == "nationalCurriculumInsightsOverviewSection" => quote{',
+    );
+  });
+
+  it.each([undefined, null])(
+    "accepts an existing headline panel without a nested quote",
+    async (quote) => {
+      mockFetch.mockResolvedValueOnce({
+        ...subjectFixture,
+        modules: [
+          {
+            __typename: "NationalCurriculumInsightsOverviewSection",
+            heading: "Summary",
+            bodyPortableText: moduleFixture.contentPortableText,
+            quote,
+          },
+        ],
+      });
+      const result =
+        await getNationalCurriculumInsightsSubjectBySlug("science");
+      expect(result?.modules[0]?.__typename).toBe(
+        "NationalCurriculumInsightsOverviewSection",
+      );
+    },
+  );
 
   it("uses the drafts perspective in Next preview mode", async () => {
     mockFetch.mockResolvedValueOnce(subjectFixture);

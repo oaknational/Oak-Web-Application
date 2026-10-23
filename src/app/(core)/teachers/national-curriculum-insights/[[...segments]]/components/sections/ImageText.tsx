@@ -7,8 +7,9 @@ import {
   OakGridArea,
   OakHeading,
   OakImage,
-  OakLink,
+  OakPrimaryButton,
 } from "@oaknational/oak-components";
+import Link from "next/link";
 import { useId } from "react";
 
 import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "../PortableText";
@@ -17,15 +18,17 @@ import {
   ContextualSectionProps,
   imageUrl,
   imageAlt,
-  portableTextComponents,
   guidancePortableTextComponents,
   SectionMaxWidth,
 } from "./shared";
+
+import { getImageDimensions } from "@/components/HooksAndUtils/sanityImageBuilder";
 
 const editorialBackground = {
   white: "bg-primary",
   turquoise: "bg-decorative2-subdued",
   yellow: "bg-decorative5-very-subdued",
+  green: "bg-decorative1-very-subdued",
 } as const;
 
 export const NationalCurriculumInsightsImageText = ({
@@ -105,20 +108,25 @@ export const NationalCurriculumInsightsImageText = ({
       $ph={["spacing-20", "spacing-40"]}
       $pv={["spacing-48", "spacing-64"]}
       aria-labelledby={headingId}
+      data-insights-module="image-text"
     >
       <SectionMaxWidth>
         <OakGrid
-          $cg={["spacing-0", "spacing-0", "spacing-64"]}
+          $cg={["spacing-0", "spacing-0", "spacing-40"]}
           $rg="spacing-32"
           $alignItems="center"
         >
           <OakGridArea
-            $colSpan={[12, 12, 6]}
+            $colSpan={[12, 12, 5]}
             $order={[0, 0, section.imagePosition === "left" ? 0 : 1]}
           >
             <OakBox
               $width="100%"
-              $aspectRatio="16 / 10"
+              $aspectRatio={
+                section.image.asset?._id
+                  ? getImageDimensions(section.image.asset._id, {}).aspectRatio
+                  : 16 / 10
+              }
               $overflow="hidden"
               $borderRadius="border-radius-m2"
               aria-hidden={section.image.isPresentational || undefined}
@@ -132,23 +140,24 @@ export const NationalCurriculumInsightsImageText = ({
               />
             </OakBox>
           </OakGridArea>
-          <OakGridArea $colSpan={[12, 12, 6]}>
+          <OakGridArea $colSpan={[12, 12, 7]}>
             <OakFlex $flexDirection="column" $gap="spacing-24">
-              <OakHeading
-                tag="h2"
-                id={headingId}
-                $font={["heading-4", "heading-3"]}
-              >
+              <OakHeading tag="h2" id={headingId} $font="heading-5">
                 {section.heading}
               </OakHeading>
               <PortableTextWithDefaults
                 value={section.bodyPortableText}
-                components={portableTextComponents}
+                components={guidancePortableTextComponents}
               />
               {section.ctaLabel && section.ctaHref ? (
-                <OakLink href={section.ctaHref} iconName="arrow-right">
+                <OakPrimaryButton
+                  element={Link}
+                  href={section.ctaHref}
+                  iconName="arrow-right"
+                  isTrailingIcon
+                >
                   {section.ctaLabel}
-                </OakLink>
+                </OakPrimaryButton>
               ) : null}
             </OakFlex>
           </OakGridArea>

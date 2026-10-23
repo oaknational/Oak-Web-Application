@@ -54,6 +54,12 @@ describe("curriculum change guidance route", () => {
     jest.mocked(getNationalCurriculumInsightsRouteData).mockResolvedValue(null);
     await expect(CurriculumChangeGuidancePage()).rejects.toThrow("404");
   });
+  it("keeps the guidance page out of search indexes", async () => {
+    expect((await generateMetadata()).robots).toEqual({
+      index: false,
+      follow: false,
+    });
+  });
   it("does not index authenticated draft previews", async () => {
     jest.mocked(draftMode).mockResolvedValue({
       isEnabled: true,
