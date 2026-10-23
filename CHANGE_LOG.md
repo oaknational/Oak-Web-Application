@@ -1,3 +1,19 @@
+# [1.1255.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1254.1...v1.1255.0) (2026-10-23)
+
+
+### Bug Fixes
+
+* move key to parent ([6037ffa](https://github.com/oaknational/Oak-Web-Application/commit/6037ffa5e2b770fcfc84a0a235116db894236447))
+* remove default ul spacing ([21287ba](https://github.com/oaknational/Oak-Web-Application/commit/21287baff3b3a13858ef948af76e34c100b31ace))
+* unique keys in test fixture ([2c12885](https://github.com/oaknational/Oak-Web-Application/commit/2c12885c77776601869333a547346666c4f6d4e0))
+
+
+### Features
+
+* join research panel callout component ([debe7d5](https://github.com/oaknational/Oak-Web-Application/commit/debe7d5f29dc33cfd76d0112eaf22abdc6d63216))
+* repurpose curric info card to accept image asset and portable text ([27219bb](https://github.com/oaknational/Oak-Web-Application/commit/27219bb883ca36113b6edc628b137a8740f94771))
+* use component based fixtures ([e8af3b2](https://github.com/oaknational/Oak-Web-Application/commit/e8af3b28a881863fbd44adfa9cb3c611d3356294))
+
 ## [1.1254.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1254.0...v1.1254.1) (2026-10-23)
 
 
