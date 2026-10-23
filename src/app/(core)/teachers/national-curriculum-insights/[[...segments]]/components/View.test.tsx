@@ -224,7 +224,7 @@ describe("NationalCurriculumInsightsView", () => {
       name: "Explore Primary curriculum changes",
     });
     expect(
-      within(primarySubjects).getByRole("link", { name: "Science" }),
+      within(primarySubjects).getByRole("link", { name: "Science primary" }),
     ).toHaveAttribute("href", "/curriculum-change-explained/science/primary");
   });
 
@@ -315,7 +315,6 @@ describe("NationalCurriculumInsightsView", () => {
         {
           keyStage: "KS1",
           heading: "Changes to science in key stage 1",
-          linkLabel: "Read insights",
         },
       ],
     });
