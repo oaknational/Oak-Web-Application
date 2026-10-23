@@ -24,6 +24,12 @@ const checkForUnderstandingContent: SectionContent = [
     ],
   },
   {
+    type: "callout",
+    id: "check-for-understanding-callout",
+    quote:
+      "Check for understanding helps teachers distinguish between what has been taught and what pupils have actually learned. ",
+  },
+  {
     type: "heading-and-text",
     heading: "Research references",
     text: [

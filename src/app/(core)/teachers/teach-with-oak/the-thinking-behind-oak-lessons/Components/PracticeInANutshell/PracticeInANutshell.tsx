@@ -25,6 +25,12 @@ const practiceContent: SectionContent = [
     ],
   },
   {
+    type: "callout",
+    id: "practice-callout",
+    quote:
+      "Practice helps knowledge stick when it makes pupils think hard about the right things.",
+  },
+  {
     type: "heading-and-text",
     heading: "Research references",
     text: "(1) Rosenshine, B. (2012). Principles of instruction: Research-based strategies that all teachers should know. American Educator, 36(1), 12–19, 39.",

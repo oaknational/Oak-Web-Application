@@ -24,6 +24,12 @@ const explanationContent: SectionContent = [
     ],
   },
   {
+    type: "callout",
+    id: "explanation-in-a-nutshell-callout",
+    quote:
+      "Effective explanations break down complexity and make new knowledge clear.",
+  },
+  {
     type: "heading-and-text",
     heading: "Research references",
     text: [

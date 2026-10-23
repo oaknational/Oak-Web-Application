@@ -19,6 +19,11 @@ const content: SectionContent = [
     ],
   },
   { type: "heading-and-text", heading: "Why?", text: "Why text" },
+  {
+    type: "callout",
+    id: "callout-1",
+    quote: "Callout quote text",
+  },
 ];
 
 describe("SectionContentList", () => {
@@ -31,6 +36,7 @@ describe("SectionContentList", () => {
     expect(screen.getByText("What text")).toBeInTheDocument();
     expect(screen.getByText("Why text")).toBeInTheDocument();
     expect(screen.getByAltText("Example image")).toBeInTheDocument();
+    expect(screen.getByText(/Callout quote text/)).toBeInTheDocument();
   });
 
   it("renders nothing for empty content", () => {

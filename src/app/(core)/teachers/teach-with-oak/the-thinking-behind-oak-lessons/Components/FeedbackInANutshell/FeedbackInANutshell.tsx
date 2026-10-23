@@ -25,6 +25,12 @@ const feedbackContent: SectionContent = [
     ],
   },
   {
+    type: "callout",
+    id: "feedback-callout",
+    quote:
+      "Effective feedback helps pupils understand what to do next and gives them the opportunity to act on it.",
+  },
+  {
     type: "heading-and-text",
     heading: "Research references",
     text: [
