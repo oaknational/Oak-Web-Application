@@ -1,3 +1,22 @@
+# [1.1254.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1253.0...v1.1254.0) (2026-10-23)
+
+
+### Bug Fixes
+
+* reuse existing type in <JoinResearchPanelPeople/> ([387f0a0](https://github.com/oaknational/Oak-Web-Application/commit/387f0a079bce31dbabc3ad2df9871b1e2f670e3b))
+* spacing between people on <JoinResearchPanelPeople/> ([71f2c1d](https://github.com/oaknational/Oak-Web-Application/commit/71f2c1d2ad3e9cf0e36460064b1817de2b90ef6f))
+* use optional access on features ([e319a35](https://github.com/oaknational/Oak-Web-Application/commit/e319a35b780261beb30e71ca28cbcbdd0e74fccc))
+
+
+### Features
+
+* add restriction level MV to lesson page ([dfd81a8](https://github.com/oaknational/Oak-Web-Application/commit/dfd81a8cebc5733029fd036a166ffe6c103808f4))
+* added <JoinResearchPanelPeople/> to new research panel page ([55462ac](https://github.com/oaknational/Oak-Web-Application/commit/55462ac459213fc78951939fd9860fd453618b8a))
+* bump pa11y-ci and puppeteer ([98f444a](https://github.com/oaknational/Oak-Web-Application/commit/98f444ab8b61a45bf56f654f4d891fc3db918190))
+* hide button on canonical pages ([8ef77ce](https://github.com/oaknational/Oak-Web-Application/commit/8ef77ce0659677d40e090ccebc0f0e7d5791ab4c))
+* hide crete with ai button for selected subjects + restricted works ([85f5d62](https://github.com/oaknational/Oak-Web-Application/commit/85f5d625865d2f0b70d26115f48bb5e3a5179d92))
+* use hasCopyrightConflict feature ([76e5457](https://github.com/oaknational/Oak-Web-Application/commit/76e5457e5990632aaeb3a421281e9db42e8378e1))
+
 # [1.1253.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1252.0...v1.1253.0) (2026-10-22)
 
 
