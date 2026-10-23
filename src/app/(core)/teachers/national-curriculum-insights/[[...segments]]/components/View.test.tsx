@@ -5,8 +5,8 @@ import { getNationalCurriculumInsightsRouteData } from "../helpers/getRouteData"
 
 import { NationalCurriculumInsightsView } from "./View";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { parseNationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const getData = async (segments?: string[]) => {
   const route = parseNationalCurriculumInsightsRoute(segments);

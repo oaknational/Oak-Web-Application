@@ -209,8 +209,10 @@ const keyStagePageProjection = `{
 const pageProjection = `{
   "id": _id,
   pageType,
+  downloadLayout,
   title,
   summary,
+  "expectedKeyStages": coalesce(keyStages[].keyStage, []),
   "keyStages": coalesce(keyStages[defined(page->_id)]{
     keyStage,
     label,
