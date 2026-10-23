@@ -75,6 +75,105 @@ describe("NationalCurriculumInsightsView", () => {
     ).toEqual(["key-stage-cards", "subject-phase-chips"]);
   });
 
+  it("links full phase pages to the available subject phases without inventing key stages", async () => {
+    const data = await getData(["science", "primary"]);
+    data.subject = {
+      ...data.subject!,
+      tabs: data.subject!.tabs.map((tab) => ({
+        ...tab,
+        page: { ...tab.page, keyStages: [] },
+      })),
+    };
+    renderWithTheme(<NationalCurriculumInsightsView data={data} />);
+    const navigation = screen.getByRole("navigation", {
+      name: "Science insights",
+    });
+    expect(
+      within(navigation).getByRole("link", {
+        name: "Science changes overview",
+      }),
+    ).toHaveAttribute("href", "/curriculum-change-explained/science");
+    expect(
+      within(navigation).getByRole("link", { name: "Science Primary changes" }),
+    ).toHaveAttribute("href", "/curriculum-change-explained/science/primary");
+    expect(
+      within(navigation).queryByRole("link", { name: /KS[1-4]/ }),
+    ).not.toBeInTheDocument();
+  });
+  it("uses one shared hub download configuration on a subject page", async () => {
+    const data = await getData(["science"]);
+    data.hub = {
+      ...data.hub!,
+      modules: [
+        ...data.hub!.modules,
+        {
+          __typename: "NationalCurriculumInsightsDownloadSection",
+          barHeading: "Planning with your team?",
+          barCtaLabel: "Download this guidance.",
+          detailsHeading: "Your details",
+          downloadsHeading: "Choose guidance",
+          downloadsIntroduction: "Select your subjects.",
+          downloadButtonLabel: "Download",
+        },
+      ],
+    };
+    const { container } = renderWithTheme(
+      <NationalCurriculumInsightsView data={data} />,
+    );
+    expect(
+      container.querySelectorAll('[data-insights-module="downloads"]'),
+    ).toHaveLength(1);
+    expect(
+      screen.getByRole("button", {
+        name: "Planning with your team? Download this guidance.",
+      }),
+    ).toBeInTheDocument();
+  });
+
+  it("uses fixed links for the populated article sections", async () => {
+    const data = await getData(["science", "primary", "key-stage-1"]);
+    data.page!.modules.push({
+      __typename: "NationalCurriculumInsightsChecklistSection",
+      audience: "teacher",
+      heading: "Actions to check for key stage 1",
+      items: [
+        {
+          id: "action",
+          contentPortableText: [
+            {
+              _type: "block",
+              _key: "action",
+              style: "normal",
+              markDefs: [],
+              children: [
+                {
+                  _type: "span",
+                  _key: "text",
+                  text: "Check the planned sequence.",
+                  marks: [],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
+    renderWithTheme(<NationalCurriculumInsightsView data={data} />);
+    const navigation = screen.getByRole("navigation", {
+      name: "KS1 Science sections",
+    });
+    expect(
+      within(navigation).getByRole("link", { name: "Teacher checklist" }),
+    ).toBeInTheDocument();
+    expect(
+      within(navigation).queryByRole("link", {
+        name: "School leader checklist",
+      }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Actions to check for key stage 1" }),
+    ).toBeInTheDocument();
+  });
   it.each([
     { segments: [] },
     { segments: ["guidance"] },
@@ -100,11 +199,11 @@ describe("NationalCurriculumInsightsView", () => {
       name: "Explore Primary curriculum changes",
     });
     expect(
-      within(primarySubjects).getByRole("link", { name: "Science primary" }),
+      within(primarySubjects).getByRole("link", { name: "Science" }),
     ).toHaveAttribute("href", "/curriculum-change-explained/science/primary");
   });
 
-  it("does not render tab navigation unless the editor adds the module", async () => {
+  it("renders shared tabs once and uses the editable labels when supplied", async () => {
     const data = await getData(["science"]);
     if (!data.page) {
       throw new Error("Expected the Science page fixture");
@@ -115,11 +214,11 @@ describe("NationalCurriculumInsightsView", () => {
     );
     expect(
       screen.queryByRole("navigation", { name: "Science insights" }),
-    ).not.toBeInTheDocument();
+    ).toBeInTheDocument();
 
     data.page.modules.push({
       __typename: "NationalCurriculumInsightsPhaseNavigationSection",
-      overviewLabel: "changes overview",
+      overviewLabel: "curriculum overview",
       primaryLabel: "Primary",
       secondaryLabel: "Secondary",
     });
@@ -128,8 +227,11 @@ describe("NationalCurriculumInsightsView", () => {
     const navigation = screen.getByRole("navigation", {
       name: "Science insights",
     });
+    expect(
+      screen.getAllByRole("navigation", { name: "Science insights" }),
+    ).toHaveLength(1);
     expect(navigation).toContainElement(
-      screen.getByRole("link", { name: "Science changes overview" }),
+      screen.getByRole("link", { name: "Science curriculum overview" }),
     );
     expect(
       screen.getByRole("link", { name: "Science Primary changes" }),
@@ -145,7 +247,7 @@ describe("NationalCurriculumInsightsView", () => {
 
     expect(
       screen.queryByRole("navigation", { name: "Science insights" }),
-    ).not.toBeInTheDocument();
+    ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", {
         level: 1,
@@ -168,7 +270,7 @@ describe("NationalCurriculumInsightsView", () => {
 
     expect(
       screen.queryByRole("navigation", { name: "Science insights" }),
-    ).not.toBeInTheDocument();
+    ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", {
         level: 1,
@@ -188,6 +290,7 @@ describe("NationalCurriculumInsightsView", () => {
         {
           keyStage: "KS1",
           heading: "Changes to science in key stage 1",
+          linkLabel: "Read insights",
         },
       ],
     });

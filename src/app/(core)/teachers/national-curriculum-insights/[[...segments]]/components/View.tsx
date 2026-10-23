@@ -13,6 +13,7 @@ import type { NationalCurriculumInsightsRouteData } from "../helpers/getRouteDat
 import { NationalCurriculumInsightsHero } from "./Hero";
 import { NationalCurriculumInsightsHeader } from "./InsightHeader";
 import { NationalCurriculumInsightsDownload } from "./Download";
+import { NationalCurriculumInsightsArticle } from "./Article";
 import {
   NationalCurriculumInsightsChanges,
   NationalCurriculumInsightsUnchanged,
@@ -191,6 +192,80 @@ const PageModuleList = ({
   );
   const hero = heroIndex >= 0 ? data.page.modules[heroIndex] : null;
   const modules = data.page.modules.filter((_, index) => index !== heroIndex);
+  const navigation = modules.find(
+    (module) =>
+      module.__typename === "NationalCurriculumInsightsPhaseNavigationSection",
+  ) ?? {
+    __typename: "NationalCurriculumInsightsPhaseNavigationSection" as const,
+    overviewLabel: "changes overview",
+    primaryLabel: "Primary",
+    secondaryLabel: "Secondary",
+  };
+  const articleSections = modules.flatMap((module, index) => {
+    let label: string;
+    switch (module.__typename) {
+      case "NationalCurriculumInsightsChangesSection":
+        label = "What's changed";
+        break;
+      case "NationalCurriculumInsightsUnchangedSection":
+        label = "What's stayed the same";
+        break;
+      case "NationalCurriculumInsightsChecklistSection":
+        label =
+          module.audience === "teacher"
+            ? "Teacher checklist"
+            : "School leader checklist";
+        break;
+      default:
+        return [];
+    }
+    const name =
+      module.__typename === "NationalCurriculumInsightsChecklistSection"
+        ? `${module.audience}-checklist`
+        : module.__typename
+            .replace("NationalCurriculumInsights", "")
+            .replace("Section", "")
+            .toLowerCase();
+    const previous = modules
+      .slice(0, index)
+      .filter(
+        (candidate) =>
+          candidate.__typename === module.__typename &&
+          (module.__typename !== "NationalCurriculumInsightsChecklistSection" ||
+            (candidate.__typename ===
+              "NationalCurriculumInsightsChecklistSection" &&
+              candidate.audience === module.audience)),
+      ).length;
+    const suffix = previous ? "-" + (previous + 1) : "";
+    return [
+      {
+        index,
+        id: `insights-${name}${suffix}`,
+        label,
+        content: <ModuleView module={module} data={data} />,
+      },
+    ];
+  });
+  const firstArticleIndex = articleSections[0]?.index;
+  const sharedDownload = data.hub?.modules.find(
+    ({ __typename }) =>
+      __typename === "NationalCurriculumInsightsDownloadSection",
+  );
+  const hasPageDownload = modules.some(
+    ({ __typename }) =>
+      __typename === "NationalCurriculumInsightsDownloadSection",
+  );
+  const hasDownload = Boolean(
+    (hasPageDownload || sharedDownload) &&
+      data.subjects.some(({ tabs }) => tabs.length > 0),
+  );
+  let phaseLabel = "";
+  if (data.activeTab === "primary") phaseLabel = "Primary";
+  if (data.activeTab === "secondary") phaseLabel = "Secondary";
+  const scope = data.activeKeyStage ?? phaseLabel;
+  const articleHeading = [scope, data.subject?.title ?? data.page.title]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <>
@@ -209,13 +284,36 @@ const PageModuleList = ({
           <OakP>{data.page.summary}</OakP>
         </OakBox>
       )}
-      {modules.map((module, index) => (
-        <ModuleView
-          key={`${module.__typename}-${index}`}
-          module={module}
-          data={data}
-        />
-      ))}
+      <InsightsTabs section={navigation} data={data} />
+      {modules.map((module, index) => {
+        if (index === firstArticleIndex) {
+          return (
+            <NationalCurriculumInsightsArticle
+              key="article"
+              heading={articleHeading}
+              sections={articleSections}
+              hasDownload={hasDownload}
+            />
+          );
+        }
+        if (
+          articleSections.some((section) => section.index === index) ||
+          module.__typename ===
+            "NationalCurriculumInsightsPhaseNavigationSection"
+        ) {
+          return null;
+        }
+        return (
+          <ModuleView
+            key={`${module.__typename}-${index}`}
+            module={module}
+            data={data}
+          />
+        );
+      })}
+      {!hasPageDownload && sharedDownload ? (
+        <ModuleView module={sharedDownload} data={data} />
+      ) : null}
     </>
   );
 };
@@ -239,15 +337,15 @@ const InsightsTabs = ({
     ? null
     : data.subject.tabs.find(({ kind }) => kind === data.activeTab);
   let tabs: InsightTab[];
-  if (isSubjectOverview) {
+  if (isSubjectOverview || phaseTab?.page.keyStages.length === 0) {
     tabs = [
       {
-        active: true,
+        active: isSubjectOverview,
         href: nationalCurriculumInsightsTabHref(data.subject.slug, "overview"),
         label: `${data.subject.title} ${section.overviewLabel}`,
       },
       ...data.subject.tabs.map(({ kind }) => ({
-        active: false,
+        active: data.activeTab === kind,
         href: nationalCurriculumInsightsTabHref(data.subject!.slug, kind),
         label: `${data.subject!.title} ${
           kind === "primary" ? section.primaryLabel : section.secondaryLabel
