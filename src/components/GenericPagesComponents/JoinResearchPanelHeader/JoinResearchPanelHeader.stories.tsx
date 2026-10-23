@@ -4,7 +4,6 @@ import { basic } from "./JoinResearchPanelHeader.fixtures";
 
 import JoinResearchPanelHeader from "./index";
 
-
 const meta: Meta<typeof JoinResearchPanelHeader> = {
   component: JoinResearchPanelHeader,
   title: "Components/GenericPagesComponents/JoinResearchPanelHeader",

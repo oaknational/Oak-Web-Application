@@ -4,7 +4,6 @@ import { joinResearchPanelInfoBlockFixture } from "./JoinResearchPanelInfo.fixtu
 
 import JoinResearchPanelInfo from ".";
 
-
 const meta = {
   component: JoinResearchPanelInfo,
   title: "Components/GenericPagesComponents/JoinResearchPanelInfo",
