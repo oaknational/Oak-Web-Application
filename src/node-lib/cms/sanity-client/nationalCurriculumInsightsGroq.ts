@@ -139,8 +139,6 @@ const modulesProjection = `modules[]{
   ),
   attribution,
   role,
-  videoUrl,
-  duration,
   "image": select(
     _type in [
       "nationalCurriculumInsightsHeroSection",
@@ -167,12 +165,7 @@ const modulesProjection = `modules[]{
     phase,
     keyStage,
     heading,
-    description,
-    videoUrl,
-    duration,
-    "image": select(
-      ^._type == "nationalCurriculumInsightsVideoCardsSection" => image ${imageProjection}
-    )
+    linkLabel,
   },
   "posts": posts[defined(@->_id)]->{
     "id": _id,

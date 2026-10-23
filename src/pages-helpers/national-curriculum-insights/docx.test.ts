@@ -17,6 +17,52 @@ if (!science) {
 }
 
 describe("National Curriculum Insights documents", () => {
+  it("includes the video introduction, blog titles and summaries in downloads", async () => {
+    const subject = {
+      ...science,
+      tabs: science.tabs.map((tab) => ({
+        ...tab,
+        page: {
+          ...tab.page,
+          modules: [
+            ...tab.page.modules,
+            {
+              __typename:
+                "NationalCurriculumInsightsVideoCardsSection" as const,
+              heading: "Curriculum conversations",
+              introductionPortableText: [
+                { children: [{ text: "Hear from the experts." }] },
+              ],
+              posts: [
+                {
+                  id: "music-conversation",
+                  title: "Teaching music",
+                  summary: "Practical advice for music teachers.",
+                  slug: "teaching-music",
+                  image: { asset: null },
+                },
+              ],
+            },
+          ],
+        },
+      })),
+    };
+    const buffer = await generateNationalCurriculumInsightsDocx({
+      phase: "primary",
+      subject,
+    });
+    const zip = await JSZip.loadAsync(buffer);
+    const xml = await zip.file("word/document.xml")!.async("string");
+    for (const text of [
+      "Curriculum conversations",
+      "Hear from the experts.",
+      "Teaching music",
+      "Practical advice for music teachers.",
+    ]) {
+      expect(xml).toContain(text);
+    }
+  });
+
   it("exports the confidence callout from the same content as the page", async () => {
     const buffer = await generateNationalCurriculumInsightsDocx({
       phase: "primary",

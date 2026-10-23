@@ -263,20 +263,10 @@ describe("National Curriculum Insights sections", () => {
               },
             },
           ],
-          cards: [
-            {
-              heading: "Legacy content",
-              description: "This should not render when posts are selected.",
-              image: contentImage,
-              videoUrl: "https://example.com/legacy",
-              duration: null,
-            },
-          ],
         })}
       />,
     );
 
-    expect(screen.queryByText("Legacy content")).not.toBeInTheDocument();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     const blogLink = screen.getByRole("link", {
       name: /Bennie Kara on inclusive curriculum leadership/,
@@ -387,20 +377,20 @@ describe("National Curriculum Insights sections", () => {
             __typename: "NationalCurriculumInsightsVideoCardsSection",
             heading: "Curriculum conversations",
             introductionPortableText: body,
-            cards: [
+            posts: [
               {
-                heading: "Introducing the changes",
-                description: "An introduction from the curriculum team.",
+                id: "introduction",
+                slug: "introduction",
+                title: "Introducing the changes",
+                summary: "An introduction from the curriculum team.",
                 image: contentImage,
-                videoUrl: "https://example.com/introduction",
-                duration: "12 mins",
               },
               {
-                heading: "Planning with the changes",
-                description: "How to use the updated curriculum.",
+                id: "planning",
+                slug: "planning",
+                title: "Planning with the changes",
+                summary: "How to use the updated curriculum.",
                 image: localImage,
-                videoUrl: "https://example.com/planning",
-                duration: null,
               },
             ],
           })}
@@ -410,13 +400,13 @@ describe("National Curriculum Insights sections", () => {
             __typename: "NationalCurriculumInsightsVideoCardsSection",
             heading: "One more conversation",
             introductionPortableText: null,
-            cards: [
+            posts: [
               {
-                heading: "A subject conversation",
-                description: "A subject specialist explains the changes.",
+                id: "subject",
+                slug: "subject",
+                title: "A subject conversation",
+                summary: "A subject specialist explains the changes.",
                 image: localImage,
-                videoUrl: "https://example.com/subject",
-                duration: null,
               },
             ],
           })}
@@ -498,7 +488,7 @@ describe("National Curriculum Insights sections", () => {
     ).toHaveAttribute("href", "/teachers");
     expect(
       screen.getByRole("link", { name: /Planning with the changes/ }),
-    ).toHaveAttribute("href", "https://example.com/planning");
+    ).toHaveAttribute("href", "/blog/planning");
     expect(screen.getByRole("table")).toHaveTextContent("Clearer sequencing");
     expect(
       screen.getByRole("heading", { name: "Frequently asked questions" }),

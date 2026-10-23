@@ -360,18 +360,18 @@ describe("NationalCurriculumInsightsView", () => {
         __typename: "NationalCurriculumInsightsVideoCardsSection",
         heading: "Curriculum conversations",
         introductionPortableText: hero.bodyPortableText,
-        cards: [
+        posts: [
           {
-            heading: "A conversation about science",
-            description: "Hear from curriculum experts.",
+            id: "science-video",
+            slug: "science-video",
+            title: "A conversation about science",
+            summary: "Hear from curriculum experts.",
             image: hero.image ?? {
               altText: null,
               asset: null,
               hotspot: null,
               isPresentational: true,
             },
-            videoUrl: "https://example.com/science-video",
-            duration: "12 mins",
           },
         ],
       },
@@ -393,7 +393,7 @@ describe("NationalCurriculumInsightsView", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: /A conversation about science/ }),
-    ).toHaveAttribute("href", "https://example.com/science-video");
+    ).toHaveAttribute("href", "/blog/science-video");
     expect(container).toHaveTextContent(
       "The changes create a clearer learning journey.",
     );

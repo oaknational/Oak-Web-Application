@@ -2,7 +2,6 @@
 
 import {
   OakBox,
-  OakCard,
   OakFlex,
   OakGrid,
   OakGridArea,
@@ -189,9 +188,8 @@ export const NationalCurriculumInsightsVideoCards = ({
   section,
 }: SectionProps<"NationalCurriculumInsightsVideoCardsSection">) => {
   const headingId = useId();
-  const posts = section.posts ?? [];
-  const legacyCards = section.posts === undefined ? (section.cards ?? []) : [];
-  const itemCount = posts.length || legacyCards.length;
+  const posts = section.posts;
+  const itemCount = posts.length;
 
   if (itemCount === 0) return null;
 
@@ -273,27 +271,6 @@ export const NationalCurriculumInsightsVideoCards = ({
                 key={post.id}
               >
                 <InsightsBlogPostCard post={post} episode={itemCount - index} />
-              </OakLI>
-            ))}
-            {legacyCards.map((card, index) => (
-              <OakLI
-                $width="100%"
-                $display="flex"
-                $justifyContent="center"
-                key={`${card.heading}-${card.videoUrl}`}
-              >
-                <OakCard
-                  heading={card.heading}
-                  href={card.videoUrl}
-                  subCopy={card.description}
-                  subCopyColor="text-subdued"
-                  imageSrc={imageUrl(card.image)}
-                  imageAlt={imageAlt(card.image)}
-                  aspectRatio="4/3"
-                  cardWidth="100%"
-                  cardOrientation={["column", "row"]}
-                  linkText={`Watch episode ${itemCount - index}`}
-                />
               </OakLI>
             ))}
           </OakUL>
