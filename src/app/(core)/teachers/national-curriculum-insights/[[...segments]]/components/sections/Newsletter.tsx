@@ -208,7 +208,6 @@ export const NationalCurriculumInsightsNewsletter = ({
             onSubmit={onSubmit}
             $gap="spacing-48"
             $flexDirection="column"
-            data-form-id={section.formId ?? undefined}
           >
             <OakInputWithLabel
               label="Name"

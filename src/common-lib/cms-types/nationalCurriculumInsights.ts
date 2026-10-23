@@ -163,7 +163,6 @@ const nationalCurriculumInsightsNewsletterSectionSchema = z.object({
   benefits: z.array(z.string().min(1)).min(1),
   illustration: imageSchema,
   privacyPortableText: portableTextSchema,
-  formId: z.string().nullable().optional(),
   buttonLabel: z.string().min(1),
 });
 
