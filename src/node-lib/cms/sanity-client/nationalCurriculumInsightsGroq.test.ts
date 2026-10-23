@@ -77,6 +77,7 @@ const hubFixture = {
   title: "National curriculum insights",
   summary: "Explore curriculum changes",
   modules: [moduleFixture],
+  phaseLinks: [],
   subjects: [
     {
       ...subjectFixture,
@@ -140,6 +141,37 @@ describe("nationalCurriculumInsightsGroq", () => {
       getNationalCurriculumInsightsSubjectBySlug("science"),
     ).rejects.toThrow();
   });
+  it("keeps phase links in the page's perspective and filters unavailable destinations", () => {
+    expect(nationalCurriculumInsightsHubQuery).toContain(
+      "defined(subject->_id) && phase in subject->tabs[defined(page->_id)].kind",
+    );
+    expect(nationalCurriculumInsightsHubQuery).toContain(
+      '"subjectSlug": subject->slug.current',
+    );
+  });
+
+  it.each([
+    { phaseLinks: [] },
+    {
+      phaseLinks: [
+        {
+          title: "Science",
+          subjectSlug: { current: "science" },
+          phase: "primary",
+          iconName: null,
+        },
+      ],
+    },
+  ])(
+    "reads the configured phase links: $phaseLinks",
+    async ({ phaseLinks }) => {
+      mockFetch.mockResolvedValueOnce({ ...hubFixture, phaseLinks });
+      const result = await getNationalCurriculumInsightsHub();
+      expect(result?.phaseLinks?.[0]?.subjectSlug).toBe(
+        phaseLinks[0] ? "science" : undefined,
+      );
+    },
+  );
 
   it.each([
     nationalCurriculumInsightsHubQuery,

@@ -794,21 +794,21 @@ describe("National Curriculum Insights sections", () => {
         data={primaryData}
         section={moduleOf({
           __typename: "NationalCurriculumInsightsSubjectNavigationSection",
-          phases: ["primary", "secondary"],
+          heading: "Explore subjects",
+          phases: ["primary"],
           primaryHeading: "Primary subjects",
           secondaryHeading: "Secondary subjects",
         })}
       />,
     );
     expect(screen.getByRole("navigation")).toHaveAccessibleName(
-      "Explore curriculum changes by subject",
-    );
-    expect(screen.getByRole("link", { name: "Science" })).toHaveAttribute(
-      "href",
-      "/curriculum-change-explained/science/primary",
+      "Primary subjects",
     );
     expect(
-      screen.queryByRole("link", { name: "Mathematics" }),
+      screen.getByRole("link", { name: "Science primary" }),
+    ).toHaveAttribute("href", "/curriculum-change-explained/science/primary");
+    expect(
+      screen.queryByRole("link", { name: "Mathematics secondary" }),
     ).not.toBeInTheDocument();
 
     rerender(
