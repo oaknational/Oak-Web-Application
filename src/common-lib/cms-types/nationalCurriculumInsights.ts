@@ -240,6 +240,35 @@ const nationalCurriculumInsightsUnchangedSectionSchema = z.object({
   ),
 });
 
+const nationalCurriculumInsightsChecklistSectionSchema = z.object({
+  __typename: z.literal("NationalCurriculumInsightsChecklistSection"),
+  audience: z.enum(["teacher", "schoolLeader"]),
+  heading: z.string().trim().min(1),
+  items: z
+    .array(
+      z.object({
+        id: z.string().min(1),
+        contentPortableText: portableTextSchema.refine(
+          (blocks) =>
+            blocks.some(
+              (block) =>
+                Array.isArray(block?.children) &&
+                block.children.some(
+                  (child: { text?: string }) =>
+                    typeof child?.text === "string" && child.text.trim(),
+                ),
+            ),
+          "Add a non-empty action",
+        ),
+      }),
+    )
+    .min(1)
+    .refine(
+      (items) => new Set(items.map(({ id }) => id)).size === items.length,
+      "Each action needs a unique ID",
+    ),
+});
+
 const nationalCurriculumInsightsRichTextSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsRichTextSection"),
   heading: z.string().min(1),
@@ -339,6 +368,7 @@ export const nationalCurriculumInsightsModuleSchema = z.discriminatedUnion(
     nationalCurriculumInsightsNewsletterSectionSchema,
     nationalCurriculumInsightsFaqSectionSchema,
     nationalCurriculumInsightsRichTextSectionSchema,
+    nationalCurriculumInsightsChecklistSectionSchema,
     nationalCurriculumInsightsChangesSectionSchema,
     nationalCurriculumInsightsUnchangedSectionSchema,
     nationalCurriculumInsightsImageTextSectionSchema,

@@ -16,6 +16,7 @@ import { NationalCurriculumInsightsDownload } from "./Download";
 import {
   NationalCurriculumInsightsChanges,
   NationalCurriculumInsightsUnchanged,
+  NationalCurriculumInsightsChecklist,
   NationalCurriculumInsightsFaq,
   NationalCurriculumInsightsGuidanceIntro,
   NationalCurriculumInsightsImageText,
@@ -106,6 +107,13 @@ const ModuleView = ({
       return <NationalCurriculumInsightsChanges section={module} />;
     case "NationalCurriculumInsightsUnchangedSection":
       return <NationalCurriculumInsightsUnchanged section={module} />;
+    case "NationalCurriculumInsightsChecklistSection":
+      return (
+        <NationalCurriculumInsightsChecklist
+          section={module}
+          variant={data.activeKeyStage ? "keyStage" : "phase"}
+        />
+      );
     case "NationalCurriculumInsightsRichTextSection":
       return <NationalCurriculumInsightsRichText section={module} />;
     case "NationalCurriculumInsightsImageTextSection":
