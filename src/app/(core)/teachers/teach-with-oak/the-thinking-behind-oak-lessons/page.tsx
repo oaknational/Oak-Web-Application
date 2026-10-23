@@ -1,5 +1,6 @@
 "use client";
 
+import { useFeatureFlagEnabled } from "posthog-js/react";
 import { notFound } from "next/navigation";
 
 import { ShortReadsView } from "./Components/ShortReadsView";
@@ -7,7 +8,8 @@ import { ShortReadsView } from "./Components/ShortReadsView";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const ShortReadsPage = () => {
-  const featureFlagEnabled = true;
+  const featureFlagEnabled =
+    useFeatureFlagEnabled("teachers-thinking-behind-oak-lessons") ?? false;
   if (!featureFlagEnabled) return notFound();
 
   return (

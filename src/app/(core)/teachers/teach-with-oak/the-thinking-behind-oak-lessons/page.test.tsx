@@ -24,6 +24,13 @@ describe("The thinking behind Oak lessons page", () => {
       expect(() => render(<ShortReadsPage />)).toThrow();
     });
 
+    it("does not render while the feature flag is still loading", () => {
+      mockUseFeatureFlagEnabled.mockReturnValue(
+        undefined as unknown as boolean,
+      );
+      expect(() => render(<ShortReadsPage />)).toThrow();
+    });
+
     it("renders when the feature flag is enabled", () => {
       mockUseFeatureFlagEnabled.mockReturnValue(true);
       expect(() => render(<ShortReadsPage />)).not.toThrow();
