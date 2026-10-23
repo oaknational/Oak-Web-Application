@@ -18,6 +18,26 @@ import JoinResearchPanelPeople from "@/components/GenericPagesComponents/JoinRes
 import JoinResearchPanelInfo from "@/components/GenericPagesComponents/JoinResearchPanelInfo";
 import JoinResearchPanelFaqs from "@/components/GenericPagesComponents/JoinResearchPanelFaqs";
 import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
+import JoinResearchPanelCallout from "@/components/GenericPagesComponents/JoinResearchPanelCallout";
+
+const pageComponents: {
+  [K in JoinResearchPanelPageBlockType]: (
+    block: JoinResearchPanelPageBlock<K>,
+  ) => React.ReactNode;
+} = {
+  JoinResearchPanelPageHeader: JoinResearchPanelPageHeader,
+  JoinResearchPanelPageCallout: JoinResearchPanelCallout,
+  JoinResearchPanelPageInfo: JoinResearchPanelInfo,
+  JoinResearchPanelPageJourney: JoinResearchPanelPageDefault,
+  JoinResearchPanelPagePeople: JoinResearchPanelPeople,
+  JoinResearchPanelPageFaqs: (block) => (
+    <>
+      <TrackScrolledTo eventKey="join_research_panel_faqs" />
+      <JoinResearchPanelFaqs items={block.items} />
+    </>
+  ),
+  JoinResearchPanelPageContactUs: JoinResearchPanelPageDefault,
+};
 
 export type AboutUsJoinResearchPanelPageProps = {
   pageData: JoinResearchPanelPage;
@@ -27,25 +47,6 @@ export type AboutUsJoinResearchPanelPageProps = {
 export const AboutUsJoinResearchPanel: NextPage<
   AboutUsJoinResearchPanelPageProps
 > = ({ topNav, pageData }) => {
-  const pageComponents: {
-    [K in JoinResearchPanelPageBlockType]: (
-      block: JoinResearchPanelPageBlock<K>,
-    ) => React.ReactNode;
-  } = {
-    JoinResearchPanelPageHeader: JoinResearchPanelPageHeader,
-    JoinResearchPanelPageCallout: JoinResearchPanelPageDefault,
-    JoinResearchPanelPageInfo: JoinResearchPanelInfo,
-    JoinResearchPanelPageJourney: JoinResearchPanelPageDefault,
-    JoinResearchPanelPagePeople: JoinResearchPanelPeople,
-    JoinResearchPanelPageFaqs: (block) => (
-      <>
-        <TrackScrolledTo eventKey="join_research_panel_faqs" />
-        <JoinResearchPanelFaqs items={block.items} />
-      </>
-    ),
-    JoinResearchPanelPageContactUs: JoinResearchPanelPageDefault,
-  };
-
   function renderBlock<K extends JoinResearchPanelPageBlockType>(
     block: JoinResearchPanelPageBlock<K>,
   ) {

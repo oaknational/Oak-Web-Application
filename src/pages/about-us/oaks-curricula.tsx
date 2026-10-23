@@ -26,7 +26,7 @@ import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPha
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumPartners } from "@/components/GenericPagesComponents/CurriculumPartners";
 import { GuidingPrinciples } from "@/components/GenericPagesComponents/GuidingPrinciples";
-import CurricInfoCard from "@/components/CurriculumComponents/CurricInfoCard";
+import AboutUsInfoCard from "@/components/GenericPagesComponents/AboutUsInfoCard";
 import CMSClient from "@/node-lib/cms";
 import getPageProps from "@/node-lib/getPageProps";
 import { OaksCurriculaPage } from "@/common-lib/cms-types/aboutPages";
@@ -147,7 +147,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
                 >
                   {curriculaCardsInfo.map((cardInfo) => (
                     <UnstyledLi key={cardInfo.iconName}>
-                      <CurricInfoCard
+                      <AboutUsInfoCard
                         iconName={cardInfo.iconName}
                         background="bg-primary"
                         iconHeight={"spacing-92"}
@@ -155,7 +155,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
                         borderColor="border-decorative4"
                       >
                         {cardInfo.text}
-                      </CurricInfoCard>
+                      </AboutUsInfoCard>
                     </UnstyledLi>
                   ))}
                 </OakFlex>
