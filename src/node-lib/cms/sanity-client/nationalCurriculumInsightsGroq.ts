@@ -99,7 +99,7 @@ const modulesProjection = `modules[]{
   "ctaHref": select(
     (ctaHref match "/curriculum-change-explained/guidance*" || ctaHref match "/teachers/national-curriculum-insights/guidance*") &&
       !defined(*[_type == "nationalCurriculumInsightsGuidancePage" && _id in ["nationalCurriculumInsightsGuidancePage", "drafts.nationalCurriculumInsightsGuidancePage"]][0]._id) => null,
-    ctaHref == "/teachers/national-curriculum-insights" &&
+    ctaHref in ["/teachers/national-curriculum-insights", "/curriculum-change-explained"] &&
       !defined(*[_type == "nationalCurriculumInsightsHub" && _id in ["nationalCurriculumInsightsHub", "drafts.nationalCurriculumInsightsHub"]][0]._id) => null,
     ctaHref
   ),
