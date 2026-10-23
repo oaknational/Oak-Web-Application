@@ -1,20 +1,24 @@
 import { OakHeading, OakLI, OakOL, OakP } from "@oaknational/oak-components";
 
 import {
-  HeadingAndText,
-  HeadingAndTextContent,
-} from "../HeadingAndText/HeadingAndText";
+  SectionContent,
+  SectionContentList,
+} from "../SectionContentList/SectionContentList";
+import { getTeacherJourneyImageUrl } from "../getTeacherJourneyImageUrl";
 
-const feedbackContent: HeadingAndTextContent[] = [
+const feedbackContent: SectionContent = [
   {
+    type: "heading-and-text",
     heading: "What?",
     text: "Feedback is a pedagogical strategy that gives pupils information about how they are doing and how they can improve.",
   },
   {
+    type: "heading-and-text",
     heading: "Why?",
     text: "Effective feedback helps pupils recognise gaps between their current and desired performance, enabling them to improve.",
   },
   {
+    type: "heading-and-text",
     heading: "What does the research say?",
     text: [
       "Hattie and Timperley (2007) (1) found that feedback can have a powerful influence on learning, while the EEF (2026) (2) identifies it as a high-impact approach. How feedback is designed and used, however, matters in helping pupils move their learning forward.",
@@ -23,6 +27,7 @@ const feedbackContent: HeadingAndTextContent[] = [
     ],
   },
   {
+    type: "heading-and-text",
     heading: "Research references",
     text: [
       "(1) Hattie, J. and Timperley, H. (2007). The power of feedback. Review of Educational Research, 77(1), 81–112.",
@@ -30,6 +35,7 @@ const feedbackContent: HeadingAndTextContent[] = [
     ],
   },
   {
+    type: "heading-and-text",
     heading: "What are the key features of explanation in Oak lessons?",
     text: [
       "Feedback appears in every learning cycle immediately following a practice task. It is indicated on slides by a pale background and corner icon. It is designed around the following features:",
@@ -44,6 +50,53 @@ const feedbackContent: HeadingAndTextContent[] = [
     ],
   },
   {
+    type: "images",
+    id: "feedback-images",
+    images: [
+      {
+        heading: "Timely",
+        src: getTeacherJourneyImageUrl("Timely_Image_1_i6uknc"),
+        height: 630,
+        width: 360,
+        alt: "Two check-for-understanding slides showing a multiple-choice question before and after the correct answer is revealed with a tick.",
+      },
+      {
+        heading: "CfU feedback",
+        src: getTeacherJourneyImageUrl("Timely_Image_2_oupqrs"),
+        height: 630,
+        width: 360,
+        alt: "Two slides showing an exercise-sorting activity and the feedback slide, with benefits grouped into physical and mental health.",
+        caption: "practice",
+      },
+      {
+        heading: "Actionable",
+        src: getTeacherJourneyImageUrl("Actionable_Image_1_pqelri"),
+        height: 630,
+        width: 369,
+        alt: "A feedback slide  for a task involving a 3d figure made out of clay. Parts of the clay figure are labelled with explanations of the possible techniques and approaches that could have been used.",
+      },
+      {
+        src: getTeacherJourneyImageUrl("Actionable_Image_2_xkeb10"),
+        height: 630,
+        width: 369,
+        alt: "A feedback slide for a handwriting task, showing a multiple cursive lowercase M letters, one of which is circled. Multiple prompt questions are given, plus an instruction for pupils to circle their best attempt.",
+      },
+      {
+        src: getTeacherJourneyImageUrl("Actionable_Image_3_nmtqvr"),
+        height: 630,
+        width: 369,
+        alt: "A feedback slide with an example written response to a question about the Vietnam war. Key words in the answer are highlighted in bold pink.",
+      },
+      {
+        src: getTeacherJourneyImageUrl("Actionable_Image_4_fwvx3f"),
+        height: 630,
+        width: 367,
+        alt: "A feedback slide  with an example answer for a bar chart reading task where pupils have to calculate the percentage of pupils travelling by scooter. The solution involves adding all values together to get a total number of pupils, then using that to calculate the answer.",
+      },
+    ],
+  },
+  {
+    type: "heading-and-text",
     heading: "Oak in your classroom",
     text: [
       "Consider how Oak’s lessons will work for the pupils in your classroom, and where you might choose to adapt them.",
@@ -77,9 +130,7 @@ export function FeedbackInANutshell() {
         with questions to help you reflect on what this means for your
         classroom.
       </OakP>
-      {feedbackContent.map(({ heading, text }) => (
-        <HeadingAndText key={heading} heading={heading} text={text} />
-      ))}
+      <SectionContentList content={feedbackContent} />
     </>
   );
 }

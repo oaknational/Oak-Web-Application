@@ -4,6 +4,7 @@ import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 type TextBlock = string | ReactElement;
 
 export type HeadingAndTextContent = {
+  type: "heading-and-text";
   heading: string;
   /** Strings are rendered as paragraphs; elements (e.g. lists) are rendered as-is. */
   text: TextBlock | TextBlock[];
@@ -12,7 +13,7 @@ export type HeadingAndTextContent = {
 export function HeadingAndText({
   heading,
   text,
-}: Readonly<HeadingAndTextContent>) {
+}: Readonly<Omit<HeadingAndTextContent, "type">>) {
   const blocks = Array.isArray(text) ? text : [text];
 
   return (
