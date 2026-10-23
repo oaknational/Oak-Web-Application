@@ -160,10 +160,32 @@ describe("MultiSelect", () => {
     const trigger = screen.getByTestId("multi-select-trigger");
 
     fireEvent.click(trigger);
-    fireEvent.keyDown(document, { key: "Escape" });
+    fireEvent.keyDown(trigger, { key: "Escape" });
 
     expect(trigger).toHaveAttribute("aria-expanded", "false");
     expect(trigger).toHaveFocus();
+  });
+
+  it("handles Escape before a parent dialog and leaves the selection unchanged", async () => {
+    const user = userEvent.setup();
+    const onKeyDown = jest.fn();
+    const onChange = jest.fn();
+    renderWithTheme(
+      <div onKeyDown={onKeyDown}>
+        <ControlledMultiSelect onChange={onChange} />
+      </div>,
+    );
+    const trigger = screen.getByTestId("multi-select-trigger");
+    await user.click(trigger);
+    await user.tab();
+    onKeyDown.mockClear();
+    await user.keyboard("{Escape}");
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+    expect(trigger).toHaveFocus();
+    expect(onKeyDown).not.toHaveBeenCalled();
+    expect(onChange).not.toHaveBeenCalled();
+    await user.keyboard("{Escape}");
+    expect(onKeyDown).toHaveBeenCalledTimes(1);
   });
 
   it("disables selection and confirmation", () => {

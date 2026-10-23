@@ -1,5 +1,6 @@
 import { fireEvent, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import useSWR from "swr";
 
 import { localNationalCurriculumInsightsFixtures } from "../__fixtures__/nationalCurriculumInsights";
 import { getNationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
@@ -13,6 +14,21 @@ import { LS_KEY_INSIGHTS_MANUAL_DOWNLOAD_SELECTION } from "@/config/localStorage
 
 jest.mock("@/browser-lib/cookie-consent/consentClient", () => ({
   consentClient: { getConsent: jest.fn(() => "denied") },
+}));
+
+jest.mock("swr", () => ({
+  __esModule: true,
+  default: jest.fn(() => ({
+    data: [
+      {
+        urn: "101105",
+        name: "Dorothy Bricks Nursery School",
+        la: "Westminster",
+        postcode: "AB1 1CD",
+      },
+    ],
+    error: null,
+  })),
 }));
 
 beforeEach(() => {
@@ -148,6 +164,26 @@ describe("NationalCurriculumInsightsDownload", () => {
     await user.click(within(dialog).getByRole("button", { name: "Back" }));
     expect(opener).toHaveAttribute("aria-expanded", "false");
     await waitFor(() => expect(opener).toHaveFocus());
+  });
+
+  it("keeps the download panel open when Escape is handled by the role picker", async () => {
+    const user = userEvent.setup();
+    const { container } = renderWithTheme(
+      <NationalCurriculumInsightsDownload
+        data={await getData()}
+        section={section}
+      />,
+    );
+    const toggle = screen.getByRole("button", {
+      name: /the national curriculum is changing/i,
+    });
+    await user.click(toggle);
+    const role = container.querySelector('select[name="role"]');
+    if (!role) throw new Error("Expected the role picker");
+    fireEvent.keyDown(role, { key: "Escape" });
+    expect(toggle).toHaveAttribute("aria-expanded", "true");
+    fireEvent.keyDown(toggle, { key: "Escape" });
+    expect(toggle).toHaveAttribute("aria-expanded", "false");
   });
 
   it("opens from a checklist on an insight page and preserves the exact manual selection", async () => {
@@ -298,9 +334,7 @@ describe("Insights download submission", () => {
     await user.click(
       screen.getByRole("checkbox", { name: "My school isn't listed" }),
     );
-    expect(
-      screen.getByRole("textbox", { name: "School (required)" }),
-    ).toBeDisabled();
+    expect(screen.getByRole("combobox", { name: /^School/ })).toBeDisabled();
     await user.click(screen.getByRole("radio", { name: "Headteacher" }));
     await user.click(
       screen.getByRole("checkbox", {
@@ -371,9 +405,7 @@ describe("Insights download submission", () => {
     expect(
       screen.getByRole("textbox", { name: "Email (Optional)" }),
     ).toHaveValue("teacher@example.com");
-    expect(
-      screen.getByRole("textbox", { name: "School (required)" }),
-    ).toBeDisabled();
+    expect(screen.getByRole("combobox", { name: /^School/ })).toBeDisabled();
     expect(
       screen.getByRole("checkbox", { name: "My school isn't listed" }),
     ).toBeChecked();
@@ -403,7 +435,7 @@ describe("Insights download submission", () => {
   });
 
   it.each([false, true])(
-    "shows confirmation and preserves the saved %s multi-document selection",
+    "shows confirmation and clears the saved %s multi-document selection",
     async (multiple) => {
       const filename = multiple
         ? "Curriculum insights.zip"
@@ -426,15 +458,58 @@ describe("Insights download submission", () => {
       ).toBeVisible();
       expect(
         window.localStorage.getItem(LS_KEY_INSIGHTS_MANUAL_DOWNLOAD_SELECTION),
-      ).toBe(
-        JSON.stringify(
-          multiple
-            ? ["science:primary", "science:secondary"]
-            : ["science:primary"],
-        ),
+      ).toBeNull();
+      await user.click(
+        screen.getByRole("button", {
+          name: /the national curriculum is changing/i,
+        }),
       );
+      await user.click(
+        screen.getByRole("button", {
+          name: /the national curriculum is changing/i,
+        }),
+      );
+      expect(
+        screen.getByTestId("curriculum-insights-subjects-mobile-confirm"),
+      ).toBeDisabled();
     },
   );
+
+  it("offers school search, homeschool and the not-listed option", async () => {
+    const { user, download } = await readyForm();
+    await user.click(
+      screen.getByRole("checkbox", { name: "My school isn't listed" }),
+    );
+    const school = screen.getByRole("combobox", { name: "School (required)" });
+    expect(download).toBeDisabled();
+    await user.type(school, "Dorothy");
+    expect(useSWR).toHaveBeenCalledWith(
+      "https://school-picker.thenational.academy/Dorothy",
+      expect.any(Function),
+    );
+    const result = await screen.findByTestId("listbox-option");
+    expect(result).toHaveTextContent(
+      "Dorothy Bricks Nursery School, Westminster, AB1 1CD",
+    );
+    await user.click(result);
+    expect(school).toHaveValue(
+      "Dorothy Bricks Nursery School, Westminster, AB1 1CD",
+    );
+    expect(download).toBeEnabled();
+    await user.clear(school);
+    expect(download).toBeDisabled();
+    await user.type(school, "homeschool");
+    expect(await screen.findByTestId("listbox-option")).toHaveTextContent(
+      "Homeschool",
+    );
+    await user.click(screen.getByTestId("listbox-option"));
+    expect(school).toHaveValue("Homeschool");
+    await user.click(
+      screen.getByRole("checkbox", { name: "My school isn't listed" }),
+    );
+    expect(school).toBeDisabled();
+    expect(download).toBeEnabled();
+  });
 
   it("disables the action and prevents duplicate submissions while preparing", async () => {
     let complete!: (response: ReturnType<typeof downloadResponse>) => void;

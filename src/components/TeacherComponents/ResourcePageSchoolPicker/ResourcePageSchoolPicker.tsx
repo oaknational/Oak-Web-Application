@@ -18,6 +18,7 @@ type ResourcePageSchoolPickerProps = Omit<
   errorId?: string;
   withHomeschool: boolean;
   placeholder?: string;
+  disabled?: boolean;
 };
 
 export type School = {
@@ -41,6 +42,7 @@ export type School = {
 const ResourcePageSchoolPicker: FC<ResourcePageSchoolPickerProps> = (props) => {
   return (
     <ResourcePageSearchComboBox
+      isDisabled={props.disabled}
       errorId={props.errorId}
       hasError={props.hasError}
       label={props.label}

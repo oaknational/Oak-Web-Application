@@ -49,6 +49,8 @@ import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import { NEWSLETTER_COUNT } from "@/components/GenericPagesComponents/NewsletterForm/newsletterConstants";
+import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
+import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 
 const reportError = errorReporter("NationalCurriculumInsightsDownload");
 
@@ -59,7 +61,6 @@ type DownloadSection = Extract<
 
 type DownloadFormValues = {
   name: string;
-  school: string;
   schoolNotListed: boolean;
   role: string;
   email: string;
@@ -258,7 +259,14 @@ export const NationalCurriculumInsightsDownload = ({
   const headerRef = useRef<HTMLButtonElement>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
   const downloadInFlight = useRef(false);
-  const { selectedValues, changeSelection } = useDownloadSelection(data);
+  const { selectedValues, changeSelection, resetSelection } =
+    useDownloadSelection(data);
+  const {
+    schools,
+    schoolPickerInputValue,
+    setSchoolPickerInputValue,
+    setSelectedSchool,
+  } = useSchoolPicker({ withHomeschool: true });
   const [expanded, setExpanded] = useState(false);
   const [mobileStage, setMobileStage] = useState<"details" | "subjects">(
     "subjects",
@@ -266,7 +274,6 @@ export const NationalCurriculumInsightsDownload = ({
   const { control, watch, handleSubmit } = useForm<DownloadFormValues>({
     defaultValues: {
       name: "",
-      school: "",
       schoolNotListed: false,
       role: "",
       email: "",
@@ -274,7 +281,7 @@ export const NationalCurriculumInsightsDownload = ({
     },
     shouldUnregister: false,
   });
-  const { name, school, schoolNotListed, role, acceptedTerms } = watch();
+  const { name, schoolNotListed, role, acceptedTerms } = watch();
   const [downloading, setDownloading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [downloadComplete, setDownloadComplete] = useState(false);
@@ -330,7 +337,7 @@ export const NationalCurriculumInsightsDownload = ({
 
   const detailsComplete =
     name.trim().length > 0 &&
-    (schoolNotListed || school.trim().length > 0) &&
+    (schoolNotListed || schoolPickerInputValue.trim().length > 0) &&
     role.length > 0 &&
     acceptedTerms;
   const canDownload =
@@ -368,6 +375,7 @@ export const NationalCurriculumInsightsDownload = ({
       } finally {
         URL.revokeObjectURL(url);
       }
+      resetSelection();
       setDownloadComplete(true);
     } catch (downloadError) {
       if (downloadError instanceof TypeError) {
@@ -394,7 +402,16 @@ export const NationalCurriculumInsightsDownload = ({
       enabled={expanded}
       autoFocus={false}
       scrollLock
-      onEscapeKey={() => setExpanded(false)}
+      onEscapeKey={(event) => {
+        // Native selects handle Escape themselves.
+        if (
+          event.target instanceof HTMLElement &&
+          event.target.closest("select")
+        ) {
+          return;
+        }
+        setExpanded(false);
+      }}
       returnFocus={() => {
         const target = returnFocusRef.current ?? headerRef.current;
         if (target?.isConnected) target.focus();
@@ -584,31 +601,17 @@ export const NationalCurriculumInsightsDownload = ({
                         />
                       </OakBox>
                       <OakFlex $flexDirection="column" $gap="spacing-16">
-                        <OakBox $position="relative" $width="100%">
-                          <NationalCurriculumInsightsFieldLabel
-                            htmlFor={`${formId}-school`}
-                            label="School (required)"
-                          />
-                          <Controller
-                            control={control}
-                            name="school"
-                            render={({ field }) => (
-                              <OakTextInput
-                                name={field.name}
-                                value={field.value}
-                                onChange={field.onChange}
-                                onBlur={field.onBlur}
-                                id={`${formId}-school`}
-                                placeholder="Type school name, postcode, or ‘homeschool’"
-                                disabled={schoolNotListed}
-                                required={!schoolNotListed}
-                                autoComplete="organization"
-                                wrapperWidth="100%"
-                                $height="spacing-64"
-                              />
-                            )}
-                          />
-                        </OakBox>
+                        <ResourcePageSchoolPicker
+                          hasError={false}
+                          schools={schools}
+                          label="School"
+                          schoolPickerInputValue={schoolPickerInputValue}
+                          setSchoolPickerInputValue={setSchoolPickerInputValue}
+                          setSelectedSchool={setSelectedSchool}
+                          required={!schoolNotListed}
+                          disabled={schoolNotListed}
+                          withHomeschool
+                        />
                         <Controller
                           control={control}
                           name="schoolNotListed"
@@ -619,9 +622,13 @@ export const NationalCurriculumInsightsDownload = ({
                               value="school-not-listed"
                               displayValue="My school isn't listed"
                               checked={field.value}
-                              onChange={(event) =>
-                                field.onChange(event.target.checked)
-                              }
+                              onChange={(event) => {
+                                field.onChange(event.target.checked);
+                                if (event.target.checked) {
+                                  setSelectedSchool(undefined);
+                                  setSchoolPickerInputValue("");
+                                }
+                              }}
                             />
                           )}
                         />
