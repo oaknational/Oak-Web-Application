@@ -11,6 +11,7 @@ import {
 import type { NationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
 
 import { NationalCurriculumInsightsHero } from "./Hero";
+import { NationalCurriculumInsightsHeader } from "./InsightHeader";
 import { NationalCurriculumInsightsDownload } from "./Download";
 import {
   NationalCurriculumInsightsFaq,
@@ -54,6 +55,8 @@ const ModuleView = ({
   data: NationalCurriculumInsightsRouteData;
 }) => {
   switch (module.__typename) {
+    case "NationalCurriculumInsightsHeaderSection":
+      return <NationalCurriculumInsightsHeader section={module} data={data} />;
     case "NationalCurriculumInsightsHeroSection":
       return <NationalCurriculumInsightsHero section={module} data={data} />;
     case "NationalCurriculumInsightsOverviewSection":
@@ -164,7 +167,8 @@ const PageModuleList = ({
   }
 
   const heroIndex = data.page.modules.findIndex(
-    ({ __typename }) => __typename === "NationalCurriculumInsightsHeroSection",
+    ({ __typename }) =>
+      __typename === "NationalCurriculumInsightsHeaderSection",
   );
   const hero = heroIndex >= 0 ? data.page.modules[heroIndex] : null;
   const modules = data.page.modules.filter((_, index) => index !== heroIndex);
