@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {
   OakUL,
   OakIcon,
-  OakSecondaryLink,
+  OakLink,
   OakFocusIndicator,
   parseSpacing,
 } from "@oaknational/oak-components";
@@ -49,7 +49,7 @@ export type BreadcrumbsProps = {
 };
 
 // To fix ellipsis showing in firefox unecessarily
-const StyledLink = styled(OakSecondaryLink)`
+const StyledLink = styled(OakLink)`
   display: block;
   margin-right: ${parseSpacing("spacing-12")};
   ${ellipsis}

@@ -12,6 +12,7 @@ export const getCorePropertyArgs = (
   ({
     platform:
       clientEnvironment === "iframe" ? Platform.GOOGLE_CLASSROOM : Platform.OWA,
+
     product: "pupil lesson activities",
     engagementIntent: "use",
     eventVersion: "2.0.0",
