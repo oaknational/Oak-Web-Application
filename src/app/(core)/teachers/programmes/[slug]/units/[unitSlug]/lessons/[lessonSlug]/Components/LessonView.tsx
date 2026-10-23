@@ -55,6 +55,7 @@ export default function LessonView(
     actions,
     subjectCategories,
     excludedFromTeachingMaterials,
+    shouldHideCreateWithAi,
   } = props;
 
   const copyrightState = useComplexCopyright({
@@ -181,7 +182,9 @@ export default function LessonView(
               <LessonActionsBar
                 showPupilShare={showPupilShare}
                 createWithAiProps={
-                  contentRestricted || excludedFromTeachingMaterials
+                  contentRestricted ||
+                  excludedFromTeachingMaterials ||
+                  shouldHideCreateWithAi
                     ? undefined
                     : {
                         lessonSlug,
