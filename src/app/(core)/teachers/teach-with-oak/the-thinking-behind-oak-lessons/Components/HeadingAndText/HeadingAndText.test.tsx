@@ -41,7 +41,10 @@ describe("HeadingAndText", () => {
 
   it("renders a single element without wrapping it in a paragraph", () => {
     renderWithTheme(
-      <HeadingAndText heading="Focused" text={<span>Span content</span>} />,
+      <HeadingAndText
+        heading="Focused"
+        text={<span key="span">Span content</span>}
+      />,
     );
 
     expect(screen.getByText("Span content").tagName).toBe("SPAN");
