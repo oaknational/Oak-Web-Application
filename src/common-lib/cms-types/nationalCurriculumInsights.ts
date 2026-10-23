@@ -316,7 +316,7 @@ const nationalCurriculumInsightsImageTextSectionSchema = z.object({
   image: imageSchema,
   imagePosition: z.enum(["left", "right"]),
   mirrorImage: z.boolean().nullable().optional(),
-  background: z.enum(["white", "turquoise", "yellow"]),
+  background: z.enum(["white", "turquoise", "yellow", "green"]),
   ctaLabel: z.string().min(1).nullable().optional(),
   ctaHref: z.string().min(1).nullable().optional(),
 });
@@ -368,6 +368,27 @@ const nationalCurriculumInsightsDownloadSectionSchema = z.object({
   downloadButtonLabel: z.string().min(1),
 });
 
+const nationalCurriculumInsightsArticleSectionSchema = z.object({
+  __typename: z.literal("NationalCurriculumInsightsArticleSection"),
+  sections: z
+    .array(
+      z.intersection(
+        z.discriminatedUnion("__typename", [
+          nationalCurriculumInsightsChangesSectionSchema,
+          nationalCurriculumInsightsUnchangedSectionSchema,
+          nationalCurriculumInsightsChecklistSectionSchema,
+          nationalCurriculumInsightsPreparationSectionSchema,
+          nationalCurriculumInsightsConfidenceSectionSchema,
+        ]),
+        z.object({
+          id: z.string().min(1),
+          navigationLabel: z.string().trim().min(1).nullish(),
+        }),
+      ),
+    )
+    .min(1),
+});
+
 export const nationalCurriculumInsightsModuleSchema = z.discriminatedUnion(
   "__typename",
   [
@@ -388,6 +409,7 @@ export const nationalCurriculumInsightsModuleSchema = z.discriminatedUnion(
     nationalCurriculumInsightsUnchangedSectionSchema,
     nationalCurriculumInsightsPreparationSectionSchema,
     nationalCurriculumInsightsConfidenceSectionSchema,
+    nationalCurriculumInsightsArticleSectionSchema,
     nationalCurriculumInsightsImageTextSectionSchema,
     nationalCurriculumInsightsGuidanceIntroSectionSchema,
     nationalCurriculumInsightsVideoCardsSectionSchema,
@@ -400,6 +422,15 @@ export const nationalCurriculumInsightsModuleSchema = z.discriminatedUnion(
 export type NationalCurriculumInsightsModule = z.infer<
   typeof nationalCurriculumInsightsModuleSchema
 >;
+
+export const flattenNationalCurriculumInsightsModules = (
+  modules: NationalCurriculumInsightsModule[],
+): NationalCurriculumInsightsModule[] =>
+  modules.flatMap((module) =>
+    module.__typename === "NationalCurriculumInsightsArticleSection"
+      ? module.sections
+      : [module],
+  );
 
 const nationalCurriculumInsightsPageContentSchema = z.object({
   title: z.string().min(1),

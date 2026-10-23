@@ -25,6 +25,32 @@ const generate = (
 const incompleteMessage =
   "Some required guidance is incomplete. Please try again later.";
 
+it("includes sections from the sidebar article in the download", async () => {
+  const subject = createDownloadFixture("primary", ["KS1", "KS2"]);
+  for (const { page } of subject.tabs[0]!.page.keyStages) {
+    const sections = page.modules.filter(
+      (module) =>
+        module.__typename === "NationalCurriculumInsightsChangesSection" ||
+        module.__typename === "NationalCurriculumInsightsUnchangedSection" ||
+        module.__typename === "NationalCurriculumInsightsChecklistSection" ||
+        module.__typename === "NationalCurriculumInsightsPreparationSection" ||
+        module.__typename === "NationalCurriculumInsightsConfidenceSection",
+    );
+    const articleSections = new Set<NationalCurriculumInsightsModule>(sections);
+    page.modules = [
+      ...page.modules.filter((module) => !articleSections.has(module)),
+      {
+        __typename: "NationalCurriculumInsightsArticleSection",
+        sections: sections.map((module, index) => ({
+          ...module,
+          id: `section-${index}`,
+        })),
+      },
+    ];
+  }
+  await expect(generate(subject)).resolves.toBeDefined();
+});
+
 const requiredSections = [
   { type: "NationalCurriculumInsightsOverviewSection" },
   { type: "NationalCurriculumInsightsChangesSection" },

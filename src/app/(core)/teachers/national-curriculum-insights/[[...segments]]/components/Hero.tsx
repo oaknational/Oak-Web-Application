@@ -29,7 +29,7 @@ type HeroPageKind = "hub" | "guidance";
 const heroPortableTextComponents: PortableTextComponents = {
   block: {
     normal: ({ children }) => (
-      <OakP $font="body-2" $mv="spacing-0">
+      <OakP $font="body-1" $mv="spacing-0">
         {children}
       </OakP>
     ),
@@ -59,7 +59,7 @@ const getHeroResponsiveProps = (
   if (pageKind === "hub") {
     return {
       textOrder: [2, 1, 1],
-      headingFont: ["heading-4", "heading-4", "heading-1"],
+      headingFont: ["heading-4", "heading-4", "heading-3"],
     };
   }
   return {
@@ -170,7 +170,7 @@ export const NationalCurriculumInsightsHero = ({
               : "repeat(3, minmax(0, 1fr))",
             pageKind === "guidance"
               ? "minmax(0, 43rem) minmax(0, 29.125rem) minmax(0, 1fr)"
-              : "minmax(0, 8fr) minmax(0, 5fr)",
+              : "minmax(0, 2fr) minmax(0, 1fr)",
           ]}
           $alignItems={["stretch", hasEditorialImage ? "center" : "start"]}
           $cg="spacing-16"

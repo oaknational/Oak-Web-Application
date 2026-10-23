@@ -2,6 +2,7 @@ import { NationalCurriculumInsightsDownloadUnavailableError } from "../downloadL
 
 import {
   nationalCurriculumInsightsModuleSchema,
+  flattenNationalCurriculumInsightsModules,
   type NationalCurriculumInsightsModule,
   type NationalCurriculumInsightsPage,
 } from "@/common-lib/cms-types/nationalCurriculumInsights";
@@ -58,11 +59,11 @@ export const selectInsightsDocxClosingModules = ({
   sharedModules: NationalCurriculumInsightsModule[];
 }) => {
   const closing = new Map<string, NationalCurriculumInsightsModule>();
-  for (const section of [
+  for (const section of flattenNationalCurriculumInsightsModules([
     ...page.modules,
     ...stages.flatMap(({ page: stagePage }) => stagePage.modules),
     ...sharedModules,
-  ]) {
+  ])) {
     if (isClosingModule(section) && !closing.has(section.__typename)) {
       closing.set(section.__typename, section);
     }
@@ -77,7 +78,10 @@ const requiredSectionTypes = [
   "NationalCurriculumInsightsPreparationSection",
 ];
 
-const isCompleteFullInsight = (modules: NationalCurriculumInsightsModule[]) => {
+const isCompleteFullInsight = (
+  pageModules: NationalCurriculumInsightsModule[],
+) => {
+  const modules = flattenNationalCurriculumInsightsModules(pageModules);
   const uniqueSections = requiredSectionTypes.every(
     (type) =>
       modules.filter((module) => module.__typename === type).length === 1,

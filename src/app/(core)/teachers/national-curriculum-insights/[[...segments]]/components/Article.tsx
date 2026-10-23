@@ -270,7 +270,7 @@ export const NationalCurriculumInsightsArticle = ({
           <OakGridArea $colSpan={[12, 12, 9]} $minWidth="spacing-0">
             <OakFlex
               $flexDirection="column"
-              $gap={["spacing-32", "spacing-32", "spacing-40"]}
+              $gap={["spacing-32", "spacing-40", "spacing-80"]}
             >
               {sections.map(({ id, content }) => (
                 <OakBox

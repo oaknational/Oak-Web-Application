@@ -42,7 +42,7 @@ export const insightsPortableTextProjection = `[]{
   }
 }`;
 
-const modulesProjection = `modules[]{
+const moduleProjection = `
   "__typename": select(
     _type == "nationalCurriculumInsightsHeroSection" => "NationalCurriculumInsightsHeroSection",
     _type == "nationalCurriculumInsightsHeaderSection" => "NationalCurriculumInsightsHeaderSection",
@@ -187,6 +187,18 @@ const modulesProjection = `modules[]{
   },
   table {
     rows[]{cells}
+  }
+`;
+
+const modulesProjection = `modules[]{
+  ${moduleProjection},
+  _type == "nationalCurriculumInsightsArticleSection" => {
+    "__typename": "NationalCurriculumInsightsArticleSection",
+    sections[]{
+      ${moduleProjection},
+      "id": _key,
+      navigationLabel
+    }
   }
 }`;
 

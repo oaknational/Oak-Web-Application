@@ -19,6 +19,7 @@ import type {
   NationalCurriculumInsightsModule,
   NationalCurriculumInsightsPage,
 } from "@/common-lib/cms-types/nationalCurriculumInsights";
+import { flattenNationalCurriculumInsightsModules } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 
 type RichText = ReturnType<typeof createInsightsDocxRichText>;
@@ -465,7 +466,7 @@ export const buildInsightsDocxContent = async ({
       `,
     });
     addEntry(label, group);
-    await source.modules
+    await flattenNationalCurriculumInsightsModules(source.modules)
       .filter(isContentModule)
       .reduce(async (previous, section) => {
         await previous;
@@ -475,9 +476,9 @@ export const buildInsightsDocxContent = async ({
   };
 
   if (stages.length) {
-    const phaseContent = page.modules.filter(
-      (module) => module !== overview && isContentModule(module),
-    );
+    const phaseContent = flattenNationalCurriculumInsightsModules(
+      page.modules,
+    ).filter((module) => module !== overview && isContentModule(module));
     await phaseContent.reduce(async (previous, section) => {
       await previous;
       await addSection(section);

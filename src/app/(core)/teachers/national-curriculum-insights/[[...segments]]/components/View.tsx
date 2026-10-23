@@ -126,6 +126,33 @@ const ModuleView = ({
       );
     case "NationalCurriculumInsightsConfidenceSection":
       return <NationalCurriculumInsightsConfidence section={module} />;
+    case "NationalCurriculumInsightsArticleSection": {
+      const phase = data.subject?.tabs.find(
+        ({ kind }) => kind === data.activeTab,
+      )?.label;
+      const heading = [
+        data.activeKeyStage ?? phase,
+        data.subject?.title ?? data.page?.title,
+      ]
+        .filter(Boolean)
+        .join(" ");
+      const hasDownload =
+        [...(data.page?.modules ?? []), ...(data.hub?.modules ?? [])].some(
+          ({ __typename }) =>
+            __typename === "NationalCurriculumInsightsDownloadSection",
+        ) && data.subjects.some(({ tabs }) => tabs.length > 0);
+      return (
+        <NationalCurriculumInsightsArticle
+          heading={heading}
+          hasDownload={hasDownload}
+          sections={module.sections.map((section) => ({
+            id: `insights-${section.id}`,
+            label: section.navigationLabel ?? section.heading,
+            content: <ModuleView module={section} data={data} />,
+          }))}
+        />
+      );
+    }
     case "NationalCurriculumInsightsRichTextSection":
       return <NationalCurriculumInsightsRichText section={module} />;
     case "NationalCurriculumInsightsImageTextSection":
@@ -203,61 +230,6 @@ const PageModuleList = ({
   );
   const hero = heroIndex >= 0 ? data.page.modules[heroIndex] : null;
   const modules = data.page.modules.filter((_, index) => index !== heroIndex);
-  const navigation = modules.find(
-    (module) =>
-      module.__typename === "NationalCurriculumInsightsPhaseNavigationSection",
-  ) ?? {
-    __typename: "NationalCurriculumInsightsPhaseNavigationSection" as const,
-    overviewLabel: "changes overview",
-    primaryLabel: "Primary",
-    secondaryLabel: "Secondary",
-  };
-  const articleSections = modules.flatMap((module, index) => {
-    let label: string;
-    switch (module.__typename) {
-      case "NationalCurriculumInsightsChangesSection":
-        label = "What's changed";
-        break;
-      case "NationalCurriculumInsightsUnchangedSection":
-        label = "What's stayed the same";
-        break;
-      case "NationalCurriculumInsightsChecklistSection":
-        label =
-          module.audience === "teacher"
-            ? "Teacher checklist"
-            : "School leader checklist";
-        break;
-      default:
-        return [];
-    }
-    const name =
-      module.__typename === "NationalCurriculumInsightsChecklistSection"
-        ? `${module.audience}-checklist`
-        : module.__typename
-            .replace("NationalCurriculumInsights", "")
-            .replace("Section", "")
-            .toLowerCase();
-    const previous = modules
-      .slice(0, index)
-      .filter(
-        (candidate) =>
-          candidate.__typename === module.__typename &&
-          (module.__typename !== "NationalCurriculumInsightsChecklistSection" ||
-            (candidate.__typename ===
-              "NationalCurriculumInsightsChecklistSection" &&
-              candidate.audience === module.audience)),
-      ).length;
-    const suffix = previous ? "-" + (previous + 1) : "";
-    return [
-      {
-        index,
-        id: `insights-${name}${suffix}`,
-        label,
-        content: <ModuleView module={module} data={data} />,
-      },
-    ];
-  });
-  const firstArticleIndex = articleSections[0]?.index;
   const sharedDownload = data.hub?.modules.find(
     ({ __typename }) =>
       __typename === "NationalCurriculumInsightsDownloadSection",
@@ -266,17 +238,6 @@ const PageModuleList = ({
     ({ __typename }) =>
       __typename === "NationalCurriculumInsightsDownloadSection",
   );
-  const hasDownload = Boolean(
-    (hasPageDownload || sharedDownload) &&
-      data.subjects.some(({ tabs }) => tabs.length > 0),
-  );
-  let phaseLabel = "";
-  if (data.activeTab === "primary") phaseLabel = "Primary";
-  if (data.activeTab === "secondary") phaseLabel = "Secondary";
-  const scope = data.activeKeyStage ?? phaseLabel;
-  const articleHeading = [scope, data.subject?.title ?? data.page.title]
-    .filter(Boolean)
-    .join(" ");
 
   return (
     <>
@@ -295,25 +256,7 @@ const PageModuleList = ({
           <OakP>{data.page.summary}</OakP>
         </OakBox>
       )}
-      <InsightsTabs section={navigation} data={data} />
       {modules.map((module, index) => {
-        if (index === firstArticleIndex) {
-          return (
-            <NationalCurriculumInsightsArticle
-              key="article"
-              heading={articleHeading}
-              sections={articleSections}
-              hasDownload={hasDownload}
-            />
-          );
-        }
-        if (
-          articleSections.some((section) => section.index === index) ||
-          module.__typename ===
-            "NationalCurriculumInsightsPhaseNavigationSection"
-        ) {
-          return null;
-        }
         return (
           <ModuleView
             key={`${module.__typename}-${index}`}
@@ -395,12 +338,13 @@ const InsightsTabs = ({
   return (
     <OakBox
       $width="100%"
-      $maxWidth="100%"
+      $maxWidth="spacing-1280"
+      $boxSizing="border-box"
       $overflowX="auto"
       as="nav"
       aria-label={`${data.subject.title} insights`}
       $mh="auto"
-      $ph={["spacing-16", "spacing-32"]}
+      $ph={["spacing-20", "spacing-0"]}
       $pv={["spacing-24", "spacing-64"]}
     >
       <OakTabs
@@ -441,7 +385,6 @@ export const NationalCurriculumInsightsView = ({
         as="main"
         $color="text-primary"
         $flexDirection="column"
-        $gap="spacing-40"
       >
         <ModuleList
           data={data}

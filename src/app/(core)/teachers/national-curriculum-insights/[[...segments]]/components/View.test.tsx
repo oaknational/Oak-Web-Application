@@ -22,7 +22,7 @@ const getData = async (segments?: string[]) => {
     throw new Error("Expected local fixture data");
   }
 
-  return data;
+  return JSON.parse(JSON.stringify(data)) as typeof data;
 };
 
 describe("NationalCurriculumInsightsView", () => {
@@ -85,19 +85,8 @@ describe("NationalCurriculumInsightsView", () => {
       })),
     };
     renderWithTheme(<NationalCurriculumInsightsView data={data} />);
-    const navigation = screen.getByRole("navigation", {
-      name: "Science insights",
-    });
     expect(
-      within(navigation).getByRole("link", {
-        name: "Science changes overview",
-      }),
-    ).toHaveAttribute("href", "/curriculum-change-explained/science");
-    expect(
-      within(navigation).getByRole("link", { name: "Science Primary changes" }),
-    ).toHaveAttribute("href", "/curriculum-change-explained/science/primary");
-    expect(
-      within(navigation).queryByRole("link", { name: /KS[1-4]/ }),
+      screen.queryByRole("navigation", { name: "Science insights" }),
     ).not.toBeInTheDocument();
   });
   it("uses one shared hub download configuration on a subject page", async () => {
@@ -133,24 +122,31 @@ describe("NationalCurriculumInsightsView", () => {
   it("uses fixed links for the populated article sections", async () => {
     const data = await getData(["science", "primary", "key-stage-1"]);
     data.page!.modules.push({
-      __typename: "NationalCurriculumInsightsChecklistSection",
-      audience: "teacher",
-      heading: "Actions to check for key stage 1",
-      items: [
+      __typename: "NationalCurriculumInsightsArticleSection",
+      sections: [
         {
-          id: "action",
-          contentPortableText: [
+          __typename: "NationalCurriculumInsightsChecklistSection",
+          id: "teacher-checklist",
+          navigationLabel: "Teacher checklist",
+          audience: "teacher",
+          heading: "Actions to check for key stage 1",
+          items: [
             {
-              _type: "block",
-              _key: "action",
-              style: "normal",
-              markDefs: [],
-              children: [
+              id: "action",
+              contentPortableText: [
                 {
-                  _type: "span",
-                  _key: "text",
-                  text: "Check the planned sequence.",
-                  marks: [],
+                  _type: "block",
+                  _key: "action",
+                  style: "normal",
+                  markDefs: [],
+                  children: [
+                    {
+                      _type: "span",
+                      _key: "text",
+                      text: "Check the planned sequence.",
+                      marks: [],
+                    },
+                  ],
                 },
               ],
             },
@@ -181,22 +177,61 @@ describe("NationalCurriculumInsightsView", () => {
     const data = await getData(segments);
     if (!data.page) throw new Error("Expected a page");
     data.page.modules.push({
-      __typename: "NationalCurriculumInsightsPreparationSection",
-      heading: "Prepare for the changes",
-      steps: [
-        { id: "one", text: "Map the current curriculum." },
-        { id: "two", text: "Plan the progression." },
-        { id: "three", text: "Choose a local study." },
+      __typename: "NationalCurriculumInsightsArticleSection",
+      sections: [
+        {
+          __typename: "NationalCurriculumInsightsPreparationSection",
+          id: "preparation",
+          navigationLabel: "3 steps to get ready",
+          heading: "Prepare for the changes",
+          steps: [
+            { id: "one", text: "Map the current curriculum." },
+            { id: "two", text: "Plan the progression." },
+            { id: "three", text: "Choose a local study." },
+          ],
+          attribution: "Emma McCrea",
+          role: "Head of Curriculum Design",
+          image: null,
+        },
+        {
+          __typename: "NationalCurriculumInsightsConfidenceSection",
+          id: "confidence",
+          navigationLabel: "Prepare with Oak",
+          heading: "Prepare with confidence using Oak",
+          bodyPortableText: [],
+          cta: {
+            label: "Explore curriculum plans",
+            linkType: "external",
+            external: "https://www.thenational.academy",
+          },
+        },
       ],
-      attribution: "Emma McCrea",
-      role: "Head of Curriculum Design",
-      image: null,
     });
-    renderWithTheme(<NationalCurriculumInsightsView data={data} />);
+    const { container } = renderWithTheme(
+      <NationalCurriculumInsightsView data={data} />,
+    );
     expect(
       screen.getByRole("heading", { name: "Prepare for the changes" }),
     ).toBeInTheDocument();
     expect(screen.getByText("Emma McCrea")).toBeInTheDocument();
+    const article = container.querySelector('[data-insights-module="article"]');
+    expect(article).toContainElement(
+      screen.getByRole("heading", { name: "Prepare for the changes" }),
+    );
+    expect(article).toContainElement(
+      screen.getByRole("heading", {
+        name: "Prepare with confidence using Oak",
+      }),
+    );
+    expect(
+      within(
+        screen.getByRole("navigation", {
+          name: `${segments.length === 3 ? "KS1" : "Primary"} Science sections`,
+        }),
+      )
+        .getAllByRole("link")
+        .map((link) => link.textContent),
+    ).toEqual(["3 steps to get ready", "Prepare with Oak"]);
   });
 
   it.each([
@@ -239,7 +274,7 @@ describe("NationalCurriculumInsightsView", () => {
     );
     expect(
       screen.queryByRole("navigation", { name: "Science insights" }),
-    ).toBeInTheDocument();
+    ).not.toBeInTheDocument();
 
     data.page.modules.push({
       __typename: "NationalCurriculumInsightsPhaseNavigationSection",
@@ -263,7 +298,7 @@ describe("NationalCurriculumInsightsView", () => {
     ).toHaveAttribute("href", "/curriculum-change-explained/science/primary");
   });
 
-  it("selects the Primary tab and renders Primary page content", async () => {
+  it("renders Primary page content without adding a tab strip", async () => {
     renderWithTheme(
       <NationalCurriculumInsightsView
         data={await getData(["science", "primary"])}
@@ -272,7 +307,7 @@ describe("NationalCurriculumInsightsView", () => {
 
     expect(
       screen.queryByRole("navigation", { name: "Science insights" }),
-    ).toBeInTheDocument();
+    ).not.toBeInTheDocument();
     expect(
       screen.getByRole("heading", {
         level: 1,
@@ -286,7 +321,7 @@ describe("NationalCurriculumInsightsView", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders key-stage navigation and the independently editable key-stage page", async () => {
+  it("renders the key-stage page without adding a tab strip", async () => {
     renderWithTheme(
       <NationalCurriculumInsightsView
         data={await getData(["science", "primary", "key-stage-1"])}
@@ -295,7 +330,7 @@ describe("NationalCurriculumInsightsView", () => {
 
     expect(
       screen.queryByRole("navigation", { name: "Science insights" }),
-    ).toBeInTheDocument();
+    ).not.toBeInTheDocument();
     expect(
       screen.getByRole("heading", {
         level: 1,
