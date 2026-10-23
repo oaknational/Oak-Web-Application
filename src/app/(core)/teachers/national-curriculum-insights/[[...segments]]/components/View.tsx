@@ -15,6 +15,7 @@ import { NationalCurriculumInsightsHeader } from "./InsightHeader";
 import { NationalCurriculumInsightsDownload } from "./Download";
 import {
   NationalCurriculumInsightsChanges,
+  NationalCurriculumInsightsUnchanged,
   NationalCurriculumInsightsFaq,
   NationalCurriculumInsightsGuidanceIntro,
   NationalCurriculumInsightsImageText,
@@ -103,6 +104,8 @@ const ModuleView = ({
       return <NationalCurriculumInsightsFaq section={module} data={data} />;
     case "NationalCurriculumInsightsChangesSection":
       return <NationalCurriculumInsightsChanges section={module} />;
+    case "NationalCurriculumInsightsUnchangedSection":
+      return <NationalCurriculumInsightsUnchanged section={module} />;
     case "NationalCurriculumInsightsRichTextSection":
       return <NationalCurriculumInsightsRichText section={module} />;
     case "NationalCurriculumInsightsImageTextSection":

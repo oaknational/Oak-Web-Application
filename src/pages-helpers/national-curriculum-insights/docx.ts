@@ -122,6 +122,7 @@ const moduleXml = (module: NationalCurriculumInsightsModule): string => {
         .join("");
       return `${paragraph(module.heading, "Heading2")}${changesXml}`;
     }
+    case "NationalCurriculumInsightsUnchangedSection":
     case "NationalCurriculumInsightsRichTextSection":
       return `${paragraph(module.heading, "Heading2")}${portableTextParagraphs(module.contentPortableText)}`;
     case "NationalCurriculumInsightsImageTextSection":

@@ -17,3 +17,4 @@ export { NationalCurriculumInsightsTable } from "./sections/Table";
 export { NationalCurriculumInsightsNewsletter } from "./sections/Newsletter";
 export { NationalCurriculumInsightsFaq } from "./sections/Faq";
 export { NationalCurriculumInsightsChanges } from "./sections/Changes";
+export { NationalCurriculumInsightsUnchanged } from "./sections/Unchanged";
