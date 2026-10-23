@@ -4,17 +4,17 @@ import JoinResearchPanelFaqs from ".";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
-const render = renderWithProvidersByName([
-  "oakTheme",
-  "teacherBrowseAnalytics",
-  "analytics",
-  "cookieConsent",
-]);
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("JoinResearchPanelFaqs", () => {
   test("it renders correct data", () => {
-    const { container } = render(<JoinResearchPanelFaqs {...fixture} />);
+    const { baseElement, getByRole } = render(
+      <JoinResearchPanelFaqs {...fixture} />,
+    );
 
-    expect(container).toMatchSnapshot();
+    expect(baseElement).toMatchSnapshot();
+    expect(getByRole("heading", { level: 2 })).toHaveTextContent(
+      "Frequently asked questions",
+    );
   });
 });

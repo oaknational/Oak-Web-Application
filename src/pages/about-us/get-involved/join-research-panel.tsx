@@ -17,6 +17,7 @@ import JoinResearchPanelPageDefault from "@/components/GenericPagesComponents/Jo
 import JoinResearchPanelPeople from "@/components/GenericPagesComponents/JoinResearchPanelPeople";
 import JoinResearchPanelInfo from "@/components/GenericPagesComponents/JoinResearchPanelInfo";
 import JoinResearchPanelFaqs from "@/components/GenericPagesComponents/JoinResearchPanelFaqs";
+import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
 
 export type AboutUsJoinResearchPanelPageProps = {
   pageData: JoinResearchPanelPage;
@@ -36,7 +37,12 @@ export const AboutUsJoinResearchPanel: NextPage<
     JoinResearchPanelPageInfo: JoinResearchPanelInfo,
     JoinResearchPanelPageJourney: JoinResearchPanelPageDefault,
     JoinResearchPanelPagePeople: JoinResearchPanelPeople,
-    JoinResearchPanelPageFaqs: JoinResearchPanelFaqs,
+    JoinResearchPanelPageFaqs: (block) => (
+      <>
+        <TrackScrolledTo eventKey="join_research_panel_faqs" />
+        <JoinResearchPanelFaqs items={block.items} />
+      </>
+    ),
     JoinResearchPanelPageContactUs: JoinResearchPanelPageDefault,
   };
 

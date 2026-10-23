@@ -4778,11 +4778,11 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
         </div>
         <div>
           <div
+            class="c9"
+          />
+          <div
             class="c68"
           >
-            <div
-              class="c9"
-            />
             <div
               class="c9 c123"
             >
