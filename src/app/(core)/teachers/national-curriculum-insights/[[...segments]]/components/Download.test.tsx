@@ -196,22 +196,47 @@ describe("NationalCurriculumInsightsDownload", () => {
     ).toEqual(selected);
   });
 
-  it("keeps the download module in normal flow away from the hub", async () => {
-    const data = await getData();
-    data.route = {
-      kind: "subject",
-      subjectSlug: "science",
-    };
+  it.each([
+    { segments: undefined },
+    { segments: ["guidance"] },
+    { segments: ["science"] },
+    { segments: ["science", "primary"] },
+    { segments: ["science", "primary", "key-stage-1"] },
+  ])(
+    "keeps the download bar fixed before and after opening on $segments",
+    async ({ segments }) => {
+      const user = userEvent.setup();
+      const data = await getData();
+      const route = parseNationalCurriculumInsightsRoute(segments);
+      if (!route) throw new Error("Expected a valid Insights route");
+      data.route = route;
 
-    renderWithTheme(
-      <NationalCurriculumInsightsDownload data={data} section={section} />,
-    );
+      renderWithTheme(
+        <NationalCurriculumInsightsDownload data={data} section={section} />,
+      );
 
-    const toggle = screen.getByRole("button", {
-      name: /the national curriculum is changing/i,
-    });
-    expect(toggle.closest("section")).not.toHaveStyle({ position: "fixed" });
-  });
+      const toggle = screen.getByRole("button", {
+        name: /the national curriculum is changing/i,
+      });
+      const downloadSection = toggle.closest("section");
+      expect(downloadSection).toHaveStyle({
+        position: "fixed",
+        bottom: "0rem",
+      });
+      await user.click(toggle);
+      expect(screen.getByRole("dialog")).toHaveStyle({
+        position: "fixed",
+        bottom: "0rem",
+      });
+      await user.keyboard("{Escape}");
+      expect(toggle).toHaveAttribute("aria-expanded", "false");
+      expect(downloadSection).toHaveStyle({
+        position: "fixed",
+        bottom: "0rem",
+      });
+      expect(toggle).toHaveFocus();
+    },
+  );
 });
 
 describe("Insights download submission", () => {

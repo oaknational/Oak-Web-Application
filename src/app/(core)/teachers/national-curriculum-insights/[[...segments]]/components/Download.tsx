@@ -66,21 +66,6 @@ type DownloadFormValues = {
   acceptedTerms: boolean;
 };
 
-const getDownloadLayoutProps = (sticky: boolean) =>
-  sticky
-    ? ({
-        section: {
-          $position: "fixed",
-          $bottom: "spacing-0",
-          $left: "spacing-0",
-          $right: "spacing-0",
-          $zIndex: "fixed-header",
-          $dropShadow: "drop-shadow-centred-standard",
-        },
-        expanded: { $minHeight: "spacing-0", $overflowY: "auto" },
-      } as const)
-    : { section: {}, expanded: {} };
-
 const getDocumentCountLabel = (count: number) => {
   if (count === 0) return "guidance";
   const noun = count === 1 ? "document" : "documents";
@@ -274,9 +259,7 @@ export const NationalCurriculumInsightsDownload = ({
   const returnFocusRef = useRef<HTMLElement | null>(null);
   const downloadInFlight = useRef(false);
   const { selectedValues, changeSelection } = useDownloadSelection(data);
-  const sticky = data.route.kind === "hub";
   const [expanded, setExpanded] = useState(false);
-  const layoutProps = getDownloadLayoutProps(sticky || expanded);
   const [mobileStage, setMobileStage] = useState<"details" | "subjects">(
     "subjects",
   );
@@ -422,9 +405,13 @@ export const NationalCurriculumInsightsDownload = ({
         as="section"
         {...getDownloadDialogProps(expanded)}
         data-insights-module="downloads"
-        {...layoutProps.section}
+        $position="fixed"
+        $bottom="spacing-0"
+        $left="spacing-0"
+        $right="spacing-0"
+        $dropShadow="drop-shadow-centred-standard"
         $zIndex={expanded ? "modal-dialog" : "fixed-header"}
-        $maxHeight={sticky || expanded ? "100vh" : undefined}
+        $maxHeight="100vh"
         $width="100%"
         $flexDirection="column"
         $background="bg-primary"
@@ -454,7 +441,8 @@ export const NationalCurriculumInsightsDownload = ({
             aria-label="Curriculum guidance download"
             aria-busy={downloading}
             noValidate
-            {...layoutProps.expanded}
+            $minHeight="spacing-0"
+            $overflowY="auto"
           >
             {downloadComplete ? (
               <NationalCurriculumInsightsDownloadConfirmation />
