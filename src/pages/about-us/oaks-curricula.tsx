@@ -162,6 +162,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
                 <GuidingPrinciples
                   $background="bg-primary"
                   accentColor="border-decorative4"
+                  title="Our guiding principles"
                   text={pageData.guidingPrinciples.textRaw}
                   imageUrl={guidingPrinciplesImageUrl}
                   imageAlt={guidingPrinciplesImageAlt}

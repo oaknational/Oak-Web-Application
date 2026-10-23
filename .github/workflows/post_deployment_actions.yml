@@ -5,9 +5,6 @@ on: deployment_status
 permissions:
   contents: read
 
-env:
-  PUPPETEER_DOWNLOAD_PATH: /home/runner/.npm/chromium
-
 jobs:
   dump_github_event:
     uses: ./.github/workflows/dump_event.yml
@@ -99,6 +96,15 @@ jobs:
 
       - name: Log out URL
         run: echo "${{ github.event.deployment_status.environment_url }}"
+
+      - name: Check Chrome matches Puppeteer
+        run: |
+          expected=$(node -p "require('puppeteer').PUPPETEER_REVISIONS.chrome.split('.')[0]")
+          actual=$(/usr/bin/google-chrome --version | grep -oE '[0-9]+' | head -1)
+          echo "Puppeteer expects Chrome $expected, runner has Chrome $actual"
+          if [ "$expected" != "$actual" ]; then
+            echo "::warning::Runner Chrome ($actual) does not match Puppeteer's Chrome ($expected); pa11y may be flaky"
+          fi
 
       # Run pa11y
       - name: Pa11y CI
