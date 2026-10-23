@@ -191,6 +191,38 @@ const nationalCurriculumInsightsFaqSectionSchema = z.object({
     .min(1),
 });
 
+const nationalCurriculumInsightsChangesSectionSchema = z.object({
+  __typename: z.literal("NationalCurriculumInsightsChangesSection"),
+  heading: z.string().trim().min(1),
+  changes: z
+    .array(
+      z.object({
+        id: z.string().min(1),
+        title: z.string().trim().min(1),
+        whyItMatters: z.string().trim().min(1),
+        detailPortableText: portableTextSchema.refine(
+          (blocks) =>
+            blocks.some(
+              (block) =>
+                block?._type === "block" &&
+                Array.isArray(block.children) &&
+                block.children.some(
+                  (child: { text?: string }) =>
+                    typeof child?.text === "string" && child.text.trim(),
+                ),
+            ),
+          "Add a non-empty explanation",
+        ),
+      }),
+    )
+    .min(2)
+    .max(6)
+    .refine(
+      (changes) => new Set(changes.map(({ id }) => id)).size === changes.length,
+      "Each change needs a unique ID",
+    ),
+});
+
 const nationalCurriculumInsightsRichTextSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsRichTextSection"),
   heading: z.string().min(1),
@@ -290,6 +322,7 @@ export const nationalCurriculumInsightsModuleSchema = z.discriminatedUnion(
     nationalCurriculumInsightsNewsletterSectionSchema,
     nationalCurriculumInsightsFaqSectionSchema,
     nationalCurriculumInsightsRichTextSectionSchema,
+    nationalCurriculumInsightsChangesSectionSchema,
     nationalCurriculumInsightsImageTextSectionSchema,
     nationalCurriculumInsightsGuidanceIntroSectionSchema,
     nationalCurriculumInsightsVideoCardsSectionSchema,

@@ -71,6 +71,51 @@ describe("National Curriculum Insights documents", () => {
     expect(documentXml).not.toContain("History navigation link");
   });
 
+  it("exports every change and explanation in editorial order", async () => {
+    const buffer = await generateNationalCurriculumInsightsDocx({
+      phase: "primary",
+      subject: {
+        ...science,
+        tabs: science.tabs.map((tab) => ({
+          ...tab,
+          page: {
+            ...tab.page,
+            modules: [
+              {
+                __typename: "NationalCurriculumInsightsChangesSection",
+                heading: "What's changed",
+                changes: ["First", "Second"].map((label) => ({
+                  id: label,
+                  title: `${label} change`,
+                  whyItMatters: `${label} teaching implication`,
+                  detailPortableText: [
+                    {
+                      _type: "block",
+                      children: [{ text: `${label} explanation` }],
+                    },
+                  ],
+                })),
+              },
+            ],
+          },
+        })),
+      },
+    });
+    const zip = await JSZip.loadAsync(buffer);
+    const xml = await zip.file("word/document.xml")!.async("string");
+    const content = [
+      "First change",
+      "First teaching implication",
+      "First explanation",
+      "Second change",
+      "Second teaching implication",
+      "Second explanation",
+    ];
+    const positions = content.map((text) => xml.indexOf(text));
+    expect(positions.every((position) => position >= 0)).toBe(true);
+    expect(positions).toEqual([...positions].sort((a, b) => a - b));
+  });
+
   it("packages separately generated subject documents into a zip", async () => {
     const primary = await generateNationalCurriculumInsightsDocx({
       phase: "primary",

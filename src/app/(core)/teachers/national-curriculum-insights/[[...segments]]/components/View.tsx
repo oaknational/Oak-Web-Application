@@ -14,6 +14,7 @@ import { NationalCurriculumInsightsHero } from "./Hero";
 import { NationalCurriculumInsightsHeader } from "./InsightHeader";
 import { NationalCurriculumInsightsDownload } from "./Download";
 import {
+  NationalCurriculumInsightsChanges,
   NationalCurriculumInsightsFaq,
   NationalCurriculumInsightsGuidanceIntro,
   NationalCurriculumInsightsImageText,
@@ -100,6 +101,8 @@ const ModuleView = ({
       );
     case "NationalCurriculumInsightsFaqSection":
       return <NationalCurriculumInsightsFaq section={module} data={data} />;
+    case "NationalCurriculumInsightsChangesSection":
+      return <NationalCurriculumInsightsChanges section={module} />;
     case "NationalCurriculumInsightsRichTextSection":
       return <NationalCurriculumInsightsRichText section={module} />;
     case "NationalCurriculumInsightsImageTextSection":
