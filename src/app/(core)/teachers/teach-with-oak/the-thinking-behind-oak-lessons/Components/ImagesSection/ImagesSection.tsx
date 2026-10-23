@@ -40,6 +40,7 @@ export function ImagesSection({
               $minWidth={"100%"}
               height={image.height}
               width={image.width}
+              sizes="(max-width: 640px) 100vw, 640px"
               src={image.src}
               alt={image.alt}
             />
