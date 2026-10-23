@@ -1,3 +1,11 @@
+## [1.1254.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1254.0...v1.1254.1) (2026-10-23)
+
+
+### Bug Fixes
+
+* principles no longer optional on <GuidingPrinciples/> ([0f941a3](https://github.com/oaknational/Oak-Web-Application/commit/0f941a3d7358cdfe1643028c424b711af1946775))
+* remove hardcoded data from <GuidingPrinciples/> component ([d8b0773](https://github.com/oaknational/Oak-Web-Application/commit/d8b07734571d5ee5eca59ecaf28c17a2e41887df))
+
 # [1.1254.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1253.0...v1.1254.0) (2026-10-23)
 
 
