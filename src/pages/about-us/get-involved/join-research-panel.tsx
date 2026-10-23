@@ -39,6 +39,12 @@ const pageComponents: {
   JoinResearchPanelPageContactUs: JoinResearchPanelPageDefault,
 };
 
+function renderBlock<K extends JoinResearchPanelPageBlockType>(
+  block: JoinResearchPanelPageBlock<K>,
+) {
+  return pageComponents[block.__typename](block);
+}
+
 export type AboutUsJoinResearchPanelPageProps = {
   pageData: JoinResearchPanelPage;
   topNav: TopNavProps;
@@ -47,12 +53,6 @@ export type AboutUsJoinResearchPanelPageProps = {
 export const AboutUsJoinResearchPanel: NextPage<
   AboutUsJoinResearchPanelPageProps
 > = ({ topNav, pageData }) => {
-  function renderBlock<K extends JoinResearchPanelPageBlockType>(
-    block: JoinResearchPanelPageBlock<K>,
-  ) {
-    return pageComponents[block.__typename](block);
-  }
-
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={null}
