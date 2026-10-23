@@ -2,6 +2,33 @@
   "allHomepage": [
     {
       "id": "homepage",
+      "topBanner": {
+        "displayNewTag": true,
+        "messagePortableText": [
+          {
+            "_key": "967be59f8853",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "24221de4ae210",
+                "_type": "span",
+                "marks": [],
+                "text": "Oak is now used in 72% of schools"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ],
+        "enabled": true,
+        "cta": {
+          "label": "Explore our impact",
+          "linkType": "internal",
+          "external": "https://www.google.com/",
+          "internal": "/about-us/oaks-impact"
+        },
+        "backgroundColour": "bg-decorative1-main"
+      },
       "heading": "Oak is evolving",
       "summaryPortableText": [
         {

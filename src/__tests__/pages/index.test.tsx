@@ -3,6 +3,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
 import { BlogPostPreview, WebinarPreview } from "@/common-lib/cms-types";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+import { topBannerFixture } from "@/components/SharedComponents/TopBanner/TopBanner.fixture";
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 
 const render = renderWithProviders();
@@ -30,6 +31,7 @@ const props: HomePageProps = {
   pageData: {
     heading: "",
     id: "",
+    topBanner: topBannerFixture,
     summaryPortableText: [],
     campaignPromoBanner: {
       headingPortableTextWithPromo: [],
@@ -69,6 +71,15 @@ describe("Teachers Page", () => {
     it("renders", () => {
       const { baseElement } = render(<Home {...props} />);
       expect(baseElement).toMatchSnapshot();
+    });
+
+    it("does not render TopBanner if topBanner data is not provided", () => {
+      const { queryByText } = renderWithProviders()(
+        <Home {...props} pageData={{ ...props.pageData, topBanner: null }} />,
+      );
+
+      const banner = queryByText("Oak is now used in 72% of schools");
+      expect(banner).not.toBeInTheDocument();
     });
   });
 
