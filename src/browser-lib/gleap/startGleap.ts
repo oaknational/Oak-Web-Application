@@ -14,6 +14,7 @@ type GleapConfig = {
 const startGleap = ({ apiKey, apiUrl, frameUrl }: GleapConfig) => {
   window.Gleap = Gleap;
   window.Gleap.setFrameUrl(frameUrl);
+  window.Gleap.showFeedbackButton(false);
   window.Gleap.setApiUrl(apiUrl);
   window.Gleap.initialize(apiKey);
 };
