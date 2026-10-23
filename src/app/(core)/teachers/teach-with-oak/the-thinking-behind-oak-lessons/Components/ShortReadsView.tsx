@@ -5,7 +5,11 @@ import {
   OakGrid,
   OakGridArea,
   OakBreadcrumbsProps,
+  OakInlineBanner,
+  OakIcon,
+  OakP,
 } from "@oaknational/oak-components";
+import Link from "next/link";
 
 import { ShortReadsContentsNav } from "./ShortReadsContentsNav/ShortReadsContentsNav";
 import { ShortReadsHeading } from "./ShortReadsHeading/ShortReadsHeading";
@@ -13,6 +17,8 @@ import { ExplanationInANutshell } from "./ExplanationInANutshell/ExplanationInAN
 import { CheckForUnderstandingInANutshell } from "./CheckForUnderstandingInANutshell/CheckForUnderstandingInANutshell";
 import { PracticeInANutshell } from "./PracticeInANutshell/PracticeInANutshell";
 import { FeedbackInANutshell } from "./FeedbackInANutshell/FeedbackInANutshell";
+
+import CopyrightLicence from "@/components/TeacherComponents/CopyrightLicence/CopyrightLicence";
 
 export function ShortReadsView() {
   const breadcrumbs: OakBreadcrumbsProps["breadcrumbs"] = [
@@ -57,6 +63,24 @@ export function ShortReadsView() {
                 <CheckForUnderstandingInANutshell />
                 <PracticeInANutshell />
                 <FeedbackInANutshell />
+                <Link
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSdEs58ApTLxRyQsDxmAaykGxTa8p6hgzgTmg1brFIPmQxJNpg/viewform?pli=1"
+                  target="_blank"
+                >
+                  <OakInlineBanner
+                    isOpen
+                    message="Share your feedback with us"
+                    cta={
+                      <OakFlex $alignItems={"center"} $gap={"spacing-8"}>
+                        <OakP $font={"heading-light-7"}>
+                          Fill out a feedback form
+                        </OakP>
+                        <OakIcon iconName="external" />
+                      </OakFlex>
+                    }
+                  />
+                </Link>
+                <CopyrightLicence copyrightYear="2026" openLinksExternally />
               </OakFlex>
             </OakFlex>
           </OakGridArea>
