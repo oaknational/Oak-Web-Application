@@ -35,7 +35,7 @@ function ContentsList({ headingId }: Readonly<{ headingId: string }>) {
   );
 }
 
-export function ShortReadsContentsNav() {
+export function ShortReadsNav() {
   return (
     <>
       {/* Mobile/tablet contents nav */}

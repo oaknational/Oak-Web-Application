@@ -1,5 +1,5 @@
 import { Fragment, type ReactElement } from "react";
-import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
+import { OakBox, OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 
 type TextBlock = string | ReactElement;
 
@@ -17,7 +17,7 @@ export function HeadingAndText({
   const blocks = Array.isArray(text) ? text : [text];
 
   return (
-    <>
+    <OakBox>
       <OakHeading
         $font={["heading-7", "heading-6", "heading-6"]}
         tag="h3"
@@ -25,7 +25,7 @@ export function HeadingAndText({
       >
         {heading}
       </OakHeading>
-      <OakFlex $flexDirection={"column"} $gap={"spacing-16"} $mb={"spacing-32"}>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         {blocks.map((block, index) =>
           typeof block === "string" ? (
             <OakP key={index}>{block}</OakP>
@@ -34,6 +34,6 @@ export function HeadingAndText({
           ),
         )}
       </OakFlex>
-    </>
+    </OakBox>
   );
 }

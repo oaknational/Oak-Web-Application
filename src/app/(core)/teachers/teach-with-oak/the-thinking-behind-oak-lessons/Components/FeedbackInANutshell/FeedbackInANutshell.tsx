@@ -1,9 +1,7 @@
-import { OakHeading, OakLI, OakOL, OakP } from "@oaknational/oak-components";
+import { OakLI, OakOL, OakP } from "@oaknational/oak-components";
 
-import {
-  SectionContent,
-  SectionContentList,
-} from "../SectionContentList/SectionContentList";
+import { SectionContent } from "../SectionContentList/SectionContentList";
+import { NutshellSection } from "../NutshellSection/NutshellSection";
 import { getTeacherJourneyImageUrl } from "../getTeacherJourneyImageUrl";
 
 const feedbackContent: SectionContent = [
@@ -116,21 +114,11 @@ const feedbackContent: SectionContent = [
 
 export function FeedbackInANutshell() {
   return (
-    <>
-      <OakHeading
-        $font={["heading-5", "heading-4", "heading-4"]}
-        tag="h2"
-        $mb={"spacing-32"}
-        id="feedback"
-      >
-        Feedback in a nutshell
-      </OakHeading>
-      <OakP $mb={"spacing-32"}>
-        Explore Oak’s approach to feedback and the thinking behind our design,
-        with questions to help you reflect on what this means for your
-        classroom.
-      </OakP>
-      <SectionContentList content={feedbackContent} />
-    </>
+    <NutshellSection
+      id="feedback"
+      heading="Feedback in a nutshell"
+      intro="Explore Oak’s approach to feedback and the thinking behind our design, with questions to help you reflect on what this means for your classroom."
+      content={feedbackContent}
+    />
   );
 }

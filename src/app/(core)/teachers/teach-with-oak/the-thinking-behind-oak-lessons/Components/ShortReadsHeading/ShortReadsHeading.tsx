@@ -1,8 +1,8 @@
-import { OakHeading, OakP } from "@oaknational/oak-components";
+import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 
 export function ShortReadsHeading() {
   return (
-    <>
+    <OakFlex $flexDirection={"column"}>
       <OakHeading
         $font={["heading-4", "heading-3", "heading-2"]}
         tag="h1"
@@ -14,6 +14,6 @@ export function ShortReadsHeading() {
         See how our lessons are designed to support learning - and make the most
         of them in your classroom.
       </OakP>
-    </>
+    </OakFlex>
   );
 }

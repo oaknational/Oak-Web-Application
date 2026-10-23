@@ -1,9 +1,7 @@
-import { OakHeading, OakLI, OakOL, OakP } from "@oaknational/oak-components";
+import { OakLI, OakOL, OakP } from "@oaknational/oak-components";
 
-import {
-  SectionContent,
-  SectionContentList,
-} from "../SectionContentList/SectionContentList";
+import { SectionContent } from "../SectionContentList/SectionContentList";
+import { NutshellSection } from "../NutshellSection/NutshellSection";
 import { getTeacherJourneyImageUrl } from "../getTeacherJourneyImageUrl";
 
 const practiceContent: SectionContent = [
@@ -111,21 +109,11 @@ const practiceContent: SectionContent = [
 
 export function PracticeInANutshell() {
   return (
-    <>
-      <OakHeading
-        $font={["heading-5", "heading-4", "heading-4"]}
-        tag="h2"
-        $mb={"spacing-32"}
-        id="practice"
-      >
-        Practice in a nutshell
-      </OakHeading>
-      <OakP $mb={"spacing-32"}>
-        Explore Oak’s approach to practice and the thinking behind our design,
-        with questions to help you reflect on what this means for your
-        classroom.
-      </OakP>
-      <SectionContentList content={practiceContent} />
-    </>
+    <NutshellSection
+      id="practice"
+      heading="Practice in a nutshell"
+      intro="Explore Oak’s approach to practice and the thinking behind our design, with questions to help you reflect on what this means for your classroom."
+      content={practiceContent}
+    />
   );
 }

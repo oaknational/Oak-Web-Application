@@ -1,9 +1,7 @@
-import { OakHeading, OakLI, OakOL, OakP } from "@oaknational/oak-components";
+import { OakLI, OakOL, OakP } from "@oaknational/oak-components";
 
-import {
-  SectionContent,
-  SectionContentList,
-} from "../SectionContentList/SectionContentList";
+import { SectionContent } from "../SectionContentList/SectionContentList";
+import { NutshellSection } from "../NutshellSection/NutshellSection";
 import { getTeacherJourneyImageUrl } from "../getTeacherJourneyImageUrl";
 
 const checkForUnderstandingContent: SectionContent = [
@@ -146,21 +144,11 @@ const checkForUnderstandingContent: SectionContent = [
 
 export function CheckForUnderstandingInANutshell() {
   return (
-    <>
-      <OakHeading
-        $font={["heading-5", "heading-4", "heading-4"]}
-        tag="h2"
-        $mb={"spacing-32"}
-        id="check-for-understanding"
-      >
-        Check for understanding in a nutshell
-      </OakHeading>
-      <OakP $mb={"spacing-32"}>
-        Explore Oak’s approach to check for understanding (CfU) and the thinking
-        behind our design, with questions to help you reflect on what this means
-        for your classroom.
-      </OakP>
-      <SectionContentList content={checkForUnderstandingContent} />
-    </>
+    <NutshellSection
+      id="check-for-understanding"
+      heading="Check for understanding in a nutshell"
+      intro="Explore Oak’s approach to check for understanding (CfU) and the thinking behind our design, with questions to help you reflect on what this means for your classroom."
+      content={checkForUnderstandingContent}
+    />
   );
 }

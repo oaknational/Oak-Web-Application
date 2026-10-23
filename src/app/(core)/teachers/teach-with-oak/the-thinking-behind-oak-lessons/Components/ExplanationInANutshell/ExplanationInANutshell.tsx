@@ -1,9 +1,7 @@
-import { OakHeading, OakLI, OakOL, OakP } from "@oaknational/oak-components";
+import { OakLI, OakOL, OakP } from "@oaknational/oak-components";
 
-import {
-  SectionContent,
-  SectionContentList,
-} from "../SectionContentList/SectionContentList";
+import { SectionContent } from "../SectionContentList/SectionContentList";
+import { NutshellSection } from "../NutshellSection/NutshellSection";
 import { getTeacherJourneyImageUrl } from "../getTeacherJourneyImageUrl";
 
 const explanationContent: SectionContent = [
@@ -114,21 +112,11 @@ const explanationContent: SectionContent = [
 
 export function ExplanationInANutshell() {
   return (
-    <>
-      <OakHeading
-        $font={["heading-5", "heading-4", "heading-4"]}
-        tag="h2"
-        $mb={"spacing-32"}
-        id="explanation"
-      >
-        Explanation in a nutshell
-      </OakHeading>
-      <OakP $mb={"spacing-32"}>
-        Explore Oak's approach to explanation and the thinking behind our
-        design, with questions to help you reflect on what this means for your
-        classroom.
-      </OakP>
-      <SectionContentList content={explanationContent} />
-    </>
+    <NutshellSection
+      id="explanation"
+      heading="Explanation in a nutshell"
+      intro="Explore Oak's approach to explanation and the thinking behind our design, with questions to help you reflect on what this means for your classroom."
+      content={explanationContent}
+    />
   );
 }
