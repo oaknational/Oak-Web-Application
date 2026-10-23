@@ -19,3 +19,4 @@ export { NationalCurriculumInsightsFaq } from "./sections/Faq";
 export { NationalCurriculumInsightsChanges } from "./sections/Changes";
 export { NationalCurriculumInsightsUnchanged } from "./sections/Unchanged";
 export { NationalCurriculumInsightsChecklist } from "./sections/Checklist";
+export { NationalCurriculumInsightsPreparation } from "./sections/Preparation";

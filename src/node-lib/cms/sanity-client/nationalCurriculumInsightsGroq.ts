@@ -58,6 +58,7 @@ const modulesProjection = `modules[]{
     _type == "nationalCurriculumInsightsChangesSection" => "NationalCurriculumInsightsChangesSection",
     _type == "nationalCurriculumInsightsUnchangedSection" => "NationalCurriculumInsightsUnchangedSection",
     _type == "nationalCurriculumInsightsChecklistSection" => "NationalCurriculumInsightsChecklistSection",
+    _type == "nationalCurriculumInsightsPreparationSection" => "NationalCurriculumInsightsPreparationSection",
     _type == "nationalCurriculumInsightsRichTextSection" => "NationalCurriculumInsightsRichTextSection",
     _type == "nationalCurriculumInsightsImageTextSection" => "NationalCurriculumInsightsImageTextSection",
     _type == "nationalCurriculumInsightsGuidanceIntroSection" => "NationalCurriculumInsightsGuidanceIntroSection",
@@ -130,7 +131,8 @@ const modulesProjection = `modules[]{
       "nationalCurriculumInsightsHeroSection",
       "nationalCurriculumInsightsImageTextSection",
       "nationalCurriculumInsightsGuidanceIntroSection",
-      "nationalCurriculumInsightsQuoteSection"
+      "nationalCurriculumInsightsQuoteSection",
+      "nationalCurriculumInsightsPreparationSection"
     ] => image ${imageProjection}
   ),
   changes[]{
@@ -139,6 +141,7 @@ const modulesProjection = `modules[]{
     whyItMatters,
     "detailPortableText": detail${insightsPortableTextProjection}
   },
+  steps[]{"id":_key,text},
   items[]{
     "id": _key,
     "contentPortableText": content${insightsPortableTextProjection},

@@ -175,6 +175,31 @@ describe("NationalCurriculumInsightsView", () => {
     ).toBeInTheDocument();
   });
   it.each([
+    ["science", "primary"],
+    ["science", "primary", "key-stage-1"],
+  ])("renders preparation on %s %s %s pages", async (...segments) => {
+    const data = await getData(segments);
+    if (!data.page) throw new Error("Expected a page");
+    data.page.modules.push({
+      __typename: "NationalCurriculumInsightsPreparationSection",
+      heading: "Prepare for the changes",
+      steps: [
+        { id: "one", text: "Map the current curriculum." },
+        { id: "two", text: "Plan the progression." },
+        { id: "three", text: "Choose a local study." },
+      ],
+      attribution: "Emma McCrea",
+      role: "Head of Curriculum Design",
+      image: null,
+    });
+    renderWithTheme(<NationalCurriculumInsightsView data={data} />);
+    expect(
+      screen.getByRole("heading", { name: "Prepare for the changes" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Emma McCrea")).toBeInTheDocument();
+  });
+
+  it.each([
     { segments: [] },
     { segments: ["guidance"] },
     { segments: ["science"] },

@@ -17,6 +17,50 @@ if (!science) {
 }
 
 describe("National Curriculum Insights documents", () => {
+  it("includes the preparation steps and their attribution in downloads", async () => {
+    const subject = {
+      ...science,
+      tabs: science.tabs.map((tab) => ({
+        ...tab,
+        page: {
+          ...tab.page,
+          modules: [
+            ...tab.page.modules,
+            {
+              __typename:
+                "NationalCurriculumInsightsPreparationSection" as const,
+              heading: "Prepare for the changes",
+              steps: [
+                { id: "one", text: "Map the current curriculum." },
+                { id: "two", text: "Plan the progression." },
+                { id: "three", text: "Choose a local study." },
+              ],
+              attribution: "Emma McCrea",
+              role: "Head of Curriculum Design",
+              image: null,
+            },
+          ],
+        },
+      })),
+    };
+    const buffer = await generateNationalCurriculumInsightsDocx({
+      phase: "primary",
+      subject,
+    });
+    const zip = await JSZip.loadAsync(buffer);
+    const xml = await zip.file("word/document.xml")!.async("string");
+    for (const text of [
+      "Prepare for the changes",
+      "Map the current curriculum.",
+      "Plan the progression.",
+      "Choose a local study.",
+      "Emma McCrea",
+      "Head of Curriculum Design",
+    ]) {
+      expect(xml).toContain(text);
+    }
+  });
+
   it("includes every checklist item in editorial order", async () => {
     const subject = {
       ...science,
