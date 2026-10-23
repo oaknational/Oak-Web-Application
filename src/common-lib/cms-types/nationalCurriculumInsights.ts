@@ -579,7 +579,7 @@ export const nationalCurriculumInsightsHubSchema = z
       z.object({
         title: z.string().min(1),
         phase: nationalCurriculumInsightsPhaseSchema,
-        subjectSlug: slugSchema,
+        subjectSlug: z.string().min(1),
         iconName: z.string().nullish(),
         keyStage: nationalCurriculumInsightsKeyStageSchema.nullish(),
       }),

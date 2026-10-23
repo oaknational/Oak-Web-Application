@@ -156,7 +156,7 @@ describe("nationalCurriculumInsightsGroq", () => {
       phaseLinks: [
         {
           title: "Science",
-          subjectSlug: { current: "science" },
+          subjectSlug: "science",
           phase: "primary",
           iconName: null,
         },
