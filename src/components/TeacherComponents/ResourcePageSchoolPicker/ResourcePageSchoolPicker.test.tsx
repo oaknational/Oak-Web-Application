@@ -52,6 +52,38 @@ describe("search autocomplete", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
+  it("keeps the selected school when refreshed suggestions no longer include it", async () => {
+    const Wrapper = ({ results }: { results: typeof schools }) => {
+      const [input, setInput] = useState("Dorothy");
+      return (
+        <>
+          <SchoolPicker
+            hasError={false}
+            schools={results}
+            setSchoolPickerInputValue={setInput}
+            schoolPickerInputValue={input}
+            label="School picker"
+            setSelectedSchool={setSelectedSchool}
+            withHomeschool={false}
+          />
+          <input aria-label="Name" />
+        </>
+      );
+    };
+    const user = userEvent.setup();
+    const { rerender } = renderWithTheme(<Wrapper results={schools} />);
+    const input = screen.getByRole("combobox");
+    await user.click(input);
+    await user.keyboard("{ArrowDown}{Enter}");
+    const selected = input.getAttribute("value");
+    expect(selected).toContain("Dorothy");
+    rerender(<Wrapper results={[]} />);
+    await user.type(screen.getByRole("textbox", { name: "Name" }), "Jamie");
+    expect(input).toHaveValue(selected);
+    await user.clear(input);
+    await user.click(screen.getByRole("textbox", { name: "Name" }));
+    expect(input).toHaveValue("");
+  });
   it("renders a SearchCombobox input", () => {
     renderWithTheme(
       <SchoolPicker
