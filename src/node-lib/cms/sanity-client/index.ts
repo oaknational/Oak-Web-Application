@@ -198,7 +198,10 @@ const getSanityClient = () => ({
   joinResearchPanelPage: getSingleton(
     sanityGraphqlApi.joinResearchPanelPage,
     joinResearchPanelPageSchema,
-    (result) => result?.allNewAboutCorePageJoinResearchPanel?.[0],
+    (result) => ({
+      content: result?.content?.[0],
+      blogs: result?.blogs,
+    }),
   ),
   contactPage: getSingleton(
     sanityGraphqlApi.contactCorePage,
