@@ -29,6 +29,7 @@ import {
   type RefObject,
 } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { FocusOn } from "react-focus-on";
 
 import type { NationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
 
@@ -80,14 +81,6 @@ const getDownloadLayoutProps = (sticky: boolean) =>
       } as const)
     : { section: {}, expanded: {} };
 
-const responseFilename = (response: Response) => {
-  const explicitFilename = response.headers.get("x-filename");
-  if (explicitFilename) return explicitFilename;
-  const disposition = response.headers.get("content-disposition") ?? "";
-  const filename = /filename="?([^";]+)"?/i.exec(disposition);
-  return filename?.[1] ?? "Curriculum insights";
-};
-
 const getDocumentCountLabel = (count: number) => {
   if (count === 0) return "guidance";
   const noun = count === 1 ? "document" : "documents";
@@ -105,6 +98,14 @@ const getDownloadDialogProps = (expanded: boolean) =>
         "aria-label": "Curriculum guidance download",
       } as const)
     : {};
+
+const responseFilename = (response: Response) => {
+  const explicitFilename = response.headers.get("x-filename");
+  if (explicitFilename) return explicitFilename;
+  const disposition = response.headers.get("content-disposition") ?? "";
+  const filename = /filename="?([^";]+)"?/i.exec(disposition);
+  return filename?.[1] ?? "Curriculum insights";
+};
 
 const DownloadHeader = ({
   formId,
@@ -276,7 +277,6 @@ export const NationalCurriculumInsightsDownload = ({
   const sticky = data.route.kind === "hub";
   const [expanded, setExpanded] = useState(false);
   const layoutProps = getDownloadLayoutProps(sticky || expanded);
-  const dialogRef = useRef<HTMLDivElement>(null);
   const [mobileStage, setMobileStage] = useState<"details" | "subjects">(
     "subjects",
   );
@@ -322,43 +322,6 @@ export const NationalCurriculumInsightsDownload = ({
         openDownloads,
       );
   }, []);
-
-  useEffect(() => {
-    if (!expanded || !dialogRef.current) return;
-    const fallbackFocus = headerRef.current;
-    const background: Array<{
-      element: HTMLElement;
-      inert: string | null;
-      ariaHidden: string | null;
-    }> = [];
-    let branch: HTMLElement = dialogRef.current;
-    while (branch.parentElement) {
-      const parent = branch.parentElement;
-      for (const sibling of Array.from(parent.children)) {
-        if (sibling !== branch && sibling instanceof HTMLElement) {
-          background.push({
-            element: sibling,
-            inert: sibling.getAttribute("inert"),
-            ariaHidden: sibling.getAttribute("aria-hidden"),
-          });
-          sibling.setAttribute("inert", "");
-          sibling.setAttribute("aria-hidden", "true");
-        }
-      }
-      if (parent === document.body) break;
-      branch = parent;
-    }
-    return () => {
-      for (const { element, inert, ariaHidden } of background) {
-        if (inert === null) element.removeAttribute("inert");
-        else element.setAttribute("inert", inert);
-        if (ariaHidden === null) element.removeAttribute("aria-hidden");
-        else element.setAttribute("aria-hidden", ariaHidden);
-      }
-      const target = returnFocusRef.current ?? fallbackFocus;
-      if (target?.isConnected) target.focus();
-    };
-  }, [expanded]);
 
   const groups = useMemo(
     () =>
@@ -444,409 +407,395 @@ export const NationalCurriculumInsightsDownload = ({
   };
 
   return (
-    <OakFlex
-      as="section"
-      ref={dialogRef}
-      {...getDownloadDialogProps(expanded)}
-      data-insights-module="downloads"
-      {...layoutProps.section}
-      $zIndex={expanded ? "modal-dialog" : "fixed-header"}
-      $maxHeight={sticky || expanded ? "100vh" : undefined}
-      $width="100%"
-      $flexDirection="column"
-      $background="bg-primary"
-      onKeyDown={(event) => {
-        if (expanded && event.key === "Tab") {
-          const controls = Array.from(
-            dialogRef.current?.querySelectorAll<HTMLElement>(
-              'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
-            ) ?? [],
-          ).filter((element) => element.getClientRects().length > 0);
-          const first = controls[0];
-          const last = controls.at(-1);
-          if (
-            event.shiftKey &&
-            (document.activeElement === first ||
-              document.activeElement === expandedRef.current)
-          ) {
-            event.preventDefault();
-            last?.focus();
-          } else if (!event.shiftKey && document.activeElement === last) {
-            event.preventDefault();
-            first?.focus();
-          }
-        }
-        if (expanded && event.key === "Escape") {
-          event.preventDefault();
-          setExpanded(false);
-          (returnFocusRef.current ?? headerRef.current)?.focus();
-        }
+    <FocusOn
+      enabled={expanded}
+      autoFocus={false}
+      scrollLock
+      onEscapeKey={() => setExpanded(false)}
+      returnFocus={() => {
+        const target = returnFocusRef.current ?? headerRef.current;
+        if (target?.isConnected) target.focus();
+        return false;
       }}
     >
-      <DownloadHeader
-        formId={formId}
-        section={section}
-        expanded={expanded}
-        buttonRef={headerRef}
-        onToggle={() => {
-          if (!expanded) returnFocusRef.current = headerRef.current;
-          setExpanded((value) => !value);
-          setMobileStage("subjects");
-          setDownloadComplete(false);
-        }}
-      />
+      <OakFlex
+        as="section"
+        {...getDownloadDialogProps(expanded)}
+        data-insights-module="downloads"
+        {...layoutProps.section}
+        $zIndex={expanded ? "modal-dialog" : "fixed-header"}
+        $maxHeight={sticky || expanded ? "100vh" : undefined}
+        $width="100%"
+        $flexDirection="column"
+        $background="bg-primary"
+      >
+        <DownloadHeader
+          formId={formId}
+          section={section}
+          expanded={expanded}
+          buttonRef={headerRef}
+          onToggle={() => {
+            if (!expanded) returnFocusRef.current = headerRef.current;
+            setExpanded((value) => !value);
+            setMobileStage("subjects");
+            setDownloadComplete(false);
+          }}
+        />
 
-      {expanded ? (
-        <OakBox
-          as="form"
-          $width="100%"
-          $background="bg-primary"
-          ref={expandedRef}
-          id={`${formId}-content`}
-          onSubmit={handleSubmit(submit)}
-          tabIndex={-1}
-          aria-label="Curriculum guidance download"
-          aria-busy={downloading}
-          noValidate
-          {...layoutProps.expanded}
-        >
-          {downloadComplete ? (
-            <NationalCurriculumInsightsDownloadConfirmation />
-          ) : (
-            <>
-              <OakGrid
-                $mh="auto"
-                $ph={["spacing-0", "spacing-0", "spacing-56"]}
-              >
-                <OakGridArea
-                  $colSpan={[12, 12, 6]}
-                  $colStart={1}
-                  $display={[
-                    mobileStage === "subjects" ? "block" : "none",
-                    null,
-                    "block",
-                  ]}
-                  $pt={["spacing-20", "spacing-20", "spacing-56"]}
-                  $pb={["spacing-0", "spacing-0", "spacing-40"]}
-                  $pr={["spacing-0", "spacing-0", "spacing-100"]}
-                  $pl={["spacing-0", "spacing-0", "spacing-64"]}
-                  $br={[
-                    "border-solid-none",
-                    "border-solid-none",
-                    "border-solid-s",
-                  ]}
-                  $borderColor={[null, null, "border-neutral-lighter"]}
+        {expanded ? (
+          <OakBox
+            as="form"
+            $width="100%"
+            $background="bg-primary"
+            ref={expandedRef}
+            id={`${formId}-content`}
+            onSubmit={handleSubmit(submit)}
+            tabIndex={-1}
+            aria-label="Curriculum guidance download"
+            aria-busy={downloading}
+            noValidate
+            {...layoutProps.expanded}
+          >
+            {downloadComplete ? (
+              <NationalCurriculumInsightsDownloadConfirmation />
+            ) : (
+              <>
+                <OakGrid
+                  $mh="auto"
+                  $ph={["spacing-0", "spacing-0", "spacing-56"]}
                 >
-                  <OakBox
-                    $display={["block", "block", "none"]}
-                    $ph="spacing-16"
+                  <OakGridArea
+                    $colSpan={[12, 12, 6]}
+                    $colStart={1}
+                    $display={[
+                      mobileStage === "subjects" ? "block" : "none",
+                      null,
+                      "block",
+                    ]}
+                    $pt={["spacing-20", "spacing-20", "spacing-56"]}
+                    $pb={["spacing-0", "spacing-0", "spacing-40"]}
+                    $pr={["spacing-0", "spacing-0", "spacing-100"]}
+                    $pl={["spacing-0", "spacing-0", "spacing-64"]}
+                    $br={[
+                      "border-solid-none",
+                      "border-solid-none",
+                      "border-solid-s",
+                    ]}
+                    $borderColor={[null, null, "border-neutral-lighter"]}
                   >
-                    <OakTertiaryButton
-                      iconName="arrow-left"
-                      type="button"
-                      onClick={() => {
-                        setExpanded(false);
-                        (returnFocusRef.current ?? headerRef.current)?.focus();
-                      }}
+                    <OakBox
+                      $display={["block", "block", "none"]}
+                      $ph="spacing-16"
                     >
-                      Back
-                    </OakTertiaryButton>
-                  </OakBox>
-                  <OakBox $display={["none", "none", "block"]}>
-                    <OakHeading tag="h2" $font="heading-6">
-                      {section.downloadsHeading}
-                    </OakHeading>
-                    <OakP
-                      $font="heading-light-6"
-                      $mt="spacing-24"
-                      $mb="spacing-0"
+                      <OakTertiaryButton
+                        iconName="arrow-left"
+                        type="button"
+                        onClick={() => {
+                          setExpanded(false);
+                          (
+                            returnFocusRef.current ?? headerRef.current
+                          )?.focus();
+                        }}
+                      >
+                        Back
+                      </OakTertiaryButton>
+                    </OakBox>
+                    <OakBox $display={["none", "none", "block"]}>
+                      <OakHeading tag="h2" $font="heading-6">
+                        {section.downloadsHeading}
+                      </OakHeading>
+                      <OakP
+                        $font="heading-light-6"
+                        $mt="spacing-24"
+                        $mb="spacing-0"
+                      >
+                        {section.downloadsIntroduction}
+                      </OakP>
+                    </OakBox>
+                    <OakBox
+                      $width="100%"
+                      $mt={["spacing-0", "spacing-0", "spacing-40"]}
                     >
-                      {section.downloadsIntroduction}
-                    </OakP>
-                  </OakBox>
-                  <OakBox
-                    $width="100%"
-                    $mt={["spacing-0", "spacing-0", "spacing-40"]}
-                  >
-                    <MultiSelect
-                      id={`${formId}-subjects`}
-                      groups={groups}
-                      selectedValues={selectedValues}
-                      onChange={changeSelection}
-                      placeholder="Select subjects to download"
-                      mobileTitle="Download subjects"
-                      hideMobileHeader
-                      size="large"
-                      mobileConfirmLabel="Confirm selection"
-                      selectAllLabel="Select all subjects"
-                      unselectAllLabel="Unselect all subjects"
-                      onMobileConfirm={() => setMobileStage("details")}
-                      selectedItemsLabel="Selected subjects"
-                      groupSelectLabel={(group) =>
-                        `All ${group.label.toLowerCase()} subjects`
-                      }
-                      data-testid="curriculum-insights-subjects"
-                    />
-                  </OakBox>
-                </OakGridArea>
-
-                <OakGridArea
-                  $colSpan={[12, 12, 6]}
-                  $colStart={[1, 1, 7]}
-                  $display={[
-                    mobileStage === "details" ? "block" : "none",
-                    null,
-                    "block",
-                  ]}
-                  $pt={["spacing-32", "spacing-32", "spacing-40"]}
-                  $pb="spacing-40"
-                  $pl={["spacing-20", "spacing-20", "spacing-32"]}
-                  $pr={["spacing-20", "spacing-20", "spacing-56"]}
-                >
-                  <OakBox
-                    $display={["block", "block", "none"]}
-                    $mb="spacing-32"
-                  >
-                    <OakTertiaryButton
-                      iconName="arrow-left"
-                      type="button"
-                      onClick={() => setMobileStage("subjects")}
-                    >
-                      Back
-                    </OakTertiaryButton>
-                  </OakBox>
-                  <OakHeading tag="h2" $font="heading-6">
-                    {section.detailsHeading}
-                  </OakHeading>
-                  <OakFlex
-                    $flexDirection="column"
-                    $gap="spacing-20"
-                    $mt="spacing-20"
-                  >
-                    <OakBox $position="relative" $width="100%">
-                      <NationalCurriculumInsightsFieldLabel
-                        htmlFor={`${formId}-name`}
-                        label="Name (required)"
-                      />
-                      <Controller
-                        control={control}
-                        name="name"
-                        render={({ field }) => (
-                          <OakTextInput
-                            name={field.name}
-                            value={field.value}
-                            onChange={field.onChange}
-                            onBlur={field.onBlur}
-                            id={`${formId}-name`}
-                            placeholder="Type your name"
-                            autoComplete="name"
-                            required
-                            wrapperWidth="100%"
-                            $height="spacing-64"
-                          />
-                        )}
+                      <MultiSelect
+                        id={`${formId}-subjects`}
+                        groups={groups}
+                        selectedValues={selectedValues}
+                        onChange={changeSelection}
+                        placeholder="Select subjects to download"
+                        mobileTitle="Download subjects"
+                        hideMobileHeader
+                        size="large"
+                        mobileConfirmLabel="Confirm selection"
+                        selectAllLabel="Select all subjects"
+                        unselectAllLabel="Unselect all subjects"
+                        onMobileConfirm={() => setMobileStage("details")}
+                        selectedItemsLabel="Selected subjects"
+                        groupSelectLabel={(group) =>
+                          `All ${group.label.toLowerCase()} subjects`
+                        }
+                        data-testid="curriculum-insights-subjects"
                       />
                     </OakBox>
-                    <OakFlex $flexDirection="column" $gap="spacing-16">
+                  </OakGridArea>
+
+                  <OakGridArea
+                    $colSpan={[12, 12, 6]}
+                    $colStart={[1, 1, 7]}
+                    $display={[
+                      mobileStage === "details" ? "block" : "none",
+                      null,
+                      "block",
+                    ]}
+                    $pt={["spacing-32", "spacing-32", "spacing-40"]}
+                    $pb="spacing-40"
+                    $pl={["spacing-20", "spacing-20", "spacing-32"]}
+                    $pr={["spacing-20", "spacing-20", "spacing-56"]}
+                  >
+                    <OakBox
+                      $display={["block", "block", "none"]}
+                      $mb="spacing-32"
+                    >
+                      <OakTertiaryButton
+                        iconName="arrow-left"
+                        type="button"
+                        onClick={() => setMobileStage("subjects")}
+                      >
+                        Back
+                      </OakTertiaryButton>
+                    </OakBox>
+                    <OakHeading tag="h2" $font="heading-6">
+                      {section.detailsHeading}
+                    </OakHeading>
+                    <OakFlex
+                      $flexDirection="column"
+                      $gap="spacing-20"
+                      $mt="spacing-20"
+                    >
                       <OakBox $position="relative" $width="100%">
                         <NationalCurriculumInsightsFieldLabel
-                          htmlFor={`${formId}-school`}
-                          label="School (required)"
+                          htmlFor={`${formId}-name`}
+                          label="Name (required)"
                         />
                         <Controller
                           control={control}
-                          name="school"
+                          name="name"
                           render={({ field }) => (
                             <OakTextInput
                               name={field.name}
                               value={field.value}
                               onChange={field.onChange}
                               onBlur={field.onBlur}
-                              id={`${formId}-school`}
-                              placeholder="Type school name, postcode, or ‘homeschool’"
-                              disabled={schoolNotListed}
-                              required={!schoolNotListed}
-                              autoComplete="organization"
+                              id={`${formId}-name`}
+                              placeholder="Type your name"
+                              autoComplete="name"
+                              required
                               wrapperWidth="100%"
                               $height="spacing-64"
                             />
                           )}
                         />
                       </OakBox>
-                      <Controller
-                        control={control}
-                        name="schoolNotListed"
-                        render={({ field }) => (
-                          <OakCheckBox
-                            id={`${formId}-school-not-listed`}
-                            name="school-not-listed"
-                            value="school-not-listed"
-                            displayValue="My school isn't listed"
-                            checked={field.value}
-                            onChange={(event) =>
-                              field.onChange(event.target.checked)
-                            }
+                      <OakFlex $flexDirection="column" $gap="spacing-16">
+                        <OakBox $position="relative" $width="100%">
+                          <NationalCurriculumInsightsFieldLabel
+                            htmlFor={`${formId}-school`}
+                            label="School (required)"
                           />
-                        )}
-                      />
-                    </OakFlex>
-                    <OakBox $width="100%">
-                      <Controller
-                        control={control}
-                        name="role"
-                        render={({ field }) => (
-                          <>
-                            <OakBox $display={["none", "none", "block"]}>
-                              <NationalCurriculumInsightsSelect
-                                id={`${formId}-role`}
+                          <Controller
+                            control={control}
+                            name="school"
+                            render={({ field }) => (
+                              <OakTextInput
                                 name={field.name}
-                                label="Role (required)"
-                                placeholder="Select your role"
-                                options={EDU_ROLES.map((option) => ({
-                                  label: option,
-                                  value: option,
-                                }))}
                                 value={field.value}
                                 onChange={field.onChange}
+                                onBlur={field.onBlur}
+                                id={`${formId}-school`}
+                                placeholder="Type school name, postcode, or ‘homeschool’"
+                                disabled={schoolNotListed}
+                                required={!schoolNotListed}
+                                autoComplete="organization"
+                                wrapperWidth="100%"
+                                $height="spacing-64"
                               />
-                            </OakBox>
-                            <OakBox $display={["block", "block", "none"]}>
-                              <OakRadioGroup
-                                name={field.name}
-                                label="What describes you best? (required)"
-                                value={field.value}
-                                onChange={(event) =>
-                                  field.onChange(event.target.value)
-                                }
-                                $flexDirection="column"
-                                $gap="spacing-16"
-                              >
-                                {EDU_ROLES.map((option, index) => (
-                                  <OakRadioButton
-                                    key={option}
-                                    id={`${formId}-role-${index}`}
-                                    label={option}
-                                    value={option}
-                                    required
-                                  />
-                                ))}
-                              </OakRadioGroup>
-                            </OakBox>
-                          </>
-                        )}
-                      />
-                    </OakBox>
-                    <OakBox $position="relative" $width="100%">
-                      <NationalCurriculumInsightsFieldLabel
-                        htmlFor={`${formId}-email`}
-                        label="Email (Optional)"
-                      />
-                      <Controller
-                        control={control}
-                        name="email"
-                        render={({ field }) => (
-                          <OakTextInput
-                            name={field.name}
-                            value={field.value}
-                            onChange={field.onChange}
-                            onBlur={field.onBlur}
-                            id={`${formId}-email`}
-                            type="email"
-                            placeholder="Enter email address here"
-                            autoComplete="email"
-                            wrapperWidth="100%"
-                            $height="spacing-64"
+                            )}
                           />
-                        )}
-                      />
-                    </OakBox>
-                    <OakBox $maxWidth="spacing-640">
-                      <OakP $font="body-3" $mv="spacing-0">
-                        Join over {NEWSLETTER_COUNT} teachers and get free
-                        resources and other helpful content by email.
-                        Unsubscribe at any time. Read our{" "}
-                        <OakLink href="/legal/privacy-policy" target="_blank">
-                          privacy policy
-                        </OakLink>
-                        .
-                      </OakP>
-                    </OakBox>
-                    <OakFlex
-                      $minHeight="spacing-56"
-                      $alignItems="center"
-                      $pa="spacing-8"
-                      $borderRadius="border-radius-s"
-                      $background="bg-neutral-stronger"
-                    >
-                      <Controller
-                        control={control}
-                        name="acceptedTerms"
-                        render={({ field }) => (
-                          <OakFlex
-                            $gap="spacing-16"
-                            $alignItems="center"
-                            $width="100%"
-                          >
+                        </OakBox>
+                        <Controller
+                          control={control}
+                          name="schoolNotListed"
+                          render={({ field }) => (
                             <OakCheckBox
-                              id={`${formId}-terms`}
-                              name="terms"
-                              value="terms"
-                              displayValue=""
-                              aria-label="I accept the terms and conditions (required)"
+                              id={`${formId}-school-not-listed`}
+                              name="school-not-listed"
+                              value="school-not-listed"
+                              displayValue="My school isn't listed"
                               checked={field.value}
                               onChange={(event) =>
                                 field.onChange(event.target.checked)
                               }
                             />
-                            <OakBox
-                              as="label"
-                              htmlFor={`${formId}-terms`}
-                              $font="body-2"
+                          )}
+                        />
+                      </OakFlex>
+                      <OakBox $width="100%">
+                        <Controller
+                          control={control}
+                          name="role"
+                          render={({ field }) => (
+                            <>
+                              <OakBox $display={["none", "none", "block"]}>
+                                <NationalCurriculumInsightsSelect
+                                  id={`${formId}-role`}
+                                  name={field.name}
+                                  label="Role (required)"
+                                  placeholder="Select your role"
+                                  options={EDU_ROLES.map((option) => ({
+                                    label: option,
+                                    value: option,
+                                  }))}
+                                  value={field.value}
+                                  onChange={field.onChange}
+                                />
+                              </OakBox>
+                              <OakBox $display={["block", "block", "none"]}>
+                                <OakRadioGroup
+                                  name={field.name}
+                                  label="What describes you best? (required)"
+                                  value={field.value}
+                                  onChange={(event) =>
+                                    field.onChange(event.target.value)
+                                  }
+                                  $flexDirection="column"
+                                  $gap="spacing-16"
+                                >
+                                  {EDU_ROLES.map((option, index) => (
+                                    <OakRadioButton
+                                      key={option}
+                                      id={`${formId}-role-${index}`}
+                                      label={option}
+                                      value={option}
+                                      required
+                                    />
+                                  ))}
+                                </OakRadioGroup>
+                              </OakBox>
+                            </>
+                          )}
+                        />
+                      </OakBox>
+                      <OakBox $position="relative" $width="100%">
+                        <NationalCurriculumInsightsFieldLabel
+                          htmlFor={`${formId}-email`}
+                          label="Email (Optional)"
+                        />
+                        <Controller
+                          control={control}
+                          name="email"
+                          render={({ field }) => (
+                            <OakTextInput
+                              name={field.name}
+                              value={field.value}
+                              onChange={field.onChange}
+                              onBlur={field.onBlur}
+                              id={`${formId}-email`}
+                              type="email"
+                              placeholder="Enter email address here"
+                              autoComplete="email"
+                              wrapperWidth="100%"
+                              $height="spacing-64"
+                            />
+                          )}
+                        />
+                      </OakBox>
+                      <OakBox $maxWidth="spacing-640">
+                        <OakP $font="body-3" $mv="spacing-0">
+                          Join over {NEWSLETTER_COUNT} teachers and get free
+                          resources and other helpful content by email.
+                          Unsubscribe at any time. Read our{" "}
+                          <OakLink href="/legal/privacy-policy" target="_blank">
+                            privacy policy
+                          </OakLink>
+                          .
+                        </OakP>
+                      </OakBox>
+                      <OakFlex
+                        $minHeight="spacing-56"
+                        $alignItems="center"
+                        $pa="spacing-8"
+                        $borderRadius="border-radius-s"
+                        $background="bg-neutral-stronger"
+                      >
+                        <Controller
+                          control={control}
+                          name="acceptedTerms"
+                          render={({ field }) => (
+                            <OakFlex
+                              $gap="spacing-16"
+                              $alignItems="center"
+                              $width="100%"
                             >
-                              I accept the{" "}
-                              <OakLink
-                                href="/legal/terms-and-conditions"
-                                target="_blank"
-                                variant="secondary"
+                              <OakCheckBox
+                                id={`${formId}-terms`}
+                                name="terms"
+                                value="terms"
+                                displayValue=""
+                                aria-label="I accept the terms and conditions (required)"
+                                checked={field.value}
+                                onChange={(event) =>
+                                  field.onChange(event.target.checked)
+                                }
+                              />
+                              <OakBox
+                                as="label"
+                                htmlFor={`${formId}-terms`}
+                                $font="body-2"
                               >
-                                terms and conditions
-                              </OakLink>{" "}
-                              <OakSpan>(required)</OakSpan>
-                            </OakBox>
-                          </OakFlex>
-                        )}
-                      />
+                                I accept the{" "}
+                                <OakLink
+                                  href="/legal/terms-and-conditions"
+                                  target="_blank"
+                                  variant="secondary"
+                                >
+                                  terms and conditions
+                                </OakLink>{" "}
+                                <OakSpan>(required)</OakSpan>
+                              </OakBox>
+                            </OakFlex>
+                          )}
+                        />
+                      </OakFlex>
                     </OakFlex>
-                  </OakFlex>
-                  <OakBox
-                    $display={["block", "block", "none"]}
-                    $mt="spacing-32"
-                  >
-                    <OakSecondaryButton
-                      width="100%"
-                      iconName="arrow-right"
-                      isTrailingIcon
-                      type="button"
-                      onClick={() => setMobileStage("subjects")}
+                    <OakBox
+                      $display={["block", "block", "none"]}
+                      $mt="spacing-32"
                     >
-                      <span>
-                        {getSubjectSelectionLabel(selectedValues.length)}
-                      </span>
-                    </OakSecondaryButton>
-                  </OakBox>
-                </OakGridArea>
-              </OakGrid>
-              <DownloadActions
-                mobileStage={mobileStage}
-                canDownload={canDownload}
-                downloading={downloading}
-                buttonLabel={buttonLabel}
-                error={error}
-              />
-            </>
-          )}
-        </OakBox>
-      ) : null}
-    </OakFlex>
+                      <OakSecondaryButton
+                        width="100%"
+                        iconName="arrow-right"
+                        isTrailingIcon
+                        type="button"
+                        onClick={() => setMobileStage("subjects")}
+                      >
+                        <span>
+                          {getSubjectSelectionLabel(selectedValues.length)}
+                        </span>
+                      </OakSecondaryButton>
+                    </OakBox>
+                  </OakGridArea>
+                </OakGrid>
+                <DownloadActions
+                  mobileStage={mobileStage}
+                  canDownload={canDownload}
+                  downloading={downloading}
+                  buttonLabel={buttonLabel}
+                  error={error}
+                />
+              </>
+            )}
+          </OakBox>
+        ) : null}
+      </OakFlex>
+    </FocusOn>
   );
 };
