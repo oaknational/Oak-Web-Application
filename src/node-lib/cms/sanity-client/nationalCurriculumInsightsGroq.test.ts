@@ -91,6 +91,11 @@ const hubFixture = {
 };
 
 describe("nationalCurriculumInsightsGroq", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockCreateClient.mockReturnValue({ fetch: mockFetch } as never);
+  });
+
   it("reads the editorial header date without deriving it from document updates", async () => {
     const hero = {
       __typename: "NationalCurriculumInsightsHeaderSection",
@@ -204,11 +209,6 @@ describe("nationalCurriculumInsightsGroq", () => {
     );
     expect(insightsPortableTextProjection).toContain('"contentType": _type');
     expect(insightsPortableTextProjection).toContain('"slug": slug.current');
-  });
-
-  beforeEach(() => {
-    jest.clearAllMocks();
-    mockCreateClient.mockReturnValue({ fetch: mockFetch } as never);
   });
 
   it("fetches the hub, ordered subject catalogue and hub modules", async () => {
