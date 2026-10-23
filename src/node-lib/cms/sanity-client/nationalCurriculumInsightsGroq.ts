@@ -60,6 +60,7 @@ const modulesProjection = `modules[]{
     _type == "nationalCurriculumInsightsChecklistSection" => "NationalCurriculumInsightsChecklistSection",
     _type == "nationalCurriculumInsightsPreparationSection" => "NationalCurriculumInsightsPreparationSection",
     _type == "nationalCurriculumInsightsRichTextSection" => "NationalCurriculumInsightsRichTextSection",
+    _type == "nationalCurriculumInsightsConfidenceSection" => "NationalCurriculumInsightsConfidenceSection",
     _type == "nationalCurriculumInsightsImageTextSection" => "NationalCurriculumInsightsImageTextSection",
     _type == "nationalCurriculumInsightsGuidanceIntroSection" => "NationalCurriculumInsightsGuidanceIntroSection",
     _type == "nationalCurriculumInsightsVideoCardsSection" => "NationalCurriculumInsightsVideoCardsSection",
@@ -105,6 +106,20 @@ const modulesProjection = `modules[]{
   mirrorImage,
   background,
   ctaLabel,
+  _type == "nationalCurriculumInsightsConfidenceSection" => {
+    cta {
+      label,
+      linkType,
+      external,
+      anchor,
+      "internal": internal->{
+        "id": _id,
+        "contentType": _type,
+        "slug": slug.current,
+        file { asset->{ extension, size, url } }
+      }
+    }
+  },
   "ctaHref": select(
     (ctaHref match "/curriculum-change-explained/guidance*" || ctaHref match "/teachers/national-curriculum-insights/guidance*") &&
       !defined(*[_type == "nationalCurriculumInsightsGuidancePage" && _id in ["nationalCurriculumInsightsGuidancePage", "drafts.nationalCurriculumInsightsGuidancePage"]][0]._id) => null,

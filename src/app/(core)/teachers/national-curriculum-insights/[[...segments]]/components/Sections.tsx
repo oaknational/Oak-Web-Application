@@ -20,3 +20,4 @@ export { NationalCurriculumInsightsChanges } from "./sections/Changes";
 export { NationalCurriculumInsightsUnchanged } from "./sections/Unchanged";
 export { NationalCurriculumInsightsChecklist } from "./sections/Checklist";
 export { NationalCurriculumInsightsPreparation } from "./sections/Preparation";
+export { NationalCurriculumInsightsConfidence } from "./sections/Confidence";

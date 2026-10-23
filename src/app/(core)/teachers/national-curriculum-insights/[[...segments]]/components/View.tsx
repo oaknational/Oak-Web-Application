@@ -15,6 +15,7 @@ import { NationalCurriculumInsightsHeader } from "./InsightHeader";
 import { NationalCurriculumInsightsDownload } from "./Download";
 import { NationalCurriculumInsightsArticle } from "./Article";
 import {
+  NationalCurriculumInsightsConfidence,
   NationalCurriculumInsightsPreparation,
   NationalCurriculumInsightsChanges,
   NationalCurriculumInsightsUnchanged,
@@ -123,6 +124,8 @@ const ModuleView = ({
           variant={data.activeKeyStage ? "keyStage" : "phase"}
         />
       );
+    case "NationalCurriculumInsightsConfidenceSection":
+      return <NationalCurriculumInsightsConfidence section={module} />;
     case "NationalCurriculumInsightsRichTextSection":
       return <NationalCurriculumInsightsRichText section={module} />;
     case "NationalCurriculumInsightsImageTextSection":

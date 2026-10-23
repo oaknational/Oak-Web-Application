@@ -17,6 +17,44 @@ if (!science) {
 }
 
 describe("National Curriculum Insights documents", () => {
+  it("exports the confidence callout from the same content as the page", async () => {
+    const buffer = await generateNationalCurriculumInsightsDocx({
+      phase: "primary",
+      subject: {
+        ...science,
+        tabs: science.tabs.map((tab) => ({
+          ...tab,
+          page: {
+            ...tab.page,
+            modules: [
+              {
+                __typename: "NationalCurriculumInsightsConfidenceSection",
+                heading: "Prepare with confidence using Oak",
+                bodyPortableText: [
+                  {
+                    _type: "block",
+                    children: [
+                      { text: "Use these curriculum plans to prepare." },
+                    ],
+                  },
+                ],
+                cta: {
+                  label: "Explore curriculum plans",
+                  linkType: "external",
+                  external:
+                    "https://www.thenational.academy/teachers/curriculum/science-primary/overview",
+                },
+              },
+            ],
+          },
+        })),
+      },
+    });
+    const zip = await JSZip.loadAsync(buffer);
+    const xml = await zip.file("word/document.xml")!.async("string");
+    expect(xml).toContain("Prepare with confidence using Oak");
+    expect(xml).toContain("Use these curriculum plans to prepare.");
+  });
   it("includes the preparation steps and their attribution in downloads", async () => {
     const subject = {
       ...science,

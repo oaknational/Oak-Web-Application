@@ -398,4 +398,35 @@ describe("NationalCurriculumInsightsView", () => {
       "The changes create a clearer learning journey.",
     );
   });
+  it("renders the confidence callout with its curriculum link", async () => {
+    const data = await getData(["science", "primary"]);
+    data.page!.modules.push({
+      __typename: "NationalCurriculumInsightsConfidenceSection",
+      heading: "Prepare with confidence using Oak",
+      bodyPortableText: [
+        {
+          _type: "block",
+          children: [
+            { _type: "span", text: "Explore the current Science plans." },
+          ],
+        },
+      ],
+      cta: {
+        label: "Explore Science curriculum plans",
+        linkType: "external",
+        external:
+          "https://www.thenational.academy/teachers/curriculum/science-primary/overview",
+      },
+    });
+    renderWithTheme(<NationalCurriculumInsightsView data={data} />);
+    expect(
+      screen.getByRole("region", { name: "Prepare with confidence using Oak" }),
+    ).toHaveTextContent("Explore the current Science plans.");
+    expect(
+      screen.getByRole("link", { name: "Explore Science curriculum plans" }),
+    ).toHaveAttribute(
+      "href",
+      "https://www.thenational.academy/teachers/curriculum/science-primary/overview",
+    );
+  });
 });
