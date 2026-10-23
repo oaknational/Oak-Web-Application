@@ -210,7 +210,7 @@ export const NationalCurriculumInsightsArticle = ({
       </OakFlex>
       <OakBox
         $ph={["spacing-20", "spacing-40"]}
-        $pv={["spacing-32", "spacing-48"]}
+        $pv={["spacing-32", "spacing-40"]}
       >
         <OakGrid
           data-insights-module="article"

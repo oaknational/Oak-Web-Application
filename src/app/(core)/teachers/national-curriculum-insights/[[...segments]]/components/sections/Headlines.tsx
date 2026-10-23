@@ -63,7 +63,8 @@ export const NationalCurriculumInsightsHeadlines = ({
     <OakBox
       $boxSizing="border-box"
       $ph={["spacing-24", "spacing-40"]}
-      $pv={["spacing-32", "spacing-48"]}
+      $pt={["spacing-32", "spacing-80"]}
+      $pb={["spacing-32", "spacing-40"]}
     >
       <OakMaxWidth
         as="section"
