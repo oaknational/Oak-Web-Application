@@ -166,6 +166,18 @@ const nationalCurriculumInsightsNewsletterSectionSchema = z.object({
   buttonLabel: z.string().min(1),
 });
 
+const nationalCurriculumInsightsSubjectLinksSectionSchema = z.object({
+  __typename: z.literal("NationalCurriculumInsightsSubjectLinksSection"),
+  heading: z.string().min(1),
+  links: z.array(
+    z.object({
+      title: z.string().min(1),
+      subjectSlug: z.string().min(1),
+      iconName: z.string().min(1),
+    }),
+  ),
+});
+
 const nationalCurriculumInsightsFaqSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsFaqSection"),
   heading: z.string().min(1),
@@ -274,6 +286,7 @@ export const nationalCurriculumInsightsModuleSchema = z.discriminatedUnion(
     nationalCurriculumInsightsPromotionalHeadingSectionSchema,
     nationalCurriculumInsightsPhaseNavigationSectionSchema,
     nationalCurriculumInsightsSubjectNavigationSectionSchema,
+    nationalCurriculumInsightsSubjectLinksSectionSchema,
     nationalCurriculumInsightsNewsletterSectionSchema,
     nationalCurriculumInsightsFaqSectionSchema,
     nationalCurriculumInsightsRichTextSectionSchema,

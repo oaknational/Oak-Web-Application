@@ -25,6 +25,7 @@ import {
   NationalCurriculumInsightsQuote,
   NationalCurriculumInsightsRichText,
   NationalCurriculumInsightsSubjectNavigation,
+  NationalCurriculumInsightsSubjectLinks,
   NationalCurriculumInsightsTable,
   NationalCurriculumInsightsVideoCards,
 } from "./Sections";
@@ -81,6 +82,10 @@ const ModuleView = ({
           section={module}
           data={data}
         />
+      );
+    case "NationalCurriculumInsightsSubjectLinksSection":
+      return (
+        <NationalCurriculumInsightsSubjectLinks section={module} data={data} />
       );
     case "NationalCurriculumInsightsNewsletterSection":
       return (

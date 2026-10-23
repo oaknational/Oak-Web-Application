@@ -52,6 +52,7 @@ const modulesProjection = `modules[]{
     _type == "nationalCurriculumInsightsPromotionalHeadingSection" => "NationalCurriculumInsightsPromotionalHeadingSection",
     _type == "nationalCurriculumInsightsPhaseNavigationSection" => "NationalCurriculumInsightsPhaseNavigationSection",
     _type == "nationalCurriculumInsightsSubjectNavigationSection" => "NationalCurriculumInsightsSubjectNavigationSection",
+    _type == "nationalCurriculumInsightsSubjectLinksSection" => "NationalCurriculumInsightsSubjectLinksSection",
     _type == "nationalCurriculumInsightsNewsletterSection" => "NationalCurriculumInsightsNewsletterSection",
     _type == "nationalCurriculumInsightsFaqSection" => "NationalCurriculumInsightsFaqSection",
     _type == "nationalCurriculumInsightsRichTextSection" => "NationalCurriculumInsightsRichTextSection",
@@ -73,6 +74,11 @@ const modulesProjection = `modules[]{
   phases,
   primaryHeading,
   secondaryHeading,
+  links[defined(subject->_id)]{
+    title,
+    "subjectSlug": subject->slug.current,
+    iconName
+  },
   introduction,
   benefitsHeading,
   benefits,
