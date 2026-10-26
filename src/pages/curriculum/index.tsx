@@ -26,6 +26,7 @@ const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
 const Curriculum: NextPage<
   HomePageProps & { curriculumPhaseOptions: SubjectPhasePickerData }
 > = (props) => {
+  const displayTopBanner = props.pageData?.displayTopBanner;
   const topBanner = props.pageData?.topBanner;
   const testimonials = props.pageData?.testimonials;
   const intro = props.pageData?.intro;
@@ -45,7 +46,7 @@ const Curriculum: NextPage<
         $background={"bg-primary"}
         topNavProps={props.topNav}
       >
-        {topBanner && <TopBanner {...topBanner} />}
+        {displayTopBanner && <TopBanner {...topBanner} />}
         <CurriculumTab
           aria-current="page"
           curriculumPhaseOptions={props.curriculumPhaseOptions}

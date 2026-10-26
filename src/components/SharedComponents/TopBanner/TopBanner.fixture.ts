@@ -30,7 +30,7 @@ export const topBannerFixture: TopBannerProps = {
       markDefs: [],
     },
   ],
-  enabled: true,
+  displayCta: true,
   cta: {
     label: "Explore our impact",
     linkType: "internal",

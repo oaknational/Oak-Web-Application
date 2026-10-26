@@ -2,6 +2,7 @@
   "allHomepage": [
     {
       "id": "homepage",
+      "displayTopBanner": true,
       "topBanner": {
         "displayNewTag": true,
         "messagePortableText": [
@@ -20,7 +21,7 @@
             "style": "normal"
           }
         ],
-        "enabled": true,
+        "displayCta": true,
         "cta": {
           "label": "Explore our impact",
           "linkType": "internal",

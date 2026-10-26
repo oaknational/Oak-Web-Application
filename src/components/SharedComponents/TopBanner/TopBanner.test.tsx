@@ -69,7 +69,7 @@ describe("TopBanner", () => {
 
   it("should not render the cta if cta is not enabled", () => {
     const { queryByRole } = renderWithProviders()(
-      <TopBanner {...topBannerFixture} enabled={false} />,
+      <TopBanner {...topBannerFixture} displayCta={false} />,
     );
 
     const link = queryByRole("link");

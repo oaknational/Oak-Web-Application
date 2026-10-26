@@ -27,7 +27,7 @@ export const newCtaSchema = z.discriminatedUnion("linkType", [
 export const topBannerSchema = z.object({
   displayNewTag: z.boolean(),
   messagePortableText: portableTextSchema.nullish(),
-  enabled: z.boolean(),
+  displayCta: z.boolean(),
   cta: newCtaSchema.nullish(),
   backgroundColour: z.string() as z.ZodType<OakUiRoleToken>,
 });
@@ -57,6 +57,7 @@ export const testimonialSchema = z.object({
 
 export const homePageSchema = z
   .object({
+    displayTopBanner: z.boolean(),
     topBanner: topBannerSchema.nullish(),
     heading: z.string(),
     summaryPortableText: portableTextSchema,

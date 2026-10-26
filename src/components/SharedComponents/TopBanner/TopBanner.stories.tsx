@@ -12,7 +12,7 @@ const meta = {
   argTypes: {
     displayNewTag: { control: "boolean" },
     messagePortableText: { control: "object" },
-    enabled: { control: "boolean" },
+    displayCta: { control: "boolean" },
     cta: { control: "object" },
     backgroundColour: {
       control: "select",

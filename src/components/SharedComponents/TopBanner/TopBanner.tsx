@@ -28,7 +28,7 @@ const topBannerPortableTextComponents: PortableTextComponents = {
 export default function TopBanner({
   displayNewTag,
   messagePortableText,
-  enabled,
+  displayCta,
   cta,
   backgroundColour,
 }: Readonly<TopBannerProps>) {
@@ -65,7 +65,7 @@ export default function TopBanner({
               />
             )}
           </OakFlex>
-          {enabled && cta && (
+          {displayCta && cta && (
             <OakSmallTertiaryInvertedButton
               element={Link}
               href={cta.linkType === "internal" ? cta.internal : cta.external}

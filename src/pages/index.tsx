@@ -43,6 +43,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
 
   const { posts, pageData, topNav, curriculumPhaseOptions } = props;
 
+  const displayTopBanner = pageData?.displayTopBanner;
   const topBanner = pageData?.topBanner;
   const testimonials = pageData?.testimonials;
   const intro = pageData?.intro;
@@ -62,7 +63,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
         $background={"bg-primary"}
         topNavProps={topNav}
       >
-        {topBanner && <TopBanner {...topBanner} />}
+        {displayTopBanner && <TopBanner {...topBanner} />}
         <TeachersTab
           curriculumPhaseOptions={curriculumPhaseOptions}
           aria-current="page"

@@ -31,6 +31,8 @@ const props: HomePageProps = {
   pageData: {
     heading: "",
     id: "",
+    displayTopBanner: true,
+    // to do - dont use this fixture
     topBanner: topBannerFixture,
     summaryPortableText: [],
     campaignPromoBanner: {
