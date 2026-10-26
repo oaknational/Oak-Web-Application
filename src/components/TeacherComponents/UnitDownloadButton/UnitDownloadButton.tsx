@@ -332,15 +332,18 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     setDownloadInProgress(false);
   };
 
-  // Fail open: `undefined` means the availability check failed, so show the button and let
-  // a genuinely missing file surface as a download error on click.
-  const showDownloadButton = exists !== false;
-
   const {
     showSignedOutLoginRequired,
     showSignedInNotOnboarded,
     showGeoBlocked,
   } = useComplexCopyright({ loginRequired: true, geoRestricted });
+
+  // Fail open: `undefined` means the availability check failed, so show the button and let
+  // a genuinely missing file surface as a download error on click.
+  const showDownloadButton = exists !== false;
+  if (!showDownloadButton) {
+    return null;
+  }
 
   return showSignedInNotOnboarded ? (
     <UnitDownloadOnboardButton
