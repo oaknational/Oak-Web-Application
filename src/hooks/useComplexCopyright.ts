@@ -1,6 +1,7 @@
 import { useUser } from "@clerk/nextjs";
 
 import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
+import { getCopyrightRestrictionForSubject } from "@/utils/getCopyrightRestrictionForSubject";
 
 interface UseComplexCopyrightProps {
   loginRequired: boolean;
@@ -32,9 +33,12 @@ export function useComplexCopyright({
   const isUserRegionAuthorised =
     user?.publicMetadata?.owa?.isRegionAuthorised !== false;
 
-  const isRestrictedSubject = coreProgrammeState?.subjectSlug === "music";
-  const resourceIsGeorestricted = geoRestricted || isRestrictedSubject;
-  const resourceRequiresLogin = loginRequired || isRestrictedSubject;
+  const { resourceIsGeorestricted, resourceRequiresLogin } =
+    getCopyrightRestrictionForSubject({
+      subjectSlug: coreProgrammeState?.subjectSlug,
+      geoRestricted,
+      loginRequired,
+    });
 
   return {
     showSignedOutLoginRequired: !isSignedIn && resourceRequiresLogin,
