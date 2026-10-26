@@ -8,7 +8,10 @@ import {
 } from "../../shared.schema";
 import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 import { getCorrectYear } from "../../helpers/getCorrectYear";
-import { isExcludedFromTeachingMaterials } from "../../helpers/teachingMaterialsAi/isExcluded";
+import {
+  isExcludedFromTeachingMaterials,
+  getHideCreateWithAi,
+} from "../../helpers/teachingMaterialsAi/isExcluded";
 
 import {
   teachersLessonContentSchema,
@@ -171,6 +174,7 @@ export const transformedTeachersLessonOverviewData = (
   content: TeachersLessonOverviewContent,
   unitData: LessonUnitDataByKs,
   excludedFromTeachingMaterials: boolean,
+  shouldHideCreateWithAi: boolean,
   adjacentLessons?: {
     previousLesson: TeachersLessonOverviewAdjacentLesson | null;
     nextLesson: TeachersLessonOverviewAdjacentLesson | null;
@@ -277,6 +281,7 @@ export const transformedTeachersLessonOverviewData = (
     geoRestricted: browseData.features?.agfGeoRestricted ?? false,
     loginRequired: browseData.features?.agfLoginRequired ?? false,
     excludedFromTeachingMaterials,
+    shouldHideCreateWithAi,
     subjectCategories: browseData.unitData.subjectcategories,
     previousLesson: adjacentLessons?.previousLesson ?? null,
     nextLesson: adjacentLessons?.nextLesson ?? null,
@@ -368,6 +373,14 @@ const teachersLessonOverviewQuery =
       content,
     );
 
+    const shouldHideCreateWithAi = getHideCreateWithAi({
+      subject: browseData.programmeFields.subjectSlug,
+      worksList: restrictedAndHighlyRestrictedWorksList,
+      restrictions: res.restrictions[0],
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      features: browseData.features as any,
+    });
+
     const staticLessonList = unitData.supplementaryData?.staticLessonList;
     const adjacentLessons = staticLessonList?.length
       ? getAdjacentLessonsByOrderInUnit(staticLessonList, lessonSlug)
@@ -378,6 +391,7 @@ const teachersLessonOverviewQuery =
       content,
       unitData,
       excludedFromTeachingMaterials,
+      shouldHideCreateWithAi,
       adjacentLessons,
     );
   };

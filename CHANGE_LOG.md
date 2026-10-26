@@ -1,3 +1,67 @@
+## [1.1255.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1255.0...v1.1255.1) (2026-10-26)
+
+
+### Bug Fixes
+
+* visual layout of newsletter signup ([b5a323c](https://github.com/oaknational/Oak-Web-Application/commit/b5a323ce9f12dd9b585b0b51fbbfcb6588c6253b))
+
+# [1.1255.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1254.1...v1.1255.0) (2026-10-23)
+
+
+### Bug Fixes
+
+* move key to parent ([6037ffa](https://github.com/oaknational/Oak-Web-Application/commit/6037ffa5e2b770fcfc84a0a235116db894236447))
+* remove default ul spacing ([21287ba](https://github.com/oaknational/Oak-Web-Application/commit/21287baff3b3a13858ef948af76e34c100b31ace))
+* unique keys in test fixture ([2c12885](https://github.com/oaknational/Oak-Web-Application/commit/2c12885c77776601869333a547346666c4f6d4e0))
+
+
+### Features
+
+* join research panel callout component ([debe7d5](https://github.com/oaknational/Oak-Web-Application/commit/debe7d5f29dc33cfd76d0112eaf22abdc6d63216))
+* repurpose curric info card to accept image asset and portable text ([27219bb](https://github.com/oaknational/Oak-Web-Application/commit/27219bb883ca36113b6edc628b137a8740f94771))
+* use component based fixtures ([e8af3b2](https://github.com/oaknational/Oak-Web-Application/commit/e8af3b28a881863fbd44adfa9cb3c611d3356294))
+
+## [1.1254.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1254.0...v1.1254.1) (2026-10-23)
+
+
+### Bug Fixes
+
+* principles no longer optional on <GuidingPrinciples/> ([0f941a3](https://github.com/oaknational/Oak-Web-Application/commit/0f941a3d7358cdfe1643028c424b711af1946775))
+* remove hardcoded data from <GuidingPrinciples/> component ([d8b0773](https://github.com/oaknational/Oak-Web-Application/commit/d8b07734571d5ee5eca59ecaf28c17a2e41887df))
+
+# [1.1254.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1253.0...v1.1254.0) (2026-10-23)
+
+
+### Bug Fixes
+
+* reuse existing type in <JoinResearchPanelPeople/> ([387f0a0](https://github.com/oaknational/Oak-Web-Application/commit/387f0a079bce31dbabc3ad2df9871b1e2f670e3b))
+* spacing between people on <JoinResearchPanelPeople/> ([71f2c1d](https://github.com/oaknational/Oak-Web-Application/commit/71f2c1d2ad3e9cf0e36460064b1817de2b90ef6f))
+* use optional access on features ([e319a35](https://github.com/oaknational/Oak-Web-Application/commit/e319a35b780261beb30e71ca28cbcbdd0e74fccc))
+
+
+### Features
+
+* add restriction level MV to lesson page ([dfd81a8](https://github.com/oaknational/Oak-Web-Application/commit/dfd81a8cebc5733029fd036a166ffe6c103808f4))
+* added <JoinResearchPanelPeople/> to new research panel page ([55462ac](https://github.com/oaknational/Oak-Web-Application/commit/55462ac459213fc78951939fd9860fd453618b8a))
+* bump pa11y-ci and puppeteer ([98f444a](https://github.com/oaknational/Oak-Web-Application/commit/98f444ab8b61a45bf56f654f4d891fc3db918190))
+* hide button on canonical pages ([8ef77ce](https://github.com/oaknational/Oak-Web-Application/commit/8ef77ce0659677d40e090ccebc0f0e7d5791ab4c))
+* hide crete with ai button for selected subjects + restricted works ([85f5d62](https://github.com/oaknational/Oak-Web-Application/commit/85f5d625865d2f0b70d26115f48bb5e3a5179d92))
+* use hasCopyrightConflict feature ([76e5457](https://github.com/oaknational/Oak-Web-Application/commit/76e5457e5990632aaeb3a421281e9db42e8378e1))
+
+# [1.1253.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1252.0...v1.1253.0) (2026-10-22)
+
+
+### Features
+
+* add auto margins ([f09426c](https://github.com/oaknational/Oak-Web-Application/commit/f09426c48dd8e0fee24deb88e0148b21fddf1969))
+* add base for short reads html page ([e513b32](https://github.com/oaknational/Oak-Web-Application/commit/e513b32bf058f5824608613343d68ba243ee2026))
+* add feature flag ([148392a](https://github.com/oaknational/Oak-Web-Application/commit/148392a2bfc6dc5a9efcbd4e5187f6881cd5faf8))
+* add missing titles and links ([2a981cb](https://github.com/oaknational/Oak-Web-Application/commit/2a981cb0bd671ab0f73f97c1b98d4feffe2c1753))
+* amend spacing to pr comments ([6ed24d7](https://github.com/oaknational/Oak-Web-Application/commit/6ed24d739b5b4ee193f3b28d4393d4061f9ca949))
+* amend url and breakpoints ([31291a8](https://github.com/oaknational/Oak-Web-Application/commit/31291a8f22a56ee89e741e4423c6fc87cad0c691))
+* reduce spacing and add labelled by to contents ([43ed886](https://github.com/oaknational/Oak-Web-Application/commit/43ed886bb95c1bb1ab55f4f95958b112a2b24a49))
+* update breadcrumb to use oak components version ([aa94ab5](https://github.com/oaknational/Oak-Web-Application/commit/aa94ab5a3724eed4eddf9de104b08ad790d401c1))
+
 # [1.1252.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1251.1...v1.1252.0) (2026-10-21)
 
 
