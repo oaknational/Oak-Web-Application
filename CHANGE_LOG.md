@@ -1,3 +1,10 @@
+## [1.1255.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1255.0...v1.1255.1) (2026-10-26)
+
+
+### Bug Fixes
+
+* visual layout of newsletter signup ([b5a323c](https://github.com/oaknational/Oak-Web-Application/commit/b5a323ce9f12dd9b585b0b51fbbfcb6588c6253b))
+
 # [1.1255.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1254.1...v1.1255.0) (2026-10-23)
 
 
