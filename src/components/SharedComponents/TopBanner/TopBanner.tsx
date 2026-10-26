@@ -35,7 +35,7 @@ export default function TopBanner({
   return (
     <OakBox role="banner">
       <OakFlex
-        $background={backgroundColor}
+        $background={backgroundColor ?? "bg-decorative1-main"}
         $justifyContent={["center"]}
         $alignItems={"center"}
         $pv={"spacing-8"}
