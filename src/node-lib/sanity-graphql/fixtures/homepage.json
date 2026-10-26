@@ -28,7 +28,7 @@
           "external": "https://www.google.com/",
           "internal": "/about-us/oaks-impact"
         },
-        "backgroundColour": "bg-decorative1-main"
+        "backgroundColor": "bg-decorative1-main"
       },
       "heading": "Your foundation for great lessons",
       "summaryPortableText": [

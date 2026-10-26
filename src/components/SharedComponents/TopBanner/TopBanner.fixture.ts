@@ -37,5 +37,5 @@ export const topBannerFixture = {
     external: null,
     internal: "/about-us/oaks-impact",
   },
-  backgroundColour: "bg-decorative1-main",
+  backgroundColor: "bg-decorative1-main",
 } satisfies TopBannerProps;

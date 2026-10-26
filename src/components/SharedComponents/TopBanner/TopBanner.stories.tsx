@@ -14,7 +14,7 @@ const meta = {
     messagePortableText: { control: "object" },
     displayCta: { control: "boolean" },
     cta: { control: "object" },
-    backgroundColour: {
+    backgroundColor: {
       control: "select",
       options: [
         "bg-decorative1-main",

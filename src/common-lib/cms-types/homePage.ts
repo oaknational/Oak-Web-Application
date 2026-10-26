@@ -26,7 +26,7 @@ export const newCtaSchema = z.discriminatedUnion("linkType", [
 
 const topBannerBaseSchema = z.object({
   displayNewTag: z.boolean(),
-  backgroundColour: z.string() as z.ZodType<OakUiRoleToken>,
+  backgroundColor: z.string() as z.ZodType<OakUiRoleToken>,
 });
 
 export const topBannerSchema = z.discriminatedUnion("displayCta", [

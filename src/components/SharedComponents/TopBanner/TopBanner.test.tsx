@@ -25,9 +25,9 @@ describe("TopBanner", () => {
     expect(link).toHaveAttribute("href", "/about-us/oaks-impact");
     expect(link).toHaveAttribute("title", "Explore our impact");
 
-    const backgroundColourAsRgb = "rgb(190, 242, 189)";
+    const backgroundColorAsRgb = "rgb(190, 242, 189)";
     expect(banner.firstChild).toHaveStyle(
-      `background-color: ${backgroundColourAsRgb}`,
+      `background-color: ${backgroundColorAsRgb}`,
     );
   });
 

@@ -16,7 +16,7 @@ query homepage($isDraftFilter: Sanity_DocumentFilter) {
         external
         internal
       }
-      backgroundColour
+      backgroundColor
     }
     heading
     summaryPortableText: summaryRaw

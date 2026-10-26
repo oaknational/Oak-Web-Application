@@ -30,12 +30,12 @@ export default function TopBanner({
   messagePortableText,
   displayCta,
   cta,
-  backgroundColour,
+  backgroundColor,
 }: Readonly<TopBannerProps>) {
   return (
     <OakBox role="banner">
       <OakFlex
-        $background={backgroundColour}
+        $background={backgroundColor}
         $justifyContent={["center"]}
         $alignItems={"center"}
         $pv={"spacing-8"}

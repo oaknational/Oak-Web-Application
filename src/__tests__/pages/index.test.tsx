@@ -55,7 +55,7 @@ const props: HomePageProps = {
         external: null,
         internal: "/about-us/oaks-impact",
       },
-      backgroundColour: "bg-decorative1-main",
+      backgroundColor: "bg-decorative1-main",
     },
     heading: "",
     summaryPortableText: [],
