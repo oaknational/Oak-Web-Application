@@ -58,7 +58,7 @@ it.each(layouts)(
     expect(xml).toContain('w:pgSz w:w="11906" w:h="16838"');
     expect(xml).toContain("w:titlePg");
     expect(xml.match(/<w:drawing/g)).toHaveLength(3);
-    expect(xml.match(/<w:cantSplit/g)).toHaveLength((stages.length || 1) * 4);
+    expect(xml.match(/<w:cantSplit/g)).toHaveLength((stages.length || 1) * 3);
     expect(footer).toContain("w:drawing");
     expect(header).toContain(`curriculum: ${phase}`);
     expect(footer).toContain('r:id="rIdGuidance"');

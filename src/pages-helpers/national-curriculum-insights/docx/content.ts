@@ -86,35 +86,38 @@ const estimatePreparationLines = (text: string) =>
 const quoteXml = (
   quote: { quote: string; attribution: string; role?: string | null },
   color: string,
-) => safeXml`
-  <w:tbl>
-    <w:tblPr>
-      <w:tblW w:w="9526" w:type="dxa" />
-    </w:tblPr>
-    <w:tblGrid>
-      <w:gridCol w:w="9526" />
-    </w:tblGrid>
-    <w:tr>
-      <w:tc>
-        <w:tcPr>
-          <w:tcW w:w="9526" w:type="dxa" />
-          <w:tcBorders>
-            <w:left w:val="single" w:color="${color}" w:sz="24" />
-          </w:tcBorders>
-          <w:tcMar>
-            <w:top w:w="40" w:type="dxa" />
-            <w:left w:w="220" w:type="dxa" />
-            <w:bottom w:w="40" w:type="dxa" />
-          </w:tcMar>
-        </w:tcPr>
-        ${paragraph(quote.quote, { bold: true, after: 120 })}
-      ${paragraph(quote.attribution, { bold: true, size: 11, after: 0 })}
-      ${quote.role ? paragraph(quote.role, { size: 11, after: 0 }) : ""}
-      </w:tc>
-    </w:tr>
-  </w:tbl>
-  ${spacer()}
-`;
+) => {
+  const quoteParagraph = (text: string, options: ParagraphOptions) =>
+    paragraph(text, {
+      ...options,
+      properties: safeXml`
+        <w:pPr>
+          ${options.keepNext ? safeXml`<w:keepNext />` : ""}
+          <w:widowControl />
+          <w:pBdr>
+            <w:left w:val="single" w:color="${color}" w:sz="24" w:space="11" />
+          </w:pBdr>
+          <w:spacing
+            w:before="0"
+            w:after="${options.after ?? 0}"
+            w:line="336"
+            w:lineRule="auto"
+          />
+          <w:ind w:left="220" w:right="0" />
+        </w:pPr>
+      `,
+    });
+  return (
+    quoteParagraph(quote.quote, { bold: true, after: 120, keepNext: true }) +
+    quoteParagraph(quote.attribution, {
+      bold: true,
+      size: 11,
+      keepNext: Boolean(quote.role),
+    }) +
+    (quote.role ? quoteParagraph(quote.role, { size: 11 }) : "") +
+    spacer()
+  );
+};
 
 const headlineXml = async (
   module: Overview,
@@ -273,46 +276,31 @@ const moduleXml = async (
                 ${patterns.preparationCellProperties}
               ${paragraph(`${index + 1}.  ${step.text}`, {
                   bold: true,
-                  keepNext: true,
+                  keepNext: keepTogether,
                   after: 0,
                 })}
               </w:tc>
             </w:tr>
           </w:tbl>
-          ${wordParagraph("", { keepNext: true, after: 160 })}
+          ${wordParagraph("", { keepNext: keepTogether, after: 160 })}
         `;
       });
       return safeXml`
-        <w:tbl>
-          <w:tblPr>
-            <w:tblW w:w="10206" w:type="dxa" />
-          </w:tblPr>
-          <w:tblGrid>
-            <w:gridCol w:w="10206" />
-          </w:tblGrid>
-          <w:tr>
-            <w:trPr>${keepTogether ? safeXml`<w:cantSplit />` : ""}</w:trPr>
-            <w:tc>
-              <w:tcPr>
-                <w:tcW w:w="10206" w:type="dxa" />
-                <w:tcMar>
-                  ${["top", "left", "bottom", "right"].map(
-                    (edge) => `<w:${edge} w:w="0" w:type="dxa" />`,
-                  )}
-                </w:tcMar>
-              </w:tcPr>
-              ${sectionHeading(module.heading)}
-              ${output}
-            ${paragraph(module.attribution, {
-                bold: true,
-                size: 11,
-                keepNext: true,
-                after: 0,
-              })}
-            ${paragraph(module.role, { size: 11, after: 160 })}
-            </w:tc>
-          </w:tr>
-        </w:tbl>
+        ${sectionHeading(module.heading)}
+        ${output}
+        ${paragraph(
+          module.attribution,
+          {
+            bold: true,
+            size: 11,
+            keepNext: true,
+            after: 0,
+          },
+        )}
+        ${paragraph(module.role, {
+          size: 11,
+          after: 160,
+        })}
         ${spacer()}
       `;
     }

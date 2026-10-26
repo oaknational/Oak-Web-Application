@@ -22,6 +22,44 @@ const layouts = [
 ] as const;
 
 it.each(layouts)(
+  "avoids nested tables and floating textboxes in $phase $stages guidance",
+  async ({ phase, stages }) => {
+    const buffer = await generateNationalCurriculumInsightsDocx({
+      phase,
+      subject: createDownloadFixture(phase, [...stages]),
+      sharedModules: sharedDownloadFixtureModules,
+      siteUrl: "https://www.thenational.academy",
+    });
+    const zip = await JSZip.loadAsync(buffer);
+    const xml = await zip.file("word/document.xml")!.async("string");
+    const document = new DOMParser().parseFromString(xml, "application/xml");
+    const tables = Array.from(document.getElementsByTagName("w:tbl"));
+    expect(
+      tables.every((table) => table.getElementsByTagName("w:tbl").length === 0),
+    ).toBe(true);
+    expect(document.getElementsByTagName("w:txbxContent")).toHaveLength(0);
+
+    const preparationHeadings = Array.from(
+      document.getElementsByTagName("w:p"),
+    ).filter(
+      (paragraph) =>
+        paragraph.getElementsByTagName("w:pStyle")[0]?.getAttribute("w:val") ===
+          "Heading3" &&
+        Array.from(paragraph.getElementsByTagName("w:t"))
+          .map((text) => text.textContent)
+          .join("") === "3 steps to get ready",
+    );
+    expect(preparationHeadings).toHaveLength(stages.length || 1);
+    for (const heading of preparationHeadings) {
+      expect(heading.parentNode?.nodeName).toBe("w:body");
+      expect(
+        heading.getElementsByTagName("w:pStyle")[0]?.getAttribute("w:val"),
+      ).toBe("Heading3");
+    }
+  },
+);
+
+it.each(layouts)(
   "keeps a continuous heading hierarchy in $phase $stages guidance",
   async ({ phase, stages }) => {
     const buffer = await generateNationalCurriculumInsightsDocx({
@@ -96,6 +134,48 @@ it.each(layouts)(
     expect(paragraphStyle).toContain("w:bCs/");
   },
 );
+
+it("keeps real data tables and their header rows", async () => {
+  const subject = createDownloadFixture("primary", []);
+  subject.tabs[0]!.page.modules.push({
+    __typename: "NationalCurriculumInsightsTableSection",
+    heading: "Compare the changes",
+    table: {
+      rows: [
+        { cells: ["Current curriculum", "Proposed curriculum"] },
+        { cells: ["Broad themes", "A clearer sequence"] },
+      ],
+    },
+  });
+  const zip = await JSZip.loadAsync(
+    await generateNationalCurriculumInsightsDocx({
+      phase: "primary",
+      subject,
+      sharedModules: sharedDownloadFixtureModules,
+      siteUrl: "https://www.thenational.academy",
+    }),
+  );
+  const document = new DOMParser().parseFromString(
+    await zip.file("word/document.xml")!.async("string"),
+    "application/xml",
+  );
+  const tables = Array.from(document.getElementsByTagName("w:tbl"));
+  const dataTable = tables.find(
+    (table) => table.getElementsByTagName("w:tblHeader").length === 1,
+  );
+  expect(dataTable?.getElementsByTagName("w:tr")).toHaveLength(2);
+  expect(dataTable?.getElementsByTagName("w:tc")).toHaveLength(4);
+  expect(
+    Array.from(dataTable!.getElementsByTagName("w:t")).map(
+      (text) => text.textContent,
+    ),
+  ).toEqual([
+    "Current curriculum",
+    "Proposed curriculum",
+    "Broad themes",
+    "A clearer sequence",
+  ]);
+});
 
 it.each(["styles root", "question style", "run properties"])(
   "rejects a Word template without its %s",
