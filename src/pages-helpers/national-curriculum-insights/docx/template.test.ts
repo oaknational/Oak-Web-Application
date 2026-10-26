@@ -63,6 +63,20 @@ it.each(layouts)(
     expect(header).toContain(`curriculum: ${phase}`);
     expect(footer).toContain('r:id="rIdGuidance"');
     expect(footer).toContain("PAGE");
+    const settings = await zip.file("word/settings.xml")!.async("string");
+    expect(settings).not.toContain("w:updateFields");
+    for (const entry of Object.values(zip.files)) {
+      if (!entry.name.startsWith("word/") || !entry.name.endsWith(".xml"))
+        continue;
+      const part = await entry.async("string");
+      const fieldInstructions = Array.from(
+        part.matchAll(/<w:instrText[^>]*>([^<]*)<\/w:instrText>/g),
+        (match) => match[1]!.trim(),
+      );
+      expect(
+        fieldInstructions.every((instruction) => instruction === "PAGE"),
+      ).toBe(true);
+    }
     expect(footerRels).toContain(
       "https://www.thenational.academy/curriculum-change-explained/guidance",
     );
