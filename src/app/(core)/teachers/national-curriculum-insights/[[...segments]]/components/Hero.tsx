@@ -122,7 +122,7 @@ const HubHeroImage = ({
           alt={imageAlt}
           $width="100%"
           $height="100%"
-          $objectFit="cover"
+          $objectFit="contain"
         />
       )}
     </OakFlex>

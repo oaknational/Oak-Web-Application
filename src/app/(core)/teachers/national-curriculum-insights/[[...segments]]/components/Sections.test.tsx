@@ -9,6 +9,7 @@ import {
 import { getNationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
 
 import { NationalCurriculumInsightsHeader } from "./InsightHeader";
+import { NationalCurriculumInsightsHero } from "./Hero";
 import { NationalCurriculumInsightsView } from "./View";
 import {
   NationalCurriculumInsightsFaq,
@@ -716,6 +717,53 @@ describe("National Curriculum Insights sections", () => {
       expect.stringContaining("example-100x100.png"),
     );
   });
+
+  it("keeps the full hub illustration visible", async () => {
+    const data = await getData();
+    const section = data.hub?.modules.find(
+      (module) => module.__typename === "NationalCurriculumInsightsHeroSection",
+    );
+    if (!section) throw new Error("Expected a hub hero");
+    renderWithTheme(
+      <NationalCurriculumInsightsHero data={data} section={section} />,
+    );
+    const image = screen
+      .getByTestId("national-curriculum-insights-hero")
+      .querySelector("img");
+    expect(image).toHaveStyle({ objectFit: "contain" });
+  });
+
+  it.each(["left", "right"] as const)(
+    "puts the editorial heading before the %s image on small screens",
+    async (imagePosition) => {
+      const data = await getData();
+      renderWithTheme(
+        <NationalCurriculumInsightsImageText
+          data={data}
+          section={moduleOf({
+            __typename: "NationalCurriculumInsightsImageTextSection",
+            heading: "Prepare with confidence using Oak",
+            bodyPortableText: portableText(
+              "confidence",
+              "Resources for your school.",
+            ),
+            image: contentImage,
+            imagePosition,
+            background: "green",
+          })}
+        />,
+      );
+      const heading = screen.getByRole("heading").parentElement!;
+      const image = screen.getByAltText(contentImage.altText).parentElement!
+        .parentElement!.parentElement!;
+      const body = screen
+        .getByText("Resources for your school.")
+        .closest("p")!.parentElement!;
+      expect(heading).toHaveStyle({ order: "0", "grid-column": "span 12" });
+      expect(image).toHaveStyle({ order: "1" });
+      expect(body).toHaveStyle({ order: "2" });
+    },
+  );
 
   it("uses subject and phase context for navigation cards", async () => {
     const primaryData = await getData(["science", "primary"]);

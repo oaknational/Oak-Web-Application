@@ -2,7 +2,6 @@
 
 import {
   OakBox,
-  OakFlex,
   OakGrid,
   OakGridArea,
   OakHeading,
@@ -118,7 +117,7 @@ export const NationalCurriculumInsightsImageText = ({
         >
           <OakGridArea
             $colSpan={[12, 12, 5]}
-            $order={[0, 0, section.imagePosition === "left" ? 0 : 1]}
+            $order={[1, 1, section.imagePosition === "left" ? 0 : 1]}
           >
             <OakBox
               $width="100%"
@@ -140,11 +139,23 @@ export const NationalCurriculumInsightsImageText = ({
               />
             </OakBox>
           </OakGridArea>
-          <OakGridArea $colSpan={[12, 12, 7]}>
-            <OakFlex $flexDirection="column" $gap="spacing-24">
+          <OakGridArea
+            $colSpan={[12, 12, 7]}
+            $display={["contents", "contents", "flex"]}
+            $flexDirection="column"
+            $gap="spacing-24"
+          >
+            <OakGridArea $order={0} $colSpan={12}>
               <OakHeading tag="h2" id={headingId} $font="heading-5">
                 {section.heading}
               </OakHeading>
+            </OakGridArea>
+            <OakGridArea
+              $flexDirection="column"
+              $gap="spacing-24"
+              $order={[2, 2, 0]}
+              $colSpan={12}
+            >
               <PortableTextWithDefaults
                 value={section.bodyPortableText}
                 components={guidancePortableTextComponents}
@@ -159,7 +170,7 @@ export const NationalCurriculumInsightsImageText = ({
                   {section.ctaLabel}
                 </OakPrimaryButton>
               ) : null}
-            </OakFlex>
+            </OakGridArea>
           </OakGridArea>
         </OakGrid>
       </SectionMaxWidth>

@@ -52,6 +52,12 @@ export type MultiSelectProps = {
 
 const uniqueValues = (values: string[]) => [...new Set(values)];
 
+const dropdownHeights = [
+  480, 360, 240, 180, 160, 120, 100, 92, 80, 72, 64, 56, 48, 40, 32, 24, 20, 16,
+  12, 8, 4, 0,
+] as const;
+type DropdownHeight = `spacing-${(typeof dropdownHeights)[number]}`;
+
 const triggerSizeProps = {
   standard: { pv: "spacing-12" },
   large: { pv: "spacing-16", height: "spacing-64" },
@@ -109,7 +115,10 @@ export const MultiSelect = ({
   const panelId = `${id}-panel`;
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
+  const dropdownAnchorRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [dropdownMaxHeight, setDropdownMaxHeight] =
+    useState<DropdownHeight>("spacing-480");
 
   const options = useMemo(
     () => groups.flatMap((group) => group.options),
@@ -144,6 +153,34 @@ export const MultiSelect = ({
       document.removeEventListener("mousedown", handlePointerDown);
     };
   }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const updateHeight = () => {
+      const anchor = dropdownAnchorRef.current?.getBoundingClientRect();
+      if (!anchor) return;
+      const availableHeight =
+        dropdownDirection === "up"
+          ? anchor.top
+          : window.innerHeight - anchor.bottom;
+      const rootFontSize =
+        Number.parseFloat(
+          window.getComputedStyle(document.documentElement).fontSize,
+        ) || 16;
+      const availableSpacing = (availableHeight / rootFontSize - 1) * 16;
+      const height =
+        dropdownHeights.find((value) => value <= availableSpacing) ?? 0;
+      setDropdownMaxHeight(`spacing-${height}`);
+    };
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+    window.addEventListener("scroll", updateHeight, true);
+    return () => {
+      window.removeEventListener("resize", updateHeight);
+      window.removeEventListener("scroll", updateHeight, true);
+    };
+  }, [isOpen, dropdownDirection]);
 
   const emit = (values: string[]) => onChange(uniqueValues(values));
 
@@ -298,6 +335,7 @@ export const MultiSelect = ({
           </OakSecondaryButton>
           {isOpen ? (
             <OakBox
+              ref={dropdownAnchorRef}
               $position="absolute"
               {...dropdownPositionProps[dropdownDirection].anchor}
               $height="spacing-0"
@@ -309,7 +347,7 @@ export const MultiSelect = ({
                 {...dropdownPositionProps[dropdownDirection].panel}
                 $right="spacing-0"
                 $left="spacing-0"
-                $maxHeight="spacing-480"
+                $maxHeight={dropdownMaxHeight}
                 $boxSizing="border-box"
                 $overflowY="auto"
                 $ba="border-solid-xl"

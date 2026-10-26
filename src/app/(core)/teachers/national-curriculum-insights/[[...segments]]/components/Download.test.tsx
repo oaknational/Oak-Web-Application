@@ -146,7 +146,7 @@ describe("NationalCurriculumInsightsDownload", () => {
     ).toBeNull();
   });
 
-  it("closes with the mobile Back button and returns focus to the opener", async () => {
+  it("has no Back button on the first sheet and closes with the header control", async () => {
     const user = userEvent.setup();
     renderWithTheme(
       <NationalCurriculumInsightsDownload
@@ -161,7 +161,13 @@ describe("NationalCurriculumInsightsDownload", () => {
     const dialog = screen.getByRole("dialog", {
       name: "Curriculum guidance download",
     });
-    await user.click(within(dialog).getByRole("button", { name: "Back" }));
+    expect(
+      within(dialog).queryByRole("button", { name: "Back" }),
+    ).not.toBeInTheDocument();
+    expect(
+      within(dialog).queryByRole("button", { name: /\d+ selected/ }),
+    ).not.toBeInTheDocument();
+    await user.click(opener);
     expect(opener).toHaveAttribute("aria-expanded", "false");
     await waitFor(() => expect(opener).toHaveFocus());
   });

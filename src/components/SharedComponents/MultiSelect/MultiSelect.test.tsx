@@ -63,15 +63,18 @@ describe("MultiSelect", () => {
   });
 
   it.each(["up", "down"] as const)(
-    "positions the dropdown %s without changing its size",
+    "positions the dropdown %s within the available viewport height",
     (direction) => {
+      const bounds = jest
+        .spyOn(HTMLElement.prototype, "getBoundingClientRect")
+        .mockReturnValue({ top: 300, bottom: 300 } as DOMRect);
       renderWithTheme(<ControlledMultiSelect dropdownDirection={direction} />);
       fireEvent.click(screen.getByTestId("multi-select-trigger"));
 
       expect(screen.getByTestId("multi-select-panel")).toHaveStyle({
         position: "absolute",
         [direction === "up" ? "bottom" : "top"]: "0.25rem",
-        "max-height": "30rem",
+        "max-height": direction === "up" ? "15rem" : "22.5rem",
         "overflow-y": "auto",
       });
       expect(
@@ -79,8 +82,33 @@ describe("MultiSelect", () => {
       ).toHaveStyle({
         [direction === "up" ? "top" : "bottom"]: "0rem",
       });
+      bounds.mockRestore();
     },
   );
+
+  it("resizes the open list without changing its selections", () => {
+    const bounds = jest
+      .spyOn(HTMLElement.prototype, "getBoundingClientRect")
+      .mockReturnValue({ top: 100, bottom: 100 } as DOMRect);
+    const onChange = jest.fn();
+    renderWithTheme(<ControlledMultiSelect onChange={onChange} />);
+    fireEvent.click(screen.getByTestId("multi-select-trigger"));
+    expect(screen.getByTestId("multi-select-panel")).toHaveStyle({
+      "max-height": "30rem",
+    });
+    bounds.mockReturnValue({ top: 500, bottom: 500 } as DOMRect);
+    fireEvent.resize(window);
+    expect(screen.getByTestId("multi-select-panel")).toHaveStyle({
+      "max-height": "15rem",
+    });
+    bounds.mockReturnValue({ top: 600, bottom: 600 } as DOMRect);
+    fireEvent.scroll(document);
+    expect(screen.getByTestId("multi-select-panel")).toHaveStyle({
+      "max-height": "7.5rem",
+    });
+    expect(onChange).not.toHaveBeenCalled();
+    bounds.mockRestore();
+  });
 
   it("keeps an accessible legend for both selection layouts", () => {
     renderWithTheme(<ControlledMultiSelect placeholder="Choose items" />);

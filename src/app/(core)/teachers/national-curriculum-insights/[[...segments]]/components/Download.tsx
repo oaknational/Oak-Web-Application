@@ -9,7 +9,6 @@ import {
   OakGrid,
   OakGridArea,
   OakPrimaryButton,
-  OakSecondaryButton,
   OakTertiaryButton,
   OakHeading,
   OakIcon,
@@ -72,9 +71,6 @@ const getDocumentCountLabel = (count: number) => {
   const noun = count === 1 ? "document" : "documents";
   return `${count} ${noun}`;
 };
-
-const getSubjectSelectionLabel = (count: number) =>
-  count > 0 ? `${count} selected` : "Select subjects";
 
 const getDownloadDialogProps = (expanded: boolean) =>
   expanded
@@ -488,23 +484,6 @@ export const NationalCurriculumInsightsDownload = ({
                     ]}
                     $borderColor={[null, null, "border-neutral-lighter"]}
                   >
-                    <OakBox
-                      $display={["block", "block", "none"]}
-                      $ph="spacing-16"
-                    >
-                      <OakTertiaryButton
-                        iconName="arrow-left"
-                        type="button"
-                        onClick={() => {
-                          setExpanded(false);
-                          (
-                            returnFocusRef.current ?? headerRef.current
-                          )?.focus();
-                        }}
-                      >
-                        Back
-                      </OakTertiaryButton>
-                    </OakBox>
                     <OakBox $display={["none", "none", "block"]}>
                       <OakHeading tag="h2" $font="heading-6">
                         {section.downloadsHeading}
@@ -761,22 +740,6 @@ export const NationalCurriculumInsightsDownload = ({
                         />
                       </OakFlex>
                     </OakFlex>
-                    <OakBox
-                      $display={["block", "block", "none"]}
-                      $mt="spacing-32"
-                    >
-                      <OakSecondaryButton
-                        width="100%"
-                        iconName="arrow-right"
-                        isTrailingIcon
-                        type="button"
-                        onClick={() => setMobileStage("subjects")}
-                      >
-                        <span>
-                          {getSubjectSelectionLabel(selectedValues.length)}
-                        </span>
-                      </OakSecondaryButton>
-                    </OakBox>
                   </OakGridArea>
                 </OakGrid>
                 <DownloadActions
