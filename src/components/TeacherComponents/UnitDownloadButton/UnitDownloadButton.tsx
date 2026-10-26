@@ -276,7 +276,9 @@ export type UnitDownloadButtonProps = {
  * - Download
  * If there is no download for this unit, or unit download is disabled, the button will not be shown (ie. legacy units)
  */
-export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
+export default function UnitDownloadButton(
+  props: Readonly<UnitDownloadButtonProps>,
+) {
   const { unitFileId, geoRestricted, unitDownloadExistence } = props;
   const { exists, fileSize, checkFailed } = unitDownloadExistence;
 
