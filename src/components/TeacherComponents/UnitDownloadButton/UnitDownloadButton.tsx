@@ -343,44 +343,48 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   const showDownloadButton = exists !== false;
   if (!showDownloadButton) {
     return null;
+  } else if (showSignedInNotOnboarded) {
+    return (
+      <UnitDownloadOnboardButton
+        href={resolveOakHref({
+          page: "onboarding",
+          query: { returnTo: pathname ?? "" },
+        })}
+        onClick={unitDownloadStarted}
+        showNewTag={props.showNewTag}
+        size={props.size}
+        ariaLabel={props.ariaLabel}
+        fullWidthOnMobile={fullWidthOnMobile}
+      />
+    );
+  } else if (showSignedOutLoginRequired) {
+    return (
+      <UnitDownloadSignInButton
+        isStuck={isStuck}
+        redirectUrl={`/onboarding?returnTo=${pathname}`}
+        onClick={unitDownloadStarted}
+        showNewTag={props.showNewTag}
+        longTextOnMobile={longTextOnMobile}
+        fullWidthOnMobile={fullWidthOnMobile}
+        size={props.size}
+        buttonLabel={props.buttonLabel}
+        ariaLabel={props.ariaLabel}
+      />
+    );
+  } else if (showDownloadButton) {
+    return (
+      <DownloadButton
+        isStuck={isStuck}
+        disabled={Boolean(showGeoBlocked)}
+        onUnitDownloadClick={onUnitDownloadClick}
+        downloadInProgress={downloadInProgress}
+        fileSize={fileSize}
+        longTextOnMobile={longTextOnMobile}
+        fullWidthOnMobile={fullWidthOnMobile}
+        size={props.size}
+        buttonLabel={props.buttonLabel}
+        ariaLabel={props.ariaLabel}
+      />
+    );
   }
-
-  return showSignedInNotOnboarded ? (
-    <UnitDownloadOnboardButton
-      href={resolveOakHref({
-        page: "onboarding",
-        query: { returnTo: pathname ?? "" },
-      })}
-      onClick={unitDownloadStarted}
-      showNewTag={props.showNewTag}
-      size={props.size}
-      ariaLabel={props.ariaLabel}
-      fullWidthOnMobile={fullWidthOnMobile}
-    />
-  ) : showSignedOutLoginRequired ? (
-    <UnitDownloadSignInButton
-      isStuck={isStuck}
-      redirectUrl={`/onboarding?returnTo=${pathname}`}
-      onClick={unitDownloadStarted}
-      showNewTag={props.showNewTag}
-      longTextOnMobile={longTextOnMobile}
-      fullWidthOnMobile={fullWidthOnMobile}
-      size={props.size}
-      buttonLabel={props.buttonLabel}
-      ariaLabel={props.ariaLabel}
-    />
-  ) : showDownloadButton ? (
-    <DownloadButton
-      isStuck={isStuck}
-      disabled={Boolean(showGeoBlocked)}
-      onUnitDownloadClick={onUnitDownloadClick}
-      downloadInProgress={downloadInProgress}
-      fileSize={fileSize}
-      longTextOnMobile={longTextOnMobile}
-      fullWidthOnMobile={fullWidthOnMobile}
-      size={props.size}
-      buttonLabel={props.buttonLabel}
-      ariaLabel={props.ariaLabel}
-    />
-  ) : null;
 }
