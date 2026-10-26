@@ -3,7 +3,6 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
 import { BlogPostPreview, WebinarPreview } from "@/common-lib/cms-types";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
-import { topBannerFixture } from "@/components/SharedComponents/TopBanner/TopBanner.fixture";
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 
 const render = renderWithProviders();
@@ -29,21 +28,46 @@ export const mockPosts = [
 
 const props: HomePageProps = {
   pageData: {
-    heading: "",
     id: "",
     displayTopBanner: true,
-    // to do - dont use this fixture
-    topBanner: topBannerFixture,
+    topBanner: {
+      displayNewTag: true,
+      messagePortableText: [
+        {
+          _key: "967be59f8853",
+          _type: "block",
+          children: [
+            {
+              _key: "24221de4ae210",
+              _type: "span",
+              marks: [],
+              text: "Oak is now used in 72% of schools",
+            },
+          ],
+          markDefs: [],
+          style: "normal",
+        },
+      ],
+      displayCta: true,
+      cta: {
+        label: "Explore our impact",
+        linkType: "internal",
+        external: "https://www.google.com/",
+        internal: "/about-us/oaks-impact",
+      },
+      backgroundColour: "bg-decorative1-main",
+    },
+    heading: "",
     summaryPortableText: [],
+    notification: { enabled: false },
+    sidebarCard1: { title: "", bodyPortableText: [] },
+    sidebarCard2: { title: "", bodyPortableText: [] },
     campaignPromoBanner: {
       headingPortableTextWithPromo: [],
       subheadingPortableTextWithPromo: [],
       media: [],
       buttonCta: "",
     },
-    notification: { enabled: false },
-    sidebarCard1: { title: "", bodyPortableText: [] },
-    sidebarCard2: { title: "", bodyPortableText: [] },
     testimonials: [],
   },
   posts: mockPosts,
@@ -75,9 +99,12 @@ describe("Teachers Page", () => {
       expect(baseElement).toMatchSnapshot();
     });
 
-    it("does not render TopBanner if topBanner data is not provided", () => {
+    it("does not render TopBanner if displayTopBanner is false", () => {
       const { queryByText } = renderWithProviders()(
-        <Home {...props} pageData={{ ...props.pageData, topBanner: null }} />,
+        <Home
+          {...props}
+          pageData={{ ...props.pageData, displayTopBanner: false }}
+        />,
       );
 
       const banner = queryByText("Oak is now used in 72% of schools");

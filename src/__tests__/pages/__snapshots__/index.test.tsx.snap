@@ -644,13 +644,7 @@ exports[`Teachers Page Page component renders 1`] = `
                   <p
                     class="sc-hGPAwl eHjwIi"
                   >
-                    Oak is now used in 
-                    <strong
-                      class="sc-dkPwfY fgmEIT"
-                    >
-                      72%
-                    </strong>
-                     of schools!
+                    Oak is now used in 72% of schools
                   </p>
                 </div>
                 <div
