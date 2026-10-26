@@ -11,6 +11,7 @@ export interface UseComplexCopyrightReturn {
   showSignedInNotOnboarded: boolean;
   showGeoBlocked: boolean;
   isLoaded: boolean;
+  isResourceGeorestricted: boolean;
 }
 
 export function useComplexCopyright({
@@ -36,5 +37,6 @@ export function useComplexCopyright({
     ),
     showSignedInNotOnboarded,
     isLoaded,
+    isResourceGeorestricted: geoRestricted,
   };
 }
