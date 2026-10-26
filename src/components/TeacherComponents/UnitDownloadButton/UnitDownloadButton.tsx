@@ -1,4 +1,4 @@
-import { SignInButton, useAuth, useUser } from "@clerk/nextjs";
+import { SignInButton, useAuth } from "@clerk/nextjs";
 import React, { Dispatch, ReactNode, SetStateAction, useState } from "react";
 import { usePathname } from "next/navigation";
 import {
@@ -19,6 +19,7 @@ import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/Teac
 import errorReporter from "@/common-lib/error-reporter";
 import { UnitDownloadExistence } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
+import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 
 const reportError = errorReporter("unit-download-button");
 
@@ -278,7 +279,7 @@ export type UnitDownloadButtonProps = {
 export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   const { unitFileId, geoRestricted, unitDownloadExistence } = props;
   const { exists, fileSize, checkFailed } = unitDownloadExistence;
-  const { isSignedIn, user } = useUser();
+
   const auth = useAuth();
   const pathname = usePathname();
   const { setCurrentToastProps } = useOakNotificationsContext();
@@ -335,18 +336,13 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   // a genuinely missing file surface as a download error on click.
   const showDownloadButton = exists !== false;
 
-  const showSignInButton = showDownloadButton && !isSignedIn;
+  const {
+    showSignedOutLoginRequired,
+    showSignedInNotOnboarded,
+    showGeoBlocked,
+  } = useComplexCopyright({ loginRequired: true, geoRestricted });
 
-  const showOnboardButton =
-    showDownloadButton && user && !user.publicMetadata?.owa?.isOnboarded;
-
-  const isGeoBlocked =
-    showDownloadButton &&
-    isSignedIn &&
-    geoRestricted &&
-    !user.publicMetadata?.owa?.isRegionAuthorised;
-
-  return showOnboardButton ? (
+  return showSignedInNotOnboarded ? (
     <UnitDownloadOnboardButton
       href={resolveOakHref({
         page: "onboarding",
@@ -358,7 +354,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
       ariaLabel={props.ariaLabel}
       fullWidthOnMobile={fullWidthOnMobile}
     />
-  ) : showSignInButton ? (
+  ) : showSignedOutLoginRequired ? (
     <UnitDownloadSignInButton
       isStuck={isStuck}
       redirectUrl={`/onboarding?returnTo=${pathname}`}
@@ -373,7 +369,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   ) : showDownloadButton ? (
     <DownloadButton
       isStuck={isStuck}
-      disabled={Boolean(isGeoBlocked)}
+      disabled={Boolean(showGeoBlocked)}
       onUnitDownloadClick={onUnitDownloadClick}
       downloadInProgress={downloadInProgress}
       fileSize={fileSize}
