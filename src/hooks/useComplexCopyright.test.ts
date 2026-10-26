@@ -134,6 +134,21 @@ const scenarios: {
     },
   },
   {
+    name: "shows onboarding required for music even when the prop is false",
+    user: mockNotOnboardedUser,
+    loginRequired: false,
+    geoRestricted: false,
+    isMusic: true,
+    expected: {
+      showSignedOutLoginRequired: false,
+      showSignedOutGeoRestricted: false,
+      showSignedInNotOnboarded: true,
+      showGeoBlocked: false,
+      isLoaded: true,
+      isResourceGeorestricted: true,
+    },
+  },
+  {
     name: "reports the loading state",
     user: mockLoadingUser,
     loginRequired: false,

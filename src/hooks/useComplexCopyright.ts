@@ -27,18 +27,20 @@ export function useComplexCopyright({
   const isUserOnboarded =
     (isSignedIn && user?.publicMetadata?.owa?.isOnboarded) ?? false;
 
-  const showSignedInNotOnboarded = Boolean(
-    !isUserOnboarded && (loginRequired || geoRestricted) && isSignedIn,
-  );
-  const isUserRegionAuthorised =
-    user?.publicMetadata?.owa?.isRegionAuthorised !== false;
-
   const { resourceIsGeorestricted, resourceRequiresLogin } =
     getCopyrightRestrictionForSubject({
       subjectSlug: coreProgrammeState?.subjectSlug,
       geoRestricted,
       loginRequired,
     });
+
+  const showSignedInNotOnboarded = Boolean(
+    !isUserOnboarded &&
+      (resourceIsGeorestricted || resourceRequiresLogin) &&
+      isSignedIn,
+  );
+  const isUserRegionAuthorised =
+    user?.publicMetadata?.owa?.isRegionAuthorised !== false;
 
   return {
     showSignedOutLoginRequired: !isSignedIn && resourceRequiresLogin,
