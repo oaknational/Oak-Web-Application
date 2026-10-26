@@ -52,7 +52,7 @@ const props: HomePageProps = {
       cta: {
         label: "Explore our impact",
         linkType: "internal",
-        external: "https://www.google.com/",
+        external: null,
         internal: "/about-us/oaks-impact",
       },
       backgroundColour: "bg-decorative1-main",
@@ -103,7 +103,11 @@ describe("Teachers Page", () => {
       const { queryByText } = renderWithProviders()(
         <Home
           {...props}
-          pageData={{ ...props.pageData, displayTopBanner: false }}
+          pageData={{
+            ...props.pageData,
+            displayTopBanner: false,
+            topBanner: null,
+          }}
         />,
       );
 

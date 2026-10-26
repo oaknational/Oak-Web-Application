@@ -65,7 +65,7 @@ export default function TopBanner({
               />
             )}
           </OakFlex>
-          {displayCta && cta && (
+          {displayCta && (
             <OakSmallTertiaryInvertedButton
               element={Link}
               href={cta.linkType === "internal" ? cta.internal : cta.external}

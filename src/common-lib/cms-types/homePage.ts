@@ -8,37 +8,39 @@ import { portableTextSchema } from "./portableText";
 import { campaignPromoBannerSchema } from "./campaignPage";
 
 const newCtaBaseSchema = z.object({
-  label: z.string().trim().min(1).nullish(),
+  label: z.string().trim().min(1),
 });
 
 export const newCtaSchema = z.discriminatedUnion("linkType", [
   newCtaBaseSchema.extend({
     linkType: z.literal("internal"),
-    internal: z
-      .string()
-      .startsWith("/")
-      .or(z.string().startsWith("#"))
-      .nullish(),
-    external: z.string().nullish(),
+    internal: z.string().startsWith("/").or(z.string().startsWith("#")),
+    external: z.unknown().transform(() => null),
   }),
   newCtaBaseSchema.extend({
     linkType: z.literal("external"),
-    external: z
-      .url()
-      .startsWith("http://")
-      .or(z.url().startsWith("https://"))
-      .nullish(),
-    internal: z.string().nullish(),
+    external: z.url().startsWith("http://").or(z.url().startsWith("https://")),
+    internal: z.unknown().transform(() => null),
   }),
 ]);
 
-export const topBannerSchema = z.object({
+const topBannerBaseSchema = z.object({
   displayNewTag: z.boolean(),
-  messagePortableText: portableTextSchema.nullish(),
-  displayCta: z.boolean(),
-  cta: newCtaSchema.nullish(),
   backgroundColour: z.string() as z.ZodType<OakUiRoleToken>,
 });
+
+export const topBannerSchema = z.discriminatedUnion("displayCta", [
+  topBannerBaseSchema.extend({
+    displayCta: z.literal(true),
+    cta: newCtaSchema,
+    messagePortableText: portableTextSchema.nullish(),
+  }),
+  topBannerBaseSchema.extend({
+    displayCta: z.literal(false),
+    messagePortableText: portableTextSchema,
+    cta: z.unknown().transform(() => null),
+  }),
+]);
 
 const notificationSchema = z.discriminatedUnion("enabled", [
   z.object({ enabled: z.literal(false) }),
@@ -63,10 +65,8 @@ export const testimonialSchema = z.object({
   image: imageSchema.nullish(),
 });
 
-export const homePageSchema = z
+const homePageBaseSchema = z
   .object({
-    displayTopBanner: z.boolean(),
-    topBanner: topBannerSchema.nullish(),
     heading: z.string(),
     summaryPortableText: portableTextSchema,
     pupilsImage: imageSchema.nullish(),
@@ -86,5 +86,16 @@ export const homePageSchema = z
     campaignPromoBanner: campaignPromoBannerSchema.nullable(),
   })
   .merge(documentSchema);
+
+export const homePageSchema = z.discriminatedUnion("displayTopBanner", [
+  homePageBaseSchema.extend({
+    displayTopBanner: z.literal(true),
+    topBanner: topBannerSchema,
+  }),
+  homePageBaseSchema.extend({
+    displayTopBanner: z.literal(false),
+    topBanner: z.unknown().transform(() => null),
+  }),
+]);
 
 export type HomePage = z.infer<typeof homePageSchema>;

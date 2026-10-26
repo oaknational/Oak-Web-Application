@@ -34,7 +34,7 @@ export const topBannerFixture: TopBannerProps = {
   cta: {
     label: "Explore our impact",
     linkType: "internal",
-    external: "https://www.google.com/",
+    external: null,
     internal: "/about-us/oaks-impact",
   },
   backgroundColour: "bg-decorative1-main",

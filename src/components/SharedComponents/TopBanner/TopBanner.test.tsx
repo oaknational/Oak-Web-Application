@@ -38,6 +38,7 @@ describe("TopBanner", () => {
         label: "Explore our impact",
         linkType: "external" as const,
         external: "https://www.google.com/",
+        internal: null,
       },
     };
 
@@ -69,7 +70,7 @@ describe("TopBanner", () => {
 
   it("should not render the cta if cta is not enabled", () => {
     const { queryByRole } = renderWithProviders()(
-      <TopBanner {...topBannerFixture} displayCta={false} />,
+      <TopBanner {...topBannerFixture} displayCta={false} cta={null} />,
     );
 
     const link = queryByRole("link");

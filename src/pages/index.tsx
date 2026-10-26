@@ -43,8 +43,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
 
   const { posts, pageData, topNav, curriculumPhaseOptions } = props;
 
-  const displayTopBanner = pageData?.displayTopBanner;
-  const topBanner = pageData?.topBanner;
+  const { displayTopBanner, topBanner } = pageData;
   const testimonials = pageData?.testimonials;
   const intro = pageData?.intro;
   const campaignPromoBanner = pageData.campaignPromoBanner;

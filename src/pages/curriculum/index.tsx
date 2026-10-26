@@ -26,8 +26,7 @@ const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
 const Curriculum: NextPage<
   HomePageProps & { curriculumPhaseOptions: SubjectPhasePickerData }
 > = (props) => {
-  const displayTopBanner = props.pageData?.displayTopBanner;
-  const topBanner = props.pageData?.topBanner;
+  const { displayTopBanner, topBanner } = props.pageData;
   const testimonials = props.pageData?.testimonials;
   const intro = props.pageData?.intro;
 
