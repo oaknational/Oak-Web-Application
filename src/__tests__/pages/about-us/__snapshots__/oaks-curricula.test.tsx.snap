@@ -284,7 +284,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   min-width: 3rem;
   height: 5.75rem;
   min-height: 5.75rem;
-  margin-bottom: 1rem;
   display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
@@ -295,7 +294,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   min-width: 5rem;
   height: 5.75rem;
   min-height: 5.75rem;
-  margin-bottom: 1rem;
   display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
@@ -306,7 +304,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   min-width: 4.5rem;
   height: 5.75rem;
   min-height: 5.75rem;
-  margin-bottom: 1rem;
   display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
@@ -317,7 +314,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   min-width: 4rem;
   height: 5.75rem;
   min-height: 5.75rem;
-  margin-bottom: 1rem;
   display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
@@ -1935,6 +1931,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
   text-align: left;
   color: #222222;
+  margin-top: 1rem;
 }
 
 .c99 {
