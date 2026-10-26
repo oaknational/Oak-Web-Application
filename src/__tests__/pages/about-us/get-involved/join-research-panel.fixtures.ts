@@ -1,6 +1,7 @@
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 import { JoinResearchPanelPageBlock } from "@/common-lib/cms-types";
-import { serializedBlogPreview } from "@/components/GenericPagesComponents/BlogsPreview/BlogsPreview.fixtures";
+import { mockBlogPreview } from "@/components/GenericPagesComponents/BlogsPreview/BlogsPreview.fixtures";
+import { serializeDate } from "@/utils/serializeDate";
 
 export const joinResearchPanelHeaderBlockFixture: JoinResearchPanelPageBlock<"JoinResearchPanelPageHeader"> =
   {
@@ -168,9 +169,9 @@ export const joinResearchPanelPageFixture = {
     ],
   },
   blogs: [
-    serializedBlogPreview("1"),
-    serializedBlogPreview("2"),
-    serializedBlogPreview("3"),
+    serializeDate(mockBlogPreview("1")),
+    serializeDate(mockBlogPreview("2")),
+    serializeDate(mockBlogPreview("3")),
   ],
 };
 

@@ -1,22 +1,15 @@
 import { BlogsPreviewProps } from "./BlogsPreview";
 
-import { SerializedBlogPostPreview } from "@/common-lib/cms-types";
+import { serializeDate } from "@/utils/serializeDate";
+import { BlogPostPreview } from "@/common-lib/cms-types";
 
-export const serializedBlogPreview = (
-  id: string,
-): SerializedBlogPostPreview => ({
+export const mockBlogPreview = (id: string): BlogPostPreview => ({
   id,
   title: `Blog ${id}`,
-  date: new Date("2021-01-01").toISOString(),
+  date: new Date("2021-01-01"),
   author: {
     name: "John Doe",
     id: "123",
-    image: {
-      asset: {
-        _id: "image-1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422-png",
-        url: "https://cdn.sanity.io/images/cuvjke51/production/1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png",
-      },
-    },
   },
   category: {
     title: "Category 1",
@@ -38,8 +31,8 @@ export const basic: BlogsPreviewProps = {
   blogPostCategorySlug: "research-and-insights",
   backgroundColor: "bg-decorative3-very-subdued",
   blogs: [
-    serializedBlogPreview("1"),
-    serializedBlogPreview("2"),
-    serializedBlogPreview("3"),
+    serializeDate(mockBlogPreview("1")),
+    serializeDate(mockBlogPreview("2")),
+    serializeDate(mockBlogPreview("3")),
   ],
 };
