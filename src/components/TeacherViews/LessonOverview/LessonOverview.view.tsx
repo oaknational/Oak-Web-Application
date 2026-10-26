@@ -238,6 +238,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     <MathJaxLessonProvider>
       <HeaderLesson
         {...lesson}
+        shouldHideCreateWithAi={lesson.shouldHideCreateWithAi}
         isCanonical={isCanonical}
         breadcrumbs={[
           ...getBreadcrumbsForLessonPathway(

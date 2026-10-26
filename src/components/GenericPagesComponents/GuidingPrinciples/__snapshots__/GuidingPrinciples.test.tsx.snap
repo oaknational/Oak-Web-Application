@@ -4,7 +4,7 @@ exports[`GuidingPrinciples renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-bdvwhi sc-gsDMPd sc-13f0991b-0 iJhTiz fkRmVO krRTRz"
+      class="sc-bdvwhi sc-gsDMPd sc-9133d17d-0 iJhTiz fkRmVO eNwOGm"
     >
       <div
         class="sc-bdvwhi sc-gsDMPd hPWTKU euLVdi"
@@ -15,12 +15,12 @@ exports[`GuidingPrinciples renders correctly 1`] = `
           <h2
             class="sc-bkkgYE kaqcGl"
           >
-            Our guiding principles
+            TEST_TITLE
           </h2>
           <p
             class="sc-hGPAwl fdeVcn"
           >
-            We have crafted a set of overarching principles that describe the features important to our curricula in all subjects.
+            TEST_TEXT
           </p>
         </div>
         <div

@@ -52,6 +52,7 @@ describe("lessonOverview()", () => {
             additionalFiles: [_additionalFilesFixture],
             unitData: [],
             tpcWorks: [],
+            restrictions: [],
           }),
         ),
       })({
@@ -72,6 +73,7 @@ describe("lessonOverview()", () => {
             additionalFiles: [],
             unitData: [],
             tpcWorks: [],
+            restrictions: [],
           }),
         ),
       })({
@@ -127,6 +129,7 @@ describe("lessonOverview()", () => {
           additionalFiles: [_additionalFilesFixture],
           unitData: [_unitDataFixture],
           tpcWorks: [],
+          restrictions: [],
         }),
       ),
     })({
@@ -254,6 +257,7 @@ describe("lessonOverview()", () => {
           additionalFiles: [],
           unitData: _unitDataFixture,
           tpcWorks: [],
+          restrictions: [],
         }),
       ),
     })({
@@ -281,6 +285,7 @@ describe("lessonOverview()", () => {
             additionalFiles: [],
             unitData: [],
             tpcWorks: [],
+            restrictions: [],
           }),
         ),
       })({
@@ -583,6 +588,7 @@ describe("hasMediaClips logic", () => {
           additionalFiles: [_additionalFilesFixture],
           unitData: [_unitDataFixture],
           tpcWorks: [],
+          restrictions: [],
         }),
       ),
     })({
