@@ -1,6 +1,6 @@
 import type { TopBannerProps } from "./TopBanner";
 
-export const topBannerFixture: TopBannerProps = {
+export const topBannerFixture = {
   displayNewTag: true,
   messagePortableText: [
     {
@@ -38,4 +38,4 @@ export const topBannerFixture: TopBannerProps = {
     internal: "/about-us/oaks-impact",
   },
   backgroundColour: "bg-decorative1-main",
-};
+} satisfies TopBannerProps;
