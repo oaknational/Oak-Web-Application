@@ -8,18 +8,26 @@ import { portableTextSchema } from "./portableText";
 import { campaignPromoBannerSchema } from "./campaignPage";
 
 const newCtaBaseSchema = z.object({
-  label: z.string().trim().min(1),
+  label: z.string().trim().min(1).nullish(),
 });
 
 export const newCtaSchema = z.discriminatedUnion("linkType", [
   newCtaBaseSchema.extend({
     linkType: z.literal("internal"),
-    internal: z.string().startsWith("/").or(z.string().startsWith("#")),
+    internal: z
+      .string()
+      .startsWith("/")
+      .or(z.string().startsWith("#"))
+      .nullish(),
     external: z.string().nullish(),
   }),
   newCtaBaseSchema.extend({
     linkType: z.literal("external"),
-    external: z.url().startsWith("http://").or(z.url().startsWith("https://")),
+    external: z
+      .url()
+      .startsWith("http://")
+      .or(z.url().startsWith("https://"))
+      .nullish(),
     internal: z.string().nullish(),
   }),
 ]);
