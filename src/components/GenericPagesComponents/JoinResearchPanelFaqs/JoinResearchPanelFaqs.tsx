@@ -33,8 +33,8 @@ export default function JoinResearchPanelFaqs({
         </OakHeading>
         <OakGrid>
           <OakGridArea
-            $colSpan={8}
-            $colStart={3}
+            $colSpan={[12, 10, 8]}
+            $colStart={[1, 2, 3]}
             $alignSelf={"flex-start"}
             $flexDirection={"column"}
           >
