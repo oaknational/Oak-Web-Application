@@ -17,35 +17,51 @@ import JoinResearchPanelPageDefault from "@/components/GenericPagesComponents/Jo
 import JoinResearchPanelPeople from "@/components/GenericPagesComponents/JoinResearchPanelPeople";
 import JoinResearchPanelInfo from "@/components/GenericPagesComponents/JoinResearchPanelInfo";
 import JoinResearchPanelCallout from "@/components/GenericPagesComponents/JoinResearchPanelCallout";
+import { SerializedBlogPostPreview } from "@/common-lib/cms-types/blog";
+import { BlogsPreview } from "@/components/GenericPagesComponents/BlogsPreview/BlogsPreview";
+import { serializeDate } from "@/utils/serializeDate";
+
+const pageComponents: {
+  [K in JoinResearchPanelPageBlockType]: (
+    block: JoinResearchPanelPageBlock<K>,
+    blogs: SerializedBlogPostPreview[],
+  ) => React.ReactNode;
+} = {
+  JoinResearchPanelPageHeader: JoinResearchPanelPageHeader,
+  JoinResearchPanelPageCallout: JoinResearchPanelCallout,
+  JoinResearchPanelPageInfo: JoinResearchPanelInfo,
+  JoinResearchPanelPageJourney: JoinResearchPanelPageDefault,
+  JoinResearchPanelPagePeople: JoinResearchPanelPeople,
+  JoinResearchPanelPageBlogsPreview: (block, blogs) => (
+    <BlogsPreview
+      title={block.title}
+      label={block.label}
+      blogs={blogs}
+      blogPostCategorySlug="research-and-insights"
+      backgroundColor="bg-decorative3-very-subdued"
+    />
+  ),
+  JoinResearchPanelPageFaqs: JoinResearchPanelPageDefault,
+  JoinResearchPanelPageContactUs: JoinResearchPanelPageDefault,
+};
+
+function renderBlock<K extends JoinResearchPanelPageBlockType>(
+  block: JoinResearchPanelPageBlock<K>,
+  blogs: SerializedBlogPostPreview[],
+) {
+  return pageComponents[block.__typename](block, blogs);
+}
 
 export type AboutUsJoinResearchPanelPageProps = {
-  pageData: JoinResearchPanelPage;
+  pageData: Omit<JoinResearchPanelPage, "blogs"> & {
+    blogs: SerializedBlogPostPreview[];
+  };
   topNav: TopNavProps;
 };
 
 export const AboutUsJoinResearchPanel: NextPage<
   AboutUsJoinResearchPanelPageProps
 > = ({ topNav, pageData }) => {
-  const pageComponents: {
-    [K in JoinResearchPanelPageBlockType]: (
-      block: JoinResearchPanelPageBlock<K>,
-    ) => React.ReactNode;
-  } = {
-    JoinResearchPanelPageHeader: JoinResearchPanelPageHeader,
-    JoinResearchPanelPageCallout: JoinResearchPanelCallout,
-    JoinResearchPanelPageInfo: JoinResearchPanelInfo,
-    JoinResearchPanelPageJourney: JoinResearchPanelPageDefault,
-    JoinResearchPanelPagePeople: JoinResearchPanelPeople,
-    JoinResearchPanelPageFaqs: JoinResearchPanelPageDefault,
-    JoinResearchPanelPageContactUs: JoinResearchPanelPageDefault,
-  };
-
-  function renderBlock<K extends JoinResearchPanelPageBlockType>(
-    block: JoinResearchPanelPageBlock<K>,
-  ) {
-    return pageComponents[block.__typename](block);
-  }
-
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={null}
@@ -56,9 +72,11 @@ export const AboutUsJoinResearchPanel: NextPage<
         $background={"bg-primary"}
         topNavProps={topNav}
       >
-        {pageData.blocks.map((block, i) => {
+        {pageData.content.blocks.map((block, i) => {
           return (
-            <div key={`${block.__typename}-${i}`}>{renderBlock(block)}</div>
+            <div key={`${block.__typename}-${i}`}>
+              {renderBlock(block, pageData.blogs)}
+            </div>
           );
         })}
       </Layout>
@@ -81,6 +99,7 @@ export const getServerSideProps: GetServerSideProps<
 
   const pageData = await CMSClient.joinResearchPanelPage({
     previewMode: isPreviewMode,
+    blogCategorySlug: "research-and-insights",
   });
 
   if (!pageData) {
@@ -91,7 +110,10 @@ export const getServerSideProps: GetServerSideProps<
 
   return {
     props: {
-      pageData,
+      pageData: {
+        ...pageData,
+        blogs: pageData.blogs.map((blog) => serializeDate(blog)),
+      },
       topNav,
     },
   };

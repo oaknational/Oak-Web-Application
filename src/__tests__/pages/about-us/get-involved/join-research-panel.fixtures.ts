@@ -1,5 +1,6 @@
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 import { JoinResearchPanelPageBlock } from "@/common-lib/cms-types";
+import { serializedBlogPreview } from "@/components/GenericPagesComponents/BlogsPreview/BlogsPreview.fixtures";
 
 export const joinResearchPanelHeaderBlockFixture: JoinResearchPanelPageBlock<"JoinResearchPanelPageHeader"> =
   {
@@ -123,6 +124,13 @@ export const joinResearchPanelPeopleBlockFixture: JoinResearchPanelPageBlock<"Jo
     ],
   };
 
+export const joinResearchPanelBlogsPreviewBlockFixture: JoinResearchPanelPageBlock<"JoinResearchPanelPageBlogsPreview"> =
+  {
+    __typename: "JoinResearchPanelPageBlogsPreview",
+    title: "Blogs",
+    label: "View all blogs",
+  };
+
 export const joinResearchPanelFaqsBlockFixture: JoinResearchPanelPageBlock<"JoinResearchPanelPageFaqs"> =
   {
     __typename: "JoinResearchPanelPageFaqs",
@@ -146,15 +154,23 @@ export const joinResearchPanelContactUsBlockFixture: JoinResearchPanelPageBlock<
   };
 
 export const joinResearchPanelPageFixture = {
-  blocks: [
-    joinResearchPanelHeaderBlockFixture,
-    joinResearchPanelCalloutBlockFixture,
-    joinResearchPanelInfoBlockFixture(),
-    joinResearchPanelJourneyBlockFixture,
-    joinResearchPanelInfoBlockFixture("Info 2"),
-    joinResearchPanelPeopleBlockFixture,
-    joinResearchPanelFaqsBlockFixture,
-    joinResearchPanelContactUsBlockFixture,
+  content: {
+    blocks: [
+      joinResearchPanelHeaderBlockFixture,
+      joinResearchPanelCalloutBlockFixture,
+      joinResearchPanelInfoBlockFixture(),
+      joinResearchPanelJourneyBlockFixture,
+      joinResearchPanelInfoBlockFixture("Info 2"),
+      joinResearchPanelPeopleBlockFixture,
+      joinResearchPanelBlogsPreviewBlockFixture,
+      joinResearchPanelFaqsBlockFixture,
+      joinResearchPanelContactUsBlockFixture,
+    ],
+  },
+  blogs: [
+    serializedBlogPreview("1"),
+    serializedBlogPreview("2"),
+    serializedBlogPreview("3"),
   ],
 };
 

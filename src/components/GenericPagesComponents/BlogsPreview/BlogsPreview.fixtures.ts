@@ -2,7 +2,9 @@ import { BlogsPreviewProps } from "./BlogsPreview";
 
 import { SerializedBlogPostPreview } from "@/common-lib/cms-types";
 
-const serializedBlogPreview = (id: string): SerializedBlogPostPreview => ({
+export const serializedBlogPreview = (
+  id: string,
+): SerializedBlogPostPreview => ({
   id,
   title: `Blog ${id}`,
   date: new Date("2021-01-01").toISOString(),
