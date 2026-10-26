@@ -1,5 +1,7 @@
 import { useUser } from "@clerk/nextjs";
 
+import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
+
 interface UseComplexCopyrightProps {
   loginRequired: boolean;
   geoRestricted: boolean;
@@ -19,6 +21,7 @@ export function useComplexCopyright({
   geoRestricted,
 }: UseComplexCopyrightProps): UseComplexCopyrightReturn {
   const { user, isSignedIn, isLoaded } = useUser();
+  const { coreProgrammeState } = useProgrammeState();
 
   const isUserOnboarded =
     (isSignedIn && user?.publicMetadata?.owa?.isOnboarded) ?? false;
@@ -29,14 +32,18 @@ export function useComplexCopyright({
   const isUserRegionAuthorised =
     user?.publicMetadata?.owa?.isRegionAuthorised !== false;
 
+  const isRestrictedSubject = coreProgrammeState?.subjectSlug === "music";
+  const resourceIsGeorestricted = geoRestricted || isRestrictedSubject;
+  const resourceRequiresLogin = loginRequired || isRestrictedSubject;
+
   return {
-    showSignedOutLoginRequired: !isSignedIn && loginRequired,
-    showSignedOutGeoRestricted: !isSignedIn && geoRestricted,
+    showSignedOutLoginRequired: !isSignedIn && resourceRequiresLogin,
+    showSignedOutGeoRestricted: !isSignedIn && resourceIsGeorestricted,
     showGeoBlocked: Boolean(
-      isSignedIn && geoRestricted && !isUserRegionAuthorised,
+      isSignedIn && resourceIsGeorestricted && !isUserRegionAuthorised,
     ),
     showSignedInNotOnboarded,
     isLoaded,
-    isResourceGeorestricted: geoRestricted,
+    isResourceGeorestricted: resourceIsGeorestricted,
   };
 }
