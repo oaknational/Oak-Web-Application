@@ -2,6 +2,8 @@ import { js2xml, json2xml, xml2js } from "xml-js";
 import type { Element } from "xml-js";
 import { collapseFragments } from "@ooxml-tools/xml";
 
+import { escapeXml } from "./utils";
+
 export function xmlRootToJson(xmlData: string) {
   return xml2js(xmlData, {
     compact: false,
@@ -16,6 +18,7 @@ export function prettyFormat(input: string) {
     indentText: true,
     fullTagEmptyElement: true,
     indentAttributes: true,
+    attributeValueFn: escapeXml,
   });
 }
 
@@ -38,7 +41,9 @@ export function createFragment(elements: Element[]): Element {
 
 export function jsonXmlToXmlString(json: Element): string {
   const root = "name" in json ? { elements: [json] } : json;
-  const output = js2xml(collapseFragments(root));
+  const output = js2xml(collapseFragments(root), {
+    attributeValueFn: escapeXml,
+  });
   return output;
 }
 
