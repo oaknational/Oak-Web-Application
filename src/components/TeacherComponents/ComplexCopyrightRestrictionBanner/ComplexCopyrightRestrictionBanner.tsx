@@ -139,6 +139,7 @@ const ComplexCopyrightRestrictionBanner = (
     showSignedOutLoginRequired,
     showSignedInNotOnboarded,
     showGeoBlocked,
+    isResourceGeorestricted,
   } = useComplexCopyright({
     loginRequired: isLoginRequired ?? false,
     geoRestricted: isGeorestricted ?? false,
@@ -175,7 +176,7 @@ const ComplexCopyrightRestrictionBanner = (
   ) : showSignedOutCopyrightBanner ? (
     <SignedOutCopyrightBanner
       showOnboardingLink={showSignedInNotOnboarded}
-      isGeorestricted={isGeorestricted ?? false}
+      isGeorestricted={isResourceGeorestricted}
       isUnit={isUnit}
       {...rest}
     />

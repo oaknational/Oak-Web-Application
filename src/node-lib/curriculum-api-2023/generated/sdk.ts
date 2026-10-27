@@ -186,6 +186,10 @@ export type Jsonb_Comparison_Exp = {
   _has_keys_any?: InputMaybe<Array<Scalars['String']['input']>>;
   _in?: InputMaybe<Array<Scalars['jsonb']['input']>>;
   _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  /** does the jsonpath return any item for the specified JSON value */
+  _jsonb_path_exists?: InputMaybe<Scalars['String']['input']>;
+  /** does the jsonpath predicate check return true for the specified JSON value */
+  _jsonb_path_match?: InputMaybe<Scalars['String']['input']>;
   _lt?: InputMaybe<Scalars['jsonb']['input']>;
   _lte?: InputMaybe<Scalars['jsonb']['input']>;
   _neq?: InputMaybe<Scalars['jsonb']['input']>;
@@ -4841,6 +4845,370 @@ export type Published_Mv_Lesson_Openapi_1_2_3_Variance_Fields = {
   starterQuizId?: Maybe<Scalars['Float']['output']>;
   unitOrder?: Maybe<Scalars['Float']['output']>;
   unitVariantId?: Maybe<Scalars['Float']['output']>;
+};
+
+/** columns and relationships of "published.mv_lesson_restriction_levels_1" */
+export type Published_Mv_Lesson_Restriction_Levels_1 = {
+  __typename?: 'published_mv_lesson_restriction_levels_1';
+  _state?: Maybe<Scalars['String']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  tpc_downloadablefiles_max_restriction?: Maybe<Scalars['String']['output']>;
+  tpc_media_max_restriction?: Maybe<Scalars['String']['output']>;
+  tpc_quizimages_max_restriction?: Maybe<Scalars['String']['output']>;
+  tpc_works_max_restriction?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregated selection of "published.mv_lesson_restriction_levels_1" */
+export type Published_Mv_Lesson_Restriction_Levels_1_Aggregate = {
+  __typename?: 'published_mv_lesson_restriction_levels_1_aggregate';
+  aggregate?: Maybe<Published_Mv_Lesson_Restriction_Levels_1_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Lesson_Restriction_Levels_1>;
+};
+
+/** aggregate fields of "published.mv_lesson_restriction_levels_1" */
+export type Published_Mv_Lesson_Restriction_Levels_1_Aggregate_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_1_aggregate_fields';
+  avg?: Maybe<Published_Mv_Lesson_Restriction_Levels_1_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Lesson_Restriction_Levels_1_Max_Fields>;
+  min?: Maybe<Published_Mv_Lesson_Restriction_Levels_1_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Lesson_Restriction_Levels_1_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Lesson_Restriction_Levels_1_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Lesson_Restriction_Levels_1_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Lesson_Restriction_Levels_1_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Lesson_Restriction_Levels_1_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Lesson_Restriction_Levels_1_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Lesson_Restriction_Levels_1_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_lesson_restriction_levels_1" */
+export type Published_Mv_Lesson_Restriction_Levels_1_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_1_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_Mv_Lesson_Restriction_Levels_1_Avg_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_1_avg_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_lesson_restriction_levels_1". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Lesson_Restriction_Levels_1_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_1_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Lesson_Restriction_Levels_1_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_1_Bool_Exp>>;
+  _state?: InputMaybe<String_Comparison_Exp>;
+  lesson_id?: InputMaybe<Int_Comparison_Exp>;
+  slug?: InputMaybe<String_Comparison_Exp>;
+  tpc_downloadablefiles_max_restriction?: InputMaybe<String_Comparison_Exp>;
+  tpc_media_max_restriction?: InputMaybe<String_Comparison_Exp>;
+  tpc_quizimages_max_restriction?: InputMaybe<String_Comparison_Exp>;
+  tpc_works_max_restriction?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Lesson_Restriction_Levels_1_Max_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_1_max_fields';
+  _state?: Maybe<Scalars['String']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  tpc_downloadablefiles_max_restriction?: Maybe<Scalars['String']['output']>;
+  tpc_media_max_restriction?: Maybe<Scalars['String']['output']>;
+  tpc_quizimages_max_restriction?: Maybe<Scalars['String']['output']>;
+  tpc_works_max_restriction?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Lesson_Restriction_Levels_1_Min_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_1_min_fields';
+  _state?: Maybe<Scalars['String']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  tpc_downloadablefiles_max_restriction?: Maybe<Scalars['String']['output']>;
+  tpc_media_max_restriction?: Maybe<Scalars['String']['output']>;
+  tpc_quizimages_max_restriction?: Maybe<Scalars['String']['output']>;
+  tpc_works_max_restriction?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_lesson_restriction_levels_1". */
+export type Published_Mv_Lesson_Restriction_Levels_1_Order_By = {
+  _state?: InputMaybe<Order_By>;
+  lesson_id?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
+  tpc_downloadablefiles_max_restriction?: InputMaybe<Order_By>;
+  tpc_media_max_restriction?: InputMaybe<Order_By>;
+  tpc_quizimages_max_restriction?: InputMaybe<Order_By>;
+  tpc_works_max_restriction?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_lesson_restriction_levels_1" */
+export enum Published_Mv_Lesson_Restriction_Levels_1_Select_Column {
+  /** column name */
+  State = '_state',
+  /** column name */
+  LessonId = 'lesson_id',
+  /** column name */
+  Slug = 'slug',
+  /** column name */
+  TpcDownloadablefilesMaxRestriction = 'tpc_downloadablefiles_max_restriction',
+  /** column name */
+  TpcMediaMaxRestriction = 'tpc_media_max_restriction',
+  /** column name */
+  TpcQuizimagesMaxRestriction = 'tpc_quizimages_max_restriction',
+  /** column name */
+  TpcWorksMaxRestriction = 'tpc_works_max_restriction'
+}
+
+/** aggregate stddev on columns */
+export type Published_Mv_Lesson_Restriction_Levels_1_Stddev_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_1_stddev_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Lesson_Restriction_Levels_1_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_1_stddev_pop_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Lesson_Restriction_Levels_1_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_1_stddev_samp_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_lesson_restriction_levels_1" */
+export type Published_Mv_Lesson_Restriction_Levels_1_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Lesson_Restriction_Levels_1_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Lesson_Restriction_Levels_1_Stream_Cursor_Value_Input = {
+  _state?: InputMaybe<Scalars['String']['input']>;
+  lesson_id?: InputMaybe<Scalars['Int']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  tpc_downloadablefiles_max_restriction?: InputMaybe<Scalars['String']['input']>;
+  tpc_media_max_restriction?: InputMaybe<Scalars['String']['input']>;
+  tpc_quizimages_max_restriction?: InputMaybe<Scalars['String']['input']>;
+  tpc_works_max_restriction?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_Mv_Lesson_Restriction_Levels_1_Sum_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_1_sum_fields';
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Lesson_Restriction_Levels_1_Var_Pop_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_1_var_pop_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Lesson_Restriction_Levels_1_Var_Samp_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_1_var_samp_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Lesson_Restriction_Levels_1_Variance_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_1_variance_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** columns and relationships of "published.mv_lesson_restriction_levels_2" */
+export type Published_Mv_Lesson_Restriction_Levels_2 = {
+  __typename?: 'published_mv_lesson_restriction_levels_2';
+  _state?: Maybe<Scalars['String']['output']>;
+  features?: Maybe<Scalars['jsonb']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  tpc_downloadablefiles_max_restriction?: Maybe<Scalars['String']['output']>;
+  tpc_media_max_restriction?: Maybe<Scalars['String']['output']>;
+  tpc_quizimages_max_restriction?: Maybe<Scalars['String']['output']>;
+  tpc_works_max_restriction?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_restriction_levels_2" */
+export type Published_Mv_Lesson_Restriction_Levels_2FeaturesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_lesson_restriction_levels_2" */
+export type Published_Mv_Lesson_Restriction_Levels_2_Aggregate = {
+  __typename?: 'published_mv_lesson_restriction_levels_2_aggregate';
+  aggregate?: Maybe<Published_Mv_Lesson_Restriction_Levels_2_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Lesson_Restriction_Levels_2>;
+};
+
+/** aggregate fields of "published.mv_lesson_restriction_levels_2" */
+export type Published_Mv_Lesson_Restriction_Levels_2_Aggregate_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_2_aggregate_fields';
+  avg?: Maybe<Published_Mv_Lesson_Restriction_Levels_2_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Lesson_Restriction_Levels_2_Max_Fields>;
+  min?: Maybe<Published_Mv_Lesson_Restriction_Levels_2_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Lesson_Restriction_Levels_2_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Lesson_Restriction_Levels_2_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Lesson_Restriction_Levels_2_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Lesson_Restriction_Levels_2_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Lesson_Restriction_Levels_2_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Lesson_Restriction_Levels_2_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Lesson_Restriction_Levels_2_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_lesson_restriction_levels_2" */
+export type Published_Mv_Lesson_Restriction_Levels_2_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_2_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_Mv_Lesson_Restriction_Levels_2_Avg_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_2_avg_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_lesson_restriction_levels_2". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Lesson_Restriction_Levels_2_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_2_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Lesson_Restriction_Levels_2_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_2_Bool_Exp>>;
+  _state?: InputMaybe<String_Comparison_Exp>;
+  features?: InputMaybe<Jsonb_Comparison_Exp>;
+  lesson_id?: InputMaybe<Int_Comparison_Exp>;
+  slug?: InputMaybe<String_Comparison_Exp>;
+  tpc_downloadablefiles_max_restriction?: InputMaybe<String_Comparison_Exp>;
+  tpc_media_max_restriction?: InputMaybe<String_Comparison_Exp>;
+  tpc_quizimages_max_restriction?: InputMaybe<String_Comparison_Exp>;
+  tpc_works_max_restriction?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Lesson_Restriction_Levels_2_Max_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_2_max_fields';
+  _state?: Maybe<Scalars['String']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  tpc_downloadablefiles_max_restriction?: Maybe<Scalars['String']['output']>;
+  tpc_media_max_restriction?: Maybe<Scalars['String']['output']>;
+  tpc_quizimages_max_restriction?: Maybe<Scalars['String']['output']>;
+  tpc_works_max_restriction?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Lesson_Restriction_Levels_2_Min_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_2_min_fields';
+  _state?: Maybe<Scalars['String']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  tpc_downloadablefiles_max_restriction?: Maybe<Scalars['String']['output']>;
+  tpc_media_max_restriction?: Maybe<Scalars['String']['output']>;
+  tpc_quizimages_max_restriction?: Maybe<Scalars['String']['output']>;
+  tpc_works_max_restriction?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_lesson_restriction_levels_2". */
+export type Published_Mv_Lesson_Restriction_Levels_2_Order_By = {
+  _state?: InputMaybe<Order_By>;
+  features?: InputMaybe<Order_By>;
+  lesson_id?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
+  tpc_downloadablefiles_max_restriction?: InputMaybe<Order_By>;
+  tpc_media_max_restriction?: InputMaybe<Order_By>;
+  tpc_quizimages_max_restriction?: InputMaybe<Order_By>;
+  tpc_works_max_restriction?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_lesson_restriction_levels_2" */
+export enum Published_Mv_Lesson_Restriction_Levels_2_Select_Column {
+  /** column name */
+  State = '_state',
+  /** column name */
+  Features = 'features',
+  /** column name */
+  LessonId = 'lesson_id',
+  /** column name */
+  Slug = 'slug',
+  /** column name */
+  TpcDownloadablefilesMaxRestriction = 'tpc_downloadablefiles_max_restriction',
+  /** column name */
+  TpcMediaMaxRestriction = 'tpc_media_max_restriction',
+  /** column name */
+  TpcQuizimagesMaxRestriction = 'tpc_quizimages_max_restriction',
+  /** column name */
+  TpcWorksMaxRestriction = 'tpc_works_max_restriction'
+}
+
+/** aggregate stddev on columns */
+export type Published_Mv_Lesson_Restriction_Levels_2_Stddev_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_2_stddev_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Lesson_Restriction_Levels_2_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_2_stddev_pop_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Lesson_Restriction_Levels_2_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_2_stddev_samp_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_lesson_restriction_levels_2" */
+export type Published_Mv_Lesson_Restriction_Levels_2_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Lesson_Restriction_Levels_2_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Lesson_Restriction_Levels_2_Stream_Cursor_Value_Input = {
+  _state?: InputMaybe<Scalars['String']['input']>;
+  features?: InputMaybe<Scalars['jsonb']['input']>;
+  lesson_id?: InputMaybe<Scalars['Int']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  tpc_downloadablefiles_max_restriction?: InputMaybe<Scalars['String']['input']>;
+  tpc_media_max_restriction?: InputMaybe<Scalars['String']['input']>;
+  tpc_quizimages_max_restriction?: InputMaybe<Scalars['String']['input']>;
+  tpc_works_max_restriction?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_Mv_Lesson_Restriction_Levels_2_Sum_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_2_sum_fields';
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Lesson_Restriction_Levels_2_Var_Pop_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_2_var_pop_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Lesson_Restriction_Levels_2_Var_Samp_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_2_var_samp_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Lesson_Restriction_Levels_2_Variance_Fields = {
+  __typename?: 'published_mv_lesson_restriction_levels_2_variance_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** columns and relationships of "published.mv_openapi_downloads_1_0_0" */
@@ -17776,6 +18144,14 @@ export type Query_Root = {
   published_mv_lesson_openapi_1_2_3: Array<Published_Mv_Lesson_Openapi_1_2_3>;
   /** fetch aggregated fields from the table: "published.mv_lesson_openapi_1_2_3" */
   published_mv_lesson_openapi_1_2_3_aggregate: Published_Mv_Lesson_Openapi_1_2_3_Aggregate;
+  /** fetch data from the table: "published.mv_lesson_restriction_levels_1" */
+  published_mv_lesson_restriction_levels_1: Array<Published_Mv_Lesson_Restriction_Levels_1>;
+  /** fetch aggregated fields from the table: "published.mv_lesson_restriction_levels_1" */
+  published_mv_lesson_restriction_levels_1_aggregate: Published_Mv_Lesson_Restriction_Levels_1_Aggregate;
+  /** fetch data from the table: "published.mv_lesson_restriction_levels_2" */
+  published_mv_lesson_restriction_levels_2: Array<Published_Mv_Lesson_Restriction_Levels_2>;
+  /** fetch aggregated fields from the table: "published.mv_lesson_restriction_levels_2" */
+  published_mv_lesson_restriction_levels_2_aggregate: Published_Mv_Lesson_Restriction_Levels_2_Aggregate;
   /** fetch data from the table: "published.mv_openapi_downloads_1_0_0" */
   published_mv_openapi_downloads_1_0_0: Array<Published_Mv_Openapi_Downloads_1_0_0>;
   /** fetch aggregated fields from the table: "published.mv_openapi_downloads_1_0_0" */
@@ -18256,6 +18632,42 @@ export type Query_RootPublished_Mv_Lesson_Openapi_1_2_3_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Published_Mv_Lesson_Openapi_1_2_3_Order_By>>;
   where?: InputMaybe<Published_Mv_Lesson_Openapi_1_2_3_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Lesson_Restriction_Levels_1Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Restriction_Levels_1_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Lesson_Restriction_Levels_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Restriction_Levels_1_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Lesson_Restriction_Levels_2Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_2_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_2_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Restriction_Levels_2_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Lesson_Restriction_Levels_2_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_2_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_2_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Restriction_Levels_2_Bool_Exp>;
 };
 
 
@@ -19374,6 +19786,18 @@ export type Subscription_Root = {
   published_mv_lesson_openapi_1_2_3_aggregate: Published_Mv_Lesson_Openapi_1_2_3_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_lesson_openapi_1_2_3" */
   published_mv_lesson_openapi_1_2_3_stream: Array<Published_Mv_Lesson_Openapi_1_2_3>;
+  /** fetch data from the table: "published.mv_lesson_restriction_levels_1" */
+  published_mv_lesson_restriction_levels_1: Array<Published_Mv_Lesson_Restriction_Levels_1>;
+  /** fetch aggregated fields from the table: "published.mv_lesson_restriction_levels_1" */
+  published_mv_lesson_restriction_levels_1_aggregate: Published_Mv_Lesson_Restriction_Levels_1_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_lesson_restriction_levels_1" */
+  published_mv_lesson_restriction_levels_1_stream: Array<Published_Mv_Lesson_Restriction_Levels_1>;
+  /** fetch data from the table: "published.mv_lesson_restriction_levels_2" */
+  published_mv_lesson_restriction_levels_2: Array<Published_Mv_Lesson_Restriction_Levels_2>;
+  /** fetch aggregated fields from the table: "published.mv_lesson_restriction_levels_2" */
+  published_mv_lesson_restriction_levels_2_aggregate: Published_Mv_Lesson_Restriction_Levels_2_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_lesson_restriction_levels_2" */
+  published_mv_lesson_restriction_levels_2_stream: Array<Published_Mv_Lesson_Restriction_Levels_2>;
   /** fetch data from the table: "published.mv_openapi_downloads_1_0_0" */
   published_mv_openapi_downloads_1_0_0: Array<Published_Mv_Openapi_Downloads_1_0_0>;
   /** fetch aggregated fields from the table: "published.mv_openapi_downloads_1_0_0" */
@@ -20055,6 +20479,56 @@ export type Subscription_RootPublished_Mv_Lesson_Openapi_1_2_3_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Published_Mv_Lesson_Openapi_1_2_3_Stream_Cursor_Input>>;
   where?: InputMaybe<Published_Mv_Lesson_Openapi_1_2_3_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Lesson_Restriction_Levels_1Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Restriction_Levels_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Lesson_Restriction_Levels_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Restriction_Levels_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Lesson_Restriction_Levels_1_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Lesson_Restriction_Levels_1_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Lesson_Restriction_Levels_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Lesson_Restriction_Levels_2Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_2_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_2_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Restriction_Levels_2_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Lesson_Restriction_Levels_2_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_2_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Restriction_Levels_2_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Restriction_Levels_2_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Lesson_Restriction_Levels_2_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Lesson_Restriction_Levels_2_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Lesson_Restriction_Levels_2_Bool_Exp>;
 };
 
 
@@ -21580,7 +22054,7 @@ export type LessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type LessonOverviewQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_published_9_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null, has_lesson_guide_google_drive_downloadable_version?: boolean | null, lesson_guide_asset_object_url?: string | null, has_lesson_guide_object?: boolean | null, lesson_guide_asset_id?: number | null, downloadable_files?: any | null, lesson_release_date?: any | null, geo_restricted?: boolean | null, login_required?: boolean | null }>, unitData: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', lesson_count?: number | null, supplementary_data?: any | null }>, tpcWorks: Array<{ __typename?: 'published_mv_get_tpc_works_by_lesson_slug_1_0_0', slug?: string | null, lesson_id?: number | null, works_list?: any | null }> };
+export type LessonOverviewQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_published_9_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null, has_lesson_guide_google_drive_downloadable_version?: boolean | null, lesson_guide_asset_object_url?: string | null, has_lesson_guide_object?: boolean | null, lesson_guide_asset_id?: number | null, downloadable_files?: any | null, lesson_release_date?: any | null, geo_restricted?: boolean | null, login_required?: boolean | null }>, unitData: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', lesson_count?: number | null, supplementary_data?: any | null }>, tpcWorks: Array<{ __typename?: 'published_mv_get_tpc_works_by_lesson_slug_1_0_0', slug?: string | null, lesson_id?: number | null, works_list?: any | null }>, restrictions: Array<{ __typename?: 'published_mv_lesson_restriction_levels_2', tpc_works_max_restriction?: string | null, tpc_quizimages_max_restriction?: string | null, tpc_media_max_restriction?: string | null, tpc_downloadablefiles_max_restriction?: string | null }> };
 
 export type LessonShareQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
@@ -21727,7 +22201,7 @@ export type TeachersLessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type TeachersLessonOverviewQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_published_9_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null, has_lesson_guide_google_drive_downloadable_version?: boolean | null, lesson_guide_asset_object_url?: string | null, has_lesson_guide_object?: boolean | null, lesson_guide_asset_id?: number | null, downloadable_files?: any | null, lesson_release_date?: any | null, geo_restricted?: boolean | null, login_required?: boolean | null }>, unitData: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', lesson_count?: number | null, supplementary_data?: any | null }>, tpcWorks: Array<{ __typename?: 'published_mv_get_tpc_works_by_lesson_slug_1_0_0', slug?: string | null, lesson_id?: number | null, works_list?: any | null }> };
+export type TeachersLessonOverviewQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_published_9_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null, has_lesson_guide_google_drive_downloadable_version?: boolean | null, lesson_guide_asset_object_url?: string | null, has_lesson_guide_object?: boolean | null, lesson_guide_asset_id?: number | null, downloadable_files?: any | null, lesson_release_date?: any | null, geo_restricted?: boolean | null, login_required?: boolean | null }>, unitData: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', lesson_count?: number | null, supplementary_data?: any | null }>, tpcWorks: Array<{ __typename?: 'published_mv_get_tpc_works_by_lesson_slug_1_0_0', slug?: string | null, lesson_id?: number | null, works_list?: any | null }>, restrictions: Array<{ __typename?: 'published_mv_lesson_restriction_levels_2', tpc_works_max_restriction?: string | null, tpc_quizimages_max_restriction?: string | null, tpc_media_max_restriction?: string | null, tpc_downloadablefiles_max_restriction?: string | null }> };
 
 export type TeachersSitemapQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -22089,6 +22563,14 @@ export const LessonOverviewDocument = gql`
     slug
     lesson_id
     works_list
+  }
+  restrictions: published_mv_lesson_restriction_levels_2(
+    where: {slug: {_eq: $lessonSlug}}
+  ) {
+    tpc_works_max_restriction
+    tpc_quizimages_max_restriction
+    tpc_media_max_restriction
+    tpc_downloadablefiles_max_restriction
   }
 }
     `;
@@ -22608,6 +23090,14 @@ export const TeachersLessonOverviewDocument = gql`
     slug
     lesson_id
     works_list
+  }
+  restrictions: published_mv_lesson_restriction_levels_2(
+    where: {slug: {_eq: $lessonSlug}}
+  ) {
+    tpc_works_max_restriction
+    tpc_quizimages_max_restriction
+    tpc_media_max_restriction
+    tpc_downloadablefiles_max_restriction
   }
 }
     `;

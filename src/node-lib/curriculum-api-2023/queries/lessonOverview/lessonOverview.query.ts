@@ -14,7 +14,10 @@ import {
 import { constructPathwayLesson, toSentenceCase } from "../../helpers";
 import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 import { getCorrectYear } from "../../helpers/getCorrectYear";
-import { isExcludedFromTeachingMaterials } from "../../helpers/teachingMaterialsAi/isExcluded";
+import {
+  getHideCreateWithAi,
+  isExcludedFromTeachingMaterials,
+} from "../../helpers/teachingMaterialsAi/isExcluded";
 
 import {
   lessonContentSchema,
@@ -164,6 +167,7 @@ export const transformedLessonOverviewData = (
   pathways: LessonPathway[] | [],
   unitData: LessonUnitDataByKs,
   excludedFromTeachingMaterials: boolean,
+  shouldHideCreateWithAi: boolean,
 ): LessonOverviewPageData => {
   const reportError = errorReporter("transformedLessonOverviewData");
   const starterQuiz = lessonOverviewQuizData.parse(content.starterQuiz);
@@ -275,6 +279,7 @@ export const transformedLessonOverviewData = (
     geoRestricted: browseData.features?.agfGeoRestricted ?? false,
     loginRequired: browseData.features?.agfLoginRequired ?? false,
     excludedFromTeachingMaterials,
+    shouldHideCreateWithAi,
     subjectCategories: browseData.unitData.subjectcategories || null,
   };
 };
@@ -386,12 +391,21 @@ const lessonOverviewQuery =
       content,
     );
 
+    const shouldHideCreateWithAi = getHideCreateWithAi({
+      subject: browseData.programmeFields.subjectSlug,
+      worksList: restrictedAndHighlyRestrictedWorksList,
+      restrictions: res.restrictions[0],
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      features: browseData.features as any,
+    });
+
     return transformedLessonOverviewData(
       browseData,
       content,
       pathways,
       unitData,
       excludedFromTeachingMaterials,
+      shouldHideCreateWithAi,
     );
   };
 

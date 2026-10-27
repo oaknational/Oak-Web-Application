@@ -13,7 +13,12 @@ interface LessonOverviewDownloadAndShareButtonsProps
 
 export const LessonOverviewDownloadAndShareButtons: FC<
   LessonOverviewDownloadAndShareButtonsProps
-> = ({ shareButtons, excludedFromTeachingMaterials, ...props }) => (
+> = ({
+  shareButtons,
+  excludedFromTeachingMaterials,
+  shouldHideCreateWithAi,
+  ...props
+}) => (
   <OakUL
     $display={"flex"}
     $flexDirection={["column", "row"]}
@@ -25,7 +30,7 @@ export const LessonOverviewDownloadAndShareButtons: FC<
       <LessonOverviewDownloadAllButton {...props} />
     </OakLI>
     {shareButtons}
-    {!excludedFromTeachingMaterials && (
+    {!excludedFromTeachingMaterials && !shouldHideCreateWithAi && (
       <OakLI $listStyle={"none"}>
         <LessonOverviewCreateWithAiDropdown {...props} />
       </OakLI>
