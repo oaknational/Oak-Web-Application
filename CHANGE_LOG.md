@@ -1,3 +1,22 @@
+# [1.1256.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1255.1...v1.1256.0) (2026-10-27)
+
+
+### Bug Fixes
+
+* add analytics store decorator to stories ([11234d4](https://github.com/oaknational/Oak-Web-Application/commit/11234d4a9a25837b5a6229ec0bb86914899de990))
+* add missing provider to EYFS page ([c7ee295](https://github.com/oaknational/Oak-Web-Application/commit/c7ee2959c4c2da5a14746b57ee1324c11baa4151))
+* hide download button when file does not exist ([0415b19](https://github.com/oaknational/Oak-Web-Application/commit/0415b19ac79e3503316bba1e494e6f8bfa733b07))
+* use restriction value with subject for onboarding required param ([ae57166](https://github.com/oaknational/Oak-Web-Application/commit/ae57166136551dab1d72678fd80b8aaf500607c1))
+
+
+### Features
+
+* add isResourceGeorestricted to hook and use in banner ([c97a7c4](https://github.com/oaknational/Oak-Web-Application/commit/c97a7c412e521e4f996ee7893d8db8e60f05f1c8))
+* handle restricted subject in copyright hook ([13ea76d](https://github.com/oaknational/Oak-Web-Application/commit/13ea76d04e91e912a735aa2ad784c53a338a4e4c))
+* return 404 for share page on lessons with subject restriction ([b1bc0b2](https://github.com/oaknational/Oak-Web-Application/commit/b1bc0b2141ce852f08adf054388ba3bcde132b60))
+* update restriction condition in lesson list query ([d1f89f9](https://github.com/oaknational/Oak-Web-Application/commit/d1f89f9d807bafe650c336bdf1568bf9c75e9f14))
+* update useProgrammeState to return core state ([e815734](https://github.com/oaknational/Oak-Web-Application/commit/e8157344c232256f01d5cdcdb048a06731e4b00a))
+
 ## [1.1255.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1255.0...v1.1255.1) (2026-10-26)
 
 
