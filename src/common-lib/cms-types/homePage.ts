@@ -14,12 +14,12 @@ const newCtaBaseSchema = z.object({
 export const newCtaSchema = z.discriminatedUnion("linkType", [
   newCtaBaseSchema.extend({
     linkType: z.literal("internal"),
-    internal: z.string().startsWith("/").or(z.string().startsWith("#")),
+    internal: z.string(),
     external: z.unknown().transform(() => null),
   }),
   newCtaBaseSchema.extend({
     linkType: z.literal("external"),
-    external: z.url().startsWith("http://").or(z.url().startsWith("https://")),
+    external: z.string(),
     internal: z.unknown().transform(() => null),
   }),
 ]);
