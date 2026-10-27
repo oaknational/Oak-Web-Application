@@ -5,6 +5,19 @@ query homepage($isDraftFilter: Sanity_DocumentFilter) {
     limit: 1
   ) {
     id: _id
+    displayTopBanner
+    topBanner {
+      displayNewTag
+      messagePortableText: messageRaw
+      displayCta
+      cta {
+        label
+        linkType
+        external
+        internal
+      }
+      backgroundColor
+    }
     heading
     summaryPortableText: summaryRaw
     notification {
