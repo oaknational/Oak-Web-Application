@@ -1070,6 +1070,7 @@ export const primaryScienceYearData = {
     units: [
       createUnit({
         year: "1",
+        slug: "primary-science-year-1-biology",
         subjectcategories: [primaryScienceSubjectCategories[1]!],
       }),
     ],
@@ -1090,10 +1091,12 @@ export const primaryScienceYearData = {
     units: [
       createUnit({
         year: "2",
+        slug: "primary-science-year-2-biology",
         subjectcategories: [primaryScienceSubjectCategories[1]!],
       }),
       createUnit({
         year: "2",
+        slug: "primary-science-year-2-chemistry",
         subjectcategories: [primaryScienceSubjectCategories[2]!],
       }),
     ],
@@ -1115,14 +1118,17 @@ export const primaryScienceYearData = {
     units: [
       createUnit({
         year: "3",
+        slug: "primary-science-year-3-biology",
         subjectcategories: [primaryScienceSubjectCategories[1]!],
       }),
       createUnit({
         year: "3",
+        slug: "primary-science-year-3-chemistry",
         subjectcategories: [primaryScienceSubjectCategories[2]!],
       }),
       createUnit({
         year: "3",
+        slug: "primary-science-year-3-physics",
         subjectcategories: [primaryScienceSubjectCategories[3]!],
       }),
     ],
@@ -1145,18 +1151,22 @@ export const primaryScienceYearData = {
     units: [
       createUnit({
         year: "4",
+        slug: "primary-science-year-4-all",
         subjectcategories: [primaryScienceSubjectCategories[0]!],
       }),
       createUnit({
         year: "4",
+        slug: "primary-science-year-4-biology",
         subjectcategories: [primaryScienceSubjectCategories[1]!],
       }),
       createUnit({
         year: "4",
+        slug: "primary-science-year-4-chemistry",
         subjectcategories: [primaryScienceSubjectCategories[2]!],
       }),
       createUnit({
         year: "4",
+        slug: "primary-science-year-4-physics",
         subjectcategories: [primaryScienceSubjectCategories[3]!],
       }),
     ],
@@ -1177,10 +1187,12 @@ export const primaryScienceYearData = {
     units: [
       createUnit({
         year: "5",
+        slug: "primary-science-year-5-chemistry",
         subjectcategories: [primaryScienceSubjectCategories[2]!],
       }),
       createUnit({
         year: "5",
+        slug: "primary-science-year-5-physics",
         subjectcategories: [primaryScienceSubjectCategories[3]!],
       }),
     ],
@@ -1198,6 +1210,7 @@ export const primaryScienceYearData = {
     units: [
       createUnit({
         year: "6",
+        slug: "primary-science-year-6",
         subjectcategories: [primaryEnglishSubjectCategories[3]!],
       }),
     ],
@@ -1240,14 +1253,17 @@ export const secondaryScienceYearData: YearData = {
     units: [
       createUnit({
         year: "7",
+        slug: "secondary-science-year-7-biology",
         subjectcategories: [secondaryScienceSubjectCategories[1]!],
       }),
       createUnit({
         year: "7",
+        slug: "secondary-science-year-7-physics",
         subjectcategories: [secondaryScienceSubjectCategories[3]!],
       }),
       createUnit({
         year: "7",
+        slug: "secondary-science-year-7-chemistry",
         subjectcategories: [secondaryScienceSubjectCategories[2]!],
       }),
     ],
@@ -1257,10 +1273,12 @@ export const secondaryScienceYearData: YearData = {
     units: [
       createUnit({
         year: "8",
+        slug: "secondary-science-year-8-biology",
         subjectcategories: [secondaryScienceSubjectCategories[1]!],
       }),
       createUnit({
         year: "8",
+        slug: "secondary-science-year-8-chemistry",
         subjectcategories: [secondaryScienceSubjectCategories[2]!],
       }),
     ],
@@ -1270,14 +1288,17 @@ export const secondaryScienceYearData: YearData = {
     units: [
       createUnit({
         year: "9",
+        slug: "secondary-science-year-9-biology",
         subjectcategories: [secondaryScienceSubjectCategories[1]!],
       }),
       createUnit({
         year: "9",
+        slug: "secondary-science-year-9-chemistry",
         subjectcategories: [secondaryScienceSubjectCategories[2]!],
       }),
       createUnit({
         year: "9",
+        slug: "secondary-science-year-9-physics",
         subjectcategories: [secondaryScienceSubjectCategories[3]!],
       }),
     ],
@@ -1289,26 +1310,31 @@ export const secondaryScienceYearData: YearData = {
     units: [
       createUnit({
         year: "10",
+        slug: "secondary-science-year-10-biology",
         subjectcategories: [secondaryScienceSubjectCategories[1]!],
         tier_slug: tiers[0]?.tier_slug,
       }),
       createUnit({
         year: "10",
+        slug: "secondary-science-year-10-chemistry",
         subjectcategories: [secondaryScienceSubjectCategories[2]!],
         tier_slug: tiers[0]?.tier_slug,
       }),
       createUnit({
         year: "10",
+        slug: "secondary-science-year-10-physics-one",
         subjectcategories: [secondaryScienceSubjectCategories[3]!],
         tier_slug: tiers[0]?.tier_slug,
       }),
       createUnit({
         year: "10",
+        slug: "secondary-science-year-10-physics-two",
         subjectcategories: [secondaryScienceSubjectCategories[3]!],
         tier_slug: tiers[0]?.tier_slug,
       }),
       createUnit({
         year: "10",
+        slug: "combined-science-year-10-biology",
         subjectcategories: [secondaryScienceSubjectCategories[1]!],
         tier_slug: tiers[0]?.tier_slug,
         subject_slug: "combined-science",
@@ -1322,28 +1348,33 @@ export const secondaryScienceYearData: YearData = {
     units: [
       createUnit({
         year: "11",
+        slug: "secondary-science-year-11-physics-foundation",
         subjectcategories: [secondaryScienceSubjectCategories[3]!],
         tier_slug: tiers[0]?.tier_slug,
       }),
       createUnit({
         year: "11",
+        slug: "secondary-science-year-11-physics-higher",
         subjectcategories: [secondaryScienceSubjectCategories[3]!],
         tier_slug: tiers[1]?.tier_slug,
       }),
       createUnit({
         year: "11",
+        slug: "combined-science-year-11-biology-foundation",
         subjectcategories: [secondaryScienceSubjectCategories[1]!],
         tier_slug: tiers[0]?.tier_slug,
         subject_slug: "combined-science",
       }),
       createUnit({
         year: "11",
+        slug: "combined-science-year-11-biology-higher",
         subjectcategories: [secondaryScienceSubjectCategories[1]!],
         tier_slug: tiers[1]?.tier_slug,
         subject_slug: "combined-science",
       }),
       createUnit({
         year: "11",
+        slug: "combined-science-year-11-chemistry-higher",
         subjectcategories: [secondaryScienceSubjectCategories[2]!],
         tier_slug: tiers[1]?.tier_slug,
         subject_slug: "combined-science",

@@ -12,7 +12,6 @@ import {
 
 import { getResourcesWithoutLegacyCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
 import { useOnboardingStatus } from "../TeacherComponents/hooks/useOnboardingStatus";
-import Banners from "../SharedComponents/Banners";
 import { waitForLinkCallback } from "../SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 
 import useLessonDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck";
@@ -76,16 +75,13 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
   const { setCurrentToastProps } = useOakNotificationsContext();
   const router = useRouter();
   const {
-    lessonTitle,
     lessonSlug,
     downloads,
     additionalFiles,
     expired,
-    isLegacy,
     legacyCopyrightContent,
     updatedAt,
     actions,
-    lessonReleaseDate,
     loginRequired,
     geoRestricted,
   } = lesson;
@@ -256,7 +252,6 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
 
   return (
     <OakBox $ph={["spacing-16", "spacing-0"]} $background={"bg-neutral"}>
-      {isDownloadSuccessful && <Banners />}
       <OakMaxWidth
         $pb="spacing-80"
         $maxWidth={["spacing-480", "spacing-960", "spacing-1280"]}
@@ -275,10 +270,6 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
         </OakBox>
         {showGeoBlocked && (
           <LessonDownloadRegionBlocked
-            lessonName={lessonTitle}
-            lessonSlug={lessonSlug}
-            lessonReleaseDate={lessonReleaseDate ?? "unreleased"}
-            isLegacy={isLegacy}
             href={resolveOakHref({
               page: "lesson-overview",
               lessonSlug,
@@ -353,10 +344,6 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
             lessonDownloads={downloadsFilteredByCopyright}
             additionalFiles={additionalFiles}
             showGeoBlocked={showGeoBlocked}
-            lessonSlug={lessonSlug}
-            lessonTitle={lessonTitle}
-            lessonReleaseDate={lessonReleaseDate}
-            isLegacy={isLegacy}
           />
         )}
       </OakMaxWidth>

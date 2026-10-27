@@ -112,12 +112,20 @@ const AboutUsCaseStudy: NextPage<AboutUsCaseStudyLibraryPageProps> = ({
     PortableTextComponent<"block">
   > = {
     heading1: (props) => (
-      <OakHeading tag="h3" $font="heading-5" $mt={["spacing-32", "spacing-40"]}>
+      <OakHeading
+        tag="h3"
+        $font={["heading-6", "heading-5"]}
+        $mt={["spacing-32", "spacing-40"]}
+      >
         {props.children}
       </OakHeading>
     ),
     heading2: (props) => (
-      <OakHeading tag="h4" $font="heading-6" $mt={["spacing-32", "spacing-40"]}>
+      <OakHeading
+        tag="h4"
+        $font={["heading-7", "heading-6"]}
+        $mt={["spacing-32", "spacing-40"]}
+      >
         {props.children}
       </OakHeading>
     ),
@@ -216,7 +224,6 @@ const AboutUsCaseStudy: NextPage<AboutUsCaseStudyLibraryPageProps> = ({
                   <OakFlex
                     $flexDirection="column"
                     $gap={["spacing-72", "spacing-100"]}
-                    $pb="spacing-100"
                     $position={"relative"}
                   >
                     {caseStudy.content.map((contentBlock) => (

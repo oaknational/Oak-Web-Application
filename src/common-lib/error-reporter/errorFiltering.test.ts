@@ -50,18 +50,10 @@ describe("common-lib/error-reporter/errorFiltering", () => {
       expect(mockSupportedBrowsersTest).not.toHaveBeenCalled();
     });
 
-    it("returns true for Percy user agent", () => {
-      expect(
-        matchesUserAgent(
-          "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_4) percy AppleWebKit/537.36",
-        ),
-      ).toBe(true);
-    });
-
     it("is case insensitive for user agent matching", () => {
       expect(
         matchesUserAgent(
-          "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_4) PERCY AppleWebKit/537.36",
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_4) DETECTIFY AppleWebKit/537.36",
         ),
       ).toBe(true);
     });

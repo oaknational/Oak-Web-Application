@@ -3,6 +3,8 @@ import { act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useSyncExternalStore } from "react";
 
+import { ProgrammeNavigationProvider } from "../../../ProgrammeNavigationProvider";
+
 import { ProgrammePageProps, ProgrammeView } from "./ProgrammeView";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -164,14 +166,16 @@ const renderProgrammeView = (
   const mergedProps = { ...defaultProps, ...viewProps };
 
   return renderWithProviders()(
-    <BrowseFiltersProvider
-      defaultFilter={getDefaultBrowseFilter(
-        mergedProps.curriculumUnitsFormattedData,
-      )}
-      initialFilter={initialFilter}
-    >
-      <ProgrammeView {...mergedProps} />
-    </BrowseFiltersProvider>,
+    <ProgrammeNavigationProvider>
+      <BrowseFiltersProvider
+        defaultFilter={getDefaultBrowseFilter(
+          mergedProps.curriculumUnitsFormattedData,
+        )}
+        initialFilter={initialFilter}
+      >
+        <ProgrammeView {...mergedProps} />
+      </BrowseFiltersProvider>
+    </ProgrammeNavigationProvider>,
   );
 };
 
@@ -330,6 +334,13 @@ describe("ProgrammeView", () => {
     });
 
     it("calls notFound when the overview tab is active", () => {
+      setMockedPathname(
+        resolveOakHref({
+          page: "teacher-programme",
+          subjectPhaseSlug,
+          tab: "curriculum-explainer",
+        }),
+      );
       expect(() =>
         renderProgrammeView({
           ...nonCurriculumProps,

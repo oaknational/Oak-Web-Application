@@ -37,10 +37,6 @@ const props: PropsWithoutForm = {
   geoRestricted: false,
   loginRequired: false,
   showGeoBlocked: false,
-  lessonSlug: "lesson-1",
-  lessonTitle: "Lesson 1",
-  lessonReleaseDate: "2022-01-01T00:00:00Z",
-  isLegacy: false,
 };
 
 let mockUseComplexCopyright = defaultCopyrightRequirements;

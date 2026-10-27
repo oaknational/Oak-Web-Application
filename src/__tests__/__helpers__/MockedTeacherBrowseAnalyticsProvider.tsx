@@ -10,6 +10,7 @@ import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtur
 import { AccessLevelValueType } from "@/browser-lib/avo/Avo";
 
 export const mockJourneyId = "mockJourneyId";
+const mockPosthogDistinctId = "mockPosthogDistinctId";
 
 export const mockProgrammeState: ProgrammeState = getProgrammeStateForLesson(
   teachersLessonOverviewFixture(),
@@ -36,6 +37,7 @@ const MockedTeacherBrowseAnalyticsProvider: FC<{
       avo: track,
       journeyId: mockJourneyId,
       accessLevel,
+      posthogDistinctId: mockPosthogDistinctId,
     }),
   );
 

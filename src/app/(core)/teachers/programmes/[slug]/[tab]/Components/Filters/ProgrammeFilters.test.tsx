@@ -1,5 +1,7 @@
 import { screen } from "@testing-library/dom";
 
+import { ProgrammeNavigationProvider } from "../../../../ProgrammeNavigationProvider";
+
 import { ProgrammeFilters, ProgrammeFiltersProps } from "./ProgrammeFilters";
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 
@@ -96,9 +98,11 @@ const renderProgrammeFilters = (
   props: Partial<ProgrammeFiltersProps> = {},
 ) => {
   return render(
-    <BrowseFiltersProvider defaultFilter={filters}>
-      <ProgrammeFilters {...defaultProps} {...props} />
-    </BrowseFiltersProvider>,
+    <ProgrammeNavigationProvider>
+      <BrowseFiltersProvider defaultFilter={filters}>
+        <ProgrammeFilters {...defaultProps} {...props} />
+      </BrowseFiltersProvider>
+    </ProgrammeNavigationProvider>,
   );
 };
 

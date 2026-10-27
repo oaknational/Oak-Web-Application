@@ -6,11 +6,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 const render = renderWithProviders();
 
 const props = {
-  lessonName: "Test Lesson",
-  lessonSlug: "test-lesson",
-  lessonReleaseDate: "2023-10-01",
   href: "/teachers/lessons/test-lesson",
-  isLegacy: false,
 };
 describe("LessonDownloadRegionBlocked", () => {
   it("renders the main heading", () => {

@@ -14,6 +14,21 @@ import { createYearData } from "@/fixtures/curriculum/yearData";
 import { getKeyStageTitle } from "@/utils/curriculum/formatting";
 import { getProgrammeStateForUnit } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersUnitOverview.fixture";
+import CardListing, {
+  CardListingProps,
+} from "@/components/TeacherComponents/CardListing/CardListing";
+
+jest.mock("@/components/TeacherComponents/CardListing/CardListing", () => ({
+  __esModule: true,
+  default: jest.fn((props: CardListingProps) => {
+    const ActualCardListing = jest.requireActual<
+      typeof import("@/components/TeacherComponents/CardListing/CardListing")
+    >("@/components/TeacherComponents/CardListing/CardListing").default;
+    return <ActualCardListing {...props} />;
+  }),
+}));
+
+const mockCardListing = jest.mocked(CardListing);
 
 const render = renderWithProviders({
   ...allProviders,
@@ -91,6 +106,109 @@ describe("ProgrammeUnitList", () => {
     expect(list).toBeInTheDocument();
   });
 
+  it("skips unchanged cards when filters and the units array change", () => {
+    const { rerender } = render(<ProgrammeUnitList {...defaultProps} />);
+    mockCardListing.mockClear();
+
+    rerender(
+      <ProgrammeUnitList
+        {...defaultProps}
+        units={[...defaultProps.units]}
+        filters={createFilter({ threads: ["unmatched-thread"] })}
+      />,
+    );
+
+    expect(mockCardListing).not.toHaveBeenCalled();
+  });
+
+  it("only rerenders cards whose highlighting changes", () => {
+    const units = [
+      createUnit({
+        slug: "first-thread-unit",
+        threads: [createThread({ slug: "first-thread" })],
+      }),
+      createUnit({
+        slug: "second-thread-unit",
+        threads: [createThread({ slug: "second-thread" })],
+      }),
+      createUnit({ slug: "unaffected-unit", threads: [] }),
+    ];
+    const { rerender } = render(
+      <ProgrammeUnitList
+        {...defaultProps}
+        units={units}
+        filters={createFilter({ threads: ["first-thread"] })}
+      />,
+    );
+    mockCardListing.mockClear();
+
+    rerender(
+      <ProgrammeUnitList
+        {...defaultProps}
+        units={units}
+        filters={createFilter({ threads: ["second-thread"] })}
+      />,
+    );
+
+    expect(mockCardListing).toHaveBeenCalledTimes(2);
+    expect(
+      mockCardListing.mock.calls.map(([props]) => props.highlightColorVariant),
+    ).toEqual([undefined, "secondary"]);
+  });
+
+  it("updates a card when its unit data changes", () => {
+    const { rerender } = render(<ProgrammeUnitList {...defaultProps} />);
+    mockCardListing.mockClear();
+
+    rerender(
+      <ProgrammeUnitList
+        {...defaultProps}
+        units={defaultProps.units.map((unit, index) =>
+          index === 0 ? { ...unit, title: "Updated Unit One" } : unit,
+        )}
+      />,
+    );
+
+    expect(mockCardListing).toHaveBeenCalledTimes(1);
+    expect(
+      screen.getByRole("link", { name: /Updated Unit One/i }),
+    ).toBeInTheDocument();
+    act(() => {
+      mockCardListing.mock.calls[0]?.[0].onClickLink?.();
+    });
+    expect(unitAccessedMock).toHaveBeenCalledWith(
+      expect.objectContaining({ unitName: "Updated Unit One" }),
+    );
+  });
+
+  it("preserves a unit card when filtering changes its position", () => {
+    const { rerender } = render(<ProgrammeUnitList {...defaultProps} />);
+    const retainedCard = screen
+      .getByRole("link", { name: /Unit Two/i })
+      .closest("li");
+
+    expect(retainedCard).not.toBeNull();
+    mockCardListing.mockClear();
+
+    rerender(
+      <ProgrammeUnitList
+        {...defaultProps}
+        units={defaultProps.units.slice(1)}
+      />,
+    );
+
+    expect(screen.getByRole("link", { name: /Unit Two/i }).closest("li")).toBe(
+      retainedCard,
+    );
+    expect(
+      screen.queryByRole("link", { name: /Unit One/i }),
+    ).not.toBeInTheDocument();
+    expect(mockCardListing).toHaveBeenCalledTimes(1);
+    expect(mockCardListing.mock.calls[0]?.[0]).toEqual(
+      expect.objectContaining({ title: "Unit Two", index: 1 }),
+    );
+  });
+
   it("calls track.unitAccessed when a unit link is clicked", async () => {
     render(<ProgrammeUnitList {...defaultProps} />);
 
@@ -129,6 +247,34 @@ describe("ProgrammeUnitList", () => {
           title: "Another historical option",
         }),
       ],
+    });
+
+    it("updates optionality child cards when the selected thread changes", () => {
+      const { rerender } = render(
+        <ProgrammeUnitList
+          {...defaultProps}
+          units={[optionalityUnit]}
+          filters={createFilter({ threads: [] })}
+        />,
+      );
+
+      rerender(
+        <ProgrammeUnitList
+          {...defaultProps}
+          units={[optionalityUnit]}
+          filters={createFilter({ threads: [thread.slug] })}
+        />,
+      );
+
+      const cards = screen.getAllByTestId("card-listing-container");
+      expect(cards).toHaveLength(3);
+      expect(cards[0]).toHaveStyle({ background: getOakUiColor("bg-primary") });
+      expect(cards[1]).toHaveStyle({
+        background: getOakUiColor("bg-inverted"),
+      });
+      expect(cards[2]).toHaveStyle({
+        background: getOakUiColor("bg-inverted"),
+      });
     });
 
     it("highlights optionality child cards when the unit matches the selected thread", () => {

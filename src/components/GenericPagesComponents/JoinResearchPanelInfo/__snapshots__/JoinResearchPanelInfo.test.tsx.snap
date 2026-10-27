@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`JoinResearchPanelInfo it renders correct data 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-bdvwhi iatEdD"
+    >
+      <div
+        class="sc-bdvwhi sc-jObTYW blOvSo gznCko"
+      >
+        <div
+          class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex gcRJCw"
+        >
+          <div
+            class="sc-bdvwhi sc-gsDMPd dumZsJ kkGnDS"
+          >
+            <span
+              class="sc-bdvwhi LoEut"
+            >
+              <img
+                alt=""
+                class="sc-jRQBiJ hssYEG"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                sizes="100vw"
+                src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=3840&q=75"
+                srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=3840&q=75 3840w"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </span>
+          </div>
+        </div>
+        <div
+          class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex jkXtUN"
+        >
+          <div
+            class="sc-bdvwhi sc-gsDMPd hPWTKU cvDmZS"
+          >
+            <h2
+              class="sc-bkkgYE kaqcGl"
+            >
+              Who can join the panel?
+            </h2>
+            <p
+              class="sc-hGPAwl TPKYH"
+            >
+              Join the research panel body copy goes here
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
