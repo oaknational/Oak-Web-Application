@@ -19,5 +19,8 @@ describe("JoinResearchPanelJourney", () => {
     expect(stepHeadings[0]).toHaveTextContent(fixture.steps[0]!.title);
     expect(stepHeadings[1]).toHaveTextContent(fixture.steps[1]!.title);
     expect(stepHeadings[2]).toHaveTextContent(fixture.steps[2]!.title);
+
+    const linkElement = getByRole("link", { name: "sign-up form" });
+    expect(linkElement).toHaveAttribute("href", "https://example.com");
   });
 });

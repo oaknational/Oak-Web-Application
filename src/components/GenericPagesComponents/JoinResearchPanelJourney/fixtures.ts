@@ -5,9 +5,54 @@ export const basic = {
   steps: [
     {
       title: "Sign up",
-      descriptionRaw: portableTextFromString(
-        "Fill in our sign-up form with a few details about you. We'll email you if there's a research opportunity that matches your background and interests.",
-      ),
+      descriptionRaw: [
+        {
+          _key: "a55e350645a9",
+          _type: "block",
+          children: [
+            {
+              _key: "c3d11c92f107",
+              _type: "span",
+              marks: [],
+              text: "Fill in our ",
+            },
+            {
+              _key: "0a8ebf514309",
+              _type: "span",
+              marks: ["37521cb9bce4"],
+              text: "sign-up form",
+            },
+            {
+              _key: "2f90add3ceaf",
+              _type: "span",
+              marks: [],
+              text: " with a few details about you.",
+            },
+          ],
+          markDefs: [
+            {
+              _key: "37521cb9bce4",
+              _type: "link",
+              href: "https://example.com",
+            },
+          ],
+          style: "normal",
+        },
+        {
+          _key: "fb416f08375a",
+          _type: "block",
+          children: [
+            {
+              _key: "35cdeb6fdfa4",
+              _type: "span",
+              marks: [],
+              text: "We'll email you if there's a research opportunity that matches your background and interests.",
+            },
+          ],
+          markDefs: [],
+          style: "normal",
+        },
+      ],
     },
     {
       title: "Take part",

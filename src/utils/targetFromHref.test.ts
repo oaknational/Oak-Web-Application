@@ -14,4 +14,10 @@ describe("targetFromHref", () => {
     const result = targetFromHref(url);
     expect(result).toBeUndefined();
   });
+
+  it("should return undefined for relative URLs", () => {
+    const url = "/some-path";
+    const result = targetFromHref(url);
+    expect(result).toBeUndefined();
+  });
 });
