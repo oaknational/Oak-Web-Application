@@ -4583,7 +4583,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                     <button
                       aria-expanded="false"
                       class="c139 c89 c140 c141 c142"
-                      id="Question 1"
+                      id="faq-0"
                       type="button"
                     >
                       <span
@@ -4618,7 +4618,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                       data-testid="scrollable-content"
                     >
                       <div
-                        aria-labelledby="Question 1"
+                        aria-labelledby="faq-0"
                         class="c9"
                         hidden=""
                         role="region"

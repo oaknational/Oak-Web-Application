@@ -26,7 +26,7 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
               <button
                 aria-expanded="false"
                 class="sc-bdvwhi sc-gsDMPd sc-llYVjd kQWlwA kkGnDS dgTdWl sc-iJKPHa sc-bTfXSk bXudre"
-                id="Question 1"
+                id="faq-0"
                 type="button"
               >
                 <span
@@ -61,7 +61,7 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                 data-testid="scrollable-content"
               >
                 <div
-                  aria-labelledby="Question 1"
+                  aria-labelledby="faq-0"
                   class="sc-bdvwhi hPWTKU"
                   hidden=""
                   role="region"
@@ -105,7 +105,7 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
               <button
                 aria-expanded="false"
                 class="sc-bdvwhi sc-gsDMPd sc-llYVjd kQWlwA kkGnDS dgTdWl sc-iJKPHa sc-bTfXSk bXudre"
-                id="Question 2"
+                id="faq-1"
                 type="button"
               >
                 <span
@@ -140,7 +140,7 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                 data-testid="scrollable-content"
               >
                 <div
-                  aria-labelledby="Question 2"
+                  aria-labelledby="faq-1"
                   class="sc-bdvwhi hPWTKU"
                   hidden=""
                   role="region"
@@ -184,7 +184,7 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
               <button
                 aria-expanded="false"
                 class="sc-bdvwhi sc-gsDMPd sc-llYVjd kQWlwA kkGnDS dgTdWl sc-iJKPHa sc-bTfXSk bXudre"
-                id="Question 3"
+                id="faq-2"
                 type="button"
               >
                 <span
@@ -219,7 +219,7 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                 data-testid="scrollable-content"
               >
                 <div
-                  aria-labelledby="Question 3"
+                  aria-labelledby="faq-2"
                   class="sc-bdvwhi hPWTKU"
                   hidden=""
                   role="region"

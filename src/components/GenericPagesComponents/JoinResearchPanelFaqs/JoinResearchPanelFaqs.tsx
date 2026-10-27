@@ -49,7 +49,7 @@ export default function JoinResearchPanelFaqs({
                     {item.question}
                   </OakSpan>
                 }
-                id={item.question}
+                id={`faq-${i}`}
                 $bl="border-solid-none"
                 $br="border-solid-none"
                 $bt={i === 0 ? "border-solid-m" : "border-solid-s"}
