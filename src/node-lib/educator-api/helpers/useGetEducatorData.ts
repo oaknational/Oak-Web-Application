@@ -5,11 +5,11 @@ export const useGetEducatorData = <T>(
   url: string,
   config?: SWRConfiguration<T>,
 ) => {
-  const { isSignedIn } = useUser();
+  const { isSignedIn, user } = useUser();
   const { data, error, isLoading, mutate } = useSWR<T>(
-    isSignedIn ? url : null,
-    async (url: string) => {
-      const response = await fetch(url);
+    isSignedIn && user?.id ? [url, user.id] : null,
+    async ([requestUrl]: [string, string]) => {
+      const response = await fetch(requestUrl);
       if (!response.ok) {
         if (response.status !== 401) {
           const err = await response.json();
