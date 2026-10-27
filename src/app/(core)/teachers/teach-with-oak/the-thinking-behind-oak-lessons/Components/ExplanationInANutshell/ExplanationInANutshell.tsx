@@ -78,7 +78,7 @@ const explanationContent: SectionContent = [
         height: 630,
         width: 370,
         caption: "images",
-        alt: "An explanation slide about the verb avoir, to have, with an illustration of a single person saying “j’ai” meaning “I have” and two people, wiht one pointing to the other and saying “tu as” meaning “you have”. Below each are audio icons.",
+        alt: "An explanation slide about the verb avoir, to have, with an illustration of a single person saying “j’ai” meaning “I have” and two people, with one pointing to the other and saying “tu as” meaning “you have”. Below each are audio icons.",
       },
       {
         src: getTeacherJourneyImageUrl("Clear_Image_3_iz7weq"),

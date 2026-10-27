@@ -83,7 +83,7 @@ const feedbackContent: SectionContent = [
         src: getTeacherJourneyImageUrl("Actionable_Image_2_xkeb10"),
         height: 630,
         width: 369,
-        alt: "A feedback slide for a handwriting task, showing a multiple cursive lowercase M letters, one of which is circled. Multiple prompt questions are given, plus an instruction for pupils to circle their best attempt.",
+        alt: "A feedback slide for a handwriting task, showing multiple cursive lowercase M letters, one of which is circled. Multiple prompt questions are given, plus an instruction for pupils to circle their best attempt.",
       },
       {
         src: getTeacherJourneyImageUrl("Actionable_Image_3_nmtqvr"),

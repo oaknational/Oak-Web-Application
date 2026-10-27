@@ -90,7 +90,7 @@ const practiceContent: SectionContent = [
         src: getTeacherJourneyImageUrl("Challenging_Image_4_fwbubr"),
         height: 630,
         width: 371,
-        alt: "A practice slide ask titled “Become a curator.” There are three sets of images with arrows in between them. The images on the left show a collection of art work including crafted flowers. The middle image is of a green background and brown rectangles representing flowerbeds. The right hand image shows two flowerbeds with the craftwork laid within them.",
+        alt: "A practice slide titled “Become a curator.” There are three sets of images with arrows in between them. The images on the left show a collection of art work including crafted flowers. The middle image is of a green background and brown rectangles representing flowerbeds. The right hand image shows two flowerbeds with the craftwork laid within them.",
       },
     ],
   },
