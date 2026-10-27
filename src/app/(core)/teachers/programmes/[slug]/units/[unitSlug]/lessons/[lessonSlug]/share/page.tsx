@@ -15,6 +15,7 @@ import type { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/les
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import { getCopyrightRestrictionForSubject } from "@/utils/getCopyrightRestrictionForSubject";
 
 type LessonSharePageParams = {
   slug: string;
@@ -78,7 +79,14 @@ const InnerLessonSharePage = async (
     lessonSlug,
   );
 
-  if (data.georestricted || data.loginRequired) {
+  const { resourceIsGeorestricted, resourceRequiresLogin } =
+    getCopyrightRestrictionForSubject({
+      subjectSlug: data.subjectSlug,
+      geoRestricted: data.georestricted,
+      loginRequired: data.loginRequired,
+    });
+
+  if (resourceIsGeorestricted || resourceRequiresLogin) {
     return notFound();
   }
 

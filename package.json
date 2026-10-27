@@ -314,7 +314,7 @@
     "url": "https://github.com/oaknational/Oak-Web-Application.git"
   },
   "engines": {
-    "node": "24",
+    "node": ">=24.22.1 <25",
     "pnpm": ">=11"
   },
   "publishConfig": {
