@@ -5,13 +5,40 @@ import {
   OakGridArea,
   OakHeading,
   OakPrimaryButton,
+  OakLink,
+  OakScreenReader,
 } from "@oaknational/oak-components";
+import { PortableTextMarkComponentProps } from "@portabletext/react";
 
 import { NewGutterMaxWidth } from "../NewGutterMaxWidth";
 
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import { JoinResearchPanelPageBlock } from "@/common-lib/cms-types";
+import { targetFromHref } from "@/utils/targetFromHref";
+import { aboutUsContactInitiated } from "@/browser-lib/avo/Avo";
+import { buildAboutUsContactInitiatedAnalytics } from "@/utils/analytics-builders";
+
+type LocalExternalLinkProps = PortableTextMarkComponentProps<{
+  _type: "link";
+  href: string;
+}> & { onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void };
+const LocalExternalLink = (props: LocalExternalLinkProps) => {
+  if (!props.value?.href) {
+    return null;
+  }
+
+  return (
+    <OakLink
+      href={props.value.href}
+      onClick={props.onClick}
+      target={targetFromHref(props.value.href)}
+      rel="noopener noreferrer"
+    >
+      {props.children}
+    </OakLink>
+  );
+};
 
 export type JoinResearchPanelJourneyProps = Omit<
   JoinResearchPanelPageBlock<"JoinResearchPanelPageJourney">,
@@ -22,6 +49,18 @@ export default function JoinResearchPanelJourney({
   steps,
   button,
 }: Readonly<JoinResearchPanelJourneyProps>) {
+  const ctaHref = getLinkHref(button);
+  const ctaTarget = targetFromHref(ctaHref);
+
+  const onClickIntercept = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const matchedHref = e.currentTarget.getAttribute("href");
+    if (ctaHref === matchedHref) {
+      aboutUsContactInitiated(
+        buildAboutUsContactInitiatedAnalytics("join_research_panel"),
+      );
+    }
+  };
+
   return (
     <OakFlex
       $pv={["spacing-56", "spacing-80", "spacing-80"]}
@@ -84,7 +123,19 @@ export default function JoinResearchPanelJourney({
                         </OakHeading>
                       </OakFlex>
                       <OakBox>
-                        <PortableTextWithDefaults value={step.descriptionRaw} />
+                        <PortableTextWithDefaults
+                          value={step.descriptionRaw}
+                          components={{
+                            marks: {
+                              link: (props) => (
+                                <LocalExternalLink
+                                  {...props}
+                                  onClick={onClickIntercept}
+                                />
+                              ),
+                            },
+                          }}
+                        />
                       </OakBox>
                     </OakFlex>
                   );
@@ -92,10 +143,17 @@ export default function JoinResearchPanelJourney({
               </OakFlex>
               <OakPrimaryButton
                 element="a"
-                href={getLinkHref(button)}
+                href={ctaHref}
+                target={ctaTarget}
                 iconName="external"
+                isTrailingIcon={true}
+                rel="noreferrer"
+                onClick={onClickIntercept}
               >
                 {button.label}
+                {ctaTarget === "_blank" && (
+                  <OakScreenReader> (opens in a new tab)</OakScreenReader>
+                )}
               </OakPrimaryButton>
             </OakFlex>
           </OakGridArea>

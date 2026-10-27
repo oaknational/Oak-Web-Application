@@ -120,10 +120,22 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
                 <a
                   class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
                   href="https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd"
+                  rel="noreferrer"
+                  target="_blank"
                 >
                   <div
                     class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
                   >
+                    <span
+                      class="sc-dkPwfY kXQhTZ"
+                    >
+                      Join the research panel
+                      <span
+                        class="sc-iCfNyT gvLbeW"
+                      >
+                         (opens in a new tab)
+                      </span>
+                    </span>
                     <span
                       class="sc-bdvwhi cERAFe"
                     >
@@ -136,11 +148,6 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
                         src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
-                    </span>
-                    <span
-                      class="sc-dkPwfY kXQhTZ"
-                    >
-                      Join the research panel
                     </span>
                   </div>
                 </a>
