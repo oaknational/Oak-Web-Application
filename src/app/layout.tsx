@@ -2,6 +2,7 @@
 import { Lexend } from "next/font/google";
 import parse from "html-react-parser";
 import { Metadata } from "next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import StyledComponentsRegistry from "./styles-registry";
 import AnalyticsWrapper from "./components/AnalyticsWrapper";
@@ -70,6 +71,7 @@ export default function RootLayout({
                         <SaveCountProvider>
                           <SimulateErrorControls errorBoundaryLevel="global" />
                           {children}
+                          <SpeedInsights sampleRate={0.5} />
                         </SaveCountProvider>
                       </MenuProvider>
                     </AnalyticsWrapper>
