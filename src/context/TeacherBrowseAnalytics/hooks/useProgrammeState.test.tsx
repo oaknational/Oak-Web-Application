@@ -26,6 +26,7 @@ describe("useProgrammeState", () => {
       currentHref: null,
       lessonState: null,
       unitState: null,
+      coreProgrammeState: null,
     });
   });
 
@@ -42,6 +43,7 @@ describe("useProgrammeState", () => {
       currentHref: "/teachers/programmes/biology-secondary-ks3/units",
       lessonState: null,
       unitState: null,
+      coreProgrammeState: getProgrammeStateForProgramme(programmeState),
     });
   });
 
@@ -55,6 +57,7 @@ describe("useProgrammeState", () => {
         "/teachers/programmes/biology-secondary-ks3/units/cells/lessons",
       lessonState: null,
       unitState: programmeState,
+      coreProgrammeState: getProgrammeStateForProgramme(programmeState),
     });
   });
 
@@ -68,6 +71,7 @@ describe("useProgrammeState", () => {
         "/teachers/programmes/biology-secondary-ks3/units/cells/lessons/lesson-3-structure-of-cells",
       lessonState: programmeState,
       unitState: programmeState,
+      coreProgrammeState: getProgrammeStateForProgramme(programmeState),
     });
   });
 });
