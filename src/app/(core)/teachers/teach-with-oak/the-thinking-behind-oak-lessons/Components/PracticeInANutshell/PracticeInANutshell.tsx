@@ -37,7 +37,7 @@ const practiceContent: SectionContent = [
   },
   {
     type: "heading-and-text",
-    heading: "What are the key features of explanation in Oak lessons?",
+    heading: "What are the key features of practice in Oak lessons?",
     text: [
       "Practice appears in every learning cycle. It is indicated on slides by a corner icon. It is designed around the following features:",
       <OakP key="meaningful">

@@ -40,7 +40,7 @@ const feedbackContent: SectionContent = [
   },
   {
     type: "heading-and-text",
-    heading: "What are the key features of explanation in Oak lessons?",
+    heading: "What are the key features of feedback in Oak lessons?",
     text: [
       "Feedback appears in every learning cycle immediately following a practice task. It is indicated on slides by a pale background and corner icon. It is designed around the following features:",
       <OakP key="timely">
@@ -62,15 +62,15 @@ const feedbackContent: SectionContent = [
         src: getTeacherJourneyImageUrl("Timely_Image_1_i6uknc"),
         height: 630,
         width: 360,
+        caption: "CfU feedback",
         alt: "Two check-for-understanding slides showing a multiple-choice question before and after the correct answer is revealed with a tick.",
       },
       {
-        heading: "CfU feedback",
         src: getTeacherJourneyImageUrl("Timely_Image_2_oupqrs"),
         height: 630,
         width: 360,
         alt: "Two slides showing an exercise-sorting activity and the feedback slide, with benefits grouped into physical and mental health.",
-        caption: "practice",
+        caption: "practice task feedback",
       },
       {
         heading: "Actionable",

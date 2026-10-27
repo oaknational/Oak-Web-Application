@@ -39,7 +39,7 @@ const checkForUnderstandingContent: SectionContent = [
   },
   {
     type: "heading-and-text",
-    heading: "What are the key features of explanation in Oak lessons?",
+    heading: "What are the key features of CfUs in Oak lessons?",
     text: [
       "CfUs appear in every explanation, in every learning cycle. They are indicated on slides by a corner icon and are on a pale background. They are designed around the following features:",
       <OakP key="peppered">
