@@ -6,6 +6,7 @@ import {
   formatCurriculumUnitsData,
 } from "../docx/tab-helpers";
 import { Slugs } from "../docx";
+import { addQueryParamsToUrl, escapeXml } from "../docx/utils";
 
 import { buildStyles } from "./builders/buildStyles";
 import { addOrUpdateSheet, generateSheetTitle } from "./helper";
@@ -43,32 +44,44 @@ async function buildNationalCurriculum(
   yearOptions.forEach((year, index) => {
     const units = formattedData.yearData[year]!.units;
     const linksXml = [];
+
     for (const unit of units) {
+      const teacherProgrammeSlug = createTeacherProgrammeSlug(
+        unit,
+        unit.examboard_slug,
+        unit.tier_slug,
+        unit.pathway_slug,
+      );
+
+      const queryParams = {
+        utm_source: "national_curriculum_alignment",
+        utm_medium: "document",
+        utm_campaign: `${unit.subject_slug}_${unit.phase_slug}_national_curriculum_alignment`,
+      };
+
+      const baseUrl = `https://www.thenational.academy/teachers/programmes/${teacherProgrammeSlug}/units/${unit.slug}/lessons`;
+      const linkWithTracking = addQueryParamsToUrl(baseUrl, queryParams);
+      const escapedLinkWithTracking = escapeXml(linkWithTracking);
+
       linksXml.push(safeXml`
         <Relationship
           Id="rId${1000 + linksXml.length}"
           Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
-          Target="https://www.thenational.academy/teachers/programmes/${createTeacherProgrammeSlug(
-            unit,
-            unit.examboard_slug,
-            unit.tier_slug,
-            unit.pathway_slug,
-          )}/units/${unit.slug}/lessons"
+          Target="${escapedLinkWithTracking}"
           TargetMode="External"
         />
       `);
 
       for (const unitOption of unit.unit_options) {
+        const baseUrl = `https://www.thenational.academy/teachers/programmes/${teacherProgrammeSlug}/units/${unitOption.slug!}/lessons`;
+        const linkWithTracking = addQueryParamsToUrl(baseUrl, queryParams);
+        const escapedLinkWithTracking = escapeXml(linkWithTracking);
+
         linksXml.push(safeXml`
           <Relationship
             Id="rId${1000 + linksXml.length}"
             Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
-            Target="https://www.thenational.academy/teachers/programmes/${createTeacherProgrammeSlug(
-              unit,
-              unit.examboard_slug,
-              unit.tier_slug,
-              unit.pathway_slug,
-            )}/units/${unitOption.slug!}/lessons"
+            Target="${escapedLinkWithTracking}"
             TargetMode="External"
           />
         `);
