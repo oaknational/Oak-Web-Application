@@ -19,7 +19,12 @@ export function NutshellSection({
   content,
 }: NutshellSectionProps) {
   return (
-    <OakFlex $flexDirection={"column"} $gap={"spacing-32"}>
+    <OakFlex
+      as="section"
+      aria-labelledby={id}
+      $flexDirection={"column"}
+      $gap={"spacing-32"}
+    >
       <OakHeading
         $font={["heading-5", "heading-4", "heading-4"]}
         tag="h2"
