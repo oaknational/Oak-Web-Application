@@ -46,6 +46,8 @@ import { validateSearchParams } from "@/utils/validateProgrammePageSearchParams"
 import { useBrowseFilters } from "@/context/BrowseFilters";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { ComponentType } from "@/browser-lib/avo/Avo";
+import { SavedUnitsProvider } from "@/context/SavedUnits/SavedUnitsProvider";
+import { useProgrammeSlugs } from "@/context/SavedUnits/hooks/useProgrammeSlugs";
 
 export type ProgrammePageProps = {
   subjectPhaseSlug: string;
@@ -90,6 +92,9 @@ export const ProgrammeView = ({
   const pathnameTab = pathname?.split("/").pop();
 
   const activeTab = isTabSlug(pathnameTab) ? pathnameTab : tabSlug;
+  const programmeSlugs = useProgrammeSlugs({
+    yearData: curriculumUnitsFormattedData.yearData,
+  });
 
   const { subjectSlug } = curriculumSelectionSlugs;
   const { subjectTitle, phaseTitle, examboardTitle } =
@@ -188,18 +193,20 @@ export const ProgrammeView = ({
           )}
         </OakMaxWidth>
       )}
-      <TabContent
-        tabSlug={activeTab}
-        curriculumSelectionSlugs={curriculumSelectionSlugs}
-        curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-        curriculumCMSInfo={curriculumCMSInfo}
-        curriculumDownloadsTabData={curriculumDownloadsTabData}
-        mvRefreshTime={mvRefreshTime}
-        ks4Options={ks4Options}
-        ks4OptionFilterDimensions={ks4OptionFilterDimensions}
-        implementationGuides={implementationGuides}
-        fileSizes={fileSizes}
-      />
+      <SavedUnitsProvider programmeSlugs={programmeSlugs}>
+        <TabContent
+          tabSlug={activeTab}
+          curriculumSelectionSlugs={curriculumSelectionSlugs}
+          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+          curriculumCMSInfo={curriculumCMSInfo}
+          curriculumDownloadsTabData={curriculumDownloadsTabData}
+          mvRefreshTime={mvRefreshTime}
+          ks4Options={ks4Options}
+          ks4OptionFilterDimensions={ks4OptionFilterDimensions}
+          implementationGuides={implementationGuides}
+          fileSizes={fileSizes}
+        />
+      </SavedUnitsProvider>
     </>
   );
 };

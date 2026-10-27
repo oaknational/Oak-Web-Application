@@ -1,10 +1,14 @@
 import React from "react";
-import { screen } from "@testing-library/react";
+import { act, fireEvent, screen } from "@testing-library/react";
 
 import { SaveUnitButton } from "./SaveUnitButton";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { TrackingProgrammeData } from "@/node-lib/educator-api/helpers/saveUnits/utils";
+import {
+  createSaveUnitsStore,
+  SavedUnitsContext,
+} from "@/context/SavedUnits/SavedUnitsStore";
 
 const render = renderWithProviders();
 
@@ -88,5 +92,50 @@ describe("SaveUnitButton", () => {
 
     button.click();
     expect(mockSaveToggle).toHaveBeenCalled();
+  });
+
+  it("uses the shared store when provided and reflects unit-specific updates", () => {
+    const store = createSaveUnitsStore();
+    const toggle = jest.fn();
+    store.setState({ canSave: true, toggle });
+    render(
+      <SavedUnitsContext.Provider value={store}>
+        <SaveUnitButton {...defaultProps} />
+        <SaveUnitButton
+          {...defaultProps}
+          unitSlug="another-unit"
+          unitTitle="Another unit"
+        />
+      </SavedUnitsContext.Provider>,
+    );
+
+    fireEvent.click(
+      screen.getByRole("button", { name: "Save this unit: Test unit" }),
+    );
+
+    expect(toggle).toHaveBeenCalledWith(
+      defaultProps.programmeSlug,
+      defaultProps.unitSlug,
+      mockTrackingProps,
+    );
+    expect(mockSaveToggle).not.toHaveBeenCalled();
+
+    act(() => {
+      store.setState({
+        programmes: {
+          [defaultProps.programmeSlug]: {
+            saved: new Set([defaultProps.unitSlug]),
+            pending: new Set(),
+          },
+        },
+      });
+    });
+
+    expect(
+      screen.getByRole("button", { name: "Unsave this unit: Test unit" }),
+    ).toHaveTextContent("Saved");
+    expect(
+      screen.getByRole("button", { name: "Save this unit: Another unit" }),
+    ).toHaveTextContent("Save");
   });
 });
