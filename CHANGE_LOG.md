@@ -1,3 +1,23 @@
+# [1.1258.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1257.1...v1.1258.0) (2026-10-27)
+
+
+### Bug Fixes
+
+* images rendering in low resolution ([83d6b89](https://github.com/oaknational/Oak-Web-Application/commit/83d6b89427430a66b6224e79a707ff88c41ea521))
+* stacking, padding and spacing ([e0ec234](https://github.com/oaknational/Oak-Web-Application/commit/e0ec23419a05b6f796324f301dd8c6410ec40fd9))
+* typos ([32fc645](https://github.com/oaknational/Oak-Web-Application/commit/32fc6451a37466d8813c1b945d83581bcf61de60))
+* use unique ids for HeadingAndText secion elements ([82a9c70](https://github.com/oaknational/Oak-Web-Application/commit/82a9c70410a66d94377e8d8a9ed20669b77f3ed5))
+
+
+### Features
+
+* add callout sections ([1e17a14](https://github.com/oaknational/Oak-Web-Application/commit/1e17a1483637e14563b222fa9fcd29750d1e8e30))
+* add images to page ([21fb5a0](https://github.com/oaknational/Oak-Web-Application/commit/21fb5a03ed97cddb50ab2fe0215af2303c1082f2))
+* add license and feedback link ([f9ac954](https://github.com/oaknational/Oak-Web-Application/commit/f9ac95413141af0594f0a4f7b282e15fe16bc7c7))
+* add text and heading content ([346ea93](https://github.com/oaknational/Oak-Web-Application/commit/346ea9392f5a1ea8c14f578019678f4adbec6d9f))
+
+## [1.1257.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1257.0...v1.1257.1) (2026-10-27)
+
 # [1.1257.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1256.1...v1.1257.0) (2026-10-27)
 
 
