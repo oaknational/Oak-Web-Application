@@ -1,3 +1,83 @@
+# [1.1259.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1258.0...v1.1259.0) (2026-10-28)
+
+
+### Features
+
+* add contact us section to join research panel ([c19c458](https://github.com/oaknational/Oak-Web-Application/commit/c19c4586a099b94a174bc1fb407aab641352914d))
+
+# [1.1258.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1257.1...v1.1258.0) (2026-10-27)
+
+
+### Bug Fixes
+
+* images rendering in low resolution ([83d6b89](https://github.com/oaknational/Oak-Web-Application/commit/83d6b89427430a66b6224e79a707ff88c41ea521))
+* stacking, padding and spacing ([e0ec234](https://github.com/oaknational/Oak-Web-Application/commit/e0ec23419a05b6f796324f301dd8c6410ec40fd9))
+* typos ([32fc645](https://github.com/oaknational/Oak-Web-Application/commit/32fc6451a37466d8813c1b945d83581bcf61de60))
+* use unique ids for HeadingAndText secion elements ([82a9c70](https://github.com/oaknational/Oak-Web-Application/commit/82a9c70410a66d94377e8d8a9ed20669b77f3ed5))
+
+
+### Features
+
+* add callout sections ([1e17a14](https://github.com/oaknational/Oak-Web-Application/commit/1e17a1483637e14563b222fa9fcd29750d1e8e30))
+* add images to page ([21fb5a0](https://github.com/oaknational/Oak-Web-Application/commit/21fb5a03ed97cddb50ab2fe0215af2303c1082f2))
+* add license and feedback link ([f9ac954](https://github.com/oaknational/Oak-Web-Application/commit/f9ac95413141af0594f0a4f7b282e15fe16bc7c7))
+* add text and heading content ([346ea93](https://github.com/oaknational/Oak-Web-Application/commit/346ea9392f5a1ea8c14f578019678f4adbec6d9f))
+
+## [1.1257.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1257.0...v1.1257.1) (2026-10-27)
+
+# [1.1257.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1256.1...v1.1257.0) (2026-10-27)
+
+
+### Bug Fixes
+
+* account for nullable background colour ([aa76e53](https://github.com/oaknational/Oak-Web-Application/commit/aa76e533d97221fc442179957e7260673cae9730))
+* add colour dropdown to storybook ([12ba68a](https://github.com/oaknational/Oak-Web-Application/commit/12ba68a3e8b416547882c8dc235e4a3ca43da5e5))
+* add snap ([2e75ac2](https://github.com/oaknational/Oak-Web-Application/commit/2e75ac25289cc6d62957d4bd791882e228bab25b))
+* blog posts mock ([e7ed9c6](https://github.com/oaknational/Oak-Web-Application/commit/e7ed9c683c411a66cbc45f4a73b85071097956e1))
+* center align message text ([02ec71b](https://github.com/oaknational/Oak-Web-Application/commit/02ec71b67873d75818ca7d46e1982cfb4d310350))
+* colour > color ([a4796fd](https://github.com/oaknational/Oak-Web-Application/commit/a4796fd5c2ca1798b7d015acc69cb79c660f8ea4))
+* deconstruct top banner props ([45918bd](https://github.com/oaknational/Oak-Web-Application/commit/45918bd4327fb5b31f56714d5efdb43a5dec7b5c))
+* guard against nullish ([a359552](https://github.com/oaknational/Oak-Web-Application/commit/a3595528c5b81545f21b3991f0b52280970587db))
+* homepage tests ([9f62706](https://github.com/oaknational/Oak-Web-Application/commit/9f62706c822890a6e60a0ba7fff22e173ac4df17))
+* homepage tests ([f268158](https://github.com/oaknational/Oak-Web-Application/commit/f268158133966fa05ca6d3a474771b2f05d7f399))
+* homepage.json ([a0fa73d](https://github.com/oaknational/Oak-Web-Application/commit/a0fa73dbfdc7c9d7ae9fe2814b6b7b819369a79b))
+* make work ([e09abe7](https://github.com/oaknational/Oak-Web-Application/commit/e09abe72ca4445c7956ee7fe929470a66159632d))
+* oakUIColourToken ([47053eb](https://github.com/oaknational/Oak-Web-Application/commit/47053ebb9e64a3dc6fea20adcec6f90336a88055))
+* pass in top banner deconstructed ([ae0c508](https://github.com/oaknational/Oak-Web-Application/commit/ae0c5089f09252ccb76b298ea284e83f0a53f632))
+* snaps ([f5bfd7f](https://github.com/oaknational/Oak-Web-Application/commit/f5bfd7fbb8737a164901d7ec184bd1f42600bfbc))
+* snaps ([166506a](https://github.com/oaknational/Oak-Web-Application/commit/166506a5798272483eea22fe819739a881ac42b6))
+* sonar ([93a26de](https://github.com/oaknational/Oak-Web-Application/commit/93a26de99e996e8bbd42b2a8e3b35016552c2ead))
+* storybook for TopBanner ([59a0080](https://github.com/oaknational/Oak-Web-Application/commit/59a00803f4ccc174378c7fbcc7775fb76ed68a79))
+* tests ([e5cf462](https://github.com/oaknational/Oak-Web-Application/commit/e5cf462e6b8d96393e595316667bb7c3849dafc3))
+* tests ([b83c780](https://github.com/oaknational/Oak-Web-Application/commit/b83c7807787c8186556e4be55bd364ec1343b7b2))
+* tests ([edb5eaf](https://github.com/oaknational/Oak-Web-Application/commit/edb5eafe0ec4decded03ed36988481100584de9f))
+* tests with backgroundColour ([8361df0](https://github.com/oaknational/Oak-Web-Application/commit/8361df0ff9cd4a613ac63ad0982be70d432a2207))
+* types ([0415c32](https://github.com/oaknational/Oak-Web-Application/commit/0415c32d5d7051d29f513a43c338a6b02ad01c90))
+* update portable text to remove promo span ([feccca4](https://github.com/oaknational/Oak-Web-Application/commit/feccca4816d781f11e4d55c0a91c69c0d6cac326))
+* use disciminated unions to enforce what is available from topBanner ([6f08e02](https://github.com/oaknational/Oak-Web-Application/commit/6f08e02261fb6f3132844c933c297ec14443ffb0))
+* use OakUIRoletoken in story ([8f5147e](https://github.com/oaknational/Oak-Web-Application/commit/8f5147e85282e295e888e6bda6bb1d5eda40b56f))
+* use satisfies for topBannier type ([808a912](https://github.com/oaknational/Oak-Web-Application/commit/808a912c366382666dd3911bfdcf41ae7599e7c1))
+* use top level display top banner and rename enabled > displayCta ([bd83aa1](https://github.com/oaknational/Oak-Web-Application/commit/bd83aa1853588262ce003e0179697f5703ffe7d4))
+* zod schema for urls as string ([3efc3ac](https://github.com/oaknational/Oak-Web-Application/commit/3efc3ac94a9cfb9f269b86f8e598bb8b418d55e0))
+
+
+### Features
+
+* add tests for non existence of cta link/text ([0883211](https://github.com/oaknational/Oak-Web-Application/commit/088321189605ada6b73c6b7f3e87d291aff1a640))
+* add top banner to fixture ([44ddbb6](https://github.com/oaknational/Oak-Web-Application/commit/44ddbb6862fc53fa584c6a72734376fcf663a53d))
+* add top banner to homepage query ([cc8a0e3](https://github.com/oaknational/Oak-Web-Application/commit/cc8a0e3d0caea3149854c6537ff181667c1a4a0f))
+* add topBanner fixture ([8cf7914](https://github.com/oaknational/Oak-Web-Application/commit/8cf791440a5d599dbc97fad2c07e5198b5b1c44c))
+* add topBanner to homepageSchema ([bba9f9c](https://github.com/oaknational/Oak-Web-Application/commit/bba9f9c8d64e2aaf0a5f1c6c08d7a48fcb84a6d6))
+* allow control of new tag ([f3e7da8](https://github.com/oaknational/Oak-Web-Application/commit/f3e7da8c6d96a1698efec64473acc0e83bbb401c))
+* bring in background colour from sanity ([f5ba6f7](https://github.com/oaknational/Oak-Web-Application/commit/f5ba6f7739c23489ce5be63580f62ff84f38cce2))
+* only render banner if data top level ([e7a5980](https://github.com/oaknational/Oak-Web-Application/commit/e7a59804e772e72890f4a64be3bb946aa5b54cbc))
+* remove PromoBanner component in favour of moving into TopBanner ([636f098](https://github.com/oaknational/Oak-Web-Application/commit/636f0980da21eacaf3fd510e90fce014bc6340fe))
+* rename Banners to TopBanner and use topBanner data from homepage ([d451e7d](https://github.com/oaknational/Oak-Web-Application/commit/d451e7db8d864d4f120cd3b513dc3cb1b08dc0fd))
+* use TopBanner in curriculum page and pass sanity data ([9905807](https://github.com/oaknational/Oak-Web-Application/commit/990580742136b327a20b35536b66669cd2bda6a5))
+* use TopBanner in homepage and pass sanity data ([f05f2b6](https://github.com/oaknational/Oak-Web-Application/commit/f05f2b631807c0088ce926499a7d0a4c38212d51))
+
+## [1.1256.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1256.0...v1.1256.1) (2026-10-27)
+
 # [1.1256.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1255.1...v1.1256.0) (2026-10-27)
 
 
