@@ -20,4 +20,10 @@ describe("targetFromHref", () => {
     const result = targetFromHref(url);
     expect(result).toBeUndefined();
   });
+
+  it("should return null for invalid URLs", () => {
+    const url = "https://";
+    const result = targetFromHref(url);
+    expect(result).toBeUndefined();
+  });
 });
