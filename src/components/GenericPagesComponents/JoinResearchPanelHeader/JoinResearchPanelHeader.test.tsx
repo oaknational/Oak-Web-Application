@@ -1,7 +1,8 @@
+import { basic as fixture } from "./JoinResearchPanelHeader.fixtures";
+
 import JoinResearchPanelPageHeader from ".";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
-import { joinResearchPanelHeaderBlockFixture as fixture } from "@/__tests__/pages/about-us/get-involved/join-research-panel.fixtures";
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
