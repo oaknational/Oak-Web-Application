@@ -71,7 +71,15 @@ export default function RootLayout({
                         <SaveCountProvider>
                           <SimulateErrorControls errorBoundaryLevel="global" />
                           {children}
-                          <SpeedInsights sampleRate={0.5} />
+                          <SpeedInsights
+                            sampleRate={0.1}
+                            beforeSend={(data) => {
+                              if (!data.url.includes("teachers")) {
+                                return null;
+                              }
+                              return data;
+                            }}
+                          />
                         </SaveCountProvider>
                       </MenuProvider>
                     </AnalyticsWrapper>
