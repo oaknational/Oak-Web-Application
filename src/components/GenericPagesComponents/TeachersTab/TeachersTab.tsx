@@ -148,6 +148,7 @@ function HeroImage() {
         $borderColor={"black"}
         width={IMAGE_WIDTH}
         height={313}
+        sizes={`(max-width: ${getBreakpoint("small")}px) calc(100vw - 40px), (max-width: ${getBreakpoint("large")}px) min(${IMAGE_WIDTH}, calc(50vw - 48px)), ${IMAGE_WIDTH}`}
       />
     </BoxWithMaxWidth>
   );
