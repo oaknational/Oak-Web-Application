@@ -514,6 +514,8 @@ describe("National Curriculum Insights sections", () => {
     const newsletterForm = screen
       .getByRole("button", { name: "Join the mailing list" })
       .closest("form")!;
+    expect(newsletterForm).toHaveStyle({ position: "relative", zIndex: "0" });
+    expect(screen.getByText("Role")).toHaveStyle({ borderRadius: "0rem" });
     expect(
       screen.getByRole("checkbox", { name: "My school isn't listed" }),
     ).toHaveStyle({

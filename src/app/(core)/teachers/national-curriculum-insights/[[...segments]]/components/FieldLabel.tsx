@@ -27,6 +27,7 @@ export const NationalCurriculumInsightsFieldLabel = ({
       $background={invalid ? "bg-error" : "bg-decorative5-main"}
       $color={invalid ? "text-inverted" : "text-primary"}
       $font="body-3-bold"
+      $borderRadius="border-radius-square"
     />
   </OakBox>
 );
