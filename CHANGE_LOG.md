@@ -1,3 +1,10 @@
+# [1.1259.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1258.0...v1.1259.0) (2026-10-28)
+
+
+### Features
+
+* add contact us section to join research panel ([c19c458](https://github.com/oaknational/Oak-Web-Application/commit/c19c4586a099b94a174bc1fb407aab641352914d))
+
 # [1.1258.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1257.1...v1.1258.0) (2026-10-27)
 
 
