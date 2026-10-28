@@ -20,17 +20,17 @@ const confetti = [
   {
     name: "right",
     right: "spacing-0",
-    transform: "translateY(-38%) rotate(129.45deg) skewX(-1.12deg)",
+    transform: "rotate(129.45deg) skewX(-1.12deg)",
   },
   {
     name: "middle",
     right: "spacing-80",
-    transform: "translateY(-68%) rotate(155.89deg) skewX(-1.1deg)",
+    transform: "rotate(155.89deg) skewX(-1.1deg)",
   },
   {
     name: "left",
     right: "spacing-180",
-    transform: "translateY(-56%) rotate(145.59deg) skewX(-1.12deg)",
+    transform: "rotate(145.59deg) skewX(-1.12deg)",
   },
 ] as const;
 
@@ -61,7 +61,8 @@ export const NationalCurriculumInsightsConfidence = ({
           key={asset.name}
           aria-hidden="true"
           $position="absolute"
-          $top="spacing-0"
+          style={{ bottom: "100%" }}
+          $mb="spacing-40"
           $right={asset.right}
           $alignItems="center"
           $justifyContent="center"
@@ -82,7 +83,7 @@ export const NationalCurriculumInsightsConfidence = ({
       <OakFlex
         aria-hidden="true"
         $position="absolute"
-        $top="spacing-0"
+        style={{ bottom: "100%" }}
         $right="spacing-8"
         $display={["flex", "none"]}
         $alignItems="center"
@@ -96,7 +97,7 @@ export const NationalCurriculumInsightsConfidence = ({
           )}
           alt=""
           $maxWidth="unset"
-          $transform="translateY(-43%) rotate(-175.32deg)"
+          $transform="rotate(-175.32deg)"
         />
       </OakFlex>
       <OakHeading id={headingId} tag="h2" $font="heading-4">

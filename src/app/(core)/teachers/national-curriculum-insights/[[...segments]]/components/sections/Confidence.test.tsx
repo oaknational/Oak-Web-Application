@@ -130,6 +130,10 @@ it("keeps the supplied confetti artwork decorative", () => {
     );
     expect(image).toHaveAttribute("alt", "");
     expect(image.closest('[aria-hidden="true"]')).not.toBeNull();
+    expect(image.parentElement).toHaveStyle({
+      position: "absolute",
+      bottom: "100%",
+    });
   }
 });
 
