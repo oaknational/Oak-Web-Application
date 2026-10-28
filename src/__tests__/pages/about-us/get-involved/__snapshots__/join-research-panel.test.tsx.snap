@@ -358,6 +358,11 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 }
 
 .c131 {
+  padding-bottom: 3.5rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c134 {
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -367,13 +372,13 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   z-index: 0;
 }
 
-.c132 {
+.c135 {
   position: relative;
   height: 0.25rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c134 {
+.c137 {
   width: 100%;
   max-width: 80rem;
   padding-left: 1.25rem;
@@ -385,12 +390,12 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c138 {
+.c141 {
   margin-top: 2rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c140 {
+.c143 {
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
@@ -399,18 +404,18 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c143 {
+.c146 {
   margin-top: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c144 {
+.c147 {
   padding-left: 0.25rem;
   display: inline;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c148 {
+.c151 {
   position: relative;
   width: 10rem;
   height: 4rem;
@@ -419,12 +424,12 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c149 {
+.c152 {
   display: flex;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c153 {
+.c156 {
   position: relative;
   width: 2rem;
   min-width: 2rem;
@@ -435,7 +440,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c154 {
+.c157 {
   position: absolute;
   top: 0rem;
   width: 100%;
@@ -446,7 +451,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c156 {
+.c159 {
   width: 100%;
   padding-top: 0.75rem;
   margin-top: 2rem;
@@ -454,12 +459,12 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c158 {
+.c161 {
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c162 {
+.c165 {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -475,7 +480,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   z-index: -1;
 }
 
-.c164 {
+.c167 {
   position: fixed;
   right: 0rem;
   width: 100%;
@@ -485,14 +490,14 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   z-index: 300;
 }
 
-.c167 {
+.c170 {
   position: sticky;
   bottom: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
   z-index: 299;
 }
 
-.c168 {
+.c171 {
   color: #222222;
   background: #f2f2f2;
   border-top: 0.063rem solid;
@@ -500,13 +505,13 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c169 {
+.c172 {
   margin-left: auto;
   margin-right: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c170 {
+.c173 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   margin-left: 1rem;
@@ -514,7 +519,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c172 {
+.c175 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -522,7 +527,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c175 {
+.c178 {
   font-family: --var(google-font),Lexend,sans-serif;
   white-space: nowrap;
 }
@@ -686,54 +691,61 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c135 {
+.c132 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.c138 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   flex-grow: 1;
 }
 
-.c147 {
+.c150 {
   display: flex;
   justify-content: left;
 }
 
-.c150 {
+.c153 {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
 }
 
-.c157 {
+.c160 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
 }
 
-.c159 {
+.c162 {
   display: none;
   align-items: center;
   justify-content: center;
   gap: 1rem;
 }
 
-.c165 {
+.c168 {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
 }
 
-.c171 {
+.c174 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 1.5rem;
 }
 
-.c174 {
+.c177 {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -816,7 +828,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c173 {
+.c176 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
@@ -824,7 +836,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c133 {
+.c136 {
   position: absolute;
   top: 0rem;
   left: 0rem;
@@ -1090,7 +1102,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   object-fit: contain;
 }
 
-.c163 {
+.c166 {
   filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   object-fit: fill;
 }
@@ -1395,27 +1407,27 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   background: #ffe555;
 }
 
-.c151 >:first-of-type:focus-visible .shadow {
+.c154 >:first-of-type:focus-visible .shadow {
   box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c151 >:first-of-type:hover .shadow {
+.c154 >:first-of-type:hover .shadow {
   box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%);
 }
 
-.c151 >:first-of-type:active .shadow {
+.c154 >:first-of-type:active .shadow {
   box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%),0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
-.c151 >:first-of-type:disabled .icon-container {
+.c154 >:first-of-type:disabled .icon-container {
   background: #e4e4e4;
 }
 
-.c151 >:first-of-type:hover .icon-container {
+.c154 >:first-of-type:hover .icon-container {
   background: #ffffff;
 }
 
-.c151 >:first-of-type:active .icon-container {
+.c154 >:first-of-type:active .icon-container {
   background: #ffffff;
 }
 
@@ -1453,7 +1465,15 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   color: #222222;
 }
 
-.c139 {
+.c133 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  letter-spacing: 0.0115rem;
+}
+
+.c142 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -1471,7 +1491,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   display: revert;
 }
 
-.c142 {
+.c145 {
   margin-top: 0.75rem;
   display: revert;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -1515,7 +1535,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   margin-top: 1rem;
 }
 
-.c160 {
+.c163 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
@@ -1523,7 +1543,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c161 {
+.c164 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.75rem;
@@ -1531,7 +1551,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c141 {
+.c144 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -1551,7 +1571,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   gap: 0.75rem;
 }
 
-.c146 {
+.c149 {
   width: 1.25em;
   min-width: 1.25em;
   height: 1.25em;
@@ -1577,7 +1597,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c24 .c145 {
+.c24 .c148 {
   filter: invert(21%) sepia(90%) saturate(3220%) hue-rotate(232deg) brightness(71%) contrast(127%);
   display: inline-block;
   vertical-align: text-top;
@@ -1591,7 +1611,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   color: #081676;
 }
 
-.c24:visited .c145 {
+.c24:visited .c148 {
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
 
@@ -1600,7 +1620,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   outline: 1px solid #081676;
 }
 
-.c24:active .c145 {
+.c24:active .c148 {
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
 
@@ -1609,7 +1629,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   color: #808080;
 }
 
-.c24[disabled] .c145 {
+.c24[disabled] .c148 {
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
@@ -1632,7 +1652,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c73 .c145 {
+.c73 .c148 {
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   display: inline-block;
   vertical-align: text-top;
@@ -1646,7 +1666,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   color: #222222;
 }
 
-.c73:visited .c145 {
+.c73:visited .c148 {
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
@@ -1655,7 +1675,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   outline: 1px solid #222222;
 }
 
-.c73:active .c145 {
+.c73:active .c148 {
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
@@ -1664,11 +1684,11 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   color: #808080;
 }
 
-.c73[disabled] .c145 {
+.c73[disabled] .c148 {
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c176 {
+.c179 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -1733,7 +1753,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   row-gap: 2rem;
 }
 
-.c136 {
+.c139 {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   width: 100%;
@@ -1770,7 +1790,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   grid-column-start: 0;
 }
 
-.c137 {
+.c140 {
   flex-direction: column;
   grid-column: span 12;
   grid-row: span undefined;
@@ -1817,15 +1837,15 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c166 {
+.c169 {
   top: 152px;
 }
 
-.c152 .icon-container>*:first-child {
+.c155 .icon-container>*:first-child {
   border: 0;
 }
 
-.c155 {
+.c158 {
   height: 87px;
   width: 77px;
   margin-top: 2rem;
@@ -2036,151 +2056,157 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 }
 
 @media (min-width: 750px) {
-  .c134 {
+  .c131 {
+    padding-bottom: 5rem;
+  }
+}
+
+@media (min-width: 750px) {
+  .c137 {
     padding-left: 2.5rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .c134 {
+  .c137 {
     padding-left: 2.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c134 {
+  .c137 {
     padding-right: 2.5rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .c134 {
+  .c137 {
     padding-right: 2.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c134 {
+  .c137 {
     padding-top: 5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c138 {
+  .c141 {
     margin-top: 0rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c143 {
+  .c146 {
     margin-top: 2rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c149 {
+  .c152 {
     display: none;
   }
 }
 
 @media (min-width: 750px) {
-  .c156 {
+  .c159 {
     padding-top: 0rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c158 {
+  .c161 {
     display: flex;
   }
 }
 
 @media (min-width: 750px) {
-  .c162 {
+  .c165 {
     display: block;
   }
 }
 
 @media (min-width: 750px) {
-  .c162 {
+  .c165 {
     transform: translate(25%, 25%) scale(0.7) rotate(-10deg);
   }
 }
 
 @media (min-width: 1280px) {
-  .c162 {
+  .c165 {
     transform: translate(25%, 15%) rotate(-10deg);
   }
 }
 
 @media (min-width: 750px) {
-  .c164 {
+  .c167 {
     right: 1.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c164 {
+  .c167 {
     width: max-content;
   }
 }
 
 @media (min-width: 750px) {
-  .c164 {
+  .c167 {
     padding-left: 0rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c164 {
+  .c167 {
     padding-right: 0rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c170 {
+  .c173 {
     margin-left: 1.5rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .c170 {
+  .c173 {
     margin-left: 3.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c170 {
+  .c173 {
     margin-right: 1.5rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .c170 {
+  .c173 {
     margin-right: 3.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c172 {
+  .c175 {
     font-weight: 300;
   }
 }
 
 @media (min-width: 750px) {
-  .c172 {
+  .c175 {
     font-size: 1rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c172 {
+  .c175 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c172 {
+  .c175 {
     letter-spacing: -0.005rem;
   }
 }
@@ -2296,103 +2322,103 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 }
 
 @media (min-width: 750px) {
-  .c147 {
+  .c150 {
     justify-content: right;
   }
 }
 
 @media (min-width: 750px) {
-  .c150 {
+  .c153 {
     display: none;
   }
 }
 
 @media (min-width: 750px) {
-  .c157 {
+  .c160 {
     flex-direction: row;
   }
 }
 
 @media (min-width: 750px) {
-  .c157 {
+  .c160 {
     align-items: center;
   }
 }
 
 @media (min-width: 750px) {
-  .c157 {
+  .c160 {
     justify-content: space-between;
   }
 }
 
 @media (min-width: 750px) {
-  .c159 {
+  .c162 {
     display: flex;
   }
 }
 
 @media (min-width: 750px) {
-  .c165 {
+  .c168 {
     align-items: flex-end;
   }
 }
 
 @media (min-width: 750px) {
-  .c171 {
+  .c174 {
     flex-direction: column;
   }
 }
 
 @media (min-width: 1280px) {
-  .c171 {
+  .c174 {
     flex-direction: row;
   }
 }
 
 @media (min-width: 750px) {
-  .c171 {
+  .c174 {
     align-items: flex-start;
   }
 }
 
 @media (min-width: 1280px) {
-  .c171 {
+  .c174 {
     align-items: center;
   }
 }
 
 @media (min-width: 750px) {
-  .c171 {
+  .c174 {
     gap: 1.5rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .c171 {
+  .c174 {
     gap: 2rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c174 {
+  .c177 {
     flex-direction: row;
   }
 }
 
 @media (min-width: 750px) {
-  .c174 {
+  .c177 {
     flex-wrap: wrap;
   }
 }
 
 @media (min-width: 1280px) {
-  .c174 {
+  .c177 {
     flex-wrap: nowrap;
   }
 }
 
 @media (min-width: 750px) {
-  .c174 {
+  .c177 {
     gap: 2rem;
   }
 }
@@ -2446,25 +2472,25 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 }
 
 @media (min-width: 750px) {
-  .c173 {
+  .c176 {
     font-weight: 500;
   }
 }
 
 @media (min-width: 750px) {
-  .c173 {
+  .c176 {
     font-size: 1rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c173 {
+  .c176 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c173 {
+  .c176 {
     letter-spacing: -0.005rem;
   }
 }
@@ -2657,6 +2683,30 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 
 @media (min-width: 1280px) {
   .c128 {
+    letter-spacing: 0.0115rem;
+  }
+}
+
+@media (min-width: 750px) {
+  .c133 {
+    font-weight: 600;
+  }
+}
+
+@media (min-width: 750px) {
+  .c133 {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 750px) {
+  .c133 {
+    line-height: 2.5rem;
+  }
+}
+
+@media (min-width: 750px) {
+  .c133 {
     letter-spacing: 0.0115rem;
   }
 }
@@ -2729,8 +2779,8 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
     text-decoration-thickness: 18%;
   }
 
-  .c24:hover .c145,
-  .c24:visited:hover .c145 {
+  .c24:hover .c148,
+  .c24:visited:hover .c148 {
     filter: invert(16%) sepia(72%) saturate(7176%) hue-rotate(239deg) brightness(61%) contrast(109%);
   }
 }
@@ -2743,8 +2793,8 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
     text-decoration-thickness: 18%;
   }
 
-  .c73:hover .c145,
-  .c73:visited:hover .c145 {
+  .c73:hover .c148,
+  .c73:visited:hover .c148 {
     filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   }
 }
@@ -2835,7 +2885,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 }
 
 @media (min-width: 750px) {
-  .c137 {
+  .c140 {
     grid-column: span 3;
   }
 }
@@ -4693,215 +4743,53 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
         </div>
         <div>
           <div
-            class="c9 c83"
+            class="c68"
           >
-            <span
-              class="c25"
-            />
-            <span
-              class="c106 c107"
-            >
-              <div
-                class="c9 c108"
-              >
-                <div
-                  class="c109 c83"
-                >
-                  <span
-                    class="c25"
-                  >
-                    1
-                  </span>
-                  <span
-                    class="c25"
-                  >
-                    2
-                  </span>
-                  <span
-                    class="c25"
-                  >
-                    3
-                  </span>
-                  <span
-                    class="c25"
-                  >
-                    4
-                  </span>
-                  <span
-                    class="c25"
-                  >
-                    5
-                  </span>
-                  <span
-                    class="c25"
-                  >
-                    6
-                  </span>
-                  <span
-                    class="c25"
-                  >
-                    7
-                  </span>
-                  <span
-                    class="c25"
-                  >
-                    8
-                  </span>
-                  <span
-                    class="c25"
-                  >
-                    9
-                  </span>
-                </div>
-                <span
-                  class="c110"
-                >
-                  {
-  
-                  <span
-                    class="c111"
-                  >
-                    "__typename"
-                  </span>
-                  : 
-                  <span
-                    class="c111"
-                  >
-                    "JoinResearchPanelPageContactUs"
-                  </span>
-                  ,
-  
-                  <span
-                    class="c111"
-                  >
-                    "title"
-                  </span>
-                  : 
-                  <span
-                    class="c111"
-                  >
-                    "Join the research panel contact us"
-                  </span>
-                  ,
-  
-                  <span
-                    class="c111"
-                  >
-                    "button"
-                  </span>
-                  : {
-    
-                  <span
-                    class="c111"
-                  >
-                    "label"
-                  </span>
-                  : 
-                  <span
-                    class="c111"
-                  >
-                    "Join the research panel"
-                  </span>
-                  ,
-    
-                  <span
-                    class="c111"
-                  >
-                    "linkType"
-                  </span>
-                  : 
-                  <span
-                    class="c111"
-                  >
-                    "external"
-                  </span>
-                  ,
-    
-                  <span
-                    class="c111"
-                  >
-                    "external"
-                  </span>
-                  : 
-                  <span
-                    class="c111"
-                  >
-                    "https://www.example.com"
-                  </span>
-                  
-  }
-}
-                </span>
-              </div>
-            </span>
-            <span
-              class="c25"
-            />
             <div
-              class="c112 c113"
+              class="c131 c132"
             >
-              <span
-                class="c114"
+              <h2
+                class="c133"
               >
-                Code colour
-              </span>
+                Join the research panel contact us
+              </h2>
               <div
-                style="display: contents;"
+                class="c4 c5"
               >
                 <div
-                  class="c45 c46 c115 c116"
+                  class="c6 grey-shadow"
+                />
+                <div
+                  class="c6 yellow-shadow"
+                />
+                <a
+                  class="c84 c19 internal-button"
+                  href="https://www.example.com"
                 >
-                  <button
-                    aria-expanded="false"
-                    aria-label="open info tooltip"
-                    class="c48 c117"
-                    data-rac="true"
-                    type="button"
+                  <div
+                    class="c9 c10"
                   >
-                    <div
-                      class="c9 c50"
+                    <span
+                      class="c11"
                     >
-                      <div
-                        class="c118 c52 icon-container"
-                      >
-                        <div
-                          class="c53 shadow"
-                        />
-                        <span
-                          class="c119"
-                          data-icon-for="button"
-                        >
-                          <img
-                            alt=""
-                            class="c36"
-                            data-nimg="fill"
-                            decoding="async"
-                            loading="lazy"
-                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1709052869/icons/Icon_Info_vsx3xi.svg"
-                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                          />
-                        </span>
-                      </div>
-                      <span
-                        class="c55"
-                      />
-                    </div>
-                  </button>
-                </div>
+                      Join the research panel
+                    </span>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
         </div>
       </main>
       <footer
-        class="c131"
+        class="c134"
       >
         <div
-          class="c132 c46"
+          class="c135 c46"
         >
           <svg
             aria-hidden="true"
-            class="c133"
+            class="c136"
             height="100%"
             name="header-underline"
             width="100%"
@@ -4924,30 +4812,30 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
           id="site-footer"
         >
           <div
-            class="c134 c135"
+            class="c137 c138"
           >
             <div
-              class="c9 c136"
+              class="c9 c139"
             >
               <div
-                class="c9 c46 c137"
+                class="c9 c46 c140"
               >
                 <div
-                  class="c138 c83"
+                  class="c141 c83"
                 >
                   <h2
-                    class="c139"
+                    class="c142"
                   >
                     Pupils
                   </h2>
                   <div
-                    class="c140 c141"
+                    class="c143 c144"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -4964,24 +4852,24 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c143"
+                  class="c146"
                 />
                 <div
-                  class="c138 c83"
+                  class="c141 c83"
                 >
                   <h2
-                    class="c139"
+                    class="c142"
                   >
                     Teachers
                   </h2>
                   <div
-                    class="c140 c141"
+                    class="c143 c144"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -4995,7 +4883,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5009,7 +4897,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5023,7 +4911,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5036,10 +4924,10 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                             Aila, Oak’s AI lesson assistant
                           </span>
                           <div
-                            class="c144"
+                            class="c147"
                           >
                             <span
-                              class="c119 c145 c146"
+                              class="c119 c148 c149"
                             >
                               <img
                                 alt=""
@@ -5055,7 +4943,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5073,24 +4961,24 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c137"
+                class="c9 c46 c140"
               >
                 <div
-                  class="c138 c83"
+                  class="c141 c83"
                 >
                   <h2
-                    class="c139"
+                    class="c142"
                   >
                     Oak
                   </h2>
                   <div
-                    class="c140 c141"
+                    class="c143 c144"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5104,7 +4992,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5118,7 +5006,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5132,7 +5020,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5146,7 +5034,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5160,7 +5048,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5174,7 +5062,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5188,7 +5076,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           aria-label="Careers (opens in a new tab)"
@@ -5202,10 +5090,10 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                             Careers
                           </span>
                           <div
-                            class="c144"
+                            class="c147"
                           >
                             <span
-                              class="c119 c145 c146"
+                              class="c119 c148 c149"
                             >
                               <img
                                 alt=""
@@ -5221,7 +5109,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5235,7 +5123,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           aria-label="Help (opens in a new tab)"
@@ -5249,10 +5137,10 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                             Help
                           </span>
                           <div
-                            class="c144"
+                            class="c147"
                           >
                             <span
-                              class="c119 c145 c146"
+                              class="c119 c148 c149"
                             >
                               <img
                                 alt=""
@@ -5268,7 +5156,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5282,7 +5170,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           aria-label="Status (opens in a new tab)"
@@ -5296,10 +5184,10 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                             Status
                           </span>
                           <div
-                            class="c144"
+                            class="c147"
                           >
                             <span
-                              class="c119 c145 c146"
+                              class="c119 c148 c149"
                             >
                               <img
                                 alt=""
@@ -5319,24 +5207,24 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c137"
+                class="c9 c46 c140"
               >
                 <div
-                  class="c138 c83"
+                  class="c141 c83"
                 >
                   <h2
-                    class="c139"
+                    class="c142"
                   >
                     Legal
                   </h2>
                   <div
-                    class="c140 c141"
+                    class="c143 c144"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5350,7 +5238,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5364,7 +5252,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5378,7 +5266,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <button
                           class="c73 "
@@ -5391,7 +5279,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </button>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5405,7 +5293,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5419,7 +5307,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5433,7 +5321,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5447,7 +5335,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5461,7 +5349,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c142"
+                        class="c145"
                       >
                         <a
                           class="c73 "
@@ -5479,16 +5367,16 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c137"
+                class="c9 c46 c140"
               >
                 <div
-                  class="c138 c147"
+                  class="c141 c150"
                 >
                   <div
                     class="c39"
                   >
                     <span
-                      class="c148"
+                      class="c151"
                     >
                       <img
                         alt=""
@@ -5502,10 +5390,10 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                     </span>
                   </div>
                   <div
-                    class="c149 c150"
+                    class="c152 c153"
                   >
                     <div
-                      class="c45 c46 c151 c152"
+                      class="c45 c46 c154 c155"
                     >
                       <a
                         aria-label="instagram for Oak National Academy"
@@ -5516,10 +5404,10 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c153 c52 icon-container"
+                            class="c156 c52 icon-container"
                           >
                             <div
-                              class="c154 shadow"
+                              class="c157 shadow"
                             />
                             <span
                               class="c20"
@@ -5543,7 +5431,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                       </a>
                     </div>
                     <div
-                      class="c45 c46 c151 c152"
+                      class="c45 c46 c154 c155"
                     >
                       <a
                         aria-label="facebook for Oak National Academy"
@@ -5554,10 +5442,10 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c153 c52 icon-container"
+                            class="c156 c52 icon-container"
                           >
                             <div
-                              class="c154 shadow"
+                              class="c157 shadow"
                             />
                             <span
                               class="c20"
@@ -5581,7 +5469,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                       </a>
                     </div>
                     <div
-                      class="c45 c46 c151 c152"
+                      class="c45 c46 c154 c155"
                     >
                       <a
                         aria-label="linkedIn for Oak National Academy"
@@ -5592,10 +5480,10 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c153 c52 icon-container"
+                            class="c156 c52 icon-container"
                           >
                             <div
-                              class="c154 shadow"
+                              class="c157 shadow"
                             />
                             <span
                               class="c20"
@@ -5623,7 +5511,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
               </div>
             </div>
             <span
-              class="c90 c155"
+              class="c90 c158"
               data-chromatic="ignore"
             >
               <img
@@ -5639,13 +5527,13 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
               />
             </span>
             <div
-              class="c156 c157"
+              class="c159 c160"
             >
               <div
-                class="c158 c159"
+                class="c161 c162"
               >
                 <div
-                  class="c45 c46 c151 c152"
+                  class="c45 c46 c154 c155"
                 >
                   <a
                     aria-label="instagram for Oak National Academy"
@@ -5656,10 +5544,10 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c153 c52 icon-container"
+                        class="c156 c52 icon-container"
                       >
                         <div
-                          class="c154 shadow"
+                          class="c157 shadow"
                         />
                         <span
                           class="c20"
@@ -5683,7 +5571,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                   </a>
                 </div>
                 <div
-                  class="c45 c46 c151 c152"
+                  class="c45 c46 c154 c155"
                 >
                   <a
                     aria-label="facebook for Oak National Academy"
@@ -5694,10 +5582,10 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c153 c52 icon-container"
+                        class="c156 c52 icon-container"
                       >
                         <div
-                          class="c154 shadow"
+                          class="c157 shadow"
                         />
                         <span
                           class="c20"
@@ -5721,7 +5609,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                   </a>
                 </div>
                 <div
-                  class="c45 c46 c151 c152"
+                  class="c45 c46 c154 c155"
                 >
                   <a
                     aria-label="linkedIn for Oak National Academy"
@@ -5732,10 +5620,10 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c153 c52 icon-container"
+                        class="c156 c52 icon-container"
                       >
                         <div
-                          class="c154 shadow"
+                          class="c157 shadow"
                         />
                         <span
                           class="c20"
@@ -5763,7 +5651,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                 class="c56"
               >
                 <span
-                  class="c148"
+                  class="c151"
                 >
                   <img
                     alt=""
@@ -5777,15 +5665,15 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                 </span>
               </div>
               <div
-                class="c138 c83"
+                class="c141 c83"
               >
                 <p
-                  class="c160"
+                  class="c163"
                 >
                   © Oak National Academy Limited, No 14174888
                 </p>
                 <p
-                  class="c161"
+                  class="c164"
                 >
                   1 Scott Place, 2 Hardman Street, Manchester, M3 3AA
                 </p>
@@ -5794,11 +5682,11 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
           </div>
         </nav>
         <span
-          class="c162"
+          class="c165"
         >
           <img
             alt=""
-            class="c163"
+            class="c166"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -5810,27 +5698,27 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
     </div>
     <div
       aria-live="polite"
-      class="c164 c165 c166"
+      class="c167 c168 c169"
     />
   </div>
   <div
-    class="c167"
+    class="c170"
   >
     <div
-      class="c168"
+      class="c171"
       data-testid="cookie-banner"
     >
       <div
-        class="c169"
+        class="c172"
       >
         <div
-          class="c170 c171"
+          class="c173 c174"
         >
           <div
-            class="c172"
+            class="c175"
           >
             <strong
-              class="c173"
+              class="c176"
             >
               This site uses cookies to store information on your computer.
             </strong>
@@ -5838,13 +5726,13 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
             Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
           </div>
           <div
-            class="c9 c174"
+            class="c9 c177"
           >
             <div
-              class="c175 c41"
+              class="c178 c41"
             >
               <button
-                class="c73 c176"
+                class="c73 c179"
                 data-testid="cookie-banner-reject"
                 type="button"
               >
