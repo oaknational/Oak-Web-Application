@@ -1,4 +1,9 @@
 import { NextPage, GetServerSideProps } from "next";
+import {
+  OakFlex,
+  OakHeading,
+  OakPrimaryButton,
+} from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -19,6 +24,8 @@ import JoinResearchPanelInfo from "@/components/GenericPagesComponents/JoinResea
 import JoinResearchPanelFaqs from "@/components/GenericPagesComponents/JoinResearchPanelFaqs";
 import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
 import JoinResearchPanelCallout from "@/components/GenericPagesComponents/JoinResearchPanelCallout";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
+import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 
 const pageComponents: {
   [K in JoinResearchPanelPageBlockType]: (
@@ -36,14 +43,32 @@ const pageComponents: {
       <JoinResearchPanelFaqs items={block.items} />
     </>
   ),
-  JoinResearchPanelPageContactUs: JoinResearchPanelPageDefault,
+  JoinResearchPanelPageContactUs: (
+    block: JoinResearchPanelPageBlock<"JoinResearchPanelPageContactUs">,
+  ) => (
+    <NewGutterMaxWidth>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap="spacing-32"
+        $pb={["spacing-56", "spacing-80"]}
+        $alignItems={"center"}
+      >
+        <OakHeading tag="h2" $font={["heading-5", "heading-4"]}>
+          {block.title}
+        </OakHeading>
+        <OakPrimaryButton element="a" href={getLinkHref(block.button)}>
+          {block.button.label}
+        </OakPrimaryButton>
+      </OakFlex>
+    </NewGutterMaxWidth>
+  ),
 };
 
-function renderBlock<K extends JoinResearchPanelPageBlockType>(
-  block: JoinResearchPanelPageBlock<K>,
-) {
-  return pageComponents[block.__typename](block);
-}
+  function renderBlock<K extends JoinResearchPanelPageBlockType>(
+    block: JoinResearchPanelPageBlock<K>,
+  ) {
+    return pageComponents[block.__typename](block);
+  }
 
 export type AboutUsJoinResearchPanelPageProps = {
   pageData: JoinResearchPanelPage;
