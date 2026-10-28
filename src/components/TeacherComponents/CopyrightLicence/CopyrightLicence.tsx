@@ -18,7 +18,6 @@ const CopyrightLicence = (
           iconName="external"
           isTrailingIcon
           data-testid="external-link-icon"
-          aria-label="Open Government Licence version 3.0 (opens in a new tab)"
         >
           Open Government Licence version 3.0
         </OakLink>
@@ -39,7 +38,6 @@ const CopyrightLicence = (
             legalSlug: "terms-and-conditions",
           })}
           target={"_blank"}
-          aria-label="Oak's terms & conditions (opens in a new tab)"
           iconName="external"
           isTrailingIcon
           data-testid="external-link-icon"

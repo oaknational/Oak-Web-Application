@@ -7,10 +7,10 @@ exports[`AboutUsCalloutWithCta renders custom content correctly 1`] = `
       class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-bdvwhi sc-jObTYW hPWTKU gKJERn"
+        class="sc-bdvwhi sc-jcFiBM hPWTKU jslZJX"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex giCKOa"
+          class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex irjOXW"
         >
           <div
             class="sc-bdvwhi sc-gsDMPd hPWTKU csSWlB"
@@ -75,7 +75,7 @@ exports[`AboutUsCalloutWithCta renders custom content correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-bdvwhi sc-gsDMPd sc-dPiIMO eIMKEQ Bakex fqHsID"
+          class="sc-bdvwhi sc-gsDMPd sc-caiMdP eIMKEQ Bakex ldOatf"
         >
           <div
             class="sc-bdvwhi sc-gsDMPd dumZsJ kkGnDS"
@@ -110,10 +110,10 @@ exports[`AboutUsCalloutWithCta renders default content correctly 1`] = `
       class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-bdvwhi sc-jObTYW hPWTKU gKJERn"
+        class="sc-bdvwhi sc-jcFiBM hPWTKU jslZJX"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex giCKOa"
+          class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex irjOXW"
         >
           <div
             class="sc-bdvwhi sc-gsDMPd hPWTKU csSWlB"
@@ -178,7 +178,7 @@ exports[`AboutUsCalloutWithCta renders default content correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-bdvwhi sc-gsDMPd sc-dPiIMO eIMKEQ Bakex fqHsID"
+          class="sc-bdvwhi sc-gsDMPd sc-caiMdP eIMKEQ Bakex ldOatf"
         >
           <div
             class="sc-bdvwhi sc-gsDMPd dumZsJ kkGnDS"

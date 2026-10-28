@@ -79,13 +79,7 @@ function InstallFontsInstructions({
       <OakIcon iconWidth="spacing-20" iconName="info" />
       <OakP $font={"body-3"}>
         <OakSpan>Our resources work best if you </OakSpan>
-        <OakLink
-          href={resolveOakHref({ page: "help-font" })}
-          target={"_blank"}
-          aria-label={
-            "install the Google Fonts 'Lexend' and 'Kalam' (opens in a new tab)"
-          }
-        >
+        <OakLink href={resolveOakHref({ page: "help-font" })} target={"_blank"}>
           install the Google Fonts ‘Lexend’ and ‘Kalam’.{" "}
         </OakLink>
         {showHelpMessage && (

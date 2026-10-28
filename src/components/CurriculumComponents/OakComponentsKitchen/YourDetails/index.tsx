@@ -199,7 +199,6 @@ export default function YourDetails({
             Join over {NEWSLETTER_COUNT} teachers and get free resources and
             other helpful content by email. Unsubscribe at any time. Read our{" "}
             <OakLink
-              aria-label="Privacy policy (opens in a new tab)"
               href={resolveOakHref({
                 page: "legal",
                 legalSlug: "privacy-policy",

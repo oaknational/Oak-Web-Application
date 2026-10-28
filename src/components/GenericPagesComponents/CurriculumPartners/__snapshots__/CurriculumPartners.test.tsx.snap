@@ -24,7 +24,7 @@ exports[`CurriculumPartners renders correctly with default md size 1`] = `
         class="sc-bdvwhi hPWTKU"
       >
         <ul
-          class="sc-bdvwhi sc-jObTYW eZfdqr iEIpeO"
+          class="sc-bdvwhi sc-jcFiBM eZfdqr dHEkfy"
         >
           <li
             class="sc-ieedpP fwjgNY"
@@ -247,7 +247,7 @@ exports[`CurriculumPartners renders correctly with explicit sm size 1`] = `
         class="sc-bdvwhi hPWTKU"
       >
         <ul
-          class="sc-bdvwhi sc-jObTYW eZfdqr jXTZuJ"
+          class="sc-bdvwhi sc-jcFiBM eZfdqr kcymVR"
         >
           <li
             class="sc-ieedpP fwjgNY"

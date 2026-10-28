@@ -50,7 +50,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             Year group
           </legend>
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-GakyQ keTjWL eYMclX bzNcQc"
+            class="sc-bdvwhi sc-gsDMPd sc-GEaMY keTjWL eYMclX gdegrt"
           >
             <span
               class="sc-iCfNyT gvLbeW"
@@ -60,7 +60,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
               >
                 <input
                   checked=""
-                  class="sc-AjlSJ jqijis"
+                  class="sc-dvQa-dN ghAFqj"
                   data-testid="all-years-radio"
                   id=":r0:"
                   name="yearreact-use-id-test-result"
@@ -68,12 +68,12 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
                   value="0"
                 />
                 <div
-                  class="sc-bdvwhi sc-gsDMPd sc-gSQHZB fbYMyq dkhWet dHIGrW"
+                  class="sc-bdvwhi sc-gsDMPd sc-jOxwkF fbYMyq dkhWet bRsBWD"
                 />
               </div>
             </span>
             <label
-              class="sc-jJoSXA sc-hiCkpJ sc-gWWZvT khdcrp hFXBsz hkjJYD"
+              class="sc-jeqZuJ sc-eJwVsk sc-nVikz eoSypr dajmRy gRonMI"
               for=":r0:"
               pointer-events="none"
             >
@@ -81,7 +81,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             </label>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-GakyQ keTjWL eYMclX bzNcQc"
+            class="sc-bdvwhi sc-gsDMPd sc-GEaMY keTjWL eYMclX gdegrt"
           >
             <span
               class="sc-iCfNyT gvLbeW"
@@ -90,7 +90,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
                 class="sc-bdvwhi sc-gsDMPd fzUVot iZlbFj"
               >
                 <input
-                  class="sc-AjlSJ jqijis"
+                  class="sc-dvQa-dN ghAFqj"
                   data-testid="year-radio"
                   id=":r1:"
                   name="yearreact-use-id-test-result"
@@ -98,12 +98,12 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
                   value="1"
                 />
                 <div
-                  class="sc-bdvwhi sc-gsDMPd sc-gSQHZB fbYMyq dkhWet dHIGrW"
+                  class="sc-bdvwhi sc-gsDMPd sc-jOxwkF fbYMyq dkhWet bRsBWD"
                 />
               </div>
             </span>
             <label
-              class="sc-jJoSXA sc-hiCkpJ sc-gWWZvT khdcrp hFXBsz hkjJYD"
+              class="sc-jeqZuJ sc-eJwVsk sc-nVikz eoSypr dajmRy gRonMI"
               for=":r1:"
               pointer-events="none"
             >
@@ -111,7 +111,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             </label>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-GakyQ keTjWL eYMclX bzNcQc"
+            class="sc-bdvwhi sc-gsDMPd sc-GEaMY keTjWL eYMclX gdegrt"
           >
             <span
               class="sc-iCfNyT gvLbeW"
@@ -120,7 +120,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
                 class="sc-bdvwhi sc-gsDMPd fzUVot iZlbFj"
               >
                 <input
-                  class="sc-AjlSJ jqijis"
+                  class="sc-dvQa-dN ghAFqj"
                   data-testid="year-radio"
                   id=":r2:"
                   name="yearreact-use-id-test-result"
@@ -128,12 +128,12 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
                   value="2"
                 />
                 <div
-                  class="sc-bdvwhi sc-gsDMPd sc-gSQHZB fbYMyq dkhWet dHIGrW"
+                  class="sc-bdvwhi sc-gsDMPd sc-jOxwkF fbYMyq dkhWet bRsBWD"
                 />
               </div>
             </span>
             <label
-              class="sc-jJoSXA sc-hiCkpJ sc-gWWZvT khdcrp hFXBsz hkjJYD"
+              class="sc-jeqZuJ sc-eJwVsk sc-nVikz eoSypr dajmRy gRonMI"
               for=":r2:"
               pointer-events="none"
             >
@@ -170,11 +170,11 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
         </div>
       </div>
       <div
-        class="sc-bdvwhi sc-gsDMPd sc-ZOvtA bKzNSk Bakex"
+        class="sc-bdvwhi sc-gsDMPd sc-khQeTG bKzNSk Bakex"
         focusable="false"
       >
         <svg
-          class="sc-jIkVsP jHNghU"
+          class="sc-gWWZvT hQqbcG"
           height="100%"
           preserveAspectRatio="none"
           viewBox="0 0 866 8"

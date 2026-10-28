@@ -623,13 +623,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c187 {
+.c188 {
   padding-left: 0.25rem;
   display: inline;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c191 {
+.c192 {
   position: relative;
   width: 10rem;
   height: 4rem;
@@ -638,12 +638,12 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c192 {
+.c193 {
   display: flex;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c196 {
+.c197 {
   position: relative;
   width: 2rem;
   min-width: 2rem;
@@ -654,7 +654,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c197 {
+.c198 {
   position: absolute;
   top: 0rem;
   width: 100%;
@@ -665,7 +665,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c199 {
+.c200 {
   width: 100%;
   padding-top: 0.75rem;
   margin-top: 2rem;
@@ -673,12 +673,12 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c201 {
+.c202 {
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c205 {
+.c206 {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -694,7 +694,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   z-index: -1;
 }
 
-.c207 {
+.c208 {
   position: fixed;
   right: 0rem;
   width: 100%;
@@ -704,14 +704,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   z-index: 300;
 }
 
-.c210 {
+.c211 {
   position: sticky;
   bottom: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
   z-index: 299;
 }
 
-.c211 {
+.c212 {
   color: #222222;
   background: #f2f2f2;
   border-top: 0.063rem solid;
@@ -719,13 +719,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c212 {
+.c213 {
   margin-left: auto;
   margin-right: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c213 {
+.c214 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   margin-left: 1rem;
@@ -733,7 +733,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c215 {
+.c216 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -741,7 +741,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c218 {
+.c219 {
   font-family: --var(google-font),Lexend,sans-serif;
   white-space: nowrap;
 }
@@ -941,47 +941,47 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   flex-grow: 1;
 }
 
-.c190 {
+.c191 {
   display: flex;
   justify-content: left;
 }
 
-.c193 {
+.c194 {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
 }
 
-.c200 {
+.c201 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
 }
 
-.c202 {
+.c203 {
   display: none;
   align-items: center;
   justify-content: center;
   gap: 1rem;
 }
 
-.c208 {
+.c209 {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
 }
 
-.c214 {
+.c215 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 1.5rem;
 }
 
-.c217 {
+.c218 {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -1036,7 +1036,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c216 {
+.c217 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
@@ -1310,7 +1310,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   object-fit: contain;
 }
 
-.c206 {
+.c207 {
   filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   object-fit: fill;
 }
@@ -1331,6 +1331,18 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   background-position: center;
   background-repeat: no-repeat;
   object-fit: cover;
+}
+
+.c187 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .c8 {
@@ -1573,27 +1585,27 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   background: #222222;
 }
 
-.c194 >:first-of-type:focus-visible .shadow {
+.c195 >:first-of-type:focus-visible .shadow {
   box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c194 >:first-of-type:hover .shadow {
+.c195 >:first-of-type:hover .shadow {
   box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%);
 }
 
-.c194 >:first-of-type:active .shadow {
+.c195 >:first-of-type:active .shadow {
   box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%),0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
-.c194 >:first-of-type:disabled .icon-container {
+.c195 >:first-of-type:disabled .icon-container {
   background: #e4e4e4;
 }
 
-.c194 >:first-of-type:hover .icon-container {
+.c195 >:first-of-type:hover .icon-container {
   background: #ffffff;
 }
 
-.c194 >:first-of-type:active .icon-container {
+.c195 >:first-of-type:active .icon-container {
   background: #ffffff;
 }
 
@@ -1740,7 +1752,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   margin-top: 0rem;
 }
 
-.c203 {
+.c204 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
@@ -1748,7 +1760,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c204 {
+.c205 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.75rem;
@@ -1776,7 +1788,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   gap: 0.75rem;
 }
 
-.c189 {
+.c190 {
   width: 1.25em;
   min-width: 1.25em;
   height: 1.25em;
@@ -1802,7 +1814,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c24 .c188 {
+.c24 .c189 {
   filter: invert(21%) sepia(90%) saturate(3220%) hue-rotate(232deg) brightness(71%) contrast(127%);
   display: inline-block;
   vertical-align: text-top;
@@ -1816,7 +1828,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   color: #081676;
 }
 
-.c24:visited .c188 {
+.c24:visited .c189 {
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
 
@@ -1825,7 +1837,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   outline: 1px solid #081676;
 }
 
-.c24:active .c188 {
+.c24:active .c189 {
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
 
@@ -1834,7 +1846,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   color: #808080;
 }
 
-.c24[disabled] .c188 {
+.c24[disabled] .c189 {
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
@@ -1857,7 +1869,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c185 .c188 {
+.c185 .c189 {
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   display: inline-block;
   vertical-align: text-top;
@@ -1871,7 +1883,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   color: #222222;
 }
 
-.c185:visited .c188 {
+.c185:visited .c189 {
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
@@ -1880,7 +1892,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   outline: 1px solid #222222;
 }
 
-.c185:active .c188 {
+.c185:active .c189 {
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
@@ -1889,11 +1901,102 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   color: #808080;
 }
 
-.c185[disabled] .c188 {
+.c185[disabled] .c189 {
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c219 {
+.c130 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.c130:has(a:hover, button:hover) {
+  box-shadow: none;
+}
+
+.c130:has(   a,   button ) {
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
+}
+
+.c130:has(   a,   button ) a,
+.c130:has(   a,   button ) button {
+  outline: none;
+}
+
+.c130:has(a:active, button:active) {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%),0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
+}
+
+.c92 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  width: 100%;
+  row-gap: 1rem;
+  column-gap: 1rem;
+}
+
+.c114 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  width: 100%;
+  row-gap: 2rem;
+  column-gap: 1rem;
+}
+
+.c140 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  width: 100%;
+}
+
+.c178 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  width: 100%;
+  column-gap: 1.5rem;
+}
+
+.c93 {
+  flex-direction: column;
+  grid-column: span 12;
+  grid-row: span undefined;
+  grid-row: span 1;
+  grid-column-start: 0;
+}
+
+.c97 {
+  flex-direction: column;
+  grid-column: span 12;
+  grid-row: span undefined;
+  grid-row: span 1;
+  grid-column-start: 0;
+}
+
+.c115 {
+  flex-direction: column;
+  grid-column: span 12;
+  grid-row: span undefined;
+  grid-row: span 1;
+}
+
+.c141 {
+  flex-direction: column;
+  grid-column: span 12;
+  grid-row: span undefined;
+  grid-row: span 1;
+}
+
+.c179 {
+  flex-direction: column;
+  grid-column: span 12;
+  grid-row: span undefined;
+  grid-row: span 1;
+}
+
+.c220 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -1972,72 +2075,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 .c42:focus-within {
   border-color: #222222;
   background: #ffffff;
-}
-
-.c92 {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  width: 100%;
-  row-gap: 1rem;
-  column-gap: 1rem;
-}
-
-.c114 {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  width: 100%;
-  row-gap: 2rem;
-  column-gap: 1rem;
-}
-
-.c140 {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  width: 100%;
-}
-
-.c178 {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  width: 100%;
-  column-gap: 1.5rem;
-}
-
-.c93 {
-  flex-direction: column;
-  grid-column: span 12;
-  grid-row: span undefined;
-  grid-row: span 1;
-  grid-column-start: 0;
-}
-
-.c97 {
-  flex-direction: column;
-  grid-column: span 12;
-  grid-row: span undefined;
-  grid-row: span 1;
-  grid-column-start: 0;
-}
-
-.c115 {
-  flex-direction: column;
-  grid-column: span 12;
-  grid-row: span undefined;
-  grid-row: span 1;
-}
-
-.c141 {
-  flex-direction: column;
-  grid-column: span 12;
-  grid-row: span undefined;
-  grid-row: span 1;
-}
-
-.c179 {
-  flex-direction: column;
-  grid-column: span 12;
-  grid-row: span undefined;
-  grid-row: span 1;
 }
 
 .c159 {
@@ -2193,31 +2230,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c130 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  box-shadow: none;
-}
-
-.c130:has(a:hover, button:hover) {
-  box-shadow: none;
-}
-
-.c130:has(   a,   button ) {
-  border-radius: 0.5rem;
-  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
-}
-
-.c130:has(   a,   button ) a,
-.c130:has(   a,   button ) button {
-  outline: none;
-}
-
-.c130:has(a:active, button:active) {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%),0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
-}
-
 .c58:hover .oak-save-count {
   background-color: #bef2bd;
 }
@@ -2226,7 +2238,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c209 {
+.c210 {
   top: 152px;
 }
 
@@ -2268,11 +2280,11 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   justify-self: center;
 }
 
-.c195 .icon-container>*:first-child {
+.c196 .icon-container>*:first-child {
   border: 0;
 }
 
-.c198 {
+.c199 {
   height: 87px;
   width: 77px;
   margin-top: 2rem;
@@ -2665,109 +2677,109 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width: 750px) {
-  .c192 {
+  .c193 {
     display: none;
   }
 }
 
 @media (min-width: 750px) {
-  .c199 {
+  .c200 {
     padding-top: 0rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c201 {
+  .c202 {
     display: flex;
   }
 }
 
 @media (min-width: 750px) {
-  .c205 {
+  .c206 {
     display: block;
   }
 }
 
 @media (min-width: 750px) {
-  .c205 {
+  .c206 {
     transform: translate(25%, 25%) scale(0.7) rotate(-10deg);
   }
 }
 
 @media (min-width: 1280px) {
-  .c205 {
+  .c206 {
     transform: translate(25%, 15%) rotate(-10deg);
   }
 }
 
 @media (min-width: 750px) {
-  .c207 {
+  .c208 {
     right: 1.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c207 {
+  .c208 {
     width: max-content;
   }
 }
 
 @media (min-width: 750px) {
-  .c207 {
+  .c208 {
     padding-left: 0rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c207 {
+  .c208 {
     padding-right: 0rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c213 {
+  .c214 {
     margin-left: 1.5rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .c213 {
+  .c214 {
     margin-left: 3.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c213 {
+  .c214 {
     margin-right: 1.5rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .c213 {
+  .c214 {
     margin-right: 3.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c215 {
+  .c216 {
     font-weight: 300;
   }
 }
 
 @media (min-width: 750px) {
-  .c215 {
+  .c216 {
     font-size: 1rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c215 {
+  .c216 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c215 {
+  .c216 {
     letter-spacing: -0.005rem;
   }
 }
@@ -2847,103 +2859,103 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width: 750px) {
-  .c190 {
+  .c191 {
     justify-content: right;
   }
 }
 
 @media (min-width: 750px) {
-  .c193 {
+  .c194 {
     display: none;
   }
 }
 
 @media (min-width: 750px) {
-  .c200 {
+  .c201 {
     flex-direction: row;
   }
 }
 
 @media (min-width: 750px) {
-  .c200 {
+  .c201 {
     align-items: center;
   }
 }
 
 @media (min-width: 750px) {
-  .c200 {
+  .c201 {
     justify-content: space-between;
   }
 }
 
 @media (min-width: 750px) {
-  .c202 {
+  .c203 {
     display: flex;
   }
 }
 
 @media (min-width: 750px) {
-  .c208 {
+  .c209 {
     align-items: flex-end;
   }
 }
 
 @media (min-width: 750px) {
-  .c214 {
+  .c215 {
     flex-direction: column;
   }
 }
 
 @media (min-width: 1280px) {
-  .c214 {
+  .c215 {
     flex-direction: row;
   }
 }
 
 @media (min-width: 750px) {
-  .c214 {
+  .c215 {
     align-items: flex-start;
   }
 }
 
 @media (min-width: 1280px) {
-  .c214 {
+  .c215 {
     align-items: center;
   }
 }
 
 @media (min-width: 750px) {
-  .c214 {
+  .c215 {
     gap: 1.5rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .c214 {
+  .c215 {
     gap: 2rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c217 {
+  .c218 {
     flex-direction: row;
   }
 }
 
 @media (min-width: 750px) {
-  .c217 {
+  .c218 {
     flex-wrap: wrap;
   }
 }
 
 @media (min-width: 1280px) {
-  .c217 {
+  .c218 {
     flex-wrap: nowrap;
   }
 }
 
 @media (min-width: 750px) {
-  .c217 {
+  .c218 {
     gap: 2rem;
   }
 }
@@ -2997,25 +3009,25 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width: 750px) {
-  .c216 {
+  .c217 {
     font-weight: 500;
   }
 }
 
 @media (min-width: 750px) {
-  .c216 {
+  .c217 {
     font-size: 1rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c216 {
+  .c217 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c216 {
+  .c217 {
     letter-spacing: -0.005rem;
   }
 }
@@ -3436,8 +3448,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
     text-decoration-thickness: 18%;
   }
 
-  .c24:hover .c188,
-  .c24:visited:hover .c188 {
+  .c24:hover .c189,
+  .c24:visited:hover .c189 {
     filter: invert(16%) sepia(72%) saturate(7176%) hue-rotate(239deg) brightness(61%) contrast(109%);
   }
 }
@@ -3450,28 +3462,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
     text-decoration-thickness: 18%;
   }
 
-  .c185:hover .c188,
-  .c185:visited:hover .c188 {
+  .c185:hover .c189,
+  .c185:visited:hover .c189 {
     filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  }
-}
-
-@media (max-width: 750px) {
-  .c43 {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 750px) {
-  .c152 {
-    font-size: 16px;
-  }
-}
-
-@media (hover: hover) {
-  .c42:hover:not(:focus-within) {
-    background: #f2f2f2;
-    border-color: #808080;
   }
 }
 
@@ -3532,6 +3525,25 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 @media (min-width: 750px) {
   .c179 {
     grid-column: span 3;
+  }
+}
+
+@media (max-width: 750px) {
+  .c43 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 750px) {
+  .c152 {
+    font-size: 16px;
+  }
+}
+
+@media (hover: hover) {
+  .c42:hover:not(:focus-within) {
+    background: #f2f2f2;
+    border-color: #808080;
   }
 }
 
@@ -5213,12 +5225,17 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             class="c25"
                           >
                             Aila, Oak’s AI lesson assistant
+                            <span
+                              class="c187"
+                            >
+                               (opens in a new tab)
+                            </span>
                           </span>
                           <div
-                            class="c187"
+                            class="c188"
                           >
                             <span
-                              class="c136 c188 c189"
+                              class="c136 c189 c190"
                             >
                               <img
                                 alt=""
@@ -5370,7 +5387,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c184"
                       >
                         <a
-                          aria-label="Careers (opens in a new tab)"
                           class="c185 "
                           href="https://jobs.thenational.academy"
                           target="_blank"
@@ -5379,12 +5395,17 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             class="c25"
                           >
                             Careers
+                            <span
+                              class="c187"
+                            >
+                               (opens in a new tab)
+                            </span>
                           </span>
                           <div
-                            class="c187"
+                            class="c188"
                           >
                             <span
-                              class="c136 c188 c189"
+                              class="c136 c189 c190"
                             >
                               <img
                                 alt=""
@@ -5417,7 +5438,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c184"
                       >
                         <a
-                          aria-label="Help (opens in a new tab)"
                           class="c185 "
                           href="https://support.thenational.academy"
                           target="_blank"
@@ -5426,12 +5446,17 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             class="c25"
                           >
                             Help
+                            <span
+                              class="c187"
+                            >
+                               (opens in a new tab)
+                            </span>
                           </span>
                           <div
-                            class="c187"
+                            class="c188"
                           >
                             <span
-                              class="c136 c188 c189"
+                              class="c136 c189 c190"
                             >
                               <img
                                 alt=""
@@ -5464,7 +5489,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c184"
                       >
                         <a
-                          aria-label="Status (opens in a new tab)"
                           class="c185 "
                           href="https://status.thenational.academy"
                           target="_blank"
@@ -5473,12 +5497,17 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             class="c25"
                           >
                             Status
+                            <span
+                              class="c187"
+                            >
+                               (opens in a new tab)
+                            </span>
                           </span>
                           <div
-                            class="c187"
+                            class="c188"
                           >
                             <span
-                              class="c136 c188 c189"
+                              class="c136 c189 c190"
                             >
                               <img
                                 alt=""
@@ -5661,13 +5690,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 class="c9 c46 c179"
               >
                 <div
-                  class="c180 c190"
+                  class="c180 c191"
                 >
                   <div
                     class="c39"
                   >
                     <span
-                      class="c191"
+                      class="c192"
                     >
                       <img
                         alt=""
@@ -5681,10 +5710,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                     </span>
                   </div>
                   <div
-                    class="c192 c193"
+                    class="c193 c194"
                   >
                     <div
-                      class="c45 c46 c194 c195"
+                      class="c45 c46 c195 c196"
                     >
                       <a
                         aria-label="instagram for Oak National Academy"
@@ -5695,10 +5724,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c196 c52 icon-container"
+                            class="c197 c52 icon-container"
                           >
                             <div
-                              class="c197 shadow"
+                              class="c198 shadow"
                             />
                             <span
                               class="c20"
@@ -5722,7 +5751,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       </a>
                     </div>
                     <div
-                      class="c45 c46 c194 c195"
+                      class="c45 c46 c195 c196"
                     >
                       <a
                         aria-label="facebook for Oak National Academy"
@@ -5733,10 +5762,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c196 c52 icon-container"
+                            class="c197 c52 icon-container"
                           >
                             <div
-                              class="c197 shadow"
+                              class="c198 shadow"
                             />
                             <span
                               class="c20"
@@ -5760,7 +5789,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       </a>
                     </div>
                     <div
-                      class="c45 c46 c194 c195"
+                      class="c45 c46 c195 c196"
                     >
                       <a
                         aria-label="linkedIn for Oak National Academy"
@@ -5771,10 +5800,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c196 c52 icon-container"
+                            class="c197 c52 icon-container"
                           >
                             <div
-                              class="c197 shadow"
+                              class="c198 shadow"
                             />
                             <span
                               class="c20"
@@ -5802,7 +5831,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               </div>
             </div>
             <span
-              class="c84 c198"
+              class="c84 c199"
               data-chromatic="ignore"
             >
               <img
@@ -5818,13 +5847,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               />
             </span>
             <div
-              class="c199 c200"
+              class="c200 c201"
             >
               <div
-                class="c201 c202"
+                class="c202 c203"
               >
                 <div
-                  class="c45 c46 c194 c195"
+                  class="c45 c46 c195 c196"
                 >
                   <a
                     aria-label="instagram for Oak National Academy"
@@ -5835,10 +5864,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c196 c52 icon-container"
+                        class="c197 c52 icon-container"
                       >
                         <div
-                          class="c197 shadow"
+                          class="c198 shadow"
                         />
                         <span
                           class="c20"
@@ -5862,7 +5891,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   </a>
                 </div>
                 <div
-                  class="c45 c46 c194 c195"
+                  class="c45 c46 c195 c196"
                 >
                   <a
                     aria-label="facebook for Oak National Academy"
@@ -5873,10 +5902,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c196 c52 icon-container"
+                        class="c197 c52 icon-container"
                       >
                         <div
-                          class="c197 shadow"
+                          class="c198 shadow"
                         />
                         <span
                           class="c20"
@@ -5900,7 +5929,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   </a>
                 </div>
                 <div
-                  class="c45 c46 c194 c195"
+                  class="c45 c46 c195 c196"
                 >
                   <a
                     aria-label="linkedIn for Oak National Academy"
@@ -5911,10 +5940,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c196 c52 icon-container"
+                        class="c197 c52 icon-container"
                       >
                         <div
-                          class="c197 shadow"
+                          class="c198 shadow"
                         />
                         <span
                           class="c20"
@@ -5942,7 +5971,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 class="c56"
               >
                 <span
-                  class="c191"
+                  class="c192"
                 >
                   <img
                     alt=""
@@ -5959,12 +5988,12 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 class="c180 c98"
               >
                 <p
-                  class="c203"
+                  class="c204"
                 >
                   © Oak National Academy Limited, No 14174888
                 </p>
                 <p
-                  class="c204"
+                  class="c205"
                 >
                   1 Scott Place, 2 Hardman Street, Manchester, M3 3AA
                 </p>
@@ -5973,11 +6002,11 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
           </div>
         </nav>
         <span
-          class="c205"
+          class="c206"
         >
           <img
             alt=""
-            class="c206"
+            class="c207"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -5989,27 +6018,27 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
     </div>
     <div
       aria-live="polite"
-      class="c207 c208 c209"
+      class="c208 c209 c210"
     />
   </div>
   <div
-    class="c210"
+    class="c211"
   >
     <div
-      class="c211"
+      class="c212"
       data-testid="cookie-banner"
     >
       <div
-        class="c212"
+        class="c213"
       >
         <div
-          class="c213 c214"
+          class="c214 c215"
         >
           <div
-            class="c215"
+            class="c216"
           >
             <strong
-              class="c216"
+              class="c217"
             >
               This site uses cookies to store information on your computer.
             </strong>
@@ -6017,13 +6046,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
             Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
           </div>
           <div
-            class="c9 c217"
+            class="c9 c218"
           >
             <div
-              class="c218 c41"
+              class="c219 c41"
             >
               <button
-                class="c185 c219"
+                class="c185 c220"
                 data-testid="cookie-banner-reject"
                 type="button"
               >
