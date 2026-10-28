@@ -16,8 +16,8 @@ import { PortableTextWithDefaults } from "@/components/SharedComponents/Portable
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import { JoinResearchPanelPageBlock } from "@/common-lib/cms-types";
 import { targetFromHref } from "@/utils/targetFromHref";
-import { aboutUsContactInitiated } from "@/browser-lib/avo/Avo";
 import { buildAboutUsContactInitiatedAnalytics } from "@/utils/analytics-builders";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 type LocalExternalLinkProps = PortableTextMarkComponentProps<{
   _type: "link";
@@ -49,13 +49,15 @@ export default function JoinResearchPanelJourney({
   steps,
   button,
 }: Readonly<JoinResearchPanelJourneyProps>) {
+  const { track } = useAnalytics();
+
   const ctaHref = getLinkHref(button);
   const ctaTarget = targetFromHref(ctaHref);
 
   const onClickIntercept = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const matchedHref = e.currentTarget.getAttribute("href");
     if (ctaHref === matchedHref) {
-      aboutUsContactInitiated(
+      track.aboutUsContactInitiated(
         buildAboutUsContactInitiatedAnalytics("join_research_panel"),
       );
     }
