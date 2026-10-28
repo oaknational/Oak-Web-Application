@@ -3,11 +3,22 @@ import { basic as fixture } from "./fixtures";
 import JoinResearchPanelJourney from ".";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: jest.fn(),
+}));
+
 describe("JoinResearchPanelJourney", () => {
   test("it renders correct data", () => {
+    const aboutUsContactInitiated = jest.fn();
+    (useAnalytics as jest.Mock).mockReturnValue({
+      track: { aboutUsContactInitiated },
+    });
+
     const { baseElement, getByRole, getAllByRole } = render(
       <JoinResearchPanelJourney {...fixture} />,
     );
