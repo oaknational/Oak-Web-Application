@@ -1,3 +1,21 @@
+# [1.1260.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1259.0...v1.1260.0) (2026-10-28)
+
+
+### Bug Fixes
+
+* eport ([b66dfea](https://github.com/oaknational/Oak-Web-Application/commit/b66dfea49c5b81486aa6bd82b2039ce171e94237))
+* lint ([7220caf](https://github.com/oaknational/Oak-Web-Application/commit/7220caffc85d0d40c782c1f2bd83ec908300b4ef))
+* missing decorator in faqs story ([aadbc45](https://github.com/oaknational/Oak-Web-Application/commit/aadbc457d3e20cebe8b54f1d46b69f68c5f34b08))
+* responsive grid spanning ([155c2d1](https://github.com/oaknational/Oak-Web-Application/commit/155c2d17ba6306c6da46ca408c09e80823dcf7eb))
+* use unique id in accordion labelling ([1755a6c](https://github.com/oaknational/Oak-Web-Application/commit/1755a6c0f78ad65f2d09d732d6522eea3824a8d3))
+
+
+### Features
+
+* add faqs section to join research panel ([bf23ecf](https://github.com/oaknational/Oak-Web-Application/commit/bf23ecff0c47e5aacc0f7bcae2922bc1f78a3abb))
+* use local fixture for join research panel header ([12e0527](https://github.com/oaknational/Oak-Web-Application/commit/12e0527d73a4425382eee66811bca2f7148ba0dc))
+* use local fixture for join research panel info ([d8a297c](https://github.com/oaknational/Oak-Web-Application/commit/d8a297cac56c61d5aa3120b4940e272ec7e3528c))
+
 # [1.1259.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1258.0...v1.1259.0) (2026-10-28)
 
 
