@@ -334,6 +334,13 @@ describe("ProgrammeView", () => {
     });
 
     it("calls notFound when the overview tab is active", () => {
+      setMockedPathname(
+        resolveOakHref({
+          page: "teacher-programme",
+          subjectPhaseSlug,
+          tab: "curriculum-explainer",
+        }),
+      );
       expect(() =>
         renderProgrammeView({
           ...nonCurriculumProps,
