@@ -9,7 +9,7 @@ function safeUrlParse(url: string, baseUrl?: string) {
 }
 
 function addProtocol(url: string) {
-  if (url.match(/^(http:\/\/|https:\/\/)/)) {
+  if (/^(http:\/\/|https:\/\/)/.exec(url)) {
     return url;
   }
   return `https://${url}`;
