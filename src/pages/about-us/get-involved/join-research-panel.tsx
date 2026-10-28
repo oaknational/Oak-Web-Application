@@ -64,11 +64,11 @@ const pageComponents: {
   ),
 };
 
-  function renderBlock<K extends JoinResearchPanelPageBlockType>(
-    block: JoinResearchPanelPageBlock<K>,
-  ) {
-    return pageComponents[block.__typename](block);
-  }
+function renderBlock<K extends JoinResearchPanelPageBlockType>(
+  block: JoinResearchPanelPageBlock<K>,
+) {
+  return pageComponents[block.__typename](block);
+}
 
 export type AboutUsJoinResearchPanelPageProps = {
   pageData: JoinResearchPanelPage;
