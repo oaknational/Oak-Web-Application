@@ -2,10 +2,10 @@
 import { Lexend } from "next/font/google";
 import parse from "html-react-parser";
 import { Metadata } from "next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import StyledComponentsRegistry from "./styles-registry";
 import AnalyticsWrapper from "./components/AnalyticsWrapper";
+import SpeedInsightsWrapper from "./components/SpeedInsightsWrapper";
 import { getTwitterMetadata, getOpenGraphMetadata } from "./metadata";
 import { SimulateErrorControls } from "./components/ErrorHandling/SimulateErrorControls";
 
@@ -71,15 +71,7 @@ export default function RootLayout({
                         <SaveCountProvider>
                           <SimulateErrorControls errorBoundaryLevel="global" />
                           {children}
-                          <SpeedInsights
-                            sampleRate={0.1}
-                            beforeSend={(data) => {
-                              if (!data.url.includes("teachers")) {
-                                return null;
-                              }
-                              return data;
-                            }}
-                          />
+                          <SpeedInsightsWrapper />
                         </SaveCountProvider>
                       </MenuProvider>
                     </AnalyticsWrapper>
