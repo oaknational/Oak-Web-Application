@@ -82,7 +82,10 @@ describe("NationalCurriculumInsightsDownload", () => {
     expect(toggle.closest("section")).toHaveStyle({
       position: "fixed",
       bottom: "0rem",
+      maxHeight: "calc(100dvh - env(safe-area-inset-top))",
+      paddingBottom: "env(safe-area-inset-bottom)",
     });
+    expect(toggle.parentElement).toHaveStyle({ flexShrink: "0" });
     expect(toggle).toHaveAttribute("aria-expanded", "false");
     await user.click(toggle);
     expect(toggle).toHaveAttribute("aria-expanded", "true");

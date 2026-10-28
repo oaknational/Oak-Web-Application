@@ -102,7 +102,7 @@ const DownloadHeader = ({
   onToggle: () => void;
   buttonRef: RefObject<HTMLButtonElement>;
 }) => (
-  <OakFocusIndicator $width="100%">
+  <OakFocusIndicator $width="100%" style={{ flexShrink: 0 }}>
     <OakBox
       as="button"
       ref={buttonRef}
@@ -425,6 +425,10 @@ export const NationalCurriculumInsightsDownload = ({
         $dropShadow="drop-shadow-centred-standard"
         $zIndex={expanded ? "modal-dialog" : "fixed-header"}
         $maxHeight="100vh"
+        style={{
+          maxHeight: "calc(100dvh - env(safe-area-inset-top))",
+          paddingBottom: "env(safe-area-inset-bottom)",
+        }}
         $width="100%"
         $flexDirection="column"
         $background="bg-primary"
