@@ -30,7 +30,7 @@ import type {
 } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import {
-  nationalCurriculumInsightsGuidanceHref,
+  nationalCurriculumInsightsPath,
   nationalCurriculumInsightsSubjectPhaseHref,
 } from "@/common-lib/urls/nationalCurriculumInsights";
 
@@ -108,10 +108,7 @@ export const generateNationalCurriculumInsightsDocx = async ({
     nationalCurriculumInsightsSubjectPhaseHref(subject.slug, phase),
     siteUrl,
   ).toString();
-  const guidanceUrl = new URL(
-    nationalCurriculumInsightsGuidanceHref(),
-    siteUrl,
-  ).toString();
+  const hubUrl = new URL(nationalCurriculumInsightsPath, siteUrl).toString();
   const richText = createInsightsDocxRichText(zip, pageUrl);
   const { cover, contents, body } = await buildInsightsDocxContent({
     page: tab.page,
@@ -173,7 +170,7 @@ export const generateNationalCurriculumInsightsDocx = async ({
   const document = await zip.readJson("word/document.xml");
   document.elements[0]!.elements![0].elements ??= [];
   await appendBodyElements(zip, xmlElementToJson(documentXml)?.elements);
-  await fillInsightsDocxFurniture(zip, title, guidanceUrl);
+  await fillInsightsDocxFurniture(zip, title, hubUrl);
   await richText.finish();
   return Buffer.from(await zip.zipToBuffer());
 };

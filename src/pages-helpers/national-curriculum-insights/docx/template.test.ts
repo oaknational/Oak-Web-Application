@@ -61,7 +61,8 @@ it.each(layouts)(
     expect(xml.match(/<w:cantSplit/g)).toHaveLength((stages.length || 1) * 3);
     expect(footer).toContain("w:drawing");
     expect(header).toContain(`curriculum: ${phase}`);
-    expect(footer).toContain('r:id="rIdGuidance"');
+    expect(footer).toContain('r:id="rIdInsightsHub"');
+    expect(footer).toContain("the curriculum insights hub");
     expect(footer).toContain("PAGE");
     const settings = await zip.file("word/settings.xml")!.async("string");
     expect(settings).not.toContain("w:updateFields");
@@ -78,7 +79,7 @@ it.each(layouts)(
       ).toBe(true);
     }
     expect(footerRels).toContain(
-      "https://www.thenational.academy/curriculum-change-explained/guidance",
+      'Target="https://www.thenational.academy/curriculum-change-explained"',
     );
     expect(xml.match(/Prepare with confidence using Oak/g)).toHaveLength(2);
     expect(xml.match(/Frequently asked questions/g)).toHaveLength(2);

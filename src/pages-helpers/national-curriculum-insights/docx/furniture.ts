@@ -15,7 +15,7 @@ import {
 export const fillInsightsDocxFurniture = async (
   zip: JSZipCached,
   title: string,
-  guidanceUrl: string,
+  hubUrl: string,
 ) => {
   zip.writeString(
     "word/header1.xml",
@@ -31,7 +31,10 @@ export const fillInsightsDocxFurniture = async (
       typeof element.text === "string" &&
       element.text.includes("{{url}}")
     ) {
-      element.text = element.text.replace("{{url}}", "the guidance page");
+      element.text = element.text.replace(
+        "{{url}}",
+        "the curriculum insights hub",
+      );
       return true;
     }
     return element.elements?.some(replace) ?? false;
@@ -41,7 +44,7 @@ export const fillInsightsDocxFurniture = async (
       return Promise.resolve(element);
     return Promise.resolve(
       xmlElementToJson(safeXml`
-        <w:hyperlink r:id="rIdGuidance">
+        <w:hyperlink r:id="rIdInsightsHub">
           ${jsonXmlToXmlString(element)}
         </w:hyperlink>
       `),
@@ -53,9 +56,9 @@ export const fillInsightsDocxFurniture = async (
     type: "element",
     name: "Relationship",
     attributes: {
-      Id: "rIdGuidance",
+      Id: "rIdInsightsHub",
       Type: "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
-      Target: guidanceUrl,
+      Target: hubUrl,
       TargetMode: "External",
     },
   });
