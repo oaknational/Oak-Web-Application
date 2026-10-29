@@ -68,7 +68,6 @@ const ResourcePageTermsAndConditionsCheckbox: FC<
             legalSlug: "terms-and-conditions",
           })}
           target={"_blank"}
-          aria-label="Oak's terms & conditions (opens in a new tab)"
           iconName="external"
           isTrailingIcon
           data-testid="external-link-icon"

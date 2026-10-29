@@ -27,7 +27,6 @@ const PreAlbCopyright = ({
           legalSlug: "terms-and-conditions",
         })}
         target="_blank"
-        aria-label="Terms and conditions (opens in a new tab)"
         iconName="external"
         isTrailingIcon
         data-testid="external-link-icon"

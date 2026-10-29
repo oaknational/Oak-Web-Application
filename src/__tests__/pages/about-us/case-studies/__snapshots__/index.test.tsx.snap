@@ -177,7 +177,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
         >
           <a
             aria-label="Home"
-            class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
+            class="sc-iwjfEg gbbVHe sc-hUpbpP bEqcTJ"
             href="/"
           >
             <span
@@ -405,12 +405,12 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                   class="sc-bdvwhi aIwlt"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd sc-cTAoCz fgcOpf eWbmLh gkqGfv"
+                    class="sc-bdvwhi sc-gsDMPd sc-faUoBp fgcOpf eWbmLh lixHJQ"
                   >
                     <input
                       aria-invalid="false"
                       aria-label="Lesson and unit search"
-                      class="sc-efQVjI iOeTAG"
+                      class="sc-clIAoS cdIhly"
                       name="term"
                       placeholder="Search"
                       type="search"
@@ -669,7 +669,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                   class="sc-bdvwhi hPWTKU"
                 >
                   <div
-                    class="sc-bdvwhi sc-bXTeWK ldqnbP jIhKcl"
+                    class="sc-bdvwhi sc-hiCkpJ ldqnbP ewWNTJ"
                   >
                     <a
                       class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR kemcJO"
@@ -727,7 +727,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                   class="sc-bdvwhi hPWTKU"
                 >
                   <div
-                    class="sc-bdvwhi sc-bXTeWK ldqnbP jIhKcl"
+                    class="sc-bdvwhi sc-hiCkpJ ldqnbP ewWNTJ"
                   >
                     <a
                       class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR kemcJO"
@@ -785,7 +785,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                   class="sc-bdvwhi hPWTKU"
                 >
                   <div
-                    class="sc-bdvwhi sc-bXTeWK ldqnbP jIhKcl"
+                    class="sc-bdvwhi sc-hiCkpJ ldqnbP ewWNTJ"
                   >
                     <a
                       class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR kemcJO"
@@ -872,7 +872,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                       class="sc-e82709a-1 dHuEVS"
                     >
                       <li
-                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
+                        class="sc-bdvwhi sc-hiCkpJ kgCXAV GaIyR"
                       >
                         <a
                           href="/about-us/who-we-are"
@@ -926,7 +926,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         </a>
                       </li>
                       <li
-                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
+                        class="sc-bdvwhi sc-hiCkpJ kgCXAV GaIyR"
                       >
                         <a
                           href="/about-us/oaks-curricula"
@@ -980,7 +980,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         </a>
                       </li>
                       <li
-                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
+                        class="sc-bdvwhi sc-hiCkpJ kgCXAV GaIyR"
                       >
                         <a
                           href="/about-us/oaks-impact"
@@ -1034,7 +1034,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         </a>
                       </li>
                       <li
-                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
+                        class="sc-bdvwhi sc-hiCkpJ kgCXAV GaIyR"
                       >
                         <a
                           href="/about-us/meet-the-team"
@@ -1088,7 +1088,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         </a>
                       </li>
                       <li
-                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
+                        class="sc-bdvwhi sc-hiCkpJ kgCXAV GaIyR"
                       >
                         <a
                           href="/about-us/get-involved"
@@ -1142,7 +1142,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         </a>
                       </li>
                       <li
-                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
+                        class="sc-bdvwhi sc-hiCkpJ kgCXAV GaIyR"
                       >
                         <a
                           href="/about-us/case-studies"
@@ -1215,10 +1215,10 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                   class="sc-bdvwhi sc-gsDMPd sc-d650a570-0 WhkHR cvDmZS"
                 >
                   <div
-                    class="sc-bdvwhi sc-jObTYW hPWTKU jmGxKU"
+                    class="sc-bdvwhi sc-jcFiBM hPWTKU kyGOgc"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex erCqWa"
+                      class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex iVeCjW"
                     >
                       <div
                         class="sc-bdvwhi sc-gsDMPd kfKAWJ MPeNZ"
@@ -1252,7 +1252,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                          teachers and get free resources and other helpful content by email. Unsubscribe at any time. Read our
                          
                         <a
-                          class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg gbbVHe sc-hUpbpP bEqcTJ"
                           href="/legal/privacy-policy"
                         >
                           <span
@@ -1265,7 +1265,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                       </p>
                     </div>
                     <div
-                      class="sc-bdvwhi sc-gsDMPd sc-dPiIMO kariTn Bakex erCqWa"
+                      class="sc-bdvwhi sc-gsDMPd sc-caiMdP kariTn Bakex iVeCjW"
                     >
                       <form
                         aria-describedby="react-use-id-test-result-newsletter-form-description"
@@ -1291,14 +1291,14 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                                 Name (required)
                               </label>
                               <div
-                                class="sc-bdvwhi sc-gsDMPd sc-clIAoS ibUPwR gEAnZR gqKaCP"
+                                class="sc-bdvwhi sc-gsDMPd sc-fvxxdC ibUPwR gEAnZR cafdzX"
                               >
                                 <div
                                   class="sc-bdvwhi sc-gsDMPd hPWTKU kkGnDS"
                                 >
                                   <input
                                     autocomplete="name"
-                                    class="sc-efQVjI bktjgD"
+                                    class="sc-clIAoS bvSZuz"
                                     data-testid="text-input"
                                     id="react-use-id-test-result-newsletter-signup-name"
                                     name="name"
@@ -1330,14 +1330,14 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                                 Email (required)
                               </label>
                               <div
-                                class="sc-bdvwhi sc-gsDMPd sc-clIAoS ibUPwR gEAnZR gqKaCP"
+                                class="sc-bdvwhi sc-gsDMPd sc-fvxxdC ibUPwR gEAnZR cafdzX"
                               >
                                 <div
                                   class="sc-bdvwhi sc-gsDMPd hPWTKU kkGnDS"
                                 >
                                   <input
                                     autocomplete="email"
-                                    class="sc-efQVjI bktjgD"
+                                    class="sc-clIAoS bvSZuz"
                                     data-testid="text-input"
                                     id="react-use-id-test-result-newsletter-signup-email"
                                     name="email"
@@ -1362,47 +1362,47 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                             Role
                           </label>
                           <div
-                            class="sc-bdvwhi sc-gsDMPd sc-hiwNGW wiZya enStEb drQjAO"
+                            class="sc-bdvwhi sc-gsDMPd sc-dtMhIu wiZya enStEb jfhXNL"
                           >
                             <select
-                              class="sc-jeqZuJ gupyXh"
+                              class="sc-bTfXSk eNOMaW"
                               id="react-use-id-test-result-newsletter-signup-userrole"
                               name="userRole"
                             >
                               <option
-                                class="sc-lcerzc KbDSy"
+                                class="sc-jUouQM jflBjJ"
                                 disabled=""
                                 value=""
                               >
                                 What describes you best?
                               </option>
                               <option
-                                class="sc-lcerzc fXAwTA"
+                                class="sc-jUouQM kfYKib"
                                 value="Teacher"
                               >
                                 Teacher
                               </option>
                               <option
-                                class="sc-lcerzc fXAwTA"
+                                class="sc-jUouQM kfYKib"
                                 value="Parent"
                               >
                                 Parent
                               </option>
                               <option
-                                class="sc-lcerzc fXAwTA"
+                                class="sc-jUouQM kfYKib"
                                 value="Student"
                               >
                                 Pupil
                               </option>
                               <option
-                                class="sc-lcerzc fXAwTA"
+                                class="sc-jUouQM kfYKib"
                                 value="Other"
                               >
                                 Other
                               </option>
                             </select>
                             <div
-                              class="sc-bdvwhi sc-gsDMPd sc-eJwVsk cLyMbm hmfoti hnEKkz"
+                              class="sc-bdvwhi sc-gsDMPd sc-kHOYJp cLyMbm hmfoti fQhFGO"
                             >
                               <span
                                 class="sc-bdvwhi cqHYAi"
@@ -1419,7 +1419,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                               </span>
                             </div>
                             <div
-                              class="sc-bdvwhi sc-gsDMPd sc-nVikz cLyMbm hmfoti kNYApR"
+                              class="sc-bdvwhi sc-gsDMPd sc-hOGlKT cLyMbm hmfoti ha-DZwC"
                             >
                               <span
                                 class="sc-bdvwhi cqHYAi"
@@ -1514,13 +1514,13 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
           id="site-footer"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-jOxwkF gSXAop fKSZmO"
+            class="sc-bdvwhi sc-gsDMPd sc-iUKrAm gSXAop fKSZmO"
           >
             <div
-              class="sc-bdvwhi sc-jObTYW hPWTKU dUcAno"
+              class="sc-bdvwhi sc-jcFiBM hPWTKU gqpQaM"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
+                class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex bDrYdf"
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
@@ -1540,7 +1540,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/pupils/years"
                         >
                           <span
@@ -1574,7 +1574,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/teachers/eyfs/maths"
                         >
                           <span
@@ -1588,7 +1588,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/lesson-planning"
                         >
                           <span
@@ -1602,7 +1602,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/teachers/teach-with-oak"
                         >
                           <span
@@ -1616,7 +1616,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="https://labs.thenational.academy"
                           target="_blank"
                         >
@@ -1624,6 +1624,11 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                             class="sc-dkPwfY fgmEIT"
                           >
                             Aila, Oak’s AI lesson assistant
+                            <span
+                              class="sc-iCfNyT gvLbeW"
+                            >
+                               (opens in a new tab)
+                            </span>
                           </span>
                           <div
                             class="sc-bdvwhi hUeWJD"
@@ -1648,7 +1653,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/blog"
                         >
                           <span
@@ -1663,7 +1668,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                 </div>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
+                class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex bDrYdf"
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
@@ -1683,7 +1688,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/"
                         >
                           <span
@@ -1697,7 +1702,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/about-us/who-we-are"
                         >
                           <span
@@ -1711,7 +1716,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/about-us/oaks-curricula"
                         >
                           <span
@@ -1725,7 +1730,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/about-us/oaks-impact"
                         >
                           <span
@@ -1739,7 +1744,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/about-us/case-studies"
                         >
                           <span
@@ -1753,7 +1758,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/about-us/get-involved"
                         >
                           <span
@@ -1767,7 +1772,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/about-us/meet-the-team"
                         >
                           <span
@@ -1781,8 +1786,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          aria-label="Careers (opens in a new tab)"
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="https://jobs.thenational.academy"
                           target="_blank"
                         >
@@ -1790,6 +1794,11 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                             class="sc-dkPwfY fgmEIT"
                           >
                             Careers
+                            <span
+                              class="sc-iCfNyT gvLbeW"
+                            >
+                               (opens in a new tab)
+                            </span>
                           </span>
                           <div
                             class="sc-bdvwhi hUeWJD"
@@ -1814,7 +1823,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/contact-us"
                         >
                           <span
@@ -1828,8 +1837,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          aria-label="Help (opens in a new tab)"
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="https://support.thenational.academy"
                           target="_blank"
                         >
@@ -1837,6 +1845,11 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                             class="sc-dkPwfY fgmEIT"
                           >
                             Help
+                            <span
+                              class="sc-iCfNyT gvLbeW"
+                            >
+                               (opens in a new tab)
+                            </span>
                           </span>
                           <div
                             class="sc-bdvwhi hUeWJD"
@@ -1861,7 +1874,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/webinars"
                         >
                           <span
@@ -1875,8 +1888,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          aria-label="Status (opens in a new tab)"
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="https://status.thenational.academy"
                           target="_blank"
                         >
@@ -1884,6 +1896,11 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                             class="sc-dkPwfY fgmEIT"
                           >
                             Status
+                            <span
+                              class="sc-iCfNyT gvLbeW"
+                            >
+                               (opens in a new tab)
+                            </span>
                           </span>
                           <div
                             class="sc-bdvwhi hUeWJD"
@@ -1909,7 +1926,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                 </div>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
+                class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex bDrYdf"
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
@@ -1929,7 +1946,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/legal/terms-and-conditions"
                         >
                           <span
@@ -1943,7 +1960,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/legal/privacy-policy"
                         >
                           <span
@@ -1957,7 +1974,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/legal/cookie-policy"
                         >
                           <span
@@ -1971,7 +1988,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <button
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                         >
                           <span
                             class="sc-dkPwfY fgmEIT"
@@ -1984,7 +2001,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/legal/copyright-notice"
                         >
                           <span
@@ -1998,7 +2015,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/legal/accessibility-statement"
                         >
                           <span
@@ -2012,7 +2029,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/legal/safeguarding-statement"
                         >
                           <span
@@ -2026,7 +2043,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/legal/physical-activity-disclaimer"
                         >
                           <span
@@ -2040,7 +2057,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/legal/complaints"
                         >
                           <span
@@ -2054,7 +2071,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                           href="/legal/freedom-of-information-requests"
                         >
                           <span
@@ -2069,7 +2086,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                 </div>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
+                class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex bDrYdf"
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM eaUsps"
@@ -2213,7 +2230,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-99912ec1-0 jbMtpJ"
+              class="sc-bdvwhi LoEut sc-67f0684f-0 gUloVn"
               data-chromatic="ignore"
             >
               <img
@@ -2434,7 +2451,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
               class="sc-bdvwhi sc-gsDMPd lmXuba eWbmLh"
             >
               <button
-                class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
+                class="sc-iwjfEg ieUBNG sc-hUpbpP eGLkYb"
                 data-testid="cookie-banner-reject"
                 type="button"
               >

@@ -12,10 +12,10 @@ exports[`OaksImpactSchoolQuotesSection renders correctly 1`] = `
         How schools and MATs are embedding Oak’s curriculum
       </h2>
       <ul
-        class="sc-bdvwhi sc-jObTYW fdGQfI boCgwA"
+        class="sc-bdvwhi sc-jcFiBM fdGQfI cwIpfY"
       >
         <li
-          class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex erCqWa"
+          class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex iVeCjW"
         >
           <div
             class="sc-bdvwhi sc-gsDMPd bjoZBV cvDmZS"
@@ -143,7 +143,7 @@ exports[`OaksImpactSchoolQuotesSection renders correctly 1`] = `
           </div>
         </li>
         <li
-          class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex erCqWa"
+          class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex iVeCjW"
         >
           <div
             class="sc-bdvwhi sc-gsDMPd bjoZBV cvDmZS"
@@ -271,7 +271,7 @@ exports[`OaksImpactSchoolQuotesSection renders correctly 1`] = `
           </div>
         </li>
         <li
-          class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex erCqWa"
+          class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex iVeCjW"
         >
           <div
             class="sc-bdvwhi sc-gsDMPd bjoZBV cvDmZS"
@@ -399,7 +399,7 @@ exports[`OaksImpactSchoolQuotesSection renders correctly 1`] = `
           </div>
         </li>
         <li
-          class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex erCqWa"
+          class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex iVeCjW"
         >
           <div
             class="sc-bdvwhi sc-gsDMPd bjoZBV cvDmZS"

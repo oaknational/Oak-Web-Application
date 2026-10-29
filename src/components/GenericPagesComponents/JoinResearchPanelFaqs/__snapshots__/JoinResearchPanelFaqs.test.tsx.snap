@@ -15,17 +15,17 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
           Frequently asked questions
         </h2>
         <div
-          class="sc-bdvwhi sc-jObTYW hPWTKU jmGxKU"
+          class="sc-bdvwhi sc-jcFiBM hPWTKU kyGOgc"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU kjGJBC gymcRh"
+            class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU kjGJBC lfnHax"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd sc-kHOYJp iVplaw gPLNOl dIlIKd"
+              class="sc-bdvwhi sc-gsDMPd sc-bBHFiX iVplaw gPLNOl eLDhXH"
             >
               <button
                 aria-expanded="false"
-                class="sc-bdvwhi sc-gsDMPd sc-llYVjd kQWlwA kkGnDS dgTdWl sc-iJKPHa sc-bTfXSk bXudre"
+                class="sc-bdvwhi sc-gsDMPd sc-iAKZmh kQWlwA kkGnDS dhgEIE sc-efQVjI sc-dPiIMO fAPqts"
                 id="faq-0"
                 type="button"
               >
@@ -78,10 +78,10 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                 </div>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-hmjqIC hPWTKU Bakex sc-eLwIaL dgNXCU"
+                class="sc-bdvwhi sc-gsDMPd sc-cCcVtu hPWTKU Bakex sc-jObTYW ahfwb"
               >
                 <svg
-                  class="sc-jIkVsP ShMXb"
+                  class="sc-gWWZvT jSwHAF"
                   height="7"
                   preserveAspectRatio="none"
                   viewBox="0 0 195 7"
@@ -100,11 +100,11 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
               </div>
             </div>
             <div
-              class="sc-bdvwhi sc-gsDMPd sc-kHOYJp iTWvmf gPLNOl dSjuPC"
+              class="sc-bdvwhi sc-gsDMPd sc-bBHFiX iTWvmf gPLNOl haHIo"
             >
               <button
                 aria-expanded="false"
-                class="sc-bdvwhi sc-gsDMPd sc-llYVjd kQWlwA kkGnDS dgTdWl sc-iJKPHa sc-bTfXSk bXudre"
+                class="sc-bdvwhi sc-gsDMPd sc-iAKZmh kQWlwA kkGnDS dhgEIE sc-efQVjI sc-dPiIMO fAPqts"
                 id="faq-1"
                 type="button"
               >
@@ -157,10 +157,10 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                 </div>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-hmjqIC hPWTKU Bakex sc-eLwIaL dgNXCU"
+                class="sc-bdvwhi sc-gsDMPd sc-cCcVtu hPWTKU Bakex sc-jObTYW ahfwb"
               >
                 <svg
-                  class="sc-jIkVsP ShMXb"
+                  class="sc-gWWZvT jSwHAF"
                   height="7"
                   preserveAspectRatio="none"
                   viewBox="0 0 195 7"
@@ -179,11 +179,11 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
               </div>
             </div>
             <div
-              class="sc-bdvwhi sc-gsDMPd sc-kHOYJp eHtWvI gPLNOl jwGXHp"
+              class="sc-bdvwhi sc-gsDMPd sc-bBHFiX eHtWvI gPLNOl iHFJTr"
             >
               <button
                 aria-expanded="false"
-                class="sc-bdvwhi sc-gsDMPd sc-llYVjd kQWlwA kkGnDS dgTdWl sc-iJKPHa sc-bTfXSk bXudre"
+                class="sc-bdvwhi sc-gsDMPd sc-iAKZmh kQWlwA kkGnDS dhgEIE sc-efQVjI sc-dPiIMO fAPqts"
                 id="faq-2"
                 type="button"
               >
@@ -236,10 +236,10 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                 </div>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-hmjqIC hPWTKU Bakex sc-eLwIaL dgNXCU"
+                class="sc-bdvwhi sc-gsDMPd sc-cCcVtu hPWTKU Bakex sc-jObTYW ahfwb"
               >
                 <svg
-                  class="sc-jIkVsP ShMXb"
+                  class="sc-gWWZvT jSwHAF"
                   height="7"
                   preserveAspectRatio="none"
                   viewBox="0 0 195 7"

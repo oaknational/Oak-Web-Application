@@ -147,7 +147,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
     </div>
   </div>
   <div
-    class="sc-bdvwhi sc-gsDMPd sc-jOxwkF iUWRXW cvDmZS"
+    class="sc-bdvwhi sc-gsDMPd sc-iUKrAm iUWRXW cvDmZS"
   >
     <div
       class="sc-bdvwhi sc-gsDMPd hPWTKU dRPKud"
@@ -202,7 +202,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 Year group
               </legend>
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-GakyQ keTjWL eYMclX bzNcQc"
+                class="sc-bdvwhi sc-gsDMPd sc-GEaMY keTjWL eYMclX gdegrt"
               >
                 <span
                   class="sc-iCfNyT gvLbeW"
@@ -212,7 +212,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                   >
                     <input
                       checked=""
-                      class="sc-AjlSJ jqijis"
+                      class="sc-dvQa-dN ghAFqj"
                       data-testid="all-years-radio"
                       id=":r0:"
                       name="yearreact-use-id-test-result"
@@ -220,12 +220,12 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                       value="0"
                     />
                     <div
-                      class="sc-bdvwhi sc-gsDMPd sc-gSQHZB fbYMyq dkhWet dHIGrW"
+                      class="sc-bdvwhi sc-gsDMPd sc-jOxwkF fbYMyq dkhWet bRsBWD"
                     />
                   </div>
                 </span>
                 <label
-                  class="sc-jJoSXA sc-hiCkpJ sc-gWWZvT khdcrp hFXBsz hkjJYD"
+                  class="sc-jeqZuJ sc-eJwVsk sc-nVikz eoSypr dajmRy gRonMI"
                   for=":r0:"
                   pointer-events="none"
                 >
@@ -233,7 +233,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 </label>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-GakyQ keTjWL eYMclX bzNcQc"
+                class="sc-bdvwhi sc-gsDMPd sc-GEaMY keTjWL eYMclX gdegrt"
               >
                 <span
                   class="sc-iCfNyT gvLbeW"
@@ -242,7 +242,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                     class="sc-bdvwhi sc-gsDMPd fzUVot iZlbFj"
                   >
                     <input
-                      class="sc-AjlSJ jqijis"
+                      class="sc-dvQa-dN ghAFqj"
                       data-testid="year-radio"
                       id=":r1:"
                       name="yearreact-use-id-test-result"
@@ -250,12 +250,12 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                       value="1"
                     />
                     <div
-                      class="sc-bdvwhi sc-gsDMPd sc-gSQHZB fbYMyq dkhWet dHIGrW"
+                      class="sc-bdvwhi sc-gsDMPd sc-jOxwkF fbYMyq dkhWet bRsBWD"
                     />
                   </div>
                 </span>
                 <label
-                  class="sc-jJoSXA sc-hiCkpJ sc-gWWZvT khdcrp hFXBsz hkjJYD"
+                  class="sc-jeqZuJ sc-eJwVsk sc-nVikz eoSypr dajmRy gRonMI"
                   for=":r1:"
                   pointer-events="none"
                 >
@@ -292,11 +292,11 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
             </div>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-ZOvtA bKzNSk Bakex"
+            class="sc-bdvwhi sc-gsDMPd sc-khQeTG bKzNSk Bakex"
             focusable="false"
           >
             <svg
-              class="sc-jIkVsP jHNghU"
+              class="sc-gWWZvT hQqbcG"
               height="100%"
               preserveAspectRatio="none"
               viewBox="0 0 866 8"
@@ -698,7 +698,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
     </div>
   </div>
   <div
-    class="sc-bdvwhi sc-gsDMPd sc-jOxwkF iUWRXW cvDmZS"
+    class="sc-bdvwhi sc-gsDMPd sc-iUKrAm iUWRXW cvDmZS"
   >
     <div
       class="sc-bdvwhi sc-gsDMPd hPWTKU dRPKud"
@@ -753,7 +753,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                 Year group
               </legend>
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-GakyQ keTjWL eYMclX bzNcQc"
+                class="sc-bdvwhi sc-gsDMPd sc-GEaMY keTjWL eYMclX gdegrt"
               >
                 <span
                   class="sc-iCfNyT gvLbeW"
@@ -763,7 +763,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                   >
                     <input
                       checked=""
-                      class="sc-AjlSJ jqijis"
+                      class="sc-dvQa-dN ghAFqj"
                       data-testid="all-years-radio"
                       id=":r2:"
                       name="yearreact-use-id-test-result"
@@ -771,12 +771,12 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       value="0"
                     />
                     <div
-                      class="sc-bdvwhi sc-gsDMPd sc-gSQHZB fbYMyq dkhWet dHIGrW"
+                      class="sc-bdvwhi sc-gsDMPd sc-jOxwkF fbYMyq dkhWet bRsBWD"
                     />
                   </div>
                 </span>
                 <label
-                  class="sc-jJoSXA sc-hiCkpJ sc-gWWZvT khdcrp hFXBsz hkjJYD"
+                  class="sc-jeqZuJ sc-eJwVsk sc-nVikz eoSypr dajmRy gRonMI"
                   for=":r2:"
                   pointer-events="none"
                 >
@@ -784,7 +784,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                 </label>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-GakyQ keTjWL eYMclX bzNcQc"
+                class="sc-bdvwhi sc-gsDMPd sc-GEaMY keTjWL eYMclX gdegrt"
               >
                 <span
                   class="sc-iCfNyT gvLbeW"
@@ -793,7 +793,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                     class="sc-bdvwhi sc-gsDMPd fzUVot iZlbFj"
                   >
                     <input
-                      class="sc-AjlSJ jqijis"
+                      class="sc-dvQa-dN ghAFqj"
                       data-testid="year-radio"
                       id=":r3:"
                       name="yearreact-use-id-test-result"
@@ -801,12 +801,12 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       value="1"
                     />
                     <div
-                      class="sc-bdvwhi sc-gsDMPd sc-gSQHZB fbYMyq dkhWet dHIGrW"
+                      class="sc-bdvwhi sc-gsDMPd sc-jOxwkF fbYMyq dkhWet bRsBWD"
                     />
                   </div>
                 </span>
                 <label
-                  class="sc-jJoSXA sc-hiCkpJ sc-gWWZvT khdcrp hFXBsz hkjJYD"
+                  class="sc-jeqZuJ sc-eJwVsk sc-nVikz eoSypr dajmRy gRonMI"
                   for=":r3:"
                   pointer-events="none"
                 >
@@ -843,11 +843,11 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
             </div>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-ZOvtA bKzNSk Bakex"
+            class="sc-bdvwhi sc-gsDMPd sc-khQeTG bKzNSk Bakex"
             focusable="false"
           >
             <svg
-              class="sc-jIkVsP jHNghU"
+              class="sc-gWWZvT hQqbcG"
               height="100%"
               preserveAspectRatio="none"
               viewBox="0 0 866 8"
@@ -1040,7 +1040,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       class="sc-fcf808f-1 SCKrA"
                     >
                       <div
-                        class="sc-bdvwhi sc-bXTeWK elSKXy CYQjY"
+                        class="sc-bdvwhi sc-hiCkpJ elSKXy boXoJM"
                       >
                         <a
                           class="sc-79137fc-0 evxJPM"
@@ -1103,7 +1103,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       class="sc-fcf808f-1 SCKrA"
                     >
                       <div
-                        class="sc-bdvwhi sc-bXTeWK elSKXy CYQjY"
+                        class="sc-bdvwhi sc-hiCkpJ elSKXy boXoJM"
                       >
                         <a
                           class="sc-79137fc-0 evxJPM"
