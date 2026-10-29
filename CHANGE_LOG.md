@@ -1,3 +1,30 @@
+# [1.1263.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1262.0...v1.1263.0) (2026-10-29)
+
+
+### Bug Fixes
+
+* move speedInsights to client component wrapper ([731c110](https://github.com/oaknational/Oak-Web-Application/commit/731c110130715dccd3c47a9a5e6606c71e7e845a))
+
+
+### Features
+
+* add a beforesend param to only capture on teacher pages ([3278f75](https://github.com/oaknational/Oak-Web-Application/commit/3278f75b2b7cd5b316975f74bf951150ec74d183))
+* add speed insights package ([6eaed6b](https://github.com/oaknational/Oak-Web-Application/commit/6eaed6b6bf7e3c52376561a3920e9678aaa6e3ca))
+
+# [1.1262.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1261.0...v1.1262.0) (2026-10-29)
+
+
+### Features
+
+* remove all the old timetabling code + old curric components ([f395ded](https://github.com/oaknational/Oak-Web-Application/commit/f395ded041fb31e6408c5041f7c66fdf7d7c3d59))
+
+# [1.1261.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1260.0...v1.1261.0) (2026-10-29)
+
+
+### Features
+
+* no index pupil subjects ([c88e6d7](https://github.com/oaknational/Oak-Web-Application/commit/c88e6d7c83d96d8aede06fd2702fb468226a1b76))
+
 # [1.1260.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1259.0...v1.1260.0) (2026-10-28)
 
 
