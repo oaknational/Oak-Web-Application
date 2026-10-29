@@ -104,6 +104,11 @@ module.exports = {
     ],
   },
   exclude: [
+    // Years 1–9 are noindex, follow; retain the hub and Years 10–11.
+    ...Array.from(
+      { length: 9 },
+      (_, index) => `/pupils/years/year-${index + 1}/subjects`,
+    ),
     // Exclude WIP webinar pages
     "/webinars",
     "/webinars/*",
