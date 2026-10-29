@@ -128,6 +128,29 @@ const headlineXml = async (
   const properties = (pattern: string) =>
     pattern.replaceAll("93E892", color).replace("Heading2", style);
   const quote = module.quote;
+  let quoteXml = "";
+  if (quote) {
+    quoteXml =
+      paragraph(quote.quote, {
+        bold: true,
+        properties: properties(patterns.headlineQuoteProperties),
+      }) +
+      paragraph(quote.attribution, {
+        bold: true,
+        size: 11,
+        properties: properties(
+          quote.role
+            ? patterns.headlineAttributionProperties
+            : patterns.headlineRoleProperties,
+        ),
+      });
+    if (quote.role) {
+      quoteXml += paragraph(quote.role, {
+        size: 11,
+        properties: properties(patterns.headlineRoleProperties),
+      });
+    }
+  }
   return safeXml`
     ${paragraph(module.heading, {
       runStyle: insightsHeadlineStyle,
@@ -139,27 +162,7 @@ const headlineXml = async (
         properties: properties(patterns.headlineLastBodyProperties),
       },
     })}
-    ${quote
-      ? paragraph(quote.quote, {
-          bold: true,
-          properties: properties(patterns.headlineQuoteProperties),
-        }) +
-        paragraph(quote.attribution, {
-          bold: true,
-          size: 11,
-          properties: properties(
-            quote.role
-              ? patterns.headlineAttributionProperties
-              : patterns.headlineRoleProperties,
-          ),
-        }) +
-        (quote.role
-          ? paragraph(quote.role, {
-              size: 11,
-              properties: properties(patterns.headlineRoleProperties),
-            })
-          : "")
-      : ""}
+    ${quoteXml}
   `;
 };
 
