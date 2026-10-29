@@ -1,3 +1,10 @@
+# [1.1262.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1261.0...v1.1262.0) (2026-10-29)
+
+
+### Features
+
+* remove all the old timetabling code + old curric components ([f395ded](https://github.com/oaknational/Oak-Web-Application/commit/f395ded041fb31e6408c5041f7c66fdf7d7c3d59))
+
 # [1.1261.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1260.0...v1.1261.0) (2026-10-29)
 
 
