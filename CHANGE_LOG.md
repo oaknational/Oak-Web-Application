@@ -1,3 +1,23 @@
+# [1.1264.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1263.0...v1.1264.0) (2026-10-29)
+
+
+### Bug Fixes
+
+* add missing test for external link ([d425026](https://github.com/oaknational/Oak-Web-Application/commit/d4250262643148e4b338c9a0cf98ec5ba78f6a16))
+* added missing protocol to clientAppBaseUrl ([2cd310b](https://github.com/oaknational/Oak-Web-Application/commit/2cd310bf50e684d411fc273facb8460a643cad4d))
+* attempt to safeParseUrl ([e3d7b14](https://github.com/oaknational/Oak-Web-Application/commit/e3d7b14f60e9e646b4adcd1c8fb6515cea4c4a60))
+* code review fixes ([6062d68](https://github.com/oaknational/Oak-Web-Application/commit/6062d688aa5d75a95099d2d056caffa49c5b63bc))
+* omit "__typename" from JoinResearchPanelPageJourney ([918212c](https://github.com/oaknational/Oak-Web-Application/commit/918212cfc58135ad61480d3fb5b826859ba15770))
+* reuse CMS type ([0369edf](https://github.com/oaknational/Oak-Web-Application/commit/0369edf8f012abf32b81fb10c3568b9a83f71c1d))
+* sonarcloud issues ([a9874e5](https://github.com/oaknational/Oak-Web-Application/commit/a9874e5de1a7ec8026e4a40c2cfb98bf9946aa0a))
+* use hook useAnalytics() instead ([705c595](https://github.com/oaknational/Oak-Web-Application/commit/705c595ca989754586d7a6fc9cfb0d1be6b7c7dc))
+* wrap number & text in <h3/> tag ([b192b5e](https://github.com/oaknational/Oak-Web-Application/commit/b192b5efd74fe6321af168ac6c0caa7149e2f28c))
+
+
+### Features
+
+* added <JoinResearchPanelJourney/> panel to join-research-panel page ([e9341df](https://github.com/oaknational/Oak-Web-Application/commit/e9341df40c73006046473efee50ed8005ebc9d00))
+
 # [1.1263.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1262.0...v1.1263.0) (2026-10-29)
 
 
