@@ -11,6 +11,7 @@ import AboutUsJoinResearchPanel, {
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import CMSClient from "@/node-lib/cms";
+import { serializeDate } from "@/utils/serializeDate";
 
 jest.mock("@/utils/featureFlagChecks/server", () => ({
   isFeatureFlagEnabledServer: jest.fn(() => false),
@@ -39,7 +40,10 @@ describe("pages/about/get-involved/join-research-panel.tsx", () => {
     const { container } = renderWithProviders()(
       <AboutUsJoinResearchPanel
         topNav={topNavFixture}
-        pageData={joinResearchPanelPageFixture}
+        pageData={{
+          ...joinResearchPanelPageFixture,
+          blogs: joinResearchPanelPageFixture.blogs.map(serializeDate),
+        }}
       />,
     );
 
@@ -47,6 +51,25 @@ describe("pages/about/get-involved/join-research-panel.tsx", () => {
   });
 
   describe("getServerSideProps", () => {
+    it("should return serialized date data when the feature flag is enabled", async () => {
+      (isFeatureFlagEnabledServer as jest.Mock).mockImplementation(() => true);
+
+      const propsResult = await getServerSideProps({
+        req: {
+          cookies: {},
+        },
+      } as GetServerSidePropsContext);
+
+      expect(propsResult).toMatchObject({
+        props: {
+          pageData: {
+            ...joinResearchPanelPageFixture,
+            blogs: joinResearchPanelPageFixture.blogs.map(serializeDate),
+          },
+        },
+      });
+    });
+
     it("should return notFound when the feature flag is disabled", async () => {
       (isFeatureFlagEnabledServer as jest.Mock).mockImplementation(() => false);
 
