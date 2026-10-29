@@ -79,11 +79,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
   const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [submitError, setSubmitError] = useState("");
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<NewsletterFormValues>({
+  const { control, handleSubmit } = useForm<NewsletterFormValues>({
     resolver: zodResolver(schema),
     mode: "onSubmit",
     reValidateMode: "onSubmit",
@@ -121,10 +117,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
         name="name"
         control={control}
         render={({ field, fieldState }) => (
-          <OakBox
-            $width="100%"
-            $mb={fieldState.error ? "spacing-8" : "spacing-48"}
-          >
+          <OakBox $width="100%">
             <OakInputWithLabel
               id={`${id}-newsletter-signup-name`}
               label="Name"
@@ -146,7 +139,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
         render={({ field, fieldState }) => (
           <OakBox
             $width="100%"
-            $mb={fieldState.error ? "spacing-8" : "spacing-48"}
+            $mt={fieldState.error ? "spacing-8" : "spacing-48"}
           >
             <OakInputWithLabel
               id={`${id}-newsletter-signup-email`}
@@ -170,8 +163,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
           <OakBox
             $position="relative"
             $width="100%"
-            $mt={errors.email ? "spacing-32" : "spacing-0"}
-            $mb="spacing-8"
+            $mt={fieldState.error ? "spacing-8" : "spacing-48"}
           >
             <OakJauntyAngleLabel
               id={`${id}-role-label`}
@@ -220,14 +212,11 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
           </OakBox>
         )}
       />
-      <OakPrimaryButton
-        $mt="spacing-0"
-        type="submit"
-        width="100%"
-        isLoading={loading}
-      >
-        Sign up to the newsletter
-      </OakPrimaryButton>
+      <OakBox $mt="spacing-24">
+        <OakPrimaryButton type="submit" width="100%" isLoading={loading}>
+          Sign up to the newsletter
+        </OakPrimaryButton>
+      </OakBox>
       <OakP
         $mt={!submitError && successMessage ? "spacing-16" : "spacing-0"}
         $font={"body-3"}

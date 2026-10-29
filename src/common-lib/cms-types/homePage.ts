@@ -1,10 +1,46 @@
 import * as z from "zod";
+import type { OakUiRoleToken } from "@oaknational/oak-components";
 
 import { documentSchema, imageSchema, seoSchema } from "./base";
 import { cardSchema, textAndMediaSchema } from "./blocks";
 import { linkSchema } from "./cta";
 import { portableTextSchema } from "./portableText";
 import { campaignPromoBannerSchema } from "./campaignPage";
+
+const newCtaBaseSchema = z.object({
+  label: z.string().trim().min(1),
+});
+
+export const newCtaSchema = z.discriminatedUnion("linkType", [
+  newCtaBaseSchema.extend({
+    linkType: z.literal("internal"),
+    internal: z.string(),
+    external: z.unknown().transform(() => null),
+  }),
+  newCtaBaseSchema.extend({
+    linkType: z.literal("external"),
+    external: z.string(),
+    internal: z.unknown().transform(() => null),
+  }),
+]);
+
+const topBannerBaseSchema = z.object({
+  displayNewTag: z.boolean(),
+  backgroundColor: z.string().nullish() as z.ZodType<OakUiRoleToken>,
+});
+
+export const topBannerSchema = z.discriminatedUnion("displayCta", [
+  topBannerBaseSchema.extend({
+    displayCta: z.literal(true),
+    cta: newCtaSchema,
+    messagePortableText: portableTextSchema.nullish(),
+  }),
+  topBannerBaseSchema.extend({
+    displayCta: z.literal(false),
+    messagePortableText: portableTextSchema,
+    cta: z.unknown().transform(() => null),
+  }),
+]);
 
 const notificationSchema = z.discriminatedUnion("enabled", [
   z.object({ enabled: z.literal(false) }),
@@ -29,7 +65,7 @@ export const testimonialSchema = z.object({
   image: imageSchema.nullish(),
 });
 
-export const homePageSchema = z
+const homePageBaseSchema = z
   .object({
     heading: z.string(),
     summaryPortableText: portableTextSchema,
@@ -50,5 +86,16 @@ export const homePageSchema = z
     campaignPromoBanner: campaignPromoBannerSchema.nullable(),
   })
   .merge(documentSchema);
+
+export const homePageSchema = z.discriminatedUnion("displayTopBanner", [
+  homePageBaseSchema.extend({
+    displayTopBanner: z.literal(true),
+    topBanner: topBannerSchema,
+  }),
+  homePageBaseSchema.extend({
+    displayTopBanner: z.literal(false),
+    topBanner: z.unknown().transform(() => null),
+  }),
+]);
 
 export type HomePage = z.infer<typeof homePageSchema>;

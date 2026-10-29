@@ -1273,7 +1273,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                         novalidate=""
                       >
                         <div
-                          class="sc-bdvwhi bpjVbf"
+                          class="sc-bdvwhi jtiAen"
                         >
                           <div
                             class="sc-bdvwhi sc-gsDMPd jtiAen cIPGhJ"
@@ -1312,7 +1312,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                           </div>
                         </div>
                         <div
-                          class="sc-bdvwhi bpjVbf"
+                          class="sc-bdvwhi bWlWvP"
                         >
                           <div
                             class="sc-bdvwhi sc-gsDMPd jtiAen cIPGhJ"
@@ -1351,7 +1351,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                           </div>
                         </div>
                         <div
-                          class="sc-bdvwhi kHQhzQ"
+                          class="sc-bdvwhi ibrppf"
                         >
                           <label
                             class="sc-bdvwhi jMFyqC"
@@ -1438,28 +1438,32 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                           </div>
                         </div>
                         <div
-                          class="sc-bdvwhi sc-iqsgXZ fFlNLS hjfwPa"
+                          class="sc-bdvwhi iAORmN"
                         >
                           <div
-                            class="sc-bdvwhi kAFHfV grey-shadow"
-                          />
-                          <div
-                            class="sc-bdvwhi kAFHfV yellow-shadow"
-                          />
-                          <button
-                            class="sc-eCIkAO sc-jrQAon cINIls fODyRh internal-button"
-                            type="submit"
+                            class="sc-bdvwhi sc-iqsgXZ fFlNLS hjfwPa"
                           >
                             <div
-                              class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                              class="sc-bdvwhi kAFHfV grey-shadow"
+                            />
+                            <div
+                              class="sc-bdvwhi kAFHfV yellow-shadow"
+                            />
+                            <button
+                              class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                              type="submit"
                             >
-                              <span
-                                class="sc-dkPwfY kXQhTZ"
+                              <div
+                                class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
                               >
-                                Sign up to the newsletter
-                              </span>
-                            </div>
-                          </button>
+                                <span
+                                  class="sc-dkPwfY kXQhTZ"
+                                >
+                                  Sign up to the newsletter
+                                </span>
+                              </div>
+                            </button>
+                          </div>
                         </div>
                         <p
                           aria-live="assertive"
