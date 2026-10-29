@@ -65,36 +65,6 @@
           }
         }
       },
-      "sidebarCard1": {
-        "title": "About us",
-        "image": null,
-        "bodyPortableText": [
-          {
-            "_key": "c09d753b9f50",
-            "_type": "block",
-            "children": [
-              {
-                "_key": "cfa0c9133ba50",
-                "_type": "span",
-                "marks": [],
-                "text": "Discover who we are, what we do and how we work."
-              }
-            ],
-            "markDefs": [],
-            "style": "normal"
-          }
-        ],
-        "cta": {
-          "label": "Find out more",
-          "linkType": "internal",
-          "external": null,
-          "anchor": null,
-          "internal": {
-            "id": "aboutCorePage",
-            "contentType": "aboutCorePage"
-          }
-        }
-      },
       "sidebarCard2": {
         "title": "Need some help?",
         "image": null,

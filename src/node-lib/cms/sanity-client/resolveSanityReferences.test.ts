@@ -74,8 +74,8 @@ describe("resolveSanityReferences", () => {
 it("throws an OakError with metadata when it can't match refs to responses", async () => {
   const mockErrorCausingResponse = [
     {
-      contentType: "aboutCorePage",
-      _type: "aboutCorePage",
+      contentType: "newsPost",
+      _type: "newsPost",
       id: "wont-be-found",
     },
   ];

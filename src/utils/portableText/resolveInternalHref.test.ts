@@ -3,12 +3,6 @@ import { getLinkHref, resolveInternalHref } from "./resolveInternalHref";
 describe("resolveInternalHref()", () => {
   it.each([
     ["homepage", {}, "/"],
-    ["aboutCorePage", {}, "/about-us/who-we-are"],
-    ["aboutCorePage.whoWeAre", {}, `/about-us/who-we-are`],
-    ["aboutCorePage.board", {}, `/about-us/meet-the-team`],
-    ["aboutCorePage.leadership", {}, `/about-us/meet-the-team`],
-    ["aboutCorePage.partners", {}, `/about-us/oaks-curricula`],
-    ["aboutCorePage.workWithUs", {}, `/about-us/get-involved`],
     ["planningCorePage", {}, "/lesson-planning"],
     ["webinar", { slug: "the-webinar" }, "/webinars/the-webinar"],
     ["webinarListingPage", {}, "/webinars"],

@@ -10,16 +10,6 @@ export const resolveInternalHref = (entry: CTAInternalLinkEntry): string => {
   switch (entry.contentType) {
     case "homepage":
       return `/`;
-    case "aboutCorePage":
-    case "aboutCorePage.whoWeAre":
-      return resolveOakHref({ page: "about-who-we-are" });
-    case "aboutCorePage.board":
-    case "aboutCorePage.leadership":
-      return resolveOakHref({ page: "about-meet-the-team" });
-    case "aboutCorePage.partners":
-      return resolveOakHref({ page: "about-oaks-curricula" });
-    case "aboutCorePage.workWithUs":
-      return resolveOakHref({ page: "about-get-involved" });
     case "planningCorePage":
       return resolveOakHref({ page: "lesson-planning" });
     case "contactCorePage":
