@@ -8,6 +8,7 @@ import {
   insertNumbering,
   type JSZipCached,
 } from "@/pages-helpers/curriculum/docx/docx";
+import { xmlElementToJson } from "@/pages-helpers/curriculum/docx/xml";
 import { internalLinkEntrySchema } from "@/common-lib/cms-types/base";
 import { resolveInternalHref } from "@/utils/portableText/resolveInternalHref";
 
@@ -208,6 +209,20 @@ export const createInsightsDocxRichText = (
       const ids = await insertNumbering(zip, {
         list: listDefinition(kind),
       });
+      const numbering = await zip.readJson("word/numbering.xml");
+      const instance = numbering.elements[0].elements.find(
+        (element: Element) =>
+          element.name === "w:num" &&
+          element.attributes?.["w:numId"] === ids.list,
+      );
+      instance.elements.push(
+        xmlElementToJson(safeXml`
+          <w:lvlOverride w:ilvl="${level}">
+            <w:startOverride w:val="1" />
+          </w:lvlOverride>
+        `),
+      );
+      zip.writeJson("word/numbering.xml", numbering as Element);
       list = { kind, id: ids.list };
       lists.set(level, list);
     }
@@ -226,27 +241,39 @@ export const createInsightsDocxRichText = (
 
   const render = async (
     value: unknown,
-    options: ParagraphOptions = {},
+    options: ParagraphOptions & {
+      lastParagraphOptions?: ParagraphOptions;
+    } = {},
   ): Promise<string> => {
     if (!Array.isArray(value)) return "";
     const lists = new Map<number, WordList>();
-    let first = true;
-    return (value as Block[]).reduce(async (previous, block) => {
+    const blocks = (value as Block[]).filter(
+      (block) =>
+        block &&
+        (!block._type || block._type === "block") &&
+        Array.isArray(block.children),
+    );
+    return blocks.reduce(async (previous, block, index) => {
       const output = await previous;
-      if (!block || (block._type && block._type !== "block")) return output;
-      if (!Array.isArray(block.children)) return output;
-      const content = block.children
-        .map((span) => spanXml(span, block, options))
-        .join("");
-      const properties = await listProperties(block, lists, options.properties);
-      const style = getParagraphStyle(block.style, options.style);
-      const paragraph = wordParagraph(content, {
+      const paragraphOptions = {
         ...options,
+        ...(index === blocks.length - 1 ? options.lastParagraphOptions : {}),
+      };
+      const content = block
+        .children!.map((span) => spanXml(span, block, paragraphOptions))
+        .join("");
+      const properties = await listProperties(
+        block,
+        lists,
+        paragraphOptions.properties,
+      );
+      const style = getParagraphStyle(block.style, paragraphOptions.style);
+      const paragraph = wordParagraph(content, {
+        ...paragraphOptions,
         style,
         properties,
-        prefix: first ? options.prefix : undefined,
+        prefix: index === 0 ? options.prefix : undefined,
       });
-      first = false;
       return output + paragraph;
     }, Promise.resolve(""));
   };

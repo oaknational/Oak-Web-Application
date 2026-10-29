@@ -19,10 +19,11 @@ const layouts = [
   { phase: "primary", stages: [] },
   { phase: "secondary", stages: [] },
   { phase: "secondary", stages: ["KS3"] },
+  { phase: "primary", stages: ["KS2"] },
 ] as const;
 
 it.each(layouts)(
-  "avoids nested tables and floating textboxes in $phase $stages guidance",
+  "avoids layout tables and textboxes in $phase $stages guidance",
   async ({ phase, stages }) => {
     const buffer = await generateNationalCurriculumInsightsDocx({
       phase,
@@ -34,9 +35,7 @@ it.each(layouts)(
     const xml = await zip.file("word/document.xml")!.async("string");
     const document = new DOMParser().parseFromString(xml, "application/xml");
     const tables = Array.from(document.getElementsByTagName("w:tbl"));
-    expect(
-      tables.every((table) => table.getElementsByTagName("w:tbl").length === 0),
-    ).toBe(true);
+    expect(tables).toHaveLength(0);
     expect(document.getElementsByTagName("w:txbxContent")).toHaveLength(0);
 
     const preparationHeadings = Array.from(
@@ -85,7 +84,8 @@ it.each(layouts)(
     const document = new DOMParser().parseFromString(xml, "application/xml");
     const headlines = Array.from(document.getElementsByTagName("w:p")).filter(
       (paragraph) =>
-        paragraph.parentNode?.nodeName === "w:tc" &&
+        paragraph.parentNode?.nodeName === "w:body" &&
+        paragraph.getElementsByTagName("w:pStyle").length > 0 &&
         Array.from(paragraph.getElementsByTagName("w:t"))
           .map((text) => text.textContent)
           .join("") === "The headlines in 60 seconds",
@@ -101,6 +101,13 @@ it.each(layouts)(
       const spacing = paragraph.getElementsByTagName("w:spacing")[0]!;
       expect(spacing.getAttribute("w:before")).toBe("0");
       expect(spacing.getAttribute("w:after")).toBe("240");
+      const borders = paragraph.getElementsByTagName("w:pBdr")[0]!;
+      expect(
+        borders.getElementsByTagName("w:top")[0]?.getAttribute("w:color"),
+      ).toBe(index === 0 ? "93E892" : "7C9AEC");
+      expect(
+        paragraph.getElementsByTagName("w:ind")[0]?.getAttribute("w:left"),
+      ).toBe("340");
     });
     const faq = sharedDownloadFixtureModules.find(
       (module) => module.__typename === "NationalCurriculumInsightsFaqSection",

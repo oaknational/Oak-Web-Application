@@ -124,28 +124,44 @@ const headlineXml = async (
   richText: RichText,
   color: string,
   style: "Heading2" | "Heading3" = "Heading3",
-) => safeXml`
-  <w:tbl>
-    ${patterns.headlineTableProperties}
-    <w:tblGrid>
-      <w:gridCol w:w="10206" />
-    </w:tblGrid>
-    <w:tr>
-      <w:tc>
-        ${patterns.headlineCellProperties.replaceAll("93E892", color)}
-        ${paragraph(module.heading, {
-          style,
-          runStyle: insightsHeadlineStyle,
-          keepNext: true,
-          after: 240,
-        })}
-        ${await richText.render(module.bodyPortableText)}
-        ${module.quote ? quoteXml(module.quote, color) : ""}
-      </w:tc>
-    </w:tr>
-  </w:tbl>
-  ${spacer()}
-`;
+) => {
+  const properties = (pattern: string) =>
+    pattern.replaceAll("93E892", color).replace("Heading2", style);
+  const quote = module.quote;
+  return safeXml`
+    ${paragraph(module.heading, {
+      runStyle: insightsHeadlineStyle,
+      properties: properties(patterns.headlineHeadingProperties),
+    })}
+    ${await richText.render(module.bodyPortableText, {
+      properties: properties(patterns.headlineBodyProperties),
+      lastParagraphOptions: {
+        properties: properties(patterns.headlineLastBodyProperties),
+      },
+    })}
+    ${quote
+      ? paragraph(quote.quote, {
+          bold: true,
+          properties: properties(patterns.headlineQuoteProperties),
+        }) +
+        paragraph(quote.attribution, {
+          bold: true,
+          size: 11,
+          properties: properties(
+            quote.role
+              ? patterns.headlineAttributionProperties
+              : patterns.headlineRoleProperties,
+          ),
+        }) +
+        (quote.role
+          ? paragraph(quote.role, {
+              size: 11,
+              properties: properties(patterns.headlineRoleProperties),
+            })
+          : "")
+      : ""}
+  `;
+};
 
 const isContentModule = (module: NationalCurriculumInsightsModule) => {
   switch (module.__typename) {
@@ -260,30 +276,19 @@ const moduleXml = async (
       const keepTogether = estimatedLines <= 24;
       let output = "";
       module.steps.forEach((step, index) => {
-        output += safeXml`
-          <w:tbl>
-            ${patterns.preparationTableProperties}
-            <w:tblGrid>
-              <w:gridCol w:w="10206" />
-            </w:tblGrid>
-            <w:tr>
-              <w:trPr>
-                ${estimatePreparationLines(step.text) <= 24
-                  ? safeXml`<w:cantSplit />`
-                  : ""}
-              </w:trPr>
-              <w:tc>
-                ${patterns.preparationCellProperties}
-              ${paragraph(`${index + 1}.  ${step.text}`, {
-                  bold: true,
-                  keepNext: keepTogether,
-                  after: 0,
-                })}
-              </w:tc>
-            </w:tr>
-          </w:tbl>
-          ${wordParagraph("", { keepNext: keepTogether, after: 160 })}
-        `;
+        const properties = patterns.preparationStepProperties
+          .replace(
+            "<w:pPr>",
+            `<w:pPr>${keepTogether ? "<w:keepNext />" : ""}${
+              estimatePreparationLines(step.text) <= 24 ? "<w:keepLines />" : ""
+            }<w:widowControl />`,
+          )
+          // Keep the alternating indents used by the approved template.
+          .replace('w:left="220"', `w:left="${index % 2 ? 221 : 220}"`);
+        output += paragraph(`${index + 1}.  ${step.text}`, {
+          bold: true,
+          properties,
+        });
       });
       return safeXml`
         ${sectionHeading(module.heading)}
@@ -301,7 +306,6 @@ const moduleXml = async (
           size: 11,
           after: 160,
         })}
-        ${spacer()}
       `;
     }
     case "NationalCurriculumInsightsConfidenceSection":

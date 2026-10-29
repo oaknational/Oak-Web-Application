@@ -23,6 +23,7 @@ const layouts: {
   { phase: "primary", stages: [] },
   { phase: "secondary", stages: [] },
   { phase: "secondary", stages: ["KS3"] },
+  { phase: "primary", stages: ["KS2"] },
 ];
 
 it.each(layouts)(
@@ -45,6 +46,11 @@ it.each(layouts)(
       }
     }
     const xml = await zip.file("word/document.xml")!.async("string");
+    expect(
+      new DOMParser()
+        .parseFromString(xml, "application/xml")
+        .getElementsByTagName("parsererror"),
+    ).toHaveLength(0);
     const header = await zip.file("word/header1.xml")!.async("string");
     const footer = await zip.file("word/footer1.xml")!.async("string");
     const footerRels = await zip
@@ -58,7 +64,16 @@ it.each(layouts)(
     expect(xml).toContain('w:pgSz w:w="11906" w:h="16838"');
     expect(xml).toContain("w:titlePg");
     expect(xml.match(/<w:drawing/g)).toHaveLength(3);
-    expect(xml.match(/<w:cantSplit/g)).toHaveLength((stages.length || 1) * 3);
+    expect(xml).not.toContain("<w:tbl>");
+    const document = new DOMParser().parseFromString(xml, "application/xml");
+    for (const pageBreak of Array.from(
+      document.getElementsByTagName("w:pageBreakBefore"),
+    )) {
+      const paragraph = pageBreak.parentElement?.parentElement;
+      expect(
+        paragraph?.previousElementSibling?.textContent?.trim(),
+      ).toBeTruthy();
+    }
     expect(footer).toContain("w:drawing");
     expect(header).toContain(`curriculum: ${phase}`);
     expect(footer).toContain('r:id="rIdInsightsHub"');
@@ -97,12 +112,25 @@ it.each(layouts)(
         xml.indexOf(`${stages[1]} Science`),
       );
     }
+    if (stages.length === 1) {
+      const body = document.getElementsByTagName("w:body")[0]!;
+      const paragraphs = Array.from(body.children).filter(
+        (element) => element.nodeName === "w:p",
+      );
+      const subtitle = paragraphs[2]!;
+      expect(subtitle.textContent).toBe(stages[0]);
+      expect(paragraphs[1]!.textContent).toContain(
+        `curriculum: ${phase} Science`,
+      );
+    }
     const styles = await zip.file("word/styles.xml")!.async("string");
     const styleIds = Array.from(
       styles.matchAll(/w:styleId="([^"]+)"/g),
       (match) => match[1],
     );
     expect(new Set(styleIds).size).toBe(styleIds.length);
+    expect(styles).toContain('w:default="1" w:styleId="Normal"');
+    expect(styles).toContain('w:default="1" w:styleId="DefaultParagraphFont"');
   },
 );
 
@@ -185,6 +213,16 @@ it("allows oversized preparation steps to flow without losing their attribution"
   const zip = await JSZip.loadAsync(buffer);
   const xml = await zip.file("word/document.xml")!.async("string");
   expect(xml).not.toContain("<w:cantSplit");
+  const document = new DOMParser().parseFromString(xml, "application/xml");
+  const steps = Array.from(document.getElementsByTagName("w:p")).filter(
+    (paragraph) => paragraph.textContent?.includes("End of step"),
+  );
+  expect(steps).toHaveLength(3);
+  for (const step of steps) {
+    expect(step.parentNode?.nodeName).toBe("w:body");
+    expect(step.getElementsByTagName("w:keepLines")).toHaveLength(0);
+    expect(step.getElementsByTagName("w:keepNext")).toHaveLength(0);
+  }
   for (const step of [1, 2, 3]) expect(xml).toContain(`End of step ${step}`);
   expect(xml.match(/A subject specialist/g)).toHaveLength(2);
 });

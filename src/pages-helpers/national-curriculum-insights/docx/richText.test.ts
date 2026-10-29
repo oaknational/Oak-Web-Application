@@ -168,6 +168,51 @@ it("keeps parent numbering across a nested bullet list and restarts a separate l
   expect(numbering).toContain('w:numFmt w:val="bullet"');
   expect(output).toContain('w:ilvl w:val="1"');
   expect(output).not.toContain("• First numbered item");
+  const document = new DOMParser().parseFromString(
+    numbering,
+    "application/xml",
+  );
+  const instances = Array.from(document.getElementsByTagName("w:num")).filter(
+    (instance) => ids.includes(instance.getAttribute("w:numId")!),
+  );
+  expect(instances).toHaveLength(3);
+  for (const instance of instances) {
+    expect(
+      instance
+        .getElementsByTagName("w:startOverride")[0]
+        ?.getAttribute("w:val"),
+    ).toBe("1");
+  }
+});
+
+it("formats the last rendered paragraph without counting unsupported blocks", async () => {
+  const { renderer } = await createRenderer();
+  const output = await renderer.render(
+    [block("First paragraph"), block("Last paragraph"), { _type: "image" }],
+    {
+      after: 160,
+      prefix: wordText("Introduction"),
+      lastParagraphOptions: { after: 0 },
+    },
+  );
+  const paragraphs = new DOMParser()
+    .parseFromString(
+      `<root xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">${output}</root>`,
+      "application/xml",
+    )
+    .getElementsByTagName("w:p");
+  expect(paragraphs).toHaveLength(2);
+  expect(
+    paragraphs[0]!
+      .getElementsByTagName("w:spacing")[0]
+      ?.getAttribute("w:after"),
+  ).toBe("160");
+  expect(
+    paragraphs[1]!
+      .getElementsByTagName("w:spacing")[0]
+      ?.getAttribute("w:after"),
+  ).toBe("0");
+  expect(output.match(/Introduction/g)).toHaveLength(1);
 });
 
 it("uses heading styles and does not invent a list marker for ordinary text", async () => {
