@@ -43,82 +43,88 @@ export const NationalCurriculumInsightsConfidence = ({
       as="section"
       aria-labelledby={headingId}
       data-insights-module="confidence"
-      $position="relative"
       $flexDirection="column"
-      $gap="spacing-24"
       $width="100%"
       $maxWidth="spacing-1280"
       $mh="auto"
       $boxSizing="border-box"
-      $ph={["spacing-16", "spacing-20"]}
-      $pv="spacing-24"
-      $background="bg-decorative5-very-subdued"
-      $borderRadius="border-radius-m2"
       $color="text-primary"
     >
-      {confetti.map((asset) => (
+      <OakFlex
+        aria-hidden="true"
+        $position="relative"
+        $height={["spacing-80", "spacing-160"]}
+        $flexShrink={0}
+        $pointerEvents="none"
+      >
+        {confetti.map((asset) => (
+          <OakFlex
+            key={asset.name}
+            $position="absolute"
+            $bottom="spacing-40"
+            $right={asset.right}
+            $alignItems="center"
+            $justifyContent="center"
+            $display={["none", "flex"]}
+          >
+            <OakBox
+              as="img"
+              src={getCloudinaryImageUrl(
+                `ui-graphics/confidence-confetti-${asset.name}.svg`,
+              )}
+              alt=""
+              $maxWidth="unset"
+              $transform={asset.transform}
+            />
+          </OakFlex>
+        ))}
         <OakFlex
-          key={asset.name}
-          aria-hidden="true"
           $position="absolute"
-          style={{ bottom: "100%" }}
-          $mb="spacing-40"
-          $right={asset.right}
+          $bottom="spacing-4"
+          $right="spacing-8"
+          $display={["flex", "none"]}
           $alignItems="center"
           $justifyContent="center"
-          $pointerEvents="none"
-          $display={["none", "flex"]}
         >
           <OakBox
             as="img"
             src={getCloudinaryImageUrl(
-              `ui-graphics/confidence-confetti-${asset.name}.svg`,
+              "ui-graphics/confidence-confetti-mobile.svg",
             )}
             alt=""
             $maxWidth="unset"
-            $transform={asset.transform}
+            $transform="rotate(-175.32deg)"
           />
         </OakFlex>
-      ))}
+      </OakFlex>
       <OakFlex
-        aria-hidden="true"
-        $position="absolute"
-        style={{ bottom: "100%" }}
-        $right="spacing-8"
-        $display={["flex", "none"]}
-        $alignItems="center"
-        $justifyContent="center"
-        $pointerEvents="none"
+        $flexDirection="column"
+        $gap="spacing-24"
+        $ph={["spacing-16", "spacing-20"]}
+        $pv="spacing-24"
+        $background="bg-decorative5-very-subdued"
+        $borderRadius="border-radius-m2"
       >
-        <OakBox
-          as="img"
-          src={getCloudinaryImageUrl(
-            "ui-graphics/confidence-confetti-mobile.svg",
-          )}
-          alt=""
-          $maxWidth="unset"
-          $transform="rotate(-175.32deg)"
-        />
-      </OakFlex>
-      <OakHeading id={headingId} tag="h2" $font="heading-4">
-        {section.heading}
-      </OakHeading>
-      <OakFlex $flexDirection="column" $gap="spacing-24">
-        <NationalCurriculumInsightsPortableText
-          value={section.bodyPortableText}
-          components={guidancePortableTextComponents}
-        />
-      </OakFlex>
-      <OakFlex $width="100%" $maxWidth="spacing-360">
-        <OakSecondaryButton
-          element={Link}
-          href={getLinkHref(section.cta)}
-          iconName="arrow-right"
-          isTrailingIcon
-          width="100%"
-        >
-          {section.cta.label}
-        </OakSecondaryButton>
+        <OakHeading id={headingId} tag="h2" $font="heading-4">
+          {section.heading}
+        </OakHeading>
+        <OakFlex $flexDirection="column" $gap="spacing-24">
+          <NationalCurriculumInsightsPortableText
+            value={section.bodyPortableText}
+            components={guidancePortableTextComponents}
+          />
+        </OakFlex>
+        <OakFlex $width="100%" $maxWidth="spacing-360">
+          <OakSecondaryButton
+            element={Link}
+            href={getLinkHref(section.cta)}
+            iconName="arrow-right"
+            isTrailingIcon
+            width="100%"
+          >
+            {section.cta.label}
+          </OakSecondaryButton>
+        </OakFlex>
       </OakFlex>
     </OakFlex>
   );

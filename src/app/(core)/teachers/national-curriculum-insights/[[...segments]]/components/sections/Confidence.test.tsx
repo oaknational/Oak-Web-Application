@@ -130,11 +130,28 @@ it("keeps the supplied confetti artwork decorative", () => {
     );
     expect(image).toHaveAttribute("alt", "");
     expect(image.closest('[aria-hidden="true"]')).not.toBeNull();
-    expect(image.parentElement).toHaveStyle({
-      position: "absolute",
-      bottom: "100%",
-    });
   }
+});
+
+it("reserves space above the callout for the decorative artwork", () => {
+  const { container } = renderWithTheme(
+    <NationalCurriculumInsightsConfidence section={section} />,
+  );
+  const artwork = container
+    .querySelector('img[src*="confidence-confetti-mobile"]')!
+    .closest('[aria-hidden="true"]')!;
+  expect(artwork).toHaveStyle({
+    position: "relative",
+    height: "5rem",
+    flexShrink: "0",
+    pointerEvents: "none",
+  });
+  expect(artwork.nextElementSibling).toContainElement(
+    screen.getByRole("heading", { name: section.heading }),
+  );
+  expect(artwork.nextElementSibling).toContainElement(
+    screen.getByRole("link", { name: section.cta.label }),
+  );
 });
 
 it("rejects incomplete callouts before rendering", () => {
