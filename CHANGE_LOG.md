@@ -1,3 +1,10 @@
+# [1.1261.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1260.0...v1.1261.0) (2026-10-29)
+
+
+### Features
+
+* no index pupil subjects ([c88e6d7](https://github.com/oaknational/Oak-Web-Application/commit/c88e6d7c83d96d8aede06fd2702fb468226a1b76))
+
 # [1.1260.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1259.0...v1.1260.0) (2026-10-28)
 
 
