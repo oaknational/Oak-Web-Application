@@ -27,6 +27,11 @@ import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
 import { SaveUnitButton } from "@/components/TeacherComponents/SaveUnitButton/SaveUnitButton";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import {
+  getKeyStageTitle,
+  getYearSlugFromTitle,
+} from "@/utils/curriculum/formatting";
 
 export type UnitOverviewContentProps = Pick<
   TeachersUnitOverviewData,
@@ -54,6 +59,8 @@ export type UnitOverviewContentProps = Pick<
   | "phaseTitle"
   | "yearGroupTitle"
   | "examBoardTitle"
+  | "pathwayTitle"
+  | "tierTitle"
 > & {
   subjectPhaseSlug: string;
   showDownloadMessage: boolean;
@@ -88,9 +95,12 @@ export const UnitOverviewContent = ({
   showDownloadMessage,
   setShowDownloadMessage,
   nonCurriculum,
+  pathwayTitle,
+  tierTitle,
 }: UnitOverviewContentProps) => {
   const hasToggles =
     tierOptionToggles.length > 1 || subjectOptionToggles.length > 1;
+  const { unitAccessed } = useTeacherBrowseAnalytics((store) => store.track);
 
   return (
     <OakBox $ph="spacing-40">
@@ -230,6 +240,25 @@ export const UnitOverviewContent = ({
                       unitSlug: prevUnit.slug,
                     }),
                     title: prevUnit.title,
+                    onClick: () =>
+                      unitAccessed({
+                        componentType: "footer_button",
+                        navigationType: "across",
+                        unitContext: {
+                          unitName: prevUnit.title,
+                          unitSlug: prevUnit.slug,
+                          tierName: tierTitle,
+                          examBoard: examBoardTitle,
+                          pathway: pathwayTitle,
+                          yearGroupName: yearGroupTitle,
+                          yearGroupSlug:
+                            getYearSlugFromTitle(yearGroupTitle) ?? "",
+                          keyStageTitle: getKeyStageTitle(keyStageSlug),
+                          keyStageSlug: keyStageSlug,
+                          subjectTitle: subjectTitle,
+                          subjectSlug: subjectSlug,
+                        },
+                      }),
                   }
                 : undefined
             }
@@ -242,6 +271,25 @@ export const UnitOverviewContent = ({
                       unitSlug: nextUnit.slug,
                     }),
                     title: nextUnit.title,
+                    onClick: () =>
+                      unitAccessed({
+                        componentType: "footer_button",
+                        navigationType: "across",
+                        unitContext: {
+                          unitName: nextUnit.title,
+                          unitSlug: nextUnit.slug,
+                          tierName: tierTitle,
+                          examBoard: examBoardTitle,
+                          pathway: pathwayTitle,
+                          yearGroupName: yearGroupTitle,
+                          yearGroupSlug:
+                            getYearSlugFromTitle(yearGroupTitle) ?? "",
+                          keyStageTitle: getKeyStageTitle(keyStageSlug),
+                          keyStageSlug: keyStageSlug,
+                          subjectTitle: subjectTitle,
+                          subjectSlug: subjectSlug,
+                        },
+                      }),
                   }
                 : undefined
             }

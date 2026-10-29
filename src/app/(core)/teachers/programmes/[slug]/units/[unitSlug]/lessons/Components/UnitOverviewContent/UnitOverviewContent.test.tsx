@@ -29,6 +29,8 @@ const defaultProps: UnitOverviewContentProps = {
   subjectSlug: "biology",
   keyStageSlug: "ks4",
   keyStageTitle: "Key Stage 4",
+  tierTitle: "Foundation",
+  pathwayTitle: null,
   lessons: lessons as UnitOverviewContentProps["lessons"],
   unitIndex: 2,
   unitCount: 12,
