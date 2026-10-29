@@ -7,7 +7,6 @@ import {
   OakFlex,
   OakBox,
   OakTertiaryOLNav,
-  OakSecondaryLink,
   OakLink,
   OakSpan,
   OakBoxProps,
@@ -381,7 +380,8 @@ const OverviewTab: FC<OverviewTabProps> = ({
                   $color="text-primary"
                   $textWrap="balance"
                 >
-                  <OakSecondaryLink
+                  <OakLink
+                    variant="secondary"
                     href={resolveOakHref({
                       page: "blog-single",
                       blogSlug: "our-approach-to-curriculum",
@@ -391,7 +391,7 @@ const OverviewTab: FC<OverviewTabProps> = ({
                     color="text-primary"
                   >
                     Read more about our new curriculum
-                  </OakSecondaryLink>
+                  </OakLink>
                 </OakSpan>
               </OakGridArea>
             </OakGrid>

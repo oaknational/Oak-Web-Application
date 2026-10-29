@@ -7,7 +7,6 @@ import {
   OakBox,
   OakLink,
   OakSpan,
-  OakSecondaryLink,
 } from "@oaknational/oak-components";
 
 import PostListItemImage from "./PostListItemImage";
@@ -141,9 +140,13 @@ const PostListItem: FC<PostListItemProps> = (props) => {
           </OakP>
         </OakFlex>
         <OakHeading tag={titleTag} $font={"heading-5"} $mt="spacing-8">
-          <OakSecondaryLink href={getItemLinkProps(props)} title={title}>
+          <OakLink
+            variant="secondary"
+            href={getItemLinkProps(props)}
+            title={title}
+          >
             {title}
-          </OakSecondaryLink>
+          </OakLink>
         </OakHeading>
         <OakP
           $font={"body-3"}

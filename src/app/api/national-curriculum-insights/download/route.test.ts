@@ -52,7 +52,9 @@ const hub = {
 };
 
 const postRequest = (selections: unknown) =>
-  ({ json: async () => ({ selections }) }) as Request;
+  ({
+    json: async () => ({ selections }),
+  }) as Request;
 
 describe("national curriculum insights downloads", () => {
   beforeAll(() => {
