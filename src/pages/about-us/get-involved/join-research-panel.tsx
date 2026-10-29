@@ -18,9 +18,9 @@ import {
   JoinResearchPanelPageBlockType,
 } from "@/common-lib/cms-types";
 import JoinResearchPanelPageHeader from "@/components/GenericPagesComponents/JoinResearchPanelHeader";
-import JoinResearchPanelPageDefault from "@/components/GenericPagesComponents/JoinResearchPanelDefault";
 import JoinResearchPanelPeople from "@/components/GenericPagesComponents/JoinResearchPanelPeople";
 import JoinResearchPanelInfo from "@/components/GenericPagesComponents/JoinResearchPanelInfo";
+import JoinResearchPanelJourney from "@/components/GenericPagesComponents/JoinResearchPanelJourney";
 import JoinResearchPanelFaqs from "@/components/GenericPagesComponents/JoinResearchPanelFaqs";
 import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
 import JoinResearchPanelCallout from "@/components/GenericPagesComponents/JoinResearchPanelCallout";
@@ -39,7 +39,7 @@ const pageComponents: {
   JoinResearchPanelPageHeader: JoinResearchPanelPageHeader,
   JoinResearchPanelPageCallout: JoinResearchPanelCallout,
   JoinResearchPanelPageInfo: JoinResearchPanelInfo,
-  JoinResearchPanelPageJourney: JoinResearchPanelPageDefault,
+  JoinResearchPanelPageJourney: JoinResearchPanelJourney,
   JoinResearchPanelPagePeople: JoinResearchPanelPeople,
   JoinResearchPanelPageBlogsPreview: (block, blogs) => (
     <BlogsPreview
