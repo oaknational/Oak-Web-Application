@@ -1,3 +1,16 @@
+# [1.1263.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1262.0...v1.1263.0) (2026-10-29)
+
+
+### Bug Fixes
+
+* move speedInsights to client component wrapper ([731c110](https://github.com/oaknational/Oak-Web-Application/commit/731c110130715dccd3c47a9a5e6606c71e7e845a))
+
+
+### Features
+
+* add a beforesend param to only capture on teacher pages ([3278f75](https://github.com/oaknational/Oak-Web-Application/commit/3278f75b2b7cd5b316975f74bf951150ec74d183))
+* add speed insights package ([6eaed6b](https://github.com/oaknational/Oak-Web-Application/commit/6eaed6b6bf7e3c52376561a3920e9678aaa6e3ca))
+
 # [1.1262.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1261.0...v1.1262.0) (2026-10-29)
 
 
