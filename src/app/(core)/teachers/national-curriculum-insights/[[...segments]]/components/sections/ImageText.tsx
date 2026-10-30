@@ -32,38 +32,61 @@ const editorialBackground = {
   green: "bg-decorative1-very-subdued",
 } as const;
 
-export const NationalCurriculumInsightsImageText = ({
+type ImageTextProps =
+  ContextualSectionProps<"NationalCurriculumInsightsImageTextSection">;
+
+const mediaAspectRatio = (section: ImageTextProps["section"]) => {
+  if (section.video) return undefined;
+  const assetId = section.image?.asset?._id;
+  return assetId ? getImageDimensions(assetId, {}).aspectRatio : 16 / 10;
+};
+
+const EditorialMedia = ({
   section,
-  data,
-}: ContextualSectionProps<"NationalCurriculumInsightsImageTextSection">) => {
-  const headingId = useId();
-  const media = section.video ? (
-    <OakVideo
-      videoSlot={
-        <VideoPlayer
-          playbackPolicy="public"
-          playbackId={section.video.video.asset.playbackId}
-          thumbnailTime={section.video.video.asset.thumbTime}
-          title={section.video.title}
-          poster={section.image ? imageUrl(section.image) : undefined}
-          location="marketing"
-          omitBorder
-        />
-      }
-      showTranscript={Boolean(section.video.transcript?.length)}
-      transcript={section.video.transcript}
-    />
-  ) : section.image ? (
+  isGuidance,
+}: Pick<ImageTextProps, "section"> & { isGuidance: boolean }) => {
+  if (section.video)
+    return (
+      <OakVideo
+        videoSlot={
+          <VideoPlayer
+            playbackPolicy="public"
+            playbackId={section.video.video.asset.playbackId}
+            thumbnailTime={section.video.video.asset.thumbTime}
+            title={section.video.title}
+            poster={section.image ? imageUrl(section.image) : undefined}
+            location="marketing"
+            omitBorder
+          />
+        }
+        showTranscript={Boolean(section.video.transcript?.length)}
+        transcript={section.video.transcript}
+      />
+    );
+  if (!section.image) return null;
+  return (
     <OakImage
       src={imageUrl(section.image)}
       alt={imageAlt(section.image)}
       $width="100%"
       $height="100%"
-      $objectFit={data.route.kind === "guidance" ? "contain" : "cover"}
+      $objectFit={isGuidance ? "contain" : "cover"}
     />
-  ) : null;
+  );
+};
 
-  if (data.route.kind === "guidance") {
+export const NationalCurriculumInsightsImageText = ({
+  section,
+  data,
+}: ImageTextProps) => {
+  const headingId = useId();
+  const isGuidance = data.route.kind === "guidance";
+  const decorativeMedia =
+    (!section.video && section.image?.isPresentational) || undefined;
+  const mirrorImage = !section.video && section.mirrorImage;
+  const media = <EditorialMedia section={section} isGuidance={isGuidance} />;
+
+  if (isGuidance) {
     return (
       <OakBox
         as="section"
@@ -95,15 +118,9 @@ export const NationalCurriculumInsightsImageText = ({
                 $width="100%"
                 $maxWidth="spacing-360"
                 $aspectRatio={section.video ? undefined : "332 / 259"}
-                aria-hidden={
-                  (!section.video && section.image?.isPresentational) ||
-                  undefined
-                }
+                aria-hidden={decorativeMedia}
                 style={{
-                  transform:
-                    !section.video && section.mirrorImage
-                      ? "scaleX(-1)"
-                      : undefined,
+                  transform: mirrorImage ? "scaleX(-1)" : undefined,
                 }}
               >
                 {media}
@@ -148,19 +165,10 @@ export const NationalCurriculumInsightsImageText = ({
           >
             <OakBox
               $width="100%"
-              $aspectRatio={
-                section.video
-                  ? undefined
-                  : section.image?.asset?._id
-                    ? getImageDimensions(section.image.asset._id, {})
-                        .aspectRatio
-                    : 16 / 10
-              }
+              $aspectRatio={mediaAspectRatio(section)}
               $overflow="hidden"
               $borderRadius="border-radius-m2"
-              aria-hidden={
-                (!section.video && section.image?.isPresentational) || undefined
-              }
+              aria-hidden={decorativeMedia}
             >
               {media}
             </OakBox>

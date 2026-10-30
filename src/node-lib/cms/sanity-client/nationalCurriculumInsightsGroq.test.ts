@@ -91,6 +91,11 @@ const hubFixture = {
 };
 
 describe("nationalCurriculumInsightsGroq", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockCreateClient.mockReturnValue({ fetch: mockFetch } as never);
+  });
+
   it("reads one shared subject link list for all page modules", () => {
     expect(nationalCurriculumInsightsSubjectBySlugQuery).toContain(
       ".subjectOverviewLinks[",
@@ -110,11 +115,6 @@ describe("nationalCurriculumInsightsGroq", () => {
       '"transcript": transcript',
     );
   });
-  beforeEach(() => {
-    jest.clearAllMocks();
-    mockCreateClient.mockReturnValue({ fetch: mockFetch } as never);
-  });
-
   it("reads the editorial header date without deriving it from document updates", async () => {
     const hero = {
       __typename: "NationalCurriculumInsightsHeaderSection",
