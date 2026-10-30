@@ -2,11 +2,6 @@ import { z } from "zod";
 
 import sanityGraphqlApi from "../../sanity-graphql";
 import {
-  aboutBoardPageSchema,
-  aboutLeadershipPageSchema,
-  aboutPartnersPageSchema,
-  aboutWhoWeArePageSchema,
-  aboutWorkWithUsPageSchema,
   homePageSchema,
   contactPageSchema,
   blogPostPreviewSchema,
@@ -93,98 +88,12 @@ const getSanityClient = () => ({
     planALessonPageSchema,
     (result) => result?.allPlanALessonCorePage?.[0],
   ),
-  aboutWhoWeArePage: getSingleton(
-    sanityGraphqlApi.aboutWhoWeArePage,
-    aboutWhoWeArePageSchema,
-    (result) => {
-      const whoWeArePageData = result?.allAboutCorePageWhoWeAre?.[0];
-      const parentPageData = result?.aboutCorePage?.[0];
-
-      return whoWeArePageData && parentPageData
-        ? {
-            ...parentPageData,
-            ...whoWeArePageData,
-          }
-        : undefined;
-    },
-  ),
   whoWeArePage: getSingleton(
     sanityGraphqlApi.whoWeArePage,
     whoWeArePageSchema,
     (result) => {
       const whoWeArePageData = result?.allNewAboutCorePageWhoWeAre?.[0];
       return whoWeArePageData;
-    },
-  ),
-  aboutLeadershipPage: getSingleton(
-    sanityGraphqlApi.aboutLeadershipPage,
-    aboutLeadershipPageSchema,
-    (result) => {
-      const leadershipPageData = result?.allAboutCorePageLeadership?.[0];
-      const parentPageData = result?.aboutCorePage?.[0];
-
-      return leadershipPageData && parentPageData
-        ? {
-            ...parentPageData,
-            ...leadershipPageData,
-          }
-        : undefined;
-    },
-  ),
-  aboutBoardPage: getSingleton(
-    sanityGraphqlApi.aboutBoardPage,
-    aboutBoardPageSchema,
-    (result) => {
-      const boardPageData = result?.allAboutCorePageBoard?.[0];
-      if (boardPageData?.documents) {
-        boardPageData.documents.forEach((doc) => {
-          const asset = doc?.file?.asset;
-          const url = asset?.url;
-          const proxiedUrl = getProxiedSanityAssetUrl(url);
-
-          if (doc?.file?.asset?.url) {
-            doc.file.asset.url = proxiedUrl;
-          }
-        });
-      }
-      const parentPageData = result?.aboutCorePage?.[0];
-
-      return boardPageData && parentPageData
-        ? {
-            ...parentPageData,
-            ...boardPageData,
-          }
-        : undefined;
-    },
-  ),
-  aboutPartnersPage: getSingleton(
-    sanityGraphqlApi.aboutPartnersPage,
-    aboutPartnersPageSchema,
-    (result) => {
-      const partnersPageData = result?.allAboutCorePagePartners?.[0];
-      const parentPageData = result?.aboutCorePage?.[0];
-
-      return partnersPageData && parentPageData
-        ? {
-            ...parentPageData,
-            ...partnersPageData,
-          }
-        : undefined;
-    },
-  ),
-  aboutWorkWithUsPage: getSingleton(
-    sanityGraphqlApi.aboutWorkWithUsPage,
-    aboutWorkWithUsPageSchema,
-    (result) => {
-      const workWithUsPage = result?.allAboutCorePageWorkWithUs?.[0];
-      const parentPageData = result?.aboutCorePage?.[0];
-
-      return workWithUsPage
-        ? {
-            ...parentPageData,
-            ...workWithUsPage,
-          }
-        : undefined;
     },
   ),
   getInvolvedPage: getSingleton(

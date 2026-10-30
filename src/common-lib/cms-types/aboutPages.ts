@@ -349,32 +349,12 @@ export const caseStudyLibraryPageSchema = z.array(caseStudySchema);
 
 export type CaseStudyLibraryPage = z.infer<typeof caseStudyLibraryPageSchema>;
 
+// Case Study Page
 export const caseStudyPageSchema = caseStudySchema;
 
 export type CaseStudyPage = z.infer<typeof caseStudyPageSchema>;
 
-// Aliases for about pages (old naming convention - mapping new queries to existing schemas)
-export const aboutWhoWeArePageSchema = whoWeArePageSchema;
-
-export const aboutLeadershipPageSchema = meetTheTeamPageOurLeadershipSchema;
-export type AboutLeadershipPage = z.infer<
-  typeof meetTheTeamPageOurLeadershipSchema
->;
-
-export const aboutBoardPageSchema = meetTheTeamPageOurBoardSchema;
-export type AboutBoardPage = z.infer<typeof meetTheTeamPageOurBoardSchema>;
-
-export const aboutPartnersPageSchema =
-  oaksCurriculaPageCurriculumPartnersSectionSchema;
-export type AboutPartnersPage = z.infer<
-  typeof oaksCurriculaPageCurriculumPartnersSectionSchema
->;
-
-export const aboutWorkWithUsPageSchema = getInvolvedPageWorkWithUsSchema;
-export type AboutWorkWithUsPage = z.infer<
-  typeof getInvolvedPageWorkWithUsSchema
->;
-
+// Implementation Guides
 export const implementationGuidesSchema = z.object({
   curriculumQuality: assetSchema.optional().nullable(),
   whatsIncluded: assetSchema.optional().nullable(),
