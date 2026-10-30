@@ -27,6 +27,7 @@ export default function JoinResearchPanelFaqs({
         $flexDirection={"column"}
         $gap="spacing-32"
         $alignItems={"center"}
+        $pv={["spacing-56", "spacing-80"]}
       >
         <OakHeading tag="h2" $font={["heading-5", "heading-4"]}>
           Frequently asked questions

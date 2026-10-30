@@ -1,3 +1,74 @@
+# [1.1266.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1265.0...v1.1266.0) (2026-10-30)
+
+
+### Features
+
+* add nc alignment checker feature flag ([4e7f75c](https://github.com/oaknational/Oak-Web-Application/commit/4e7f75c12fe42b2477616d21b0ef570fc17d6ba4))
+* add skeleton page for nc alignment checker ([a0fe72c](https://github.com/oaknational/Oak-Web-Application/commit/a0fe72ca6057efae6c5145a46a147d19617ff884))
+* add tests for nc alignment checker page ([7964e91](https://github.com/oaknational/Oak-Web-Application/commit/7964e91ff33e4469903cf9903396263e9562246e))
+
+# [1.1265.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1264.0...v1.1265.0) (2026-10-29)
+
+
+### Bug Fixes
+
+* fixture typing ([0b85ebd](https://github.com/oaknational/Oak-Web-Application/commit/0b85ebd0c71fa32d58d534ea18d1d5f766592dde))
+* page component spacing ([55b2f80](https://github.com/oaknational/Oak-Web-Application/commit/55b2f80de374c152471d9ae7169371543fe92f0c))
+
+
+### Features
+
+* add blogs preview to join research panel page ([2733ab2](https://github.com/oaknational/Oak-Web-Application/commit/2733ab2ead53af5b870206b2e04ceaaec8927a92))
+* blogs preview component ([c34c3bb](https://github.com/oaknational/Oak-Web-Application/commit/c34c3bb7f49c23e62c771d7b2f06bf18b9646aec))
+* updated graphql query and schemas ([714e5d3](https://github.com/oaknational/Oak-Web-Application/commit/714e5d3f43b1f9987721bcf51e3f62c00876f775))
+
+# [1.1264.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1263.0...v1.1264.0) (2026-10-29)
+
+
+### Bug Fixes
+
+* add missing test for external link ([d425026](https://github.com/oaknational/Oak-Web-Application/commit/d4250262643148e4b338c9a0cf98ec5ba78f6a16))
+* added missing protocol to clientAppBaseUrl ([2cd310b](https://github.com/oaknational/Oak-Web-Application/commit/2cd310bf50e684d411fc273facb8460a643cad4d))
+* attempt to safeParseUrl ([e3d7b14](https://github.com/oaknational/Oak-Web-Application/commit/e3d7b14f60e9e646b4adcd1c8fb6515cea4c4a60))
+* code review fixes ([6062d68](https://github.com/oaknational/Oak-Web-Application/commit/6062d688aa5d75a95099d2d056caffa49c5b63bc))
+* omit "__typename" from JoinResearchPanelPageJourney ([918212c](https://github.com/oaknational/Oak-Web-Application/commit/918212cfc58135ad61480d3fb5b826859ba15770))
+* reuse CMS type ([0369edf](https://github.com/oaknational/Oak-Web-Application/commit/0369edf8f012abf32b81fb10c3568b9a83f71c1d))
+* sonarcloud issues ([a9874e5](https://github.com/oaknational/Oak-Web-Application/commit/a9874e5de1a7ec8026e4a40c2cfb98bf9946aa0a))
+* use hook useAnalytics() instead ([705c595](https://github.com/oaknational/Oak-Web-Application/commit/705c595ca989754586d7a6fc9cfb0d1be6b7c7dc))
+* wrap number & text in <h3/> tag ([b192b5e](https://github.com/oaknational/Oak-Web-Application/commit/b192b5efd74fe6321af168ac6c0caa7149e2f28c))
+
+
+### Features
+
+* added <JoinResearchPanelJourney/> panel to join-research-panel page ([e9341df](https://github.com/oaknational/Oak-Web-Application/commit/e9341df40c73006046473efee50ed8005ebc9d00))
+
+# [1.1263.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1262.0...v1.1263.0) (2026-10-29)
+
+
+### Bug Fixes
+
+* move speedInsights to client component wrapper ([731c110](https://github.com/oaknational/Oak-Web-Application/commit/731c110130715dccd3c47a9a5e6606c71e7e845a))
+
+
+### Features
+
+* add a beforesend param to only capture on teacher pages ([3278f75](https://github.com/oaknational/Oak-Web-Application/commit/3278f75b2b7cd5b316975f74bf951150ec74d183))
+* add speed insights package ([6eaed6b](https://github.com/oaknational/Oak-Web-Application/commit/6eaed6b6bf7e3c52376561a3920e9678aaa6e3ca))
+
+# [1.1262.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1261.0...v1.1262.0) (2026-10-29)
+
+
+### Features
+
+* remove all the old timetabling code + old curric components ([f395ded](https://github.com/oaknational/Oak-Web-Application/commit/f395ded041fb31e6408c5041f7c66fdf7d7c3d59))
+
+# [1.1261.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1260.0...v1.1261.0) (2026-10-29)
+
+
+### Features
+
+* no index pupil subjects ([c88e6d7](https://github.com/oaknational/Oak-Web-Application/commit/c88e6d7c83d96d8aede06fd2702fb468226a1b76))
+
 # [1.1260.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1259.0...v1.1260.0) (2026-10-28)
 
 

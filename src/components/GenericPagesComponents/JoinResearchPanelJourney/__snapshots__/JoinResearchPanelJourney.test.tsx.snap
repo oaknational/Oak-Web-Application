@@ -1,0 +1,180 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`JoinResearchPanelJourney it renders correct data 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-bdvwhi sc-gsDMPd hLDKhC eWbmLh"
+    >
+      <div
+        class="sc-bdvwhi iatEdD"
+      >
+        <div
+          class="sc-bdvwhi sc-jObTYW hPWTKU jmGxKU"
+        >
+          <div
+            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex gymcRh"
+          >
+            <div
+              class="sc-bdvwhi sc-gsDMPd jrKunU dBhbyK"
+            >
+              <h2
+                class="sc-bkkgYE jihQnU"
+              >
+                How does it work?
+              </h2>
+              <div
+                class="sc-bdvwhi sc-gsDMPd hPWTKU jYvMVQ"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU cmTLPr"
+                >
+                  <h3
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU eCFEmk"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd gLRlaJ gbgSUZ"
+                    >
+                      1
+                    </div>
+                    <div
+                      class="sc-bkkgYE oUomb"
+                    >
+                      Sign up
+                    </div>
+                  </h3>
+                  <div
+                    class="sc-bdvwhi hPWTKU"
+                  >
+                    <p
+                      class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                    >
+                      Fill in our 
+                      <a
+                        class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
+                        href="https://example.com"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        <span
+                          class="sc-dkPwfY fgmEIT"
+                        >
+                          sign-up form
+                        </span>
+                      </a>
+                       with a few details about you.
+                    </p>
+                    <p
+                      class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                    >
+                      We'll email you if there's a research opportunity that matches your background and interests.
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU cmTLPr"
+                >
+                  <h3
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU eCFEmk"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd gLRlaJ gbgSUZ"
+                    >
+                      2
+                    </div>
+                    <div
+                      class="sc-bkkgYE oUomb"
+                    >
+                      Take part
+                    </div>
+                  </h3>
+                  <div
+                    class="sc-bdvwhi hPWTKU"
+                  >
+                    <p
+                      class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                    >
+                      You might be invited to share your teaching experiences, talk about how you use different resources, try out an early improvement idea, or give feedback on a topic we’re exploring.
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU cmTLPr"
+                >
+                  <h3
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU eCFEmk"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd gLRlaJ gbgSUZ"
+                    >
+                      3
+                    </div>
+                    <div
+                      class="sc-bkkgYE oUomb"
+                    >
+                      What happens next
+                    </div>
+                  </h3>
+                  <div
+                    class="sc-bdvwhi hPWTKU"
+                  >
+                    <p
+                      class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                    >
+                      You will receive a retail voucher as a thank you for your time. You will remain part of the research panel for 2 years after signing up, so you may be contacted for other research opportunities (max 2 per year) unless you tell us otherwise.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+              >
+                <div
+                  class="sc-bdvwhi kAFHfV grey-shadow"
+                />
+                <div
+                  class="sc-bdvwhi kAFHfV yellow-shadow"
+                />
+                <a
+                  class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                  href="https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                  >
+                    <span
+                      class="sc-dkPwfY kXQhTZ"
+                    >
+                      Join the research panel
+                      <span
+                        class="sc-iCfNyT gvLbeW"
+                      >
+                         (opens in a new tab)
+                      </span>
+                    </span>
+                    <span
+                      class="sc-bdvwhi cERAFe"
+                    >
+                      <img
+                        alt=""
+                        class="sc-jRQBiJ buswnv"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
+                    </span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
