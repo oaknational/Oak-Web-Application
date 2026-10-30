@@ -7,27 +7,28 @@ import {
   nationalCurriculumInsightsTabHref,
   nationalCurriculumInsightsRouteHref,
   parseNationalCurriculumInsightsRoute,
+  parseCurriculumChangeExplainedRoute,
 } from "./nationalCurriculumInsights";
 
 describe("National Curriculum Insights URLs", () => {
   it("builds the hub and subject-first page URLs", () => {
     expect(nationalCurriculumInsightsHubHref()).toBe(
-      "/teachers/national-curriculum-insights",
+      "/curriculum-change-explained",
     );
     expect(nationalCurriculumInsightsGuidanceHref()).toBe(
       "/curriculum-change-explained/guidance",
     );
     expect(nationalCurriculumInsightsSubjectHref("science")).toBe(
-      "/teachers/national-curriculum-insights/science",
+      "/curriculum-change-explained/science",
     );
     expect(
       nationalCurriculumInsightsSubjectPhaseHref("science", "primary"),
-    ).toBe("/teachers/national-curriculum-insights/science/primary");
+    ).toBe("/curriculum-change-explained/science/primary");
     expect(nationalCurriculumInsightsTabHref("science", "overview")).toBe(
-      "/teachers/national-curriculum-insights/science",
+      "/curriculum-change-explained/science",
     );
     expect(nationalCurriculumInsightsTabHref("science", "secondary")).toBe(
-      "/teachers/national-curriculum-insights/science/secondary",
+      "/curriculum-change-explained/science/secondary",
     );
     expect(
       nationalCurriculumInsightsSubjectPhaseKeyStageHref(
@@ -35,9 +36,7 @@ describe("National Curriculum Insights URLs", () => {
         "primary",
         "key-stage-1",
       ),
-    ).toBe(
-      "/teachers/national-curriculum-insights/science/primary/key-stage-1",
-    );
+    ).toBe("/curriculum-change-explained/science/primary/ks1");
   });
 
   it("parses hub, subject, phase and key-stage routes", () => {
@@ -75,7 +74,7 @@ describe("National Curriculum Insights URLs", () => {
 
   it("builds a canonical href from every route kind", () => {
     expect(nationalCurriculumInsightsRouteHref({ kind: "hub" })).toBe(
-      "/teachers/national-curriculum-insights",
+      "/curriculum-change-explained",
     );
     expect(nationalCurriculumInsightsRouteHref({ kind: "guidance" })).toBe(
       "/curriculum-change-explained/guidance",
@@ -85,14 +84,14 @@ describe("National Curriculum Insights URLs", () => {
         kind: "subject",
         subjectSlug: "science",
       }),
-    ).toBe("/teachers/national-curriculum-insights/science");
+    ).toBe("/curriculum-change-explained/science");
     expect(
       nationalCurriculumInsightsRouteHref({
         kind: "subjectPhase",
         subjectSlug: "science",
         phase: "primary",
       }),
-    ).toBe("/teachers/national-curriculum-insights/science/primary");
+    ).toBe("/curriculum-change-explained/science/primary");
     expect(
       nationalCurriculumInsightsRouteHref({
         kind: "subjectPhaseKeyStage",
@@ -100,9 +99,7 @@ describe("National Curriculum Insights URLs", () => {
         phase: "secondary",
         keyStageSlug: "key-stage-3",
       }),
-    ).toBe(
-      "/teachers/national-curriculum-insights/science/secondary/key-stage-3",
-    );
+    ).toBe("/curriculum-change-explained/science/secondary/ks3");
   });
 
   it("rejects phase-first, overview-segment and malformed routes", () => {
@@ -143,5 +140,68 @@ describe("National Curriculum Insights URLs", () => {
         "key-stage-4",
       ),
     ).toThrow("does not belong to the phase");
+  });
+
+  it.each([
+    ["primary", "ks1", "key-stage-1"],
+    ["primary", "ks2", "key-stage-2"],
+    ["secondary", "ks3", "key-stage-3"],
+    ["secondary", "ks4", "key-stage-4"],
+  ])("parses the %s %s route", (phase, pathSlug, keyStageSlug) => {
+    const route = parseCurriculumChangeExplainedRoute([
+      "science",
+      phase,
+      pathSlug,
+    ]);
+
+    expect(route).toEqual({
+      kind: "subjectPhaseKeyStage",
+      subjectSlug: "science",
+      phase,
+      keyStageSlug,
+    });
+    expect(nationalCurriculumInsightsRouteHref(route!)).toBe(
+      `/curriculum-change-explained/science/${phase}/${pathSlug}`,
+    );
+  });
+
+  it.each(
+    [undefined, [], ["guidance"], ["history"], ["history", "primary"]].map(
+      (segments) => ({ segments }),
+    ),
+  )("keeps the existing route kinds for $segments", ({ segments }) => {
+    expect(parseCurriculumChangeExplainedRoute(segments)).toEqual(
+      parseNationalCurriculumInsightsRoute(segments),
+    );
+  });
+
+  it.each(
+    [
+      ["science", "primary", "key-stage-1"],
+      ["science", "primary", "ks3"],
+      ["science", "secondary", "ks1"],
+      ["science", "secondary", "ks5"],
+      ["science", "primary", "KS1"],
+      ["science", "primary", "ks1", "extra"],
+      ["science", "primary", "%"],
+      ["science", "primary", "%252f"],
+      ["science", "primary", 1],
+      ["science", "primary", "k".repeat(101)],
+      ["%2e%2e", "primary", "ks1"],
+      ["science", "primary%2fsecondary", "ks1"],
+    ].map((segments) => ({ segments })),
+  )("rejects invalid canonical segments $segments", ({ segments }) => {
+    expect(parseCurriculumChangeExplainedRoute(segments)).toBeNull();
+  });
+
+  it("decodes canonical segments once", () => {
+    expect(
+      parseCurriculumChangeExplainedRoute(["sc%69ence", "pr%69mary", "ks%31"]),
+    ).toEqual({
+      kind: "subjectPhaseKeyStage",
+      subjectSlug: "science",
+      phase: "primary",
+      keyStageSlug: "key-stage-1",
+    });
   });
 });

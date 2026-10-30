@@ -61,13 +61,12 @@ const pageModules = (
   subjectTitle: string,
 ): NationalCurriculumInsightsModule[] => [
   {
-    __typename: "NationalCurriculumInsightsHeroSection",
+    __typename: "NationalCurriculumInsightsHeaderSection",
     heading: pageHeading(pageType, subjectTitle),
     bodyPortableText: portableText(
       `${subjectTitle}-${pageType}-hero`,
       `Explore the proposed curriculum changes and what they mean for ${subjectTitle.toLowerCase()} teaching.`,
     ),
-    image: localImage,
   },
   {
     __typename: "NationalCurriculumInsightsRichTextSection",
@@ -91,6 +90,7 @@ const createPage = ({
 }): NationalCurriculumInsightsPage => ({
   id: `nationalCurriculumInsightsPage-${subjectSlug}-${pageType}`,
   pageType,
+  downloadLayout: "keyStages",
   title: `${subjectTitle} ${pageType} page`,
   summary: `Independent ${pageType} content for ${subjectTitle}.`,
   modules: pageModules(pageType, subjectTitle),
@@ -194,6 +194,13 @@ const localHub: NationalCurriculumInsightsHub = {
   title: "National curriculum insights",
   summary: "Explore curriculum changes by subject and phase.",
   subjects: localSubjects.map(subjectSummary),
+  phaseLinks: localSubjects.flatMap((subject) =>
+    subject.tabs.map(({ kind }) => ({
+      title: subject.title,
+      subjectSlug: subject.slug,
+      phase: kind,
+    })),
+  ),
   modules: [
     {
       __typename: "NationalCurriculumInsightsHeroSection",
@@ -206,6 +213,7 @@ const localHub: NationalCurriculumInsightsHub = {
     },
     {
       __typename: "NationalCurriculumInsightsSubjectNavigationSection",
+      heading: "See what’s changing in your subject",
       phases: ["primary", "secondary"],
       primaryHeading: "Explore Primary curriculum changes",
       secondaryHeading: "Explore Secondary curriculum changes",

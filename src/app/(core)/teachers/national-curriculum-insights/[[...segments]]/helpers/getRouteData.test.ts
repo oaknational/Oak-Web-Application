@@ -7,7 +7,6 @@ import {
 } from "./getRouteData";
 
 import { parseNationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
-import type { NationalCurriculumInsightsModule } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import CMSClient from "@/node-lib/cms";
 import { cacheData } from "@/node-lib/cache";
 import getServerConfig from "@/node-lib/getServerConfig";
@@ -34,56 +33,19 @@ const getRoute = (segments?: string[]) => {
 };
 
 describe("getNationalCurriculumInsightsRouteData", () => {
-  it.each<{
-    name: string;
-    modules: NationalCurriculumInsightsModule[];
-    needsCatalogue: boolean;
-  }>([
-    { name: "editorial content", modules: [], needsCatalogue: false },
-    {
-      name: "subject navigation",
-      modules: [
-        {
-          __typename: "NationalCurriculumInsightsSubjectNavigationSection",
-          phases: ["primary", "secondary"],
-          primaryHeading: "Primary",
-          secondaryHeading: "Secondary",
-        },
-      ],
-      needsCatalogue: true,
-    },
-    {
-      name: "downloads",
-      modules: [
-        {
-          __typename: "NationalCurriculumInsightsDownloadSection",
-          barHeading: "Curriculum guidance",
-          barCtaLabel: "Download guidance",
-          detailsHeading: "Your details",
-          downloadsHeading: "Choose subjects",
-          downloadsIntroduction: "Select subjects to download.",
-          downloadButtonLabel: "Download",
-        },
-      ],
-      needsCatalogue: true,
-    },
-  ])(
-    "reads the guidance catalogue only when needed for $name",
-    async ({ modules, needsCatalogue }) => {
+  it.each([true, false])(
+    "never reads the hub catalogue for guidance in preview mode %s",
+    async (previewMode) => {
       const guidance =
         await localNationalCurriculumInsightsFixtures.reader.nationalCurriculumInsightsGuidancePage();
-      if (!guidance) throw new Error("Expected the guidance fixture");
       const hubReader = jest
         .fn()
-        .mockResolvedValue(localNationalCurriculumInsightsFixtures.hub);
-      const guidanceReader = jest
-        .fn()
-        .mockResolvedValue({ ...guidance, modules });
-
+        .mockRejectedValue(new Error("Hub unavailable"));
+      const guidanceReader = jest.fn().mockResolvedValue(guidance);
       const data = await getNationalCurriculumInsightsRouteData(
         { kind: "guidance" },
         {
-          previewMode: true,
+          previewMode,
           reader: {
             ...localNationalCurriculumInsightsFixtures.reader,
             nationalCurriculumInsightsHub: hubReader,
@@ -91,18 +53,10 @@ describe("getNationalCurriculumInsightsRouteData", () => {
           },
         },
       );
-
-      expect(guidanceReader).toHaveBeenCalledWith({ previewMode: true });
-      if (needsCatalogue) {
-        expect(hubReader).toHaveBeenCalledWith({ previewMode: true });
-        expect(data?.subjects).toEqual(
-          localNationalCurriculumInsightsFixtures.hub.subjects,
-        );
-      } else {
-        expect(hubReader).not.toHaveBeenCalled();
-        expect(data?.hub).toBeNull();
-        expect(data?.subjects).toEqual([]);
-      }
+      expect(guidanceReader).toHaveBeenCalledWith({ previewMode });
+      expect(hubReader).not.toHaveBeenCalled();
+      expect(data?.hub).toBeNull();
+      expect(data?.subjects).toEqual([]);
     },
   );
 
