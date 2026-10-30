@@ -94,7 +94,7 @@ it.each(layouts)(
       ).toBe(true);
     }
     expect(footerRels).toContain(
-      'Target="https://www.thenational.academy/curriculum-change-explained"',
+      'Target="https://www.thenational.academy/curriculum-change-explained?utm_source=nc_insights&amp;utm_medium=document&amp;utm_campaign=CAR"',
     );
     expect(xml.match(/Prepare with confidence using Oak/g)).toHaveLength(2);
     expect(xml.match(/Frequently asked questions/g)).toHaveLength(2);

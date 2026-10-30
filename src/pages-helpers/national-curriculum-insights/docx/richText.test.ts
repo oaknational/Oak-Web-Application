@@ -106,10 +106,10 @@ it("creates native links to external, relative and resolved internal destination
   expect(output).toContain("Read the report");
   expect(relationships).toContain("https://example.org/report?a=1&amp;b=2");
   expect(relationships).toContain(
-    "https://www.thenational.academy/curriculum-change-explained/guidance#sign-up",
+    "https://www.thenational.academy/curriculum-change-explained/guidance?utm_source=nc_insights&amp;utm_medium=document&amp;utm_campaign=CAR#sign-up",
   );
   expect(relationships).toContain(
-    "https://www.thenational.academy/blog/curriculum-news",
+    "https://www.thenational.academy/blog/curriculum-news?utm_source=nc_insights&amp;utm_medium=document&amp;utm_campaign=CAR",
   );
 });
 

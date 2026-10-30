@@ -80,10 +80,19 @@ const moduleProjection = `
   phases,
   primaryHeading,
   secondaryHeading,
-  links[defined(subject->_id)]{
-    title,
-    "subjectSlug": subject->slug.current,
-    iconName
+  _type == "nationalCurriculumInsightsSubjectLinksSection" => {
+    "links": coalesce((*[_type == "nationalCurriculumInsightsHub" && _id in ["nationalCurriculumInsightsHub", "drafts.nationalCurriculumInsightsHub"]] | order(_updatedAt desc))[0].subjectOverviewLinks[defined(subject->_id)]{
+      title,
+      "subjectSlug": subject->slug.current,
+      iconName
+    }, [])
+  },
+  _type == "nationalCurriculumInsightsImageTextSection" => {
+    "video": video->{
+      title,
+      "transcript": transcript${insightsPortableTextProjection},
+      video { asset->{ assetId, playbackId, thumbTime } }
+    }
   },
   introduction,
   benefitsHeading,

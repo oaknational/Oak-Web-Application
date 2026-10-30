@@ -61,7 +61,9 @@ export const NationalCurriculumInsightsConfidence = ({
           <OakFlex
             key={asset.name}
             $position="absolute"
-            $bottom="spacing-40"
+            $bottom="spacing-0"
+            $transform="translateY(50%)"
+            $zIndex="in-front"
             $right={asset.right}
             $alignItems="center"
             $justifyContent="center"
@@ -80,7 +82,9 @@ export const NationalCurriculumInsightsConfidence = ({
         ))}
         <OakFlex
           $position="absolute"
-          $bottom="spacing-4"
+          $bottom="spacing-0"
+          $transform="translateY(50%)"
+          $zIndex="in-front"
           $right="spacing-8"
           $display={["flex", "none"]}
           $alignItems="center"
@@ -101,7 +105,8 @@ export const NationalCurriculumInsightsConfidence = ({
         $flexDirection="column"
         $gap="spacing-24"
         $ph={["spacing-16", "spacing-20"]}
-        $pv="spacing-24"
+        $pt={["spacing-56", "spacing-64"]}
+        $pb="spacing-24"
         $background="bg-decorative5-very-subdued"
         $borderRadius="border-radius-m2"
       >

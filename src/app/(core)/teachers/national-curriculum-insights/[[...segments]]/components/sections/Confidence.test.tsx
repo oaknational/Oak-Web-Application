@@ -152,6 +152,14 @@ it("reserves space above the callout for the decorative artwork", () => {
   expect(artwork.nextElementSibling).toContainElement(
     screen.getByRole("link", { name: section.cta.label }),
   );
+  const mobileArtwork = container.querySelector(
+    'img[src*="confidence-confetti-mobile"]',
+  )!.parentElement!;
+  expect(mobileArtwork).toHaveStyle({
+    bottom: "0rem",
+    transform: "translateY(50%)",
+  });
+  expect(artwork.nextElementSibling).toHaveStyle({ paddingTop: "3.5rem" });
 });
 
 it("rejects incomplete callouts before rendering", () => {

@@ -91,6 +91,25 @@ const hubFixture = {
 };
 
 describe("nationalCurriculumInsightsGroq", () => {
+  it("reads one shared subject link list for all page modules", () => {
+    expect(nationalCurriculumInsightsSubjectBySlugQuery).toContain(
+      ".subjectOverviewLinks[",
+    );
+    expect(nationalCurriculumInsightsHubQuery).toContain(
+      ".subjectOverviewLinks[",
+    );
+    expect(nationalCurriculumInsightsHubQuery).not.toContain(
+      "links[defined(subject->_id)]",
+    );
+  });
+
+  it("resolves editorial videos and their transcripts through Sanity", () => {
+    expect(nationalCurriculumInsightsHubQuery).toContain('"video": video->');
+    expect(nationalCurriculumInsightsHubQuery).toContain("playbackId");
+    expect(nationalCurriculumInsightsHubQuery).toContain(
+      '"transcript": transcript',
+    );
+  });
   beforeEach(() => {
     jest.clearAllMocks();
     mockCreateClient.mockReturnValue({ fetch: mockFetch } as never);
@@ -185,7 +204,7 @@ describe("nationalCurriculumInsightsGroq", () => {
   ])(
     "resolves subject overview links using the page's document perspective",
     (query) => {
-      expect(query).toContain("links[defined(subject->_id)]");
+      expect(query).toContain("subjectOverviewLinks[defined(subject->_id)]");
       expect(query).toContain('"subjectSlug": subject->slug.current');
     },
   );

@@ -309,17 +309,22 @@ const nationalCurriculumInsightsConfidenceSectionSchema = z.object({
   cta: CTASchema,
 });
 
-const nationalCurriculumInsightsImageTextSectionSchema = z.object({
-  __typename: z.literal("NationalCurriculumInsightsImageTextSection"),
-  heading: z.string().min(1),
-  bodyPortableText: portableTextSchema,
-  image: imageSchema,
-  imagePosition: z.enum(["left", "right"]),
-  mirrorImage: z.boolean().nullable().optional(),
-  background: z.enum(["white", "turquoise", "yellow", "green"]),
-  ctaLabel: z.string().min(1).nullable().optional(),
-  ctaHref: z.string().min(1).nullable().optional(),
-});
+const nationalCurriculumInsightsImageTextSectionSchema = z
+  .object({
+    __typename: z.literal("NationalCurriculumInsightsImageTextSection"),
+    heading: z.string().min(1),
+    bodyPortableText: portableTextSchema,
+    image: imageSchema.nullish(),
+    video: videoSchema.nullish(),
+    imagePosition: z.enum(["left", "right"]),
+    mirrorImage: z.boolean().nullable().optional(),
+    background: z.enum(["white", "turquoise", "yellow", "green"]),
+    ctaLabel: z.string().min(1).nullable().optional(),
+    ctaHref: z.string().min(1).nullable().optional(),
+  })
+  .refine(({ image, video }) => Boolean(image || video), {
+    message: "Add an image or video to the editorial section",
+  });
 
 const nationalCurriculumInsightsGuidanceIntroSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsGuidanceIntroSection"),

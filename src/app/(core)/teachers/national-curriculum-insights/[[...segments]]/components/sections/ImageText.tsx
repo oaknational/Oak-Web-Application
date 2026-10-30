@@ -7,6 +7,7 @@ import {
   OakHeading,
   OakImage,
   OakPrimaryButton,
+  OakVideo,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 import { useId } from "react";
@@ -22,6 +23,7 @@ import {
 } from "./shared";
 
 import { getImageDimensions } from "@/components/HooksAndUtils/sanityImageBuilder";
+import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
 const editorialBackground = {
   white: "bg-primary",
@@ -35,6 +37,31 @@ export const NationalCurriculumInsightsImageText = ({
   data,
 }: ContextualSectionProps<"NationalCurriculumInsightsImageTextSection">) => {
   const headingId = useId();
+  const media = section.video ? (
+    <OakVideo
+      videoSlot={
+        <VideoPlayer
+          playbackPolicy="public"
+          playbackId={section.video.video.asset.playbackId}
+          thumbnailTime={section.video.video.asset.thumbTime}
+          title={section.video.title}
+          poster={section.image ? imageUrl(section.image) : undefined}
+          location="marketing"
+          omitBorder
+        />
+      }
+      showTranscript={Boolean(section.video.transcript?.length)}
+      transcript={section.video.transcript}
+    />
+  ) : section.image ? (
+    <OakImage
+      src={imageUrl(section.image)}
+      alt={imageAlt(section.image)}
+      $width="100%"
+      $height="100%"
+      $objectFit={data.route.kind === "guidance" ? "contain" : "cover"}
+    />
+  ) : null;
 
   if (data.route.kind === "guidance") {
     return (
@@ -67,19 +94,19 @@ export const NationalCurriculumInsightsImageText = ({
               <OakBox
                 $width="100%"
                 $maxWidth="spacing-360"
-                $aspectRatio="332 / 259"
-                aria-hidden={section.image.isPresentational || undefined}
+                $aspectRatio={section.video ? undefined : "332 / 259"}
+                aria-hidden={
+                  (!section.video && section.image?.isPresentational) ||
+                  undefined
+                }
                 style={{
-                  transform: section.mirrorImage ? "scaleX(-1)" : undefined,
+                  transform:
+                    !section.video && section.mirrorImage
+                      ? "scaleX(-1)"
+                      : undefined,
                 }}
               >
-                <OakImage
-                  src={imageUrl(section.image)}
-                  alt={imageAlt(section.image)}
-                  $width="100%"
-                  $height="100%"
-                  $objectFit="contain"
-                />
+                {media}
               </OakBox>
             </OakGridArea>
             <OakGridArea
@@ -122,21 +149,20 @@ export const NationalCurriculumInsightsImageText = ({
             <OakBox
               $width="100%"
               $aspectRatio={
-                section.image.asset?._id
-                  ? getImageDimensions(section.image.asset._id, {}).aspectRatio
-                  : 16 / 10
+                section.video
+                  ? undefined
+                  : section.image?.asset?._id
+                    ? getImageDimensions(section.image.asset._id, {})
+                        .aspectRatio
+                    : 16 / 10
               }
               $overflow="hidden"
               $borderRadius="border-radius-m2"
-              aria-hidden={section.image.isPresentational || undefined}
+              aria-hidden={
+                (!section.video && section.image?.isPresentational) || undefined
+              }
             >
-              <OakImage
-                src={imageUrl(section.image)}
-                alt={imageAlt(section.image)}
-                $width="100%"
-                $height="100%"
-                $objectFit="cover"
-              />
+              {media}
             </OakBox>
           </OakGridArea>
           <OakGridArea
