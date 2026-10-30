@@ -43,6 +43,28 @@ it.each(layouts)(
         expect(() => xml2js(xml)).not.toThrow();
         expect(xml).not.toMatch(/\{\{(?:title|url|editorialDate)\}\}/);
         expect(xml).not.toContain("[subject]");
+        if (entry.name.endsWith(".rels")) {
+          const relationships = new DOMParser().parseFromString(
+            xml,
+            "application/xml",
+          );
+          for (const relationship of Array.from(
+            relationships.getElementsByTagName("Relationship"),
+          )) {
+            const target = relationship.getAttribute("Target")!;
+            if (!URL.canParse(target)) continue;
+            const url = new URL(target);
+            if (
+              !["thenational.academy", "www.thenational.academy"].includes(
+                url.hostname,
+              )
+            )
+              continue;
+            expect(url.searchParams.get("utm_source")).toBe("nc_insights");
+            expect(url.searchParams.get("utm_medium")).toBe("document");
+            expect(url.searchParams.get("utm_campaign")).toBe("CAR");
+          }
+        }
       }
     }
     const xml = await zip.file("word/document.xml")!.async("string");

@@ -2,7 +2,6 @@ import { cdata, safeXml } from "@ooxml-tools/xml";
 import type { Element } from "xml-js";
 
 import { writeInsightsDocxRelationships } from "./relationships";
-import { insightsDocumentLink } from "./tracking";
 
 import {
   mapOverElements,
@@ -59,7 +58,7 @@ export const fillInsightsDocxFurniture = async (
     attributes: {
       Id: "rIdInsightsHub",
       Type: "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
-      Target: insightsDocumentLink(new URL(hubUrl)),
+      Target: hubUrl,
       TargetMode: "External",
     },
   });

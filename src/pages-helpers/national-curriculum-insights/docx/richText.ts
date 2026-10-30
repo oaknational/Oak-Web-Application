@@ -2,7 +2,6 @@ import { cdata, safeXml } from "@ooxml-tools/xml";
 import type { Element } from "xml-js";
 
 import { writeInsightsDocxRelationships } from "./relationships";
-import { insightsDocumentLink } from "./tracking";
 
 import {
   generateHash,
@@ -136,7 +135,7 @@ export const createInsightsDocxRichText = (
       return content;
     }
     if (!["https:", "http:", "mailto:"].includes(url.protocol)) return content;
-    const target = insightsDocumentLink(url);
+    const target = url.toString();
     const key = generateHash(target);
     links[key] = target;
     return safeXml`<w:hyperlink r:id="rId${key}">${content}</w:hyperlink>`;
