@@ -27,9 +27,24 @@ export default async function generate(
 ) {
   const threads = createThreadOptions(data.units);
 
-  const links = await insertLinks(zip, {
-    onlineCurriculum: `https://www.thenational.academy/teachers/programmes/${getSubjectPhaseSlug({ subject: slugs.subjectSlug, phaseSlug: slugs.phaseSlug!, examBoardSlug: slugs.ks4OptionSlug })}/units`,
+  const subjectPhaseSlug = getSubjectPhaseSlug({
+    subject: slugs.subjectSlug,
+    phaseSlug: slugs.phaseSlug!,
+    examBoardSlug: slugs.ks4OptionSlug,
   });
+
+  const links = await insertLinks(
+    zip,
+    {
+      onlineCurriculum: `https://www.thenational.academy/teachers/programmes/${subjectPhaseSlug}/units`,
+    },
+    {
+      utm_source: "curriculum_plan",
+      utm_medium: "document",
+      utm_campaign: `${slugs.subjectSlug}_${slugs.phaseSlug}_curriculum_plan`,
+    },
+  );
+
   const images = await insertImages(zip, {
     curriculumScreenshot: join(
       process.cwd(),

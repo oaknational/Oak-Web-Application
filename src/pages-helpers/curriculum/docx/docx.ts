@@ -9,6 +9,7 @@ import { ElementCompact, type Element } from "xml-js";
 import { collapseFragments, safeXml } from "@ooxml-tools/xml";
 
 import { jsonXmlToXmlString, xmlElementToJson, xmlRootToJson } from "./xml";
+import { addQueryParamsToUrl, escapeXml } from "./utils";
 
 import { notUndefined } from "@/utils/curriculum/types";
 
@@ -181,6 +182,12 @@ export async function insertImages<
 export async function insertLinks<T extends Record<string, string>>(
   zip: JSZipCached,
   links: T,
+  queryParams?: {
+    years?: string;
+    utm_source?: string;
+    utm_medium?: string;
+    utm_campaign?: string;
+  },
 ) {
   const DOC_RELS = "word/_rels/document.xml.rels";
   const json = await zip.readJson(DOC_RELS);
@@ -194,7 +201,8 @@ export async function insertLinks<T extends Record<string, string>>(
   >;
 
   const elements = Object.entries(links).map(([key, url]) => {
-    const linkHash = generateHash(url);
+    const urlWithQuery = addQueryParamsToUrl(url, queryParams);
+    const linkHash = generateHash(urlWithQuery);
     const id = "rId" + linkHash;
     output[key as keyof T] = id;
 
@@ -204,11 +212,13 @@ export async function insertLinks<T extends Record<string, string>>(
       existingIds.push(id);
     }
 
+    const escapedUrl = escapeXml(urlWithQuery);
+
     return xmlElementToJson(safeXml`
       <Relationship
         Id="${id}"
         Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
-        Target="${url}"
+        Target="${escapedUrl}"
         TargetMode="External"
       />
     `);

@@ -385,15 +385,24 @@ async function buildYear(
     ),
   });
 
-  const links = await insertLinks(zip, {
-    interactiveSequence: `https://www.thenational.academy/teachers/programmes/${getSubjectPhaseSlug(
-      {
-        subject: slugs.subjectSlug,
-        phaseSlug: slugs.phaseSlug!,
-        examBoardSlug: slugs.ks4OptionSlug,
-      },
-    )}/units`,
+  const subjectPhaseSlug = getSubjectPhaseSlug({
+    subject: slugs.subjectSlug,
+    phaseSlug: slugs.phaseSlug!,
+    examBoardSlug: slugs.ks4OptionSlug,
   });
+
+  const links = await insertLinks(
+    zip,
+    {
+      interactiveSequence: `https://www.thenational.academy/teachers/programmes/${subjectPhaseSlug}/units`,
+    },
+    {
+      years: year,
+      utm_source: "curriculum_plan",
+      utm_medium: "document",
+      utm_campaign: `${slugs.subjectSlug}_${slugs.phaseSlug}_curriculum_plan`,
+    },
+  );
 
   const units = removeDups(unitsInput);
 

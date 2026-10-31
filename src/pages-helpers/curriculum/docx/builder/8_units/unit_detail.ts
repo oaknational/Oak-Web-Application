@@ -309,15 +309,24 @@ export async function buildUnit(
   );
 
   const resolvedUnitSlug = unitOption?.slug ?? unit.slug;
+  const teacherProgrammeSlug = createTeacherProgrammeSlug(
+    unit,
+    slugs.ks4OptionSlug,
+    slugs.tierSlug,
+    unit?.pathway_slug ?? undefined,
+  );
 
-  const links = await insertLinks(zip, {
-    onlineResources: `https://www.thenational.academy/teachers/programmes/${createTeacherProgrammeSlug(
-      unit,
-      slugs.ks4OptionSlug,
-      slugs.tierSlug,
-      unit?.pathway_slug ?? undefined,
-    )}/units/${resolvedUnitSlug}/lessons`,
-  });
+  const links = await insertLinks(
+    zip,
+    {
+      onlineResources: `https://www.thenational.academy/teachers/programmes/${teacherProgrammeSlug}/units/${resolvedUnitSlug}/lessons`,
+    },
+    {
+      utm_source: "curriculum_plan",
+      utm_medium: "document",
+      utm_campaign: `${unit.subject_slug}_${unit.phase_slug}_curriculum_plan`,
+    },
+  );
 
   const isUnitDescriptionEnabled = getIsUnitDescriptionEnabled(unit);
 
