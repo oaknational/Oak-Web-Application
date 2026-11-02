@@ -24,7 +24,7 @@ exports[`AboutUsCalloutWithCta renders custom content correctly 1`] = `
                 Join the Oak research panel
               </h1>
               <p
-                class="sc-hGPAwl lcuFqC"
+                class="sc-hGPAwl fKoyMR"
               >
                 Your feedback is essential to help us understand the realities of teaching and learning. By listening to teachers like you, we learn about your preferences, challenges and needs, and can use these insights to shape Oak curriculum resources, lessons and tools.
               </p>
@@ -127,7 +127,7 @@ exports[`AboutUsCalloutWithCta renders default content correctly 1`] = `
                 Discover how Oak can support you
               </h2>
               <p
-                class="sc-hGPAwl lcuFqC"
+                class="sc-hGPAwl fKoyMR"
               >
                 To explore the impact Oak’s curricula could have in your school or trust, fill out the form below and one of our experts will be in touch shortly.
               </p>
