@@ -46,8 +46,14 @@ export default function JoinResearchPanelInfo({
     <NewGutterMaxWidth>
       <OakGrid $rg="spacing-32" $pv={["spacing-56", "spacing-80"]}>
         <OakGridArea $colSpan={[12, 10, 6]} $colStart={[1, 2, 1]}>
-          <OakFlex $flexGrow={1} $aspectRatio={"4/3"}>
+          <OakFlex
+            $flexGrow={1}
+            $aspectRatio={"4/3"}
+            $borderRadius="border-radius-m2"
+            $overflow="hidden"
+          >
             <OakImage
+              $objectFit="cover"
               src={getProxiedSanityAssetUrl(image.asset?.url) ?? ""}
               alt={image.altText ?? ""}
             />
