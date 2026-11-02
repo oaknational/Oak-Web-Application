@@ -75,6 +75,8 @@ export const UnitView = (props: UnitViewProps) => {
         subjectPhaseSlug={subjectPhaseSlug}
         keyStageSlug={props.keyStageSlug}
         keyStageTitle={props.keyStageTitle}
+        tierTitle={props.tierTitle}
+        pathwayTitle={props.pathwayTitle}
         lessons={props.lessons}
         unitIndex={props.unitIndex}
         unitCount={props.unitCount}
