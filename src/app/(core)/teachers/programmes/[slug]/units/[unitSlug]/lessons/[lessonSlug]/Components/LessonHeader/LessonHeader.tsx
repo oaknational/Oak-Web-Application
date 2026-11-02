@@ -12,6 +12,7 @@ import { TeachersLessonOverviewAdjacentLesson } from "@/node-lib/curriculum-api-
 import { getBreakpoint } from "@/styles/utils/responsive";
 import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
 
 export type LessonHeaderProps = Omit<LargeHeaderProps, "layoutVariant"> & {
   currentLessonSlug: string;
@@ -34,9 +35,9 @@ const LessonHeader = (props: LessonHeaderProps) => {
     georestricted,
     ...restProps
   } = props;
-  const { lessonResourceDownloadStarted } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
+  const { lessonResourceDownloadStarted, lessonAccessed } =
+    useTeacherBrowseAnalytics((store) => store.track);
+  const { lessonState } = useProgrammeState();
 
   return (
     <>
@@ -62,6 +63,15 @@ const LessonHeader = (props: LessonHeaderProps) => {
                   programmeSlug,
                   unitSlug,
                 }),
+                onClick: () =>
+                  lessonAccessed({
+                    componentType: "header_button",
+                    lessonName: prevLesson.lessonTitle,
+                    lessonSlug: prevLesson.lessonSlug,
+                    lessonReleaseCohort: "2023-2026",
+                    lessonReleaseDate:
+                      lessonState?.lesson.lessonReleaseDate ?? "unknown",
+                  }),
               }
             : undefined
         }
@@ -74,6 +84,15 @@ const LessonHeader = (props: LessonHeaderProps) => {
                   unitSlug,
                   programmeSlug,
                 }),
+                onClick: () =>
+                  lessonAccessed({
+                    componentType: "header_button",
+                    lessonName: nextLesson.lessonTitle,
+                    lessonSlug: nextLesson.lessonSlug,
+                    lessonReleaseCohort: "2023-2026",
+                    lessonReleaseDate:
+                      lessonState?.lesson.lessonReleaseDate ?? "unknown",
+                  }),
               }
             : undefined
         }
