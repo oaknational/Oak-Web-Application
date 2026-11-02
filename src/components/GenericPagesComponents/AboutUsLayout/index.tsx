@@ -19,10 +19,14 @@ const NewsletterWrapper = styled(OakFlex)`
 `;
 
 export type AboutUsLayoutProps = {
+  showNewsletter?: boolean;
   children: ReactNode;
 };
 
-export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
+export function AboutUsLayout({
+  children,
+  showNewsletter = true,
+}: Readonly<AboutUsLayoutProps>) {
   const newsletterFormProps = useNewsletterForm();
   const router = useRouter();
   const currentPath = router.pathname;
@@ -95,17 +99,19 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
           items={filteredExploreItems}
         />
       </OakBox>
-      <OakBox
-        id="newsletter-signup"
-        $background={"bg-decorative1-subdued"}
-        $pv={"spacing-56"}
-      >
-        <NewGutterMaxWidth>
-          <NewsletterWrapper>
-            <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
-          </NewsletterWrapper>
-        </NewGutterMaxWidth>
-      </OakBox>
+      {showNewsletter && (
+        <OakBox
+          id="newsletter-signup"
+          $background={"bg-decorative1-subdued"}
+          $pv={"spacing-56"}
+        >
+          <NewGutterMaxWidth>
+            <NewsletterWrapper>
+              <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
+            </NewsletterWrapper>
+          </NewGutterMaxWidth>
+        </OakBox>
+      )}
     </OakBox>
   );
 }
