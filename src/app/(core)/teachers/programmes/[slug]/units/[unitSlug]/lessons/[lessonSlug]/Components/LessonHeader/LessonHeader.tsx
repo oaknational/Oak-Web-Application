@@ -56,7 +56,6 @@ const LessonHeader = (props: LessonHeaderProps) => {
         prev={
           prevLesson
             ? {
-                title: prevLesson.lessonTitle,
                 href: resolveOakHref({
                   page: "lesson-overview",
                   lessonSlug: prevLesson.lessonSlug,
@@ -69,7 +68,6 @@ const LessonHeader = (props: LessonHeaderProps) => {
         next={
           nextLesson
             ? {
-                title: nextLesson.lessonTitle,
                 href: resolveOakHref({
                   page: "lesson-overview",
                   lessonSlug: nextLesson.lessonSlug,

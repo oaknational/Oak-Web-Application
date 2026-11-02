@@ -132,7 +132,6 @@ const UnitHeader = (props: UnitHeaderProps) => {
         prev={
           prevUnit
             ? {
-                title: prevUnit?.title,
                 href: resolveOakHref({
                   page: "unit-overview",
                   unitSlug: prevUnit.slug,
@@ -166,7 +165,6 @@ const UnitHeader = (props: UnitHeaderProps) => {
         next={
           nextUnit
             ? {
-                title: nextUnit.title,
                 href: resolveOakHref({
                   page: "unit-overview",
                   unitSlug: nextUnit.slug,

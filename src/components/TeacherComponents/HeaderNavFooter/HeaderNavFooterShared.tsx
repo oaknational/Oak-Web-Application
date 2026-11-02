@@ -11,12 +11,10 @@ export type BaseHeaderNavFooterProps = {
   viewHref: string;
   next?: {
     href: string;
-    title: string;
     onClick?: () => void;
   };
   prev?: {
     href: string;
-    title: string;
     onClick?: () => void;
   };
   downloadButton?: (isStuck: boolean) => React.ReactElement;
