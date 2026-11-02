@@ -24,6 +24,7 @@ import {
   CurriculumUnitsFormattedData,
   formatCurriculumUnitsData,
 } from "../../tab-helpers";
+import { addQueryParamsToUrl } from "../../utils";
 
 import { buildUnit } from "./unit_detail";
 
@@ -391,11 +392,8 @@ async function buildYear(
     examBoardSlug: slugs.ks4OptionSlug,
   });
 
-  const links = await insertLinks(
-    zip,
-    {
-      interactiveSequence: `https://www.thenational.academy/teachers/programmes/${subjectPhaseSlug}/units`,
-    },
+  const interactiveSequenceLinkWithQueryParams = addQueryParamsToUrl(
+    `https://www.thenational.academy/teachers/programmes/${subjectPhaseSlug}/units`,
     {
       years: year,
       utm_source: "curriculum_plan",
@@ -403,6 +401,10 @@ async function buildYear(
       utm_campaign: `${slugs.subjectSlug}_${slugs.phaseSlug}_curriculum_plan`,
     },
   );
+
+  const links = await insertLinks(zip, {
+    interactiveSequence: interactiveSequenceLinkWithQueryParams,
+  });
 
   const units = removeDups(unitsInput);
 

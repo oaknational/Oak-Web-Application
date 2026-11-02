@@ -11,6 +11,7 @@ import {
   wrapInLinkTo,
 } from "../../docx";
 import { createUnitsListingByYear } from "../../tab-helpers";
+import { addQueryParamsToUrl } from "../../utils";
 
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
@@ -316,17 +317,18 @@ export async function buildUnit(
     unit?.pathway_slug ?? undefined,
   );
 
-  const links = await insertLinks(
-    zip,
-    {
-      onlineResources: `https://www.thenational.academy/teachers/programmes/${teacherProgrammeSlug}/units/${resolvedUnitSlug}/lessons`,
-    },
+  const onlineResourcesLinkWithQueryParams = addQueryParamsToUrl(
+    `https://www.thenational.academy/teachers/programmes/${teacherProgrammeSlug}/units/${resolvedUnitSlug}/lessons`,
     {
       utm_source: "curriculum_plan",
       utm_medium: "document",
       utm_campaign: `${unit.subject_slug}_${unit.phase_slug}_curriculum_plan`,
     },
   );
+
+  const links = await insertLinks(zip, {
+    onlineResources: onlineResourcesLinkWithQueryParams,
+  });
 
   const isUnitDescriptionEnabled = getIsUnitDescriptionEnabled(unit);
 

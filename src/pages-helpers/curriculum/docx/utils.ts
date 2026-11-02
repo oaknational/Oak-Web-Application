@@ -10,12 +10,15 @@ export function addQueryParamsToUrl(
   if (!queryParams) {
     return url;
   }
+
   const searchParams = new URLSearchParams();
+
   for (const [key, value] of Object.entries(queryParams)) {
     if (value) {
-      searchParams.set(key, value);
+      searchParams.set(key, value.replaceAll("-", "_"));
     }
   }
+
   return `${url}?${searchParams.toString()}`;
 }
 

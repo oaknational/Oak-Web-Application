@@ -17,6 +17,7 @@ import {
   insertNumbering,
 } from "../docx";
 import { createThreadOptions } from "../tab-helpers";
+import { addQueryParamsToUrl } from "../utils";
 
 import { CombinedCurriculumData } from "@/utils/curriculum/types";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
@@ -33,17 +34,18 @@ export default async function generate(
     examBoardSlug: slugs.ks4OptionSlug,
   });
 
-  const links = await insertLinks(
-    zip,
-    {
-      onlineCurriculum: `https://www.thenational.academy/teachers/programmes/${subjectPhaseSlug}/units`,
-    },
+  const onlineCurriculumLinkWithQueryParams = addQueryParamsToUrl(
+    `https://www.thenational.academy/teachers/programmes/${subjectPhaseSlug}/units`,
     {
       utm_source: "curriculum_plan",
       utm_medium: "document",
       utm_campaign: `${slugs.subjectSlug}_${slugs.phaseSlug}_curriculum_plan`,
     },
   );
+
+  const links = await insertLinks(zip, {
+    onlineCurriculum: onlineCurriculumLinkWithQueryParams,
+  });
 
   const images = await insertImages(zip, {
     curriculumScreenshot: join(

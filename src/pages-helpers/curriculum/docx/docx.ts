@@ -9,7 +9,7 @@ import { ElementCompact, type Element } from "xml-js";
 import { collapseFragments, safeXml } from "@ooxml-tools/xml";
 
 import { jsonXmlToXmlString, xmlElementToJson, xmlRootToJson } from "./xml";
-import { addQueryParamsToUrl, escapeXml } from "./utils";
+import { escapeXml } from "./utils";
 
 import { notUndefined } from "@/utils/curriculum/types";
 
@@ -182,12 +182,6 @@ export async function insertImages<
 export async function insertLinks<T extends Record<string, string>>(
   zip: JSZipCached,
   links: T,
-  queryParams?: {
-    years?: string;
-    utm_source?: string;
-    utm_medium?: string;
-    utm_campaign?: string;
-  },
 ) {
   const DOC_RELS = "word/_rels/document.xml.rels";
   const json = await zip.readJson(DOC_RELS);
@@ -201,8 +195,7 @@ export async function insertLinks<T extends Record<string, string>>(
   >;
 
   const elements = Object.entries(links).map(([key, url]) => {
-    const urlWithQuery = addQueryParamsToUrl(url, queryParams);
-    const linkHash = generateHash(urlWithQuery);
+    const linkHash = generateHash(url);
     const id = "rId" + linkHash;
     output[key as keyof T] = id;
 
@@ -212,7 +205,7 @@ export async function insertLinks<T extends Record<string, string>>(
       existingIds.push(id);
     }
 
-    const escapedUrl = escapeXml(urlWithQuery);
+    const escapedUrl = escapeXml(url);
 
     return xmlElementToJson(safeXml`
       <Relationship
