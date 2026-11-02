@@ -1,3 +1,17 @@
+# [1.1267.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1266.0...v1.1267.0) (2026-11-02)
+
+
+### Bug Fixes
+
+* add missing px ([5ccf44e](https://github.com/oaknational/Oak-Web-Application/commit/5ccf44edf2ce7100b0c8611b98f7bb081104c3c2))
+
+
+### Features
+
+* add fetch priority high to homepage hero image ([3277ebb](https://github.com/oaknational/Oak-Web-Application/commit/3277ebbe577e38a33befb46b5b23ee4913e8eeca))
+* add priority to header image ([7c63d56](https://github.com/oaknational/Oak-Web-Application/commit/7c63d56cb4375881f678f8d683cfcd76045fbd74))
+* add sizes prop to homepage hero ([85698cb](https://github.com/oaknational/Oak-Web-Application/commit/85698cb6f6e926f920076d87186d8d527e595ecf))
+
 # [1.1266.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1265.0...v1.1266.0) (2026-10-30)
 
 
