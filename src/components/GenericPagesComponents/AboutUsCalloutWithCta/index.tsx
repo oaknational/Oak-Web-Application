@@ -23,6 +23,7 @@ export type AboutUsCalloutWithCtaProps = {
     href: string;
   };
   headingTag?: OakHeadingProps["tag"];
+  headingFont?: OakHeadingProps["$font"];
   title?: string;
   text?: string | PortableTextJSON;
   image?: Image;
@@ -40,6 +41,7 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
 export function AboutUsCalloutWithCta({
   link,
   headingTag = "h2",
+  headingFont = ["heading-5", "heading-3", "heading-3"],
   title = "Discover how Oak can support you",
   text = "To explore the impact Oak’s curricula could have in your school or trust, fill out the form below and one of our experts will be in touch shortly.",
   image = {
@@ -61,10 +63,7 @@ export function AboutUsCalloutWithCta({
             $justifyContent="center"
           >
             <OakFlex $flexDirection="column" $gap="spacing-24">
-              <OakHeading
-                $font={["heading-5", "heading-3", "heading-3"]}
-                tag={headingTag}
-              >
+              <OakHeading $font={headingFont} tag={headingTag}>
                 {title}
               </OakHeading>
               {typeof text === "string" ? (
