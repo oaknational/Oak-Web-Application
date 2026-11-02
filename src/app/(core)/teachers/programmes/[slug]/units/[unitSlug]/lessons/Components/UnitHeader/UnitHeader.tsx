@@ -22,7 +22,7 @@ import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNot
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { UnitDownloadExistence } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
-import { getKeyStageTitle } from "@/utils/curriculum/formatting";
+import { getUnitAnalyticsProperties } from "@/context/TeacherBrowseAnalytics/utils/getAnalyticsProperties";
 
 export type UnitHeaderProps = Omit<
   CompactHeaderProps,
@@ -143,19 +143,9 @@ const UnitHeader = (props: UnitHeaderProps) => {
                     navigationType: "across",
                     unitContext: unitState
                       ? {
+                          ...getUnitAnalyticsProperties(unitState),
                           unitName: prevUnit.title,
                           unitSlug: prevUnit.slug,
-                          tierName: unitState.tierTitle,
-                          examBoard: unitState.examBoardTitle,
-                          pathway: unitState.pathwayTitle,
-                          yearGroupName: unitState.yearGroupTitle,
-                          yearGroupSlug: unitState.yearGroupSlug,
-                          keyStageTitle: getKeyStageTitle(
-                            unitState.keyStageSlug,
-                          ),
-                          keyStageSlug: unitState.keyStageSlug,
-                          subjectTitle: unitState.subjectTitle,
-                          subjectSlug: unitState.subjectSlug,
                         }
                       : undefined,
                   }),
@@ -176,19 +166,9 @@ const UnitHeader = (props: UnitHeaderProps) => {
                     navigationType: "across",
                     unitContext: unitState
                       ? {
+                          ...getUnitAnalyticsProperties(unitState),
                           unitName: nextUnit.title,
                           unitSlug: nextUnit.slug,
-                          tierName: unitState.tierTitle,
-                          examBoard: unitState.examBoardTitle,
-                          pathway: unitState.pathwayTitle,
-                          yearGroupName: unitState.yearGroupTitle,
-                          yearGroupSlug: unitState.yearGroupSlug,
-                          keyStageTitle: getKeyStageTitle(
-                            unitState.keyStageSlug,
-                          ),
-                          keyStageSlug: unitState.keyStageSlug,
-                          subjectTitle: unitState.subjectTitle,
-                          subjectSlug: unitState.subjectSlug,
                         }
                       : undefined,
                   }),
