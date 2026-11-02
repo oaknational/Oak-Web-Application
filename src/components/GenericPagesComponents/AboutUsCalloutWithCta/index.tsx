@@ -33,7 +33,9 @@ export type AboutUsCalloutWithCtaProps = {
 const portableTextComponents: Partial<PortableTextReactComponents> = {
   block: {
     normal: (props) => {
-      return <OakP $font="body-1">{props.children}</OakP>;
+      return (
+        <OakP $font={["body-2", "body-1", "body-1"]}>{props.children}</OakP>
+      );
     },
   },
 };
@@ -67,7 +69,7 @@ export function AboutUsCalloutWithCta({
                 {title}
               </OakHeading>
               {typeof text === "string" ? (
-                <OakP $font="body-1">{text}</OakP>
+                <OakP $font={["body-2", "body-1", "body-1"]}>{text}</OakP>
               ) : (
                 <PortableTextWithDefaults
                   value={text}
