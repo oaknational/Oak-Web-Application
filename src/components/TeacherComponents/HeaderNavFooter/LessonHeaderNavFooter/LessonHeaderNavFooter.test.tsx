@@ -26,8 +26,8 @@ describe("LessonHeaderNavFooter", () => {
     render(
       <LessonHeaderNavFooter
         {...defaultProps}
-        prevHref="prevUrl"
-        nextHref="nextUrl"
+        prev={{ title: "Lesson title", href: "prevUrl" }}
+        next={{ title: "Lesson title", href: "nextUrl" }}
       />,
     );
 

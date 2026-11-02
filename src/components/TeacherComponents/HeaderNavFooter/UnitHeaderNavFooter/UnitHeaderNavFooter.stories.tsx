@@ -19,8 +19,8 @@ type Story = StoryObj<typeof UnitHeaderNavFooter>;
 export const Default: Story = {
   args: {
     backgroundColorLevel: 3,
-    prevHref: "www.google.com",
-    nextHref: "www.google.com",
+    prev: { title: "Lesson title", href: "www.google.com" },
+    next: { title: "Lesson title", href: "www.google.com" },
     viewHref: "www.google.com",
     title: "Unit title",
     downloadButton: () => <OakPrimaryButton>Action</OakPrimaryButton>,

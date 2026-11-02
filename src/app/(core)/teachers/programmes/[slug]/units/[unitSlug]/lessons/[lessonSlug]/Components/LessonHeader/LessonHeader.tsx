@@ -53,24 +53,30 @@ const LessonHeader = (props: LessonHeaderProps) => {
           unitSlug,
           programmeSlug,
         })}
-        prevHref={
+        prev={
           prevLesson
-            ? resolveOakHref({
-                page: "lesson-overview",
-                lessonSlug: prevLesson.lessonSlug,
-                programmeSlug,
-                unitSlug,
-              })
+            ? {
+                title: prevLesson.lessonTitle,
+                href: resolveOakHref({
+                  page: "lesson-overview",
+                  lessonSlug: prevLesson.lessonSlug,
+                  programmeSlug,
+                  unitSlug,
+                }),
+              }
             : undefined
         }
-        nextHref={
+        next={
           nextLesson
-            ? resolveOakHref({
-                page: "lesson-overview",
-                lessonSlug: nextLesson.lessonSlug,
-                unitSlug,
-                programmeSlug,
-              })
+            ? {
+                title: nextLesson.lessonTitle,
+                href: resolveOakHref({
+                  page: "lesson-overview",
+                  lessonSlug: nextLesson.lessonSlug,
+                  unitSlug,
+                  programmeSlug,
+                }),
+              }
             : undefined
         }
         downloadButton={
