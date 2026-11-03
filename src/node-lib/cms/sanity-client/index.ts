@@ -30,6 +30,7 @@ import {
   caseStudyPageSchema,
   nationalCurriculumInsightsSubjectLookupParamsSchema,
   implementationGuidesSchema,
+  joinResearchPanelPageSchema,
 } from "../../../common-lib/cms-types";
 import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
 import getProxiedSanityAssetUrl from "../../../common-lib/urls/getProxiedSanityAssetUrl";
@@ -193,6 +194,14 @@ const getSanityClient = () => ({
       const whoWeArePageData = result?.allNewAboutCorePageGetInvolved?.[0];
       return whoWeArePageData;
     },
+  ),
+  joinResearchPanelPage: getSingleton(
+    sanityGraphqlApi.joinResearchPanelPage,
+    joinResearchPanelPageSchema,
+    (result) => ({
+      content: result?.content?.[0],
+      blogs: result?.blogs,
+    }),
   ),
   contactPage: getSingleton(
     sanityGraphqlApi.contactCorePage,

@@ -79,6 +79,7 @@ const teachersLessonOverviewFixture = (
     orderInUnit: 3,
     unitTotalLessonCount: 6,
     excludedFromTeachingMaterials: false,
+    shouldHideCreateWithAi: false,
     subjectCategories: null,
     previousLesson: null,
     nextLesson: null,

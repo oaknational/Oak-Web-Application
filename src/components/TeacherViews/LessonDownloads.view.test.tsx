@@ -14,6 +14,11 @@ import {
 import lessonDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { resolveOakHref } from "@/common-lib/urls";
+import {
+  LS_KEY_EMAIL,
+  LS_KEY_SCHOOL,
+  LS_KEY_TERMS,
+} from "@/config/localStorageKeys";
 
 const renderWithProvidersFn = renderWithProviders();
 
@@ -72,6 +77,10 @@ describe("Hiding 'Your details", () => {
       ...mockLoggedIn,
       user: mockTeacherUserWithDownloadAccess,
     });
+    window.localStorage.setItem(
+      LS_KEY_SCHOOL,
+      JSON.stringify({ schoolId: "notListed", schoolName: "notListed" }),
+    );
     const result = await render(
       <LessonDownloads lesson={lesson} breadcrumbsSlot={breadcrumbsSlot} />,
     );
@@ -79,6 +88,26 @@ describe("Hiding 'Your details", () => {
     expect(
       result.queryByLabelText("School (required)"),
     ).not.toBeInTheDocument();
+  });
+
+  it("should show details for an onboarded user without school details", async () => {
+    setUseUserReturn({
+      ...mockLoggedIn,
+      user: mockTeacherUserWithDownloadAccess,
+    });
+    window.localStorage.setItem(
+      LS_KEY_SCHOOL,
+      JSON.stringify({ schoolId: "", schoolName: "" }),
+    );
+    window.localStorage.removeItem(LS_KEY_EMAIL);
+    window.localStorage.removeItem(LS_KEY_TERMS);
+    fetchMock.mockResponseOnce("", { status: 204 });
+
+    const result = await render(
+      <LessonDownloads lesson={lesson} breadcrumbsSlot={breadcrumbsSlot} />,
+    );
+
+    expect(result.getByLabelText("School (required)")).toBeInTheDocument();
   });
 
   it.each([

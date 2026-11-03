@@ -8,6 +8,14 @@ import { createUnit } from "@/fixtures/curriculum/unit";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { useBrowseFilters } from "@/context/BrowseFilters";
 import { createFilter } from "@/context/BrowseFilters/utils/fixtures";
+import { highlightedUnitCount } from "@/utils/curriculum/filtering";
+
+jest.mock("@/utils/curriculum/filtering", () => ({
+  ...jest.requireActual("@/utils/curriculum/filtering"),
+  highlightedUnitCount: jest.fn(
+    jest.requireActual("@/utils/curriculum/filtering").highlightedUnitCount,
+  ),
+}));
 
 jest.mock("@/context/BrowseFilters", () => ({
   useBrowseFilters: jest.fn(),
@@ -68,6 +76,57 @@ const mockFns = {
 };
 
 describe("BrowseFiltersThreads", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("does not count highlighted units when no thread is selected", () => {
+    mockUseBrowseFilters.mockReturnValue({
+      filters: defaultFilters,
+      onChangeFilters: jest.fn(),
+      ...mockFns,
+    });
+
+    render(<BrowseFiltersThreads data={unitsData} />);
+
+    expect(highlightedUnitCount).not.toHaveBeenCalled();
+  });
+
+  it("counts once across thread options and reuses the count on unchanged rerenders", () => {
+    const filters = { ...defaultFilters, threads: ["thread1"] };
+    mockUseBrowseFilters.mockReturnValue({
+      filters,
+      onChangeFilters: jest.fn(),
+      ...mockFns,
+    });
+
+    const { rerender, getByText } = render(
+      <BrowseFiltersThreads data={unitsData} />,
+    );
+
+    expect(highlightedUnitCount).toHaveBeenCalledTimes(1);
+    expect(highlightedUnitCount).toHaveBeenCalledWith(
+      unitsData.yearData,
+      filters,
+      filters.threads,
+    );
+    expect(getByText("1 unit highlighted")).toBeInTheDocument();
+
+    rerender(<BrowseFiltersThreads data={unitsData} />);
+
+    expect(highlightedUnitCount).toHaveBeenCalledTimes(1);
+
+    mockUseBrowseFilters.mockReturnValue({
+      filters: { ...filters, years: ["11"] },
+      onChangeFilters: jest.fn(),
+      ...mockFns,
+    });
+    rerender(<BrowseFiltersThreads data={unitsData} />);
+
+    expect(highlightedUnitCount).toHaveBeenCalledTimes(2);
+    expect(getByText("0 highlighted")).toBeInTheDocument();
+  });
+
   it("renders the legend and all thread options", () => {
     mockUseBrowseFilters.mockReturnValue({
       filters: defaultFilters,

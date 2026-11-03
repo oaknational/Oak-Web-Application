@@ -1,6 +1,7 @@
 import { UnitView } from "./Components/UnitView";
 import {
   getCachedUnitData,
+  getUnitDownloadExistence,
   redirectUnitPageIfNeeded,
 } from "./getCachedUnitData";
 
@@ -9,6 +10,7 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForUnit } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 
 type LessonsPageParams = { slug: string; unitSlug: string };
 
@@ -24,13 +26,16 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
   const data = await getCachedUnitData(programmeSlug, unitSlug);
 
   const programmeState = getProgrammeStateForUnit(data);
+  const unitDownloadExistence = await getUnitDownloadExistence(
+    getUnitDownloadFileId(data.unitTitle, data.unitvariantId),
+  );
 
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={programmeState}
       accessLevel="unit"
     >
-      <UnitView {...data} />
+      <UnitView {...data} unitDownloadExistence={unitDownloadExistence} />
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };

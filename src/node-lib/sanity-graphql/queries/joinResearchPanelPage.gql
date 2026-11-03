@@ -1,0 +1,88 @@
+query joinResearchPanelPage(
+  $isDraftFilter: Sanity_DocumentFilter
+  $blogCategorySlug: String
+) {
+  content: allNewAboutCorePageJoinResearchPanel(
+    where: {
+      _: $isDraftFilter
+      _id: { matches: "*newAboutCorePage.joinResearchPanel" }
+    }
+  ) {
+    id: _id
+    blocks {
+      __typename
+      ... on JoinResearchPanelPageHeader {
+        title
+        bodyRaw
+        image {
+          ...ImageWithAltText
+        }
+        button {
+          ...CTA
+        }
+      }
+      ... on JoinResearchPanelPageCallout {
+        title
+        items {
+          icon {
+            ...ImageWithAltText
+          }
+          bodyRaw
+        }
+      }
+      ... on JoinResearchPanelPageInfo {
+        title
+        image {
+          ...ImageWithAltText
+        }
+        bodyRaw
+      }
+      ... on JoinResearchPanelPageJourney {
+        title
+        steps {
+          title
+          descriptionRaw
+        }
+        button {
+          ...CTA
+        }
+      }
+      ... on JoinResearchPanelPagePeople {
+        title
+        members {
+          name
+          image {
+            ...ImageWithAltText
+          }
+          bodyRaw
+        }
+      }
+      ... on JoinResearchPanelPageFaqs {
+        items {
+          question
+          answerRaw
+        }
+      }
+      ... on JoinResearchPanelPageBlogsPreview {
+        title
+        label
+      }
+      ... on JoinResearchPanelPageContactUs {
+        title
+        button {
+          ...CTA
+        }
+      }
+    }
+  }
+  blogs: allNewsPost(
+    where: {
+      category: { slug: { current: { eq: $blogCategorySlug } } }
+      _: $isDraftFilter
+    }
+    sort: { date: DESC }
+    limit: 3
+  ) {
+    ...BlogPreviewFields
+  }
+}

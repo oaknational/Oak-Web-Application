@@ -1,4 +1,3 @@
-import { useSearchParams } from "next/navigation";
 import {
   createContext,
   useCallback,
@@ -10,17 +9,17 @@ import {
   type ReactNode,
 } from "react";
 
+import { useProgrammeNavigation } from "../../../../../ProgrammeNavigationProvider";
 import { useProgrammePageFiltersModal } from "../ProgrammePageFiltersModalProvider";
 
 import {
-  FOCUS_KS4_OPTION_QUERY_PARAM,
   focusExamBoardRadio,
   getScopeRef,
-  OPEN_FILTERS_MODAL_QUERY_PARAM,
-  stripEphemeralFocusParams,
   type KS4OptionFocusScopeRefs,
   type KS4OptionFocusScopeVariant,
 } from "./ks4OptionFocusParams";
+
+import type { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 type KS4OptionFocusContextValue = {
   registerScope: (
@@ -33,29 +32,22 @@ const KS4OptionFocusContext = createContext<KS4OptionFocusContextValue | null>(
   null,
 );
 
-/**
- * KS4 option selection navigates to a new programme slug, remounting the filter
- * and dropping focus. Descendants append ephemeral query params
- * {@link FOCUS_KS4_OPTION_QUERY_PARAM} (and {@link OPEN_FILTERS_MODAL_QUERY_PARAM}
- * from the modal tree) on push; this provider reads those params on load,
- * re-opens the mobile filters modal when needed, focuses the matching radio in
- * the correct scope, then strips the params from the URL.
- */
+/** Restores one-time navigation intent once the destination's radio scope mounts. */
 export function KS4OptionFocusProvider({
   children,
-}: Readonly<{ children: ReactNode }>) {
-  const searchParams = useSearchParams();
+  slugs,
+}: Readonly<{ children: ReactNode; slugs: CurriculumSelectionSlugs }>) {
+  const { consumeNavigationIntent } = useProgrammeNavigation();
   const { isOpen: modalOpen, setIsOpen: setModalOpen } =
     useProgrammePageFiltersModal();
   const scopeRefs = useRef<KS4OptionFocusScopeRefs>({
     page: null,
     modal: null,
   });
-  const hasHandledFocus = useRef(false);
-  const isMobileRestore = useRef(false);
-  const hasReadRestoreParams = useRef(false);
-
-  const [pendingFocusSlug, setPendingFocusSlug] = useState<string | null>(null);
+  const [pendingFocus, setPendingFocus] = useState<{
+    slug: string;
+    scope: KS4OptionFocusScopeVariant;
+  } | null>(null);
   const [registeredScopes, setRegisteredScopes] = useState<
     Record<KS4OptionFocusScopeVariant, boolean>
   >({
@@ -70,7 +62,6 @@ export function KS4OptionFocusProvider({
         if (current[variant] === (node !== null)) {
           return current;
         }
-
         return { ...current, [variant]: node !== null };
       });
     },
@@ -78,63 +69,42 @@ export function KS4OptionFocusProvider({
   );
 
   useEffect(() => {
-    if (hasReadRestoreParams.current || !searchParams) {
+    const intent = consumeNavigationIntent(slugs);
+    if (!intent) {
       return;
     }
-
-    const focusSlug = searchParams.get(FOCUS_KS4_OPTION_QUERY_PARAM);
-    if (!focusSlug) {
-      return;
-    }
-
-    hasReadRestoreParams.current = true;
-
-    if (searchParams.get(OPEN_FILTERS_MODAL_QUERY_PARAM)) {
-      isMobileRestore.current = true;
-      setPendingFocusSlug(focusSlug);
+    if (intent.reopenFiltersModal) {
       setModalOpen(true);
-      return;
     }
+    setPendingFocus(
+      intent.restoreFocus && intent.destination.ks4OptionSlug
+        ? {
+            slug: intent.destination.ks4OptionSlug,
+            scope: intent.reopenFiltersModal ? "modal" : "page",
+          }
+        : null,
+    );
+  }, [consumeNavigationIntent, slugs, setModalOpen]);
 
-    setPendingFocusSlug(focusSlug);
-  }, [searchParams, setModalOpen]);
-
-  const activeVariant: KS4OptionFocusScopeVariant = isMobileRestore.current
-    ? "modal"
-    : "page";
+  const activeVariant: KS4OptionFocusScopeVariant =
+    pendingFocus?.scope ?? "page";
   const focusEnabled =
-    pendingFocusSlug !== null &&
+    pendingFocus !== null &&
     (activeVariant === "page" || modalOpen) &&
     registeredScopes[activeVariant];
 
   useEffect(() => {
-    if (!focusEnabled || hasHandledFocus.current || !searchParams) {
+    if (!focusEnabled || !pendingFocus) {
       return;
     }
-
-    hasHandledFocus.current = true;
-    const focusSlug = pendingFocusSlug;
-
-    requestAnimationFrame(() => {
+    const focusSlug = pendingFocus.slug;
+    const frame = requestAnimationFrame(() => {
       focusExamBoardRadio(getScopeRef(scopeRefs, activeVariant), focusSlug);
-
-      globalThis.history.replaceState(
-        null,
-        "",
-        stripEphemeralFocusParams(searchParams),
-      );
-
-      setPendingFocusSlug(null);
-      isMobileRestore.current = false;
+      setPendingFocus(null);
     });
-  }, [
-    focusEnabled,
-    pendingFocusSlug,
-    activeVariant,
-    searchParams,
-    modalOpen,
-    registeredScopes,
-  ]);
+    return () => cancelAnimationFrame(frame);
+  }, [focusEnabled, pendingFocus, activeVariant]);
+
   const value = useMemo(() => ({ registerScope }), [registerScope]);
 
   return (

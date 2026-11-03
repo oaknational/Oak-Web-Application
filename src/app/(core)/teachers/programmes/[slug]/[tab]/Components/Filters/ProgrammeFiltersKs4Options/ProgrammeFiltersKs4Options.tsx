@@ -7,10 +7,11 @@ import {
   OakRadioGroup,
 } from "@oaknational/oak-components";
 import { useRouter } from "next/navigation";
-import { useEffect, useId } from "react";
+import { useEffect, useId, useRef } from "react";
 
 import type { Ks4OptionFilterDimension } from "../../../buildKs4OptionFilterDimensions";
-import { useGetKs4OptionFocusNavigationQuery } from "../KS4OptionFocus/KS4OptionFocusScope";
+import { useKS4OptionFocusScopeVariant } from "../KS4OptionFocus/KS4OptionFocusScope";
+import { useProgrammeNavigation } from "../../../../../ProgrammeNavigationProvider";
 
 import {
   getPreservedQuery,
@@ -41,12 +42,13 @@ export function ProgrammeFiltersKs4Options({
   ks4OptionFilterDimensions,
 }: Readonly<ProgrammeFiltersKs4OptionsProps>) {
   const router = useRouter();
+  const selectedSlug = slugs.ks4OptionSlug ?? "";
   const { filters } = useBrowseFilters();
   const { programmeRefined } = useTeacherBrowseAnalytics(
     (store) => store.track,
   );
-  const getKs4OptionFocusNavigationQuery =
-    useGetKs4OptionFocusNavigationQuery();
+  const { setNavigationIntent } = useProgrammeNavigation();
+  const scope = useKS4OptionFocusScopeVariant();
   const { pathwayOptions, examBoardOptions } = partitionKs4Options(ks4Options);
   const showPathway = shouldDisplayPathwayFilter(slugs, filters, ks4Options);
   const showExamBoard = shouldDisplayExamBoardFilter(
@@ -69,16 +71,18 @@ export function ProgrammeFiltersKs4Options({
       page: "teacher-programme",
       subjectPhaseSlug,
       tab: "units",
-      query: {
-        ...getPreservedQuery(filters, selectedSlug, ks4OptionFilterDimensions),
-        ...getKs4OptionFocusNavigationQuery(selectedSlug),
-      },
+      query: getPreservedQuery(
+        filters,
+        selectedSlug,
+        ks4OptionFilterDimensions,
+      ),
     });
   }
 
   function onKs4OptionChange(
     selectedSlug: string,
     filterType: FilterTypeValueType,
+    restoreFocus: boolean,
   ) {
     programmeRefined({
       componentType: "filter_link",
@@ -86,10 +90,14 @@ export function ProgrammeFiltersKs4Options({
       filterType,
       filterValue: selectedSlug,
     });
-    router.replace(buildKs4OptionHref(selectedSlug));
+    const url = buildKs4OptionHref(selectedSlug);
+    setNavigationIntent({
+      destination: { ...slugs, ks4OptionSlug: selectedSlug },
+      restoreFocus,
+      reopenFiltersModal: scope === "modal",
+    });
+    router.replace(url, { scroll: false });
   }
-
-  const selectedSlug = slugs.ks4OptionSlug ?? "";
 
   return (
     <>
@@ -99,8 +107,8 @@ export function ProgrammeFiltersKs4Options({
           namePrefix="pathway"
           options={pathwayOptions}
           selectedSlug={selectedSlug}
-          onSelect={(slug) =>
-            onKs4OptionChange(slug, FilterType.PATHWAY_FILTER)
+          onSelect={(slug, restoreFocus) =>
+            onKs4OptionChange(slug, FilterType.PATHWAY_FILTER, restoreFocus)
           }
           getHref={buildKs4OptionHref}
         />
@@ -111,8 +119,8 @@ export function ProgrammeFiltersKs4Options({
           namePrefix="exam-board"
           options={examBoardOptions}
           selectedSlug={selectedSlug}
-          onSelect={(slug) =>
-            onKs4OptionChange(slug, FilterType.EXAM_BOARD_FILTER)
+          onSelect={(slug, restoreFocus) =>
+            onKs4OptionChange(slug, FilterType.EXAM_BOARD_FILTER, restoreFocus)
           }
           getHref={buildKs4OptionHref}
         />
@@ -126,7 +134,7 @@ type Ks4OptionRadioGroupProps = {
   namePrefix: string;
   options: Ks4Option[];
   selectedSlug: string;
-  onSelect: (slug: string) => void;
+  onSelect: (slug: string, restoreFocus: boolean) => void;
   getHref: (slug: string) => string;
 };
 
@@ -139,6 +147,7 @@ function Ks4OptionRadioGroup({
   getHref,
 }: Readonly<Ks4OptionRadioGroupProps>) {
   const id = useId();
+  const keyboardInteraction = useRef(false);
   const router = useRouter();
   const sortedOptions = sortKs4OptionsForDisplay(options);
   const optionsString = sortedOptions.map((option) => option.slug).join(",");
@@ -154,10 +163,17 @@ function Ks4OptionRadioGroup({
   }, [getHref, router, selectedSlug, optionsString]);
 
   return (
-    <OakBox>
+    <OakBox
+      onKeyDownCapture={() => {
+        keyboardInteraction.current = true;
+      }}
+      onPointerDownCapture={() => {
+        keyboardInteraction.current = false;
+      }}
+    >
       <OakRadioGroup
         name={`${namePrefix}-${id}`}
-        onChange={(e) => onSelect(e.target.value)}
+        onChange={(e) => onSelect(e.target.value, keyboardInteraction.current)}
         value={selectedSlug}
         $flexDirection="row"
         $flexWrap="wrap"

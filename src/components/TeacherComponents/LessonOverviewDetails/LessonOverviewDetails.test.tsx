@@ -1,12 +1,14 @@
 import LessonOverviewDetails from "./LessonOverviewDetails";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 jest.mock("better-react-mathjax", () => ({
   MathJax: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
   ),
 }));
+
+const render = renderWithProviders();
 
 const lessonDetailProps = {
   keyLearningPoints: [{ keyLearningPoint: "test" }],
@@ -52,7 +54,7 @@ const lessonDetailProps = {
 
 describe("LessonOverviewDetails component", () => {
   it("it should not render its own title", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText } = render(
       <LessonOverviewDetails
         {...lessonDetailProps}
         isMathJaxLesson={false}
@@ -65,7 +67,7 @@ describe("LessonOverviewDetails component", () => {
   });
 
   it("should render KeyLearningPoints component with key learning points", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText } = render(
       <LessonOverviewDetails
         {...lessonDetailProps}
         isMathJaxLesson={false}
@@ -79,7 +81,7 @@ describe("LessonOverviewDetails component", () => {
   });
 
   it("should render CommonMisconceptions component with common misconceptions", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText } = render(
       <LessonOverviewDetails
         {...lessonDetailProps}
         isMathJaxLesson={false}
@@ -93,7 +95,7 @@ describe("LessonOverviewDetails component", () => {
   });
 
   it("should not render CommonMisconceptions when passed null/undefined", () => {
-    const { queryByText } = renderWithTheme(
+    const { queryByText } = render(
       <LessonOverviewDetails
         {...lessonDetailProps}
         displayVocab={false}
@@ -109,7 +111,7 @@ describe("LessonOverviewDetails component", () => {
   });
 
   it("should render KeyWords component with keywords", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText } = render(
       <LessonOverviewDetails
         {...lessonDetailProps}
         displayVocab={false}
@@ -124,7 +126,7 @@ describe("LessonOverviewDetails component", () => {
   });
 
   it("should not render KeyWords when passed null/undefined", () => {
-    const { queryByText } = renderWithTheme(
+    const { queryByText } = render(
       <LessonOverviewDetails
         {...lessonDetailProps}
         displayVocab={false}
@@ -140,7 +142,7 @@ describe("LessonOverviewDetails component", () => {
   });
 
   it("should render Vocab button component", () => {
-    const { getByText, getByRole } = renderWithTheme(
+    const { getByText, getByRole } = render(
       <LessonOverviewDetails
         {...lessonDetailProps}
         isMathJaxLesson={false}
@@ -161,7 +163,7 @@ describe("LessonOverviewDetails component", () => {
   });
 
   it("should render TeacherTips component with keywords", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText } = render(
       <LessonOverviewDetails
         {...lessonDetailProps}
         isMathJaxLesson={false}
@@ -175,7 +177,7 @@ describe("LessonOverviewDetails component", () => {
   });
 
   it("should not render TeacherTips when passed null/undefined", () => {
-    const { queryByText } = renderWithTheme(
+    const { queryByText } = render(
       <LessonOverviewDetails
         {...lessonDetailProps}
         teacherTips={null}
@@ -190,7 +192,7 @@ describe("LessonOverviewDetails component", () => {
   });
 
   it("shout not render TeacherTips when passed empty strings", () => {
-    const { queryByText } = renderWithTheme(
+    const { queryByText } = render(
       <LessonOverviewDetails
         {...lessonDetailProps}
         teacherTips={[{ teacherTip: "" }]}
@@ -204,7 +206,7 @@ describe("LessonOverviewDetails component", () => {
   });
 
   it("if equipmentAndResources, contentGuidance and supervisionLevel are null/undefined shouldn't render any of their titles", () => {
-    const { queryByText } = renderWithTheme(
+    const { queryByText } = render(
       <LessonOverviewDetails
         {...lessonDetailProps}
         displayVocab={false}
@@ -226,7 +228,7 @@ describe("LessonOverviewDetails component", () => {
     expect(supervisionLevelTitle).not.toBeInTheDocument();
   });
   it("it should render the correct legacy license", () => {
-    const { getByText, queryByText } = renderWithTheme(
+    const { getByText, queryByText } = render(
       <LessonOverviewDetails
         {...lessonDetailProps}
         equipmentAndResources={null}
@@ -249,7 +251,7 @@ describe("LessonOverviewDetails component", () => {
     expect(licenseTitle).toBeInTheDocument();
   });
   it("it should render the correct license", () => {
-    const { getByText, queryByText } = renderWithTheme(
+    const { getByText, queryByText } = render(
       <LessonOverviewDetails
         {...lessonDetailProps}
         equipmentAndResources={null}

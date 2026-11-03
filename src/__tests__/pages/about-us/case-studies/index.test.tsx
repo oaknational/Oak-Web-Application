@@ -1,21 +1,14 @@
-import { GetServerSidePropsContext } from "next/types";
-
 import { otherCaseStudies } from "@/__tests__/pages/about-us/case-studies/case-studies.fixtures";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import CaseStudyLibraryPage, {
   AboutUsCaseStudyLibraryPageProps,
-  getServerSideProps,
+  getStaticProps,
 } from "@/pages/about-us/case-studies/index";
-import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import CMSClient from "@/node-lib/cms";
 
 jest.mock("@/node-lib/cms");
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
-
-jest.mock("@/utils/featureFlagChecks/server", () => ({
-  isFeatureFlagEnabledServer: jest.fn(() => false),
-}));
 
 const mockPageData: AboutUsCaseStudyLibraryPageProps["pageData"] = {
   caseStudies: otherCaseStudies,
@@ -42,19 +35,9 @@ describe("pages/about-us/case-studies/index.tsx", () => {
     expect(container).toMatchSnapshot();
   });
 
-  describe("getServerSideProps", () => {
-    it("returns data when enabled", async () => {
-      (isFeatureFlagEnabledServer as jest.Mock).mockImplementation(
-        (_cookies, flag) => {
-          return flag === "case-studies-v2" ? true : false;
-        },
-      );
-
-      const propsResult = await getServerSideProps({
-        req: {
-          cookies: {},
-        },
-      } as GetServerSidePropsContext);
+  describe("getStaticProps", () => {
+    it("should return props data", async () => {
+      const propsResult = await getStaticProps({});
 
       expect(propsResult).toMatchObject({
         props: {
@@ -64,14 +47,10 @@ describe("pages/about-us/case-studies/index.tsx", () => {
       });
     });
 
-    it("returns not-found when not enabled", async () => {
-      (isFeatureFlagEnabledServer as jest.Mock).mockImplementation(() => false);
+    it("should return notFound when CMS returns an empty array", async () => {
+      mockCMSClient.caseStudyLibraryPage.mockResolvedValueOnce([]);
 
-      const propsResult = await getServerSideProps({
-        req: {
-          cookies: {},
-        },
-      } as GetServerSidePropsContext);
+      const propsResult = await getStaticProps({});
 
       expect(propsResult).toMatchObject({
         notFound: true,

@@ -98,14 +98,6 @@ Required environment variables for Chromatic runs:
   2. `pnpm run test:storybook`
 - These tests will also run in CI.
 
-## Percy
-
-Visual regression testing of deployed apps via URL discovery (`percy.snapshot.list.js`) and deployment-event workflows.
-
-### When They Run
-
-In a Github workflow triggered by a `deployment_status === success` event.
-
 ## Pa11y
 
 Accessibility testing of deployed apps.

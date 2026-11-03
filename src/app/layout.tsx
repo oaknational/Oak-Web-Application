@@ -5,6 +5,7 @@ import { Metadata } from "next";
 
 import StyledComponentsRegistry from "./styles-registry";
 import AnalyticsWrapper from "./components/AnalyticsWrapper";
+import SpeedInsightsWrapper from "./components/SpeedInsightsWrapper";
 import { getTwitterMetadata, getOpenGraphMetadata } from "./metadata";
 import { SimulateErrorControls } from "./components/ErrorHandling/SimulateErrorControls";
 
@@ -55,7 +56,7 @@ export default function RootLayout({
         <link key={rel} rel={rel} href={href} />
       ))}
       <StyledComponentsRegistry>
-        {/* Pages Router uses #__next as the app root; add id to body for Pa11y CI and Percy to hook onto. */}
+        {/* Pages Router uses #__next as the app root; add id to body for Pa11y CI and Chromatic to hook onto. */}
         <body id="__next" style={{ margin: "0px" }}>
           <OakThemeProvider theme={oakDefaultTheme}>
             <CookieConsentProvider>
@@ -70,6 +71,7 @@ export default function RootLayout({
                         <SaveCountProvider>
                           <SimulateErrorControls errorBoundaryLevel="global" />
                           {children}
+                          <SpeedInsightsWrapper />
                         </SaveCountProvider>
                       </MenuProvider>
                     </AnalyticsWrapper>

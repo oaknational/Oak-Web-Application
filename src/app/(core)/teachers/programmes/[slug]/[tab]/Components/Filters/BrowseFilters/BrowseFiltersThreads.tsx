@@ -3,7 +3,7 @@ import {
   OakRadioGroup,
   OakRadioAsButton,
 } from "@oaknational/oak-components";
-import { useId } from "react";
+import { useId, useMemo } from "react";
 
 import { Thread } from "@/utils/curriculum/types";
 import { highlightedUnitCount } from "@/utils/curriculum/filtering";
@@ -21,14 +21,16 @@ export function BrowseFiltersThreads({
   const id = useId();
   const { filters, setThreadFilter } = useBrowseFilters();
   const { yearData, threadOptions } = data;
+  const highlightCount = useMemo(
+    () =>
+      filters.threads.length > 0
+        ? highlightedUnitCount(yearData, filters, filters.threads)
+        : 0,
+    [yearData, filters],
+  );
 
   function getDisplayValue(threadOption: Thread) {
     const isSelected = filters.threads.includes(threadOption.slug);
-    const highlightCount = highlightedUnitCount(
-      yearData,
-      filters,
-      filters.threads,
-    );
     if (isSelected) {
       return (
         <div>

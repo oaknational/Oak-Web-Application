@@ -102,5 +102,10 @@ export const Default: Story = {
   ],
   args: {
     lesson: lessonWithUnitList,
+    unitDownloadExistence: {
+      checkFailed: false,
+      exists: true,
+      fileSize: "1.2MB",
+    },
   },
 };

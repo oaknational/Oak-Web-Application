@@ -3,8 +3,11 @@ import { JSX } from "react";
 
 import Component from "./LessonOverviewFilesNeeded";
 
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
+
 const meta: Meta<typeof Component> = {
   component: Component,
+  decorators: [TeacherBrowseAnalyticsDecorator],
   argTypes: {
     additionalFiles: {
       defaultValue: ["file1.pdf", "file2.pdf"],

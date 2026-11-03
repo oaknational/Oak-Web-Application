@@ -1,6 +1,8 @@
 import ComplexCopyrightRestrictionBanner from "./ComplexCopyrightRestrictionBanner";
 
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import renderWithProviders, {
+  allProviders,
+} from "@/__tests__/__helpers__/renderWithProviders";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import {
   mockLoggedIn,
@@ -9,6 +11,8 @@ import {
   mockUserWithDownloadAccess,
   mockUserWithoutDownloadAccessNotOnboarded,
 } from "@/__tests__/__helpers__/mockUser";
+import { getProgrammeStateForUnit } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersUnitOverview.fixture";
 
 const mockTrackContentBlock = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -25,17 +29,14 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
 }));
 
-const unitProps = {
-  unitName: "Test unit title",
-  unitSlug: "test-unit-title",
-};
-const lessonProps = {
-  lessonName: "Test lesson title",
-  lessonSlug: "test-lesson-title",
-  lessonReleaseDate: "2025-01-01",
-};
-
 const render = renderWithProviders();
+const renderOnUnitPage = renderWithProviders({
+  ...allProviders,
+  teacherBrowseAnalytics: {
+    programmeState: getProgrammeStateForUnit(teachersUnitOverviewFixture()),
+    accessLevel: "unit",
+  },
+});
 
 describe("CopyrightRestrictionBanner", () => {
   beforeEach(() => {
@@ -182,12 +183,11 @@ describe("CopyrightRestrictionBanner", () => {
     it("tracks content block event on a georestricted unit page when user is geoblocked", async () => {
       setUseUserReturn(mockGeorestrictedUser);
 
-      render(
+      renderOnUnitPage(
         <ComplexCopyrightRestrictionBanner
           isGeorestricted={true}
           isLoginRequired={true}
           componentType="lesson_listing"
-          {...unitProps}
         />,
       );
 
@@ -200,10 +200,10 @@ describe("CopyrightRestrictionBanner", () => {
         analyticsUseCase: "Teacher",
         lessonName: null,
         lessonSlug: null,
-        lessonReleaseCohort: "2023-2026",
+        lessonReleaseCohort: null,
         lessonReleaseDate: null,
-        unitName: "Test unit title",
-        unitSlug: "test-unit-title",
+        unitName: "Cells",
+        unitSlug: "cells",
         contentType: "unit",
         accessBlockType: "Geo-restriction",
         accessBlockDetails: {},
@@ -218,8 +218,6 @@ describe("CopyrightRestrictionBanner", () => {
           isGeorestricted={true}
           isLoginRequired={true}
           componentType="lesson_overview"
-          {...unitProps}
-          {...lessonProps}
         />,
       );
 
@@ -230,12 +228,12 @@ describe("CopyrightRestrictionBanner", () => {
         componentType: "lesson_overview",
         eventVersion: "2.0.0",
         analyticsUseCase: "Teacher",
-        lessonName: "Test lesson title",
-        lessonSlug: "test-lesson-title",
+        lessonName: "Structure of cells",
+        lessonSlug: "lesson-3-structure-of-cells",
         lessonReleaseCohort: "2023-2026",
-        lessonReleaseDate: "2025-01-01",
-        unitName: "Test unit title",
-        unitSlug: "test-unit-title",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+        unitName: "Cells",
+        unitSlug: "cells",
         contentType: "lesson",
         accessBlockType: "Geo-restriction",
         accessBlockDetails: {},

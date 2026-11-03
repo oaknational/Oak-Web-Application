@@ -5,6 +5,15 @@ import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fi
 const render = renderWithProviders();
 
 describe("YearListingPage", () => {
+  it("keeps the year hub indexed and followed", () => {
+    const { container } = render(<YearListingPage topNav={topNavFixture} />);
+
+    expect(container.querySelector('meta[name="robots"]')).toHaveAttribute(
+      "content",
+      "index,follow",
+    );
+  });
+
   it.each([
     "Year 1",
     "Year 2",

@@ -1,7 +1,7 @@
 import React from "react";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { RouterContext } from "next/dist/shared/lib/router-context.shared-runtime";
-import { fn, sb } from "storybook/test";
+import { fn } from "storybook/test";
 import { Lexend } from "next/font/google";
 import { withThemeFromJSXProvider } from "@storybook/addon-themes";
 import { OakGlobalStyle, parseColor } from "@oaknational/oak-components";
@@ -110,11 +110,3 @@ export const decorators = [
 
 export const globalTypes = {};
 export const tags = ["autodocs", "autodocs", "autodocs"];
-
-// spy on useUnitDownloadExistence check in stories so the return value can be mocked
-sb.mock(
-  import(
-    "../src/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck.tsx"
-  ),
-  { spy: true },
-);

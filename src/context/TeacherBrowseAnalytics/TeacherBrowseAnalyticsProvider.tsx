@@ -45,7 +45,7 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
   accessLevel,
   children,
 }: TeacherBrowseAnalyticsStoreProviderProps) => {
-  const { track, getSessionId } = useAnalytics();
+  const { track, getSessionId, posthogDistinctId } = useAnalytics();
   const { subjectSlug, phaseSlug } = useJourneySlugsContext();
   const posthogConsent = useOakConsent().getConsent(ServicePolicyMap.POSTHOG);
   const hasConsent = posthogConsent === "granted";
@@ -78,12 +78,18 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
       avo: track,
       journeyId,
       accessLevel,
+      posthogDistinctId,
     }),
   );
 
   useEffect(() => {
-    store.setState({ journeyId, programmeState, accessLevel });
-  }, [store, journeyId, programmeState, accessLevel]);
+    store.setState({
+      journeyId,
+      programmeState,
+      accessLevel,
+      posthogDistinctId,
+    });
+  }, [store, journeyId, programmeState, accessLevel, posthogDistinctId]);
 
   return (
     <TeacherBrowseAnalyticsStoreContext.Provider value={store}>
@@ -109,6 +115,7 @@ export const useTeacherBrowseAnalytics = <T,>(
       avo: new Proxy({} as TrackFns, { get: () => () => undefined }),
       journeyId: null,
       accessLevel: "homepage",
+      posthogDistinctId: null,
     }),
   );
 

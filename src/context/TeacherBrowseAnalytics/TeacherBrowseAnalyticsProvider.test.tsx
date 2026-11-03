@@ -22,7 +22,7 @@ const getSessionId = jest.fn();
 const lessonResourceDownloadStarted = jest.fn();
 const unitDownloadStarted = jest.fn();
 const unitDownloaded = jest.fn();
-const onwardContentSelected = jest.fn();
+const lessonAccessed = jest.fn();
 const curriculumExplainerExplored = jest.fn();
 const lessonShareStarted = jest.fn();
 const programmeRefined = jest.fn();
@@ -41,7 +41,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
         curriculumExplainerExplored(...args),
       lessonShareStarted: (...args: []) => lessonShareStarted(...args),
       unitDownloaded: (...args: []) => unitDownloaded(...args),
-      onwardContentSelected: (...args: []) => onwardContentSelected(...args),
+      lessonAccessed: (...args: []) => lessonAccessed(...args),
       programmeRefined: (...args: []) => programmeRefined(...args),
       curriculumResourcesDownloaded: (...args: []) =>
         curriculumResourcesDownloaded(...args),
@@ -273,20 +273,24 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
         }),
       );
     });
-    it("calls onwardContentSelected with the correct props", () => {
-      renderTrackingTest(lessonLevelState, "onwardContentSelected", {
-        onwardIntent: "view-lesson",
+    it("calls lessonAccessed with the correct props", () => {
+      renderTrackingTest(lessonLevelState, "lessonAccessed", {
+        componentType: "lessons_in_unit",
+        navigationType: "across",
         lessonName: lessonLevelState.lesson.title,
         lessonSlug: lessonLevelState.lesson.slug,
-        lessonReleaseDate: "2023-2026",
+        lessonReleaseDate: lessonLevelState.lesson.lessonReleaseDate,
+        lessonReleaseCohort: "2023-2026",
       });
 
       const trackBtn = screen.getByRole("button", { name: "Track" });
       trackBtn.click();
 
-      expect(onwardContentSelected).toHaveBeenCalledWith(
+      expect(lessonAccessed).toHaveBeenCalledWith(
         expect.objectContaining({
           analyticsUseCase: "Teacher",
+          componentType: "lessons_in_unit",
+          engagementIntent: "refine",
           eventVersion: "2.0.0",
           examBoard: null,
           journeyId: "session-1:secondary-biology",
@@ -294,10 +298,8 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
           keyStageTitle: "Key stage 3",
           lessonName: "Structure of cells",
           lessonReleaseCohort: "2023-2026",
-          lessonReleaseDate: "2023-2026",
           lessonSlug: "lesson-3-structure-of-cells",
           navigationType: "across",
-          onwardIntent: "view-lesson",
           pathway: null,
           phase: "secondary",
           platform: "owa",
@@ -429,12 +431,14 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
       expect(unitDownloaded).not.toHaveBeenCalled();
       expect(result).toBeUndefined();
     });
-    it("handles invalid browse level for onwardContentSelected", () => {
-      renderTrackingTest(programmeLevelState, "onwardContentSelected", {
-        onwardIntent: "view-unit",
+    it("handles invalid browse level for lessonAccessed", () => {
+      renderTrackingTest(programmeLevelState, "lessonAccessed", {
+        componentType: "lessons_in_unit",
+        navigationType: "across",
         lessonName: lessonLevelState.lesson.title,
         lessonSlug: lessonLevelState.lesson.slug,
-        lessonReleaseDate: "2023-2026",
+        lessonReleaseDate: lessonLevelState.lesson.lessonReleaseDate,
+        lessonReleaseCohort: "2023-2026",
       });
       const trackBtn = screen.getByRole("button", { name: "Track" });
       const result = trackBtn.click();
@@ -444,7 +448,7 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
           meta: expect.objectContaining({ browseLevel: "programme" }),
         }),
       );
-      expect(onwardContentSelected).not.toHaveBeenCalled();
+      expect(lessonAccessed).not.toHaveBeenCalled();
       expect(result).toBeUndefined();
     });
     it("handles invalid browse state for lessonMediaClipsStarted", () => {

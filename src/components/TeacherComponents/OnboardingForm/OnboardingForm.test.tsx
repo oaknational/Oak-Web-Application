@@ -15,7 +15,11 @@ import {
 import * as onboardingActions from "./onboardingActions";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
+import { hubspotSubmitForm } from "@/browser-lib/hubspot/forms";
+import {
+  mockLoggedIn,
+  mockNotOnboardedUser,
+} from "@/__tests__/__helpers__/mockUser";
 import type { OnboardingSchema } from "@/common-lib/schemas/onboarding";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
@@ -128,6 +132,22 @@ describe("Onboarding form", () => {
 
     afterEach(() => {
       jest.spyOn(onboardingActions, "onboardUser").mockReset();
+    });
+
+    it("does not mark the user onboarded when HubSpot submission fails", async () => {
+      setUseUserReturn(mockNotOnboardedUser);
+      jest.mocked(hubspotSubmitForm).mockClear();
+      jest
+        .mocked(hubspotSubmitForm)
+        .mockRejectedValueOnce(new Error("HubSpot unavailable"));
+
+      await submitForm(formState);
+
+      expect(onboardingActions.onboardUser).not.toHaveBeenCalled();
+      expect(hubspotSubmitForm).toHaveBeenCalledTimes(1);
+      expect(mockPush).toHaveBeenCalledWith(
+        expect.stringContaining("/downloads"),
+      );
     });
 
     it("only allows the form to be submitted once", async () => {

@@ -62,6 +62,7 @@ export type LessonOverviewHeaderProps = {
   teacherShareButtonProps?: TeacherNotesButtonProps;
   // AI
   excludedFromTeachingMaterials?: boolean;
+  shouldHideCreateWithAi?: boolean;
   subjectCategories?: Array<string | number | null> | null;
   actions?: ActionsCamel | null;
 };
@@ -123,11 +124,15 @@ const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {
     teacherShareButtonProps,
     showShare,
     excludedFromTeachingMaterials,
+    shouldHideCreateWithAi,
     contentRestricted,
   } = props;
 
   const shouldUseDropdown =
-    !excludedFromTeachingMaterials && showShare && teacherShareButtonProps;
+    !excludedFromTeachingMaterials &&
+    !shouldHideCreateWithAi &&
+    showShare &&
+    teacherShareButtonProps;
 
   const shareButtons = (
     <ShareButtons

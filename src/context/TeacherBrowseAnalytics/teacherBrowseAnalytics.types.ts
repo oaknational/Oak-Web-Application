@@ -11,7 +11,6 @@ import {
   SearchFilterMatchTypeType,
   MediaClipsButtonNameValueType,
   TeachingMaterialTypeValueType,
-  OnwardIntentValueType,
   SearchSourceValueType,
   TeacherSchoolManualEntryDetails,
   UserAccountVerificationStatusValueType,
@@ -21,6 +20,8 @@ import {
   VideoLocationValueType,
   ComponentTypeValueType,
   ActiveFilters,
+  UserOnboardingCompletedProperties,
+  UserOnboardingProgressedProperties,
 } from "@/browser-lib/avo/Avo";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
@@ -150,6 +151,16 @@ export type NullableSearchResultContext = {
   [K in keyof SearchResultContentFields]: SearchResultContentFields[K] | null;
 } & SearchResultReleaseFields;
 
+export type OnboardingTrackingProps = Omit<
+  UserOnboardingCompletedProperties & UserOnboardingProgressedProperties,
+  | "platform"
+  | "product"
+  | "engagementIntent"
+  | "eventVersion"
+  | "analyticsUseCase"
+  | "userId_"
+>;
+
 // All Track Fns used in the teacher browse journey
 export type TeacherBrowseTrackFns = {
   // NAVIGATION
@@ -226,9 +237,6 @@ export type TeacherBrowseTrackFns = {
   createTeachingMaterialsInitiated: (props: { isLoggedIn: boolean }) => void;
   teachingMaterialsSelected: (props: {
     teachingMaterialType: TeachingMaterialTypeValueType;
-  }) => void;
-  onwardContentSelected: (props: {
-    onwardIntent: OnwardIntentValueType;
   }) => void;
   videoPlayed: (props: VideoTrackingProperties) => void;
   videoStarted: (props: VideoTrackingProperties) => void;

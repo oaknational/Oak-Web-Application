@@ -84,7 +84,7 @@ describe("OakModalNew", () => {
     expect(onCloseMock).not.toHaveBeenCalled();
   });
 
-  it("should open/close when open state changed", () => {
+  it("should open/close on click", () => {
     const closeMock = jest.fn();
     const showModalMock = jest.fn();
     const onCloseMock = jest.fn();

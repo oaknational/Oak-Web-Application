@@ -102,6 +102,7 @@ export const teachersLessonOverviewSchema =
     loginRequired: z.boolean(),
     geoRestricted: z.boolean(),
     excludedFromTeachingMaterials: z.boolean(),
+    shouldHideCreateWithAi: z.boolean(),
     subjectCategories: z
       .array(z.union([z.string(), z.number(), z.null()]))
       .nullable(),
@@ -126,3 +127,12 @@ export type TeachersLessonBrowseDataByKs = Omit<
   SyntheticUnitvariantLessonsByKsCamel,
   "nullUnitvariantId" | "isLegacy"
 >;
+
+export const restrictionsSchema = z.object({
+  tpc_works_max_restriction: z.string().nullish(),
+  tpc_quizimages_max_restriction: z.string().nullish(),
+  tpc_media_max_restriction: z.string().nullish(),
+  tpc_downloadablefiles_max_restriction: z.string().nullish(),
+});
+
+export type Restrictions = z.infer<typeof restrictionsSchema>;
