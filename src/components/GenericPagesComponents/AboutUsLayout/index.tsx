@@ -73,6 +73,14 @@ export function AboutUsLayout({
       componentType: "get_involved" as const,
     },
     {
+      iconName: "teacher-group" as const,
+      title: "Join the research panel",
+      href: resolveOakHref({
+        page: "about-join-research-panel",
+      }),
+      componentType: "join_research_panel" as const,
+    },
+    {
       iconName: "books" as const,
       title: "Case studies",
       href: resolveOakHref({
