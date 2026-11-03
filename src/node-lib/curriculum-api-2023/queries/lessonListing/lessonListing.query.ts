@@ -22,6 +22,7 @@ import { LessonListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import { getCorrectYear } from "@/node-lib/curriculum-api-2023/helpers/getCorrectYear";
 import { getIntersection } from "@/utils/getIntersection";
+import { getCopyrightRestrictionForSubject } from "@/utils/getCopyrightRestrictionForSubject";
 
 export const getTransformedLessons = (
   lessons: LessonListingQuery["lessons"],
@@ -165,12 +166,22 @@ const lessonListingQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    const containsGeorestrictedLessons = modifiedLessons.some(
-      (lesson) => lesson.features?.agf__geo_restricted === true,
-    );
-    const containsLoginRequiredLessons = modifiedLessons.some(
-      (lesson) => lesson.features?.agf__login_required === true,
-    );
+    const containsGeorestrictedLessons = modifiedLessons.some((lesson) => {
+      const { resourceIsGeorestricted } = getCopyrightRestrictionForSubject({
+        subjectSlug: lesson.programme_fields?.subject_slug,
+        geoRestricted: lesson.features?.agf__geo_restricted,
+        loginRequired: lesson.features?.agf__login_required,
+      });
+      return resourceIsGeorestricted === true;
+    });
+    const containsLoginRequiredLessons = modifiedLessons.some((lesson) => {
+      const { resourceRequiresLogin } = getCopyrightRestrictionForSubject({
+        subjectSlug: lesson.programme_fields?.subject_slug,
+        geoRestricted: lesson.features?.agf__geo_restricted,
+        loginRequired: lesson.features?.agf__login_required,
+      });
+      return resourceRequiresLogin === true;
+    });
 
     const parsedModifiedLessons =
       partialSyntheticUnitvariantLessonsArraySchema.parse(modifiedLessons);

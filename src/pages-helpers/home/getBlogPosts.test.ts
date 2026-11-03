@@ -13,6 +13,8 @@ jest.mock("src/node-lib/cms");
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
 const pageData: HomePage = {
+  displayTopBanner: false,
+  topBanner: null,
   heading: "",
   id: "",
   summaryPortableText: [],

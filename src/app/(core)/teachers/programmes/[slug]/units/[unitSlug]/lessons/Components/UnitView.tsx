@@ -61,8 +61,6 @@ export const UnitView = (props: UnitViewProps) => {
             isGeorestricted={props.containsGeorestrictedLessons}
             isLoginRequired={props.containsLoginRequiredLessons}
             componentType="lesson_listing"
-            unitName={props.unitTitle}
-            unitSlug={props.unitSlug}
             $mv="spacing-80"
           />
         </OakBox>

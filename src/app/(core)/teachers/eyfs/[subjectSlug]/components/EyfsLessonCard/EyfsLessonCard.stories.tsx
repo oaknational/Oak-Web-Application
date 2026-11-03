@@ -8,6 +8,7 @@ import { EYFSLessonCard } from "./EyfsLessonCard";
 import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
 import { __setMockAuthState } from "@/storybook-mocks/clerk";
 import type { EYFSLesson } from "@/node-lib/curriculum-api-2023/queries/eyfs/eyfsSchema";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const TEST_VIDEO_PLAYBACK_ID = "wgjCIRWRr00OSum34AWeU87lmSSCtNjEOViD9X5YSG8k";
 
@@ -90,6 +91,7 @@ const meta: Meta<typeof EYFSLessonCard> = {
   title: "App/Teachers/Eyfs/EyfsLessonCard",
   decorators: [
     NotificationsDecorator,
+    TeacherBrowseAnalyticsDecorator,
     (Story) => (
       <EYFSLessonGroupProvider>
         <OakFlex

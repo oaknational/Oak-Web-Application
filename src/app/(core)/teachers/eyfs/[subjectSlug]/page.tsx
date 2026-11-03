@@ -4,6 +4,7 @@ import { EyfsUnitSection } from "./components/EyfsUnits/EyfsUnits";
 import { getCachedEyfsPageData } from "./getCachedEyfsPageData";
 
 import withPageErrorHandling from "@/hocs/withPageErrorHandling";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export const metadata: Metadata = {
   title: "Early years foundation stage lesson resources",
@@ -29,7 +30,14 @@ const InnerEyfsPage = async ({
   const eyfsPageData = await getCachedEyfsPageData(subjectSlug);
   const units = Object.values(eyfsPageData.units);
 
-  return <EyfsUnitSection units={units} />;
+  return (
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
+    >
+      <EyfsUnitSection units={units} />
+    </TeacherBrowseAnalyticsStoreProvider>
+  );
 };
 
 const EyfsPage = withPageErrorHandling(InnerEyfsPage, "eyfs-page::app");

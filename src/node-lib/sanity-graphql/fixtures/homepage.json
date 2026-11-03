@@ -2,23 +2,69 @@
   "allHomepage": [
     {
       "id": "homepage",
-      "heading": "Oak is evolving",
+      "displayTopBanner": true,
+      "topBanner": {
+        "displayNewTag": true,
+        "messagePortableText": [
+          {
+            "_key": "967be59f8853",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "24221de4ae210",
+                "_type": "span",
+                "marks": [],
+                "text": "Oak is now used in 72% of schools"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ],
+        "displayCta": true,
+        "cta": {
+          "label": "Explore our impact",
+          "linkType": "internal",
+          "external": "https://www.google.com/",
+          "internal": "/about-us/oaks-impact"
+        },
+        "backgroundColor": "bg-decorative1-main"
+      },
+      "heading": "Your foundation for great lessons",
       "summaryPortableText": [
         {
-          "_key": "967be59f8853",
+          "_key": "82a6b21d906e",
           "_type": "block",
           "children": [
             {
-              "_key": "24221de4ae210",
+              "_key": "a5679c0457f60",
               "_type": "span",
               "marks": [],
-              "text": "We’re growing our support to help you thrive."
+              "text": "Find inspiration. Get support. Go teach."
             }
           ],
           "markDefs": [],
           "style": "normal"
         }
       ],
+      "notification": {
+        "enabled": true,
+        "label": "Blog",
+        "heading": "Create curricula with us",
+        "subheading": "Find out more",
+        "link": {
+          "linkType": "internal",
+          "external": null,
+          "anchor": null,
+          "internal": {
+            "id": "d09c2c4e-f7c8-450c-82d9-7cb32a15e2b3",
+            "contentType": "newsPost",
+            "slug": {
+              "current": "launched-open-procurement-for-new-curricula-and-resources"
+            }
+          }
+        }
+      },
       "sidebarCard1": {
         "title": "About us",
         "image": null,
@@ -76,50 +122,211 @@
           "internal": null
         }
       },
-      "sidebarForm": {
-        "title": "Don’t miss out",
+      "seo": {
+        "title": "Oak National Academy",
+        "description": "Explore our AI lesson assistant, browse and download our lesson planning resources and view our curriculum plans - all optional, free and adaptable.",
+        "canonicalURL": null
+      },
+      "testimonials": [
+        {
+          "quote": {
+            "text": "We’ve started using the new Oak science curriculum for KS3 and KS4 in my school and think it’s absolutely fabulous. We’re getting improved levels of engagement, and the sequencing of smaller ideas building up to the bigger idea is helping our students master the ideas.",
+            "attribution": "Julian Dance",
+            "organisation": null,
+            "role": "Head of Secondary Science"
+          },
+          "image": {
+            "asset": {
+              "url": "https://cdn.sanity.io/images/cuvjke51/feat-adopt-2260-homepage-banner/644e8ad0faecdc5ea6ccb23215a92082e587b994-1509x1449.jpg",
+              "_id": "image-644e8ad0faecdc5ea6ccb23215a92082e587b994-1509x1449-jpg"
+            },
+            "altText": null
+          }
+        },
+        {
+          "quote": {
+            "text": "Using AI to support my planning and teaching wasn’t something I’d really considered until I came across Aila. To say I was blown away would be an understatement!",
+            "attribution": "Avril",
+            "organisation": "Bedford Drive Primary School",
+            "role": "Deputy Headteacher"
+          },
+          "image": {
+            "asset": {
+              "url": "https://cdn.sanity.io/images/cuvjke51/feat-adopt-2260-homepage-banner/e9ffe5ff9a81be77a7925145b7919721eeb2146b-1200x1200.svg",
+              "_id": "image-e9ffe5ff9a81be77a7925145b7919721eeb2146b-1200x1200-svg"
+            },
+            "altText": null
+          }
+        },
+        {
+          "quote": {
+            "text": "As a newly qualified teacher I found having a structured path of lessons to teach a unit really helped with the coverage of the genre and your lessons are easily adaptable to what I am teaching.",
+            "attribution": "Abby Le Roux",
+            "organisation": null,
+            "role": "Year 5 Teacher"
+          },
+          "image": {
+            "asset": {
+              "url": "https://cdn.sanity.io/images/cuvjke51/feat-adopt-2260-homepage-banner/0ed44e4f5df5bbe6d01580e176eab415eed1a685-218x214.jpg",
+              "_id": "image-0ed44e4f5df5bbe6d01580e176eab415eed1a685-218x214-jpg"
+            },
+            "altText": null
+          }
+        }
+      ],
+      "intro": {
+        "title": "We're here to support great teaching",
         "bodyPortableText": [
           {
-            "_key": "cff30bb98bbb",
+            "_key": "ced9ea6b63ff",
             "_type": "block",
             "children": [
               {
-                "_key": "ae6cd337fa720",
+                "_key": "7c4b1c2261660",
                 "_type": "span",
                 "marks": [],
-                "text": "Join over 100k teachers and get free lessons, resources and other helpful content by email. Unsubscribe at any time. Read our "
-              },
-              {
-                "_key": "7693ff249079",
-                "_type": "span",
-                "marks": ["f44505bc5afc"],
-                "text": "privacy policy"
-              },
-              {
-                "_key": "0b4e820fcbcf",
-                "_type": "span",
-                "marks": [],
-                "text": "."
+                "text": "Whether you’re creating new lessons, refreshing your approach, or solving a last-minute challenge, our resources give you a strong foundation that means you get there faster."
               }
             ],
-            "markDefs": [
-              {
-                "_key": "f44505bc5afc",
-                "_type": "internalLink",
-                "reference": {
-                  "_ref": "4fde9be2-3d02-4c2d-8646-63b86469500b",
-                  "_type": "reference"
-                }
-              }
-            ],
+            "markDefs": [],
             "style": "normal"
           }
-        ]
+        ],
+        "mediaType": "video",
+        "alignMedia": "left",
+        "cta": null,
+        "image": null,
+        "video": {
+          "title": "Who we are V2",
+          "transcript": [
+            {
+              "_key": "f242609a-645a-4d5f-b66e-6d04dd21cc8e",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "d75788ee-b1b2-4dbd-930f-8f7b4dbfc8d4",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "﻿Our mission here at Oak National Academy is to support great teaching. We do that through two goals."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "346cbcf7f048",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "407a0438ca7d",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "First is we are aiming to lower teacher workload, and we're trying to do that by providing really high-quality starting points for your lesson planning through our teaching resources, slide decks, quizzes, and worksheets."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "0f76a18a48cc",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "53934cd76555",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Second, we're helping improve pupil outcomes by providing access to really high-quality curricula."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "83f1ef97159a",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "b44d4cbdd537",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "There are two unique things about Oak National Academy. First, and it's a first, we're creating curricula for key stages 1 to 4 across all of national curriculum subjects, and that includes thousands of slides, worksheets, and quizzes, to use as a high-quality starting point in your lesson planning."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "554dc5b08636",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "6e5c6a2adabf",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "And second, we are creating a video library of teachers teaching all of that content, which is a really powerful resource for ECTs, non-specialists, and to use in cover, or even to analyse in professional development sessions."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "video": {
+            "asset": {
+              "assetId": "KHUK004YVrDuBlZH1YK01J2KQw2AyxGwpy00l016qIO3jDU",
+              "thumbTime": null,
+              "playbackId": "CjDAe0153o6v65Te4npM9165RqrAJd6YrSeOufA02RKLE"
+            }
+          }
+        }
       },
-      "seo": {
-        "title": "Oak National Academy",
-        "description": "Browse and download Oak National Academy's lesson planning resources, find curriculum plans, and explore our AI lesson assistant - all completely free",
-        "canonicalURL": null
+      "campaignPromoBanner": {
+        "type": "CampaignPromoBanner",
+        "headingPortableTextWithPromo": [
+          {
+            "_key": "76dc6cba784a",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "c643835c2da7",
+                "_type": "span",
+                "marks": [],
+                "text": "Support for the revised national curriculum"
+              }
+            ],
+            "markDefs": [],
+            "style": "heading2"
+          }
+        ],
+        "subheadingPortableTextWithPromo": [
+          {
+            "_key": "f7085980ef2c",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "13569c7927e7",
+                "_type": "span",
+                "marks": [],
+                "text": "Explore free guidance, expert discussions and curriculum support to help schools navigate national curriculum changes with confidence."
+              }
+            ],
+            "markDefs": [],
+            "style": "heading3"
+          }
+        ],
+        "bodyPortableTextWithPromo": null,
+        "media": [
+          {
+            "altText": "A teacher smiling in a classroom full of children raising their hands",
+            "isPresentational": null,
+            "asset": {
+              "_id": "image-7cec745155282907b459d149298027657329afbd-5042x3375-png",
+              "url": "https://cdn.sanity.io/images/cuvjke51/feat-adopt-2260-homepage-banner/7cec745155282907b459d149298027657329afbd-5042x3375.png"
+            },
+            "hotspot": null
+          }
+        ],
+        "buttonCta": "Explore support",
+        "buttonUrl": "https://www.thenational.academy/curriculum-change-explained/guidance"
       }
     }
   ]

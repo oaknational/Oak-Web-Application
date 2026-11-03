@@ -28,18 +28,46 @@ export const mockPosts = [
 
 const props: HomePageProps = {
   pageData: {
-    heading: "",
     id: "",
+    displayTopBanner: true,
+    topBanner: {
+      displayNewTag: true,
+      messagePortableText: [
+        {
+          _key: "967be59f8853",
+          _type: "block",
+          children: [
+            {
+              _key: "24221de4ae210",
+              _type: "span",
+              marks: [],
+              text: "Oak is now used in 72% of schools",
+            },
+          ],
+          markDefs: [],
+          style: "normal",
+        },
+      ],
+      displayCta: true,
+      cta: {
+        label: "Explore our impact",
+        linkType: "internal",
+        external: null,
+        internal: "/about-us/oaks-impact",
+      },
+      backgroundColor: "bg-decorative1-main",
+    },
+    heading: "",
     summaryPortableText: [],
+    notification: { enabled: false },
+    sidebarCard1: { title: "", bodyPortableText: [] },
+    sidebarCard2: { title: "", bodyPortableText: [] },
     campaignPromoBanner: {
       headingPortableTextWithPromo: [],
       subheadingPortableTextWithPromo: [],
       media: [],
       buttonCta: "",
     },
-    notification: { enabled: false },
-    sidebarCard1: { title: "", bodyPortableText: [] },
-    sidebarCard2: { title: "", bodyPortableText: [] },
     testimonials: [],
   },
   posts: mockPosts,
@@ -69,6 +97,22 @@ describe("Teachers Page", () => {
     it("renders", () => {
       const { baseElement } = render(<Home {...props} />);
       expect(baseElement).toMatchSnapshot();
+    });
+
+    it("does not render TopBanner if displayTopBanner is false", () => {
+      const { queryByText } = renderWithProviders()(
+        <Home
+          {...props}
+          pageData={{
+            ...props.pageData,
+            displayTopBanner: false,
+            topBanner: null,
+          }}
+        />,
+      );
+
+      const banner = queryByText("Oak is now used in 72% of schools");
+      expect(banner).not.toBeInTheDocument();
     });
   });
 

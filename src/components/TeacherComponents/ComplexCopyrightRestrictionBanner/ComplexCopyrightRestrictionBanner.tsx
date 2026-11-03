@@ -13,8 +13,7 @@ import Link from "next/link";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import {
   COPYRIGHT_CONTACT_US_LINK,
   COPYRIGHT_SUPPORT_LINK,
@@ -31,12 +30,6 @@ export type ComplexCopyrightRestrictionBannerProps =
     isGeorestricted?: boolean;
     isLoginRequired?: boolean;
     componentType?: ComponentTypeValueType;
-    unitName?: string | null;
-    unitSlug?: string | null;
-    lessonName?: string | null;
-    lessonSlug?: string | null;
-    lessonReleaseDate?: string | null;
-    isLessonLegacy?: boolean;
   };
 
 const SignedOutCopyrightBanner = ({
@@ -139,64 +132,36 @@ const SignedInGeorestrictedBanner = ({
 const ComplexCopyrightRestrictionBanner = (
   props: ComplexCopyrightRestrictionBannerProps,
 ) => {
-  const {
-    isGeorestricted,
-    isLoginRequired,
-    componentType,
-    unitName,
-    unitSlug,
-    lessonName,
-    lessonSlug,
-    lessonReleaseDate,
-    isLessonLegacy,
-    ...rest
-  } = props;
+  const { isGeorestricted, isLoginRequired, componentType, ...rest } = props;
 
   const {
     showSignedOutGeoRestricted,
     showSignedOutLoginRequired,
     showSignedInNotOnboarded,
     showGeoBlocked,
+    isResourceGeorestricted,
   } = useComplexCopyright({
     loginRequired: isLoginRequired ?? false,
     geoRestricted: isGeorestricted ?? false,
   });
 
-  const { track } = useAnalytics();
+  const { contentBlockNotificationDisplayed } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
 
-  const isLegacy = unitSlug ? isSlugLegacy(unitSlug) : isLessonLegacy;
   const isUnit = (componentType && componentType === "lesson_listing") ?? false;
 
   useEffect(() => {
     if (showGeoBlocked) {
-      track.contentBlockNotificationDisplayed({
-        platform: "owa",
-        product: "teacher lesson resources",
-        engagementIntent: "explore",
+      contentBlockNotificationDisplayed({
         componentType:
           componentType ?? (isUnit ? "lesson_listing" : "lesson_overview"),
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Teacher",
-        lessonName: lessonName ?? null,
-        lessonSlug: lessonSlug ?? null,
-        lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
-        lessonReleaseDate: lessonReleaseDate ?? null,
-        unitName: unitName ?? null,
-        unitSlug: unitSlug ?? null,
-        contentType: isUnit ? "unit" : "lesson",
         accessBlockType: "Geo-restriction",
-        accessBlockDetails: {},
       });
     }
   }, [
-    track,
+    contentBlockNotificationDisplayed,
     componentType,
-    unitName,
-    unitSlug,
-    lessonName,
-    lessonSlug,
-    lessonReleaseDate,
-    isLegacy,
     isUnit,
     showGeoBlocked,
   ]);
@@ -211,7 +176,7 @@ const ComplexCopyrightRestrictionBanner = (
   ) : showSignedOutCopyrightBanner ? (
     <SignedOutCopyrightBanner
       showOnboardingLink={showSignedInNotOnboarded}
-      isGeorestricted={isGeorestricted ?? false}
+      isGeorestricted={isResourceGeorestricted}
       isUnit={isUnit}
       {...rest}
     />

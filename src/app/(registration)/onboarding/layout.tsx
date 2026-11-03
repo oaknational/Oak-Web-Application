@@ -6,6 +6,7 @@ import { ReactNode, Suspense, useEffect } from "react";
 import { Wall } from "@/components/AppComponents/Wall";
 import { OnboardingLayout as OnboardingLayoutFrame } from "@/components/TeacherComponents/OnboardingLayout/OnboardingLayout";
 import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type OnboardingPrompt = {
   promptHeading: ReactNode;
@@ -71,7 +72,12 @@ const OnboardingLayoutInner = ({ children }: { children: ReactNode }) => {
 
 const OnboardingLayout = ({ children }: { children: ReactNode }) => (
   <Suspense fallback={null}>
-    <OnboardingLayoutInner>{children}</OnboardingLayoutInner>
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
+    >
+      <OnboardingLayoutInner>{children}</OnboardingLayoutInner>
+    </TeacherBrowseAnalyticsStoreProvider>
   </Suspense>
 );
 

@@ -1,4 +1,4 @@
-import { SignInButton, useAuth, useUser } from "@clerk/nextjs";
+import { SignInButton, useAuth } from "@clerk/nextjs";
 import React, { Dispatch, ReactNode, SetStateAction, useState } from "react";
 import { usePathname } from "next/navigation";
 import {
@@ -19,6 +19,7 @@ import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/Teac
 import errorReporter from "@/common-lib/error-reporter";
 import { UnitDownloadExistence } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
+import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 
 const reportError = errorReporter("unit-download-button");
 
@@ -275,10 +276,12 @@ export type UnitDownloadButtonProps = {
  * - Download
  * If there is no download for this unit, or unit download is disabled, the button will not be shown (ie. legacy units)
  */
-export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
+export default function UnitDownloadButton(
+  props: Readonly<UnitDownloadButtonProps>,
+) {
   const { unitFileId, geoRestricted, unitDownloadExistence } = props;
   const { exists, fileSize, checkFailed } = unitDownloadExistence;
-  const { isSignedIn, user } = useUser();
+
   const auth = useAuth();
   const pathname = usePathname();
   const { setCurrentToastProps } = useOakNotificationsContext();
@@ -331,57 +334,59 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     setDownloadInProgress(false);
   };
 
+  const {
+    showSignedOutLoginRequired,
+    showSignedInNotOnboarded,
+    showGeoBlocked,
+  } = useComplexCopyright({ loginRequired: true, geoRestricted });
+
   // Fail open: `undefined` means the availability check failed, so show the button and let
   // a genuinely missing file surface as a download error on click.
   const showDownloadButton = exists !== false;
-
-  const showSignInButton = showDownloadButton && !isSignedIn;
-
-  const showOnboardButton =
-    showDownloadButton && user && !user.publicMetadata?.owa?.isOnboarded;
-
-  const isGeoBlocked =
-    showDownloadButton &&
-    isSignedIn &&
-    geoRestricted &&
-    !user.publicMetadata?.owa?.isRegionAuthorised;
-
-  return showOnboardButton ? (
-    <UnitDownloadOnboardButton
-      href={resolveOakHref({
-        page: "onboarding",
-        query: { returnTo: pathname ?? "" },
-      })}
-      onClick={unitDownloadStarted}
-      showNewTag={props.showNewTag}
-      size={props.size}
-      ariaLabel={props.ariaLabel}
-      fullWidthOnMobile={fullWidthOnMobile}
-    />
-  ) : showSignInButton ? (
-    <UnitDownloadSignInButton
-      isStuck={isStuck}
-      redirectUrl={`/onboarding?returnTo=${pathname}`}
-      onClick={unitDownloadStarted}
-      showNewTag={props.showNewTag}
-      longTextOnMobile={longTextOnMobile}
-      fullWidthOnMobile={fullWidthOnMobile}
-      size={props.size}
-      buttonLabel={props.buttonLabel}
-      ariaLabel={props.ariaLabel}
-    />
-  ) : showDownloadButton ? (
-    <DownloadButton
-      isStuck={isStuck}
-      disabled={Boolean(isGeoBlocked)}
-      onUnitDownloadClick={onUnitDownloadClick}
-      downloadInProgress={downloadInProgress}
-      fileSize={fileSize}
-      longTextOnMobile={longTextOnMobile}
-      fullWidthOnMobile={fullWidthOnMobile}
-      size={props.size}
-      buttonLabel={props.buttonLabel}
-      ariaLabel={props.ariaLabel}
-    />
-  ) : null;
+  if (!showDownloadButton) {
+    return null;
+  } else if (showSignedInNotOnboarded) {
+    return (
+      <UnitDownloadOnboardButton
+        href={resolveOakHref({
+          page: "onboarding",
+          query: { returnTo: pathname ?? "" },
+        })}
+        onClick={unitDownloadStarted}
+        showNewTag={props.showNewTag}
+        size={props.size}
+        ariaLabel={props.ariaLabel}
+        fullWidthOnMobile={fullWidthOnMobile}
+      />
+    );
+  } else if (showSignedOutLoginRequired) {
+    return (
+      <UnitDownloadSignInButton
+        isStuck={isStuck}
+        redirectUrl={`/onboarding?returnTo=${pathname}`}
+        onClick={unitDownloadStarted}
+        showNewTag={props.showNewTag}
+        longTextOnMobile={longTextOnMobile}
+        fullWidthOnMobile={fullWidthOnMobile}
+        size={props.size}
+        buttonLabel={props.buttonLabel}
+        ariaLabel={props.ariaLabel}
+      />
+    );
+  } else if (showDownloadButton) {
+    return (
+      <DownloadButton
+        isStuck={isStuck}
+        disabled={Boolean(showGeoBlocked)}
+        onUnitDownloadClick={onUnitDownloadClick}
+        downloadInProgress={downloadInProgress}
+        fileSize={fileSize}
+        longTextOnMobile={longTextOnMobile}
+        fullWidthOnMobile={fullWidthOnMobile}
+        size={props.size}
+        buttonLabel={props.buttonLabel}
+        ariaLabel={props.ariaLabel}
+      />
+    );
+  }
 }

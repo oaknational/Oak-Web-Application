@@ -6,6 +6,7 @@ export const signedOutLoginRequired: UseComplexCopyrightReturn = {
   showSignedInNotOnboarded: false,
   showSignedOutLoginRequired: true,
   isLoaded: true,
+  isResourceGeorestricted: false,
 };
 
 export const signedInGeoBlocked: UseComplexCopyrightReturn = {
@@ -14,6 +15,7 @@ export const signedInGeoBlocked: UseComplexCopyrightReturn = {
   showSignedInNotOnboarded: false,
   showSignedOutLoginRequired: false,
   isLoaded: true,
+  isResourceGeorestricted: true,
 };
 
 export const signedOutGeoRestricted: UseComplexCopyrightReturn = {
@@ -22,6 +24,7 @@ export const signedOutGeoRestricted: UseComplexCopyrightReturn = {
   showSignedInNotOnboarded: false,
   showSignedOutLoginRequired: false,
   isLoaded: true,
+  isResourceGeorestricted: true,
 };
 
 export const signedInNotOnboarded: UseComplexCopyrightReturn = {
@@ -30,6 +33,7 @@ export const signedInNotOnboarded: UseComplexCopyrightReturn = {
   showSignedInNotOnboarded: true,
   showSignedOutLoginRequired: false,
   isLoaded: true,
+  isResourceGeorestricted: false,
 };
 
 export const defaultCopyrightRequirements: UseComplexCopyrightReturn = {
@@ -38,6 +42,7 @@ export const defaultCopyrightRequirements: UseComplexCopyrightReturn = {
   showSignedInNotOnboarded: false,
   showSignedOutLoginRequired: false,
   isLoaded: true,
+  isResourceGeorestricted: false,
 };
 
 export const isLoading: UseComplexCopyrightReturn = {
