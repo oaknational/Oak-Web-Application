@@ -20,7 +20,7 @@ import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures
 const getSessionId = jest.fn();
 
 const lessonResourceDownloadStarted = jest.fn();
-const unitDownloadStarted = jest.fn();
+const signInStarted = jest.fn();
 const unitDownloaded = jest.fn();
 const lessonAccessed = jest.fn();
 const curriculumExplainerExplored = jest.fn();
@@ -36,7 +36,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
     track: {
       lessonResourceDownloadStarted: (...args: []) =>
         lessonResourceDownloadStarted(...args),
-      unitDownloadStarted: (...args: []) => unitDownloadStarted(...args),
+      signInStarted: (...args: []) => signInStarted(...args),
       curriculumExplainerExplored: (...args: []) =>
         curriculumExplainerExplored(...args),
       lessonShareStarted: (...args: []) => lessonShareStarted(...args),
@@ -224,33 +224,24 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
         }),
       );
     });
-    it("calls unitDownloadStarted with the correct props", () => {
-      renderTrackingTest(unitLevelState, "unitDownloadStarted");
+    it("calls signInStarted with the correct props", () => {
+      renderTrackingTest(unitLevelState, "signInStarted", {
+        componentType: "unit_download_button",
+      });
 
       const trackBtn = screen.getByRole("button", { name: "Track" });
       trackBtn.click();
 
-      expect(unitDownloadStarted).toHaveBeenCalledWith(
-        expect.objectContaining({
-          analyticsUseCase: "Teacher",
-          componentType: "unit_download_button",
-          engagementIntent: "use",
-          eventVersion: "2.0.0",
-          examBoard: null,
-          journeyId: "session-1:secondary-biology",
-          keyStageSlug: "ks3",
-          keyStageTitle: "Key stage 3",
-          pathway: null,
-          phase: "secondary",
-          platform: "owa",
-          product: "teacher lesson resources",
-          subjectSlug: "biology",
-          subjectTitle: "Biology",
-          tierName: null,
-          unitName: "Cells",
-          unitSlug: "cells",
-        }),
-      );
+      expect(signInStarted).toHaveBeenCalledWith({
+        accessLevel: "lesson",
+        analyticsUseCase: "Teacher",
+        componentType: "unit_download_button",
+        engagementIntent: "use",
+        eventVersion: "2.0.0",
+        journeyId: "session-1:secondary-biology",
+        platform: "owa",
+        product: "teacher lesson resources",
+      });
     });
     it("calls curriculumExplainerExplored with the correct props", () => {
       renderTrackingTest(programmeLevelState, "curriculumExplainerExplored");
@@ -403,19 +394,6 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
         }),
       );
       expect(lessonResourceDownloadStarted).not.toHaveBeenCalled();
-      expect(result).toBeUndefined();
-    });
-    it("handles invalid browse level for unitDownloadStarted", () => {
-      renderTrackingTest(programmeLevelState, "unitDownloadStarted");
-      const trackBtn = screen.getByRole("button", { name: "Track" });
-      const result = trackBtn.click();
-      expect(reportError).toHaveBeenCalledWith(
-        expect.objectContaining({
-          code: "analytics/teacher-browse",
-          meta: expect.objectContaining({ browseLevel: "programme" }),
-        }),
-      );
-      expect(unitDownloadStarted).not.toHaveBeenCalled();
       expect(result).toBeUndefined();
     });
     it("handles invalid browse level for unitDownloaded", () => {

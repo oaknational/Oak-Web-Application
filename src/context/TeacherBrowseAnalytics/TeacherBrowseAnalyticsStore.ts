@@ -145,6 +145,7 @@ export type TeacherBrowseAnalyticsStore = {
       mediaClipIndex: number;
     }) => void;
     newsletterSignUpCompleted: () => void;
+    signInStarted: (props: { componentType: ComponentTypeValueType }) => void;
     programmeAccessed: (props: {
       componentType: ComponentTypeValueType;
       navigationType?: NavigationTypeValueType;
@@ -220,7 +221,6 @@ export type TeacherBrowseAnalyticsStore = {
       };
     }) => void;
     unitDownloaded: () => void;
-    unitDownloadStarted: () => void;
     unitRefined: (props: {
       componentType: ComponentTypeValueType;
       activeFilters: ActiveFilters;
@@ -673,6 +673,17 @@ export const createTeacherBrowseAnalyticsStore = (
 
         avo.newsletterSignUpCompleted();
       },
+      signInStarted: ({ componentType }) => {
+        const { avo, journeyId, accessLevel } = get();
+
+        avo.signInStarted({
+          ...coreProperties,
+          engagementIntent: EngagementIntent.USE,
+          componentType,
+          journeyId,
+          accessLevel,
+        });
+      },
       programmeAccessed: ({
         componentType,
         navigationType,
@@ -917,29 +928,6 @@ export const createTeacherBrowseAnalyticsStore = (
         const analyticsProperties = getUnitAnalyticsProperties(unitState);
 
         avo.unitDownloaded({
-          engagementIntent: EngagementIntent.USE,
-          componentType: ComponentType.UNIT_DOWNLOAD_BUTTON,
-          journeyId,
-          accessLevel,
-          ...coreProperties,
-          ...analyticsProperties,
-        });
-      },
-      unitDownloadStarted: () => {
-        const { avo, programmeState, journeyId, accessLevel } = get();
-
-        const unitState = requireUnitState(
-          "unitDownloadStarted",
-          programmeState,
-        );
-
-        if (!unitState) {
-          return;
-        }
-
-        const analyticsProperties = getUnitAnalyticsProperties(unitState);
-
-        avo.unitDownloadStarted({
           engagementIntent: EngagementIntent.USE,
           componentType: ComponentType.UNIT_DOWNLOAD_BUTTON,
           journeyId,
