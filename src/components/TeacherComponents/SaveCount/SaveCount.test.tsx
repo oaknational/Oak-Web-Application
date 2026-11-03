@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
+import { usePathname } from "next/navigation";
 
 import { SaveCount } from "./SaveCount";
 
@@ -37,10 +38,16 @@ describe("SaveCount", () => {
 
   beforeEach(() => {
     mockSignInStarted.mockClear();
+    jest.mocked(usePathname).mockReset();
     setUseUserReturn(mockLoggedIn);
   });
   it("tracks sign in started when a signed out user clicks my library", async () => {
     setUseUserReturn(mockLoggedOut);
+    jest
+      .mocked(usePathname)
+      .mockReturnValue(
+        "/teachers/programmes/maths-primary-ks2/units/u/lessons",
+      );
     renderer(<SaveCount />);
 
     await clickMyLibrary();
@@ -48,6 +55,7 @@ describe("SaveCount", () => {
     expect(mockSignInStarted).toHaveBeenCalledTimes(1);
     expect(mockSignInStarted).toHaveBeenCalledWith({
       componentType: "topnav_my_library_button",
+      accessLevel: "unit",
     });
   });
   it("does not track sign in started when a signed in user clicks my library", async () => {

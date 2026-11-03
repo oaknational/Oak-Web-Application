@@ -1,15 +1,18 @@
 import { OakBox, OakSaveCount } from "@oaknational/oak-components";
 import { useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
+import { usePathname } from "next/navigation";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import useSaveCountContext from "@/context/SaveCount/useSaveCountContext";
 import { useGetEducatorData } from "@/node-lib/educator-api/helpers/useGetEducatorData";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getAccessLevelFromPathname } from "@/context/TeacherBrowseAnalytics/utils/getAccessLevelFromPathname";
 import { ComponentType } from "@/browser-lib/avo/Avo";
 
 export const SaveCount = () => {
   const { isLoaded, isSignedIn } = useUser();
+  const pathname = usePathname();
   const { signInStarted } = useTeacherBrowseAnalytics((store) => store.track);
 
   const {
@@ -42,6 +45,7 @@ export const SaveCount = () => {
         if (isLoaded && !isSignedIn) {
           signInStarted({
             componentType: ComponentType.TOPNAV_MY_LIBRARY_BUTTON,
+            accessLevel: getAccessLevelFromPathname(pathname),
           });
         }
       }}

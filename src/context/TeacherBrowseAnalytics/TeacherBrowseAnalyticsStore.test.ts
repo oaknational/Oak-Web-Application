@@ -147,6 +147,22 @@ describe("TeacherBrowseAnalyticsStore", () => {
     expect(mockReportAnalyticsError).not.toHaveBeenCalled();
   });
 
+  test("signInStarted uses the accessLevel override when provided", () => {
+    const { store, avo } = buildStore({
+      programmeState: null,
+      accessLevel: "homepage",
+    });
+
+    store.getState().track.signInStarted({
+      componentType: ComponentType.TOPNAV_MY_LIBRARY_BUTTON,
+      accessLevel: "lesson",
+    });
+
+    expect(avo.signInStarted).toHaveBeenCalledWith(
+      expect.objectContaining({ accessLevel: "lesson" }),
+    );
+  });
+
   test("contentBlockNotificationDisplayed derives lesson properties from programme state", () => {
     const { store, avo } = buildStore({
       programmeState: getProgrammeStateForLesson(

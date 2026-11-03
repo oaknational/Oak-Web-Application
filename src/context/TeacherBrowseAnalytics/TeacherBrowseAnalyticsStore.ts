@@ -145,7 +145,10 @@ export type TeacherBrowseAnalyticsStore = {
       mediaClipIndex: number;
     }) => void;
     newsletterSignUpCompleted: () => void;
-    signInStarted: (props: { componentType: ComponentTypeValueType }) => void;
+    signInStarted: (props: {
+      componentType: ComponentTypeValueType;
+      accessLevel?: AccessLevelValueType;
+    }) => void;
     programmeAccessed: (props: {
       componentType: ComponentTypeValueType;
       navigationType?: NavigationTypeValueType;
@@ -673,7 +676,7 @@ export const createTeacherBrowseAnalyticsStore = (
 
         avo.newsletterSignUpCompleted();
       },
-      signInStarted: ({ componentType }) => {
+      signInStarted: ({ componentType, accessLevel: accessLevelOverride }) => {
         const { avo, journeyId, accessLevel } = get();
 
         avo.signInStarted({
@@ -681,7 +684,7 @@ export const createTeacherBrowseAnalyticsStore = (
           engagementIntent: EngagementIntent.USE,
           componentType,
           journeyId,
-          accessLevel,
+          accessLevel: accessLevelOverride ?? accessLevel,
         });
       },
       programmeAccessed: ({
