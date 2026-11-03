@@ -26,6 +26,7 @@ const SEND_INSTANTLY_EVENTS: ReadonlySet<string> = new Set<string>([
   "Unit Accessed",
   "Programme Accessed",
   "Search Result Opened",
+  "Sign in Started",
 ]);
 /**
  * getAvoBridge returns the bridge between Avo and our analytics services.
