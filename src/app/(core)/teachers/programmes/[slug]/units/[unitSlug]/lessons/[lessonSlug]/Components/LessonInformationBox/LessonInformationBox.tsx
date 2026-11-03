@@ -8,6 +8,8 @@ import {
 
 import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
 import CopyrightLicence from "@/components/TeacherComponents/CopyrightLicence/CopyrightLicence";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { ComponentType } from "@/browser-lib/avo/Avo";
 
 type LessonInformationBoxProps = {
   equipment?: string[];
@@ -28,6 +30,7 @@ const LessonInformationBox = (props: LessonInformationBoxProps) => {
   const { equipment, contentGuidance, supervision, filesNeeded, licence } =
     props;
   const isPlural = filesNeeded && filesNeeded.files.length > 1;
+  const { signInStarted } = useTeacherBrowseAnalytics((store) => store.track);
 
   return (
     <OakFlex
@@ -80,6 +83,10 @@ const LessonInformationBox = (props: LessonInformationBoxProps) => {
             buttonVariant="tertiary"
             signUpProps={{
               name: `Sign in to download lesson ${isPlural ? "files" : "file"}`,
+              onClick: () =>
+                signInStarted({
+                  componentType: ComponentType.LESSON_INFORMATION_BOX,
+                }),
             }}
             element="a"
             actionProps={{
