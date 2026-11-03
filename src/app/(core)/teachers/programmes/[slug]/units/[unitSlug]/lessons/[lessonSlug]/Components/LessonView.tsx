@@ -30,6 +30,8 @@ import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLe
 import { getSideNavLinksFromResources } from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks/LessonOverviewSideNavAnchorLinks";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
 
 export default function LessonView(
   props: Readonly<TeachersLessonOverviewPageData>,
@@ -57,6 +59,9 @@ export default function LessonView(
     excludedFromTeachingMaterials,
     shouldHideCreateWithAi,
   } = props;
+
+  const { lessonAccessed } = useTeacherBrowseAnalytics((store) => store.track);
+  const { lessonState } = useProgrammeState();
 
   const copyrightState = useComplexCopyright({
     loginRequired,
@@ -269,6 +274,16 @@ export default function LessonView(
                           }),
                           title: previousLesson.lessonTitle,
                           index: previousLesson.lessonIndex,
+                          onClick: () =>
+                            lessonAccessed({
+                              componentType: "footer_button",
+                              lessonName: previousLesson.lessonTitle,
+                              lessonSlug: previousLesson.lessonSlug,
+                              lessonReleaseCohort: "2023-2026",
+                              lessonReleaseDate:
+                                lessonState?.lesson.lessonReleaseDate ??
+                                "unknown",
+                            }),
                         }
                       : undefined
                   }
@@ -283,6 +298,16 @@ export default function LessonView(
                           }),
                           title: nextLesson.lessonTitle,
                           index: nextLesson.lessonIndex,
+                          onClick: () =>
+                            lessonAccessed({
+                              componentType: "footer_button",
+                              lessonName: nextLesson.lessonTitle,
+                              lessonSlug: nextLesson.lessonSlug,
+                              lessonReleaseCohort: "2023-2026",
+                              lessonReleaseDate:
+                                lessonState?.lesson.lessonReleaseDate ??
+                                "unknown",
+                            }),
                         }
                       : undefined
                   }
