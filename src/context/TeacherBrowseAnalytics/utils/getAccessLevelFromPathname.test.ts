@@ -1,29 +1,90 @@
 import { getAccessLevelFromPathname } from "./getAccessLevelFromPathname";
 
+import { resolveOakHref } from "@/common-lib/urls";
+
+const programmeSlug = "biology-secondary-ks3";
+const unitSlug = "cells";
+const lessonSlug = "lesson-1";
+
 describe("getAccessLevelFromPathname", () => {
   it.each([
     [
-      "/teachers/programmes/biology-secondary-ks3/units/cells/lessons/lesson-1",
+      resolveOakHref({
+        page: "lesson-overview",
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      }),
       "lesson",
     ],
     [
-      "/teachers/programmes/biology-secondary-ks3/units/cells/lessons/lesson-1/downloads/success",
+      resolveOakHref({
+        page: "lesson-downloads",
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      }),
       "lesson",
     ],
-    ["/teachers/lessons/lesson-1/media", "lesson"],
-    ["/teachers/programmes/biology-secondary-ks3/units/cells/lessons", "unit"],
-    ["/teachers/programmes/biology-secondary/units", "programme"],
-    ["/teachers/search", "search"],
-    ["/teachers/my-library", "my_library"],
-    ["/teachers/teach-with-oak/downloads", "teach_with_oak"],
+    [
+      resolveOakHref({
+        page: "lesson-downloads-success",
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      }),
+      "lesson",
+    ],
+    [
+      resolveOakHref({
+        page: "lesson-media",
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      }),
+      "lesson",
+    ],
+    [
+      resolveOakHref({
+        page: "lesson-share",
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      }),
+      "lesson",
+    ],
+    [
+      resolveOakHref({ page: "lesson-overview-canonical", lessonSlug }),
+      "lesson",
+    ],
+    [resolveOakHref({ page: "lesson-media-canonical", lessonSlug }), "lesson"],
+    [
+      resolveOakHref({ page: "unit-overview", programmeSlug, unitSlug }),
+      "unit",
+    ],
+    [
+      resolveOakHref({
+        page: "teacher-programme",
+        subjectPhaseSlug: "biology-secondary",
+        tab: "units",
+      }),
+      "programme",
+    ],
+    [resolveOakHref({ page: "search" }), "search"],
+    [resolveOakHref({ page: "my-library" }), "my_library"],
+    [resolveOakHref({ page: "teach-with-oak" }), "teach_with_oak"],
+    [resolveOakHref({ page: "teach-with-oak-download" }), "teach_with_oak"],
   ])("maps %s to %s", (pathname, expected) => {
     expect(getAccessLevelFromPathname(pathname)).toBe(expected);
   });
 
-  it.each([null, undefined, "/", "/teachers/eyfs/maths", "/about-us"])(
-    "returns undefined for %s",
-    (pathname) => {
-      expect(getAccessLevelFromPathname(pathname)).toBeUndefined();
-    },
-  );
+  it.each([
+    null,
+    undefined,
+    resolveOakHref({ page: "home" }),
+    resolveOakHref({ page: "eyfs-page", subjectSlug: "maths" }),
+    resolveOakHref({ page: "about-who-we-are" }),
+  ])("returns undefined for %s", (pathname) => {
+    expect(getAccessLevelFromPathname(pathname)).toBeUndefined();
+  });
 });
