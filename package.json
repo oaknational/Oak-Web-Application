@@ -127,6 +127,7 @@
     "@upstash/ratelimit": "^2.0.6",
     "@upstash/redis": "^1.35.4",
     "@vercel/functions": "^3.1.2",
+    "@vercel/speed-insights": "^2.0.0",
     "better-react-mathjax": "^3.0.2",
     "buffer": "^6.0.3",
     "core-js": "^3.46.0",

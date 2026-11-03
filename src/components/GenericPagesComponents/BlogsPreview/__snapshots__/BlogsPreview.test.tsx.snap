@@ -1,0 +1,215 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`BlogsPreview should render the blogs preview 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-bdvwhi iatEdD"
+    >
+      <div
+        class="sc-bdvwhi sc-gsDMPd bzxMon bKlFOg"
+      >
+        <div
+          class="sc-bdvwhi sc-gsDMPd hXyGVF kaBgcD"
+        >
+          <h2
+            class="sc-bkkgYE kkQJKP"
+          >
+            Blogs
+          </h2>
+          <a
+            class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
+            href="/blog/categories/research-and-insights"
+          >
+            <span
+              class="sc-dkPwfY fgmEIT"
+            >
+              View all research and insights blogs
+            </span>
+            <div
+              class="sc-bdvwhi hUeWJD"
+            >
+              <span
+                class="sc-bdvwhi cqHYAi sc-fKVoIy gNZMCw"
+              >
+                <img
+                  alt=""
+                  class="sc-jRQBiJ eMsccW"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+            </div>
+          </a>
+        </div>
+        <ul
+          class="sc-bdvwhi sc-jObTYW fLVUHm boCgwA"
+        >
+          <li
+            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex inTlgA"
+          >
+            <div
+              class="sc-bdvwhi sc-bXTeWK ldqnbP jIhKcl"
+            >
+              <a
+                class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
+                href="/blog/blog-1"
+              >
+                <div
+                  class="sc-bdvwhi hPWTKU"
+                >
+                  <span
+                    class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
+                  >
+                    <img
+                      alt=""
+                      class="sc-jRQBiJ hssYEG"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      sizes="100vw"
+                      src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=3840&q=75"
+                      srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=3840&q=75 3840w"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
+                </div>
+                <div
+                  class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
+                >
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                  >
+                    <h3
+                      class="sc-bkkgYE jxvseu"
+                    >
+                      Blog 1
+                    </h3>
+                    <p
+                      class="sc-hGPAwl dwskbV"
+                    >
+                      1 January 2021
+                    </p>
+                  </div>
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
+                  />
+                </div>
+              </a>
+            </div>
+          </li>
+          <li
+            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex inTlgA"
+          >
+            <div
+              class="sc-bdvwhi sc-bXTeWK ldqnbP jIhKcl"
+            >
+              <a
+                class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
+                href="/blog/blog-2"
+              >
+                <div
+                  class="sc-bdvwhi hPWTKU"
+                >
+                  <span
+                    class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
+                  >
+                    <img
+                      alt=""
+                      class="sc-jRQBiJ hssYEG"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      sizes="100vw"
+                      src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=3840&q=75"
+                      srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=3840&q=75 3840w"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
+                </div>
+                <div
+                  class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
+                >
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                  >
+                    <h3
+                      class="sc-bkkgYE jxvseu"
+                    >
+                      Blog 2
+                    </h3>
+                    <p
+                      class="sc-hGPAwl dwskbV"
+                    >
+                      1 January 2021
+                    </p>
+                  </div>
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
+                  />
+                </div>
+              </a>
+            </div>
+          </li>
+          <li
+            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex inTlgA"
+          >
+            <div
+              class="sc-bdvwhi sc-bXTeWK ldqnbP jIhKcl"
+            >
+              <a
+                class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
+                href="/blog/blog-3"
+              >
+                <div
+                  class="sc-bdvwhi hPWTKU"
+                >
+                  <span
+                    class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
+                  >
+                    <img
+                      alt=""
+                      class="sc-jRQBiJ hssYEG"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      sizes="100vw"
+                      src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=3840&q=75"
+                      srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png&w=3840&q=75 3840w"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
+                </div>
+                <div
+                  class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
+                >
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                  >
+                    <h3
+                      class="sc-bkkgYE jxvseu"
+                    >
+                      Blog 3
+                    </h3>
+                    <p
+                      class="sc-hGPAwl dwskbV"
+                    >
+                      1 January 2021
+                    </p>
+                  </div>
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
+                  />
+                </div>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+`;
