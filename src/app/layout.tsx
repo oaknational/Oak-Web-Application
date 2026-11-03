@@ -5,6 +5,7 @@ import { Metadata } from "next";
 
 import StyledComponentsRegistry from "./styles-registry";
 import AnalyticsWrapper from "./components/AnalyticsWrapper";
+import SpeedInsightsWrapper from "./components/SpeedInsightsWrapper";
 import { getTwitterMetadata, getOpenGraphMetadata } from "./metadata";
 import { SimulateErrorControls } from "./components/ErrorHandling/SimulateErrorControls";
 
@@ -70,6 +71,7 @@ export default function RootLayout({
                         <SaveCountProvider>
                           <SimulateErrorControls errorBoundaryLevel="global" />
                           {children}
+                          <SpeedInsightsWrapper />
                         </SaveCountProvider>
                       </MenuProvider>
                     </AnalyticsWrapper>

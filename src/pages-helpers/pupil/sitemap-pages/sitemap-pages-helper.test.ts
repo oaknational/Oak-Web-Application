@@ -3,6 +3,25 @@ import { buildAllUrlFields } from "@/pages-helpers/pupil/sitemap-pages/sitemap-p
 
 describe("pupils sitemaps", () => {
   describe("buildAllUrlFields", () => {
+    it("excludes Years 1–9 but retains the hub and Years 10–11 across both halves", async () => {
+      const entries = [
+        ...(await buildAllUrlFields({ firstHalf: true })),
+        ...(await buildAllUrlFields({ firstHalf: false })),
+      ];
+      const paths = entries.map(({ loc }) => new URL(loc).pathname);
+
+      for (let year = 1; year <= 9; year++) {
+        expect(paths).not.toContain(`/pupils/years/year-${year}/subjects`);
+      }
+      expect(paths).toEqual(
+        expect.arrayContaining([
+          "/pupils/years",
+          "/pupils/years/year-10/subjects",
+          "/pupils/years/year-11/subjects",
+        ]),
+      );
+    });
+
     it("returns results with expected properties", async () => {
       const firstHalf = await buildAllUrlFields({ firstHalf: true });
       const secondHalf = await buildAllUrlFields({ firstHalf: false });
