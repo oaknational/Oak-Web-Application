@@ -398,7 +398,7 @@ async function buildYear(
       years: year,
       utm_source: "curriculum_plan",
       utm_medium: "document",
-      utm_campaign: `${slugs.subjectSlug}_${slugs.phaseSlug}_curriculum_plan`,
+      utm_campaign: `${slugs.subjectSlug.replaceAll("-", "_")}_${slugs.phaseSlug}_curriculum_plan`,
     },
   );
 

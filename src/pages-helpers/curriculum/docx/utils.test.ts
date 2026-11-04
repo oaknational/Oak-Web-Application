@@ -7,11 +7,12 @@ describe("addQueryParamsToUrl", () => {
     const queryParams = {
       utm_source: "curriculum_plan",
       utm_medium: "document",
-      utm_campaign: "maths_ks3_curriculum_plan",
+      utm_campaign: "maths_secondary_curriculum_plan",
+      years: "all-years",
     };
     const result = addQueryParamsToUrl(url, queryParams);
     expect(result).toBe(
-      "https://www.thenational.academy/teachers/programmes/maths/ks3/units?utm_source=curriculum_plan&utm_medium=document&utm_campaign=maths_ks3_curriculum_plan",
+      "https://www.thenational.academy/teachers/programmes/maths/ks3/units?utm_source=curriculum_plan&utm_medium=document&utm_campaign=maths_secondary_curriculum_plan&years=all-years",
     );
   });
 

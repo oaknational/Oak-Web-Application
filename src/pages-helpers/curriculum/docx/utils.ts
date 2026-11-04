@@ -15,7 +15,7 @@ export function addQueryParamsToUrl(
 
   for (const [key, value] of Object.entries(queryParams)) {
     if (value) {
-      searchParams.set(key, value.replaceAll("-", "_"));
+      searchParams.set(key, value);
     }
   }
 
