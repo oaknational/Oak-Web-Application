@@ -469,6 +469,19 @@ describe("Insights download submission", () => {
         window.localStorage.getItem(LS_KEY_INSIGHTS_MANUAL_DOWNLOAD_SELECTION),
       ).toBeNull();
       await user.click(
+        screen.getByRole("button", { name: "Back to subject list" }),
+      );
+      expect(
+        screen.queryByRole("heading", { name: "Thanks for downloading!" }),
+      ).not.toBeInTheDocument();
+      expect(
+        screen.getByRole("form", { name: "Curriculum guidance download" }),
+      ).toHaveFocus();
+      expect(
+        screen.getByTestId("curriculum-insights-subjects-mobile-confirm"),
+      ).toBeDisabled();
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      await user.click(
         screen.getByRole("button", {
           name: /the national curriculum is changing/i,
         }),

@@ -465,7 +465,12 @@ export const NationalCurriculumInsightsDownload = ({
             $overflowY="auto"
           >
             {downloadComplete ? (
-              <NationalCurriculumInsightsDownloadConfirmation />
+              <NationalCurriculumInsightsDownloadConfirmation
+                onBack={() => {
+                  setDownloadComplete(false);
+                  setMobileStage("subjects");
+                }}
+              />
             ) : (
               <>
                 <OakGrid
