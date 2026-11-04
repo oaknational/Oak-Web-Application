@@ -302,6 +302,11 @@ export const createTeacherBrowseAnalyticsStore = (
     meta?: Record<string, unknown>,
   ): ProgrammeStateLesson | null => {
     if (programmeState?.browseLevel !== "lesson") {
+      meta = {
+        ...meta,
+        programmeState: programmeState,
+        accessLevel: initialState.accessLevel,
+      };
       reportAnalyticsError({ event, programmeState, ...meta });
       return null;
     }
