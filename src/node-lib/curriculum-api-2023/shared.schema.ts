@@ -271,6 +271,7 @@ export const lessonDownloadsListSchema = z.array(
         "supplementary-docx",
         "curriculum-pdf",
         "lesson-guide-pdf",
+        "lesson-guide-docx",
         "additional-files",
       ]) || z.string().regex(/^additional-file-\d+$/),
     label: z.string(),

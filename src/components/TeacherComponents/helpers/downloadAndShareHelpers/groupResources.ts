@@ -10,6 +10,7 @@ export const getGroupName = (
     case "presentation":
       return "Slide deck";
     case "lesson-guide-pdf":
+    case "lesson-guide-docx":
       return "Lesson guide";
     case "intro-quiz-questions":
     case "intro-quiz-answers":
@@ -34,7 +35,7 @@ export const groupDownloadResources = (
   additionalFiles?: LessonDownloadsPageData["additionalFiles"],
 ): Record<string, Array<Download | AdditionalFile>> => {
   const combined = [...(downloads || []), ...(additionalFiles || [])];
-  return combined.reduce(
+  const grouped = combined.reduce(
     (
       all: Record<string, Array<Download | AdditionalFile>>,
       item: Download | AdditionalFile,
@@ -46,4 +47,19 @@ export const groupDownloadResources = (
     },
     {},
   );
+  //  sort the lesson guides first!
+  const sorted = Object.keys(grouped)
+    .sort((a, b) => {
+      if (a === "Lesson guide" && b !== "Lesson guide") return -1;
+      if (a !== "Lesson guide" && b === "Lesson guide") return 1;
+      return 0;
+    })
+    .reduce(
+      (acc, key) => {
+        acc[key] = grouped[key] ?? [];
+        return acc;
+      },
+      {} as Record<string, Array<Download | AdditionalFile>>,
+    );
+  return sorted;
 };

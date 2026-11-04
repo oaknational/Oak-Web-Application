@@ -83,6 +83,12 @@ export const constructDownloadsArray = (content: {
       label: "Lesson guide",
       ext: "pdf",
     },
+    {
+      exists: content.hasLessonGuideObject,
+      type: "lesson-guide-docx",
+      label: "Lesson guide",
+      ext: "docx",
+    },
   ];
 
   return downloads;

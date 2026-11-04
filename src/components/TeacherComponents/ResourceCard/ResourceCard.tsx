@@ -45,6 +45,7 @@ const RESOURCE_TYPE_ICON_MAP: Record<DownloadResourceType, OakIconName> = {
   "supplementary-docx": "additional-material",
   "curriculum-pdf": "additional-material",
   "lesson-guide-pdf": "additional-material",
+  "lesson-guide-docx": "additional-material",
   "additional-files": "additional-material",
 };
 
