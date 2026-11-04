@@ -66,6 +66,7 @@ const LessonHeader = (props: LessonHeaderProps) => {
                 onClick: () =>
                   lessonAccessed({
                     componentType: "header_button",
+                    navigationType: "across",
                     lessonName: prevLesson.lessonTitle,
                     lessonSlug: prevLesson.lessonSlug,
                     lessonReleaseCohort: "2023-2026",
@@ -87,6 +88,7 @@ const LessonHeader = (props: LessonHeaderProps) => {
                 onClick: () =>
                   lessonAccessed({
                     componentType: "header_button",
+                    navigationType: "across",
                     lessonName: nextLesson.lessonTitle,
                     lessonSlug: nextLesson.lessonSlug,
                     lessonReleaseCohort: "2023-2026",

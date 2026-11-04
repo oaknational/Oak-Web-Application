@@ -277,6 +277,7 @@ export default function LessonView(
                           onClick: () =>
                             lessonAccessed({
                               componentType: "footer_button",
+                              navigationType: "across",
                               lessonName: previousLesson.lessonTitle,
                               lessonSlug: previousLesson.lessonSlug,
                               lessonReleaseCohort: "2023-2026",
@@ -301,6 +302,7 @@ export default function LessonView(
                           onClick: () =>
                             lessonAccessed({
                               componentType: "footer_button",
+                              navigationType: "across",
                               lessonName: nextLesson.lessonTitle,
                               lessonSlug: nextLesson.lessonSlug,
                               lessonReleaseCohort: "2023-2026",
