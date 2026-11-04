@@ -29,10 +29,7 @@ export const NationalCurriculumInsightsFaq = ({
     aria-labelledby="national-curriculum-insights-faq-heading"
     data-insights-module="faq"
   >
-    <OakMaxWidth
-      $maxWidth="spacing-1280"
-      $ph={["spacing-20", "spacing-40"]}
-    >
+    <OakMaxWidth $maxWidth="spacing-1280" $ph={["spacing-20", "spacing-40"]}>
       <OakBox $maxWidth="spacing-640">
         <OakHeading
           tag="h2"
