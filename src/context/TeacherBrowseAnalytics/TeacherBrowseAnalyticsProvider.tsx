@@ -83,12 +83,11 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
   );
 
   useEffect(() => {
-    store.setState((prevState) => ({
-      ...prevState,
+    store.setState({
       journeyId,
       posthogDistinctId,
-    }));
-  }, [store, journeyId, programmeState, accessLevel, posthogDistinctId]);
+    });
+  }, [store, journeyId, posthogDistinctId]);
 
   return (
     <TeacherBrowseAnalyticsStoreContext.Provider value={store}>
