@@ -80,10 +80,9 @@ jest.mock("@/common-lib/error-reporter", () => ({
 }));
 
 // journeyId is now derived from the URL, not programmeState
-const mockUsePathname = jest.fn(
-  () =>
-    "/teachers/programmes/biology-secondary/units/cells/lessons/lesson-3-structure-of-cells",
-);
+const lessonPathname =
+  "/teachers/programmes/biology-secondary/units/cells/lessons/lesson-3-structure-of-cells";
+const mockUsePathname = jest.fn(() => lessonPathname);
 jest.mock("next/navigation", () => ({
   usePathname: () => mockUsePathname(),
 }));
@@ -174,6 +173,55 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
 
     expect(journeyId()).toBe("session-1:secondary-biology");
     expect(reportError).not.toHaveBeenCalled();
+  });
+
+  describe("accessLevel", () => {
+    const AccessLevel = () => {
+      const accessLevel = useTeacherBrowseAnalytics(
+        (store) => store.accessLevel,
+      );
+      return <div data-testid="access-level">{accessLevel}</div>;
+    };
+    const accessLevel = () => screen.getByTestId("access-level").textContent;
+
+    afterEach(() => {
+      mockUsePathname.mockImplementation(() => lessonPathname);
+    });
+
+    it("uses the accessLevel prop when provided", () => {
+      render(
+        <TeacherBrowseAnalyticsStoreProvider
+          programmeState={null}
+          accessLevel="search"
+        >
+          <AccessLevel />
+        </TeacherBrowseAnalyticsStoreProvider>,
+      );
+
+      expect(accessLevel()).toBe("search");
+    });
+
+    it("derives accessLevel from the pathname when the prop is omitted", () => {
+      render(
+        <TeacherBrowseAnalyticsStoreProvider programmeState={null}>
+          <AccessLevel />
+        </TeacherBrowseAnalyticsStoreProvider>,
+      );
+
+      expect(accessLevel()).toBe("lesson");
+    });
+
+    it("falls back to homepage for routes without a teacher page provider", () => {
+      mockUsePathname.mockImplementation(() => "/");
+
+      render(
+        <TeacherBrowseAnalyticsStoreProvider programmeState={null}>
+          <AccessLevel />
+        </TeacherBrowseAnalyticsStoreProvider>,
+      );
+
+      expect(accessLevel()).toBe("homepage");
+    });
   });
   describe("tracking", () => {
     const programmeLevelState = getProgrammeStateForProgramme(

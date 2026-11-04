@@ -13,10 +13,10 @@ const routes: ReadonlyArray<[RegExp, AccessLevelValueType]> = [
 
 export const getAccessLevelFromPathname = (
   pathname: string | null | undefined,
-): AccessLevelValueType | undefined => {
+): AccessLevelValueType => {
   if (!pathname) {
-    return undefined;
+    return "homepage";
   }
 
-  return routes.find(([pattern]) => pattern.test(pathname))?.[1];
+  return routes.find(([pattern]) => pattern.test(pathname))?.[1] ?? "homepage";
 };

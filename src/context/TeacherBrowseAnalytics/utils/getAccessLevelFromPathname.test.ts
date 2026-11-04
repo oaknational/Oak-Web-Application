@@ -84,7 +84,7 @@ describe("getAccessLevelFromPathname", () => {
     resolveOakHref({ page: "home" }),
     resolveOakHref({ page: "eyfs-page", subjectSlug: "maths" }),
     resolveOakHref({ page: "about-who-we-are" }),
-  ])("returns undefined for %s", (pathname) => {
-    expect(getAccessLevelFromPathname(pathname)).toBeUndefined();
+  ])("falls back to homepage for %s", (pathname) => {
+    expect(getAccessLevelFromPathname(pathname)).toBe("homepage");
   });
 });

@@ -9,6 +9,7 @@ import {
 } from "react";
 import { useStore } from "zustand";
 import { useOakConsent } from "@oaknational/oak-consent-client";
+import { usePathname } from "next/navigation";
 
 import useAnalytics from "../Analytics/useAnalytics";
 import OakError from "../../errors/OakError";
@@ -19,6 +20,7 @@ import {
   TeacherBrowseAnalyticsStore,
 } from "./TeacherBrowseAnalyticsStore";
 import useJourneySlugsContext from "./utils/getJourneySlugsContext";
+import { getAccessLevelFromPathname } from "./utils/getAccessLevelFromPathname";
 
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
 import useSelectedArea from "@/hooks/useSelectedArea";
@@ -33,20 +35,23 @@ export const TeacherBrowseAnalyticsStoreContext = createContext<
 
 export type TeacherBrowseAnalyticsStoreProviderProps = Pick<
   TeacherBrowseAnalyticsStore,
-  "programmeState" | "accessLevel"
-> & {
-  children: ReactNode;
-};
+  "programmeState"
+> &
+  Partial<Pick<TeacherBrowseAnalyticsStore, "accessLevel">> & {
+    children: ReactNode;
+  };
 
 const reportError = errorReporter("teacher-browse-analytics");
 
 export const TeacherBrowseAnalyticsStoreProvider = ({
   programmeState,
-  accessLevel,
+  accessLevel: accessLevelProp,
   children,
 }: TeacherBrowseAnalyticsStoreProviderProps) => {
   const { track, getSessionId, posthogDistinctId } = useAnalytics();
   const { subjectSlug, phaseSlug } = useJourneySlugsContext();
+  const pathname = usePathname();
+  const accessLevel = accessLevelProp ?? getAccessLevelFromPathname(pathname);
   const posthogConsent = useOakConsent().getConsent(ServicePolicyMap.POSTHOG);
   const hasConsent = posthogConsent === "granted";
 
