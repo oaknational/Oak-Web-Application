@@ -14,7 +14,7 @@ interface WorksListItem {
 // no content from these subjects can use create with AI
 export const RESTRICTED_SUBJECTS = new Set([
   "art",
-  "design-technology",
+  "religious-education",
   "french",
   "geography",
   "german",
