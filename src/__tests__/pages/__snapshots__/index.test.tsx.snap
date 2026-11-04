@@ -757,13 +757,14 @@ exports[`Teachers Page Page component renders 1`] = `
                   class="sc-bdvwhi sc-gsDMPd jtiAen eChlAW"
                 >
                   <div
-                    class="sc-bdvwhi sc-b4caafee-0 jtiAen beswLS"
+                    class="sc-bdvwhi sc-548a3d54-0 jtiAen cqbkbz"
                   >
                     <img
                       alt=""
                       class="sc-ba397cd3-0 igiEGH"
                       data-nimg="1"
                       decoding="async"
+                      fetchpriority="high"
                       height="313"
                       src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=1080&h=645&fm=webp&q=80&fit=clip&auto=format"
                       srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=640&h=382&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=1080&h=645&fm=webp&q=80&fit=clip&auto=format 2x"
@@ -1075,13 +1076,14 @@ exports[`Teachers Page Page component renders 1`] = `
                   class="sc-bdvwhi glcwX"
                 >
                   <div
-                    class="sc-bdvwhi sc-b4caafee-0 jtiAen beswLS"
+                    class="sc-bdvwhi sc-548a3d54-0 jtiAen cqbkbz"
                   >
                     <img
                       alt=""
                       class="sc-ba397cd3-0 igiEGH"
                       data-nimg="1"
                       decoding="async"
+                      fetchpriority="high"
                       height="313"
                       src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=1080&h=645&fm=webp&q=80&fit=clip&auto=format"
                       srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=640&h=382&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=1080&h=645&fm=webp&q=80&fit=clip&auto=format 2x"
@@ -1572,13 +1574,14 @@ exports[`Teachers Page Page component renders 1`] = `
                   class="sc-bdvwhi sc-gsDMPd glcwX enBTAV"
                 >
                   <div
-                    class="sc-bdvwhi sc-b4caafee-0 jtiAen beswLS"
+                    class="sc-bdvwhi sc-548a3d54-0 jtiAen cqbkbz"
                   >
                     <img
                       alt=""
                       class="sc-ba397cd3-0 igiEGH"
                       data-nimg="1"
                       decoding="async"
+                      fetchpriority="high"
                       height="313"
                       src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=1080&h=645&fm=webp&q=80&fit=clip&auto=format"
                       srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=640&h=382&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=1080&h=645&fm=webp&q=80&fit=clip&auto=format 2x"
