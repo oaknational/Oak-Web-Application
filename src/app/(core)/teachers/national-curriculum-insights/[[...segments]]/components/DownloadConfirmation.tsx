@@ -8,11 +8,16 @@ import {
   OakImage,
   OakLink,
   OakP,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
 
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 
-export const NationalCurriculumInsightsDownloadConfirmation = () => (
+export const NationalCurriculumInsightsDownloadConfirmation = ({
+  onBack,
+}: {
+  onBack: () => void;
+}) => (
   <OakGrid
     $maxWidth="spacing-1280"
     $mh="auto"
@@ -23,6 +28,9 @@ export const NationalCurriculumInsightsDownloadConfirmation = () => (
   >
     <OakGridArea $colSpan={[12, 12, 6]} $order={[2, 2, 1]}>
       <OakFlex $flexDirection="column" $gap="spacing-40">
+        <OakTertiaryButton type="button" iconName="arrow-left" onClick={onBack}>
+          Back to subject list
+        </OakTertiaryButton>
         <OakBox role="status">
           <OakHeading tag="h2" $font="heading-4">
             Thanks for downloading!
