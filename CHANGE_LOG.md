@@ -1,3 +1,11 @@
+# [1.1268.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1267.1...v1.1268.0) (2026-11-04)
+
+
+### Features
+
+* add more info to analytics error diagnostics ([39a5489](https://github.com/oaknational/Oak-Web-Application/commit/39a5489ceaaf8cbdc5310c60ce93ef9e09938194))
+* add more info to analytics error diagnostics ([b78437a](https://github.com/oaknational/Oak-Web-Application/commit/b78437ac4c6b3a607d8e23222c084e616017f8b5))
+
 ## [1.1267.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1267.0...v1.1267.1) (2026-11-02)
 
 
