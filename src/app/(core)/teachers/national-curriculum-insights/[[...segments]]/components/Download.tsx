@@ -130,10 +130,11 @@ const DownloadHeader = ({
         $minHeight={["spacing-40", "spacing-40", "spacing-56"]}
         $mh="auto"
         $ph="spacing-0"
+        $pr={[expanded ? "spacing-0" : "spacing-64", null, "spacing-0"]}
       >
         <OakFlex
           as="span"
-          $display={[expanded ? "none" : "inline-flex", null, "inline-flex"]}
+          $display={["none", "none", "inline-flex"]}
           $alignItems="center"
           $justifyContent="center"
           $width={["spacing-40", "spacing-40", "spacing-56"]}
@@ -152,7 +153,7 @@ const DownloadHeader = ({
         </OakFlex>
         <OakBox
           as="span"
-          $display={[expanded ? "none" : "inline", null, "inline"]}
+          $display={["none", "none", "inline"]}
           $font="heading-7"
           $textAlign="left"
         >
@@ -160,10 +161,11 @@ const DownloadHeader = ({
         </OakBox>
         <OakBox
           as="span"
-          $display={[expanded ? "inline-flex" : "none", null, "inline-flex"]}
+          $display="inline-flex"
           $background="bg-btn-primary"
           $color="text-inverted"
           $font="heading-light-7"
+          $textAlign="left"
           $pa="spacing-4"
           $ph="spacing-8"
           $borderRadius="border-radius-m"
@@ -174,7 +176,8 @@ const DownloadHeader = ({
         <OakIcon
           iconName={expanded ? "chevron-down" : "chevron-up"}
           $display={[expanded ? "none" : "inline-flex", null, "inline-flex"]}
-          $ml="auto"
+          $ml={["spacing-8", "spacing-8", "auto"]}
+          $minWidth="spacing-24"
           $width="spacing-24"
           $height="spacing-24"
           aria-hidden="true"
