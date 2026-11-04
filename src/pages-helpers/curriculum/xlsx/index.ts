@@ -56,7 +56,7 @@ async function buildNationalCurriculum(
       const queryParams = {
         utm_source: "national_curriculum_alignment",
         utm_medium: "document",
-        utm_campaign: `${unit.subject_slug.replaceAll("-", "_")}_${unit.phase_slug}_national_curriculum_alignment`,
+        utm_campaign: `${(unit.subject_parent_slug ?? unit.subject_slug).replaceAll("-", "_")}_${unit.phase_slug}_national_curriculum_alignment`,
       };
 
       const baseUrl = `https://www.thenational.academy/teachers/programmes/${teacherProgrammeSlug}/units/${unit.slug}/lessons`;

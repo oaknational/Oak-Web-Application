@@ -322,7 +322,7 @@ export async function buildUnit(
     {
       utm_source: "curriculum_plan",
       utm_medium: "document",
-      utm_campaign: `${unit.subject_slug.replaceAll("-", "_")}_${unit.phase_slug}_curriculum_plan`,
+      utm_campaign: `${(unit.subject_parent_slug ?? unit.subject_slug).replaceAll("-", "_")}_${unit.phase_slug}_curriculum_plan`,
     },
   );
 
