@@ -146,6 +146,8 @@ const UnitHeader = (props: UnitHeaderProps) => {
                           ...getUnitAnalyticsProperties(unitState),
                           unitName: prevUnit.title,
                           unitSlug: prevUnit.slug,
+                          yearGroupName: prevUnit.yearGroupName,
+                          yearGroupSlug: prevUnit.yearSlug,
                         }
                       : undefined,
                   }),
@@ -169,6 +171,8 @@ const UnitHeader = (props: UnitHeaderProps) => {
                           ...getUnitAnalyticsProperties(unitState),
                           unitName: nextUnit.title,
                           unitSlug: nextUnit.slug,
+                          yearGroupName: nextUnit.yearGroupName,
+                          yearGroupSlug: nextUnit.yearSlug,
                         }
                       : undefined,
                   }),

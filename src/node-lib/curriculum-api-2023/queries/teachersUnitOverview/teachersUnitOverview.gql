@@ -1,7 +1,4 @@
-query teachersUnitOverview(
-  $programmeSlug: String!
-  $unitSlug: String!
-) {
+query teachersUnitOverview($programmeSlug: String!, $unitSlug: String!) {
   lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
     where: {
       unit_slug: { _eq: $unitSlug }
@@ -38,6 +35,8 @@ query teachersUnitOverview(
     unitOrder: supplementary_data(path: "unit_order")
     yearOrder: programme_fields(path: "year_display_order")
     year: programme_fields(path: "year")
+    yearSlug: programme_fields(path: "year_slug")
+    yearGroupName: programme_fields(path: "year_title")
     subjectCategories: unit_data(path: "subjectcategories")
     optionalityTitle: programme_fields(path: "optionality")
     isSwimming: features(path: "pe_swimming")

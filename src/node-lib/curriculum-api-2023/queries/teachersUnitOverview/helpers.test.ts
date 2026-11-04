@@ -104,6 +104,8 @@ describe("getTransformedUnit", () => {
       nextUnit: {
         slug: "unit-2",
         title: "Unit 2",
+        yearGroupName: "Year 1",
+        yearSlug: "year-1",
       },
       prevUnit: null,
       tierOptionToggles: [],
@@ -187,6 +189,8 @@ describe("getTransformedUnit", () => {
       nextUnit: {
         slug: "unit-2",
         title: "Unit 2",
+        yearGroupName: "Year 1",
+        yearSlug: "year-1",
       },
       prevUnit: null,
       tierOptionToggles: [],
@@ -231,6 +235,8 @@ describe("getTransformedUnit", () => {
           yearOrder: 2,
           year: "7",
           actions: null,
+          yearGroupName: "Year 7",
+          yearSlug: "year-7",
         },
         {
           unitSlug: "unit-21",
@@ -241,6 +247,8 @@ describe("getTransformedUnit", () => {
           yearOrder: 2,
           year: "7",
           actions: null,
+          yearGroupName: "Year 7",
+          yearSlug: "year-7",
         },
       ],
       unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
@@ -273,6 +281,8 @@ describe("getUnitCounts", () => {
         yearOrder: 2,
         year: "7",
         actions: null,
+        yearGroupName: "Year 7",
+        yearSlug: "year-7",
       },
       {
         unitSlug: "unit-21",
@@ -283,6 +293,8 @@ describe("getUnitCounts", () => {
         yearOrder: 2,
         year: "7",
         actions: null,
+        yearGroupName: "Year 7",
+        yearSlug: "year-7",
       },
     ];
     const result = getUnitCounts({
@@ -304,6 +316,8 @@ describe("getUnitCounts", () => {
         yearOrder: 1,
         year: "7",
         actions: null,
+        yearGroupName: "Year 7",
+        yearSlug: "year-7",
       },
       {
         unitSlug: "unit-2-core",
@@ -314,6 +328,8 @@ describe("getUnitCounts", () => {
         yearOrder: 1,
         year: "7",
         actions: null,
+        yearGroupName: "Year 7",
+        yearSlug: "year-7",
       },
       {
         unitSlug: "unit-2-optionality",
@@ -325,6 +341,8 @@ describe("getUnitCounts", () => {
         yearOrder: 1,
         year: "7",
         actions: null,
+        yearGroupName: "Year 7",
+        yearSlug: "year-7",
       },
       {
         unitSlug: "unit-3-core",
@@ -335,6 +353,8 @@ describe("getUnitCounts", () => {
         yearOrder: 1,
         year: "7",
         actions: null,
+        yearGroupName: "Year 7",
+        yearSlug: "year-7",
       },
     ];
 
@@ -358,6 +378,8 @@ describe("getUnitCounts", () => {
         yearOrder: 1,
         year: "7",
         actions: null,
+        yearGroupName: "Year 7",
+        yearSlug: "year-7",
       },
       {
         unitSlug: "swimming-and-water-safety-1",
@@ -369,6 +391,8 @@ describe("getUnitCounts", () => {
         year: "7",
         actions: null,
         isSwimming: true,
+        yearGroupName: "Year 7",
+        yearSlug: "year-7",
       },
       {
         unitSlug: "unit-3",
@@ -379,6 +403,8 @@ describe("getUnitCounts", () => {
         yearOrder: 1,
         year: "7",
         actions: null,
+        yearGroupName: "Year 7",
+        yearSlug: "year-7",
       },
     ];
 
@@ -401,6 +427,8 @@ describe("getUnitCounts", () => {
         nullUnitvariantId: 1,
         yearOrder: 1,
         year: "7",
+        yearGroupName: "Year 7",
+        yearSlug: "year-7",
         actions: null,
       },
       {
@@ -413,6 +441,8 @@ describe("getUnitCounts", () => {
         year: "7",
         actions: null,
         isSwimming: true,
+        yearGroupName: "Year 7",
+        yearSlug: "year-7",
       },
       {
         unitSlug: "swimming-and-water-safety-2",
@@ -424,6 +454,8 @@ describe("getUnitCounts", () => {
         year: "7",
         actions: null,
         isSwimming: true,
+        yearGroupName: "Year 7",
+        yearSlug: "year-7",
       },
       {
         unitSlug: "unit-3",
@@ -434,6 +466,8 @@ describe("getUnitCounts", () => {
         yearOrder: 1,
         year: "7",
         actions: null,
+        yearGroupName: "Year 7",
+        yearSlug: "year-7",
       },
     ];
 
@@ -459,6 +493,8 @@ describe("getUnitCounts", () => {
         yearOrder: 1,
         year: "3",
         actions: null,
+        yearGroupName: "Year 3",
+        yearSlug: "year-3",
       },
       // Intentionally placed before the Year 3 swimming unit despite being the later year
       {
@@ -471,6 +507,8 @@ describe("getUnitCounts", () => {
         year: "4",
         isSwimming: true,
         actions: null,
+        yearGroupName: "Year 4",
+        yearSlug: "year-4",
       },
       {
         unitSlug: "swimming-year-3",
@@ -482,6 +520,8 @@ describe("getUnitCounts", () => {
         year: "3",
         isSwimming: true,
         actions: null,
+        yearGroupName: "Year 3",
+        yearSlug: "year-3",
       },
     ];
 
@@ -512,6 +552,8 @@ describe("getUnitCounts", () => {
         year: "3",
         isSwimming: true,
         actions: null,
+        yearGroupName: "Year 3",
+        yearSlug: "year-3",
       },
       {
         unitSlug: "swimming-a",
@@ -523,6 +565,8 @@ describe("getUnitCounts", () => {
         year: "3",
         isSwimming: true,
         actions: null,
+        yearGroupName: "Year 3",
+        yearSlug: "year-3",
       },
     ];
 
@@ -549,6 +593,8 @@ describe("getUnitCounts", () => {
         nullUnitvariantId: 1,
         yearOrder: 1,
         year: "7",
+        yearGroupName: "Year 7",
+        yearSlug: "year-7",
         subjectCategories: ["Grammar"],
         actions: {
           subject_category_actions: {
@@ -568,6 +614,8 @@ describe("getUnitCounts", () => {
         year: "7",
         subjectCategories: ["Grammar"],
         actions: null,
+        yearGroupName: "Year 7",
+        yearSlug: "year-7",
       },
       {
         unitSlug: "writing-1",
@@ -579,6 +627,8 @@ describe("getUnitCounts", () => {
         year: "7",
         subjectCategories: ["Writing"],
         actions: null,
+        yearGroupName: "Year 7",
+        yearSlug: "year-7",
       },
     ];
 
@@ -601,6 +651,8 @@ describe("getUnitCounts", () => {
         nullUnitvariantId: 1,
         yearOrder: 1,
         year: "7",
+        yearGroupName: "Year 7",
+        yearSlug: "year-7",
         subjectCategories: ["Grammar"],
         actions: {
           subject_category_actions: {
@@ -618,6 +670,8 @@ describe("getUnitCounts", () => {
         nullUnitvariantId: 2,
         yearOrder: 1,
         year: "7",
+        yearGroupName: "Year 7",
+        yearSlug: "year-7",
         subjectCategories: ["Grammar"],
         actions: null,
       },
@@ -629,6 +683,8 @@ describe("getUnitCounts", () => {
         nullUnitvariantId: 3,
         yearOrder: 1,
         year: "7",
+        yearGroupName: "Year 7",
+        yearSlug: "year-7",
         subjectCategories: ["Writing"],
         actions: null,
       },
@@ -662,6 +718,8 @@ describe("getAdjacentUnits", () => {
     expect(transformedLessons.prevUnit).toEqual({
       slug: "unit-2",
       title: "Unit 2",
+      yearGroupName: "Year 1",
+      yearSlug: "year-1",
     });
   });
   it("gets the next optionality unit", () => {
@@ -682,6 +740,8 @@ describe("getAdjacentUnits", () => {
         nullUnitvariantId: 5,
         yearOrder: 1,
         year: "7",
+        yearGroupName: "Year 7",
+        yearSlug: "year-7",
         actions: null,
       }),
       unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
@@ -691,6 +751,8 @@ describe("getAdjacentUnits", () => {
     expect(transformedLessons.nextUnit).toEqual({
       title: "Optionality title",
       slug: "unit-slug",
+      yearGroupName: "Year 7",
+      yearSlug: "year-7",
     });
   });
   it("gets the previous optionality unit", () => {
@@ -706,6 +768,8 @@ describe("getAdjacentUnits", () => {
           nullUnitvariantId: 5,
           yearOrder: 1,
           year: "7",
+          yearGroupName: "Year 7",
+          yearSlug: "year-7",
           actions: null,
         },
         {
@@ -716,6 +780,8 @@ describe("getAdjacentUnits", () => {
           nullUnitvariantId: 6,
           yearOrder: 1,
           year: "7",
+          yearGroupName: "Year 7",
+          yearSlug: "year-7",
           actions: null,
         },
       ],
@@ -725,6 +791,8 @@ describe("getAdjacentUnits", () => {
     expect(result.prevUnit).toEqual({
       title: "Optionality title",
       slug: "unit-slug",
+      yearGroupName: "Year 7",
+      yearSlug: "year-7",
     });
   });
   it("gets the next unit when order is non sequential", () => {
@@ -739,6 +807,8 @@ describe("getAdjacentUnits", () => {
           nullUnitvariantId: 6,
           yearOrder: 1,
           year: "7",
+          yearGroupName: "Year 7",
+          yearSlug: "year-7",
           actions: null,
         },
       ],
@@ -748,6 +818,8 @@ describe("getAdjacentUnits", () => {
     expect(result.nextUnit).toEqual({
       slug: "next-slug",
       title: "Next unit",
+      yearGroupName: "Year 7",
+      yearSlug: "year-7",
     });
   });
   it("gets the previous unit when the order is non sequential", () => {
@@ -761,6 +833,8 @@ describe("getAdjacentUnits", () => {
           nullUnitvariantId: 2,
           yearOrder: 1,
           year: "7",
+          yearGroupName: "Year 7",
+          yearSlug: "year-7",
           actions: null,
         },
         {
@@ -771,6 +845,8 @@ describe("getAdjacentUnits", () => {
           nullUnitvariantId: 5,
           yearOrder: 1,
           year: "7",
+          yearGroupName: "Year 7",
+          yearSlug: "year-7",
           actions: null,
         },
         {
@@ -781,12 +857,19 @@ describe("getAdjacentUnits", () => {
           nullUnitvariantId: 6,
           yearOrder: 1,
           year: "7",
+          yearGroupName: "Year 7",
+          yearSlug: "year-7",
           actions: null,
         },
       ],
       nullUnitvariantId: 5,
     });
-    expect(result.prevUnit).toEqual({ slug: "prev-slug", title: "Prev unit" });
+    expect(result.prevUnit).toEqual({
+      slug: "prev-slug",
+      title: "Prev unit",
+      yearGroupName: "Year 7",
+      yearSlug: "year-7",
+    });
   });
   it("gets the next unit from the correct year", () => {
     const result = getAdjacentUnits({
@@ -799,6 +882,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 1,
           unitOrder: 1,
           year: "7",
+          yearGroupName: "Year 7",
+          yearSlug: "year-7",
           actions: null,
         },
         {
@@ -809,6 +894,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 2,
           unitOrder: 2,
           year: "7",
+          yearGroupName: "Year 7",
+          yearSlug: "year-7",
           actions: null,
         },
         {
@@ -819,6 +906,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 1,
           unitOrder: 2,
           year: "7",
+          yearGroupName: "Year 7",
+          yearSlug: "year-7",
           actions: null,
         },
       ],
@@ -827,6 +916,8 @@ describe("getAdjacentUnits", () => {
     expect(result.nextUnit).toEqual({
       slug: "unit-2",
       title: "Unit 2",
+      yearGroupName: "Year 7",
+      yearSlug: "year-7",
     });
   });
   it("gets the previous unit from the correct year", () => {
@@ -840,6 +931,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 2,
           unitOrder: 2,
           year: "7",
+          yearGroupName: "Year 7",
+          yearSlug: "year-7",
           actions: null,
         },
         {
@@ -850,6 +943,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 1,
           unitOrder: 2,
           year: "7",
+          yearGroupName: "Year 7",
+          yearSlug: "year-7",
           actions: null,
         },
         {
@@ -860,6 +955,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 2,
           unitOrder: 2,
           year: "7",
+          yearGroupName: "Year 7",
+          yearSlug: "year-7",
           actions: null,
         },
       ],
@@ -868,6 +965,8 @@ describe("getAdjacentUnits", () => {
     expect(result.prevUnit).toEqual({
       slug: "unit-2",
       title: "Unit 2",
+      yearGroupName: "Year 7",
+      yearSlug: "year-7",
     });
   });
 
@@ -882,6 +981,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 1,
           unitOrder: 1,
           year: "1",
+          yearGroupName: "Year 1",
+          yearSlug: "year-1",
           actions: null,
         },
         {
@@ -892,6 +993,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 1,
           unitOrder: 2,
           year: "1",
+          yearGroupName: "Year 1",
+          yearSlug: "year-1",
           isSwimming: true,
           actions: null,
         },
@@ -903,6 +1006,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 1,
           unitOrder: 3,
           year: "1",
+          yearGroupName: "Year 1",
+          yearSlug: "year-1",
           actions: null,
         },
         {
@@ -913,6 +1018,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 2,
           unitOrder: 1,
           year: "2",
+          yearGroupName: "Year 2",
+          yearSlug: "year-2",
           isSwimming: true,
           actions: null,
         },
@@ -924,6 +1031,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 2,
           unitOrder: 2,
           year: "2",
+          yearGroupName: "Year 2",
+          yearSlug: "year-2",
           actions: null,
         },
         {
@@ -934,6 +1043,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 3,
           unitOrder: 1,
           year: "3",
+          yearGroupName: "Year 3",
+          yearSlug: "year-3",
           isSwimming: true,
           actions: null,
         },
@@ -944,10 +1055,14 @@ describe("getAdjacentUnits", () => {
     expect(result.prevUnit).toEqual({
       slug: "swimming-1",
       title: "Swimming 1",
+      yearGroupName: "Year 1",
+      yearSlug: "year-1",
     });
     expect(result.nextUnit).toEqual({
       slug: "swimming-3",
       title: "Swimming 3",
+      yearGroupName: "Year 3",
+      yearSlug: "year-3",
     });
   });
 
@@ -962,6 +1077,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 1,
           unitOrder: 1,
           year: "1",
+          yearGroupName: "Year 1",
+          yearSlug: "year-1",
           isSwimming: true,
           actions: null,
         },
@@ -973,6 +1090,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 1,
           unitOrder: 2,
           year: "1",
+          yearGroupName: "Year 1",
+          yearSlug: "year-1",
           actions: null,
         },
         {
@@ -983,6 +1102,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 2,
           unitOrder: 1,
           year: "2",
+          yearGroupName: "Year 2",
+          yearSlug: "year-2",
           isSwimming: true,
           actions: null,
         },
@@ -994,6 +1115,8 @@ describe("getAdjacentUnits", () => {
     expect(result.nextUnit).toEqual({
       slug: "swimming-2",
       title: "Swimming 2",
+      yearGroupName: "Year 2",
+      yearSlug: "year-2",
     });
   });
 
@@ -1008,6 +1131,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 1,
           unitOrder: 1,
           year: "1",
+          yearGroupName: "Year 1",
+          yearSlug: "year-1",
           isSwimming: true,
           actions: null,
         },
@@ -1020,6 +1145,8 @@ describe("getAdjacentUnits", () => {
           unitOrder: 1,
           year: "2",
           actions: null,
+          yearGroupName: "Year 2",
+          yearSlug: "year-2",
         },
         {
           unitSlug: "swimming-2",
@@ -1029,6 +1156,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 3,
           unitOrder: 1,
           year: "3",
+          yearGroupName: "Year 3",
+          yearSlug: "year-3",
           isSwimming: true,
           actions: null,
         },
@@ -1039,6 +1168,8 @@ describe("getAdjacentUnits", () => {
     expect(result.prevUnit).toEqual({
       slug: "swimming-1",
       title: "Swimming 1",
+      yearGroupName: "Year 1",
+      yearSlug: "year-1",
     });
     expect(result.nextUnit).toBeNull();
   });
@@ -1054,6 +1185,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 1,
           unitOrder: 2,
           year: "1",
+          yearGroupName: "Year 1",
+          yearSlug: "year-1",
           subjectCategories: ["Grammar"],
           actions: {
             subject_category_actions: {
@@ -1071,6 +1204,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 1,
           unitOrder: 3,
           year: "1",
+          yearGroupName: "Year 1",
+          yearSlug: "year-1",
           actions: null,
           subjectCategories: ["Writing"],
         },
@@ -1082,6 +1217,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 2,
           unitOrder: 1,
           year: "2",
+          yearGroupName: "Year 2",
+          yearSlug: "year-2",
           subjectCategories: ["Grammar"],
           actions: {
             subject_category_actions: {
@@ -1099,6 +1236,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 2,
           unitOrder: 2,
           year: "2",
+          yearGroupName: "Year 2",
+          yearSlug: "year-2",
           actions: null,
           subjectCategories: ["Language"],
         },
@@ -1110,6 +1249,8 @@ describe("getAdjacentUnits", () => {
           yearOrder: 3,
           unitOrder: 1,
           year: "3",
+          yearGroupName: "Year 3",
+          yearSlug: "year-3",
           isSwimming: false,
           subjectCategories: ["Grammar"],
           actions: {
@@ -1127,11 +1268,15 @@ describe("getAdjacentUnits", () => {
     expect(result.nextUnit).toEqual({
       slug: "grammar-3",
       title: "Grammar 3",
+      yearGroupName: "Year 3",
+      yearSlug: "year-3",
     });
 
     expect(result.prevUnit).toEqual({
       slug: "grammar-1",
       title: "Grammar 1",
+      yearGroupName: "Year 1",
+      yearSlug: "year-1",
     });
   });
 });

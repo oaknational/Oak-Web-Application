@@ -119,10 +119,14 @@ describe("UnitHeader", () => {
         prevUnit={{
           slug: "unit-2",
           title: "Previous unit",
+          yearGroupName: "Year 1",
+          yearSlug: "year-1",
         }}
         nextUnit={{
           slug: "unit-4",
           title: "Next unit",
+          yearGroupName: "Year 1",
+          yearSlug: "year-1",
         }}
       />,
     );
