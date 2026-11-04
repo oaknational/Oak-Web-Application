@@ -4,12 +4,17 @@ import userEvent from "@testing-library/user-event";
 import UnitHeader, { UnitHeaderProps } from "./UnitHeader";
 import { useStickyUnitHeader } from "./useStickyUnitHeader";
 
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import renderWithProviders, {
+  allProviders,
+} from "@/__tests__/__helpers__/renderWithProviders";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
+import { getProgrammeStateForUnit } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersUnitOverview.fixture";
 
 const track = {
   unitDownloaded: jest.fn(),
+  unitAccessed: jest.fn(),
 };
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -99,6 +104,44 @@ describe("UnitHeader", () => {
       screen.getByRole("link", { name: "Previous unit" }),
     ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Next unit" })).toBeInTheDocument();
+  });
+
+  it("tracks unitAccessed on next and previous lesson links", async () => {
+    renderWithProviders({
+      ...allProviders,
+      teacherBrowseAnalytics: {
+        programmeState: getProgrammeStateForUnit(teachersUnitOverviewFixture()),
+        accessLevel: "unit",
+      },
+    })(
+      <UnitHeader
+        {...defaultProps}
+        prevUnit={{
+          slug: "unit-2",
+          title: "Previous unit",
+        }}
+        nextUnit={{
+          slug: "unit-4",
+          title: "Next unit",
+        }}
+      />,
+    );
+    const nextUnitLink = screen.getByRole("link", { name: /Next unit/i });
+    nextUnitLink.addEventListener("click", (e) => e.preventDefault());
+    const user = userEvent.setup();
+    await user.click(nextUnitLink);
+    expect(track.unitAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({ unitSlug: "unit-4" }),
+    );
+
+    const prevUnitLink = screen.getByRole("link", {
+      name: /Previous unit/i,
+    });
+    prevUnitLink.addEventListener("click", (e) => e.preventDefault());
+    await user.click(prevUnitLink);
+    expect(track.unitAccessed).toHaveBeenLastCalledWith(
+      expect.objectContaining({ unitSlug: "unit-2" }),
+    );
   });
 
   it("renders the download button when a download file id is provided", () => {
