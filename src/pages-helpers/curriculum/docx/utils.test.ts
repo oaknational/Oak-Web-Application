@@ -2,17 +2,19 @@ import { addQueryParamsToUrl, escapeXml } from "./utils";
 
 describe("addQueryParamsToUrl", () => {
   it("should add query parms to base url", () => {
+    const subjectSlug = "physical-education";
+    const phaseSlug = "primary";
     const url =
       "https://www.thenational.academy/teachers/programmes/maths/ks3/units";
     const queryParams = {
       utm_source: "curriculum_plan",
       utm_medium: "document",
-      utm_campaign: "maths_secondary_curriculum_plan",
+      utm_campaign: `${subjectSlug.replaceAll("-", "_")}_${phaseSlug}_curriculum_plan`,
       years: "all-years",
     };
     const result = addQueryParamsToUrl(url, queryParams);
     expect(result).toBe(
-      "https://www.thenational.academy/teachers/programmes/maths/ks3/units?utm_source=curriculum_plan&utm_medium=document&utm_campaign=maths_secondary_curriculum_plan&years=all-years",
+      "https://www.thenational.academy/teachers/programmes/maths/ks3/units?utm_source=curriculum_plan&utm_medium=document&utm_campaign=physical_education_primary_curriculum_plan&years=all-years",
     );
   });
 
