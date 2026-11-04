@@ -59,6 +59,14 @@ describe("getAccessLevelFromPathname", () => {
     ],
     [resolveOakHref({ page: "lesson-media-canonical", lessonSlug }), "lesson"],
     [
+      resolveOakHref({
+        page: "lesson-downloads-canonical",
+        lessonSlug,
+        downloads: "downloads",
+      }),
+      "lesson",
+    ],
+    [
       resolveOakHref({ page: "unit-overview", programmeSlug, unitSlug }),
       "unit",
     ],
@@ -74,6 +82,15 @@ describe("getAccessLevelFromPathname", () => {
     [resolveOakHref({ page: "my-library" }), "my_library"],
     [resolveOakHref({ page: "teach-with-oak" }), "teach_with_oak"],
     [resolveOakHref({ page: "teach-with-oak-download" }), "teach_with_oak"],
+    [
+      resolveOakHref({ page: "teach-with-oak-download-success" }),
+      "teach_with_oak",
+    ],
+    [
+      resolveOakHref({ page: "teach-with-oak-thinking-behind-oak-lessons" }),
+      "teach_with_oak",
+    ],
+    ["/teachers/search/", "search"],
   ])("maps %s to %s", (pathname, expected) => {
     expect(getAccessLevelFromPathname(pathname)).toBe(expected);
   });
