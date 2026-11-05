@@ -182,7 +182,12 @@ describe("UnitOverviewContent", () => {
     render(
       <UnitOverviewContent
         {...defaultProps}
-        prevUnit={{ slug: "unit-1", title: "Unit 1" }}
+        prevUnit={{
+          slug: "unit-1",
+          title: "Unit 1",
+          yearGroupName: "Year 1",
+          yearSlug: "year-1",
+        }}
       />,
     );
     const previousUnitLink = screen.getByRole("link", {
@@ -202,7 +207,12 @@ describe("UnitOverviewContent", () => {
     render(
       <UnitOverviewContent
         {...defaultProps}
-        nextUnit={{ slug: "unit-3", title: "Unit 3" }}
+        nextUnit={{
+          slug: "unit-3",
+          title: "Unit 3",
+          yearGroupName: "Year 7",
+          yearSlug: "year-7",
+        }}
       />,
     );
 
