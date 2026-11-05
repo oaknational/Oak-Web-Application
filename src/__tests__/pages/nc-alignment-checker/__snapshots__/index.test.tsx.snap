@@ -164,7 +164,16 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c59 {
+.c57 {
+  display: contents;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c57:hover {
+  cursor: pointer;
+}
+
+.c60 {
   width: fit-content;
   min-width: 2rem;
   height: 2rem;
@@ -179,7 +188,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c61 {
+.c62 {
   position: relative;
   width: 1.5rem;
   min-width: 1.5rem;
@@ -189,28 +198,28 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c62 {
+.c63 {
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c65 {
+.c66 {
   display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c67 {
+.c68 {
   width: 100%;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c68 {
+.c69 {
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   z-index: 0;
 }
 
-.c69 {
+.c70 {
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -220,13 +229,13 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   z-index: 0;
 }
 
-.c70 {
+.c71 {
   position: relative;
   height: 0.25rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c72 {
+.c73 {
   width: 100%;
   max-width: 80rem;
   padding-left: 1.25rem;
@@ -238,12 +247,12 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c76 {
+.c77 {
   margin-top: 2rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c79 {
+.c80 {
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
@@ -252,18 +261,18 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c83 {
+.c84 {
   margin-top: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c84 {
+.c85 {
   padding-left: 0.25rem;
   display: inline;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c85 {
+.c86 {
   position: relative;
   width: 2rem;
   min-width: 2rem;
@@ -273,7 +282,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c89 {
+.c90 {
   position: relative;
   width: 10rem;
   height: 4rem;
@@ -282,12 +291,12 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c90 {
+.c91 {
   display: flex;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c94 {
+.c95 {
   position: relative;
   width: 2rem;
   min-width: 2rem;
@@ -298,7 +307,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c95 {
+.c96 {
   position: absolute;
   top: 0rem;
   width: 100%;
@@ -309,14 +318,14 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c96 {
+.c97 {
   position: relative;
   width: 100%;
   display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c98 {
+.c99 {
   width: 100%;
   padding-top: 0.75rem;
   margin-top: 2rem;
@@ -324,12 +333,12 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c100 {
+.c101 {
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c104 {
+.c105 {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -345,7 +354,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   z-index: -1;
 }
 
-.c106 {
+.c107 {
   position: fixed;
   right: 0rem;
   width: 100%;
@@ -355,14 +364,14 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   z-index: 300;
 }
 
-.c109 {
+.c110 {
   position: sticky;
   bottom: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
   z-index: 299;
 }
 
-.c110 {
+.c111 {
   color: #222222;
   background: #f2f2f2;
   border-top: 0.063rem solid;
@@ -370,13 +379,13 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c111 {
+.c112 {
   margin-left: auto;
   margin-right: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c112 {
+.c113 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   margin-left: 1rem;
@@ -384,7 +393,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c114 {
+.c115 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -392,7 +401,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c117 {
+.c118 {
   font-family: --var(google-font),Lexend,sans-serif;
   white-space: nowrap;
 }
@@ -467,66 +476,66 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   justify-content: center;
 }
 
-.c60 {
+.c61 {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.25rem;
 }
 
-.c77 {
+.c78 {
   display: flex;
   flex-direction: column;
 }
 
-.c73 {
+.c74 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   flex-grow: 1;
 }
 
-.c88 {
+.c89 {
   display: flex;
   justify-content: left;
 }
 
-.c91 {
+.c92 {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
 }
 
-.c99 {
+.c100 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
 }
 
-.c101 {
+.c102 {
   display: none;
   align-items: center;
   justify-content: center;
   gap: 1rem;
 }
 
-.c107 {
+.c108 {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
 }
 
-.c113 {
+.c114 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 1.5rem;
 }
 
-.c116 {
+.c117 {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -574,7 +583,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c115 {
+.c116 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
@@ -582,7 +591,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c71 {
+.c72 {
   position: absolute;
   top: 0rem;
   left: 0rem;
@@ -727,7 +736,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   cursor: default;
 }
 
-.c57 {
+.c58 {
   background: none;
   color: inherit;
   border: none;
@@ -740,12 +749,12 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c57:disabled {
+.c58:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c63 {
+.c64 {
   background: none;
   color: inherit;
   border: none;
@@ -772,12 +781,12 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c63:disabled {
+.c64:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c66 {
+.c67 {
   background: none;
   color: inherit;
   border: none;
@@ -801,12 +810,12 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   border-style: none;
 }
 
-.c66:disabled {
+.c67:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c119 {
+.c120 {
   background: none;
   color: inherit;
   border: none;
@@ -829,7 +838,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c119:disabled {
+.c120:disabled {
   pointer-events: none;
   cursor: default;
 }
@@ -848,7 +857,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   object-fit: contain;
 }
 
-.c105 {
+.c106 {
   filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   object-fit: fill;
 }
@@ -973,40 +982,40 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   display: none;
 }
 
-.c64 {
+.c65 {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.c64:hover {
+.c65:hover {
   text-decoration: none;
   color: #ffffff;
   background: #575757;
   border-color: #575757;
 }
 
-.c64:hover [data-state="selected"] {
+.c65:hover [data-state="selected"] {
   display: none;
 }
 
-.c64:active {
+.c65:active {
   background: #222222;
   border-color: #222222;
   color: #ffffff;
 }
 
-.c64:active [data-state="selected"] {
+.c65:active [data-state="selected"] {
   display: none;
 }
 
-.c64:disabled {
+.c65:disabled {
   background: #808080;
   border-color: #808080;
   color: #ffffff;
 }
 
-.c64:disabled [data-state="selected"] {
+.c65:disabled [data-state="selected"] {
   display: none;
 }
 
@@ -1102,31 +1111,31 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   background: #222222;
 }
 
-.c92 >:first-of-type:focus-visible .shadow {
+.c93 >:first-of-type:focus-visible .shadow {
   box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c92 >:first-of-type:hover .shadow {
+.c93 >:first-of-type:hover .shadow {
   box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%);
 }
 
-.c92 >:first-of-type:active .shadow {
+.c93 >:first-of-type:active .shadow {
   box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%),0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
-.c92 >:first-of-type:disabled .icon-container {
+.c93 >:first-of-type:disabled .icon-container {
   background: #e4e4e4;
 }
 
-.c92 >:first-of-type:hover .icon-container {
+.c93 >:first-of-type:hover .icon-container {
   background: #ffffff;
 }
 
-.c92 >:first-of-type:active .icon-container {
+.c93 >:first-of-type:active .icon-container {
   background: #ffffff;
 }
 
-.c78 {
+.c79 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -1144,7 +1153,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   display: revert;
 }
 
-.c81 {
+.c82 {
   margin-top: 0.75rem;
   display: revert;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -1153,7 +1162,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   display: revert;
 }
 
-.c102 {
+.c103 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
@@ -1161,7 +1170,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c103 {
+.c104 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.75rem;
@@ -1169,7 +1178,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c80 {
+.c81 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -1189,7 +1198,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   gap: 0.75rem;
 }
 
-.c87 {
+.c88 {
   width: 1.25em;
   min-width: 1.25em;
   height: 1.25em;
@@ -1215,7 +1224,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c24 .c86 {
+.c24 .c87 {
   filter: invert(21%) sepia(90%) saturate(3220%) hue-rotate(232deg) brightness(71%) contrast(127%);
   display: inline-block;
   vertical-align: text-top;
@@ -1229,7 +1238,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   color: #081676;
 }
 
-.c24:visited .c86 {
+.c24:visited .c87 {
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
 
@@ -1238,7 +1247,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   outline: 1px solid #081676;
 }
 
-.c24:active .c86 {
+.c24:active .c87 {
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
 
@@ -1247,11 +1256,11 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   color: #808080;
 }
 
-.c24[disabled] .c86 {
+.c24[disabled] .c87 {
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c82 {
+.c83 {
   display: inline;
   text-align: left;
   align-items: center;
@@ -1270,43 +1279,43 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c82 .c86 {
+.c83 .c87 {
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   display: inline-block;
   vertical-align: text-top;
 }
 
-.c82:focus-visible {
+.c83:focus-visible {
   box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c82:visited {
+.c83:visited {
   color: #222222;
 }
 
-.c82:visited .c86 {
+.c83:visited .c87 {
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c82:active {
+.c83:active {
   color: #222222;
   outline: 1px solid #222222;
 }
 
-.c82:active .c86 {
+.c83:active .c87 {
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c82[disabled] {
+.c83[disabled] {
   cursor: not-allowed;
   color: #808080;
 }
 
-.c82[disabled] .c86 {
+.c83[disabled] .c87 {
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c118 {
+.c119 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -1356,37 +1365,37 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
   background: #ffffff;
 }
 
-.c74 {
+.c75 {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   width: 100%;
   column-gap: 1.5rem;
 }
 
-.c75 {
+.c76 {
   flex-direction: column;
   grid-column: span 12;
   grid-row: span undefined;
   grid-row: span 1;
 }
 
-.c58:hover .oak-save-count {
+.c59:hover .oak-save-count {
   background-color: #bef2bd;
 }
 
-.c58:focus-visible .oak-save-count {
+.c59:focus-visible .oak-save-count {
   box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c108 {
+.c109 {
   top: 152px;
 }
 
-.c93 .icon-container>*:first-child {
+.c94 .icon-container>*:first-child {
   border: 0;
 }
 
-.c97 {
+.c98 {
   height: 87px;
   width: 77px;
   margin-top: 2rem;
@@ -1477,31 +1486,31 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
 }
 
 @media (min-width: 750px) {
-  .c59 {
+  .c60 {
     padding-left: 0.25rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c59 {
+  .c60 {
     padding-right: 0.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c62 {
+  .c63 {
     display: contents;
   }
 }
 
 @media (min-width: 750px) {
-  .c65 {
+  .c66 {
     display: block;
   }
 }
 
 @media (min-width: 1280px) {
-  .c65 {
+  .c66 {
     display: none;
   }
 }
@@ -1515,151 +1524,151 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
 }
 
 @media (min-width: 750px) {
-  .c72 {
+  .c73 {
     padding-left: 2.5rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .c72 {
+  .c73 {
     padding-left: 2.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c72 {
+  .c73 {
     padding-right: 2.5rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .c72 {
+  .c73 {
     padding-right: 2.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c72 {
+  .c73 {
     padding-top: 5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c76 {
+  .c77 {
     margin-top: 0rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c83 {
+  .c84 {
     margin-top: 2rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c90 {
+  .c91 {
     display: none;
   }
 }
 
 @media (min-width: 750px) {
-  .c98 {
+  .c99 {
     padding-top: 0rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c100 {
+  .c101 {
     display: flex;
   }
 }
 
 @media (min-width: 750px) {
-  .c104 {
+  .c105 {
     display: block;
   }
 }
 
 @media (min-width: 750px) {
-  .c104 {
+  .c105 {
     transform: translate(25%, 25%) scale(0.7) rotate(-10deg);
   }
 }
 
 @media (min-width: 1280px) {
-  .c104 {
+  .c105 {
     transform: translate(25%, 15%) rotate(-10deg);
   }
 }
 
 @media (min-width: 750px) {
-  .c106 {
+  .c107 {
     right: 1.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c106 {
+  .c107 {
     width: max-content;
   }
 }
 
 @media (min-width: 750px) {
-  .c106 {
+  .c107 {
     padding-left: 0rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c106 {
+  .c107 {
     padding-right: 0rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c112 {
+  .c113 {
     margin-left: 1.5rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .c112 {
+  .c113 {
     margin-left: 3.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c112 {
+  .c113 {
     margin-right: 1.5rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .c112 {
+  .c113 {
     margin-right: 3.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c114 {
+  .c115 {
     font-weight: 300;
   }
 }
 
 @media (min-width: 750px) {
-  .c114 {
+  .c115 {
     font-size: 1rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c114 {
+  .c115 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c114 {
+  .c115 {
     letter-spacing: -0.005rem;
   }
 }
@@ -1683,7 +1692,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
 }
 
 @media (min-width: 750px) {
-  .c60 {
+  .c61 {
     justify-content: initial;
   }
 }
@@ -1697,103 +1706,103 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
 }
 
 @media (min-width: 750px) {
-  .c88 {
+  .c89 {
     justify-content: right;
   }
 }
 
 @media (min-width: 750px) {
-  .c91 {
+  .c92 {
     display: none;
   }
 }
 
 @media (min-width: 750px) {
-  .c99 {
+  .c100 {
     flex-direction: row;
   }
 }
 
 @media (min-width: 750px) {
-  .c99 {
+  .c100 {
     align-items: center;
   }
 }
 
 @media (min-width: 750px) {
-  .c99 {
+  .c100 {
     justify-content: space-between;
   }
 }
 
 @media (min-width: 750px) {
-  .c101 {
+  .c102 {
     display: flex;
   }
 }
 
 @media (min-width: 750px) {
-  .c107 {
+  .c108 {
     align-items: flex-end;
   }
 }
 
 @media (min-width: 750px) {
-  .c113 {
+  .c114 {
     flex-direction: column;
   }
 }
 
 @media (min-width: 1280px) {
-  .c113 {
+  .c114 {
     flex-direction: row;
   }
 }
 
 @media (min-width: 750px) {
-  .c113 {
+  .c114 {
     align-items: flex-start;
   }
 }
 
 @media (min-width: 1280px) {
-  .c113 {
+  .c114 {
     align-items: center;
   }
 }
 
 @media (min-width: 750px) {
-  .c113 {
+  .c114 {
     gap: 1.5rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .c113 {
+  .c114 {
     gap: 2rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c116 {
+  .c117 {
     flex-direction: row;
   }
 }
 
 @media (min-width: 750px) {
-  .c116 {
+  .c117 {
     flex-wrap: wrap;
   }
 }
 
 @media (min-width: 1280px) {
-  .c116 {
+  .c117 {
     flex-wrap: nowrap;
   }
 }
 
 @media (min-width: 750px) {
-  .c116 {
+  .c117 {
     gap: 2rem;
   }
 }
@@ -1847,25 +1856,25 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
 }
 
 @media (min-width: 750px) {
-  .c115 {
+  .c116 {
     font-weight: 500;
   }
 }
 
 @media (min-width: 750px) {
-  .c115 {
+  .c116 {
     font-size: 1rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c115 {
+  .c116 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c115 {
+  .c116 {
     letter-spacing: -0.005rem;
   }
 }
@@ -1902,22 +1911,22 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
     text-decoration-thickness: 18%;
   }
 
-  .c24:hover .c86,
-  .c24:visited:hover .c86 {
+  .c24:hover .c87,
+  .c24:visited:hover .c87 {
     filter: invert(16%) sepia(72%) saturate(7176%) hue-rotate(239deg) brightness(61%) contrast(109%);
   }
 }
 
 @media (hover: hover) {
-  .c82:hover,
-  .c82:visited:hover {
+  .c83:hover,
+  .c83:visited:hover {
     color: #222222;
     text-decoration: underline;
     text-decoration-thickness: 18%;
   }
 
-  .c82:hover .c86,
-  .c82:visited:hover .c86 {
+  .c83:hover .c87,
+  .c83:visited:hover .c87 {
     filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   }
 }
@@ -1936,7 +1945,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
 }
 
 @media (min-width: 750px) {
-  .c75 {
+  .c76 {
     grid-column: span 3;
   }
 }
@@ -2442,35 +2451,39 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                   </a>
                 </div>
               </div>
-              <a
-                aria-label="My library"
-                class="c57 c58"
-                href="/teachers/my-library"
+              <div
+                class="c57"
               >
-                <div
-                  class="c59 c60 oak-save-count"
+                <a
+                  aria-label="My library"
+                  class="c58 c59"
+                  href="/teachers/my-library"
                 >
-                  <span
-                    class="c61"
-                    data-testid="bookmark-outlined"
-                  >
-                    <img
-                      alt=""
-                      class="c21"
-                      data-nimg="fill"
-                      decoding="async"
-                      loading="lazy"
-                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734519491/icons/bookmark-outlined_rxe5v0.svg"
-                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                    />
-                  </span>
                   <div
-                    class="c62"
+                    class="c60 c61 oak-save-count"
                   >
-                    My library
+                    <span
+                      class="c62"
+                      data-testid="bookmark-outlined"
+                    >
+                      <img
+                        alt=""
+                        class="c21"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734519491/icons/bookmark-outlined_rxe5v0.svg"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
+                    </span>
+                    <div
+                      class="c63"
+                    >
+                      My library
+                    </div>
                   </div>
-                </div>
-              </a>
+                </a>
+              </div>
               <div
                 class="c4 c5"
               >
@@ -2481,7 +2494,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                   class="c6 yellow-shadow"
                 />
                 <button
-                  class="c63 c64 internal-button"
+                  class="c64 c65 internal-button"
                 >
                   <div
                     class="c9 c34"
@@ -2497,7 +2510,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
             </div>
           </div>
           <div
-            class="c65"
+            class="c66"
           >
             <div
               class="c4 c5"
@@ -2511,7 +2524,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
               <button
                 aria-expanded="false"
                 aria-label="Open navigation menu"
-                class="c66 c8 internal-button"
+                class="c67 c8 internal-button"
                 data-testid="top-nav-hamburger-button"
               >
                 <div
@@ -2540,24 +2553,24 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
         </nav>
       </header>
       <main
-        class="c67 c1"
+        class="c68 c1"
         id="main"
       >
         <div
-          class="c68"
+          class="c69"
         >
           NC Alignment Checker
         </div>
       </main>
       <footer
-        class="c69"
+        class="c70"
       >
         <div
-          class="c70 c46"
+          class="c71 c46"
         >
           <svg
             aria-hidden="true"
-            class="c71"
+            class="c72"
             height="100%"
             name="header-underline"
             width="100%"
@@ -2580,33 +2593,33 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
           id="site-footer"
         >
           <div
-            class="c72 c73"
+            class="c73 c74"
           >
             <div
-              class="c9 c74"
+              class="c9 c75"
             >
               <div
-                class="c9 c46 c75"
+                class="c9 c46 c76"
               >
                 <div
-                  class="c76 c77"
+                  class="c77 c78"
                 >
                   <h2
-                    class="c78"
+                    class="c79"
                   >
                     Pupils
                   </h2>
                   <div
-                    class="c79 c80"
+                    class="c80 c81"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/pupils/years"
                         >
                           <span
@@ -2620,27 +2633,27 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c83"
+                  class="c84"
                 />
                 <div
-                  class="c76 c77"
+                  class="c77 c78"
                 >
                   <h2
-                    class="c78"
+                    class="c79"
                   >
                     Teachers
                   </h2>
                   <div
-                    class="c79 c80"
+                    class="c80 c81"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/teachers/eyfs/maths"
                         >
                           <span
@@ -2651,10 +2664,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/lesson-planning"
                         >
                           <span
@@ -2665,10 +2678,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/teachers/teach-with-oak"
                         >
                           <span
@@ -2679,10 +2692,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="https://labs.thenational.academy"
                           target="_blank"
                         >
@@ -2692,10 +2705,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                             Aila, Oak’s AI lesson assistant
                           </span>
                           <div
-                            class="c84"
+                            class="c85"
                           >
                             <span
-                              class="c85 c86 c87"
+                              class="c86 c87 c88"
                             >
                               <img
                                 alt=""
@@ -2711,10 +2724,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/blog"
                         >
                           <span
@@ -2729,27 +2742,27 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c75"
+                class="c9 c46 c76"
               >
                 <div
-                  class="c76 c77"
+                  class="c77 c78"
                 >
                   <h2
-                    class="c78"
+                    class="c79"
                   >
                     Oak
                   </h2>
                   <div
-                    class="c79 c80"
+                    class="c80 c81"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/"
                         >
                           <span
@@ -2760,10 +2773,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/about-us/who-we-are"
                         >
                           <span
@@ -2774,10 +2787,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/about-us/oaks-curricula"
                         >
                           <span
@@ -2788,10 +2801,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/about-us/oaks-impact"
                         >
                           <span
@@ -2802,10 +2815,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/about-us/case-studies"
                         >
                           <span
@@ -2816,10 +2829,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/about-us/get-involved"
                         >
                           <span
@@ -2830,10 +2843,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/about-us/meet-the-team"
                         >
                           <span
@@ -2844,11 +2857,11 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
                           aria-label="Careers (opens in a new tab)"
-                          class="c82 "
+                          class="c83 "
                           href="https://jobs.thenational.academy"
                           target="_blank"
                         >
@@ -2858,10 +2871,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                             Careers
                           </span>
                           <div
-                            class="c84"
+                            class="c85"
                           >
                             <span
-                              class="c85 c86 c87"
+                              class="c86 c87 c88"
                             >
                               <img
                                 alt=""
@@ -2877,10 +2890,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/contact-us"
                         >
                           <span
@@ -2891,11 +2904,11 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
                           aria-label="Help (opens in a new tab)"
-                          class="c82 "
+                          class="c83 "
                           href="https://support.thenational.academy"
                           target="_blank"
                         >
@@ -2905,10 +2918,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                             Help
                           </span>
                           <div
-                            class="c84"
+                            class="c85"
                           >
                             <span
-                              class="c85 c86 c87"
+                              class="c86 c87 c88"
                             >
                               <img
                                 alt=""
@@ -2924,10 +2937,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/webinars"
                         >
                           <span
@@ -2938,11 +2951,11 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
                           aria-label="Status (opens in a new tab)"
-                          class="c82 "
+                          class="c83 "
                           href="https://status.thenational.academy"
                           target="_blank"
                         >
@@ -2952,10 +2965,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                             Status
                           </span>
                           <div
-                            class="c84"
+                            class="c85"
                           >
                             <span
-                              class="c85 c86 c87"
+                              class="c86 c87 c88"
                             >
                               <img
                                 alt=""
@@ -2975,27 +2988,27 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c75"
+                class="c9 c46 c76"
               >
                 <div
-                  class="c76 c77"
+                  class="c77 c78"
                 >
                   <h2
-                    class="c78"
+                    class="c79"
                   >
                     Legal
                   </h2>
                   <div
-                    class="c79 c80"
+                    class="c80 c81"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/legal/terms-and-conditions"
                         >
                           <span
@@ -3006,10 +3019,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/legal/privacy-policy"
                         >
                           <span
@@ -3020,10 +3033,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/legal/cookie-policy"
                         >
                           <span
@@ -3034,10 +3047,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <button
-                          class="c82 "
+                          class="c83 "
                         >
                           <span
                             class="c25"
@@ -3047,10 +3060,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </button>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/legal/copyright-notice"
                         >
                           <span
@@ -3061,10 +3074,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/legal/accessibility-statement"
                         >
                           <span
@@ -3075,10 +3088,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/legal/safeguarding-statement"
                         >
                           <span
@@ -3089,10 +3102,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/legal/physical-activity-disclaimer"
                         >
                           <span
@@ -3103,10 +3116,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/legal/complaints"
                         >
                           <span
@@ -3117,10 +3130,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c81"
+                        class="c82"
                       >
                         <a
-                          class="c82 "
+                          class="c83 "
                           href="/legal/freedom-of-information-requests"
                         >
                           <span
@@ -3135,16 +3148,16 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c75"
+                class="c9 c46 c76"
               >
                 <div
-                  class="c76 c88"
+                  class="c77 c89"
                 >
                   <div
                     class="c39"
                   >
                     <span
-                      class="c89"
+                      class="c90"
                     >
                       <img
                         alt=""
@@ -3158,10 +3171,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                     </span>
                   </div>
                   <div
-                    class="c90 c91"
+                    class="c91 c92"
                   >
                     <div
-                      class="c45 c46 c92 c93"
+                      class="c45 c46 c93 c94"
                     >
                       <a
                         aria-label="instagram for Oak National Academy"
@@ -3172,10 +3185,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c94 c52 icon-container"
+                            class="c95 c52 icon-container"
                           >
                             <div
-                              class="c95 shadow"
+                              class="c96 shadow"
                             />
                             <span
                               class="c20"
@@ -3199,7 +3212,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                       </a>
                     </div>
                     <div
-                      class="c45 c46 c92 c93"
+                      class="c45 c46 c93 c94"
                     >
                       <a
                         aria-label="facebook for Oak National Academy"
@@ -3210,10 +3223,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c94 c52 icon-container"
+                            class="c95 c52 icon-container"
                           >
                             <div
-                              class="c95 shadow"
+                              class="c96 shadow"
                             />
                             <span
                               class="c20"
@@ -3237,7 +3250,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                       </a>
                     </div>
                     <div
-                      class="c45 c46 c92 c93"
+                      class="c45 c46 c93 c94"
                     >
                       <a
                         aria-label="linkedIn for Oak National Academy"
@@ -3248,10 +3261,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c94 c52 icon-container"
+                            class="c95 c52 icon-container"
                           >
                             <div
-                              class="c95 shadow"
+                              class="c96 shadow"
                             />
                             <span
                               class="c20"
@@ -3279,7 +3292,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
               </div>
             </div>
             <span
-              class="c96 c97"
+              class="c97 c98"
               data-chromatic="ignore"
             >
               <img
@@ -3295,13 +3308,13 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
               />
             </span>
             <div
-              class="c98 c99"
+              class="c99 c100"
             >
               <div
-                class="c100 c101"
+                class="c101 c102"
               >
                 <div
-                  class="c45 c46 c92 c93"
+                  class="c45 c46 c93 c94"
                 >
                   <a
                     aria-label="instagram for Oak National Academy"
@@ -3312,10 +3325,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c94 c52 icon-container"
+                        class="c95 c52 icon-container"
                       >
                         <div
-                          class="c95 shadow"
+                          class="c96 shadow"
                         />
                         <span
                           class="c20"
@@ -3339,7 +3352,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                   </a>
                 </div>
                 <div
-                  class="c45 c46 c92 c93"
+                  class="c45 c46 c93 c94"
                 >
                   <a
                     aria-label="facebook for Oak National Academy"
@@ -3350,10 +3363,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c94 c52 icon-container"
+                        class="c95 c52 icon-container"
                       >
                         <div
-                          class="c95 shadow"
+                          class="c96 shadow"
                         />
                         <span
                           class="c20"
@@ -3377,7 +3390,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                   </a>
                 </div>
                 <div
-                  class="c45 c46 c92 c93"
+                  class="c45 c46 c93 c94"
                 >
                   <a
                     aria-label="linkedIn for Oak National Academy"
@@ -3388,10 +3401,10 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c94 c52 icon-container"
+                        class="c95 c52 icon-container"
                       >
                         <div
-                          class="c95 shadow"
+                          class="c96 shadow"
                         />
                         <span
                           class="c20"
@@ -3419,7 +3432,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                 class="c56"
               >
                 <span
-                  class="c89"
+                  class="c90"
                 >
                   <img
                     alt=""
@@ -3433,15 +3446,15 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                 </span>
               </div>
               <div
-                class="c76 c77"
+                class="c77 c78"
               >
                 <p
-                  class="c102"
+                  class="c103"
                 >
                   © Oak National Academy Limited, No 14174888
                 </p>
                 <p
-                  class="c103"
+                  class="c104"
                 >
                   1 Scott Place, 2 Hardman Street, Manchester, M3 3AA
                 </p>
@@ -3450,11 +3463,11 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
           </div>
         </nav>
         <span
-          class="c104"
+          class="c105"
         >
           <img
             alt=""
-            class="c105"
+            class="c106"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -3466,27 +3479,27 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
     </div>
     <div
       aria-live="polite"
-      class="c106 c107 c108"
+      class="c107 c108 c109"
     />
   </div>
   <div
-    class="c109"
+    class="c110"
   >
     <div
-      class="c110"
+      class="c111"
       data-testid="cookie-banner"
     >
       <div
-        class="c111"
+        class="c112"
       >
         <div
-          class="c112 c113"
+          class="c113 c114"
         >
           <div
-            class="c114"
+            class="c115"
           >
             <strong
-              class="c115"
+              class="c116"
             >
               This site uses cookies to store information on your computer.
             </strong>
@@ -3494,13 +3507,13 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
             Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
           </div>
           <div
-            class="c9 c116"
+            class="c9 c117"
           >
             <div
-              class="c117 c41"
+              class="c118 c41"
             >
               <button
-                class="c82 c118"
+                class="c83 c119"
                 data-testid="cookie-banner-reject"
                 type="button"
               >
@@ -3544,7 +3557,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                 class="c6 yellow-shadow"
               />
               <button
-                class="c119 c19 internal-button"
+                class="c120 c19 internal-button"
                 data-testid="cookie-banner-accept"
               >
                 <div
