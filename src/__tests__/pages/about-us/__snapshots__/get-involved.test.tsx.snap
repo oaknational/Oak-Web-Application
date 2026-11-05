@@ -5360,6 +5360,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               >
                 <div
                   class="c173 c84"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c174"
@@ -5394,6 +5395,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 />
                 <div
                   class="c173 c84"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c174"
@@ -5503,6 +5505,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               >
                 <div
                   class="c173 c84"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c174"
@@ -5749,6 +5752,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               >
                 <div
                   class="c173 c84"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c174"
