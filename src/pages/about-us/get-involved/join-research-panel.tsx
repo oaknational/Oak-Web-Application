@@ -17,6 +17,7 @@ import {
   JoinResearchPanelPageBlock,
   JoinResearchPanelPageBlockType,
 } from "@/common-lib/cms-types";
+import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
 import JoinResearchPanelPageHeader from "@/components/GenericPagesComponents/JoinResearchPanelHeader";
 import JoinResearchPanelPeople from "@/components/GenericPagesComponents/JoinResearchPanelPeople";
 import JoinResearchPanelInfo from "@/components/GenericPagesComponents/JoinResearchPanelInfo";
@@ -104,13 +105,15 @@ export const AboutUsJoinResearchPanel: NextPage<
         $background={"bg-primary"}
         topNavProps={topNav}
       >
-        {pageData.content.blocks.map((block, i) => {
-          return (
-            <div key={`${block.__typename}-${i}`}>
-              {renderBlock(block, pageData.blogs)}
-            </div>
-          );
-        })}
+        <AboutUsLayout showNewsletter={false}>
+          {pageData.content.blocks.map((block, i) => {
+            return (
+              <div key={`${block.__typename}-${i}`}>
+                {renderBlock(block, pageData.blogs)}
+              </div>
+            );
+          })}
+        </AboutUsLayout>
       </Layout>
     </TeacherBrowseAnalyticsStoreProvider>
   );
