@@ -1,3 +1,16 @@
+# [1.1271.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1270.0...v1.1271.0) (2026-11-05)
+
+
+### Bug Fixes
+
+* wait on canonical pages ([42d659e](https://github.com/oaknational/Oak-Web-Application/commit/42d659efec0bee9bf7ef4df9a72826d2f35e874d))
+
+
+### Features
+
+* chromatic ignore quiz contentsq ([d3fce22](https://github.com/oaknational/Oak-Web-Application/commit/d3fce22fe7ab767fa7873e20bb9d1aed17e3a86b))
+* ignore lesson items and footer ([3184853](https://github.com/oaknational/Oak-Web-Application/commit/3184853f1b38d74eab11eb7668bceccfb99da02a))
+
 # [1.1270.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1269.0...v1.1270.0) (2026-11-05)
 
 
