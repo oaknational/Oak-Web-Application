@@ -503,35 +503,39 @@ exports[`Teachers Page Page component renders 1`] = `
                     </a>
                   </div>
                 </div>
-                <a
-                  aria-label="My library"
-                  class="sc-eCIkAO sc-hYQmIO leuZXC iqPAvY"
-                  href="/teachers/my-library"
+                <div
+                  class="sc-bdvwhi hpxhcR"
                 >
-                  <div
-                    class="sc-bdvwhi sc-gsDMPd evZLCm igJqEq oak-save-count"
+                  <a
+                    aria-label="My library"
+                    class="sc-eCIkAO sc-hYQmIO leuZXC iqPAvY"
+                    href="/teachers/my-library"
                   >
-                    <span
-                      class="sc-bdvwhi dsdZgi"
-                      data-testid="bookmark-outlined"
-                    >
-                      <img
-                        alt=""
-                        class="sc-jRQBiJ eMsccW"
-                        data-nimg="fill"
-                        decoding="async"
-                        loading="lazy"
-                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734519491/icons/bookmark-outlined_rxe5v0.svg"
-                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                      />
-                    </span>
                     <div
-                      class="sc-bdvwhi nQgAu"
+                      class="sc-bdvwhi sc-gsDMPd evZLCm igJqEq oak-save-count"
                     >
-                      My library
+                      <span
+                        class="sc-bdvwhi dsdZgi"
+                        data-testid="bookmark-outlined"
+                      >
+                        <img
+                          alt=""
+                          class="sc-jRQBiJ eMsccW"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734519491/icons/bookmark-outlined_rxe5v0.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </span>
+                      <div
+                        class="sc-bdvwhi nQgAu"
+                      >
+                        My library
+                      </div>
                     </div>
-                  </div>
-                </a>
+                  </a>
+                </div>
                 <div
                   class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
                 >
@@ -757,13 +761,14 @@ exports[`Teachers Page Page component renders 1`] = `
                   class="sc-bdvwhi sc-gsDMPd jtiAen eChlAW"
                 >
                   <div
-                    class="sc-bdvwhi sc-b4caafee-0 jtiAen beswLS"
+                    class="sc-bdvwhi sc-548a3d54-0 jtiAen cqbkbz"
                   >
                     <img
                       alt=""
                       class="sc-ba397cd3-0 igiEGH"
                       data-nimg="1"
                       decoding="async"
+                      fetchpriority="high"
                       height="313"
                       src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=1080&h=645&fm=webp&q=80&fit=clip&auto=format"
                       srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=640&h=382&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=1080&h=645&fm=webp&q=80&fit=clip&auto=format 2x"
@@ -1075,13 +1080,14 @@ exports[`Teachers Page Page component renders 1`] = `
                   class="sc-bdvwhi glcwX"
                 >
                   <div
-                    class="sc-bdvwhi sc-b4caafee-0 jtiAen beswLS"
+                    class="sc-bdvwhi sc-548a3d54-0 jtiAen cqbkbz"
                   >
                     <img
                       alt=""
                       class="sc-ba397cd3-0 igiEGH"
                       data-nimg="1"
                       decoding="async"
+                      fetchpriority="high"
                       height="313"
                       src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=1080&h=645&fm=webp&q=80&fit=clip&auto=format"
                       srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=640&h=382&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=1080&h=645&fm=webp&q=80&fit=clip&auto=format 2x"
@@ -1572,13 +1578,14 @@ exports[`Teachers Page Page component renders 1`] = `
                   class="sc-bdvwhi sc-gsDMPd glcwX enBTAV"
                 >
                   <div
-                    class="sc-bdvwhi sc-b4caafee-0 jtiAen beswLS"
+                    class="sc-bdvwhi sc-548a3d54-0 jtiAen cqbkbz"
                   >
                     <img
                       alt=""
                       class="sc-ba397cd3-0 igiEGH"
                       data-nimg="1"
                       decoding="async"
+                      fetchpriority="high"
                       height="313"
                       src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=1080&h=645&fm=webp&q=80&fit=clip&auto=format"
                       srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=640&h=382&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=1080&h=645&fm=webp&q=80&fit=clip&auto=format 2x"
@@ -3124,7 +3131,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 </div>
               </div>
               <span
-                class="sc-bdvwhi LoEut sc-99912ec1-0 jbMtpJ"
+                class="sc-bdvwhi LoEut sc-198a0f1-0 dWupQS"
                 data-chromatic="ignore"
               >
                 <img

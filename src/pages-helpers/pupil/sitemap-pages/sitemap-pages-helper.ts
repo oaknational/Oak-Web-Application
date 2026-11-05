@@ -7,15 +7,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 const yearSlugs = [
-  "year-1",
-  "year-2",
-  "year-3",
-  "year-4",
-  "year-5",
-  "year-6",
-  "year-7",
-  "year-8",
-  "year-9",
+  // Keep revision entry pages indexed; Years 1–9 are noindex, follow.
   "year-10",
   "year-11",
 ];

@@ -14,6 +14,7 @@ import { teamMemberSchema } from "./teamMember";
 import { textBlockSchema } from "./blocks";
 import { caseStudyCardSchema, caseStudySchema } from "./caseStudy";
 import { CTASchema } from "./cta";
+import { blogPostPreviewSchema } from "./blog";
 
 // Oak's Curricula Page
 export const oaksCurriculaPageHeaderSchema = z.object({
@@ -163,6 +164,7 @@ export const joinResearchPanelPageBlockTypeSchema = z.enum([
   "JoinResearchPanelPageInfo",
   "JoinResearchPanelPageJourney",
   "JoinResearchPanelPagePeople",
+  "JoinResearchPanelPageBlogsPreview",
   "JoinResearchPanelPageFaqs",
   "JoinResearchPanelPageContactUs",
 ]);
@@ -231,6 +233,14 @@ export const joinResearchPanelPeopleSchema = z.object({
   ),
 });
 
+export const joinResearchPanelBlogsPreviewSchema = z.object({
+  __typename: z.literal(
+    joinResearchPanelPageBlockTypeSchema.enum.JoinResearchPanelPageBlogsPreview,
+  ),
+  title: z.string(),
+  label: z.string(),
+});
+
 export const joinResearchPanelFaqsSchema = z.object({
   __typename: z.literal(
     joinResearchPanelPageBlockTypeSchema.enum.JoinResearchPanelPageFaqs,
@@ -259,6 +269,7 @@ export const joinResearchPanelPageBlockSchema = z.discriminatedUnion(
     joinResearchPanelInfoSchema,
     joinResearchPanelJourneySchema,
     joinResearchPanelPeopleSchema,
+    joinResearchPanelBlogsPreviewSchema,
     joinResearchPanelFaqsSchema,
     joinResearchPanelContactUsSchema,
   ],
@@ -275,7 +286,10 @@ export type JoinResearchPanelPageBlocks = z.infer<
 >;
 
 export const joinResearchPanelPageSchema = z.object({
-  blocks: z.array(joinResearchPanelPageBlockSchema),
+  content: z.object({
+    blocks: z.array(joinResearchPanelPageBlockSchema),
+  }),
+  blogs: z.array(blogPostPreviewSchema),
 });
 
 export type JoinResearchPanelPage = z.infer<typeof joinResearchPanelPageSchema>;
