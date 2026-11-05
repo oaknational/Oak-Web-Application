@@ -67,7 +67,7 @@ const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
       : `https://docs.google.com/presentation/d/${slidesId}/embed?start=false&loop=false`;
 
   return (
-    <OakBox $ba={["border-solid-m"]} $width={"100%"}>
+    <OakBox $ba={["border-solid-m"]} $width={"100%"} data-chromatic="ignore">
       <AspectRatio ratio={isWorksheetPortrait ? "2:3" : "16:9"}>
         <OakFocusIndicator
           $width={"100%"}
@@ -96,7 +96,6 @@ const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
               tabIndex={-1}
               aria-hidden="true"
               loading={loading}
-              data-chromatic="ignore"
             />
           </FocusTarget>
         </OakFocusIndicator>
