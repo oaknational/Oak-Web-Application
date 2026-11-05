@@ -16,6 +16,8 @@ import {
   COPYRIGHT_CONTACT_US_LINK,
   COPYRIGHT_SUPPORT_LINK,
 } from "@/utils/copyrightLinks";
+import { ComponentType } from "@/browser-lib/avo/Avo";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type RestrictedContentPromptProps = {
   showGeoBlocked?: boolean;
@@ -29,49 +31,59 @@ const FlexWithMaxWidth = styled(OakFlex)`
   max-width: 600px;
 `;
 
-const SignInPrompt = () => (
-  <>
-    <OakFlex
-      $flexDirection={"row"}
-      $justifyContent={"space-between"}
-      $alignItems={"center"}
-      $alignSelf={"stretch"}
-    >
+const SignInPrompt = () => {
+  const { signInStarted } = useTeacherBrowseAnalytics((store) => store.track);
+
+  return (
+    <>
       <OakFlex
-        $flexDirection={"column"}
-        $gap={"spacing-32"}
-        $alignItems={"start"}
-        $maxWidth={"spacing-360"}
+        $flexDirection={"row"}
+        $justifyContent={"space-between"}
+        $alignItems={"center"}
+        $alignSelf={"stretch"}
       >
-        <OakHeading tag="h2">Sign in to continue</OakHeading>
-        <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
-          <OakP $font={"body-2"}>
-            Our content remains 100% free, but to access certain copyrighted
-            materials, you'll need to sign in. This ensures we’re both staying
-            within the rules.
-          </OakP>
-          <OakP $font={"body-2-bold"}>
-            P.S. Signing in also gives you more ways to make the most of Oak
-            like unit downloads!
-          </OakP>
+        <OakFlex
+          $flexDirection={"column"}
+          $gap={"spacing-32"}
+          $alignItems={"start"}
+          $maxWidth={"spacing-360"}
+        >
+          <OakHeading tag="h2">Sign in to continue</OakHeading>
+          <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+            <OakP $font={"body-2"}>
+              Our content remains 100% free, but to access certain copyrighted
+              materials, you'll need to sign in. This ensures we’re both staying
+              within the rules.
+            </OakP>
+            <OakP $font={"body-2-bold"}>
+              P.S. Signing in also gives you more ways to make the most of Oak
+              like unit downloads!
+            </OakP>
+          </OakFlex>
         </OakFlex>
+        <OakImage
+          $height={"spacing-240"}
+          $width={"spacing-240"}
+          alt="An illustration of a hijabi teacher writing on a whiteboard"
+          src={getCloudinaryImageUrl(
+            "v1751281170/svg-illustrations/teacher-02_illustration_2_ge95qf.svg",
+          )}
+        />
       </OakFlex>
-      <OakImage
-        $height={"spacing-240"}
-        $width={"spacing-240"}
-        alt="An illustration of a hijabi teacher writing on a whiteboard"
-        src={getCloudinaryImageUrl(
-          "v1751281170/svg-illustrations/teacher-02_illustration_2_ge95qf.svg",
-        )}
+      <LoginRequiredButton
+        loginRequired={true}
+        geoRestricted={true}
+        signUpProps={{
+          onClick: () =>
+            signInStarted({
+              componentType: ComponentType.RESTRICTED_CONTENT_PROMPT,
+            }),
+        }}
+        width={"100%"}
       />
-    </OakFlex>
-    <LoginRequiredButton
-      loginRequired={true}
-      geoRestricted={true}
-      width={"100%"}
-    />
-  </>
-);
+    </>
+  );
+};
 
 const GeoblockedPrompt = ({
   programmeSlug,
