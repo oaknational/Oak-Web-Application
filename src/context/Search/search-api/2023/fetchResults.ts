@@ -57,6 +57,7 @@ export async function fetchResults(query: SearchQuery) {
     redirect: "follow",
     headers: new Headers({
       "Content-Type": "application/json",
+      Origin: new URL(getBrowserConfig("clientAppBaseUrl")).origin,
     }),
     body: JSON.stringify(query),
   };

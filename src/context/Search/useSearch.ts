@@ -29,7 +29,7 @@ type SearchNavigationAdapter = {
   searchParams: URLSearchParams | null;
   push: (url: string) => void;
 };
-
+// TODO: remove
 const useSearchQuery = ({
   allKeyStages,
   allYearGroups,
@@ -106,7 +106,7 @@ const useSearchQuery = ({
     subjects,
     curriculum,
   ]);
-
+  console.log("diego", { query });
   const setQuery: SetSearchQuery = useStableCallback((arg) => {
     const newQuery = typeof arg === "function" ? arg(query) : arg;
     const url = resolveOakHref({

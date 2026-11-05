@@ -1,10 +1,15 @@
 import {
   UseSearchFiltersReturnType,
   KeyStage,
+  SearchQuery,
+  SearchHit,
 } from "@/context/Search/search.types";
-import { UseSearchReturnType } from "@/context/Search/useSearch";
+import { RequestStatus } from "@/context/Search/useSearch";
 
-export type SearchProps = UseSearchReturnType & {
+export type SearchProps = {
   searchFilters: UseSearchFiltersReturnType;
   allKeyStages: KeyStage[];
+  query: SearchQuery;
+  results: SearchHit[];
+  status: RequestStatus;
 };

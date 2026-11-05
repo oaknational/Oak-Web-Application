@@ -1,20 +1,22 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
-
 import Search from "@/app/(core)/teachers/search/Search.view";
-import useSearch from "@/context/Search/useSearch";
+import { RequestStatus } from "@/context/Search/useSearch";
 import useSearchFilters from "@/context/Search/useSearchFilters";
 import { SearchPageData } from "@/node-lib/curriculum-api-2023";
+import { SearchHit, SearchQuery } from "@/context/Search/search.types";
 
 export const SearchView = ({
   curriculumData,
+  results,
+  query,
+  status,
 }: {
   curriculumData: SearchPageData;
+  results: SearchHit[];
+  query: SearchQuery;
+  status: RequestStatus;
 }) => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
   const {
     subjects: allSubjects,
     keyStages: allKeyStages,
@@ -23,32 +25,23 @@ export const SearchView = ({
     yearGroups: allYearGroups,
   } = curriculumData;
 
-  const searchProps = useSearch({
-    allKeyStages,
-    allYearGroups,
-    allSubjects,
-    allContentTypes,
-    allExamBoards,
-    navigation: {
-      searchParams: searchParams,
-      push: (url: string) => router.push(url, { scroll: false }),
-    },
-  });
-
   const searchFilters = useSearchFilters({
-    ...searchProps,
     allKeyStages,
     allYearGroups,
     allSubjects,
     allContentTypes,
     allExamBoards,
+    query,
+    setQuery: (query) => console.log("diego setting", { query }), // TODO: remove
   });
 
   return (
     <Search
       allKeyStages={allKeyStages}
-      {...searchProps}
+      results={results}
       searchFilters={searchFilters}
+      query={query}
+      status={status}
     />
   );
 };
