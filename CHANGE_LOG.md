@@ -1,3 +1,21 @@
+# [1.1272.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1271.0...v1.1272.0) (2026-11-05)
+
+
+### Bug Fixes
+
+* add missing props to unit view ([fe25717](https://github.com/oaknational/Oak-Web-Application/commit/fe257179d58ab5d47cfe03f37b6576d33e630ab7))
+* add navigation type to lesson accessed events ([018fa76](https://github.com/oaknational/Oak-Web-Application/commit/018fa766a8146bcd4902261c9a1cf9de72583c77))
+* pull correct param from programme fields ([4ffe771](https://github.com/oaknational/Oak-Web-Application/commit/4ffe77164167fea6f7f3fb0a010c559ff3caf69f))
+
+
+### Features
+
+* add lessonAccessed tracking to next prev header buttons ([cf9a050](https://github.com/oaknational/Oak-Web-Application/commit/cf9a05072db0b8320d7e5179bf4fbfc23f1f502b))
+* add unit tracking to prev next buttons in header ([1c45ca8](https://github.com/oaknational/Oak-Web-Application/commit/1c45ca8001f6a0e0b3ce8038fc203d120676392d))
+* add unitAccessed tracking on prev next footer buttons ([d2e0cde](https://github.com/oaknational/Oak-Web-Application/commit/d2e0cde1d2092cde1b1940232afcf1f6bee7b852))
+* get year data from query for unit next and prev ([5d5fc0f](https://github.com/oaknational/Oak-Web-Application/commit/5d5fc0f12dddc85c336fc29d68fa44eed68f1b74))
+* track lesson accessed from footer buttons ([bc75520](https://github.com/oaknational/Oak-Web-Application/commit/bc75520e67c36de1e2db7f22b586c84fde223271))
+
 # [1.1271.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1270.0...v1.1271.0) (2026-11-05)
 
 
