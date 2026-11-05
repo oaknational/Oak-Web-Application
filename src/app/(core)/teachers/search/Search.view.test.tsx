@@ -224,12 +224,6 @@ jest.mock("@/hooks/useMediaQuery.tsx", () => ({
   }),
 }));
 
-const mockAiSearchFlagEnabled = jest.fn().mockReturnValue(false);
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagVariantKey: () => mockAiSearchFlagEnabled(),
-  useFeatureFlagEnabled: () => false,
-}));
-
 const render = renderWithProviders();
 
 describe("Search.page.tsx", () => {
