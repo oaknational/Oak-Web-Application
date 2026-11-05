@@ -1,3 +1,54 @@
+# [1.1272.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1271.0...v1.1272.0) (2026-11-05)
+
+
+### Bug Fixes
+
+* add missing props to unit view ([fe25717](https://github.com/oaknational/Oak-Web-Application/commit/fe257179d58ab5d47cfe03f37b6576d33e630ab7))
+* add navigation type to lesson accessed events ([018fa76](https://github.com/oaknational/Oak-Web-Application/commit/018fa766a8146bcd4902261c9a1cf9de72583c77))
+* pull correct param from programme fields ([4ffe771](https://github.com/oaknational/Oak-Web-Application/commit/4ffe77164167fea6f7f3fb0a010c559ff3caf69f))
+
+
+### Features
+
+* add lessonAccessed tracking to next prev header buttons ([cf9a050](https://github.com/oaknational/Oak-Web-Application/commit/cf9a05072db0b8320d7e5179bf4fbfc23f1f502b))
+* add unit tracking to prev next buttons in header ([1c45ca8](https://github.com/oaknational/Oak-Web-Application/commit/1c45ca8001f6a0e0b3ce8038fc203d120676392d))
+* add unitAccessed tracking on prev next footer buttons ([d2e0cde](https://github.com/oaknational/Oak-Web-Application/commit/d2e0cde1d2092cde1b1940232afcf1f6bee7b852))
+* get year data from query for unit next and prev ([5d5fc0f](https://github.com/oaknational/Oak-Web-Application/commit/5d5fc0f12dddc85c336fc29d68fa44eed68f1b74))
+* track lesson accessed from footer buttons ([bc75520](https://github.com/oaknational/Oak-Web-Application/commit/bc75520e67c36de1e2db7f22b586c84fde223271))
+
+# [1.1271.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1270.0...v1.1271.0) (2026-11-05)
+
+
+### Bug Fixes
+
+* wait on canonical pages ([42d659e](https://github.com/oaknational/Oak-Web-Application/commit/42d659efec0bee9bf7ef4df9a72826d2f35e874d))
+
+
+### Features
+
+* chromatic ignore quiz contentsq ([d3fce22](https://github.com/oaknational/Oak-Web-Application/commit/d3fce22fe7ab767fa7873e20bb9d1aed17e3a86b))
+* ignore lesson items and footer ([3184853](https://github.com/oaknational/Oak-Web-Application/commit/3184853f1b38d74eab11eb7668bceccfb99da02a))
+
+# [1.1270.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1269.0...v1.1270.0) (2026-11-05)
+
+
+### Bug Fixes
+
+* aboutuslayout tests ([aa24401](https://github.com/oaknational/Oak-Web-Application/commit/aa24401647a44d7fbdbb297044bba520ab566b44))
+* add to sonarqube exclusion ([173aa0b](https://github.com/oaknational/Oak-Web-Application/commit/173aa0bb1adef2edc4c921d0ccd44fdbca177042))
+* get-involved tests ([5f18295](https://github.com/oaknational/Oak-Web-Application/commit/5f1829528d458a4d2349a3921ab9369cce1bbdf4))
+* merge main and conflicts ([9e23182](https://github.com/oaknational/Oak-Web-Application/commit/9e231821b810e110951916bdfc5c109e6e5cc355))
+* move explore more menu items to config and exclude from sonar ([b42be64](https://github.com/oaknational/Oak-Web-Application/commit/b42be64a2de403159330f07abcf1f77c33262174))
+* snaps ([a3899c0](https://github.com/oaknational/Oak-Web-Application/commit/a3899c0f4e3ffd44454eca6c1ee73919ecba2891))
+
+
+### Features
+
+* add join research panel to explore more about oak nav with teacher-group icon ([31ef2e7](https://github.com/oaknational/Oak-Web-Application/commit/31ef2e770c8362b2cc9c8148b037ed9773068e87))
+* add research panel to sitemap and deploymentUrls ([6c1806e](https://github.com/oaknational/Oak-Web-Application/commit/6c1806e3bf00e340202155c949a69eeb74697fb4))
+* bump oak components ([30bdf69](https://github.com/oaknational/Oak-Web-Application/commit/30bdf69d9aa84fec64af391f05d47f7a9142d9fe))
+* use AboutUsLayout with new newsletter bool for research panel ([2cc10c4](https://github.com/oaknational/Oak-Web-Application/commit/2cc10c4cfac63d6cece89f8eae97e1768fabab0f))
+
 # [1.1269.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1268.0...v1.1269.0) (2026-11-05)
 
 

@@ -2603,6 +2603,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
               >
                 <div
                   class="c77 c78"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c79"
@@ -2637,6 +2638,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
                 />
                 <div
                   class="c77 c78"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c79"
@@ -2746,6 +2748,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
               >
                 <div
                   class="c77 c78"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c79"
@@ -2992,6 +2995,7 @@ exports[`pages/nc-alignment-checker.tsx renders 1`] = `
               >
                 <div
                   class="c77 c78"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c79"

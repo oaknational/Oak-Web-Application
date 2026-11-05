@@ -3305,6 +3305,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
               >
                 <div
                   class="c105 c106"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c107"
@@ -3339,6 +3340,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                 />
                 <div
                   class="c105 c106"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c107"
@@ -3448,6 +3450,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
               >
                 <div
                   class="c105 c106"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c107"
@@ -3694,6 +3697,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
               >
                 <div
                   class="c105 c106"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c107"
