@@ -1,7 +1,6 @@
 import { ParsedUrlQuery } from "node:querystring";
 
 import {
-  convertSearchIntentToFilters,
   convertUnitSlugToTitle,
   getActiveFilters,
   getFilterForQuery,
@@ -15,7 +14,6 @@ import {
   removeHTMLTags,
 } from ".";
 
-import { SearchIntent } from "@/common-lib/schemas/search-intent";
 import { LEGACY_COHORT } from "@/config/cohort";
 import {
   lessonSearchHitSchema,
@@ -230,135 +228,27 @@ describe("search helpers", () => {
     const highlight = getHighlightFromAllFields(rawHighlight, "a match");
     expect(highlight).toBeUndefined();
   });
-  describe("convertSearchIntentToFilters", () => {
-    it("it returns undefined if no suggested filters", () => {
-      const result = convertSearchIntentToFilters();
-      expect(result).toBeUndefined();
-    });
-    it("it returns expected suggested filters for directMatch match", () => {
-      const searchIntent: SearchIntent = {
-        directMatch: {
-          subject: { slug: "maths", title: "Maths" },
-          keyStage: { slug: "ks2", title: "Ks2" },
-          examBoard: { slug: "aqa", title: "Aqa" },
-          year: null,
-        },
-        suggestedFilters: [],
-      };
-      const result = convertSearchIntentToFilters(searchIntent);
-      expect(result).toEqual([
-        {
-          type: "subject",
-          slug: "maths",
-          value: "Maths",
-          source: "fuzzy_match",
-        },
-        { type: "key-stage", slug: "ks2", value: "Ks2", source: "fuzzy_match" },
-        {
-          type: "exam-board",
-          slug: "aqa",
-          value: "Aqa",
-          source: "fuzzy_match",
-        },
-      ]);
-    });
-    it("it returns expected suggested filters for directMatch with suggestions", () => {
-      const searchIntent: SearchIntent = {
-        directMatch: {
-          subject: { slug: "maths", title: "Maths" },
-          keyStage: null,
-          examBoard: null,
-          year: { slug: "year-1", title: "Year 1" },
-        },
-        suggestedFilters: [
-          { type: "key-stage", slug: "ks2", title: "Ks2" },
-          { type: "exam-board", slug: "aqa", title: "Aqa" },
-        ],
-      };
-      const result = convertSearchIntentToFilters(searchIntent);
-      expect(result).toEqual([
-        {
-          type: "subject",
-          slug: "maths",
-          value: "Maths",
-          source: "fuzzy_match",
-        },
-        { type: "key-stage", slug: "ks2", value: "Ks2", source: "ai" },
-        {
-          type: "year",
-          slug: "year-1",
-          value: "Year 1",
-          source: "fuzzy_match",
-        },
-        { type: "exam-board", slug: "aqa", value: "Aqa", source: "ai" },
-      ]);
-    });
-    it("it returns expected suggested filters in the correct order, subject, ks, year, exam", () => {
-      const searchIntent: SearchIntent = {
-        directMatch: null,
-        suggestedFilters: [
-          { type: "exam-board", slug: "aqa", title: "Aqa" },
-          { type: "key-stage", slug: "ks2", title: "Ks2" },
-          { type: "subject", slug: "history", title: "History" },
-          { type: "subject", slug: "maths", title: "Maths" },
-          { type: "year", slug: "year-1", title: "Year 1" },
-        ],
-      };
-      const result = convertSearchIntentToFilters(searchIntent);
-      expect(result).toEqual([
-        { type: "subject", slug: "history", value: "History", source: "ai" },
-        { type: "subject", slug: "maths", value: "Maths", source: "ai" },
-        { type: "key-stage", slug: "ks2", value: "Ks2", source: "ai" },
-        { type: "year", slug: "year-1", value: "Year 1", source: "ai" },
-        { type: "exam-board", slug: "aqa", value: "Aqa", source: "ai" },
-      ]);
-    });
-    it("it removes any duplicates", () => {
-      const searchIntent: SearchIntent = {
-        directMatch: null,
-        suggestedFilters: [
-          { type: "exam-board", slug: "aqa", title: "Aqa" },
-          { type: "key-stage", slug: "ks2", title: "Ks2" },
-          { type: "key-stage", slug: "ks2", title: "Ks2" },
-          { type: "subject", slug: "history", title: "History" },
-          { type: "subject", slug: "maths", title: "Maths" },
-          { type: "year", slug: "year-1", title: "Year 1" },
-        ],
-      };
-      const result = convertSearchIntentToFilters(searchIntent);
-      expect(result).toEqual([
-        { type: "subject", slug: "history", value: "History", source: "ai" },
-        { type: "subject", slug: "maths", value: "Maths", source: "ai" },
-        { type: "key-stage", slug: "ks2", value: "Ks2", source: "ai" },
-        { type: "year", slug: "year-1", value: "Year 1", source: "ai" },
-        { type: "exam-board", slug: "aqa", value: "Aqa", source: "ai" },
-      ]);
-    });
-  });
   describe("convertSlugToTitle", () => {
-    it("should convert a slug to title", () => {
-      const slug = "the-oral-tradition-7424";
-      const title = convertUnitSlugToTitle(slug);
-      expect(title).toBe("The Oral Tradition");
-    });
-
-    it("should handle a slug with all lowercase letters", () => {
-      const slug = "imperative-tense-3042";
-      const title = convertUnitSlugToTitle(slug);
-      expect(title).toBe("Imperative Tense");
-    });
-
-    it("should handle a slug with mixed case letters", () => {
-      const slug = "surds-and-fractions-02032";
-      const title = convertUnitSlugToTitle(slug);
-      expect(title).toBe("Surds And Fractions");
-    });
-
-    it("should handle a slug with mixed case letters and numbers mid sentence", () => {
-      const slug = "year-7-surds-and-fractions-d02032";
-      const title = convertUnitSlugToTitle(slug);
-      expect(title).toBe("Year 7 Surds And Fractions");
-    });
+    test.each([
+      ["title", "the-oral-tradition-7424", "The Oral Tradition"],
+      ["all lowercase letters", "imperative-tense-3042", "Imperative Tense"],
+      [
+        "mixed case letters",
+        "surds-and-fractions-02032",
+        "Surds And Fractions",
+      ],
+      [
+        "mixed case letters and numbers mid sentence",
+        "year-7-surds-and-fractions-d02032",
+        "Year 7 Surds And Fractions",
+      ],
+    ])(
+      "should convert a slug to title for %s",
+      (_description, slug, expected) => {
+        const title = convertUnitSlugToTitle(slug);
+        expect(title).toBe(expected);
+      },
+    );
   });
 
   describe("removeHTMLTags", () => {
