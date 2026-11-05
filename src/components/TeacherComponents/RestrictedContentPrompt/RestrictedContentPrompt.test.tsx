@@ -1,10 +1,12 @@
 import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { RestrictedContentPrompt } from "./RestrictedContentPrompt";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+import { signedOutLoginRequired } from "@/__tests__/__helpers__/mockCopyrightRequirements";
 
 const render = renderWithProviders();
 
@@ -12,9 +14,43 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => true,
 }));
 
+jest.mock("@/hooks/useComplexCopyright", () => ({
+  useComplexCopyright: () => signedOutLoginRequired,
+}));
+
+const mockSignInStarted = jest.fn();
+jest.mock(
+  "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider",
+  () => ({
+    ...jest.requireActual(
+      "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider",
+    ),
+    useTeacherBrowseAnalytics: () => ({ signInStarted: mockSignInStarted }),
+  }),
+);
+
 describe("RestrictedContentPrompt", () => {
   afterEach(() => {
     jest.clearAllMocks();
+  });
+
+  it("tracks sign in started when the sign in button is clicked", async () => {
+    render(
+      <RestrictedContentPrompt
+        showGeoBlocked={false}
+        isCanonical={false}
+        {...lessonMediaClipsFixtures()}
+      />,
+    );
+
+    await userEvent
+      .setup()
+      .click(screen.getByRole("button", { name: /sign up/i }));
+
+    expect(mockSignInStarted).toHaveBeenCalledTimes(1);
+    expect(mockSignInStarted).toHaveBeenCalledWith({
+      componentType: "restricted_content_prompt",
+    });
   });
 
   it("renders the sign in prompt when not geoblocked", () => {

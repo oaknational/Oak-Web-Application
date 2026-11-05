@@ -419,10 +419,7 @@ export const LayoutSiteFooterInner: FC = memo(() => {
 
 const LayoutSiteFooter = () => {
   return (
-    <TeacherBrowseAnalyticsStoreProvider
-      programmeState={null}
-      accessLevel="homepage"
-    >
+    <TeacherBrowseAnalyticsStoreProvider programmeState={null}>
       <LayoutSiteFooterInner />
     </TeacherBrowseAnalyticsStoreProvider>
   );

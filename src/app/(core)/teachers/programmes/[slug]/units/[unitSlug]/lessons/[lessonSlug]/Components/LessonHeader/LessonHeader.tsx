@@ -12,6 +12,7 @@ import { TeachersLessonOverviewAdjacentLesson } from "@/node-lib/curriculum-api-
 import { getBreakpoint } from "@/styles/utils/responsive";
 import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { ComponentType } from "@/browser-lib/avo/Avo";
 
 export type LessonHeaderProps = Omit<LargeHeaderProps, "layoutVariant"> & {
   currentLessonSlug: string;
@@ -34,9 +35,8 @@ const LessonHeader = (props: LessonHeaderProps) => {
     georestricted,
     ...restProps
   } = props;
-  const { lessonResourceDownloadStarted } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
+  const { lessonResourceDownloadStarted, signInStarted } =
+    useTeacherBrowseAnalytics((store) => store.track);
 
   return (
     <>
@@ -79,7 +79,13 @@ const LessonHeader = (props: LessonHeaderProps) => {
             loginRequired={loginRequired}
             geoRestricted={georestricted}
             onboardingProps={{ name: "Onboard to download" }}
-            signUpProps={{ name: "Sign in to download" }}
+            signUpProps={{
+              name: "Sign in to download",
+              onClick: () =>
+                signInStarted({
+                  componentType: ComponentType.LESSON_DOWNLOAD_ALL_BUTTON,
+                }),
+            }}
             actionProps={{
               name: (
                 <OakSpan>

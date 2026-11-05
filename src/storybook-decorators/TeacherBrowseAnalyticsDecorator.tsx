@@ -40,7 +40,7 @@ const state: TeacherBrowseAnalyticsStore = {
     teachWithOakDownloaded: () => console.log("teachWithOakDownloaded fired"),
     teachingMaterialsSelected: () =>
       console.log("teachingMaterialsSelected fired"),
-    unitDownloadStarted: () => console.log("unitDownloadStarted fired"),
+    signInStarted: () => console.log("signInStarted fired"),
     newsletterSignUpCompleted: () =>
       console.log("newsletterSignUpCompleted fired"),
     programmeAccessed: () => console.log("programmeAccessed fired"),

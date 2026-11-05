@@ -502,35 +502,39 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
                   </a>
                 </div>
               </div>
-              <a
-                aria-label="My library"
-                class="sc-eCIkAO sc-hYQmIO leuZXC iqPAvY"
-                href="/teachers/my-library"
+              <div
+                class="sc-bdvwhi hpxhcR"
               >
-                <div
-                  class="sc-bdvwhi sc-gsDMPd evZLCm igJqEq oak-save-count"
+                <a
+                  aria-label="My library"
+                  class="sc-eCIkAO sc-hYQmIO leuZXC iqPAvY"
+                  href="/teachers/my-library"
                 >
-                  <span
-                    class="sc-bdvwhi dsdZgi"
-                    data-testid="bookmark-outlined"
-                  >
-                    <img
-                      alt=""
-                      class="sc-jRQBiJ eMsccW"
-                      data-nimg="fill"
-                      decoding="async"
-                      loading="lazy"
-                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734519491/icons/bookmark-outlined_rxe5v0.svg"
-                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                    />
-                  </span>
                   <div
-                    class="sc-bdvwhi nQgAu"
+                    class="sc-bdvwhi sc-gsDMPd evZLCm igJqEq oak-save-count"
                   >
-                    My library
+                    <span
+                      class="sc-bdvwhi dsdZgi"
+                      data-testid="bookmark-outlined"
+                    >
+                      <img
+                        alt=""
+                        class="sc-jRQBiJ eMsccW"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734519491/icons/bookmark-outlined_rxe5v0.svg"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
+                    </span>
+                    <div
+                      class="sc-bdvwhi nQgAu"
+                    >
+                      My library
+                    </div>
                   </div>
-                </div>
-              </a>
+                </a>
+              </div>
               <div
                 class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
               >
@@ -1741,7 +1745,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-99912ec1-0 jbMtpJ"
+              class="sc-bdvwhi LoEut sc-198a0f1-0 dWupQS"
               data-chromatic="ignore"
             >
               <img
@@ -2530,35 +2534,39 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                   </a>
                 </div>
               </div>
-              <a
-                aria-label="My library"
-                class="sc-eCIkAO sc-hYQmIO leuZXC iqPAvY"
-                href="/teachers/my-library"
+              <div
+                class="sc-bdvwhi hpxhcR"
               >
-                <div
-                  class="sc-bdvwhi sc-gsDMPd evZLCm igJqEq oak-save-count"
+                <a
+                  aria-label="My library"
+                  class="sc-eCIkAO sc-hYQmIO leuZXC iqPAvY"
+                  href="/teachers/my-library"
                 >
-                  <span
-                    class="sc-bdvwhi dsdZgi"
-                    data-testid="bookmark-outlined"
-                  >
-                    <img
-                      alt=""
-                      class="sc-jRQBiJ eMsccW"
-                      data-nimg="fill"
-                      decoding="async"
-                      loading="lazy"
-                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734519491/icons/bookmark-outlined_rxe5v0.svg"
-                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                    />
-                  </span>
                   <div
-                    class="sc-bdvwhi nQgAu"
+                    class="sc-bdvwhi sc-gsDMPd evZLCm igJqEq oak-save-count"
                   >
-                    My library
+                    <span
+                      class="sc-bdvwhi dsdZgi"
+                      data-testid="bookmark-outlined"
+                    >
+                      <img
+                        alt=""
+                        class="sc-jRQBiJ eMsccW"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734519491/icons/bookmark-outlined_rxe5v0.svg"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
+                    </span>
+                    <div
+                      class="sc-bdvwhi nQgAu"
+                    >
+                      My library
+                    </div>
                   </div>
-                </div>
-              </a>
+                </a>
+              </div>
               <div
                 class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
               >
@@ -4234,7 +4242,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-99912ec1-0 jbMtpJ"
+              class="sc-bdvwhi LoEut sc-198a0f1-0 dWupQS"
               data-chromatic="ignore"
             >
               <img
@@ -5023,35 +5031,39 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                   </a>
                 </div>
               </div>
-              <a
-                aria-label="My library"
-                class="sc-eCIkAO sc-hYQmIO leuZXC iqPAvY"
-                href="/teachers/my-library"
+              <div
+                class="sc-bdvwhi hpxhcR"
               >
-                <div
-                  class="sc-bdvwhi sc-gsDMPd evZLCm igJqEq oak-save-count"
+                <a
+                  aria-label="My library"
+                  class="sc-eCIkAO sc-hYQmIO leuZXC iqPAvY"
+                  href="/teachers/my-library"
                 >
-                  <span
-                    class="sc-bdvwhi dsdZgi"
-                    data-testid="bookmark-outlined"
-                  >
-                    <img
-                      alt=""
-                      class="sc-jRQBiJ eMsccW"
-                      data-nimg="fill"
-                      decoding="async"
-                      loading="lazy"
-                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734519491/icons/bookmark-outlined_rxe5v0.svg"
-                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                    />
-                  </span>
                   <div
-                    class="sc-bdvwhi nQgAu"
+                    class="sc-bdvwhi sc-gsDMPd evZLCm igJqEq oak-save-count"
                   >
-                    My library
+                    <span
+                      class="sc-bdvwhi dsdZgi"
+                      data-testid="bookmark-outlined"
+                    >
+                      <img
+                        alt=""
+                        class="sc-jRQBiJ eMsccW"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734519491/icons/bookmark-outlined_rxe5v0.svg"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
+                    </span>
+                    <div
+                      class="sc-bdvwhi nQgAu"
+                    >
+                      My library
+                    </div>
                   </div>
-                </div>
-              </a>
+                </a>
+              </div>
               <div
                 class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
               >
@@ -6892,7 +6904,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-99912ec1-0 jbMtpJ"
+              class="sc-bdvwhi LoEut sc-198a0f1-0 dWupQS"
               data-chromatic="ignore"
             >
               <img
