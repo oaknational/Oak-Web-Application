@@ -1,3 +1,63 @@
+# [1.1271.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1270.0...v1.1271.0) (2026-11-05)
+
+
+### Bug Fixes
+
+* wait on canonical pages ([42d659e](https://github.com/oaknational/Oak-Web-Application/commit/42d659efec0bee9bf7ef4df9a72826d2f35e874d))
+
+
+### Features
+
+* chromatic ignore quiz contentsq ([d3fce22](https://github.com/oaknational/Oak-Web-Application/commit/d3fce22fe7ab767fa7873e20bb9d1aed17e3a86b))
+* ignore lesson items and footer ([3184853](https://github.com/oaknational/Oak-Web-Application/commit/3184853f1b38d74eab11eb7668bceccfb99da02a))
+
+# [1.1270.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1269.0...v1.1270.0) (2026-11-05)
+
+
+### Bug Fixes
+
+* aboutuslayout tests ([aa24401](https://github.com/oaknational/Oak-Web-Application/commit/aa24401647a44d7fbdbb297044bba520ab566b44))
+* add to sonarqube exclusion ([173aa0b](https://github.com/oaknational/Oak-Web-Application/commit/173aa0bb1adef2edc4c921d0ccd44fdbca177042))
+* get-involved tests ([5f18295](https://github.com/oaknational/Oak-Web-Application/commit/5f1829528d458a4d2349a3921ab9369cce1bbdf4))
+* merge main and conflicts ([9e23182](https://github.com/oaknational/Oak-Web-Application/commit/9e231821b810e110951916bdfc5c109e6e5cc355))
+* move explore more menu items to config and exclude from sonar ([b42be64](https://github.com/oaknational/Oak-Web-Application/commit/b42be64a2de403159330f07abcf1f77c33262174))
+* snaps ([a3899c0](https://github.com/oaknational/Oak-Web-Application/commit/a3899c0f4e3ffd44454eca6c1ee73919ecba2891))
+
+
+### Features
+
+* add join research panel to explore more about oak nav with teacher-group icon ([31ef2e7](https://github.com/oaknational/Oak-Web-Application/commit/31ef2e770c8362b2cc9c8148b037ed9773068e87))
+* add research panel to sitemap and deploymentUrls ([6c1806e](https://github.com/oaknational/Oak-Web-Application/commit/6c1806e3bf00e340202155c949a69eeb74697fb4))
+* bump oak components ([30bdf69](https://github.com/oaknational/Oak-Web-Application/commit/30bdf69d9aa84fec64af391f05d47f7a9142d9fe))
+* use AboutUsLayout with new newsletter bool for research panel ([2cc10c4](https://github.com/oaknational/Oak-Web-Application/commit/2cc10c4cfac63d6cece89f8eae97e1768fabab0f))
+
+# [1.1269.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1268.0...v1.1269.0) (2026-11-05)
+
+
+### Bug Fixes
+
+* broken lessoninformationbox story ([fc75411](https://github.com/oaknational/Oak-Web-Application/commit/fc754112c1ecd9d7b07ade03270ab8ad7ed9909c))
+
+
+### Features
+
+* add onClick to LoginRequiredButton signUpProps ([0d5f7b6](https://github.com/oaknational/Oak-Web-Application/commit/0d5f7b679456e16e5dce0f9b24ae0e0e8445799d))
+* **analytics:** replace unitDownloadStarted with signInStarted ([0e4aff9](https://github.com/oaknational/Oak-Web-Application/commit/0e4aff933ecbad60aa5f86701b91b5a89ebf147f))
+* **analytics:** send Sign in Started instantly ([14a14ad](https://github.com/oaknational/Oak-Web-Application/commit/14a14ad1de4150c3dbc98045295a89ba863b27ff))
+* **analytics:** track sign in from copyrighted lesson buttons ([0f48029](https://github.com/oaknational/Oak-Web-Application/commit/0f4802982511be3c86bf4856f34031738358a499))
+* **analytics:** track sign in from the copyright banner link ([d43926f](https://github.com/oaknational/Oak-Web-Application/commit/d43926f907f055018770a7de1e54fcb26da04230))
+* **analytics:** track sign in from the save unit modal ([df75fb5](https://github.com/oaknational/Oak-Web-Application/commit/df75fb5edcaca2206bf56fea66b81fb8b5de25d4))
+* **analytics:** track sign in from the top nav my library link ([e9fb4ca](https://github.com/oaknational/Oak-Web-Application/commit/e9fb4ca04ade1e66c3b6160242e8df9bf197123f))
+* get access level from pathname and add to signInStarted event from my library button ([a296c61](https://github.com/oaknational/Oak-Web-Application/commit/a296c6181327954d621eef389129d9613446062f))
+
+# [1.1268.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1267.1...v1.1268.0) (2026-11-04)
+
+
+### Features
+
+* add more info to analytics error diagnostics ([39a5489](https://github.com/oaknational/Oak-Web-Application/commit/39a5489ceaaf8cbdc5310c60ce93ef9e09938194))
+* add more info to analytics error diagnostics ([b78437a](https://github.com/oaknational/Oak-Web-Application/commit/b78437ac4c6b3a607d8e23222c084e616017f8b5))
+
 ## [1.1267.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1267.0...v1.1267.1) (2026-11-02)
 
 
