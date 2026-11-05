@@ -34,6 +34,7 @@ import NoSearchResults from "@/components/TeacherComponents/NoSearchResults";
 import SignPostToAila from "@/components/TeacherComponents/NoSearchResults/SignPostToAila";
 import DelayedLoadingContainer from "@/components/SharedComponents/DelayedLoadingContainer";
 import { srOnlyCss } from "@/components/SharedComponents/ScreenReaderOnly";
+import SearchActiveFilters from "@/components/TeacherComponents/SearchActiveFilters";
 
 const CustomWidthFlex = styled(OakFlex)`
   max-width: 300px;
@@ -311,6 +312,18 @@ const Search: FC<SearchProps> = (props) => {
                 </OakBox>
               </OakFlex>
             </OakFlex>
+            <OakBox
+              $height={["spacing-0", "spacing-0", "spacing-4"]}
+              $mb={["spacing-48", "spacing-16"]}
+            >
+              <SearchActiveFilters
+                searchFilters={searchFilters}
+                trackSearchModified={trackSearchModified(
+                  query.term,
+                  track.searchFilterModified,
+                )}
+              />
+            </OakBox>
           </OakGridArea>
           {!shouldShowNoResultsMessage && (
             <OakGridArea $colSpan={[12, 3]} $colStart={[1, 1]} $rowStart={2}>
