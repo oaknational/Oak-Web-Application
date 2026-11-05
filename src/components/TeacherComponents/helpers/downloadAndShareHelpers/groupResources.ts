@@ -41,25 +41,11 @@ export const groupDownloadResources = (
       item: Download | AdditionalFile,
     ) => {
       const groupName = getGroupName(item.type);
-      if (!all[groupName]) all[groupName] = [];
+      all[groupName] ??= [];
       all[groupName].push(item);
       return all;
     },
     {},
   );
-  //  sort the lesson guides first!
-  const sorted = Object.keys(grouped)
-    .sort((a, b) => {
-      if (a === "Lesson guide" && b !== "Lesson guide") return -1;
-      if (a !== "Lesson guide" && b === "Lesson guide") return 1;
-      return 0;
-    })
-    .reduce(
-      (acc, key) => {
-        acc[key] = grouped[key] ?? [];
-        return acc;
-      },
-      {} as Record<string, Array<Download | AdditionalFile>>,
-    );
-  return sorted;
+  return grouped;
 };

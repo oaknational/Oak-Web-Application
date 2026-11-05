@@ -192,13 +192,13 @@ describe("groupHelpers", () => {
       expect(Object.keys(grouped).length).toBe(3);
     });
 
-    it("should place the lesson guide group first and preserve the order of other groups", () => {
+    it("should order groups by the first occurrence of each type in the input", () => {
       const downloads: Download[] = [
+        mockLessonGuide,
+        mockLessonGuideDocx,
         mockPresentation,
         mockIntroQuiz,
         mockWorksheet,
-        mockLessonGuide,
-        mockLessonGuideDocx,
         mockSupplementaryPdf,
       ];
 
@@ -214,19 +214,6 @@ describe("groupHelpers", () => {
       expect(grouped["Lesson guide"]).toEqual([
         mockLessonGuide,
         mockLessonGuideDocx,
-      ]);
-    });
-
-    it("should preserve group order when there is no lesson guide", () => {
-      const grouped = groupDownloadResources(
-        [mockWorksheet, mockPresentation, mockIntroQuiz],
-        [],
-      );
-
-      expect(Object.keys(grouped)).toEqual([
-        "Worksheet",
-        "Slide deck",
-        "Quizzes",
       ]);
     });
 

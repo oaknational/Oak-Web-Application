@@ -3,6 +3,18 @@ import { constructDownloadsArray } from "./downloadUtils";
 export const downloadAssetsFixture = [
   {
     exists: true,
+    type: "lesson-guide-pdf",
+    label: "Lesson guide",
+    ext: "pdf",
+  },
+  {
+    exists: true,
+    type: "lesson-guide-docx",
+    label: "Lesson guide",
+    ext: "docx",
+  },
+  {
+    exists: true,
     type: "presentation",
     ext: "pptx",
     label: "Slide deck",
@@ -54,18 +66,6 @@ export const downloadAssetsFixture = [
     exists: true,
     type: "supplementary-docx",
     label: "Additional material",
-    ext: "docx",
-  },
-  {
-    exists: true,
-    type: "lesson-guide-pdf",
-    label: "Lesson guide",
-    ext: "pdf",
-  },
-  {
-    exists: true,
-    type: "lesson-guide-docx",
-    label: "Lesson guide",
     ext: "docx",
   },
 ];

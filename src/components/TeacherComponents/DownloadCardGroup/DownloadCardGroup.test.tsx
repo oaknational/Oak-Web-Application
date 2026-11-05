@@ -29,41 +29,6 @@ describe("DownloadCardGroup", () => {
     expect(screen.getByText("Exit quiz answers")).toBeInTheDocument();
   });
 
-  it("renders the lesson guide group first with PDF and DOCX options", () => {
-    const { container } = renderWithTheme(
-      <ComponentWrapper
-        downloads={[
-          {
-            exists: true,
-            type: "presentation",
-            ext: "pptx",
-            label: "Slide deck",
-          },
-          {
-            exists: true,
-            type: "lesson-guide-pdf",
-            ext: "pdf",
-            label: "Lesson guide",
-          },
-          {
-            exists: true,
-            type: "lesson-guide-docx",
-            ext: "docx",
-            label: "Lesson guide",
-          },
-        ]}
-      />,
-    );
-
-    const legends = Array.from(container.querySelectorAll("legend")).map(
-      (legend) => legend.textContent,
-    );
-    expect(legends).toEqual(["Lesson guide", "Slide deck"]);
-
-    expect(screen.getByText("(PDF)")).toBeInTheDocument();
-    expect(screen.getByText("(DOCX)")).toBeInTheDocument();
-  });
-
   it("handles no downloads gracefully", () => {
     renderWithTheme(<ComponentWrapper downloads={[]} />);
 
