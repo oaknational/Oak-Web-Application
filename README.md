@@ -35,21 +35,6 @@ Other documentation can be found in standalone README documents:
 - [Error Handling](./src/errors)
 - [React Context](./src/context)
 
-### Lesson download formats
-
-[The lesson download registry](./src/common-lib/lessonDownloads.ts) defines
-resource families and their formats. To add a format to an existing family,
-add `{ type, ext }` to its `formats` array. The download and overview schemas,
-availability builders, grouping, icons, preselection, accordion descriptions,
-copyright rules, and overview download buttons use this definition.
-
-Formats inherit the family's label unless they specify their own. Family and
-format order controls the download page; overview payloads retain guides last.
-Button format suffixes are generated automatically, except for explicit
-`downloadTitleOverride` values preserving existing worksheet and additional-material
-copy. Families with `availability: null` are supplied separately, not by the lesson
-download builder. A new backend availability signal still needs query wiring.
-
 ## Getting started
 
 Create an environment configuration file by running:
