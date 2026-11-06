@@ -27,6 +27,9 @@ import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
 import { SaveUnitButton } from "@/components/TeacherComponents/SaveUnitButton/SaveUnitButton";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getUnitAnalyticsProperties } from "@/context/TeacherBrowseAnalytics/utils/getAnalyticsProperties";
+import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
 
 export type UnitOverviewContentProps = Pick<
   TeachersUnitOverviewData,
@@ -91,6 +94,8 @@ export const UnitOverviewContent = ({
 }: UnitOverviewContentProps) => {
   const hasToggles =
     tierOptionToggles.length > 1 || subjectOptionToggles.length > 1;
+  const { unitAccessed } = useTeacherBrowseAnalytics((store) => store.track);
+  const { unitState } = useProgrammeState();
 
   return (
     <OakBox $ph="spacing-40">
@@ -230,6 +235,20 @@ export const UnitOverviewContent = ({
                       unitSlug: prevUnit.slug,
                     }),
                     title: prevUnit.title,
+                    onClick: unitState
+                      ? () =>
+                          unitAccessed({
+                            componentType: "footer_button",
+                            navigationType: "across",
+                            unitContext: {
+                              ...getUnitAnalyticsProperties(unitState),
+                              unitName: prevUnit.title,
+                              unitSlug: prevUnit.slug,
+                              yearGroupName: prevUnit.yearGroupName,
+                              yearGroupSlug: prevUnit.yearSlug,
+                            },
+                          })
+                      : undefined,
                   }
                 : undefined
             }
@@ -242,6 +261,20 @@ export const UnitOverviewContent = ({
                       unitSlug: nextUnit.slug,
                     }),
                     title: nextUnit.title,
+                    onClick: unitState
+                      ? () =>
+                          unitAccessed({
+                            componentType: "footer_button",
+                            navigationType: "across",
+                            unitContext: {
+                              ...getUnitAnalyticsProperties(unitState),
+                              unitName: nextUnit.title,
+                              unitSlug: nextUnit.slug,
+                              yearGroupName: nextUnit.yearGroupName,
+                              yearGroupSlug: nextUnit.yearSlug,
+                            },
+                          })
+                      : undefined,
                   }
                 : undefined
             }

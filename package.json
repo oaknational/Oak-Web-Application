@@ -98,7 +98,7 @@
     "@mux/mux-player": "^3.10.2",
     "@mux/mux-player-react": "3.10.2",
     "@oaknational/google-classroom-addon": "^1.33.0",
-    "@oaknational/oak-components": "^3.23.0",
+    "@oaknational/oak-components": "^3.25.0",
     "@oaknational/oak-consent-client": "2.4.0",
     "@oaknational/oak-curriculum-schema": "2.14.1",
     "@ooxml-tools/units": "^0.6.0",
@@ -127,6 +127,7 @@
     "@upstash/ratelimit": "^2.0.6",
     "@upstash/redis": "^1.35.4",
     "@vercel/functions": "^3.1.2",
+    "@vercel/speed-insights": "^2.0.0",
     "better-react-mathjax": "^3.0.2",
     "buffer": "^6.0.3",
     "core-js": "^3.46.0",
@@ -314,7 +315,7 @@
     "url": "https://github.com/oaknational/Oak-Web-Application.git"
   },
   "engines": {
-    "node": "24",
+    "node": ">=24.22.1 <25",
     "pnpm": ">=11"
   },
   "publishConfig": {

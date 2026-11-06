@@ -32,6 +32,7 @@ const additionalAboutUsPaths = [
   "/about-us/oaks-impact",
   "/about-us/meet-the-team",
   "/about-us/get-involved",
+  "/about-us/get-involved/join-research-panel",
   "/about-us/case-studies",
 ];
 
@@ -104,6 +105,11 @@ module.exports = {
     ],
   },
   exclude: [
+    // Years 1–9 are noindex, follow; retain the hub and Years 10–11.
+    ...Array.from(
+      { length: 9 },
+      (_, index) => `/pupils/years/year-${index + 1}/subjects`,
+    ),
     // Exclude WIP webinar pages
     "/webinars",
     "/webinars/*",

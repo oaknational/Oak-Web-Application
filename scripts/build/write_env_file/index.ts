@@ -24,6 +24,7 @@ import { OakConfig } from "../fetch_config/config_types.js";
 dotenv.config();
 
 async function main() {
+  console.log(`Using Node version: ${process.version}`);
   console.log("Writing config and secrets to temporary env file");
 
   const NODE_ENV = process.env.NODE_ENV || "development";

@@ -3,7 +3,6 @@
 exports[`core layout renders correctly 1`] = `
 <React.Fragment>
   <TeacherBrowseAnalyticsStoreProvider
-    accessLevel="homepage"
     programmeState={null}
   >
     <Memo
