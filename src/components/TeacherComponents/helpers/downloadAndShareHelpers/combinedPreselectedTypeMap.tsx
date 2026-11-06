@@ -1,26 +1,27 @@
 import { CombinedPreselectedTypeMap } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { getLessonDownloadTypes } from "@/common-lib/lessonDownloads";
 
 export const combinedPreselectedTypeMap: CombinedPreselectedTypeMap = {
-  "slide deck": { downloadType: ["presentation"] },
+  "slide deck": { downloadType: getLessonDownloadTypes("slide-deck") },
   "starter quiz": {
-    downloadType: ["intro-quiz-questions", "intro-quiz-answers"],
+    downloadType: getLessonDownloadTypes("starter-quiz"),
     shareType: ["starter-quiz"],
   },
   "exit quiz": {
-    downloadType: ["exit-quiz-questions", "exit-quiz-answers"],
+    downloadType: getLessonDownloadTypes("exit-quiz"),
     shareType: ["exit-quiz"],
   },
   worksheet: {
-    downloadType: ["worksheet-pdf", "worksheet-pptx"],
+    downloadType: getLessonDownloadTypes("worksheet"),
   },
   "additional material": {
-    downloadType: ["supplementary-pdf", "supplementary-docx"],
+    downloadType: getLessonDownloadTypes("additional-material"),
   },
   "lesson guide": {
-    downloadType: ["lesson-guide-pdf", "lesson-guide-docx"],
+    downloadType: getLessonDownloadTypes("lesson-guide"),
   },
   "additional files": {
-    downloadType: ["additional-files"],
+    downloadType: getLessonDownloadTypes("additional-files"),
   },
   all: { downloadType: "all", shareType: "all" },
   video: { shareType: ["video"] },

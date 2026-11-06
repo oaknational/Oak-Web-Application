@@ -6,16 +6,19 @@ import { SHARE_FORM_ERROR_IDS } from "@/components/TeacherComponents/helpers/dow
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("ResourceCard", () => {
-  it("renders a checkbox with an icon, title and resource file type", () => {
+  it.each([
+    { type: "worksheet-pdf", label: "Worksheet", ext: "PDF" },
+    { type: "lesson-guide-docx", label: "Lesson guide", ext: "DOCX" },
+  ] as const)("renders a checkbox for $type", ({ type, label, ext }) => {
     const { getByText, getByRole } = renderWithTheme(
       <ResourceCard
         id="unique-123"
         name="downloadResources"
-        label="Worksheet"
-        subtitle="PDF"
+        label={label}
+        subtitle={ext}
         checked
         onChange={jest.fn()}
-        resourceType="worksheet-pdf"
+        resourceType={type}
         useDownloadPageLayout
       />,
     );
@@ -23,8 +26,8 @@ describe("ResourceCard", () => {
     const input = getByRole("checkbox");
 
     expect(input).toBeInTheDocument();
-    expect(getByText("Worksheet")).toBeInTheDocument();
-    expect(getByText("PDF")).toBeInTheDocument();
+    expect(getByText(label)).toBeInTheDocument();
+    expect(getByText(ext)).toBeInTheDocument();
   });
 
   it("changes on click on label", async () => {
