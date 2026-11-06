@@ -19,6 +19,7 @@ import { insightsAssetUrl } from "../helpers/assets";
 import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "./PortableText";
 import { SectionMaxWidth } from "./sections/shared";
 
+import { useNationalCurriculumInsightsAnalytics } from "@/context/NationalCurriculumInsightsAnalytics/useNationalCurriculumInsightsAnalytics";
 import type { NationalCurriculumInsightsHeroSection } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 
@@ -136,6 +137,8 @@ export const NationalCurriculumInsightsHero = ({
   data: NationalCurriculumInsightsRouteData;
   section: NationalCurriculumInsightsHeroSection;
 }) => {
+  const { trackCtaClicked, section: analyticsSection } =
+    useNationalCurriculumInsightsAnalytics();
   if (data.route.kind !== "hub" && data.route.kind !== "guidance") return null;
 
   const isHub = data.route.kind === "hub";
@@ -222,7 +225,20 @@ export const NationalCurriculumInsightsHero = ({
                 />
               </OakFlex>
               {section.ctaLabel && section.ctaHref ? (
-                <OakLink href={section.ctaHref} iconName="arrow-right">
+                <OakLink
+                  href={section.ctaHref}
+                  iconName="arrow-right"
+                  onClick={() =>
+                    trackCtaClicked({
+                      sectionType: "hero",
+                      sectionId: analyticsSection?.sectionId ?? "hero",
+                      ctaAction: "navigate",
+                      componentType: "national_curriculum",
+                      ctaId: "hero-cta",
+                      ctaText: section.ctaLabel!,
+                    })
+                  }
+                >
                   {section.ctaLabel}
                 </OakLink>
               ) : null}

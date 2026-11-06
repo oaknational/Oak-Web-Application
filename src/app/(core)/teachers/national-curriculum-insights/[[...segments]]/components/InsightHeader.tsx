@@ -18,6 +18,7 @@ import type { NationalCurriculumInsightsRouteData } from "../helpers/getRouteDat
 
 import { NationalCurriculumInsightsPortableText } from "./PortableText";
 
+import { useNationalCurriculumInsightsAnalytics } from "@/context/NationalCurriculumInsightsAnalytics/useNationalCurriculumInsightsAnalytics";
 import {
   nationalCurriculumInsightsKeyStageFromSlug,
   type NationalCurriculumInsightsHeaderSection,
@@ -138,7 +139,25 @@ export const NationalCurriculumInsightsHeader = ({
   data: NationalCurriculumInsightsRouteData;
   section: NationalCurriculumInsightsHeaderSection;
 }>) => {
+  const { trackCtaClicked, section: analyticsSection } =
+    useNationalCurriculumInsightsAnalytics();
   const breadcrumbs = headerBreadcrumbs(data);
+  const trackedBreadcrumbs = breadcrumbs?.map((breadcrumb) =>
+    "href" in breadcrumb
+      ? {
+          ...breadcrumb,
+          onClick: () =>
+            trackCtaClicked({
+              sectionType: "hero",
+              sectionId: analyticsSection?.sectionId ?? "hero",
+              ctaAction: "navigate",
+              ctaId: "breadcrumb-link",
+              ctaText: breadcrumb.text,
+              componentType: "breadcrumb",
+            }),
+        }
+      : breadcrumb,
+  ) as typeof breadcrumbs;
   const image = headerImage(data);
   const background = headerBackground(data);
 
@@ -179,7 +198,7 @@ export const NationalCurriculumInsightsHeader = ({
           >
             {breadcrumbs ? (
               <OakGridArea $colSpan={[1, 2, 1]} $order={0}>
-                <OakBreadcrumbs breadcrumbs={breadcrumbs} />
+                <OakBreadcrumbs breadcrumbs={trackedBreadcrumbs!} />
               </OakGridArea>
             ) : null}
             <OakFlex

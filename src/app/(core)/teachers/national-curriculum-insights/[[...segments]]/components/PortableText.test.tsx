@@ -2,7 +2,7 @@ import { screen } from "@testing-library/react";
 
 import { NationalCurriculumInsightsPortableText } from "./PortableText";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithInsightsAnalytics";
 import errorReporter from "@/common-lib/error-reporter";
 
 jest.mock("@/common-lib/error-reporter", () => ({

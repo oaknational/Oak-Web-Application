@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 
 import { NationalCurriculumInsightsVideoCards } from "./VideoCards";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithInsightsAnalytics";
 import type { NationalCurriculumInsightsModule } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";

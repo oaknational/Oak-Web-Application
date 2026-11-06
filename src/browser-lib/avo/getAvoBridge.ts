@@ -26,6 +26,10 @@ const SEND_INSTANTLY_EVENTS: ReadonlySet<string> = new Set<string>([
   "Unit Accessed",
   "Programme Accessed",
   "Search Result Opened",
+  "NC Insights Dwell Time Recorded",
+  "NC Insights Dwell Threshold Reached",
+  "NC Insights Engagement Criteria Met",
+  "NC Insights CTA Clicked",
 ]);
 /**
  * getAvoBridge returns the bridge between Avo and our analytics services.

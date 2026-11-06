@@ -10,10 +10,12 @@ export const CurriculumJumpCard = ({
   minHeight = "spacing-120",
   href,
   children,
+  onClick,
 }: {
   minHeight?: OakAllSpacingToken;
   href: string;
   children: ReactNode;
+  onClick?: () => void;
 }) => (
   <OakFocusIndicator
     $width="100%"
@@ -24,6 +26,7 @@ export const CurriculumJumpCard = ({
     <OakFlex
       as={Link}
       href={href}
+      onClick={onClick}
       $alignItems="center"
       $gap="spacing-16"
       $width="100%"

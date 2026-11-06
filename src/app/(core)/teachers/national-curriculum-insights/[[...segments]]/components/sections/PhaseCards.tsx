@@ -14,6 +14,7 @@ import {
 import { CurriculumJumpCard } from "./CurriculumJumpCard";
 import type { ContextualSectionProps } from "./shared";
 
+import { useNationalCurriculumInsightsAnalytics } from "@/context/NationalCurriculumInsightsAnalytics/useNationalCurriculumInsightsAnalytics";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { nationalCurriculumInsightsSubjectPhaseHref } from "@/common-lib/urls/nationalCurriculumInsights";
 
@@ -21,6 +22,8 @@ export const NationalCurriculumInsightsPhaseCards = ({
   section,
   data,
 }: ContextualSectionProps<"NationalCurriculumInsightsPhaseCardsSection">) => {
+  const { trackCtaClicked, section: analyticsSection } =
+    useNationalCurriculumInsightsAnalytics();
   const subject = data.subject;
   if (!subject || data.route.kind === "subjectPhaseKeyStage") return null;
 
@@ -49,6 +52,16 @@ export const NationalCurriculumInsightsPhaseCards = ({
           {cards.map(({ phase, heading }) => (
             <OakLI $listStyle="none" $width="100%" key={phase}>
               <CurriculumJumpCard
+                onClick={() =>
+                  trackCtaClicked({
+                    sectionType: "phase-cards",
+                    sectionId: analyticsSection?.sectionId ?? "phase-cards",
+                    ctaAction: "navigate",
+                    componentType: "national_curriculum",
+                    ctaId: "phase-card",
+                    ctaText: heading,
+                  })
+                }
                 href={nationalCurriculumInsightsSubjectPhaseHref(
                   subject.slug,
                   phase,

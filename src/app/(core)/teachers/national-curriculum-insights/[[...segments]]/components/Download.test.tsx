@@ -7,10 +7,22 @@ import { getNationalCurriculumInsightsRouteData } from "../helpers/getRouteData"
 
 import { NationalCurriculumInsightsDownload } from "./Download";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithInsightsAnalytics";
 import { parseNationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
 import { requestNationalCurriculumInsightsDownload } from "@/common-lib/urls/nationalCurriculumInsightsDownload";
 import { LS_KEY_INSIGHTS_MANUAL_DOWNLOAD_SELECTION } from "@/config/localStorageKeys";
+
+const mockTrackDownloadCompleted = jest.fn();
+const mockTrackCtaClicked = jest.fn();
+jest.mock(
+  "@/context/NationalCurriculumInsightsAnalytics/useNationalCurriculumInsightsAnalytics",
+  () => ({
+    useNationalCurriculumInsightsAnalytics: () => ({
+      trackDownloadCompleted: mockTrackDownloadCompleted,
+      trackCtaClicked: mockTrackCtaClicked,
+    }),
+  }),
+);
 
 jest.mock("@/browser-lib/cookie-consent/consentClient", () => ({
   consentClient: { getConsent: jest.fn(() => "denied") },
@@ -428,6 +440,7 @@ describe("Insights download submission", () => {
       screen.getByRole("button", { name: "Download 1 document (.DOCX)" }),
     ).toBeEnabled();
     expect(mockFetch).not.toHaveBeenCalled();
+    expect(mockTrackDownloadCompleted).not.toHaveBeenCalled();
   });
 
   it("does not download when a required detail is only whitespace", async () => {
@@ -461,6 +474,19 @@ describe("Insights download submission", () => {
       expect(mockFetch).toHaveBeenCalledWith(
         `/api/national-curriculum-insights/download?selection=science%3Aprimary${multiple ? "&selection=science%3Asecondary" : ""}`,
       );
+      expect(mockTrackDownloadCompleted).toHaveBeenCalledTimes(1);
+      expect(mockTrackDownloadCompleted).toHaveBeenCalledWith({
+        downloadAttemptId: expect.any(String),
+        selectedDownloadKeys: multiple
+          ? ["science:primary", "science:secondary"]
+          : ["science:primary"],
+        selectedSubjectSlugs: ["science"],
+        selectedPhases: multiple ? ["primary", "secondary"] : ["primary"],
+        documentCount: multiple ? 2 : 1,
+        fileFormat: multiple ? "zip" : "docx",
+        emailSupplied: false,
+        schoolOption: "Not listed",
+      });
       expect(download).not.toBeInTheDocument();
       expect(
         screen.getByRole("heading", { name: "Thanks for downloading!" }),
@@ -533,9 +559,61 @@ describe("Insights download submission", () => {
       screen.getByRole("button", { name: "Preparing download…" }),
     ).toBeDisabled();
     expect(mockFetch).toHaveBeenCalledTimes(1);
+    expect(mockTrackDownloadCompleted).not.toHaveBeenCalled();
     complete(downloadResponse("Science.docx"));
     await waitFor(() => expect(downloads).toEqual(["Science.docx"]));
+    expect(mockTrackDownloadCompleted).toHaveBeenCalledTimes(1);
     expect(download).not.toBeInTheDocument();
+  });
+
+  it.each([
+    { search: "Dorothy", schoolOption: "Selected school" },
+    { search: "homeschool", schoolOption: "Homeschool" },
+  ])(
+    "records $schoolOption and email presence without including contact details",
+    async ({ search, schoolOption }) => {
+      mockFetch.mockResolvedValueOnce(downloadResponse("Science.docx"));
+      const { user, download } = await readyForm();
+      await user.click(
+        screen.getByRole("checkbox", { name: "My school isn't listed" }),
+      );
+      await user.type(
+        screen.getByRole("combobox", { name: "School (required)" }),
+        search,
+      );
+      await user.click(await screen.findByTestId("listbox-option"));
+      await user.type(
+        screen.getByRole("textbox", { name: "Email (Optional)" }),
+        "teacher@example.com",
+      );
+      await user.click(download);
+      await waitFor(() =>
+        expect(mockTrackDownloadCompleted).toHaveBeenCalledTimes(1),
+      );
+      expect(mockTrackDownloadCompleted).toHaveBeenCalledWith(
+        expect.objectContaining({ schoolOption, emailSupplied: true }),
+      );
+      expect(mockTrackDownloadCompleted.mock.calls[0]![0]).not.toHaveProperty(
+        "email",
+      );
+      expect(mockTrackDownloadCompleted.mock.calls[0]![0]).not.toHaveProperty(
+        "name",
+      );
+    },
+  );
+
+  it("keeps the successful download confirmation if analytics fails", async () => {
+    mockFetch.mockResolvedValueOnce(downloadResponse("Science.docx"));
+    mockTrackDownloadCompleted.mockImplementationOnce(() => {
+      throw new Error("Analytics unavailable");
+    });
+    const { user, download } = await readyForm();
+    await user.click(download);
+    expect(
+      await screen.findByRole("heading", { name: "Thanks for downloading!" }),
+    ).toBeVisible();
+    expect(downloads).toEqual(["Science.docx"]);
+    expect(screen.queryByText("Analytics unavailable")).not.toBeInTheDocument();
   });
 
   it("reports a network failure, retains the selection and allows retry", async () => {
@@ -546,6 +624,7 @@ describe("Insights download submission", () => {
     expect(mockReportError).toHaveBeenCalledTimes(1);
     expect(download).toBeEnabled();
     expect(mockCreateObjectURL).not.toHaveBeenCalled();
+    expect(mockTrackDownloadCompleted).not.toHaveBeenCalled();
     expect(
       JSON.parse(
         window.localStorage.getItem(LS_KEY_INSIGHTS_MANUAL_DOWNLOAD_SELECTION)!,
@@ -571,6 +650,7 @@ describe("Insights download submission", () => {
     ).toBeInTheDocument();
     expect(download).toBeEnabled();
     expect(downloads).toEqual([]);
+    expect(mockTrackDownloadCompleted).not.toHaveBeenCalled();
   });
 
   it("keeps saved choices when the document cannot be read", async () => {
@@ -585,6 +665,7 @@ describe("Insights download submission", () => {
     expect(await screen.findByText("Document unavailable")).toBeInTheDocument();
     expect(download).toBeEnabled();
     expect(downloads).toEqual([]);
+    expect(mockTrackDownloadCompleted).not.toHaveBeenCalled();
     expect(
       JSON.parse(
         window.localStorage.getItem(LS_KEY_INSIGHTS_MANUAL_DOWNLOAD_SELECTION)!,

@@ -16,6 +16,8 @@ import { NationalCurriculumInsightsPortableText } from "../PortableText";
 
 import type { SectionProps } from "./shared";
 
+import { useNationalCurriculumInsightsAnalytics } from "@/context/NationalCurriculumInsightsAnalytics/useNationalCurriculumInsightsAnalytics";
+
 const detailComponents: PortableTextComponents = {
   block: {
     normal: ({ children }) => (
@@ -33,6 +35,8 @@ type ChangeDetailsProps = {
 };
 
 const ChangeDetails = ({ change, id, initialOpen }: ChangeDetailsProps) => {
+  const { trackCtaClicked, section: analyticsSection } =
+    useNationalCurriculumInsightsAnalytics();
   const [isOpen, setIsOpen] = useState(initialOpen);
   const contentId = `${id}-content`;
 
@@ -46,7 +50,17 @@ const ChangeDetails = ({ change, id, initialOpen }: ChangeDetailsProps) => {
           id={id}
           aria-expanded={isOpen}
           aria-controls={contentId}
-          onClick={() => setIsOpen((open) => !open)}
+          onClick={() => {
+            trackCtaClicked({
+              sectionType: "changes",
+              sectionId: analyticsSection?.sectionId ?? "changes",
+              componentType: "national_curriculum",
+              ctaId: "curriculum-change-toggle",
+              ctaText: change.whyItMatters,
+              ctaAction: isOpen ? "collapse" : "expand",
+            });
+            setIsOpen((open) => !open);
+          }}
           $width="100%"
           $pa="spacing-0"
           $ba="border-solid-none"

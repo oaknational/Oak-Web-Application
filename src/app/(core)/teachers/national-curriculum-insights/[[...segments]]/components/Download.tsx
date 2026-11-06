@@ -29,6 +29,7 @@ import {
 } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { FocusOn } from "react-focus-on";
+import { nanoid } from "nanoid";
 
 import type { NationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
 
@@ -49,7 +50,16 @@ import OakError from "@/errors/OakError";
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import { NEWSLETTER_COUNT } from "@/components/GenericPagesComponents/NewsletterForm/newsletterConstants";
 import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
-import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
+import useSchoolPicker, {
+  HOMESCHOOL_URN,
+} from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
+import { SchoolOption, type CtaIdValueType } from "@/browser-lib/avo/Avo";
+import { useNationalCurriculumInsightsAnalytics } from "@/context/NationalCurriculumInsightsAnalytics/useNationalCurriculumInsightsAnalytics";
+import { getDownloadAnalyticsProperties } from "@/context/NationalCurriculumInsightsAnalytics/getDownloadAnalyticsProperties";
+import {
+  getSchoolSelectionCtaProperties,
+  getDownloadSelectionCtaProperties,
+} from "@/context/NationalCurriculumInsightsAnalytics/ctaTracking";
 
 const reportError = errorReporter("NationalCurriculumInsightsDownload");
 
@@ -198,12 +208,14 @@ const DownloadActions = ({
   downloading,
   buttonLabel,
   error,
+  onDownloadClick,
 }: {
   mobileStage: "details" | "subjects";
   canDownload: boolean;
   downloading: boolean;
   buttonLabel: string;
   error: string | null;
+  onDownloadClick: () => void;
 }) => (
   <OakBox
     $display={[mobileStage === "details" ? "grid" : "none", null, "grid"]}
@@ -229,6 +241,7 @@ const DownloadActions = ({
             width="100%"
             textAlign="center"
             disabled={!canDownload}
+            onClick={onDownloadClick}
           >
             {downloading ? "Preparing download…" : buttonLabel}
           </OakPrimaryButton>
@@ -255,6 +268,9 @@ export const NationalCurriculumInsightsDownload = ({
   const headerRef = useRef<HTMLButtonElement>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
   const downloadInFlight = useRef(false);
+  const { trackDownloadCompleted, trackCtaClicked } =
+    useNationalCurriculumInsightsAnalytics();
+
   const { selectedValues, changeSelection, resetSelection } =
     useDownloadSelection(data);
   const {
@@ -262,6 +278,7 @@ export const NationalCurriculumInsightsDownload = ({
     schoolPickerInputValue,
     setSchoolPickerInputValue,
     setSelectedSchool,
+    selectedSchool,
   } = useSchoolPicker({ withHomeschool: true });
   const [expanded, setExpanded] = useState(false);
   const [mobileStage, setMobileStage] = useState<"details" | "subjects">(
@@ -277,7 +294,7 @@ export const NationalCurriculumInsightsDownload = ({
     },
     shouldUnregister: false,
   });
-  const { name, schoolNotListed, role, acceptedTerms } = watch();
+  const { name, schoolNotListed, role, acceptedTerms, email } = watch();
   const [downloading, setDownloading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [downloadComplete, setDownloadComplete] = useState(false);
@@ -347,6 +364,18 @@ export const NationalCurriculumInsightsDownload = ({
     setDownloading(true);
     setError(null);
     try {
+      const getSchoolOption = () => {
+        if (schoolNotListed) return SchoolOption.NOT_LISTED;
+        if (selectedSchool === HOMESCHOOL_URN) return SchoolOption.HOMESCHOOL;
+
+        return SchoolOption.SELECTED_SCHOOL;
+      };
+      const analyticsProperties = getDownloadAnalyticsProperties({
+        selectedValues,
+        email,
+        schoolOption: getSchoolOption(),
+        downloadAttemptId: nanoid(21),
+      });
       const query = new URLSearchParams();
       selectedValues.forEach((selection) =>
         query.append("selection", selection),
@@ -373,6 +402,12 @@ export const NationalCurriculumInsightsDownload = ({
       }
       resetSelection();
       setDownloadComplete(true);
+      // Analytics failures must not turn a successful download into a form error.
+      try {
+        trackDownloadCompleted(analyticsProperties);
+      } catch (analyticsError) {
+        void reportError(analyticsError);
+      }
     } catch (downloadError) {
       if (downloadError instanceof TypeError) {
         void reportError(
@@ -406,6 +441,16 @@ export const NationalCurriculumInsightsDownload = ({
         ) {
           return;
         }
+        trackCtaClicked({
+          sectionType: "downloads",
+          sectionId: "downloads",
+          ctaId: downloadComplete
+            ? "download-confirmation-close"
+            : "download-cancelled",
+          ctaText: "Close download overlay",
+          ctaAction: "close",
+          componentType: "download_button",
+        });
         setExpanded(false);
       }}
       returnFocus={() => {
@@ -439,6 +484,20 @@ export const NationalCurriculumInsightsDownload = ({
           expanded={expanded}
           buttonRef={headerRef}
           onToggle={() => {
+            let ctaId: CtaIdValueType = "download-started";
+            if (expanded)
+              ctaId = downloadComplete
+                ? "download-confirmation-close"
+                : "download-cancelled";
+            trackCtaClicked({
+              sectionType: "downloads",
+              sectionId: "downloads",
+
+              ctaId,
+              ctaText: `${section.barHeading} ${section.barCtaLabel}`,
+              ctaAction: expanded ? "close" : "open",
+              componentType: "download_button",
+            });
             if (!expanded) returnFocusRef.current = headerRef.current;
             setExpanded((value) => !value);
             setMobileStage("subjects");
@@ -509,6 +568,11 @@ export const NationalCurriculumInsightsDownload = ({
                         groups={groups}
                         selectedValues={selectedValues}
                         onChange={changeSelection}
+                        onInteraction={(interaction) =>
+                          trackCtaClicked(
+                            getDownloadSelectionCtaProperties(interaction),
+                          )
+                        }
                         placeholder="Select subjects to download"
                         mobileTitle="Download subjects"
                         hideMobileHeader
@@ -546,7 +610,17 @@ export const NationalCurriculumInsightsDownload = ({
                       <OakTertiaryButton
                         iconName="arrow-left"
                         type="button"
-                        onClick={() => setMobileStage("subjects")}
+                        onClick={() => {
+                          trackCtaClicked({
+                            sectionType: "downloads",
+                            sectionId: "downloads",
+                            ctaId: "download-selection-back",
+                            ctaText: "Back",
+                            ctaAction: "open",
+                            componentType: "download_button",
+                          });
+                          setMobileStage("subjects");
+                        }}
                       >
                         Back
                       </OakTertiaryButton>
@@ -590,7 +664,13 @@ export const NationalCurriculumInsightsDownload = ({
                           label="School"
                           schoolPickerInputValue={schoolPickerInputValue}
                           setSchoolPickerInputValue={setSchoolPickerInputValue}
-                          setSelectedSchool={setSelectedSchool}
+                          setSelectedSchool={(value) => {
+                            setSelectedSchool(value);
+                            if (value != null)
+                              trackCtaClicked(
+                                getSchoolSelectionCtaProperties("downloads"),
+                              );
+                          }}
                           required={!schoolNotListed}
                           disabled={schoolNotListed}
                           withHomeschool
@@ -607,6 +687,16 @@ export const NationalCurriculumInsightsDownload = ({
                               checked={field.value}
                               onChange={(event) => {
                                 field.onChange(event.target.checked);
+                                trackCtaClicked({
+                                  sectionType: "downloads",
+                                  sectionId: "downloads",
+                                  ctaId: "download-school-not-listed",
+                                  ctaText: "My school isn't listed",
+                                  ctaAction: event.target.checked
+                                    ? "select"
+                                    : "deselect",
+                                  componentType: "signup_form",
+                                });
                                 if (event.target.checked) {
                                   setSelectedSchool(undefined);
                                   setSchoolPickerInputValue("");
@@ -633,7 +723,17 @@ export const NationalCurriculumInsightsDownload = ({
                                     value: option,
                                   }))}
                                   value={field.value}
-                                  onChange={field.onChange}
+                                  onChange={(value) => {
+                                    field.onChange(value);
+                                    trackCtaClicked({
+                                      sectionType: "downloads",
+                                      sectionId: "downloads",
+                                      ctaId: "download-role-selection",
+                                      ctaText: value,
+                                      ctaAction: "select",
+                                      componentType: "signup_form",
+                                    });
+                                  }}
                                 />
                               </OakBox>
                               <OakBox $display={["block", "block", "none"]}>
@@ -641,9 +741,17 @@ export const NationalCurriculumInsightsDownload = ({
                                   name={field.name}
                                   label="What describes you best? (required)"
                                   value={field.value}
-                                  onChange={(event) =>
-                                    field.onChange(event.target.value)
-                                  }
+                                  onChange={(event) => {
+                                    field.onChange(event.target.value);
+                                    trackCtaClicked({
+                                      sectionType: "downloads",
+                                      sectionId: "downloads",
+                                      ctaId: "download-role-selection",
+                                      ctaText: event.target.value,
+                                      ctaAction: "select",
+                                      componentType: "signup_form",
+                                    });
+                                  }}
                                   $flexDirection="column"
                                   $gap="spacing-16"
                                 >
@@ -691,7 +799,20 @@ export const NationalCurriculumInsightsDownload = ({
                           Join over {NEWSLETTER_COUNT} teachers and get free
                           resources and other helpful content by email.
                           Unsubscribe at any time. Read our{" "}
-                          <OakLink href="/legal/privacy-policy" target="_blank">
+                          <OakLink
+                            href="/legal/privacy-policy"
+                            target="_blank"
+                            onClick={() =>
+                              trackCtaClicked({
+                                sectionType: "downloads",
+                                sectionId: "downloads",
+                                ctaAction: "navigate",
+                                ctaId: "download-privacy-link",
+                                ctaText: "Privacy policy",
+                                componentType: "download_button",
+                              })
+                            }
+                          >
                             privacy policy
                           </OakLink>
                           .
@@ -720,9 +841,20 @@ export const NationalCurriculumInsightsDownload = ({
                                 displayValue=""
                                 aria-label="I accept the terms and conditions (required)"
                                 checked={field.value}
-                                onChange={(event) =>
-                                  field.onChange(event.target.checked)
-                                }
+                                onChange={(event) => {
+                                  field.onChange(event.target.checked);
+                                  trackCtaClicked({
+                                    sectionType: "downloads",
+                                    sectionId: "downloads",
+                                    ctaId: "download-terms-acceptance",
+                                    ctaText:
+                                      "I accept the terms and conditions (required)",
+                                    ctaAction: event.target.checked
+                                      ? "select"
+                                      : "deselect",
+                                    componentType: "signup_form",
+                                  });
+                                }}
                               />
                               <OakBox
                                 as="label"
@@ -732,6 +864,16 @@ export const NationalCurriculumInsightsDownload = ({
                                 I accept the{" "}
                                 <OakLink
                                   href="/legal/terms-and-conditions"
+                                  onClick={() =>
+                                    trackCtaClicked({
+                                      sectionType: "downloads",
+                                      sectionId: "downloads",
+                                      ctaAction: "navigate",
+                                      ctaId: "download-terms-link",
+                                      ctaText: "terms and conditions",
+                                      componentType: "download_button",
+                                    })
+                                  }
                                   target="_blank"
                                   variant="secondary"
                                 >
@@ -752,6 +894,16 @@ export const NationalCurriculumInsightsDownload = ({
                   downloading={downloading}
                   buttonLabel={buttonLabel}
                   error={error}
+                  onDownloadClick={() =>
+                    trackCtaClicked({
+                      sectionType: "downloads",
+                      sectionId: "downloads",
+                      ctaId: "submit-download",
+                      ctaText: buttonLabel,
+                      ctaAction: "submit",
+                      componentType: "download_button",
+                    })
+                  }
                 />
               </>
             )}

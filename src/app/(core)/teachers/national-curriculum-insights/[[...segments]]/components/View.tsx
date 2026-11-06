@@ -9,6 +9,7 @@ import {
 } from "@oaknational/oak-components";
 
 import type { NationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
+import { getAnalyticsPageProperties } from "../helpers/getAnalyticsPageProperties";
 
 import { NationalCurriculumInsightsHero } from "./Hero";
 import { NationalCurriculumInsightsHeader } from "./InsightHeader";
@@ -37,11 +38,19 @@ import {
 } from "./Sections";
 
 import type { NationalCurriculumInsightsModule } from "@/common-lib/cms-types/nationalCurriculumInsights";
+import { NationalCurriculumInsightsAnalyticsProvider } from "@/context/NationalCurriculumInsightsAnalytics/NationalCurriculumInsightsAnalyticsProvider";
+import { NationalCurriculumInsightsScrollMarker } from "@/context/NationalCurriculumInsightsAnalytics/NationalCurriculumInsightsScrollMarker";
+import {
+  insightsCtaSectionContext,
+  useNationalCurriculumInsightsAnalytics,
+} from "@/context/NationalCurriculumInsightsAnalytics/useNationalCurriculumInsightsAnalytics";
+import type { CtaIdValueType } from "@/browser-lib/avo/Avo";
 import { nationalCurriculumInsightsKeyStageSlug } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import {
   nationalCurriculumInsightsSubjectPhaseHref,
   nationalCurriculumInsightsSubjectPhaseKeyStageHref,
   nationalCurriculumInsightsTabHref,
+  nationalCurriculumInsightsRouteHref,
 } from "@/common-lib/urls/nationalCurriculumInsights";
 
 const assertNever = (value: never): never => {
@@ -54,7 +63,7 @@ type InsightTab = {
   label: string;
 };
 
-const ModuleView = ({
+const ModuleViewContent = ({
   module,
   data,
 }: {
@@ -115,6 +124,12 @@ const ModuleView = ({
         <NationalCurriculumInsightsChecklist
           section={module}
           variant={data.activeKeyStage ? "keyStage" : "phase"}
+          headingMarker={
+            data.route.kind === "subjectPhaseKeyStage" &&
+            module.audience === "teacher" ? (
+              <NationalCurriculumInsightsScrollMarker />
+            ) : null
+          }
         />
       );
     case "NationalCurriculumInsightsPreparationSection":
@@ -148,7 +163,13 @@ const ModuleView = ({
           sections={module.sections.map((section) => ({
             id: `insights-${section.id}`,
             label: section.navigationLabel ?? section.heading,
-            content: <ModuleView module={section} data={data} />,
+            content: (
+              <ModuleView
+                module={section}
+                data={data}
+                sectionId={`insights-${section.id}`}
+              />
+            ),
           }))}
         />
       );
@@ -175,6 +196,62 @@ const ModuleView = ({
     default:
       return assertNever(module);
   }
+};
+
+const sectionTypes: Record<
+  NationalCurriculumInsightsModule["__typename"],
+  string
+> = {
+  NationalCurriculumInsightsHeaderSection: "hero",
+  NationalCurriculumInsightsHeroSection: "hero",
+  NationalCurriculumInsightsOverviewSection: "overview",
+  NationalCurriculumInsightsPhaseCardsSection: "phase-cards",
+  NationalCurriculumInsightsKeyStageCardsSection: "key-stage-cards",
+  NationalCurriculumInsightsPhaseNavigationSection: "phase-tabs",
+  NationalCurriculumInsightsSubjectNavigationSection: "subject-phase-chips",
+  NationalCurriculumInsightsSubjectLinksSection: "subject-overview-links",
+  NationalCurriculumInsightsPromotionalHeadingSection: "promotional-heading",
+  NationalCurriculumInsightsTableSection: "table",
+  NationalCurriculumInsightsArticleSection: "article",
+  NationalCurriculumInsightsChecklistSection: "checklist",
+  NationalCurriculumInsightsChangesSection: "changes",
+  NationalCurriculumInsightsUnchangedSection: "unchanged",
+  NationalCurriculumInsightsPreparationSection: "preparation",
+  NationalCurriculumInsightsConfidenceSection: "confidence",
+  NationalCurriculumInsightsRichTextSection: "rich-text",
+  NationalCurriculumInsightsImageTextSection: "image-text",
+  NationalCurriculumInsightsGuidanceIntroSection: "guidance-introduction",
+  NationalCurriculumInsightsFaqSection: "faq",
+  NationalCurriculumInsightsNewsletterSection: "newsletter",
+  NationalCurriculumInsightsDownloadSection: "downloads",
+  NationalCurriculumInsightsVideoCardsSection: "guidance-conversations",
+  NationalCurriculumInsightsQuoteSection: "guidance-testimonial",
+};
+
+const ModuleView = ({
+  module,
+  data,
+  sectionId,
+}: {
+  module: NationalCurriculumInsightsModule;
+  data: NationalCurriculumInsightsRouteData;
+  sectionId?: string;
+}) => {
+  let sectionType = sectionTypes[module.__typename];
+  if (module.__typename === "NationalCurriculumInsightsChecklistSection")
+    sectionType = `${module.audience}-checklist`;
+  if (
+    module.__typename === "NationalCurriculumInsightsImageTextSection" &&
+    data.route.kind === "guidance"
+  )
+    sectionType = "guidance-benefits";
+  return (
+    <insightsCtaSectionContext.Provider
+      value={{ sectionType, sectionId: sectionId ?? sectionType }}
+    >
+      <ModuleViewContent module={module} data={data} />
+    </insightsCtaSectionContext.Provider>
+  );
 };
 
 const ModuleList = ({
@@ -282,6 +359,8 @@ const InsightsTabs = ({
   >;
   data: NationalCurriculumInsightsRouteData;
 }) => {
+  const { trackCtaClicked, section: analyticsSection } =
+    useNationalCurriculumInsightsAnalytics();
   if (!data.subject || !data.activeTab) {
     return null;
   }
@@ -342,6 +421,7 @@ const InsightsTabs = ({
       $boxSizing="border-box"
       $overflowX="auto"
       as="nav"
+      data-insights-module="phase-tabs"
       aria-label={`${data.subject.title} insights`}
       $mh="auto"
       $ph={["spacing-20", "spacing-0"]}
@@ -351,6 +431,25 @@ const InsightsTabs = ({
         sizeVariant="default"
         colorVariant="black"
         activeTab={activeLabel}
+        onTabClick={(label) => {
+          const index = tabs.findIndex((tab) => tab.label === label);
+          let ctaId: CtaIdValueType = "key-stage-tab";
+          if (index === 0) ctaId = "overview-tab";
+          else if (isSubjectOverview || phaseTab?.page.keyStages.length === 0)
+            ctaId = "phase-tab";
+          trackCtaClicked({
+            sectionType: "phase-tabs",
+            sectionId: analyticsSection?.sectionId ?? "phase-tabs",
+            ctaAction: "navigate",
+
+            ctaId,
+            ctaText: label,
+            componentType:
+              ctaId === "key-stage-tab"
+                ? "keystage_keypad_button"
+                : "national_curriculum",
+          });
+        }}
         tabs={tabs.map(({ href, label }) => ({
           href,
           label,
@@ -361,7 +460,7 @@ const InsightsTabs = ({
   );
 };
 
-export const NationalCurriculumInsightsView = ({
+const NationalCurriculumInsightsContent = ({
   data,
 }: {
   data: NationalCurriculumInsightsRouteData;
@@ -400,5 +499,20 @@ export const NationalCurriculumInsightsView = ({
     <OakBox as="main" $color="text-primary">
       <PageModuleList data={data} />
     </OakBox>
+  );
+};
+
+export const NationalCurriculumInsightsView = ({
+  data,
+}: {
+  data: NationalCurriculumInsightsRouteData;
+}) => {
+  return (
+    <NationalCurriculumInsightsAnalyticsProvider
+      key={nationalCurriculumInsightsRouteHref(data.route)}
+      page={getAnalyticsPageProperties(data)}
+    >
+      <NationalCurriculumInsightsContent data={data} />
+    </NationalCurriculumInsightsAnalyticsProvider>
   );
 };

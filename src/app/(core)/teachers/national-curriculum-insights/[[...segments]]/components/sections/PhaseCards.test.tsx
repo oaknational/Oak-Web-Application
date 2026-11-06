@@ -12,7 +12,7 @@ import { NationalCurriculumInsightsPhaseCards } from "./PhaseCards";
 import type { ContextualSectionProps } from "./shared";
 
 import { nationalCurriculumInsightsSubjectPhaseHref } from "@/common-lib/urls/nationalCurriculumInsights";
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithInsightsAnalytics";
 
 const section: ContextualSectionProps<"NationalCurriculumInsightsPhaseCardsSection">["section"] =
   {
