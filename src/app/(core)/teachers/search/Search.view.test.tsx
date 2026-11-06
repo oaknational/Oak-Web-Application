@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { act, fireEvent } from "@testing-library/react";
+import { act, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -112,19 +112,12 @@ const validQuery: SearchQuery = {
   keyStages: [],
 };
 
-const onChange = jest.fn();
-
 const props: SearchProps = {
   status: "success",
   results: [],
+  timeTaken: 0,
   query: validQuery,
   searchFilters: {
-    legacyFilter: {
-      slug: "new",
-      title: "Show new only",
-      checked: false,
-      filterKey: "curriculum",
-    },
     keyStageFilters: [
       {
         slug: "ks1",
@@ -485,31 +478,29 @@ describe("Search.page.tsx", () => {
       lessonReleaseDate: "2020-2023",
     });
   });
-  // TODO: reinstate
-  test.skip("searchRefined function invoked when checked", () => {
-    (useSearchParams as jest.Mock).mockReturnValue(
-      new URLSearchParams("subjects=english"),
+  test("searchRefined function invoked when checked", async () => {
+    render(
+      <Search
+        {...props}
+        {...resultsProps}
+        query={{ ...props.query, subjects: ["english"] }}
+      />,
     );
-    const { getByRole } = render(<Search {...props} {...resultsProps} />);
-    const unitsFilter = getByRole("checkbox", {
-      name: "Units filter",
-    });
-    unitsFilter.click();
-    expect(onChange).toHaveBeenCalledTimes(1);
-
-    expect(searchRefined).toHaveBeenCalledWith({
-      activeFilters: { subjects: "english" },
-      analyticsUseCase: "Teacher",
-      accessLevel: "search",
-      navigationType: "narrow",
-      componentType: "filter_link",
-      engagementIntent: "refine",
-      eventVersion: "2.0.0",
-      platform: "owa",
-      product: "teacher lesson resources",
-      searchResultCount: 1,
-      searchTerm: "test search term",
-    });
+    await waitFor(() =>
+      expect(searchRefined).toHaveBeenCalledWith({
+        activeFilters: { subjects: "english" },
+        analyticsUseCase: "Teacher",
+        accessLevel: "search",
+        navigationType: "narrow",
+        componentType: "filter_link",
+        engagementIntent: "refine",
+        eventVersion: "2.0.0",
+        platform: "owa",
+        product: "teacher lesson resources",
+        searchResultCount: 1,
+        searchTerm: "test search term",
+      }),
+    );
   });
   test("skip button becomes visible when focussed", async () => {
     const { getByText } = render(

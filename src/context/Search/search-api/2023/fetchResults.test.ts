@@ -39,15 +39,15 @@ describe("search-api/2023/fetchResults", () => {
     });
   });
   test("should respond with transformed data", async () => {
-    const results = await fetchResults({ term: "test" });
-    expect(results).toHaveLength(4);
-    expect(results[0]).toMatchObject({
+    const { hitList } = await fetchResults({ term: "test" });
+    expect(hitList).toHaveLength(4);
+    expect(hitList[0]).toMatchObject({
       _id: "Z38Yx44Bc8iIk5N9Klp6",
       _index: "lessons_1712737230873",
       _score: 104.29718,
     });
 
-    expect(results[0]?._source).toMatchObject({
+    expect(hitList[0]?._source).toMatchObject({
       slug: "the-relationship-between-macbeth-and-lady-macbeth",
       title: "The relationship between Macbeth and Lady Macbeth",
       programme_slug: "english-secondary-ks4-eduqas",

@@ -12,4 +12,5 @@ export type SearchProps = {
   query: SearchQuery;
   results: SearchHit[];
   status: RequestStatus;
+  timeTaken: number;
 };

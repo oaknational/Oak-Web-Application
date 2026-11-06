@@ -70,7 +70,8 @@ export async function fetchResults(query: SearchQuery) {
 
   const rawData = rawSearchResponseSchema.parse(unparsedData);
   const data = transformAndParseSearchResponseData(rawData);
-  const { hits } = data;
+  const { hits, took } = data;
   const hitList = hits.hits;
-  return hitList;
+  // took is the time taken in milliseconds to retrieve results
+  return { hitList, took };
 }

@@ -50,6 +50,7 @@ describe("pages/teachers/search.tsx", () => {
         results={[]}
         query={query}
         status="success"
+        timeTaken={10}
         searchFilters={searchFilters}
       />,
     );

@@ -1,6 +1,6 @@
 "use client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -15,6 +15,7 @@ import styled from "styled-components";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import {
+  getActiveFilters,
   getSortedSearchFiltersSelected,
   isKeyStageTitleValueType,
   removeHTMLTags,
@@ -47,7 +48,8 @@ const SkipToResultsButton = styled(OakSecondaryButton)`
 `;
 
 const Search: FC<SearchProps> = (props) => {
-  const { query, status, results, allKeyStages, searchFilters } = props;
+  const { query, status, results, timeTaken, allKeyStages, searchFilters } =
+    props;
   const track = useTeacherBrowseAnalytics((store) => store.track);
   const router = useRouter();
   const pathname = usePathname();
@@ -140,8 +142,28 @@ const Search: FC<SearchProps> = (props) => {
     }
   };
 
-  // TODO
-  // track searchAccessed, searchRefined
+  useEffect(() => {
+    // Track SearchAccessed for a first search, ie. without filters
+    // Track SearchRefined for a search that has been refined with filters
+    const activeFilters = getActiveFilters(query);
+    const hasFilters = Object.entries(activeFilters).length > 0;
+    if (hasFilters) {
+      track.searchRefined({
+        searchResultCount: results.length,
+        searchTerm: query.term,
+        componentType: "filter_link",
+        activeFilters,
+      });
+    } else {
+      track.searchAccessed({
+        searchResultCount: results.length,
+        searchResultsLoadTime: timeTaken,
+        searchTerm: query.term,
+        componentType: "search_button",
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [results]);
 
   return (
     <OakFlex

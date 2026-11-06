@@ -39,8 +39,11 @@ async function SearchPage(props: AppPageProps) {
 
   let status: RequestStatus = "loading";
   let results: SearchHit[] = [];
+  let timeTaken = 0;
   try {
-    results = await fetchResults(query);
+    const res = await fetchResults(query);
+    results = res.hitList;
+    timeTaken = res.took;
     status = "success";
   } catch {
     status = "fail";
@@ -66,6 +69,7 @@ async function SearchPage(props: AppPageProps) {
         query={query}
         status={status}
         searchFilters={searchFilters}
+        timeTaken={timeTaken}
       />
     </TeacherBrowseAnalyticsStoreProvider>
   );
