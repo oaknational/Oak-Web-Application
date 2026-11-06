@@ -13,6 +13,16 @@ import { SnakeToCamel } from "@/utils/util.types";
 import { SearchFilterMatchTypeValueType } from "@/browser-lib/avo/Avo";
 import { SearchIntent } from "@/common-lib/schemas/search-intent";
 
+export const searchPageParamsSchema = z.object({
+  term: z.string(),
+  keyStages: z.string().optional(),
+  yearGroups: z.string().optional(),
+  subjects: z.string().optional(),
+  contentTypes: z.string().optional(),
+  examBoards: z.string().optional(),
+  curriculum: z.string().optional(),
+});
+
 export type SearchQuery = {
   term: string;
   keyStages?: string[];
@@ -81,3 +91,4 @@ export type SuggestedSearchFilter = {
   slug: string;
   source: SearchFilterMatchTypeValueType;
 };
+export type RequestStatus = "loading" | "fail" | "success";

@@ -19,6 +19,7 @@ import {
   removeHTMLTags,
   trackSearchModified,
 } from "./helpers";
+import { useUpdateSearchQuery } from "./helpers/updateSearchQuery";
 
 import { SearchProps } from "@/components/TeacherViews/Search/search.view.types";
 import { ContentFilterToggle } from "@/components/TeacherViews/Search/ContentFilterToggle";
@@ -45,11 +46,12 @@ const SkipToResultsButton = styled(OakSecondaryButton)`
 `;
 
 const Search: FC<SearchProps> = (props) => {
-  const { query, status, results, allKeyStages, searchFilters } = props;
+  const { query, status, results, data, searchFilters } = props;
   const track = useTeacherBrowseAnalytics((store) => store.track);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { updateSearchQuery } = useUpdateSearchQuery();
   const hitCount = results.length;
 
   const shouldShowError = status === "fail";
@@ -171,9 +173,11 @@ const Search: FC<SearchProps> = (props) => {
                   searchContext="search"
                   searchTerm={query.term}
                   placeholderText="Search by keyword or topic"
-                  handleSubmit={() => {
-                    // TODO: updating search
-                    //  setSearchTerm(value);
+                  handleSubmit={({ searchTerm }) => {
+                    updateSearchQuery({
+                      searchTerm,
+                      data,
+                    });
                   }}
                   analyticsSearchSource={"search page search box"}
                 />
@@ -342,8 +346,9 @@ const Search: FC<SearchProps> = (props) => {
 
                   <SearchResults
                     hits={results}
-                    allKeyStages={allKeyStages}
+                    allKeyStages={data.keyStages}
                     query={query}
+                    // TODO
                     paginationNavigation={{
                       route: pathname || "/",
                       searchParams,

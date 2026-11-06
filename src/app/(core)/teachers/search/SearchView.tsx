@@ -1,10 +1,13 @@
 "use client";
 
 import Search from "@/app/(core)/teachers/search/Search.view";
-import { RequestStatus } from "@/context/Search/useSearch";
 import useSearchFilters from "@/context/Search/useSearchFilters";
 import { SearchPageData } from "@/node-lib/curriculum-api-2023";
-import { SearchHit, SearchQuery } from "@/context/Search/search.types";
+import {
+  RequestStatus,
+  SearchHit,
+  SearchQuery,
+} from "@/context/Search/search.types";
 
 export const SearchView = ({
   curriculumData,
@@ -37,7 +40,7 @@ export const SearchView = ({
 
   return (
     <Search
-      allKeyStages={allKeyStages}
+      data={curriculumData}
       results={results}
       searchFilters={searchFilters}
       query={query}
