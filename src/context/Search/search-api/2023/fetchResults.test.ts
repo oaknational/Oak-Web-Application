@@ -9,7 +9,15 @@ const mockFetch = jest.spyOn(global, "fetch").mockResolvedValue(mockResponse);
 
 const mockHandleFetchError = jest.fn();
 
-jest.mock("@/browser-lib/getBrowserConfig", () => () => "test");
+jest.mock("@/browser-lib/getBrowserConfig", () => {
+  return jest.fn((key: string) => {
+    const config: Record<string, string> = {
+      clientAppBaseUrl: "http://localhost:3000",
+      searchApiUrl2023: "test",
+    };
+    return config[key] || "test";
+  });
+});
 jest.mock("@/utils/handleFetchError", () => () => mockHandleFetchError);
 
 describe("search-api/2023/fetchResults", () => {
@@ -25,6 +33,7 @@ describe("search-api/2023/fetchResults", () => {
       redirect: "follow",
       headers: new Headers({
         "Content-Type": "application/json",
+        Origin: "http://localhost:3000",
       }),
       body: '{"term":"test"}',
     });

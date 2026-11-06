@@ -43,7 +43,7 @@ export const ContentFilterToggle = (props: ContentFilterToggleProps) => {
               icon={icon}
               value={"Content type filter"}
               keepIconColor={true}
-              {...contentTypeFilter}
+              checked={contentTypeFilter.checked}
               onChange={() => {
                 trackSearchModified(
                   contentTypeFilter.checked,

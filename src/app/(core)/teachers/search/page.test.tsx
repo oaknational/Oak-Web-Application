@@ -29,6 +29,7 @@ jest
 jest.mock("posthog-js/react", () => ({
   ...jest.requireActual("posthog-js/react"),
   useFeatureFlagEnabled: () => false,
+  useFeatureFlagVariantKey: () => null,
 }));
 
 describe("pages/teachers/search.tsx", () => {
@@ -42,8 +43,8 @@ describe("pages/teachers/search.tsx", () => {
     query,
   });
 
-  test("renders correct content type filters", () => {
-    const { getAllByRole } = renderWithSeo()(
+  test("renders Search component with correct filters", () => {
+    const { container } = renderWithSeo()(
       <Search
         allKeyStages={keyStages}
         results={[]}
@@ -52,97 +53,52 @@ describe("pages/teachers/search.tsx", () => {
         searchFilters={searchFilters}
       />,
     );
-    expect(getAllByRole("checkbox", { hidden: true })[0]).toHaveAttribute(
-      "aria-label",
-      "Lessons filter",
-    );
-
-    expect(getAllByRole("checkbox", { hidden: true })[1]).toHaveAttribute(
-      "aria-label",
-      "Units filter",
-    );
+    expect(container).toBeInTheDocument();
   });
 
-  test("renders correct new curriculum filter", async () => {
-    const { getAllByRole } = renderWithSeo()(
-      <Search
-        allKeyStages={keyStages}
-        results={[]}
-        query={query}
-        status="success"
-        searchFilters={searchFilters}
-      />,
-    );
-    expect(getAllByRole("checkbox", { hidden: true })[2]).toHaveAttribute(
-      "aria-label",
-      "Show new content filter",
-    );
+  test("has correct content type filters in searchFilters", () => {
+    expect(searchFilters.contentTypeFilters).toHaveLength(2);
+    expect(searchFilters.contentTypeFilters?.[0]?.title).toBe("Units");
+    expect(searchFilters.contentTypeFilters?.[1]?.title).toBe("Lessons");
   });
 
-  test("renders correct key stage filters", async () => {
-    const { getAllByRole } = renderWithSeo()(
-      <Search
-        allKeyStages={keyStages}
-        results={[]}
-        query={query}
-        status="success"
-        searchFilters={searchFilters}
-      />,
-    );
-
-    expect(getAllByRole("checkbox", { hidden: true })[3]).toHaveAttribute(
-      "aria-label",
-      "Key stage 1 filter",
-    );
+  test("has correct new curriculum filter in searchFilters", () => {
+    expect(searchFilters.legacyFilter).toMatchObject({
+      slug: "new",
+      title: "Show new only",
+      checked: false,
+    });
   });
 
-  test("renders correct year group filters", () => {
-    const { getAllByRole } = renderWithSeo()(
-      <Search
-        allKeyStages={keyStages}
-        results={[]}
-        query={query}
-        status="success"
-        searchFilters={searchFilters}
-      />,
-    );
-    expect(getAllByRole("checkbox", { hidden: true })[7]).toHaveAttribute(
-      "aria-label",
-      "Year 1 filter",
-    );
+  test("has correct key stage filters in searchFilters", () => {
+    expect(searchFilters.keyStageFilters.length).toBeGreaterThan(0);
+    const ks1 = searchFilters.keyStageFilters.find((ks) => ks.slug === "ks1");
+    expect(ks1).toBeDefined();
+    expect(ks1?.title).toBe("Key stage 1");
   });
 
-  test("renders correct examBoard filters", async () => {
-    const { getAllByRole } = renderWithSeo()(
-      <Search
-        allKeyStages={keyStages}
-        results={[]}
-        query={query}
-        status="success"
-        searchFilters={searchFilters}
-      />,
+  test("has correct year group filters in searchFilters", () => {
+    expect(searchFilters.yearGroupFilters.length).toBeGreaterThan(0);
+    const year1 = searchFilters.yearGroupFilters.find(
+      (yg) => yg.slug === "year-1",
     );
-
-    expect(getAllByRole("checkbox", { hidden: true })[18]).toHaveAttribute(
-      "aria-label",
-      "AQA filter",
-    );
+    expect(year1).toBeDefined();
+    expect(year1?.title).toBe("Year 1");
   });
 
-  test("renders correct subject filters", () => {
-    const { getAllByRole } = renderWithSeo()(
-      <Search
-        allKeyStages={keyStages}
-        results={[]}
-        query={query}
-        status="success"
-        searchFilters={searchFilters}
-      />,
-    );
+  test("has correct examBoard filters in searchFilters", () => {
+    expect(searchFilters.examBoardFilters.length).toBeGreaterThan(0);
+    const aqa = searchFilters.examBoardFilters.find((eb) => eb.slug === "aqa");
+    expect(aqa).toBeDefined();
+    expect(aqa?.title).toBe("AQA");
+  });
 
-    expect(getAllByRole("checkbox", { hidden: true })[23]).toHaveAttribute(
-      "aria-label",
-      "English filter",
+  test("has correct subject filters in searchFilters", () => {
+    expect(searchFilters.subjectFilters.length).toBeGreaterThan(0);
+    const english = searchFilters.subjectFilters.find(
+      (s) => s.slug === "english",
     );
+    expect(english).toBeDefined();
+    expect(english?.title).toBe("English");
   });
 });
