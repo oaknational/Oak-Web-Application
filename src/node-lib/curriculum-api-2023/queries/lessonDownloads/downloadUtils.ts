@@ -13,6 +13,18 @@ export const constructDownloadsArray = (content: {
 }): LessonDownloadsListSchema => {
   const downloads: LessonDownloadsListSchema = [
     {
+      exists: content.hasLessonGuideObject,
+      type: "lesson-guide-pdf",
+      label: "Lesson guide",
+      ext: "pdf",
+    },
+    {
+      exists: content.hasLessonGuideObject,
+      type: "lesson-guide-docx",
+      label: "Lesson guide",
+      ext: "docx",
+    },
+    {
       exists: content.hasSlideDeckAssetObject,
       type: "presentation",
       ext: "pptx",
@@ -76,12 +88,6 @@ export const constructDownloadsArray = (content: {
       type: "supplementary-docx",
       label: "Additional material",
       ext: "docx",
-    },
-    {
-      exists: content.hasLessonGuideObject,
-      type: "lesson-guide-pdf",
-      label: "Lesson guide",
-      ext: "pdf",
     },
   ];
 

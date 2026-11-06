@@ -17,7 +17,7 @@ export const combinedPreselectedTypeMap: CombinedPreselectedTypeMap = {
     downloadType: ["supplementary-pdf", "supplementary-docx"],
   },
   "lesson guide": {
-    downloadType: ["lesson-guide-pdf"],
+    downloadType: ["lesson-guide-pdf", "lesson-guide-docx"],
   },
   "additional files": {
     downloadType: ["additional-files"],

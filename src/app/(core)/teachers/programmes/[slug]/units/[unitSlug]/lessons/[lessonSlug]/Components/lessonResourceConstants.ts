@@ -57,7 +57,7 @@ export const TRACKING_TITLES_BY_RESOURCE: Partial<
 export const DOWNLOAD_TITLES_BY_RESOURCE: Partial<
   Record<LessonResourceType, string>
 > = {
-  "lesson-guide": "lesson guide (PDF)",
+  "lesson-guide": "lesson guide (PDF/DOCX)",
   "starter-quiz": "starter quiz questions (PDF)",
   "exit-quiz": "exit quiz questions (PDF)",
   worksheet: "worksheet (PPTX/PDF)",
