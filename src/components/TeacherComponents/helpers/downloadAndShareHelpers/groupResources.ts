@@ -1,34 +1,12 @@
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { lessonDownloadMetadata } from "@/common-lib/lessonDownloads";
 
 type Download = LessonDownloadsPageData["downloads"][number];
 type AdditionalFile = LessonDownloadsPageData["additionalFiles"][number];
 
 export const getGroupName = (
   type: Download["type"] | AdditionalFile["type"],
-): string => {
-  switch (type) {
-    case "presentation":
-      return "Slide deck";
-    case "lesson-guide-pdf":
-    case "lesson-guide-docx":
-      return "Lesson guide";
-    case "intro-quiz-questions":
-    case "intro-quiz-answers":
-    case "exit-quiz-questions":
-    case "exit-quiz-answers":
-      return "Quizzes";
-    case "worksheet-pdf":
-    case "worksheet-pptx":
-      return "Worksheet";
-    case "supplementary-pdf":
-    case "supplementary-docx":
-      return "Additional material";
-    case "curriculum-pdf":
-    case "additional-files":
-    default:
-      return "Lesson files";
-  }
-};
+): string => lessonDownloadMetadata[type]?.group ?? "Lesson files";
 
 export const groupDownloadResources = (
   downloads?: LessonDownloadsPageData["downloads"],
