@@ -1,3 +1,4 @@
+"use client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { FC } from "react";
 import {
@@ -46,12 +47,12 @@ const SkipToResultsButton = styled(OakSecondaryButton)`
 `;
 
 const Search: FC<SearchProps> = (props) => {
-  const { query, status, results, data, searchFilters } = props;
+  const { query, status, results, allKeyStages, searchFilters } = props;
   const track = useTeacherBrowseAnalytics((store) => store.track);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const { updateSearchQuery } = useUpdateSearchQuery();
+  const { updateSearchTerm } = useUpdateSearchQuery();
   const hitCount = results.length;
 
   const shouldShowError = status === "fail";
@@ -174,9 +175,8 @@ const Search: FC<SearchProps> = (props) => {
                   searchTerm={query.term}
                   placeholderText="Search by keyword or topic"
                   handleSubmit={({ searchTerm }) => {
-                    updateSearchQuery({
+                    updateSearchTerm({
                       searchTerm,
-                      data,
                     });
                   }}
                   analyticsSearchSource={"search page search box"}
@@ -346,7 +346,7 @@ const Search: FC<SearchProps> = (props) => {
 
                   <SearchResults
                     hits={results}
-                    allKeyStages={data.keyStages}
+                    allKeyStages={allKeyStages}
                     query={query}
                     // TODO
                     paginationNavigation={{

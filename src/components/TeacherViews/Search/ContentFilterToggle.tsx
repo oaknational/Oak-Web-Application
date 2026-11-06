@@ -10,6 +10,7 @@ import {
   SearchCheckBoxProps,
 } from "@/context/Search/search.types";
 import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
+import { useUpdateSearchQuery } from "@/app/(core)/teachers/search/helpers/updateSearchQuery";
 
 type ContentFilterToggleProps = {
   contentTypeFilters: (ContentType & SearchCheckBoxProps)[];
@@ -23,6 +24,7 @@ type ContentFilterToggleProps = {
 
 export const ContentFilterToggle = (props: ContentFilterToggleProps) => {
   const { contentTypeFilters, trackSearchModified, idSuffix } = props;
+  const { updateSearchFilters } = useUpdateSearchQuery();
   return (
     <OakFlex $gap={"spacing-12"}>
       {contentTypeFilters
@@ -48,7 +50,10 @@ export const ContentFilterToggle = (props: ContentFilterToggleProps) => {
                   "Content type filter",
                   contentTypeFilter.slug,
                 );
-                contentTypeFilter.onChange();
+                updateSearchFilters({
+                  filterType: "contentTypes",
+                  filterSlug: contentTypeFilter.slug,
+                });
               }}
             />
           );

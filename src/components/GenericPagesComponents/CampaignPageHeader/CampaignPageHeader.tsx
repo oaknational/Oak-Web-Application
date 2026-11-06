@@ -57,7 +57,7 @@ export const CampaignPageHeader = ({
 };
 
 const LinkToProduct = () => {
-  const { updateSearchQuery } = useUpdateSearchQuery();
+  const { updateSearchTerm } = useUpdateSearchQuery();
   return (
     <OakFlex
       $width={["100%", "100%", "max-content"]}
@@ -73,7 +73,7 @@ const LinkToProduct = () => {
           placeholderText="Search by keyword or topic"
           searchTerm=""
           handleSubmit={({ searchTerm }) => {
-            updateSearchQuery({ searchTerm });
+            updateSearchTerm({ searchTerm });
           }}
           analyticsSearchSource={"campaign page"}
         />

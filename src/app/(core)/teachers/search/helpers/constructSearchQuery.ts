@@ -1,19 +1,17 @@
-import z from "zod";
-
 import { getFilterForQuery } from ".";
 
 import {
-  searchPageParamsSchema,
+  SearchPageQueryParams,
   SearchQuery,
 } from "@/context/Search/search.types";
 import { SearchPageData } from "@/node-lib/curriculum-api-2023";
 
 export const constructSearchQuery = ({
-  searchParams,
+  searchQuery,
   data,
 }: {
   data?: SearchPageData;
-  searchParams: z.infer<typeof searchPageParamsSchema>;
+  searchQuery: SearchPageQueryParams;
 }): SearchQuery => {
   const {
     subjects: allSubjects,
@@ -24,32 +22,32 @@ export const constructSearchQuery = ({
   } = data ?? {};
 
   const query = {
-    term: searchParams?.term,
+    term: searchQuery?.term,
     keyStages:
-      allKeyStages && searchParams?.keyStages
-        ? getFilterForQuery(searchParams?.keyStages, allKeyStages)
+      allKeyStages && searchQuery?.keyStages
+        ? getFilterForQuery(searchQuery?.keyStages, allKeyStages)
         : [],
     yearGroups:
-      allYearGroups && searchParams?.yearGroups
-        ? getFilterForQuery(searchParams?.yearGroups, allYearGroups)
+      allYearGroups && searchQuery?.yearGroups
+        ? getFilterForQuery(searchQuery?.yearGroups, allYearGroups)
         : [],
     subjects:
-      allSubjects && searchParams?.subjects
-        ? getFilterForQuery(searchParams?.subjects, allSubjects)
+      allSubjects && searchQuery?.subjects
+        ? getFilterForQuery(searchQuery?.subjects, allSubjects)
         : [],
     contentTypes:
-      allContentTypes && searchParams?.contentTypes
-        ? getFilterForQuery(searchParams?.contentTypes, allContentTypes).filter(
+      allContentTypes && searchQuery?.contentTypes
+        ? getFilterForQuery(searchQuery?.contentTypes, allContentTypes).filter(
             (type): type is "lesson" | "unit" =>
               type === "lesson" || type === "unit",
           )
         : [],
     examBoards:
-      allExamBoards && searchParams?.examBoards
-        ? getFilterForQuery(searchParams?.examBoards, allExamBoards)
+      allExamBoards && searchQuery?.examBoards
+        ? getFilterForQuery(searchQuery?.examBoards, allExamBoards)
         : [],
     curriculum: [],
-    legacy: "filterOutAll" as const,
+    legacy: "filterOutAll" as const, // TODO: remove new filter, make default
   };
 
   return query;

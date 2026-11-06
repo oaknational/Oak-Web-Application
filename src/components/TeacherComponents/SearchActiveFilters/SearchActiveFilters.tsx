@@ -5,25 +5,21 @@ import {
   OakSmallTertiaryInvertedButton,
 } from "@oaknational/oak-components";
 
-import {
-  UseSearchFiltersReturnType,
-  KeyStage,
-  Subject,
-  ContentType,
-  SearchCheckBoxProps,
-} from "@/context/Search/search.types";
+import { GetSearchFiltersReturnType } from "@/context/Search/search.types";
 import {
   getFilterType,
   TrackSearchModifiedProps,
 } from "@/app/(core)/teachers/search/helpers/index";
+import { useUpdateSearchQuery } from "@/app/(core)/teachers/search/helpers/updateSearchQuery";
 
 type SearchActiveFiltersProps = {
-  searchFilters: UseSearchFiltersReturnType;
+  searchFilters: GetSearchFiltersReturnType;
   trackSearchModified: (props: TrackSearchModifiedProps) => void;
 };
 
 const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
   const { searchFilters, trackSearchModified } = props;
+  const { updateSearchFilters } = useUpdateSearchQuery();
   const {
     keyStageFilters,
     subjectFilters,
@@ -43,13 +39,7 @@ const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
   ];
 
   const maxActiveFilters = 4;
-  const slicedActiveFilters: ((
-    | Subject
-    | KeyStage
-    | ContentType
-    | { slug: string; title: string }
-  ) &
-    SearchCheckBoxProps)[] = activeFilters.slice(0, maxActiveFilters);
+  const slicedActiveFilters = activeFilters.slice(0, maxActiveFilters);
 
   return (
     <OakFlex
@@ -62,7 +52,7 @@ const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
         Active filters:
       </OakSpan>
       <OakFlex $flexWrap={"wrap"} $alignItems={"center"}>
-        {slicedActiveFilters.map(({ slug, title, onChange, ...props }) => (
+        {slicedActiveFilters.map(({ slug, title, filterKey, ...props }) => (
           <OakSmallTertiaryInvertedButton
             $mr={["spacing-0", "spacing-12", "spacing-12"]}
             aria-label={`Remove ${title} filter`}
@@ -74,13 +64,13 @@ const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
                 filterValue: title,
                 searchFilterMatchType: "default",
               });
-              onChange();
+              updateSearchFilters({ filterType: filterKey, filterSlug: slug });
             }}
             iconName="cross"
             $font={"heading-7"}
             isTrailingIcon
           >
-            {"shortCode" in props ? props.shortCode : title}
+            {"shortCode" in props ? (props.shortCode as string) : title}{" "}
           </OakSmallTertiaryInvertedButton>
         ))}
         {activeFilters.length > maxActiveFilters && (

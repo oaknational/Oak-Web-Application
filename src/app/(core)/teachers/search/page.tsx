@@ -2,7 +2,7 @@ import React from "react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { SearchView } from "./SearchView";
+import Search from "./Search.view";
 import { constructSearchQuery } from "./helpers/constructSearchQuery";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -14,6 +14,7 @@ import {
   SearchHit,
   searchPageParamsSchema,
 } from "@/context/Search/search.types";
+import { getSearchFilters } from "@/context/Search/getSearchFilters";
 
 export const metadata: Metadata = {
   title: "Search for Free Teaching Resources",
@@ -33,7 +34,7 @@ async function SearchPage(props: AppPageProps) {
   }
   const query = constructSearchQuery({
     data: curriculumData,
-    searchParams: validatedSearchParams.data,
+    searchQuery: validatedSearchParams.data,
   });
 
   let status: RequestStatus = "loading";
@@ -44,16 +45,27 @@ async function SearchPage(props: AppPageProps) {
   } catch {
     status = "fail";
   }
+
+  const searchFilters = getSearchFilters({
+    allKeyStages: curriculumData.keyStages,
+    allYearGroups: curriculumData.yearGroups,
+    allSubjects: curriculumData.subjects,
+    allContentTypes: curriculumData.contentTypes,
+    allExamBoards: curriculumData.examBoards,
+    query,
+  });
+
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={null}
       accessLevel={"search"}
     >
-      <SearchView
-        curriculumData={curriculumData}
+      <Search
+        allKeyStages={curriculumData.keyStages}
         results={results}
         query={query}
         status={status}
+        searchFilters={searchFilters}
       />
     </TeacherBrowseAnalyticsStoreProvider>
   );

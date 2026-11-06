@@ -23,6 +23,9 @@ export const searchPageParamsSchema = z.object({
   curriculum: z.string().optional(),
 });
 
+export type SearchPageQueryParams = z.infer<typeof searchPageParamsSchema>;
+export type SearchFilterKey = Exclude<keyof SearchPageQueryParams, "term">;
+
 export type SearchQuery = {
   term: string;
   keyStages?: string[];
@@ -47,22 +50,21 @@ export type ContentType = {
 export type ExamBoard = SearchPageData["examBoards"][number];
 export type YearGroup = SearchPageData["yearGroups"][number];
 
-export type UseSearchFiltersProps = {
+export type GetSearchFiltersProps = {
   allKeyStages: KeyStage[];
   allYearGroups: YearGroup[];
   allSubjects: SearchPageData["subjects"];
   allContentTypes: ContentType[];
   allExamBoards: ExamBoard[];
-  setQuery: SetSearchQuery;
   query: SearchQuery;
 };
 
 export type SearchCheckBoxProps = {
-  onChange: () => void;
   checked: boolean;
+  filterKey: SearchFilterKey;
 };
 
-export type UseSearchFiltersReturnType = {
+export type GetSearchFiltersReturnType = {
   subjectFilters: (Subject & SearchCheckBoxProps)[];
   keyStageFilters: (KeyStage & SearchCheckBoxProps)[];
   yearGroupFilters: (YearGroup & SearchCheckBoxProps)[];

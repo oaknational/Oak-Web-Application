@@ -9,9 +9,10 @@ import {
 
 import {
   ExamBoard,
+  GetSearchFiltersReturnType,
   SearchCheckBoxProps,
+  SearchFilterKey,
   Subject,
-  UseSearchFiltersReturnType,
   YearGroup,
 } from "@/context/Search/search.types";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
@@ -19,19 +20,25 @@ import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { TrackSearchModifiedProps } from "@/app/(core)/teachers/search/helpers/index";
 import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
+import { useUpdateSearchQuery } from "@/app/(core)/teachers/search/helpers/updateSearchQuery";
 
-type SearchFiltersProps = UseSearchFiltersReturnType & {
+type SearchFiltersProps = GetSearchFiltersReturnType & {
   isMobileFilter?: boolean;
   trackSearchModified: (props: TrackSearchModifiedProps) => void;
 };
 
 const renderFilterSection = (
   title: string,
+  filterKey: SearchFilterKey,
   filters: ((ExamBoard | YearGroup | Subject) & SearchCheckBoxProps)[],
   hasIcon: boolean,
   isLast: boolean,
   trackSeachModified: (props: TrackSearchModifiedProps) => void,
   filterType: FilterTypeValueType,
+  updateSearchFilters: (props: {
+    filterSlug: string;
+    filterType: SearchFilterKey;
+  }) => void,
   isMobileFilter?: boolean,
 ) => (
   <OakBox
@@ -68,7 +75,10 @@ const renderFilterSection = (
                 filterValue: filter.title,
                 searchFilterMatchType: "default",
               });
-              filter.onChange();
+              updateSearchFilters({
+                filterSlug: filter.slug,
+                filterType: filterKey,
+              });
             }}
           />
         ))}
@@ -87,6 +97,8 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
     legacyFilter,
     trackSearchModified,
   } = props;
+
+  const { updateSearchFilters } = useUpdateSearchQuery();
 
   return (
     <>
@@ -115,9 +127,9 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                   ? "legacyFilterHintIdMobile"
                   : "legacyFilterHintId"
               }
-              {...legacyFilter}
               id={`search-filters-showNewContent:mobile:${isMobileFilter}`}
               value="new"
+              checked={legacyFilter.checked}
               onChange={() => {
                 trackSearchModified({
                   checked: legacyFilter.checked,
@@ -125,7 +137,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                   filterValue: "2023-2026",
                   searchFilterMatchType: "default",
                 });
-                legacyFilter.onChange();
+                // TODO: remove new filter
               }}
             />
             <OakFlex $alignItems={"flex-start"}>
@@ -179,7 +191,10 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                     filterValue: keyStageFilter.title,
                     searchFilterMatchType: "default",
                   });
-                  keyStageFilter.onChange();
+                  updateSearchFilters({
+                    filterType: "keyStages",
+                    filterSlug: keyStageFilter.slug,
+                  });
                 }}
               />
             ))}
@@ -189,29 +204,35 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
       <>
         {renderFilterSection(
           "Years",
+          "yearGroups",
           yearGroupFilters,
           false,
           false,
           trackSearchModified,
           "Year filter",
+          updateSearchFilters,
           isMobileFilter,
         )}
         {renderFilterSection(
           "Exam Boards",
+          "examBoards",
           examBoardFilters,
           false,
           false,
           trackSearchModified,
           "Exam board filter",
+          updateSearchFilters,
           isMobileFilter,
         )}
         {renderFilterSection(
           "Subjects",
+          "subjects",
           subjectFilters,
           false,
           true,
           trackSearchModified,
           "Subject filter",
+          updateSearchFilters,
           isMobileFilter,
         )}
       </>

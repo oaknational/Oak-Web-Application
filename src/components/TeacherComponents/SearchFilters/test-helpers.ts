@@ -1,11 +1,11 @@
-import { UseSearchFiltersReturnType } from "@/context/Search/search.types";
+import { GetSearchFiltersReturnType } from "@/context/Search/search.types";
 
 export const mockOnChange = jest.fn();
-export const searchFilters: UseSearchFiltersReturnType = {
+export const searchFilters: GetSearchFiltersReturnType = {
   legacyFilter: {
     slug: "new",
     title: "Show new only",
-    onChange: mockOnChange,
+    filterKey: "curriculum",
     checked: false,
   },
 
@@ -14,14 +14,14 @@ export const searchFilters: UseSearchFiltersReturnType = {
       slug: "ks2",
       title: "Key stage 2",
       shortCode: "KS2",
-      onChange: mockOnChange,
+      filterKey: "keyStages",
       checked: false,
     },
     {
       slug: "ks4",
       title: "Key stage 4",
       shortCode: "KS4",
-      onChange: jest.fn(),
+      filterKey: "keyStages",
       checked: true,
     },
   ],
@@ -29,31 +29,31 @@ export const searchFilters: UseSearchFiltersReturnType = {
     {
       slug: "maths",
       title: "Maths",
-      onChange: mockOnChange,
+      filterKey: "subjects",
       checked: false,
     },
     {
       slug: "science",
       title: "Science",
-      onChange: jest.fn(),
+      filterKey: "subjects",
       checked: true,
     },
   ],
   contentTypeFilters: [
-    { slug: "unit", title: "Units", onChange: mockOnChange, checked: false },
+    { slug: "unit", title: "Units", filterKey: "contentTypes", checked: false },
     {
       slug: "lesson",
       title: "Lessons",
-      onChange: mockOnChange,
+      filterKey: "contentTypes",
       checked: true,
     },
   ],
   examBoardFilters: [
-    { slug: "aqa", title: "AQA", onChange: mockOnChange, checked: true },
+    { slug: "aqa", title: "AQA", filterKey: "examBoards", checked: true },
     {
       slug: "ocr",
       title: "OCR",
-      onChange: mockOnChange,
+      filterKey: "examBoards",
       checked: false,
     },
   ],
@@ -61,13 +61,13 @@ export const searchFilters: UseSearchFiltersReturnType = {
     {
       slug: "year-10",
       title: "Year 10",
-      onChange: mockOnChange,
+      filterKey: "yearGroups",
       checked: true,
     },
     {
       slug: "year-11",
       title: "Year 11",
-      onChange: mockOnChange,
+      filterKey: "yearGroups",
       checked: false,
     },
   ],

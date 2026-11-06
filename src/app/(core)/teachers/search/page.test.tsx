@@ -4,8 +4,9 @@ import {
   useSearchParams,
 } from "next/navigation";
 
-import { SearchView } from "./SearchView";
+import Search from "./Search.view";
 
+import { getSearchFilters } from "@/context/Search/getSearchFilters";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import searchPageFixture from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 
@@ -31,16 +32,24 @@ jest.mock("posthog-js/react", () => ({
 }));
 
 describe("pages/teachers/search.tsx", () => {
+  const query = { term: "test" };
+  const searchFilters = getSearchFilters({
+    allKeyStages: keyStages,
+    allYearGroups: yearGroups,
+    allSubjects: subjects,
+    allContentTypes: contentTypes,
+    allExamBoards: examBoards,
+    query,
+  });
+
   test("renders correct content type filters", () => {
     const { getAllByRole } = renderWithSeo()(
-      <SearchView
-        curriculumData={{
-          keyStages,
-          subjects,
-          contentTypes,
-          examBoards,
-          yearGroups,
-        }}
+      <Search
+        allKeyStages={keyStages}
+        results={[]}
+        query={query}
+        status="success"
+        searchFilters={searchFilters}
       />,
     );
     expect(getAllByRole("checkbox", { hidden: true })[0]).toHaveAttribute(
@@ -56,14 +65,12 @@ describe("pages/teachers/search.tsx", () => {
 
   test("renders correct new curriculum filter", async () => {
     const { getAllByRole } = renderWithSeo()(
-      <SearchView
-        curriculumData={{
-          keyStages,
-          subjects,
-          contentTypes,
-          examBoards,
-          yearGroups,
-        }}
+      <Search
+        allKeyStages={keyStages}
+        results={[]}
+        query={query}
+        status="success"
+        searchFilters={searchFilters}
       />,
     );
     expect(getAllByRole("checkbox", { hidden: true })[2]).toHaveAttribute(
@@ -74,14 +81,12 @@ describe("pages/teachers/search.tsx", () => {
 
   test("renders correct key stage filters", async () => {
     const { getAllByRole } = renderWithSeo()(
-      <SearchView
-        curriculumData={{
-          keyStages,
-          subjects,
-          contentTypes,
-          examBoards,
-          yearGroups,
-        }}
+      <Search
+        allKeyStages={keyStages}
+        results={[]}
+        query={query}
+        status="success"
+        searchFilters={searchFilters}
       />,
     );
 
@@ -93,14 +98,12 @@ describe("pages/teachers/search.tsx", () => {
 
   test("renders correct year group filters", () => {
     const { getAllByRole } = renderWithSeo()(
-      <SearchView
-        curriculumData={{
-          keyStages,
-          subjects,
-          contentTypes,
-          examBoards,
-          yearGroups,
-        }}
+      <Search
+        allKeyStages={keyStages}
+        results={[]}
+        query={query}
+        status="success"
+        searchFilters={searchFilters}
       />,
     );
     expect(getAllByRole("checkbox", { hidden: true })[7]).toHaveAttribute(
@@ -111,14 +114,12 @@ describe("pages/teachers/search.tsx", () => {
 
   test("renders correct examBoard filters", async () => {
     const { getAllByRole } = renderWithSeo()(
-      <SearchView
-        curriculumData={{
-          keyStages,
-          subjects,
-          contentTypes,
-          examBoards,
-          yearGroups,
-        }}
+      <Search
+        allKeyStages={keyStages}
+        results={[]}
+        query={query}
+        status="success"
+        searchFilters={searchFilters}
       />,
     );
 
@@ -130,14 +131,12 @@ describe("pages/teachers/search.tsx", () => {
 
   test("renders correct subject filters", () => {
     const { getAllByRole } = renderWithSeo()(
-      <SearchView
-        curriculumData={{
-          keyStages,
-          subjects,
-          contentTypes,
-          examBoards,
-          yearGroups,
-        }}
+      <Search
+        allKeyStages={keyStages}
+        results={[]}
+        query={query}
+        status="success"
+        searchFilters={searchFilters}
       />,
     );
 

@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { act, fireEvent, screen, waitFor } from "@testing-library/react";
+import { act, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -111,58 +111,58 @@ const validQuery: SearchQuery = {
   keyStages: [],
 };
 
-const setSearchStartTime = jest.fn();
-
 const onChange = jest.fn();
 
 const props: SearchProps = {
-  status: "not-asked",
-  searchStartTime: 1,
-  setSearchStartTime: setSearchStartTime,
+  status: "success",
   results: [],
   query: validQuery,
-  setQuery: jest.fn(),
   searchFilters: {
     legacyFilter: {
       slug: "new",
       title: "Show new only",
-      onChange: jest.fn(),
       checked: false,
+      filterKey: "curriculum",
     },
     keyStageFilters: [
       {
         slug: "ks1",
         title: "Key-stage 1",
         shortCode: "KS1",
-        onChange: jest.fn(),
         checked: false,
+        filterKey: "keyStages",
       },
     ],
     yearGroupFilters: [
       {
         slug: "year-10",
         title: "Year 10",
-        onChange: jest.fn(),
         checked: false,
+        filterKey: "yearGroups",
       },
     ],
     subjectFilters: [
       {
         slug: "computing",
         title: "Computing",
-        onChange: jest.fn(),
         checked: false,
+        filterKey: "subjects",
       },
     ],
     contentTypeFilters: [
-      { slug: "unit", title: "Units", onChange: onChange, checked: false },
+      {
+        slug: "unit",
+        title: "Units",
+        checked: false,
+        filterKey: "contentTypes",
+      },
     ],
     examBoardFilters: [
       {
         slug: "aqa",
         title: "AQA",
-        onChange: jest.fn(),
         checked: false,
+        filterKey: "examBoards",
       },
     ],
   },
@@ -188,7 +188,6 @@ const props: SearchProps = {
       shortCode: "KS4",
     },
   ],
-  setSearchTerm: jest.fn(),
 };
 
 const searchAttempted = jest.fn();
@@ -258,14 +257,6 @@ describe("Search.page.tsx", () => {
       "There was an error fetching search results",
     );
   });
-  test("status: loading not displayed if not passed", () => {
-    const { getByRole } = render(<Search {...props} />);
-    expect(getByRole("status")).not.toHaveTextContent("Loading");
-  });
-  test("status: loading displayed if passed", () => {
-    const { getByRole } = render(<Search {...props} status="loading" />);
-    expect(getByRole("status")).toHaveTextContent("Loading");
-  });
   test("status: 'no results' message displayed if no results and status==='success'", () => {
     const { getByRole } = render(
       <Search
@@ -275,16 +266,6 @@ describe("Search.page.tsx", () => {
       />,
     );
     expect(getByRole("status")).toHaveTextContent("No search results");
-  });
-  test("status: 'no results' message not displayed if loading", () => {
-    const { getByRole } = render(
-      <Search
-        {...props}
-        query={{ ...props.query, term: "test search term" }}
-        status="loading"
-      />,
-    );
-    expect(getByRole("status")).not.toHaveTextContent("No search results");
   });
   test("status: 'no results' message not displayed if results not empty", () => {
     const { getByRole } = render(
@@ -310,25 +291,6 @@ describe("Search.page.tsx", () => {
       "href",
       "/teachers/programmes/subject-slug-ks1-l/units/topic-slug/lessons/lesson-slug",
     );
-  });
-  test("search term is set on enter", async () => {
-    const { getByRole } = render(<Search {...props} />);
-    const user = userEvent.setup();
-    const setSearchTerm = props.setSearchTerm as jest.Mock;
-    setSearchTerm.mockClear();
-    getByRole("searchbox").focus();
-    await user.keyboard("macb");
-    await user.keyboard("{Enter}");
-    expect(setSearchTerm).toHaveBeenCalledTimes(1);
-  });
-  test("query is set on submit button click", async () => {
-    const { getByRole } = render(<Search {...props} />);
-    const user = userEvent.setup();
-    const setSearchTerm = props.setSearchTerm as jest.Mock;
-    setSearchTerm.mockClear();
-    const submit = getByRole("button", { name: "submit" });
-    await user.click(submit);
-    expect(setSearchTerm).toHaveBeenCalledTimes(1);
   });
   test("tab order, 1: search input", async () => {
     const { getByRole } = render(<Search {...props} />);
@@ -370,11 +332,6 @@ describe("Search.page.tsx", () => {
     expect(onLinkClick).toHaveBeenCalled();
   });
 
-  test("setSearchStartTime is called with performance.now() when query.term is truthy", () => {
-    render(<Search {...props} {...resultsProps} />);
-
-    expect(setSearchStartTime).toHaveBeenCalledTimes(1);
-  });
   test("searchResultOpened is called when a search hit is clicked", async () => {
     const { getByText } = render(<Search {...props} {...resultsProps} />);
     const description = getByText("lesson title");
@@ -575,38 +532,5 @@ describe("Search.page.tsx", () => {
     });
     expect(skipButton).not.toHaveFocus();
     expect(skipButton).not.toBeVisible();
-  });
-  test("shows suggested filters when ai flag enabled", () => {
-    mockAiSearchFlagEnabled.mockReturnValue("search-with-ai");
-    (
-      useSuggestedFiltersModule.useSuggestedFilters as jest.Mock
-    ).mockReturnValue({
-      status: "success",
-      searchFilters: [{ type: "subject", slug: "maths", value: "Maths" }],
-    });
-
-    render(<Search {...props} {...resultsPropsPathWays} />);
-    const suggestedFiltersHeading = screen.getAllByText("Suggested filters");
-    expect(suggestedFiltersHeading[0]).toBeInTheDocument();
-  });
-  test("shows all filters drop down when ai search enabled", () => {
-    mockAiSearchFlagEnabled.mockReturnValue("search-with-ai");
-    render(<Search {...props} {...resultsPropsPathWays} />);
-    const suggestedFiltersHeading = screen.getAllByText("All filters");
-    expect(suggestedFiltersHeading[0]).toBeInTheDocument();
-  });
-  test("shows loading spinner when suggested filters are loading", () => {
-    mockAiSearchFlagEnabled.mockReturnValue("search-with-ai");
-    (
-      useSuggestedFiltersModule.useSuggestedFilters as jest.Mock
-    ).mockReturnValue({
-      status: "loading",
-      searchFilters: [],
-    });
-    render(<Search {...props} {...resultsPropsPathWays} />);
-    waitFor(() => {
-      const loadingSpinner = screen.getByText("Loading filters");
-      expect(loadingSpinner).toBeInTheDocument();
-    });
   });
 });
