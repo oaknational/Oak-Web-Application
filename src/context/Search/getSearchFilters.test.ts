@@ -99,20 +99,6 @@ describe("getSearchFilters()", () => {
     expect(checked).toBe(true);
   });
 
-  test("legacy filter should be unchecked by default", () => {
-    const filters = getSearchFilters(props);
-    expect(filters.legacyFilter.checked).toBe(false);
-  });
-
-  test("legacy filter should be checked if 'new' in curriculum", () => {
-    const withLegacyActive: GetSearchFiltersProps = {
-      ...props,
-      query: { ...props.query, curriculum: ["new"] },
-    };
-    const filters = getSearchFilters(withLegacyActive);
-    expect(filters.legacyFilter.checked).toBe(true);
-  });
-
   test("year group filter should reflect active selections", () => {
     const withYearGroupActive: GetSearchFiltersProps = {
       ...props,

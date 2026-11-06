@@ -62,14 +62,6 @@ describe("pages/teachers/search.tsx", () => {
     expect(searchFilters.contentTypeFilters?.[1]?.title).toBe("Lessons");
   });
 
-  test("has correct new curriculum filter in searchFilters", () => {
-    expect(searchFilters.legacyFilter).toMatchObject({
-      slug: "new",
-      title: "Show new only",
-      checked: false,
-    });
-  });
-
   test("has correct key stage filters in searchFilters", () => {
     expect(searchFilters.keyStageFilters.length).toBeGreaterThan(0);
     const ks1 = searchFilters.keyStageFilters.find((ks) => ks.slug === "ks1");

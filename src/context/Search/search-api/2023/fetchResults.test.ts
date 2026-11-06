@@ -35,7 +35,7 @@ describe("search-api/2023/fetchResults", () => {
         "Content-Type": "application/json",
         Origin: "http://localhost:3000",
       }),
-      body: '{"term":"test"}',
+      body: '{"term":"test","legacy":"filterOutAll"}',
     });
   });
   test("should respond with transformed data", async () => {

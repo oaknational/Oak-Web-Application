@@ -46,8 +46,6 @@ export const constructSearchQuery = ({
       allExamBoards && searchQuery?.examBoards
         ? getFilterForQuery(searchQuery?.examBoards, allExamBoards)
         : [],
-    curriculum: [],
-    legacy: "filterOutAll" as const, // TODO: remove new filter, make default
   };
 
   return query;

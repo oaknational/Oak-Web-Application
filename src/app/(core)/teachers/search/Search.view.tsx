@@ -142,7 +142,6 @@ const Search: FC<SearchProps> = (props) => {
 
   // TODO
   // track searchAccessed, searchRefined
-  // update search term
 
   return (
     <OakFlex

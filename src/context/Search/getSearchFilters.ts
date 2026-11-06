@@ -33,11 +33,6 @@ export const getSearchFilters = (
     query,
   } = props;
 
-  const legacyFilter = buildCheckboxFilters(
-    { slug: "new", title: "Show new only", filterKey: "curriculum" },
-    query.curriculum || [],
-  );
-
   const keyStageCheckboxFilters = allKeyStages.map((keyStage) => {
     return buildCheckboxFilters(
       { ...keyStage, filterKey: "keyStages" },
@@ -79,6 +74,5 @@ export const getSearchFilters = (
     yearGroupFilters: yearGroupCheckboxFilters,
     contentTypeFilters: contentTypeCheckboxFilters,
     examBoardFilters: examBoardCheckboxFilters,
-    legacyFilter,
   };
 };

@@ -13,11 +13,10 @@ const mockCampaignHeader = {
   image: mockImageAsset(),
 };
 
-const setSearchTerm = jest.fn();
-jest.mock("@/context/Search/useSearch", () => ({
-  __esModule: true,
-  default: () => ({
-    setSearchTerm,
+const mockUpdateSearch = jest.fn();
+jest.mock("@/app/(core)/teachers/search/helpers/updateSearchQuery", () => ({
+  useUpdateSearchQuery: () => ({
+    updateSearchTerm: mockUpdateSearch,
   }),
 }));
 
@@ -56,7 +55,9 @@ describe("CampaignHeader", () => {
     const user = userEvent.setup();
     await user.type(searchInput, "test search{enter}");
     await waitFor(() =>
-      expect(setSearchTerm).toHaveBeenCalledWith({ searchTerm: "test search" }),
+      expect(mockUpdateSearch).toHaveBeenCalledWith({
+        searchTerm: "test search",
+      }),
     );
   });
   it("does not render keystage buttons or search bar when hideKsSelector set", () => {

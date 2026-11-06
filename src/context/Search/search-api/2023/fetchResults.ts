@@ -59,7 +59,7 @@ export async function fetchResults(query: SearchQuery) {
       "Content-Type": "application/json",
       Origin: new URL(getBrowserConfig("clientAppBaseUrl")).origin,
     }),
-    body: JSON.stringify(query),
+    body: JSON.stringify({ ...query, legacy: "filterOutAll" }),
   };
 
   const response = await fetch(getBrowserConfig("searchApiUrl2023"), options);

@@ -16,7 +16,6 @@ import {
   YearGroup,
 } from "@/context/Search/search.types";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
-import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { TrackSearchModifiedProps } from "@/app/(core)/teachers/search/helpers/index";
 import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
@@ -94,7 +93,6 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
     subjectFilters,
     examBoardFilters,
     isMobileFilter,
-    legacyFilter,
     trackSearchModified,
   } = props;
 
@@ -102,64 +100,6 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
 
   return (
     <>
-      <OakBox
-        $mb="spacing-32"
-        $bb={"border-solid-s"}
-        $borderColor={"border-neutral-lighter"}
-      >
-        <OakFieldset>
-          <OakP as={"legend"} $mb="spacing-24" $font={"heading-7"}>
-            Curriculum
-          </OakP>
-          <OakFlex
-            $gap={"spacing-16"}
-            $mb="spacing-32"
-            $flexDirection={"column"}
-            $flexWrap={"wrap"}
-          >
-            <OakSearchFilterCheckBox
-              name={"new"}
-              displayValue={"Show new only"}
-              key={`search-filters-curriculum-filter`}
-              aria-label={`Show new content filter`}
-              aria-describedby={
-                isMobileFilter
-                  ? "legacyFilterHintIdMobile"
-                  : "legacyFilterHintId"
-              }
-              id={`search-filters-showNewContent:mobile:${isMobileFilter}`}
-              value="new"
-              checked={legacyFilter.checked}
-              onChange={() => {
-                trackSearchModified({
-                  checked: legacyFilter.checked,
-                  filterType: "Lesson Cohort filter",
-                  filterValue: "2023-2026",
-                  searchFilterMatchType: "default",
-                });
-                // TODO: remove new filter
-              }}
-            />
-            <OakFlex $alignItems={"flex-start"}>
-              <OakBox>
-                <TagPromotional size={"small"} />
-              </OakBox>
-              <OakP
-                $font={"body-3"}
-                $wordWrap={"normal"}
-                $color={"text-subdued"}
-                id={
-                  isMobileFilter
-                    ? "legacyFilterHintIdMobile"
-                    : "legacyFilterHintId"
-                } // pa11y error for non unique id when mobile and desktop views rendered simultaneously
-              >
-                Resources designed for the classroom
-              </OakP>
-            </OakFlex>
-          </OakFlex>
-        </OakFieldset>
-      </OakBox>
       <OakBox
         $mb="spacing-32"
         $bb={"border-solid-s"}
