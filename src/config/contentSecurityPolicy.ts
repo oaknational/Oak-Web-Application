@@ -26,6 +26,9 @@ const releaseStage = getReleaseStage(
     process.env.CONTEXT,
 );
 const isDevelopment: boolean = releaseStage?.includes("dev");
+const posthogApiHost =
+  process.env.NEXT_PUBLIC_POSTHOG_API_HOST || "https://eu.i.posthog.com";
+const hubspotScriptDomain = process.env.NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN;
 
 // Rules
 const mux: Partial<CspConfig> = {
@@ -41,7 +44,6 @@ const mux: Partial<CspConfig> = {
     "https://stream.mux.com",
     "https://inferred.litix.io",
   ],
-  // imgSrc: ["https://*.mux.com/", "https://stream.mux.com/"],
   styleSrc: ["https://*.mux.com"],
   mediaSrc: ["https://*.mux.com/", "https://stream.mux.com/"],
   frameSrc: ["https://stream.mux.com", "https://*.mux.com"],
@@ -49,8 +51,7 @@ const mux: Partial<CspConfig> = {
 
 const clerk: Partial<CspConfig> = {
   connectSrc: ["*.clerk.accounts.dev", "clerk-telemetry.com"],
-  // imgSrc: ["https://img.clerk.com/"],
-  scriptSrc: ["*.clerk.accounts.dev"],
+  scriptSrc: ["*.clerk.accounts.dev", "https://clerk.thenational.academy"],
 };
 
 const avo: Partial<CspConfig> = {
@@ -59,20 +60,11 @@ const avo: Partial<CspConfig> = {
 };
 
 const posthog: Partial<CspConfig> = {
-  connectSrc: ["https://eu.i.posthog.com", "*.posthog.com"],
-  scriptSrc: ["https://*.posthog.com"],
+  connectSrc: [posthogApiHost, "*.posthog.com"],
+  scriptSrc: ["https://*.posthog.com", posthogApiHost],
 };
 
 const cloudinary: Partial<CspConfig> = {
-  // imgSrc: [
-  //   "https://res.cloudinary.com/",
-  //   "https://res.cloudinary.com",
-  //   "https://oaknationalacademy-res.cloudinary.com/",
-  //   "https://oaknationalacademy-res.cloudinary.com",
-  //   "https://*.cloudinary.com/",
-  //   "https://*.cloudinary.com",
-  //   " https://res.cloudinary.com/oak-web-application/",
-  // ],
   mediaSrc: [
     "https://res.cloudinary.com/",
     "https://oaknationalacademy-res.cloudinary.com/",
@@ -81,13 +73,26 @@ const cloudinary: Partial<CspConfig> = {
   connectSrc: ["*.cloudinary.com/"],
 };
 
+// The tracking code loader at `hubspotScriptDomain` pulls in a further chain of
+// HubSpot scripts (analytics, cookie banner, collected forms), each from its own
+// domain. The region prefix varies by portal, hence the wildcards.
+// @see https://community.hubspot.com/t5/HubSpot-Ideas/A-guide-to-Content-Security-Policy-CSP-settings/idi-p/314328
 const hubspot: Partial<CspConfig> = {
-  connectSrc: ["*.hubspot.com", "*.hsforms.com"],
-  // imgSrc: [
-  //   "https://*.hubspot.com/",
-  //   "https://*.hsforms.com/",
-  //   "https://track.hubspot.com/",
-  // ],
+  connectSrc: [
+    "*.hubspot.com",
+    "*.hsforms.com",
+    "*.hubapi.com",
+    "*.hs-banner.com",
+    "*.hscollectedforms.net",
+  ],
+  scriptSrc: [
+    ...(hubspotScriptDomain ? [`https://${hubspotScriptDomain}`] : []),
+    "https://*.hs-scripts.com",
+    "https://*.hs-analytics.net",
+    "https://*.hs-banner.com",
+    "https://*.hscollectedforms.net",
+    "https://*.hubspot.com",
+  ],
 };
 
 const cloudflare: Partial<CspConfig> = {
@@ -102,13 +107,6 @@ const vercel: Partial<CspConfig> = {
     "*.pusher.com",
     "*.pusherapp.com",
   ],
-  // imgSrc: [
-  //   "https://vercel.live/",
-  //   "https://vercel.com",
-  //   "*.pusher.com/",
-  //   "data:",
-  //   "blob:",
-  // ],
   frameSrc: ["https://vercel.live/", "https://vercel.com"],
   styleSrc: ["https://vercel.live/"],
   fontSrc: ["https://vercel.live/", "https://assets.vercel.com"],
@@ -116,7 +114,6 @@ const vercel: Partial<CspConfig> = {
 
 const gleap: Partial<CspConfig> = {
   connectSrc: ["*.gleap.io", "wss://*.gleap.io"],
-  // imgSrc: ["https://*.gleap.io/"],
   frameSrc: ["https://*.gleap.io/"],
   scriptSrc: ["https://*.gleap.io/"],
   mediaSrc: ["https://*.gleap.io/"],
@@ -156,7 +153,7 @@ const localhost: Partial<CspConfig> = {
 
 const cspBaseConfig: CspConfig = {
   defaultSrc: ["'self'"],
-  scriptSrc: ["'self'", "'unsafe-inline'", "https:", "http:"],
+  scriptSrc: ["'self'", "'unsafe-inline'"],
   styleSrc: ["'self'", "'unsafe-inline'"],
   imgSrc: [
     "'self'",
@@ -175,15 +172,13 @@ const cspBaseConfig: CspConfig = {
   objectSrc: ["'self'"],
   baseUri: ["'self'"],
   formAction: ["'self'"],
-  frameAncestors: ["'self'"],
-  connectSrc: ["*.thenational.academy", "thenational.academy"],
+  frameAncestors: ["'self'", "https://classroom.google.com"],
+  connectSrc: ["'self'", "*.thenational.academy", "thenational.academy"],
   mediaSrc: ["'self'", "blob:", "*.thenational.academy/"],
   frameSrc: ["'self'", "*.thenational.academy/"],
   workerSrc: ["'self'", "blob:", "*.thenational.academy/"],
   childSrc: ["blob:"],
-  upgradeInsecureRequests: false,
-  // when we change from report only we can uncomment this
-  // upgradeInsecureRequests: !isDevelopment,
+  upgradeInsecureRequests: !isDevelopment,
 };
 
 // Construct CSP headers
@@ -230,8 +225,6 @@ const cspConfig: CspConfig = [
 
 // Reporting - PostHog CSP Dashboard
 const posthogApiKey = process.env.NEXT_PUBLIC_POSTHOG_API_KEY || "";
-const posthogApiHost =
-  process.env.NEXT_PUBLIC_POSTHOG_API_HOST || "https://eu.i.posthog.com";
 
 const posthogReportUri = posthogApiKey
   ? `${posthogApiHost}/report/?token=${posthogApiKey}`
@@ -248,7 +241,15 @@ export const getReportUri = (
     : `${posthogReportUri}&sample_rate=${sampleRate.toString()}&v=${version}`;
 };
 
-export const reportingEndpointsHeader = `posthog="${posthogReportUri}"`;
+export const reportingEndpointsHeader = posthogReportUri
+  ? `posthog="${getReportUri(posthogReportUri, 0.05, "1")}"`
+  : undefined;
+
+const reportingDirectives = posthogReportUri
+  ? `
+    report-uri ${getReportUri(posthogReportUri, 0.05, "1")};
+    report-to posthog;`
+  : "";
 
 export const cspHeader = `
     default-src ${cspConfig.defaultSrc.join(" ")};
@@ -265,7 +266,6 @@ export const cspHeader = `
     frame-src ${cspConfig.frameSrc.join(" ")};
     worker-src ${cspConfig.workerSrc.join(" ")};
     child-src ${cspConfig.childSrc.join(" ")};
-    report-uri ${getReportUri(posthogReportUri, 0.05, "1")};
-    report-to posthog
+    ${reportingDirectives}
     ${cspConfig.upgradeInsecureRequests ? "upgrade-insecure-requests;" : ""}
 `;
