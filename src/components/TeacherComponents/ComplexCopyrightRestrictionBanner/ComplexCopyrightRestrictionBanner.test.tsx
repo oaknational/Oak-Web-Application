@@ -15,12 +15,14 @@ import { getProgrammeStateForUnit } from "@/context/TeacherBrowseAnalytics/utils
 import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersUnitOverview.fixture";
 
 const mockTrackContentBlock = jest.fn();
+const mockTrackSignInStarted = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
       contentBlockNotificationDisplayed: (...args: unknown[]) =>
         mockTrackContentBlock(...args),
+      signInStarted: (...args: unknown[]) => mockTrackSignInStarted(...args),
     },
   }),
 }));
@@ -95,6 +97,25 @@ describe("CopyrightRestrictionBanner", () => {
 
       expect(bannerText).toEqual(
         "Copyrighted materials: to view and download resources from this lesson, you’ll need to be in the UK and sign in.Copyrights help",
+      );
+    });
+
+    it("tracks sign in started when the sign in link is clicked", () => {
+      const { getByTestId } = render(
+        <ComplexCopyrightRestrictionBanner
+          isGeorestricted={false}
+          isLoginRequired={true}
+          componentType="lesson_downloads"
+        />,
+      );
+
+      getByTestId("copyright-banner-signin-link").click();
+
+      expect(mockTrackSignInStarted).toHaveBeenCalledTimes(1);
+      expect(mockTrackSignInStarted).toHaveBeenCalledWith(
+        expect.objectContaining({
+          componentType: "complex_copyright_restriction_banner",
+        }),
       );
     });
   });
