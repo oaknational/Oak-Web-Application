@@ -1,4 +1,4 @@
-import { title } from "process";
+import { title } from "node:process";
 
 import { FC } from "react";
 import {
