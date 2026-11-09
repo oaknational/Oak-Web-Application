@@ -6,7 +6,7 @@ import {
 } from "@/context/Search/search.types";
 import { SearchPageData } from "@/node-lib/curriculum-api-2023";
 
-export type SearchProps = {
+export type SearchViewProps = {
   searchFilters: GetSearchFiltersReturnType;
   allKeyStages: SearchPageData["keyStages"];
   query: SearchQuery;

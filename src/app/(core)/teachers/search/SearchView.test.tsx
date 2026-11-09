@@ -4,9 +4,9 @@ import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import Search from "./Search.view";
+import SearchView from "./SearchView";
 
-import { SearchProps } from "@/components/TeacherViews/Search/search.view.types";
+import { SearchViewProps } from "@/components/TeacherViews/Search/search.view.types";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { SearchHit, SearchQuery } from "@/context/Search/search.types";
 import { LEGACY_COHORT } from "@/config/cohort";
@@ -53,7 +53,7 @@ const createSearchResult = (legacy?: boolean): SearchHit => {
   };
 };
 
-const resultsProps: Partial<SearchProps> = {
+const resultsProps: Partial<SearchViewProps> = {
   results: [createSearchResult()],
   status: "success",
 };
@@ -91,7 +91,7 @@ const pathways = [
   },
 ];
 
-const resultsPropsPathWays: Partial<SearchProps> = {
+const resultsPropsPathWays: Partial<SearchViewProps> = {
   results: [
     {
       ...createSearchResult(),
@@ -111,7 +111,7 @@ const validQuery: SearchQuery = {
   keyStages: [],
 };
 
-const props: SearchProps = {
+const props: SearchViewProps = {
   status: "success",
   results: [],
   timeTaken: 0,
@@ -231,14 +231,14 @@ describe("Search.page.tsx", () => {
   });
 
   test("status: error message displayed status is fail", () => {
-    const { getByRole } = render(<Search {...props} status="fail" />);
+    const { getByRole } = render(<SearchView {...props} status="fail" />);
     expect(getByRole("status")).toHaveTextContent(
       "There was an error fetching search results",
     );
   });
   test("status: 'no results' message displayed if no results and status==='success'", () => {
     const { getByRole } = render(
-      <Search
+      <SearchView
         {...props}
         query={{ ...props.query, term: "test search term" }}
         status="success"
@@ -248,7 +248,7 @@ describe("Search.page.tsx", () => {
   });
   test("status: 'no results' message not displayed if results not empty", () => {
     const { getByRole } = render(
-      <Search
+      <SearchView
         {...props}
         query={{ ...props.query, term: "test search term" }}
         results={[createSearchResult()]}
@@ -257,13 +257,13 @@ describe("Search.page.tsx", () => {
     expect(getByRole("status")).not.toHaveTextContent("No search results");
   });
   test("results are displayed", () => {
-    const { getByRole } = render(<Search {...props} {...resultsProps} />);
+    const { getByRole } = render(<SearchView {...props} {...resultsProps} />);
     expect(
       getByRole("link", { name: "See lesson: lesson title" }),
     ).toBeInTheDocument();
   });
   test("results have correct href", () => {
-    const { getByRole } = render(<Search {...props} {...resultsProps} />);
+    const { getByRole } = render(<SearchView {...props} {...resultsProps} />);
     expect(
       getByRole("link", { name: "See lesson: lesson title" }),
     ).toHaveAttribute(
@@ -272,14 +272,14 @@ describe("Search.page.tsx", () => {
     );
   });
   test("tab order, 1: search input", async () => {
-    const { getByRole } = render(<Search {...props} />);
+    const { getByRole } = render(<SearchView {...props} />);
     const user = userEvent.setup();
     const searchInput = getByRole("searchbox");
     await user.tab();
     expect(searchInput).toHaveFocus();
   });
   test("tab order, 2: submit button", async () => {
-    const { getByRole } = render(<Search {...props} {...resultsProps} />);
+    const { getByRole } = render(<SearchView {...props} {...resultsProps} />);
 
     const user = userEvent.setup();
     await user.tab();
@@ -290,7 +290,7 @@ describe("Search.page.tsx", () => {
   });
   test("clicking result description clicks the link", async () => {
     const { getByText, getByRole } = render(
-      <Search {...props} {...resultsProps} />,
+      <SearchView {...props} {...resultsProps} />,
     );
     const description = getByText("lesson description");
     const user = userEvent.setup();
@@ -312,7 +312,7 @@ describe("Search.page.tsx", () => {
   });
 
   test("searchResultOpened is called when a search hit is clicked", async () => {
-    const { getByText } = render(<Search {...props} {...resultsProps} />);
+    const { getByText } = render(<SearchView {...props} {...resultsProps} />);
     const description = getByText("lesson title");
     const onLinkClick = jest.fn();
     description.addEventListener(
@@ -350,7 +350,7 @@ describe("Search.page.tsx", () => {
   });
   test("searchResultClicked is called when a pathway hit is clicked", async () => {
     const { getByText } = render(
-      <Search {...props} {...resultsPropsPathWays} />,
+      <SearchView {...props} {...resultsPropsPathWays} />,
     );
     const dropdown = getByText("Select exam board");
     const user = userEvent.setup();
@@ -382,7 +382,7 @@ describe("Search.page.tsx", () => {
     });
   });
   test("searchResultExpanded is called when a dropdown toggle is expanded", async () => {
-    const noneLegacyResultsPropsPathWays: Partial<SearchProps> = {
+    const noneLegacyResultsPropsPathWays: Partial<SearchViewProps> = {
       results: [
         {
           ...createSearchResult(false),
@@ -397,7 +397,7 @@ describe("Search.page.tsx", () => {
       status: "success",
     };
     const { getByText } = render(
-      <Search {...props} {...noneLegacyResultsPropsPathWays} />,
+      <SearchView {...props} {...noneLegacyResultsPropsPathWays} />,
     );
     const dropdown = getByText("Select exam board");
     fireEvent.click(dropdown);
@@ -431,7 +431,7 @@ describe("Search.page.tsx", () => {
   });
   test("searchResultExpanded and handles tracking for none legacy lessons", async () => {
     const { getByText } = render(
-      <Search {...props} {...resultsPropsPathWays} />,
+      <SearchView {...props} {...resultsPropsPathWays} />,
     );
     const dropdown = getByText("Select exam board");
     fireEvent.click(dropdown);
@@ -465,7 +465,7 @@ describe("Search.page.tsx", () => {
   });
   test("searchRefined function invoked when checked", async () => {
     render(
-      <Search
+      <SearchView
         {...props}
         {...resultsProps}
         query={{ ...props.query, subjects: ["english"] }}
@@ -489,7 +489,7 @@ describe("Search.page.tsx", () => {
   });
   test("skip button becomes visible when focussed", async () => {
     const { getByText } = render(
-      <Search {...props} {...resultsPropsPathWays} />,
+      <SearchView {...props} {...resultsPropsPathWays} />,
     );
 
     const skipButton = getByText("Skip to results").closest("a");

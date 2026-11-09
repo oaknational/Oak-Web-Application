@@ -2,8 +2,8 @@ import React from "react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import Search from "./Search.view";
 import { constructSearchQuery } from "./helpers/constructSearchQuery";
+import SearchView from "./SearchView";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
@@ -32,6 +32,7 @@ async function SearchPage(props: Readonly<AppPageProps>) {
   const curriculumData = await curriculumApi2023.searchPage();
   const searchParams = await props.searchParams;
   const validatedSearchParams = searchPageParamsSchema.safeParse(searchParams);
+
   if (validatedSearchParams.error) {
     return notFound();
   }
@@ -67,7 +68,7 @@ async function SearchPage(props: Readonly<AppPageProps>) {
       programmeState={null}
       accessLevel={"search"}
     >
-      <Search
+      <SearchView
         allKeyStages={curriculumData.keyStages}
         results={results}
         query={query}

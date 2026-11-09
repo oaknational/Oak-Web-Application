@@ -32,7 +32,6 @@ export const getSearchFilters = (
     allExamBoards,
     query,
   } = props;
-
   const keyStageCheckboxFilters = allKeyStages.map((keyStage) => {
     return buildCheckboxFilters(
       { ...keyStage, filterKey: "keyStages" },

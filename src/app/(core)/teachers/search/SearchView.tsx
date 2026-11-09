@@ -17,7 +17,7 @@ import { trackSearchModified } from "./helpers";
 import { useUpdateSearchQuery } from "./helpers/updateSearchQuery";
 import { useSearchTracking } from "./useSearchTracking";
 
-import { SearchProps } from "@/components/TeacherViews/Search/search.view.types";
+import { SearchViewProps } from "@/components/TeacherViews/Search/search.view.types";
 import { ContentFilterToggle } from "@/components/TeacherViews/Search/ContentFilterToggle";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
@@ -40,7 +40,7 @@ const SkipToResultsButton = styled(OakSecondaryButton)`
   }
 `;
 
-const Search: FC<SearchProps> = (props) => {
+const SearchView: FC<SearchViewProps> = (props) => {
   const { query, status, results, timeTaken, allKeyStages, searchFilters } =
     props;
   const track = useTeacherBrowseAnalytics((store) => store.track);
@@ -280,4 +280,4 @@ const Search: FC<SearchProps> = (props) => {
   );
 };
 
-export default Search;
+export default SearchView;

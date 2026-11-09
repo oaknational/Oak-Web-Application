@@ -8,7 +8,7 @@ import {
 } from "./helpers";
 
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { SearchProps } from "@/components/TeacherViews/Search/search.view.types";
+import { SearchViewProps } from "@/components/TeacherViews/Search/search.view.types";
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 
 export const useSearchTracking = ({
@@ -16,7 +16,7 @@ export const useSearchTracking = ({
   query,
   results,
   timeTaken,
-}: Pick<SearchProps, "query" | "results" | "status" | "timeTaken">) => {
+}: Pick<SearchViewProps, "query" | "results" | "status" | "timeTaken">) => {
   // Ensure we're only tracking refined or accessed once per search request
   const lastTrackedSearch = useRef<string | null>(null);
   const {
