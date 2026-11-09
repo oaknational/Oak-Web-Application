@@ -1,13 +1,20 @@
 import elasticResponse2023 from "./elasticResponse.2023.fixture.json";
 import { fetchResults } from "./fetchResults";
 
-const mockResponse = {
+import OakError from "@/errors/OakError";
+
+const mockSuccessResponse = {
+  ok: true,
+  status: 200,
   json: jest.fn().mockResolvedValue(elasticResponse2023),
+  clone: jest.fn().mockReturnValue({
+    text: jest.fn().mockResolvedValue(JSON.stringify(elasticResponse2023)),
+  }),
 } as unknown as Response;
 
-const mockFetch = jest.spyOn(global, "fetch").mockResolvedValue(mockResponse);
-
-const mockHandleFetchError = jest.fn();
+const mockFetch = jest
+  .spyOn(global, "fetch")
+  .mockResolvedValue(mockSuccessResponse);
 
 jest.mock("@/browser-lib/getBrowserConfig", () => {
   return jest.fn((key: string) => {
@@ -18,7 +25,6 @@ jest.mock("@/browser-lib/getBrowserConfig", () => {
     return config[key] || "test";
   });
 });
-jest.mock("@/utils/handleFetchError", () => () => mockHandleFetchError);
 
 describe("search-api/2023/fetchResults", () => {
   beforeEach(() => {
@@ -29,7 +35,6 @@ describe("search-api/2023/fetchResults", () => {
 
     expect(mockFetch).toHaveBeenCalledWith("test", {
       method: "POST",
-      mode: "cors",
       redirect: "follow",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -62,6 +67,25 @@ describe("search-api/2023/fetchResults", () => {
       type: "lesson",
       pupil_lesson_outcome:
         "I can describe the relationship between Macbeth and Lady Macbeth.",
+    });
+  });
+  test("should throw OakError when response is not ok", async () => {
+    const errorBody = JSON.stringify({ error: "Internal Server Error" });
+    const mockErrorResponse = {
+      ok: false,
+      status: 500,
+      clone: jest.fn().mockReturnValue({
+        text: jest.fn().mockResolvedValue(errorBody),
+      }),
+    } as unknown as Response;
+
+    mockFetch.mockResolvedValue(mockErrorResponse);
+
+    await expect(fetchResults({ term: "test" })).rejects.toThrow(OakError);
+    await expect(fetchResults({ term: "test" })).rejects.toMatchObject({
+      code: "search/unknown",
+      originalError: 500,
+      meta: { body: errorBody },
     });
   });
 });

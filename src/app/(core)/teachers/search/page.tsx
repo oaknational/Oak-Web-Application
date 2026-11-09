@@ -15,6 +15,7 @@ import {
   searchPageParamsSchema,
 } from "@/context/Search/search.types";
 import { getSearchFilters } from "@/context/Search/getSearchFilters";
+import errorReporter from "@/common-lib/error-reporter";
 
 export const metadata: Metadata = {
   title: "Search for Free Teaching Resources",
@@ -24,6 +25,8 @@ export const metadata: Metadata = {
     follow: true,
   },
 };
+
+const reportError = errorReporter("search-page::app");
 
 async function SearchPage(props: AppPageProps) {
   const curriculumData = await curriculumApi2023.searchPage();
@@ -45,8 +48,9 @@ async function SearchPage(props: AppPageProps) {
     results = res.hitList;
     timeTaken = res.took;
     status = "success";
-  } catch {
+  } catch (error) {
     status = "fail";
+    void reportError(error);
   }
 
   const searchFilters = getSearchFilters({

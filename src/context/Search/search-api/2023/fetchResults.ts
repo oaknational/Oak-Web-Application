@@ -9,7 +9,7 @@ import { SearchQuery } from "../../search.types";
 
 import { getHighlightFromAllFields } from "@/app/(core)/teachers/search/helpers";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-import handleFetchError from "@/utils/handleFetchError";
+import OakError from "@/errors/OakError";
 
 export const transformAndParseSearchResponseData = (
   rawData: RawSearchResponseData,
@@ -64,7 +64,13 @@ export async function fetchResults(query: SearchQuery) {
 
   const response = await fetch(getBrowserConfig("searchApiUrl2023"), options);
 
-  handleFetchError(response);
+  if (!response.ok) {
+    throw new OakError({
+      code: "search/unknown",
+      originalError: response.status,
+      meta: { body: await response.clone().text() },
+    });
+  }
 
   const unparsedData = await response.json();
 
