@@ -268,8 +268,20 @@ describe("National Curriculum Insights scroll analytics", () => {
     try {
       act(() => result.current.trackScrolledTo("teacher-checklist"));
       act(() => {
+        now = 10000;
+        jest.advanceTimersByTime(10000);
+      });
+      expect(ncInsightsDwellTimeRecorded).toHaveBeenCalledTimes(1);
+      expect(ncInsightsDwellTimeRecorded).toHaveBeenCalledWith(
+        expect.objectContaining({
+          timeElapsedSeconds: 10,
+          pageVisitId: "visit-1",
+        }),
+      );
+      expect(ncInsightsDwellThresholdReached).not.toHaveBeenCalled();
+      act(() => {
         now = 239999;
-        jest.advanceTimersByTime(239999);
+        jest.advanceTimersByTime(229999);
       });
       expect(ncInsightsDwellThresholdReached).not.toHaveBeenCalled();
       act(() => {

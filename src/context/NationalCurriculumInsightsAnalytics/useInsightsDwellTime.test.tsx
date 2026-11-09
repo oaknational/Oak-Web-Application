@@ -1,7 +1,10 @@
 import { act, renderHook } from "@testing-library/react";
 import { StrictMode, type ReactNode } from "react";
 
-import { useInsightsDwellTime } from "./useInsightsDwellTime";
+import {
+  INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS,
+  useInsightsDwellTime,
+} from "./useInsightsDwellTime";
 
 describe("useInsightsDwellTime", () => {
   let now: number;
@@ -126,21 +129,99 @@ describe("useInsightsDwellTime", () => {
       jest.advanceTimersByTime(ms);
     });
 
+  it("records the survey threshold once while visible, without waiting for navigation", () => {
+    const { unmount } = renderHook(() => useInsightsDwellTime(record));
+    advance(INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS * 1000 - 1);
+    expect(record).not.toHaveBeenCalled();
+    advance(1);
+    expect(record.mock.calls).toEqual([
+      [INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS],
+    ]);
+    // Hiding and unmounting at the same instant must not duplicate the snapshot.
+    setVisibility("hidden");
+    unmount();
+    advance(60000);
+    expect(record).toHaveBeenCalledTimes(1);
+  });
+
+  it("pauses the survey countdown while hidden and resumes only the remaining visible time", () => {
+    const { unmount } = renderHook(() => useInsightsDwellTime(record));
+    advance(4000);
+    setVisibility("hidden");
+    expect(record.mock.calls).toEqual([[4]]);
+    advance(60000);
+    expect(record).toHaveBeenCalledTimes(1);
+    setVisibility("visible");
+    advance(5999);
+    expect(record).toHaveBeenCalledTimes(1);
+    advance(1);
+    expect(record.mock.calls).toEqual([[4], [10]]);
+    advance(1000);
+    setVisibility("hidden");
+    expect(record.mock.calls).toEqual([[4], [10], [11]]);
+    setVisibility("visible");
+    advance(10000);
+    expect(record).toHaveBeenCalledTimes(3);
+    unmount();
+    expect(record).toHaveBeenLastCalledWith(21);
+  });
+
+  it("records only one snapshot when leaving after a delayed survey timer", () => {
+    const { unmount } = renderHook(() => useInsightsDwellTime(record));
+    now = 12000;
+    setVisibility("hidden");
+    unmount();
+    advance(10000);
+    expect(record.mock.calls).toEqual([[12]]);
+  });
+
+  it("preserves the survey countdown across callback changes", () => {
+    const nextRecord = jest.fn();
+    const { rerender, unmount } = renderHook(
+      ({ callback }) => useInsightsDwellTime(callback),
+      { initialProps: { callback: record } },
+    );
+    advance(4000);
+    rerender({ callback: nextRecord });
+    advance(6000);
+    expect(record).not.toHaveBeenCalled();
+    expect(nextRecord.mock.calls).toEqual([[10]]);
+    unmount();
+    expect(nextRecord).toHaveBeenCalledTimes(1);
+  });
+
+  it("cancels the survey timer on navigation and starts fresh for the next visit", () => {
+    const firstVisit = renderHook(() => useInsightsDwellTime(record));
+    advance(6000);
+    firstVisit.unmount();
+    const nextRecord = jest.fn();
+    const nextVisit = renderHook(() => useInsightsDwellTime(nextRecord));
+    advance(4000);
+    expect(record.mock.calls).toEqual([[6]]);
+    expect(nextRecord).not.toHaveBeenCalled();
+    advance(6000);
+    expect(nextRecord.mock.calls).toEqual([[10]]);
+    nextVisit.unmount();
+    expect(nextRecord).toHaveBeenCalledTimes(1);
+  });
+
   it("fires the four-minute threshold while the page is visible, once per visit", () => {
     const threshold = jest.fn();
     const { unmount } = renderHook(() =>
       useInsightsDwellTime(record, threshold),
     );
-    advance(239999);
+    advance(10000);
+    expect(record.mock.calls).toEqual([[10]]);
+    advance(229999);
     expect(threshold).not.toHaveBeenCalled();
     advance(1);
     expect(threshold.mock.calls).toEqual([[240]]);
-    expect(record).not.toHaveBeenCalled();
+    expect(record.mock.calls).toEqual([[10]]);
     advance(120000);
     setVisibility("hidden");
     unmount();
     expect(threshold.mock.calls).toEqual([[240]]);
-    expect(record.mock.calls).toEqual([[360]]);
+    expect(record.mock.calls).toEqual([[10], [360]]);
   });
 
   it("pauses the threshold countdown while hidden and resumes the remaining time", () => {

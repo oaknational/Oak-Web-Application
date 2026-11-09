@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef } from "react";
 
 export const INSIGHTS_DWELL_THRESHOLD_SECONDS = 240;
+export const INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS = 180;
 
 /** Reports cumulative visible time; consumers should not sum snapshots per visit. */
 export function useInsightsDwellTime(
@@ -17,6 +18,7 @@ export function useInsightsDwellTime(
     lastReportedMs: 0,
     visibleSince: null as number | null,
     thresholdReached: false,
+    surveyThresholdReached: false,
   });
 
   const getElapsedSeconds = useCallback(() => {
@@ -38,10 +40,16 @@ export function useInsightsDwellTime(
   useEffect(() => {
     const state = measurement.current;
     let thresholdTimer: ReturnType<typeof setTimeout> | undefined;
+    let surveyTimer: ReturnType<typeof setTimeout> | undefined;
 
     const clearThresholdTimer = () => {
       clearTimeout(thresholdTimer);
       thresholdTimer = undefined;
+    };
+
+    const clearSurveyTimer = () => {
+      clearTimeout(surveyTimer);
+      surveyTimer = undefined;
     };
 
     const elapsedMs = () =>
@@ -61,6 +69,19 @@ export function useInsightsDwellTime(
       state.thresholdReached = true;
       clearThresholdTimer();
       onThresholdReachedRef.current?.(elapsed / 1000);
+    };
+
+    const checkSurveyThreshold = () => {
+      const elapsed = elapsedMs();
+      if (
+        state.surveyThresholdReached ||
+        elapsed < INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS * 1000
+      )
+        return;
+      state.surveyThresholdReached = true;
+      clearSurveyTimer();
+      state.lastReportedMs = elapsed;
+      onRecordRef.current(elapsed / 1000);
     };
 
     const scheduleThreshold = () => {
@@ -84,6 +105,23 @@ export function useInsightsDwellTime(
       }, remaining);
     };
 
+    const scheduleSurvey = () => {
+      if (state.surveyThresholdReached || state.visibleSince === null) return;
+      clearSurveyTimer();
+      const remaining =
+        INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS * 1000 - elapsedMs();
+      if (remaining <= 0) {
+        checkSurveyThreshold();
+        return;
+      }
+      surveyTimer = setTimeout(() => {
+        surveyTimer = undefined;
+        checkSurveyThreshold();
+        // Recheck the remaining time if the browser invokes the timer early.
+        if (!state.surveyThresholdReached) scheduleSurvey();
+      }, remaining);
+    };
+
     const resume = () => {
       if (
         document.visibilityState === "visible" &&
@@ -91,16 +129,19 @@ export function useInsightsDwellTime(
       ) {
         state.visibleSince = performance.now();
         scheduleThreshold();
+        scheduleSurvey();
       }
     };
 
     const record = () => {
       clearThresholdTimer();
+      clearSurveyTimer();
       if (state.visibleSince !== null) {
         state.totalMs += Math.max(0, performance.now() - state.visibleSince);
         state.visibleSince = null;
       }
       checkThreshold();
+      checkSurveyThreshold();
       if (state.totalMs <= state.lastReportedMs) return;
       state.lastReportedMs = state.totalMs;
       onRecordRef.current(state.totalMs / 1000);
