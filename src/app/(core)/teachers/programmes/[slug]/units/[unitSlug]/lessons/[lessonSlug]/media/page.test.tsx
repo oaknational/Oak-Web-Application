@@ -83,6 +83,35 @@ describe("LessonMediaPage", () => {
       }),
     ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
   });
+
+  const firstClipUrl = Object.values(lessonMediaFixture.mediaClips)[0]![0]!
+    .mediaObject.url;
+
+  it("includes media clips in the payload for unrestricted lessons", async () => {
+    const result = await LessonMediaPage({
+      params: Promise.resolve(defaultParams),
+      searchParams: Promise.resolve({}),
+    });
+
+    expect(JSON.stringify(result)).toContain(firstClipUrl);
+  });
+
+  it.each([
+    { loginRequired: true, geoRestricted: false },
+    { loginRequired: false, geoRestricted: true },
+  ])("omits media clips from the payload when %o", async (restriction) => {
+    mockLessonMediaClips.mockResolvedValue({
+      ...lessonMediaFixture,
+      ...restriction,
+    });
+
+    const result = await LessonMediaPage({
+      params: Promise.resolve(defaultParams),
+      searchParams: Promise.resolve({}),
+    });
+
+    expect(JSON.stringify(result)).not.toContain(firstClipUrl);
+  });
 });
 
 describe("generateMetadata", () => {

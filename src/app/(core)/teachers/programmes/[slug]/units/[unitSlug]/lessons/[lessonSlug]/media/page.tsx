@@ -4,6 +4,12 @@ import { cache } from "react";
 
 import { Breadcrumbs } from "../../Components/Breadcrumbs/Breadcrumbs";
 
+import { RestrictedLessonMedia } from "./Components/RestrictedLessonMedia";
+import {
+  getCachedLessonMediaClipsData as getLessonMediaClipsData,
+  getLessonMediaRestriction,
+} from "./getLessonMediaClipsData";
+
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import { LessonMedia } from "@/components/TeacherViews/LessonMedia/LessonMedia.view";
 import withPageErrorHandling, {
@@ -12,8 +18,6 @@ import withPageErrorHandling, {
 import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { LessonMediaClipsData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import { cacheData } from "@/node-lib/cache";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
@@ -25,18 +29,7 @@ type LessonMediaPageParams = {
 
 export const dynamic = "force-static";
 
-const getCachedLessonMediaClipsData = cache(
-  cacheData(
-    async (programmeSlug: string, unitSlug: string, lessonSlug: string) => {
-      return curriculumApi2023.lessonMediaClips<LessonMediaClipsData>({
-        programmeSlug,
-        unitSlug,
-        lessonSlug,
-      });
-    },
-    ["lesson-media-clips"],
-  ),
-);
+const getCachedLessonMediaClipsData = cache(getLessonMediaClipsData);
 
 export async function generateMetadata(
   props: AppPageProps<LessonMediaPageParams>,
@@ -82,13 +75,14 @@ const InnerLessonMediaPage = async (
     return notFound();
   }
 
-  const mediaClipsWithTranscripts = await populateMediaClipsWithTranscripts(
-    data.mediaClips,
-  );
+  // The page is static, so restricted clips must never reach the RSC payload
+  const { isRestricted } = getLessonMediaRestriction(data);
 
   const lessonData: LessonMediaClipsData = {
     ...data,
-    mediaClips: mediaClipsWithTranscripts,
+    mediaClips: isRestricted
+      ? {}
+      : await populateMediaClipsWithTranscripts(data.mediaClips),
   };
 
   const breadcrumbsSubjectPhaseSlug = getTeacherSubjectPhaseSlug({
@@ -101,22 +95,31 @@ const InnerLessonMediaPage = async (
 
   const programmeState = getProgrammeStateForLesson(lessonData);
 
+  const breadcrumbsSlot = (
+    <Breadcrumbs
+      key="lesson-media-breadcrumbs"
+      subjectPhaseSlug={breadcrumbsSubjectPhaseSlug}
+      mode="media"
+    />
+  );
+
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={programmeState}
       accessLevel="lesson"
     >
-      <LessonMedia
-        isCanonical={false}
-        lesson={lessonData}
-        breadcrumbsSlot={
-          <Breadcrumbs
-            key="lesson-media-breadcrumbs"
-            subjectPhaseSlug={breadcrumbsSubjectPhaseSlug}
-            mode="media"
-          />
-        }
-      />
+      {isRestricted ? (
+        <RestrictedLessonMedia
+          lesson={lessonData}
+          breadcrumbsSlot={breadcrumbsSlot}
+        />
+      ) : (
+        <LessonMedia
+          isCanonical={false}
+          lesson={lessonData}
+          breadcrumbsSlot={breadcrumbsSlot}
+        />
+      )}
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };
