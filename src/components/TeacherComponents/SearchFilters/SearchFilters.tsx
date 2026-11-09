@@ -115,6 +115,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
         $mb="spacing-32"
         $bb={"border-solid-s"}
         $borderColor={"border-neutral-lighter"}
+        data-testid="search-filters"
       >
         <OakFieldset>
           <OakP as={"legend"} $mb="spacing-24" $font={"heading-7"}>
