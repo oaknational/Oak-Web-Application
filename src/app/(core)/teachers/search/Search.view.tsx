@@ -12,7 +12,6 @@ import {
   OakMaxWidth,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { trackSearchModified } from "./helpers";
 import { useUpdateSearchQuery } from "./helpers/updateSearchQuery";
@@ -23,12 +22,12 @@ import { ContentFilterToggle } from "@/components/TeacherViews/Search/ContentFil
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import SearchFilters from "@/components/TeacherComponents/SearchFilters";
-import SearchActiveFilters from "@/components/TeacherComponents/SearchActiveFilters";
 import SearchForm from "@/components/SharedComponents/SearchForm";
 import SearchResults from "@/components/TeacherComponents/SearchResults";
 import NoSearchResults from "@/components/TeacherComponents/NoSearchResults";
 import SignPostToAila from "@/components/TeacherComponents/NoSearchResults/SignPostToAila";
 import { srOnlyCss } from "@/components/SharedComponents/ScreenReaderOnly";
+import SearchActiveFilters from "@/components/TeacherComponents/SearchActiveFilters";
 
 const CustomWidthFlex = styled(OakFlex)`
   max-width: 300px;
@@ -54,9 +53,6 @@ const Search: FC<SearchProps> = (props) => {
   const shouldShowError = status === "fail";
   const shouldShowNoResultsMessage = status === "success" && !hitCount;
   const shouldShowResults = status === "success" && hitCount > 0;
-
-  const isAiExperimentSearchEnabled =
-    useFeatureFlagVariantKey("ai-experiment-search") === "search-with-ai";
 
   const { searchResultExpanded, searchResultOpened } = useSearchTracking({
     query,
@@ -104,53 +100,51 @@ const Search: FC<SearchProps> = (props) => {
                 />
               </OakBox>
 
-              {!isAiExperimentSearchEnabled && (
-                <OakFlex
-                  $mt={["spacing-0", "spacing-32"]}
-                  $alignItems={"center"}
-                  $display={["flex", "none", "none"]}
+              <OakFlex
+                $mt={["spacing-0", "spacing-32"]}
+                $alignItems={"center"}
+                $display={["flex", "none", "none"]}
+              >
+                <ContentFilterToggle
+                  contentTypeFilters={searchFilters.contentTypeFilters}
+                  idSuffix="mobile"
+                  trackSearchModified={(checked, filterType, filterValue) =>
+                    trackSearchModified(
+                      query.term,
+                      track.searchFilterModified,
+                    )({
+                      checked,
+                      filterType,
+                      filterValue,
+                      searchFilterMatchType: "default",
+                    })
+                  }
+                />
+                <OakBox
+                  $position={"absolute"}
+                  $width={"100%"}
+                  $ph={"spacing-16"}
+                  $right={"spacing-0"}
+                  $pointerEvents={"none"}
                 >
-                  <ContentFilterToggle
-                    contentTypeFilters={searchFilters.contentTypeFilters}
-                    idSuffix="mobile"
-                    trackSearchModified={(checked, filterType, filterValue) =>
-                      trackSearchModified(
-                        query.term,
-                        track.searchFilterModified,
-                      )({
-                        checked,
-                        filterType,
-                        filterValue,
-                        searchFilterMatchType: "default",
-                      })
-                    }
-                  />
-                  <OakBox
-                    $position={"absolute"}
-                    $width={"100%"}
-                    $ph={"spacing-16"}
-                    $right={"spacing-0"}
-                    $pointerEvents={"none"}
+                  <MobileFilters
+                    $mt={"spacing-0"}
+                    label="Filters"
+                    hasShowResultsButton={true}
                   >
-                    <MobileFilters
-                      $mt={"spacing-0"}
-                      label="Filters"
-                      hasShowResultsButton={true}
-                    >
-                      <OakBox>
-                        <SearchFilters
-                          {...searchFilters}
-                          isMobileFilter
-                          trackSearchModified={trackSearchModified(
-                            query.term,
-                            track.searchFilterModified,
-                          )}
-                        />
-                      </OakBox>
-                    </MobileFilters>
-                  </OakBox>
-                </OakFlex>
-              )}
+                    <OakBox>
+                      <SearchFilters
+                        {...searchFilters}
+                        isMobileFilter
+                        trackSearchModified={trackSearchModified(
+                          query.term,
+                          track.searchFilterModified,
+                        )}
+                      />
+                    </OakBox>
+                  </MobileFilters>
+                </OakBox>
+              </OakFlex>
             </OakFlex>
 
             <OakBox
@@ -171,40 +165,34 @@ const Search: FC<SearchProps> = (props) => {
               <CustomWidthFlex
                 $flexDirection="column"
                 $mb="spacing-32"
-                $display={[
-                  "none",
-                  isAiExperimentSearchEnabled ? "none" : "flex",
-                  "flex",
-                ]}
+                $display={["none", "flex", "flex"]}
               >
-                <>
-                  <OakFlex
-                    $mb="spacing-16"
-                    $flexDirection="column"
-                    $gap="spacing-8"
-                  >
-                    <OakHeading tag="h2" $font="heading-6">
-                      Filters
-                    </OakHeading>
-                    <SkipToResultsButton element="a" href="#search-results">
-                      Skip to results
-                    </SkipToResultsButton>
-                  </OakFlex>
-                  <SearchFilters
-                    {...searchFilters}
-                    isMobileFilter={false}
-                    trackSearchModified={trackSearchModified(
-                      query.term,
-                      track.searchFilterModified,
-                    )}
-                  />
-                </>
+                <OakFlex
+                  $mb="spacing-16"
+                  $flexDirection="column"
+                  $gap="spacing-8"
+                >
+                  <OakHeading tag="h2" $font="heading-6">
+                    Filters
+                  </OakHeading>
+                  <SkipToResultsButton element="a" href="#search-results">
+                    Skip to results
+                  </SkipToResultsButton>
+                </OakFlex>
+                <SearchFilters
+                  {...searchFilters}
+                  isMobileFilter={false}
+                  trackSearchModified={trackSearchModified(
+                    query.term,
+                    track.searchFilterModified,
+                  )}
+                />
               </CustomWidthFlex>
             </OakGridArea>
           )}
           <OakGridArea
-            $colSpan={[12, isAiExperimentSearchEnabled ? 12 : 7, 7]}
-            $colStart={[1, isAiExperimentSearchEnabled ? 1 : 5, 5]}
+            $colSpan={[12, 7, 7]}
+            $colStart={[1, 5, 5]}
             $rowStart={2}
           >
             <OakBox role="status" aria-live="polite">
@@ -237,11 +225,7 @@ const Search: FC<SearchProps> = (props) => {
                   <OakFlex
                     $flexDirection={"column"}
                     $gap={"spacing-24"}
-                    $display={[
-                      "none",
-                      isAiExperimentSearchEnabled ? "none" : "flex",
-                      "flex",
-                    ]}
+                    $display={["none", "flex", "flex"]}
                     $pl="spacing-24"
                   >
                     <ContentFilterToggle
@@ -264,7 +248,6 @@ const Search: FC<SearchProps> = (props) => {
                       {results.length === 1 ? "" : "s"}
                     </OakP>
                   </OakFlex>
-
                   <SearchResults
                     hits={results}
                     allKeyStages={allKeyStages}

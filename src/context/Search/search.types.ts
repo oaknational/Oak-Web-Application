@@ -7,11 +7,8 @@ import {
   pathwaySchema,
 } from "./search.schema";
 
-import { AsyncState } from "@/common-lib/types/asyncState.types";
 import { SearchPageData } from "@/node-lib/curriculum-api-2023";
 import { SnakeToCamel } from "@/utils/util.types";
-import { SearchFilterMatchTypeValueType } from "@/browser-lib/avo/Avo";
-import { SearchIntent } from "@/common-lib/schemas/search-intent";
 
 export const searchPageParamsSchema = z.object({
   term: z.string(),
@@ -77,17 +74,4 @@ export type SearchHit = z.infer<typeof searchResultsHitSchema>;
 export type PathwaySchema = z.infer<typeof pathwaySchema>;
 export type PathwaySchemaCamel = SnakeToCamel<PathwaySchema>;
 
-export type SuggestedFilters = {
-  searchFilters: SuggestedSearchFilter[] | undefined;
-  status: AsyncState;
-  error?: string;
-  data?: SearchIntent;
-};
-
-export type SuggestedSearchFilter = {
-  type: "subject" | "key-stage" | "year" | "exam-board";
-  value: string;
-  slug: string;
-  source: SearchFilterMatchTypeValueType;
-};
 export type RequestStatus = "loading" | "fail" | "success";

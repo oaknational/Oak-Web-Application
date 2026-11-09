@@ -7,7 +7,6 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Search from "./Search.view";
 
 import { SearchProps } from "@/components/TeacherViews/Search/search.view.types";
-import * as useSuggestedFiltersModule from "@/app/(core)/teachers/search/useSuggestedFilters";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { SearchHit, SearchQuery } from "@/context/Search/search.types";
 import { LEGACY_COHORT } from "@/config/cohort";
@@ -218,14 +217,6 @@ jest.mock("@/hooks/useMediaQuery.tsx", () => ({
   }),
 }));
 
-const mockAiSearchFlagEnabled = jest.fn().mockReturnValue(false);
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagVariantKey: () => mockAiSearchFlagEnabled(),
-  useFeatureFlagEnabled: () => false,
-}));
-
-jest.mock("@/app/(core)/teachers/search/useSuggestedFilters");
-
 const render = renderWithProviders();
 
 describe("Search.page.tsx", () => {
@@ -233,12 +224,6 @@ describe("Search.page.tsx", () => {
     jest.clearAllMocks();
     mockRouter.setCurrentUrl("/teachers/search");
     setupMockLinkClick();
-    (
-      useSuggestedFiltersModule.useSuggestedFilters as jest.Mock
-    ).mockReturnValue({
-      status: "success",
-      searchFilters: [{ type: "subject", slug: "maths", value: "Maths" }],
-    });
   });
 
   afterEach(() => {
