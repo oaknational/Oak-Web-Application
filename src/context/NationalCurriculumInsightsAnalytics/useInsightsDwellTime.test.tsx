@@ -6,6 +6,8 @@ import {
   useInsightsDwellTime,
 } from "./useInsightsDwellTime";
 
+const surveyThresholdMs = INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS * 1000;
+
 describe("useInsightsDwellTime", () => {
   let now: number;
   let visibility: DocumentVisibilityState;
@@ -125,13 +127,20 @@ describe("useInsightsDwellTime", () => {
 
   const advance = (ms: number) =>
     act(() => {
-      now += ms;
+      const start = now;
+      const timerStart = jest.now();
+      // Each callback must see its own deadline, rather than the end of this jump.
+      jest
+        .mocked(performance.now)
+        .mockImplementation(() => start + jest.now() - timerStart);
       jest.advanceTimersByTime(ms);
+      now = start + ms;
+      jest.mocked(performance.now).mockImplementation(() => now);
     });
 
   it("records the survey threshold once while visible, without waiting for navigation", () => {
     const { unmount } = renderHook(() => useInsightsDwellTime(record));
-    advance(INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS * 1000 - 1);
+    advance(surveyThresholdMs - 1);
     expect(record).not.toHaveBeenCalled();
     advance(1);
     expect(record.mock.calls).toEqual([
@@ -152,27 +161,38 @@ describe("useInsightsDwellTime", () => {
     advance(60000);
     expect(record).toHaveBeenCalledTimes(1);
     setVisibility("visible");
-    advance(5999);
+    advance(surveyThresholdMs - 4000 - 1);
     expect(record).toHaveBeenCalledTimes(1);
     advance(1);
-    expect(record.mock.calls).toEqual([[4], [10]]);
+    expect(record.mock.calls).toEqual([
+      [4],
+      [INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS],
+    ]);
     advance(1000);
     setVisibility("hidden");
-    expect(record.mock.calls).toEqual([[4], [10], [11]]);
+    expect(record.mock.calls).toEqual([
+      [4],
+      [INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS],
+      [INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS + 1],
+    ]);
     setVisibility("visible");
     advance(10000);
     expect(record).toHaveBeenCalledTimes(3);
     unmount();
-    expect(record).toHaveBeenLastCalledWith(21);
+    expect(record).toHaveBeenLastCalledWith(
+      INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS + 11,
+    );
   });
 
   it("records only one snapshot when leaving after a delayed survey timer", () => {
     const { unmount } = renderHook(() => useInsightsDwellTime(record));
-    now = 12000;
+    now = surveyThresholdMs + 2000;
     setVisibility("hidden");
     unmount();
     advance(10000);
-    expect(record.mock.calls).toEqual([[12]]);
+    expect(record.mock.calls).toEqual([
+      [INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS + 2],
+    ]);
   });
 
   it("preserves the survey countdown across callback changes", () => {
@@ -183,9 +203,11 @@ describe("useInsightsDwellTime", () => {
     );
     advance(4000);
     rerender({ callback: nextRecord });
-    advance(6000);
+    advance(surveyThresholdMs - 4000);
     expect(record).not.toHaveBeenCalled();
-    expect(nextRecord.mock.calls).toEqual([[10]]);
+    expect(nextRecord.mock.calls).toEqual([
+      [INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS],
+    ]);
     unmount();
     expect(nextRecord).toHaveBeenCalledTimes(1);
   });
@@ -199,8 +221,10 @@ describe("useInsightsDwellTime", () => {
     advance(4000);
     expect(record.mock.calls).toEqual([[6]]);
     expect(nextRecord).not.toHaveBeenCalled();
-    advance(6000);
-    expect(nextRecord.mock.calls).toEqual([[10]]);
+    advance(surveyThresholdMs - 4000);
+    expect(nextRecord.mock.calls).toEqual([
+      [INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS],
+    ]);
     nextVisit.unmount();
     expect(nextRecord).toHaveBeenCalledTimes(1);
   });
@@ -210,18 +234,25 @@ describe("useInsightsDwellTime", () => {
     const { unmount } = renderHook(() =>
       useInsightsDwellTime(record, threshold),
     );
-    advance(10000);
-    expect(record.mock.calls).toEqual([[10]]);
-    advance(229999);
+    advance(surveyThresholdMs);
+    expect(record.mock.calls).toEqual([
+      [INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS],
+    ]);
+    advance(240000 - surveyThresholdMs - 1);
     expect(threshold).not.toHaveBeenCalled();
     advance(1);
     expect(threshold.mock.calls).toEqual([[240]]);
-    expect(record.mock.calls).toEqual([[10]]);
+    expect(record.mock.calls).toEqual([
+      [INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS],
+    ]);
     advance(120000);
     setVisibility("hidden");
     unmount();
     expect(threshold.mock.calls).toEqual([[240]]);
-    expect(record.mock.calls).toEqual([[10], [360]]);
+    expect(record.mock.calls).toEqual([
+      [INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS],
+      [360],
+    ]);
   });
 
   it("pauses the threshold countdown while hidden and resumes the remaining time", () => {

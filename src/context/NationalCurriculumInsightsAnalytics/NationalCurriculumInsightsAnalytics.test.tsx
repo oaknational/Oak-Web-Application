@@ -9,6 +9,7 @@ import {
 import { NationalCurriculumInsightsScrollMarker } from "./NationalCurriculumInsightsScrollMarker";
 import { useNationalCurriculumInsightsAnalytics } from "./useNationalCurriculumInsightsAnalytics";
 import { getDownloadAnalyticsProperties } from "./getDownloadAnalyticsProperties";
+import { INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS } from "./useInsightsDwellTime";
 
 import { analyticsContext } from "@/context/Analytics/AnalyticsProvider";
 import { getMockAnalytics } from "@/context/Analytics/getMockAnalytics";
@@ -267,21 +268,22 @@ describe("National Curriculum Insights scroll analytics", () => {
     );
     try {
       act(() => result.current.trackScrolledTo("teacher-checklist"));
+      const surveyThresholdMs = INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS * 1000;
       act(() => {
-        now = 10000;
-        jest.advanceTimersByTime(10000);
+        now = surveyThresholdMs;
+        jest.advanceTimersByTime(surveyThresholdMs);
       });
       expect(ncInsightsDwellTimeRecorded).toHaveBeenCalledTimes(1);
       expect(ncInsightsDwellTimeRecorded).toHaveBeenCalledWith(
         expect.objectContaining({
-          timeElapsedSeconds: 10,
+          timeElapsedSeconds: INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS,
           pageVisitId: "visit-1",
         }),
       );
       expect(ncInsightsDwellThresholdReached).not.toHaveBeenCalled();
       act(() => {
         now = 239999;
-        jest.advanceTimersByTime(229999);
+        jest.advanceTimersByTime(239999 - surveyThresholdMs);
       });
       expect(ncInsightsDwellThresholdReached).not.toHaveBeenCalled();
       act(() => {
