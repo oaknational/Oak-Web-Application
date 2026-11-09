@@ -1,3 +1,5 @@
+import { title } from "process";
+
 import { FC } from "react";
 import {
   OakP,
@@ -26,20 +28,29 @@ type SearchFiltersProps = GetSearchFiltersReturnType & {
   trackSearchModified: (props: TrackSearchModifiedProps) => void;
 };
 
-const renderFilterSection = (
-  title: string,
-  filterKey: SearchFilterKey,
-  filters: ((ExamBoard | YearGroup | Subject) & SearchCheckBoxProps)[],
-  hasIcon: boolean,
-  isLast: boolean,
-  trackSeachModified: (props: TrackSearchModifiedProps) => void,
-  filterType: FilterTypeValueType,
+const renderFilterSection = ({
+  isLast,
+  filterKey,
+  filterType,
+  filters,
+  hasIcon,
+  trackSeachModified,
+  isMobileFilter,
+  updateSearchFilters,
+}: {
+  title: string;
+  filterKey: SearchFilterKey;
+  filters: ((ExamBoard | YearGroup | Subject) & SearchCheckBoxProps)[];
+  hasIcon: boolean;
+  isLast: boolean;
+  trackSeachModified: (props: TrackSearchModifiedProps) => void;
+  filterType: FilterTypeValueType;
   updateSearchFilters: (props: {
     filterSlug: string;
     filterType: SearchFilterKey;
-  }) => void,
-  isMobileFilter?: boolean,
-) => (
+  }) => void;
+  isMobileFilter?: boolean;
+}) => (
   <OakBox
     $mb="spacing-32"
     $bb={!isLast ? "border-solid-s" : null}
@@ -142,39 +153,39 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
         </OakFieldset>
       </OakBox>
       <>
-        {renderFilterSection(
-          "Years",
-          "yearGroups",
-          yearGroupFilters,
-          false,
-          false,
-          trackSearchModified,
-          "Year filter",
+        {renderFilterSection({
+          title: "Years",
+          filterKey: "yearGroups",
+          filters: yearGroupFilters,
+          hasIcon: false,
+          isLast: false,
+          trackSeachModified: trackSearchModified,
+          filterType: "Year filter",
           updateSearchFilters,
           isMobileFilter,
-        )}
-        {renderFilterSection(
-          "Exam Boards",
-          "examBoards",
-          examBoardFilters,
-          false,
-          false,
-          trackSearchModified,
-          "Exam board filter",
+        })}
+        {renderFilterSection({
+          title: "Exam Boards",
+          filterKey: "examBoards",
+          filters: examBoardFilters,
+          hasIcon: false,
+          isLast: false,
+          trackSeachModified: trackSearchModified,
+          filterType: "Exam board filter",
           updateSearchFilters,
           isMobileFilter,
-        )}
-        {renderFilterSection(
-          "Subjects",
-          "subjects",
-          subjectFilters,
-          false,
-          true,
-          trackSearchModified,
-          "Subject filter",
+        })}
+        {renderFilterSection({
+          title: "Subjects",
+          filterKey: "subjects",
+          filters: subjectFilters,
+          hasIcon: true,
+          isLast: true,
+          trackSeachModified: trackSearchModified,
+          filterType: "Subject filter",
           updateSearchFilters,
           isMobileFilter,
-        )}
+        })}
       </>
     </>
   );
