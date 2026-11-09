@@ -41,13 +41,12 @@ export const NationalCurriculumInsightsDownloadConfirmation = ({
         </OakBox>
         <OakFlex $flexDirection="column" $gap="spacing-16">
           <OakFlex $gap="spacing-16" $alignItems="center">
-            <OakImage
-              src={getCloudinaryImageUrl("svg-illustrations/contact.svg")}
-              alt=""
-              width={40}
-              height={40}
+            <OakIcon
+              iconName="speech-bubble"
               $width="spacing-40"
               $height="spacing-40"
+              $minWidth="spacing-40"
+              aria-hidden="true"
             />
             <OakLink
               href="/contact-us"

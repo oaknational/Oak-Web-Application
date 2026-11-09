@@ -4,18 +4,16 @@ import NationalCurriculumInsightsNotFound from "./not-found";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
+const replace = jest.fn();
+jest.mock("next/navigation", () => ({
+  useRouter: () => ({ replace }),
+}));
+
 describe("National Curriculum Insights route states", () => {
-  it("renders a not-found heading and a route-helper hub link", () => {
+  it("sends unavailable insights to the standard Oak 404 page", () => {
     renderWithTheme(<NationalCurriculumInsightsNotFound />);
 
-    expect(
-      screen.getByRole("heading", {
-        level: 1,
-        name: "National Curriculum Insight not found",
-      }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: "Browse National Curriculum Insights" }),
-    ).toHaveAttribute("href", "/curriculum-change-explained");
+    expect(replace).toHaveBeenCalledWith("/404");
+    expect(screen.queryByText(/published catalogue/i)).not.toBeInTheDocument();
   });
 });

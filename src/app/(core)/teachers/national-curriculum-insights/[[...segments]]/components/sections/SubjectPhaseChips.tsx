@@ -112,6 +112,8 @@ export const NationalCurriculumInsightsSubjectPhaseChips = ({
                     as="li"
                     key={`${subjectSlug}-${title}`}
                     $maxWidth="100%"
+                    $boxSizing="border-box"
+                    $pr={["spacing-16", "spacing-0"]}
                   >
                     <OakSubjectIconButton
                       element={Link}
@@ -128,6 +130,8 @@ export const NationalCurriculumInsightsSubjectPhaseChips = ({
                         />
                       }
                       iconGap="spacing-4"
+                      textAlign="left"
+                      width="fit-content"
                       $pl="spacing-12"
                       $pr="spacing-12"
                       maxWidth="100%"

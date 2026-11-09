@@ -8,4 +8,5 @@ export default function NotFound() {
   useEffect(() => {
     router.replace("/404");
   }, [router]);
+  return null;
 }
