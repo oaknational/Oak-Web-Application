@@ -1,6 +1,6 @@
 "use client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -14,18 +14,12 @@ import {
 import styled from "styled-components";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
 
-import {
-  getActiveFilters,
-  getSortedSearchFiltersSelected,
-  isKeyStageTitleValueType,
-  removeHTMLTags,
-  trackSearchModified,
-} from "./helpers";
+import { trackSearchModified } from "./helpers";
 import { useUpdateSearchQuery } from "./helpers/updateSearchQuery";
+import { useSearchTracking } from "./useSearchTracking";
 
 import { SearchProps } from "@/components/TeacherViews/Search/search.view.types";
 import { ContentFilterToggle } from "@/components/TeacherViews/Search/ContentFilterToggle";
-import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import SearchFilters from "@/components/TeacherComponents/SearchFilters";
@@ -64,106 +58,12 @@ const Search: FC<SearchProps> = (props) => {
   const isAiExperimentSearchEnabled =
     useFeatureFlagVariantKey("ai-experiment-search") === "search-with-ai";
 
-  const searchFilterOptionSelected = getSortedSearchFiltersSelected(query);
-
-  const searchResultExpanded = ({
-    searchHit,
-    searchRank,
-  }: {
-    searchHit: SearchResultsItemProps;
-    searchRank: number;
-  }) => {
-    if (
-      searchHit.isToggleOpen &&
-      isKeyStageTitleValueType(searchHit.keyStageTitle)
-    ) {
-      const lessonName =
-        searchHit.type === "lesson" ? removeHTMLTags(searchHit.title) : "";
-      const lessonSlug =
-        searchHit.type === "lesson" ? searchHit.buttonLinkProps.lessonSlug : "";
-      const unitName =
-        searchHit.type === "lesson"
-          ? removeHTMLTags(searchHit.unitTitle)
-          : removeHTMLTags(searchHit.title);
-
-      track.searchResultExpanded({
-        searchRank: searchRank,
-        searchFilterOptionSelected,
-        searchResultCount: hitCount,
-        searchResultType: searchHit.type,
-        searchResultContext: {
-          keyStageSlug: searchHit.keyStageSlug,
-          keyStageTitle: searchHit.keyStageTitle,
-          subjectTitle: searchHit.subjectTitle,
-          subjectSlug: searchHit.subjectSlug,
-          unitName,
-          unitSlug: searchHit.buttonLinkProps.unitSlug,
-          lessonName,
-          lessonSlug,
-          lessonReleaseDate: searchHit.legacy ? "2020-2023" : "2023-2026",
-          lessonReleaseCohort: searchHit.legacy ? "2020-2023" : "2023-2026",
-        },
-      });
-    }
-  };
-
-  const searchResultOpened = ({
-    searchHit,
-    searchRank,
-  }: {
-    searchHit: SearchResultsItemProps;
-    searchRank: number;
-  }) => {
-    if (searchHit && isKeyStageTitleValueType(searchHit.keyStageTitle)) {
-      track.searchResultOpened({
-        searchRank: searchRank,
-        searchFilterOptionSelected: getSortedSearchFiltersSelected(query),
-        searchResultCount: hitCount,
-        searchResultType: searchHit.type,
-        searchResultContext: {
-          keyStageSlug: searchHit.keyStageSlug || "",
-          keyStageTitle: searchHit.keyStageTitle,
-          subjectTitle: searchHit.subjectTitle,
-          subjectSlug: searchHit.subjectSlug,
-          unitName:
-            searchHit.type === "lesson"
-              ? removeHTMLTags(searchHit.unitTitle)
-              : removeHTMLTags(searchHit.title),
-          unitSlug: searchHit.buttonLinkProps.unitSlug,
-          lessonName: removeHTMLTags(searchHit.title),
-          lessonSlug:
-            searchHit.type === "lesson"
-              ? searchHit.buttonLinkProps.lessonSlug
-              : null,
-          lessonReleaseDate: searchHit.legacy ? "2020-2023" : "2023-2026",
-          lessonReleaseCohort: searchHit.legacy ? "2020-2023" : "2023-2026",
-        },
-      });
-    }
-  };
-
-  useEffect(() => {
-    // Track SearchAccessed for a first search, ie. without filters
-    // Track SearchRefined for a search that has been refined with filters
-    const activeFilters = getActiveFilters(query);
-    const hasFilters = Object.entries(activeFilters).length > 0;
-    if (hasFilters) {
-      track.searchRefined({
-        searchResultCount: results.length,
-        searchTerm: query.term,
-        componentType: "filter_link",
-        activeFilters,
-      });
-    } else {
-      track.searchAccessed({
-        searchResultCount: results.length,
-        searchResultsLoadTime: timeTaken,
-        searchTerm: query.term,
-        componentType: "search_button",
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [results]);
+  const { searchResultExpanded, searchResultOpened } = useSearchTracking({
+    query,
+    status,
+    results,
+    timeTaken,
+  });
 
   return (
     <OakFlex
@@ -369,7 +269,6 @@ const Search: FC<SearchProps> = (props) => {
                     hits={results}
                     allKeyStages={allKeyStages}
                     query={query}
-                    // TODO
                     paginationNavigation={{
                       route: pathname || "/",
                       searchParams,
