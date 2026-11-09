@@ -4927,6 +4927,60 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         class="c122 c123"
                       >
                         <a
+                          href="/about-us/get-involved/join-research-panel"
+                          style="outline: none;"
+                          target="_self"
+                        >
+                          <div
+                            class="c124 c125 c126"
+                            data-testid="who-we-are-explore-item"
+                          >
+                            <div
+                              class="c9 c46"
+                            >
+                              <span
+                                class="c127"
+                              >
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1793641849/icons/teacher-group.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                            <div
+                              class="c128 c129"
+                            >
+                              Join the research panel
+                            </div>
+                            <div
+                              class="c9 c46"
+                            >
+                              <span
+                                class="c80"
+                              >
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      <li
+                        class="c122 c123"
+                      >
+                        <a
                           href="/about-us/case-studies"
                           style="outline: none;"
                           target="_self"
@@ -5306,6 +5360,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               >
                 <div
                   class="c173 c84"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c174"
@@ -5340,6 +5395,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 />
                 <div
                   class="c173 c84"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c174"
@@ -5449,6 +5505,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               >
                 <div
                   class="c173 c84"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c174"
@@ -5695,6 +5752,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               >
                 <div
                   class="c173 c84"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="c174"

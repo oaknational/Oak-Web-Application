@@ -1056,6 +1056,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="sc-bkkgYE bVNEJW"
@@ -1090,6 +1091,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
                 />
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="sc-bkkgYE bVNEJW"
@@ -1199,6 +1201,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="sc-bkkgYE bVNEJW"
@@ -1445,6 +1448,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="sc-bkkgYE bVNEJW"
@@ -1745,7 +1749,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-198a0f1-0 dWupQS"
+              class="sc-bdvwhi LoEut sc-d66981e6-0 bUApA-D"
               data-chromatic="ignore"
             >
               <img
@@ -3553,6 +3557,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="sc-bkkgYE bVNEJW"
@@ -3587,6 +3592,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                 />
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="sc-bkkgYE bVNEJW"
@@ -3696,6 +3702,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="sc-bkkgYE bVNEJW"
@@ -3942,6 +3949,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="sc-bkkgYE bVNEJW"
@@ -4242,7 +4250,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-198a0f1-0 dWupQS"
+              class="sc-bdvwhi LoEut sc-d66981e6-0 bUApA-D"
               data-chromatic="ignore"
             >
               <img
@@ -6215,6 +6223,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="sc-bkkgYE bVNEJW"
@@ -6249,6 +6258,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                 />
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="sc-bkkgYE bVNEJW"
@@ -6358,6 +6368,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="sc-bkkgYE bVNEJW"
@@ -6604,6 +6615,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="sc-bkkgYE bVNEJW"
@@ -6904,7 +6916,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-198a0f1-0 dWupQS"
+              class="sc-bdvwhi LoEut sc-d66981e6-0 bUApA-D"
               data-chromatic="ignore"
             >
               <img
