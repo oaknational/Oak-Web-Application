@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 
 const reportError = errorReporter("search-page::app");
 
-async function SearchPage(props: AppPageProps) {
+async function SearchPage(props: Readonly<AppPageProps>) {
   const curriculumData = await curriculumApi2023.searchPage();
   const searchParams = await props.searchParams;
   const validatedSearchParams = searchPageParamsSchema.safeParse(searchParams);
