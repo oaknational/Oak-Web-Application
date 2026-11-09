@@ -1,5 +1,3 @@
-import { title } from "node:process";
-
 import { FC } from "react";
 import {
   OakP,
@@ -37,6 +35,7 @@ const renderFilterSection = ({
   trackSeachModified,
   isMobileFilter,
   updateSearchFilters,
+  title,
 }: {
   title: string;
   filterKey: SearchFilterKey;
