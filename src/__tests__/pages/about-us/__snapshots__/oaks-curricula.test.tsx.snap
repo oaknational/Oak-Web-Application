@@ -5664,6 +5664,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                     >
                       <form
                         aria-describedby="react-use-id-test-result-newsletter-form-description"
+                        aria-label="Newsletter signup"
                         class="c67 c97"
                         novalidate=""
                       >

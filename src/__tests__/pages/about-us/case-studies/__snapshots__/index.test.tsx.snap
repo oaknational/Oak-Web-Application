@@ -1269,6 +1269,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                     >
                       <form
                         aria-describedby="react-use-id-test-result-newsletter-form-description"
+                        aria-label="Newsletter signup"
                         class="sc-bdvwhi sc-gsDMPd jtiAen cIPGhJ"
                         novalidate=""
                       >

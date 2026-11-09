@@ -2184,6 +2184,7 @@ exports[`Teachers Page Page component renders 1`] = `
                     >
                       <form
                         aria-describedby="react-use-id-test-result-newsletter-form-description"
+                        aria-label="Newsletter signup"
                         class="sc-bdvwhi sc-gsDMPd jtiAen cIPGhJ"
                         novalidate=""
                       >
