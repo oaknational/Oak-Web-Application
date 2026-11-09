@@ -1,3 +1,18 @@
+# [1.1273.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1272.0...v1.1273.0) (2026-11-06)
+
+
+### Bug Fixes
+
+* use kebab casing for years query param ([9aae74a](https://github.com/oaknational/Oak-Web-Application/commit/9aae74a5b57fa97d0c2143b017e8e7ae043202a7))
+* use parent subject slug where appropriate ([a5c8727](https://github.com/oaknational/Oak-Web-Application/commit/a5c8727a726e4d5649710c8f19ec16972ba8c480))
+
+
+### Features
+
+* add tracking params to docx links ([23befef](https://github.com/oaknational/Oak-Web-Application/commit/23befefb7094dd9cadf2468eeb2dcc4024d7be2c))
+* add tracking params to xlsx links ([6fdeca0](https://github.com/oaknational/Oak-Web-Application/commit/6fdeca01f51f9e729b850f54c85d95806224f607))
+* ensure chars are escaped in xml attributes ([8b43bb0](https://github.com/oaknational/Oak-Web-Application/commit/8b43bb035d65a4d96241b9dc244cbe4402071b0d))
+
 # [1.1272.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1271.0...v1.1272.0) (2026-11-05)
 
 
