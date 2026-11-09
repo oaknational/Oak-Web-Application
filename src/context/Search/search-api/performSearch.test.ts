@@ -29,7 +29,7 @@ describe("performSearch", () => {
     jest.clearAllMocks();
   });
   test("should call onStart on start", async () => {
-    fetchResults2023Spy.mockResolvedValue([]);
+    fetchResults2023Spy.mockResolvedValue({ hitList: [], took: 0 });
     await performSearch({
       query: {
         term: "test",
@@ -39,7 +39,10 @@ describe("performSearch", () => {
     expect(callbacks.onStart).toHaveBeenCalled();
   });
   test("should call onSuccess with 2023 results on success", async () => {
-    fetchResults2023Spy.mockResolvedValue([...mockResults2023]);
+    fetchResults2023Spy.mockResolvedValue({
+      hitList: [...mockResults2023],
+      took: 10,
+    });
     await performSearch({
       query: {
         term: "test",
@@ -47,7 +50,10 @@ describe("performSearch", () => {
       ...callbacks,
     });
 
-    expect(callbacks.onSuccess).toHaveBeenCalledWith([...mockResults2023]);
+    expect(callbacks.onSuccess).toHaveBeenCalledWith({
+      hitList: [...mockResults2023],
+      took: 10,
+    });
   });
   test("should call onFail on fail", async () => {
     console.log = jest.fn();

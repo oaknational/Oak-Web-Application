@@ -15,7 +15,7 @@ export async function performSearch({
 }: {
   query: SearchQuery;
   onStart: () => void;
-  onSuccess: (hits: SearchHit[]) => void;
+  onSuccess: (result: { hitList: SearchHit[]; took: number }) => void;
   onFail: () => void;
 }) {
   try {
