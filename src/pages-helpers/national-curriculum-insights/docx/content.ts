@@ -58,7 +58,7 @@ const contentsLabel = (
     case "NationalCurriculumInsightsChecklistSection":
       return section.audience === "teacher"
         ? "Teacher checklist"
-        : "School leader checklist";
+        : "School and curriculum leader checklist";
     default:
       return "heading" in section && typeof section.heading === "string"
         ? section.heading
@@ -483,10 +483,7 @@ export const buildInsightsDocxContent = async ({
       await addPage(keyStagePage, `${keyStage} ${subjectTitle}`);
     }, Promise.resolve());
   } else {
-    await addPage(
-      page,
-      `${page.pageType === "primary" ? "Primary" : "Secondary"} ${subjectTitle}`,
-    );
+    await addPage(page, `${page.pageType} ${subjectTitle}`);
   }
 
   const closing = selectInsightsDocxClosingModules({
