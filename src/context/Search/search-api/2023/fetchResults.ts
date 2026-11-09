@@ -51,13 +51,16 @@ export const transformAndParseSearchResponseData = (
 };
 
 export async function fetchResults(query: SearchQuery) {
+  const baseUrl = getBrowserConfig("clientAppBaseUrl");
+  const origin = new URL(
+    /^https?:\/\//i.test(baseUrl) ? baseUrl : `https://${baseUrl}`,
+  ).origin;
   const options: RequestInit = {
     method: "POST",
-    mode: "cors",
     redirect: "follow",
     headers: new Headers({
       "Content-Type": "application/json",
-      Origin: new URL(getBrowserConfig("clientAppBaseUrl")).origin,
+      Origin: origin,
     }),
     body: JSON.stringify({ ...query, legacy: "filterOutAll" }),
   };
