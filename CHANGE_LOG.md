@@ -1,3 +1,10 @@
+## [1.1273.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1273.0...v1.1273.1) (2026-11-09)
+
+
+### Bug Fixes
+
+* ensure pupils is path segment when matching to get selected area ([cdccee1](https://github.com/oaknational/Oak-Web-Application/commit/cdccee1808afe8b83597a6e1acf48db31d8979ad))
+
 # [1.1273.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1272.0...v1.1273.0) (2026-11-06)
 
 
