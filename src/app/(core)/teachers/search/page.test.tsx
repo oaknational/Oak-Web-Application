@@ -2,9 +2,12 @@ import SearchPage from "./page";
 
 import searchPageFixture from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 
-
+const mockSearchPage = jest.fn();
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
-  searchPage: jest.fn().mockResolvedValue(searchPageFixture()),
+  __esModule: true,
+  default: {
+    searchPage: (...args: []) => mockSearchPage(args),
+  },
 }));
 
 const mockResult = {
@@ -51,12 +54,24 @@ jest.mock("next/navigation", () => {
   };
 });
 
+const mockFetchResults = jest.fn();
 jest.mock("@/context/Search/search-api/2023/fetchResults", () => ({
-  fetchResults: () =>
-    jest.fn().mockResolvedValue({ result: [mockResult], time: 10 }),
+  fetchResults: () => mockFetchResults,
+}));
+
+jest.mock("@/common-lib/error-reporter", () => ({
+  __esModule: true,
+  default: jest.fn(() => jest.fn()),
 }));
 
 describe("Search page", () => {
+  beforeEach(() => {
+    mockSearchPage.mockResolvedValue(searchPageFixture());
+    mockFetchResults.mockResolvedValue({
+      hitList: [mockResult],
+      took: 10,
+    });
+  });
   it("renders correctly", async () => {
     const result = await SearchPage({
       params: Promise.resolve({}),
