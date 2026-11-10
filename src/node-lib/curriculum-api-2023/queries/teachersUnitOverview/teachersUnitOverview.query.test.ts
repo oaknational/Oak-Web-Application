@@ -106,6 +106,8 @@ export const unitSequenceFixture: UnitSequence = [
   {
     unitSlug: "unit-1",
     unitTitle: "Unit 1",
+    yearGroupName: "Year 1",
+    yearSlug: "year-1",
     unitDescription: null,
     unitOrder: 1,
     nullUnitvariantId: 1,
@@ -116,6 +118,8 @@ export const unitSequenceFixture: UnitSequence = [
   {
     unitSlug: "unit-2",
     unitTitle: "Unit 2",
+    yearGroupName: "Year 1",
+    yearSlug: "year-1",
     unitDescription: null,
     unitOrder: 2,
     nullUnitvariantId: 2,
@@ -126,6 +130,8 @@ export const unitSequenceFixture: UnitSequence = [
   {
     unitSlug: "unit-3",
     unitTitle: "Unit 3",
+    yearGroupName: "Year 1",
+    yearSlug: "year-1",
     unitDescription: null,
     unitOrder: 3,
     nullUnitvariantId: 3,
@@ -136,6 +142,8 @@ export const unitSequenceFixture: UnitSequence = [
   {
     unitSlug: "unit-4",
     unitTitle: "Unit 4",
+    yearGroupName: "Year 1",
+    yearSlug: "year-1",
     unitDescription: null,
     unitOrder: 4,
     nullUnitvariantId: 4,
@@ -235,6 +243,8 @@ describe("teachersUnitOverview", () => {
       nextUnit: {
         slug: "unit-2",
         title: "Unit 2",
+        yearGroupName: "Year 1",
+        yearSlug: "year-1",
       },
       prevUnit: null,
       tierOptionToggles: [],

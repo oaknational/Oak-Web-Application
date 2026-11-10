@@ -190,7 +190,7 @@ export const LessonItemContainer = forwardRef<
         )}
       </OakFlex>
 
-      <OakBox>{children}</OakBox>
+      <OakBox data-chromatic="ignore">{children}</OakBox>
       {!props.isFinalElement && (
         <OakHandDrawnHR
           data-testid="hr"
