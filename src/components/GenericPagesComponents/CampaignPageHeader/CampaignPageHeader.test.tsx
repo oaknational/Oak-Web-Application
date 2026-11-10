@@ -14,7 +14,7 @@ const mockCampaignHeader = {
 };
 
 const mockUpdateSearch = jest.fn();
-jest.mock("@/app/(core)/teachers/search/helpers/updateSearchQuery", () => ({
+jest.mock("@/app/(core)/teachers/search/helpers/useUpdateSearchQuery", () => ({
   useUpdateSearchQuery: () => ({
     updateSearchTerm: mockUpdateSearch,
   }),
