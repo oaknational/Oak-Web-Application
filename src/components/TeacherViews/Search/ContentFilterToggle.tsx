@@ -10,7 +10,7 @@ import {
   SearchCheckBoxProps,
 } from "@/context/Search/search.types";
 import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
-import { useUpdateSearchQuery } from "@/app/(core)/teachers/search/helpers/updateSearchQuery";
+import { useUpdateSearchQuery } from "@/app/(core)/teachers/search/helpers/useUpdateSearchQuery";
 
 type ContentFilterToggleProps = {
   contentTypeFilters: (ContentType & SearchCheckBoxProps)[];

@@ -14,7 +14,7 @@ import {
 import styled from "styled-components";
 
 import { trackSearchModified } from "./helpers";
-import { useUpdateSearchQuery } from "./helpers/updateSearchQuery";
+import { useUpdateSearchQuery } from "./helpers/useUpdateSearchQuery";
 import { useSearchTracking } from "./useSearchTracking";
 
 import { SearchViewProps } from "@/components/TeacherViews/Search/search.view.types";

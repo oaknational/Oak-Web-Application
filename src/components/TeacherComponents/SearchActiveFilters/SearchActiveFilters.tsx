@@ -10,7 +10,7 @@ import {
   getFilterType,
   TrackSearchModifiedProps,
 } from "@/app/(core)/teachers/search/helpers/index";
-import { useUpdateSearchQuery } from "@/app/(core)/teachers/search/helpers/updateSearchQuery";
+import { useUpdateSearchQuery } from "@/app/(core)/teachers/search/helpers/useUpdateSearchQuery";
 
 type SearchActiveFiltersProps = {
   searchFilters: GetSearchFiltersReturnType;

@@ -8,7 +8,7 @@ import { searchFilters } from "@/components/TeacherComponents/SearchFilters/test
 import { trackSearchModified } from "@/app/(core)/teachers/search/helpers/index";
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
-jest.mock("@/app/(core)/teachers/search/helpers/updateSearchQuery", () => ({
+jest.mock("@/app/(core)/teachers/search/helpers/useUpdateSearchQuery", () => ({
   useUpdateSearchQuery: () => ({
     updateSearchFilters: jest.fn(),
   }),

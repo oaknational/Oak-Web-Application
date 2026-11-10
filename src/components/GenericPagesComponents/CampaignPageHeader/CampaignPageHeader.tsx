@@ -8,7 +8,7 @@ import {
 import { CampaignHeader } from "@/common-lib/cms-types/campaignPage";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import SearchForm from "@/components/SharedComponents/SearchForm";
-import { useUpdateSearchQuery } from "@/app/(core)/teachers/search/helpers/updateSearchQuery";
+import { useUpdateSearchQuery } from "@/app/(core)/teachers/search/helpers/useUpdateSearchQuery";
 
 export const CampaignPageHeader = ({
   campaignHeader,

@@ -19,7 +19,7 @@ import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { TrackSearchModifiedProps } from "@/app/(core)/teachers/search/helpers/index";
 import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
-import { useUpdateSearchQuery } from "@/app/(core)/teachers/search/helpers/updateSearchQuery";
+import { useUpdateSearchQuery } from "@/app/(core)/teachers/search/helpers/useUpdateSearchQuery";
 
 type SearchFiltersProps = GetSearchFiltersReturnType & {
   isMobileFilter?: boolean;
