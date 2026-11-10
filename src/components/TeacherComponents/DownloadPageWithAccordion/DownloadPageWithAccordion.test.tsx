@@ -113,7 +113,7 @@ describe("Download Page With Accordion", () => {
     expect(errorMessage).toBeInTheDocument();
   });
 
-  it("announces validation summary in a polite live region", async () => {
+  it("announces validation summary with a role of alert", async () => {
     renderWithProviders()(
       <ComponentWrapper
         {...props}
