@@ -1,7 +1,5 @@
 import { useRouter, useSearchParams } from "next/navigation";
 
-import { constructSearchQuery } from "./constructSearchQuery";
-
 import { resolveOakHref } from "@/common-lib/urls";
 import { SearchFilterKey, SearchQuery } from "@/context/Search/search.types";
 
@@ -10,9 +8,9 @@ export const useUpdateSearchQuery = () => {
   const router = useRouter();
 
   const updateSearchTerm = ({ searchTerm }: { searchTerm: string }) => {
-    const newQuery = constructSearchQuery({
-      searchQuery: { ...searchParams, term: searchTerm },
-    });
+    const params = new URLSearchParams(searchParams ?? undefined);
+    params.delete("page"); // reset pagination param when term changes
+    const newQuery = { ...Object.fromEntries(params), term: searchTerm };
     const url = resolveOakHref({
       page: "search",
       query: newQuery,
@@ -38,9 +36,12 @@ export const useUpdateSearchQuery = () => {
         : [currentValues, filterSlug].flat(),
     };
 
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.delete("page");
+
     const url = resolveOakHref({
       page: "search",
-      query: { ...Object.fromEntries(searchParams), ...partialSearchQuery },
+      query: { ...Object.fromEntries(nextParams), ...partialSearchQuery },
     });
     router.push(url);
   };
