@@ -269,8 +269,6 @@ export const DownloadPageWithAccordionContent = (
           <OakFlex
             key={validationSummaryKey}
             role="status"
-            aria-live="polite"
-            aria-atomic="true"
             data-testid="download-validation-summary"
             $flexDirection={"column"}
           >
