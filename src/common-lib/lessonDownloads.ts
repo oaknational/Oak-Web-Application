@@ -23,6 +23,33 @@ export type LessonDownloadContent = LessonDownloadContentBase &
       }
   );
 
+export const lessonDownloadTypeSchema = z.enum([
+  "lesson-guide-pdf",
+  "lesson-guide-docx",
+  "presentation",
+  "intro-quiz-questions",
+  "intro-quiz-answers",
+  "exit-quiz-questions",
+  "exit-quiz-answers",
+  "worksheet-pdf",
+  "worksheet-pptx",
+  "supplementary-pdf",
+  "supplementary-docx",
+  "curriculum-pdf",
+  "additional-files",
+]);
+
+export type LessonDownloadType = z.infer<typeof lessonDownloadTypeSchema>;
+export type LessonDownloadFamily =
+  | "lesson-guide"
+  | "slide-deck"
+  | "starter-quiz"
+  | "exit-quiz"
+  | "worksheet"
+  | "additional-material"
+  | "curriculum"
+  | "additional-files";
+
 type DownloadResourceDefinition = {
   label: string;
   group: string;
@@ -33,7 +60,7 @@ type DownloadResourceDefinition = {
   subjectToCopyright: boolean;
   availability: ((content: LessonDownloadContent) => boolean) | null;
   formats: readonly {
-    type: string;
+    type: LessonDownloadType;
     ext: string;
     label?: string;
     forbidden?: null;
@@ -147,7 +174,7 @@ export const lessonDownloadResources = {
     availability: null,
     formats: [{ type: "additional-files", ext: "" }],
   },
-} as const satisfies Record<string, DownloadResourceDefinition>;
+} as const satisfies Record<LessonDownloadFamily, DownloadResourceDefinition>;
 
 export const lessonDownloadFormats = Object.values(
   lessonDownloadResources,
@@ -158,13 +185,6 @@ export const lessonDownloadFormats = Object.values(
     resource,
   })),
 );
-
-export const lessonDownloadTypeSchema = z.enum(
-  lessonDownloadFormats.map((format) => format.type),
-);
-
-export type LessonDownloadType = z.infer<typeof lessonDownloadTypeSchema>;
-export type LessonDownloadFamily = keyof typeof lessonDownloadResources;
 
 export const getLessonDownloadTypes = (
   family: LessonDownloadFamily,
