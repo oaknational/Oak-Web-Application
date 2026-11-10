@@ -1,3 +1,10 @@
+## [1.1273.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1273.2...v1.1273.3) (2026-11-10)
+
+
+### Bug Fixes
+
+* excluded subject list logic ([965490f](https://github.com/oaknational/Oak-Web-Application/commit/965490f9ca5c67cd05b6008e1278e6bf078e9a36))
+
 ## [1.1273.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1273.1...v1.1273.2) (2026-11-09)
 
 ## [1.1273.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1273.0...v1.1273.1) (2026-11-09)
