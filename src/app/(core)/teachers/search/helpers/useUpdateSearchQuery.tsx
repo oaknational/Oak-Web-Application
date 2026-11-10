@@ -43,7 +43,7 @@ export const useUpdateSearchQuery = () => {
       page: "search",
       query: { ...Object.fromEntries(nextParams), ...partialSearchQuery },
     });
-    router.push(url);
+    router.push(url, { scroll: false });
   };
 
   return { updateSearchTerm, updateSearchFilters };
