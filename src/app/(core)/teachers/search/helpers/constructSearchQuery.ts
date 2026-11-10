@@ -22,7 +22,7 @@ export const constructSearchQuery = ({
   } = data ?? {};
 
   const query = {
-    term: searchQuery?.term,
+    term: searchQuery?.term ?? "",
     keyStages:
       allKeyStages && searchQuery?.keyStages
         ? getFilterForQuery(searchQuery?.keyStages, allKeyStages)

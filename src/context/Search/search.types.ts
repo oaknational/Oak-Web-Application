@@ -11,7 +11,7 @@ import { SearchPageData } from "@/node-lib/curriculum-api-2023";
 import { SnakeToCamel } from "@/utils/util.types";
 
 export const searchPageParamsSchema = z.object({
-  term: z.string(),
+  term: z.string().optional(),
   keyStages: z.string().optional(),
   yearGroups: z.string().optional(),
   subjects: z.string().optional(),
@@ -74,4 +74,4 @@ export type SearchHit = z.infer<typeof searchResultsHitSchema>;
 export type PathwaySchema = z.infer<typeof pathwaySchema>;
 export type PathwaySchemaCamel = SnakeToCamel<PathwaySchema>;
 
-export type RequestStatus = "loading" | "fail" | "success";
+export type RequestStatus = "not-asked" | "fail" | "success";

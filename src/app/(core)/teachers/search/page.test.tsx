@@ -80,12 +80,4 @@ describe("Search page", () => {
 
     expect(result).toMatchSnapshot();
   });
-  it("returns a 404 when search term is missing", async () => {
-    await expect(
-      SearchPage({
-        params: Promise.resolve({}),
-        searchParams: Promise.resolve({}),
-      }),
-    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
-  });
 });

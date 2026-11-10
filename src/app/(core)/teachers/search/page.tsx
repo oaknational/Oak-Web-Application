@@ -16,6 +16,7 @@ import {
 } from "@/context/Search/search.types";
 import { getSearchFilters } from "@/context/Search/getSearchFilters";
 import errorReporter from "@/common-lib/error-reporter";
+import OakError from "@/errors/OakError";
 
 export const metadata: Metadata = {
   title: "Search for Free Teaching Resources",
@@ -34,24 +35,34 @@ async function SearchPage(props: Readonly<AppPageProps>) {
   const validatedSearchParams = searchPageParamsSchema.safeParse(searchParams);
 
   if (validatedSearchParams.error) {
+    void reportError(
+      new OakError({
+        code: "search/unknown-filter-type",
+        meta: { searchParams },
+      }),
+    );
     return notFound();
   }
+
   const query = constructSearchQuery({
     data: curriculumData,
     searchQuery: validatedSearchParams.data,
   });
 
-  let status: RequestStatus = "loading";
+  let status: RequestStatus = "not-asked";
   let results: SearchHit[] = [];
   let timeTaken = 0;
-  try {
-    const res = await fetchResults(query);
-    results = res.hitList;
-    timeTaken = res.took;
-    status = "success";
-  } catch (error) {
-    status = "fail";
-    void reportError(error);
+
+  if (query.term) {
+    try {
+      const res = await fetchResults(query);
+      results = res.hitList;
+      timeTaken = res.took;
+      status = "success";
+    } catch (error) {
+      status = "fail";
+      void reportError(error);
+    }
   }
 
   const searchFilters = getSearchFilters({
