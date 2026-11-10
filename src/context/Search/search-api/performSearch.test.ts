@@ -14,9 +14,12 @@ const mockResults2023: SearchHit[] = [{ foo: "bar-2023" }];
 
 jest.mock("./2023/fetchResults", () => ({
   __esModule: true,
-  ...jest.requireActual("./2023/fetchResults"),
+  fetchResults: jest.fn(),
+  fetchResultsWithCache: jest.fn(),
+  transformAndParseSearchResponseData: jest.requireActual("./2023/fetchResults")
+    .transformAndParseSearchResponseData,
 }));
-const fetchResults2023Spy = jest.spyOn(fetchResults2023, "fetchResults");
+const fetchResults2023Spy = jest.mocked(fetchResults2023.fetchResultsWithCache);
 
 const callbacks = {
   onStart: jest.fn(),

@@ -1,5 +1,5 @@
 import elasticResponse2023 from "./elasticResponse.2023.fixture.json";
-import { fetchResults } from "./fetchResults";
+import { fetchResultsWithCache } from "./fetchResults";
 
 import OakError from "@/errors/OakError";
 
@@ -31,7 +31,7 @@ describe("search-api/2023/fetchResults", () => {
     jest.clearAllMocks();
   });
   test("should call fetch with correct query", async () => {
-    await fetchResults({ term: "test" });
+    await fetchResultsWithCache({ term: "test" });
 
     expect(mockFetch).toHaveBeenCalledWith("test", {
       method: "POST",
@@ -44,7 +44,7 @@ describe("search-api/2023/fetchResults", () => {
     });
   });
   test("should respond with transformed data", async () => {
-    const { hitList } = await fetchResults({ term: "test" });
+    const { hitList } = await fetchResultsWithCache({ term: "test" });
     expect(hitList).toHaveLength(4);
     expect(hitList[0]).toMatchObject({
       _id: "Z38Yx44Bc8iIk5N9Klp6",
@@ -81,11 +81,15 @@ describe("search-api/2023/fetchResults", () => {
 
     mockFetch.mockResolvedValue(mockErrorResponse);
 
-    await expect(fetchResults({ term: "test" })).rejects.toThrow(OakError);
-    await expect(fetchResults({ term: "test" })).rejects.toMatchObject({
-      code: "search/unknown",
-      originalError: 500,
-      meta: { body: errorBody },
-    });
+    await expect(fetchResultsWithCache({ term: "test" })).rejects.toThrow(
+      OakError,
+    );
+    await expect(fetchResultsWithCache({ term: "test" })).rejects.toMatchObject(
+      {
+        code: "search/unknown",
+        originalError: 500,
+        meta: { body: errorBody },
+      },
+    );
   });
 });

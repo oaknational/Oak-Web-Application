@@ -40,6 +40,44 @@ exports[`Search page renders correctly 1`] = `
         "yearGroups": [],
       }
     }
+    results={
+      [
+        {
+          "_id": "test-1",
+          "_index": "lessons_1712737230873",
+          "_score": 104.29718,
+          "_source": {
+            "cohort": "2023-2024",
+            "expired": null,
+            "has_copyright_material": null,
+            "id": 1,
+            "key_stage_slug": "ks4",
+            "key_stage_title": "Key Stage 4",
+            "lesson_description": null,
+            "pathways": [],
+            "phase": null,
+            "programme_slug": "english-secondary-ks4",
+            "pupil_lesson_outcome": "Test outcome",
+            "slug": "test-lesson",
+            "subject_slug": "english",
+            "subject_title": "English",
+            "theme_title": null,
+            "tier": null,
+            "title": "Test Lesson",
+            "topic_slug": null,
+            "topic_title": null,
+            "type": "lesson",
+            "unit_slug": "test-unit",
+            "unit_title": "Test Unit",
+            "year_slug": "year-10",
+            "year_title": "Year 10",
+          },
+          "highlight": {
+            "pupil_lesson_outcome": "Test <b>outcome</b>",
+          },
+        },
+      ]
+    }
     searchFilters={
       {
         "contentTypeFilters": [
@@ -209,6 +247,7 @@ exports[`Search page renders correctly 1`] = `
       }
     }
     status="success"
+    timeTaken={10}
   />
 </TeacherBrowseAnalyticsStoreProvider>
 `;

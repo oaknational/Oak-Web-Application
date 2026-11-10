@@ -1,6 +1,6 @@
 import { SearchHit, SearchQuery } from "../search.types";
 
-import { fetchResults as fetchResults2023 } from "./2023/fetchResults";
+import { fetchResultsWithCache as fetchResults2023 } from "./2023/fetchResults";
 
 import OakError from "@/errors/OakError";
 import errorReporter from "@/common-lib/error-reporter/errorReporter";

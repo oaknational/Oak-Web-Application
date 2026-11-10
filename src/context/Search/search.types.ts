@@ -18,6 +18,7 @@ export const searchPageParamsSchema = z.object({
   contentTypes: z.string().optional(),
   examBoards: z.string().optional(),
   curriculum: z.string().optional(),
+  page: z.string().optional(),
 });
 
 export type SearchPageQueryParams = z.infer<typeof searchPageParamsSchema>;

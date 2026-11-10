@@ -1,4 +1,5 @@
 import snakecaseKeys from "snakecase-keys";
+import { cache } from "react";
 
 import {
   RawSearchResponseData,
@@ -10,6 +11,7 @@ import { SearchQuery } from "../../search.types";
 import { getHighlightFromAllFields } from "@/app/(core)/teachers/search/helpers";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import OakError from "@/errors/OakError";
+import { cacheData } from "@/node-lib/cache";
 
 export const transformAndParseSearchResponseData = (
   rawData: RawSearchResponseData,
@@ -50,7 +52,7 @@ export const transformAndParseSearchResponseData = (
   return data;
 };
 
-export async function fetchResults(query: SearchQuery) {
+async function fetchResults(query: SearchQuery) {
   const baseUrl = getBrowserConfig("clientAppBaseUrl");
   const origin = new URL(
     /^https?:\/\//i.test(baseUrl) ? baseUrl : `https://${baseUrl}`,
@@ -84,3 +86,7 @@ export async function fetchResults(query: SearchQuery) {
   // took is the time taken in milliseconds to retrieve results
   return { hitList, took };
 }
+
+// Cache results for queries with the same search params
+// "page" param excluded as pagination is done client side and this prevents duplicate requests for same query
+export const fetchResultsWithCache = cache(cacheData(fetchResults, ["search"]));

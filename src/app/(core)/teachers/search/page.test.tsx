@@ -56,7 +56,7 @@ jest.mock("next/navigation", () => {
 
 const mockFetchResults = jest.fn();
 jest.mock("@/context/Search/search-api/2023/fetchResults", () => ({
-  fetchResults: () => mockFetchResults,
+  fetchResultsWithCache: () => mockFetchResults(),
 }));
 
 jest.mock("@/common-lib/error-reporter", () => ({
@@ -66,6 +66,7 @@ jest.mock("@/common-lib/error-reporter", () => ({
 
 describe("Search page", () => {
   beforeEach(() => {
+    jest.clearAllMocks();
     mockSearchPage.mockResolvedValue(searchPageFixture());
     mockFetchResults.mockResolvedValue({
       hitList: [mockResult],

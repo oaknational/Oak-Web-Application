@@ -8,7 +8,7 @@ import SearchView from "./SearchView";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { AppPageProps } from "@/hocs/withPageErrorHandling";
-import { fetchResults } from "@/context/Search/search-api/2023/fetchResults";
+import { fetchResultsWithCache } from "@/context/Search/search-api/2023/fetchResults";
 import {
   RequestStatus,
   SearchHit,
@@ -55,7 +55,7 @@ async function SearchPage(props: Readonly<AppPageProps>) {
 
   if (query.term) {
     try {
-      const res = await fetchResults(query);
+      const res = await fetchResultsWithCache(query);
       results = res.hitList;
       timeTaken = res.took;
       status = "success";
