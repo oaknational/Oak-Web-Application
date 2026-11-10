@@ -15,7 +15,7 @@ export const useUpdateSearchQuery = () => {
       page: "search",
       query: newQuery,
     });
-    router.push(url);
+    router.push(url, { scroll: false });
   };
 
   const updateSearchFilters = ({
