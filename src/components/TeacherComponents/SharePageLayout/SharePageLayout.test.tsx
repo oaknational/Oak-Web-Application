@@ -95,6 +95,15 @@ describe("Downloads/Share Layout", () => {
     const validationSummary = screen.getByTestId("share-validation-summary");
     expect(validationSummary).toHaveAttribute("role", "alert");
     expect(validationSummary).toHaveAttribute("aria-atomic", "true");
+    expect(validationSummary).toHaveTextContent(
+      "To complete, correct the following:",
+    );
+    expect(validationSummary).toHaveTextContent(
+      "select at least one resource to continue",
+    );
+    expect(validationSummary).toHaveTextContent(
+      "accept terms and conditions to continue",
+    );
   });
 
   it("remounts validation summary when validationSummaryKey changes", () => {
