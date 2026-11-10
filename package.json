@@ -145,7 +145,7 @@
     "lodash": "^4.18.0",
     "mathjax": "^3.2.2",
     "nanoid": "^6.0.1",
-    "next": "^15.5.19",
+    "next": "^15.5.27",
     "next-cloudinary": "^6.16.0",
     "next-seo": "^6.6.0",
     "node-fetch": "^2.6.7",
