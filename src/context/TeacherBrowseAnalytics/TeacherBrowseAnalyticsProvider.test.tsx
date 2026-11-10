@@ -20,7 +20,7 @@ import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures
 const getSessionId = jest.fn();
 
 const lessonResourceDownloadStarted = jest.fn();
-const unitDownloadStarted = jest.fn();
+const signInStarted = jest.fn();
 const unitDownloaded = jest.fn();
 const lessonAccessed = jest.fn();
 const curriculumExplainerExplored = jest.fn();
@@ -36,7 +36,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
     track: {
       lessonResourceDownloadStarted: (...args: []) =>
         lessonResourceDownloadStarted(...args),
-      unitDownloadStarted: (...args: []) => unitDownloadStarted(...args),
+      signInStarted: (...args: []) => signInStarted(...args),
       curriculumExplainerExplored: (...args: []) =>
         curriculumExplainerExplored(...args),
       lessonShareStarted: (...args: []) => lessonShareStarted(...args),
@@ -80,10 +80,9 @@ jest.mock("@/common-lib/error-reporter", () => ({
 }));
 
 // journeyId is now derived from the URL, not programmeState
-const mockUsePathname = jest.fn(
-  () =>
-    "/teachers/programmes/biology-secondary/units/cells/lessons/lesson-3-structure-of-cells",
-);
+const lessonPathname =
+  "/teachers/programmes/biology-secondary/units/cells/lessons/lesson-3-structure-of-cells";
+const mockUsePathname = jest.fn(() => lessonPathname);
 jest.mock("next/navigation", () => ({
   usePathname: () => mockUsePathname(),
 }));
@@ -175,6 +174,55 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
     expect(journeyId()).toBe("session-1:secondary-biology");
     expect(reportError).not.toHaveBeenCalled();
   });
+
+  describe("accessLevel", () => {
+    const AccessLevel = () => {
+      const accessLevel = useTeacherBrowseAnalytics(
+        (store) => store.accessLevel,
+      );
+      return <div data-testid="access-level">{accessLevel}</div>;
+    };
+    const accessLevel = () => screen.getByTestId("access-level").textContent;
+
+    afterEach(() => {
+      mockUsePathname.mockImplementation(() => lessonPathname);
+    });
+
+    it("uses the accessLevel prop when provided", () => {
+      render(
+        <TeacherBrowseAnalyticsStoreProvider
+          programmeState={null}
+          accessLevel="search"
+        >
+          <AccessLevel />
+        </TeacherBrowseAnalyticsStoreProvider>,
+      );
+
+      expect(accessLevel()).toBe("search");
+    });
+
+    it("derives accessLevel from the pathname when the prop is omitted", () => {
+      render(
+        <TeacherBrowseAnalyticsStoreProvider programmeState={null}>
+          <AccessLevel />
+        </TeacherBrowseAnalyticsStoreProvider>,
+      );
+
+      expect(accessLevel()).toBe("lesson");
+    });
+
+    it("falls back to homepage for routes without a teacher page provider", () => {
+      mockUsePathname.mockImplementation(() => "/");
+
+      render(
+        <TeacherBrowseAnalyticsStoreProvider programmeState={null}>
+          <AccessLevel />
+        </TeacherBrowseAnalyticsStoreProvider>,
+      );
+
+      expect(accessLevel()).toBe("homepage");
+    });
+  });
   describe("tracking", () => {
     const programmeLevelState = getProgrammeStateForProgramme(
       teachersLessonOverviewFixture(),
@@ -224,33 +272,24 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
         }),
       );
     });
-    it("calls unitDownloadStarted with the correct props", () => {
-      renderTrackingTest(unitLevelState, "unitDownloadStarted");
+    it("calls signInStarted with the correct props", () => {
+      renderTrackingTest(unitLevelState, "signInStarted", {
+        componentType: "unit_download_button",
+      });
 
       const trackBtn = screen.getByRole("button", { name: "Track" });
       trackBtn.click();
 
-      expect(unitDownloadStarted).toHaveBeenCalledWith(
-        expect.objectContaining({
-          analyticsUseCase: "Teacher",
-          componentType: "unit_download_button",
-          engagementIntent: "use",
-          eventVersion: "2.0.0",
-          examBoard: null,
-          journeyId: "session-1:secondary-biology",
-          keyStageSlug: "ks3",
-          keyStageTitle: "Key stage 3",
-          pathway: null,
-          phase: "secondary",
-          platform: "owa",
-          product: "teacher lesson resources",
-          subjectSlug: "biology",
-          subjectTitle: "Biology",
-          tierName: null,
-          unitName: "Cells",
-          unitSlug: "cells",
-        }),
-      );
+      expect(signInStarted).toHaveBeenCalledWith({
+        accessLevel: "lesson",
+        analyticsUseCase: "Teacher",
+        componentType: "unit_download_button",
+        engagementIntent: "use",
+        eventVersion: "2.0.0",
+        journeyId: "session-1:secondary-biology",
+        platform: "owa",
+        product: "teacher lesson resources",
+      });
     });
     it("calls curriculumExplainerExplored with the correct props", () => {
       renderTrackingTest(programmeLevelState, "curriculumExplainerExplored");
@@ -403,19 +442,6 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
         }),
       );
       expect(lessonResourceDownloadStarted).not.toHaveBeenCalled();
-      expect(result).toBeUndefined();
-    });
-    it("handles invalid browse level for unitDownloadStarted", () => {
-      renderTrackingTest(programmeLevelState, "unitDownloadStarted");
-      const trackBtn = screen.getByRole("button", { name: "Track" });
-      const result = trackBtn.click();
-      expect(reportError).toHaveBeenCalledWith(
-        expect.objectContaining({
-          code: "analytics/teacher-browse",
-          meta: expect.objectContaining({ browseLevel: "programme" }),
-        }),
-      );
-      expect(unitDownloadStarted).not.toHaveBeenCalled();
       expect(result).toBeUndefined();
     });
     it("handles invalid browse level for unitDownloaded", () => {

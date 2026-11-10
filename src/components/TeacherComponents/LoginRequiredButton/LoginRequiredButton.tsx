@@ -44,6 +44,7 @@ type SignUpProps = {
   iconName?: OakIconName;
   isTrailingIcon?: boolean;
   showNewTag?: boolean;
+  onClick?: () => void;
 };
 
 type OnboardingProps = {
@@ -183,6 +184,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
           <ButtonComponent
             iconName={signUpProps?.iconName}
             isTrailingIcon={signUpProps?.isTrailingIcon}
+            onClick={signUpProps?.onClick}
             {...overrideProps}
           >
             <OakFlex $alignItems="center" $gap="spacing-12">

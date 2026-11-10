@@ -78,13 +78,17 @@ describe("pages/about/get-involved.tsx", () => {
   it("join panel link changes when feature flag is enabled", () => {
     (isFeatureFlagEnabledStatic as jest.Mock).mockImplementation(() => true);
 
-    const { getByRole } = renderWithProviders()(
+    const { getAllByRole } = renderWithProviders()(
       <GetInvolved pageData={testGetInvolvedPageData} topNav={topNavFixture} />,
     );
 
-    expect(
-      getByRole("link", { name: "Join the research panel" }),
-    ).toHaveAttribute("href", "/about-us/get-involved/join-research-panel");
+    const joinThePanelButton = getAllByRole("link", {
+      name: "Join the research panel",
+    })[0];
+    expect(joinThePanelButton).toHaveAttribute(
+      "href",
+      "/about-us/get-involved/join-research-panel",
+    );
   });
 
   describe("getStaticProps", () => {

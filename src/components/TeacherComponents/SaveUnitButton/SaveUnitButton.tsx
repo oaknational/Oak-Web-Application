@@ -63,6 +63,7 @@ export const SaveUnitButton = ({
       <SavingSignedOutModal
         isOpen={showSignIn}
         onClose={() => setShowSignIn(false)}
+        componentType={trackingProps.savedFrom}
       />
     );
   }

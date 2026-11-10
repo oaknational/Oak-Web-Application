@@ -11,6 +11,7 @@ import {
   wrapInLinkTo,
 } from "../../docx";
 import { createUnitsListingByYear } from "../../tab-helpers";
+import { addQueryParamsToUrl } from "../../utils";
 
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
@@ -309,14 +310,24 @@ export async function buildUnit(
   );
 
   const resolvedUnitSlug = unitOption?.slug ?? unit.slug;
+  const teacherProgrammeSlug = createTeacherProgrammeSlug(
+    unit,
+    slugs.ks4OptionSlug,
+    slugs.tierSlug,
+    unit?.pathway_slug ?? undefined,
+  );
+
+  const onlineResourcesLinkWithQueryParams = addQueryParamsToUrl(
+    `https://www.thenational.academy/teachers/programmes/${teacherProgrammeSlug}/units/${resolvedUnitSlug}/lessons`,
+    {
+      utm_source: "curriculum_plan",
+      utm_medium: "document",
+      utm_campaign: `${(unit.subject_parent_slug ?? unit.subject_slug).replaceAll("-", "_")}_${unit.phase_slug}_curriculum_plan`,
+    },
+  );
 
   const links = await insertLinks(zip, {
-    onlineResources: `https://www.thenational.academy/teachers/programmes/${createTeacherProgrammeSlug(
-      unit,
-      slugs.ks4OptionSlug,
-      slugs.tierSlug,
-      unit?.pathway_slug ?? undefined,
-    )}/units/${resolvedUnitSlug}/lessons`,
+    onlineResources: onlineResourcesLinkWithQueryParams,
   });
 
   const isUnitDescriptionEnabled = getIsUnitDescriptionEnabled(unit);

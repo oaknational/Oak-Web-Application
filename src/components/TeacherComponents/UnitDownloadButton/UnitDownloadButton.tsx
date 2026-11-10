@@ -20,6 +20,7 @@ import errorReporter from "@/common-lib/error-reporter";
 import { UnitDownloadExistence } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
+import { ComponentType } from "@/browser-lib/avo/Avo";
 
 const reportError = errorReporter("unit-download-button");
 
@@ -59,11 +60,9 @@ const UnitDownloadOnboardButton = ({
   size,
   ariaLabel,
   fullWidthOnMobile,
-  onClick,
 }: {
   href: string;
   showNewTag: boolean;
-  onClick: () => void;
   size?: "small";
   ariaLabel?: string;
   fullWidthOnMobile?: boolean;
@@ -72,7 +71,6 @@ const UnitDownloadOnboardButton = ({
     <ButtonForSize
       size={size}
       fullWidthOnMobile={fullWidthOnMobile}
-      onClick={onClick}
       element="a"
       href={href}
       aria-label={ariaLabel}
@@ -285,9 +283,7 @@ export default function UnitDownloadButton(
   const auth = useAuth();
   const pathname = usePathname();
   const { setCurrentToastProps } = useOakNotificationsContext();
-  const { unitDownloadStarted } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
+  const { signInStarted } = useTeacherBrowseAnalytics((store) => store.track);
 
   const {
     onDownloadSuccess,
@@ -352,7 +348,6 @@ export default function UnitDownloadButton(
           page: "onboarding",
           query: { returnTo: pathname ?? "" },
         })}
-        onClick={unitDownloadStarted}
         showNewTag={props.showNewTag}
         size={props.size}
         ariaLabel={props.ariaLabel}
@@ -364,7 +359,9 @@ export default function UnitDownloadButton(
       <UnitDownloadSignInButton
         isStuck={isStuck}
         redirectUrl={`/onboarding?returnTo=${pathname}`}
-        onClick={unitDownloadStarted}
+        onClick={() =>
+          signInStarted({ componentType: ComponentType.UNIT_DOWNLOAD_BUTTON })
+        }
         showNewTag={props.showNewTag}
         longTextOnMobile={longTextOnMobile}
         fullWidthOnMobile={fullWidthOnMobile}
