@@ -487,6 +487,7 @@ export const ProgrammeDownloads = ({
                     isLoading={
                       isSubmitting || !hubspotLoaded // show loading state when waiting for latest school values to be populated from hubspot
                     }
+                    aria-describedby="download-validation-summary"
                   >
                     Download
                   </OakPrimaryButton>

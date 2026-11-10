@@ -127,9 +127,7 @@ describe("Download Page With Accordion", () => {
       />,
     );
 
-    const firstValidationSummary = screen.getByTestId(
-      "download-validation-summary",
-    );
+    const firstValidationSummary = screen.getByRole("status");
 
     rerender(
       <ComponentWrapper
@@ -139,9 +137,7 @@ describe("Download Page With Accordion", () => {
       />,
     );
 
-    expect(screen.getByTestId("download-validation-summary")).not.toBe(
-      firstValidationSummary,
-    );
+    expect(screen.getByRole("status")).not.toBe(firstValidationSummary);
   });
 
   it("handles api error", () => {

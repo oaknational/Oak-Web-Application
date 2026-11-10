@@ -269,7 +269,7 @@ export const DownloadPageWithAccordionContent = (
           <OakFlex
             key={validationSummaryKey}
             role="status"
-            data-testid="download-validation-summary"
+            id="download-validation-summary"
             $flexDirection={"column"}
           >
             {showFormErrors && hasValidationSummary && (
