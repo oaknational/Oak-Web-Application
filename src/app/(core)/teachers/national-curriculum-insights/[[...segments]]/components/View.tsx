@@ -44,7 +44,10 @@ import {
   insightsCtaSectionContext,
   useNationalCurriculumInsightsAnalytics,
 } from "@/context/NationalCurriculumInsightsAnalytics/useNationalCurriculumInsightsAnalytics";
-import type { CtaIdValueType } from "@/browser-lib/avo/Avo";
+import type {
+  CtaIdValueType,
+  SectionTypeValueType,
+} from "@/browser-lib/avo/Avo";
 import { nationalCurriculumInsightsKeyStageSlug } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import {
   nationalCurriculumInsightsSubjectPhaseHref,
@@ -200,7 +203,7 @@ const ModuleViewContent = ({
 
 const sectionTypes: Record<
   NationalCurriculumInsightsModule["__typename"],
-  string
+  SectionTypeValueType
 > = {
   NationalCurriculumInsightsHeaderSection: "hero",
   NationalCurriculumInsightsHeroSection: "hero",
@@ -237,17 +240,18 @@ const ModuleView = ({
   data: NationalCurriculumInsightsRouteData;
   sectionId?: string;
 }) => {
-  let sectionType = sectionTypes[module.__typename];
+  const sectionType = sectionTypes[module.__typename];
+  let defaultSectionId: string = sectionType;
   if (module.__typename === "NationalCurriculumInsightsChecklistSection")
-    sectionType = `${module.audience}-checklist`;
+    defaultSectionId = `${module.audience}-checklist`;
   if (
     module.__typename === "NationalCurriculumInsightsImageTextSection" &&
     data.route.kind === "guidance"
   )
-    sectionType = "guidance-benefits";
+    defaultSectionId = "guidance-benefits";
   return (
     <insightsCtaSectionContext.Provider
-      value={{ sectionType, sectionId: sectionId ?? sectionType }}
+      value={{ sectionType, sectionId: sectionId ?? defaultSectionId }}
     >
       <ModuleViewContent module={module} data={data} />
     </insightsCtaSectionContext.Provider>

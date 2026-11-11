@@ -183,6 +183,37 @@ it("tracks real breadcrumb and phase/key-stage tab links on the page", async () 
   expect(ids()).toEqual(["breadcrumb-link", "key-stage-tab", "overview-tab"]);
 });
 
+it.each(["teacher", "schoolLeader"] as const)(
+  "uses the checklist section type while preserving the %s section ID",
+  async (audience) => {
+    const user = userEvent.setup();
+    const data = await getData(["science", "primary", "key-stage-1"]);
+    data.page = {
+      ...data.page!,
+      modules: [
+        {
+          __typename: "NationalCurriculumInsightsChecklistSection",
+          audience,
+          heading: "Checklist",
+          items: [],
+        },
+      ],
+    };
+    renderTracked(<NationalCurriculumInsightsView data={data} />);
+    await user.click(
+      screen.getByRole("button", { name: "Download this checklist" }),
+    );
+    expect(ctaClicked).toHaveBeenCalledTimes(1);
+    expect(ctaClicked).toHaveBeenCalledWith(
+      expect.objectContaining({
+        sectionType: "checklist",
+        sectionId: `${audience}-checklist`,
+        ctaId: "download-started",
+      }),
+    );
+  },
+);
+
 it("captures FAQ expansion and keyboard collapse using the pre-click state", async () => {
   const user = userEvent.setup();
   renderTracked(

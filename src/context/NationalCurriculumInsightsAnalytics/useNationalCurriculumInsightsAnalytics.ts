@@ -4,8 +4,10 @@ import { createContext, useContext, type ContextType } from "react";
 
 import { nationalCurriculumInsightsAnalyticsContext } from "./NationalCurriculumInsightsAnalyticsProvider";
 
+import type { SectionTypeValueType } from "@/browser-lib/avo/Avo";
+
 export const insightsCtaSectionContext = createContext<{
-  sectionType: string;
+  sectionType: SectionTypeValueType;
   sectionId?: string;
 } | null>(null);
 

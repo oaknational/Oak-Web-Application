@@ -91,7 +91,7 @@ export const NationalCurriculumInsightsChecklist = ({
           iconName="download"
           onClick={(event) => {
             trackCtaClicked({
-              sectionType: `${section.audience}-checklist`,
+              sectionType: "checklist",
               sectionId:
                 analyticsSection?.sectionId ?? `${section.audience}-checklist`,
 

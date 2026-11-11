@@ -497,6 +497,14 @@ describe("Insights download submission", () => {
       await user.click(
         screen.getByRole("button", { name: "Back to subject list" }),
       );
+      expect(mockTrackCtaClicked).toHaveBeenLastCalledWith({
+        sectionType: "downloads",
+        sectionId: "downloads",
+        ctaAction: "open",
+        ctaId: "download-selection-back",
+        ctaText: "Back to subject list",
+        componentType: "download_button",
+      });
       expect(
         screen.queryByRole("heading", { name: "Thanks for downloading!" }),
       ).not.toBeInTheDocument();

@@ -8,12 +8,17 @@ import {
   OakImage,
   OakLink,
   OakP,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
 
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { useNationalCurriculumInsightsAnalytics } from "@/context/NationalCurriculumInsightsAnalytics/useNationalCurriculumInsightsAnalytics";
 
-export const NationalCurriculumInsightsDownloadConfirmation = () => {
+export const NationalCurriculumInsightsDownloadConfirmation = ({
+  onBack,
+}: {
+  onBack: () => void;
+}) => {
   const { trackCtaClicked, section: analyticsSection } =
     useNationalCurriculumInsightsAnalytics();
   return (
@@ -27,6 +32,23 @@ export const NationalCurriculumInsightsDownloadConfirmation = () => {
     >
       <OakGridArea $colSpan={[12, 12, 6]} $order={[2, 2, 1]}>
         <OakFlex $flexDirection="column" $gap="spacing-40">
+          <OakTertiaryButton
+            type="button"
+            iconName="arrow-left"
+            onClick={() => {
+              trackCtaClicked({
+                sectionType: "downloads",
+                sectionId: analyticsSection?.sectionId ?? "downloads",
+                ctaAction: "open",
+                ctaId: "download-selection-back",
+                ctaText: "Back to subject list",
+                componentType: "download_button",
+              });
+              onBack();
+            }}
+          >
+            Back to subject list
+          </OakTertiaryButton>
           <OakBox role="status">
             <OakHeading tag="h2" $font="heading-4">
               Thanks for downloading!
