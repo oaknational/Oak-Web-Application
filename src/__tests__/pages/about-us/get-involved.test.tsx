@@ -4,8 +4,6 @@ import "jest-styled-components";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 
-import { testAboutPageBaseData } from "./about-us.fixtures";
-
 import GetInvolved, {
   GetInvolvedPageProps,
   getStaticProps,
@@ -31,7 +29,6 @@ jest.mock("@/utils/featureFlagChecks/static", () => ({
 }));
 
 const testGetInvolvedPageData: GetInvolvedPageProps["pageData"] = {
-  ...testAboutPageBaseData,
   header: {
     introText:
       "We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.",
