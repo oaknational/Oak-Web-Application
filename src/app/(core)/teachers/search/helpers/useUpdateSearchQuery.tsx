@@ -33,7 +33,7 @@ export const useUpdateSearchQuery = () => {
     const partialSearchQuery: Partial<SearchQuery> = {
       [filterType]: active
         ? currentValues.filter((filterItem) => filterItem !== filterSlug)
-        : [currentValues, filterSlug].flat(),
+        : [...currentValues, filterSlug].toSorted((a, b) => a.localeCompare(b)),
     };
 
     const nextParams = new URLSearchParams(searchParams);
