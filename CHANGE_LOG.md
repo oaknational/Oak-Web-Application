@@ -1,3 +1,15 @@
+# [1.1274.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1273.3...v1.1274.0) (2026-11-10)
+
+
+### Bug Fixes
+
+* preselect docx file too ([5d442c6](https://github.com/oaknational/Oak-Web-Application/commit/5d442c6902472bfc0143fcef6a00ffe4e4486acf))
+
+
+### Features
+
+* add doc x lesson guides to downloads page ([bf16afa](https://github.com/oaknational/Oak-Web-Application/commit/bf16afad65adceaed2410e1b8ee57e32076c6583))
+
 ## [1.1273.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1273.2...v1.1273.3) (2026-11-10)
 
 

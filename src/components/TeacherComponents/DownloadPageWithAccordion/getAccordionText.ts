@@ -1,5 +1,6 @@
 import { DownloadTypeLabel } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { getLessonDownloadMetadata } from "@/common-lib/lessonDownloads";
 
 export const getAccordionText = ({
   lessonDownloads,
@@ -17,24 +18,11 @@ export const getAccordionText = ({
   }
 
   const resources = [];
-  const resourceTypes: Record<string, string> = {
-    presentation: "slides",
-    "intro-quiz-questions": "quizzes",
-    "intro-quiz-answers": "quizzes",
-    "exit-quiz-questions": "quizzes",
-    "exit-quiz-answers": "quizzes",
-    "worksheet-pdf": "worksheets",
-    "worksheet-pptx": "worksheets",
-    "supplementary-pdf": "additional materials",
-    "supplementary-docx": "additional materials",
-    "lesson-guide-pdf": "lesson guide",
-    "additional-files": "additional files",
-  };
-
   if (lessonDownloads) {
     for (const download of lessonDownloads) {
-      if (download.type && download.type in resourceTypes) {
-        resources.push(resourceTypes[download.type]);
+      const label = getLessonDownloadMetadata(download.type).accordionLabel;
+      if (label) {
+        resources.push(label);
       }
     }
   }

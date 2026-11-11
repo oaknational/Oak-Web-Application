@@ -3,6 +3,18 @@ import { constructDownloadsArray } from "./downloadUtils";
 export const downloadAssetsFixture = [
   {
     exists: true,
+    type: "lesson-guide-pdf",
+    label: "Lesson guide",
+    ext: "pdf",
+  },
+  {
+    exists: true,
+    type: "lesson-guide-docx",
+    label: "Lesson guide",
+    ext: "docx",
+  },
+  {
+    exists: true,
     type: "presentation",
     ext: "pptx",
     label: "Slide deck",
@@ -56,12 +68,6 @@ export const downloadAssetsFixture = [
     label: "Additional material",
     ext: "docx",
   },
-  {
-    exists: true,
-    type: "lesson-guide-pdf",
-    label: "Lesson guide",
-    ext: "pdf",
-  },
 ];
 
 describe("constructDownloadsArray()", () => {
@@ -95,6 +101,40 @@ describe("constructDownloadsArray()", () => {
       (download) => download.exists === true,
     );
 
-    expect(filteredDownloads).toHaveLength(6);
+    expect(filteredDownloads).toHaveLength(7);
   });
+  test.each([true, false])(
+    "sets exists: %s on both lesson guide pdf and docx from hasLessonGuideObject",
+    (hasLessonGuideObject) => {
+      const downloads = constructDownloadsArray({
+        hasSlideDeckAssetObject: true,
+        hasStarterQuiz: true,
+        hasExitQuiz: true,
+        hasWorksheetAssetObject: true,
+        hasWorksheetAnswersAssetObject: true,
+        hasWorksheetGoogleDriveDownloadableVersion: true,
+        hasSupplementaryAssetObject: true,
+        hasLessonGuideObject,
+        isLegacy: false,
+      });
+      const lessonGuides = downloads.filter((d) =>
+        d.type.startsWith("lesson-guide"),
+      );
+
+      expect(lessonGuides).toEqual([
+        {
+          exists: hasLessonGuideObject,
+          type: "lesson-guide-pdf",
+          label: "Lesson guide",
+          ext: "pdf",
+        },
+        {
+          exists: hasLessonGuideObject,
+          type: "lesson-guide-docx",
+          label: "Lesson guide",
+          ext: "docx",
+        },
+      ]);
+    },
+  );
 });
