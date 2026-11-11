@@ -1,3 +1,10 @@
+## [1.1275.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1275.0...v1.1275.1) (2026-11-11)
+
+
+### Bug Fixes
+
+* **ADAPT-206:** stop the Aila signpost video overflowing in Safari ([4a12c9f](https://github.com/oaknational/Oak-Web-Application/commit/4a12c9fd9b24eeefae0a0c49f9fa86e1c41611bd))
+
 # [1.1275.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1274.1...v1.1275.0) (2026-11-11)
 
 
