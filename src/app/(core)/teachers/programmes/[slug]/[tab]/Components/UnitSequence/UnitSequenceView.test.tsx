@@ -7,6 +7,7 @@ import {
 } from "next/navigation";
 
 import { mockProgrammeFiltersData } from "../Filters/ProgrammeFilters.test";
+import { ProgrammeNavigationProvider } from "../../../../ProgrammeNavigationProvider";
 
 import { UnitSequenceView, UnitSequenceViewProps } from "./UnitSequenceView";
 
@@ -67,9 +68,11 @@ const renderUnitSequenceView = (
   filters: BrowseFilters = defaultFilters,
 ) =>
   render(
-    <BrowseFiltersProvider defaultFilter={filters}>
-      <UnitSequenceView {...props} />
-    </BrowseFiltersProvider>,
+    <ProgrammeNavigationProvider>
+      <BrowseFiltersProvider defaultFilter={filters}>
+        <UnitSequenceView {...props} />
+      </BrowseFiltersProvider>
+    </ProgrammeNavigationProvider>,
   );
 
 describe("UnitSequenceView", () => {

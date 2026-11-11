@@ -14,6 +14,7 @@ import { teamMemberSchema } from "./teamMember";
 import { textBlockSchema } from "./blocks";
 import { caseStudyCardSchema, caseStudySchema } from "./caseStudy";
 import { CTASchema } from "./cta";
+import { blogPostPreviewSchema } from "./blog";
 
 // Oak's Curricula Page
 export const oaksCurriculaPageHeaderSchema = z.object({
@@ -163,6 +164,7 @@ export const joinResearchPanelPageBlockTypeSchema = z.enum([
   "JoinResearchPanelPageInfo",
   "JoinResearchPanelPageJourney",
   "JoinResearchPanelPagePeople",
+  "JoinResearchPanelPageBlogsPreview",
   "JoinResearchPanelPageFaqs",
   "JoinResearchPanelPageContactUs",
 ]);
@@ -231,6 +233,14 @@ export const joinResearchPanelPeopleSchema = z.object({
   ),
 });
 
+export const joinResearchPanelBlogsPreviewSchema = z.object({
+  __typename: z.literal(
+    joinResearchPanelPageBlockTypeSchema.enum.JoinResearchPanelPageBlogsPreview,
+  ),
+  title: z.string(),
+  label: z.string(),
+});
+
 export const joinResearchPanelFaqsSchema = z.object({
   __typename: z.literal(
     joinResearchPanelPageBlockTypeSchema.enum.JoinResearchPanelPageFaqs,
@@ -259,6 +269,7 @@ export const joinResearchPanelPageBlockSchema = z.discriminatedUnion(
     joinResearchPanelInfoSchema,
     joinResearchPanelJourneySchema,
     joinResearchPanelPeopleSchema,
+    joinResearchPanelBlogsPreviewSchema,
     joinResearchPanelFaqsSchema,
     joinResearchPanelContactUsSchema,
   ],
@@ -275,7 +286,10 @@ export type JoinResearchPanelPageBlocks = z.infer<
 >;
 
 export const joinResearchPanelPageSchema = z.object({
-  blocks: z.array(joinResearchPanelPageBlockSchema),
+  content: z.object({
+    blocks: z.array(joinResearchPanelPageBlockSchema),
+  }),
+  blogs: z.array(blogPostPreviewSchema),
 });
 
 export type JoinResearchPanelPage = z.infer<typeof joinResearchPanelPageSchema>;
@@ -335,32 +349,12 @@ export const caseStudyLibraryPageSchema = z.array(caseStudySchema);
 
 export type CaseStudyLibraryPage = z.infer<typeof caseStudyLibraryPageSchema>;
 
+// Case Study Page
 export const caseStudyPageSchema = caseStudySchema;
 
 export type CaseStudyPage = z.infer<typeof caseStudyPageSchema>;
 
-// Aliases for about pages (old naming convention - mapping new queries to existing schemas)
-export const aboutWhoWeArePageSchema = whoWeArePageSchema;
-
-export const aboutLeadershipPageSchema = meetTheTeamPageOurLeadershipSchema;
-export type AboutLeadershipPage = z.infer<
-  typeof meetTheTeamPageOurLeadershipSchema
->;
-
-export const aboutBoardPageSchema = meetTheTeamPageOurBoardSchema;
-export type AboutBoardPage = z.infer<typeof meetTheTeamPageOurBoardSchema>;
-
-export const aboutPartnersPageSchema =
-  oaksCurriculaPageCurriculumPartnersSectionSchema;
-export type AboutPartnersPage = z.infer<
-  typeof oaksCurriculaPageCurriculumPartnersSectionSchema
->;
-
-export const aboutWorkWithUsPageSchema = getInvolvedPageWorkWithUsSchema;
-export type AboutWorkWithUsPage = z.infer<
-  typeof getInvolvedPageWorkWithUsSchema
->;
-
+// Implementation Guides
 export const implementationGuidesSchema = z.object({
   curriculumQuality: assetSchema.optional().nullable(),
   whatsIncluded: assetSchema.optional().nullable(),

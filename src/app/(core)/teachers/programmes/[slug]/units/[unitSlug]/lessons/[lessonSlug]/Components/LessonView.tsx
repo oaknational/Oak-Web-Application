@@ -30,6 +30,8 @@ import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLe
 import { getSideNavLinksFromResources } from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks/LessonOverviewSideNavAnchorLinks";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
 
 export default function LessonView(
   props: Readonly<TeachersLessonOverviewPageData>,
@@ -55,7 +57,11 @@ export default function LessonView(
     actions,
     subjectCategories,
     excludedFromTeachingMaterials,
+    shouldHideCreateWithAi,
   } = props;
+
+  const { lessonAccessed } = useTeacherBrowseAnalytics((store) => store.track);
+  const { lessonState } = useProgrammeState();
 
   const copyrightState = useComplexCopyright({
     loginRequired,
@@ -156,11 +162,6 @@ export default function LessonView(
               <ComplexCopyrightRestrictionBanner
                 isGeorestricted={geoRestricted}
                 isLoginRequired={loginRequired}
-                lessonName={lessonTitle}
-                lessonSlug={lessonSlug}
-                unitName={unitTitle}
-                unitSlug={unitSlug}
-                isLessonLegacy={false}
                 componentType="lesson_overview"
               />
               {showHeatwaveBanner && (
@@ -186,7 +187,9 @@ export default function LessonView(
               <LessonActionsBar
                 showPupilShare={showPupilShare}
                 createWithAiProps={
-                  contentRestricted || excludedFromTeachingMaterials
+                  contentRestricted ||
+                  excludedFromTeachingMaterials ||
+                  shouldHideCreateWithAi
                     ? undefined
                     : {
                         lessonSlug,
@@ -271,6 +274,17 @@ export default function LessonView(
                           }),
                           title: previousLesson.lessonTitle,
                           index: previousLesson.lessonIndex,
+                          onClick: () =>
+                            lessonAccessed({
+                              componentType: "footer_button",
+                              navigationType: "across",
+                              lessonName: previousLesson.lessonTitle,
+                              lessonSlug: previousLesson.lessonSlug,
+                              lessonReleaseCohort: "2023-2026",
+                              lessonReleaseDate:
+                                lessonState?.lesson.lessonReleaseDate ??
+                                "unknown",
+                            }),
                         }
                       : undefined
                   }
@@ -285,6 +299,17 @@ export default function LessonView(
                           }),
                           title: nextLesson.lessonTitle,
                           index: nextLesson.lessonIndex,
+                          onClick: () =>
+                            lessonAccessed({
+                              componentType: "footer_button",
+                              navigationType: "across",
+                              lessonName: nextLesson.lessonTitle,
+                              lessonSlug: nextLesson.lessonSlug,
+                              lessonReleaseCohort: "2023-2026",
+                              lessonReleaseDate:
+                                lessonState?.lesson.lessonReleaseDate ??
+                                "unknown",
+                            }),
                         }
                       : undefined
                   }

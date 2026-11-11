@@ -92,7 +92,11 @@ export type FooterSection = {
 };
 const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
   return (
-    <OakFlex $flexDirection="column" $mt={["spacing-32", "spacing-0"]}>
+    <OakFlex
+      data-chromatic="ignore"
+      $flexDirection="column"
+      $mt={["spacing-32", "spacing-0"]}
+    >
       <OakHeading
         $mb="spacing-8"
         $font="heading-7"
@@ -352,7 +356,6 @@ export const LayoutSiteFooterInner: FC = memo(() => {
           </OakGrid>
           <StyledLogo
             alt="Cyber Essentials Logo"
-            data-percy-hide="contents"
             data-chromatic="ignore"
             src={getCloudinaryImageUrl(
               "v1751992190/OWA/illustrations/Cyber-Essentials-Logo_ryiskg.png",
@@ -420,10 +423,7 @@ export const LayoutSiteFooterInner: FC = memo(() => {
 
 const LayoutSiteFooter = () => {
   return (
-    <TeacherBrowseAnalyticsStoreProvider
-      programmeState={null}
-      accessLevel="homepage"
-    >
+    <TeacherBrowseAnalyticsStoreProvider programmeState={null}>
       <LayoutSiteFooterInner />
     </TeacherBrowseAnalyticsStoreProvider>
   );

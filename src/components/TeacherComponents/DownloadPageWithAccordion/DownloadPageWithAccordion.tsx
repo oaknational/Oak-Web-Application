@@ -37,6 +37,8 @@ import { SHARE_FORM_ERROR_IDS } from "@/components/TeacherComponents/helpers/dow
 import { VALIDATION_SUMMARY_PREFIX } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/validationSummaryText";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { DownloadTypeLabel } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { ComponentType } from "@/browser-lib/avo/Avo";
 
 type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
   ResourcePageSchoolDetailsProps & {
@@ -71,10 +73,6 @@ type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
 export type DownloadWrapperProps = {
   isLoading?: boolean;
   showGeoBlocked?: boolean;
-  lessonSlug?: string;
-  lessonTitle?: string;
-  lessonReleaseDate?: string | null;
-  isLegacy?: boolean;
   heading?: string;
 } & DownloadPageWithAccordionProps;
 
@@ -86,10 +84,6 @@ const DownloadPageWithAccordion: FC<DownloadWrapperProps> = (
     showGeoBlocked = false,
     geoRestricted,
     loginRequired,
-    lessonSlug,
-    lessonReleaseDate = null,
-    lessonTitle,
-    isLegacy = false,
     heading,
   } = props;
   return (
@@ -115,10 +109,6 @@ const DownloadPageWithAccordion: FC<DownloadWrapperProps> = (
             isGeorestricted={geoRestricted ?? undefined}
             isLoginRequired={loginRequired ?? undefined}
             componentType="lesson_downloads"
-            lessonName={lessonTitle}
-            lessonSlug={lessonSlug}
-            lessonReleaseDate={lessonReleaseDate}
-            isLessonLegacy={isLegacy}
           />
         )}
       </OakGridArea>
@@ -195,6 +185,7 @@ export const DownloadPageWithAccordionContent = (
   } = props;
 
   const hasFormErrors = Object.keys(errors).length > 0;
+  const { signInStarted } = useTeacherBrowseAnalytics((store) => store.track);
   const validationErrorMessages = getFormErrorMessages(errors);
   const hasValidationSummary = validationErrorMessages.length > 0;
   const showFormErrors = hasFormErrors && !downloadsRestricted;
@@ -312,7 +303,13 @@ export const DownloadPageWithAccordionContent = (
             <LoginRequiredButton
               loginRequired={loginRequired ?? false}
               geoRestricted={geoRestricted ?? false}
-              signUpProps={{ name: "Sign in to continue" }}
+              signUpProps={{
+                name: "Sign in to continue",
+                onClick: () =>
+                  signInStarted({
+                    componentType: ComponentType.LESSON_DOWNLOAD_BUTTON,
+                  }),
+              }}
               iconName="arrow-right"
               isTrailingIcon
             />

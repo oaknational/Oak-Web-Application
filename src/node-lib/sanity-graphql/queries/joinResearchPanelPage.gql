@@ -1,5 +1,8 @@
-query joinResearchPanelPage($isDraftFilter: Sanity_DocumentFilter) {
-  allNewAboutCorePageJoinResearchPanel(
+query joinResearchPanelPage(
+  $isDraftFilter: Sanity_DocumentFilter
+  $blogCategorySlug: String
+) {
+  content: allNewAboutCorePageJoinResearchPanel(
     where: {
       _: $isDraftFilter
       _id: { matches: "*newAboutCorePage.joinResearchPanel" }
@@ -60,6 +63,10 @@ query joinResearchPanelPage($isDraftFilter: Sanity_DocumentFilter) {
           answerRaw
         }
       }
+      ... on JoinResearchPanelPageBlogsPreview {
+        title
+        label
+      }
       ... on JoinResearchPanelPageContactUs {
         title
         button {
@@ -67,5 +74,15 @@ query joinResearchPanelPage($isDraftFilter: Sanity_DocumentFilter) {
         }
       }
     }
+  }
+  blogs: allNewsPost(
+    where: {
+      category: { slug: { current: { eq: $blogCategorySlug } } }
+      _: $isDraftFilter
+    }
+    sort: { date: DESC }
+    limit: 3
+  ) {
+    ...BlogPreviewFields
   }
 }

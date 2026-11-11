@@ -8,13 +8,15 @@ import {
 } from "../../shared.schema";
 import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 import { getCorrectYear } from "../../helpers/getCorrectYear";
-import { isExcludedFromTeachingMaterials } from "../../helpers/teachingMaterialsAi/isExcluded";
+import {
+  isExcludedFromTeachingMaterials,
+  getHideCreateWithAi,
+} from "../../helpers/teachingMaterialsAi/isExcluded";
 
 import {
   teachersLessonContentSchema,
   TeachersLessonOverviewAdjacentLesson,
   TeachersLessonOverviewContent,
-  TeachersLessonOverviewDownloads,
   TeachersLessonOverviewPageData,
   TeachersLessonBrowseDataByKs,
   teachersLessonBrowseDataByKsSchema,
@@ -26,6 +28,7 @@ import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { formatBytes } from "@/utils/formatBytes";
 import { formatSentences } from "@/utils/formatTranscriptSentences";
+import { buildLessonOverviewDownloads } from "@/common-lib/lessonDownloads";
 
 export type TeachersLessonUnitStaticLessonList = NonNullable<
   NonNullable<LessonUnitDataByKs["supplementaryData"]>["staticLessonList"]
@@ -78,64 +81,7 @@ export function getAdjacentLessonsByOrderInUnit(
   return { previousLesson, nextLesson };
 }
 
-export const getDownloadsArray = (content: {
-  hasSlideDeckAssetObject: boolean;
-  hasStarterQuiz: boolean;
-  hasExitQuiz: boolean;
-  hasWorksheetAssetObject: boolean;
-  hasWorksheetAnswersAssetObject: boolean;
-  hasSupplementaryAssetObject: boolean;
-  hasLessonGuideObject: boolean;
-}): TeachersLessonOverviewPageData["downloads"] => {
-  const downloads: TeachersLessonOverviewDownloads = [
-    {
-      exists: content.hasSlideDeckAssetObject,
-      type: "presentation",
-    },
-    {
-      exists: content.hasStarterQuiz,
-      type: "intro-quiz-questions",
-    },
-    {
-      exists: content.hasStarterQuiz,
-      type: "intro-quiz-answers",
-    },
-    {
-      exists: content.hasExitQuiz,
-      type: "exit-quiz-questions",
-    },
-    {
-      exists: content.hasExitQuiz,
-      type: "exit-quiz-questions",
-    },
-    {
-      exists:
-        content.hasWorksheetAssetObject ||
-        content.hasWorksheetAnswersAssetObject,
-      type: "worksheet-pdf",
-    },
-    {
-      exists:
-        content.hasWorksheetAssetObject ||
-        content.hasWorksheetAnswersAssetObject,
-      type: "worksheet-pptx",
-    },
-    {
-      exists: content.hasSupplementaryAssetObject,
-      type: "supplementary-pdf",
-    },
-    {
-      exists: content.hasSupplementaryAssetObject,
-      type: "supplementary-docx",
-    },
-    {
-      exists: content.hasLessonGuideObject,
-      type: "lesson-guide-pdf",
-    },
-  ];
-
-  return downloads;
-};
+export const getDownloadsArray = buildLessonOverviewDownloads;
 
 export function getContentGuidance(
   content: TeachersLessonOverviewContent["contentGuidance"],
@@ -171,6 +117,7 @@ export const transformedTeachersLessonOverviewData = (
   content: TeachersLessonOverviewContent,
   unitData: LessonUnitDataByKs,
   excludedFromTeachingMaterials: boolean,
+  shouldHideCreateWithAi: boolean,
   adjacentLessons?: {
     previousLesson: TeachersLessonOverviewAdjacentLesson | null;
     nextLesson: TeachersLessonOverviewAdjacentLesson | null;
@@ -277,6 +224,7 @@ export const transformedTeachersLessonOverviewData = (
     geoRestricted: browseData.features?.agfGeoRestricted ?? false,
     loginRequired: browseData.features?.agfLoginRequired ?? false,
     excludedFromTeachingMaterials,
+    shouldHideCreateWithAi,
     subjectCategories: browseData.unitData.subjectcategories,
     previousLesson: adjacentLessons?.previousLesson ?? null,
     nextLesson: adjacentLessons?.nextLesson ?? null,
@@ -368,6 +316,14 @@ const teachersLessonOverviewQuery =
       content,
     );
 
+    const shouldHideCreateWithAi = getHideCreateWithAi({
+      subject: browseData.programmeFields.subjectSlug,
+      worksList: restrictedAndHighlyRestrictedWorksList,
+      restrictions: res.restrictions[0],
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      features: browseData.features as any,
+    });
+
     const staticLessonList = unitData.supplementaryData?.staticLessonList;
     const adjacentLessons = staticLessonList?.length
       ? getAdjacentLessonsByOrderInUnit(staticLessonList, lessonSlug)
@@ -378,6 +334,7 @@ const teachersLessonOverviewQuery =
       content,
       unitData,
       excludedFromTeachingMaterials,
+      shouldHideCreateWithAi,
       adjacentLessons,
     );
   };

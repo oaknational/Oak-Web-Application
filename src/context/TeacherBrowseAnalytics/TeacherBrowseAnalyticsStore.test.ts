@@ -11,6 +11,7 @@ import { reportAnalyticsError } from "./utils/reportAnalyticsError";
 import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersUnitOverview.fixture";
 import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 import {
+  AccessBlockType,
   ActiveFilters,
   ComponentType,
   DownloadResourceButtonName,
@@ -32,6 +33,7 @@ const mockReportAnalyticsError = jest.mocked(reportAnalyticsError);
 
 const createAvoMock = () => {
   return {
+    contentBlockNotificationDisplayed: jest.fn(),
     createTeachingMaterialsInitiated: jest.fn(),
     curriculumExplainerExplored: jest.fn(),
     curriculumResourcesDownloadRefined: jest.fn(),
@@ -43,11 +45,13 @@ const createAvoMock = () => {
     lessonShareStarted: jest.fn(),
     mediaClipsPlaylistPlayed: jest.fn(),
     programmeAccessed: jest.fn(),
+    signInStarted: jest.fn(),
     teachingMaterialsSelected: jest.fn(),
     unitAccessed: jest.fn(),
     unitDownloaded: jest.fn(),
-    unitDownloadStarted: jest.fn(),
     unitRefined: jest.fn(),
+    userOnboardingCompleted: jest.fn(),
+    userOnboardingProgressed: jest.fn(),
     videoPlayed: jest.fn(),
     videoStarted: jest.fn(),
     videoPaused: jest.fn(),
@@ -58,6 +62,7 @@ const createAvoMock = () => {
 const buildStore = ({
   programmeState,
   accessLevel,
+  posthogDistinctId = "posthog-distinct-id",
 }: {
   programmeState:
     | ReturnType<typeof getProgrammeStateForLesson>
@@ -65,6 +70,7 @@ const buildStore = ({
     | ReturnType<typeof getProgrammeStateForProgramme>
     | null;
   accessLevel: "lesson" | "unit" | "programme" | "homepage";
+  posthogDistinctId?: string | null;
 }) => {
   const avo = createAvoMock();
   const store = createTeacherBrowseAnalyticsStore({
@@ -72,6 +78,7 @@ const buildStore = ({
     accessLevel,
     avo,
     journeyId: "journey-1",
+    posthogDistinctId,
   });
 
   return { store, avo };
@@ -101,10 +108,149 @@ const mediaClipsPlaylistPayload = {
   mediaClipIndex: 0,
 } as const;
 
+const onboardingPayload = {
+  componentType: ComponentType.CONTINUE_BUTTON,
+  signUpDate: "2024-10-07",
+  userRoleType: "Teacher",
+  teacherSchoolUrn: "123456",
+  teacherSchoolManualEntryDetails: null,
+  userDefinedRole: null,
+  userDetailsLastModifiedDate: "2024-10-08",
+  userAccountVerificationStatus: "verified",
+} as const;
+
 describe("TeacherBrowseAnalyticsStore", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
+
+  test("signInStarted tracks without programme state", () => {
+    const { store, avo } = buildStore({
+      programmeState: null,
+      accessLevel: "homepage",
+    });
+
+    store.getState().track.signInStarted({
+      componentType: ComponentType.TOPNAV_MY_LIBRARY_BUTTON,
+    });
+
+    expect(avo.signInStarted).toHaveBeenCalledWith({
+      platform: "owa",
+      product: "teacher lesson resources",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      engagementIntent: "use",
+      componentType: "topnav_my_library_button",
+      journeyId: "journey-1",
+      accessLevel: "homepage",
+    });
+    expect(mockReportAnalyticsError).not.toHaveBeenCalled();
+  });
+
+  test("contentBlockNotificationDisplayed derives lesson properties from programme state", () => {
+    const { store, avo } = buildStore({
+      programmeState: getProgrammeStateForLesson(
+        teachersLessonOverviewFixture(),
+      ),
+      accessLevel: "lesson",
+    });
+
+    store.getState().track.contentBlockNotificationDisplayed({
+      componentType: ComponentType.LESSON_DOWNLOADS,
+      accessBlockType: AccessBlockType.GEO_RESTRICTION,
+    });
+
+    expect(avo.contentBlockNotificationDisplayed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        componentType: ComponentType.LESSON_DOWNLOADS,
+        accessBlockType: AccessBlockType.GEO_RESTRICTION,
+        accessBlockDetails: {},
+        contentType: "lesson",
+        unitName: "Cells",
+        unitSlug: "cells",
+        lessonName: "Structure of cells",
+        lessonSlug: "lesson-3-structure-of-cells",
+        lessonReleaseCohort: "2023-2026",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+      }),
+    );
+  });
+
+  test("contentBlockNotificationDisplayed nulls lesson properties at unit level", () => {
+    const { store, avo } = buildStore({
+      programmeState: getProgrammeStateForUnit(teachersUnitOverviewFixture()),
+      accessLevel: "unit",
+    });
+
+    store.getState().track.contentBlockNotificationDisplayed({
+      componentType: ComponentType.LESSON_LISTING,
+      accessBlockType: AccessBlockType.GEO_RESTRICTION,
+    });
+
+    expect(avo.contentBlockNotificationDisplayed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        contentType: "unit",
+        unitName: "Cells",
+        unitSlug: "cells",
+        lessonName: null,
+        lessonSlug: null,
+        lessonReleaseCohort: null,
+        lessonReleaseDate: null,
+      }),
+    );
+  });
+
+  test("contentBlockNotificationDisplayed reports an error without a unit", () => {
+    const { store, avo } = buildStore({
+      programmeState: null,
+      accessLevel: "homepage",
+    });
+
+    store.getState().track.contentBlockNotificationDisplayed({
+      componentType: ComponentType.LESSON_DOWNLOADS,
+      accessBlockType: AccessBlockType.GEO_RESTRICTION,
+    });
+
+    expect(avo.contentBlockNotificationDisplayed).not.toHaveBeenCalled();
+    expect(mockReportAnalyticsError).toHaveBeenCalled();
+  });
+
+  test.each(["userOnboardingProgressed", "userOnboardingCompleted"] as const)(
+    "%s adds the registration core properties and the distinct id",
+    (event) => {
+      const { store, avo } = buildStore({
+        programmeState: null,
+        accessLevel: "homepage",
+      });
+
+      store.getState().track[event](onboardingPayload);
+
+      expect(avo[event]).toHaveBeenCalledWith({
+        ...onboardingPayload,
+        platform: "owa",
+        product: "user account management",
+        engagementIntent: "explore",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        userId_: "posthog-distinct-id",
+      });
+    },
+  );
+
+  test.each(["userOnboardingProgressed", "userOnboardingCompleted"] as const)(
+    "%s is not sent without a distinct id",
+    (event) => {
+      const { store, avo } = buildStore({
+        programmeState: null,
+        accessLevel: "homepage",
+        posthogDistinctId: null,
+      });
+
+      store.getState().track[event](onboardingPayload);
+
+      expect(avo[event]).not.toHaveBeenCalled();
+    },
+  );
 
   test("programmeAccessed forwards caller-provided filter payload", () => {
     const programmeState = getProgrammeStateForLesson(
@@ -585,7 +731,6 @@ describe("TeacherBrowseAnalyticsStore", () => {
       { teachingMaterialType: TeachingMaterialType.EXIT_QUIZ },
     ],
     ["unitDownloaded", undefined],
-    ["unitDownloadStarted", undefined],
     ["curriculumExplainerExplored", undefined],
     [
       "curriculumResourcesDownloadRefined",

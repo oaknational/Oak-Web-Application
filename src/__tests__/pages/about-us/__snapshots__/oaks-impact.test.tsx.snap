@@ -440,35 +440,39 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                   </a>
                 </div>
               </div>
-              <a
-                aria-label="My library"
-                class="sc-eCIkAO sc-hYQmIO leuZXC iqPAvY"
-                href="/teachers/my-library"
+              <div
+                class="sc-bdvwhi hpxhcR"
               >
-                <div
-                  class="sc-bdvwhi sc-gsDMPd evZLCm igJqEq oak-save-count"
+                <a
+                  aria-label="My library"
+                  class="sc-eCIkAO sc-hYQmIO leuZXC iqPAvY"
+                  href="/teachers/my-library"
                 >
-                  <span
-                    class="sc-bdvwhi dsdZgi"
-                    data-testid="bookmark-outlined"
-                  >
-                    <img
-                      alt=""
-                      class="sc-jRQBiJ eMsccW"
-                      data-nimg="fill"
-                      decoding="async"
-                      loading="lazy"
-                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734519491/icons/bookmark-outlined_rxe5v0.svg"
-                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                    />
-                  </span>
                   <div
-                    class="sc-bdvwhi nQgAu"
+                    class="sc-bdvwhi sc-gsDMPd evZLCm igJqEq oak-save-count"
                   >
-                    My library
+                    <span
+                      class="sc-bdvwhi dsdZgi"
+                      data-testid="bookmark-outlined"
+                    >
+                      <img
+                        alt=""
+                        class="sc-jRQBiJ eMsccW"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734519491/icons/bookmark-outlined_rxe5v0.svg"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
+                    </span>
+                    <div
+                      class="sc-bdvwhi nQgAu"
+                    >
+                      My library
+                    </div>
                   </div>
-                </div>
-              </a>
+                </a>
+              </div>
               <div
                 class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
               >
@@ -586,7 +590,6 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         <div
                           class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                           data-chromatic="ignore"
-                          data-percy-hide="contents"
                           style="aspect-ratio: 16/9; box-sizing: content-box;"
                         />
                       </div>
@@ -943,7 +946,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         Discover how Oak can support you
                       </h2>
                       <p
-                        class="sc-hGPAwl lcuFqC"
+                        class="sc-hGPAwl fKoyMR"
                       >
                         To explore the impact Oak’s curricula could have in your school or trust, fill out the form below and one of our experts will be in touch shortly.
                       </p>
@@ -1332,6 +1335,60 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
                       >
                         <a
+                          href="/about-us/get-involved/join-research-panel"
+                          style="outline: none;"
+                          target="_self"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd sc-e82709a-0 hcfMxe ezaUKt lkvaED"
+                            data-testid="who-we-are-explore-item"
+                          >
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU Bakex"
+                            >
+                              <span
+                                class="sc-bdvwhi gaaoSG"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1793641849/icons/teacher-group.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd eKftaO kkGnDS"
+                            >
+                              Join the research panel
+                            </div>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU Bakex"
+                            >
+                              <span
+                                class="sc-bdvwhi cqHYAi"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
+                      >
+                        <a
                           href="/about-us/case-studies"
                           style="outline: none;"
                           target="_self"
@@ -1396,7 +1453,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
               class="sc-bdvwhi iatEdD"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-b2eee06e-0 hPWTKU Bakex kFbKoF"
+                class="sc-bdvwhi sc-gsDMPd sc-b6b10a5e-0 hPWTKU Bakex dHIgfJ"
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd sc-7b305419-0 WhkHR cvDmZS"
@@ -1460,7 +1517,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         novalidate=""
                       >
                         <div
-                          class="sc-bdvwhi bpjVbf"
+                          class="sc-bdvwhi jtiAen"
                         >
                           <div
                             class="sc-bdvwhi sc-gsDMPd jtiAen cIPGhJ"
@@ -1499,7 +1556,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                           </div>
                         </div>
                         <div
-                          class="sc-bdvwhi bpjVbf"
+                          class="sc-bdvwhi bWlWvP"
                         >
                           <div
                             class="sc-bdvwhi sc-gsDMPd jtiAen cIPGhJ"
@@ -1538,7 +1595,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                           </div>
                         </div>
                         <div
-                          class="sc-bdvwhi kHQhzQ"
+                          class="sc-bdvwhi ibrppf"
                         >
                           <label
                             class="sc-bdvwhi jMFyqC"
@@ -1625,28 +1682,32 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                           </div>
                         </div>
                         <div
-                          class="sc-bdvwhi sc-iqsgXZ fFlNLS hjfwPa"
+                          class="sc-bdvwhi iAORmN"
                         >
                           <div
-                            class="sc-bdvwhi kAFHfV grey-shadow"
-                          />
-                          <div
-                            class="sc-bdvwhi kAFHfV yellow-shadow"
-                          />
-                          <button
-                            class="sc-eCIkAO sc-jrQAon cINIls fODyRh internal-button"
-                            type="submit"
+                            class="sc-bdvwhi sc-iqsgXZ fFlNLS hjfwPa"
                           >
                             <div
-                              class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                              class="sc-bdvwhi kAFHfV grey-shadow"
+                            />
+                            <div
+                              class="sc-bdvwhi kAFHfV yellow-shadow"
+                            />
+                            <button
+                              class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                              type="submit"
                             >
-                              <span
-                                class="sc-dkPwfY kXQhTZ"
+                              <div
+                                class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
                               >
-                                Sign up to the newsletter
-                              </span>
-                            </div>
-                          </button>
+                                <span
+                                  class="sc-dkPwfY kXQhTZ"
+                                >
+                                  Sign up to the newsletter
+                                </span>
+                              </div>
+                            </button>
+                          </div>
                         </div>
                         <p
                           aria-live="assertive"
@@ -1707,6 +1768,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="sc-bkkgYE bVNEJW"
@@ -1741,6 +1803,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                 />
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="sc-bkkgYE bVNEJW"
@@ -1850,6 +1913,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="sc-bkkgYE bVNEJW"
@@ -2096,6 +2160,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="sc-bkkgYE bVNEJW"
@@ -2396,9 +2461,8 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-82a69116-0 kSePHC"
+              class="sc-bdvwhi LoEut sc-d66981e6-0 bUApA-D"
               data-chromatic="ignore"
-              data-percy-hide="contents"
             >
               <img
                 alt="Cyber Essentials Logo"

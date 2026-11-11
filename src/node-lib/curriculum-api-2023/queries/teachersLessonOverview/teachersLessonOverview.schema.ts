@@ -14,6 +14,7 @@ import {
 import { baseLessonOverviewSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import { lessonDownloadTypeSchema } from "@/common-lib/lessonDownloads";
 
 export const teachersLessonContentSchema = lessonContentSchemaFull.omit({
   _state: true,
@@ -39,19 +40,7 @@ export type TeachersLessonOverviewContent = Omit<
 export const teachersLessonOverviewDownloads = z.array(
   z.object({
     exists: z.boolean().nullable(),
-    type: z.enum([
-      "presentation",
-      "intro-quiz-questions",
-      "intro-quiz-answers",
-      "exit-quiz-questions",
-      "exit-quiz-answers",
-      "worksheet-pdf",
-      "worksheet-pptx",
-      "supplementary-pdf",
-      "supplementary-docx",
-      "curriculum-pdf",
-      "lesson-guide-pdf",
-    ]),
+    type: lessonDownloadTypeSchema,
   }),
 );
 
@@ -102,6 +91,7 @@ export const teachersLessonOverviewSchema =
     loginRequired: z.boolean(),
     geoRestricted: z.boolean(),
     excludedFromTeachingMaterials: z.boolean(),
+    shouldHideCreateWithAi: z.boolean(),
     subjectCategories: z
       .array(z.union([z.string(), z.number(), z.null()]))
       .nullable(),
@@ -126,3 +116,12 @@ export type TeachersLessonBrowseDataByKs = Omit<
   SyntheticUnitvariantLessonsByKsCamel,
   "nullUnitvariantId" | "isLegacy"
 >;
+
+export const restrictionsSchema = z.object({
+  tpc_works_max_restriction: z.string().nullish(),
+  tpc_quizimages_max_restriction: z.string().nullish(),
+  tpc_media_max_restriction: z.string().nullish(),
+  tpc_downloadablefiles_max_restriction: z.string().nullish(),
+});
+
+export type Restrictions = z.infer<typeof restrictionsSchema>;

@@ -4,8 +4,6 @@ import "jest-styled-components";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 
-import { testAboutPageBaseData } from "./about-us.fixtures";
-
 import GetInvolved, {
   GetInvolvedPageProps,
   getStaticProps,
@@ -31,7 +29,6 @@ jest.mock("@/utils/featureFlagChecks/static", () => ({
 }));
 
 const testGetInvolvedPageData: GetInvolvedPageProps["pageData"] = {
-  ...testAboutPageBaseData,
   header: {
     introText:
       "We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.",
@@ -78,13 +75,17 @@ describe("pages/about/get-involved.tsx", () => {
   it("join panel link changes when feature flag is enabled", () => {
     (isFeatureFlagEnabledStatic as jest.Mock).mockImplementation(() => true);
 
-    const { getByRole } = renderWithProviders()(
+    const { getAllByRole } = renderWithProviders()(
       <GetInvolved pageData={testGetInvolvedPageData} topNav={topNavFixture} />,
     );
 
-    expect(
-      getByRole("link", { name: "Join the research panel" }),
-    ).toHaveAttribute("href", "/about-us/get-involved/join-research-panel");
+    const joinThePanelButton = getAllByRole("link", {
+      name: "Join the research panel",
+    })[0];
+    expect(joinThePanelButton).toHaveAttribute(
+      "href",
+      "/about-us/get-involved/join-research-panel",
+    );
   });
 
   describe("getStaticProps", () => {

@@ -12,6 +12,7 @@ import withPageErrorHandling, {
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import { getCopyrightRestrictionForSubject } from "@/utils/getCopyrightRestrictionForSubject";
 import { curriculumApiWithCache } from "@/node-lib/cache";
 
 // We are using dynamic route segments so we can't enable instant navigation without
@@ -71,7 +72,14 @@ const InnerLessonSharePage = async (
     lessonSlug,
   );
 
-  if (data.georestricted || data.loginRequired) {
+  const { resourceIsGeorestricted, resourceRequiresLogin } =
+    getCopyrightRestrictionForSubject({
+      subjectSlug: data.subjectSlug,
+      geoRestricted: data.georestricted,
+      loginRequired: data.loginRequired,
+    });
+
+  if (resourceIsGeorestricted || resourceRequiresLogin) {
     return notFound();
   }
 

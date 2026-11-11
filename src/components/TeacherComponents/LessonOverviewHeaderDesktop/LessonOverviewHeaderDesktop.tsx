@@ -53,10 +53,6 @@ export const LessonOverviewHeaderDesktop: FC<
     unitTitle,
     geoRestricted,
     loginRequired,
-    isLegacy,
-    lessonSlug,
-    lessonReleaseDate,
-    unitSlug,
     shareButtons,
   } = props;
 
@@ -144,12 +140,6 @@ export const LessonOverviewHeaderDesktop: FC<
                 isGeorestricted={geoRestricted}
                 isLoginRequired={loginRequired}
                 componentType="lesson_overview"
-                isLessonLegacy={isLegacy}
-                lessonName={lessonTitle}
-                lessonSlug={lessonSlug}
-                lessonReleaseDate={lessonReleaseDate}
-                unitName={unitTitle}
-                unitSlug={unitSlug}
               />
             </OakFlex>
           </OakFlex>

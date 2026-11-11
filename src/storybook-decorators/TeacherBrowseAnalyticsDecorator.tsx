@@ -13,7 +13,10 @@ const state: TeacherBrowseAnalyticsStore = {
   avo: { ...noopTrackingFns, NavigatedFrom },
   journeyId: "mockJourneyId",
   accessLevel: "unit",
+  posthogDistinctId: "mockPosthogDistinctId",
   track: {
+    contentBlockNotificationDisplayed: () =>
+      console.log("contentBlockNotificationDisplayed fired"),
     contentSaved: () => console.log("contentSaved fired"),
     contentUnsaved: () => console.log("contentUnsaved fired"),
     createTeachingMaterialsInitiated: () =>
@@ -37,7 +40,7 @@ const state: TeacherBrowseAnalyticsStore = {
     teachWithOakDownloaded: () => console.log("teachWithOakDownloaded fired"),
     teachingMaterialsSelected: () =>
       console.log("teachingMaterialsSelected fired"),
-    unitDownloadStarted: () => console.log("unitDownloadStarted fired"),
+    signInStarted: () => console.log("signInStarted fired"),
     newsletterSignUpCompleted: () =>
       console.log("newsletterSignUpCompleted fired"),
     programmeAccessed: () => console.log("programmeAccessed fired"),
@@ -58,6 +61,9 @@ const state: TeacherBrowseAnalyticsStore = {
     searchResultExpanded: () => console.log("searchResultExpanded fired"),
     searchResultOpened: () => console.log("searchResultOpened fired"),
     searchFilterModified: () => console.log("searchFilterModified fired"),
+    userOnboardingCompleted: () => console.log("userOnboardingCompleted fired"),
+    userOnboardingProgressed: () =>
+      console.log("userOnboardingProgressed fired"),
   },
 };
 

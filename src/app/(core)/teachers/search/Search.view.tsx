@@ -22,24 +22,19 @@ import {
   trackSearchModified,
 } from "./helpers";
 
-import { useFeatureFlagVariantKey } from "@/browser-lib/posthog/featureFlags";
 import { SearchProps } from "@/components/TeacherViews/Search/search.view.types";
 import { ContentFilterToggle } from "@/components/TeacherViews/Search/ContentFilterToggle";
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import SearchFilters from "@/components/TeacherComponents/SearchFilters";
-import SearchActiveFilters from "@/components/TeacherComponents/SearchActiveFilters";
 import SearchForm from "@/components/SharedComponents/SearchForm";
 import SearchResults from "@/components/TeacherComponents/SearchResults";
 import NoSearchResults from "@/components/TeacherComponents/NoSearchResults";
 import SignPostToAila from "@/components/TeacherComponents/NoSearchResults/SignPostToAila";
-import MiniDropDown from "@/components/TeacherComponents/MiniDropdown";
-import SearchSuggestedFilters from "@/components/TeacherComponents/SearchSuggestedFilters/SearchSuggestedFilters";
-import { useSuggestedFilters } from "@/app/(core)/teachers/search/useSuggestedFilters";
-import { SearchSuggestionBanner } from "@/components/TeacherComponents/SearchSuggestionBanner/SearchSuggestionBanner";
 import DelayedLoadingContainer from "@/components/SharedComponents/DelayedLoadingContainer";
 import { srOnlyCss } from "@/components/SharedComponents/ScreenReaderOnly";
+import SearchActiveFilters from "@/components/TeacherComponents/SearchActiveFilters";
 
 const CustomWidthFlex = styled(OakFlex)`
   max-width: 300px;
@@ -80,7 +75,6 @@ const Search: FC<SearchProps> = (props) => {
     searchFilters,
     searchStartTime,
     setSearchStartTime,
-    setQuery,
   } = props;
   const track = useTeacherBrowseAnalytics((store) => store.track);
   const router = useRouter();
@@ -107,13 +101,6 @@ const Search: FC<SearchProps> = (props) => {
   const shouldShowNoResultsMessage = status === "success" && !hitCount;
   const shouldShowResults = status === "success" && hitCount > 0;
 
-  const isAiExperimentSearchEnabled =
-    useFeatureFlagVariantKey("ai-experiment-search") === "search-with-ai";
-
-  const suggestedFilters = useSuggestedFilters({
-    term: query.term,
-    enabled: Boolean(isAiExperimentSearchEnabled),
-  });
   useEffect(() => {
     if (query.term && status === "loading") {
       setSearchStartTime(performance.now());
@@ -134,7 +121,14 @@ const Search: FC<SearchProps> = (props) => {
       searchStartTime &&
       (status === "success" || status === "fail")
     ) {
-      if (!searchHasFilters) {
+      if (searchHasFilters) {
+        track.searchRefined({
+          componentType: "filter_link",
+          searchResultCount: hitCount,
+          activeFilters: getActiveFilters(searchQueryParams),
+          searchTerm: query.term,
+        });
+      } else {
         const searchEndTime = performance.now();
         track.searchAccessed({
           searchTerm: query.term,
@@ -143,13 +137,6 @@ const Search: FC<SearchProps> = (props) => {
           searchResultsLoadTime: Math.floor(searchEndTime - searchStartTime),
         });
         setSearchStartTime(null);
-      } else {
-        track.searchRefined({
-          componentType: "filter_link",
-          searchResultCount: hitCount,
-          activeFilters: getActiveFilters(searchQueryParams),
-          searchTerm: query.term,
-        });
       }
     }
   }, [
@@ -242,62 +229,6 @@ const Search: FC<SearchProps> = (props) => {
     }
   };
 
-  const renderAiExperimentFilters = () => {
-    if (!shouldShowResults) {
-      return null;
-    }
-
-    const renderAllFilters = () => {
-      if (suggestedFilters.status === "success") {
-        return (
-          <MiniDropDown label="All filters">
-            <OakBox $pt="spacing-16">
-              <SearchFilters
-                {...searchFilters}
-                trackSearchModified={trackSearchModified(
-                  query.term,
-                  track.searchFilterModified,
-                )}
-              />
-            </OakBox>
-          </MiniDropDown>
-        );
-      }
-
-      if (suggestedFilters.status === "loading") {
-        return null;
-      }
-
-      return (
-        <SearchFilters
-          {...searchFilters}
-          trackSearchModified={trackSearchModified(
-            query.term,
-            track.searchFilterModified,
-          )}
-        />
-      );
-    };
-
-    return (
-      <>
-        {suggestedFilters.status === "loading" && (
-          <DelayedLoadingSpinnerWithLabel label="Loading filters" />
-        )}
-        <SearchSuggestedFilters
-          setQuery={setQuery}
-          query={query}
-          searchFilters={suggestedFilters.searchFilters}
-          trackSearchModified={trackSearchModified(
-            query.term,
-            track.searchFilterModified,
-          )}
-        />
-        {renderAllFilters()}
-      </>
-    );
-  };
-
   return (
     <OakFlex
       $minHeight={"100vh"}
@@ -335,63 +266,52 @@ const Search: FC<SearchProps> = (props) => {
                 />
               </OakBox>
 
-              {!isAiExperimentSearchEnabled && (
-                <OakFlex
-                  $mt={["spacing-0", "spacing-32"]}
-                  $alignItems={"center"}
-                  $display={["flex", "none", "none"]}
-                >
-                  <ContentFilterToggle
-                    contentTypeFilters={searchFilters.contentTypeFilters}
-                    idSuffix="mobile"
-                    trackSearchModified={(checked, filterType, filterValue) =>
-                      trackSearchModified(
-                        query.term,
-                        track.searchFilterModified,
-                      )({
-                        checked,
-                        filterType,
-                        filterValue,
-                        searchFilterMatchType: "default",
-                      })
-                    }
-                  />
-                  <OakBox
-                    $position={"absolute"}
-                    $width={"100%"}
-                    $ph={"spacing-16"}
-                    $right={"spacing-0"}
-                    $pointerEvents={"none"}
-                  >
-                    <MobileFilters
-                      $mt={"spacing-0"}
-                      label="Filters"
-                      hasShowResultsButton={true}
-                    >
-                      <OakBox>
-                        <SearchFilters
-                          {...searchFilters}
-                          isMobileFilter
-                          trackSearchModified={trackSearchModified(
-                            query.term,
-                            track.searchFilterModified,
-                          )}
-                        />
-                      </OakBox>
-                    </MobileFilters>
-                  </OakBox>
-                </OakFlex>
-              )}
-            </OakFlex>
-            {isAiExperimentSearchEnabled && (
-              <OakBox
-                $display={["block", "block", "none"]}
-                $mb="spacing-12"
-                $ph={["spacing-0", "spacing-0", "spacing-24"]}
+              <OakFlex
+                $mt={["spacing-0", "spacing-32"]}
+                $alignItems={"center"}
+                $display={["flex", "none", "none"]}
               >
-                {renderAiExperimentFilters()}
-              </OakBox>
-            )}
+                <ContentFilterToggle
+                  contentTypeFilters={searchFilters.contentTypeFilters}
+                  idSuffix="mobile"
+                  trackSearchModified={(checked, filterType, filterValue) =>
+                    trackSearchModified(
+                      query.term,
+                      track.searchFilterModified,
+                    )({
+                      checked,
+                      filterType,
+                      filterValue,
+                      searchFilterMatchType: "default",
+                    })
+                  }
+                />
+                <OakBox
+                  $position={"absolute"}
+                  $width={"100%"}
+                  $ph={"spacing-16"}
+                  $right={"spacing-0"}
+                  $pointerEvents={"none"}
+                >
+                  <MobileFilters
+                    $mt={"spacing-0"}
+                    label="Filters"
+                    hasShowResultsButton={true}
+                  >
+                    <OakBox>
+                      <SearchFilters
+                        {...searchFilters}
+                        isMobileFilter
+                        trackSearchModified={trackSearchModified(
+                          query.term,
+                          track.searchFilterModified,
+                        )}
+                      />
+                    </OakBox>
+                  </MobileFilters>
+                </OakBox>
+              </OakFlex>
+            </OakFlex>
             <OakBox
               $height={["spacing-0", "spacing-0", "spacing-4"]}
               $mb={["spacing-48", "spacing-16"]}
@@ -410,44 +330,34 @@ const Search: FC<SearchProps> = (props) => {
               <CustomWidthFlex
                 $flexDirection="column"
                 $mb="spacing-32"
-                $display={[
-                  "none",
-                  isAiExperimentSearchEnabled ? "none" : "flex",
-                  "flex",
-                ]}
+                $display={["none", "flex", "flex"]}
               >
-                {isAiExperimentSearchEnabled ? (
-                  renderAiExperimentFilters()
-                ) : (
-                  <>
-                    <OakFlex
-                      $mb="spacing-16"
-                      $flexDirection="column"
-                      $gap="spacing-8"
-                    >
-                      <OakHeading tag="h2" $font="heading-6">
-                        Filters
-                      </OakHeading>
-                      <SkipToResultsButton element="a" href="#search-results">
-                        Skip to results
-                      </SkipToResultsButton>
-                    </OakFlex>
-                    <SearchFilters
-                      {...searchFilters}
-                      isMobileFilter={false}
-                      trackSearchModified={trackSearchModified(
-                        query.term,
-                        track.searchFilterModified,
-                      )}
-                    />
-                  </>
-                )}
+                <OakFlex
+                  $mb="spacing-16"
+                  $flexDirection="column"
+                  $gap="spacing-8"
+                >
+                  <OakHeading tag="h2" $font="heading-6">
+                    Filters
+                  </OakHeading>
+                  <SkipToResultsButton element="a" href="#search-results">
+                    Skip to results
+                  </SkipToResultsButton>
+                </OakFlex>
+                <SearchFilters
+                  {...searchFilters}
+                  isMobileFilter={false}
+                  trackSearchModified={trackSearchModified(
+                    query.term,
+                    track.searchFilterModified,
+                  )}
+                />
               </CustomWidthFlex>
             </OakGridArea>
           )}
           <OakGridArea
-            $colSpan={[12, isAiExperimentSearchEnabled ? 12 : 7, 7]}
-            $colStart={[1, isAiExperimentSearchEnabled ? 1 : 5, 5]}
+            $colSpan={[12, 7, 7]}
+            $colStart={[1, 5, 5]}
             $rowStart={2}
           >
             <OakBox role="status" aria-live="polite">
@@ -487,11 +397,7 @@ const Search: FC<SearchProps> = (props) => {
                   <OakFlex
                     $flexDirection={"column"}
                     $gap={"spacing-24"}
-                    $display={[
-                      "none",
-                      isAiExperimentSearchEnabled ? "none" : "flex",
-                      "flex",
-                    ]}
+                    $display={["none", "flex", "flex"]}
                     $pl="spacing-24"
                   >
                     <ContentFilterToggle
@@ -513,29 +419,7 @@ const Search: FC<SearchProps> = (props) => {
                       Showing {results.length} result
                       {results.length === 1 ? "" : "s"}
                     </OakP>
-                    <SearchSuggestionBanner
-                      intent={suggestedFilters.data}
-                      searchTrackingData={{
-                        searchResultCount: hitCount,
-                        searchFilterOptionSelected,
-                      }}
-                    />
                   </OakFlex>
-                  <OakBox
-                    $display={[
-                      "block",
-                      isAiExperimentSearchEnabled ? "block" : "none",
-                      "none",
-                    ]}
-                  >
-                    <SearchSuggestionBanner
-                      intent={suggestedFilters.data}
-                      searchTrackingData={{
-                        searchResultCount: hitCount,
-                        searchFilterOptionSelected,
-                      }}
-                    />
-                  </OakBox>
                   <SearchResults
                     hits={results}
                     allKeyStages={allKeyStages}

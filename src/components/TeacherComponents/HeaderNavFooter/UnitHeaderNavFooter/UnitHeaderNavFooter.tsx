@@ -211,8 +211,8 @@ function getUnitHeaderNavFooterAppearance(
 
 export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
   const { sentinelRef, isStuck } = props;
-  const programmeAccessed = useTeacherBrowseAnalytics(
-    (store) => store.track.programmeAccessed,
+  const { programmeAccessed } = useTeacherBrowseAnalytics(
+    (store) => store.track,
   );
   const shellRef = useRef<HTMLDivElement>(null);
   const [mobileFlowHeight, setMobileFlowHeight] = useState(0);
@@ -311,7 +311,13 @@ export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
                 $gap={"spacing-16"}
                 $alignItems={"center"}
               >
-                <PrevNextButtons type="unit" $display={"flex"} {...props} />
+                <PrevNextButtons
+                  type="unit"
+                  $display={"flex"}
+                  backgroundColorLevel={props.backgroundColorLevel}
+                  prev={props.prev}
+                  next={props.next}
+                />
                 <DecorativeDivider
                   orientation="vertical"
                   borderColor={borderColor}
@@ -322,7 +328,9 @@ export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
             <PrevNextButtons
               type="unit"
               $display={displays.mobilePrevNext}
-              {...props}
+              backgroundColorLevel={props.backgroundColorLevel}
+              prev={props.prev}
+              next={props.next}
             />
             <OakBox $display={displays.viewAllUnits}>
               <OakSmallPrimaryInvertedButton

@@ -12,6 +12,8 @@ import { TeachersLessonOverviewAdjacentLesson } from "@/node-lib/curriculum-api-
 import { getBreakpoint } from "@/styles/utils/responsive";
 import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
+import { ComponentType } from "@/browser-lib/avo/Avo";
 
 export type LessonHeaderProps = Omit<LargeHeaderProps, "layoutVariant"> & {
   currentLessonSlug: string;
@@ -34,9 +36,9 @@ const LessonHeader = (props: LessonHeaderProps) => {
     georestricted,
     ...restProps
   } = props;
-  const { lessonResourceDownloadStarted } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
+  const { lessonResourceDownloadStarted, lessonAccessed, signInStarted } =
+    useTeacherBrowseAnalytics((store) => store.track);
+  const { lessonState } = useProgrammeState();
 
   return (
     <>
@@ -53,24 +55,48 @@ const LessonHeader = (props: LessonHeaderProps) => {
           unitSlug,
           programmeSlug,
         })}
-        prevHref={
+        prev={
           prevLesson
-            ? resolveOakHref({
-                page: "lesson-overview",
-                lessonSlug: prevLesson.lessonSlug,
-                programmeSlug,
-                unitSlug,
-              })
+            ? {
+                href: resolveOakHref({
+                  page: "lesson-overview",
+                  lessonSlug: prevLesson.lessonSlug,
+                  programmeSlug,
+                  unitSlug,
+                }),
+                onClick: () =>
+                  lessonAccessed({
+                    componentType: "header_button",
+                    navigationType: "across",
+                    lessonName: prevLesson.lessonTitle,
+                    lessonSlug: prevLesson.lessonSlug,
+                    lessonReleaseCohort: "2023-2026",
+                    lessonReleaseDate:
+                      lessonState?.lesson.lessonReleaseDate ?? "unknown",
+                  }),
+              }
             : undefined
         }
-        nextHref={
+        next={
           nextLesson
-            ? resolveOakHref({
-                page: "lesson-overview",
-                lessonSlug: nextLesson.lessonSlug,
-                unitSlug,
-                programmeSlug,
-              })
+            ? {
+                href: resolveOakHref({
+                  page: "lesson-overview",
+                  lessonSlug: nextLesson.lessonSlug,
+                  unitSlug,
+                  programmeSlug,
+                }),
+                onClick: () =>
+                  lessonAccessed({
+                    componentType: "header_button",
+                    navigationType: "across",
+                    lessonName: nextLesson.lessonTitle,
+                    lessonSlug: nextLesson.lessonSlug,
+                    lessonReleaseCohort: "2023-2026",
+                    lessonReleaseDate:
+                      lessonState?.lesson.lessonReleaseDate ?? "unknown",
+                  }),
+              }
             : undefined
         }
         downloadButton={
@@ -79,7 +105,13 @@ const LessonHeader = (props: LessonHeaderProps) => {
             loginRequired={loginRequired}
             geoRestricted={georestricted}
             onboardingProps={{ name: "Onboard to download" }}
-            signUpProps={{ name: "Sign in to download" }}
+            signUpProps={{
+              name: "Sign in to download",
+              onClick: () =>
+                signInStarted({
+                  componentType: ComponentType.LESSON_DOWNLOAD_ALL_BUTTON,
+                }),
+            }}
             actionProps={{
               name: (
                 <OakSpan>
