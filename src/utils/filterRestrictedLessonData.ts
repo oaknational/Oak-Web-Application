@@ -12,26 +12,24 @@ export function filterRestrictedLessonData(
   data: TeachersLessonOverviewPageData,
   authState: AuthState,
 ): TeachersLessonOverviewPageData {
-  const { resourceIsGeorestricted, resourceRequiresLogin } =
-    getCopyrightRestrictionForSubject({
+  const {
+    showSignedOutLoginRequired,
+    showSignedOutGeoRestricted,
+    showSignedInNotOnboarded,
+    showGeoBlocked,
+  } = getLessonCopyrightState(
+    {
       subjectSlug: data.subjectSlug,
       geoRestricted: data.geoRestricted,
       loginRequired: data.loginRequired,
-    });
-
-  const isSignedOutAndRestricted =
-    !authState.isSignedIn && (resourceIsGeorestricted || resourceRequiresLogin);
-  const isSignedInButNotOnboarded =
-    authState.isSignedIn &&
-    !authState.isOnboarded &&
-    (resourceRequiresLogin || resourceIsGeorestricted);
-  const isGeorestricted =
-    authState.isSignedIn &&
-    resourceIsGeorestricted &&
-    !authState.isRegionAuthorised;
-
+    },
+    authState,
+  );
   const isRestricted =
-    isSignedOutAndRestricted || isSignedInButNotOnboarded || isGeorestricted;
+    showSignedOutLoginRequired ||
+    showSignedOutGeoRestricted ||
+    showSignedInNotOnboarded ||
+    showGeoBlocked;
 
   if (!isRestricted) return data;
 
@@ -47,5 +45,42 @@ export function filterRestrictedLessonData(
     presentationUrl: null,
     lessonGuideUrl: null,
     hasMediaClips: false,
+  };
+}
+
+export function getLessonCopyrightState(
+  data: Pick<
+    TeachersLessonOverviewPageData,
+    "subjectSlug" | "geoRestricted" | "loginRequired"
+  >,
+  authState: AuthState,
+) {
+  const { resourceIsGeorestricted, resourceRequiresLogin } =
+    getCopyrightRestrictionForSubject({
+      subjectSlug: data.subjectSlug,
+      geoRestricted: data.geoRestricted,
+      loginRequired: data.loginRequired,
+    });
+
+  const showSignedOutLoginRequired =
+    !authState.isSignedIn && resourceRequiresLogin;
+  const showSignedOutGeoRestricted =
+    !authState.isSignedIn && resourceIsGeorestricted;
+  const showSignedInNotOnboarded =
+    authState.isSignedIn &&
+    !authState.isOnboarded &&
+    (resourceRequiresLogin || resourceIsGeorestricted);
+  const showGeoBlocked =
+    authState.isSignedIn &&
+    resourceIsGeorestricted &&
+    !authState.isRegionAuthorised;
+
+  return {
+    showSignedOutLoginRequired,
+    showSignedOutGeoRestricted,
+    showSignedInNotOnboarded,
+    showGeoBlocked,
+    isLoaded: true,
+    isResourceGeorestricted: resourceIsGeorestricted,
   };
 }
