@@ -13,10 +13,18 @@ jest.mock("@/utils/featureFlagChecks/server", () => ({
   isFeatureFlagEnabledServer: jest.fn(() => false),
 }));
 
+const seoFixture = {
+  title: "NC Alignment Checker",
+  description: "Check alignment with the national curriculum",
+};
+
 describe("pages/nc-alignment-checker.tsx", () => {
   it("renders", () => {
     const { container } = renderWithProviders()(
-      <NcAlignmentChecker topNav={topNavFixture} />,
+      <NcAlignmentChecker
+        topNav={topNavFixture}
+        pageData={{ blocks: [], seo: seoFixture }} // TODO: add in fixtures for each block once components are built
+      />,
     );
 
     expect(container).toMatchSnapshot();
