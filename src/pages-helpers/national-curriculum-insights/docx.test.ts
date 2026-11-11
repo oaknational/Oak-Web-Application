@@ -203,9 +203,9 @@ describe("National Curriculum Insights documents", () => {
     const documentXml = await zip.file("word/document.xml")!.async("string");
 
     expect(documentXml).toContain("Science");
-    expect(documentXml).toContain("curriculum: primary Science");
-    expect(documentXml).toContain("KS1 Science");
-    expect(documentXml).toContain("KS2 Science");
+    expect(documentXml).toContain("curriculum: primary science");
+    expect(documentXml).toContain("KS1 science");
+    expect(documentXml).toContain("KS2 science");
     expect(documentXml).toContain("Phase headlines for primary Science.");
     expect(documentXml).toContain(
       "The KS1 curriculum builds on what pupils already know.",
@@ -301,7 +301,7 @@ describe("National Curriculum Insights documents", () => {
         subjectTitle: "Science",
       }),
     ).toMatch(
-      /^National curriculum insights - Science - Primary - \d{2}-\d{2}-\d{4}\.docx$/,
+      /^National curriculum insights - science - primary - \d{2}-\d{2}-\d{4}\.docx$/,
     );
   });
 
@@ -312,7 +312,7 @@ describe("National Curriculum Insights documents", () => {
       downloadedAt: new Date(2026, 9, 13),
     });
     expect(filename).toBe(
-      "National curriculum insights - Art Design Music examples - Primary - 13-10-2026.docx",
+      "National curriculum insights - art design music examples - primary - 13-10-2026.docx",
     );
   });
 

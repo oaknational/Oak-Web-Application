@@ -19,10 +19,7 @@ export const writeInsightsDocxRelationships = (
         URL.canParse(target)
           ? insightsDocumentLink(new URL(target))
           : target;
-      relationship.attributes!.Target = href
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;");
+      relationship.attributes!.Target = href;
     }
   }
   zip.writeJson(path, relationships);

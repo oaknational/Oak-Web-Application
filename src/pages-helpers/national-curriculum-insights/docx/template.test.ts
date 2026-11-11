@@ -130,8 +130,8 @@ it.each(layouts)(
     expect(links.length).toBeGreaterThan(5);
     expect(links.every((name) => bookmarks.has(name))).toBe(true);
     if (stages.length === 2) {
-      expect(xml.indexOf(`${stages[0]} Science`)).toBeLessThan(
-        xml.indexOf(`${stages[1]} Science`),
+      expect(xml.indexOf(`${stages[0]} science`)).toBeLessThan(
+        xml.indexOf(`${stages[1]} science`),
       );
     }
     if (stages.length === 1) {
@@ -142,7 +142,7 @@ it.each(layouts)(
       const subtitle = paragraphs[2]!;
       expect(subtitle.textContent).toBe(stages[0]);
       expect(paragraphs[1]!.textContent).toContain(
-        `curriculum: ${phase} Science`,
+        `curriculum: ${phase} science`,
       );
     }
     const styles = await zip.file("word/styles.xml")!.async("string");
@@ -153,6 +153,34 @@ it.each(layouts)(
     expect(new Set(styleIds).size).toBe(styleIds.length);
     expect(styles).toContain('w:default="1" w:styleId="Normal"');
     expect(styles).toContain('w:default="1" w:styleId="DefaultParagraphFont"');
+  },
+);
+
+it.each([
+  ["History", "history"],
+  ["English", "English"],
+  ["French", "French"],
+  ["PE", "PE"],
+  ["Art & Design", "art & design"],
+])(
+  "uses the agreed subject casing for %s throughout generated labels",
+  async (title, label) => {
+    const buffer = await generateNationalCurriculumInsightsDocx({
+      phase: "primary",
+      subject: { ...createDownloadFixture("primary", ["KS1", "KS2"]), title },
+      sharedModules: sharedDownloadFixtureModules,
+      siteUrl: "https://www.thenational.academy",
+    });
+    const zip = await JSZip.loadAsync(buffer);
+    const xml = await zip.file("word/document.xml")!.async("string");
+    const header = await zip.file("word/header1.xml")!.async("string");
+    expect(xml).toContain(
+      `Changes to the national curriculum: primary ${label}`,
+    );
+    expect(header).toContain(`curriculum: primary ${label}`);
+    expect(xml).toContain(`KS1 ${label}`);
+    expect(xml).toContain(`KS2 ${label}`);
+    expect(xml).toContain("School and curriculum leader checklist");
   },
 );
 

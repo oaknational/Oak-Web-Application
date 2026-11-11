@@ -30,6 +30,7 @@ const SEND_INSTANTLY_EVENTS: ReadonlySet<string> = new Set<string>([
   "NC Insights Dwell Threshold Reached",
   "NC Insights Engagement Criteria Met",
   "NC Insights CTA Clicked",
+  "Sign in Started",
 ]);
 /**
  * getAvoBridge returns the bridge between Avo and our analytics services.

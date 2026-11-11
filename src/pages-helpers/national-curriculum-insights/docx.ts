@@ -18,6 +18,7 @@ import { fillInsightsDocxFurniture } from "./docx/furniture";
 import { validateInsightsDocxContent } from "./docx/validation";
 import { addInsightsDocxStyles } from "./docx/styles";
 
+import { uncapitalizeSubject } from "@/pages-helpers/curriculum/docx/builder/helper";
 import { xmlElementToJson } from "@/pages-helpers/curriculum/docx/xml";
 import {
   appendBodyElements,
@@ -33,9 +34,6 @@ import {
   nationalCurriculumInsightsPath,
   nationalCurriculumInsightsSubjectPhaseHref,
 } from "@/common-lib/urls/nationalCurriculumInsights";
-
-const phaseLabel = (phase: NationalCurriculumInsightsPhase) =>
-  phase === "primary" ? "Primary" : "Secondary";
 
 const filenameSubject = (title: string) => {
   const normalized = title
@@ -64,7 +62,7 @@ export const nationalCurriculumInsightsDownloadFilename = ({
   subjectTitle: string;
   downloadedAt?: Date;
 }) =>
-  `National curriculum insights - ${filenameSubject(subjectTitle)} - ${phaseLabel(phase)} - ${format(
+  `National curriculum insights - ${filenameSubject(uncapitalizeSubject(subjectTitle))} - ${phase} - ${format(
     downloadedAt,
     "dd-MM-yyyy",
   )}.docx`;
@@ -110,14 +108,15 @@ export const generateNationalCurriculumInsightsDocx = async ({
   ).toString();
   const hubUrl = new URL(nationalCurriculumInsightsPath, siteUrl).toString();
   const richText = createInsightsDocxRichText(zip, pageUrl);
+  const subjectTitle = uncapitalizeSubject(subject.title);
   const { cover, contents, body } = await buildInsightsDocxContent({
     page: tab.page,
     stages: keyStages,
-    subjectTitle: subject.title,
+    subjectTitle,
     richText,
     sharedModules,
   });
-  const title = `Changes to the national curriculum: ${phase} ${subject.title}`;
+  const title = `Changes to the national curriculum: ${phase} ${subjectTitle}`;
   const header = tab.page.modules.find(
     (module) => module.__typename === "NationalCurriculumInsightsHeaderSection",
   );
