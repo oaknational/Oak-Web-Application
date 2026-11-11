@@ -17,13 +17,20 @@ import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import { AuthState } from "@/utils/filterRestrictedLessonData";
 
 const lessonResourceDownloadStarted = jest.fn();
 const lessonMediaClipsStarted = jest.fn();
 const lessonShareStarted = jest.fn();
 const mockCreateTeachingMaterialsInitiated = jest.fn();
 const mockTeachingMaterialsSelected = jest.fn();
+const mockContentBlockNotificationDisplayed = jest.fn();
 const lessonAccessed = jest.fn();
+const mockAuthState = {
+  isSignedIn: true,
+  isOnboarded: true,
+  isRegionAuthorised: true,
+};
 
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -40,6 +47,8 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
       teachingMaterialsSelected: (...args: unknown[]) =>
         mockTeachingMaterialsSelected(...args),
       lessonAccessed: (...args: unknown[]) => lessonAccessed(...args),
+      contentBlockNotificationDisplayed: (...args: unknown[]) =>
+        mockContentBlockNotificationDisplayed(...args),
     },
   }),
 }));
@@ -63,8 +72,16 @@ const mockUseFeatureFlagVariantKey =
 
 const baseProps = teachersLessonOverviewFixture();
 
-const renderLessonView = (props?: Partial<TeachersLessonOverviewPageData>) => {
-  return renderWithProviders()(<LessonView {...baseProps} {...props} />);
+const renderLessonView = (
+  props?: Partial<TeachersLessonOverviewPageData>,
+  authState?: AuthState,
+) => {
+  return renderWithProviders()(
+    <LessonView
+      props={{ ...baseProps, ...props }}
+      authState={authState ?? mockAuthState}
+    />,
+  );
 };
 
 const resizeWindow = (width: number, height: number) => {
@@ -172,17 +189,20 @@ describe("Previous and Next Lesson Navigation", () => {
       },
     })(
       <LessonView
-        {...baseProps}
-        previousLesson={{
-          lessonSlug: "lesson-2",
-          lessonTitle: "Previous lesson",
-          lessonIndex: 2,
+        props={{
+          ...baseProps,
+          previousLesson: {
+            lessonSlug: "lesson-2",
+            lessonTitle: "Previous lesson",
+            lessonIndex: 2,
+          },
+          nextLesson: {
+            lessonSlug: "lesson-4",
+            lessonTitle: "Next lesson",
+            lessonIndex: 4,
+          },
         }}
-        nextLesson={{
-          lessonSlug: "lesson-4",
-          lessonTitle: "Next lesson",
-          lessonIndex: 4,
-        }}
+        authState={mockAuthState}
       />,
     );
     const nextLessonLink = screen.getByRole("link", { name: /Next lesson/i });
@@ -392,7 +412,10 @@ describe("Lesson resources", () => {
   });
 
   it("does not render create with ai button when the lesson has complex copyright", () => {
-    renderLessonView({ geoRestricted: true, loginRequired: true });
+    renderLessonView(
+      { geoRestricted: true, loginRequired: true },
+      { isSignedIn: true, isOnboarded: true, isRegionAuthorised: false },
+    );
 
     const createWithAiButton = screen.queryByRole("button", {
       name: "Create more with AI",
