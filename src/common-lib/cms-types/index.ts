@@ -16,3 +16,4 @@ export * from "./teamMember";
 export * from "./blogListingPage";
 export * from "./curriculumOverview";
 export * from "./nationalCurriculumInsights";
+export * from "./ncAlignmentChecker";

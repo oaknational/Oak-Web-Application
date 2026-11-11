@@ -1,0 +1,4 @@
+fragment Faq on Faq {
+  question
+  answerRaw
+}
