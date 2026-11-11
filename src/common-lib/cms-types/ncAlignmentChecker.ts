@@ -1,9 +1,10 @@
-// Landing Page
-
 import z from "zod";
 
 import { portableTextSchema } from "./portableText";
 import { imageSchema, quoteSchema, faqSchema, seoSchema } from "./base";
+import { teamMemberSchema } from "./teamMember";
+
+// Landing Page
 
 const subjectPickerSchema = z.object({
   title: z.string(),
@@ -54,7 +55,7 @@ export const ncAlignmentCheckerLandingPageSubjectExpertsSchema = z.object({
   ),
   title: z.string(),
   bodyRaw: portableTextSchema,
-  //   people: z.array(teamMemberSchema),
+  people: z.array(teamMemberSchema),
 });
 
 export const ncAlignmentCheckerLandingPageQuotesSchema = z.object({
