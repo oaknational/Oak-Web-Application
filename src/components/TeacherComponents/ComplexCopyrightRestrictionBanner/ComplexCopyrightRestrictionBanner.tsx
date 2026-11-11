@@ -3,7 +3,6 @@ import { SignUpButton } from "@clerk/nextjs";
 import {
   OakLink,
   OakP,
-  OakSecondaryLink,
   OakSpan,
   OakInlineBanner,
   OakSmallTertiaryInvertedButton,
@@ -18,18 +17,21 @@ import {
   COPYRIGHT_CONTACT_US_LINK,
   COPYRIGHT_SUPPORT_LINK,
 } from "@/utils/copyrightLinks";
-import { useComplexCopyright } from "@/hooks/useComplexCopyright";
+import {
+  useComplexCopyright,
+  UseComplexCopyrightReturn,
+} from "@/hooks/useComplexCopyright";
 
 type InnerCopyrightBannerProps = Omit<
   ComponentProps<typeof OakInlineBanner>,
   "message" | "isOpen"
 >;
-
 export type ComplexCopyrightRestrictionBannerProps =
   InnerCopyrightBannerProps & {
     isGeorestricted?: boolean;
     isLoginRequired?: boolean;
     componentType?: ComponentTypeValueType;
+    copyrightState?: UseComplexCopyrightReturn;
   };
 
 const SignedOutCopyrightBanner = ({
@@ -74,7 +76,8 @@ const SignedOutCopyrightBanner = ({
           to view and download resources from this {isUnit ? "unit" : "lesson"},
           you’ll need to {isGeorestricted && `be in the UK and `}
           {showOnboardingLink ? (
-            <OakSecondaryLink
+            <OakLink
+              variant="secondary"
               data-testid="copyright-banner-onboarding-link"
               href={resolveOakHref({
                 page: "onboarding",
@@ -82,16 +85,17 @@ const SignedOutCopyrightBanner = ({
               })}
             >
               complete sign up.
-            </OakSecondaryLink>
+            </OakLink>
           ) : (
             <SignUpButton forceRedirectUrl={`/onboarding?returnTo=${returnTo}`}>
-              <OakSecondaryLink
+              <OakLink
+                variant="secondary"
                 data-testid="copyright-banner-signin-link"
                 element="button"
                 onClick={onSignInClick}
               >
                 sign in.
-              </OakSecondaryLink>
+              </OakLink>
             </SignUpButton>
           )}
         </OakP>
@@ -137,16 +141,18 @@ const ComplexCopyrightRestrictionBanner = (
 ) => {
   const { isGeorestricted, isLoginRequired, componentType, ...rest } = props;
 
+  const clientCopyrightState = useComplexCopyright({
+    geoRestricted: isGeorestricted ?? false,
+    loginRequired: isLoginRequired ?? false,
+  });
+
   const {
     showSignedOutGeoRestricted,
     showSignedOutLoginRequired,
     showSignedInNotOnboarded,
     showGeoBlocked,
     isResourceGeorestricted,
-  } = useComplexCopyright({
-    loginRequired: isLoginRequired ?? false,
-    geoRestricted: isGeorestricted ?? false,
-  });
+  } = props.copyrightState ?? clientCopyrightState;
 
   const { contentBlockNotificationDisplayed, signInStarted } =
     useTeacherBrowseAnalytics((store) => store.track);
@@ -173,9 +179,11 @@ const ComplexCopyrightRestrictionBanner = (
     showSignedOutLoginRequired ||
     showSignedInNotOnboarded;
 
-  return showGeoBlocked ? (
-    <SignedInGeorestrictedBanner isUnit={isUnit} {...rest} />
-  ) : showSignedOutCopyrightBanner ? (
+  if (showGeoBlocked) {
+    return <SignedInGeorestrictedBanner isUnit={isUnit} {...rest} />;
+  }
+
+  return showSignedOutCopyrightBanner ? (
     <SignedOutCopyrightBanner
       showOnboardingLink={showSignedInNotOnboarded}
       isGeorestricted={isResourceGeorestricted}
