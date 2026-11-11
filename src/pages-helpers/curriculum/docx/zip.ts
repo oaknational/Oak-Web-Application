@@ -5,6 +5,7 @@ import { ElementCompact, Element, json2xml } from "xml-js";
 
 import { xmlRootToJson } from "./xml";
 import { generateHash } from "./docx";
+import { escapeXml } from "./utils";
 
 type zipToSimpleObjectOpts = {
   convertXmlToJson?: boolean;
@@ -31,6 +32,7 @@ export async function zipToSimpleObject(
               indentText: true,
               fullTagEmptyElement: true,
               indentAttributes: true,
+              attributeValueFn: escapeXml,
             },
           );
         }

@@ -59,7 +59,7 @@ export default function JoinResearchPanelFaqs({
                 }
                 $borderColor={"border-neutral-lighter"}
               >
-                <OakBox $mt="spacing-20">
+                <OakBox $mt="spacing-20" $mb="spacing-2">
                   <PortableTextWithDefaults value={item.answerRaw} />
                 </OakBox>
               </OakBasicAccordion>

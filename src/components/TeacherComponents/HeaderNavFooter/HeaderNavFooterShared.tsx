@@ -9,36 +9,43 @@ import {
 export type BaseHeaderNavFooterProps = {
   backgroundColorLevel: 1 | 3 | 4;
   viewHref: string;
-  prevHref?: string;
-  nextHref?: string;
+  next?: {
+    href: string;
+    onClick?: () => void;
+  };
+  prev?: {
+    href: string;
+    onClick?: () => void;
+  };
   downloadButton?: (isStuck: boolean) => React.ReactElement;
 };
 
-type PrevNextButtonsProps = {
+type PrevNextButtonsProps = Pick<
+  BaseHeaderNavFooterProps,
+  "prev" | "next" | "backgroundColorLevel"
+> & {
   type: "unit" | "lesson";
-  backgroundColorLevel: 1 | 3 | 4;
-  nextHref?: string;
-  prevHref?: string;
   $display: OakFlexProps["$display"];
 };
 
 export const PrevNextButtons = ({
   $display,
   backgroundColorLevel,
-  nextHref,
-  prevHref,
   type,
+  prev,
+  next,
 }: PrevNextButtonsProps) => {
   const iconColor =
     `icon-decorative${backgroundColorLevel}` satisfies OakUiRoleToken;
 
   return (
     <OakFlex $display={$display} $gap={"spacing-16"}>
-      {prevHref && (
+      {prev && (
         <OakSmallPrimaryInvertedButton
           width={["100%", "auto"]}
           element="a"
-          href={prevHref}
+          href={prev.href}
+          onClick={prev.onClick}
           iconOverride={
             <OakIcon
               iconName="arrow-left"
@@ -51,11 +58,12 @@ export const PrevNextButtons = ({
           {"Previous " + type}
         </OakSmallPrimaryInvertedButton>
       )}
-      {nextHref && (
+      {next && (
         <OakSmallPrimaryInvertedButton
           width={["100%", "auto"]}
           element="a"
-          href={nextHref}
+          href={next.href}
+          onClick={next.onClick}
           isTrailingIcon
           iconOverride={
             <OakIcon

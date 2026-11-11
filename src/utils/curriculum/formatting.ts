@@ -1,6 +1,10 @@
 import { PortableTextBlock } from "@portabletext/types";
 import { capitalize } from "lodash";
-import { Actions } from "@oaknational/oak-curriculum-schema";
+import {
+  Actions,
+  yearDescriptions,
+  yearSlugs,
+} from "@oaknational/oak-curriculum-schema";
 
 import { CurriculumFilters, YearData } from "./types";
 import { keystageFromYear } from "./keystage";
@@ -31,6 +35,15 @@ export function getYearGroupTitle(
     }
   }
   return `Year ${year}${suffixStr}`;
+}
+
+export function getYearSlugFromTitle(yearTitle: string) {
+  if (!yearDescriptions.safeParse(yearTitle).success) {
+    return undefined;
+  }
+
+  const yearSlug = yearTitle.toLowerCase().replaceAll(" ", "-");
+  return yearSlugs.safeParse(yearSlug).data;
 }
 
 function hasKs(keystages: { slug: string }[], num: number) {
