@@ -55,7 +55,10 @@ async function SearchPage(props: Readonly<AppPageProps>) {
 
   if (query.term) {
     try {
-      const res = await fetchResultsWithCache(query);
+      const res = await fetchResultsWithCache({
+        ...query,
+        term: query.term.toLocaleLowerCase(), // normalise search term for caching
+      });
       results = res.hitList;
       timeTaken = res.took;
       status = "success";
