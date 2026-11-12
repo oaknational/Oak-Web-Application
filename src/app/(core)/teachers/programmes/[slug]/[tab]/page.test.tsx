@@ -1,6 +1,8 @@
 /**
  * @jest-environment jsdom
  */
+import ProgrammesLayout from "../../layout";
+
 import { getProgrammeData, getSubjectPhaseOptions } from "./getProgrammeData";
 import ProgrammePageTabs, { generateMetadata } from "./page";
 
@@ -12,7 +14,6 @@ import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixt
 import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 const defaultParams = new URLSearchParams("");
@@ -38,10 +39,6 @@ jest.mock("next/navigation", () => {
     unstable_rethrow: jest.fn(),
   };
 });
-
-jest.mock("@/utils/featureFlagChecks/server", () => ({
-  isFeatureFlagEnabledServer: jest.fn(() => false),
-}));
 
 jest.mock("next/headers", () => ({
   draftMode: jest.fn().mockResolvedValue({
@@ -274,7 +271,7 @@ describe("Programme page tabs", () => {
     expect(CMSClient.curriculumOverviewPage).toHaveBeenCalled();
   });
 
-  it("shows info banner if feature flag is enabled", async () => {
+  it("shows implementation guides banner", async () => {
     jest.mocked(getSubjectPhaseOptions).mockResolvedValue({
       subjects: filterValidCurriculumPhaseOptions([
         {
@@ -309,20 +306,18 @@ describe("Programme page tabs", () => {
       ks4OptionFilterDimensions: {},
     });
 
-    (isFeatureFlagEnabledServer as jest.Mock).mockImplementation(
-      (_cookies, flag) => {
-        return flag === "implementation-guides" ? true : false;
-      },
-    );
-
     const { container } = renderWithProviders()(
-      (await ProgrammePageTabs({
-        params: Promise.resolve({
-          slug: "maths",
-          tab: "units",
-        }),
-        searchParams: Promise.resolve({}),
-      })) as React.ReactElement,
+      <ProgrammesLayout>
+        {
+          (await ProgrammePageTabs({
+            params: Promise.resolve({
+              slug: "maths",
+              tab: "units",
+            }),
+            searchParams: Promise.resolve({}),
+          })) as React.ReactElement
+        }
+      </ProgrammesLayout>,
     );
     expect(container).toHaveTextContent("Download our implementation guides.");
   });

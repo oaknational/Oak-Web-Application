@@ -53,7 +53,6 @@ export type ProgrammeDownloadsProps = {
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   implementationGuides: ImplementationGuides | null;
-  featureFlags: Record<string, boolean>;
   fileSizes?: {
     downloadId: string;
     size: number;
@@ -68,7 +67,6 @@ export const ProgrammeDownloads = ({
   curriculumSelectionSlugs,
   mvRefreshTime,
   implementationGuides,
-  featureFlags,
   fileSizes,
 }: ProgrammeDownloadsProps) => {
   const { curriculumResourcesDownloadRefined, curriculumResourcesDownloaded } =
@@ -88,13 +86,10 @@ export const ProgrammeDownloads = ({
         return true;
       }
       if (group === "implementation-guide") {
-        return (
-          implementationGuides?.[id as keyof ImplementationGuides] &&
-          featureFlags["implementation-guides"]
-        );
+        return implementationGuides?.[id as keyof ImplementationGuides];
       }
     }).map(({ id }) => id);
-  }, [curriculumUnitsFormattedData, implementationGuides, featureFlags]);
+  }, [curriculumUnitsFormattedData, implementationGuides]);
 
   const curriculumDownloadsWithLabels = DOWNLOAD_TYPE_LABELS.filter(
     ({ id, group }) => {
@@ -133,8 +128,6 @@ export const ProgrammeDownloads = ({
     setSchool,
     shouldDisplayDetailsCompleted,
     handleEditDetailsCompletedClick,
-    hasFormErrors,
-    localStorageDetails,
     handleToggleSelectAll,
     selectAllChecked,
     hubspotLoaded,
@@ -275,9 +268,6 @@ export const ProgrammeDownloads = ({
       form.trigger();
     };
 
-  const noResourcesSelected =
-    form.watch().resources === undefined || form.watch().resources.length === 0;
-
   // 40px padding on desktop allows the content to fill the max width, but always have inline padding
   // so it doesn't run up against the edge of the screen
   return (
@@ -355,11 +345,9 @@ export const ProgrammeDownloads = ({
                   <OakFlex $gap={"spacing-32"} $flexDirection={"column"}>
                     {curriculumDownloadsWithLabels.length > 0 && (
                       <OakFlex $gap={"spacing-16"} $flexDirection={["column"]}>
-                        {featureFlags["implementation-guides"] && (
-                          <OakFlex $gap="spacing-8">
-                            Explore the curriculum
-                          </OakFlex>
-                        )}
+                        <OakFlex $gap="spacing-8">
+                          Explore the curriculum
+                        </OakFlex>
                         <OakFlex
                           $gap={"spacing-16"}
                           $flexDirection={["column", "column", "row"]}
@@ -498,12 +486,6 @@ export const ProgrammeDownloads = ({
                     iconName={"download"}
                     isLoading={
                       isSubmitting || !hubspotLoaded // show loading state when waiting for latest school values to be populated from hubspot
-                    }
-                    disabled={
-                      (hasFormErrors ||
-                        noResourcesSelected ||
-                        (!form.formState.isValid && !localStorageDetails)) &&
-                      hubspotLoaded
                     }
                   >
                     Download

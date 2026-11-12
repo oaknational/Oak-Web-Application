@@ -3,6 +3,7 @@ import { GraphQLClient } from "graphql-request";
 import errorReporter from "../../common-lib/error-reporter";
 import getServerConfig from "../getServerConfig";
 
+import { fetchWithRetry } from "./fetchWithRetry";
 import {
   getSdk,
   SdkFunctionWrapper,
@@ -37,6 +38,7 @@ export const sanityGraphqlClient = new GraphQLClient(graphqlAPIUrl, {
   headers: {
     Authorization: `Bearer ${getServerConfig("sanityGraphqlApiSecret")}`,
   },
+  fetch: fetchWithRetry,
 });
 
 /**

@@ -7,7 +7,6 @@ import {
   OakGridArea,
   OakHeading,
   OakLink,
-  OakSpan,
 } from "@oaknational/oak-components";
 
 import { getCaseStudyTagBackground } from "./getCaseStudyTagBackground";
@@ -20,15 +19,11 @@ import { resolveOakHref } from "@/common-lib/urls";
 export type CaseStudiesSectionProps = {
   title: string;
   caseStudies: CaseStudyCard[];
-  showTags?: boolean;
-  showViewAllLink?: boolean;
 };
 
 export const CaseStudiesSection = ({
   title,
   caseStudies,
-  showTags = false,
-  showViewAllLink,
 }: CaseStudiesSectionProps) => {
   return (
     <OakBox $background={"bg-decorative2-subdued"}>
@@ -53,17 +48,19 @@ export const CaseStudiesSection = ({
                     {title}
                   </OakHeading>
                 </OakFlex>
-                {showViewAllLink && (
+                <OakBox $textWrap="nowrap">
                   <OakLink
                     variant="secondary"
                     iconName="chevron-right"
                     isTrailingIcon={true}
-                    href={resolveOakHref({ page: "about-case-study-library" })}
+                    href={resolveOakHref({
+                      page: "about-case-study-library",
+                    })}
                     $font={"heading-7"}
                   >
-                    <OakSpan $textWrap="nowrap">View all case studies</OakSpan>
+                    View all case studies
                   </OakLink>
-                )}
+                </OakBox>
               </OakFlex>
             </OakGridArea>
           </OakGrid>
@@ -96,20 +93,11 @@ export const CaseStudiesSection = ({
                     getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? ""
                   }
                   aspectRatio="4/3"
-                  linkText={
-                    !showTags && caseStudy.video ? "Watch the video" : undefined
-                  }
                   cardWidth={"100%"}
                   tagName={
-                    showTags
-                      ? capitalize(caseStudy.tag ?? undefined)
-                      : undefined
+                    caseStudy.tag ? capitalize(caseStudy.tag) : undefined
                   }
-                  tagBackground={
-                    showTags
-                      ? getCaseStudyTagBackground(caseStudy.tag)
-                      : undefined
-                  }
+                  tagBackground={getCaseStudyTagBackground(caseStudy.tag)}
                 />
               </OakGridArea>
             ))}

@@ -1,7 +1,8 @@
-import { SignInButton, useAuth, useUser } from "@clerk/nextjs";
+import { SignInButton, useAuth } from "@clerk/nextjs";
 import React, { Dispatch, ReactNode, SetStateAction, useState } from "react";
 import { usePathname } from "next/navigation";
 import {
+  OakBox,
   OakFlex,
   OakLoadingSpinner,
   OakPrimaryButton,
@@ -9,38 +10,48 @@ import {
   OakSmallPrimaryButton,
   OakSpan,
   OakTagFunctional,
-  useMediaQuery,
 } from "@oaknational/oak-components";
-
-import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
 
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import { createUnitDownloadLink } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import errorReporter from "@/common-lib/error-reporter";
+import { UnitDownloadExistence } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
+import { useComplexCopyright } from "@/hooks/useComplexCopyright";
+import { ComponentType } from "@/browser-lib/avo/Avo";
 
-const getLabel = ({
-  isStuck,
-  isDesktop,
-  isMobile,
-  longTextOnMobile,
+const reportError = errorReporter("unit-download-button");
+
+// Long text shows when stuck, on desktop, or - only where the caller opts in
+// via longTextOnMobile (e.g. the full-width unit header button) - on mobile.
+// This leaves tablet as the only breakpoint showing the short label.
+// Driven by CSS, not useMediaQuery, so SSR and the first client paint agree.
+const DownloadLabel = ({
   longerText,
+  longTextOnMobile,
+  isStuck,
 }: {
-  isStuck: boolean | undefined;
-  isDesktop: boolean;
-  isMobile: boolean;
+  longerText?: string;
   longTextOnMobile?: boolean;
-  longerText: string;
-}) => {
-  const label = "Download";
-  // Long text shows when stuck, on desktop, or - only where the caller opts in
-  // via longTextOnMobile (e.g. the full-width unit header button) - on mobile.
-  // This leaves tablet as the only breakpoint showing the short label.
-  if (isStuck || isDesktop || (longTextOnMobile && isMobile)) {
-    return label + " " + longerText;
-  }
-  return label;
-};
+  isStuck?: boolean;
+}) => (
+  <OakSpan>
+    <OakSpan>Download </OakSpan>
+    {longerText && (
+      <OakBox
+        $display={
+          isStuck
+            ? "inline"
+            : [longTextOnMobile ? "inline" : "none", "none", "inline"]
+        }
+      >
+        {longerText}
+      </OakBox>
+    )}
+  </OakSpan>
+);
 
 // Used when a user is signed in but not onboarded
 const UnitDownloadOnboardButton = ({
@@ -49,11 +60,9 @@ const UnitDownloadOnboardButton = ({
   size,
   ariaLabel,
   fullWidthOnMobile,
-  onClick,
 }: {
   href: string;
   showNewTag: boolean;
-  onClick: () => void;
   size?: "small";
   ariaLabel?: string;
   fullWidthOnMobile?: boolean;
@@ -62,7 +71,6 @@ const UnitDownloadOnboardButton = ({
     <ButtonForSize
       size={size}
       fullWidthOnMobile={fullWidthOnMobile}
-      onClick={onClick}
       element="a"
       href={href}
       aria-label={ariaLabel}
@@ -86,8 +94,6 @@ const UnitDownloadOnboardButton = ({
 const UnitDownloadSignInButton = ({
   redirectUrl,
   showNewTag,
-  isDesktop,
-  isMobile,
   longTextOnMobile,
   fullWidthOnMobile,
   size,
@@ -98,8 +104,6 @@ const UnitDownloadSignInButton = ({
 }: {
   redirectUrl: string;
   showNewTag: boolean;
-  isDesktop: boolean;
-  isMobile: boolean;
   onClick: () => void;
   longTextOnMobile?: boolean;
   fullWidthOnMobile?: boolean;
@@ -108,15 +112,13 @@ const UnitDownloadSignInButton = ({
   ariaLabel?: string;
   isStuck?: boolean;
 }) => {
-  const signInButtonLabel =
-    buttonLabel ??
-    getLabel({
-      isStuck,
-      isDesktop,
-      isMobile,
-      longTextOnMobile,
-      longerText: "complete unit",
-    });
+  const signInButtonLabel = buttonLabel ?? (
+    <DownloadLabel
+      isStuck={isStuck}
+      longTextOnMobile={longTextOnMobile}
+      longerText="complete unit"
+    />
+  );
 
   return (
     <SignInButton
@@ -153,8 +155,6 @@ const DownloadButton = ({
   downloadInProgress,
   fileSize,
   disabled,
-  isDesktop,
-  isMobile,
   longTextOnMobile,
   fullWidthOnMobile,
   size,
@@ -166,8 +166,6 @@ const DownloadButton = ({
   downloadInProgress: boolean;
   fileSize: string | undefined;
   disabled: boolean;
-  isDesktop: boolean;
-  isMobile: boolean;
   longTextOnMobile?: boolean;
   fullWidthOnMobile?: boolean;
   isStuck?: boolean;
@@ -175,15 +173,12 @@ const DownloadButton = ({
   buttonLabel?: ReactNode;
   ariaLabel?: string;
 }) => {
-  const zipSizeText = getLabel({
-    isStuck,
-    isDesktop,
-    isMobile,
-    longTextOnMobile,
-    longerText: `(.zip ${fileSize})`,
-  });
-  const downloadButtonText: ReactNode = (
-    <OakSpan>{buttonLabel ?? zipSizeText}</OakSpan>
+  const downloadButtonText: ReactNode = buttonLabel ?? (
+    <DownloadLabel
+      isStuck={isStuck}
+      longTextOnMobile={longTextOnMobile}
+      longerText={fileSize ? `(.zip ${fileSize})` : undefined}
+    />
   );
 
   return (
@@ -263,6 +258,7 @@ export type UnitDownloadButtonProps = {
   downloadInProgress: boolean;
   showNewTag: boolean;
   geoRestricted: boolean;
+  unitDownloadExistence: UnitDownloadExistence;
   size?: "small";
   buttonLabel?: ReactNode;
   ariaLabel?: string;
@@ -278,16 +274,16 @@ export type UnitDownloadButtonProps = {
  * - Download
  * If there is no download for this unit, or unit download is disabled, the button will not be shown (ie. legacy units)
  */
-export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
-  const { unitFileId, geoRestricted } = props;
-  const { isSignedIn, isLoaded, user } = useUser();
+export default function UnitDownloadButton(
+  props: Readonly<UnitDownloadButtonProps>,
+) {
+  const { unitFileId, geoRestricted, unitDownloadExistence } = props;
+  const { exists, fileSize, checkFailed } = unitDownloadExistence;
+
   const auth = useAuth();
   const pathname = usePathname();
-  const isDesktop = useMediaQuery("desktop");
-  const isMobile = useMediaQuery("mobile");
-  const { unitDownloadStarted } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
+  const { setCurrentToastProps } = useOakNotificationsContext();
+  const { signInStarted } = useTeacherBrowseAnalytics((store) => store.track);
 
   const {
     onDownloadSuccess,
@@ -300,9 +296,6 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     longTextOnMobile,
     fullWidthOnMobile,
   } = props;
-
-  const { exists, fileSize, hasCheckedFiles } =
-    useUnitDownloadExistenceCheck(unitFileId);
 
   const onUnitDownloadClick = async () => {
     setShowDownloadMessage(true);
@@ -319,67 +312,78 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
         createAndClickHiddenDownloadLink(downloadLink);
         onDownloadSuccess();
       }
-    } catch (_error) {
+    } catch (error) {
       setShowDownloadMessage(false);
       setShowIncompleteMessage(false);
       setDownloadError(true);
+      setCurrentToastProps({
+        variant: "error",
+        message: "Failed to download unit. Please try again.",
+        autoDismiss: false,
+        showIcon: true,
+      });
+      void reportError(error, {
+        unitFileId,
+        existenceCheckFailed: checkFailed,
+      });
     }
     setDownloadInProgress(false);
   };
 
-  const showDownloadButton = hasCheckedFiles && exists;
+  const {
+    showSignedOutLoginRequired,
+    showSignedInNotOnboarded,
+    showGeoBlocked,
+  } = useComplexCopyright({ loginRequired: true, geoRestricted });
 
-  const showSignInButton = showDownloadButton && isLoaded && !isSignedIn;
-
-  const showOnboardButton =
-    showDownloadButton && user && !user.publicMetadata?.owa?.isOnboarded;
-
-  const isGeoBlocked =
-    showDownloadButton &&
-    isSignedIn &&
-    geoRestricted &&
-    !user.publicMetadata?.owa?.isRegionAuthorised;
-
-  return showOnboardButton ? (
-    <UnitDownloadOnboardButton
-      href={resolveOakHref({
-        page: "onboarding",
-        query: { returnTo: pathname ?? "" },
-      })}
-      onClick={unitDownloadStarted}
-      showNewTag={props.showNewTag}
-      size={props.size}
-      ariaLabel={props.ariaLabel}
-      fullWidthOnMobile={fullWidthOnMobile}
-    />
-  ) : showSignInButton ? (
-    <UnitDownloadSignInButton
-      isStuck={isStuck}
-      redirectUrl={`/onboarding?returnTo=${pathname}`}
-      onClick={unitDownloadStarted}
-      showNewTag={props.showNewTag}
-      isDesktop={isDesktop}
-      isMobile={isMobile}
-      longTextOnMobile={longTextOnMobile}
-      fullWidthOnMobile={fullWidthOnMobile}
-      size={props.size}
-      buttonLabel={props.buttonLabel}
-      ariaLabel={props.ariaLabel}
-    />
-  ) : showDownloadButton ? (
-    <DownloadButton
-      isStuck={isStuck}
-      disabled={Boolean(isGeoBlocked)}
-      onUnitDownloadClick={onUnitDownloadClick}
-      downloadInProgress={downloadInProgress}
-      fileSize={fileSize}
-      isDesktop={isDesktop}
-      isMobile={isMobile}
-      longTextOnMobile={longTextOnMobile}
-      fullWidthOnMobile={fullWidthOnMobile}
-      size={props.size}
-      buttonLabel={props.buttonLabel}
-      ariaLabel={props.ariaLabel}
-    />
-  ) : null;
+  // Fail open: `undefined` means the availability check failed, so show the button and let
+  // a genuinely missing file surface as a download error on click.
+  const showDownloadButton = exists !== false;
+  if (!showDownloadButton) {
+    return null;
+  } else if (showSignedInNotOnboarded) {
+    return (
+      <UnitDownloadOnboardButton
+        href={resolveOakHref({
+          page: "onboarding",
+          query: { returnTo: pathname ?? "" },
+        })}
+        showNewTag={props.showNewTag}
+        size={props.size}
+        ariaLabel={props.ariaLabel}
+        fullWidthOnMobile={fullWidthOnMobile}
+      />
+    );
+  } else if (showSignedOutLoginRequired) {
+    return (
+      <UnitDownloadSignInButton
+        isStuck={isStuck}
+        redirectUrl={`/onboarding?returnTo=${pathname}`}
+        onClick={() =>
+          signInStarted({ componentType: ComponentType.UNIT_DOWNLOAD_BUTTON })
+        }
+        showNewTag={props.showNewTag}
+        longTextOnMobile={longTextOnMobile}
+        fullWidthOnMobile={fullWidthOnMobile}
+        size={props.size}
+        buttonLabel={props.buttonLabel}
+        ariaLabel={props.ariaLabel}
+      />
+    );
+  } else if (showDownloadButton) {
+    return (
+      <DownloadButton
+        isStuck={isStuck}
+        disabled={Boolean(showGeoBlocked)}
+        onUnitDownloadClick={onUnitDownloadClick}
+        downloadInProgress={downloadInProgress}
+        fileSize={fileSize}
+        longTextOnMobile={longTextOnMobile}
+        fullWidthOnMobile={fullWidthOnMobile}
+        size={props.size}
+        buttonLabel={props.buttonLabel}
+        ariaLabel={props.ariaLabel}
+      />
+    );
+  }
 }

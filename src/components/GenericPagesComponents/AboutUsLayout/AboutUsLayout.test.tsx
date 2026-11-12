@@ -73,6 +73,8 @@ describe("AboutUsLayout", () => {
     expect(getByText("Oak's impact")).toBeInTheDocument();
     expect(getByText("Meet the team")).toBeInTheDocument();
     expect(getByText("Get involved")).toBeInTheDocument();
+    expect(getByText("Join the research panel")).toBeInTheDocument();
+    expect(getByText("Case studies")).toBeInTheDocument();
   });
 
   it("excludes 'About Oak' link when on who-we-are page", () => {
@@ -96,6 +98,8 @@ describe("AboutUsLayout", () => {
     expect(getByText("Oak's impact")).toBeInTheDocument();
     expect(getByText("Meet the team")).toBeInTheDocument();
     expect(getByText("Get involved")).toBeInTheDocument();
+    expect(getByText("Join the research panel")).toBeInTheDocument();
+    expect(getByText("Case studies")).toBeInTheDocument();
   });
 
   it("excludes 'Get involved' link when on get-involved page", () => {
@@ -119,9 +123,11 @@ describe("AboutUsLayout", () => {
     expect(getByText("Oak's curricula")).toBeInTheDocument();
     expect(getByText("Oak's impact")).toBeInTheDocument();
     expect(getByText("Meet the team")).toBeInTheDocument();
+    expect(getByText("Join the research panel")).toBeInTheDocument();
+    expect(getByText("Case studies")).toBeInTheDocument();
   });
 
-  it("renders newsletter form", () => {
+  it("renders newsletter form when showNewsletter is true or not passed", () => {
     const { container } = renderWithProviders()(
       <AboutUsLayout>
         <div>Test</div>
@@ -133,7 +139,19 @@ describe("AboutUsLayout", () => {
     expect(form).toBeInTheDocument();
   });
 
-  it("only shows 4 links when current page matches one of the explore items", () => {
+  it("does not render newsletter form when showNewsletter is false", () => {
+    const { container } = renderWithProviders()(
+      <AboutUsLayout showNewsletter={false}>
+        <div>Test</div>
+      </AboutUsLayout>,
+    );
+
+    // Newsletter form should be present
+    const form = container.querySelector("form");
+    expect(form).not.toBeInTheDocument();
+  });
+
+  it("only shows 6 links when current page matches one of the explore items", () => {
     mockUseRouter.mockReturnValue({
       pathname: "/about-us/who-we-are",
       query: {},
@@ -150,10 +168,10 @@ describe("AboutUsLayout", () => {
     const exploreItems = container.querySelectorAll(
       '[data-testid="who-we-are-explore-item"]',
     );
-    expect(exploreItems).toHaveLength(4);
+    expect(exploreItems).toHaveLength(6);
   });
 
-  it("shows 5 links when current page does not match any explore item", () => {
+  it("shows 7 links when current page does not match any explore item", () => {
     mockUseRouter.mockReturnValue({
       pathname: "/different-page",
       query: {},
@@ -170,6 +188,6 @@ describe("AboutUsLayout", () => {
     const exploreItems = container.querySelectorAll(
       '[data-testid="who-we-are-explore-item"]',
     );
-    expect(exploreItems).toHaveLength(5);
+    expect(exploreItems).toHaveLength(7);
   });
 });

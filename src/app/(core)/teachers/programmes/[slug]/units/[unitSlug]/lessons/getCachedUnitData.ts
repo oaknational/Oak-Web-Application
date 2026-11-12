@@ -4,6 +4,11 @@ import { permanentRedirect } from "next/navigation";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { cacheData } from "@/node-lib/cache";
 import { resolveOakHref } from "@/common-lib/urls";
+import { getUnitDownloadFileExistence } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
+import errorReporter from "@/common-lib/error-reporter";
+import { UnitDownloadExistence } from "@/components/TeacherComponents/types/downloadAndShare.types";
+
+const reportError = errorReporter("unit-download-existence");
 
 export const getCachedUnitData = cache(
   cacheData(
@@ -16,6 +21,23 @@ export const getCachedUnitData = cache(
     ["teachers-unit-overview"],
   ),
 );
+
+const getCachedUnitDownloadFileExistence = cacheData(
+  getUnitDownloadFileExistence,
+  ["teachers-unit-download-existence"],
+);
+
+export const getUnitDownloadExistence = async (
+  unitFileId: string,
+): Promise<UnitDownloadExistence> => {
+  try {
+    const result = await getCachedUnitDownloadFileExistence(unitFileId);
+    return { ...result, checkFailed: false };
+  } catch (error) {
+    await reportError(error, { unitFileId });
+    return { checkFailed: true, exists: undefined };
+  }
+};
 
 export const getCachedProgrammesForUnit = cache(
   cacheData(

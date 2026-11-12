@@ -13,9 +13,9 @@ import {
 
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { postEducatorData } from "@/node-lib/educator-api/helpers/postEducatorData";
-import useAnalytics from "@/context/Analytics/useAnalytics";
 import errorReporter from "@/common-lib/error-reporter";
 import useSaveCountContext from "@/context/SaveCount/useSaveCountContext";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const unitsResponseSchema = z.array(z.string());
 const reportError = errorReporter("educatorApi");
@@ -25,7 +25,9 @@ export const useSaveUnits = (
   trackingData: TrackingProgrammeData,
 ) => {
   const { isSignedIn, user } = useUser();
-  const { track } = useAnalytics();
+  const { contentSaved, contentUnsaved } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
 
   const { data: savedUnitsData, mutate } = useGetEducatorData<string[]>(
     `/api/educator/getSavedUnits/${programmeSlug}`,
@@ -94,19 +96,14 @@ export const useSaveUnits = (
       },
     );
     setIsSavingUnit(null);
-    track.contentSaved({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "use",
+    contentSaved({
       componentType: trackingData.savedFrom,
-      analyticsUseCase: "Teacher",
       keyStageSlug: trackingData.keyStageSlug,
       keyStageTitle: trackingData.keyStageTitle,
       subjectSlug: trackingData.subjectSlug,
       subjectTitle: trackingData.subjectTitle,
       contentType: "unit",
       contentItemSlug: unitSlug,
-      eventVersion: "2.0.0",
     });
   };
 
@@ -125,19 +122,14 @@ export const useSaveUnits = (
       },
     );
     setIsSavingUnit(null);
-    track.contentUnsaved({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "use",
+    contentUnsaved({
       componentType: trackingData.savedFrom,
-      analyticsUseCase: "Teacher",
       keyStageSlug: trackingData.keyStageSlug,
       keyStageTitle: trackingData.keyStageTitle,
       subjectSlug: trackingData.subjectSlug,
       subjectTitle: trackingData.subjectTitle,
       contentType: "unit",
       contentItemSlug: unitSlug,
-      eventVersion: "2.0.0",
     });
   };
 

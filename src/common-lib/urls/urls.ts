@@ -228,6 +228,7 @@ type AboutUsMeetTheTeamBioLinkProps = {
   slug: string;
 };
 type AboutUsGetInvolvedLinkProps = { page: "about-get-involved" };
+type AboutUsJoinResearchPanelLinkProps = { page: "about-join-research-panel" };
 type AboutUsOaksCurriculaLinkProps = { page: "about-oaks-curricula" };
 type AboutUsOaksImpactLinkProps = { page: "about-oaks-impact" };
 type AboutUsCaseStudyLinkProps = { page: "about-case-study"; slug: string };
@@ -309,8 +310,6 @@ type ProgrammePageProps = {
     years?: string;
     pathways?: string;
     threads?: string;
-    focus_ks4option?: string;
-    open_filters_modal?: string;
     subject_categories?: string;
   };
 };
@@ -355,6 +354,10 @@ type TeachWithOakDownloadSuccessLinkProps = {
 type TeachWithOakLinkProps = {
   page: "teach-with-oak";
   query?: TeachWithOakQueryProps;
+};
+
+type TeachWithOakThinkingBehindOakLessonsLinkProps = {
+  page: "teach-with-oak-thinking-behind-oak-lessons";
 };
 
 type OnlyPageRequired<T> = T extends { page: string }
@@ -405,6 +408,7 @@ export type OakLinkProps =
   | AboutUsMeetTheTeamLinkProps
   | AboutUsMeetTheTeamBioLinkProps
   | AboutUsGetInvolvedLinkProps
+  | AboutUsJoinResearchPanelLinkProps
   | AboutUsOaksCurriculaLinkProps
   | AboutUsOaksImpactLinkProps
   | AboutUsCaseStudyLinkProps
@@ -439,7 +443,8 @@ export type OakLinkProps =
   | FontHelpLinkProps
   | TeachWithOakLinkProps
   | TeachWithOakDownloadLinkProps
-  | TeachWithOakDownloadSuccessLinkProps;
+  | TeachWithOakDownloadSuccessLinkProps
+  | TeachWithOakThinkingBehindOakLessonsLinkProps;
 
 export type ExternalPageName =
   | "[external] Careers"
@@ -609,6 +614,12 @@ export const OAK_PAGES: {
     analyticsPageName: "About Us: Get Involved",
     configType: "internal",
     pageType: "about-get-involved",
+  }),
+  "about-join-research-panel": createOakPageConfig({
+    pathPattern: "/about-us/get-involved/join-research-panel",
+    analyticsPageName: "About Us: Join Research Panel",
+    configType: "internal",
+    pageType: "about-join-research-panel",
   }),
   "about-oaks-curricula": createOakPageConfig({
     pathPattern: "/about-us/oaks-curricula",
@@ -786,7 +797,7 @@ export const OAK_PAGES: {
   }),
   "pupil-lesson": createOakPageConfig({
     pathPattern:
-      "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
+      "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/overview",
     analyticsPageName: "Lesson",
     configType: "internal",
     pageType: "pupil-lesson",
@@ -1022,6 +1033,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Teach With Oak",
     configType: "internal",
     pageType: "teach-with-oak-download-success",
+  }),
+  "teach-with-oak-thinking-behind-oak-lessons": createOakPageConfig({
+    pathPattern: "/teachers/teach-with-oak/the-thinking-behind-oak-lessons",
+    analyticsPageName: "Teach With Oak",
+    configType: "internal",
+    pageType: "teach-with-oak-thinking-behind-oak-lessons",
   }),
 };
 

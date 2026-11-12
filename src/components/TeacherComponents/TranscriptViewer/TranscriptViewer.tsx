@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { OakP, OakFlex, OakBox } from "@oaknational/oak-components";
 
 export interface TranscriptViewerProps {
@@ -34,7 +33,7 @@ export const TranscriptViewer: FC<TranscriptViewerProps> = ({
             <OakP
               $mb={["spacing-24", "spacing-16"]}
               $font={"body-1"}
-              key={uuidv4()}
+              key={crypto.randomUUID()}
             >
               {transcriptSentence}
             </OakP>

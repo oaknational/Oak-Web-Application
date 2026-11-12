@@ -20,6 +20,9 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { UnitHeaderNavFooter } from "@/components/TeacherComponents/HeaderNavFooter/UnitHeaderNavFooter/UnitHeaderNavFooter";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { UnitDownloadExistence } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
+import { getUnitAnalyticsProperties } from "@/context/TeacherBrowseAnalytics/utils/getAnalyticsProperties";
 
 export type UnitHeaderProps = Omit<
   CompactHeaderProps,
@@ -33,6 +36,7 @@ export type UnitHeaderProps = Omit<
   subjectPhaseSlug: string;
   programmeSlug: string;
   downloadButtonState: ReturnType<typeof useUnitDownloadButtonState>;
+  unitDownloadExistence: UnitDownloadExistence;
 };
 
 /**
@@ -56,8 +60,13 @@ const UnitHeader = (props: UnitHeaderProps) => {
     nextUnit,
     programmeSlug,
     downloadButtonState,
+    unitDownloadExistence,
+    heading,
   } = props;
-  const { unitDownloaded } = useTeacherBrowseAnalytics((store) => store.track);
+  const { unitDownloaded, unitAccessed } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
+  const { unitState } = useProgrammeState();
   const { setCurrentToastProps } = useOakNotificationsContext();
   const { sentinelRef, isStuck } = useStickyUnitHeader();
 
@@ -97,6 +106,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
             showNewTag={false}
             geoRestricted={Boolean(isGeorestrictedUnit)}
             size={isStuck ? "small" : undefined}
+            unitDownloadExistence={unitDownloadExistence}
           />
         </NegativeBorderBox>
       )
@@ -112,29 +122,61 @@ const UnitHeader = (props: UnitHeaderProps) => {
       <UnitHeaderNavFooter
         sentinelRef={sentinelRef}
         isStuck={isStuck}
-        title={props.heading}
+        title={heading}
         backgroundColorLevel={backgroundColorLevel}
         viewHref={resolveOakHref({
           page: "teacher-programme",
           subjectPhaseSlug,
           tab: "units",
         })}
-        prevHref={
+        prev={
           prevUnit
-            ? resolveOakHref({
-                page: "unit-overview",
-                unitSlug: prevUnit.slug,
-                programmeSlug,
-              })
+            ? {
+                href: resolveOakHref({
+                  page: "unit-overview",
+                  unitSlug: prevUnit.slug,
+                  programmeSlug,
+                }),
+                onClick: () =>
+                  unitAccessed({
+                    componentType: "header_button",
+                    navigationType: "across",
+                    unitContext: unitState
+                      ? {
+                          ...getUnitAnalyticsProperties(unitState),
+                          unitName: prevUnit.title,
+                          unitSlug: prevUnit.slug,
+                          yearGroupName: prevUnit.yearGroupName,
+                          yearGroupSlug: prevUnit.yearSlug,
+                        }
+                      : undefined,
+                  }),
+              }
             : undefined
         }
-        nextHref={
+        next={
           nextUnit
-            ? resolveOakHref({
-                page: "unit-overview",
-                unitSlug: nextUnit.slug,
-                programmeSlug,
-              })
+            ? {
+                href: resolveOakHref({
+                  page: "unit-overview",
+                  unitSlug: nextUnit.slug,
+                  programmeSlug,
+                }),
+                onClick: () =>
+                  unitAccessed({
+                    componentType: "header_button",
+                    navigationType: "across",
+                    unitContext: unitState
+                      ? {
+                          ...getUnitAnalyticsProperties(unitState),
+                          unitName: nextUnit.title,
+                          unitSlug: nextUnit.slug,
+                          yearGroupName: nextUnit.yearGroupName,
+                          yearGroupSlug: nextUnit.yearSlug,
+                        }
+                      : undefined,
+                  }),
+              }
             : undefined
         }
         downloadButton={unitDownloadButtonRenderer}

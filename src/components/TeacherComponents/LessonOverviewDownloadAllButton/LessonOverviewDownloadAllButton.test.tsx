@@ -27,6 +27,7 @@ jest.mock("@/hooks/useComplexCopyright", () => ({
 }));
 
 const mockDownloadAllButton = jest.fn();
+const mockSignInStarted = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
@@ -34,6 +35,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
     track: {
       lessonResourceDownloadStarted: (...args: unknown[]) =>
         mockDownloadAllButton(...args),
+      signInStarted: (...args: unknown[]) => mockSignInStarted(...args),
     },
   }),
 }));
@@ -136,6 +138,10 @@ describe("LessonOverviewDownloadAllButton", () => {
     expect(downloadButton).not.toHaveAttribute("href");
     downloadButton.click();
     expect(mockDownloadAllButton).not.toHaveBeenCalled();
+    expect(mockSignInStarted).toHaveBeenCalledTimes(1);
+    expect(mockSignInStarted).toHaveBeenCalledWith(
+      expect.objectContaining({ componentType: "lesson_download_all_button" }),
+    );
   });
   it("does not render anything when geoBlocked", () => {
     mockUseComplexCopyright = signedInGeoBlocked;

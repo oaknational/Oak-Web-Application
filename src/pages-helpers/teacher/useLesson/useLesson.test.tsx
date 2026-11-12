@@ -75,19 +75,7 @@ describe("useLesson", () => {
     (useShare as jest.Mock).mockReturnValue(mockShareReturn);
     (useTeacherNotes as jest.Mock).mockReturnValue(mockTeacherNotesReturn);
 
-    // Create a mock location object
-    const mockLocation = {
-      href: "https://example.com/test",
-      assign: jest.fn(),
-      reload: jest.fn(),
-      replace: jest.fn(),
-    };
-
-    // Override the window.location with the mock object using type casting
-    Object.defineProperty(window, "location", {
-      value: mockLocation,
-      writable: true,
-    });
+    window.history.replaceState(null, "", "/teachers/lessons/test");
   });
 
   it("should initialize with correct default state", () => {
@@ -134,7 +122,7 @@ describe("useLesson", () => {
 
     expect(useTeacherNotes).toHaveBeenCalledWith(
       expect.objectContaining({
-        lessonPath: "https://example.com/test",
+        lessonPath: "http://localhost/teachers/lessons/test",
       }),
     );
   });
@@ -167,7 +155,7 @@ describe("useLesson", () => {
 
       expect(useTeacherNotes).toHaveBeenCalledWith(
         expect.objectContaining({
-          lessonPath: "https://example.com/test",
+          lessonPath: "http://localhost/teachers/lessons/test",
         }),
       );
 

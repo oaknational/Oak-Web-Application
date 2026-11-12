@@ -80,7 +80,7 @@ const getBugsnagConfig = ({
     /**
      * Handling onError allows us to ignore errors that meet certain criteria.
      *
-     * We are using it here to prevent errors triggered by Detectify and Percy
+     * We are using it here to prevent errors triggered by Detectify
      * from being sent to Bugsnag.
      */
     onError: getBugsnagOnError(),

@@ -3,11 +3,12 @@ import { OakBox, OakFlex } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 
+import { allExploreItems } from "./AboutUsLayout.config";
+
 import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExplore";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
-import { resolveOakHref } from "@/common-lib/urls";
 
 const NewsletterWrapper = styled(OakFlex)`
   max-width: 100%;
@@ -19,56 +20,17 @@ const NewsletterWrapper = styled(OakFlex)`
 `;
 
 export type AboutUsLayoutProps = {
+  showNewsletter?: boolean;
   children: ReactNode;
 };
 
-export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
+export function AboutUsLayout({
+  children,
+  showNewsletter = true,
+}: Readonly<AboutUsLayoutProps>) {
   const newsletterFormProps = useNewsletterForm();
   const router = useRouter();
   const currentPath = router.pathname;
-
-  const allExploreItems = [
-    {
-      iconName: "logo" as const,
-      title: "About Oak",
-      href: resolveOakHref({
-        page: "about-who-we-are",
-      }),
-      componentType: "about_oak" as const,
-    },
-    {
-      iconName: "homepage-teacher-map" as const,
-      title: "Oak's curricula",
-      href: resolveOakHref({
-        page: "about-oaks-curricula",
-      }),
-      componentType: "about_curriculum" as const,
-    },
-    {
-      iconName: "data" as const,
-      title: "Oak's impact",
-      href: resolveOakHref({
-        page: "about-oaks-impact",
-      }),
-      componentType: "about_curriculum" as const,
-    },
-    {
-      iconName: "snack-break" as const,
-      title: "Meet the team",
-      href: resolveOakHref({
-        page: "about-meet-the-team",
-      }),
-      componentType: "meet_the_team" as const,
-    },
-    {
-      iconName: "chatting" as const,
-      title: "Get involved",
-      href: resolveOakHref({
-        page: "about-get-involved",
-      }),
-      componentType: "get_involved" as const,
-    },
-  ];
 
   const filteredExploreItems = allExploreItems.filter(
     (item) => item.href !== currentPath,
@@ -87,17 +49,19 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
           items={filteredExploreItems}
         />
       </OakBox>
-      <OakBox
-        id="newsletter-signup"
-        $background={"bg-decorative1-subdued"}
-        $pv={"spacing-56"}
-      >
-        <NewGutterMaxWidth>
-          <NewsletterWrapper>
-            <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
-          </NewsletterWrapper>
-        </NewGutterMaxWidth>
-      </OakBox>
+      {showNewsletter && (
+        <OakBox
+          id="newsletter-signup"
+          $background={"bg-decorative1-subdued"}
+          $pv={"spacing-56"}
+        >
+          <NewGutterMaxWidth>
+            <NewsletterWrapper>
+              <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
+            </NewsletterWrapper>
+          </NewGutterMaxWidth>
+        </OakBox>
+      )}
     </OakBox>
   );
 }

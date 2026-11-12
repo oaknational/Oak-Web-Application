@@ -4,14 +4,14 @@ export const FLAGS = {
       process.env.NEXT_PUBLIC_FORCE_FEATURE_FLAG_EXAMPLE_FEATURE ?? "false"
     );
   },
-  get "implementation-guides"() {
+  get "join-research-panel"() {
     return (
-      process.env.NEXT_PUBLIC_FORCE_FEATURE_FLAG_IMPLEMENTATION_GUIDES ?? "true"
+      process.env.NEXT_PUBLIC_FORCE_FEATURE_FLAG_JOIN_RESEARCH_PANEL ?? "true"
     );
   },
-  get "case-studies-v2"() {
+  get "nc-alignment-checker"() {
     return (
-      process.env.NEXT_PUBLIC_FORCE_FEATURE_FLAG_CASE_STUDIES_V2 ?? "false"
+      process.env.NEXT_PUBLIC_FORCE_FEATURE_FLAG_NC_ALIGNMENT_CHECKER ?? "false"
     );
   },
 } as const;

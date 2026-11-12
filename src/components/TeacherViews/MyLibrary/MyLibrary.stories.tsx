@@ -18,11 +18,6 @@ const meta = {
     TeacherBrowseAnalyticsDecorator,
   ],
   argTypes: {
-    isLoading: {
-      control: {
-        type: "boolean",
-      },
-    },
     collectionData: {
       control: {
         type: "radio",
@@ -44,6 +39,5 @@ export const Default: Story = {
   render: (args) => <MyLibrary {...args} />,
   args: {
     collectionData: generateMockCollectionData(1),
-    isLoading: false,
   },
 };

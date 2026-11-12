@@ -44,6 +44,7 @@ export type ErrorCode =
   | "educator-api/failed-to-get-saved-units"
   | "educator-api/failed-to-unsave-unit"
   | "graphql/timeout"
+  | "graphql/request-failed"
   | "analytics/teacher-browse"
   | "mathjax/startup";
 
@@ -234,6 +235,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "graphql/timeout": {
     message: "Graphql timeout error",
+    shouldNotify: true,
+  },
+  "graphql/request-failed": {
+    message: "Graphql request failed",
     shouldNotify: true,
   },
   "analytics/teacher-browse": {

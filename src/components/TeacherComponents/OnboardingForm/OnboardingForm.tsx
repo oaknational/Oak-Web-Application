@@ -31,7 +31,6 @@ import {
   onboardUser,
   setOnboardingLocalStorage,
   submitOnboardingHubspotData,
-  collectOnboardingTrackingProps,
 } from "./onboardingActions";
 import {
   decodeOnboardingDataQueryParam,
@@ -41,9 +40,12 @@ import {
 import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { collectOnboardingTrackingProps } from "@/context/TeacherBrowseAnalytics/utils/collectOnboardingTrackingProps";
 import useUtmParams from "@/hooks/useUtmParams";
 import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
 import getHubspotUserToken from "@/browser-lib/hubspot/forms/getHubspotUserToken";
+import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 
 const OnboardingForm = ({
   forceHideNewsletterSignUp,
@@ -66,6 +68,8 @@ const OnboardingForm = ({
   const searchParams = useSearchParams();
   const utmParams = useUtmParams();
   const { posthogDistinctId } = useAnalytics();
+  const { userOnboardingCompleted, userOnboardingProgressed } =
+    useTeacherBrowseAnalytics((store) => store.track);
   const { user } = useUser();
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -73,7 +77,7 @@ const OnboardingForm = ({
   const [userSubscribedInHubspot, setUserSubscribedInHubspot] = useState<
     boolean | undefined
   >(undefined);
-  const { track } = useAnalytics();
+  const { setCurrentToastProps } = useOakNotificationsContext();
   // Accumulate onboarding data from all steps
   const collectedOnboardingData = decodeOnboardingDataQueryParam(searchParams);
 
@@ -110,10 +114,8 @@ const OnboardingForm = ({
 
     if ("worksInSchool" in data) {
       user &&
-        posthogDistinctId &&
-        track.userOnboardingProgressed(
+        userOnboardingProgressed(
           collectOnboardingTrackingProps(
-            posthogDistinctId,
             user,
             latestOnboardingData,
             event?.nativeEvent,
@@ -128,10 +130,8 @@ const OnboardingForm = ({
       );
     } else if (isSchoolSelectData(data) && showNewsletterSignUp) {
       user &&
-        posthogDistinctId &&
-        track.userOnboardingProgressed(
+        userOnboardingProgressed(
           collectOnboardingTrackingProps(
-            posthogDistinctId,
             user,
             latestOnboardingData,
             event?.nativeEvent,
@@ -145,32 +145,9 @@ const OnboardingForm = ({
     } else {
       setIsSubmitting(true);
       const isTeacher = "school" in data || "manualSchoolName" in data;
-
-      try {
-        await onboardUser({ isTeacher });
-        user &&
-          posthogDistinctId &&
-          track.userOnboardingCompleted(
-            collectOnboardingTrackingProps(
-              posthogDistinctId,
-              user,
-              latestOnboardingData,
-              event?.nativeEvent,
-            ),
-          );
-
-        await user?.reload();
-      } catch (_error) {
-        setSubmitError("Something went wrong. Please try again.");
-        setIsSubmitting(false);
-        // No point in proceeding to hubspot sign-up if onboarding failed
-        return;
-      }
-
       const userSubscribed =
         userSubscribedInHubspot ||
         ("newsletterSignUp" in data && data.newsletterSignUp);
-
       const userEmail = user?.emailAddresses[0]?.emailAddress;
 
       await setOnboardingLocalStorage({
@@ -179,7 +156,7 @@ const OnboardingForm = ({
         userEmail,
       });
 
-      await submitOnboardingHubspotData({
+      const hubspotSubmissionSucceeded = await submitOnboardingHubspotData({
         hutk: getHubspotUserToken(),
         utmParams,
         data,
@@ -187,6 +164,35 @@ const OnboardingForm = ({
         posthogDistinctId,
         userEmail,
       });
+
+      if (hubspotSubmissionSucceeded) {
+        try {
+          await onboardUser({ isTeacher });
+          user &&
+            posthogDistinctId &&
+            userOnboardingCompleted(
+              collectOnboardingTrackingProps(
+                user,
+                latestOnboardingData,
+                event?.nativeEvent,
+              ),
+            );
+
+          await user?.reload();
+        } catch {
+          setSubmitError("Something went wrong. Please try again.");
+          setIsSubmitting(false);
+          return;
+        }
+      } else {
+        setCurrentToastProps({
+          variant: "error",
+          message:
+            "Sorry, something went wrong with your sign-up. You’ll need to complete account setup before you can access some features.",
+          autoDismiss: false,
+          showIcon: true,
+        });
+      }
 
       // Return the user to the page they originally arrived from
       // or to the home page as a fallback

@@ -7,19 +7,23 @@ import {
 
 import LessonView from "./LessonView";
 
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import renderWithProviders, {
+  allProviders,
+} from "@/__tests__/__helpers__/renderWithProviders";
 import { resolveOakHref } from "@/common-lib/urls";
 import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
+import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
 const lessonResourceDownloadStarted = jest.fn();
 const lessonMediaClipsStarted = jest.fn();
 const lessonShareStarted = jest.fn();
 const mockCreateTeachingMaterialsInitiated = jest.fn();
 const mockTeachingMaterialsSelected = jest.fn();
+const lessonAccessed = jest.fn();
 
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -35,6 +39,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
         mockCreateTeachingMaterialsInitiated(...args),
       teachingMaterialsSelected: (...args: unknown[]) =>
         mockTeachingMaterialsSelected(...args),
+      lessonAccessed: (...args: unknown[]) => lessonAccessed(...args),
     },
   }),
 }));
@@ -154,6 +159,47 @@ describe("Previous and Next Lesson Navigation", () => {
         unitSlug: baseProps.unitSlug,
         lessonSlug: "lesson-4",
       }),
+    );
+  });
+  it("tracks lessonAccessed on next and previous lesson links", async () => {
+    renderWithProviders({
+      ...allProviders,
+      teacherBrowseAnalytics: {
+        programmeState: getProgrammeStateForLesson(
+          teachersLessonOverviewFixture(),
+        ),
+        accessLevel: "lesson",
+      },
+    })(
+      <LessonView
+        {...baseProps}
+        previousLesson={{
+          lessonSlug: "lesson-2",
+          lessonTitle: "Previous lesson",
+          lessonIndex: 2,
+        }}
+        nextLesson={{
+          lessonSlug: "lesson-4",
+          lessonTitle: "Next lesson",
+          lessonIndex: 4,
+        }}
+      />,
+    );
+    const nextLessonLink = screen.getByRole("link", { name: /Next lesson/i });
+    nextLessonLink.addEventListener("click", (e) => e.preventDefault());
+    const user = userEvent.setup();
+    await user.click(nextLessonLink);
+    expect(lessonAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({ lessonSlug: "lesson-4" }),
+    );
+
+    const prevLessonLink = screen.getByRole("link", {
+      name: /Previous lesson/i,
+    });
+    prevLessonLink.addEventListener("click", (e) => e.preventDefault());
+    await user.click(prevLessonLink);
+    expect(lessonAccessed).toHaveBeenLastCalledWith(
+      expect.objectContaining({ lessonSlug: "lesson-2" }),
     );
   });
 });

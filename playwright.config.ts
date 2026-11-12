@@ -1,4 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
+import type { ChromaticConfig } from "@chromatic-com/playwright";
 
 /**
  * In CI, BASE_URL is set to the Vercel preview/production deployment URL.
@@ -8,8 +9,11 @@ https://oak-web-application-website-git-test-lesq-2113playwright-setup.vercel.th
 const baseURL = process.env.BASE_URL ?? "http://localhost:3000";
 const shouldStartWebServer = !process.env.CI && !process.env.BASE_URL;
 
-export default defineConfig({
-  testDir: "./src/tests/e2e",
+const visualTestMatch = /visual\/(?:[^/]+\/)*[^/]+\.spec\.ts$/;
+
+export default defineConfig<ChromaticConfig>({
+  testDir: "./src/__tests__/",
+  testMatch: /\.spec\.ts$/,
   outputDir: "./test-results",
 
   /* Fail fast in CI if a test has a `.only` accidentally left in */
@@ -19,8 +23,8 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   timeout: 30_000,
 
-  /* Single worker in CI to avoid overwhelming a preview deployment */
-  workers: process.env.CI ? 1 : undefined,
+  /* Only 2 workers in CI to avoid overwhelming a preview deployment */
+  workers: process.env.CI ? 2 : undefined,
 
   reporter: process.env.CI
     ? [
@@ -45,12 +49,21 @@ export default defineConfig({
 
     trace: "on-first-retry",
     screenshot: "only-on-failure",
+    disableAutoSnapshot: true,
   },
 
   projects: [
     {
-      name: "chromium",
+      name: "e2e-desktop",
+      testIgnore: visualTestMatch,
       use: { ...devices["Desktop Chrome"] },
+    },
+    {
+      name: "visual-regression-tests",
+      testMatch: visualTestMatch,
+      timeout: 90_000,
+      use: { ...devices["Desktop Chrome"] },
+      fullyParallel: true,
     },
   ],
 

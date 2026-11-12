@@ -84,7 +84,7 @@ describe("LessonMediaClipsCanonicalPage", () => {
     it("should throw error if no context params", async () => {
       await expect(
         getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
-      ).rejects.toThrowError("No context.params");
+      ).rejects.toThrow("No context.params");
     });
 
     it("should throw an error if API is not found", async () => {
@@ -94,7 +94,7 @@ describe("LessonMediaClipsCanonicalPage", () => {
 
       await expect(
         getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
-      ).rejects.toThrowError();
+      ).rejects.toThrow();
     });
 
     it("should redirect to the EYFS page when lesson pathway is EYFS", async () => {

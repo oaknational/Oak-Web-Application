@@ -28,9 +28,9 @@ jobs:
           cache: true
 
       - name: setup node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 24
+          node-version-file: package.json
           cache: "pnpm"
 
       # Install.
@@ -47,7 +47,7 @@ jobs:
 
   test:
     name: test, Sonar
-    runs-on: 
+    runs-on:
       group: large-runners
     timeout-minutes: 60
     steps:
@@ -62,9 +62,9 @@ jobs:
           cache: true
 
       - name: setup node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 24
+          node-version-file: package.json
           cache: "pnpm"
 
       # Install.

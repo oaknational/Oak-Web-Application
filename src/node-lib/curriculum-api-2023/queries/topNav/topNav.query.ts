@@ -116,6 +116,11 @@ const topNavQuery = (sdk: Sdk) => {
             href: resolveOakHref({ page: "about-who-we-are" }),
           },
           {
+            title: "Meet the team",
+            slug: "about-meet-the-team",
+            href: resolveOakHref({ page: "about-meet-the-team" }),
+          },
+          {
             title: "Oak's curricula",
             slug: "about-oaks-curricula",
             href: resolveOakHref({ page: "about-oaks-curricula" }),
@@ -126,14 +131,14 @@ const topNavQuery = (sdk: Sdk) => {
             href: resolveOakHref({ page: "about-oaks-impact" }),
           },
           {
+            title: "Case studies",
+            slug: "about-case-study-library",
+            href: resolveOakHref({ page: "about-case-study-library" }),
+          },
+          {
             title: "Get involved",
             slug: "about-get-involved",
             href: resolveOakHref({ page: "about-get-involved" }),
-          },
-          {
-            title: "Meet the team",
-            slug: "about-meet-the-team",
-            href: resolveOakHref({ page: "about-meet-the-team" }),
           },
           {
             title: "Contact us",

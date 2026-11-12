@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/dom";
 import { act } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import LessonHeader, { LessonHeaderProps } from "./LessonHeader";
 
@@ -9,9 +10,14 @@ import {
   mockGeorestrictedUser,
   mockLoggedIn,
 } from "@/__tests__/__helpers__/mockUser";
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import renderWithProviders, {
+  allProviders,
+} from "@/__tests__/__helpers__/renderWithProviders";
+import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 
 const lessonResourceDownloadStarted = jest.fn();
+const lessonAccessed = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
@@ -19,6 +25,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
     track: {
       lessonResourceDownloadStarted: (...args: unknown[]) =>
         lessonResourceDownloadStarted(...args),
+      lessonAccessed: (...args: unknown[]) => lessonAccessed(...args),
     },
   }),
 }));
@@ -96,6 +103,47 @@ describe("LessonHeader", () => {
         unitSlug: defaultProps.unitSlug,
         query: { preselected: "all" },
       }),
+    );
+  });
+  it("tracks lessonAccessed on next and previous lesson links", async () => {
+    renderWithProviders({
+      ...allProviders,
+      teacherBrowseAnalytics: {
+        programmeState: getProgrammeStateForLesson(
+          teachersLessonOverviewFixture(),
+        ),
+        accessLevel: "lesson",
+      },
+    })(
+      <LessonHeader
+        {...defaultProps}
+        prevLesson={{
+          lessonSlug: "lesson-2",
+          lessonTitle: "Previous lesson",
+          lessonIndex: 2,
+        }}
+        nextLesson={{
+          lessonSlug: "lesson-4",
+          lessonTitle: "Next lesson",
+          lessonIndex: 4,
+        }}
+      />,
+    );
+    const nextLessonLink = screen.getByRole("link", { name: /Next lesson/i });
+    nextLessonLink.addEventListener("click", (e) => e.preventDefault());
+    const user = userEvent.setup();
+    await user.click(nextLessonLink);
+    expect(lessonAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({ lessonSlug: "lesson-4" }),
+    );
+
+    const prevLessonLink = screen.getByRole("link", {
+      name: /Previous lesson/i,
+    });
+    prevLessonLink.addEventListener("click", (e) => e.preventDefault());
+    await user.click(prevLessonLink);
+    expect(lessonAccessed).toHaveBeenLastCalledWith(
+      expect.objectContaining({ lessonSlug: "lesson-2" }),
     );
   });
   it("fires lesson resource download started when download link is clicked", () => {

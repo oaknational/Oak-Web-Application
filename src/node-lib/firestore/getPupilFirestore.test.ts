@@ -41,7 +41,7 @@ describe("getPupilFirestore", () => {
     delete process.env.NEXT_PUBLIC_USE_FIRESTORE_EMULATOR;
     delete process.env.NEXT_PUBLIC_FIRESTORE_EMULATOR_HOST;
 
-    await expect(async () => getPupilFirestore()).rejects.toThrowError();
+    await expect(async () => getPupilFirestore()).rejects.toThrow();
   });
 
   it("should use GCP OIDC when emulator env vars are not set", async () => {

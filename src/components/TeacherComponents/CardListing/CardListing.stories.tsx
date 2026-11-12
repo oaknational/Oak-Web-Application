@@ -6,12 +6,14 @@ import CardListing from "./CardListing";
 
 import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
 import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const meta: Meta<typeof CardListing> = {
   component: CardListing,
   decorators: [
     SaveCountDecorator,
     NotificationsDecorator,
+    TeacherBrowseAnalyticsDecorator,
     (Story) => (
       <ClerkProvider>
         <Story />

@@ -9,7 +9,7 @@ import {
 } from "@/pages-helpers/home/getBlogPosts";
 import AppLayout from "@/components/AppComponents/AppLayout";
 import TeachersTab from "@/components/GenericPagesComponents/TeachersTab";
-import Banners from "@/components/SharedComponents/Banners";
+import TopBanner from "@/components/SharedComponents/TopBanner";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { HomePage as CmsHomePage } from "@/common-lib/cms-types";
@@ -43,6 +43,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
 
   const { posts, pageData, topNav, curriculumPhaseOptions } = props;
 
+  const { displayTopBanner, topBanner } = pageData;
   const testimonials = pageData?.testimonials;
   const intro = pageData?.intro;
   const campaignPromoBanner = pageData.campaignPromoBanner;
@@ -61,7 +62,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
         $background={"bg-primary"}
         topNavProps={topNav}
       >
-        <Banners />
+        {displayTopBanner && <TopBanner {...topBanner} />}
         <TeachersTab
           curriculumPhaseOptions={curriculumPhaseOptions}
           aria-current="page"

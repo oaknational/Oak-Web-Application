@@ -15,7 +15,45 @@ let input = '';
 process.stdin.on('data', (d) => (input += d));
 process.stdin.on('end', () => {
   const data = JSON.parse(input);
-  const vulns = data.vulnerabilities || {};
+
+  // pnpm audit --json emits npm-v6-style 'advisories'; npm emits 'vulnerabilities'.
+  const fromAdvisories = (advisories) => {
+    const rank = { critical: 0, high: 1, moderate: 2, low: 3, info: 4 };
+    const majorOf = (v) => parseInt(String(v).replace(/[^0-9.]/g, '').split('.')[0], 10);
+    const out = {};
+
+    for (const a of Object.values(advisories)) {
+      const patched = a.patched_versions || '';
+      const hasFix = patched !== '' && patched !== '<0.0.0';
+      const installed = (a.findings || []).map((f) => f.version).filter(Boolean);
+      const isSemVerMajor =
+        hasFix && installed.some((v) => majorOf(v) < majorOf(patched));
+      const parents = [
+        ...new Set(
+          (a.findings || [])
+            .flatMap((f) => f.paths || [])
+            .map((p) => p.split('>')[1])
+            .filter(Boolean),
+        ),
+      ];
+
+      const entry = {
+        severity: a.severity || 'info',
+        range: a.vulnerable_versions || '',
+        via: parents.length > 0 ? parents : [a.title || 'unknown'],
+        fixAvailable: hasFix ? (isSemVerMajor ? { isSemVerMajor: true } : true) : false,
+      };
+
+      const prev = out[a.module_name];
+      if (!prev || (rank[entry.severity] ?? 5) < (rank[prev.severity] ?? 5)) {
+        out[a.module_name] = entry;
+      }
+    }
+
+    return out;
+  };
+
+  const vulns = data.vulnerabilities || fromAdvisories(data.advisories || {});
 
   if (Object.keys(vulns).length === 0) {
     console.log('✅ No vulnerabilities found.');

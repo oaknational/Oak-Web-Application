@@ -93,12 +93,12 @@ describe("nameInputSchema", () => {
 });
 
 describe("newsletterSignupRoleSchema", () => {
-  test("valid", () => {
+  test("valid role", () => {
     const result = newsletterSignupRoleSchema.safeParse({ eduRole: "testing" });
     expect(result.success).toEqual(true);
   });
 
-  test("valid", () => {
+  test("invalid role", () => {
     const result = newsletterSignupRoleSchema.safeParse({ eduRole: 123 });
     expect(result.success).toEqual(false);
   });

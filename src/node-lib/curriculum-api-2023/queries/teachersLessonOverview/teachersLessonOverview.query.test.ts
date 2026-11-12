@@ -36,6 +36,7 @@ describe("teachersLessonOverview()", () => {
           unit_slug: unitSlugTest,
           programme_slug: programmeSlugTest,
           is_legacy: false,
+          features: {},
           programme_slug_by_year: [programmeSlugTest],
         },
       });
@@ -56,6 +57,7 @@ describe("teachersLessonOverview()", () => {
             content: [_lessonContentFixture],
             unitData: [],
             tpcWorks: [],
+            restrictions: [],
           }),
         ),
       })({
@@ -75,6 +77,7 @@ describe("teachersLessonOverview()", () => {
             browseData: [],
             unitData: [],
             tpcWorks: [],
+            restrictions: [],
           }),
         ),
       })({
@@ -258,6 +261,7 @@ describe("teachersLessonOverview()", () => {
           unit_slug: unitSlugTest,
           programme_slug: programmeSlugTest,
           is_legacy: false,
+          features: {},
           programme_slug_by_year: [programmeSlugTest],
         },
       });
@@ -294,6 +298,7 @@ describe("teachersLessonOverview()", () => {
           content: [_lessonContentFixture],
           unitData: [_unitDataFixture],
           tpcWorks: [],
+          restrictions: [],
         }),
       ),
     })({
@@ -329,6 +334,7 @@ describe("teachersLessonOverview()", () => {
         unit_slug: unitSlugTest,
         programme_slug: programmeSlugTest,
         order_in_unit: 2,
+        features: {},
         programme_slug_by_year: [programmeSlugTest],
       },
     });
@@ -351,6 +357,7 @@ describe("teachersLessonOverview()", () => {
           content: [content],
           unitData: [unitData],
           tpcWorks: [],
+          restrictions: [],
         }),
       ),
     })({
@@ -370,6 +377,7 @@ describe("teachersLessonOverview()", () => {
         unit_slug: unitSlugTest,
         programme_slug: programmeSlugTest,
         order_in_unit: 2,
+        features: {},
         programme_slug_by_year: [programmeSlugTest],
       },
     });
@@ -414,6 +422,7 @@ describe("teachersLessonOverview()", () => {
           content: [content],
           unitData: [unitData],
           tpcWorks: [],
+          restrictions: [],
         }),
       ),
     })({
@@ -441,6 +450,7 @@ describe("teachersLessonOverview()", () => {
         unit_slug: unitSlugTest,
         programme_slug: programmeSlugTest,
         order_in_unit: 4,
+        features: {},
         programme_slug_by_year: [programmeSlugTest],
       },
     });
@@ -506,6 +516,7 @@ describe("teachersLessonOverview()", () => {
           content: [content],
           unitData: [unitData],
           tpcWorks: [],
+          restrictions: [],
         }),
       ),
     })({
@@ -536,6 +547,7 @@ describe("teachersLessonOverview()", () => {
             content: [],
             unitData: [],
             tpcWorks: [],
+            restrictions: [],
           }),
         ),
       })({
@@ -624,12 +636,13 @@ describe("teachersLessonOverview()", () => {
         { exists: true, type: "intro-quiz-questions" },
         { exists: true, type: "intro-quiz-answers" },
         { exists: true, type: "exit-quiz-questions" },
-        { exists: true, type: "exit-quiz-questions" },
+        { exists: true, type: "exit-quiz-answers" },
         { exists: true, type: "worksheet-pdf" },
         { exists: true, type: "worksheet-pptx" },
         { exists: true, type: "supplementary-pdf" },
         { exists: true, type: "supplementary-docx" },
         { exists: true, type: "lesson-guide-pdf" },
+        { exists: true, type: "lesson-guide-docx" },
       ];
 
       expect(getDownloadsArray(content)).toEqual(expectedDownloads);
@@ -651,12 +664,13 @@ describe("teachersLessonOverview()", () => {
         { exists: false, type: "intro-quiz-questions" },
         { exists: false, type: "intro-quiz-answers" },
         { exists: false, type: "exit-quiz-questions" },
-        { exists: false, type: "exit-quiz-questions" },
+        { exists: false, type: "exit-quiz-answers" },
         { exists: false, type: "worksheet-pdf" },
         { exists: false, type: "worksheet-pptx" },
         { exists: false, type: "supplementary-pdf" },
         { exists: false, type: "supplementary-docx" },
         { exists: false, type: "lesson-guide-pdf" },
+        { exists: false, type: "lesson-guide-docx" },
       ];
 
       expect(getDownloadsArray(content)).toEqual(expectedDownloads);
@@ -678,12 +692,13 @@ describe("teachersLessonOverview()", () => {
         { exists: false, type: "intro-quiz-questions" },
         { exists: false, type: "intro-quiz-answers" },
         { exists: false, type: "exit-quiz-questions" },
-        { exists: false, type: "exit-quiz-questions" },
+        { exists: false, type: "exit-quiz-answers" },
         { exists: true, type: "worksheet-pdf" },
         { exists: true, type: "worksheet-pptx" },
         { exists: false, type: "supplementary-pdf" },
         { exists: false, type: "supplementary-docx" },
         { exists: false, type: "lesson-guide-pdf" },
+        { exists: false, type: "lesson-guide-docx" },
       ];
 
       expect(getDownloadsArray(content)).toEqual(expectedDownloads);
@@ -713,6 +728,7 @@ describe("hasMediaClips logic", () => {
           programme_slug: programmeSlugTest,
           is_legacy: false,
           programme_slug_by_year: [programmeSlugTest],
+          features: {},
           lesson_data: {
             ...syntheticUnitvariantLessonsByKsFixture({}).lesson_data,
             ...mediaClipsFixture(),
@@ -752,6 +768,7 @@ describe("hasMediaClips logic", () => {
           content: [_lessonContentFixture],
           unitData: [_unitDataFixture],
           tpcWorks: [],
+          restrictions: [],
         }),
       ),
     })({

@@ -11,14 +11,6 @@ import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/
 import OakError from "@/errors/OakError";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
-interface MockLocation {
-  href: string;
-  assign: jest.Mock;
-  reload: jest.Mock;
-  replace: jest.Mock;
-  // Add other methods and properties if needed
-}
-
 jest.mock(
   "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view",
   () => ({
@@ -38,23 +30,12 @@ jest.mock(
 const MockPupilViewsLessonListing = PupilViewsLessonListing as jest.Mock;
 
 describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/index", () => {
-  const originalLocation: Location = window.location;
-  let mockLocation: MockLocation;
-
   beforeEach(() => {
-    // Create a mock location object
-    mockLocation = {
-      href: "https://original.com",
-      assign: jest.fn(),
-      reload: jest.fn(),
-      replace: jest.fn(),
-    };
-
-    // Override the window.location with the mock object using type casting
-    Object.defineProperty(window, "location", {
-      value: mockLocation,
-      writable: true,
-    });
+    window.history.replaceState(
+      null,
+      "",
+      "/pupils/programmes/english-secondary-year-10/units/test-unit-year-10/lessons",
+    );
 
     //mock console.error to prevent it from being called
     jest.spyOn(console, "error").mockImplementation(() => {});
@@ -66,12 +47,6 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       value: undefined,
       configurable: true,
     });
-    // Restore the original window.location object after each test
-    Object.defineProperty(window, "location", {
-      value: originalLocation,
-      writable: true,
-    });
-
     jest.clearAllMocks();
   });
 
@@ -126,18 +101,12 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
 
     it("should call PupilViewsLessonListing with the referrer as the backlink when available", () => {
       const referrer =
-        "https://example.com/programmes/english-secondary-year-10/units";
+        "http://localhost/programmes/english-secondary-year-10/units";
 
       // mock document referrer
       Object.defineProperty(document, "referrer", {
         value: referrer,
         configurable: true,
-      });
-
-      Object.defineProperty(window.location, "href", {
-        value:
-          "https://example.com/programmes/english-secondary-year-10/units/unit-slug/lessons",
-        writable: true,
       });
 
       render(
