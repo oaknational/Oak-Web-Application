@@ -84,7 +84,6 @@ export default function LessonView({
 
   const lessonResources = getLessonResources({
     data: props,
-    copyrightState,
     isMathJaxLesson,
     contentRestricted,
   });
