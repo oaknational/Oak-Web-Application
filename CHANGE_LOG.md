@@ -1,3 +1,11 @@
+## [1.1277.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1277.2...v1.1277.3) (2026-11-12)
+
+
+### Bug Fixes
+
+* bump @sentry/nextjs (security) ([c0d0f80](https://github.com/oaknational/Oak-Web-Application/commit/c0d0f80379272ebef065202a0a544958cfa9235b))
+* bump next version (security) ([f4a66e6](https://github.com/oaknational/Oak-Web-Application/commit/f4a66e6e592e51ed69a8947a4d275123aa8466ad))
+
 ## [1.1277.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1277.1...v1.1277.2) (2026-11-12)
 
 
