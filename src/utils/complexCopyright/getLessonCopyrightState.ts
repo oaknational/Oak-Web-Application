@@ -23,5 +23,6 @@ export function getLessonCopyrightState(
     authState,
     resourceIsGeorestricted,
     resourceRequiresLogin,
+    isLoaded: true,
   });
 }

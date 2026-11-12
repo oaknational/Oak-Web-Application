@@ -15,7 +15,7 @@ export function useComplexCopyright({
   loginRequired,
   geoRestricted,
 }: UseComplexCopyrightProps): ComplexCopyrightStatus {
-  const { user, isSignedIn } = useUser();
+  const { user, isSignedIn, isLoaded } = useUser();
   const { coreProgrammeState } = useProgrammeState();
 
   const isUserOnboarded =
@@ -41,5 +41,6 @@ export function useComplexCopyright({
     authState,
     resourceIsGeorestricted,
     resourceRequiresLogin,
+    isLoaded,
   });
 }

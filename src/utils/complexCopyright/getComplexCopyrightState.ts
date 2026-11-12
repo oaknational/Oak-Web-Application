@@ -4,10 +4,12 @@ export const getComplexCopyrightState = ({
   authState,
   resourceIsGeorestricted,
   resourceRequiresLogin,
+  isLoaded,
 }: {
   authState: AuthState;
   resourceIsGeorestricted: boolean;
   resourceRequiresLogin: boolean;
+  isLoaded: boolean;
 }): ComplexCopyrightStatus => {
   const showSignedOutLoginRequired =
     !authState.isSignedIn && resourceRequiresLogin;
@@ -30,7 +32,7 @@ export const getComplexCopyrightState = ({
     showSignedOutGeoRestricted,
     showSignedInNotOnboarded,
     showGeoBlocked,
-    isLoaded: true,
+    isLoaded,
     isResourceGeorestricted: resourceIsGeorestricted,
   };
 };

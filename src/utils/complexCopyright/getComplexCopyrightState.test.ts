@@ -22,6 +22,7 @@ describe("getComplexCopyrightState", () => {
       authState: signedOutAuthState,
       resourceIsGeorestricted: false,
       resourceRequiresLogin: false,
+      isLoaded: true,
     });
 
     expect(result).toEqual({
@@ -39,6 +40,7 @@ describe("getComplexCopyrightState", () => {
       authState: signedOutAuthState,
       resourceIsGeorestricted: false,
       resourceRequiresLogin: true,
+      isLoaded: true,
     });
 
     expect(result).toEqual({
@@ -56,6 +58,7 @@ describe("getComplexCopyrightState", () => {
       authState: signedOutAuthState,
       resourceIsGeorestricted: true,
       resourceRequiresLogin: false,
+      isLoaded: true,
     });
 
     expect(result).toEqual({
@@ -73,6 +76,7 @@ describe("getComplexCopyrightState", () => {
       authState: signedOutAuthState,
       resourceIsGeorestricted: true,
       resourceRequiresLogin: true,
+      isLoaded: true,
     });
 
     expect(result).toEqual({
@@ -90,6 +94,7 @@ describe("getComplexCopyrightState", () => {
       authState: signedInGeorestrictedAuthState,
       resourceIsGeorestricted: false,
       resourceRequiresLogin: false,
+      isLoaded: true,
     });
 
     expect(result).toEqual({
@@ -107,6 +112,7 @@ describe("getComplexCopyrightState", () => {
       authState: signedInGeorestrictedAuthState,
       resourceIsGeorestricted: false,
       resourceRequiresLogin: true,
+      isLoaded: true,
     });
 
     expect(result).toEqual({
@@ -124,6 +130,7 @@ describe("getComplexCopyrightState", () => {
       authState: signedInGeorestrictedAuthState,
       resourceIsGeorestricted: true,
       resourceRequiresLogin: false,
+      isLoaded: true,
     });
 
     expect(result).toEqual({
@@ -141,6 +148,7 @@ describe("getComplexCopyrightState", () => {
       authState: signedInGeorestrictedAuthState,
       resourceIsGeorestricted: true,
       resourceRequiresLogin: true,
+      isLoaded: true,
     });
 
     expect(result).toEqual({
@@ -158,6 +166,7 @@ describe("getComplexCopyrightState", () => {
       authState: signedInGeoAuthenticatedAuthState,
       resourceIsGeorestricted: false,
       resourceRequiresLogin: false,
+      isLoaded: true,
     });
 
     expect(result).toEqual({
@@ -175,6 +184,7 @@ describe("getComplexCopyrightState", () => {
       authState: signedInGeoAuthenticatedAuthState,
       resourceIsGeorestricted: false,
       resourceRequiresLogin: true,
+      isLoaded: true,
     });
 
     expect(result).toEqual({
@@ -192,6 +202,7 @@ describe("getComplexCopyrightState", () => {
       authState: signedInGeoAuthenticatedAuthState,
       resourceIsGeorestricted: true,
       resourceRequiresLogin: false,
+      isLoaded: true,
     });
 
     expect(result).toEqual({
@@ -209,6 +220,7 @@ describe("getComplexCopyrightState", () => {
       authState: signedInGeoAuthenticatedAuthState,
       resourceIsGeorestricted: true,
       resourceRequiresLogin: true,
+      isLoaded: true,
     });
 
     expect(result).toEqual({
