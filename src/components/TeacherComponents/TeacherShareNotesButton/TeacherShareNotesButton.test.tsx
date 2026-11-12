@@ -55,7 +55,7 @@ jest.mock("@oaknational/oak-consent-client", () => ({
 }));
 
 let mockUseComplexCopyright = defaultCopyrightRequirements;
-jest.mock("@/hooks/useComplexCopyright", () => ({
+jest.mock("@/utils/complexCopyright/useComplexCopyright", () => ({
   useComplexCopyright: () => mockUseComplexCopyright,
 }));
 
