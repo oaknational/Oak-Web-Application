@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
+import { currentUser } from "@clerk/nextjs/server";
 
 import { Breadcrumbs } from "../../Components/Breadcrumbs/Breadcrumbs";
 
@@ -16,6 +17,8 @@ import { cacheData } from "@/node-lib/cache";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { filterRestrictedLessonMediaData } from "@/utils/complexCopyright/filterRestrictedLessonMediaData";
+import { getAuthState } from "@/utils/complexCopyright/getAuthState";
 
 type LessonMediaPageParams = {
   slug: string;
@@ -23,7 +26,7 @@ type LessonMediaPageParams = {
   lessonSlug: string;
 };
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 const getCachedLessonMediaClipsData = cache(
   cacheData(
@@ -82,13 +85,15 @@ const InnerLessonMediaPage = async (
     return notFound();
   }
 
-  const mediaClipsWithTranscripts = await populateMediaClipsWithTranscripts(
-    data.mediaClips,
-  );
+  const user = await currentUser();
+  const authState = getAuthState({ isSignedIn: !!user, user });
+  const filteredData = filterRestrictedLessonMediaData(data, authState);
 
   const lessonData: LessonMediaClipsData = {
-    ...data,
-    mediaClips: mediaClipsWithTranscripts,
+    ...filteredData,
+    mediaClips: await populateMediaClipsWithTranscripts(
+      filteredData.mediaClips,
+    ),
   };
 
   const breadcrumbsSubjectPhaseSlug = getTeacherSubjectPhaseSlug({
