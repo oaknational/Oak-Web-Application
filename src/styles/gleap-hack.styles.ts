@@ -9,7 +9,7 @@ const posthogHackStyles = css`
   }
 
   .gleap-frame-container {
-    bottom: 66px !important;
+    bottom: 88px !important;
   }
 `;
 

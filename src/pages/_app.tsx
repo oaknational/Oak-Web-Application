@@ -9,6 +9,8 @@ import {
   oakDefaultTheme,
   OakGlobalStyle,
   OakThemeProvider,
+  OakIconButton,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import "@/browser-lib/gleap/gleap.css";
@@ -65,10 +67,7 @@ function GleapButton() {
   };
 
   return (
-    <button
-      onClick={toggleFeedback}
-      aria-label="Feedback panel"
-      aria-expanded={isOpened}
+    <OakBox
       style={{
         display: shouldShowButton ? "block" : "none",
         position: "fixed",
@@ -78,8 +77,16 @@ function GleapButton() {
         padding: 4,
       }}
     >
-      ?
-    </button>
+      <OakIconButton
+        iconName="question-mark"
+        onClick={toggleFeedback}
+        aria-label="Feedback panel"
+        aria-expanded={isOpened}
+        $colorScheme="primary"
+        $size="md"
+        $type="primary"
+      />
+    </OakBox>
   );
 }
 
