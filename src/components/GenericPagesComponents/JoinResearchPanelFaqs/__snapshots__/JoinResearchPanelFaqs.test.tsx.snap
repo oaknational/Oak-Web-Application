@@ -7,7 +7,7 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
       class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-bdvwhi sc-gsDMPd hPWTKU euxzce"
+        class="sc-bdvwhi sc-gsDMPd blOvSo euxzce"
       >
         <h2
           class="sc-bkkgYE kkQJKP"
@@ -15,17 +15,17 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
           Frequently asked questions
         </h2>
         <div
-          class="sc-bdvwhi sc-jcFiBM hPWTKU kyGOgc"
+          class="sc-bdvwhi sc-jObTYW hPWTKU jmGxKU"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU kjGJBC lfnHax"
+            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU kjGJBC gymcRh"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd sc-bBHFiX iVplaw gPLNOl eLDhXH"
+              class="sc-bdvwhi sc-gsDMPd sc-kHOYJp iVplaw gPLNOl dIlIKd"
             >
               <button
                 aria-expanded="false"
-                class="sc-bdvwhi sc-gsDMPd sc-iAKZmh kQWlwA kkGnDS dhgEIE sc-efQVjI sc-dPiIMO fAPqts"
+                class="sc-bdvwhi sc-gsDMPd sc-llYVjd kQWlwA kkGnDS dgTdWl sc-iJKPHa sc-bTfXSk bXudre"
                 id="faq-0"
                 type="button"
               >
@@ -67,7 +67,7 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                   role="region"
                 >
                   <div
-                    class="sc-bdvwhi kiqxID"
+                    class="sc-bdvwhi hoEmrg"
                   >
                     <p
                       class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
@@ -78,10 +78,10 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                 </div>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-cCcVtu hPWTKU Bakex sc-jObTYW ahfwb"
+                class="sc-bdvwhi sc-gsDMPd sc-hmjqIC hPWTKU Bakex sc-eLwIaL dgNXCU"
               >
                 <svg
-                  class="sc-gWWZvT jSwHAF"
+                  class="sc-jIkVsP ShMXb"
                   height="7"
                   preserveAspectRatio="none"
                   viewBox="0 0 195 7"
@@ -100,11 +100,11 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
               </div>
             </div>
             <div
-              class="sc-bdvwhi sc-gsDMPd sc-bBHFiX iTWvmf gPLNOl haHIo"
+              class="sc-bdvwhi sc-gsDMPd sc-kHOYJp iTWvmf gPLNOl dSjuPC"
             >
               <button
                 aria-expanded="false"
-                class="sc-bdvwhi sc-gsDMPd sc-iAKZmh kQWlwA kkGnDS dhgEIE sc-efQVjI sc-dPiIMO fAPqts"
+                class="sc-bdvwhi sc-gsDMPd sc-llYVjd kQWlwA kkGnDS dgTdWl sc-iJKPHa sc-bTfXSk bXudre"
                 id="faq-1"
                 type="button"
               >
@@ -146,7 +146,7 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                   role="region"
                 >
                   <div
-                    class="sc-bdvwhi kiqxID"
+                    class="sc-bdvwhi hoEmrg"
                   >
                     <p
                       class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
@@ -157,10 +157,10 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                 </div>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-cCcVtu hPWTKU Bakex sc-jObTYW ahfwb"
+                class="sc-bdvwhi sc-gsDMPd sc-hmjqIC hPWTKU Bakex sc-eLwIaL dgNXCU"
               >
                 <svg
-                  class="sc-gWWZvT jSwHAF"
+                  class="sc-jIkVsP ShMXb"
                   height="7"
                   preserveAspectRatio="none"
                   viewBox="0 0 195 7"
@@ -179,11 +179,11 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
               </div>
             </div>
             <div
-              class="sc-bdvwhi sc-gsDMPd sc-bBHFiX eHtWvI gPLNOl iHFJTr"
+              class="sc-bdvwhi sc-gsDMPd sc-kHOYJp eHtWvI gPLNOl jwGXHp"
             >
               <button
                 aria-expanded="false"
-                class="sc-bdvwhi sc-gsDMPd sc-iAKZmh kQWlwA kkGnDS dhgEIE sc-efQVjI sc-dPiIMO fAPqts"
+                class="sc-bdvwhi sc-gsDMPd sc-llYVjd kQWlwA kkGnDS dgTdWl sc-iJKPHa sc-bTfXSk bXudre"
                 id="faq-2"
                 type="button"
               >
@@ -225,7 +225,7 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                   role="region"
                 >
                   <div
-                    class="sc-bdvwhi kiqxID"
+                    class="sc-bdvwhi hoEmrg"
                   >
                     <p
                       class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
@@ -236,10 +236,10 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                 </div>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-cCcVtu hPWTKU Bakex sc-jObTYW ahfwb"
+                class="sc-bdvwhi sc-gsDMPd sc-hmjqIC hPWTKU Bakex sc-eLwIaL dgNXCU"
               >
                 <svg
-                  class="sc-gWWZvT jSwHAF"
+                  class="sc-jIkVsP ShMXb"
                   height="7"
                   preserveAspectRatio="none"
                   viewBox="0 0 195 7"

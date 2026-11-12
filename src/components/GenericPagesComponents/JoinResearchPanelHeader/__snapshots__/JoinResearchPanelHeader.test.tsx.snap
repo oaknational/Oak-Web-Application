@@ -20,7 +20,7 @@ exports[`JoinResearchPanelHeader it renders correct data 1`] = `
               class="sc-kYHdiH YiXOT"
             >
               <a
-                class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                 href="/"
                 style="overflow: hidden;"
               >
@@ -52,7 +52,7 @@ exports[`JoinResearchPanelHeader it renders correct data 1`] = `
                 />
               </span>
               <a
-                class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                 href="/about-us/get-involved"
                 style="overflow: hidden;"
               >
@@ -101,10 +101,10 @@ exports[`JoinResearchPanelHeader it renders correct data 1`] = `
         class="sc-bdvwhi iatEdD"
       >
         <div
-          class="sc-bdvwhi sc-jcFiBM hPWTKU jslZJX"
+          class="sc-bdvwhi sc-jObTYW hPWTKU gKJERn"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex irjOXW"
+            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex giCKOa"
           >
             <div
               class="sc-bdvwhi sc-gsDMPd hPWTKU csSWlB"
@@ -113,12 +113,12 @@ exports[`JoinResearchPanelHeader it renders correct data 1`] = `
                 class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
               >
                 <h1
-                  class="sc-bkkgYE hBiIpc"
+                  class="sc-bkkgYE jgcKke"
                 >
                   Join the Oak research panel
                 </h1>
                 <p
-                  class="sc-hGPAwl lcuFqC"
+                  class="sc-hGPAwl fKoyMR"
                 >
                   Your feedback is essential to help us understand the realities of teaching and learning. By listening to teachers like you, we learn about your preferences, challenges and needs, and can use these insights to shape Oak curriculum resources, lessons and tools.
                 </p>
@@ -169,7 +169,7 @@ exports[`JoinResearchPanelHeader it renders correct data 1`] = `
             </div>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-caiMdP cUChIo exNRnp ldOatf"
+            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO cUChIo exNRnp fqHsID"
           >
             <div
               class="sc-bdvwhi sc-gsDMPd dumZsJ kkGnDS"

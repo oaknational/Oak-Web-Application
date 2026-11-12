@@ -47,8 +47,7 @@
     "educatorApiUrl": "url",
     "educatorApiAuthRole": "role",
     "vercelApiUrl": "https://api.thenational.academy",
-    "downloadApiUrl": "https://downloads-api.thenational.academy",
-    "aiSearchEnabled": "true"
+    "downloadApiUrl": "https://downloads-api.thenational.academy"
   },
   "posthog": {
     "apiHost": "http://localhost:8899",
@@ -106,9 +105,6 @@
   },
   "googleSecretManager": {
     "projectId": "123451"
-  },
-  "aiGateway": {
-    "requiredSecrets": ["AI_GATEWAY_API_KEY", "AI_GATEWAY_URL"]
   },
   "googleClassroom": {
     "requiredSecrets": [

@@ -1,10 +1,16 @@
 import {
-  UseSearchFiltersReturnType,
-  KeyStage,
+  SearchQuery,
+  SearchHit,
+  RequestStatus,
+  GetSearchFiltersReturnType,
 } from "@/context/Search/search.types";
-import { UseSearchReturnType } from "@/context/Search/useSearch";
+import { SearchPageData } from "@/node-lib/curriculum-api-2023";
 
-export type SearchProps = UseSearchReturnType & {
-  searchFilters: UseSearchFiltersReturnType;
-  allKeyStages: KeyStage[];
+export type SearchViewProps = {
+  searchFilters: GetSearchFiltersReturnType;
+  allKeyStages: SearchPageData["keyStages"];
+  query: SearchQuery;
+  results: SearchHit[];
+  status: RequestStatus;
+  timeTaken: number;
 };

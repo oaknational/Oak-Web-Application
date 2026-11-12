@@ -7,10 +7,10 @@ exports[`AboutUsCalloutWithCta renders custom content correctly 1`] = `
       class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-bdvwhi sc-jcFiBM hPWTKU jslZJX"
+        class="sc-bdvwhi sc-jObTYW hPWTKU gKJERn"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex irjOXW"
+          class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex giCKOa"
         >
           <div
             class="sc-bdvwhi sc-gsDMPd hPWTKU csSWlB"
@@ -24,7 +24,7 @@ exports[`AboutUsCalloutWithCta renders custom content correctly 1`] = `
                 Join the Oak research panel
               </h1>
               <p
-                class="sc-hGPAwl lcuFqC"
+                class="sc-hGPAwl fKoyMR"
               >
                 Your feedback is essential to help us understand the realities of teaching and learning. By listening to teachers like you, we learn about your preferences, challenges and needs, and can use these insights to shape Oak curriculum resources, lessons and tools.
               </p>
@@ -75,7 +75,7 @@ exports[`AboutUsCalloutWithCta renders custom content correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-bdvwhi sc-gsDMPd sc-caiMdP eIMKEQ Bakex ldOatf"
+          class="sc-bdvwhi sc-gsDMPd sc-dPiIMO eIMKEQ Bakex fqHsID"
         >
           <div
             class="sc-bdvwhi sc-gsDMPd dumZsJ kkGnDS"
@@ -110,10 +110,10 @@ exports[`AboutUsCalloutWithCta renders default content correctly 1`] = `
       class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-bdvwhi sc-jcFiBM hPWTKU jslZJX"
+        class="sc-bdvwhi sc-jObTYW hPWTKU gKJERn"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex irjOXW"
+          class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex giCKOa"
         >
           <div
             class="sc-bdvwhi sc-gsDMPd hPWTKU csSWlB"
@@ -127,7 +127,7 @@ exports[`AboutUsCalloutWithCta renders default content correctly 1`] = `
                 Discover how Oak can support you
               </h2>
               <p
-                class="sc-hGPAwl lcuFqC"
+                class="sc-hGPAwl fKoyMR"
               >
                 To explore the impact Oak’s curricula could have in your school or trust, fill out the form below and one of our experts will be in touch shortly.
               </p>
@@ -178,7 +178,7 @@ exports[`AboutUsCalloutWithCta renders default content correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-bdvwhi sc-gsDMPd sc-caiMdP eIMKEQ Bakex ldOatf"
+          class="sc-bdvwhi sc-gsDMPd sc-dPiIMO eIMKEQ Bakex fqHsID"
         >
           <div
             class="sc-bdvwhi sc-gsDMPd dumZsJ kkGnDS"

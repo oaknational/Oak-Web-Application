@@ -45,7 +45,7 @@ exports[`RiskAssessmentBanner renders the RiskAssessmentBanner component 1`] = `
                 Carry out a
                  
                 <a
-                  class="sc-iwjfEg gbbVHe sc-hUpbpP bEqcTJ"
+                  class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
                   href="/legal/physical-activity-disclaimer"
                   target="_blank"
                 >
@@ -53,18 +53,13 @@ exports[`RiskAssessmentBanner renders the RiskAssessmentBanner component 1`] = `
                     class="sc-dkPwfY fgmEIT"
                   >
                     risk assessment
-                    <span
-                      class="sc-iCfNyT gvLbeW"
-                    >
-                       (opens in a new tab)
-                    </span>
                   </span>
                 </a>
                  
                 for all practical PE lessons. Read
                  
                 <a
-                  class="sc-iwjfEg gbbVHe sc-hUpbpP bEqcTJ"
+                  class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
                   href="https://www.afpe.org.uk/page/Safe_Practice_in_PESSPA#"
                   target="_blank"
                 >
@@ -72,11 +67,6 @@ exports[`RiskAssessmentBanner renders the RiskAssessmentBanner component 1`] = `
                     class="sc-dkPwfY fgmEIT"
                   >
                     'Safe Practice: in PESSPA'
-                    <span
-                      class="sc-iCfNyT gvLbeW"
-                    >
-                       (opens in a new tab)
-                    </span>
                   </span>
                   <div
                     class="sc-bdvwhi hUeWJD"

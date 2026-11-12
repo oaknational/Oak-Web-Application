@@ -177,7 +177,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
         >
           <a
             aria-label="Home"
-            class="sc-iwjfEg gbbVHe sc-hUpbpP bEqcTJ"
+            class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
             href="/"
           >
             <span
@@ -405,12 +405,12 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                   class="sc-bdvwhi aIwlt"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd sc-faUoBp fgcOpf eWbmLh lixHJQ"
+                    class="sc-bdvwhi sc-gsDMPd sc-cTAoCz fgcOpf eWbmLh gkqGfv"
                   >
                     <input
                       aria-invalid="false"
                       aria-label="Lesson and unit search"
-                      class="sc-clIAoS cdIhly"
+                      class="sc-efQVjI iOeTAG"
                       name="term"
                       placeholder="Search"
                       type="search"
@@ -502,35 +502,39 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                   </a>
                 </div>
               </div>
-              <a
-                aria-label="My library"
-                class="sc-eCIkAO sc-hYQmIO leuZXC iqPAvY"
-                href="/teachers/my-library"
+              <div
+                class="sc-bdvwhi hpxhcR"
               >
-                <div
-                  class="sc-bdvwhi sc-gsDMPd evZLCm igJqEq oak-save-count"
+                <a
+                  aria-label="My library"
+                  class="sc-eCIkAO sc-hYQmIO leuZXC iqPAvY"
+                  href="/teachers/my-library"
                 >
-                  <span
-                    class="sc-bdvwhi dsdZgi"
-                    data-testid="bookmark-outlined"
-                  >
-                    <img
-                      alt=""
-                      class="sc-jRQBiJ eMsccW"
-                      data-nimg="fill"
-                      decoding="async"
-                      loading="lazy"
-                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734519491/icons/bookmark-outlined_rxe5v0.svg"
-                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                    />
-                  </span>
                   <div
-                    class="sc-bdvwhi nQgAu"
+                    class="sc-bdvwhi sc-gsDMPd evZLCm igJqEq oak-save-count"
                   >
-                    My library
+                    <span
+                      class="sc-bdvwhi dsdZgi"
+                      data-testid="bookmark-outlined"
+                    >
+                      <img
+                        alt=""
+                        class="sc-jRQBiJ eMsccW"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734519491/icons/bookmark-outlined_rxe5v0.svg"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
+                    </span>
+                    <div
+                      class="sc-bdvwhi nQgAu"
+                    >
+                      My library
+                    </div>
                   </div>
-                </div>
-              </a>
+                </a>
+              </div>
               <div
                 class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
               >
@@ -820,10 +824,10 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                 class="sc-bdvwhi sc-gsDMPd blOvSo eChlAW"
               >
                 <div
-                  class="sc-bdvwhi sc-jcFiBM hPWTKU kyGOgc"
+                  class="sc-bdvwhi sc-jObTYW hPWTKU jmGxKU"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex eUwvYM"
+                    class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex jESsXg"
                   >
                     <div
                       class="sc-bdvwhi sc-gsDMPd hPWTKU kZwEgc"
@@ -841,7 +845,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-bdvwhi fUaIBc"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP eGLkYb"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
                           href="/about-us/case-studies"
                         >
                           <span
@@ -872,13 +876,13 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                   </div>
                 </div>
                 <ul
-                  class="sc-bdvwhi sc-jcFiBM eZfdqr cwIpfY"
+                  class="sc-bdvwhi sc-jObTYW eZfdqr boCgwA"
                 >
                   <li
-                    class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex gZGKIJ"
+                    class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
                   >
                     <div
-                      class="sc-bdvwhi sc-hiCkpJ gJwBUw ewWNTJ"
+                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
                     >
                       <a
                         class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -904,10 +908,10 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                     </div>
                   </li>
                   <li
-                    class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex gZGKIJ"
+                    class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
                   >
                     <div
-                      class="sc-bdvwhi sc-hiCkpJ gJwBUw ewWNTJ"
+                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
                     >
                       <a
                         class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -933,10 +937,10 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                     </div>
                   </li>
                   <li
-                    class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex gZGKIJ"
+                    class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
                   >
                     <div
-                      class="sc-bdvwhi sc-hiCkpJ gJwBUw ewWNTJ"
+                      class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
                     >
                       <a
                         class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -974,7 +978,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
               Oaks Impact school quotes heading
             </h2>
             <ul
-              class="sc-bdvwhi sc-jcFiBM fdGQfI cwIpfY"
+              class="sc-bdvwhi sc-jObTYW fdGQfI boCgwA"
             />
           </div>
           <div
@@ -987,10 +991,10 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
               class="sc-bdvwhi iatEdD"
             >
               <div
-                class="sc-bdvwhi sc-jcFiBM hPWTKU jslZJX"
+                class="sc-bdvwhi sc-jObTYW hPWTKU gKJERn"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex irjOXW"
+                  class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex giCKOa"
                 >
                   <div
                     class="sc-bdvwhi sc-gsDMPd hPWTKU csSWlB"
@@ -1004,7 +1008,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         Discover how Oak can support you
                       </h2>
                       <p
-                        class="sc-hGPAwl lcuFqC"
+                        class="sc-hGPAwl fKoyMR"
                       >
                         To explore the impact Oak’s curricula could have in your school or trust, fill out the form below and one of our experts will be in touch shortly.
                       </p>
@@ -1055,7 +1059,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd sc-caiMdP eIMKEQ Bakex ldOatf"
+                  class="sc-bdvwhi sc-gsDMPd sc-dPiIMO eIMKEQ Bakex fqHsID"
                 >
                   <div
                     class="sc-bdvwhi sc-gsDMPd dumZsJ kkGnDS"
@@ -1120,7 +1124,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                       class="sc-e82709a-1 dHuEVS"
                     >
                       <li
-                        class="sc-bdvwhi sc-hiCkpJ kgCXAV GaIyR"
+                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
                       >
                         <a
                           href="/about-us/who-we-are"
@@ -1174,7 +1178,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         </a>
                       </li>
                       <li
-                        class="sc-bdvwhi sc-hiCkpJ kgCXAV GaIyR"
+                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
                       >
                         <a
                           href="/about-us/oaks-curricula"
@@ -1228,7 +1232,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         </a>
                       </li>
                       <li
-                        class="sc-bdvwhi sc-hiCkpJ kgCXAV GaIyR"
+                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
                       >
                         <a
                           href="/about-us/oaks-impact"
@@ -1282,7 +1286,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         </a>
                       </li>
                       <li
-                        class="sc-bdvwhi sc-hiCkpJ kgCXAV GaIyR"
+                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
                       >
                         <a
                           href="/about-us/meet-the-team"
@@ -1336,7 +1340,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         </a>
                       </li>
                       <li
-                        class="sc-bdvwhi sc-hiCkpJ kgCXAV GaIyR"
+                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
                       >
                         <a
                           href="/about-us/get-involved"
@@ -1390,7 +1394,61 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         </a>
                       </li>
                       <li
-                        class="sc-bdvwhi sc-hiCkpJ kgCXAV GaIyR"
+                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
+                      >
+                        <a
+                          href="/about-us/get-involved/join-research-panel"
+                          style="outline: none;"
+                          target="_self"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd sc-e82709a-0 hcfMxe ezaUKt lkvaED"
+                            data-testid="who-we-are-explore-item"
+                          >
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU Bakex"
+                            >
+                              <span
+                                class="sc-bdvwhi gaaoSG"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1793641849/icons/teacher-group.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd eKftaO kkGnDS"
+                            >
+                              Join the research panel
+                            </div>
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU Bakex"
+                            >
+                              <span
+                                class="sc-bdvwhi cqHYAi"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ eMsccW"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-bdvwhi sc-bXTeWK kgCXAV eKzdht"
                       >
                         <a
                           href="/about-us/case-studies"
@@ -1457,16 +1515,16 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
               class="sc-bdvwhi iatEdD"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-b2eee06e-0 hPWTKU Bakex kFbKoF"
+                class="sc-bdvwhi sc-gsDMPd sc-b6b10a5e-0 hPWTKU Bakex dHIgfJ"
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd sc-d650a570-0 WhkHR cvDmZS"
                 >
                   <div
-                    class="sc-bdvwhi sc-jcFiBM hPWTKU kyGOgc"
+                    class="sc-bdvwhi sc-jObTYW hPWTKU jmGxKU"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex iVeCjW"
+                      class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex erCqWa"
                     >
                       <div
                         class="sc-bdvwhi sc-gsDMPd kfKAWJ MPeNZ"
@@ -1500,7 +1558,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                          teachers and get free resources and other helpful content by email. Unsubscribe at any time. Read our
                          
                         <a
-                          class="sc-iwjfEg gbbVHe sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
                           href="/legal/privacy-policy"
                         >
                           <span
@@ -1513,7 +1571,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                       </p>
                     </div>
                     <div
-                      class="sc-bdvwhi sc-gsDMPd sc-caiMdP kariTn Bakex iVeCjW"
+                      class="sc-bdvwhi sc-gsDMPd sc-dPiIMO kariTn Bakex erCqWa"
                     >
                       <form
                         aria-describedby="react-use-id-test-result-newsletter-form-description"
@@ -1539,14 +1597,14 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                                 Name (required)
                               </label>
                               <div
-                                class="sc-bdvwhi sc-gsDMPd sc-fvxxdC ibUPwR gEAnZR cafdzX"
+                                class="sc-bdvwhi sc-gsDMPd sc-clIAoS ibUPwR gEAnZR gqKaCP"
                               >
                                 <div
                                   class="sc-bdvwhi sc-gsDMPd hPWTKU kkGnDS"
                                 >
                                   <input
                                     autocomplete="name"
-                                    class="sc-clIAoS bvSZuz"
+                                    class="sc-efQVjI bktjgD"
                                     data-testid="text-input"
                                     id="react-use-id-test-result-newsletter-signup-name"
                                     name="name"
@@ -1578,14 +1636,14 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                                 Email (required)
                               </label>
                               <div
-                                class="sc-bdvwhi sc-gsDMPd sc-fvxxdC ibUPwR gEAnZR cafdzX"
+                                class="sc-bdvwhi sc-gsDMPd sc-clIAoS ibUPwR gEAnZR gqKaCP"
                               >
                                 <div
                                   class="sc-bdvwhi sc-gsDMPd hPWTKU kkGnDS"
                                 >
                                   <input
                                     autocomplete="email"
-                                    class="sc-clIAoS bvSZuz"
+                                    class="sc-efQVjI bktjgD"
                                     data-testid="text-input"
                                     id="react-use-id-test-result-newsletter-signup-email"
                                     name="email"
@@ -1610,47 +1668,47 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                             Role
                           </label>
                           <div
-                            class="sc-bdvwhi sc-gsDMPd sc-dtMhIu wiZya enStEb jfhXNL"
+                            class="sc-bdvwhi sc-gsDMPd sc-hiwNGW wiZya enStEb drQjAO"
                           >
                             <select
-                              class="sc-bTfXSk eNOMaW"
+                              class="sc-jeqZuJ gupyXh"
                               id="react-use-id-test-result-newsletter-signup-userrole"
                               name="userRole"
                             >
                               <option
-                                class="sc-jUouQM jflBjJ"
+                                class="sc-lcerzc KbDSy"
                                 disabled=""
                                 value=""
                               >
                                 What describes you best?
                               </option>
                               <option
-                                class="sc-jUouQM kfYKib"
+                                class="sc-lcerzc fXAwTA"
                                 value="Teacher"
                               >
                                 Teacher
                               </option>
                               <option
-                                class="sc-jUouQM kfYKib"
+                                class="sc-lcerzc fXAwTA"
                                 value="Parent"
                               >
                                 Parent
                               </option>
                               <option
-                                class="sc-jUouQM kfYKib"
+                                class="sc-lcerzc fXAwTA"
                                 value="Student"
                               >
                                 Pupil
                               </option>
                               <option
-                                class="sc-jUouQM kfYKib"
+                                class="sc-lcerzc fXAwTA"
                                 value="Other"
                               >
                                 Other
                               </option>
                             </select>
                             <div
-                              class="sc-bdvwhi sc-gsDMPd sc-kHOYJp cLyMbm hmfoti fQhFGO"
+                              class="sc-bdvwhi sc-gsDMPd sc-eJwVsk cLyMbm hmfoti hnEKkz"
                             >
                               <span
                                 class="sc-bdvwhi cqHYAi"
@@ -1667,7 +1725,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                               </span>
                             </div>
                             <div
-                              class="sc-bdvwhi sc-gsDMPd sc-hOGlKT cLyMbm hmfoti ha-DZwC"
+                              class="sc-bdvwhi sc-gsDMPd sc-nVikz cLyMbm hmfoti kNYApR"
                             >
                               <span
                                 class="sc-bdvwhi cqHYAi"
@@ -1762,16 +1820,17 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
           id="site-footer"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-iUKrAm gSXAop fKSZmO"
+            class="sc-bdvwhi sc-gsDMPd sc-jOxwkF gSXAop fKSZmO"
           >
             <div
-              class="sc-bdvwhi sc-jcFiBM hPWTKU gqpQaM"
+              class="sc-bdvwhi sc-jObTYW hPWTKU dUcAno"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex bDrYdf"
+                class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="sc-bkkgYE bVNEJW"
@@ -1788,7 +1847,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/pupils/years"
                         >
                           <span
@@ -1806,6 +1865,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                 />
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="sc-bkkgYE bVNEJW"
@@ -1822,7 +1882,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/teachers/eyfs/maths"
                         >
                           <span
@@ -1836,7 +1896,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/lesson-planning"
                         >
                           <span
@@ -1850,7 +1910,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/teachers/teach-with-oak"
                         >
                           <span
@@ -1864,7 +1924,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="https://labs.thenational.academy"
                           target="_blank"
                         >
@@ -1872,11 +1932,6 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                             class="sc-dkPwfY fgmEIT"
                           >
                             Aila, Oak’s AI lesson assistant
-                            <span
-                              class="sc-iCfNyT gvLbeW"
-                            >
-                               (opens in a new tab)
-                            </span>
                           </span>
                           <div
                             class="sc-bdvwhi hUeWJD"
@@ -1901,7 +1956,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/blog"
                         >
                           <span
@@ -1916,10 +1971,11 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                 </div>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex bDrYdf"
+                class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="sc-bkkgYE bVNEJW"
@@ -1936,7 +1992,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/"
                         >
                           <span
@@ -1950,7 +2006,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/about-us/who-we-are"
                         >
                           <span
@@ -1964,7 +2020,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/about-us/oaks-curricula"
                         >
                           <span
@@ -1978,7 +2034,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/about-us/oaks-impact"
                         >
                           <span
@@ -1992,7 +2048,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/about-us/case-studies"
                         >
                           <span
@@ -2006,7 +2062,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/about-us/get-involved"
                         >
                           <span
@@ -2020,7 +2076,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/about-us/meet-the-team"
                         >
                           <span
@@ -2034,7 +2090,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="https://jobs.thenational.academy"
                           target="_blank"
                         >
@@ -2042,11 +2098,6 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                             class="sc-dkPwfY fgmEIT"
                           >
                             Careers
-                            <span
-                              class="sc-iCfNyT gvLbeW"
-                            >
-                               (opens in a new tab)
-                            </span>
                           </span>
                           <div
                             class="sc-bdvwhi hUeWJD"
@@ -2071,7 +2122,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/contact-us"
                         >
                           <span
@@ -2085,7 +2136,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="https://support.thenational.academy"
                           target="_blank"
                         >
@@ -2093,11 +2144,6 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                             class="sc-dkPwfY fgmEIT"
                           >
                             Help
-                            <span
-                              class="sc-iCfNyT gvLbeW"
-                            >
-                               (opens in a new tab)
-                            </span>
                           </span>
                           <div
                             class="sc-bdvwhi hUeWJD"
@@ -2122,7 +2168,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/webinars"
                         >
                           <span
@@ -2136,7 +2182,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="https://status.thenational.academy"
                           target="_blank"
                         >
@@ -2144,11 +2190,6 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                             class="sc-dkPwfY fgmEIT"
                           >
                             Status
-                            <span
-                              class="sc-iCfNyT gvLbeW"
-                            >
-                               (opens in a new tab)
-                            </span>
                           </span>
                           <div
                             class="sc-bdvwhi hUeWJD"
@@ -2174,10 +2215,11 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                 </div>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex bDrYdf"
+                class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  data-chromatic="ignore"
                 >
                   <h2
                     class="sc-bkkgYE bVNEJW"
@@ -2194,7 +2236,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/legal/terms-and-conditions"
                         >
                           <span
@@ -2208,7 +2250,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/legal/privacy-policy"
                         >
                           <span
@@ -2222,7 +2264,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/legal/cookie-policy"
                         >
                           <span
@@ -2236,7 +2278,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <button
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                         >
                           <span
                             class="sc-dkPwfY fgmEIT"
@@ -2249,7 +2291,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/legal/copyright-notice"
                         >
                           <span
@@ -2263,7 +2305,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/legal/accessibility-statement"
                         >
                           <span
@@ -2277,7 +2319,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/legal/safeguarding-statement"
                         >
                           <span
@@ -2291,7 +2333,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/legal/physical-activity-disclaimer"
                         >
                           <span
@@ -2305,7 +2347,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/legal/complaints"
                         >
                           <span
@@ -2319,7 +2361,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         class="sc-ieedpP irmxny"
                       >
                         <a
-                          class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                          class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                           href="/legal/freedom-of-information-requests"
                         >
                           <span
@@ -2334,7 +2376,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                 </div>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex bDrYdf"
+                class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd QtWkM eaUsps"
@@ -2478,7 +2520,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-67f0684f-0 gUloVn"
+              class="sc-bdvwhi LoEut sc-983d10b0-0 dXOpyh"
               data-chromatic="ignore"
             >
               <img
@@ -2699,7 +2741,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
               class="sc-bdvwhi sc-gsDMPd lmXuba eWbmLh"
             >
               <button
-                class="sc-iwjfEg ieUBNG sc-hUpbpP eGLkYb"
+                class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
                 data-testid="cookie-banner-reject"
                 type="button"
               >

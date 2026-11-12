@@ -27,6 +27,7 @@ export default function JoinResearchPanelFaqs({
         $flexDirection={"column"}
         $gap="spacing-32"
         $alignItems={"center"}
+        $pv={["spacing-56", "spacing-80"]}
       >
         <OakHeading tag="h2" $font={["heading-5", "heading-4"]}>
           Frequently asked questions
@@ -58,7 +59,7 @@ export default function JoinResearchPanelFaqs({
                 }
                 $borderColor={"border-neutral-lighter"}
               >
-                <OakBox $mt="spacing-20">
+                <OakBox $mt="spacing-20" $mb="spacing-2">
                   <PortableTextWithDefaults value={item.answerRaw} />
                 </OakBox>
               </OakBasicAccordion>

@@ -12,7 +12,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
+import { ComponentType, ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import {
   COPYRIGHT_CONTACT_US_LINK,
@@ -36,11 +36,13 @@ const SignedOutCopyrightBanner = ({
   showOnboardingLink,
   isGeorestricted,
   isUnit,
+  onSignInClick,
   ...rest
 }: InnerCopyrightBannerProps & {
   showOnboardingLink: boolean;
   isGeorestricted: boolean;
   isUnit: boolean;
+  onSignInClick: () => void;
 }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -86,6 +88,7 @@ const SignedOutCopyrightBanner = ({
               <OakSecondaryLink
                 data-testid="copyright-banner-signin-link"
                 element="button"
+                onClick={onSignInClick}
               >
                 sign in.
               </OakSecondaryLink>
@@ -145,9 +148,8 @@ const ComplexCopyrightRestrictionBanner = (
     geoRestricted: isGeorestricted ?? false,
   });
 
-  const { contentBlockNotificationDisplayed } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
+  const { contentBlockNotificationDisplayed, signInStarted } =
+    useTeacherBrowseAnalytics((store) => store.track);
 
   const isUnit = (componentType && componentType === "lesson_listing") ?? false;
 
@@ -178,6 +180,11 @@ const ComplexCopyrightRestrictionBanner = (
       showOnboardingLink={showSignedInNotOnboarded}
       isGeorestricted={isResourceGeorestricted}
       isUnit={isUnit}
+      onSignInClick={() =>
+        signInStarted({
+          componentType: ComponentType.COMPLEX_COPYRIGHT_RESTRICTION_BANNER,
+        })
+      }
       {...rest}
     />
   ) : null;

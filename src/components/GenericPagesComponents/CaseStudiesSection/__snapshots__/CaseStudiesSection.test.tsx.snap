@@ -13,10 +13,10 @@ exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1
           class="sc-bdvwhi sc-gsDMPd blOvSo eChlAW"
         >
           <div
-            class="sc-bdvwhi sc-jcFiBM hPWTKU kyGOgc"
+            class="sc-bdvwhi sc-jObTYW hPWTKU jmGxKU"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex iTfpxc"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex cAldUs"
             >
               <div
                 class="sc-bdvwhi sc-gsDMPd hPWTKU kZwEgc"
@@ -34,7 +34,7 @@ exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1
                   class="sc-bdvwhi fUaIBc"
                 >
                   <a
-                    class="sc-iwjfEg ieUBNG sc-hUpbpP eGLkYb"
+                    class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
                     href="/about-us/case-studies"
                   >
                     <span
@@ -65,13 +65,13 @@ exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1
             </div>
           </div>
           <ul
-            class="sc-bdvwhi sc-jcFiBM eZfdqr cwIpfY"
+            class="sc-bdvwhi sc-jObTYW eZfdqr boCgwA"
           >
             <li
-              class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex lnCrWu"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex lcZKPm"
             >
               <div
-                class="sc-bdvwhi sc-hiCkpJ gJwBUw ewWNTJ"
+                class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
               >
                 <a
                   class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -126,10 +126,10 @@ exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1
               </div>
             </li>
             <li
-              class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex jVoNFO"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex bfRFGW"
             >
               <div
-                class="sc-bdvwhi sc-hiCkpJ gJwBUw ewWNTJ"
+                class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
               >
                 <a
                   class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -204,10 +204,10 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
           class="sc-bdvwhi sc-gsDMPd blOvSo eChlAW"
         >
           <div
-            class="sc-bdvwhi sc-jcFiBM hPWTKU kyGOgc"
+            class="sc-bdvwhi sc-jObTYW hPWTKU jmGxKU"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex eUwvYM"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex jESsXg"
             >
               <div
                 class="sc-bdvwhi sc-gsDMPd hPWTKU kZwEgc"
@@ -225,7 +225,7 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
                   class="sc-bdvwhi fUaIBc"
                 >
                   <a
-                    class="sc-iwjfEg ieUBNG sc-hUpbpP eGLkYb"
+                    class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
                     href="/about-us/case-studies"
                   >
                     <span
@@ -256,13 +256,13 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
             </div>
           </div>
           <ul
-            class="sc-bdvwhi sc-jcFiBM eZfdqr cwIpfY"
+            class="sc-bdvwhi sc-jObTYW eZfdqr boCgwA"
           >
             <li
-              class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex gZGKIJ"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
             >
               <div
-                class="sc-bdvwhi sc-hiCkpJ gJwBUw ewWNTJ"
+                class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
               >
                 <a
                   class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -317,10 +317,10 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
               </div>
             </li>
             <li
-              class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex gZGKIJ"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
             >
               <div
-                class="sc-bdvwhi sc-hiCkpJ gJwBUw ewWNTJ"
+                class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
               >
                 <a
                   class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
@@ -375,10 +375,10 @@ exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1
               </div>
             </li>
             <li
-              class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex gZGKIJ"
+              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex leWQfR"
             >
               <div
-                class="sc-bdvwhi sc-hiCkpJ gJwBUw ewWNTJ"
+                class="sc-bdvwhi sc-bXTeWK gJwBUw jIhKcl"
               >
                 <a
                   class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"

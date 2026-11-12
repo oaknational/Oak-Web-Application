@@ -12,8 +12,9 @@ describe("groupHelpers", () => {
       expect(getGroupName("presentation")).toBe("Slide deck");
     });
 
-    it("should return 'Lesson guide' for presentation", () => {
+    it("should return 'Lesson guide' for lesson guide types", () => {
       expect(getGroupName("lesson-guide-pdf")).toBe("Lesson guide");
+      expect(getGroupName("lesson-guide-docx")).toBe("Lesson guide");
     });
 
     it("should return 'Quizzes' for quiz types", () => {
@@ -54,6 +55,12 @@ describe("groupHelpers", () => {
       type: "lesson-guide-pdf",
       label: "Guide",
       ext: "pdf",
+      exists: true,
+    };
+    const mockLessonGuideDocx: Download = {
+      type: "lesson-guide-docx",
+      label: "GuideD",
+      ext: "docx",
       exists: true,
     };
     const mockIntroQuiz: Download = {
@@ -129,6 +136,7 @@ describe("groupHelpers", () => {
       const downloads: Download[] = [
         mockPresentation,
         mockLessonGuide,
+        mockLessonGuideDocx,
         mockIntroQuiz,
         mockIntroQuizAnswers,
         mockExitQuiz,
@@ -145,7 +153,10 @@ describe("groupHelpers", () => {
       const grouped = groupDownloadResources(downloads, additionalFiles);
 
       expect(grouped["Slide deck"]).toEqual([mockPresentation]);
-      expect(grouped["Lesson guide"]).toEqual([mockLessonGuide]);
+      expect(grouped["Lesson guide"]).toEqual([
+        mockLessonGuide,
+        mockLessonGuideDocx,
+      ]);
       expect(grouped["Quizzes"]).toEqual([
         mockIntroQuiz,
         mockIntroQuizAnswers,
@@ -179,6 +190,31 @@ describe("groupHelpers", () => {
       expect(grouped["Quizzes"]).toEqual([mockIntroQuiz]);
       expect(grouped["Worksheet"]).toEqual([mockWorksheet]);
       expect(Object.keys(grouped).length).toBe(3);
+    });
+
+    it("should order groups by the first occurrence of each type in the input", () => {
+      const downloads: Download[] = [
+        mockLessonGuide,
+        mockLessonGuideDocx,
+        mockPresentation,
+        mockIntroQuiz,
+        mockWorksheet,
+        mockSupplementaryPdf,
+      ];
+
+      const grouped = groupDownloadResources(downloads, []);
+
+      expect(Object.keys(grouped)).toEqual([
+        "Lesson guide",
+        "Slide deck",
+        "Quizzes",
+        "Worksheet",
+        "Additional material",
+      ]);
+      expect(grouped["Lesson guide"]).toEqual([
+        mockLessonGuide,
+        mockLessonGuideDocx,
+      ]);
     });
 
     it("should return an empty object for empty or undefined inputs", () => {

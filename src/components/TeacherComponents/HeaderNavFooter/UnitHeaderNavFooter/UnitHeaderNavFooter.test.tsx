@@ -17,6 +17,9 @@ const render = renderWithProviders();
 const createDownloadButton = () =>
   jest.fn(() => <button>action button</button>);
 
+const next = { title: "Next lesson", href: "nextUrl" };
+const prev = { title: "Previous lesson", href: "prevUrl" };
+
 describe("UnitHeaderNavFooter", () => {
   it("Renders the correct text for the view href", () => {
     render(<UnitHeaderNavFooter {...defaultProps} />);
@@ -25,13 +28,7 @@ describe("UnitHeaderNavFooter", () => {
     expect(viewLink).toBeInTheDocument();
   });
   it("Renders previous and next links with correct text", () => {
-    render(
-      <UnitHeaderNavFooter
-        {...defaultProps}
-        prevHref="prevUrl"
-        nextHref="nextUrl"
-      />,
-    );
+    render(<UnitHeaderNavFooter {...defaultProps} next={next} prev={prev} />);
 
     const prevLink = screen.getByRole("link", { name: "Previous unit" });
     expect(prevLink).toBeInTheDocument();
@@ -68,8 +65,8 @@ describe("UnitHeaderNavFooter", () => {
         {...defaultProps}
         isStuck={false}
         title="Unit title"
-        prevHref="prevUrl"
-        nextHref="nextUrl"
+        next={next}
+        prev={prev}
       />,
     );
 
@@ -85,8 +82,8 @@ describe("UnitHeaderNavFooter", () => {
         {...defaultProps}
         isStuck={true}
         title="Unit title"
-        prevHref="prevUrl"
-        nextHref="nextUrl"
+        next={next}
+        prev={prev}
         backgroundColorLevel={4}
         downloadButton={downloadButton}
       />,
