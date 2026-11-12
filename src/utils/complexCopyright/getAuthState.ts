@@ -2,7 +2,6 @@ import z from "zod";
 
 import { AuthState } from "./complexCopyright.types";
 
-
 export const clerkMetadataSchema = z.object({
   owa: z
     .object({
