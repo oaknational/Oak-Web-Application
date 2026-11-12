@@ -14,6 +14,7 @@ import {
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 
 import { requestNationalCurriculumInsightsDownload } from "@/common-lib/urls/nationalCurriculumInsightsDownload";
+import { useNationalCurriculumInsightsAnalytics } from "@/context/NationalCurriculumInsightsAnalytics/useNationalCurriculumInsightsAnalytics";
 
 export type InsightsArticleSection = {
   id: string;
@@ -31,6 +32,7 @@ export const NationalCurriculumInsightsArticle = ({
   sections: InsightsArticleSection[];
   hasDownload: boolean;
 }>) => {
+  const { trackCtaClicked } = useNationalCurriculumInsightsAnalytics();
   const mobileNav = useRef<HTMLDivElement>(null);
   const requestedSection = useRef<string | null>(null);
   const links = useMemo(
@@ -131,9 +133,17 @@ export const NationalCurriculumInsightsArticle = ({
         width={fullWidth ? "100%" : "fit-content"}
         $bt="border-solid-none"
         $bb="border-solid-none"
-        onClick={(event) =>
-          requestNationalCurriculumInsightsDownload(event.currentTarget)
-        }
+        onClick={(event) => {
+          trackCtaClicked({
+            sectionType: "article-navigation",
+            sectionId: "article-navigation",
+            ctaId: "download-started",
+            ctaText: "Download this guidance",
+            ctaAction: "open",
+            componentType: "download_button",
+          });
+          requestNationalCurriculumInsightsDownload(event.currentTarget);
+        }}
       >
         Download this guidance
       </OakPrimaryButton>
@@ -197,6 +207,14 @@ export const NationalCurriculumInsightsArticle = ({
                   }
                   onClick={(event) => {
                     event.preventDefault();
+                    trackCtaClicked({
+                      sectionType: "article-navigation",
+                      sectionId: "article-navigation",
+                      ctaAction: "navigate",
+                      componentType: "national_curriculum",
+                      ctaId: "article-section-link",
+                      ctaText: label,
+                    });
                     goToSection(id);
                   }}
                 >
@@ -258,7 +276,17 @@ export const NationalCurriculumInsightsArticle = ({
                         selectedHeadingFont="heading-light-7"
                         $ph="spacing-16"
                         $pv="spacing-12"
-                        onClick={() => goToSection(id)}
+                        onClick={() => {
+                          trackCtaClicked({
+                            sectionType: "article-navigation",
+                            sectionId: "article-navigation",
+                            ctaAction: "navigate",
+                            componentType: "national_curriculum",
+                            ctaId: "article-section-link",
+                            ctaText: label,
+                          });
+                          goToSection(id);
+                        }}
                       />
                     </OakLI>
                   ))}

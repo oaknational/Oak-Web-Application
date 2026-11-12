@@ -1,17 +1,90 @@
 "use client";
 
 import {
-  OakBasicAccordion,
   OakBox,
   OakFlex,
   OakHandDrawnHR,
   OakHeading,
+  OakFocusIndicator,
+  OakIcon,
   OakMaxWidth,
 } from "@oaknational/oak-components";
+import { useState } from "react";
 
 import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "../PortableText";
 
 import { ContextualSectionProps } from "./shared";
+
+import { useNationalCurriculumInsightsAnalytics } from "@/context/NationalCurriculumInsightsAnalytics/useNationalCurriculumInsightsAnalytics";
+
+type FaqItem =
+  ContextualSectionProps<"NationalCurriculumInsightsFaqSection">["section"]["items"][number];
+
+const FaqAccordion = ({
+  item,
+  id,
+  initialOpen,
+}: {
+  item: FaqItem;
+  id: string;
+  initialOpen: boolean;
+}) => {
+  const [isOpen, setIsOpen] = useState(initialOpen);
+  const { trackCtaClicked, section: analyticsSection } =
+    useNationalCurriculumInsightsAnalytics();
+  return (
+    <OakFlex $flexDirection="column" $pv="spacing-12" $gap="spacing-4">
+      <OakFocusIndicator>
+        <OakFlex
+          as="button"
+          type="button"
+          id={id}
+          aria-expanded={isOpen}
+          aria-controls={`${id}-content`}
+          $width="100%"
+          $alignItems="center"
+          $justifyContent="space-between"
+          $background="transparent"
+          $ba="border-solid-none"
+          $pa="spacing-0"
+          $color="text-primary"
+          onClick={() => {
+            trackCtaClicked({
+              sectionType: "faq",
+              sectionId: analyticsSection?.sectionId ?? "faq",
+              componentType: "national_curriculum",
+              ctaId: "faq-toggle",
+              ctaText: item.question,
+              ctaAction: isOpen ? "collapse" : "expand",
+            });
+            setIsOpen((open) => !open);
+          }}
+        >
+          <OakHeading tag="h3" $font="heading-6" $textAlign="left">
+            {item.question}
+          </OakHeading>
+          <OakIcon
+            iconName="chevron-down"
+            $width="spacing-32"
+            $height="spacing-32"
+            $mr="spacing-12"
+            $transform={isOpen ? "rotate(180deg)" : "none"}
+            $transition="standard-ease"
+            alt="An arrow to indicate whether the item is open or closed"
+          />
+        </OakFlex>
+      </OakFocusIndicator>
+      <OakBox
+        id={`${id}-content`}
+        role="region"
+        aria-labelledby={id}
+        hidden={!isOpen}
+      >
+        <PortableTextWithDefaults value={item.answerPortableText} />
+      </OakBox>
+    </OakFlex>
+  );
+};
 
 export const NationalCurriculumInsightsFaq = ({
   section,
@@ -51,17 +124,11 @@ export const NationalCurriculumInsightsFaq = ({
                 data-testid="faq-divider"
               />
             )}
-            <OakBasicAccordion
+            <FaqAccordion
               id={`national-curriculum-insights-faq-${index}`}
               initialOpen={index === 0}
-              header={
-                <OakHeading tag="h3" $font="heading-6" $textAlign="left">
-                  {item.question}
-                </OakHeading>
-              }
-            >
-              <PortableTextWithDefaults value={item.answerPortableText} />
-            </OakBasicAccordion>
+              item={item}
+            />
             <OakBox $position="absolute" $bottom="spacing-2" $width="100%">
               <OakHandDrawnHR
                 $height="spacing-2"

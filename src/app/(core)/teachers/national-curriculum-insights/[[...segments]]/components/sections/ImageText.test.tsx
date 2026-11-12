@@ -4,7 +4,7 @@ import { hubData, storyPortableText } from "../../__fixtures__/stories";
 
 import { NationalCurriculumInsightsImageText } from "./ImageText";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithInsightsAnalytics";
 import { nationalCurriculumInsightsModuleSchema } from "@/common-lib/cms-types/nationalCurriculumInsights";
 
 jest.mock("@/components/SharedComponents/VideoPlayer", () => ({

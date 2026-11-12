@@ -14,6 +14,7 @@ import {
 import { CurriculumJumpCard } from "./CurriculumJumpCard";
 import type { ContextualSectionProps } from "./shared";
 
+import { useNationalCurriculumInsightsAnalytics } from "@/context/NationalCurriculumInsightsAnalytics/useNationalCurriculumInsightsAnalytics";
 import {
   nationalCurriculumInsightsKeyStageSlug,
   type NationalCurriculumInsightsKeyStage,
@@ -59,6 +60,8 @@ export const NationalCurriculumInsightsKeyStageCards = ({
   section,
   data,
 }: ContextualSectionProps<"NationalCurriculumInsightsKeyStageCardsSection">) => {
+  const { trackCtaClicked, section: analyticsSection } =
+    useNationalCurriculumInsightsAnalytics();
   const { subject, activeTab, activeKeyStage } = data;
   if (!subject || !activeTab) return null;
   if (activeTab === "overview" && !section.linkFromSubjectOverview) return null;
@@ -113,6 +116,17 @@ export const NationalCurriculumInsightsKeyStageCards = ({
             return (
               <OakLI $listStyle="none" $width="100%" key={keyStage}>
                 <CurriculumJumpCard
+                  onClick={() =>
+                    trackCtaClicked({
+                      sectionType: "key-stage-cards",
+                      sectionId:
+                        analyticsSection?.sectionId ?? "key-stage-cards",
+                      ctaAction: "navigate",
+                      ctaId: "key-stage-card",
+                      ctaText: heading,
+                      componentType: "keystage_keypad_button",
+                    })
+                  }
                   minHeight={isInsightPage ? "spacing-100" : "spacing-120"}
                   href={nationalCurriculumInsightsSubjectPhaseKeyStageHref(
                     subject.slug,

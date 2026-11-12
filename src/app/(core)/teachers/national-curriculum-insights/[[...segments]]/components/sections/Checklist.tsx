@@ -1,7 +1,8 @@
 "use client";
 
-import { useId } from "react";
+import { useId, type ReactNode } from "react";
 import {
+  OakBox,
   OakFlex,
   OakHeading,
   OakImage,
@@ -12,15 +13,20 @@ import { NationalCurriculumInsightsPortableText } from "../PortableText";
 
 import { guidancePortableTextComponents, type SectionProps } from "./shared";
 
+import { useNationalCurriculumInsightsAnalytics } from "@/context/NationalCurriculumInsightsAnalytics/useNationalCurriculumInsightsAnalytics";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { requestNationalCurriculumInsightsDownload } from "@/common-lib/urls/nationalCurriculumInsightsDownload";
 
 export const NationalCurriculumInsightsChecklist = ({
   section,
   variant = "phase",
+  headingMarker,
 }: SectionProps<"NationalCurriculumInsightsChecklistSection"> & {
   variant?: "phase" | "keyStage";
+  headingMarker?: ReactNode;
 }) => {
+  const { trackCtaClicked, section: analyticsSection } =
+    useNationalCurriculumInsightsAnalytics();
   const headingId = `${useId()}-${section.audience}-checklist-heading`;
   return (
     <OakFlex
@@ -32,9 +38,12 @@ export const NationalCurriculumInsightsChecklist = ({
       $width="100%"
     >
       <OakFlex $flexDirection="column" $gap="spacing-24">
-        <OakHeading id={headingId} tag="h2" $font="heading-4">
-          {section.heading}
-        </OakHeading>
+        <OakBox>
+          {headingMarker}
+          <OakHeading id={headingId} tag="h2" $font="heading-4">
+            {section.heading}
+          </OakHeading>
+        </OakBox>
         <OakFlex
           as="ul"
           $flexDirection="column"
@@ -80,9 +89,19 @@ export const NationalCurriculumInsightsChecklist = ({
         <OakTertiaryButton
           type="button"
           iconName="download"
-          onClick={(event) =>
-            requestNationalCurriculumInsightsDownload(event.currentTarget)
-          }
+          onClick={(event) => {
+            trackCtaClicked({
+              sectionType: "checklist",
+              sectionId:
+                analyticsSection?.sectionId ?? `${section.audience}-checklist`,
+
+              ctaId: "download-started",
+              ctaText: "Download this checklist",
+              ctaAction: "open",
+              componentType: "download_button",
+            });
+            requestNationalCurriculumInsightsDownload(event.currentTarget);
+          }}
         >
           Download this checklist
         </OakTertiaryButton>

@@ -3,7 +3,7 @@ import "jest-styled-components";
 
 import { NationalCurriculumInsightsPreparation } from "./Preparation";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithInsightsAnalytics";
 import { nationalCurriculumInsightsModuleSchema } from "@/common-lib/cms-types/nationalCurriculumInsights";
 
 const section = {

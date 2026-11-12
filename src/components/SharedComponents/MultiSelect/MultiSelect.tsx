@@ -29,6 +29,7 @@ export type MultiSelectGroup = {
 };
 
 export type MultiSelectProps = {
+  onInteraction?: (interaction: MultiSelectInteraction) => void;
   disabled?: boolean;
   dropdownDirection?: "down" | "up";
   groups: MultiSelectGroup[];
@@ -49,6 +50,17 @@ export type MultiSelectProps = {
   unselectAllLabel?: string;
   "data-testid"?: string;
 };
+
+export type MultiSelectInteraction =
+  | {
+      action: "open" | "close" | "select-all" | "unselect-all" | "confirm";
+      label: string;
+    }
+  | {
+      action: "option" | "group" | "remove";
+      label: string;
+      selected: boolean;
+    };
 
 const uniqueValues = (values: string[]) => [...new Set(values)];
 
@@ -98,6 +110,7 @@ export const MultiSelect = ({
   mobileConfirmLabel = "Confirm selection",
   mobileTitle,
   onChange,
+  onInteraction,
   onMobileClose,
   onMobileConfirm,
   placeholder = "Select options",
@@ -225,7 +238,10 @@ export const MultiSelect = ({
             selectableValues.length > 0 &&
             selectableValues.every((value) => selectedSet.has(value))
           }
-          onChange={() => emit([...selectedValues, ...selectableValues])}
+          onChange={() => {
+            emit([...selectedValues, ...selectableValues]);
+            onInteraction?.({ action: "select-all", label: selectAllLabel });
+          }}
           disabled={disabled}
         />
         <OakCheckBox
@@ -233,7 +249,13 @@ export const MultiSelect = ({
           id={`${id}-${mobile ? "mobile-" : ""}unselect-all`}
           value={unselectAllLabel}
           checked={selectedSet.size === 0}
-          onChange={() => emit([])}
+          onChange={() => {
+            emit([]);
+            onInteraction?.({
+              action: "unselect-all",
+              label: unselectAllLabel,
+            });
+          }}
           disabled={disabled}
         />
       </OakFlex>
@@ -262,7 +284,14 @@ export const MultiSelect = ({
                   id={`${id}-mobile-${group.value}-all`}
                   value={groupSelectLabel(group)}
                   checked={groupIsSelected}
-                  onChange={() => toggleGroup(group)}
+                  onChange={() => {
+                    toggleGroup(group);
+                    onInteraction?.({
+                      action: "group",
+                      label: groupSelectLabel(group),
+                      selected: !groupIsSelected,
+                    });
+                  }}
                   disabled={disabled || groupValues.length === 0}
                 />
               ) : null}
@@ -276,7 +305,16 @@ export const MultiSelect = ({
                     mobile ? (option.mobileLabel ?? option.label) : option.label
                   }
                   checked={selectedSet.has(option.value)}
-                  onChange={() => toggleValue(option.value)}
+                  onChange={() => {
+                    toggleValue(option.value);
+                    onInteraction?.({
+                      action: "option",
+                      label: mobile
+                        ? (option.mobileLabel ?? option.label)
+                        : option.label,
+                      selected: !selectedSet.has(option.value),
+                    });
+                  }}
                   disabled={disabled || option.disabled}
                 />
               ))}
@@ -329,6 +367,10 @@ export const MultiSelect = ({
             onClick={(event) => {
               triggerRef.current = event.currentTarget;
               setIsOpen((open) => !open);
+              onInteraction?.({
+                action: isOpen ? "close" : "open",
+                label: placeholder,
+              });
             }}
           >
             {placeholder}
@@ -411,7 +453,14 @@ export const MultiSelect = ({
                               ? `${dataTestId}-remove-${option.value}`
                               : undefined
                           }
-                          onClick={() => toggleValue(option.value)}
+                          onClick={() => {
+                            toggleValue(option.value);
+                            onInteraction?.({
+                              action: "remove",
+                              label: removeLabel(option, group),
+                              selected: false,
+                            });
+                          }}
                           disabled={disabled}
                         >
                           {option.label}
@@ -500,7 +549,10 @@ export const MultiSelect = ({
             }
             type="button"
             disabled={disabled || selectedSet.size === 0}
-            onClick={onMobileConfirm}
+            onClick={() => {
+              onMobileConfirm?.();
+              onInteraction?.({ action: "confirm", label: mobileConfirmLabel });
+            }}
             data-testid={
               dataTestId ? `${dataTestId}-mobile-confirm` : undefined
             }

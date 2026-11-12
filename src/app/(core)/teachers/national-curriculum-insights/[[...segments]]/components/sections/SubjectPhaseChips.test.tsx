@@ -11,7 +11,7 @@ import {
   nationalCurriculumInsightsSubjectPhaseHref,
   nationalCurriculumInsightsSubjectPhaseKeyStageHref,
 } from "@/common-lib/urls/nationalCurriculumInsights";
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithInsightsAnalytics";
 
 type Props =
   ContextualSectionProps<"NationalCurriculumInsightsSubjectNavigationSection">;

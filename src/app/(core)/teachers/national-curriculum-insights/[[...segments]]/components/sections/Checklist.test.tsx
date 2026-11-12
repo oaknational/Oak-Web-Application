@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { NationalCurriculumInsightsChecklist } from "./Checklist";
 
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithInsightsAnalytics";
 import { nationalCurriculumInsightsModuleSchema } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import { nationalCurriculumInsightsOpenDownloadEvent } from "@/common-lib/urls/nationalCurriculumInsightsDownload";
 
