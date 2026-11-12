@@ -3,11 +3,11 @@
 import {
   OakBox,
   OakFieldError,
-  OakJauntyAngleLabel,
   OakOption,
   OakSelect,
-  parseSpacing,
 } from "@oaknational/oak-components";
+
+import { NationalCurriculumInsightsFieldLabel } from "./FieldLabel";
 
 export type NationalCurriculumInsightsSelectOption = {
   label: string;
@@ -42,19 +42,11 @@ export const NationalCurriculumInsightsSelect = ({
     aria-labelledby={`${id}-label`}
     aria-describedby={error ? `${id}-error` : undefined}
   >
-    <OakJauntyAngleLabel
-      as="label"
+    <NationalCurriculumInsightsFieldLabel
       htmlFor={id}
       id={`${id}-label`}
       label={label}
-      $background={error ? "bg-error" : "bg-decorative5-main"}
-      $color={error ? "text-inverted" : "text-primary"}
-      $font="heading-7"
-      $position="absolute"
-      $left={"spacing-4"}
-      style={{ top: `-${parseSpacing("spacing-20")}` }}
-      $zIndex="in-front"
-      $borderRadius="border-radius-square"
+      invalid={Boolean(error)}
     />
     <OakSelect
       id={id}
