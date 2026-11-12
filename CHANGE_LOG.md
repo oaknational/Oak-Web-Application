@@ -1,3 +1,11 @@
+# [1.1277.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1276.0...v1.1277.0) (2026-11-12)
+
+
+### Features
+
+* bump oak-components to v3.28.0 ([37af651](https://github.com/oaknational/Oak-Web-Application/commit/37af651e27e0136c629486047d11506094e6b8bd))
+* getting ready for the merge of <https://github.com/oaknational/oak-components/pull/798> ([059ecb2](https://github.com/oaknational/Oak-Web-Application/commit/059ecb23678bf9736aad4c6aeebce8bd72207625))
+
 # [1.1276.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1275.1...v1.1276.0) (2026-11-12)
 
 

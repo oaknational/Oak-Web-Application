@@ -10,10 +10,10 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
         class="sc-bdvwhi iatEdD"
       >
         <div
-          class="sc-bdvwhi sc-jObTYW hPWTKU jmGxKU"
+          class="sc-bdvwhi sc-jcFiBM hPWTKU kyGOgc"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex gymcRh"
+            class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex lfnHax"
           >
             <div
               class="sc-bdvwhi sc-gsDMPd jrKunU dBhbyK"
@@ -51,7 +51,7 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
                     >
                       Fill in our 
                       <a
-                        class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
+                        class="sc-iwjfEg gbbVHe sc-hUpbpP bEqcTJ"
                         href="https://example.com"
                         rel="noopener noreferrer"
                         target="_blank"
@@ -60,6 +60,11 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
                           class="sc-dkPwfY fgmEIT"
                         >
                           sign-up form
+                          <span
+                            class="sc-iCfNyT gvLbeW"
+                          >
+                             (opens in a new tab)
+                          </span>
                         </span>
                       </a>
                        with a few details about you.
