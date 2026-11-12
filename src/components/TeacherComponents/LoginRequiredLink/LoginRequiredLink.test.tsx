@@ -12,7 +12,7 @@ import {
 const render = renderWithProviders();
 
 let mockUseCopyrightRequirements = defaultCopyrightRequirements;
-jest.mock("@/hooks/useComplexCopyright", () => ({
+jest.mock("@/utils/complexCopyright/useComplexCopyright", () => ({
   useComplexCopyright: () => mockUseCopyrightRequirements,
 }));
 
