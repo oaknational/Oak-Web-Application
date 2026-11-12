@@ -202,6 +202,8 @@ const OnboardingForm = ({
           new URL(typeof window !== "undefined" ? window.location.origin : "/"),
         ) ?? "/",
       );
+      // Ensure the target page refreshes to get latest clerk state
+      router.refresh();
     }
   };
 
