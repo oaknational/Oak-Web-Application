@@ -1,7 +1,20 @@
 import { getComplexCopyrightState } from "./getComplexCopyrightState";
 
+import {
+  signedOutLoginRequired,
+  signedInGeoBlocked,
+  signedOutGeoRestricted,
+  signedInNotOnboarded,
+  defaultCopyrightRequirements,
+} from "@/__tests__/__helpers__/mockCopyrightRequirements";
+
 const signedOutAuthState = {
   isSignedIn: false,
+  isOnboarded: false,
+  isRegionAuthorised: false,
+};
+const signedInNotOnboardedAuthState = {
+  isSignedIn: true,
   isOnboarded: false,
   isRegionAuthorised: false,
 };
@@ -25,14 +38,7 @@ describe("getComplexCopyrightState", () => {
       isLoaded: true,
     });
 
-    expect(result).toEqual({
-      showSignedOutLoginRequired: false,
-      showSignedOutGeoRestricted: false,
-      showSignedInNotOnboarded: false,
-      showGeoBlocked: false,
-      isLoaded: true,
-      isResourceGeorestricted: false,
-    });
+    expect(result).toEqual(defaultCopyrightRequirements);
   });
 
   it("returns the correct state when signed out with resource not georestricted but login required", () => {
@@ -43,14 +49,7 @@ describe("getComplexCopyrightState", () => {
       isLoaded: true,
     });
 
-    expect(result).toEqual({
-      showSignedOutLoginRequired: true,
-      showSignedOutGeoRestricted: false,
-      showSignedInNotOnboarded: false,
-      showGeoBlocked: false,
-      isLoaded: true,
-      isResourceGeorestricted: false,
-    });
+    expect(result).toEqual(signedOutLoginRequired);
   });
 
   it("returns the correct state when signed out with georestricted resource and no login required", () => {
@@ -61,14 +60,7 @@ describe("getComplexCopyrightState", () => {
       isLoaded: true,
     });
 
-    expect(result).toEqual({
-      showSignedOutLoginRequired: false,
-      showSignedOutGeoRestricted: true,
-      showSignedInNotOnboarded: false,
-      showGeoBlocked: false,
-      isLoaded: true,
-      isResourceGeorestricted: true,
-    });
+    expect(result).toEqual(signedOutGeoRestricted);
   });
 
   it("returns the correct state when signed out with georestricted resource and login required", () => {
@@ -80,12 +72,8 @@ describe("getComplexCopyrightState", () => {
     });
 
     expect(result).toEqual({
+      ...signedOutGeoRestricted,
       showSignedOutLoginRequired: true,
-      showSignedOutGeoRestricted: true,
-      showSignedInNotOnboarded: false,
-      showGeoBlocked: false,
-      isLoaded: true,
-      isResourceGeorestricted: true,
     });
   });
 
@@ -97,14 +85,7 @@ describe("getComplexCopyrightState", () => {
       isLoaded: true,
     });
 
-    expect(result).toEqual({
-      showSignedOutLoginRequired: false,
-      showSignedOutGeoRestricted: false,
-      showSignedInNotOnboarded: false,
-      showGeoBlocked: false,
-      isLoaded: true,
-      isResourceGeorestricted: false,
-    });
+    expect(result).toEqual(defaultCopyrightRequirements);
   });
 
   it("returns the correct state when signed in but georestricted with resource not restricted but login required", () => {
@@ -115,14 +96,7 @@ describe("getComplexCopyrightState", () => {
       isLoaded: true,
     });
 
-    expect(result).toEqual({
-      showSignedOutLoginRequired: false,
-      showSignedOutGeoRestricted: false,
-      showSignedInNotOnboarded: false,
-      showGeoBlocked: false,
-      isLoaded: true,
-      isResourceGeorestricted: false,
-    });
+    expect(result).toEqual(defaultCopyrightRequirements);
   });
 
   it("returns the correct state when signed in but georestricted with georestricted resource and no login required", () => {
@@ -133,14 +107,7 @@ describe("getComplexCopyrightState", () => {
       isLoaded: true,
     });
 
-    expect(result).toEqual({
-      showSignedOutLoginRequired: false,
-      showSignedOutGeoRestricted: false,
-      showSignedInNotOnboarded: false,
-      showGeoBlocked: true,
-      isLoaded: true,
-      isResourceGeorestricted: true,
-    });
+    expect(result).toEqual(signedInGeoBlocked);
   });
 
   it("returns the correct state when signed in but georestricted with georestricted resource and login required", () => {
@@ -151,13 +118,58 @@ describe("getComplexCopyrightState", () => {
       isLoaded: true,
     });
 
-    expect(result).toEqual({
-      showSignedOutLoginRequired: false,
-      showSignedOutGeoRestricted: false,
-      showSignedInNotOnboarded: false,
-      showGeoBlocked: true,
+    expect(result).toEqual(signedInGeoBlocked);
+  });
+
+  it("returns the correct state when signed in but not onboarded with resource not restricted and no login required", () => {
+    const result = getComplexCopyrightState({
+      authState: signedInNotOnboardedAuthState,
+      resourceIsGeorestricted: false,
+      resourceRequiresLogin: false,
       isLoaded: true,
+    });
+
+    expect(result).toEqual(defaultCopyrightRequirements);
+  });
+
+  it("returns the correct state when signed in but not onboarded with resource not restricted but login required", () => {
+    const result = getComplexCopyrightState({
+      authState: signedInNotOnboardedAuthState,
+      resourceIsGeorestricted: false,
+      resourceRequiresLogin: true,
+      isLoaded: true,
+    });
+
+    expect(result).toEqual(signedInNotOnboarded);
+  });
+
+  it("returns the correct state when signed in but not onboarded with georestricted resource and no login required", () => {
+    const result = getComplexCopyrightState({
+      authState: signedInNotOnboardedAuthState,
+      resourceIsGeorestricted: true,
+      resourceRequiresLogin: false,
+      isLoaded: true,
+    });
+
+    expect(result).toEqual({
+      ...signedInNotOnboarded,
       isResourceGeorestricted: true,
+      showGeoBlocked: true,
+    });
+  });
+
+  it("returns the correct state when signed in but not onboarded with georestricted resource and login required", () => {
+    const result = getComplexCopyrightState({
+      authState: signedInNotOnboardedAuthState,
+      resourceIsGeorestricted: true,
+      resourceRequiresLogin: true,
+      isLoaded: true,
+    });
+
+    expect(result).toEqual({
+      ...signedInNotOnboarded,
+      isResourceGeorestricted: true,
+      showGeoBlocked: true,
     });
   });
 
@@ -169,14 +181,7 @@ describe("getComplexCopyrightState", () => {
       isLoaded: true,
     });
 
-    expect(result).toEqual({
-      showSignedOutLoginRequired: false,
-      showSignedOutGeoRestricted: false,
-      showSignedInNotOnboarded: false,
-      showGeoBlocked: false,
-      isLoaded: true,
-      isResourceGeorestricted: false,
-    });
+    expect(result).toEqual(defaultCopyrightRequirements);
   });
 
   it("returns the correct state when signed in and geo-authenticated with resource not restricted but login required", () => {
@@ -187,14 +192,7 @@ describe("getComplexCopyrightState", () => {
       isLoaded: true,
     });
 
-    expect(result).toEqual({
-      showSignedOutLoginRequired: false,
-      showSignedOutGeoRestricted: false,
-      showSignedInNotOnboarded: false,
-      showGeoBlocked: false,
-      isLoaded: true,
-      isResourceGeorestricted: false,
-    });
+    expect(result).toEqual(defaultCopyrightRequirements);
   });
 
   it("returns the correct state when signed in and geo-authenticated with georestricted resource and no login required", () => {
@@ -206,11 +204,7 @@ describe("getComplexCopyrightState", () => {
     });
 
     expect(result).toEqual({
-      showSignedOutLoginRequired: false,
-      showSignedOutGeoRestricted: false,
-      showSignedInNotOnboarded: false,
-      showGeoBlocked: false,
-      isLoaded: true,
+      ...defaultCopyrightRequirements,
       isResourceGeorestricted: true,
     });
   });
@@ -224,11 +218,7 @@ describe("getComplexCopyrightState", () => {
     });
 
     expect(result).toEqual({
-      showSignedOutLoginRequired: false,
-      showSignedOutGeoRestricted: false,
-      showSignedInNotOnboarded: false,
-      showGeoBlocked: false,
-      isLoaded: true,
+      ...defaultCopyrightRequirements,
       isResourceGeorestricted: true,
     });
   });

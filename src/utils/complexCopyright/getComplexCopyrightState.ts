@@ -22,10 +22,11 @@ export const getComplexCopyrightState = ({
     !authState.isOnboarded &&
     (resourceRequiresLogin || resourceIsGeorestricted);
 
-  const showGeoBlocked =
+  const showGeoBlocked = Boolean(
     authState.isSignedIn &&
-    resourceIsGeorestricted &&
-    !authState.isRegionAuthorised;
+      resourceIsGeorestricted &&
+      !authState.isRegionAuthorised,
+  );
 
   return {
     showSignedOutLoginRequired,
