@@ -281,10 +281,6 @@ export type JoinResearchPanelPageBlock<
   __typename: T;
 };
 
-export type JoinResearchPanelPageBlocks = z.infer<
-  typeof joinResearchPanelPageBlockSchema
->;
-
 export const joinResearchPanelPageSchema = z.object({
   content: z.object({
     blocks: z.array(joinResearchPanelPageBlockSchema),
