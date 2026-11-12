@@ -13,6 +13,8 @@ import { isExternalHref } from "@/common-lib/urls";
 const StyledVideoFlex = styled(OakFlex)`
   transition: width 0.4s ease-in;
   flex: 0 0 auto;
+  /* Stops Safari growing the column to fit the video's aspect-ratio. */
+  min-width: 0;
 
   @media (min-width: 750px) {
     flex: 0 0 30%;

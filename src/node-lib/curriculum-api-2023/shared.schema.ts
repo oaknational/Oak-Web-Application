@@ -15,6 +15,8 @@ import zodToCamelCase from "zod-to-camel-case";
 
 import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
 
+import { lessonDownloadTypeSchema } from "@/common-lib/lessonDownloads";
+
 export const contentGuidanceSchemaCamelCase = z.object({
   contentGuidanceLabel: z.string(),
   contentGuidanceDescription: z.string(),
@@ -258,21 +260,7 @@ export type LessonUnitDataByKs = Pick<
 export const lessonDownloadsListSchema = z.array(
   z.object({
     exists: z.boolean().nullable(),
-    type:
-      z.enum([
-        "presentation",
-        "intro-quiz-questions",
-        "intro-quiz-answers",
-        "exit-quiz-questions",
-        "exit-quiz-answers",
-        "worksheet-pdf",
-        "worksheet-pptx",
-        "supplementary-pdf",
-        "supplementary-docx",
-        "curriculum-pdf",
-        "lesson-guide-pdf",
-        "additional-files",
-      ]) || z.string().regex(/^additional-file-\d+$/),
+    type: lessonDownloadTypeSchema,
     label: z.string(),
     ext: z.string(),
     forbidden: z.union([
