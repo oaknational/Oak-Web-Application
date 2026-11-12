@@ -55,7 +55,10 @@ describe("Onboarding form", () => {
   beforeEach(() => {
     setUseUserReturn(mockLoggedIn);
     mockPush.mockClear();
-    (useRouter as jest.Mock).mockReturnValue({ push: mockPush });
+    (useRouter as jest.Mock).mockReturnValue({
+      push: mockPush,
+      refresh: jest.fn(),
+    });
     (useSearchParams as jest.Mock).mockReturnValue(new URLSearchParams());
   });
 
