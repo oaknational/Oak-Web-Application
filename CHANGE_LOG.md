@@ -1,3 +1,10 @@
+## [1.1277.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1277.0...v1.1277.1) (2026-11-12)
+
+
+### Bug Fixes
+
+* added aria-label to newsletter form ([08b6623](https://github.com/oaknational/Oak-Web-Application/commit/08b66233fecd27b2077190ce8eef0f9c6de8300f))
+
 # [1.1277.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1276.0...v1.1277.0) (2026-11-12)
 
 
