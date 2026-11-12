@@ -8,7 +8,7 @@ import {
 import { CampaignHeader } from "@/common-lib/cms-types/campaignPage";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import SearchForm from "@/components/SharedComponents/SearchForm";
-import useSearch from "@/context/Search/useSearch";
+import { useUpdateSearchQuery } from "@/app/(core)/teachers/search/helpers/useUpdateSearchQuery";
 
 export const CampaignPageHeader = ({
   campaignHeader,
@@ -57,7 +57,7 @@ export const CampaignPageHeader = ({
 };
 
 const LinkToProduct = () => {
-  const { setSearchTerm } = useSearch({});
+  const { updateSearchTerm } = useUpdateSearchQuery();
   return (
     <OakFlex
       $width={["100%", "100%", "max-content"]}
@@ -72,8 +72,8 @@ const LinkToProduct = () => {
           searchContext="campaign"
           placeholderText="Search by keyword or topic"
           searchTerm=""
-          handleSubmit={(value) => {
-            setSearchTerm(value);
+          handleSubmit={({ searchTerm }) => {
+            updateSearchTerm({ searchTerm });
           }}
           analyticsSearchSource={"campaign page"}
         />

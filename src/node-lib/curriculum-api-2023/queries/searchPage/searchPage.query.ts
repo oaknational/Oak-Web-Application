@@ -14,8 +14,6 @@ const searchPageQuery = (sdk: Sdk) => async () => {
 
   return {
     ...parsed,
-    // Remove filtering when Rule of law published
-    subjects: parsed.subjects.filter((s) => s.slug !== "rule-of-law"),
     // Filter reception term times from year filters
     yearGroups: parsed.yearGroups.filter((y) => /^year-\d+$/.test(y.slug)),
   };
