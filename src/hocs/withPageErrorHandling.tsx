@@ -17,7 +17,7 @@ if (getBrowserConfig("sentryEnabled") === "true") {
 }
 
 type PageParams = Record<string, string>;
-export type AppPageProps<T extends PageParams> = {
+export type AppPageProps<T extends PageParams = Record<string, never>> = {
   params: Promise<T>;
   searchParams?: Promise<PageSearchParms>;
 };

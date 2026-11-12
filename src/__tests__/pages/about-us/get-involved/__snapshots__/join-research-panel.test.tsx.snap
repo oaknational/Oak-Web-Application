@@ -1895,64 +1895,51 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c136 {
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  letter-spacing: 0.0115rem;
-}
-
-.c162 {
-  font: inherit;
-  color: inherit;
-  border: none;
-  background: none;
-  appearance: none;
-  outline: none;
-  padding: 0;
-}
-
-.c43 {
-  appearance: none!important;
-  border: 0;
-  border-radius: 0;
-  border-color: transparent;
+.c145 {
   box-shadow: none;
-  font-family: inherit;
-  background: transparent;
+}
+
+.c145:has(a:hover, button:hover) {
+  box-shadow: none;
+}
+
+.c145:has(   a,   button ) {
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
+}
+
+.c145:has(   a,   button ) a,
+.c145:has(   a,   button ) button {
   outline: none;
-  color: inherit;
-  padding-right: 2rem;
-  width: 100%;
 }
 
-.c43::placeholder {
-  color: #575757;
+.c145:has(a:active, button:active) {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%),0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
-.c43::-webkit-search-decoration,
-.c43::-webkit-search-cancel-button,
-.c43::-webkit-search-results-button,
-.c43::-webkit-search-results-decoration {
-  appearance: none;
+.c180 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
 }
 
-.c43:disabled {
-  cursor: not-allowed;
+.c180:has(a:hover, button:hover) {
+  box-shadow: none;
 }
 
-.c42 {
-  background: #ffffff;
+.c180:has(   a,   button ) {
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c42:hover {
-  cursor: text;
+.c180:has(   a,   button ) a,
+.c180:has(   a,   button ) button {
+  outline: none;
 }
 
-.c42:focus-within {
-  border-color: #222222;
-  background: #ffffff;
+.c180:has(a:active, button:active) {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%),0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
 .c79 {
@@ -2052,6 +2039,16 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   grid-row: span 1;
 }
 
+.c162 {
+  font: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+  appearance: none;
+  outline: none;
+  padding: 0;
+}
+
 .c170 {
   position: absolute;
   width: 100%;
@@ -2098,51 +2095,54 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   visibility: visible;
 }
 
-.c145 {
+.c136 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  letter-spacing: 0.0115rem;
+}
+
+.c43 {
+  appearance: none!important;
+  border: 0;
+  border-radius: 0;
+  border-color: transparent;
   box-shadow: none;
-}
-
-.c145:has(a:hover, button:hover) {
-  box-shadow: none;
-}
-
-.c145:has(   a,   button ) {
-  border-radius: 0.5rem;
-  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
-}
-
-.c145:has(   a,   button ) a,
-.c145:has(   a,   button ) button {
+  font-family: inherit;
+  background: transparent;
   outline: none;
+  color: inherit;
+  padding-right: 2rem;
+  width: 100%;
 }
 
-.c145:has(a:active, button:active) {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%),0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
+.c43::placeholder {
+  color: #575757;
 }
 
-.c180 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  box-shadow: none;
+.c43::-webkit-search-decoration,
+.c43::-webkit-search-cancel-button,
+.c43::-webkit-search-results-button,
+.c43::-webkit-search-results-decoration {
+  appearance: none;
 }
 
-.c180:has(a:hover, button:hover) {
-  box-shadow: none;
+.c43:disabled {
+  cursor: not-allowed;
 }
 
-.c180:has(   a,   button ) {
-  border-radius: 0.5rem;
-  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
+.c42 {
+  background: #ffffff;
 }
 
-.c180:has(   a,   button ) a,
-.c180:has(   a,   button ) button {
-  outline: none;
+.c42:hover {
+  cursor: text;
 }
 
-.c180:has(a:active, button:active) {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%),0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
+.c42:focus-within {
+  border-color: #222222;
+  background: #ffffff;
 }
 
 .c150 {
@@ -3430,19 +3430,6 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   }
 }
 
-@media (max-width: 750px) {
-  .c43 {
-    font-size: 16px;
-  }
-}
-
-@media (hover: hover) {
-  .c42:hover:not(:focus-within) {
-    background: #f2f2f2;
-    border-color: #808080;
-  }
-}
-
 @media (min-width: 750px) {
   .c80 {
     grid-column: span 6;
@@ -3584,6 +3571,19 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 @media (min-width: 750px) {
   .c192 {
     grid-column: span 3;
+  }
+}
+
+@media (max-width: 750px) {
+  .c43 {
+    font-size: 16px;
+  }
+}
+
+@media (hover: hover) {
+  .c42:hover:not(:focus-within) {
+    background: #f2f2f2;
+    border-color: #808080;
   }
 }
 
@@ -5628,6 +5628,11 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                             class="c25"
                           >
                             Aila, Oak’s AI lesson assistant
+                            <span
+                              class="c123"
+                            >
+                               (opens in a new tab)
+                            </span>
                           </span>
                           <div
                             class="c137"
@@ -5786,7 +5791,6 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         class="c197"
                       >
                         <a
-                          aria-label="Careers (opens in a new tab)"
                           class="c75 "
                           href="https://jobs.thenational.academy"
                           target="_blank"
@@ -5795,6 +5799,11 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                             class="c25"
                           >
                             Careers
+                            <span
+                              class="c123"
+                            >
+                               (opens in a new tab)
+                            </span>
                           </span>
                           <div
                             class="c137"
@@ -5833,7 +5842,6 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         class="c197"
                       >
                         <a
-                          aria-label="Help (opens in a new tab)"
                           class="c75 "
                           href="https://support.thenational.academy"
                           target="_blank"
@@ -5842,6 +5850,11 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                             class="c25"
                           >
                             Help
+                            <span
+                              class="c123"
+                            >
+                               (opens in a new tab)
+                            </span>
                           </span>
                           <div
                             class="c137"
@@ -5880,7 +5893,6 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                         class="c197"
                       >
                         <a
-                          aria-label="Status (opens in a new tab)"
                           class="c75 "
                           href="https://status.thenational.academy"
                           target="_blank"
@@ -5889,6 +5901,11 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                             class="c25"
                           >
                             Status
+                            <span
+                              class="c123"
+                            >
+                               (opens in a new tab)
+                            </span>
                           </span>
                           <div
                             class="c137"
