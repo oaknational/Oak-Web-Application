@@ -5,11 +5,13 @@ export function getDownloadAnalyticsProperties({
   selectedValues,
   email,
   schoolOption,
+  schoolUrn,
   downloadAttemptId,
 }: {
   selectedValues: string[];
   email: string;
   schoolOption: SchoolOptionValueType;
+  schoolUrn: string | null;
   downloadAttemptId: string;
 }) {
   const selectedDownloadKeys = [...new Set(selectedValues)];
@@ -34,5 +36,6 @@ export function getDownloadAnalyticsProperties({
       selectedDownloadKeys.length > 1 ? FileFormat.ZIP : FileFormat.DOCX,
     emailSupplied: email.trim().length > 0,
     schoolOption,
+    schoolUrn,
   };
 }

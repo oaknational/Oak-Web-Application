@@ -486,6 +486,7 @@ describe("Insights download submission", () => {
         fileFormat: multiple ? "zip" : "docx",
         emailSupplied: false,
         schoolOption: "Not listed",
+        schoolUrn: null,
       });
       expect(download).not.toBeInTheDocument();
       expect(
@@ -588,11 +589,11 @@ describe("Insights download submission", () => {
   });
 
   it.each([
-    { search: "Dorothy", schoolOption: "Selected school" },
-    { search: "homeschool", schoolOption: "Homeschool" },
+    { search: "Dorothy", schoolOption: "Selected school", schoolUrn: "101105" },
+    { search: "homeschool", schoolOption: "Homeschool", schoolUrn: null },
   ])(
     "records $schoolOption and email presence without including contact details",
-    async ({ search, schoolOption }) => {
+    async ({ search, schoolOption, schoolUrn }) => {
       mockFetch.mockResolvedValueOnce(downloadResponse("Science.docx"));
       const { user, download } = await readyForm();
       await user.click(
@@ -612,7 +613,11 @@ describe("Insights download submission", () => {
         expect(mockTrackDownloadCompleted).toHaveBeenCalledTimes(1),
       );
       expect(mockTrackDownloadCompleted).toHaveBeenCalledWith(
-        expect.objectContaining({ schoolOption, emailSupplied: true }),
+        expect.objectContaining({
+          schoolOption,
+          schoolUrn,
+          emailSupplied: true,
+        }),
       );
       expect(mockTrackDownloadCompleted.mock.calls[0]![0]).not.toHaveProperty(
         "email",

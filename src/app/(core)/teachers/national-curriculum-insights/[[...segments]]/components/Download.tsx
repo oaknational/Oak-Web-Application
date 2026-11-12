@@ -53,6 +53,7 @@ import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePag
 import useSchoolPicker, {
   HOMESCHOOL_URN,
 } from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
+import { getSchoolUrn } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import { SchoolOption, type CtaIdValueType } from "@/browser-lib/avo/Avo";
 import { useNationalCurriculumInsightsAnalytics } from "@/context/NationalCurriculumInsightsAnalytics/useNationalCurriculumInsightsAnalytics";
 import { getDownloadAnalyticsProperties } from "@/context/NationalCurriculumInsightsAnalytics/getDownloadAnalyticsProperties";
@@ -373,10 +374,14 @@ export const NationalCurriculumInsightsDownload = ({
 
         return SchoolOption.SELECTED_SCHOOL;
       };
+      const schoolOption = getSchoolOption();
+      const schoolUrn =
+        getSchoolUrn(String(selectedSchool ?? ""), schoolOption) || null;
       const analyticsProperties = getDownloadAnalyticsProperties({
         selectedValues,
         email,
-        schoolOption: getSchoolOption(),
+        schoolOption,
+        schoolUrn,
         downloadAttemptId: nanoid(21),
       });
       const query = new URLSearchParams();

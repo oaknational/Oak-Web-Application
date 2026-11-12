@@ -328,6 +328,7 @@ describe("National Curriculum Insights scroll analytics", () => {
       selectedValues: ["english:secondary"],
       email: "",
       schoolOption: "Selected school",
+      schoolUrn: "101105",
       downloadAttemptId: "attempt-1",
     });
     act(() => {
@@ -520,6 +521,7 @@ describe("National Curriculum Insights scroll analytics", () => {
           selectedValues: ["science:primary", "science:secondary"],
           email: "teacher@example.com",
           schoolOption: "Homeschool",
+          schoolUrn: null,
           downloadAttemptId: "attempt-2",
         }),
       ),

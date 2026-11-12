@@ -11,6 +11,7 @@ it("describes a mixed-phase ZIP using unique selections without sending the emai
       ],
       email: "teacher@example.com",
       schoolOption: "Not listed",
+      schoolUrn: null,
       downloadAttemptId: "attempt-1",
     }),
   ).toEqual({
@@ -26,6 +27,7 @@ it("describes a mixed-phase ZIP using unique selections without sending the emai
     fileFormat: "zip",
     emailSupplied: true,
     schoolOption: "Not listed",
+    schoolUrn: null,
   });
 });
 
@@ -35,6 +37,7 @@ it("describes a single DOCX and treats whitespace email as absent", () => {
       selectedValues: ["science:primary"],
       email: "   ",
       schoolOption: "Homeschool",
+      schoolUrn: null,
       downloadAttemptId: "attempt-2",
     }),
   ).toEqual({
@@ -46,5 +49,6 @@ it("describes a single DOCX and treats whitespace email as absent", () => {
     fileFormat: "docx",
     emailSupplied: false,
     schoolOption: "Homeschool",
+    schoolUrn: null,
   });
 });
