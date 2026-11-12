@@ -1,3 +1,28 @@
+# [1.1277.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1276.0...v1.1277.0) (2026-11-12)
+
+
+### Features
+
+* bump oak-components to v3.28.0 ([37af651](https://github.com/oaknational/Oak-Web-Application/commit/37af651e27e0136c629486047d11506094e6b8bd))
+* getting ready for the merge of <https://github.com/oaknational/oak-components/pull/798> ([059ecb2](https://github.com/oaknational/Oak-Web-Application/commit/059ecb23678bf9736aad4c6aeebce8bd72207625))
+
+# [1.1276.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1275.1...v1.1276.0) (2026-11-12)
+
+
+### Features
+
+* add aria described by errors to submit button ([74ddd6a](https://github.com/oaknational/Oak-Web-Application/commit/74ddd6afd8d9e2a26f0efa64d58d30c9c1647847))
+* add role alert for download form validation messages ([bde3090](https://github.com/oaknational/Oak-Web-Application/commit/bde3090218e16b9a85c9f97523c0af6b28483715))
+* remove disabled state from programme downloads button ([9109c03](https://github.com/oaknational/Oak-Web-Application/commit/9109c0350ef10ee2c60b82293cb347f16b9b4040))
+* remove redundant ario attributes in status ([35bb12d](https://github.com/oaknational/Oak-Web-Application/commit/35bb12da1fa40e64e53a4697f721ba8a11adf1b8))
+
+## [1.1275.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1275.0...v1.1275.1) (2026-11-11)
+
+
+### Bug Fixes
+
+* **ADAPT-206:** stop the Aila signpost video overflowing in Safari ([4a12c9f](https://github.com/oaknational/Oak-Web-Application/commit/4a12c9fd9b24eeefae0a0c49f9fa86e1c41611bd))
+
 # [1.1275.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1274.1...v1.1275.0) (2026-11-11)
 
 

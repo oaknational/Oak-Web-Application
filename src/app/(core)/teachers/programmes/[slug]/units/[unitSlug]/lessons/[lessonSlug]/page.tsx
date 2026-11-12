@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { cache } from "react";
+import { currentUser } from "@clerk/nextjs/server";
 
 import {
   getSubjectHeroImageUrl,
@@ -20,6 +21,8 @@ import { cacheData } from "@/node-lib/cache";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import { filterRestrictedLessonData } from "@/utils/complexCopyright/filterRestrictedLessonData";
+import { getAuthState } from "@/utils/complexCopyright/getAuthState";
 
 type LessonPageParams = {
   slug: string;
@@ -27,7 +30,7 @@ type LessonPageParams = {
   lessonSlug: string;
 };
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 const getCachedLessonData = cache(
   cacheData(
@@ -87,6 +90,9 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
   const { slug: programmeSlug, unitSlug, lessonSlug } = await props.params;
 
   const data = await getCachedLessonData(programmeSlug, unitSlug, lessonSlug);
+  const user = await currentUser();
+  const authState = getAuthState({ isSignedIn: !!user, user });
+  const filteredData = filterRestrictedLessonData(data, authState);
 
   const programmeState = getProgrammeStateForLesson(data);
 
@@ -118,7 +124,7 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
         georestricted={data.geoRestricted}
         loginRequired={data.loginRequired}
       />
-      <LessonView {...data} />
+      <LessonView props={filteredData} authState={authState} />
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };
