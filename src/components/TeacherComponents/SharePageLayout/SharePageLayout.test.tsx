@@ -93,13 +93,16 @@ describe("Downloads/Share Layout", () => {
     );
 
     const validationSummary = screen.getByTestId("share-validation-summary");
-    const validationSummarySr = screen.getByTestId(
-      "share-validation-summary-sr",
-    );
     expect(validationSummary).toHaveAttribute("role", "alert");
     expect(validationSummary).toHaveAttribute("aria-atomic", "true");
-    expect(validationSummarySr).toHaveTextContent(
-      "To complete, correct the following: select at least one resource to continue. accept terms and conditions to continue",
+    expect(validationSummary).toHaveTextContent(
+      "To complete, correct the following:",
+    );
+    expect(validationSummary).toHaveTextContent(
+      "select at least one resource to continue",
+    );
+    expect(validationSummary).toHaveTextContent(
+      "accept terms and conditions to continue",
     );
   });
 

@@ -9,31 +9,47 @@ import {
 
 import {
   ExamBoard,
+  GetSearchFiltersReturnType,
   SearchCheckBoxProps,
+  SearchFilterKey,
   Subject,
-  UseSearchFiltersReturnType,
   YearGroup,
 } from "@/context/Search/search.types";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
-import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { TrackSearchModifiedProps } from "@/app/(core)/teachers/search/helpers/index";
 import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
+import { useUpdateSearchQuery } from "@/app/(core)/teachers/search/helpers/useUpdateSearchQuery";
 
-type SearchFiltersProps = UseSearchFiltersReturnType & {
+type SearchFiltersProps = GetSearchFiltersReturnType & {
   isMobileFilter?: boolean;
   trackSearchModified: (props: TrackSearchModifiedProps) => void;
 };
 
-const renderFilterSection = (
-  title: string,
-  filters: ((ExamBoard | YearGroup | Subject) & SearchCheckBoxProps)[],
-  hasIcon: boolean,
-  isLast: boolean,
-  trackSeachModified: (props: TrackSearchModifiedProps) => void,
-  filterType: FilterTypeValueType,
-  isMobileFilter?: boolean,
-) => (
+const renderFilterSection = ({
+  isLast,
+  filterKey,
+  filterType,
+  filters,
+  hasIcon,
+  trackSeachModified,
+  isMobileFilter,
+  updateSearchFilters,
+  title,
+}: {
+  title: string;
+  filterKey: SearchFilterKey;
+  filters: ((ExamBoard | YearGroup | Subject) & SearchCheckBoxProps)[];
+  hasIcon: boolean;
+  isLast: boolean;
+  trackSeachModified: (props: TrackSearchModifiedProps) => void;
+  filterType: FilterTypeValueType;
+  updateSearchFilters: (props: {
+    filterSlug: string;
+    filterType: SearchFilterKey;
+  }) => void;
+  isMobileFilter?: boolean;
+}) => (
   <OakBox
     $mb="spacing-32"
     $bb={!isLast ? "border-solid-s" : null}
@@ -68,7 +84,10 @@ const renderFilterSection = (
                 filterValue: filter.title,
                 searchFilterMatchType: "default",
               });
-              filter.onChange();
+              updateSearchFilters({
+                filterSlug: filter.slug,
+                filterType: filterKey,
+              });
             }}
           />
         ))}
@@ -84,9 +103,10 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
     subjectFilters,
     examBoardFilters,
     isMobileFilter,
-    legacyFilter,
     trackSearchModified,
   } = props;
+
+  const { updateSearchFilters } = useUpdateSearchQuery();
 
   return (
     <>
@@ -94,64 +114,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
         $mb="spacing-32"
         $bb={"border-solid-s"}
         $borderColor={"border-neutral-lighter"}
-      >
-        <OakFieldset>
-          <OakP as={"legend"} $mb="spacing-24" $font={"heading-7"}>
-            Curriculum
-          </OakP>
-          <OakFlex
-            $gap={"spacing-16"}
-            $mb="spacing-32"
-            $flexDirection={"column"}
-            $flexWrap={"wrap"}
-          >
-            <OakSearchFilterCheckBox
-              name={"new"}
-              displayValue={"Show new only"}
-              key={`search-filters-curriculum-filter`}
-              aria-label={`Show new content filter`}
-              aria-describedby={
-                isMobileFilter
-                  ? "legacyFilterHintIdMobile"
-                  : "legacyFilterHintId"
-              }
-              {...legacyFilter}
-              id={`search-filters-showNewContent:mobile:${isMobileFilter}`}
-              value="new"
-              onChange={() => {
-                trackSearchModified({
-                  checked: legacyFilter.checked,
-                  filterType: "Lesson Cohort filter",
-                  filterValue: "2023-2026",
-                  searchFilterMatchType: "default",
-                });
-                legacyFilter.onChange();
-              }}
-            />
-            <OakFlex $alignItems={"flex-start"}>
-              <OakBox>
-                <TagPromotional size={"small"} />
-              </OakBox>
-              <OakP
-                $font={"body-3"}
-                $wordWrap={"normal"}
-                $color={"text-subdued"}
-                id={
-                  isMobileFilter
-                    ? "legacyFilterHintIdMobile"
-                    : "legacyFilterHintId"
-                } // pa11y error for non unique id when mobile and desktop views rendered simultaneously
-              >
-                Resources designed for the classroom
-              </OakP>
-            </OakFlex>
-          </OakFlex>
-        </OakFieldset>
-      </OakBox>
-      <OakBox
-        $mb="spacing-32"
-        $bb={"border-solid-s"}
-        $borderColor={"border-neutral-lighter"}
+        data-testid="search-filters"
       >
         <OakFieldset>
           <OakP as={"legend"} $mb="spacing-24" $font={"heading-7"}>
@@ -179,7 +142,10 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                     filterValue: keyStageFilter.title,
                     searchFilterMatchType: "default",
                   });
-                  keyStageFilter.onChange();
+                  updateSearchFilters({
+                    filterType: "keyStages",
+                    filterSlug: keyStageFilter.slug,
+                  });
                 }}
               />
             ))}
@@ -187,33 +153,39 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
         </OakFieldset>
       </OakBox>
       <>
-        {renderFilterSection(
-          "Years",
-          yearGroupFilters,
-          false,
-          false,
-          trackSearchModified,
-          "Year filter",
+        {renderFilterSection({
+          title: "Years",
+          filterKey: "yearGroups",
+          filters: yearGroupFilters,
+          hasIcon: false,
+          isLast: false,
+          trackSeachModified: trackSearchModified,
+          filterType: "Year filter",
+          updateSearchFilters,
           isMobileFilter,
-        )}
-        {renderFilterSection(
-          "Exam Boards",
-          examBoardFilters,
-          false,
-          false,
-          trackSearchModified,
-          "Exam board filter",
+        })}
+        {renderFilterSection({
+          title: "Exam Boards",
+          filterKey: "examBoards",
+          filters: examBoardFilters,
+          hasIcon: false,
+          isLast: false,
+          trackSeachModified: trackSearchModified,
+          filterType: "Exam board filter",
+          updateSearchFilters,
           isMobileFilter,
-        )}
-        {renderFilterSection(
-          "Subjects",
-          subjectFilters,
-          false,
-          true,
-          trackSearchModified,
-          "Subject filter",
+        })}
+        {renderFilterSection({
+          title: "Subjects",
+          filterKey: "subjects",
+          filters: subjectFilters,
+          hasIcon: true,
+          isLast: true,
+          trackSeachModified: trackSearchModified,
+          filterType: "Subject filter",
+          updateSearchFilters,
           isMobileFilter,
-        )}
+        })}
       </>
     </>
   );
