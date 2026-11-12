@@ -40,5 +40,8 @@ export function filterRestrictedLessonData(
     presentationUrl: null,
     lessonGuideUrl: null,
     hasMediaClips: false,
+    starterQuiz: null,
+    exitQuiz: null,
+    additionalMaterialUrl: null,
   };
 }

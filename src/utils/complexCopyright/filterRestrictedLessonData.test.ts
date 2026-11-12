@@ -29,6 +29,9 @@ const restrictedFields = {
   presentationUrl: null,
   lessonGuideUrl: null,
   hasMediaClips: false,
+  starterQuiz: null,
+  exitQuiz: null,
+  additionalMaterialUrl: null,
 };
 
 describe("filterRestrictedLessonData", () => {
