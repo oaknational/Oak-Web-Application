@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState, useEffect } from "react";
 import type { AppProps } from "next/app";
 import { Lexend } from "next/font/google";
 import { ThemeProvider } from "styled-components";
@@ -9,6 +9,8 @@ import {
   oakDefaultTheme,
   OakGlobalStyle,
   OakThemeProvider,
+  OakIconButton,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import "@/browser-lib/gleap/gleap.css";
@@ -36,6 +38,57 @@ const lexend = Lexend({ subsets: ["latin"] });
 type OakWebApplicationProps = AppProps & {
   analyticsOptions: AnalyticsProviderProps;
 };
+
+function GleapButton() {
+  const [isOpened, setIsOpened] = useState(false);
+  const [shouldShowButton, setShouldShowButton] = useState(false);
+  useEffect(() => {
+    const initGleap = async () => {
+      const { default: Gleap } = await import("gleap");
+      Gleap.on("initialized", () => {
+        setShouldShowButton(true);
+      });
+      Gleap.on("open", () => {
+        setIsOpened(true);
+      });
+      Gleap.on("close", () => {
+        setIsOpened(false);
+      });
+    };
+    initGleap();
+  }, []);
+  const toggleFeedback = async () => {
+    const { default: Gleap } = await import("gleap");
+    if (Gleap.isOpened()) {
+      Gleap.close();
+    } else {
+      Gleap.open();
+    }
+  };
+
+  return (
+    <OakBox
+      style={{
+        display: shouldShowButton ? "block" : "none",
+        position: "fixed",
+        zIndex: 9999,
+        right: 20,
+        bottom: 20,
+        padding: 4,
+      }}
+    >
+      <OakIconButton
+        iconName="question-mark"
+        onClick={toggleFeedback}
+        aria-label="Feedback panel"
+        aria-expanded={isOpened}
+        $colorScheme="primary"
+        $size="md"
+        $type="primary"
+      />
+    </OakBox>
+  );
+}
 
 const OakWebApplication: FC<OakWebApplicationProps> = ({
   Component,
@@ -69,6 +122,7 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
                                 `}</style>
                                 <Component {...pageProps} />
                                 <AppHooks />
+                                <GleapButton />
                               </OakNotificationsProvider>
                             </SaveCountProvider>
                           </ToastProvider>
