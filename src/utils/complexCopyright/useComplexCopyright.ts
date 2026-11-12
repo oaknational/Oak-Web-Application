@@ -2,6 +2,7 @@ import { useUser } from "@clerk/nextjs";
 
 import { AuthState, ComplexCopyrightStatus } from "./complexCopyright.types";
 import { getComplexCopyrightState } from "./getComplexCopyrightState";
+import { getAuthState } from "./getAuthState";
 
 import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
 import { getCopyrightRestrictionForSubject } from "@/utils/getCopyrightRestrictionForSubject";
@@ -18,9 +19,6 @@ export function useComplexCopyright({
   const { user, isSignedIn, isLoaded } = useUser();
   const { coreProgrammeState } = useProgrammeState();
 
-  const isUserOnboarded =
-    (isSignedIn && user?.publicMetadata?.owa?.isOnboarded) ?? false;
-
   const { resourceIsGeorestricted, resourceRequiresLogin } =
     getCopyrightRestrictionForSubject({
       subjectSlug: coreProgrammeState?.subjectSlug,
@@ -28,14 +26,7 @@ export function useComplexCopyright({
       loginRequired,
     });
 
-  const isUserRegionAuthorised =
-    user?.publicMetadata?.owa?.isRegionAuthorised !== false;
-
-  const authState: AuthState = {
-    isSignedIn: !!isSignedIn,
-    isOnboarded: isUserOnboarded,
-    isRegionAuthorised: isUserRegionAuthorised,
-  };
+  const authState: AuthState = getAuthState({ isSignedIn, user });
 
   return getComplexCopyrightState({
     authState,

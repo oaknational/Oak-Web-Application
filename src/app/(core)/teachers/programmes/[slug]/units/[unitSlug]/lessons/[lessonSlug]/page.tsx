@@ -22,7 +22,7 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 import { filterRestrictedLessonData } from "@/utils/complexCopyright/filterRestrictedLessonData";
-import { AuthState } from "@/utils/complexCopyright/complexCopyright.types";
+import { getAuthState } from "@/utils/complexCopyright/getAuthState";
 
 type LessonPageParams = {
   slug: string;
@@ -31,17 +31,6 @@ type LessonPageParams = {
 };
 
 export const dynamic = "force-dynamic";
-
-async function getAuthState(): Promise<AuthState> {
-  const user = await currentUser();
-  const permissions = user?.publicMetadata.owa;
-
-  return {
-    isSignedIn: !!user,
-    isOnboarded: !!permissions?.isOnboarded,
-    isRegionAuthorised: !!permissions?.isRegionAuthorised,
-  };
-}
 
 const getCachedLessonData = cache(
   cacheData(
@@ -101,7 +90,8 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
   const { slug: programmeSlug, unitSlug, lessonSlug } = await props.params;
 
   const data = await getCachedLessonData(programmeSlug, unitSlug, lessonSlug);
-  const authState = await getAuthState();
+  const user = await currentUser();
+  const authState = getAuthState({ isSignedIn: !!user, user });
   const filteredData = filterRestrictedLessonData(data, authState);
 
   const programmeState = getProgrammeStateForLesson(data);
