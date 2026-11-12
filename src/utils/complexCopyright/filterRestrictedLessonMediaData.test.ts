@@ -1,28 +1,14 @@
 import { filterRestrictedLessonMediaData } from "./filterRestrictedLessonMediaData";
 
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+import {
+  signedOutAuthState,
+  signedInNotOnboardedAuthState,
+  signedInGeorestrictedAuthState,
+  signedInGeoAuthenticatedAuthState,
+} from "@/__tests__/__helpers__/mockCopyrightRequirements";
 
 const lessonData = lessonMediaClipsFixtures();
-const signedOutAuthState = {
-  isSignedIn: false,
-  isOnboarded: false,
-  isRegionAuthorised: false,
-};
-const signedInNotOnboardedAuthState = {
-  isSignedIn: true,
-  isOnboarded: false,
-  isRegionAuthorised: true,
-};
-const signedInGeorestrictedAuthState = {
-  isSignedIn: true,
-  isOnboarded: true,
-  isRegionAuthorised: false,
-};
-const signedInGeoAuthenticatedAuthState = {
-  isSignedIn: true,
-  isOnboarded: true,
-  isRegionAuthorised: true,
-};
 
 describe("filterRestrictedLessonMediaData", () => {
   it("returns all data when there are no restrictions", () => {

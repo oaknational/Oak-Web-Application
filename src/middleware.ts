@@ -12,11 +12,6 @@ export default async function middleware(
   );
 }
 
-/**
- * Clerk middleware causes page latency, we're only enabling it for API routes
- * and pages carrying a Clerk handshake token.
- */
-
 export const config: MiddlewareConfig = {
   matcher: [
     // Skip Next.js internals and all static files, unless found in search params
