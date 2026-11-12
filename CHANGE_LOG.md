@@ -1,3 +1,10 @@
+## [1.1277.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1277.1...v1.1277.2) (2026-11-12)
+
+
+### Bug Fixes
+
+* exclude foundational learning from search page subjects ([64bf6a8](https://github.com/oaknational/Oak-Web-Application/commit/64bf6a81621438f8675d36622da089a8c7b2ea1a))
+
 ## [1.1277.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1277.0...v1.1277.1) (2026-11-12)
 
 
