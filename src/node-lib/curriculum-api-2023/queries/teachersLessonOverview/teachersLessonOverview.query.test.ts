@@ -636,12 +636,13 @@ describe("teachersLessonOverview()", () => {
         { exists: true, type: "intro-quiz-questions" },
         { exists: true, type: "intro-quiz-answers" },
         { exists: true, type: "exit-quiz-questions" },
-        { exists: true, type: "exit-quiz-questions" },
+        { exists: true, type: "exit-quiz-answers" },
         { exists: true, type: "worksheet-pdf" },
         { exists: true, type: "worksheet-pptx" },
         { exists: true, type: "supplementary-pdf" },
         { exists: true, type: "supplementary-docx" },
         { exists: true, type: "lesson-guide-pdf" },
+        { exists: true, type: "lesson-guide-docx" },
       ];
 
       expect(getDownloadsArray(content)).toEqual(expectedDownloads);
@@ -663,12 +664,13 @@ describe("teachersLessonOverview()", () => {
         { exists: false, type: "intro-quiz-questions" },
         { exists: false, type: "intro-quiz-answers" },
         { exists: false, type: "exit-quiz-questions" },
-        { exists: false, type: "exit-quiz-questions" },
+        { exists: false, type: "exit-quiz-answers" },
         { exists: false, type: "worksheet-pdf" },
         { exists: false, type: "worksheet-pptx" },
         { exists: false, type: "supplementary-pdf" },
         { exists: false, type: "supplementary-docx" },
         { exists: false, type: "lesson-guide-pdf" },
+        { exists: false, type: "lesson-guide-docx" },
       ];
 
       expect(getDownloadsArray(content)).toEqual(expectedDownloads);
@@ -690,12 +692,13 @@ describe("teachersLessonOverview()", () => {
         { exists: false, type: "intro-quiz-questions" },
         { exists: false, type: "intro-quiz-answers" },
         { exists: false, type: "exit-quiz-questions" },
-        { exists: false, type: "exit-quiz-questions" },
+        { exists: false, type: "exit-quiz-answers" },
         { exists: true, type: "worksheet-pdf" },
         { exists: true, type: "worksheet-pptx" },
         { exists: false, type: "supplementary-pdf" },
         { exists: false, type: "supplementary-docx" },
         { exists: false, type: "lesson-guide-pdf" },
+        { exists: false, type: "lesson-guide-docx" },
       ];
 
       expect(getDownloadsArray(content)).toEqual(expectedDownloads);

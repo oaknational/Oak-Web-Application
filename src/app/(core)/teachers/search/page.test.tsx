@@ -1,149 +1,84 @@
-import {
-  ReadonlyURLSearchParams,
-  usePathname,
-  useSearchParams,
-} from "next/navigation";
+import SearchPage from "./page";
 
-import { SearchView } from "./SearchView";
-
-import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import searchPageFixture from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 
-const fixture = searchPageFixture();
-if (!fixture) {
-  throw new Error("Cannot find search page fixture");
-}
-const keyStages = fixture.keyStages;
-const subjects = fixture.subjects;
-const contentTypes = fixture.contentTypes;
-const examBoards = fixture.examBoards;
-const yearGroups = fixture.yearGroups;
-
-jest.mock("next/navigation");
-
-jest.mocked(usePathname).mockReturnValue("/");
-jest
-  .mocked(useSearchParams)
-  .mockReturnValue(new URLSearchParams() as unknown as ReadonlyURLSearchParams);
-jest.mock("posthog-js/react", () => ({
-  ...jest.requireActual("posthog-js/react"),
-  useFeatureFlagEnabled: () => false,
+const mockSearchPage = jest.fn();
+jest.mock("@/node-lib/curriculum-api-2023", () => ({
+  __esModule: true,
+  default: {
+    searchPage: (...args: []) => mockSearchPage(args),
+  },
 }));
 
-describe("pages/teachers/search.tsx", () => {
-  test("renders correct content type filters", () => {
-    const { getAllByRole } = renderWithSeo()(
-      <SearchView
-        curriculumData={{
-          keyStages,
-          subjects,
-          contentTypes,
-          examBoards,
-          yearGroups,
-        }}
-      />,
-    );
-    expect(getAllByRole("checkbox", { hidden: true })[0]).toHaveAttribute(
-      "aria-label",
-      "Lessons filter",
-    );
+const mockResult = {
+  _id: "test-1",
+  _index: "lessons_1712737230873",
+  _score: 104.29718,
+  _source: {
+    id: 1,
+    slug: "test-lesson",
+    title: "Test Lesson",
+    programme_slug: "english-secondary-ks4",
+    subject_title: "English",
+    subject_slug: "english",
+    key_stage_title: "Key Stage 4",
+    key_stage_slug: "ks4",
+    unit_slug: "test-unit",
+    unit_title: "Test Unit",
+    type: "lesson" as const,
+    pupil_lesson_outcome: "Test outcome",
+    lesson_description: null,
+    has_copyright_material: null,
+    expired: null,
+    theme_title: null,
+    tier: null,
+    phase: null,
+    year_slug: "year-10",
+    year_title: "Year 10",
+    topic_title: null,
+    topic_slug: null,
+    pathways: [],
+    cohort: "2023-2024",
+  },
+  highlight: {
+    pupil_lesson_outcome: "Test <b>outcome</b>",
+  },
+};
 
-    expect(getAllByRole("checkbox", { hidden: true })[1]).toHaveAttribute(
-      "aria-label",
-      "Units filter",
-    );
+jest.mock("next/navigation", () => {
+  return {
+    __esModule: true,
+    notFound: () => {
+      throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
+    },
+  };
+});
+
+const mockFetchResults = jest.fn();
+jest.mock("@/context/Search/search-api/2023/fetchResults", () => ({
+  fetchResultsWithCache: () => mockFetchResults(),
+}));
+
+jest.mock("@/common-lib/error-reporter", () => ({
+  __esModule: true,
+  default: jest.fn(() => jest.fn()),
+}));
+
+describe("Search page", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockSearchPage.mockResolvedValue(searchPageFixture());
+    mockFetchResults.mockResolvedValue({
+      hitList: [mockResult],
+      took: 10,
+    });
   });
+  it("renders correctly", async () => {
+    const result = await SearchPage({
+      params: Promise.resolve({}),
+      searchParams: Promise.resolve({ term: "search" }),
+    });
 
-  test("renders correct new curriculum filter", async () => {
-    const { getAllByRole } = renderWithSeo()(
-      <SearchView
-        curriculumData={{
-          keyStages,
-          subjects,
-          contentTypes,
-          examBoards,
-          yearGroups,
-        }}
-      />,
-    );
-    expect(getAllByRole("checkbox", { hidden: true })[2]).toHaveAttribute(
-      "aria-label",
-      "Show new content filter",
-    );
-  });
-
-  test("renders correct key stage filters", async () => {
-    const { getAllByRole } = renderWithSeo()(
-      <SearchView
-        curriculumData={{
-          keyStages,
-          subjects,
-          contentTypes,
-          examBoards,
-          yearGroups,
-        }}
-      />,
-    );
-
-    expect(getAllByRole("checkbox", { hidden: true })[3]).toHaveAttribute(
-      "aria-label",
-      "Key stage 1 filter",
-    );
-  });
-
-  test("renders correct year group filters", () => {
-    const { getAllByRole } = renderWithSeo()(
-      <SearchView
-        curriculumData={{
-          keyStages,
-          subjects,
-          contentTypes,
-          examBoards,
-          yearGroups,
-        }}
-      />,
-    );
-    expect(getAllByRole("checkbox", { hidden: true })[7]).toHaveAttribute(
-      "aria-label",
-      "Year 1 filter",
-    );
-  });
-
-  test("renders correct examBoard filters", async () => {
-    const { getAllByRole } = renderWithSeo()(
-      <SearchView
-        curriculumData={{
-          keyStages,
-          subjects,
-          contentTypes,
-          examBoards,
-          yearGroups,
-        }}
-      />,
-    );
-
-    expect(getAllByRole("checkbox", { hidden: true })[18]).toHaveAttribute(
-      "aria-label",
-      "AQA filter",
-    );
-  });
-
-  test("renders correct subject filters", () => {
-    const { getAllByRole } = renderWithSeo()(
-      <SearchView
-        curriculumData={{
-          keyStages,
-          subjects,
-          contentTypes,
-          examBoards,
-          yearGroups,
-        }}
-      />,
-    );
-
-    expect(getAllByRole("checkbox", { hidden: true })[23]).toHaveAttribute(
-      "aria-label",
-      "English filter",
-    );
+    expect(result).toMatchSnapshot();
   });
 });

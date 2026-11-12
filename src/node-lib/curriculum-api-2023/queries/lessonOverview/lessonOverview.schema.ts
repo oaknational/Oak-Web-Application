@@ -13,6 +13,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import { lessonDownloadTypeSchema } from "@/common-lib/lessonDownloads";
 
 export const lessonContentSchema = lessonContentSchemaFull.omit({
   _state: true,
@@ -37,19 +38,7 @@ export type LessonOverviewContent = Omit<
 export const lessonOverviewDownloads = z.array(
   z.object({
     exists: z.boolean().nullable(),
-    type: z.enum([
-      "presentation",
-      "intro-quiz-questions",
-      "intro-quiz-answers",
-      "exit-quiz-questions",
-      "exit-quiz-answers",
-      "worksheet-pdf",
-      "worksheet-pptx",
-      "supplementary-pdf",
-      "supplementary-docx",
-      "curriculum-pdf",
-      "lesson-guide-pdf",
-    ]),
+    type: lessonDownloadTypeSchema,
   }),
 );
 

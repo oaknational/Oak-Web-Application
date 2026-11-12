@@ -31,7 +31,9 @@ describe("JoinResearchPanelJourney", () => {
     expect(stepHeadings[1]).toHaveTextContent(fixture.steps[1]!.title);
     expect(stepHeadings[2]).toHaveTextContent(fixture.steps[2]!.title);
 
-    const linkElement = getByRole("link", { name: "sign-up form" });
+    const linkElement = getByRole("link", {
+      name: "sign-up form (opens in a new tab)",
+    });
     expect(linkElement).toHaveAttribute("href", "https://example.com");
   });
 });
