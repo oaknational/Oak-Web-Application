@@ -67,6 +67,7 @@ describe("pages/nc-alignment-checker.tsx", () => {
     });
 
     it("should return not found if no data from CMS", async () => {
+      (isFeatureFlagEnabledServer as jest.Mock).mockImplementation(() => true);
       mockCMSClient.ncAlignmentCheckerLandingPage.mockResolvedValue(null);
 
       const propsResult = await getServerSideProps({
