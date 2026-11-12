@@ -15,10 +15,10 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
           TESTING_TITLE
         </h2>
         <div
-          class="sc-bdvwhi sc-jObTYW hPWTKU kRRONf"
+          class="sc-bdvwhi sc-jcFiBM hPWTKU kPNYGf"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO sc-43691944-0 hPWTKU Bakex iiYhvg biEa-dg"
+            class="sc-bdvwhi sc-gsDMPd sc-caiMdP sc-43691944-0 hPWTKU Bakex gLKfts biEa-dg"
             data-testid="who-we-are-desc-item"
           >
             <div
@@ -60,7 +60,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO sc-43691944-0 hPWTKU Bakex iiYhvg biEa-dg"
+            class="sc-bdvwhi sc-gsDMPd sc-caiMdP sc-43691944-0 hPWTKU Bakex gLKfts biEa-dg"
             data-testid="who-we-are-desc-item"
           >
             <div
@@ -102,7 +102,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO sc-43691944-0 hPWTKU Bakex iiYhvg biEa-dg"
+            class="sc-bdvwhi sc-gsDMPd sc-caiMdP sc-43691944-0 hPWTKU Bakex gLKfts biEa-dg"
             data-testid="who-we-are-desc-item"
           >
             <div
@@ -144,7 +144,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO sc-43691944-0 hPWTKU Bakex iiYhvg biEa-dg"
+            class="sc-bdvwhi sc-gsDMPd sc-caiMdP sc-43691944-0 hPWTKU Bakex gLKfts biEa-dg"
             data-testid="who-we-are-desc-item"
           >
             <div
