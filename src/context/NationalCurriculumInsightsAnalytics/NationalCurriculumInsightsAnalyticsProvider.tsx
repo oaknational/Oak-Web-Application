@@ -53,10 +53,10 @@ export const nationalCurriculumInsightsAnalyticsContext =
 export function NationalCurriculumInsightsAnalyticsProvider({
   children,
   page,
-}: {
+}: Readonly<{
   children: ReactNode;
   page: NationalCurriculumInsightsAnalyticsPage;
-}) {
+}>) {
   const { track } = useAnalytics();
   const trackedMarkers = useRef(new Set<string>());
   const pageVisitId = useRef<string | null>(null);

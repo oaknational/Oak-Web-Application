@@ -7,6 +7,7 @@ import {
   OakP,
   OakTabs,
 } from "@oaknational/oak-components";
+import { useMemo } from "react";
 
 import type { NationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
 import { getAnalyticsPageProperties } from "../helpers/getAnalyticsPageProperties";
@@ -249,10 +250,13 @@ const ModuleView = ({
     data.route.kind === "guidance"
   )
     defaultSectionId = "guidance-benefits";
+  const resolvedSectionId = sectionId ?? defaultSectionId;
+  const sectionContextValue = useMemo(
+    () => ({ sectionType, sectionId: resolvedSectionId }),
+    [sectionType, resolvedSectionId],
+  );
   return (
-    <insightsCtaSectionContext.Provider
-      value={{ sectionType, sectionId: sectionId ?? defaultSectionId }}
-    >
+    <insightsCtaSectionContext.Provider value={sectionContextValue}>
       <ModuleViewContent module={module} data={data} />
     </insightsCtaSectionContext.Provider>
   );
