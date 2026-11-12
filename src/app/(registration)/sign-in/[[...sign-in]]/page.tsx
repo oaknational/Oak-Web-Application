@@ -29,7 +29,6 @@ const TermsAndConditions = () => {
             legalSlug: "terms-and-conditions",
           })}
           target="_blank"
-          aria-label="Terms and conditions (opens in a new tab)"
         >
           terms & conditions
         </OakLink>{" "}
@@ -40,7 +39,6 @@ const TermsAndConditions = () => {
             legalSlug: "privacy-policy",
           })}
           target="_blank"
-          aria-label="Privacy policy (opens in a new tab)"
         >
           privacy policy
         </OakLink>

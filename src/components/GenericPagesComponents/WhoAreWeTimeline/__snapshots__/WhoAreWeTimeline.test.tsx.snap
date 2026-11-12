@@ -13,10 +13,10 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
           class="sc-bdvwhi sc-gsDMPd jokzBF jOjFum"
         >
           <div
-            class="sc-bdvwhi sc-jObTYW hPWTKU boCgwA"
+            class="sc-bdvwhi sc-jcFiBM hPWTKU cwIpfY"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fVapkO"
+              class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex ekdooS"
             >
               <div
                 class="sc-bdvwhi sc-gsDMPd hPWTKU edEJAr"
@@ -39,10 +39,10 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-bdvwhi sc-jObTYW hPWTKU boCgwA"
+            class="sc-bdvwhi sc-jcFiBM hPWTKU cwIpfY"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex klTjir"
+              class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex iAWimv"
             >
               <div
                 class="sc-bdvwhi sc-gsDMPd hPWTKU cIPGhJ"
@@ -170,7 +170,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                       >
                         ITEM_TEXT_3
                         <a
-                          class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg gbbVHe sc-hUpbpP bEqcTJ"
                           href="#newsletter-signup"
                         >
                           <span
@@ -180,7 +180,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                           </span>
                         </a>
                         <a
-                          class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
+                          class="sc-iwjfEg gbbVHe sc-hUpbpP bEqcTJ"
                           href="#"
                         >
                           <span
