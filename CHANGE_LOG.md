@@ -1,3 +1,10 @@
+# [1.1278.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1277.3...v1.1278.0) (2026-11-12)
+
+
+### Features
+
+* remove research panel feat flag logic ([6a892f5](https://github.com/oaknational/Oak-Web-Application/commit/6a892f51c32b6fc948044a21e5a498299b45821e))
+
 ## [1.1277.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1277.2...v1.1277.3) (2026-11-12)
 
 
