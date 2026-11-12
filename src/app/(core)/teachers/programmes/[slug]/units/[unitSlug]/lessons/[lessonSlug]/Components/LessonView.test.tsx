@@ -17,7 +17,7 @@ import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
-import { AuthState } from "@/utils/complexCopyright/filterRestrictedLessonData";
+import { AuthState } from "@/utils/complexCopyright/complexCopyright.types";
 
 const lessonResourceDownloadStarted = jest.fn();
 const lessonMediaClipsStarted = jest.fn();
