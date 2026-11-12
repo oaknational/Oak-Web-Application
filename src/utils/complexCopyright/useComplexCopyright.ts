@@ -2,7 +2,7 @@ import { useUser } from "@clerk/nextjs";
 
 import { AuthState, ComplexCopyrightStatus } from "./complexCopyright.types";
 import { getComplexCopyrightState } from "./getComplexCopyrightState";
-import { getAuthState } from "./getAuthState";
+import { clerkMetadataSchema, getAuthState } from "./getAuthState";
 
 import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
 import { getCopyrightRestrictionForSubject } from "@/utils/getCopyrightRestrictionForSubject";
@@ -26,7 +26,8 @@ export function useComplexCopyright({
       loginRequired,
     });
 
-  const authState: AuthState = getAuthState({ isSignedIn, user });
+  const metadata = clerkMetadataSchema.safeParse(user?.publicMetadata)?.data;
+  const authState: AuthState = getAuthState({ isSignedIn, metadata });
 
   return getComplexCopyrightState({
     authState,

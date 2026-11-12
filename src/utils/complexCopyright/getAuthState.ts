@@ -1,20 +1,29 @@
-import { User } from "@clerk/nextjs/server";
+import z from "zod";
 
 import { AuthState } from "./complexCopyright.types";
 
-import { UserResource } from "clerk";
+
+export const clerkMetadataSchema = z.object({
+  owa: z
+    .object({
+      isRegionAuthorised: z.boolean().nullish(),
+      isOnboarded: z.boolean().nullish(),
+    })
+    .nullish(),
+});
+
+export type ClerkMetadata = z.infer<typeof clerkMetadataSchema>;
 
 export const getAuthState = ({
   isSignedIn,
-  user,
+  metadata,
 }: {
   isSignedIn: boolean | undefined;
-  user: UserResource | User | null | undefined;
+  metadata: ClerkMetadata | undefined;
 }): AuthState => {
   return {
     isSignedIn: !!isSignedIn,
-    isOnboarded:
-      (isSignedIn && user?.publicMetadata?.owa?.isOnboarded) ?? false,
-    isRegionAuthorised: user?.publicMetadata?.owa?.isRegionAuthorised !== false,
+    isOnboarded: (isSignedIn && metadata?.owa?.isOnboarded) ?? false,
+    isRegionAuthorised: metadata?.owa?.isRegionAuthorised !== false,
   };
 };
