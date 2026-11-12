@@ -21,10 +21,8 @@ import { cacheData } from "@/node-lib/cache";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
-import {
-  AuthState,
-  filterRestrictedLessonData,
-} from "@/utils/filterRestrictedLessonData";
+import { filterRestrictedLessonData } from "@/utils/complexCopyright/filterRestrictedLessonData";
+import { AuthState } from "@/utils/complexCopyright/complexCopyright.types";
 
 type LessonPageParams = {
   slug: string;

@@ -1,5 +1,7 @@
 import { useUser } from "@clerk/nextjs";
 
+import { ComplexCopyrightStatus } from "./complexCopyright.types";
+
 import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
 import { getCopyrightRestrictionForSubject } from "@/utils/getCopyrightRestrictionForSubject";
 
@@ -8,19 +10,10 @@ interface UseComplexCopyrightProps {
   geoRestricted: boolean;
 }
 
-export interface UseComplexCopyrightReturn {
-  showSignedOutLoginRequired: boolean;
-  showSignedOutGeoRestricted: boolean;
-  showSignedInNotOnboarded: boolean;
-  showGeoBlocked: boolean;
-  isLoaded: boolean;
-  isResourceGeorestricted: boolean;
-}
-
 export function useComplexCopyright({
   loginRequired,
   geoRestricted,
-}: UseComplexCopyrightProps): UseComplexCopyrightReturn {
+}: UseComplexCopyrightProps): ComplexCopyrightStatus {
   const { user, isSignedIn, isLoaded } = useUser();
   const { coreProgrammeState } = useProgrammeState();
 

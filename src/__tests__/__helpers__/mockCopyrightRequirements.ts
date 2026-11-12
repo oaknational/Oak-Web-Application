@@ -1,4 +1,4 @@
-import { UseComplexCopyrightReturn } from "@/hooks/useComplexCopyright";
+import { UseComplexCopyrightReturn } from "@/utils/complexCopyright/useComplexCopyright";
 
 export const signedOutLoginRequired: UseComplexCopyrightReturn = {
   showGeoBlocked: false,

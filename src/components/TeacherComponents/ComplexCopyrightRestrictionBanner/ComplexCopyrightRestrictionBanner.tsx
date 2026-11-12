@@ -17,10 +17,8 @@ import {
   COPYRIGHT_CONTACT_US_LINK,
   COPYRIGHT_SUPPORT_LINK,
 } from "@/utils/copyrightLinks";
-import {
-  useComplexCopyright,
-  UseComplexCopyrightReturn,
-} from "@/hooks/useComplexCopyright";
+import { useComplexCopyright } from "@/utils/complexCopyright/useComplexCopyright";
+import { ComplexCopyrightStatus } from "@/utils/complexCopyright/complexCopyright.types";
 
 type InnerCopyrightBannerProps = Omit<
   ComponentProps<typeof OakInlineBanner>,
@@ -31,7 +29,7 @@ export type ComplexCopyrightRestrictionBannerProps =
     isGeorestricted?: boolean;
     isLoginRequired?: boolean;
     componentType?: ComponentTypeValueType;
-    copyrightState?: UseComplexCopyrightReturn;
+    copyrightState?: ComplexCopyrightStatus;
   };
 
 const SignedOutCopyrightBanner = ({

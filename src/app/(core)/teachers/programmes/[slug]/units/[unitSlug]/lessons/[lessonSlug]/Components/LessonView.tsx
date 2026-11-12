@@ -31,10 +31,8 @@ import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/Co
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
-import {
-  AuthState,
-  getLessonCopyrightState,
-} from "@/utils/filterRestrictedLessonData";
+import { getLessonCopyrightState } from "@/utils/complexCopyright/getLessonCopyrightState";
+import { AuthState } from "@/utils/complexCopyright/complexCopyright.types";
 
 export default function LessonView({
   props,

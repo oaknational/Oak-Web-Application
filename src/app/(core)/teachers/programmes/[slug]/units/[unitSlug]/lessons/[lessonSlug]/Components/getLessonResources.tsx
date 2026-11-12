@@ -19,7 +19,7 @@ import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOve
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
 import { DownloadableLessonTitles } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
-import { useComplexCopyright } from "@/hooks/useComplexCopyright";
+import { useComplexCopyright } from "@/utils/complexCopyright/useComplexCopyright";
 import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails";
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
