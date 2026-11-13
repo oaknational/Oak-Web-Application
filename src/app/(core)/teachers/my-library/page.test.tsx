@@ -66,9 +66,8 @@ describe("app/(core)/teachers/my-library", () => {
       userId: "user-123",
       getToken,
       redirectToSignUp,
-    });
-    mockCurrentUser.mockResolvedValue({
-      publicMetadata: { owa: { isOnboarded: true } },
+      isAuthenticated: true,
+      sessionClaims: { owa: { isOnboarded: true } },
     });
     mockGetUserListContent.mockResolvedValue({});
   });
@@ -114,8 +113,12 @@ describe("app/(core)/teachers/my-library", () => {
   });
 
   it("should redirect to onboarding when the user has not onboarded", async () => {
-    mockCurrentUser.mockResolvedValue({
-      publicMetadata: { owa: { isOnboarded: false } },
+    mockAuth.mockResolvedValue({
+      userId: "user-123",
+      getToken,
+      redirectToSignUp,
+      isAuthenticated: true,
+      sessionClaims: { owa: { isOnboarded: false } },
     });
 
     await expect(MyLibraryPage()).rejects.toThrow("NEXT_REDIRECT");
