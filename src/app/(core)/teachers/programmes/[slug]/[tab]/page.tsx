@@ -269,6 +269,8 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     examboardTitle: ks4Option?.title,
   };
 
+  const isDownloadTab = tab === "download";
+
   // None of these depend on each other's results, so run them concurrently instead of as a waterfall
   const [
     { curriculumCMSInfo, subjectPhaseSanityData },
@@ -289,7 +291,23 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
       subjectTitle: programmeUnitsData.subjectTitle,
       phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
     }),
-    getCachedFileSizes(subjectPhaseKeystageSlugs, curriculumDownloadsTabData),
+    isDownloadTab
+      ? getCachedFileSizes(
+          subjectPhaseKeystageSlugs,
+          curriculumDownloadsTabData,
+        ).catch((error) => {
+          const errorMessage =
+            error instanceof Error ? error.message : String(error);
+          void reportError(
+            new OakError({
+              code: "docx/create",
+              originalError: error,
+              meta: { message: errorMessage },
+            }),
+          );
+          return [];
+        })
+      : Promise.resolve([]),
   ]);
 
   if (!curriculumCMSInfo && !programmeUnitsData.nonCurriculum) {
