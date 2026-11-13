@@ -4276,9 +4276,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               />
                               <a
                                 class="c7 c8 internal-button"
-                                href="https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd"
-                                rel="noopener noreferrer"
-                                target="_blank"
+                                href="/about-us/get-involved/join-research-panel"
                               >
                                 <div
                                   class="c9 c10"
@@ -4287,19 +4285,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                     class="c11"
                                   >
                                     Join the research panel
-                                  </span>
-                                  <span
-                                    class="c20"
-                                  >
-                                    <img
-                                      alt="external"
-                                      class="c21"
-                                      data-nimg="fill"
-                                      decoding="async"
-                                      loading="lazy"
-                                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
-                                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                    />
                                   </span>
                                 </div>
                               </a>
@@ -5055,6 +5040,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     >
                       <form
                         aria-describedby="react-use-id-test-result-newsletter-form-description"
+                        aria-label="Newsletter signup"
                         class="c68 c84"
                         novalidate=""
                       >

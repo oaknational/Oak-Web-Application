@@ -19,7 +19,7 @@ import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/Teac
 import errorReporter from "@/common-lib/error-reporter";
 import { UnitDownloadExistence } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
-import { useComplexCopyright } from "@/hooks/useComplexCopyright";
+import { useComplexCopyright } from "@/utils/complexCopyright/useComplexCopyright";
 import { ComponentType } from "@/browser-lib/avo/Avo";
 
 const reportError = errorReporter("unit-download-button");

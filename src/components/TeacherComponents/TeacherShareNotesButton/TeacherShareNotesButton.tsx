@@ -6,7 +6,7 @@ import { useOakConsent } from "@oaknational/oak-consent-client";
 
 import { useCopyLink } from "@/hooks/useCopyLink";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
-import { useComplexCopyright } from "@/hooks/useComplexCopyright";
+import { useComplexCopyright } from "@/utils/complexCopyright/useComplexCopyright";
 
 export const TeacherShareNotesButton = ({
   isEditable,

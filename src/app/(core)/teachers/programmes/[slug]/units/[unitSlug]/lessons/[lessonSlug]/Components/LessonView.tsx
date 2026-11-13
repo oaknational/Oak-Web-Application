@@ -12,9 +12,9 @@ import { Fragment, useState } from "react";
 import { CurrentSectionIdProvider } from "./CurrentSectionIdProvider";
 import LessonOverviewSideNav from "./LessonOverviewSideNav";
 import { getLessonResources } from "./getLessonResources";
-import { LessonItem } from "./LessonItem";
 import LessonActionsBar from "./LessonActionsBar/LessonActionsBar";
 import { LessonSeoHelper } from "./LessonSeoHelper/LessonSeoHelper";
+import { LessonItem } from "./LessonItem";
 
 import {
   useFeatureFlagEnabled,
@@ -23,7 +23,6 @@ import {
 import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
 import { resolveOakHref } from "@/common-lib/urls";
-import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLessonMathJax";
@@ -32,10 +31,13 @@ import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/Co
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
+import { getLessonCopyrightState } from "@/utils/complexCopyright/getLessonCopyrightState";
+import { AuthState } from "@/utils/complexCopyright/complexCopyright.types";
 
-export default function LessonView(
-  props: Readonly<TeachersLessonOverviewPageData>,
-) {
+export default function LessonView({
+  props,
+  authState,
+}: Readonly<{ props: TeachersLessonOverviewPageData; authState: AuthState }>) {
   const {
     programmeSlug,
     unitSlug,
@@ -63,10 +65,8 @@ export default function LessonView(
   const { lessonAccessed } = useTeacherBrowseAnalytics((store) => store.track);
   const { lessonState } = useProgrammeState();
 
-  const copyrightState = useComplexCopyright({
-    loginRequired,
-    geoRestricted,
-  });
+  const copyrightState = getLessonCopyrightState(props, authState);
+
   const {
     showSignedOutGeoRestricted,
     showSignedOutLoginRequired,
@@ -84,7 +84,6 @@ export default function LessonView(
 
   const lessonResources = getLessonResources({
     data: props,
-    copyrightState,
     isMathJaxLesson,
     contentRestricted,
   });
@@ -163,6 +162,7 @@ export default function LessonView(
                 isGeorestricted={geoRestricted}
                 isLoginRequired={loginRequired}
                 componentType="lesson_overview"
+                copyrightState={copyrightState}
               />
               {showHeatwaveBanner && (
                 <OakInlineBanner

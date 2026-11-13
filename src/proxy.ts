@@ -22,6 +22,8 @@ export const config: ProxyConfig = {
     "/(api|trpc)((?!/classroom))(.*)",
     // Pages which resolve the signed-in user on the server
     "/teachers/my-library",
+    // Lesson pages - server-side auth checks
+    "/teachers/programmes/:slug/units/:unitSlug/lessons/:lessonSlug",
     // Enable middleware when we need to process a clerk handshake token
     {
       source: "/((?!_next).*)",
