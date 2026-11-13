@@ -434,6 +434,15 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           destination: "/curriculum-change-explained/guidance",
           permanent: true,
         },
+        // Remove this temporary redirect when the Insights hub launches.
+        {
+          source: "/curriculum-change-explained",
+          destination: "/curriculum-change-explained/guidance",
+          permanent: false,
+          has: [
+            { type: "host" as const, value: "www\\.thenational\\.academy" },
+          ],
+        },
       ];
 
       const aboutUsRedirects = [
