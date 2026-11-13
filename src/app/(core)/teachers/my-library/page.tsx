@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
 
 import { MyLibraryView } from "./MyLibraryView";
 
@@ -11,6 +11,7 @@ import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { getUserListContent } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent";
 import { UserlistContentApiResponse } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
+import { clerkMetadataSchema } from "@/utils/complexCopyright/getAuthState";
 
 const reportError = errorReporter("educatorApi");
 
@@ -33,15 +34,16 @@ export const metadata: Metadata = {
 
 const MyLibraryPage = async () => {
   const returnTo = resolveOakHref({ page: "my-library" });
-  const { userId, getToken, redirectToSignUp } = await auth();
+  const { userId, isAuthenticated, getToken, redirectToSignUp, sessionClaims } =
+    await auth();
 
-  if (!userId) {
+  if (!isAuthenticated) {
     return redirectToSignUp({ returnBackUrl: returnTo });
   }
 
-  const user = await currentUser();
+  const metadata = clerkMetadataSchema.safeParse(sessionClaims)?.data;
 
-  if (!user?.publicMetadata.owa?.isOnboarded) {
+  if (!metadata?.owa?.isOnboarded) {
     redirect(
       `${resolveOakHref({ page: "onboarding" })}?returnTo=${encodeURIComponent(returnTo)}`,
     );
