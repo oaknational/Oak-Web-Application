@@ -11,6 +11,8 @@ import {
   parseNationalCurriculumInsightsRoute,
 } from "@/common-lib/urls/nationalCurriculumInsights";
 
+export const instant = false;
+
 const robots: Metadata["robots"] = {
   index: false,
   follow: false,

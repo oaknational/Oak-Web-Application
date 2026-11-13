@@ -33,14 +33,16 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 import { BrowseFiltersProvider } from "@/context/BrowseFilters";
 import { redirectProgrammeSlugIfNeeded } from "@/utils/integratedJourney/legacyProgrammeUnitsRedirect";
-import { cacheData, CURRICULUM_API_CACHE_TAG } from "@/node-lib/cache";
+import { cmsWithCache, CURRICULUM_API_CACHE_TAG } from "@/node-lib/cache";
 import CMSClient from "@/node-lib/cms";
-import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 import { validateServerSearchParams } from "@/utils/validateProgrammePageSearchParams";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForProgramme } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 import { getActiveCookieFlags } from "@/hooks/useCookieFlag/getActiveCookieFlags";
 import { getBrowseFilterState } from "@/context/BrowseFilters/utils/getBrowseFilterState";
+import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
+
+export const instant = false;
 
 const reportError = errorReporter("programme-page::app");
 
@@ -60,49 +62,47 @@ export type ProgrammeCmsParams = {
   isPreviewModeEnabled: boolean;
 };
 
-const getCachedProgrammeCms = cache(
-  cacheData(
-    async ({
-      nonCurriculum,
-      subjectTitle,
-      phaseSlug,
-      programmePageSlug,
-      isPreviewModeEnabled,
-    }: ProgrammeCmsParams) => {
-      const [curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime] =
-        await Promise.all([
-          nonCurriculum
-            ? null
-            : CMSClient.curriculumOverviewPage({
-                previewMode: isPreviewModeEnabled,
-                subjectTitle,
-                phaseSlug,
-              }),
-          CMSClient.programmePageBySlug(programmePageSlug, {
-            previewMode: isPreviewModeEnabled,
+async function getCachedProgrammeCms({
+  nonCurriculum,
+  subjectTitle,
+  phaseSlug,
+  programmePageSlug,
+  isPreviewModeEnabled,
+}: ProgrammeCmsParams) {
+  const [curriculumCMSInfo, subjectPhaseSanityData] = await Promise.all([
+    nonCurriculum
+      ? null
+      : isPreviewModeEnabled
+        ? CMSClient.curriculumOverviewPage({
+            previewMode: true,
+            subjectTitle,
+            phaseSlug,
+          })
+        : cmsWithCache({
+            queryKey: "curriculumOverviewPage",
+            args: [{ previewMode: false, subjectTitle, phaseSlug }],
           }),
-          getMvRefreshTime(),
-        ]);
+    isPreviewModeEnabled
+      ? CMSClient.programmePageBySlug(programmePageSlug, { previewMode: true })
+      : cmsWithCache({
+          queryKey: "programmePageBySlug",
+          args: [programmePageSlug, { previewMode: false }],
+        }),
+  ]);
 
-      return {
-        curriculumCMSInfo,
-        subjectPhaseSanityData,
-        mvRefreshTime,
-      };
-    },
-    ["programme-cms"],
-  ),
-);
+  return { curriculumCMSInfo, subjectPhaseSanityData };
+}
 
-const getCachedImplementationGuides = cache(
-  cacheData(
-    async (opts: { subjectTitle: string; phaseSlug: string }) => {
-      return CMSClient.implementationGuides(opts);
-    },
-    ["programme-implementation-guides"],
-    { tags: [CURRICULUM_API_CACHE_TAG] },
-  ),
-);
+async function getCachedImplementationGuides(opts: {
+  subjectTitle: string;
+  phaseSlug: string;
+}) {
+  return cmsWithCache({
+    queryKey: "implementationGuides",
+    args: [opts],
+    tags: [CURRICULUM_API_CACHE_TAG],
+  });
+}
 
 export async function generateMetadata({
   params,
@@ -269,9 +269,12 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     examboardTitle: ks4Option?.title,
   };
 
+  const isDownloadTab = tab === "download";
+
   // None of these depend on each other's results, so run them concurrently instead of as a waterfall
   const [
-    { curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime },
+    { curriculumCMSInfo, subjectPhaseSanityData },
+    mvRefreshTime,
     implementationGuides,
     fileSizes,
   ] = await Promise.all([
@@ -283,12 +286,28 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
       programmePageSlug: `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
       isPreviewModeEnabled: isEnabled,
     }),
-
+    getMvRefreshTime({ withCache: true }),
     getCachedImplementationGuides({
       subjectTitle: programmeUnitsData.subjectTitle,
       phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
     }),
-    getCachedFileSizes(subjectPhaseKeystageSlugs, curriculumDownloadsTabData),
+    isDownloadTab
+      ? getCachedFileSizes(
+          subjectPhaseKeystageSlugs,
+          curriculumDownloadsTabData,
+        ).catch((error) => {
+          const errorMessage =
+            error instanceof Error ? error.message : String(error);
+          void reportError(
+            new OakError({
+              code: "docx/create",
+              originalError: error,
+              meta: { message: errorMessage },
+            }),
+          );
+          return [];
+        })
+      : Promise.resolve([]),
   ]);
 
   if (!curriculumCMSInfo && !programmeUnitsData.nonCurriculum) {
@@ -296,7 +315,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   }
 
   if (!subjectPhaseSanityData) {
-    reportError(
+    void reportError(
       new OakError({
         code: "cms/missing-programme-page-data",
         meta: { subjectPhaseSlug },

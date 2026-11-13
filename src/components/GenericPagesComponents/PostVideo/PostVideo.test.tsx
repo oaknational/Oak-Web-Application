@@ -27,6 +27,10 @@ describe("PostVideo", () => {
     },
   };
 
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it("should render correctly", () => {
     const { container } = render(<PostVideo {...defaultProps} />);
     expect(VideoPlayer).toHaveBeenCalledWith(
@@ -34,7 +38,7 @@ describe("PostVideo", () => {
         title: "Test Video",
         location: "blog",
       }),
-      expect.anything(),
+      undefined,
     );
     expect(container).toBeInTheDocument();
     expect(container).toMatchSnapshot();
@@ -49,7 +53,7 @@ describe("PostVideo", () => {
         title: "Test Video",
         location: "marketing",
       }),
-      expect.anything(),
+      undefined,
     );
     expect(container).toBeInTheDocument();
     expect(container).toMatchSnapshot();

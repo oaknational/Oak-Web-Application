@@ -34,9 +34,9 @@ const ResourcePageSearchComboBox = <T extends School>(
   const state = useComboBoxState({ ...props, defaultFilter: contains });
   const { hasError = false, required } = props;
   // Setup refs and get props for child elements.
-  const inputRef = useRef(null);
-  const listBoxRef = useRef(null);
-  const popoverRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const listBoxRef = useRef<HTMLUListElement>(null);
+  const popoverRef = useRef<HTMLDivElement>(null);
   const { inputValue } = state;
 
   useEffect(() => {
@@ -71,7 +71,13 @@ const ResourcePageSearchComboBox = <T extends School>(
 
   return (
     <OakFlex $width={"100%"} $position={"relative"} $display={"inline-block"}>
-      <OakFlex $width={"100%"} $position={"relative"} ref={inputRef}>
+      <OakFlex
+        $width={"100%"}
+        $position={"relative"}
+        ref={(element) => {
+          inputRef.current = element?.querySelector("input") ?? null;
+        }}
+      >
         <OakJauntyAngleLabel
           label={props.label + (props.required ? " (required)" : "")}
           $color={

@@ -43,7 +43,7 @@ import {
   createLearningCycleVideosTitleMap,
 } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
-import { useComplexCopyright } from "@/hooks/useComplexCopyright";
+import { useComplexCopyright } from "@/utils/complexCopyright/useComplexCopyright";
 import { LEGACY_COHORT } from "@/config/cohort";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
@@ -461,7 +461,9 @@ export const LessonMedia = (
                   $height={"100%"}
                   $br={"border-solid-m"}
                   data-testid="video-player-wrapper"
-                  ref={videoPlayerWrapper}
+                  ref={(element: HTMLDivElement | null) => {
+                    videoPlayerWrapper.current = element;
+                  }}
                   tabIndex={-1}
                 >
                   {videoPlayer}

@@ -44,7 +44,7 @@ export type URLParams = {
 export default function LessonOverviewCanonicalPage({
   lesson,
   topNav,
-}: Readonly<PageProps>): JSX.Element {
+}: Readonly<PageProps>) {
   const {
     teacherNotesButton,
     TeacherNotesButtonProps,

@@ -14,7 +14,7 @@ describe("<ConditionalScript />", () => {
   });
   test("loads if shouldLoad true", () => {
     render(<ConditionalScript shouldLoad={true} src="foo" />);
-    expect(Mock).toHaveBeenCalledWith({ src: "foo" }, {});
+    expect(Mock).toHaveBeenCalledWith({ src: "foo" }, undefined);
   });
   test("does not load if shouldLoad false", () => {
     render(<ConditionalScript shouldLoad={false} src="foo" />);

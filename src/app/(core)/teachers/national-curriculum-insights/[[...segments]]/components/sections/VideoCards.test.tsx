@@ -66,7 +66,7 @@ it("uses the selected blog image as the inline video poster", () => {
       thumbnailTime: 12,
       location: "blog",
     }),
-    expect.anything(),
+    undefined,
   );
   const link = screen.getByRole("link", {
     name: /Inclusive curriculum leadership/,
@@ -93,7 +93,7 @@ it("keeps the video frame fallback when the blog image has no asset", () => {
 
   expect(VideoPlayer).toHaveBeenCalledWith(
     expect.objectContaining({ poster: undefined, thumbnailTime: 12 }),
-    expect.anything(),
+    undefined,
   );
 });
 

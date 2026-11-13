@@ -1,8 +1,8 @@
-import { StoryFn } from "@storybook/react";
+import type { Decorator } from "@storybook/react";
 
 import { saveCountContext } from "@/context/SaveCount/SaveCountProvider";
 
-export default function SaveCountDecorator(Story: StoryFn) {
+const SaveCountDecorator: Decorator = (Story) => {
   const SaveCountProvider = saveCountContext.Provider;
 
   const value = {
@@ -17,4 +17,6 @@ export default function SaveCountDecorator(Story: StoryFn) {
       <Story />
     </SaveCountProvider>
   );
-}
+};
+
+export default SaveCountDecorator;

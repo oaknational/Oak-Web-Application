@@ -1,4 +1,5 @@
 import snakecaseKeys from "snakecase-keys";
+import { cacheLife, cacheTag } from "next/cache";
 import { cache } from "react";
 
 import {
@@ -11,7 +12,6 @@ import { SearchQuery } from "../../search.types";
 import { getHighlightFromAllFields } from "@/app/(core)/teachers/search/helpers";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import OakError from "@/errors/OakError";
-import { cacheData } from "@/node-lib/cache";
 
 export const transformAndParseSearchResponseData = (
   rawData: RawSearchResponseData,
@@ -89,4 +89,9 @@ async function fetchResults(query: SearchQuery) {
 
 // Cache results for queries with the same search params
 // "page" param excluded as pagination is done client side and this prevents duplicate requests for same query
-export const fetchResultsWithCache = cache(cacheData(fetchResults, ["search"]));
+export const fetchResultsWithCache = cache(async (query: SearchQuery) => {
+  "use cache";
+  cacheLife("curriculum");
+  cacheTag("search");
+  return fetchResults(query);
+});

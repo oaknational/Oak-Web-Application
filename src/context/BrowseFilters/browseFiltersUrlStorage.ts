@@ -15,7 +15,14 @@ const replaceSearch = (search: string) => {
     ? `${window.location.pathname}?${search}`
     : window.location.pathname;
 
-  globalThis.history.replaceState(null, "", basePath + window.location.hash);
+  const newUrl = basePath + window.location.hash;
+  const currentUrl =
+    window.location.pathname + window.location.search + window.location.hash;
+
+  // Only call replaceState if the URL actually changed to avoid history spam
+  if (newUrl !== currentUrl) {
+    globalThis.history.replaceState(null, "", newUrl);
+  }
 };
 
 function readFiltersFromUrl(): StorageValue<BrowseFiltersPersistedState> | null {

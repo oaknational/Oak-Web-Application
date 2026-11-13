@@ -136,7 +136,7 @@ describe("PublicProgrammeListing", () => {
       expect.objectContaining({
         factorType: "pathway",
       }),
-      {},
+      undefined,
     );
   });
 
@@ -160,7 +160,7 @@ describe("PublicProgrammeListing", () => {
       expect.objectContaining({
         factorType: "examboard",
       }),
-      {},
+      undefined,
     );
   });
 

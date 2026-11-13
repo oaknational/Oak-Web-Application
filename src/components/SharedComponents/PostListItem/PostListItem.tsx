@@ -60,7 +60,7 @@ export type PostListItemProps = {
   category: BlogWebinarCategory;
   date: string;
   withImage?: boolean;
-  firstItemRef?: RefObject<HTMLAnchorElement> | null;
+  firstItemRef?: RefObject<HTMLAnchorElement | null> | null;
   showImageOnTablet?: boolean;
 } & (
   | { contentType: "blog-post"; mainImage?: Image | null }

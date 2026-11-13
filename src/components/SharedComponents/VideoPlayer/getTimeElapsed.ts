@@ -5,7 +5,7 @@ import MuxPlayerElement from "@mux/mux-player";
  * Gets current playback time video from the video player ref.
  * Rounds down, and returns null if time not available.
  */
-const getTimeElapsed = (ref: RefObject<MuxPlayerElement>) => {
+const getTimeElapsed = (ref: RefObject<MuxPlayerElement | null>) => {
   const currentTime = ref.current?.currentTime;
   if (typeof currentTime === "number" && !isNaN(currentTime)) {
     return Math.floor(currentTime);

@@ -1,4 +1,4 @@
-import { StoryFn } from "@storybook/react";
+import type { Decorator } from "@storybook/react";
 
 import { noopTrackingFns } from "./AnalyticsDecorator";
 
@@ -67,7 +67,7 @@ const state: TeacherBrowseAnalyticsStore = {
   },
 };
 
-export default function TeacherBrowseAnalyticsDecorator(Story: StoryFn) {
+const TeacherBrowseAnalyticsDecorator: Decorator = (Story) => {
   const TeacherBrowseAnalyticsProvider =
     TeacherBrowseAnalyticsStoreContext.Provider;
 
@@ -83,4 +83,6 @@ export default function TeacherBrowseAnalyticsDecorator(Story: StoryFn) {
       <Story />
     </TeacherBrowseAnalyticsProvider>
   );
-}
+};
+
+export default TeacherBrowseAnalyticsDecorator;

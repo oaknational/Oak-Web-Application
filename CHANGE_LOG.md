@@ -1,3 +1,54 @@
+# [1.1277.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1276.0...v1.1277.0) (2026-11-12)
+
+
+### Features
+
+* bump oak-components to v3.28.0 ([37af651](https://github.com/oaknational/Oak-Web-Application/commit/37af651e27e0136c629486047d11506094e6b8bd))
+* getting ready for the merge of <https://github.com/oaknational/oak-components/pull/798> ([059ecb2](https://github.com/oaknational/Oak-Web-Application/commit/059ecb23678bf9736aad4c6aeebce8bd72207625))
+
+# [1.1276.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1275.1...v1.1276.0) (2026-11-12)
+
+
+### Features
+
+* add aria described by errors to submit button ([74ddd6a](https://github.com/oaknational/Oak-Web-Application/commit/74ddd6afd8d9e2a26f0efa64d58d30c9c1647847))
+* add role alert for download form validation messages ([bde3090](https://github.com/oaknational/Oak-Web-Application/commit/bde3090218e16b9a85c9f97523c0af6b28483715))
+* remove disabled state from programme downloads button ([9109c03](https://github.com/oaknational/Oak-Web-Application/commit/9109c0350ef10ee2c60b82293cb347f16b9b4040))
+* remove redundant ario attributes in status ([35bb12d](https://github.com/oaknational/Oak-Web-Application/commit/35bb12da1fa40e64e53a4697f721ba8a11adf1b8))
+
+## [1.1275.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1275.0...v1.1275.1) (2026-11-11)
+
+
+### Bug Fixes
+
+* **ADAPT-206:** stop the Aila signpost video overflowing in Safari ([4a12c9f](https://github.com/oaknational/Oak-Web-Application/commit/4a12c9fd9b24eeefae0a0c49f9fa86e1c41611bd))
+
+# [1.1275.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1274.1...v1.1275.0) (2026-11-11)
+
+
+### Bug Fixes
+
+* make search term optional so page loads with form ([6d37ef1](https://github.com/oaknational/Oak-Web-Application/commit/6d37ef1fb6f234fa91349f94ff909d37e6eea201))
+* reset pagination on search term change ([0fdc139](https://github.com/oaknational/Oak-Web-Application/commit/0fdc1396bc236e6293dd4d7dde3ad2e6889d896f))
+* set correct origin header ([b8deba5](https://github.com/oaknational/Oak-Web-Application/commit/b8deba50522057def02a7620b7a454e74c433764))
+* wrong title prop ([90cb595](https://github.com/oaknational/Oak-Web-Application/commit/90cb5951d2af2fb53711b1f9ff71d63b52912204))
+
+
+### Features
+
+* add search query helpers ([8ed9344](https://github.com/oaknational/Oak-Web-Application/commit/8ed934488f1e6415200b30fb0732b8f4fa5e50fc))
+* cache query response ([4a59870](https://github.com/oaknational/Oak-Web-Application/commit/4a5987037469a7e9631db36085c2b9100b1de896))
+* don't scroll page on filter update ([beb756d](https://github.com/oaknational/Oak-Web-Application/commit/beb756d0fe1ed08fdb814d15339e401f692e33d3))
+* don't scroll page on search term update ([55e9175](https://github.com/oaknational/Oak-Web-Application/commit/55e9175b2fb0f8d3575bffb006741259ea1cc2c2))
+* hook up filters to server side generation ([d7d4827](https://github.com/oaknational/Oak-Web-Application/commit/d7d4827254809c16940f9f480da57cf76ebe7480))
+* improve error handling ([9e4eac8](https://github.com/oaknational/Oak-Web-Application/commit/9e4eac8c1051af8197bd3e4ccbae4b829c480bd6))
+* include rule of law in search ([f91120e](https://github.com/oaknational/Oak-Web-Application/commit/f91120ee2de6f08243eb22e4b1a7c51f777ca201))
+* normalise search term for caching ([c737f73](https://github.com/oaknational/Oak-Web-Application/commit/c737f737441fccecceb32369a023e60a959580a8))
+* reinstate tracking ([abbe969](https://github.com/oaknational/Oak-Web-Application/commit/abbe9699ac91441253ea9143bc80676e89284151))
+* remove 'new' filter ([72e1e9e](https://github.com/oaknational/Oak-Web-Application/commit/72e1e9e85533a645bf962e0c453fcee8b12974ae))
+* sort filters to normalise for caching ([d8646b8](https://github.com/oaknational/Oak-Web-Application/commit/d8646b8a18ca6cfbabae17570cb34c3e0ee012f7))
+* update pages to use new helpers ([f1d13a4](https://github.com/oaknational/Oak-Web-Application/commit/f1d13a4c82e46cdf456c2a15cd62920e42391323))
+
 # [1.1278.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1277.3...v1.1278.0) (2026-11-12)
 
 

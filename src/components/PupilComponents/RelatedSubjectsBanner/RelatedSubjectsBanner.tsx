@@ -1,3 +1,5 @@
+import { ReactElement } from "react";
+
 import SubjectBanner, {
   type SubjectBannerProps,
 } from "./banners/SubjectBanner";
@@ -8,7 +10,7 @@ import type { SubjectSlugs } from "@/node-lib/curriculum-api-2023/queries/pupilS
 type ProgrammeFields = UnitListingBrowseData[number]["programmeFields"];
 
 type OptionalSubjectDescriptionsType = {
-  [key in SubjectSlugs]?: (args: Readonly<BannerProps>) => JSX.Element;
+  [key in SubjectSlugs]?: (args: Readonly<BannerProps>) => ReactElement;
 };
 
 type SubjectBannerContent = Omit<SubjectBannerProps, "programmeFields">;

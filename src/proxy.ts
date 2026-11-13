@@ -1,10 +1,7 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
-import { MiddlewareConfig, NextFetchEvent, NextRequest } from "next/server";
+import { ProxyConfig, NextFetchEvent, NextRequest } from "next/server";
 
-export default async function middleware(
-  req: NextRequest,
-  event: NextFetchEvent,
-) {
+export default async function proxy(req: NextRequest, event: NextFetchEvent) {
   // Keep server-side redirects pointed at our own sign-in page rather than Clerk's account portal
   return clerkMiddleware({ signInUrl: "/sign-in", signUpUrl: "/sign-in" })(
     req,
@@ -17,7 +14,7 @@ export default async function middleware(
  * and pages carrying a Clerk handshake token.
  */
 
-export const config: MiddlewareConfig = {
+export const config: ProxyConfig = {
   matcher: [
     // Skip Next.js internals and all static files, unless found in search params
     //"/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
@@ -25,6 +22,8 @@ export const config: MiddlewareConfig = {
     "/(api|trpc)((?!/classroom))(.*)",
     // Pages which resolve the signed-in user on the server
     "/teachers/my-library",
+    // Lesson pages - server-side auth checks
+    "/teachers/programmes/:slug/units/:unitSlug/lessons/:lessonSlug",
     // Enable middleware when we need to process a clerk handshake token
     {
       source: "/((?!_next).*)",

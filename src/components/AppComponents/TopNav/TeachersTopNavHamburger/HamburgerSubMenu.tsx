@@ -73,7 +73,9 @@ function SubmenuContainer({
       $pt={"spacing-4"}
       $gap={"spacing-40"}
       $flexDirection={"column"}
-      ref={containerRef}
+      ref={(element: HTMLDivElement | null) => {
+        containerRef.current = element;
+      }}
       data-testid="submenu-container"
     >
       <OakPrimaryInvertedButton

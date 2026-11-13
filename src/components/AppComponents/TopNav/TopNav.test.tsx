@@ -1,6 +1,6 @@
 import { act, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { forwardRef, ReactNode, Ref } from "react";
+import { forwardRef, type ComponentPropsWithoutRef } from "react";
 
 import TopNav from "./TopNav";
 
@@ -18,23 +18,14 @@ globalThis.matchMedia = jest.fn().mockReturnValue({
   matches: false,
 });
 
+type MockLinkProps = ComponentPropsWithoutRef<"a"> & { href: string };
+
 // act errors triggered by next link in the test environment, so we're mocking it.
 jest.mock("next/link", () => {
   return {
     __esModule: true,
-    default: forwardRef(
-      (
-        {
-          children,
-          href,
-          ...props
-        }: {
-          children: ReactNode;
-          href: string;
-          [key: string]: unknown;
-        },
-        ref: Ref<HTMLAnchorElement>,
-      ) => {
+    default: forwardRef<HTMLAnchorElement, MockLinkProps>(
+      ({ children, href, ...props }, ref) => {
         return (
           <a href={href} ref={ref} {...props}>
             {children}

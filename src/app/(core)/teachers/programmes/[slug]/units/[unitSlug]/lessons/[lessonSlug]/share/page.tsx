@@ -9,13 +9,16 @@ import { LessonShare } from "@/components/TeacherViews/LessonShare/LessonShare.v
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
-import { cacheData } from "@/node-lib/cache";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import type { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 import { getCopyrightRestrictionForSubject } from "@/utils/getCopyrightRestrictionForSubject";
+import { curriculumApiWithCache } from "@/node-lib/cache";
+
+// We are using dynamic route segments so we can't enable instant navigation without
+// prefetching routes with generateStaticParams. Longer term we'd want to
+// use Suspense boundaries to enable instant loading with data streaming
+export const instant = false;
 
 type LessonSharePageParams = {
   slug: string;
@@ -23,23 +26,13 @@ type LessonSharePageParams = {
   lessonSlug: string;
 };
 
-export const dynamic = "force-static";
-
 const getCachedLessonShareData = cache(
-  cacheData(
-    async (
-      programmeSlug: string,
-      unitSlug: string,
-      lessonSlug: string,
-    ): Promise<LessonShareData> => {
-      return curriculumApi2023.lessonShare({
-        programmeSlug,
-        unitSlug,
-        lessonSlug,
-      });
-    },
-    ["lesson-share"],
-  ),
+  async (programmeSlug: string, unitSlug: string, lessonSlug: string) => {
+    return curriculumApiWithCache({
+      queryKey: "lessonShare",
+      args: [{ programmeSlug, unitSlug, lessonSlug }],
+    });
+  },
 );
 
 export async function generateMetadata(

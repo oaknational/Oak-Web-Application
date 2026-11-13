@@ -1,6 +1,6 @@
 import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
 
-import middleware, { config } from "./middleware";
+import proxy, { config } from "./proxy";
 
 const mockClerkHandler = jest.fn(() => NextResponse.next());
 const mockClerkMiddleware = jest.fn(() => mockClerkHandler);
@@ -31,7 +31,7 @@ describe("middleware", () => {
   it("falls back to clerkMiddleware for other routes", async () => {
     const req = buildRequest("/api/some-route");
 
-    await middleware(req, mockEvent);
+    await proxy(req, mockEvent);
 
     expect(mockExperimentMiddleware).not.toHaveBeenCalled();
     expect(mockClerkMiddleware).toHaveBeenCalled();

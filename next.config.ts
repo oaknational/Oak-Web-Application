@@ -1,6 +1,5 @@
 import { readFileSync, writeFileSync, appendFileSync } from "node:fs";
 import { join } from "node:path";
-import { fileURLToPath } from "node:url";
 
 import { withSentryConfig } from "@sentry/nextjs";
 import { sentryWebpackPlugin } from "@sentry/webpack-plugin";
@@ -38,10 +37,8 @@ const withBundleAnalyzer = buildWithBundleAnalyzer({
   enabled: process.env.ANALYSE_BUNDLE === "on",
 });
 
-const __dirname = fileURLToPath(new URL(".", import.meta.url));
-
 // https://nextjs.org/docs/api-reference/next.config.js/introduction
-export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
+export default async (phase: string): Promise<NextConfig> => {
   let oakConfig: OakConfig;
 
   let releaseStage;
@@ -120,6 +117,20 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
   }
 
   const nextConfig: NextConfig = {
+    cacheComponents: true,
+    partialPrefetching: true,
+    cacheLife: {
+      curriculum: {
+        stale: 3600, // 1 hour
+        revalidate: 7200, // 2 hours
+        expire: 86400, // 1 day
+      },
+      cms: {
+        stale: 300, // 5 minutes
+        revalidate: 300, // 5 minutes
+        expire: 7200, // 2 hours
+      },
+    },
     headers: async () => [
       {
         // Advertise the RFC 9727 API catalog from the homepage so discovery

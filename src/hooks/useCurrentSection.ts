@@ -20,14 +20,18 @@ function safeSetHash(hash: string): void {
 }
 
 function calculateCurrentSectionId<
-  T extends Record<string, RefObject<HTMLElement>>,
+  T extends Record<string, RefObject<HTMLElement | null>>,
 >(sectionRefs: T): string | null {
   /**
    * Returns the last section that is above the middle of the screen
    */
   const currentSectionId = Object.entries(sectionRefs).reduce(
     (
-      acc: { id: string; ref: RefObject<HTMLElement>; top: number } | null,
+      acc: {
+        id: string;
+        ref: RefObject<HTMLElement | null>;
+        top: number;
+      } | null,
       [id, ref],
     ) => {
       const rect = ref.current?.getBoundingClientRect();
@@ -66,12 +70,12 @@ function calculateCurrentSectionId<
 }
 
 export type UseCurrentSectionProps<
-  T extends Record<string, RefObject<HTMLElement>>,
+  T extends Record<string, RefObject<HTMLElement | null>>,
 > = {
   sectionRefs: T;
 };
 export function useCurrentSection<
-  T extends Record<string, RefObject<HTMLElement>>,
+  T extends Record<string, RefObject<HTMLElement | null>>,
 >({ sectionRefs }: UseCurrentSectionProps<T>) {
   const [currentSectionId, setCurrentSectionId] = useState<string | null>(null);
   const [isScrolling, setIsScrolling] = useState<boolean>(false);

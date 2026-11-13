@@ -11,6 +11,7 @@ import {
   OakBulletList,
 } from "@oaknational/oak-components";
 import { intersection } from "lodash";
+import { ReactElement } from "react";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
@@ -53,7 +54,7 @@ export type PupilUnitsSectionProps = {
   phase: "primary" | "secondary";
   counterText: string | null;
   counterLength: number | null;
-  titleSlot: JSX.Element | null;
+  titleSlot: ReactElement | null;
   additionalInfoSlot?: React.ReactNode | null;
   subjectCategories: string[];
   labels?: string[] | undefined;

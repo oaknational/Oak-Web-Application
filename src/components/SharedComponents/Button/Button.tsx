@@ -7,11 +7,7 @@ import button, {
   getButtonStylesProps,
 } from "./button.styles";
 import ButtonInner, { ButtonCurrentStyles } from "./ButtonInner";
-import {
-  CommonButtonProps,
-  defaultButtonProps,
-  HTMLButtonProps,
-} from "./common";
+import { CommonButtonProps, HTMLButtonProps } from "./common";
 
 import { ResponsiveValues } from "@/styles/utils/responsive";
 import typography, { FontVariant } from "@/styles/utils/typography";
@@ -40,6 +36,10 @@ export type ButtonProps = CommonButtonProps & {
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   const {
+    size: buttonSize,
+    variant: buttonVariant,
+    $iconPosition: buttonIconPosition,
+    background: buttonBackground,
     onClick,
     label,
     labelSuffixA11y,
@@ -56,8 +56,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     ...spacingProps
   } = props;
 
-  const { size, variant, $iconPosition, background } =
-    getButtonStylesProps(props);
+  const { size, variant, $iconPosition, background } = getButtonStylesProps({
+    ...props,
+    size: buttonSize,
+    variant: buttonVariant,
+    $iconPosition: buttonIconPosition,
+    background: buttonBackground,
+  });
 
   const defaultTitle =
     ariaLabel ?? (labelSuffixA11y && `${label} ${labelSuffixA11y}`) ?? label;
@@ -65,6 +70,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   return (
     <StyledButton
       ref={ref}
+      {...spacingProps}
       {...htmlButtonProps}
       title={title ?? htmlButtonProps.title ?? defaultTitle}
       aria-label={ariaLabel}
@@ -74,7 +80,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
       $iconPosition={$iconPosition}
       background={background}
       aria-disabled={disabled}
-      {...spacingProps}
     >
       <ButtonInner
         label={label}
@@ -95,7 +100,5 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     </StyledButton>
   );
 });
-
-Button.defaultProps = defaultButtonProps;
 
 export default Button;

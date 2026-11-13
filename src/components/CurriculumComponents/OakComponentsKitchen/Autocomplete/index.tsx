@@ -45,8 +45,8 @@ type AutocompleteProps = {
 
 const Autocomplete = (props: AutocompleteProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const listBoxRef = useRef(null);
-  const popoverRef = useRef(null);
+  const listBoxRef = useRef<HTMLUListElement>(null);
+  const popoverRef = useRef<HTMLDivElement>(null);
   const { contains } = useFilter({ sensitivity: "base" });
 
   const onSelectionChange = (key: Key | null) => {
@@ -86,7 +86,13 @@ const Autocomplete = (props: AutocompleteProps) => {
 
   return (
     <OakBox $width={"100%"}>
-      <OakFlex $width={"100%"} $position={"relative"} ref={inputRef}>
+      <OakFlex
+        $width={"100%"}
+        $position={"relative"}
+        ref={(element: HTMLDivElement | null) => {
+          inputRef.current = element?.querySelector("input") ?? null;
+        }}
+      >
         <OakJauntyAngleLabel
           label={props.inputProps.label}
           $color={
