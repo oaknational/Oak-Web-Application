@@ -4,8 +4,6 @@ import "jest-styled-components";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 
-import { testAboutPageBaseData } from "./about-us.fixtures";
-
 import GetInvolved, {
   GetInvolvedPageProps,
   getStaticProps,
@@ -16,7 +14,6 @@ import {
 } from "@/__tests__/__helpers__/cms";
 import CMSClient from "@/node-lib/cms";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
-import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 jest.mock("../../../node-lib/cms");
 jest.mock("@mux/mux-player-react/lazy", () => {
@@ -26,12 +23,7 @@ jest.mock("@mux/mux-player-react/lazy", () => {
   });
 });
 
-jest.mock("@/utils/featureFlagChecks/static", () => ({
-  isFeatureFlagEnabledStatic: jest.fn(() => false),
-}));
-
 const testGetInvolvedPageData: GetInvolvedPageProps["pageData"] = {
-  ...testAboutPageBaseData,
   header: {
     introText:
       "We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.",
@@ -62,23 +54,7 @@ describe("pages/about/get-involved.tsx", () => {
   });
 
   it("renders", () => {
-    const { container, getByRole } = renderWithProviders()(
-      <GetInvolved pageData={testGetInvolvedPageData} topNav={topNavFixture} />,
-    );
-
-    expect(
-      getByRole("link", { name: "Join the research panel external" }),
-    ).toHaveAttribute(
-      "href",
-      "https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd",
-    );
-    expect(container).toMatchSnapshot();
-  });
-
-  it("join panel link changes when feature flag is enabled", () => {
-    (isFeatureFlagEnabledStatic as jest.Mock).mockImplementation(() => true);
-
-    const { getAllByRole } = renderWithProviders()(
+    const { container, getAllByRole } = renderWithProviders()(
       <GetInvolved pageData={testGetInvolvedPageData} topNav={topNavFixture} />,
     );
 
@@ -89,6 +65,8 @@ describe("pages/about/get-involved.tsx", () => {
       "href",
       "/about-us/get-involved/join-research-panel",
     );
+
+    expect(container).toMatchSnapshot();
   });
 
   describe("getStaticProps", () => {

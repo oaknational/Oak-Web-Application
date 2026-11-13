@@ -184,7 +184,6 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                     page: "legal",
                     legalSlug: "privacy-policy",
                   })}
-                  aria-label="Privacy policy (opens in a new tab)"
                   target="_blank"
                   iconName="external"
                   isTrailingIcon

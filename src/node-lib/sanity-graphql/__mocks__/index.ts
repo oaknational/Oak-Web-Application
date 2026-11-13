@@ -1,9 +1,4 @@
 import homepageFixture from "../fixtures/homepage.json";
-import aboutWhoWeArePageFixture from "../fixtures/aboutWhoWeArePage.json";
-import aboutLeadershipPageFixture from "../fixtures/aboutLeadershipPage.json";
-import aboutBoardPageFixture from "../fixtures/aboutBoardPage.json";
-import aboutPartnersPageFixture from "../fixtures/aboutPartnersPage.json";
-import aboutWorkWithUsPageFixture from "../fixtures/aboutWorkWithUsPage.json";
 import allWebinarsFixture from "../fixtures/allWebinars.json";
 import planningCorePageFixture from "../fixtures/planningCorePage.json";
 import planALessonCorePageFixture from "../fixtures/planALessonPage.json";
@@ -31,11 +26,6 @@ export default {
   homepage: jest.fn(() => homepageFixture),
   planningCorePage: jest.fn(() => planningCorePageFixture),
   planALessonPage: jest.fn(() => planALessonCorePageFixture),
-  aboutWhoWeArePage: jest.fn(() => aboutWhoWeArePageFixture),
-  aboutLeadershipPage: jest.fn(() => aboutLeadershipPageFixture),
-  aboutBoardPage: jest.fn(() => aboutBoardPageFixture),
-  aboutPartnersPage: jest.fn(() => aboutPartnersPageFixture),
-  aboutWorkWithUsPage: jest.fn(() => aboutWorkWithUsPageFixture),
   contactCorePage: jest.fn(() => contactCorePageFixture),
   allPolicyPages: jest.fn(() => allPolicyPagesFixture),
   policyPageBySlug: jest.fn(() => policyPageBySlugFixture),
