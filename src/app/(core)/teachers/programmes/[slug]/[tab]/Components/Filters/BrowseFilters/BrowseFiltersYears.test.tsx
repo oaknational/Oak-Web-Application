@@ -74,4 +74,25 @@ describe("BrowseFiltersYears", () => {
     act(() => getByTestId("tablet-all-filters").click());
     expect(onModalOpen).toHaveBeenCalled();
   });
+
+  it("moves focus from All to the selected year", () => {
+    const { getByRole } = renderWithStore(
+      <BrowseFiltersYears data={basicSetup} />,
+    );
+
+    const all = getByRole("radio", { name: "All" });
+    const year10 = getByRole("radio", { name: "Year 10" });
+    const year11 = getByRole("radio", { name: "Year 11" });
+
+    all.focus();
+    expect(all).toHaveFocus();
+    act(() => year10.click());
+    expect(year10).toBeChecked();
+    expect(year10).toHaveFocus();
+    expect(all).not.toHaveFocus();
+    act(() => year11.click());
+    expect(year11).toBeChecked();
+    expect(year11).toHaveFocus();
+    expect(year10).not.toHaveFocus();
+  });
 });

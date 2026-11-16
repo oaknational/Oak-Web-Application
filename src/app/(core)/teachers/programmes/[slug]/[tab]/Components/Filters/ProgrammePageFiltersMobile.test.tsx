@@ -252,16 +252,15 @@ describe("ProgrammePageFiltersMobile", () => {
     ).toBeInTheDocument();
   });
 
-  it("restores focus to the exam board radio after keyboard navigation", async () => {
-    const focusSpy = jest.spyOn(HTMLInputElement.prototype, "focus");
-
+  it("focuses the selected exam board after navigation reopens the modal", async () => {
     renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters, true);
 
     await waitFor(() => {
-      const ocrRadio = screen.getByDisplayValue("ocr");
-      expect(focusSpy.mock.instances).toContain(ocrRadio);
-    });
+      expect(
+        screen.getByRole("heading", { name: "Filters", level: 1 }),
+      ).toBeInTheDocument();
 
-    focusSpy.mockRestore();
+      expect(screen.getByRole("radio", { name: "OCR" })).toHaveFocus();
+    });
   });
 });

@@ -483,7 +483,7 @@ describe("ProgrammeFiltersKs4Options", () => {
   });
 
   it.each(["keyboard", "mouse", "touch"])(
-    "only requests focus restoration for keyboard selection (%s)",
+    "focuses the selected exam board and requests focus restoration (%s)",
     (interaction) => {
       const { getAllByRole } = renderKs4Options(
         defaultFilters,
@@ -495,12 +495,16 @@ describe("ProgrammeFiltersKs4Options", () => {
       );
 
       const radios = getAllByRole("radio") as HTMLInputElement[];
+      radios[0]!.focus();
+      expect(radios[0]!).toHaveFocus();
 
       fireEvent.keyDown(radios[1]!, { key: "ArrowRight" });
       if (interaction !== "keyboard") {
         fireEvent.pointerDown(radios[1]!, { pointerType: interaction });
       }
       act(() => radios[1]!.click());
+      expect(radios[1]!).toHaveFocus();
+      expect(radios[0]!).not.toHaveFocus();
 
       expect(mockReplace).toHaveBeenCalledWith(
         resolveOakHref({
@@ -516,7 +520,7 @@ describe("ProgrammeFiltersKs4Options", () => {
       );
       expect(mockSetNavigationIntent).toHaveBeenCalledWith({
         destination: { ...defaultSlugs, ks4OptionSlug: "edexcel" },
-        restoreFocus: interaction === "keyboard",
+        restoreFocus: true,
         reopenFiltersModal: false,
       });
     },
@@ -582,7 +586,7 @@ describe("ProgrammeFiltersKs4Options", () => {
   });
 
   it.each([true, false])(
-    "reopens the modal independently of keyboard focus restoration (%s)",
+    "reopens the modal and requests focus restoration (keyboard: %s)",
     (keyboard) => {
       const { getAllByRole } = renderKs4Options(
         defaultFilters,
@@ -622,7 +626,7 @@ describe("ProgrammeFiltersKs4Options", () => {
       );
       expect(mockSetNavigationIntent).toHaveBeenCalledWith({
         destination: { ...defaultSlugs, ks4OptionSlug: "edexcel" },
-        restoreFocus: keyboard,
+        restoreFocus: true,
         reopenFiltersModal: true,
       });
       const prefetchedUrls = new Set(
