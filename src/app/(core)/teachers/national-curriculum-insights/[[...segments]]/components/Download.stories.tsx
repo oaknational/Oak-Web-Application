@@ -4,14 +4,25 @@ import { useState } from "react";
 import { OakFlex, OakSecondaryButton } from "@oaknational/oak-components";
 
 import { hubData, subjectData } from "../__fixtures__/stories";
+import { getAnalyticsPageProperties } from "../helpers/getAnalyticsPageProperties";
 
 import { NationalCurriculumInsightsDownload } from "./Download";
 
 import { requestNationalCurriculumInsightsDownload } from "@/common-lib/urls/nationalCurriculumInsightsDownload";
+import { NationalCurriculumInsightsAnalyticsProvider } from "@/context/NationalCurriculumInsightsAnalytics/NationalCurriculumInsightsAnalyticsProvider";
 
 const meta = {
   component: NationalCurriculumInsightsDownload,
   parameters: { layout: "fullscreen" },
+  decorators: [
+    (Story, { args }) => (
+      <NationalCurriculumInsightsAnalyticsProvider
+        page={getAnalyticsPageProperties(args.data)}
+      >
+        <Story />
+      </NationalCurriculumInsightsAnalyticsProvider>
+    ),
+  ],
   args: {
     data: hubData,
     section: {

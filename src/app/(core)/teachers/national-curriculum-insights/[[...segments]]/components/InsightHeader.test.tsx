@@ -11,7 +11,7 @@ import type { NationalCurriculumInsightsRouteData } from "../helpers/getRouteDat
 import { NationalCurriculumInsightsHeader } from "./InsightHeader";
 
 import { nationalCurriculumInsightsSubjectHref } from "@/common-lib/urls/nationalCurriculumInsights";
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithInsightsAnalytics";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import type { NationalCurriculumInsightsHeaderSection } from "@/common-lib/cms-types/nationalCurriculumInsights";
 
