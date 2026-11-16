@@ -20,7 +20,7 @@ exports[`JoinResearchPanelHeader it renders correct data 1`] = `
               class="sc-kYHdiH YiXOT"
             >
               <a
-                class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                 href="/"
                 style="overflow: hidden;"
               >
@@ -52,7 +52,7 @@ exports[`JoinResearchPanelHeader it renders correct data 1`] = `
                 />
               </span>
               <a
-                class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
                 href="/about-us/get-involved"
                 style="overflow: hidden;"
               >
@@ -101,10 +101,10 @@ exports[`JoinResearchPanelHeader it renders correct data 1`] = `
         class="sc-bdvwhi iatEdD"
       >
         <div
-          class="sc-bdvwhi sc-jObTYW hPWTKU gKJERn"
+          class="sc-bdvwhi sc-jcFiBM hPWTKU jslZJX"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex giCKOa"
+            class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex irjOXW"
           >
             <div
               class="sc-bdvwhi sc-gsDMPd hPWTKU csSWlB"
@@ -169,7 +169,7 @@ exports[`JoinResearchPanelHeader it renders correct data 1`] = `
             </div>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO cUChIo exNRnp fqHsID"
+            class="sc-bdvwhi sc-gsDMPd sc-caiMdP cUChIo exNRnp ldOatf"
           >
             <div
               class="sc-bdvwhi sc-gsDMPd dumZsJ kkGnDS"

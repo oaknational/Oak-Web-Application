@@ -1,4 +1,3 @@
-import { GetServerSidePropsContext } from "next";
 import "jest-styled-components";
 
 import joinResearchPanelPageFixture from "./join-research-panel.fixtures";
@@ -6,16 +5,11 @@ import joinResearchPanelPageFixture from "./join-research-panel.fixtures";
 import "@/__tests__/__helpers__/ResizeObserverMock";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import AboutUsJoinResearchPanel, {
-  getServerSideProps,
+  getStaticProps,
 } from "@/pages/about-us/get-involved/join-research-panel";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
-import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import CMSClient from "@/node-lib/cms";
 import { serializeDate } from "@/utils/serializeDate";
-
-jest.mock("@/utils/featureFlagChecks/server", () => ({
-  isFeatureFlagEnabledServer: jest.fn(() => false),
-}));
 
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   __esModule: true,
@@ -50,15 +44,9 @@ describe("pages/about/get-involved/join-research-panel.tsx", () => {
     expect(container).toMatchSnapshot();
   });
 
-  describe("getServerSideProps", () => {
-    it("should return serialized date data when the feature flag is enabled", async () => {
-      (isFeatureFlagEnabledServer as jest.Mock).mockImplementation(() => true);
-
-      const propsResult = await getServerSideProps({
-        req: {
-          cookies: {},
-        },
-      } as GetServerSidePropsContext);
+  describe("getStaticProps", () => {
+    it("should return serialized date data", async () => {
+      const propsResult = await getStaticProps({});
 
       expect(propsResult).toMatchObject({
         props: {
@@ -67,20 +55,6 @@ describe("pages/about/get-involved/join-research-panel.tsx", () => {
             blogs: joinResearchPanelPageFixture.blogs.map(serializeDate),
           },
         },
-      });
-    });
-
-    it("should return notFound when the feature flag is disabled", async () => {
-      (isFeatureFlagEnabledServer as jest.Mock).mockImplementation(() => false);
-
-      const propsResult = await getServerSideProps({
-        req: {
-          cookies: {},
-        },
-      } as GetServerSidePropsContext);
-
-      expect(propsResult).toMatchObject({
-        notFound: true,
       });
     });
   });
