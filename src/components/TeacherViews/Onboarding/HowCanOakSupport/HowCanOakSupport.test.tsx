@@ -38,7 +38,10 @@ fetchMock.enableMocks();
 describe("HowCanOakSupport", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    (useRouter as jest.Mock).mockReturnValue({ push: jest.fn() });
+    (useRouter as jest.Mock).mockReturnValue({
+      push: jest.fn(),
+      refresh: jest.fn(),
+    });
     (useSearchParams as jest.Mock).mockReturnValue(
       new URLSearchParams(
         encodeOnboardingDataQueryParam(null, {
