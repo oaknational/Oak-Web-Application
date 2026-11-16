@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 
-import CanonicalLessonHubPage from "./page";
+import CanonicalLessonHubPage, { generateMetadata } from "./page";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { LessonPathway } from "@/node-lib/curriculum-api-2023/shared.schema";
@@ -231,5 +231,34 @@ describe("Canonical lesson hub page", () => {
         "/teachers/programmes/citizenship-ks4-gcse/units/money/lessons/pathway-options",
       ),
     ]);
+  });
+});
+
+describe("generateMetadata", () => {
+  it("returns empty object when fetch fails", async () => {
+    mockLessonOverview.mockRejectedValue(new Error("Not found"));
+
+    const result = await generateMetadata({
+      params: Promise.resolve({ lessonSlug: "lesson-slug" }),
+    });
+
+    expect(result).toEqual({});
+  });
+
+  it("generates metadata with correct title and description", async () => {
+    mockLessonOverview.mockResolvedValue({
+      lessonTitle: "Title",
+    });
+
+    const result = await generateMetadata({
+      params: Promise.resolve({ lessonSlug: "lesson-slug" }),
+    });
+
+    expect(result.title).toBe("Lesson hub: Title");
+    expect(result.openGraph?.title).toBe("Lesson hub: Title");
+    expect(result.twitter?.title).toBe("Lesson hub: Title");
+    expect(result.description).toBe(
+      "View lesson content and choose resources to download or share",
+    );
   });
 });
