@@ -1,8 +1,6 @@
 /**
  * @jest-environment node
  */
-import { auth } from "@clerk/nextjs/server";
-
 import { getServerAuthState } from "./getServerAuthState";
 
 import {
@@ -15,7 +13,15 @@ jest.mock("@clerk/nextjs/server", () => ({
   auth: jest.fn(),
 }));
 
-const authMock = jest.mocked(auth);
+type MockAuthResult = {
+  isAuthenticated: boolean;
+  sessionClaims: unknown;
+};
+
+const authMock = jest.requireMock("@clerk/nextjs/server").auth as jest.Mock<
+  Promise<MockAuthResult>,
+  []
+>;
 
 const unrestricted = {
   subjectSlug: "maths" as const,
@@ -46,7 +52,7 @@ describe("getServerAuthState", () => {
       sessionClaims: {
         owa: { isOnboarded: true, isRegionAuthorised: true },
       },
-    } as Awaited<ReturnType<typeof auth>>);
+    });
 
     expect(await getServerAuthState(restriction)).toEqual(
       signedInGeoAuthenticatedAuthState,
