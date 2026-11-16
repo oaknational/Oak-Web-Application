@@ -17,7 +17,7 @@ import { ReactNode, useMemo } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import { useComplexCopyright } from "@/hooks/useComplexCopyright";
+import { useComplexCopyright } from "@/utils/complexCopyright/useComplexCopyright";
 
 type ButtonState =
   | "loading"
