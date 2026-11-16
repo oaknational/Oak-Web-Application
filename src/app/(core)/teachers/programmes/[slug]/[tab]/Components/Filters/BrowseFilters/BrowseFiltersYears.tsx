@@ -64,7 +64,10 @@ export function BrowseFiltersYears(props: Readonly<BrowseFiltersYearsProps>) {
     <OakBox>
       <OakRadioGroup
         name={"year" + id}
-        onChange={(e) => setYearFilter(e.target.value, data.yearOptions)}
+        onChange={(e) => {
+          e.currentTarget.focus();
+          setYearFilter(e.target.value, data.yearOptions);
+        }}
         value={filters.years.length > 1 ? "all" : filters.years[0]}
         $gap="spacing-12"
         $flexDirection="row"

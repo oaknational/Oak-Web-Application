@@ -173,7 +173,10 @@ function Ks4OptionRadioGroup({
     >
       <OakRadioGroup
         name={`${namePrefix}-${id}`}
-        onChange={(e) => onSelect(e.target.value, keyboardInteraction.current)}
+        onChange={(e) => {
+          e.currentTarget.focus();
+          onSelect(e.target.value, true);
+        }}
         value={selectedSlug}
         $flexDirection="row"
         $flexWrap="wrap"
