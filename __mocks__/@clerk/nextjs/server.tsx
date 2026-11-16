@@ -1,10 +1,10 @@
 const clerkMock = {
   __esModule: true,
-  currentUser(): { publicMetadata?: unknown } | null {
-    return null;
+  currentUser(): Promise<{ publicMetadata?: unknown } | null> {
+    return Promise.resolve(null);
   },
   async auth() {
-    const user = clerkMock.currentUser();
+    const user = await clerkMock.currentUser();
     return {
       isAuthenticated: !!user,
       sessionClaims: user?.publicMetadata ?? null,
