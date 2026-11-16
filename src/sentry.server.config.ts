@@ -1,6 +1,6 @@
 import * as Sentry from "@sentry/nextjs";
 
-console.log("Sentry configuration loaded", {
+console.debug("Sentry configuration loaded", {
   hasDsn: Boolean(process.env.SENTRY_DSN),
   environment: process.env.SENTRY_ENVIRONMENT,
 });
