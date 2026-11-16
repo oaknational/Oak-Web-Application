@@ -1,4 +1,4 @@
-import { NextPage, GetServerSideProps } from "next";
+import { GetStaticProps, NextPage } from "next";
 import {
   OakFlex,
   OakHeading,
@@ -9,7 +9,6 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import Layout from "@/components/AppComponents/AppLayout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import CMSClient from "@/node-lib/cms";
 import {
@@ -119,17 +118,9 @@ export const AboutUsJoinResearchPanel: NextPage<
   );
 };
 
-export const getServerSideProps: GetServerSideProps<
+export const getStaticProps: GetStaticProps<
   AboutUsJoinResearchPanelPageProps
 > = async (context) => {
-  const isEnabled = await isFeatureFlagEnabledServer(
-    context.req.cookies,
-    "join-research-panel",
-  );
-  if (!isEnabled) {
-    return { notFound: true };
-  }
-
   const isPreviewMode = context.preview === true;
 
   const pageData = await CMSClient.joinResearchPanelPage({

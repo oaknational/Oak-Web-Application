@@ -43,7 +43,7 @@ import {
   createLearningCycleVideosTitleMap,
 } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
-import { useComplexCopyright } from "@/hooks/useComplexCopyright";
+import { useComplexCopyright } from "@/utils/complexCopyright/useComplexCopyright";
 import { LEGACY_COHORT } from "@/config/cohort";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 

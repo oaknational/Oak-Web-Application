@@ -21,7 +21,7 @@ jest.mock("posthog-js/react", () => ({
 }));
 
 let mockUseComplexCopyright = defaultCopyrightRequirements;
-jest.mock("@/hooks/useComplexCopyright", () => ({
+jest.mock("@/utils/complexCopyright/useComplexCopyright", () => ({
   useComplexCopyright: () => mockUseComplexCopyright,
 }));
 
