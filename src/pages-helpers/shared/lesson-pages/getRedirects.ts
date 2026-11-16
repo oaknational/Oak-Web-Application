@@ -3,7 +3,6 @@ import { Redirect } from "next";
 import { PupilLessonPageURLParams } from "../../pupil/lessons-pages/getProps";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { URLParams as URLParamsCanonical } from "@/pages/teachers/lessons/deprecated";
 import { PupilLessonListingURLParams } from "@/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons";
 
 type TeacherBrowseLessonURLParams = {
@@ -28,7 +27,11 @@ export const getRedirect = async (
     | {
         isTeacher: boolean;
         isLesson: true;
-        context: URLParamsCanonical | PupilLessonPageURLParams;
+        context:
+          | {
+              lessonSlug: string;
+            }
+          | PupilLessonPageURLParams;
         isCanonical: true; // If this is provided, it will be ignored
       }
     | {
