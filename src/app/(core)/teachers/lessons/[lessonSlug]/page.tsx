@@ -38,6 +38,7 @@ const InnerCanonicalLessonHubPage = async (
       examboard: pathway.examBoardTitle,
       tier: pathway.tierTitle,
       year: data.yearTitle,
+      pathway: pathway.pathwayTitle,
       href: resolveOakHref({
         page: "lesson-overview",
         lessonSlug,

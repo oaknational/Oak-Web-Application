@@ -25,6 +25,7 @@ export type CanonicalLessonHubProps = {
     examboard?: string | null;
     tier?: string | null;
     year?: string | null;
+    pathway?: string | null;
     href: string;
   }>;
 };
@@ -89,6 +90,7 @@ export const CanonicalLessonHub = ({
                 tags={getTagsForCard({
                   examboard: programme.examboard,
                   tier: programme.tier,
+                  pathway: programme.pathway,
                 })}
               />
             </OakGridArea>
@@ -102,9 +104,11 @@ export const CanonicalLessonHub = ({
 const getTagsForCard = ({
   examboard,
   tier,
+  pathway,
 }: {
   examboard?: string | null;
   tier?: string | null;
+  pathway?: string | null;
 }): CardListingTags => {
   const tags = [];
   if (examboard) {
@@ -112,6 +116,9 @@ const getTagsForCard = ({
   }
   if (tier) {
     tags.push({ label: tier });
+  }
+  if (pathway) {
+    tags.push({ label: pathway });
   }
   return tags;
 };
