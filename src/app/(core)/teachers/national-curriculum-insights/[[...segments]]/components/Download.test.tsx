@@ -68,6 +68,86 @@ const getData = async () => {
 };
 
 describe("NationalCurriculumInsightsDownload", () => {
+  it.each([
+    {
+      description: "specific key stages",
+      primaryKeyStages: ["KS1", "KS2"] as const,
+      secondaryKeyStages: ["KS3"] as const,
+      primaryLabel: "Science primary (KS1, KS2)",
+      secondaryLabel: "Science secondary (KS3)",
+    },
+    {
+      description: "empty key stages",
+      primaryKeyStages: [],
+      secondaryKeyStages: [],
+      primaryLabel: "Science primary",
+      secondaryLabel: "Science secondary",
+    },
+    {
+      description: "missing key stages",
+      primaryKeyStages: undefined,
+      secondaryKeyStages: undefined,
+      primaryLabel: "Science primary",
+      secondaryLabel: "Science secondary",
+    },
+    {
+      description: "null key stages",
+      primaryKeyStages: null,
+      secondaryKeyStages: null,
+      primaryLabel: "Science primary",
+      secondaryLabel: "Science secondary",
+    },
+  ])(
+    "shows exact subject labels with $description",
+    async ({
+      primaryKeyStages,
+      secondaryKeyStages,
+      primaryLabel,
+      secondaryLabel,
+    }) => {
+      const user = userEvent.setup();
+      const data = await getData();
+      const subjects = data.subjects.map((subject) => ({
+        ...subject,
+        tabs: subject.tabs.map((tab) => {
+          const keyStages =
+            tab.kind === "primary" ? primaryKeyStages : secondaryKeyStages;
+          return {
+            ...tab,
+            page: {
+              ...tab.page,
+              availableKeyStages: keyStages ? [...keyStages] : keyStages,
+            },
+          };
+        }),
+      }));
+      renderWithTheme(
+        <NationalCurriculumInsightsDownload
+          data={{ ...data, subjects }}
+          section={section}
+        />,
+      );
+      await user.click(
+        screen.getByRole("button", {
+          name: /the national curriculum is changing/i,
+        }),
+      );
+      await user.click(
+        screen.getByTestId("curriculum-insights-subjects-trigger"),
+      );
+
+      const options = within(
+        screen.getByTestId("curriculum-insights-subjects-panel"),
+      );
+      expect(
+        options.getByLabelText(primaryLabel, { exact: true }),
+      ).toBeInTheDocument();
+      expect(
+        options.getByLabelText(secondaryLabel, { exact: true }),
+      ).toBeInTheDocument();
+    },
+  );
+
   it("starts with subject selection and labels the document count", async () => {
     const user = userEvent.setup();
     renderWithTheme(
