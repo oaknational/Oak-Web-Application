@@ -1,6 +1,7 @@
-import { OakBox } from "@oaknational/oak-components";
 import { notFound, redirect } from "next/navigation";
 import { cache } from "react";
+
+import { CanonicalLessonHub } from "./CanonicalLessonHub";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import withPageErrorHandling, {
@@ -50,7 +51,12 @@ const InnerCanonicalLessonHubPage = async (
     return redirect(programmesForLesson[0]?.href);
   }
 
-  return <OakBox />;
+  return (
+    <CanonicalLessonHub
+      subjectSlug={data.subjectSlug}
+      lessonName={data.lessonTitle}
+    />
+  );
 };
 
 const CanonicalLessonHubPage = withPageErrorHandling(
