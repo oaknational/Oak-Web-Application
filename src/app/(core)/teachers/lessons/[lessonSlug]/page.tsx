@@ -109,9 +109,4 @@ const CanonicalLessonHubPage = async (
   );
 };
 
-// const CanonicalLessonHubPage = withPageErrorHandling(
-//   InnerCanonicalLessonHubPage,
-//   "canonical-lesson-hub-page::app",
-// );
-
 export default CanonicalLessonHubPage;
