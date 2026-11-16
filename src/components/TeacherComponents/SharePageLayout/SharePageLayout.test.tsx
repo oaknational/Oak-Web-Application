@@ -29,7 +29,7 @@ const props: PropsWithoutForm = {
   isLoading: false,
 };
 let mockUseComplexCopyright = defaultCopyrightRequirements;
-jest.mock("@/hooks/useComplexCopyright", () => ({
+jest.mock("@/utils/complexCopyright/useComplexCopyright", () => ({
   useComplexCopyright: () => mockUseComplexCopyright,
 }));
 const ComponentWrapper = (props: PropsWithoutForm) => {
