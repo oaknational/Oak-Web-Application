@@ -1,5 +1,6 @@
 import { notFound, redirect } from "next/navigation";
 import { cache } from "react";
+import { Metadata } from "next";
 
 import { CanonicalLessonHub } from "./CanonicalLessonHub";
 
@@ -9,6 +10,7 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import { cacheData } from "@/node-lib/cache";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 
 const getCachedCanonicalLesson = cache(
   cacheData(
@@ -19,6 +21,31 @@ const getCachedCanonicalLesson = cache(
     ["canonical-lesson"],
   ),
 );
+
+export async function generateMetadata(
+  props: AppPageProps<{ lessonSlug: string }>,
+): Promise<Metadata> {
+  const { lessonSlug } = await props.params;
+  try {
+    const data = await getCachedCanonicalLesson(lessonSlug);
+    const title = `Lesson hub: ${data.lessonTitle}`;
+    const description =
+      "View lesson content and choose resources to download or share";
+
+    return {
+      title,
+      description,
+      openGraph: getOpenGraphMetadata({ title, description }),
+      twitter: getTwitterMetadata({ title, description }),
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  } catch {
+    return {};
+  }
+}
 
 const InnerCanonicalLessonHubPage = async (
   props: AppPageProps<{ lessonSlug: string }>,
