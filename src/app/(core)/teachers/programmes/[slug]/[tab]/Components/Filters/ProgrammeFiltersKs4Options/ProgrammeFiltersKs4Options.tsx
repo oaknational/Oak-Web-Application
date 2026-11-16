@@ -7,7 +7,7 @@ import {
   OakRadioGroup,
 } from "@oaknational/oak-components";
 import { useRouter } from "next/navigation";
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useId } from "react";
 
 import type { Ks4OptionFilterDimension } from "../../../buildKs4OptionFilterDimensions";
 import { useKS4OptionFocusScopeVariant } from "../KS4OptionFocus/KS4OptionFocusScope";
@@ -147,7 +147,6 @@ function Ks4OptionRadioGroup({
   getHref,
 }: Readonly<Ks4OptionRadioGroupProps>) {
   const id = useId();
-  const keyboardInteraction = useRef(false);
   const router = useRouter();
   const sortedOptions = sortKs4OptionsForDisplay(options);
   const optionsString = sortedOptions.map((option) => option.slug).join(",");
@@ -163,14 +162,7 @@ function Ks4OptionRadioGroup({
   }, [getHref, router, selectedSlug, optionsString]);
 
   return (
-    <OakBox
-      onKeyDownCapture={() => {
-        keyboardInteraction.current = true;
-      }}
-      onPointerDownCapture={() => {
-        keyboardInteraction.current = false;
-      }}
-    >
+    <OakBox>
       <OakRadioGroup
         name={`${namePrefix}-${id}`}
         onChange={(e) => {
