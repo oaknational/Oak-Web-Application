@@ -194,4 +194,42 @@ describe("Canonical lesson hub page", () => {
       ),
     ]);
   });
+  it("renders a card for each pathways option", async () => {
+    const pathways: Partial<LessonPathway>[] = [
+      {
+        subjectTitle: "Citizenship",
+        unitTitle: "Money Sense",
+        examBoardTitle: null,
+        tierTitle: null,
+        pathwayTitle: "Core",
+        programmeSlug: "citizenship-ks4-core",
+        unitSlug: "money",
+      },
+      {
+        subjectTitle: "Citizenship",
+        unitTitle: "Money Sense",
+        examBoardTitle: null,
+        tierTitle: null,
+        pathwayTitle: "GCSE",
+        programmeSlug: "citizenship-ks4-gcse",
+        unitSlug: "money",
+      },
+    ];
+
+    await renderPageWithPathways("pathway-options", pathways);
+
+    expect(screen.getAllByTestId("card-listing-container")).toHaveLength(2);
+    expect(screen.getByText("Core")).toBeInTheDocument();
+    expect(screen.getByText("GCSE")).toBeInTheDocument();
+    expect(
+      screen.getAllByRole("link").map((link) => link.getAttribute("href")),
+    ).toEqual([
+      expect.stringContaining(
+        "/teachers/programmes/citizenship-ks4-core/units/money/lessons/pathway-options",
+      ),
+      expect.stringContaining(
+        "/teachers/programmes/citizenship-ks4-gcse/units/money/lessons/pathway-options",
+      ),
+    ]);
+  });
 });
