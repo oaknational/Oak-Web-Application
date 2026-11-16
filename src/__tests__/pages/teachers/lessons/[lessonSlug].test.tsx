@@ -6,7 +6,7 @@ import { screen } from "@testing-library/dom";
 import LessonOverviewCanonicalPage, {
   URLParams,
   getStaticProps,
-} from "@/pages/teachers/lessons/[lessonSlug]";
+} from "@/pages/teachers/lessons/deprecated";
 import renderWithProviders, {
   allProviders,
 } from "@/__tests__/__helpers__/renderWithProviders";
