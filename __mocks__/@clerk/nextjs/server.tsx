@@ -1,7 +1,14 @@
-module.exports = {
+const clerkMock = {
   __esModule: true,
-  currentUser() {
+  currentUser(): { publicMetadata?: unknown } | null {
     return null;
+  },
+  async auth() {
+    const user = clerkMock.currentUser();
+    return {
+      isAuthenticated: !!user,
+      sessionClaims: user?.publicMetadata ?? null,
+    };
   },
   clerkClient() {
     return {
@@ -25,3 +32,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = clerkMock;
