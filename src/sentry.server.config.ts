@@ -20,4 +20,6 @@ if (process.env.SENTRY_DSN) {
 
     sendDefaultPii: false,
   });
+
+  Sentry.captureMessage("Oak Web Application Sentry connectivity test");
 }
