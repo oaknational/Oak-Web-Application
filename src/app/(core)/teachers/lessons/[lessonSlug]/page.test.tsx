@@ -3,6 +3,7 @@ import { screen } from "@testing-library/react";
 import CanonicalLessonHubPage from "./page";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { LessonPathway } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 const mockRedirect = jest.fn();
 jest.mock("next/navigation", () => ({
@@ -23,21 +24,12 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   },
 }));
 
-type LessonPathway = {
-  programmeSlug: string;
-  unitSlug: string;
-  unitTitle: string;
-  subjectTitle: string;
-  examBoardTitle: string | null;
-  tierTitle: string | null;
-};
-
 describe("Canonical lesson hub page", () => {
   const render = renderWithProviders();
 
   const renderPageWithPathways = async (
     lessonSlug: string,
-    pathways: LessonPathway[],
+    pathways: Partial<LessonPathway>[],
   ) => {
     mockLessonOverview.mockResolvedValue({
       subjectSlug: "maths",
@@ -93,7 +85,7 @@ describe("Canonical lesson hub page", () => {
     );
   });
   it("renders a card for each examboard option", async () => {
-    const pathways: LessonPathway[] = [
+    const pathways: Partial<LessonPathway>[] = [
       {
         subjectTitle: "Mathematics",
         unitTitle: "Algebra Basics",
@@ -130,7 +122,7 @@ describe("Canonical lesson hub page", () => {
   });
 
   it("renders a card for each subject option", async () => {
-    const pathways: LessonPathway[] = [
+    const pathways: Partial<LessonPathway>[] = [
       {
         subjectTitle: "English",
         unitTitle: "Poetry Analysis",
@@ -167,7 +159,7 @@ describe("Canonical lesson hub page", () => {
   });
 
   it("renders a card for each tier option", async () => {
-    const pathways: LessonPathway[] = [
+    const pathways: Partial<LessonPathway>[] = [
       {
         subjectTitle: "Mathematics",
         unitTitle: "Number Sense",
