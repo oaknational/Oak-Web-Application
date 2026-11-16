@@ -1,16 +1,15 @@
-import { notFound, redirect } from "next/navigation";
+import { notFound, redirect, RedirectType } from "next/navigation";
 import { cache } from "react";
 import { Metadata } from "next";
 
 import { CanonicalLessonHub } from "./CanonicalLessonHub";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import withPageErrorHandling, {
-  AppPageProps,
-} from "@/hocs/withPageErrorHandling";
+import { AppPageProps } from "@/hocs/withPageErrorHandling";
 import { cacheData } from "@/node-lib/cache";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
+import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 
 const getCachedCanonicalLesson = cache(
   cacheData(
@@ -19,6 +18,14 @@ const getCachedCanonicalLesson = cache(
         lessonSlug,
       }),
     ["canonical-lesson"],
+  ),
+);
+
+const getCachedCanonicalRedirect = cache(
+  cacheData(
+    (url: string) =>
+      curriculumApi2023.canonicalLessonRedirectQuery({ incomingPath: url }),
+    ["canonical-redirect"],
   ),
 );
 
@@ -47,15 +54,29 @@ export async function generateMetadata(
   }
 }
 
-const InnerCanonicalLessonHubPage = async (
+const CanonicalLessonHubPage = async (
   props: AppPageProps<{ lessonSlug: string }>,
 ) => {
   const { lessonSlug } = await props.params;
 
-  const data = await getCachedCanonicalLesson(lessonSlug);
+  let data;
+  try {
+    data = await getCachedCanonicalLesson(lessonSlug);
+  } catch (error) {
+    allowNotFoundError(error);
+  }
 
   if (!data) {
-    return notFound();
+    const redirectData = await getCachedCanonicalRedirect(
+      `/teachers/lessons/${lessonSlug}`,
+    );
+
+    if (redirectData.canonicalLessonRedirectData) {
+      const { outgoingPath } = redirectData.canonicalLessonRedirectData;
+      redirect(`${outgoingPath}?redirected=true`, RedirectType.replace);
+    } else {
+      return notFound();
+    }
   }
 
   const programmesForLesson = data.pathways.map((pathway) => {
@@ -88,9 +109,9 @@ const InnerCanonicalLessonHubPage = async (
   );
 };
 
-const CanonicalLessonHubPage = withPageErrorHandling(
-  InnerCanonicalLessonHubPage,
-  "canonical-lesson-hub-page::app",
-);
+// const CanonicalLessonHubPage = withPageErrorHandling(
+//   InnerCanonicalLessonHubPage,
+//   "canonical-lesson-hub-page::app",
+// );
 
 export default CanonicalLessonHubPage;
