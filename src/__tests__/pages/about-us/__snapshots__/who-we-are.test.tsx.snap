@@ -4937,6 +4937,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                     >
                       <form
                         aria-describedby="react-use-id-test-result-newsletter-form-description"
+                        aria-label="Newsletter signup"
                         class="c68 c99"
                         novalidate=""
                       >

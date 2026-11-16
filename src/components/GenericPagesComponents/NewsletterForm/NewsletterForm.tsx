@@ -91,6 +91,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
       as="form"
       noValidate
       aria-describedby={descriptionId}
+      aria-label="Newsletter signup"
       $flexDirection="column"
       onSubmit={handleSubmit(async (values) => {
         setLoading(true);
