@@ -185,6 +185,7 @@
     "@axe-core/react": "^4.10.1",
     "@babel/core": "^7.28.3",
     "@chromatic-com/playwright": "^0.14.11",
+    "@clerk/testing": "^2.2.55",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@commitlint/format": "^19.8.1",
