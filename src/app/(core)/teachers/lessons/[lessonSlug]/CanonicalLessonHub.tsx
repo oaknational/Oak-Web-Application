@@ -2,6 +2,8 @@
 import {
   OakBox,
   OakFlex,
+  OakGrid,
+  OakGridArea,
   OakHeading,
   OakMaxWidth,
 } from "@oaknational/oak-components";
@@ -10,14 +12,28 @@ import {
   Header,
   SubjectIcon,
 } from "@/components/TeacherComponents/Header/Header";
+import CardListing, {
+  CardListingTags,
+} from "@/components/TeacherComponents/CardListing/CardListing";
+
+export type CanonicalLessonHubProps = {
+  subjectSlug: string;
+  lessonName: string;
+  programmesForLesson: Array<{
+    subject: string;
+    unitTitle: string;
+    examboard?: string | null;
+    tier?: string | null;
+    year?: string | null;
+    href: string;
+  }>;
+};
 
 export const CanonicalLessonHub = ({
   subjectSlug,
   lessonName,
-}: {
-  subjectSlug: string;
-  lessonName: string;
-}) => {
+  programmesForLesson,
+}: CanonicalLessonHubProps) => {
   return (
     <OakFlex $flexDirection="column" $gap={"spacing-64"}>
       <Header
@@ -45,15 +61,57 @@ export const CanonicalLessonHub = ({
             Lesson appears in
           </OakHeading>
         </OakBox>
-        <OakBox
+        <OakGrid
+          as="ol"
+          $cg={"spacing-16"}
+          $rg={"spacing-16"}
+          $mv={"spacing-0"}
           $background={"bg-neutral"}
           $pa={"spacing-20"}
           $position={"relative"}
           $mb={"spacing-48"}
           $bbr="border-radius-l"
           $btrr="border-radius-l"
-         />
+        >
+          {programmesForLesson.map((programme) => (
+            <OakGridArea
+              $colSpan={[12, 4]}
+              $minHeight="spacing-180"
+              as="li"
+              key={programme.href}
+            >
+              <CardListing
+                index={programme.subject}
+                title={programme.unitTitle}
+                href={programme.href}
+                subcopy={programme.year}
+                layoutVariant="vertical"
+                tags={getTagsForCard({
+                  examboard: programme.examboard,
+                  tier: programme.tier,
+                })}
+              />
+            </OakGridArea>
+          ))}
+        </OakGrid>
       </OakMaxWidth>
     </OakFlex>
   );
+};
+
+const getTagsForCard = ({
+  examboard,
+  tier,
+}: {
+  examboard?: string | null;
+  tier?: string | null;
+}): CardListingTags => {
+  const tags = [];
+  if (examboard) {
+    tags.push({ label: examboard });
+  }
+  if (tier) {
+    tags.push({ label: tier });
+  }
+  return tags;
 };

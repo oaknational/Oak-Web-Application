@@ -42,7 +42,7 @@ export type CardProps = {
 export type CardListingTags = Array<{ label: string; icon?: OakIconName }>;
 export type CardListingProps = CardProps & {
   layoutVariant: "horizontal" | "vertical";
-  index?: number;
+  index?: number | string;
   subcopy?: ReactNode;
   tags?: CardListingTags;
   childCards?: Array<CardProps>;

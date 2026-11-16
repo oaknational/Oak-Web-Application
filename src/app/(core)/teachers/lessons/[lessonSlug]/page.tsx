@@ -55,6 +55,7 @@ const InnerCanonicalLessonHubPage = async (
     <CanonicalLessonHub
       subjectSlug={data.subjectSlug}
       lessonName={data.lessonTitle}
+      programmesForLesson={programmesForLesson}
     />
   );
 };
