@@ -29,7 +29,6 @@ const riskAssessmentMessage = (
     <OakLink
       href="https://www.afpe.org.uk/page/Safe_Practice_in_PESSPA#"
       target="_blank"
-      aria-label="Safe Practice: in PESSPA (opens in a new tab)"
       iconName="external"
       isTrailingIcon
     >

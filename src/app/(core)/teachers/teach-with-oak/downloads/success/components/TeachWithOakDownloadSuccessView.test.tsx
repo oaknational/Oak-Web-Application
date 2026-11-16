@@ -47,7 +47,7 @@ describe("TeachWithOakDownloadSuccessView", () => {
     ).toBeInTheDocument();
     expect(
       screen.queryByRole("link", {
-        name: /install the Google Fonts 'Lexend' and 'Kalam'/,
+        name: /install the Google Fonts ‘Lexend’ and ‘Kalam’./,
       }),
     ).not.toBeInTheDocument();
   });

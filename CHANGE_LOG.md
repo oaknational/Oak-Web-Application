@@ -1,3 +1,40 @@
+# [1.1278.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1277.3...v1.1278.0) (2026-11-12)
+
+
+### Features
+
+* remove research panel feat flag logic ([6a892f5](https://github.com/oaknational/Oak-Web-Application/commit/6a892f51c32b6fc948044a21e5a498299b45821e))
+
+## [1.1277.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1277.2...v1.1277.3) (2026-11-12)
+
+
+### Bug Fixes
+
+* bump @sentry/nextjs (security) ([c0d0f80](https://github.com/oaknational/Oak-Web-Application/commit/c0d0f80379272ebef065202a0a544958cfa9235b))
+* bump next version (security) ([f4a66e6](https://github.com/oaknational/Oak-Web-Application/commit/f4a66e6e592e51ed69a8947a4d275123aa8466ad))
+
+## [1.1277.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1277.1...v1.1277.2) (2026-11-12)
+
+
+### Bug Fixes
+
+* exclude foundational learning from search page subjects ([64bf6a8](https://github.com/oaknational/Oak-Web-Application/commit/64bf6a81621438f8675d36622da089a8c7b2ea1a))
+
+## [1.1277.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1277.0...v1.1277.1) (2026-11-12)
+
+
+### Bug Fixes
+
+* added aria-label to newsletter form ([08b6623](https://github.com/oaknational/Oak-Web-Application/commit/08b66233fecd27b2077190ce8eef0f9c6de8300f))
+
+# [1.1277.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1276.0...v1.1277.0) (2026-11-12)
+
+
+### Features
+
+* bump oak-components to v3.28.0 ([37af651](https://github.com/oaknational/Oak-Web-Application/commit/37af651e27e0136c629486047d11506094e6b8bd))
+* getting ready for the merge of <https://github.com/oaknational/oak-components/pull/798> ([059ecb2](https://github.com/oaknational/Oak-Web-Application/commit/059ecb23678bf9736aad4c6aeebce8bd72207625))
+
 # [1.1276.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1275.1...v1.1276.0) (2026-11-12)
 
 
