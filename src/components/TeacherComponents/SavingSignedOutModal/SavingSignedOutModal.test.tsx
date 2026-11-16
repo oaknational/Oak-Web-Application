@@ -17,7 +17,7 @@ jest.mock("@clerk/nextjs", () => ({
   SignInButton: jest.fn(({ children }) => children),
 }));
 let mockUseComplexCopyright = defaultCopyrightRequirements;
-jest.mock("@/hooks/useComplexCopyright", () => ({
+jest.mock("@/utils/complexCopyright/useComplexCopyright", () => ({
   useComplexCopyright: () => mockUseComplexCopyright,
 }));
 const mockSignInStarted = jest.fn();
