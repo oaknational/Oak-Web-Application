@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
-import { currentUser } from "@clerk/nextjs/server";
 
 import { Breadcrumbs } from "../../Components/Breadcrumbs/Breadcrumbs";
 
@@ -18,7 +17,8 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { filterRestrictedLessonMediaData } from "@/utils/complexCopyright/filterRestrictedLessonMediaData";
-import { getAuthState } from "@/utils/complexCopyright/getAuthState";
+import { getLessonCopyrightState } from "@/utils/complexCopyright/getLessonCopyrightState";
+import { getServerAuthState } from "@/utils/complexCopyright/getServerAuthState";
 
 type LessonMediaPageParams = {
   slug: string;
@@ -85,8 +85,11 @@ const InnerLessonMediaPage = async (
     return notFound();
   }
 
-  const user = await currentUser();
-  const authState = getAuthState({ isSignedIn: !!user, user });
+  const authState = await getServerAuthState({
+    subjectSlug: data.subjectSlug,
+    geoRestricted: data.geoRestricted,
+    loginRequired: data.loginRequired,
+  });
   const filteredData = filterRestrictedLessonMediaData(data, authState);
 
   const lessonData: LessonMediaClipsData = {
@@ -114,6 +117,7 @@ const InnerLessonMediaPage = async (
       <LessonMedia
         isCanonical={false}
         lesson={lessonData}
+        copyrightState={getLessonCopyrightState(data, authState)}
         breadcrumbsSlot={
           <Breadcrumbs
             key="lesson-media-breadcrumbs"
