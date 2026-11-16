@@ -24,7 +24,7 @@ const ErrorHeading = styled(OakHeading)`
 
 type ErrorProps = {
   onBackClick?: () => void;
-  statusCode: string;
+  statusCode?: number;
 };
 
 export default function Error({ statusCode, onBackClick }: ErrorProps) {
