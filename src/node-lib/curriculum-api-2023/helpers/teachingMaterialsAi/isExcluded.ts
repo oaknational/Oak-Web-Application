@@ -1,7 +1,7 @@
 import {
   LessonBrowseDataByKs,
   LessonOverviewContent,
-} from "../../queries/lessonOverview/lessonOverview.schema";
+} from "../../queries/canonicalLessonOverview/canonicalLessonOverview.schema";
 import { Restrictions } from "../../queries/teachersLessonOverview/teachersLessonOverview.schema";
 
 import { isRestrictedLessonId } from "./isRestrictedLessonId";

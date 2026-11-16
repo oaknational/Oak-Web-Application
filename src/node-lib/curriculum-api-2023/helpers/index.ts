@@ -25,7 +25,17 @@ export const isTierValid = (
 /**
  * Used in canonical lesson pages to construct the pathways for a lesson
  */
-export const constructPathwayLesson = (lesson: RawSyntheticUVLesson) => {
+export const constructPathwayLesson = (
+  lesson: Pick<
+    RawSyntheticUVLesson,
+    | "programme_slug"
+    | "unit_slug"
+    | "programme_fields"
+    | "unit_data"
+    | "lesson_slug"
+    | "lesson_data"
+  >,
+) => {
   return lessonPathwaySchema.parse({
     programmeSlug: lesson.programme_slug,
     unitSlug: lesson.unit_slug,
@@ -43,5 +53,6 @@ export const constructPathwayLesson = (lesson: RawSyntheticUVLesson) => {
     tierTitle: lesson.programme_fields.tier_description,
     pathwayTitle: lesson.programme_fields.pathway_description,
     lessonReleaseDate: lesson.lesson_data.lesson_release_date,
+    yearGroupTitle: lesson.programme_fields.year_description,
   });
 };

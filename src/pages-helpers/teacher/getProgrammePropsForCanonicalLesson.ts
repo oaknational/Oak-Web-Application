@@ -16,7 +16,7 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 
 import { CanonicalLessonMediaClips } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/canonicalLessonOverview/canonicalLessonOverview.schema";
 
 export const getProgrammePropsForCanonicalLesson = (
   lesson: LessonOverviewPageData | CanonicalLessonMediaClips,

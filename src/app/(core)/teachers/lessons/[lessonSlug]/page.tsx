@@ -85,7 +85,7 @@ const CanonicalLessonHubPage = async (
       unitTitle: pathway.unitTitle,
       examboard: pathway.examBoardTitle,
       tier: pathway.tierTitle,
-      year: data.yearTitle,
+      year: pathway.yearGroupTitle,
       pathway: pathway.pathwayTitle,
       href: resolveOakHref({
         page: "lesson-overview",

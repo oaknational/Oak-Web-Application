@@ -76,16 +76,24 @@ export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;
 
 export default lessonOverviewSchema;
 
-export const baseLessonOverviewData = baseLessonOverviewSchema;
-
-export const lessonOverviewCanonicalSchema = baseLessonOverviewSchema.extend({
-  pathways: z.array(lessonPathwaySchema),
-  downloads: lessonOverviewDownloads,
+export const canonicalLessonHubPathwaySchema = lessonPathwaySchema.pick({
+  programmeSlug: true,
+  unitSlug: true,
+  unitTitle: true,
+  subjectTitle: true,
+  examBoardTitle: true,
+  tierTitle: true,
+  yearGroupTitle: true,
+  pathwayTitle: true,
 });
 
-export type LessonOverviewCanonical = z.infer<
-  typeof lessonOverviewCanonicalSchema
->;
+export const canonicalLessonHubSchema = z.object({
+  lessonTitle: z.string(),
+  subjectSlug: subjectSlugs,
+  pathways: z.array(canonicalLessonHubPathwaySchema),
+});
+
+export type CanonicalLessonHubData = z.infer<typeof canonicalLessonHubSchema>;
 
 export const lessonBrowseDataByKsSchema =
   syntheticUnitvariantLessonsByKsSchema.omit({

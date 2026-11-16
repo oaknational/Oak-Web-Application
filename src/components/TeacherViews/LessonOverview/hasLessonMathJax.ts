@@ -3,7 +3,7 @@ import {
   LessonOverviewQuizQuestion,
   StemObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/canonicalLessonOverview/canonicalLessonOverview.schema";
 
 const ALLOWED_MATHJAX_SUBJECT_SLUGS = new Set([
   "maths",

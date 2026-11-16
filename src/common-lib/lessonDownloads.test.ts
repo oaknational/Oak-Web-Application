@@ -11,7 +11,7 @@ import {
 } from "./lessonDownloads";
 
 import { lessonDownloadsListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { lessonOverviewDownloads } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { lessonOverviewDownloads } from "@/node-lib/curriculum-api-2023/queries/canonicalLessonOverview/canonicalLessonOverview.schema";
 import { teachersLessonOverviewDownloads } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import { combinedPreselectedTypeMap } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/combinedPreselectedTypeMap";
 import { getGroupName } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/groupResources";

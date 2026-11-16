@@ -1,4 +1,4 @@
-import { LessonOverviewContent } from "../../queries/lessonOverview/lessonOverview.schema";
+import { LessonOverviewContent } from "../../queries/canonicalLessonOverview/canonicalLessonOverview.schema";
 
 const RESTRICTED_CONTENT_GUIDANCE_TYPES = [
   "Depiction or discussion of sexual violence",

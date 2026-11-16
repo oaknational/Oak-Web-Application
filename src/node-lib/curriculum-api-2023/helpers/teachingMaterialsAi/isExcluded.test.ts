@@ -1,7 +1,7 @@
 import type {
   LessonBrowseDataByKs,
   LessonOverviewContent,
-} from "../../queries/lessonOverview/lessonOverview.schema";
+} from "../../queries/canonicalLessonOverview/canonicalLessonOverview.schema";
 
 import { isExcludedFromTeachingMaterials } from "./isExcluded";
 

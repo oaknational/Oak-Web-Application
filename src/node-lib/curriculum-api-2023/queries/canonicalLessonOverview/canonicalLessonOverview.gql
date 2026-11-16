@@ -1,0 +1,13 @@
+query lessonOverview($lessonSlug: String!) {
+  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
+    where: { lesson_slug: { _eq: $lessonSlug } }
+  ) {
+    lesson_slug
+    unit_slug
+    programme_slug
+    programme_fields
+    unit_data
+    lesson_data
+    actions
+  }
+}

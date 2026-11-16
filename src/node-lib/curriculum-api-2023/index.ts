@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import sdk from "./sdk";
-import lessonOverviewQuery from "./queries/lessonOverview/lessonOverview.query";
+import lessonOverviewQuery from "./queries/canonicalLessonOverview/canonicalLessonOverview.query";
 import teachersLessonOverviewQuery from "./queries/teachersLessonOverview/teachersLessonOverview.query";
 import lessonListingQuery from "./queries/lessonListing/lessonListing.query";
 import subjectListingQuery from "./queries/subjectListing/subjectListing.query";

@@ -1,7 +1,7 @@
 import lessonMediaClipsFixtures from "./lessonMediaClips.fixture";
 import { quizQuestions } from "./quizElements.fixture";
 
-import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/canonicalLessonOverview/canonicalLessonOverview.schema";
 
 const lessonOverviewFixture = (
   partial?: Partial<LessonOverviewPageData>,

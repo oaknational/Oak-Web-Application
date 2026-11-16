@@ -1,7 +1,7 @@
 import { Cue, WebVTTParser } from "webvtt-parser";
 
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/canonicalLessonOverview/canonicalLessonOverview.schema";
 import { getFileFromBucket } from "@/utils/gCloudStorage";
 import { formatSentences } from "@/utils/formatTranscriptSentences";
 
