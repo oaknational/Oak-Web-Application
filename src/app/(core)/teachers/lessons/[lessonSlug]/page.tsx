@@ -1,7 +1,8 @@
 import { OakBox } from "@oaknational/oak-components";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { cache } from "react";
 
+import { resolveOakHref } from "@/common-lib/urls";
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
@@ -29,7 +30,27 @@ const InnerCanonicalLessonHubPage = async (
     return notFound();
   }
 
-  return <OakBox>{lessonSlug}</OakBox>;
+  const programmesForLesson = data.pathways.map((pathway) => {
+    return {
+      subject: pathway.subjectTitle,
+      unitTitle: pathway.unitTitle,
+      examboard: pathway.examBoardTitle,
+      tier: pathway.tierTitle,
+      year: data.yearTitle,
+      href: resolveOakHref({
+        page: "lesson-overview",
+        lessonSlug,
+        unitSlug: pathway.unitSlug,
+        programmeSlug: pathway.programmeSlug,
+      }),
+    };
+  });
+
+  if (programmesForLesson.length === 1 && programmesForLesson[0]) {
+    return redirect(programmesForLesson[0]?.href);
+  }
+
+  return <OakBox />;
 };
 
 const CanonicalLessonHubPage = withPageErrorHandling(
