@@ -320,9 +320,10 @@ describe("ProgrammePageFiltersMobile", () => {
     "resumes keyboard navigation at the year clicked with %s",
     async () => {
       const user = userEvent.setup();
-      renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters, false);
+      renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters);
 
       await user.tab();
+      await user.keyboard("{Enter}");
       expect(screen.getByRole("radio", { name: "KS4" })).toHaveFocus();
 
       const year10 = screen.getByRole("radio", { name: "Year 10" });
@@ -344,9 +345,10 @@ describe("ProgrammePageFiltersMobile", () => {
 
   it("clears keyboard focus even when clicking the already-selected key stage", async () => {
     const user = userEvent.setup();
-    renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters, false);
+    renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters);
 
     await user.tab();
+    await user.keyboard("{Enter}");
     const ks4 = screen.getByRole("radio", { name: "KS4" });
     expect(ks4).toHaveFocus();
 
@@ -361,7 +363,8 @@ describe("ProgrammePageFiltersMobile", () => {
 
   it("remembers a keyboard position after resuming from a clicked option", async () => {
     const user = userEvent.setup();
-    renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters, false);
+    renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters);
+    await user.click(screen.getByRole("button", { name: "All filters" }));
 
     await user.click(screen.getByText("Year 10").parentElement!);
     await user.tab();

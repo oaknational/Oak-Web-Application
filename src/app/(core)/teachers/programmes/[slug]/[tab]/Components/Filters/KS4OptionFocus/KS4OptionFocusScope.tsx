@@ -48,7 +48,15 @@ export function KS4OptionFocusScope({
           firstGroup?.querySelector<HTMLInputElement>('input[type="radio"]');
         firstRadio?.focus({ preventScroll: true });
       }
-      registerScope(variant, node);
+      registerScope(variant, node, (slug) => {
+        const radio = node?.querySelector<HTMLInputElement>(
+          `input[type="radio"][value="${slug}"]`,
+        );
+        if (radio) {
+          lastInteractedRadio.current = radio;
+          node?.focus({ preventScroll: true });
+        }
+      });
     },
     [registerScope, variant, focusContainerOnOpen],
   );
