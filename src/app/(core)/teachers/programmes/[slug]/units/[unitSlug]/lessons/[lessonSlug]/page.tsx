@@ -33,8 +33,6 @@ type LessonPageParams = {
   lessonSlug: string;
 };
 
-export const dynamic = "force-dynamic";
-
 const getCachedLessonData = cache(
   async (programmeSlug: string, unitSlug: string, lessonSlug: string) => {
     return curriculumApiWithCache({
