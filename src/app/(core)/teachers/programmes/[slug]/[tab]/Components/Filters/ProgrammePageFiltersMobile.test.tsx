@@ -224,6 +224,28 @@ describe("ProgrammePageFiltersMobile", () => {
     expect(
       screen.getByRole("heading", { name: "Filters", level: 1 }),
     ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Filters", level: 1 }),
+    ).not.toHaveFocus();
+    for (const radio of screen.getAllByRole("radio")) {
+      expect(radio).not.toHaveFocus();
+    }
+  });
+
+  it("focuses the first filter when opened with the keyboard", async () => {
+    const user = userEvent.setup();
+    renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters);
+
+    await user.tab();
+    expect(screen.getByRole("button", { name: "All filters" })).toHaveFocus();
+    await user.keyboard("{Enter}");
+
+    await waitFor(() => {
+      expect(screen.getByRole("radio", { name: "KS4" })).toHaveFocus();
+    });
+    expect(
+      screen.getByRole("heading", { name: "Filters", level: 1 }),
+    ).not.toHaveFocus();
   });
 
   it("renders correct filters", async () => {
@@ -244,13 +266,43 @@ describe("ProgrammePageFiltersMobile", () => {
     expect(categoryFilter2).toBeInTheDocument();
   });
 
-  it("opens the modal after pointer navigation without restoring radio focus", () => {
+  it("opens the modal after pointer navigation without focusing a key stage", async () => {
     renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters, false);
 
     expect(
       screen.getByRole("heading", { name: "Filters", level: 1 }),
-    ).toBeInTheDocument();
+    ).not.toHaveFocus();
+    expect(screen.getByRole("radio", { name: "KS4" })).not.toHaveFocus();
   });
+
+  it.each(["mouse", "touch"])(
+    "keeps key-stage selection unfocused for %s and supports subsequent keyboard navigation",
+    async () => {
+      const user = userEvent.setup();
+      renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters);
+
+      await user.tab();
+      await user.keyboard("{Enter}");
+      const ks4 = screen.getByRole("radio", { name: "KS4" });
+      expect(ks4).toHaveFocus();
+      const button = screen.getByText("KS3").parentElement!;
+      await user.click(button);
+
+      const ks3 = screen.getByRole("radio", { name: "KS3" });
+      expect(ks3).toBeChecked();
+      expect(ks3).not.toHaveFocus();
+      expect(ks4).not.toHaveFocus();
+      expect(
+        screen.getByRole("heading", { name: "Filters", level: 1 }),
+      ).not.toHaveFocus();
+
+      await user.tab();
+      expect(ks3).toHaveFocus();
+      await user.keyboard("{ArrowRight}");
+      expect(ks4).toBeChecked();
+      expect(ks4).toHaveFocus();
+    },
+  );
 
   it("focuses the selected exam board after navigation reopens the modal", async () => {
     renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters, true);
@@ -262,5 +314,69 @@ describe("ProgrammePageFiltersMobile", () => {
 
       expect(screen.getByRole("radio", { name: "OCR" })).toHaveFocus();
     });
+  });
+
+  it.each(["mouse", "touch"])(
+    "resumes keyboard navigation at the year clicked with %s",
+    async () => {
+      const user = userEvent.setup();
+      renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters, false);
+
+      await user.tab();
+      expect(screen.getByRole("radio", { name: "KS4" })).toHaveFocus();
+
+      const year10 = screen.getByRole("radio", { name: "Year 10" });
+      const button = screen.getByText("Year 10").parentElement!;
+      await user.click(button);
+
+      expect(year10).toBeChecked();
+      for (const radio of screen.getAllByRole("radio")) {
+        expect(radio).not.toHaveFocus();
+      }
+      await user.tab();
+      expect(year10).toHaveFocus();
+      await user.keyboard("{ArrowLeft}");
+      const allYears = screen.getByTestId("all-years-radio");
+      expect(allYears).toBeChecked();
+      expect(allYears).toHaveFocus();
+    },
+  );
+
+  it("clears keyboard focus even when clicking the already-selected key stage", async () => {
+    const user = userEvent.setup();
+    renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters, false);
+
+    await user.tab();
+    const ks4 = screen.getByRole("radio", { name: "KS4" });
+    expect(ks4).toHaveFocus();
+
+    await user.click(screen.getByText("KS4").parentElement!);
+
+    expect(ks4).toBeChecked();
+    expect(ks4).not.toHaveFocus();
+    expect(
+      screen.getByRole("heading", { name: "Filters", level: 1 }),
+    ).not.toHaveFocus();
+  });
+
+  it("remembers a keyboard position after resuming from a clicked option", async () => {
+    const user = userEvent.setup();
+    renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters, false);
+
+    await user.click(screen.getByText("Year 10").parentElement!);
+    await user.tab();
+    const year10 = screen.getByRole("radio", { name: "Year 10" });
+    expect(year10).toHaveFocus();
+
+    await user.keyboard("{ArrowLeft}");
+    const allYears = screen.getByTestId("all-years-radio");
+    expect(allYears).toHaveFocus();
+
+    const scope = allYears.closest("fieldset")!.parentElement!.parentElement!;
+    await user.click(scope);
+    expect(allYears).not.toHaveFocus();
+
+    await user.tab();
+    expect(allYears).toHaveFocus();
   });
 });

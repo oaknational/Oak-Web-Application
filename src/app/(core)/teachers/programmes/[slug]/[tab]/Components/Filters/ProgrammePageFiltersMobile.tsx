@@ -26,6 +26,7 @@ export default function ProgrammePageFiltersMobile({
 }: Readonly<ProgrammePageFiltersProps>) {
   const { isOpen, setIsOpen } = useProgrammePageFiltersModal();
   const { filters, onChangeFilters } = useBrowseFilters();
+  const [keyboardOpen, setKeyboardOpen] = useState(false);
   const [initialFilterState, setInitialFilterState] = useState(() => {
     return filters;
   });
@@ -38,7 +39,10 @@ export default function ProgrammePageFiltersMobile({
     }
   }, [filters, isOpen, prevModalOpen]);
 
-  function handleMobileThreadModal(): void {
+  function handleMobileThreadModal(
+    event: React.MouseEvent<HTMLButtonElement>,
+  ): void {
+    setKeyboardOpen(event.detail === 0);
     setIsOpen(!isOpen);
   }
 
@@ -76,6 +80,7 @@ export default function ProgrammePageFiltersMobile({
           slugs={slugs}
           ks4Options={ks4Options}
           ks4OptionFilterDimensions={ks4OptionFilterDimensions}
+          keyboardOpen={keyboardOpen}
         />
       </OakInformativeModal>
 
@@ -103,7 +108,8 @@ const ModalContent = ({
   slugs,
   ks4Options,
   ks4OptionFilterDimensions,
-}: ProgrammePageFiltersProps) => {
+  keyboardOpen,
+}: ProgrammePageFiltersProps & { keyboardOpen: boolean }) => {
   return (
     <OakFlex
       $flexDirection={"column"}
@@ -120,7 +126,10 @@ const ModalContent = ({
         $gap={"spacing-32"}
         $overflowX={"visible"}
       >
-        <KS4OptionFocusScope variant="modal">
+        <KS4OptionFocusScope
+          variant="modal"
+          focusContainerOnOpen={!keyboardOpen}
+        >
           <ProgrammeFilters
             data={data}
             slugs={slugs}

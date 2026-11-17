@@ -8,7 +8,7 @@ import {
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 
 export type MobileFilterHeaderProps = ProgrammePageFiltersProps & {
-  onOpenModal: () => void;
+  onOpenModal: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 export default function ProgrammeFiltersHeaderMobile({
   onOpenModal,

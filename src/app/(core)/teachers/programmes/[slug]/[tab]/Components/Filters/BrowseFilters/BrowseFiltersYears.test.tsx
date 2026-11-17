@@ -1,4 +1,5 @@
 import { act } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { BrowseFiltersYears } from "./BrowseFiltersYears";
 
@@ -75,7 +76,8 @@ describe("BrowseFiltersYears", () => {
     expect(onModalOpen).toHaveBeenCalled();
   });
 
-  it("moves focus from All to the selected year", () => {
+  it("moves focus and selection between years with the keyboard", async () => {
+    const user = userEvent.setup();
     const { getByRole } = renderWithStore(
       <BrowseFiltersYears data={basicSetup} />,
     );
@@ -86,11 +88,11 @@ describe("BrowseFiltersYears", () => {
 
     all.focus();
     expect(all).toHaveFocus();
-    act(() => year10.click());
+    await user.keyboard("{ArrowRight}");
     expect(year10).toBeChecked();
     expect(year10).toHaveFocus();
     expect(all).not.toHaveFocus();
-    act(() => year11.click());
+    await user.keyboard("{ArrowRight}");
     expect(year11).toBeChecked();
     expect(year11).toHaveFocus();
     expect(year10).not.toHaveFocus();

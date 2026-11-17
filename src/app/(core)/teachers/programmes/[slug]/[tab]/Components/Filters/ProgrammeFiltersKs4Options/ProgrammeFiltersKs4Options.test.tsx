@@ -1,4 +1,5 @@
 import { act, fireEvent } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import type { ReactElement } from "react";
 
 import { KS4OptionFocusProvider, KS4OptionFocusScope } from "../KS4OptionFocus";
@@ -483,27 +484,36 @@ describe("ProgrammeFiltersKs4Options", () => {
   });
 
   it.each(["keyboard", "mouse", "touch"])(
-    "focuses the selected exam board and requests focus restoration (%s)",
-    (interaction) => {
+    "focuses the selected exam board and requests focus restoration for keyboard (%s)",
+    async (interaction) => {
+      const user = userEvent.setup();
       const { getAllByRole } = renderKs4Options(
         defaultFilters,
-        <ProgrammeFiltersKs4Options
-          slugs={defaultSlugs}
-          ks4Options={examBoardOptions}
-          ks4OptionFilterDimensions={ks4OptionFilterDimensions}
-        />,
+        <ProgrammePageFiltersModalProvider>
+          <KS4OptionFocusProvider slugs={defaultSlugs}>
+            <KS4OptionFocusScope variant="page">
+              <ProgrammeFiltersKs4Options
+                slugs={defaultSlugs}
+                ks4Options={examBoardOptions}
+                ks4OptionFilterDimensions={ks4OptionFilterDimensions}
+              />
+            </KS4OptionFocusScope>
+          </KS4OptionFocusProvider>
+        </ProgrammePageFiltersModalProvider>,
       );
 
       const radios = getAllByRole("radio") as HTMLInputElement[];
-      radios[0]!.focus();
+      await user.tab();
       expect(radios[0]!).toHaveFocus();
 
-      fireEvent.keyDown(radios[1]!, { key: "ArrowRight" });
-      if (interaction !== "keyboard") {
-        fireEvent.pointerDown(radios[1]!, { pointerType: interaction });
+      if (interaction === "keyboard") {
+        await user.keyboard("{ArrowRight}");
+        expect(radios[1]!).toHaveFocus();
+      } else {
+        const button = radios[1]!.closest("fieldset > div")!;
+        await user.click(button);
+        expect(radios[1]!).not.toHaveFocus();
       }
-      act(() => radios[1]!.click());
-      expect(radios[1]!).toHaveFocus();
       expect(radios[0]!).not.toHaveFocus();
 
       expect(mockReplace).toHaveBeenCalledWith(
@@ -520,7 +530,7 @@ describe("ProgrammeFiltersKs4Options", () => {
       );
       expect(mockSetNavigationIntent).toHaveBeenCalledWith({
         destination: { ...defaultSlugs, ks4OptionSlug: "edexcel" },
-        restoreFocus: true,
+        restoreFocus: interaction === "keyboard",
         reopenFiltersModal: false,
       });
     },
@@ -626,7 +636,7 @@ describe("ProgrammeFiltersKs4Options", () => {
       );
       expect(mockSetNavigationIntent).toHaveBeenCalledWith({
         destination: { ...defaultSlugs, ks4OptionSlug: "edexcel" },
-        restoreFocus: true,
+        restoreFocus: keyboard,
         reopenFiltersModal: true,
       });
       const prefetchedUrls = new Set(
