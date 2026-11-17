@@ -48,7 +48,6 @@ const curriculumApi: Pick<
   | "pupilsSitemap"
   | "lessonMediaClips"
   | "betaLessonMediaClipsQuery"
-  | "teachersPreviewUnitListing"
   | "browseUnitRedirectQuery"
   | "pupilCanonicalLessonRedirectQuery"
   | "pupilBrowseLessonRedirectQuery"
@@ -86,9 +85,6 @@ const curriculumApi: Pick<
       content: lessonContentFixture({}),
       additionalFiles: null,
     };
-  }),
-  teachersPreviewUnitListing: jest.fn(async () => {
-    return unitListingFixture();
   }),
   betaLessonMediaClipsQuery: jest.fn(async () => {
     return {
