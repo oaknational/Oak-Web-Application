@@ -22,7 +22,6 @@ import { pupilSubjectListingQuery } from "./queries/pupilSubjectListing/pupilSub
 import teachersSitemap from "./queries/teachersSitemap/teacherSitemap.query";
 import pupilsSitemap from "./queries/pupilsSitemap/pupilsSitemap.query";
 import refreshedMVTimeQuery from "./queries/refreshedMVTime/refreshedMvTime.query";
-import teachersPreviewUnitListingQuery from "./queries/teacherPreviewUnitListing/teacherPreviewUnitListing.query";
 import curriculumSequenceQuery from "./queries/curriculumSequence/curriculumSequence.query";
 import curriculumSequenceSlugsQuery from "./queries/curriculumSequenceSlugs/curriculumSequenceSlugs.query";
 import { lessonMediaClipsQuery } from "./queries/lessonMediaClips/lessonMediaClips.query";
@@ -146,7 +145,6 @@ const curriculumApi2023 = {
     });
     return keyStagesData.parse(keyStages);
   },
-  teachersPreviewUnitListing: teachersPreviewUnitListingQuery(sdk),
   betaLessonMediaClipsQuery: betaLessonMediaClipsQuery(sdk),
   teachersSitemap: teachersSitemap(sdk),
   topNav: topNavQuery(sdk),
