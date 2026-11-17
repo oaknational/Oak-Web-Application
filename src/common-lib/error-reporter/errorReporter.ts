@@ -8,7 +8,6 @@ import bugsnagNotify from "./bugsnagNotify";
 
 import { consentClient } from "@/browser-lib/cookie-consent/consentClient";
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 export type ErrorData = Record<string, unknown> & {
   severity?: Event["severity"];
@@ -63,6 +62,16 @@ function setHasBeenReported(maybeError: unknown) {
   }
 }
 
+function initialiseServerSideSentry() {
+  if (!isBrowser && !Sentry.getClient() && process.env.SENTRY_DSN) {
+    Sentry.init({
+      dsn: process.env.SENTRY_DSN,
+      environment: process.env.SENTRY_ENVIRONMENT,
+      sendDefaultPii: false,
+    });
+  }
+}
+
 type MaybeError = OakError | Error | unknown;
 
 type Logger = Pick<typeof console, "log" | "warn" | "error">;
@@ -72,47 +81,72 @@ const errorReporter = (
   { logger }: { logger: Logger } = { logger: console },
 ) => {
   const reportError = async (maybeError: MaybeError, data?: ErrorData) => {
-    try {
+    logger.error(maybeError);
+    logger.log(context, metadata, data);
+
+    if (getHasBeenReported(maybeError)) {
+      logger.warn("Error already reported, aborting reportError()");
+      return;
+    }
+
+    if (maybeError instanceof OakError && !maybeError.config.shouldNotify) {
+      logger.log("Error should not be reported, aborting reportError()");
       logger.error(maybeError);
-      logger.log(context, metadata, data);
+      return;
+    }
 
-      if (getHasBeenReported(maybeError)) {
-        logger.warn("Error already reported, aborting reportError()");
+    if (isBrowser) {
+      const consentState = consentClient.getConsent(ServicePolicyMap.BUGSNAG);
+      if (consentState !== "granted") {
+        // Do not continue if user has not given consent to send data bugsnag
         return;
       }
+    }
+    // data argument can be null
+    data = data || {};
+    const err = errorify(maybeError);
 
-      if (maybeError instanceof OakError && !maybeError.config.shouldNotify) {
-        logger.log("Error should not be reported, aborting reportError()");
-        logger.error(maybeError);
-        return;
-      }
+    const originalError =
+      maybeError instanceof OakError ? maybeError.originalError : undefined;
 
-      if (isBrowser) {
-        const consentState = consentClient.getConsent(ServicePolicyMap.BUGSNAG);
-        if (consentState !== "granted") {
-          // Do not continue if user has not given consent to send data bugsnag
-          return;
+    const oakErrorMeta =
+      maybeError instanceof OakError ? maybeError.meta : undefined;
+
+    const { severity, groupingHash, ...metaFields } = {
+      ...metadata,
+      ...data,
+    };
+
+    metaFields.originalError = originalError;
+    metaFields.oakErrorMeta = oakErrorMeta;
+
+    try {
+      await bugsnagNotify(err, (event: Event) => {
+        setHasBeenReported(maybeError);
+
+        event.context = context;
+
+        if (groupingHash) {
+          event.groupingHash = groupingHash;
         }
-      }
-      // data argument can be null
-      data = data || {};
-      const err = errorify(maybeError);
 
-      const originalError =
-        maybeError instanceof OakError ? maybeError.originalError : undefined;
+        if (severity) {
+          event.severity = severity;
+        }
 
-      const oakErrorMeta =
-        maybeError instanceof OakError ? maybeError.meta : undefined;
+        event.addMetadata("Meta", metaFields);
+      });
+    } catch (bugsnagErr) {
+      logger.log("Failed to send error to bugsnag:");
+      logger.error(bugsnagErr);
+      logger.log("Original error:");
+      logger.error(maybeError);
+    }
 
-      const { severity, groupingHash, ...metaFields } = {
-        ...metadata,
-        ...data,
-      };
+    try {
+      initialiseServerSideSentry();
 
-      metaFields.originalError = originalError;
-      metaFields.oakErrorMeta = oakErrorMeta;
-
-      if (getBrowserConfig("sentryEnabled") === "true") {
+      if (Sentry.getClient()) {
         Sentry.withScope((scope) => {
           scope.setTag("context", context);
 
@@ -130,28 +164,9 @@ const errorReporter = (
 
           Sentry.captureException(err);
         });
-      } else {
-        await bugsnagNotify(err, (event: Event) => {
-          setHasBeenReported(maybeError);
-
-          event.context = context;
-
-          if (groupingHash) {
-            event.groupingHash = groupingHash;
-          }
-
-          if (severity) {
-            event.severity = severity;
-          }
-
-          event.addMetadata("Meta", metaFields);
-        });
       }
-    } catch (bugsnagErr) {
-      logger.log("Failed to send error to bugsnag:");
-      logger.error(bugsnagErr);
-      logger.log("Original error:");
-      logger.error(maybeError);
+    } catch (error) {
+      logger.error("Failed to report exception to Sentry", error);
     }
   };
 
