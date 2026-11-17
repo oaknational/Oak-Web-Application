@@ -13,7 +13,6 @@ module.exports = {
     "!src/__tests__/__helpers__/*",
     "!**/*.config.{js,ts}",
     "!**/*.stories.*",
-    "!src/instrumentation.ts",
   ],
   coveragePathIgnorePatterns: [
     "/node_modules/",
