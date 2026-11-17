@@ -21,5 +21,7 @@ if (process.env.SENTRY_DSN) {
     sendDefaultPii: false,
   });
 
-  Sentry.captureMessage("Oak Web Application Sentry connectivity test");
+  console.log("Oak Web Application Sentry logging test", {
+    environment: process.env.SENTRY_ENVIRONMENT,
+  });
 }
