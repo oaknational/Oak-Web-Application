@@ -14,16 +14,12 @@ if (process.env.SENTRY_DSN) {
 
     integrations: [
       Sentry.consoleLoggingIntegration({
-        levels: ["log", "warn", "error"],
+        levels: ["error"],
       }),
     ],
 
     sendDefaultPii: false,
   });
 
-  Sentry.logger.info("Oak Web Application direct Sentry log test", {
-    environment: process.env.SENTRY_ENVIRONMENT,
-  });
-
-  console.log("Oak Web Application console logging test");
+  console.error("Oak Web Application - Test Error log");
 }
