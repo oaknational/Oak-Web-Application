@@ -1,9 +1,9 @@
 import { Cue, WebVTTParser } from "webvtt-parser";
 
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/canonicalLessonOverview/canonicalLessonOverview.schema";
 import { getFileFromBucket } from "@/utils/gCloudStorage";
 import { formatSentences } from "@/utils/formatTranscriptSentences";
+import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 
 export const getCaptionsFromFile = async (fileName: string) => {
   // TODO: get bucket name from config?
@@ -52,7 +52,7 @@ export const getTextFromCues = (cueList: Cue[]): Array<string> => {
 };
 
 export const populateLessonWithTranscript = async (
-  lesson: LessonOverviewPageData,
+  lesson: TeachersLessonOverviewPageData,
 ) => {
   const { videoTitle, transcriptSentences } = lesson;
   if (videoTitle && !transcriptSentences) {
