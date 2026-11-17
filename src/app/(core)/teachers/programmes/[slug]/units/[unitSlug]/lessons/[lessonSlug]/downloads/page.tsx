@@ -14,9 +14,7 @@ import { curriculumApiWithCache } from "@/node-lib/cache";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
-// We are using dynamic route segments so we can't enable instant navigation without
-// prefetching routes with generateStaticParams. Longer term we'd want to
-// use Suspense boundaries to enable instant loading with data streaming
+// We are using dynamic route segments so we can't enable instant navigation as-is.
 export const instant = false;
 
 type LessonDownloadsPageParams = {

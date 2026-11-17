@@ -42,6 +42,7 @@ import { getActiveCookieFlags } from "@/hooks/useCookieFlag/getActiveCookieFlags
 import { getBrowseFilterState } from "@/context/BrowseFilters/utils/getBrowseFilterState";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 
+// We are using dynamic route segments so we can't enable instant navigation as-is.
 export const instant = false;
 
 const reportError = errorReporter("programme-page::app");

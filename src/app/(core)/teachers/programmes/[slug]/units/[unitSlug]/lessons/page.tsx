@@ -12,9 +12,7 @@ import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnal
 import { getProgrammeStateForUnit } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 
-// We are using dynamic route segments so we can't enable instant navigation without
-// prefetching routes with generateStaticParams. Longer term we'd want to
-// use Suspense boundaries to enable instant loading with data streaming
+// We are using dynamic route segments so we can't enable instant navigation as-is.
 export const instant = false;
 
 type LessonsPageParams = { slug: string; unitSlug: string };
