@@ -132,11 +132,7 @@ export const getStaticProps: GetStaticProps<
       );
 
       if (!selectedProgramme) {
-        if (programmeSlug.slice(-2) !== "-l") {
-          selectedProgramme = curriculumData.find(
-            (unit) => unit.programmeSlug === `${programmeSlug}-l`,
-          );
-
+        if (!programmeSlug.endsWith("-l")) {
           return {
             redirect: {
               destination: `/pupils/programmes/${programmeSlug}-l/units`,
@@ -189,7 +185,7 @@ export const getStaticProps: GetStaticProps<
       const optionalityUnits: UnitListingBrowseData[number][][] = Object.values(
         groupBy(mainUnits, (unit) =>
           unit.programmeFields.optionality
-            ? unit.unitSlug.replace(/-\d+?$/, "")
+            ? unit.unitSlug.replace(/-\d+$/, "")
             : unit.unitSlug,
         ),
       );
