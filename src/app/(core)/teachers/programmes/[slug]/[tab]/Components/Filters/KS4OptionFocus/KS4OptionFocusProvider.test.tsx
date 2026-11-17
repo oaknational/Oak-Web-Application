@@ -1,5 +1,6 @@
 import { fireEvent, render, waitFor } from "@testing-library/react";
-import { StrictMode } from "react";
+import userEvent from "@testing-library/user-event";
+import { StrictMode, type ReactNode } from "react";
 
 import {
   ProgrammeNavigationProvider,
@@ -72,11 +73,13 @@ function Harness({
   pageKey = "source",
   keyboard = true,
   modal = false,
+  children,
 }: {
   slugs?: CurriculumSelectionSlugs;
   pageKey?: string;
   keyboard?: boolean;
   modal?: boolean;
+  children?: ReactNode;
 }) {
   return (
     <StrictMode>
@@ -84,7 +87,7 @@ function Harness({
         <NavigationButton keyboard={keyboard} modal={modal} />
         <ProgrammePageFiltersModalProvider key={pageKey}>
           <KS4OptionFocusProvider slugs={slugs}>
-            <Radios />
+            {children ?? <Radios />}
           </KS4OptionFocusProvider>
         </ProgrammePageFiltersModalProvider>
       </ProgrammeNavigationProvider>
@@ -95,6 +98,38 @@ function Harness({
 describe("KS4 navigation intent", () => {
   beforeEach(() => {
     mockPathname = "/teachers/programmes/english-secondary-aqa/units";
+  });
+
+  it("resumes desktop keyboard focus at the last clicked option, not the first filter", async () => {
+    const user = userEvent.setup();
+    const { getByRole } = render(
+      <Harness>
+        <KS4OptionFocusScope variant="page">
+          <fieldset>
+            <legend>Years</legend>
+            <div>
+              <input type="radio" name="year" aria-label="Year 7" />
+            </div>
+            <div>
+              <input type="radio" name="year" aria-label="Year 8" />
+            </div>
+          </fieldset>
+        </KS4OptionFocusScope>
+      </Harness>,
+    );
+
+    await user.tab();
+    await user.tab();
+    const year7 = getByRole("radio", { name: "Year 7" });
+    const year8 = getByRole("radio", { name: "Year 8" });
+    expect(year7).toHaveFocus();
+
+    await user.click(year8);
+    expect(year7).not.toHaveFocus();
+    expect(year8).not.toHaveFocus();
+
+    await user.tab();
+    expect(year8).toHaveFocus();
   });
 
   it.each([
