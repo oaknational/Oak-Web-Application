@@ -53,7 +53,4 @@ const InnerMcpPage = async () => {
 };
 
 // export default InnerMcpPage;
-export default withPageErrorHandling(
-  async () => <InnerMcpPage />,
-  "nc-alignment-checker",
-);
+export default withPageErrorHandling(InnerMcpPage, "nc-alignment-checker");

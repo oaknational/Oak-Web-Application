@@ -41,13 +41,13 @@ function renderBlock<K extends NcAlignmentCheckerLandingPageBlockType>(
 
 export function NcAlignmentCheckerPage({
   pageData,
-}: {
+}: Readonly<{
   pageData: NcAlignmentCheckerLandingPage;
-}) {
+}>) {
   return (
     <OakBox $zIndex={"neutral"} $color={"text-primary"}>
-      {pageData.blocks?.map((block, index) => {
-        return <Fragment key={index}>{renderBlock(block)}</Fragment>;
+      {pageData.blocks?.map((block) => {
+        return <Fragment key={block._id}>{renderBlock(block)}</Fragment>;
       })}
     </OakBox>
   );
