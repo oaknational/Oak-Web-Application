@@ -14,7 +14,7 @@ import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNot
 const getCachedCanonicalLesson = cache(
   cacheData(
     (lessonSlug: string) =>
-      curriculumApi2023.lessonOverview({
+      curriculumApi2023.canonicalLessonOverview({
         lessonSlug,
       }),
     ["canonical-lesson"],
