@@ -4,7 +4,7 @@ import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/l
 import { cacheData } from "@/node-lib/cache";
 import { getFileFromBucket } from "@/utils/gCloudStorage";
 import { formatSentences } from "@/utils/formatTranscriptSentences";
-import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
+import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 
 const CAPTIONS_BUCKET_NAME = "oak-captions-2023-production";
 

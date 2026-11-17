@@ -1,5 +1,5 @@
 import type { LessonBrowseDataByKs } from "../../queries/canonicalLessonOverview/canonicalLessonOverview.schema";
-import { TeachersLessonOverviewContent } from "../../queries/teachersLessonOverview/teachersLessonOverview.schema";
+import type { TeachersLessonOverviewContent } from "../../queries/teachersLessonOverview/teachersLessonOverview.schema";
 
 import { isExcludedFromTeachingMaterials } from "./isExcluded";
 
