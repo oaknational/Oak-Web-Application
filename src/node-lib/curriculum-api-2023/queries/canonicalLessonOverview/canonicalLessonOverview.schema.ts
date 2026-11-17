@@ -6,16 +6,6 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 
 import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { lessonDownloadTypeSchema } from "@/common-lib/lessonDownloads";
-
-export const lessonOverviewDownloads = z.array(
-  z.object({
-    exists: z.boolean().nullable(),
-    type: lessonDownloadTypeSchema,
-  }),
-);
-
-export type LessonOverviewDownloads = z.infer<typeof lessonOverviewDownloads>;
 
 export const canonicalLessonHubPathwaySchema = lessonPathwaySchema.pick({
   programmeSlug: true,
