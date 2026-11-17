@@ -7,12 +7,8 @@ import {
   subjectSlugs,
 } from "@oaknational/oak-curriculum-schema";
 
-import {
-  baseLessonOverviewSchema,
-  lessonPathwaySchema,
-} from "@/node-lib/curriculum-api-2023/shared.schema";
+import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
-import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { lessonDownloadTypeSchema } from "@/common-lib/lessonDownloads";
 
 export const lessonContentSchema = lessonContentSchemaFull.omit({
@@ -43,38 +39,6 @@ export const lessonOverviewDownloads = z.array(
 );
 
 export type LessonOverviewDownloads = z.infer<typeof lessonOverviewDownloads>;
-
-export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
-  programmeSlug: z.string(),
-  unitSlug: z.string(),
-  unitTitle: z.string(),
-  keyStageSlug: z.string(),
-  keyStageTitle: z.string(),
-  subjectSlug: subjectSlugs,
-  subjectTitle: z.string(),
-  subjectParent: z.string().nullish(),
-  yearTitle: z.string().nullish(),
-  year: z.string().nullish(),
-  examBoardTitle: z.string().nullish(),
-  examBoardSlug: z.string().nullish(),
-  downloads: lessonOverviewDownloads,
-  updatedAt: z.string(),
-  pathways: z.array(lessonPathwaySchema),
-  additionalFiles: z.array(z.string()).nullable(),
-  lessonMediaClips: mediaClipsRecordCamelSchema.nullable(),
-  lessonReleaseDate: z.string().nullable(),
-  loginRequired: z.boolean(),
-  geoRestricted: z.boolean(),
-  excludedFromTeachingMaterials: z.boolean(),
-  shouldHideCreateWithAi: z.boolean().optional(),
-  subjectCategories: z
-    .array(z.union([z.string(), z.number(), z.null()]))
-    .nullish(),
-});
-
-export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;
-
-export default lessonOverviewSchema;
 
 export const canonicalLessonHubPathwaySchema = lessonPathwaySchema.pick({
   programmeSlug: true,
