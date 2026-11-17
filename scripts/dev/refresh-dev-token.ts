@@ -11,7 +11,7 @@
  *      (One-time setup per OAuth app.)
  *
  * Usage:
- *   pnpx tsx scripts/dev/refresh-dev-token.ts
+ *   pnpm exec tsx scripts/dev/refresh-dev-token.ts
  *   — or —
  *   pnpm run dev:gclassroom:refresh-token
  */
