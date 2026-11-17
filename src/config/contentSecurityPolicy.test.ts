@@ -13,13 +13,13 @@ const prodCspHeaderFixture = `
     object-src 'self' *.google.com;
     base-uri 'self';
     form-action 'self';
-    frame-ancestors 'self' https://classroom.google.com *.google.com/;
+    frame-ancestors 'self' https://classroom.google.com;
     connect-src 'self' *.thenational.academy thenational.academy https://vercel.live/ https://vercel.com *.pusher.com *.pusherapp.com *.hubspot.com *.hsforms.com *.hubapi.com *.hs-banner.com *.hscollectedforms.net *.cloudinary.com/ https://eu.i.posthog.com *.posthog.com https://api.avo.app/ *.clerk.accounts.dev clerk-telemetry.com https://mux.com https://*.mux.com https://stream.mux.com https://inferred.litix.io *.gleap.io wss://*.gleap.io *.google.com *.bugsnag.smartbear.com *.bugsnag.com;
     media-src 'self' blob: *.thenational.academy/ https://res.cloudinary.com/ https://oaknationalacademy-res.cloudinary.com/ https://*.cloudinary.com/ https://*.mux.com/ https://stream.mux.com/ https://*.gleap.io/ https://ssl.gstatic.com;
     frame-src 'self' *.thenational.academy/ https://vercel.live/ https://vercel.com https://challenges.cloudflare.com https://www.avo.app/ https://stream.mux.com https://*.mux.com https://*.gleap.io/ *.google.com/;
     worker-src 'self' blob: *.thenational.academy/;
     child-src blob:;
-    report-uri https://eu.i.posthog.com/report/?token=test-api-key&sample_rate=0.05&v=1;
+    report-uri https://eu.i.posthog.com/report/?token=test-api-key&sample_rate=1&v=1;
     report-to posthog;
     upgrade-insecure-requests;
 `;
@@ -33,7 +33,7 @@ const devCspHeaderFixture = `
     object-src 'self' *.google.com;
     base-uri 'self';
     form-action 'self';
-    frame-ancestors 'self' https://classroom.google.com http://localhost:* https://localhost:* *.google.com/;
+    frame-ancestors 'self' https://classroom.google.com http://localhost:* https://localhost:*;
     connect-src 'self' *.thenational.academy thenational.academy http://localhost:* https://localhost:* wss://localhost:* ws://localhost:* https://vercel.live/ https://vercel.com *.pusher.com *.pusherapp.com *.hubspot.com *.hsforms.com *.hubapi.com *.hs-banner.com *.hscollectedforms.net *.cloudinary.com/ https://eu.i.posthog.com *.posthog.com https://api.avo.app/ *.clerk.accounts.dev clerk-telemetry.com https://mux.com https://*.mux.com https://stream.mux.com https://inferred.litix.io *.gleap.io wss://*.gleap.io *.google.com *.bugsnag.smartbear.com *.bugsnag.com;
     media-src 'self' blob: *.thenational.academy/ https://res.cloudinary.com/ https://oaknationalacademy-res.cloudinary.com/ https://*.cloudinary.com/ https://*.mux.com/ https://stream.mux.com/ https://*.gleap.io/ https://ssl.gstatic.com;
     frame-src 'self' *.thenational.academy/ https://vercel.live/ https://vercel.com https://challenges.cloudflare.com https://www.avo.app/ https://stream.mux.com https://*.mux.com https://*.gleap.io/ *.google.com/;
@@ -103,11 +103,6 @@ describe("Content-Security-Policy Header", () => {
         expected: "upgrade-insecure-requests;",
       },
       {
-        description: "Google Classroom as a frame ancestor",
-        expected:
-          "frame-ancestors 'self' https://classroom.google.com *.google.com/;",
-      },
-      {
         description: "the configured PostHog host",
         expected: "https://eu.i.posthog.com",
       },
@@ -142,6 +137,15 @@ describe("Content-Security-Policy Header", () => {
       const { cspHeader } = await import("./contentSecurityPolicy");
 
       expect(cspHeader).not.toContain(excluded);
+    });
+
+    it("only allows Google Classroom, not all of google.com, to frame the site", async () => {
+      const { cspHeader } = await import("./contentSecurityPolicy");
+
+      // A *.google.com wildcard would also let e.g. sites.google.com frame us.
+      expect(getDirective(cspHeader, "frame-ancestors")).toBe(
+        "frame-ancestors 'self' https://classroom.google.com",
+      );
     });
 
     it("allows a configured PostHog host for scripts and connections", async () => {
@@ -201,7 +205,7 @@ describe("Content-Security-Policy Header", () => {
         const result = getReportUri(baseUri);
 
         expect(result).toBe(
-          "https://eu.i.posthog.com/report/?token=test-key&sample_rate=0.05&v=1",
+          "https://eu.i.posthog.com/report/?token=test-key&sample_rate=1&v=1",
         );
       });
 
@@ -247,7 +251,7 @@ describe("Content-Security-Policy Header", () => {
         const { cspHeader } = await import("./contentSecurityPolicy");
 
         expect(cspHeader).toContain(
-          "https://eu.i.posthog.com/report/?token=test-api-key&sample_rate=0.05&v=1",
+          "https://eu.i.posthog.com/report/?token=test-api-key&sample_rate=1&v=1",
         );
       });
 
@@ -258,7 +262,7 @@ describe("Content-Security-Policy Header", () => {
         const { cspHeader } = await import("./contentSecurityPolicy");
 
         expect(cspHeader).toContain(
-          "https://eu.i.posthog.com/report/?token=test-api-key&sample_rate=0.05&v=1",
+          "https://eu.i.posthog.com/report/?token=test-api-key&sample_rate=1&v=1",
         );
       });
 
@@ -269,7 +273,7 @@ describe("Content-Security-Policy Header", () => {
         const { cspHeader } = await import("./contentSecurityPolicy");
 
         expect(cspHeader).toContain(
-          "https://custom.posthog.com/report/?token=test-api-key&sample_rate=0.05&v=1",
+          "https://custom.posthog.com/report/?token=test-api-key&sample_rate=1&v=1",
         );
       });
     });
@@ -284,7 +288,7 @@ describe("Content-Security-Policy Header", () => {
         );
 
         expect(reportingEndpointsHeader).toBe(
-          'posthog="https://eu.i.posthog.com/report/?token=test-api-key&sample_rate=0.05&v=1"',
+          'posthog="https://eu.i.posthog.com/report/?token=test-api-key&sample_rate=1&v=1"',
         );
       });
 
@@ -310,7 +314,7 @@ describe("Content-Security-Policy Header", () => {
 
         expect(cspHeader).toContain("report-uri");
         expect(cspHeader).toContain(
-          "https://test.posthog.com/report/?token=integration-test-key&sample_rate=0.05&v=1",
+          "https://test.posthog.com/report/?token=integration-test-key&sample_rate=1&v=1",
         );
       });
 

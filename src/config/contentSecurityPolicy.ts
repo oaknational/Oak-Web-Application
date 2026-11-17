@@ -121,8 +121,11 @@ const gleap: Partial<CspConfig> = {
 
 const google: Partial<CspConfig> = {
   connectSrc: ["*.google.com"],
+  // Lesson pages embed Google Docs and Slides from docs.google.com.
   frameSrc: ["*.google.com/"],
-  frameAncestors: ["*.google.com/"],
+  // No frameAncestors here on purpose: a *.google.com wildcard would let any
+  // Google-hosted page (e.g. sites.google.com) frame us. Google Classroom is
+  // allowed explicitly in cspBaseConfig.
   objectSrc: ["*.google.com"],
 };
 
@@ -230,10 +233,14 @@ const posthogReportUri = posthogApiKey
   ? `${posthogApiHost}/report/?token=${posthogApiKey}`
   : "";
 
+// Report every violation while the enforced policy beds in. Lower this once
+// we're confident the policy isn't blocking anything legitimate.
+export const CSP_REPORT_SAMPLE_RATE = 1;
+
 // appends sample rate and version to the report uri, development mode does not append sample rate and version
 export const getReportUri = (
   posthogReportUri: string,
-  sampleRate: number = 0.05,
+  sampleRate: number = CSP_REPORT_SAMPLE_RATE,
   version: string = "1",
 ) => {
   return isDevelopment
@@ -242,12 +249,12 @@ export const getReportUri = (
 };
 
 export const reportingEndpointsHeader = posthogReportUri
-  ? `posthog="${getReportUri(posthogReportUri, 0.05, "1")}"`
+  ? `posthog="${getReportUri(posthogReportUri)}"`
   : undefined;
 
 const reportingDirectives = posthogReportUri
   ? `
-    report-uri ${getReportUri(posthogReportUri, 0.05, "1")};
+    report-uri ${getReportUri(posthogReportUri)};
     report-to posthog;`
   : "";
 
