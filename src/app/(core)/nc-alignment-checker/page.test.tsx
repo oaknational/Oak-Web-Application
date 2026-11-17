@@ -65,6 +65,7 @@ describe("/nc-alignment-checker", () => {
     jest.mocked(CMSClient.ncAlignmentCheckerLandingPage).mockResolvedValue({
       blocks: [
         {
+          _key: "1111",
           __typename: "NcAlignmentCheckerLandingPageQuotes",
           quotes: [],
         },
