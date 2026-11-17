@@ -112,9 +112,9 @@ const curriculumApi: Pick<
   lessonShare: jest.fn(async () => {
     return lessonShareFixtures();
   }) as jest.Mocked<LessonShareQuery>,
-  canonicalLessonOverview: jest.fn(async () => {
-    return Promise.resolve(canonicalLessonHubFixture());
-  }),
+  canonicalLessonOverview: jest
+    .fn()
+    .mockResolvedValue(canonicalLessonHubFixture()),
   lessonDownloads: jest.fn(async () => {
     return lessonDownloadsFixtures();
   }) as jest.Mocked<LessonDownloadsQuery>,
