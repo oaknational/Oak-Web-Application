@@ -1,6 +1,6 @@
 import { syntheticUnitvariantLessonsByKsFixture } from "@oaknational/oak-curriculum-schema";
 
-import lessonOverview from "./canonicalLessonOverview.query";
+import canonicalLessonOverview from "./canonicalLessonOverview.query";
 import { canonicalLessonHubPathwaySchema } from "./canonicalLessonOverview.schema";
 
 import sdk from "@/node-lib/curriculum-api-2023/sdk";
@@ -27,9 +27,9 @@ describe("lessonOverview()", () => {
     ];
     const lessonOverviewMock = jest.fn(() => Promise.resolve({ browseData }));
 
-    const result = await lessonOverview({
+    const result = await canonicalLessonOverview({
       ...sdk,
-      lessonOverview: lessonOverviewMock,
+      canonicalLessonOverview: lessonOverviewMock,
     })({ lessonSlug: "lesson-slug-test" });
 
     expect(lessonOverviewMock).toHaveBeenCalledWith({
@@ -49,9 +49,11 @@ describe("lessonOverview()", () => {
 
   test("throws a not found error if no eligible browse data is found", async () => {
     await expect(
-      lessonOverview({
+      canonicalLessonOverview({
         ...sdk,
-        lessonOverview: jest.fn(() => Promise.resolve({ browseData: [] })),
+        canonicalLessonOverview: jest.fn(() =>
+          Promise.resolve({ browseData: [] }),
+        ),
       })({ lessonSlug: "lesson-slug-test" }),
     ).rejects.toThrow("Resource not found");
   });

@@ -21962,6 +21962,13 @@ export type BrowseUnitRedirectQueryVariables = Exact<{
 
 export type BrowseUnitRedirectQuery = { __typename?: 'query_root', browseUnitRedirectData: Array<{ __typename?: 'published_mv_redirects_units_browse_by_keystage_18_0_0', incoming_path?: string | null, outgoing_path?: string | null, redirect_type?: any | null }> };
 
+export type CanonicalLessonOverviewQueryVariables = Exact<{
+  lessonSlug: Scalars['String']['input'];
+}>;
+
+
+export type CanonicalLessonOverviewQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_fields?: any | null, unit_data?: any | null, lesson_data?: any | null, actions?: any | null }> };
+
 export type CanonicalLessonRedirectQueryVariables = Exact<{
   incomingPath: Scalars['String']['input'];
 }>;
@@ -22046,13 +22053,6 @@ export type LessonMediaClipsQueryVariables = Exact<{
 
 
 export type LessonMediaClipsQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null, programme_slug_by_year?: any | null }> };
-
-export type LessonOverviewQueryVariables = Exact<{
-  lessonSlug: Scalars['String']['input'];
-}>;
-
-
-export type LessonOverviewQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_fields?: any | null, unit_data?: any | null, lesson_data?: any | null, actions?: any | null }> };
 
 export type LessonShareQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
@@ -22170,28 +22170,6 @@ export type SubjectListingQueryVariables = Exact<{
 
 export type SubjectListingQuery = { __typename?: 'query_root', subjectUnits: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', programme_fields?: any | null, is_legacy?: boolean | null, null_unitvariant_id?: number | null, unit_data?: any | null, unit_slug?: string | null, programme_slug?: string | null, supplementary_data?: any | null, lesson_count?: number | null, lesson_sensitive_count?: number | null, lesson_expired_count?: number | null, lesson_ids?: any | null, expired?: boolean | null, actions?: any | null, features?: any | null, threads?: any | null, base_slug?: string | null, programme_slug_by_year?: string | null }>, key_stages: Array<{ __typename?: 'published_mv_key_stages_2_0_0', slug?: string | null, display_order?: number | null, keystage?: string | null, description?: string | null }>, subjectFeatures: Array<{ __typename?: 'published_mv_pf_subjects_0', slug?: string | null, features?: any | null }> };
 
-export type TeachersPreviewLessonQueryVariables = Exact<{
-  lessonSlug: Scalars['String']['input'];
-}>;
-
-
-export type TeachersPreviewLessonQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_new_9_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, video_duration?: string | null, _state?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null, has_lesson_guide_google_drive_downloadable_version?: boolean | null, lesson_guide_asset_object_url?: string | null, has_lesson_guide_object?: boolean | null, lesson_guide_asset_id?: number | null, geo_restricted?: string | null, login_required?: string | null, media_clips?: any | null, downloadable_files?: any | null, has_downloadable_files?: boolean | null, lesson_release_date?: any | null }>, unitData: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', lesson_count?: number | null, supplementary_data?: any | null }> };
-
-export type TeacherPreviewLessonListingQueryVariables = Exact<{
-  programmeSlug: Scalars['String']['input'];
-  unitSlug: Scalars['String']['input'];
-}>;
-
-
-export type TeacherPreviewLessonListingQuery = { __typename?: 'query_root', lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0', lesson_data?: any | null, lesson_slug?: string | null, programme_fields?: any | null, programme_slug_by_year?: any | null, null_unitvariant_id?: number | null, unit_slug?: string | null, unit_data?: any | null, programme_slug?: string | null, is_legacy?: boolean | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }> };
-
-export type TeachersPreviewUnitListingQueryVariables = Exact<{
-  programmeSlug: Scalars['String']['input'];
-}>;
-
-
-export type TeachersPreviewUnitListingQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_ks_new_15_0_0', is_legacy?: boolean | null, programme_slug?: string | null, unit_slug?: string | null, programme_fields?: any | null, unit_data?: any | null, lesson_count?: number | null, lesson_expired_count?: number | null, lesson_sensitive_count?: number | null, expired?: boolean | null, supplementary_data?: any | null, threads?: any | null, actions?: any | null, features?: any | null }> };
-
 export type TeachersLessonOverviewQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
   unitSlug: Scalars['String']['input'];
@@ -22253,6 +22231,21 @@ export const BrowseUnitRedirectDocument = gql`
     incoming_path
     outgoing_path
     redirect_type
+  }
+}
+    `;
+export const CanonicalLessonOverviewDocument = gql`
+    query canonicalLessonOverview($lessonSlug: String!) {
+  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
+    where: {lesson_slug: {_eq: $lessonSlug}}
+  ) {
+    lesson_slug
+    unit_slug
+    programme_slug
+    programme_fields
+    unit_data
+    lesson_data
+    actions
   }
 }
     `;
@@ -22482,21 +22475,6 @@ export const LessonMediaClipsDocument = gql`
     features
     order_in_unit
     programme_slug_by_year
-  }
-}
-    `;
-export const LessonOverviewDocument = gql`
-    query lessonOverview($lessonSlug: String!) {
-  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
-    where: {lesson_slug: {_eq: $lessonSlug}}
-  ) {
-    lesson_slug
-    unit_slug
-    programme_slug
-    programme_fields
-    unit_data
-    lesson_data
-    actions
   }
 }
     `;
@@ -22824,124 +22802,6 @@ export const SubjectListingDocument = gql`
   }
 }
     `;
-export const TeachersPreviewLessonDocument = gql`
-    query teachersPreviewLesson($lessonSlug: String!) {
-  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0(
-    where: {lesson_slug: {_eq: $lessonSlug}}
-  ) {
-    lesson_slug
-    unit_slug
-    programme_slug
-    programme_slug_by_year
-    is_legacy
-    lesson_data
-    unit_data
-    programme_fields
-    actions
-    features
-    order_in_unit
-  }
-  content: published_mv_lesson_content_new_9_0_0(
-    where: {lesson_slug: {_eq: $lessonSlug}}
-  ) {
-    lesson_id
-    lesson_title
-    lesson_slug
-    deprecated_fields
-    is_legacy
-    misconceptions_and_common_mistakes
-    equipment_and_resources
-    teacher_tips
-    key_learning_points
-    pupil_lesson_outcome
-    phonics_outcome
-    lesson_keywords
-    content_guidance
-    video_mux_playback_id
-    video_id
-    video_with_sign_language_mux_playback_id
-    video_duration
-    _state
-    transcript_sentences
-    starter_quiz
-    starter_quiz_id
-    exit_quiz
-    exit_quiz_id
-    supervision_level
-    video_title
-    has_worksheet_google_drive_downloadable_version
-    has_slide_deck_asset_object
-    worksheet_asset_id
-    has_worksheet_asset_object
-    worksheet_answers_asset_id
-    has_worksheet_answers_asset_object
-    supplementary_asset_id
-    has_supplementary_asset_object
-    supervision_level
-    slide_deck_asset_id
-    slide_deck_asset_object_url
-    worksheet_asset_object_url
-    supplementary_asset_object_url
-    has_lesson_guide_google_drive_downloadable_version
-    lesson_guide_asset_object_url
-    has_lesson_guide_object
-    lesson_guide_asset_id
-    geo_restricted
-    login_required
-    media_clips
-    downloadable_files
-    has_downloadable_files
-    lesson_release_date
-  }
-  unitData: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0(
-    where: {supplementary_data: {_contains: {static_lesson_list: [{slug: $lessonSlug}]}}}
-  ) {
-    lesson_count
-    supplementary_data
-  }
-}
-    `;
-export const TeacherPreviewLessonListingDocument = gql`
-    query teacherPreviewLessonListing($programmeSlug: String!, $unitSlug: String!) {
-  lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0(
-    where: {unit_slug: {_eq: $unitSlug}, programme_slug: {_eq: $programmeSlug}}
-  ) {
-    lesson_data
-    lesson_slug
-    programme_fields
-    programme_slug_by_year
-    null_unitvariant_id
-    unit_slug
-    unit_data
-    programme_slug
-    is_legacy
-    actions
-    features
-    order_in_unit
-  }
-}
-    `;
-export const TeachersPreviewUnitListingDocument = gql`
-    query teachersPreviewUnitListing($programmeSlug: String!) {
-  units: published_mv_synthetic_unitvariants_with_lesson_ids_by_ks_new_15_0_0(
-    where: {programme_slug: {_eq: $programmeSlug}}
-  ) {
-    is_legacy
-    programme_slug
-    unit_slug
-    programme_fields
-    unit_data
-    lesson_count
-    lesson_expired_count
-    lesson_sensitive_count
-    expired
-    supplementary_data
-    threads
-    actions
-    features
-  }
-}
-    `;
 export const TeachersLessonOverviewDocument = gql`
     query teachersLessonOverview($lessonSlug: String!, $unitSlug: String!, $programmeSlug: String!) {
   browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
@@ -23175,6 +23035,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     browseUnitRedirect(variables: BrowseUnitRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<BrowseUnitRedirectQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<BrowseUnitRedirectQuery>({ document: BrowseUnitRedirectDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'browseUnitRedirect', 'query', variables);
     },
+    canonicalLessonOverview(variables: CanonicalLessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CanonicalLessonOverviewQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CanonicalLessonOverviewQuery>({ document: CanonicalLessonOverviewDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'canonicalLessonOverview', 'query', variables);
+    },
     canonicalLessonRedirect(variables: CanonicalLessonRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CanonicalLessonRedirectQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<CanonicalLessonRedirectQuery>({ document: CanonicalLessonRedirectDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'canonicalLessonRedirect', 'query', variables);
     },
@@ -23210,9 +23073,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     lessonMediaClips(variables?: LessonMediaClipsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonMediaClipsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonMediaClipsQuery>({ document: LessonMediaClipsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonMediaClips', 'query', variables);
-    },
-    lessonOverview(variables: LessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonOverviewQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewQuery>({ document: LessonOverviewDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonOverview', 'query', variables);
     },
     lessonShare(variables: LessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonShareQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonShareQuery>({ document: LessonShareDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonShare', 'query', variables);
@@ -23261,15 +23121,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     subjectListing(variables?: SubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SubjectListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SubjectListingQuery>({ document: SubjectListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'subjectListing', 'query', variables);
-    },
-    teachersPreviewLesson(variables: TeachersPreviewLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersPreviewLessonQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersPreviewLessonQuery>({ document: TeachersPreviewLessonDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersPreviewLesson', 'query', variables);
-    },
-    teacherPreviewLessonListing(variables: TeacherPreviewLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeacherPreviewLessonListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeacherPreviewLessonListingQuery>({ document: TeacherPreviewLessonListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teacherPreviewLessonListing', 'query', variables);
-    },
-    teachersPreviewUnitListing(variables: TeachersPreviewUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersPreviewUnitListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersPreviewUnitListingQuery>({ document: TeachersPreviewUnitListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersPreviewUnitListing', 'query', variables);
     },
     teachersLessonOverview(variables: TeachersLessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersLessonOverviewQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersLessonOverviewQuery>({ document: TeachersLessonOverviewDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersLessonOverview', 'query', variables);

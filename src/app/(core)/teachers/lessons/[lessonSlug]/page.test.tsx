@@ -16,11 +16,12 @@ jest.mock("next/navigation", () => ({
   usePathname: () => "/",
 }));
 
-const mockLessonOverview = jest.fn();
+const mockCanonicalLessonOverview = jest.fn();
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   __esModule: true,
   default: {
-    lessonOverview: (...args: unknown[]) => mockLessonOverview(...args),
+    canonicalLessonOverview: (...args: unknown[]) =>
+      mockCanonicalLessonOverview(...args),
   },
 }));
 
@@ -31,7 +32,7 @@ describe("Canonical lesson hub page", () => {
     lessonSlug: string,
     pathways: Partial<LessonPathway>[],
   ) => {
-    mockLessonOverview.mockResolvedValue({
+    mockCanonicalLessonOverview.mockResolvedValue({
       subjectSlug: "maths",
       lessonTitle: "Lesson title",
       yearTitle: "Year 9",
@@ -46,7 +47,7 @@ describe("Canonical lesson hub page", () => {
   };
 
   it("returns not found when lesson data is null", async () => {
-    mockLessonOverview.mockRejectedValue(
+    mockCanonicalLessonOverview.mockRejectedValue(
       new Error("NEXT_HTTP_ERROR_FALLBACK;404"),
     );
 
@@ -57,7 +58,7 @@ describe("Canonical lesson hub page", () => {
     ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
   });
   it("redirects when a lesson is in one programme", async () => {
-    mockLessonOverview.mockResolvedValue({
+    mockCanonicalLessonOverview.mockResolvedValue({
       pathways: [
         {
           programmeSlug: "english-primary-ks1",
@@ -236,7 +237,7 @@ describe("Canonical lesson hub page", () => {
 
 describe("generateMetadata", () => {
   it("returns empty object when fetch fails", async () => {
-    mockLessonOverview.mockRejectedValue(new Error("Not found"));
+    mockCanonicalLessonOverview.mockRejectedValue(new Error("Not found"));
 
     const result = await generateMetadata({
       params: Promise.resolve({ lessonSlug: "lesson-slug" }),
@@ -246,7 +247,7 @@ describe("generateMetadata", () => {
   });
 
   it("generates metadata with correct title and description", async () => {
-    mockLessonOverview.mockResolvedValue({
+    mockCanonicalLessonOverview.mockResolvedValue({
       lessonTitle: "Title",
     });
 

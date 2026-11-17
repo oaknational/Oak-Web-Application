@@ -1,13 +1,13 @@
 import { QuizQuestionsQuestionStem } from "./QuizQuestionsQuestionStem";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
+import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 import {
   StemImageObject,
   StemTextObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 
-const lessonOverview = lessonOverviewFixture();
+const lessonOverview = teachersLessonOverviewFixture();
 const starterQuiz = lessonOverview.starterQuiz;
 const mcqText = starterQuiz ? starterQuiz[0] : null;
 const mcqStemImage = starterQuiz ? starterQuiz[1] : null;

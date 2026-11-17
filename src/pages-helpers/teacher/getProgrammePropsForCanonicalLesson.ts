@@ -16,17 +16,15 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 
 import { CanonicalLessonMediaClips } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/canonicalLessonOverview/canonicalLessonOverview.schema";
 
 export const getProgrammePropsForCanonicalLesson = (
-  lesson: LessonOverviewPageData | CanonicalLessonMediaClips,
+  lesson: CanonicalLessonMediaClips,
 ) => {
   const firstPathway = lesson.pathways[0];
 
   const programmeSlug = firstPathway?.programmeSlug ?? "";
   const subjectSlug =
-    subjectSlugs.safeParse(firstPathway?.subjectSlug).data ??
-    (lesson as LessonOverviewPageData).subjectSlug;
+    subjectSlugs.safeParse(firstPathway?.subjectSlug).data ?? "art"; // This will be removed with canonical media hub page
   const subjectTitle = firstPathway?.subjectTitle ?? "";
   const phaseTitle =
     phaseDescriptions.safeParse(firstPathway?.phaseTitle).data ?? "Primary";
