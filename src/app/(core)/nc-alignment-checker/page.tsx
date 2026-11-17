@@ -45,8 +45,6 @@ const InnerMcpPage = async () => {
     isPreviewMode: isPreviewMode,
   });
 
-  console.log({ pageData });
-
   if (!pageData) {
     return notFound();
   }
