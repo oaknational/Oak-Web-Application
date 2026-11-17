@@ -106,7 +106,7 @@ export const transformedLessonOverviewData = (
       : null;
   } catch (error) {
     browseData.lessonData.mediaClips = null;
-    reportError(error);
+    void reportError(error);
   }
 
   return {
