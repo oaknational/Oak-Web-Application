@@ -1,0 +1,38 @@
+import { z } from "zod";
+import {
+  syntheticUnitvariantLessonsByKsSchema,
+  SyntheticUnitvariantLessonsByKsCamel,
+  subjectSlugs,
+} from "@oaknational/oak-curriculum-schema";
+
+import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schema";
+
+export const canonicalLessonHubPathwaySchema = lessonPathwaySchema.pick({
+  programmeSlug: true,
+  unitSlug: true,
+  unitTitle: true,
+  subjectTitle: true,
+  examBoardTitle: true,
+  tierTitle: true,
+  yearGroupTitle: true,
+  pathwayTitle: true,
+});
+
+export const canonicalLessonHubSchema = z.object({
+  lessonTitle: z.string(),
+  subjectSlug: subjectSlugs,
+  pathways: z.array(canonicalLessonHubPathwaySchema),
+});
+
+export type CanonicalLessonHubData = z.infer<typeof canonicalLessonHubSchema>;
+
+export const lessonBrowseDataByKsSchema =
+  syntheticUnitvariantLessonsByKsSchema.omit({
+    null_unitvariant_id: true,
+    unitvariant_id: true,
+  });
+
+export type LessonBrowseDataByKs = Omit<
+  SyntheticUnitvariantLessonsByKsCamel,
+  "nullUnitvariantId" | "unitvariantId"
+>;
