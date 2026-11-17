@@ -1,4 +1,4 @@
-import { LessonBrowseDataByKs } from "../../queries/canonicalLessonOverview/canonicalLessonOverview.schema";
+import type { LessonBrowseDataByKs } from "../../queries/canonicalLessonOverview/canonicalLessonOverview.schema";
 import {
   Restrictions,
   TeachersLessonOverviewContent,

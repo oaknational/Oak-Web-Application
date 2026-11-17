@@ -1,4 +1,4 @@
-import { TeachersLessonOverviewContent } from "../../queries/teachersLessonOverview/teachersLessonOverview.schema";
+import type { TeachersLessonOverviewContent } from "../../queries/teachersLessonOverview/teachersLessonOverview.schema";
 
 const RESTRICTED_CONTENT_GUIDANCE_TYPES = [
   "Depiction or discussion of sexual violence",
