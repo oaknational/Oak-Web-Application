@@ -45,7 +45,11 @@ const ResourcePageTermsAndConditionsCheckbox: FC<
       data-testid="termsCheckbox"
       $gap={"spacing-12"}
     >
-      <BrushBorders hideOnMobileH hideOnMobileV color={"bg-neutral-stronger"} />
+      <BrushBorders
+        $hideOnMobileH
+        $hideOnMobileV
+        color={"bg-neutral-stronger"}
+      />
       <OakCheckBox
         value="terms-and-conditions"
         displayValue={""}
@@ -64,7 +68,6 @@ const ResourcePageTermsAndConditionsCheckbox: FC<
             legalSlug: "terms-and-conditions",
           })}
           target={"_blank"}
-          aria-label="Oak's terms & conditions (opens in a new tab)"
           iconName="external"
           isTrailingIcon
           data-testid="external-link-icon"

@@ -32,6 +32,14 @@ const Wrapper = (props: Partial<TermsAgreementFormPropsOptionalForm>) => {
 };
 
 describe("TermsAgreementForm (School, email and terms form within the teacher and curriculum journey)", () => {
+  beforeEach(() => {
+    jest.spyOn(global, "fetch").mockResolvedValue(new Response("[]"));
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   it("Shows school error message when error object is passed in", async () => {
     const errorMessage = `Select school, type 'homeschool' or tick 'My school isn't listed'`;
     const errors: FieldErrors<ResourceFormValues> = {
@@ -102,12 +110,7 @@ describe("TermsAgreementForm (School, email and terms form within the teacher an
     const detailsCompletedComponent = getByTestId("termsCheckbox");
     expect(detailsCompletedComponent).toBeInTheDocument();
   });
-  it("Shows ResourcePageTermsAndConditionsCheckbox component", async () => {
-    // Render the component with required props
-    const { getByTestId } = render(<Wrapper />);
-    const detailsCompletedComponent = getByTestId("termsCheckbox");
-    expect(detailsCompletedComponent).toBeInTheDocument();
-  });
+
   it("does not show heading and copyright notice when useDownloadPageLayout is true", async () => {
     const { queryByText } = render(<Wrapper useDownloadPageLayout />);
     const heading = queryByText("Your details");

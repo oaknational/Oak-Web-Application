@@ -49,9 +49,12 @@ export async function submitOnboardingHubspotData({
       hubspotFormId,
       payload: hubspotFormPayload,
     });
+    return true;
   } catch (error) {
     if (error instanceof OakError) {
-      reportError(error);
+      if (!error.hasBeenReported) {
+        reportError(error);
+      }
     } else {
       reportError(
         new OakError({
@@ -60,5 +63,6 @@ export async function submitOnboardingHubspotData({
         }),
       );
     }
+    return false;
   }
 }

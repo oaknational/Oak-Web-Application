@@ -9,7 +9,16 @@ import {
 
 import LoginRequiredButton from "../LoginRequiredButton/LoginRequiredButton";
 
-const SavingSignedOutModalContent = () => {
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+
+const SavingSignedOutModalContent = ({
+  componentType,
+}: {
+  componentType: ComponentTypeValueType;
+}) => {
+  const { signInStarted } = useTeacherBrowseAnalytics((store) => store.track);
+
   return (
     <OakFlex $flexDirection="column">
       <OakFlex $alignItems="start" $gap="spacing-12" $mb="spacing-24">
@@ -32,6 +41,7 @@ const SavingSignedOutModalContent = () => {
         loginRequired={true}
         geoRestricted={false}
         onboardingProps={{ name: "Finish sign up" }}
+        signUpProps={{ onClick: () => signInStarted({ componentType }) }}
         width="100%"
       />
     </OakFlex>
@@ -42,12 +52,14 @@ type SavingSignedOutModalProps = Pick<
   OakModalCenterProps,
   "isOpen" | "onClose"
 > & {
+  componentType: ComponentTypeValueType;
   returnToElementId?: string;
 };
 
 const SavingSignedOutModal = ({
   isOpen,
   onClose,
+  componentType,
   returnToElementId: elementId,
 }: SavingSignedOutModalProps) => (
   <OakModalCenter
@@ -74,7 +86,7 @@ const SavingSignedOutModal = ({
       return true;
     }}
   >
-    <SavingSignedOutModalContent />
+    <SavingSignedOutModalContent componentType={componentType} />
   </OakModalCenter>
 );
 

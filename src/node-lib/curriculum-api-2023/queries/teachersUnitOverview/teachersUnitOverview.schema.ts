@@ -13,7 +13,12 @@ import {
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 const teachersUnitOverviewAdjacentUnit = z
-  .object({ title: z.string(), slug: z.string() })
+  .object({
+    title: z.string(),
+    slug: z.string(),
+    yearGroupName: z.string(),
+    yearSlug: z.string(),
+  })
   .nullable();
 
 export type TeachersUnitOverviewAdjacentUnit = z.infer<
@@ -64,6 +69,8 @@ export const unitSequenceResponseSchema = z.array(
     nullUnitvariantId: z.number(),
     yearOrder: z.number(),
     year: programmeFieldsSchema.shape.year,
+    yearSlug: programmeFieldsSchema.shape.year_slug,
+    yearGroupName: programmeFieldsSchema.shape.year_description,
     isSwimming: z.boolean().nullish(),
     actions: actionsSchema.nullable(),
   }),
@@ -120,7 +127,7 @@ export const unitOverviewDataSchema = z.object({
   parentSubject: programmeFieldsSchema.shape.subject_parent,
   subjectCategories: z.array(z.string()).nullable(),
   yearGroupTitle: programmeFieldsSchema.shape.year_description,
-  yearSlug: programmeFieldsSchema.shape.year_slug,
+  yearGroupSlug: programmeFieldsSchema.shape.year_slug,
   year: programmeFieldsSchema.shape.year,
   keyStageSlug: programmeFieldsSchema.shape.keystage_slug,
   keyStageTitle: programmeFieldsSchema.shape.keystage_description,

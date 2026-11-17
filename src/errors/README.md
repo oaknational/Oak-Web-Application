@@ -13,7 +13,6 @@ The intention of good error handling is as follows:
 Better than handling errors is preventing them. User facing errors should be minimised by "catching" errors at build time using
 
 - Strict type checking (Typescript, Graphql code generation, tRPC)
-- Visual regression tests (Percy)
 - Unit and integration tests
 
 ## OakError

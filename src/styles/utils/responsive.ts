@@ -1,9 +1,4 @@
-import {
-  css,
-  DefaultTheme,
-  Interpolation,
-  ThemedStyledProps,
-} from "styled-components";
+import { css } from "styled-components";
 
 import truthy from "../../utils/truthy";
 import { PropsWithTheme } from "../theme";
@@ -34,19 +29,19 @@ export const getMediaQuery = (device: Device) => {
 };
 export type ResponsiveValues<Value> = (Value | null) | (Value | null)[];
 
+type Generic = string | number | undefined | null;
+
 const responsive =
-  <Props, T extends string | number | undefined | null>(
+  <Props, T extends Generic>(
     attr: string,
     getValues: (props: Props) => ResponsiveValues<T | undefined | null>,
     parse:
-      | ((unparsed: T | undefined | null) => string | number | undefined | null)
+      | ((unparsed: T | undefined | null) => Generic)
       | ((
           unparsed: T | undefined | null,
-        ) => (props: PropsWithTheme) => string | number | undefined | null) = (
-      x,
-    ) => x,
+        ) => (props: PropsWithTheme) => Generic) = (x) => x,
   ) =>
-  (props: Props): Interpolation<ThemedStyledProps<Props, DefaultTheme>> => {
+  (props: Props) => {
     const attrCss = (value: T | undefined | null) =>
       typeof value === "undefined"
         ? undefined

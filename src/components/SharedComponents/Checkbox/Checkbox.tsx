@@ -50,7 +50,7 @@ type CheckboxLabelProps = {
   disabled: boolean;
   checked: boolean;
   variant?: CheckboxVariant;
-  hasError?: boolean;
+  $hasError?: boolean;
 } & SpacingProps;
 
 const checkboxFocusStyles = css`
@@ -183,7 +183,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
         checked={checked}
         disabled={disabled}
         variant={variant}
-        hasError={hasError}
+        $hasError={hasError}
         {...spacingProps}
       >
         <ScreenReaderCheckbox

@@ -7,11 +7,22 @@ import {
   pathwaySchema,
 } from "./search.schema";
 
-import { AsyncState } from "@/common-lib/types/asyncState.types";
 import { SearchPageData } from "@/node-lib/curriculum-api-2023";
 import { SnakeToCamel } from "@/utils/util.types";
-import { SearchFilterMatchTypeValueType } from "@/browser-lib/avo/Avo";
-import { SearchIntent } from "@/common-lib/schemas/search-intent";
+
+export const searchPageParamsSchema = z.object({
+  term: z.string().optional(),
+  keyStages: z.string().optional(),
+  yearGroups: z.string().optional(),
+  subjects: z.string().optional(),
+  contentTypes: z.string().optional(),
+  examBoards: z.string().optional(),
+  curriculum: z.string().optional(),
+  page: z.string().optional(),
+});
+
+export type SearchPageQueryParams = z.infer<typeof searchPageParamsSchema>;
+export type SearchFilterKey = Exclude<keyof SearchPageQueryParams, "term">;
 
 export type SearchQuery = {
   term: string;
@@ -20,8 +31,6 @@ export type SearchQuery = {
   subjects?: string[];
   contentTypes?: ("unit" | "lesson")[];
   examBoards?: string[];
-  legacy?: "filterOutAll" | "filterOutLegacyIncludeEYFS" | "filterOutEYFS";
-  curriculum?: string[];
 };
 
 export type SetSearchQuery = (
@@ -37,28 +46,26 @@ export type ContentType = {
 export type ExamBoard = SearchPageData["examBoards"][number];
 export type YearGroup = SearchPageData["yearGroups"][number];
 
-export type UseSearchFiltersProps = {
+export type GetSearchFiltersProps = {
   allKeyStages: KeyStage[];
   allYearGroups: YearGroup[];
   allSubjects: SearchPageData["subjects"];
   allContentTypes: ContentType[];
   allExamBoards: ExamBoard[];
-  setQuery: SetSearchQuery;
   query: SearchQuery;
 };
 
 export type SearchCheckBoxProps = {
-  onChange: () => void;
   checked: boolean;
+  filterKey: SearchFilterKey;
 };
 
-export type UseSearchFiltersReturnType = {
+export type GetSearchFiltersReturnType = {
   subjectFilters: (Subject & SearchCheckBoxProps)[];
   keyStageFilters: (KeyStage & SearchCheckBoxProps)[];
   yearGroupFilters: (YearGroup & SearchCheckBoxProps)[];
   contentTypeFilters: (ContentType & SearchCheckBoxProps)[];
   examBoardFilters: (ExamBoard & SearchCheckBoxProps)[];
-  legacyFilter: { slug: string; title: string } & SearchCheckBoxProps;
 };
 
 export type LessonSearchHit = z.infer<typeof lessonSearchHitSchema>;
@@ -68,16 +75,4 @@ export type SearchHit = z.infer<typeof searchResultsHitSchema>;
 export type PathwaySchema = z.infer<typeof pathwaySchema>;
 export type PathwaySchemaCamel = SnakeToCamel<PathwaySchema>;
 
-export type SuggestedFilters = {
-  searchFilters: SuggestedSearchFilter[] | undefined;
-  status: AsyncState;
-  error?: string;
-  data?: SearchIntent;
-};
-
-export type SuggestedSearchFilter = {
-  type: "subject" | "key-stage" | "year" | "exam-board";
-  value: string;
-  slug: string;
-  source: SearchFilterMatchTypeValueType;
-};
+export type RequestStatus = "not-asked" | "fail" | "success";

@@ -65,7 +65,7 @@ describe("pages/pupils/programmes/[programmeSlug]/options/examboard/aqa", () => 
             programmeSlug: "",
           },
         }),
-      ).rejects.toThrowError();
+      ).rejects.toThrow();
     });
     it("Should throw erro oak error if examboardSlug is not provided", async () => {
       await expect(
@@ -75,7 +75,7 @@ describe("pages/pupils/programmes/[programmeSlug]/options/examboard/aqa", () => 
             programmeSlug: "physics-secondary-year-11",
           },
         }),
-      ).rejects.toThrowError();
+      ).rejects.toThrow();
     });
   });
 });

@@ -323,7 +323,7 @@ describe("OakPupilClient", () => {
         client.getTeacherNote({
           sidKey: mockTeacherNote.sid_key,
         }),
-      ).toThrowError("NoteId could not be found");
+      ).toThrow("NoteId could not be found");
     });
 
     it("should return the teacher note using the id from local storage if noteId is not provided", async () => {

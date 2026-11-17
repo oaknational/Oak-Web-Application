@@ -15,11 +15,7 @@ describe("useReferrer()", () => {
   test("internal source", () => {
     jest
       .spyOn(document, "referrer", "get")
-      .mockReturnValue("https://thenational.academy/");
-    jest.spyOn(window, "location", "get").mockReturnValue({
-      ...window.location,
-      hostname: "thenational.academy",
-    });
+      .mockReturnValue(`https://${globalThis.location.hostname}/`);
     const { getByTestId } = render(<TestComponent />);
     expect(getByTestId("comp")).toHaveTextContent(referrerSources.internal);
   });

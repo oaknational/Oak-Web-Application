@@ -11,6 +11,7 @@ import { reportAnalyticsError } from "./utils/reportAnalyticsError";
 import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersUnitOverview.fixture";
 import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 import {
+  AccessBlockType,
   ActiveFilters,
   ComponentType,
   DownloadResourceButtonName,
@@ -19,7 +20,6 @@ import {
   KeyStageTitleValueType,
   LessonReleaseCohortValueType,
   MediaClipsButtonName,
-  OnwardIntent,
   TeachingMaterialType,
   VideoLocation,
 } from "@/browser-lib/avo/Avo";
@@ -33,6 +33,7 @@ const mockReportAnalyticsError = jest.mocked(reportAnalyticsError);
 
 const createAvoMock = () => {
   return {
+    contentBlockNotificationDisplayed: jest.fn(),
     createTeachingMaterialsInitiated: jest.fn(),
     curriculumExplainerExplored: jest.fn(),
     curriculumResourcesDownloadRefined: jest.fn(),
@@ -43,13 +44,14 @@ const createAvoMock = () => {
     lessonResourcesDownloaded: jest.fn(),
     lessonShareStarted: jest.fn(),
     mediaClipsPlaylistPlayed: jest.fn(),
-    onwardContentSelected: jest.fn(),
     programmeAccessed: jest.fn(),
+    signInStarted: jest.fn(),
     teachingMaterialsSelected: jest.fn(),
     unitAccessed: jest.fn(),
     unitDownloaded: jest.fn(),
-    unitDownloadStarted: jest.fn(),
     unitRefined: jest.fn(),
+    userOnboardingCompleted: jest.fn(),
+    userOnboardingProgressed: jest.fn(),
     videoPlayed: jest.fn(),
     videoStarted: jest.fn(),
     videoPaused: jest.fn(),
@@ -60,6 +62,7 @@ const createAvoMock = () => {
 const buildStore = ({
   programmeState,
   accessLevel,
+  posthogDistinctId = "posthog-distinct-id",
 }: {
   programmeState:
     | ReturnType<typeof getProgrammeStateForLesson>
@@ -67,6 +70,7 @@ const buildStore = ({
     | ReturnType<typeof getProgrammeStateForProgramme>
     | null;
   accessLevel: "lesson" | "unit" | "programme" | "homepage";
+  posthogDistinctId?: string | null;
 }) => {
   const avo = createAvoMock();
   const store = createTeacherBrowseAnalyticsStore({
@@ -74,6 +78,7 @@ const buildStore = ({
     accessLevel,
     avo,
     journeyId: "journey-1",
+    posthogDistinctId,
   });
 
   return { store, avo };
@@ -103,10 +108,149 @@ const mediaClipsPlaylistPayload = {
   mediaClipIndex: 0,
 } as const;
 
+const onboardingPayload = {
+  componentType: ComponentType.CONTINUE_BUTTON,
+  signUpDate: "2024-10-07",
+  userRoleType: "Teacher",
+  teacherSchoolUrn: "123456",
+  teacherSchoolManualEntryDetails: null,
+  userDefinedRole: null,
+  userDetailsLastModifiedDate: "2024-10-08",
+  userAccountVerificationStatus: "verified",
+} as const;
+
 describe("TeacherBrowseAnalyticsStore", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
+
+  test("signInStarted tracks without programme state", () => {
+    const { store, avo } = buildStore({
+      programmeState: null,
+      accessLevel: "homepage",
+    });
+
+    store.getState().track.signInStarted({
+      componentType: ComponentType.TOPNAV_MY_LIBRARY_BUTTON,
+    });
+
+    expect(avo.signInStarted).toHaveBeenCalledWith({
+      platform: "owa",
+      product: "teacher lesson resources",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      engagementIntent: "use",
+      componentType: "topnav_my_library_button",
+      journeyId: "journey-1",
+      accessLevel: "homepage",
+    });
+    expect(mockReportAnalyticsError).not.toHaveBeenCalled();
+  });
+
+  test("contentBlockNotificationDisplayed derives lesson properties from programme state", () => {
+    const { store, avo } = buildStore({
+      programmeState: getProgrammeStateForLesson(
+        teachersLessonOverviewFixture(),
+      ),
+      accessLevel: "lesson",
+    });
+
+    store.getState().track.contentBlockNotificationDisplayed({
+      componentType: ComponentType.LESSON_DOWNLOADS,
+      accessBlockType: AccessBlockType.GEO_RESTRICTION,
+    });
+
+    expect(avo.contentBlockNotificationDisplayed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        componentType: ComponentType.LESSON_DOWNLOADS,
+        accessBlockType: AccessBlockType.GEO_RESTRICTION,
+        accessBlockDetails: {},
+        contentType: "lesson",
+        unitName: "Cells",
+        unitSlug: "cells",
+        lessonName: "Structure of cells",
+        lessonSlug: "lesson-3-structure-of-cells",
+        lessonReleaseCohort: "2023-2026",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+      }),
+    );
+  });
+
+  test("contentBlockNotificationDisplayed nulls lesson properties at unit level", () => {
+    const { store, avo } = buildStore({
+      programmeState: getProgrammeStateForUnit(teachersUnitOverviewFixture()),
+      accessLevel: "unit",
+    });
+
+    store.getState().track.contentBlockNotificationDisplayed({
+      componentType: ComponentType.LESSON_LISTING,
+      accessBlockType: AccessBlockType.GEO_RESTRICTION,
+    });
+
+    expect(avo.contentBlockNotificationDisplayed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        contentType: "unit",
+        unitName: "Cells",
+        unitSlug: "cells",
+        lessonName: null,
+        lessonSlug: null,
+        lessonReleaseCohort: null,
+        lessonReleaseDate: null,
+      }),
+    );
+  });
+
+  test("contentBlockNotificationDisplayed reports an error without a unit", () => {
+    const { store, avo } = buildStore({
+      programmeState: null,
+      accessLevel: "homepage",
+    });
+
+    store.getState().track.contentBlockNotificationDisplayed({
+      componentType: ComponentType.LESSON_DOWNLOADS,
+      accessBlockType: AccessBlockType.GEO_RESTRICTION,
+    });
+
+    expect(avo.contentBlockNotificationDisplayed).not.toHaveBeenCalled();
+    expect(mockReportAnalyticsError).toHaveBeenCalled();
+  });
+
+  test.each(["userOnboardingProgressed", "userOnboardingCompleted"] as const)(
+    "%s adds the registration core properties and the distinct id",
+    (event) => {
+      const { store, avo } = buildStore({
+        programmeState: null,
+        accessLevel: "homepage",
+      });
+
+      store.getState().track[event](onboardingPayload);
+
+      expect(avo[event]).toHaveBeenCalledWith({
+        ...onboardingPayload,
+        platform: "owa",
+        product: "user account management",
+        engagementIntent: "explore",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        userId_: "posthog-distinct-id",
+      });
+    },
+  );
+
+  test.each(["userOnboardingProgressed", "userOnboardingCompleted"] as const)(
+    "%s is not sent without a distinct id",
+    (event) => {
+      const { store, avo } = buildStore({
+        programmeState: null,
+        accessLevel: "homepage",
+        posthogDistinctId: null,
+      });
+
+      store.getState().track[event](onboardingPayload);
+
+      expect(avo[event]).not.toHaveBeenCalled();
+    },
+  );
 
   test("programmeAccessed forwards caller-provided filter payload", () => {
     const programmeState = getProgrammeStateForLesson(
@@ -218,25 +362,122 @@ describe("TeacherBrowseAnalyticsStore", () => {
     );
   });
 
-  test.each(["lessonAccessed", "unitAccessed"] as const)(
-    "%s tracks with lesson analytics properties",
-    (eventName) => {
-      const lessonState = getProgrammeStateForLesson(
-        teachersLessonOverviewFixture(),
-      );
-      const { store, avo } = buildStore({
-        programmeState: lessonState,
-        accessLevel: "lesson",
-      });
+  test("lessonAccessed derives unit analytics properties from programme state", () => {
+    const lessonState = getProgrammeStateForLesson(
+      teachersLessonOverviewFixture(),
+    );
+    const { store, avo } = buildStore({
+      programmeState: lessonState,
+      accessLevel: "lesson",
+    });
 
-      store.getState().track[eventName]({
+    store.getState().track.lessonAccessed({
+      componentType: ComponentType.UNIT_SEQUENCE_TAB,
+      lessonReleaseCohort: "cohort-1" as LessonReleaseCohortValueType,
+      lessonReleaseDate: "2023-01-01",
+      lessonName: "Structure of cells",
+      lessonSlug: "lesson-3-structure-of-cells",
+    });
+
+    expect(avo.lessonAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        analyticsUseCase: "Teacher",
+        accessLevel: "lesson",
+        journeyId: "journey-1",
         componentType: ComponentType.UNIT_SEQUENCE_TAB,
-        unitName: "Cells",
-        unitSlug: "cells",
-        lessonReleaseCohort: "cohort-1" as LessonReleaseCohortValueType,
+        engagementIntent: "refine",
+        eventVersion: "2.0.0",
+        examBoard: null,
+        keyStageTitle: "Key stage 3",
+        keyStageSlug: "ks3",
+        lessonReleaseCohort: "cohort-1",
         lessonReleaseDate: "2023-01-01",
         lessonName: "Structure of cells",
         lessonSlug: "lesson-3-structure-of-cells",
+        subjectTitle: "Biology",
+        subjectSlug: "biology",
+        unitName: "Cells",
+        unitSlug: "cells",
+        tierName: null,
+        phase: "secondary",
+        platform: "owa",
+        product: "teacher lesson resources",
+        pathway: null,
+        yearGroupName: "Year 7",
+        yearGroupSlug: "year-7",
+      }),
+    );
+  });
+
+  test("lessonAccessed uses caller-provided unitContext", () => {
+    const lessonState = getProgrammeStateForLesson(
+      teachersLessonOverviewFixture(),
+    );
+    const { store, avo } = buildStore({
+      programmeState: lessonState,
+      accessLevel: "lesson",
+    });
+
+    store.getState().track.lessonAccessed({
+      componentType: ComponentType.UNIT_SEQUENCE_TAB,
+      lessonReleaseCohort: "cohort-1" as LessonReleaseCohortValueType,
+      lessonReleaseDate: "2023-01-01",
+      lessonName: "Structure of cells",
+      lessonSlug: "lesson-3-structure-of-cells",
+      unitContext: {
+        unitName: "Cells",
+        unitSlug: "cells",
+        keyStageTitle: "Key Stage 4" as KeyStageTitleValueType,
+        keyStageSlug: "key-stage-4",
+        tierName: undefined,
+        examBoard: "aqa" as ExamBoardValueType,
+        pathway: undefined,
+        yearGroupName: "Year 10",
+        yearGroupSlug: "year-10",
+      },
+    });
+
+    expect(avo.lessonAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        analyticsUseCase: "Teacher",
+        accessLevel: "lesson",
+        journeyId: "journey-1",
+        componentType: ComponentType.UNIT_SEQUENCE_TAB,
+        engagementIntent: "refine",
+        eventVersion: "2.0.0",
+        examBoard: "aqa",
+        keyStageTitle: "Key Stage 4",
+        keyStageSlug: "key-stage-4",
+        lessonReleaseCohort: "cohort-1",
+        lessonReleaseDate: "2023-01-01",
+        lessonName: "Structure of cells",
+        lessonSlug: "lesson-3-structure-of-cells",
+        unitName: "Cells",
+        unitSlug: "cells",
+        tierName: undefined,
+        platform: "owa",
+        product: "teacher lesson resources",
+        pathway: undefined,
+        yearGroupName: "Year 10",
+        yearGroupSlug: "year-10",
+      }),
+    );
+  });
+
+  test("unitAccessed tracks with caller-provided analytics properties", () => {
+    const lessonState = getProgrammeStateForLesson(
+      teachersLessonOverviewFixture(),
+    );
+    const { store, avo } = buildStore({
+      programmeState: lessonState,
+      accessLevel: "lesson",
+    });
+
+    store.getState().track.unitAccessed({
+      componentType: ComponentType.UNIT_SEQUENCE_TAB,
+      unitContext: {
+        unitName: "Cells",
+        unitSlug: "cells",
         keyStageTitle: "Key Stage 4" as KeyStageTitleValueType,
         keyStageSlug: "key-stage-4",
         tierName: undefined,
@@ -246,32 +487,31 @@ describe("TeacherBrowseAnalyticsStore", () => {
         subjectSlug: "biology",
         yearGroupName: "Year 10",
         yearGroupSlug: "year-10",
-      });
+      },
+    });
 
-      expect(avo[eventName]).toHaveBeenCalledWith(
-        expect.objectContaining({
-          analyticsUseCase: "Teacher",
-          componentType: ComponentType.UNIT_SEQUENCE_TAB,
-          engagementIntent: "refine",
-          eventVersion: "2.0.0",
-          examBoard: "aqa",
-          keyStageTitle: "Key Stage 4",
-          keyStageSlug: "key-stage-4",
-          subjectTitle: "Biology",
-          subjectSlug: "biology",
-          unitName: "Cells",
-          unitSlug: "cells",
-          tierName: undefined,
-          phase: "secondary",
-          platform: "owa",
-          product: "teacher lesson resources",
-          pathway: undefined,
-          yearGroupName: "Year 10",
-          yearGroupSlug: "year-10",
-        }),
-      );
-    },
-  );
+    expect(avo.unitAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        analyticsUseCase: "Teacher",
+        componentType: ComponentType.UNIT_SEQUENCE_TAB,
+        engagementIntent: "refine",
+        eventVersion: "2.0.0",
+        examBoard: "aqa",
+        keyStageTitle: "Key Stage 4",
+        keyStageSlug: "key-stage-4",
+        subjectTitle: "Biology",
+        subjectSlug: "biology",
+        unitName: "Cells",
+        unitSlug: "cells",
+        tierName: undefined,
+        platform: "owa",
+        product: "teacher lesson resources",
+        pathway: undefined,
+        yearGroupName: "Year 10",
+        yearGroupSlug: "year-10",
+      }),
+    );
+  });
 
   test("lessonResourcesDownloaded tracks with lesson analytics properties and formatted resource details", () => {
     const lessonState = getProgrammeStateForLesson(
@@ -486,13 +726,11 @@ describe("TeacherBrowseAnalyticsStore", () => {
     ],
     ["lessonShareStarted", undefined],
     ["mediaClipsPlaylistPlayed", mediaClipsPlaylistPayload],
-    ["onwardContentSelected", { onwardIntent: OnwardIntent.VIEW_LESSON }],
     [
       "teachingMaterialsSelected",
       { teachingMaterialType: TeachingMaterialType.EXIT_QUIZ },
     ],
     ["unitDownloaded", undefined],
-    ["unitDownloadStarted", undefined],
     ["curriculumExplainerExplored", undefined],
     [
       "curriculumResourcesDownloadRefined",

@@ -1,4 +1,5 @@
 import { notFound, unstable_rethrow } from "next/navigation";
+import { ClientError } from "graphql-request";
 
 import withPageErrorHandling from "./withPageErrorHandling";
 
@@ -77,6 +78,44 @@ describe("withPageErrorHandling", () => {
 
     expect(unstable_rethrow).toHaveBeenCalledWith(redirectError);
     expect(mockReport).not.toHaveBeenCalled();
+  });
+
+  it("rethrows a 403 ClientError without reporting it", async () => {
+    const forbiddenError = new ClientError(
+      { status: 403, headers: new Headers(), body: "" },
+      { query: "query test { test }" },
+    );
+    const AsyncComponent = jest.fn(async () => {
+      throw forbiddenError;
+    });
+    const WrappedPage = withPageErrorHandling(AsyncComponent, "test-page");
+
+    await expect(WrappedPage({ params: Promise.resolve({}) })).rejects.toBe(
+      forbiddenError,
+    );
+
+    expect(unstable_rethrow).toHaveBeenCalledWith(forbiddenError);
+    expect(notFound).not.toHaveBeenCalled();
+    expect(mockReport).not.toHaveBeenCalled();
+  });
+
+  it("reports and rethrows a non-403 ClientError", async () => {
+    const serverError = new ClientError(
+      { status: 500, headers: new Headers(), body: "" },
+      { query: "query test { test }" },
+    );
+    const AsyncComponent = jest.fn(async () => {
+      throw serverError;
+    });
+    const WrappedPage = withPageErrorHandling(AsyncComponent, "test-page");
+
+    await expect(
+      WrappedPage({ params: Promise.resolve({ slug: "test-slug" }) }),
+    ).rejects.toBe(serverError);
+
+    expect(mockReport).toHaveBeenCalledWith(serverError, {
+      slug: "test-slug",
+    });
   });
 
   it("reports and rethrows unexpected errors, including page params in the report", async () => {

@@ -1,22 +1,34 @@
 import { usePathname } from "next/navigation";
 
-import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
+import {
+  parseProgrammeSlug,
+  parseSubjectPhaseSlug,
+} from "@/utils/curriculum/slugs";
 
 export type JourneySlugs = {
   subjectSlug: string;
   phaseSlug: string;
 };
 
-const useJourneySlugsContext = (): JourneySlugs => {
-  const pathname = usePathname();
-  let parsed: ReturnType<typeof parseSubjectPhaseSlug> | undefined;
+export const getProgrammeSlugFromPathname = (
+  pathname: string | null | undefined,
+): string | null => {
   for (const segment of pathname?.split("/") ?? []) {
-    const result = parseSubjectPhaseSlug(segment);
-    if (result) {
-      parsed = result;
-      break;
+    if (parseProgrammeSlug(segment) || parseSubjectPhaseSlug(segment)) {
+      return segment;
     }
   }
+
+  return null;
+};
+
+const useJourneySlugsContext = (): JourneySlugs => {
+  const pathname = usePathname();
+  const programmeSlug = getProgrammeSlugFromPathname(pathname);
+  const parsed = programmeSlug
+    ? (parseProgrammeSlug(programmeSlug) ??
+      parseSubjectPhaseSlug(programmeSlug))
+    : null;
 
   return {
     subjectSlug: parsed?.subjectSlug ?? "null",

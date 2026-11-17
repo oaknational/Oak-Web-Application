@@ -15,9 +15,15 @@ import {
 import * as onboardingActions from "./onboardingActions";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
+import { hubspotSubmitForm } from "@/browser-lib/hubspot/forms";
+import {
+  mockLoggedIn,
+  mockNotOnboardedUser,
+} from "@/__tests__/__helpers__/mockUser";
 import type { OnboardingSchema } from "@/common-lib/schemas/onboarding";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+
+fetchMock.doMock();
 
 const setEmailInLocalStorage = jest.fn();
 const setSchoolInLocalStorage = jest.fn();
@@ -46,16 +52,13 @@ type OnboardingFormState = DefaultValues<OnboardingFormProps>;
 const mockPush = jest.fn();
 
 describe("Onboarding form", () => {
-  beforeAll(() => {
-    fetchMock.enableMocks();
-  });
-  afterAll(() => {
-    fetchMock.disableMocks();
-  });
   beforeEach(() => {
     setUseUserReturn(mockLoggedIn);
     mockPush.mockClear();
-    (useRouter as jest.Mock).mockReturnValue({ push: mockPush });
+    (useRouter as jest.Mock).mockReturnValue({
+      push: mockPush,
+      refresh: jest.fn(),
+    });
     (useSearchParams as jest.Mock).mockReturnValue(new URLSearchParams());
   });
 
@@ -132,6 +135,22 @@ describe("Onboarding form", () => {
 
     afterEach(() => {
       jest.spyOn(onboardingActions, "onboardUser").mockReset();
+    });
+
+    it("does not mark the user onboarded when HubSpot submission fails", async () => {
+      setUseUserReturn(mockNotOnboardedUser);
+      jest.mocked(hubspotSubmitForm).mockClear();
+      jest
+        .mocked(hubspotSubmitForm)
+        .mockRejectedValueOnce(new Error("HubSpot unavailable"));
+
+      await submitForm(formState);
+
+      expect(onboardingActions.onboardUser).not.toHaveBeenCalled();
+      expect(hubspotSubmitForm).toHaveBeenCalledTimes(1);
+      expect(mockPush).toHaveBeenCalledWith(
+        expect.stringContaining("/downloads"),
+      );
     });
 
     it("only allows the form to be submitted once", async () => {

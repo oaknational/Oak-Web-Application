@@ -1,3 +1,4 @@
+import { PathwayValueType } from "@/browser-lib/avo/Avo";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 
 export function getShouldDisplayCorePathway(
@@ -12,5 +13,18 @@ export function getSuffixFromPathway(pathway: string | null) {
     return "(Core)";
   } else if (pathway === "gcse") {
     return "(GCSE)";
+  }
+}
+
+export function getPathwayTitleFromSlug(
+  pathwaySlug?: string | null,
+): PathwayValueType | undefined {
+  switch (pathwaySlug) {
+    case "gcse":
+      return "GCSE";
+    case "core":
+      return "Core";
+    default:
+      return undefined;
   }
 }

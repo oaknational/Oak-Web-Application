@@ -31,6 +31,8 @@ const PupilSubjectListing = (props: SubjectListingPageProps) => {
           title: `${yearDescription} - Subject listing`,
           description: `Subject listing for ${yearDescription}`,
         }),
+        noIndex: /^year-[1-9]$/.test(curriculumData[0].yearSlug),
+        noFollow: false,
       }}
     >
       <PupilViewsSubjectListing subjects={curriculumData} />

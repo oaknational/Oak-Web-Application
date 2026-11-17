@@ -6,6 +6,7 @@ import {
   OakP,
 } from "@oaknational/oak-components";
 
+import { NEWSLETTER_COUNT } from "@/components/GenericPagesComponents/NewsletterForm/newsletterConstants";
 import NewsletterForm, {
   NewsletterFormProps,
 } from "@/components/GenericPagesComponents/NewsletterForm";
@@ -28,7 +29,12 @@ type NewsletterFormWrapProps = {
 } & Pick<NewsletterFormProps, "onSubmit">;
 
 const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
-  const { containerProps, anchorTargetId, desktopColSpan = 12 } = props;
+  const {
+    containerProps,
+    anchorTargetId,
+    desktopColSpan = 12,
+    ...restProps
+  } = props;
 
   const id = useId();
   const descriptionId = `${id}-newsletter-form-description`;
@@ -55,8 +61,8 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
             color={"text-primary"}
             id={descriptionId}
           >
-            Join over 100k teachers and get free resources and other helpful
-            content by email. Unsubscribe at any time. Read our{" "}
+            Join over {NEWSLETTER_COUNT} teachers and get free resources and
+            other helpful content by email. Unsubscribe at any time. Read our{" "}
             <OakLink
               href={resolveOakHref({
                 page: "legal",
@@ -69,7 +75,11 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
           </OakP>
         </OakGridArea>
         <OakGridArea $colSpan={[12, desktopColSpan]} $mt={"spacing-12"}>
-          <NewsletterForm descriptionId={descriptionId} id={id} {...props} />
+          <NewsletterForm
+            descriptionId={descriptionId}
+            id={id}
+            {...restProps}
+          />
         </OakGridArea>
       </OakGrid>
     </Card>

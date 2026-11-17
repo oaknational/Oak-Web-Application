@@ -25,14 +25,10 @@ import { ResourcePageDetailsCompletedProps } from "@/components/TeacherComponent
 import { ResourcePageSchoolDetailsProps } from "@/components/TeacherComponents/ResourcePageSchoolDetails/ResourcePageSchoolDetails";
 import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
 import { SHARE_FORM_ERROR_IDS } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
-import {
-  getValidationSummaryAnnouncement,
-  VALIDATION_SUMMARY_PREFIX,
-} from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/validationSummaryText";
+import { VALIDATION_SUMMARY_PREFIX } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/validationSummaryText";
 import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
 import NoResourcesToShare from "@/components/TeacherComponents/NoResourcesToShare";
 import FieldError from "@/components/SharedComponents/FieldError";
-import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 
 export type SharePageLayoutProps = ResourcePageDetailsCompletedProps &
   ResourcePageSchoolDetailsProps & {
@@ -60,9 +56,6 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
   const hasFormErrors = Object.keys(props.errors).length > 0;
   const validationErrorMessages = getFormErrorMessages(props.errors);
   const hasValidationSummary = validationErrorMessages.length > 0;
-  const validationSummaryAnnouncement = getValidationSummaryAnnouncement(
-    validationErrorMessages,
-  );
   return (
     <OakBox $maxWidth={"spacing-960"} $mb={"spacing-48"}>
       <OakFlex
@@ -148,7 +141,7 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
                       key={props.validationSummaryKey}
                       $flexDirection={"column"}
                     >
-                      <OakFlex aria-hidden={true} $flexDirection={"row"}>
+                      <OakFlex $flexDirection={"row"}>
                         <OakIcon
                           iconName="content-guidance"
                           $colorFilter={"icon-error"}
@@ -168,9 +161,6 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
                           </OakUL>
                         </OakFlex>
                       </OakFlex>
-                      <ScreenReaderOnly data-testid="share-validation-summary-sr">
-                        {validationSummaryAnnouncement}
-                      </ScreenReaderOnly>
                     </OakFlex>
                   )}
 

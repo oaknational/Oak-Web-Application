@@ -126,12 +126,16 @@ export const getAdjacentUnits = ({
       ? {
           slug: nextUnit.unitSlug,
           title: nextUnit.optionalityTitle ?? nextUnit.unitTitle,
+          yearGroupName: nextUnit.yearGroupName,
+          yearSlug: nextUnit.yearSlug,
         }
       : null,
     prevUnit: prevUnit
       ? {
           slug: prevUnit.unitSlug,
           title: prevUnit.optionalityTitle ?? prevUnit.unitTitle,
+          yearGroupName: prevUnit.yearGroupName,
+          yearSlug: prevUnit.yearSlug,
         }
       : null,
   };
@@ -280,7 +284,7 @@ export const getPackagedUnit = ({
     tierTitle: modifiedProgrammeFields.tier_description,
     examBoardSlug: modifiedProgrammeFields.examboard_slug,
     examBoardTitle: modifiedProgrammeFields.examboard,
-    yearSlug: modifiedProgrammeFields.year_slug,
+    yearGroupSlug: modifiedProgrammeFields.year_slug,
     yearGroupTitle: modifiedProgrammeFields.year_description,
     year: modifiedProgrammeFields.year,
     lessons: unitLessons,

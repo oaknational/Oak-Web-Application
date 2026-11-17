@@ -5,17 +5,20 @@ import {
   UnitHeaderNavFooterProps,
 } from "./UnitHeaderNavFooter";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const defaultProps: UnitHeaderNavFooterProps = {
   backgroundColorLevel: 3,
   viewHref: "testUrl",
 };
 
-const render = renderWithTheme;
+const render = renderWithProviders();
 
 const createDownloadButton = () =>
   jest.fn(() => <button>action button</button>);
+
+const next = { title: "Next lesson", href: "nextUrl" };
+const prev = { title: "Previous lesson", href: "prevUrl" };
 
 describe("UnitHeaderNavFooter", () => {
   it("Renders the correct text for the view href", () => {
@@ -25,13 +28,7 @@ describe("UnitHeaderNavFooter", () => {
     expect(viewLink).toBeInTheDocument();
   });
   it("Renders previous and next links with correct text", () => {
-    render(
-      <UnitHeaderNavFooter
-        {...defaultProps}
-        prevHref="prevUrl"
-        nextHref="nextUrl"
-      />,
-    );
+    render(<UnitHeaderNavFooter {...defaultProps} next={next} prev={prev} />);
 
     const prevLink = screen.getByRole("link", { name: "Previous unit" });
     expect(prevLink).toBeInTheDocument();
@@ -46,7 +43,7 @@ describe("UnitHeaderNavFooter", () => {
       <UnitHeaderNavFooter {...defaultProps} downloadButton={downloadButton} />,
     );
 
-    const actionButton = screen.getByRole("button");
+    const actionButton = screen.getByRole("button", { name: "action button" });
     expect(actionButton).toBeInTheDocument();
     expect(actionButton).toHaveTextContent("action button");
     expect(downloadButton).toHaveBeenCalledWith(false);
@@ -68,8 +65,8 @@ describe("UnitHeaderNavFooter", () => {
         {...defaultProps}
         isStuck={false}
         title="Unit title"
-        prevHref="prevUrl"
-        nextHref="nextUrl"
+        next={next}
+        prev={prev}
       />,
     );
 
@@ -85,8 +82,8 @@ describe("UnitHeaderNavFooter", () => {
         {...defaultProps}
         isStuck={true}
         title="Unit title"
-        prevHref="prevUrl"
-        nextHref="nextUrl"
+        next={next}
+        prev={prev}
         backgroundColorLevel={4}
         downloadButton={downloadButton}
       />,

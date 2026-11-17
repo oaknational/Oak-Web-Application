@@ -1,8 +1,9 @@
-import { match, compile, MatchFunction } from "path-to-regexp";
+import { match, compile, MatchFunction, MatchResult } from "path-to-regexp";
 
 import createQueryStringFromObject, {
   UrlQueryObject,
 } from "./createQueryStringFromObject";
+import { nationalCurriculumInsightsGuidanceHref } from "./nationalCurriculumInsights";
 
 import { PageNameValueType } from "@/browser-lib/avo/Avo";
 import isBrowser from "@/utils/isBrowser";
@@ -227,9 +228,11 @@ type AboutUsMeetTheTeamBioLinkProps = {
   slug: string;
 };
 type AboutUsGetInvolvedLinkProps = { page: "about-get-involved" };
+type AboutUsJoinResearchPanelLinkProps = { page: "about-join-research-panel" };
 type AboutUsOaksCurriculaLinkProps = { page: "about-oaks-curricula" };
 type AboutUsOaksImpactLinkProps = { page: "about-oaks-impact" };
 type AboutUsCaseStudyLinkProps = { page: "about-case-study"; slug: string };
+type AboutUsCaseStudyLibraryLinkProps = { page: "about-case-study-library" };
 
 type CareersLinkProps = { page: "careers" };
 type ContactUsLinkProps = { page: "contact" };
@@ -239,6 +242,9 @@ type PupilHelpLinkProps = { page: "pupil-help" };
 type GuideToOakLinkProps = { page: "guide-to-oak" };
 type HomeLinkProps = { page: "home" };
 type LessonPlanningLinkProps = { page: "lesson-planning" };
+type CurriculumChangeExplainedLinkProps = {
+  page: "curriculum-change-explained";
+};
 type LegalLinkProps = {
   page: "legal";
   /**
@@ -256,6 +262,7 @@ type LabsTeachingMaterialsLinkProps = {
   page: "labs-teaching-materials";
   query?: UrlQueryObject;
 };
+type McpLinkProps = { page: "mcp" };
 type TeacherHubLinkProps = { page: "teacher-hub" };
 
 type OnboardingLinkProps = {
@@ -303,8 +310,6 @@ type ProgrammePageProps = {
     years?: string;
     pathways?: string;
     threads?: string;
-    focus_ks4option?: string;
-    open_filters_modal?: string;
     subject_categories?: string;
   };
 };
@@ -330,7 +335,30 @@ type EyfsPageLinkProps = {
   subjectSlug: string;
 };
 
-type TeachWithOakLinkProps = { page: "teach-with-oak" };
+export type TeachWithOakQueryProps = {
+  returnTo: string;
+  lessonName: string;
+  unitName: string;
+};
+
+type TeachWithOakDownloadLinkProps = {
+  page: "teach-with-oak-download";
+  query?: TeachWithOakQueryProps;
+};
+
+type TeachWithOakDownloadSuccessLinkProps = {
+  page: "teach-with-oak-download-success";
+  query?: TeachWithOakQueryProps;
+};
+
+type TeachWithOakLinkProps = {
+  page: "teach-with-oak";
+  query?: TeachWithOakQueryProps;
+};
+
+type TeachWithOakThinkingBehindOakLessonsLinkProps = {
+  page: "teach-with-oak-thinking-behind-oak-lessons";
+};
 
 type OnlyPageRequired<T> = T extends { page: string }
   ? { page: T["page"] } extends T
@@ -346,6 +374,7 @@ export type OakLinkPropsRequiringPageOnly = Extract<
 export type OakLinkProps =
   | LabsLinkProps
   | LabsTeachingMaterialsLinkProps
+  | McpLinkProps
   | TeachersHomePageProps
   | LandingPageLinkProps
   | LessonDownloadsLinkProps
@@ -379,13 +408,16 @@ export type OakLinkProps =
   | AboutUsMeetTheTeamLinkProps
   | AboutUsMeetTheTeamBioLinkProps
   | AboutUsGetInvolvedLinkProps
+  | AboutUsJoinResearchPanelLinkProps
   | AboutUsOaksCurriculaLinkProps
   | AboutUsOaksImpactLinkProps
   | AboutUsCaseStudyLinkProps
+  | AboutUsCaseStudyLibraryLinkProps
   | CareersLinkProps
   | ContactUsLinkProps
   | HomeLinkProps
   | LessonPlanningLinkProps
+  | CurriculumChangeExplainedLinkProps
   | OurTeachersLinkProps
   | OakCurriculumLinkProps
   | ClassroomLinkProps
@@ -409,7 +441,10 @@ export type OakLinkProps =
   | EyfsPageLinkProps
   | GuideToOakLinkProps
   | FontHelpLinkProps
-  | TeachWithOakLinkProps;
+  | TeachWithOakLinkProps
+  | TeachWithOakDownloadLinkProps
+  | TeachWithOakDownloadSuccessLinkProps
+  | TeachWithOakThinkingBehindOakLessonsLinkProps;
 
 export type ExternalPageName =
   | "[external] Careers"
@@ -580,6 +615,12 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "about-get-involved",
   }),
+  "about-join-research-panel": createOakPageConfig({
+    pathPattern: "/about-us/get-involved/join-research-panel",
+    analyticsPageName: "About Us: Join Research Panel",
+    configType: "internal",
+    pageType: "about-join-research-panel",
+  }),
   "about-oaks-curricula": createOakPageConfig({
     pathPattern: "/about-us/oaks-curricula",
     analyticsPageName: "About Us: Oak's curricula",
@@ -597,6 +638,12 @@ export const OAK_PAGES: {
     analyticsPageName: "About Us: Case Study",
     configType: "internal",
     pageType: "about-case-study",
+  }),
+  "about-case-study-library": createOakPageConfig({
+    pathPattern: "/about-us/case-studies",
+    analyticsPageName: "About Us: Case Study Library",
+    configType: "internal",
+    pageType: "about-case-study-library",
   }),
   careers: createOakPageConfig({
     url: "https://app.beapplied.com/org/1574/oak-national-academy",
@@ -646,6 +693,12 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "lesson-planning",
   }),
+  "curriculum-change-explained": createOakPageConfig({
+    pathPattern: nationalCurriculumInsightsGuidanceHref(),
+    analyticsPageName: "Landing Page",
+    configType: "internal",
+    pageType: "curriculum-change-explained",
+  }),
   legal: createOakPageConfig({
     pathPattern: "/legal/:legalSlug",
     analyticsPageName: "Legal",
@@ -669,6 +722,12 @@ export const OAK_PAGES: {
     analyticsPageName: "[external] Labs",
     configType: "external",
     pageType: "labs-teaching-materials",
+  }),
+  mcp: createOakPageConfig({
+    pathPattern: "/ai-plugin",
+    analyticsPageName: "AI Plugin",
+    configType: "internal",
+    pageType: "mcp",
   }),
   "our-teachers": createOakPageConfig({
     url: "https://classroom.thenational.academy/teachers",
@@ -738,7 +797,7 @@ export const OAK_PAGES: {
   }),
   "pupil-lesson": createOakPageConfig({
     pathPattern:
-      "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
+      "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/overview",
     analyticsPageName: "Lesson",
     configType: "internal",
     pageType: "pupil-lesson",
@@ -963,6 +1022,24 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "teach-with-oak",
   }),
+  "teach-with-oak-download": createOakPageConfig({
+    pathPattern: "/teachers/teach-with-oak/downloads",
+    analyticsPageName: "Teach With Oak",
+    configType: "internal",
+    pageType: "teach-with-oak-download",
+  }),
+  "teach-with-oak-download-success": createOakPageConfig({
+    pathPattern: "/teachers/teach-with-oak/downloads/success",
+    analyticsPageName: "Teach With Oak",
+    configType: "internal",
+    pageType: "teach-with-oak-download-success",
+  }),
+  "teach-with-oak-thinking-behind-oak-lessons": createOakPageConfig({
+    pathPattern: "/teachers/teach-with-oak/the-thinking-behind-oak-lessons",
+    analyticsPageName: "Teach With Oak",
+    configType: "internal",
+    pageType: "teach-with-oak-thinking-behind-oak-lessons",
+  }),
 };
 
 export type ResolveOakHrefProps = Exclude<
@@ -993,4 +1070,24 @@ export function resolveOakHref(props: ResolveOakHrefProps): string {
 
     return "/";
   }
+}
+
+/**
+ * Extract oak href params from a passed in path string
+ * or return false if the path does not match the expected page type
+ */
+type MatchPropsForPage<TPage extends OakPageType> = Omit<
+  Extract<OakLinkProps, { page: TPage }>,
+  "page"
+>;
+
+export function matchOakHref<TPage extends OakPageType>(
+  path: string,
+  page: TPage,
+): false | MatchResult<MatchPropsForPage<TPage>>;
+export function matchOakHref(
+  path: string,
+  page: OakPageType,
+): false | MatchResult<Omit<OakLinkProps, "page">> {
+  return OAK_PAGES[page].matchHref(path);
 }

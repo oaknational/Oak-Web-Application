@@ -24,6 +24,7 @@ import {
   CurriculumUnitsFormattedData,
   formatCurriculumUnitsData,
 } from "../../tab-helpers";
+import { addQueryParamsToUrl } from "../../utils";
 
 import { buildUnit } from "./unit_detail";
 
@@ -385,14 +386,24 @@ async function buildYear(
     ),
   });
 
+  const subjectPhaseSlug = getSubjectPhaseSlug({
+    subject: slugs.subjectSlug,
+    phaseSlug: slugs.phaseSlug!,
+    examBoardSlug: slugs.ks4OptionSlug,
+  });
+
+  const interactiveSequenceLinkWithQueryParams = addQueryParamsToUrl(
+    `https://www.thenational.academy/teachers/programmes/${subjectPhaseSlug}/units`,
+    {
+      years: year,
+      utm_source: "curriculum_plan",
+      utm_medium: "document",
+      utm_campaign: `${slugs.subjectSlug.replaceAll("-", "_")}_${slugs.phaseSlug}_curriculum_plan`,
+    },
+  );
+
   const links = await insertLinks(zip, {
-    interactiveSequence: `https://www.thenational.academy/teachers/programmes/${getSubjectPhaseSlug(
-      {
-        subject: slugs.subjectSlug,
-        phaseSlug: slugs.phaseSlug!,
-        examBoardSlug: slugs.ks4OptionSlug,
-      },
-    )}/units`,
+    interactiveSequence: interactiveSequenceLinkWithQueryParams,
   });
 
   const units = removeDups(unitsInput);

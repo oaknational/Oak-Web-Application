@@ -18,7 +18,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { useCaptureFeatureFlag } from "@/utils/posthogExperiments/useCaptureFeatureFlag";
+import { UnitDownloadExistence } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 type DownloadSuccessViewLesson = {
   lessonTitle: string;
@@ -34,16 +34,14 @@ type DownloadSuccessViewLesson = {
 
 export type DownloadSuccessViewProps = {
   lesson: DownloadSuccessViewLesson;
-  /** Enabled on the `variant` route, disabled on the control route */
-  showCompactHeader?: boolean;
+} & {
+  unitDownloadExistence: UnitDownloadExistence;
 };
 
 export function DownloadSuccessView({
   lesson,
-  showCompactHeader = false,
+  unitDownloadExistence,
 }: Readonly<DownloadSuccessViewProps>) {
-  useCaptureFeatureFlag("download-success-header-compact");
-
   const {
     lessonSlug,
     programmeSlug,
@@ -55,7 +53,7 @@ export function DownloadSuccessView({
     lessonReleaseDate,
   } = lesson;
 
-  const { unitDownloaded, onwardContentSelected } = useTeacherBrowseAnalytics(
+  const { unitDownloaded, lessonAccessed } = useTeacherBrowseAnalytics(
     (store) => store.track,
   );
 
@@ -81,16 +79,17 @@ export function DownloadSuccessView({
           unitSlug,
         })}
         onBackClick={() =>
-          onwardContentSelected({
-            onwardIntent: "view-lesson",
+          lessonAccessed({
+            componentType: "back_a_step_button",
+            navigationType: "across",
             lessonName: lessonTitle,
             lessonSlug,
             lessonReleaseDate,
+            lessonReleaseCohort: "2023-2026",
           })
         }
         backgroundColorLevel={1}
         returnTo="lesson"
-        showCompactHeader={showCompactHeader}
       />
       <OakBox $ph={["spacing-20", "spacing-40"]}>
         <OakGrid
@@ -145,6 +144,7 @@ export function DownloadSuccessView({
                       </OakBox>
                     </OakSpan>
                   }
+                  unitDownloadExistence={unitDownloadExistence}
                 />
               }
             />

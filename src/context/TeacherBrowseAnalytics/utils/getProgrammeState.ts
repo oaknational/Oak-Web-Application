@@ -36,6 +36,7 @@ function getSharedProgrammeState(
       ...coreState,
       year: data.year,
       yearGroupTitle: data.yearGroupTitle,
+      yearGroupSlug: data.yearGroupSlug,
       keyStageSlug: data.keyStageSlug,
       keyStageTitle: data.keyStageTitle,
       tierSlug: data.tierSlug,

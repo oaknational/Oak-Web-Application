@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/dom";
+import userEvent from "@testing-library/user-event";
 
 import { SaveCount } from "./SaveCount";
 
@@ -14,11 +15,47 @@ jest.mock("@/node-lib/educator-api/helpers/useGetEducatorData", () => ({
   })),
 }));
 
+const mockSignInStarted = jest.fn();
+jest.mock(
+  "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider",
+  () => ({
+    ...jest.requireActual(
+      "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider",
+    ),
+    useTeacherBrowseAnalytics: () => ({ signInStarted: mockSignInStarted }),
+  }),
+);
+
+const clickMyLibrary = async () => {
+  const link = screen.getByRole("link", { name: /My library/ });
+  link.addEventListener("click", (e) => e.preventDefault());
+  await userEvent.setup().click(link);
+};
+
 describe("SaveCount", () => {
   const renderer = renderWithProviders();
 
   beforeEach(() => {
+    mockSignInStarted.mockClear();
     setUseUserReturn(mockLoggedIn);
+  });
+  it("tracks sign in started when a signed out user clicks my library", async () => {
+    setUseUserReturn(mockLoggedOut);
+    renderer(<SaveCount />);
+
+    await clickMyLibrary();
+
+    expect(mockSignInStarted).toHaveBeenCalledTimes(1);
+    expect(mockSignInStarted).toHaveBeenCalledWith({
+      componentType: "topnav_my_library_button",
+    });
+  });
+  it("does not track sign in started when a signed in user clicks my library", async () => {
+    renderer(<SaveCount />);
+
+    await clickMyLibrary();
+
+    expect(mockSignInStarted).not.toHaveBeenCalled();
   });
   it("renders the save count", () => {
     renderer(<SaveCount />);
@@ -40,7 +77,7 @@ describe("SaveCount", () => {
     const link = screen.getByRole("link", {
       name: "My library: 10 saved units",
     });
-    expect(link.textContent).toContain("(10)");
+    expect(link).toHaveTextContent("(10)");
     setUseUserReturn(mockLoggedOut);
     rerender(<SaveCount />);
 
@@ -48,6 +85,6 @@ describe("SaveCount", () => {
       screen.getByRole("link", {
         name: "My library",
       }),
-    ).not.toContain("(10)");
+    ).not.toHaveTextContent("(10)");
   });
 });

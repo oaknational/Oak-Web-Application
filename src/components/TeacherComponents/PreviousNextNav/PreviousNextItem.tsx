@@ -34,6 +34,10 @@ type PreviousNextItemProps = Pick<
    * Optional index of the browse item to be displayed along with the title
    */
   index?: number;
+  /**
+   * Optional callback function called on navigation
+   */
+  onClick?: () => void;
 };
 
 const StyledFlexContainer = styled(OakFlex)<
@@ -67,6 +71,7 @@ export default function PreviousNextItem({
   href,
   navDirection,
   backgroundColorLevel,
+  onClick,
 }: Readonly<PreviousNextItemProps>) {
   return (
     <OakFocusIndicator $borderRadius={"border-radius-l"} $minHeight={"100%"}>
@@ -80,6 +85,7 @@ export default function PreviousNextItem({
         $backgroundColorLevel={backgroundColorLevel}
         as={Link}
         href={href}
+        onClick={onClick}
         $color={"text-primary"}
         rel={navDirection}
         $minHeight={"100%"}

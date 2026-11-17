@@ -8,6 +8,10 @@ import noop from "@/__tests__/__helpers__/noop";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
+jest.mock("@/browser-lib/hubspot/forms/hubspotSubmitForm", () => ({
+  __esModule: true,
+  default: jest.fn().mockResolvedValue("Thanks, that's been received!"),
+}));
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
@@ -39,7 +43,7 @@ describe("WebinarRegistration", () => {
   });
   test("clicking button calls onSubmit() if form filled out", async () => {
     const onSubmit = jest.fn();
-    const { getByRole, getByPlaceholderText } = renderWithTheme(
+    const { getByRole, getByPlaceholderText, findByText } = renderWithTheme(
       <WebinarRegistration {...props} onSubmit={onSubmit} />,
     );
 
@@ -54,6 +58,9 @@ describe("WebinarRegistration", () => {
       getByRole("button", { name: "Sign up to the newsletter" }),
     );
     expect(onSubmit).toHaveBeenCalledTimes(1);
+    expect(
+      await findByText("Thanks, that's been received!"),
+    ).toBeInTheDocument();
   });
   test("button has a11y name with enough context", async () => {
     // visible label is just "Register", which on its own lacks context

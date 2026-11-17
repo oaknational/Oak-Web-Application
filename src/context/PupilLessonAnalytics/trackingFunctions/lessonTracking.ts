@@ -28,6 +28,9 @@ export const trackLessonAccessed = ({
     ...additionalArgs,
     ...getCorePropertyArgs(additionalArgs.clientEnvironment),
     componentType: ComponentType.PAGE_VIEW,
+    journeyId: undefined,
+    accessLevel: undefined,
+    navigationType: undefined,
   });
 };
 

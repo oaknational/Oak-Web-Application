@@ -31,7 +31,7 @@ const getDownloadLink = async ({
   authToken,
 }: {
   downloadEndpoint: string;
-  meta: {
+  meta?: {
     downloadSlug: string;
     selection?: string;
     isLegacyDownload?: boolean;
@@ -114,6 +114,14 @@ export const createUnitDownloadLink = async ({
     downloadEndpoint,
     meta,
     authToken,
+  });
+  return url;
+};
+
+export const createTeachWithOakDownloadLink = async () => {
+  const downloadEndpoint = `${DOWNLOADS_API_URL}/api/teach-with-oak/short-reads/download`;
+  const url = await getDownloadLink({
+    downloadEndpoint,
   });
   return url;
 };

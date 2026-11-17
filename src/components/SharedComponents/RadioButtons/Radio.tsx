@@ -13,19 +13,19 @@ import { RadioContext } from "./RadioGroup";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 
 const StyledRadio = styled.span<{
-  isSelected: boolean;
-  isFocusVisible: boolean;
-  hasError?: boolean;
+  $isSelected: boolean;
+  $isFocusVisible: boolean;
+  $hasError?: boolean;
 }>`
   height: 24px;
   width: 24px;
   border: 2px solid
     ${(props) =>
-      props.isFocusVisible
+      props.$isFocusVisible
         ? getColorByName("black")
         : getColorByName("grey50")};
   ${(props) =>
-    props.hasError &&
+    props.$hasError &&
     css`
       border: 2px solid ${getColorByName("red")};
     `}
@@ -39,22 +39,22 @@ const StyledRadio = styled.span<{
   cursor: pointer;
   margin-right: 16px;
   ${(props) =>
-    props.isFocusVisible &&
+    props.$isFocusVisible &&
     css`
       box-shadow: 0 0 0 2px ${getColorByName("lemon")};
     `}
 
   &::after {
     content: "";
-    height: ${(props) => (props.isSelected ? "20px" : "16px")};
-    width: ${(props) => (props.isSelected ? "20px" : "16px")};
+    height: ${(props) => (props.$isSelected ? "20px" : "16px")};
+    width: ${(props) => (props.$isSelected ? "20px" : "16px")};
     background: ${(props) =>
-      props.isSelected ? getColorByName("black") : getColorByName("white")};
+      props.$isSelected ? getColorByName("black") : getColorByName("white")};
     display: block;
     position: absolute;
     border-radius: 50%;
     ${(props) =>
-      props.isSelected &&
+      props.$isSelected &&
       css`
         border: 2px solid ${getColorByName("white")};
       `}
@@ -108,10 +108,10 @@ const Radio: FC<AriaRadioProps> = (props) => {
       </VisuallyHidden>
 
       <StyledRadio
-        isSelected={isSelected}
-        isFocusVisible={isFocusVisible}
+        $isSelected={isSelected}
+        $isFocusVisible={isFocusVisible}
         aria-describedby={undefined}
-        hasError={state.validationState === "invalid"}
+        $hasError={state.validationState === "invalid"}
       />
 
       {children}

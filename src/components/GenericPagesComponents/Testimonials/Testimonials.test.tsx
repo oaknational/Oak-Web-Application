@@ -18,7 +18,10 @@ jest.mock("@oaknational/oak-components", () => ({
     <blockquote>
       <p>{quote}</p>
       <footer>
-        {authorImageSrc && <img src={authorImageSrc} alt={authorName} />}
+        {authorImageSrc && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={authorImageSrc} alt={authorName} />
+        )}
         <cite>
           {authorName}
           <span>{authorTitle}</span>

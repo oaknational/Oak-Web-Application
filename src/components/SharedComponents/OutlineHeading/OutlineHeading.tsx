@@ -22,11 +22,7 @@ const fontSize = css<{ $fontSize?: OutlineSizeResponsive }>`
   ${responsive("font-size", (props) => props.$fontSize, parse)}
 `;
 
-// Pa11y complains about the "color" being white on white
-// Todo: use the theme to ensure the shadow color is the contrast color
-const OutlineHeading = styled(OakHeading).attrs({
-  className: "pa11y-ignore",
-})<
+const OutlineHeading = styled(OakHeading)<
   OutlineHeadingProps & {
     $fontSize: OutlineSizeResponsive;
     $lightShadow?: boolean | null;

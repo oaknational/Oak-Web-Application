@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { memo } from "react";
 
 import { SubjectName, getSubjectHeroImageUrl } from "./getSubjectHeroImageUrl";
 
@@ -19,10 +19,10 @@ export type ProgrammeHeaderProps = Omit<
   subject: SubjectName;
 };
 
-export const ProgrammeHeader = (props: ProgrammeHeaderProps) => {
+export const ProgrammeHeader = memo((props: ProgrammeHeaderProps) => {
   const { subject, heading } = props;
 
   const subjectHeroImage = getSubjectHeroImageUrl(subject);
 
   return <Header {...props} heroImage={subjectHeroImage} heading={heading} />;
-};
+});

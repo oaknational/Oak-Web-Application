@@ -14,12 +14,14 @@ import {
 import { constructPathwayLesson, toSentenceCase } from "../../helpers";
 import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 import { getCorrectYear } from "../../helpers/getCorrectYear";
-import { isExcludedFromTeachingMaterials } from "../../helpers/teachingMaterialsAi/isExcluded";
+import {
+  getHideCreateWithAi,
+  isExcludedFromTeachingMaterials,
+} from "../../helpers/teachingMaterialsAi/isExcluded";
 
 import {
   lessonContentSchema,
   LessonOverviewContent,
-  LessonOverviewDownloads,
   LessonOverviewPageData,
   LessonBrowseDataByKs,
   lessonBrowseDataByKsSchema,
@@ -31,73 +33,9 @@ import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { InputMaybe } from "@/node-lib/sanity-graphql/generated/sdk";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { formatBytes } from "@/utils/formatBytes";
+import { buildLessonOverviewDownloads } from "@/common-lib/lessonDownloads";
 
-export const getDownloadsArray = (content: {
-  hasSlideDeckAssetObject: boolean;
-  hasStarterQuiz: boolean;
-  hasExitQuiz: boolean;
-  hasWorksheetAssetObject: boolean;
-  hasWorksheetAnswersAssetObject: boolean;
-  hasWorksheetGoogleDriveDownloadableVersion: boolean;
-  hasSupplementaryAssetObject: boolean;
-  hasLessonGuideObject: boolean;
-  isLegacy: boolean;
-}): LessonOverviewPageData["downloads"] => {
-  const downloads: LessonOverviewDownloads = [
-    {
-      exists: content.hasSlideDeckAssetObject,
-      type: "presentation",
-    },
-    {
-      exists: content.hasStarterQuiz,
-      type: "intro-quiz-questions",
-    },
-    {
-      exists: content.hasStarterQuiz,
-      type: "intro-quiz-answers",
-    },
-    {
-      exists: content.hasExitQuiz,
-      type: "exit-quiz-questions",
-    },
-    {
-      exists: content.hasExitQuiz,
-      type: "exit-quiz-questions",
-    },
-    {
-      exists:
-        (!content.isLegacy &&
-          (content.hasWorksheetAssetObject ||
-            content.hasWorksheetAnswersAssetObject)) ||
-        (content.isLegacy &&
-          content.hasWorksheetGoogleDriveDownloadableVersion),
-      type: "worksheet-pdf",
-    },
-    {
-      exists:
-        (!content.isLegacy &&
-          (content.hasWorksheetAssetObject ||
-            content.hasWorksheetAnswersAssetObject)) ||
-        (content.isLegacy &&
-          content.hasWorksheetGoogleDriveDownloadableVersion),
-      type: "worksheet-pptx",
-    },
-    {
-      exists: content.hasSupplementaryAssetObject,
-      type: "supplementary-pdf",
-    },
-    {
-      exists: content.hasSupplementaryAssetObject,
-      type: "supplementary-docx",
-    },
-    {
-      exists: content.hasLessonGuideObject,
-      type: "lesson-guide-pdf",
-    },
-  ];
-
-  return downloads;
-};
+export const getDownloadsArray = buildLessonOverviewDownloads;
 
 export function getContentGuidance(
   content: LessonOverviewContent["contentGuidance"],
@@ -164,6 +102,7 @@ export const transformedLessonOverviewData = (
   pathways: LessonPathway[] | [],
   unitData: LessonUnitDataByKs,
   excludedFromTeachingMaterials: boolean,
+  shouldHideCreateWithAi: boolean,
 ): LessonOverviewPageData => {
   const reportError = errorReporter("transformedLessonOverviewData");
   const starterQuiz = lessonOverviewQuizData.parse(content.starterQuiz);
@@ -275,6 +214,7 @@ export const transformedLessonOverviewData = (
     geoRestricted: browseData.features?.agfGeoRestricted ?? false,
     loginRequired: browseData.features?.agfLoginRequired ?? false,
     excludedFromTeachingMaterials,
+    shouldHideCreateWithAi,
     subjectCategories: browseData.unitData.subjectcategories || null,
   };
 };
@@ -386,12 +326,21 @@ const lessonOverviewQuery =
       content,
     );
 
+    const shouldHideCreateWithAi = getHideCreateWithAi({
+      subject: browseData.programmeFields.subjectSlug,
+      worksList: restrictedAndHighlyRestrictedWorksList,
+      restrictions: res.restrictions[0],
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      features: browseData.features as any,
+    });
+
     return transformedLessonOverviewData(
       browseData,
       content,
       pathways,
       unitData,
       excludedFromTeachingMaterials,
+      shouldHideCreateWithAi,
     );
   };
 

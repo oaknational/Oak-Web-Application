@@ -35,16 +35,15 @@ export type CollectionData = Array<{
 
 type MyLibraryProps = {
   collectionData: CollectionData | null;
-  isLoading: boolean;
 };
 
 export default function MyLibrary(props: Readonly<MyLibraryProps>) {
-  const { collectionData, isLoading } = props;
+  const { collectionData } = props;
   const collections = collectionData ?? [];
 
-  const hasLoadedCollections = !isLoading && collectionData !== null;
-  const showNoSavedContent = hasLoadedCollections && collections.length === 0;
-  const showCollections = hasLoadedCollections && collections.length > 0;
+  const showNoSavedContent =
+    collectionData !== null && collections.length === 0;
+  const showCollections = collections.length > 0;
   return (
     <OakMaxWidth
       $gap={["spacing-0", "spacing-48"]}

@@ -1,24 +1,25 @@
 import { FC } from "react";
-import { OakIconName, OakResourceCard } from "@oaknational/oak-components";
+import { OakResourceCard } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import type { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { getDownloadCardFieldErrorAriaProps } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
 import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
+import { getLessonDownloadMetadata } from "@/common-lib/lessonDownloads";
 
 const CustomSizing = styled("div")<{
-  checked?: boolean;
-  useDownloadPageLayout?: boolean;
+  $checked?: boolean;
+  $useDownloadPageLayout?: boolean;
 }>`
   display: grid;
-  width: ${(props) => (props.useDownloadPageLayout ? "100%" : "320px")};
+  width: ${(props) => (props.$useDownloadPageLayout ? "100%" : "320px")};
   input {
-    border: ${(props) => (props.checked ? "0" : "default")};
+    border: ${(props) => (props.$checked ? "0" : "default")};
   }
 
   @media (min-width: 1280px) {
-    width: ${(props) => (props.useDownloadPageLayout ? "300px" : "320px")};
+    width: ${(props) => (props.$useDownloadPageLayout ? "300px" : "320px")};
   }
 `;
 
@@ -31,21 +32,6 @@ export type ResourceCardProps = Omit<CheckboxProps, "checked"> & {
   useDownloadPageLayout: boolean;
   asRadio?: boolean;
   checked?: boolean;
-};
-
-const RESOURCE_TYPE_ICON_MAP: Record<DownloadResourceType, OakIconName> = {
-  presentation: "slide-deck",
-  "intro-quiz-questions": "quiz",
-  "intro-quiz-answers": "quiz",
-  "exit-quiz-questions": "quiz",
-  "exit-quiz-answers": "quiz",
-  "worksheet-pdf": "worksheet",
-  "worksheet-pptx": "worksheet",
-  "supplementary-pdf": "additional-material",
-  "supplementary-docx": "additional-material",
-  "curriculum-pdf": "additional-material",
-  "lesson-guide-pdf": "additional-material",
-  "additional-files": "additional-material",
 };
 
 const ResourceCard: FC<ResourceCardProps> = (props) => {
@@ -70,12 +56,12 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
   const iconName =
     isCurriculumIcon && subjectIcon
       ? getValidSubjectIconName(subjectIcon)
-      : RESOURCE_TYPE_ICON_MAP[resourceType];
+      : getLessonDownloadMetadata(resourceType).icon;
 
   return (
     <CustomSizing
-      checked={checked}
-      useDownloadPageLayout={useDownloadPageLayout}
+      $checked={checked}
+      $useDownloadPageLayout={useDownloadPageLayout}
     >
       <OakResourceCard
         id={id}

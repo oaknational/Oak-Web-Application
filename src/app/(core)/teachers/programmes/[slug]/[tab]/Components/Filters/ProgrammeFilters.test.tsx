@@ -1,5 +1,7 @@
 import { screen } from "@testing-library/dom";
 
+import { ProgrammeNavigationProvider } from "../../../../ProgrammeNavigationProvider";
+
 import { ProgrammeFilters, ProgrammeFiltersProps } from "./ProgrammeFilters";
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 
@@ -40,8 +42,16 @@ export const mockProgrammeFiltersData: ProgrammePageFiltersProps["data"] = {
     }),
     "10": createYearData({
       units: [
-        createUnit({ year: "10", subject_slug: "biology", tier: "foundation" }),
-        createUnit({ year: "10", subject_slug: "chemistry", tier: "higher" }),
+        createUnit({
+          year: "10",
+          subject_slug: "biology",
+          tier_slug: "foundation",
+        }),
+        createUnit({
+          year: "10",
+          subject_slug: "chemistry",
+          tier_slug: "higher",
+        }),
       ],
       childSubjects: [
         createChildSubject({ subject_slug: "biology" }),
@@ -88,9 +98,11 @@ const renderProgrammeFilters = (
   props: Partial<ProgrammeFiltersProps> = {},
 ) => {
   return render(
-    <BrowseFiltersProvider defaultFilter={filters}>
-      <ProgrammeFilters {...defaultProps} {...props} />
-    </BrowseFiltersProvider>,
+    <ProgrammeNavigationProvider>
+      <BrowseFiltersProvider defaultFilter={filters}>
+        <ProgrammeFilters {...defaultProps} {...props} />
+      </BrowseFiltersProvider>
+    </ProgrammeNavigationProvider>,
   );
 };
 

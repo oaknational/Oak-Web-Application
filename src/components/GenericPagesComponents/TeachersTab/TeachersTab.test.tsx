@@ -5,9 +5,6 @@ import TeachersTab from "./TeachersTab";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 
-const setSearchTerm = jest.fn();
-jest.mock("@/context/Search/useSearch", () => () => ({ setSearchTerm }));
-
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => false,
 }));

@@ -3,26 +3,13 @@
 import { createContext, useCallback, useContext, type ReactNode } from "react";
 
 import { useKS4OptionFocus } from "./KS4OptionFocusProvider";
-import {
-  getKs4OptionFocusNavigationQuery,
-  type KS4OptionFocusScopeVariant,
-} from "./ks4OptionFocusParams";
+import type { KS4OptionFocusScopeVariant } from "./ks4OptionFocusParams";
 
 const KS4OptionFocusScopeVariantContext =
   createContext<KS4OptionFocusScopeVariant>("page");
 
 export function useKS4OptionFocusScopeVariant() {
   return useContext(KS4OptionFocusScopeVariantContext);
-}
-
-/** Ephemeral query params to append when KS4 option navigation should restore focus in this scope. */
-export function useGetKs4OptionFocusNavigationQuery() {
-  const variant = useKS4OptionFocusScopeVariant();
-
-  return useCallback(
-    (slug: string) => getKs4OptionFocusNavigationQuery(slug, variant),
-    [variant],
-  );
 }
 
 /**

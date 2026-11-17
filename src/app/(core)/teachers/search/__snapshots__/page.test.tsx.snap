@@ -1,0 +1,253 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Search page renders correctly 1`] = `
+<TeacherBrowseAnalyticsStoreProvider
+  accessLevel="search"
+  programmeState={null}
+>
+  <SearchView
+    allKeyStages={
+      [
+        {
+          "shortCode": "KS1",
+          "slug": "ks1",
+          "title": "Key stage 1",
+        },
+        {
+          "shortCode": "KS2",
+          "slug": "ks2",
+          "title": "Key stage 2",
+        },
+        {
+          "shortCode": "KS3",
+          "slug": "ks3",
+          "title": "Key stage 3",
+        },
+        {
+          "shortCode": "KS4",
+          "slug": "ks4",
+          "title": "Key stage 4",
+        },
+      ]
+    }
+    query={
+      {
+        "contentTypes": [],
+        "examBoards": [],
+        "keyStages": [],
+        "subjects": [],
+        "term": "search",
+        "yearGroups": [],
+      }
+    }
+    results={
+      [
+        {
+          "_id": "test-1",
+          "_index": "lessons_1712737230873",
+          "_score": 104.29718,
+          "_source": {
+            "cohort": "2023-2024",
+            "expired": null,
+            "has_copyright_material": null,
+            "id": 1,
+            "key_stage_slug": "ks4",
+            "key_stage_title": "Key Stage 4",
+            "lesson_description": null,
+            "pathways": [],
+            "phase": null,
+            "programme_slug": "english-secondary-ks4",
+            "pupil_lesson_outcome": "Test outcome",
+            "slug": "test-lesson",
+            "subject_slug": "english",
+            "subject_title": "English",
+            "theme_title": null,
+            "tier": null,
+            "title": "Test Lesson",
+            "topic_slug": null,
+            "topic_title": null,
+            "type": "lesson",
+            "unit_slug": "test-unit",
+            "unit_title": "Test Unit",
+            "year_slug": "year-10",
+            "year_title": "Year 10",
+          },
+          "highlight": {
+            "pupil_lesson_outcome": "Test <b>outcome</b>",
+          },
+        },
+      ]
+    }
+    searchFilters={
+      {
+        "contentTypeFilters": [
+          {
+            "checked": false,
+            "filterKey": "contentTypes",
+            "slug": "unit",
+            "title": "Units",
+          },
+          {
+            "checked": false,
+            "filterKey": "contentTypes",
+            "slug": "lesson",
+            "title": "Lessons",
+          },
+        ],
+        "examBoardFilters": [
+          {
+            "checked": false,
+            "filterKey": "examBoards",
+            "slug": "aqa",
+            "title": "AQA",
+          },
+          {
+            "checked": false,
+            "filterKey": "examBoards",
+            "slug": "edexcel",
+            "title": "Edexcel",
+          },
+          {
+            "checked": false,
+            "filterKey": "examBoards",
+            "slug": "eduqas",
+            "title": "Eduqas",
+          },
+          {
+            "checked": false,
+            "filterKey": "examBoards",
+            "slug": "ocr",
+            "title": "OCR",
+          },
+        ],
+        "keyStageFilters": [
+          {
+            "checked": false,
+            "filterKey": "keyStages",
+            "shortCode": "KS1",
+            "slug": "ks1",
+            "title": "Key stage 1",
+          },
+          {
+            "checked": false,
+            "filterKey": "keyStages",
+            "shortCode": "KS2",
+            "slug": "ks2",
+            "title": "Key stage 2",
+          },
+          {
+            "checked": false,
+            "filterKey": "keyStages",
+            "shortCode": "KS3",
+            "slug": "ks3",
+            "title": "Key stage 3",
+          },
+          {
+            "checked": false,
+            "filterKey": "keyStages",
+            "shortCode": "KS4",
+            "slug": "ks4",
+            "title": "Key stage 4",
+          },
+        ],
+        "subjectFilters": [
+          {
+            "checked": false,
+            "filterKey": "subjects",
+            "slug": "computing",
+            "title": "Computing",
+          },
+          {
+            "checked": false,
+            "filterKey": "subjects",
+            "slug": "english",
+            "title": "English",
+          },
+          {
+            "checked": false,
+            "filterKey": "subjects",
+            "slug": "maths",
+            "title": "Maths",
+          },
+          {
+            "checked": false,
+            "filterKey": "subjects",
+            "slug": "science",
+            "title": "science",
+          },
+        ],
+        "yearGroupFilters": [
+          {
+            "checked": false,
+            "filterKey": "yearGroups",
+            "slug": "year-1",
+            "title": "Year 1",
+          },
+          {
+            "checked": false,
+            "filterKey": "yearGroups",
+            "slug": "year-2",
+            "title": "Year 2",
+          },
+          {
+            "checked": false,
+            "filterKey": "yearGroups",
+            "slug": "year-3",
+            "title": "Year 3",
+          },
+          {
+            "checked": false,
+            "filterKey": "yearGroups",
+            "slug": "year-4",
+            "title": "Year 4",
+          },
+          {
+            "checked": false,
+            "filterKey": "yearGroups",
+            "slug": "year-5",
+            "title": "Year 5",
+          },
+          {
+            "checked": false,
+            "filterKey": "yearGroups",
+            "slug": "year-6",
+            "title": "Year 6",
+          },
+          {
+            "checked": false,
+            "filterKey": "yearGroups",
+            "slug": "year-7",
+            "title": "Year 7",
+          },
+          {
+            "checked": false,
+            "filterKey": "yearGroups",
+            "slug": "year-8",
+            "title": "Year 8",
+          },
+          {
+            "checked": false,
+            "filterKey": "yearGroups",
+            "slug": "year-9",
+            "title": "Year 9",
+          },
+          {
+            "checked": false,
+            "filterKey": "yearGroups",
+            "slug": "year-10",
+            "title": "Year 10",
+          },
+          {
+            "checked": false,
+            "filterKey": "yearGroups",
+            "slug": "year-11",
+            "title": "Year 11",
+          },
+        ],
+      }
+    }
+    status="success"
+    timeTaken={10}
+  />
+</TeacherBrowseAnalyticsStoreProvider>
+`;

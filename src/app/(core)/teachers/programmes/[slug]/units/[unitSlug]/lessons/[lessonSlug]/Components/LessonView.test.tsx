@@ -1,22 +1,36 @@
 import { screen, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { useFeatureFlagEnabled } from "posthog-js/react";
+import {
+  useFeatureFlagEnabled,
+  useFeatureFlagVariantKey,
+} from "posthog-js/react";
 
 import LessonView from "./LessonView";
 
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import renderWithProviders, {
+  allProviders,
+} from "@/__tests__/__helpers__/renderWithProviders";
 import { resolveOakHref } from "@/common-lib/urls";
 import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
+import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import { AuthState } from "@/utils/complexCopyright/complexCopyright.types";
 
 const lessonResourceDownloadStarted = jest.fn();
 const lessonMediaClipsStarted = jest.fn();
 const lessonShareStarted = jest.fn();
 const mockCreateTeachingMaterialsInitiated = jest.fn();
 const mockTeachingMaterialsSelected = jest.fn();
+const mockContentBlockNotificationDisplayed = jest.fn();
+const lessonAccessed = jest.fn();
+const mockAuthState = {
+  isSignedIn: true,
+  isOnboarded: true,
+  isRegionAuthorised: true,
+};
 
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -32,6 +46,9 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
         mockCreateTeachingMaterialsInitiated(...args),
       teachingMaterialsSelected: (...args: unknown[]) =>
         mockTeachingMaterialsSelected(...args),
+      lessonAccessed: (...args: unknown[]) => lessonAccessed(...args),
+      contentBlockNotificationDisplayed: (...args: unknown[]) =>
+        mockContentBlockNotificationDisplayed(...args),
     },
   }),
 }));
@@ -42,17 +59,40 @@ jest.mock(
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: jest.fn(),
+  useFeatureFlagVariantKey: jest.fn(),
 }));
 
 const mockUseFeatureFlagEnabled = useFeatureFlagEnabled as jest.MockedFunction<
   typeof useFeatureFlagEnabled
 >;
+const mockUseFeatureFlagVariantKey =
+  useFeatureFlagVariantKey as jest.MockedFunction<
+    typeof useFeatureFlagVariantKey
+  >;
 
 const baseProps = teachersLessonOverviewFixture();
 
-const renderLessonView = (props?: Partial<TeachersLessonOverviewPageData>) => {
-  return renderWithProviders()(<LessonView {...baseProps} {...props} />);
+const renderLessonView = (
+  props?: Partial<TeachersLessonOverviewPageData>,
+  authState?: AuthState,
+) => {
+  return renderWithProviders()(
+    <LessonView
+      props={{ ...baseProps, ...props }}
+      authState={authState ?? mockAuthState}
+    />,
+  );
 };
+
+const resizeWindow = (width: number, height: number) => {
+  globalThis.innerWidth = width;
+  globalThis.innerHeight = height;
+  globalThis.dispatchEvent(new Event("resize"));
+};
+
+afterEach(() => {
+  resizeWindow(1280, 800);
+});
 
 describe("Previous and Next Lesson Navigation", () => {
   it("renders previous and next lesson links when adjacent lessons exist", () => {
@@ -136,6 +176,50 @@ describe("Previous and Next Lesson Navigation", () => {
         unitSlug: baseProps.unitSlug,
         lessonSlug: "lesson-4",
       }),
+    );
+  });
+  it("tracks lessonAccessed on next and previous lesson links", async () => {
+    renderWithProviders({
+      ...allProviders,
+      teacherBrowseAnalytics: {
+        programmeState: getProgrammeStateForLesson(
+          teachersLessonOverviewFixture(),
+        ),
+        accessLevel: "lesson",
+      },
+    })(
+      <LessonView
+        props={{
+          ...baseProps,
+          previousLesson: {
+            lessonSlug: "lesson-2",
+            lessonTitle: "Previous lesson",
+            lessonIndex: 2,
+          },
+          nextLesson: {
+            lessonSlug: "lesson-4",
+            lessonTitle: "Next lesson",
+            lessonIndex: 4,
+          },
+        }}
+        authState={mockAuthState}
+      />,
+    );
+    const nextLessonLink = screen.getByRole("link", { name: /Next lesson/i });
+    nextLessonLink.addEventListener("click", (e) => e.preventDefault());
+    const user = userEvent.setup();
+    await user.click(nextLessonLink);
+    expect(lessonAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({ lessonSlug: "lesson-4" }),
+    );
+
+    const prevLessonLink = screen.getByRole("link", {
+      name: /Previous lesson/i,
+    });
+    prevLessonLink.addEventListener("click", (e) => e.preventDefault());
+    await user.click(prevLessonLink);
+    expect(lessonAccessed).toHaveBeenLastCalledWith(
+      expect.objectContaining({ lessonSlug: "lesson-2" }),
     );
   });
 });
@@ -328,7 +412,10 @@ describe("Lesson resources", () => {
   });
 
   it("does not render create with ai button when the lesson has complex copyright", () => {
-    renderLessonView({ geoRestricted: true, loginRequired: true });
+    renderLessonView(
+      { geoRestricted: true, loginRequired: true },
+      { isSignedIn: true, isOnboarded: true, isRegionAuthorised: false },
+    );
 
     const createWithAiButton = screen.queryByRole("button", {
       name: "Create more with AI",
@@ -523,5 +610,40 @@ describe("Tracking callbacks", () => {
     const glossaryLink = screen.getByRole("menuitem", { name: "Glossary" });
     await user.click(glossaryLink);
     expect(mockTeachingMaterialsSelected).toHaveBeenCalled();
+  });
+});
+describe("LessonOverviewSideNav TeachWithOakPromoSection", () => {
+  it("renders TeachWithOakPromoSection when feature flag is enabled", () => {
+    mockUseFeatureFlagVariantKey.mockReturnValue("promo-section");
+    renderLessonView();
+
+    expect(
+      screen.getByText(
+        "Ever wondered why our lessons are structured this way?",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByText("See the thinking")).toBeInTheDocument();
+  });
+
+  it("does not render TeachWithOakPromoSection when feature flag is disabled", () => {
+    mockUseFeatureFlagVariantKey.mockReturnValue(undefined);
+    renderLessonView();
+
+    expect(
+      screen.queryByText(
+        "Ever wondered why our lessons are structured this way?",
+      ),
+    ).not.toBeInTheDocument();
+  });
+
+  it("does not render TeachWithOakPromoSection for practical PE lessons", () => {
+    mockUseFeatureFlagVariantKey.mockReturnValue("promo-section");
+    renderLessonView({ actions: { isPePractical: true } });
+
+    expect(
+      screen.queryByText(
+        "Ever wondered why our lessons are structured this way?",
+      ),
+    ).not.toBeInTheDocument();
   });
 });

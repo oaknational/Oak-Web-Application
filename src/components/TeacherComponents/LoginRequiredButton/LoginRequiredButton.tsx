@@ -17,7 +17,7 @@ import { ReactNode, useMemo } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import { useComplexCopyright } from "@/hooks/useComplexCopyright";
+import { useComplexCopyright } from "@/utils/complexCopyright/useComplexCopyright";
 
 type ButtonState =
   | "loading"
@@ -44,6 +44,7 @@ type SignUpProps = {
   iconName?: OakIconName;
   isTrailingIcon?: boolean;
   showNewTag?: boolean;
+  onClick?: () => void;
 };
 
 type OnboardingProps = {
@@ -183,6 +184,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
           <ButtonComponent
             iconName={signUpProps?.iconName}
             isTrailingIcon={signUpProps?.isTrailingIcon}
+            onClick={signUpProps?.onClick}
             {...overrideProps}
           >
             <OakFlex $alignItems="center" $gap="spacing-12">

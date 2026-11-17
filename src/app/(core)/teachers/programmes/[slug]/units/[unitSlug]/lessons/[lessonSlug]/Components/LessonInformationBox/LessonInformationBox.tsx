@@ -8,9 +8,10 @@ import {
 
 import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
 import CopyrightLicence from "@/components/TeacherComponents/CopyrightLicence/CopyrightLicence";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { ComponentType } from "@/browser-lib/avo/Avo";
 
 type LessonInformationBoxProps = {
-  teacherTip?: string[];
   equipment?: string[];
   contentGuidance?: string[];
   supervision?: string;
@@ -26,28 +27,20 @@ type LessonInformationBoxProps = {
 };
 
 const LessonInformationBox = (props: LessonInformationBoxProps) => {
-  const {
-    teacherTip,
-    equipment,
-    contentGuidance,
-    supervision,
-    filesNeeded,
-    licence,
-  } = props;
+  const { equipment, contentGuidance, supervision, filesNeeded, licence } =
+    props;
   const isPlural = filesNeeded && filesNeeded.files.length > 1;
+  const { signInStarted } = useTeacherBrowseAnalytics((store) => store.track);
 
   return (
     <OakFlex
       $flexDirection={"column"}
-      $gap={"spacing-32"}
-      $background={teacherTip ? "bg-decorative2-subdued" : "bg-neutral"}
       $pa={"spacing-24"}
+      $gap={"spacing-32"}
+      $background={"bg-neutral"}
       $borderRadius={"border-radius-l"}
       data-testid="lesson-information-container"
     >
-      {teacherTip && (
-        <LessonInformationItem title="Teacher tip" items={teacherTip} />
-      )}
       {equipment && equipment.length > 0 && (
         <LessonInformationItem
           iconName={"equipment-required"}
@@ -90,6 +83,10 @@ const LessonInformationBox = (props: LessonInformationBoxProps) => {
             buttonVariant="tertiary"
             signUpProps={{
               name: `Sign in to download lesson ${isPlural ? "files" : "file"}`,
+              onClick: () =>
+                signInStarted({
+                  componentType: ComponentType.LESSON_INFORMATION_BOX,
+                }),
             }}
             element="a"
             actionProps={{

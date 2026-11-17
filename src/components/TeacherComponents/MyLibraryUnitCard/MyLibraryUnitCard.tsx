@@ -89,17 +89,19 @@ const UnitCardHeader = ({
           onClick={() =>
             track.unitAccessed({
               componentType: "unit_card",
-              yearGroupName: props.year,
-              yearGroupSlug: yearSlug,
-              keyStageTitle: props.keyStageTitle,
-              keyStageSlug: props.keyStageSlug,
-              subjectTitle: props.subjectTitle,
-              subjectSlug: props.subjectSlug,
-              unitName: props.unitTitle,
-              unitSlug: props.unitSlug,
-              tierName: props.tierName,
-              examBoard: props.examBoard,
-              pathway: props.pathway,
+              unitContext: {
+                unitName: props.unitTitle,
+                unitSlug: props.unitSlug,
+                yearGroupName: props.year,
+                yearGroupSlug: yearSlug,
+                keyStageTitle: props.keyStageTitle,
+                keyStageSlug: props.keyStageSlug,
+                subjectTitle: props.subjectTitle,
+                subjectSlug: props.subjectSlug,
+                tierName: props.tierName,
+                examBoard: props.examBoard,
+                pathway: props.pathway,
+              },
             })
           }
         >
@@ -164,19 +166,21 @@ const UnitCardContent = ({
                     onClick={() =>
                       track.lessonAccessed({
                         componentType: "lesson_card",
-                        unitName: props.unitTitle,
-                        unitSlug: props.unitSlug,
+                        unitContext: {
+                          unitName: props.unitTitle,
+                          unitSlug: props.unitSlug,
+                          keyStageTitle: props.keyStageTitle,
+                          keyStageSlug: props.keyStageSlug,
+                          examBoard: props.examBoard,
+                          pathway: props.pathway,
+                          tierName: props.tierName,
+                          yearGroupName: props.year,
+                          yearGroupSlug: props.yearSlug,
+                        },
                         lessonName: lesson.slug,
                         lessonSlug: lesson.slug,
-                        keyStageTitle: props.keyStageTitle,
-                        keyStageSlug: props.keyStageSlug,
-                        examBoard: props.examBoard,
-                        pathway: props.pathway,
                         lessonReleaseCohort: "2023-2026",
                         lessonReleaseDate: "",
-                        tierName: props.tierName,
-                        yearGroupName: props.year,
-                        yearGroupSlug: props.yearSlug,
                       })
                     }
                   >

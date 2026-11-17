@@ -14,13 +14,11 @@ import {
   UnitSearchHit,
   SearchHit,
   PathwaySchema,
-  SuggestedSearchFilter,
 } from "@/context/Search/search.types";
 import {
   FilterTypeValueType,
   KeyStageTitleValueType,
   SearchFilterMatchTypeValueType,
-  SearchFilterModifiedProperties,
 } from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
@@ -32,7 +30,6 @@ import {
   LessonOverviewLinkProps,
 } from "@/common-lib/urls";
 import { LEGACY_COHORT } from "@/config/cohort";
-import { SearchIntent } from "@/common-lib/schemas/search-intent";
 
 const reportError = errorReporter("search/helpers");
 
@@ -110,28 +107,12 @@ export const getFilterType = (slug: string): FilterTypeValueType => {
 export const trackSearchModified =
   (
     query: string,
-    searchFilterModified: (props: SearchFilterModifiedProperties) => void,
+    searchFilterModified: (
+      props: TrackSearchModifiedProps & { searchTerm: string },
+    ) => void,
   ) =>
-  ({
-    checked,
-    filterType,
-    filterValue,
-    searchFilterMatchType,
-  }: TrackSearchModifiedProps) => {
-    const filterModificationType = checked ? "remove" : "add";
-    searchFilterModified({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "refine",
-      componentType: "filter_link",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      filterModificationType,
-      filterType,
-      filterValue,
-      searchTerm: query,
-      searchFilterMatchType,
-    });
+  (props: TrackSearchModifiedProps) => {
+    searchFilterModified({ ...props, searchTerm: query });
   };
 
 export const isFilterItem = <T extends { slug: string }>(
@@ -459,71 +440,6 @@ export const getHighlightFromAllFields = (
     );
   }
 };
-
-export function convertSearchIntentToFilters(
-  searchIntent?: SearchIntent,
-): SuggestedSearchFilter[] | undefined {
-  if (!searchIntent) return undefined;
-
-  // Define the priority order for filter types
-  const filterOrder: SuggestedSearchFilter["type"][] = [
-    "subject",
-    "key-stage",
-    "year",
-    "exam-board",
-  ];
-
-  // Collect all filters first
-  const allFilters: SuggestedSearchFilter[] = [];
-
-  // Helper function to add filter if it exists
-  const addFilter = (
-    item: { title: string; slug: string } | null,
-    type: SuggestedSearchFilter["type"],
-    source: SearchFilterMatchTypeValueType,
-  ) => {
-    if (item) {
-      allFilters.push({
-        type,
-        value: item.title,
-        slug: item.slug,
-        source,
-      });
-    }
-  };
-
-  // Add direct matches
-  if (searchIntent.directMatch) {
-    const { subject, keyStage, year, examBoard } = searchIntent.directMatch;
-    addFilter(subject, "subject", "fuzzy_match");
-    addFilter(keyStage, "key-stage", "fuzzy_match");
-    addFilter(year, "year", "fuzzy_match");
-    addFilter(examBoard, "exam-board", "fuzzy_match");
-  }
-
-  // Add suggested filters
-  for (const filter of searchIntent.suggestedFilters) {
-    addFilter(filter, filter.type, "ai");
-  }
-
-  // Remove duplicates
-  const seen = new Set<string>();
-  const uniqueFilters = allFilters.filter((filter) => {
-    const key = `${filter.type}-${filter.value}-${filter.slug}`;
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
-
-  // Sort by the defined priority order
-  uniqueFilters.sort((a, b) => {
-    const aIndex = filterOrder.indexOf(a.type);
-    const bIndex = filterOrder.indexOf(b.type);
-    return aIndex - bIndex;
-  });
-
-  return uniqueFilters;
-}
 
 export const normalizeTerm = (s: string) =>
   s.trim().replaceAll(/\s+/g, " ").toLowerCase();

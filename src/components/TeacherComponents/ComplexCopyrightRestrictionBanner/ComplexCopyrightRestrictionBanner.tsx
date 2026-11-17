@@ -3,7 +3,6 @@ import { SignUpButton } from "@clerk/nextjs";
 import {
   OakLink,
   OakP,
-  OakSecondaryLink,
   OakSpan,
   OakInlineBanner,
   OakSmallTertiaryInvertedButton,
@@ -12,42 +11,38 @@ import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import { ComponentType, ComponentTypeValueType } from "@/browser-lib/avo/Avo";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import {
   COPYRIGHT_CONTACT_US_LINK,
   COPYRIGHT_SUPPORT_LINK,
 } from "@/utils/copyrightLinks";
-import { useComplexCopyright } from "@/hooks/useComplexCopyright";
+import { useComplexCopyright } from "@/utils/complexCopyright/useComplexCopyright";
+import { ComplexCopyrightStatus } from "@/utils/complexCopyright/complexCopyright.types";
 
 type InnerCopyrightBannerProps = Omit<
   ComponentProps<typeof OakInlineBanner>,
   "message" | "isOpen"
 >;
-
 export type ComplexCopyrightRestrictionBannerProps =
   InnerCopyrightBannerProps & {
     isGeorestricted?: boolean;
     isLoginRequired?: boolean;
     componentType?: ComponentTypeValueType;
-    unitName?: string | null;
-    unitSlug?: string | null;
-    lessonName?: string | null;
-    lessonSlug?: string | null;
-    lessonReleaseDate?: string | null;
-    isLessonLegacy?: boolean;
+    copyrightState?: ComplexCopyrightStatus;
   };
 
 const SignedOutCopyrightBanner = ({
   showOnboardingLink,
   isGeorestricted,
   isUnit,
+  onSignInClick,
   ...rest
 }: InnerCopyrightBannerProps & {
   showOnboardingLink: boolean;
   isGeorestricted: boolean;
   isUnit: boolean;
+  onSignInClick: () => void;
 }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -79,7 +74,8 @@ const SignedOutCopyrightBanner = ({
           to view and download resources from this {isUnit ? "unit" : "lesson"},
           you’ll need to {isGeorestricted && `be in the UK and `}
           {showOnboardingLink ? (
-            <OakSecondaryLink
+            <OakLink
+              variant="secondary"
               data-testid="copyright-banner-onboarding-link"
               href={resolveOakHref({
                 page: "onboarding",
@@ -87,15 +83,17 @@ const SignedOutCopyrightBanner = ({
               })}
             >
               complete sign up.
-            </OakSecondaryLink>
+            </OakLink>
           ) : (
             <SignUpButton forceRedirectUrl={`/onboarding?returnTo=${returnTo}`}>
-              <OakSecondaryLink
+              <OakLink
+                variant="secondary"
                 data-testid="copyright-banner-signin-link"
                 element="button"
+                onClick={onSignInClick}
               >
                 sign in.
-              </OakSecondaryLink>
+              </OakLink>
             </SignUpButton>
           )}
         </OakP>
@@ -143,60 +141,39 @@ const ComplexCopyrightRestrictionBanner = (
     isGeorestricted,
     isLoginRequired,
     componentType,
-    unitName,
-    unitSlug,
-    lessonName,
-    lessonSlug,
-    lessonReleaseDate,
-    isLessonLegacy,
+    copyrightState: suppliedCopyrightState,
     ...rest
   } = props;
+
+  const clientCopyrightState = useComplexCopyright({
+    geoRestricted: isGeorestricted ?? false,
+    loginRequired: isLoginRequired ?? false,
+  });
 
   const {
     showSignedOutGeoRestricted,
     showSignedOutLoginRequired,
     showSignedInNotOnboarded,
     showGeoBlocked,
-  } = useComplexCopyright({
-    loginRequired: isLoginRequired ?? false,
-    geoRestricted: isGeorestricted ?? false,
-  });
+    isResourceGeorestricted,
+  } = suppliedCopyrightState ?? clientCopyrightState;
 
-  const { track } = useAnalytics();
+  const { contentBlockNotificationDisplayed, signInStarted } =
+    useTeacherBrowseAnalytics((store) => store.track);
 
-  const isLegacy = unitSlug ? isSlugLegacy(unitSlug) : isLessonLegacy;
   const isUnit = (componentType && componentType === "lesson_listing") ?? false;
 
   useEffect(() => {
     if (showGeoBlocked) {
-      track.contentBlockNotificationDisplayed({
-        platform: "owa",
-        product: "teacher lesson resources",
-        engagementIntent: "explore",
+      contentBlockNotificationDisplayed({
         componentType:
           componentType ?? (isUnit ? "lesson_listing" : "lesson_overview"),
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Teacher",
-        lessonName: lessonName ?? null,
-        lessonSlug: lessonSlug ?? null,
-        lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
-        lessonReleaseDate: lessonReleaseDate ?? null,
-        unitName: unitName ?? null,
-        unitSlug: unitSlug ?? null,
-        contentType: isUnit ? "unit" : "lesson",
         accessBlockType: "Geo-restriction",
-        accessBlockDetails: {},
       });
     }
   }, [
-    track,
+    contentBlockNotificationDisplayed,
     componentType,
-    unitName,
-    unitSlug,
-    lessonName,
-    lessonSlug,
-    lessonReleaseDate,
-    isLegacy,
     isUnit,
     showGeoBlocked,
   ]);
@@ -206,13 +183,20 @@ const ComplexCopyrightRestrictionBanner = (
     showSignedOutLoginRequired ||
     showSignedInNotOnboarded;
 
-  return showGeoBlocked ? (
-    <SignedInGeorestrictedBanner isUnit={isUnit} {...rest} />
-  ) : showSignedOutCopyrightBanner ? (
+  if (showGeoBlocked) {
+    return <SignedInGeorestrictedBanner isUnit={isUnit} {...rest} />;
+  }
+
+  return showSignedOutCopyrightBanner ? (
     <SignedOutCopyrightBanner
       showOnboardingLink={showSignedInNotOnboarded}
-      isGeorestricted={isGeorestricted ?? false}
+      isGeorestricted={isResourceGeorestricted}
       isUnit={isUnit}
+      onSignInClick={() =>
+        signInStarted({
+          componentType: ComponentType.COMPLEX_COPYRIGHT_RESTRICTION_BANNER,
+        })
+      }
       {...rest}
     />
   ) : null;

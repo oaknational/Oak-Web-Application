@@ -7,13 +7,23 @@ import { useRouter, useSearchParams } from "next/navigation";
 import RoleSelectionView from "./RoleSelection.view";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import * as onboardingActions from "@/components/TeacherComponents/OnboardingForm/onboardingActions";
 
-jest.mock("@/components/TeacherComponents/OnboardingForm/onboardingActions");
+const mockOnboardUser = jest.fn();
+jest.mock(
+  "@/components/TeacherComponents/OnboardingForm/onboardingActions",
+  () => ({
+    submitOnboardingHubspotData: jest.fn().mockResolvedValue(true),
+    setOnboardingLocalStorage: jest.fn(),
+    onboardUser: () => mockOnboardUser(),
+  }),
+);
 
 describe("RoleSelection", () => {
   beforeEach(() => {
-    (useRouter as jest.Mock).mockReturnValue({ push: jest.fn() });
+    (useRouter as jest.Mock).mockReturnValue({
+      push: jest.fn(),
+      refresh: jest.fn(),
+    });
     (useSearchParams as jest.Mock).mockReturnValue(new URLSearchParams());
   });
   it("renders a group of radio buttons in a form", () => {
@@ -94,8 +104,6 @@ describe("RoleSelection", () => {
     ).toBeNull();
   });
   it("can submit when a role is selected", async () => {
-    jest.spyOn(onboardingActions, "onboardUser");
-
     renderWithProviders()(<RoleSelectionView />);
 
     await userEvent.click(
@@ -115,6 +123,6 @@ describe("RoleSelection", () => {
       },
     );
 
-    expect(onboardingActions.onboardUser).toHaveBeenCalled();
+    expect(mockOnboardUser).toHaveBeenCalled();
   });
 });

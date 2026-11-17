@@ -66,14 +66,6 @@ jest.mock("./useHubspotCurriculumDownloads", () => ({
 }));
 
 jest.mock(
-  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit",
-  () => ({
-    __esModule: true,
-    default: () => ({ onSubmit: jest.fn() }),
-  }),
-);
-
-jest.mock(
   "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads",
   () => ({
     __esModule: true,
@@ -156,7 +148,6 @@ const defaultProps = {
     nonCurriculum: false,
   },
   implementationGuides: {},
-  featureFlags: {},
 };
 const renderComponent = (overrides: Partial<ProgrammeDownloadsProps>) => {
   return renderWithProviders()(
@@ -206,7 +197,7 @@ describe("Programme Downloads", () => {
   });
 
   describe("implementation guides", () => {
-    test("should show implementation guides when they are available (and enabled)", async () => {
+    test("should show implementation guides when they are available", async () => {
       const { findAllByRole } = renderComponent({
         curriculumDownloadsTabData: {
           ...defaultProps.curriculumDownloadsTabData,
@@ -219,9 +210,6 @@ describe("Programme Downloads", () => {
               url: "https://example.com/whats-included.pdf",
             },
           },
-        },
-        featureFlags: {
-          "implementation-guides": true,
         },
       });
 
@@ -255,9 +243,6 @@ describe("Programme Downloads", () => {
           childSubject: null,
         },
       ],
-      featureFlags: {
-        "implementation-guides": true,
-      },
     });
 
     const region = (await findAllByRole("region"))[1]!;

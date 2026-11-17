@@ -28,7 +28,7 @@ type OakModalNewProps = {
   content: React.ReactNode;
   footer: React.ReactNode;
   onClose: ComponentProps<typeof ModalContent>["onClose"];
-  modalWidth?: ComponentProps<typeof OakFlex>["width"];
+  modalWidth?: ComponentProps<typeof OakFlex>["$width"];
 };
 export function OakModalNew({
   open,

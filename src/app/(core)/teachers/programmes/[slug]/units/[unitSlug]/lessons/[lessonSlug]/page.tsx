@@ -20,6 +20,8 @@ import { cacheData } from "@/node-lib/cache";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import { filterRestrictedLessonData } from "@/utils/complexCopyright/filterRestrictedLessonData";
+import { getServerAuthState } from "@/utils/complexCopyright/getServerAuthState";
 
 type LessonPageParams = {
   slug: string;
@@ -27,7 +29,7 @@ type LessonPageParams = {
   lessonSlug: string;
 };
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 const getCachedLessonData = cache(
   cacheData(
@@ -87,6 +89,12 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
   const { slug: programmeSlug, unitSlug, lessonSlug } = await props.params;
 
   const data = await getCachedLessonData(programmeSlug, unitSlug, lessonSlug);
+  const authState = await getServerAuthState({
+    subjectSlug: data.subjectSlug,
+    geoRestricted: data.geoRestricted,
+    loginRequired: data.loginRequired,
+  });
+  const filteredData = filterRestrictedLessonData(data, authState);
 
   const programmeState = getProgrammeStateForLesson(data);
 
@@ -105,7 +113,6 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
         programmeSlug={data.programmeSlug}
         headerSlot={
           <Breadcrumbs
-            data={data}
             subjectPhaseSlug={getTeacherSubjectPhaseSlug({
               subjectSlug: data.subjectSlug,
               phaseSlug: data.phaseSlug,
@@ -119,7 +126,7 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
         georestricted={data.geoRestricted}
         loginRequired={data.loginRequired}
       />
-      <LessonView {...data} />
+      <LessonView props={filteredData} authState={authState} />
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };

@@ -10,6 +10,7 @@ import parse from "html-react-parser";
 
 import { FAVICON_LINKS_HEAD_INNER_HTML } from "../image-data";
 import getBrowserConfig from "../browser-lib/getBrowserConfig";
+import { AGENT_DISCOVERY_LINKS } from "../config/agentDiscovery";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -47,6 +48,9 @@ class MyDocument extends Document {
             content={getBrowserConfig("pingdomUptimeId")}
           />
           {parse(FAVICON_LINKS_HEAD_INNER_HTML)}
+          {AGENT_DISCOVERY_LINKS.map(({ rel, href }) => (
+            <link key={rel} rel={rel} href={href} />
+          ))}
           <meta
             name="release-stage"
             content={getBrowserConfig("releaseStage")}

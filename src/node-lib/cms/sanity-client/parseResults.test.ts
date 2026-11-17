@@ -71,7 +71,7 @@ describe("cms/sanity-client/parseResults", () => {
 
       expect(() => {
         parseResults(schema, { foo: "bar" }, true);
-      }).toThrowError("Zod error parsing preview data from CMS");
+      }).toThrow("Zod error parsing preview data from CMS");
     });
 
     it("throws on invalid list items without isPreviewMode", () => {

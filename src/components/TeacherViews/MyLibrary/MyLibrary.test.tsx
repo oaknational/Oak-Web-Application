@@ -53,34 +53,24 @@ describe("MyLibrary", () => {
     mockIsUnitSaving.mockReturnValue(false);
   });
 
-  it("renders a header and no content when loading", () => {
-    render(<MyLibrary collectionData={null} isLoading={true} />);
+  it("renders a header and no content when the collection data is unavailable", () => {
+    render(<MyLibrary collectionData={null} />);
     expect(screen.getByText("My library")).toBeInTheDocument();
     expect(screen.queryByText("No units yet")).not.toBeInTheDocument();
   });
   it("renders a header and no content when there is no collection data", () => {
-    render(<MyLibrary collectionData={[]} isLoading={false} />);
+    render(<MyLibrary collectionData={[]} />);
     expect(screen.getByText("My library")).toBeInTheDocument();
-    expect(screen.queryByText("No units yet")).toBeInTheDocument();
+    expect(screen.getByText("No units yet")).toBeInTheDocument();
   });
   it("renders a side menu with the correct items", () => {
-    render(
-      <MyLibrary
-        collectionData={generateMockCollectionData(5)}
-        isLoading={false}
-      />,
-    );
+    render(<MyLibrary collectionData={generateMockCollectionData(5)} />);
 
     const sideMenuItems = screen.getAllByRole("link", { name: /Subject/i });
     expect(sideMenuItems).toHaveLength(5);
   });
   it("tracks unit accessed with the correct arguments", async () => {
-    render(
-      <MyLibrary
-        collectionData={generateMockCollectionData(1)}
-        isLoading={false}
-      />,
-    );
+    render(<MyLibrary collectionData={generateMockCollectionData(1)} />);
 
     const unitLink = screen
       .getByRole("heading", { name: "Unit 1: Topic" })
@@ -93,19 +83,51 @@ describe("MyLibrary", () => {
     const user = userEvent.setup();
     await user.click(unitLink);
     await waitFor(() =>
-      expect(mockTrackUnitAccessed).toHaveBeenCalledWith({
+      expect(mockTrackUnitAccessed).toHaveBeenCalledWith(
+        expect.objectContaining({
+          analyticsUseCase: "Teacher",
+          componentType: "unit_card",
+          engagementIntent: "refine",
+          eventVersion: "2.0.0",
+          examBoard: "AQA",
+          keyStageSlug: "ks4",
+          keyStageTitle: "KS4",
+          pathway: undefined,
+          platform: "owa",
+          product: "teacher lesson resources",
+          subjectSlug: "maths",
+          subjectTitle: "Subject 1",
+          tierName: "Foundation",
+          unitName: "Unit 1: Topic",
+          unitSlug: "unit-1",
+          yearGroupName: "Year 1",
+          yearGroupSlug: "year-1",
+        }),
+      ),
+    );
+  });
+  it("tracks lesson accessed with the correct arguments", async () => {
+    render(<MyLibrary collectionData={generateMockCollectionData(1)} />);
+
+    const lessonLink = screen.getByText("Lesson 1 - Part 1");
+    const user = userEvent.setup();
+    await user.click(lessonLink);
+    expect(mockTrackLessonAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({
         analyticsUseCase: "Teacher",
-        componentType: "unit_card",
+        componentType: "lesson_card",
         engagementIntent: "refine",
         eventVersion: "2.0.0",
         examBoard: "AQA",
         keyStageSlug: "ks4",
         keyStageTitle: "KS4",
+        lessonName: "lesson-1-1",
+        lessonReleaseCohort: "2023-2026",
+        lessonReleaseDate: "",
+        lessonSlug: "lesson-1-1",
         pathway: undefined,
         platform: "owa",
         product: "teacher lesson resources",
-        subjectSlug: "maths",
-        subjectTitle: "Subject 1",
         tierName: "Foundation",
         unitName: "Unit 1: Topic",
         unitSlug: "unit-1",
@@ -114,47 +136,9 @@ describe("MyLibrary", () => {
       }),
     );
   });
-  it("tracks lesson accessed with the correct arguments", async () => {
-    render(
-      <MyLibrary
-        collectionData={generateMockCollectionData(1)}
-        isLoading={false}
-      />,
-    );
-
-    const lessonLink = screen.getByText("Lesson 1 - Part 1");
-    const user = userEvent.setup();
-    await user.click(lessonLink);
-    expect(mockTrackLessonAccessed).toHaveBeenCalledWith({
-      analyticsUseCase: "Teacher",
-      componentType: "lesson_card",
-      engagementIntent: "refine",
-      eventVersion: "2.0.0",
-      examBoard: "AQA",
-      keyStageSlug: "ks4",
-      keyStageTitle: "KS4",
-      lessonName: "lesson-1-1",
-      lessonReleaseCohort: "2023-2026",
-      lessonReleaseDate: "",
-      lessonSlug: "lesson-1-1",
-      pathway: undefined,
-      platform: "owa",
-      product: "teacher lesson resources",
-      tierName: "Foundation",
-      unitName: "Unit 1: Topic",
-      unitSlug: "unit-1",
-      yearGroupName: "Year 1",
-      yearGroupSlug: "year-1",
-    });
-  });
   it("shows Saved state when isUnitSaved returns true", () => {
     mockIsUnitSavedInternal.mockReturnValue(true);
-    render(
-      <MyLibrary
-        collectionData={generateMockCollectionData(1)}
-        isLoading={false}
-      />,
-    );
+    render(<MyLibrary collectionData={generateMockCollectionData(1)} />);
     const unsaveButtons = screen.getAllByRole("button", {
       name: /Unsave this unit/i,
     });
@@ -162,12 +146,7 @@ describe("MyLibrary", () => {
   });
 
   it("calls onSaveToggle when save button is clicked", async () => {
-    render(
-      <MyLibrary
-        collectionData={generateMockCollectionData(1)}
-        isLoading={false}
-      />,
-    );
+    render(<MyLibrary collectionData={generateMockCollectionData(1)} />);
     const [saveButton] = screen.getAllByRole("button", {
       name: /Save this unit/i,
     });
@@ -178,12 +157,7 @@ describe("MyLibrary", () => {
   });
 
   it("tracks programme refined with the correct arguments", async () => {
-    render(
-      <MyLibrary
-        collectionData={generateMockCollectionData(1)}
-        isLoading={false}
-      />,
-    );
+    render(<MyLibrary collectionData={generateMockCollectionData(1)} />);
 
     const programmeLink = screen
       .getByRole("heading", { name: "Programme 1 KS4" })

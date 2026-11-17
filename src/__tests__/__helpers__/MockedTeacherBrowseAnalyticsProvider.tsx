@@ -10,6 +10,7 @@ import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtur
 import { AccessLevelValueType } from "@/browser-lib/avo/Avo";
 
 export const mockJourneyId = "mockJourneyId";
+const mockPosthogDistinctId = "mockPosthogDistinctId";
 
 export const mockProgrammeState: ProgrammeState = getProgrammeStateForLesson(
   teachersLessonOverviewFixture(),
@@ -20,7 +21,7 @@ export const mockProgrammeState: ProgrammeState = getProgrammeStateForLesson(
  * so that tests don't need a session to be available.
  */
 const MockedTeacherBrowseAnalyticsProvider: FC<{
-  programmeState?: ProgrammeState;
+  programmeState?: ProgrammeState | null;
   accessLevel?: AccessLevelValueType;
   children?: ReactNode;
 }> = ({
@@ -36,6 +37,7 @@ const MockedTeacherBrowseAnalyticsProvider: FC<{
       avo: track,
       journeyId: mockJourneyId,
       accessLevel,
+      posthogDistinctId: mockPosthogDistinctId,
     }),
   );
 

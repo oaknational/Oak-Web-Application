@@ -12,9 +12,12 @@ import renderWithProviders, {
   allProviders,
 } from "@/__tests__/__helpers__/renderWithProviders";
 import { encodeOnboardingDataQueryParam } from "@/components/TeacherComponents/OnboardingForm/onboardingDataQueryParam";
-import * as onboardingActions from "@/components/TeacherComponents/OnboardingForm/onboardingActions";
 
 jest.mock("next/router", () => require("next-router-mock"));
+const mockOnboardUser = jest.fn().mockResolvedValue({
+  owa: { isTeacher: true, isOnboarded: true },
+});
+
 jest.mock(
   "@/components/TeacherComponents/OnboardingForm/onboardingActions",
   () => {
@@ -23,9 +26,9 @@ jest.mock(
     );
     return {
       ...actual,
-      onboardUser: jest.fn(),
-      setOnboardingLocalStorage: jest.fn(),
-      submitOnboardingHubspotData: jest.fn(),
+      onboardUser: (...args: []) => mockOnboardUser(...args),
+      setOnboardingLocalStorage: jest.fn().mockResolvedValue(undefined),
+      submitOnboardingHubspotData: jest.fn().mockResolvedValue(true),
     };
   },
 );
@@ -35,7 +38,10 @@ fetchMock.enableMocks();
 describe("HowCanOakSupport", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    (useRouter as jest.Mock).mockReturnValue({ push: jest.fn() });
+    (useRouter as jest.Mock).mockReturnValue({
+      push: jest.fn(),
+      refresh: jest.fn(),
+    });
     (useSearchParams as jest.Mock).mockReturnValue(
       new URLSearchParams(
         encodeOnboardingDataQueryParam(null, {
@@ -45,15 +51,6 @@ describe("HowCanOakSupport", () => {
         }),
       ),
     );
-    (onboardingActions.onboardUser as jest.Mock).mockResolvedValue({
-      owa: { isTeacher: true, isOnboarded: true },
-    });
-    (
-      onboardingActions.setOnboardingLocalStorage as jest.Mock
-    ).mockResolvedValue(undefined);
-    (
-      onboardingActions.submitOnboardingHubspotData as jest.Mock
-    ).mockResolvedValue(undefined);
   });
 
   it('renders checkboxes for each key in "oakSupportMap"', () => {
@@ -89,7 +86,7 @@ describe("HowCanOakSupport", () => {
     // The school decoded from the `state` param must reach the onboarding call,
     // otherwise the user is incorrectly onboarded as a non-teacher.
     await waitFor(() =>
-      expect(onboardingActions.onboardUser).toHaveBeenCalledWith({
+      expect(mockOnboardUser).toHaveBeenCalledWith({
         isTeacher: true,
       }),
     );

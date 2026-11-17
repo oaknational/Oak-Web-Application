@@ -21,7 +21,6 @@ import {
   DOWNLOAD_TYPES,
   DownloadTypes,
 } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
-import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 
 const stale_while_revalidate_seconds = 60 * 3;
 const s_maxage_seconds = 60 * 60 * 24;
@@ -286,7 +285,7 @@ export async function getFile({
           examboardTitle: data.combinedCurriculumData?.examboardTitle,
           childSubjectSlug,
           tierSlug,
-          prefix: "Curriculum-plan",
+          prefix: "Curriculum-plan-explainer",
           isWithinArchive: data.isWithinArchive,
         });
       },
@@ -306,7 +305,7 @@ export async function getFile({
           examboardTitle: data.combinedCurriculumData?.examboardTitle,
           childSubjectSlug,
           tierSlug,
-          prefix: "NC-alignment",
+          prefix: "National-curriculum-alignment",
           isWithinArchive: data.isWithinArchive,
         });
       },
@@ -348,7 +347,7 @@ export async function getFile({
               examboardTitle: data.combinedCurriculumData?.examboardTitle,
               childSubjectSlug,
               tierSlug,
-              prefix: definition.label ?? type,
+              prefix: definition.label,
               isWithinArchive: data.isWithinArchive,
             });
           },
@@ -391,6 +390,7 @@ export async function getFile({
   let outputBuffer: Uint8Array;
   let outputFileName: string;
   let contentType: string;
+
   if (files.length > 1) {
     outputBuffer = await zipFromFiles(files);
     contentType = "application/zip";
@@ -436,7 +436,7 @@ export default async function handler(
   res: NextApiResponse<Buffer>,
 ) {
   const {
-    types: typesInitial,
+    types,
     mvRefreshTime,
     subjectSlug,
     phaseSlug,
@@ -448,18 +448,6 @@ export default async function handler(
 
   const mvRefreshTimeParsed = Number.parseInt(mvRefreshTime);
   const actualMvRefreshTime = await getMvRefreshTime();
-
-  const isImplementationGuidesEnabled = await isFeatureFlagEnabledServer(
-    req.cookies,
-    "implementation-guides",
-  );
-
-  // Temp to ensure no implementation guides are included before release
-  const types = isImplementationGuidesEnabled
-    ? typesInitial
-    : typesInitial.filter(
-        (type) => type === "curriculumPlan" || type === "nationalCurriculum",
-      );
 
   // Note: Disable this check to allow 'new' documents
   if (state === "new") {
@@ -519,7 +507,7 @@ export default async function handler(
     )
     .setHeader(
       "Content-Disposition",
-      `attachment; filename="${fileData.filename}`,
+      `attachment; filename="${fileData.filename}"`,
     )
     .setHeader("x-filename", `${fileData.filename}`)
     .status(200)

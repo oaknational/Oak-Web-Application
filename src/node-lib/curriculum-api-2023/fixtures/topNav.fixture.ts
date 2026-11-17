@@ -262,6 +262,11 @@ export const topNavFixture: TopNavProps = {
           href: "/teachers/lesson-planning",
         },
         {
+          title: "Teach with Oak",
+          slug: "teach-with-oak",
+          href: "/teachers/teach-with-oak",
+        },
+        {
           slug: "blog-index",
           title: "Blogs",
           href: "/blog",
@@ -284,6 +289,11 @@ export const topNavFixture: TopNavProps = {
           href: "/about-us/who-we-are",
         },
         {
+          slug: "about-meet-the-team",
+          title: "Meet the team",
+          href: "/about-us/meet-the-team",
+        },
+        {
           slug: "about-oaks-curricula",
           title: "Oak's curricula",
           href: "/about-us/oaks-curricula",
@@ -294,14 +304,14 @@ export const topNavFixture: TopNavProps = {
           href: "/about-us/oaks-impact",
         },
         {
+          slug: "about-case-study-library",
+          title: "Case studies",
+          href: "/about-us/case-studies",
+        },
+        {
           slug: "about-get-involved",
           title: "Get involved",
           href: "/about-us/get-involved",
-        },
-        {
-          slug: "about-meet-the-team",
-          title: "Meet the team",
-          href: "/about-us/meet-the-team",
         },
         {
           slug: "contact",

@@ -5,6 +5,7 @@ import { Meta, getParsedData } from "./getParsedData";
 import { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import OakError from "@/errors/OakError";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { teachWithOakShortReadsExistenceSchema } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/teachWithOakShortReads.schema";
 
 const DOWNLOADS_API_URL = getBrowserConfig("downloadApiUrl");
 
@@ -42,7 +43,9 @@ const unitDataSchema = z.object({
 });
 
 const schema = z.object({
-  data: lessonDataSchema.or(unitDataSchema),
+  data: lessonDataSchema
+    .or(unitDataSchema)
+    .or(teachWithOakShortReadsExistenceSchema),
   error: z
     .object({
       message: z.string(),
@@ -53,8 +56,8 @@ const schema = z.object({
 export type DownloadsApiCheckFilesResponseSchema = z.infer<typeof schema>;
 
 const getDownloadExistence = async (
-  meta: Meta,
   checkWhichResourcesExistEndpoint: string,
+  meta?: Meta,
 ) => {
   const res = await fetch(checkWhichResourcesExistEndpoint);
 
@@ -102,8 +105,8 @@ export const getLessonDownloadResourcesExistence = async ({
   };
 
   const res = await getDownloadExistence(
-    meta,
     checkWhichResourcesExistEndpoint,
+    meta,
   );
   return lessonDataSchema.parse(res);
 };
@@ -116,8 +119,14 @@ export const getUnitDownloadFileExistence = async (unitFileId: string) => {
   };
 
   const res = await getDownloadExistence(
-    meta,
     checkWhichResourcesExistEndpoint,
+    meta,
   );
   return unitDataSchema.parse(res);
+};
+
+export const getTeachWithOakDownloadFileExistence = async () => {
+  const checkWhichResourcesExistEndpoint = `${DOWNLOADS_API_URL}/api/teach-with-oak/short-reads/check-files`;
+  const res = await getDownloadExistence(checkWhichResourcesExistEndpoint);
+  return teachWithOakShortReadsExistenceSchema.parse(res);
 };

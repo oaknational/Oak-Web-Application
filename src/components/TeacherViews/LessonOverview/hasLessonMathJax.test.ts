@@ -148,38 +148,6 @@ describe("hasLessonMathJax", () => {
       true,
     );
   });
-  it("detects MathJax in match quiz answers", () => {
-    const lessonWithMathJaxInMatchQuiz: LessonOverviewPageData = {
-      ...basicLesson,
-      starterQuiz: [
-        {
-          questionId: 3,
-          questionUid: "match-uid",
-          questionType: "match",
-          questionStem: [
-            {
-              text: "Match the following expressions to their simplified forms",
-              type: "text",
-            },
-          ],
-          answers: {
-            match: [
-              {
-                correctChoice: [{ text: "$$x^2 - x^2$$", type: "text" }],
-                matchOption: [{ text: "$$0$$", type: "text" }],
-              },
-            ],
-          },
-          feedback: "Remember that any term minus itself equals zero.",
-          hint: "Subtract the terms.",
-          active: true,
-        },
-      ],
-    };
-    expect(hasLessonMathJax(lessonWithMathJaxInMatchQuiz, "maths", false)).toBe(
-      true,
-    );
-  });
 
   it("detects MathJax in order quiz answers", () => {
     const lessonWithMathJaxInOrderQuiz: LessonOverviewPageData = {

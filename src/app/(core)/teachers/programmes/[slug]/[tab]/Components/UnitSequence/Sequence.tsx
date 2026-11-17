@@ -12,7 +12,7 @@ import {
   getYearGroupTitle,
   getYearSubheadingText,
 } from "@/utils/curriculum/formatting";
-import { CurriculumFilters, YearData, Thread } from "@/utils/curriculum/types";
+import { CurriculumFilters, YearData } from "@/utils/curriculum/types";
 import { getShouldDisplayCorePathway } from "@/utils/curriculum/pathways";
 import {
   groupUnitsByPathway,
@@ -26,7 +26,6 @@ type ProgrammeSequenceProps = {
   yearData: YearData;
   filters: CurriculumFilters;
   mobileHeaderScrollOffset?: number;
-  threadOptions: Thread[];
   ks4Options: Ks4Option[];
 };
 
@@ -36,7 +35,6 @@ export default function ProgrammeSequence({
   yearData,
   mobileHeaderScrollOffset,
   filters,
-  threadOptions,
   ks4OptionSlug,
   ks4Options,
 }: Readonly<ProgrammeSequenceProps>) {
@@ -51,10 +49,6 @@ export default function ProgrammeSequence({
   const unitsByYearSelector = useMemo(() => {
     return applyFiltering(filters, unitsByPathway);
   }, [filters, unitsByPathway]);
-
-  const selectedThread = useMemo(() => {
-    return threadOptions.find((thread) => thread.slug === filters.threads[0]);
-  }, [threadOptions, filters]);
 
   const shouldDisplayCorePathway = getShouldDisplayCorePathway(ks4Options);
 
@@ -98,7 +92,6 @@ export default function ProgrammeSequence({
                 filters={filters}
                 year={year}
                 yearData={yearData}
-                selectedThread={selectedThread}
               />
             </ProgrammeYear>
           </OakBox>

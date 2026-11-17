@@ -1,6 +1,4 @@
-import { GraphQLClient } from "graphql-request";
-import { DocumentNode } from "graphql";
-import polly from "polly-js";
+import { ClientError, GraphQLClient } from "graphql-request";
 
 import getServerConfig from "../getServerConfig";
 
@@ -12,9 +10,6 @@ import OakError from "@/errors/OakError";
 const curriculumApiUrl = getServerConfig("curriculumApi2023Url");
 const curriculumApiAuthKey = getServerConfig("curriculumApiAuthKeyV2");
 
-/**
- * TS complaining when Headers in not typed.
- */
 type Headers = {
   Authorization: string;
 };
@@ -22,60 +17,55 @@ const headers: Headers = {
   Authorization: `Bearer ${curriculumApiAuthKey}`,
 };
 const reportError = errorReporter("Graphql sdk");
-const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
-const retryCount = 3;
-const withRetries = <T>(
+
+const graphqlClient = new GraphQLClient(curriculumApiUrl, {
+  headers,
+});
+
+// Aborts can reject with a DOMException, which is not
+// guaranteed to be `instanceof Error` across realms, so check the name
+export const isTimeoutError = (error: unknown) =>
+  typeof error === "object" &&
+  error !== null &&
+  "name" in error &&
+  (error.name === "TimeoutError" || error.name === "AbortError");
+
+const getResponseStatus = (error: unknown) =>
+  error instanceof ClientError ? error.response.status : undefined;
+
+export const withErrorReporting = async <T>(
   action: (requestHeaders?: Record<string, string>) => Promise<T>,
   operationName: string,
-) =>
-  polly()
-    .logger((error: Error) =>
-      console.warn("GraphQLClient:Error", { err: error }),
-    )
-    .waitAndRetry(retryCount)
-    .executeForPromise((info) => {
-      if (info.count === retryCount) {
-        console.error("GraphqlClient:MaxRetries", {
-          ...info,
-          queryName: operationName,
-        });
-        // report timeout errors
-        const timeoutError = new OakError({
-          code: "graphql/timeout",
-          meta: { queryName: operationName, action: action.toString() },
-        });
-        reportError(timeoutError);
-      } else if (info.count > 0) {
-        console.warn("GraphqlClient:RetryingCall", {
-          ...info,
-          queryName: operationName, // name of the query being retried
-        });
-      }
-      return action();
-    });
-
-const sdk = getSdk(graphqlClient, withRetries);
-
-/*
- * batched queries not currently supported with the sdk
- * see https://github.com/dotansimha/graphql-code-generator-community/issues/204
- */
-export const getBatchedRequests = async (
-  requests: Array<{
-    document: DocumentNode;
-    variables: Record<string, unknown>;
-  }>,
+  _operationType?: string,
+  variables?: unknown,
 ) => {
-  const data = await graphqlClient.batchRequests(requests);
-  return data;
+  try {
+    return await action();
+  } catch (error: unknown) {
+    const status = getResponseStatus(error);
+    // A 403 is an expected response (e.g. WAF block), not an error state
+    if (status === 403) {
+      throw error;
+    }
+
+    void reportError(
+      new OakError({
+        code: isTimeoutError(error)
+          ? "graphql/timeout"
+          : "graphql/request-failed",
+        originalError: error,
+        meta: {
+          queryName: operationName,
+          variables,
+          status,
+        },
+      }),
+    );
+    throw error;
+  }
 };
 
-/*types not exported from graphql-request library */
-interface Result<Data extends object = object> {
-  data: Data;
-}
-
-export type BatchResult = [Result, ...Result[]];
+const sdk = getSdk(graphqlClient, withErrorReporting);
 
 export type Sdk = typeof sdk;
 export default sdk;

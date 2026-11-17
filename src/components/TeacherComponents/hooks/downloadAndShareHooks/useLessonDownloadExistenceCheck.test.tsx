@@ -57,8 +57,8 @@ describe("useLessonDownloadExistenceCheck", () => {
     );
 
     await waitFor(() => {
-      expect(getDownloadResourcesExistenceMock).toBeCalledTimes(1);
-      expect(getDownloadResourcesExistenceMock).toBeCalledWith({
+      expect(getDownloadResourcesExistenceMock).toHaveBeenCalledTimes(1);
+      expect(getDownloadResourcesExistenceMock).toHaveBeenCalledWith({
         lessonSlug,
         resourceTypesString: "exit-quiz-answers,worksheet-pdf",
         isLegacyDownload: true,
@@ -66,8 +66,11 @@ describe("useLessonDownloadExistenceCheck", () => {
       });
     });
 
-    expect(onComplete).toBeCalledTimes(1);
-    expect(onComplete).toBeCalledWith(["exit-quiz-answers", "worksheet-pdf"]);
+    expect(onComplete).toHaveBeenCalledTimes(1);
+    expect(onComplete).toHaveBeenCalledWith([
+      "exit-quiz-answers",
+      "worksheet-pdf",
+    ]);
   });
 
   test("it calls onComplete with correct argument when resource is not available", async () => {
@@ -97,7 +100,7 @@ describe("useLessonDownloadExistenceCheck", () => {
     );
 
     await waitFor(() => {
-      expect(onComplete).toBeCalledWith(["worksheet-pdf"]);
+      expect(onComplete).toHaveBeenCalledWith(["worksheet-pdf"]);
     });
   });
 });

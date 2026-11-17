@@ -71,7 +71,6 @@ export type ImageWithAltTextAndDarkMode = z.infer<
 
 export const videoSchema = z.object({
   title: z.string(),
-  captions: z.array(z.string()).nullish(),
   transcript: portableTextSchema.nullish(),
   video: z.object({
     asset: z.object({
@@ -145,22 +144,6 @@ const internalLinkEntryTypes = [
 
   // For internal links to fixed pages
   z.object({ contentType: z.literal("homepage") }).merge(documentSchema),
-  z.object({ contentType: z.literal("aboutCorePage") }).merge(documentSchema),
-  z
-    .object({ contentType: z.literal("aboutCorePage.whoWeAre") })
-    .merge(documentSchema),
-  z
-    .object({ contentType: z.literal("aboutCorePage.board") })
-    .merge(documentSchema),
-  z
-    .object({ contentType: z.literal("aboutCorePage.leadership") })
-    .merge(documentSchema),
-  z
-    .object({ contentType: z.literal("aboutCorePage.partners") })
-    .merge(documentSchema),
-  z
-    .object({ contentType: z.literal("aboutCorePage.workWithUs") })
-    .merge(documentSchema),
   z
     .object({ contentType: z.literal("planningCorePage") })
     .merge(documentSchema),
@@ -221,3 +204,10 @@ export const seoSchema = z.object({
 });
 
 export type Seo = z.infer<typeof seoSchema>;
+
+export const faqSchema = z.object({
+  question: z.string(),
+  answerRaw: portableTextSchema,
+});
+
+export type Faq = z.infer<typeof faqSchema>;

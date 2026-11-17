@@ -14,11 +14,13 @@ import {
   mockLinkClick,
 } from "@/utils/mockLinkClick";
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 globalThis.fetch = jest.fn().mockResolvedValue({ ok: true });
 
-const onwardContentSelected = jest.fn();
+const lessonAccessed = jest.fn();
 
 jest.mock(
   "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider",
@@ -27,7 +29,7 @@ jest.mock(
       "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider",
     ),
     useTeacherBrowseAnalytics: () => ({
-      onwardContentSelected,
+      lessonAccessed,
     }),
   }),
 );
@@ -94,7 +96,15 @@ const renderDownloadSuccessView = (
   props?: Partial<DownloadSuccessViewProps>,
 ) => {
   return renderWithProviders()(
-    <DownloadSuccessView lesson={baseLesson} {...props} />,
+    <DownloadSuccessView
+      lesson={baseLesson}
+      unitDownloadExistence={{
+        checkFailed: false,
+        exists: true,
+        fileSize: "1.2MB",
+      }}
+      {...props}
+    />,
   );
 };
 
@@ -138,7 +148,7 @@ describe("DownloadSuccessView", () => {
     );
   });
 
-  it("calls onwardContentSelected when Back to lesson is clicked", async () => {
+  it("calls lessonAccessed when Back to lesson is clicked", async () => {
     const user = userEvent.setup();
     renderDownloadSuccessView();
 
@@ -152,10 +162,12 @@ describe("DownloadSuccessView", () => {
         unitSlug: baseLesson.unitSlug,
       })}`,
     );
-    expect(onwardContentSelected).toHaveBeenCalledTimes(1);
-    expect(onwardContentSelected).toHaveBeenCalledWith({
-      onwardIntent: "view-lesson",
+    expect(lessonAccessed).toHaveBeenCalledTimes(1);
+    expect(lessonAccessed).toHaveBeenCalledWith({
+      componentType: "back_a_step_button",
+      navigationType: "across",
       lessonName: "Transverse waves",
+      lessonReleaseCohort: "2023-2026",
       lessonReleaseDate: "2025-09-29T14:00:00.000Z",
       lessonSlug: "transverse-waves",
     });
@@ -173,6 +185,39 @@ describe("DownloadSuccessView", () => {
     expect(screen.getByText("Ready to keep going?")).toBeInTheDocument();
     expect(screen.getByText("Measuring wave speed")).toBeInTheDocument();
     expect(screen.getByText("Current lesson")).toBeInTheDocument();
+  });
+
+  it("renders the unit download button when the unit download exists", () => {
+    setUseUserReturn(mockLoggedIn);
+    renderDownloadSuccessView({
+      unitDownloadExistence: { checkFailed: false, exists: true },
+    });
+
+    expect(
+      screen.getByRole("button", { name: "Download complete unit" }),
+    ).toBeInTheDocument();
+  });
+
+  it("renders the unit download button when the availability check failed", () => {
+    setUseUserReturn(mockLoggedIn);
+    renderDownloadSuccessView({
+      unitDownloadExistence: { checkFailed: true, exists: undefined },
+    });
+
+    expect(
+      screen.getByRole("button", { name: "Download complete unit" }),
+    ).toBeInTheDocument();
+  });
+
+  it("omits the unit download button when the unit download does not exist", () => {
+    setUseUserReturn(mockLoggedIn);
+    renderDownloadSuccessView({
+      unitDownloadExistence: { checkFailed: false, exists: false },
+    });
+
+    expect(
+      screen.queryByRole("button", { name: "Download complete unit" }),
+    ).not.toBeInTheDocument();
   });
 
   it("shows extra help copy when statistics (Gleap) consent is granted", () => {

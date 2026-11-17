@@ -21,8 +21,8 @@ type OakNotificationsContext = {
 export const oakNotificationsContext =
   createContext<OakNotificationsContext | null>(null);
 
-const StyledOakNotificationsContainer = styled(OakFlex)<{ offsetTop: number }>`
-  top: ${(props) => props.offsetTop}px;
+const StyledOakNotificationsContainer = styled(OakFlex)<{ $offsetTop: number }>`
+  top: ${(props) => props.$offsetTop}px;
 `;
 const visibleOffset = 152;
 
@@ -94,7 +94,7 @@ export const OakNotificationsProvider: FC<{
       <StyledOakNotificationsContainer
         $position="fixed"
         $zIndex="modal-dialog"
-        offsetTop={offsetTop}
+        $offsetTop={offsetTop}
         $right={["spacing-0", "spacing-24"]}
         $width={["100%", "max-content"]}
         aria-live="polite"

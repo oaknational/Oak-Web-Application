@@ -15,6 +15,7 @@ import {
   BaseHeaderNavFooterProps,
   PrevNextButtons,
 } from "@/components/TeacherComponents/HeaderNavFooter/HeaderNavFooterShared";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type DecorativeDividerProps = {
   orientation: "vertical" | "horizontal";
@@ -210,6 +211,9 @@ function getUnitHeaderNavFooterAppearance(
 
 export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
   const { sentinelRef, isStuck } = props;
+  const { programmeAccessed } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
   const shellRef = useRef<HTMLDivElement>(null);
   const [mobileFlowHeight, setMobileFlowHeight] = useState(0);
   const { shell, fadeIn, content, displays, borderColor } =
@@ -305,7 +309,13 @@ export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
                 $gap={"spacing-16"}
                 $alignItems={"center"}
               >
-                <PrevNextButtons type="unit" $display={"flex"} {...props} />
+                <PrevNextButtons
+                  type="unit"
+                  $display={"flex"}
+                  backgroundColorLevel={props.backgroundColorLevel}
+                  prev={props.prev}
+                  next={props.next}
+                />
                 <DecorativeDivider
                   orientation="vertical"
                   borderColor={borderColor}
@@ -316,7 +326,9 @@ export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
             <PrevNextButtons
               type="unit"
               $display={displays.mobilePrevNext}
-              {...props}
+              backgroundColorLevel={props.backgroundColorLevel}
+              prev={props.prev}
+              next={props.next}
             />
             <OakBox $display={displays.viewAllUnits}>
               <OakSmallPrimaryInvertedButton
@@ -326,6 +338,12 @@ export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
                 $textWrap={"nowrap"}
                 element="a"
                 href={props.viewHref}
+                onClick={() =>
+                  programmeAccessed({
+                    componentType: "view_all_button",
+                    navigationType: "broaden",
+                  })
+                }
               >
                 View all units
               </OakSmallPrimaryInvertedButton>

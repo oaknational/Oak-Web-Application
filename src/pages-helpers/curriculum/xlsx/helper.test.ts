@@ -213,7 +213,7 @@ describe("generateYearTitle", () => {
             createUnit({
               year: "10",
               subject: "Physical education",
-              examboard: "Core",
+              examboard_slug: "Core",
             }),
           ],
         }),
@@ -390,7 +390,7 @@ describe("generateYearTitle", () => {
     expect(output).toEqual("Year 9 Physical education");
   });
 
-  test("Year 9 Physical education", () => {
+  test("Year 9 Physical education (tier higher)", () => {
     const formattedData = {
       yearData: {
         "9": createYearData({

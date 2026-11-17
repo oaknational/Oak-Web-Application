@@ -22,6 +22,15 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   },
 }));
 
+const mockGetUnitDownloadFileExistence = jest.fn();
+jest.mock(
+  "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
+  () => ({
+    getUnitDownloadFileExistence: (...args: unknown[]) =>
+      mockGetUnitDownloadFileExistence(...args),
+  }),
+);
+
 const unitFixture = {
   ...teachersUnitOverviewFixture(),
   lessons: [
@@ -44,6 +53,10 @@ const defaultParams = {
 describe("LessonDownloadsSuccessPage", () => {
   beforeEach(() => {
     mockTeachersUnitOverview.mockResolvedValue(unitFixture);
+    mockGetUnitDownloadFileExistence.mockResolvedValue({
+      exists: true,
+      fileSize: "1.2MB",
+    });
   });
 
   it("fetches unit data and renders success confirmation", async () => {

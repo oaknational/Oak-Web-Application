@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`LessonDownloadsSuccessPage fetches unit data and renders success confirmation 1`] = `
 <TeacherBrowseAnalyticsStoreProvider
@@ -29,6 +29,7 @@ exports[`LessonDownloadsSuccessPage fetches unit data and renders success confir
         "title": "Cells",
       },
       "year": "7",
+      "yearGroupSlug": "year-7",
       "yearGroupTitle": "Year 7",
     }
   }
@@ -58,6 +59,8 @@ exports[`LessonDownloadsSuccessPage fetches unit data and renders success confir
         "nextUnit": {
           "slug": "unit-2",
           "title": "Unit 2",
+          "yearGroupName": "Year 1",
+          "yearSlug": "year-1",
         },
         "pathwayDisplayOrder": null,
         "pathwaySlug": null,
@@ -91,8 +94,15 @@ exports[`LessonDownloadsSuccessPage fetches unit data and renders success confir
         "unitvariantId": 1,
         "whyThisWhyNow": "why this why now",
         "year": "7",
+        "yearGroupSlug": "year-7",
         "yearGroupTitle": "Year 7",
-        "yearSlug": "year-7",
+      }
+    }
+    unitDownloadExistence={
+      {
+        "checkFailed": false,
+        "exists": true,
+        "fileSize": "1.2MB",
       }
     }
   />

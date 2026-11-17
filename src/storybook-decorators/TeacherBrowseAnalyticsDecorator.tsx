@@ -13,7 +13,12 @@ const state: TeacherBrowseAnalyticsStore = {
   avo: { ...noopTrackingFns, NavigatedFrom },
   journeyId: "mockJourneyId",
   accessLevel: "unit",
+  posthogDistinctId: "mockPosthogDistinctId",
   track: {
+    contentBlockNotificationDisplayed: () =>
+      console.log("contentBlockNotificationDisplayed fired"),
+    contentSaved: () => console.log("contentSaved fired"),
+    contentUnsaved: () => console.log("contentUnsaved fired"),
     createTeachingMaterialsInitiated: () =>
       console.log("createTeachingMaterialsInitiated fired"),
     lessonMediaClipsStarted: () => console.log("lessonMediaClipsStarted fired"),
@@ -31,11 +36,13 @@ const state: TeacherBrowseAnalyticsStore = {
       console.log("curriculumResourcesDownloaded fired"),
     curriculumResourcesDownloadRefined: () =>
       console.log("curriculumResourcesDownloadRefined fired"),
-    onwardContentSelected: () => console.log("onwardContentSelected fired"),
+    teachWithOakAccessed: () => console.log("teachwithOakAccessed fired"),
+    teachWithOakDownloaded: () => console.log("teachWithOakDownloaded fired"),
     teachingMaterialsSelected: () =>
       console.log("teachingMaterialsSelected fired"),
-    unitDownloadStarted: () => console.log("unitDownloadStarted fired"),
-    unitOverviewAccessed: () => console.log("unitOverviewAccessed fired"),
+    signInStarted: () => console.log("signInStarted fired"),
+    newsletterSignUpCompleted: () =>
+      console.log("newsletterSignUpCompleted fired"),
     programmeAccessed: () => console.log("programmeAccessed fired"),
     programmeRefined: () => console.log("programmeRefined fired"),
     unitRefined: () => console.log("unitRefined fired"),
@@ -46,7 +53,17 @@ const state: TeacherBrowseAnalyticsStore = {
     lessonResourcesDownloaded: () =>
       console.log("lessonResourcesDownloaded fired"),
     lessonAccessed: () => console.log("lessonAccessed fired"),
+    lessonAssistantAccessed: () => console.log("lessonAssistantAccessed fired"),
     unitAccessed: () => console.log("unitAccessed fired"),
+    searchJourneyInitiated: () => console.log("searchJourneyInitiated fired"),
+    searchAccessed: () => console.log("searchAccessed fired"),
+    searchRefined: () => console.log("searchRefined fired"),
+    searchResultExpanded: () => console.log("searchResultExpanded fired"),
+    searchResultOpened: () => console.log("searchResultOpened fired"),
+    searchFilterModified: () => console.log("searchFilterModified fired"),
+    userOnboardingCompleted: () => console.log("userOnboardingCompleted fired"),
+    userOnboardingProgressed: () =>
+      console.log("userOnboardingProgressed fired"),
   },
 };
 

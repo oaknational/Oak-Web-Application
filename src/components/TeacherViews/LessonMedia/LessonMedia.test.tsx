@@ -16,6 +16,7 @@ import {
   mockLoggedOut,
   mockGeorestrictedUser,
 } from "@/__tests__/__helpers__/mockUser";
+import { signedOutLoginRequired } from "@/__tests__/__helpers__/mockCopyrightRequirements";
 
 const render = renderWithProviders();
 
@@ -293,6 +294,18 @@ describe("LessonMedia view", () => {
     expect(restrictedContentPrompt).toBeInTheDocument();
   });
 
+  it("uses the server-supplied copyright state over the client user state", () => {
+    setUseUserReturn(mockLoggedOut);
+    const { getByText } = render(
+      <LessonMedia
+        lesson={{ ...lesson, geoRestricted: false, loginRequired: false }}
+        isCanonical={false}
+        copyrightState={signedOutLoginRequired}
+      />,
+    );
+    expect(getByText("Sign in to continue")).toBeInTheDocument();
+  });
+
   it("does not render 'RestrictedContentPrompt' when geoRestricted or loginRequired is false", () => {
     setUseUserReturn(mockLoggedOut);
     const { queryByText } = render(
@@ -321,12 +334,12 @@ describe("LessonMedia view", () => {
       componentType: "lesson_media_clips",
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
-      lessonName: "Running as a team",
-      lessonSlug: "running-as-a-team",
+      lessonName: "Structure of cells",
+      lessonSlug: "lesson-3-structure-of-cells",
       lessonReleaseCohort: "2023-2026",
-      lessonReleaseDate: "2025-09-29T14:00:00.000Z",
-      unitName: "Running and jumping",
-      unitSlug: "running-and-jumping",
+      lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+      unitName: "Cells",
+      unitSlug: "cells",
       contentType: "lesson",
       accessBlockType: "Geo-restriction",
       accessBlockDetails: {},

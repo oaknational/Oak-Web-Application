@@ -6,19 +6,18 @@ import { FontProps } from "@/styles/utils/typography";
 const CopyrightLicence = (
   props: FontProps & { openLinksExternally: boolean; copyrightYear: string },
 ) => {
-  const { copyrightYear } = props;
+  const { copyrightYear, openLinksExternally, ...restProps } = props;
   const year = new Date(copyrightYear).getUTCFullYear();
   return (
-    <OakBox $font="body-3" {...props}>
+    <OakBox $font="body-3" {...restProps}>
       This content is © Oak National Academy Limited ({year}), licensed on{" "}
-      {props.openLinksExternally ? (
+      {openLinksExternally ? (
         <OakLink
           href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
           target={"_blank"}
           iconName="external"
           isTrailingIcon
           data-testid="external-link-icon"
-          aria-label="Open Government Licence version 3.0 (opens in a new tab)"
         >
           Open Government Licence version 3.0
         </OakLink>
@@ -32,14 +31,13 @@ const CopyrightLicence = (
         </OakLink>
       )}{" "}
       except where otherwise stated. See{" "}
-      {props.openLinksExternally ? (
+      {openLinksExternally ? (
         <OakLink
           href={resolveOakHref({
             page: "legal",
             legalSlug: "terms-and-conditions",
           })}
           target={"_blank"}
-          aria-label="Oak's terms & conditions (opens in a new tab)"
           iconName="external"
           isTrailingIcon
           data-testid="external-link-icon"

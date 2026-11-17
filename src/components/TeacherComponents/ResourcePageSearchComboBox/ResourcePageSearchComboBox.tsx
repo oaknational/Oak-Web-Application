@@ -10,6 +10,7 @@ import {
   OakFlex,
   OakJauntyAngleLabel,
   OakTextInput,
+  parseSpacing,
 } from "@oaknational/oak-components";
 
 import { Popover } from "@/components/SharedComponents/Popover";
@@ -25,6 +26,7 @@ const ResourcePageSearchComboBox = <T extends School>(
     errorId?: string;
     withHomeschool: boolean;
     label: string;
+    placeholder?: string;
   },
 ) => {
   // Setup filter function and state.
@@ -82,8 +84,8 @@ const ResourcePageSearchComboBox = <T extends School>(
           $background={labelBackground}
           $zIndex="in-front"
           $position="absolute"
-          $top={"-20px"}
-          $left={"5px"}
+          $left={"spacing-4"}
+          style={{ top: `-${parseSpacing("spacing-20")}` }}
           $borderRadius="border-radius-square"
         />
 
@@ -94,9 +96,10 @@ const ResourcePageSearchComboBox = <T extends School>(
           aria-labelledby={labelId}
           data-testid={"search-combobox-input"}
           placeholder={
-            props.withHomeschool
+            props.placeholder ??
+            (props.withHomeschool
               ? "Type school name, postcode, or ‘homeschool’"
-              : "Type school name or postcode"
+              : "Type school name or postcode")
           }
           aria-describedby={props.errorId ? props.errorId : undefined}
           required={required}

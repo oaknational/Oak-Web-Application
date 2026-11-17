@@ -4,9 +4,9 @@ export const FLAGS = {
       process.env.NEXT_PUBLIC_FORCE_FEATURE_FLAG_EXAMPLE_FEATURE ?? "false"
     );
   },
-  get "implementation-guides"() {
+  get "nc-alignment-checker"() {
     return (
-      process.env.NEXT_PUBLIC_FORCE_FEATURE_FLAG_IMPLEMENTATION_GUIDES ?? "true"
+      process.env.NEXT_PUBLIC_FORCE_FEATURE_FLAG_NC_ALIGNMENT_CHECKER ?? "false"
     );
   },
 } as const;

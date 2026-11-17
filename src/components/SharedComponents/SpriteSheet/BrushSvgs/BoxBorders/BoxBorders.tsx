@@ -13,30 +13,30 @@ import { BoxBorderRight } from "./BoxBorderRight";
 import { BoxBorderLeft } from "./BoxBorderLeft";
 import { BoxBorderBottom } from "./BoxBorderBottom";
 
-export const gapPositionMap = {
+export const $gapPositionMap = {
   rightTop: "90%",
   bottomRight: "90%",
   bottomRightCorner: "99%",
 } as const;
 
-export type GapPosition = keyof typeof gapPositionMap;
+export type GapPosition = keyof typeof $gapPositionMap;
 
-const getBorderHeight = (gapPosition: GapPosition | undefined) => {
-  if (gapPosition === "rightTop") return gapPositionMap.rightTop;
-  if (gapPosition === "bottomRightCorner")
-    return gapPositionMap.bottomRightCorner;
+const getBorderHeight = ($gapPosition: GapPosition | undefined) => {
+  if ($gapPosition === "rightTop") return $gapPositionMap.rightTop;
+  if ($gapPosition === "bottomRightCorner")
+    return $gapPositionMap.bottomRightCorner;
   return "100%";
 };
 
-const getBorderWidth = (gapPosition: GapPosition | undefined) => {
-  if (gapPosition === "bottomRight") return gapPositionMap.bottomRight;
-  if (gapPosition === "bottomRightCorner")
-    return gapPositionMap.bottomRightCorner;
+const getBorderWidth = ($gapPosition: GapPosition | undefined) => {
+  if ($gapPosition === "bottomRight") return $gapPositionMap.bottomRight;
+  if ($gapPosition === "bottomRightCorner")
+    return $gapPositionMap.bottomRightCorner;
   return "100%";
 };
 
 export type BoxBordersProps = {
-  gapPosition?: GapPosition;
+  $gapPosition?: GapPosition;
   $zIndex?: keyof typeof oakZIndexTokens | null;
   hideTop?: boolean;
   hideBottom?: boolean;
@@ -63,7 +63,7 @@ export type StyledBoxBorderProps = OakBoxProps & {
   hideOnMobileV?: boolean;
   color?: OakUiRoleToken;
   filter?: string;
-  gapPosition?: GapPosition;
+  $gapPosition?: GapPosition;
 };
 
 const StyledBoxBorderTop: FC<StyledBoxBorderProps> = (props) => {
@@ -90,7 +90,10 @@ const StyledBoxBorderTop: FC<StyledBoxBorderProps> = (props) => {
   );
 };
 
-const StyledBoxBorderRight: FC<StyledBoxBorderProps> = (props) => {
+const StyledBoxBorderRight: FC<StyledBoxBorderProps> = ({
+  $gapPosition,
+  ...props
+}) => {
   return (
     <StyledSvg
       aria-hidden={true}
@@ -107,9 +110,9 @@ const StyledBoxBorderRight: FC<StyledBoxBorderProps> = (props) => {
       style={{
         top: "unset",
         left: "unset",
-        bottom: props.gapPosition === "bottomRightCorner" ? "5%" : undefined,
+        bottom: $gapPosition === "bottomRightCorner" ? "5%" : undefined,
         width: "3px",
-        height: getBorderHeight(props.gapPosition),
+        height: getBorderHeight($gapPosition),
       }}
     >
       <BoxBorderRight />
@@ -117,7 +120,10 @@ const StyledBoxBorderRight: FC<StyledBoxBorderProps> = (props) => {
   );
 };
 
-const StyledBoxBorderBottom: FC<StyledBoxBorderProps> = (props) => {
+const StyledBoxBorderBottom: FC<StyledBoxBorderProps> = ({
+  $gapPosition,
+  ...props
+}) => {
   return (
     <StyledSvg
       aria-hidden={true}
@@ -134,7 +140,7 @@ const StyledBoxBorderBottom: FC<StyledBoxBorderProps> = (props) => {
       style={{
         top: "unset",
         height: "3px",
-        width: getBorderWidth(props.gapPosition),
+        width: getBorderWidth($gapPosition),
       }}
     >
       <BoxBorderBottom />
@@ -172,7 +178,7 @@ const StyledBoxBorderLeft: FC<StyledBoxBorderProps> = (props) => {
  *
  * ## Usage
  * Just drop this component inside a Card or other relatively positioned
- * container, and it will act as a visual border around that component. gapPosition, hideTop and
+ * container, and it will act as a visual border around that component. $gapPosition, hideTop and
  * hideBottom props are available.
  *
  * ## Note
@@ -180,22 +186,19 @@ const StyledBoxBorderLeft: FC<StyledBoxBorderProps> = (props) => {
  * which allows them to be stretched whilst still preserving the effect of being
  * a painted or drawn line.
  */
-const BoxBorders: FC<BoxBordersProps> = (props) => {
+const BoxBorders: FC<BoxBordersProps> = (rawProps) => {
+  const { hideTop, hideRight, hideBottom, hideLeft, ...props } = rawProps;
   return (
     <OakBox aria-hidden="true" data-testid="brush-borders">
-      {!props.hideTop && (
-        <StyledBoxBorderTop name="box-border-top" {...props} />
-      )}
-      {!props.hideRight && (
+      {!hideTop && <StyledBoxBorderTop name="box-border-top" {...props} />}
+      {!hideRight && (
         <StyledBoxBorderRight name="box-border-right" {...props} />
       )}
 
-      {!props.hideBottom && (
+      {!hideBottom && (
         <StyledBoxBorderBottom name="box-border-bottom" {...props} />
       )}
-      {!props.hideLeft && (
-        <StyledBoxBorderLeft name="box-border-left" {...props} />
-      )}
+      {!hideLeft && <StyledBoxBorderLeft name="box-border-left" {...props} />}
     </OakBox>
   );
 };

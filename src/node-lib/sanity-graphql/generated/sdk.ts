@@ -86,387 +86,6 @@ export type AbTestVariantSorting = {
   posthogVariant?: InputMaybe<SortOrder>;
 };
 
-export type AboutCorePage = Document & {
-  __typename?: 'AboutCorePage';
-  /** Date the document was created */
-  _createdAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Document ID */
-  _id?: Maybe<Scalars['ID']['output']>;
-  _key?: Maybe<Scalars['String']['output']>;
-  /** Current document revision */
-  _rev?: Maybe<Scalars['String']['output']>;
-  /** Document type */
-  _type?: Maybe<Scalars['String']['output']>;
-  /** Date the document was last modified */
-  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  contactSection?: Maybe<AboutPageContactSection>;
-  summaryCardImage?: Maybe<Image>;
-  summaryRaw?: Maybe<Scalars['JSON']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-export type AboutCorePageBoard = Document & {
-  __typename?: 'AboutCorePageBoard';
-  /** Date the document was created */
-  _createdAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Document ID */
-  _id?: Maybe<Scalars['ID']['output']>;
-  _key?: Maybe<Scalars['String']['output']>;
-  /** Current document revision */
-  _rev?: Maybe<Scalars['String']['output']>;
-  /** Document type */
-  _type?: Maybe<Scalars['String']['output']>;
-  /** Date the document was last modified */
-  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  boardHeader?: Maybe<Scalars['String']['output']>;
-  boardMembers?: Maybe<Array<Maybe<TeamMember>>>;
-  documents?: Maybe<Array<Maybe<Attachment>>>;
-  governanceRaw?: Maybe<Scalars['JSON']['output']>;
-  introRaw?: Maybe<Scalars['JSON']['output']>;
-  seo?: Maybe<Seo>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-export type AboutCorePageBoardFilter = {
-  /** Apply filters on document level */
-  _?: InputMaybe<Sanity_DocumentFilter>;
-  _createdAt?: InputMaybe<DatetimeFilter>;
-  _id?: InputMaybe<IdFilter>;
-  _key?: InputMaybe<StringFilter>;
-  _rev?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  _updatedAt?: InputMaybe<DatetimeFilter>;
-  boardHeader?: InputMaybe<StringFilter>;
-  seo?: InputMaybe<SeoFilter>;
-  title?: InputMaybe<StringFilter>;
-};
-
-export type AboutCorePageBoardSorting = {
-  _createdAt?: InputMaybe<SortOrder>;
-  _id?: InputMaybe<SortOrder>;
-  _key?: InputMaybe<SortOrder>;
-  _rev?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  _updatedAt?: InputMaybe<SortOrder>;
-  boardHeader?: InputMaybe<SortOrder>;
-  seo?: InputMaybe<SeoSorting>;
-  title?: InputMaybe<SortOrder>;
-};
-
-export type AboutCorePageFilter = {
-  /** Apply filters on document level */
-  _?: InputMaybe<Sanity_DocumentFilter>;
-  _createdAt?: InputMaybe<DatetimeFilter>;
-  _id?: InputMaybe<IdFilter>;
-  _key?: InputMaybe<StringFilter>;
-  _rev?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  _updatedAt?: InputMaybe<DatetimeFilter>;
-  contactSection?: InputMaybe<AboutPageContactSectionFilter>;
-  summaryCardImage?: InputMaybe<ImageFilter>;
-  title?: InputMaybe<StringFilter>;
-};
-
-export type AboutCorePageLeadership = Document & {
-  __typename?: 'AboutCorePageLeadership';
-  /** Date the document was created */
-  _createdAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Document ID */
-  _id?: Maybe<Scalars['ID']['output']>;
-  _key?: Maybe<Scalars['String']['output']>;
-  /** Current document revision */
-  _rev?: Maybe<Scalars['String']['output']>;
-  /** Document type */
-  _type?: Maybe<Scalars['String']['output']>;
-  /** Date the document was last modified */
-  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  introRaw?: Maybe<Scalars['JSON']['output']>;
-  leadershipTeam?: Maybe<Array<Maybe<TeamMember>>>;
-  seo?: Maybe<Seo>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-export type AboutCorePageLeadershipFilter = {
-  /** Apply filters on document level */
-  _?: InputMaybe<Sanity_DocumentFilter>;
-  _createdAt?: InputMaybe<DatetimeFilter>;
-  _id?: InputMaybe<IdFilter>;
-  _key?: InputMaybe<StringFilter>;
-  _rev?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  _updatedAt?: InputMaybe<DatetimeFilter>;
-  seo?: InputMaybe<SeoFilter>;
-  title?: InputMaybe<StringFilter>;
-};
-
-export type AboutCorePageLeadershipSorting = {
-  _createdAt?: InputMaybe<SortOrder>;
-  _id?: InputMaybe<SortOrder>;
-  _key?: InputMaybe<SortOrder>;
-  _rev?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  _updatedAt?: InputMaybe<SortOrder>;
-  seo?: InputMaybe<SeoSorting>;
-  title?: InputMaybe<SortOrder>;
-};
-
-export type AboutCorePageOrAboutCorePageBoardOrAboutCorePageLeadershipOrAboutCorePagePartnersOrAboutCorePageWhoWeAreOrAboutCorePageWorkWithUsOrAttachmentOrContactCorePageOrHomepageOrLandingPageOrNewsListingPageOrNewsPostOrPlanningCorePageOrPolicyPageOrSupportCorePageOrWebinarOrWebinarListingPage = AboutCorePage | AboutCorePageBoard | AboutCorePageLeadership | AboutCorePagePartners | AboutCorePageWhoWeAre | AboutCorePageWorkWithUs | Attachment | ContactCorePage | Homepage | LandingPage | NewsListingPage | NewsPost | PlanningCorePage | PolicyPage | SupportCorePage | Webinar | WebinarListingPage;
-
-export type AboutCorePagePartners = Document & {
-  __typename?: 'AboutCorePagePartners';
-  /** Date the document was created */
-  _createdAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Document ID */
-  _id?: Maybe<Scalars['ID']['output']>;
-  _key?: Maybe<Scalars['String']['output']>;
-  /** Current document revision */
-  _rev?: Maybe<Scalars['String']['output']>;
-  /** Document type */
-  _type?: Maybe<Scalars['String']['output']>;
-  /** Date the document was last modified */
-  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  curriculumPartners?: Maybe<Array<Maybe<AboutPagePartnerImage>>>;
-  introRaw?: Maybe<Scalars['JSON']['output']>;
-  seo?: Maybe<Seo>;
-  techPartners?: Maybe<Array<Maybe<AboutPagePartnerImage>>>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-export type AboutCorePagePartnersFilter = {
-  /** Apply filters on document level */
-  _?: InputMaybe<Sanity_DocumentFilter>;
-  _createdAt?: InputMaybe<DatetimeFilter>;
-  _id?: InputMaybe<IdFilter>;
-  _key?: InputMaybe<StringFilter>;
-  _rev?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  _updatedAt?: InputMaybe<DatetimeFilter>;
-  seo?: InputMaybe<SeoFilter>;
-  title?: InputMaybe<StringFilter>;
-};
-
-export type AboutCorePagePartnersSorting = {
-  _createdAt?: InputMaybe<SortOrder>;
-  _id?: InputMaybe<SortOrder>;
-  _key?: InputMaybe<SortOrder>;
-  _rev?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  _updatedAt?: InputMaybe<SortOrder>;
-  seo?: InputMaybe<SeoSorting>;
-  title?: InputMaybe<SortOrder>;
-};
-
-export type AboutCorePageSorting = {
-  _createdAt?: InputMaybe<SortOrder>;
-  _id?: InputMaybe<SortOrder>;
-  _key?: InputMaybe<SortOrder>;
-  _rev?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  _updatedAt?: InputMaybe<SortOrder>;
-  contactSection?: InputMaybe<AboutPageContactSectionSorting>;
-  summaryCardImage?: InputMaybe<ImageSorting>;
-  title?: InputMaybe<SortOrder>;
-};
-
-export type AboutCorePageWhoWeAre = Document & {
-  __typename?: 'AboutCorePageWhoWeAre';
-  /** Date the document was created */
-  _createdAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Document ID */
-  _id?: Maybe<Scalars['ID']['output']>;
-  _key?: Maybe<Scalars['String']['output']>;
-  /** Current document revision */
-  _rev?: Maybe<Scalars['String']['output']>;
-  /** Document type */
-  _type?: Maybe<Scalars['String']['output']>;
-  /** Date the document was last modified */
-  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  intro?: Maybe<TextAndMedia>;
-  principles?: Maybe<Array<Maybe<TextBlock>>>;
-  seo?: Maybe<Seo>;
-  timeline?: Maybe<AboutPageTimeline>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-export type AboutCorePageWhoWeAreFilter = {
-  /** Apply filters on document level */
-  _?: InputMaybe<Sanity_DocumentFilter>;
-  _createdAt?: InputMaybe<DatetimeFilter>;
-  _id?: InputMaybe<IdFilter>;
-  _key?: InputMaybe<StringFilter>;
-  _rev?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  _updatedAt?: InputMaybe<DatetimeFilter>;
-  intro?: InputMaybe<TextAndMediaFilter>;
-  seo?: InputMaybe<SeoFilter>;
-  timeline?: InputMaybe<AboutPageTimelineFilter>;
-  title?: InputMaybe<StringFilter>;
-};
-
-export type AboutCorePageWhoWeAreSorting = {
-  _createdAt?: InputMaybe<SortOrder>;
-  _id?: InputMaybe<SortOrder>;
-  _key?: InputMaybe<SortOrder>;
-  _rev?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  _updatedAt?: InputMaybe<SortOrder>;
-  intro?: InputMaybe<TextAndMediaSorting>;
-  seo?: InputMaybe<SeoSorting>;
-  timeline?: InputMaybe<AboutPageTimelineSorting>;
-  title?: InputMaybe<SortOrder>;
-};
-
-export type AboutCorePageWorkWithUs = Document & {
-  __typename?: 'AboutCorePageWorkWithUs';
-  /** Date the document was created */
-  _createdAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Document ID */
-  _id?: Maybe<Scalars['ID']['output']>;
-  _key?: Maybe<Scalars['String']['output']>;
-  /** Current document revision */
-  _rev?: Maybe<Scalars['String']['output']>;
-  /** Document type */
-  _type?: Maybe<Scalars['String']['output']>;
-  /** Date the document was last modified */
-  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  cards?: Maybe<AboutPageWorkWithUsCards>;
-  introRaw?: Maybe<Scalars['JSON']['output']>;
-  seo?: Maybe<Seo>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-export type AboutCorePageWorkWithUsFilter = {
-  /** Apply filters on document level */
-  _?: InputMaybe<Sanity_DocumentFilter>;
-  _createdAt?: InputMaybe<DatetimeFilter>;
-  _id?: InputMaybe<IdFilter>;
-  _key?: InputMaybe<StringFilter>;
-  _rev?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  _updatedAt?: InputMaybe<DatetimeFilter>;
-  cards?: InputMaybe<AboutPageWorkWithUsCardsFilter>;
-  seo?: InputMaybe<SeoFilter>;
-  title?: InputMaybe<StringFilter>;
-};
-
-export type AboutCorePageWorkWithUsSorting = {
-  _createdAt?: InputMaybe<SortOrder>;
-  _id?: InputMaybe<SortOrder>;
-  _key?: InputMaybe<SortOrder>;
-  _rev?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  _updatedAt?: InputMaybe<SortOrder>;
-  cards?: InputMaybe<AboutPageWorkWithUsCardsSorting>;
-  seo?: InputMaybe<SeoSorting>;
-  title?: InputMaybe<SortOrder>;
-};
-
-export type AboutPageContactSection = {
-  __typename?: 'AboutPageContactSection';
-  _key?: Maybe<Scalars['String']['output']>;
-  _type?: Maybe<Scalars['String']['output']>;
-  contactForm?: Maybe<FormWrapper>;
-  infoRaw?: Maybe<Scalars['JSON']['output']>;
-};
-
-export type AboutPageContactSectionFilter = {
-  _key?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  contactForm?: InputMaybe<FormWrapperFilter>;
-};
-
-export type AboutPageContactSectionSorting = {
-  _key?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  contactForm?: InputMaybe<FormWrapperSorting>;
-};
-
-export type AboutPagePartnerImage = {
-  __typename?: 'AboutPagePartnerImage';
-  _key?: Maybe<Scalars['String']['output']>;
-  _type?: Maybe<Scalars['String']['output']>;
-  asset?: Maybe<SanityImageAsset>;
-  crop?: Maybe<SanityImageCrop>;
-  hotspot?: Maybe<SanityImageHotspot>;
-  media?: Maybe<GlobalDocumentReference>;
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-export type AboutPagePartnerImageFilter = {
-  _key?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  asset?: InputMaybe<SanityImageAssetFilter>;
-  crop?: InputMaybe<SanityImageCropFilter>;
-  hotspot?: InputMaybe<SanityImageHotspotFilter>;
-  media?: InputMaybe<GlobalDocumentReferenceFilter>;
-  name?: InputMaybe<StringFilter>;
-};
-
-export type AboutPagePartnerImageSorting = {
-  _key?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  crop?: InputMaybe<SanityImageCropSorting>;
-  hotspot?: InputMaybe<SanityImageHotspotSorting>;
-  media?: InputMaybe<GlobalDocumentReferenceSorting>;
-  name?: InputMaybe<SortOrder>;
-};
-
-export type AboutPageTimeline = {
-  __typename?: 'AboutPageTimeline';
-  _key?: Maybe<Scalars['String']['output']>;
-  _type?: Maybe<Scalars['String']['output']>;
-  beyond?: Maybe<TextBlock>;
-  cta?: Maybe<Cta>;
-  from?: Maybe<TextBlock>;
-  to?: Maybe<TextBlock>;
-};
-
-export type AboutPageTimelineFilter = {
-  _key?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  beyond?: InputMaybe<TextBlockFilter>;
-  cta?: InputMaybe<CtaFilter>;
-  from?: InputMaybe<TextBlockFilter>;
-  to?: InputMaybe<TextBlockFilter>;
-};
-
-export type AboutPageTimelineSorting = {
-  _key?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  beyond?: InputMaybe<TextBlockSorting>;
-  cta?: InputMaybe<CtaSorting>;
-  from?: InputMaybe<TextBlockSorting>;
-  to?: InputMaybe<TextBlockSorting>;
-};
-
-export type AboutPageWorkWithUsCards = {
-  __typename?: 'AboutPageWorkWithUsCards';
-  _key?: Maybe<Scalars['String']['output']>;
-  _type?: Maybe<Scalars['String']['output']>;
-  advisory?: Maybe<Card>;
-  curriculumPartner?: Maybe<Card>;
-  joinTheTeam?: Maybe<Card>;
-  teacherResearch?: Maybe<Card>;
-};
-
-export type AboutPageWorkWithUsCardsFilter = {
-  _key?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  advisory?: InputMaybe<CardFilter>;
-  curriculumPartner?: InputMaybe<CardFilter>;
-  joinTheTeam?: InputMaybe<CardFilter>;
-  teacherResearch?: InputMaybe<CardFilter>;
-};
-
-export type AboutPageWorkWithUsCardsSorting = {
-  _key?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  advisory?: InputMaybe<CardSorting>;
-  curriculumPartner?: InputMaybe<CardSorting>;
-  joinTheTeam?: InputMaybe<CardSorting>;
-  teacherResearch?: InputMaybe<CardSorting>;
-};
-
 export type AiHomepage = Document & {
   __typename?: 'AiHomepage';
   /** Date the document was created */
@@ -773,6 +392,8 @@ export type AttachmentFilter = {
   title?: InputMaybe<StringFilter>;
 };
 
+export type AttachmentOrContactCorePageOrHomepageOrLandingPageOrNewsListingPageOrNewsPostOrPlanningCorePageOrPolicyPageOrSupportCorePageOrWebinarOrWebinarListingPage = Attachment | ContactCorePage | Homepage | LandingPage | NewsListingPage | NewsPost | PlanningCorePage | PolicyPage | SupportCorePage | Webinar | WebinarListingPage;
+
 export type AttachmentSorting = {
   _createdAt?: InputMaybe<SortOrder>;
   _id?: InputMaybe<SortOrder>;
@@ -799,6 +420,8 @@ export type BlockOrCalloutOrCtaOrFormWrapperOrImageWithAltTextOrQuoteOrTextAndMe
 export type BlockOrCodeOrCtaLinkOrImageOrNoticeOrTable = Block | Code | CtaLink | Image | Notice | Table;
 
 export type BlockOrImage = Block | Image;
+
+export type BlockOrImageWithAltTextOrQuoteOrVideo = Block | ImageWithAltText | Quote | Video;
 
 export type BlockOrVideo = Block | Video;
 
@@ -1098,10 +721,16 @@ export type CaseStudy = Document & {
   _type?: Maybe<Scalars['String']['output']>;
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  content?: Maybe<Array<Maybe<CaseStudyPageContent>>>;
+  getInTouchPanel?: Maybe<GetInTouchPanel>;
   image?: Maybe<ImageWithAltText>;
   publishedAt?: Maybe<Scalars['Date']['output']>;
+  showGetInTouchPanel?: Maybe<Scalars['Boolean']['output']>;
   slug?: Maybe<Slug>;
+  summaryRaw?: Maybe<Scalars['JSON']['output']>;
+  tag?: Maybe<Scalars['String']['output']>;
   textRaw?: Maybe<Scalars['JSON']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
   video?: Maybe<Video>;
 };
 
@@ -1114,10 +743,42 @@ export type CaseStudyFilter = {
   _rev?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   _updatedAt?: InputMaybe<DatetimeFilter>;
+  getInTouchPanel?: InputMaybe<GetInTouchPanelFilter>;
   image?: InputMaybe<ImageWithAltTextFilter>;
   publishedAt?: InputMaybe<DateFilter>;
+  showGetInTouchPanel?: InputMaybe<BooleanFilter>;
   slug?: InputMaybe<SlugFilter>;
+  tag?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
   video?: InputMaybe<VideoFilter>;
+};
+
+export type CaseStudyPageContent = {
+  __typename?: 'CaseStudyPageContent';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  anchorSlug?: Maybe<Slug>;
+  contentRaw?: Maybe<Scalars['JSON']['output']>;
+  /** This is the main heading for each section */
+  heading?: Maybe<Scalars['String']['output']>;
+  /** This is used for the table of contents and the highlight label above the headings */
+  label?: Maybe<Scalars['String']['output']>;
+};
+
+export type CaseStudyPageContentFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  anchorSlug?: InputMaybe<SlugFilter>;
+  heading?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+};
+
+export type CaseStudyPageContentSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  anchorSlug?: InputMaybe<SlugSorting>;
+  heading?: InputMaybe<SortOrder>;
+  label?: InputMaybe<SortOrder>;
 };
 
 export type CaseStudySorting = {
@@ -1127,9 +788,13 @@ export type CaseStudySorting = {
   _rev?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   _updatedAt?: InputMaybe<SortOrder>;
+  getInTouchPanel?: InputMaybe<GetInTouchPanelSorting>;
   image?: InputMaybe<ImageWithAltTextSorting>;
   publishedAt?: InputMaybe<SortOrder>;
+  showGetInTouchPanel?: InputMaybe<SortOrder>;
   slug?: InputMaybe<SlugSorting>;
+  tag?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
 };
 
 export type Code = {
@@ -1249,7 +914,7 @@ export type Cta = {
    */
   anchor?: Maybe<Scalars['String']['output']>;
   external?: Maybe<Scalars['String']['output']>;
-  internal?: Maybe<AboutCorePageOrAboutCorePageBoardOrAboutCorePageLeadershipOrAboutCorePagePartnersOrAboutCorePageWhoWeAreOrAboutCorePageWorkWithUsOrAttachmentOrContactCorePageOrHomepageOrLandingPageOrNewsListingPageOrNewsPostOrPlanningCorePageOrPolicyPageOrSupportCorePageOrWebinarOrWebinarListingPage>;
+  internal?: Maybe<AttachmentOrContactCorePageOrHomepageOrLandingPageOrNewsListingPageOrNewsPostOrPlanningCorePageOrPolicyPageOrSupportCorePageOrWebinarOrWebinarListingPage>;
   label?: Maybe<Scalars['String']['output']>;
   linkType?: Maybe<Scalars['String']['output']>;
 };
@@ -1683,6 +1348,26 @@ export type DocumentSorting = {
   _updatedAt?: InputMaybe<SortOrder>;
 };
 
+export type Faq = {
+  __typename?: 'Faq';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  answerRaw?: Maybe<Scalars['JSON']['output']>;
+  question?: Maybe<Scalars['String']['output']>;
+};
+
+export type FaqFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  question?: InputMaybe<StringFilter>;
+};
+
+export type FaqSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  question?: InputMaybe<SortOrder>;
+};
+
 export type FaviconImage = {
   __typename?: 'FaviconImage';
   _key?: Maybe<Scalars['String']['output']>;
@@ -1788,6 +1473,34 @@ export type GeopointSorting = {
   lng?: InputMaybe<SortOrder>;
 };
 
+export type GetInTouchPanel = {
+  __typename?: 'GetInTouchPanel';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  institutionName?: Maybe<Scalars['String']['output']>;
+  jobRole?: Maybe<Scalars['String']['output']>;
+  personImage?: Maybe<ImageWithAltText>;
+  personName?: Maybe<Scalars['String']['output']>;
+};
+
+export type GetInTouchPanelFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  institutionName?: InputMaybe<StringFilter>;
+  jobRole?: InputMaybe<StringFilter>;
+  personImage?: InputMaybe<ImageWithAltTextFilter>;
+  personName?: InputMaybe<StringFilter>;
+};
+
+export type GetInTouchPanelSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  institutionName?: InputMaybe<SortOrder>;
+  jobRole?: InputMaybe<SortOrder>;
+  personImage?: InputMaybe<ImageWithAltTextSorting>;
+  personName?: InputMaybe<SortOrder>;
+};
+
 export type GetInvolvedPageCollab = {
   __typename?: 'GetInvolvedPageCollab';
   _key?: Maybe<Scalars['String']['output']>;
@@ -1881,6 +1594,7 @@ export type Homepage = Document & {
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']['output']>;
   campaignPromoBanner?: Maybe<CampaignPromoBanner>;
+  displayTopBanner?: Maybe<Scalars['Boolean']['output']>;
   heading?: Maybe<Scalars['String']['output']>;
   intro?: Maybe<TextAndMedia>;
   notification?: Maybe<HomepageNotification>;
@@ -1890,6 +1604,7 @@ export type Homepage = Document & {
   sidebarForm?: Maybe<FormWrapper>;
   summaryRaw?: Maybe<Scalars['JSON']['output']>;
   testimonials?: Maybe<Array<Maybe<Testimonial>>>;
+  topBanner?: Maybe<TopBanner>;
 };
 
 export type HomepageFilter = {
@@ -1902,6 +1617,7 @@ export type HomepageFilter = {
   _type?: InputMaybe<StringFilter>;
   _updatedAt?: InputMaybe<DatetimeFilter>;
   campaignPromoBanner?: InputMaybe<CampaignPromoBannerFilter>;
+  displayTopBanner?: InputMaybe<BooleanFilter>;
   heading?: InputMaybe<StringFilter>;
   intro?: InputMaybe<TextAndMediaFilter>;
   notification?: InputMaybe<HomepageNotificationFilter>;
@@ -1909,6 +1625,7 @@ export type HomepageFilter = {
   sidebarCard1?: InputMaybe<CardFilter>;
   sidebarCard2?: InputMaybe<CardFilter>;
   sidebarForm?: InputMaybe<FormWrapperFilter>;
+  topBanner?: InputMaybe<TopBannerFilter>;
 };
 
 export type HomepageNotification = {
@@ -1950,6 +1667,7 @@ export type HomepageSorting = {
   _type?: InputMaybe<SortOrder>;
   _updatedAt?: InputMaybe<SortOrder>;
   campaignPromoBanner?: InputMaybe<CampaignPromoBannerSorting>;
+  displayTopBanner?: InputMaybe<SortOrder>;
   heading?: InputMaybe<SortOrder>;
   intro?: InputMaybe<TextAndMediaSorting>;
   notification?: InputMaybe<HomepageNotificationSorting>;
@@ -1957,6 +1675,7 @@ export type HomepageSorting = {
   sidebarCard1?: InputMaybe<CardSorting>;
   sidebarCard2?: InputMaybe<CardSorting>;
   sidebarForm?: InputMaybe<FormWrapperSorting>;
+  topBanner?: InputMaybe<TopBannerSorting>;
 };
 
 export type HubspotFormReference = {
@@ -2219,6 +1938,266 @@ export type IntFilter = {
   neq?: InputMaybe<Scalars['Int']['input']>;
 };
 
+export type JoinResearchPanelPageBlogsPreview = {
+  __typename?: 'JoinResearchPanelPageBlogsPreview';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  /** Links to all research and insights blogs */
+  label?: Maybe<Scalars['String']['output']>;
+  /** This section displays the three latest research and insights blogs */
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type JoinResearchPanelPageBlogsPreviewFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type JoinResearchPanelPageBlogsPreviewOrJoinResearchPanelPageCalloutOrJoinResearchPanelPageContactUsOrJoinResearchPanelPageFaqsOrJoinResearchPanelPageHeaderOrJoinResearchPanelPageInfoOrJoinResearchPanelPageJourneyOrJoinResearchPanelPagePeople = JoinResearchPanelPageBlogsPreview | JoinResearchPanelPageCallout | JoinResearchPanelPageContactUs | JoinResearchPanelPageFaqs | JoinResearchPanelPageHeader | JoinResearchPanelPageInfo | JoinResearchPanelPageJourney | JoinResearchPanelPagePeople;
+
+export type JoinResearchPanelPageBlogsPreviewSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  label?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type JoinResearchPanelPageCallout = {
+  __typename?: 'JoinResearchPanelPageCallout';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  items?: Maybe<Array<Maybe<JoinResearchPanelPageCalloutItem>>>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type JoinResearchPanelPageCalloutFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type JoinResearchPanelPageCalloutItem = {
+  __typename?: 'JoinResearchPanelPageCalloutItem';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  bodyRaw?: Maybe<Scalars['JSON']['output']>;
+  icon?: Maybe<ImageWithAltText>;
+};
+
+export type JoinResearchPanelPageCalloutItemFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<ImageWithAltTextFilter>;
+};
+
+export type JoinResearchPanelPageCalloutItemSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  icon?: InputMaybe<ImageWithAltTextSorting>;
+};
+
+export type JoinResearchPanelPageCalloutSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type JoinResearchPanelPageContactUs = {
+  __typename?: 'JoinResearchPanelPageContactUs';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  button?: Maybe<Cta>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type JoinResearchPanelPageContactUsFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  button?: InputMaybe<CtaFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type JoinResearchPanelPageContactUsSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  button?: InputMaybe<CtaSorting>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type JoinResearchPanelPageFaqs = {
+  __typename?: 'JoinResearchPanelPageFaqs';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  items?: Maybe<Array<Maybe<JoinResearchPanelPageFaqsQuestion>>>;
+};
+
+export type JoinResearchPanelPageFaqsFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+};
+
+export type JoinResearchPanelPageFaqsQuestion = {
+  __typename?: 'JoinResearchPanelPageFaqsQuestion';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  answerRaw?: Maybe<Scalars['JSON']['output']>;
+  question?: Maybe<Scalars['String']['output']>;
+};
+
+export type JoinResearchPanelPageFaqsQuestionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  question?: InputMaybe<StringFilter>;
+};
+
+export type JoinResearchPanelPageFaqsQuestionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  question?: InputMaybe<SortOrder>;
+};
+
+export type JoinResearchPanelPageFaqsSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+};
+
+export type JoinResearchPanelPageHeader = {
+  __typename?: 'JoinResearchPanelPageHeader';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  bodyRaw?: Maybe<Scalars['JSON']['output']>;
+  button?: Maybe<Cta>;
+  image?: Maybe<ImageWithAltText>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type JoinResearchPanelPageHeaderFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  button?: InputMaybe<CtaFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type JoinResearchPanelPageHeaderSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  button?: InputMaybe<CtaSorting>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type JoinResearchPanelPageInfo = {
+  __typename?: 'JoinResearchPanelPageInfo';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  bodyRaw?: Maybe<Scalars['JSON']['output']>;
+  image?: Maybe<ImageWithAltText>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type JoinResearchPanelPageInfoFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type JoinResearchPanelPageInfoSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type JoinResearchPanelPageJourney = {
+  __typename?: 'JoinResearchPanelPageJourney';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  button?: Maybe<Cta>;
+  steps?: Maybe<Array<Maybe<JoinResearchPanelPageJourneyStep>>>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type JoinResearchPanelPageJourneyFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  button?: InputMaybe<CtaFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type JoinResearchPanelPageJourneySorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  button?: InputMaybe<CtaSorting>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type JoinResearchPanelPageJourneyStep = {
+  __typename?: 'JoinResearchPanelPageJourneyStep';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  descriptionRaw?: Maybe<Scalars['JSON']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type JoinResearchPanelPageJourneyStepFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type JoinResearchPanelPageJourneyStepSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type JoinResearchPanelPagePeople = {
+  __typename?: 'JoinResearchPanelPagePeople';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  members?: Maybe<Array<Maybe<JoinResearchPanelPagePeoplePerson>>>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type JoinResearchPanelPagePeopleFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type JoinResearchPanelPagePeoplePerson = {
+  __typename?: 'JoinResearchPanelPagePeoplePerson';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  bodyRaw?: Maybe<Scalars['JSON']['output']>;
+  image?: Maybe<ImageWithAltText>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+export type JoinResearchPanelPagePeoplePersonFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
+  name?: InputMaybe<StringFilter>;
+};
+
+export type JoinResearchPanelPagePeoplePersonSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
+  name?: InputMaybe<SortOrder>;
+};
+
+export type JoinResearchPanelPagePeopleSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
 export type LandingPage = Document & {
   __typename?: 'LandingPage';
   /** Date the document was created */
@@ -2386,7 +2365,7 @@ export type Link = {
    */
   anchor?: Maybe<Scalars['String']['output']>;
   external?: Maybe<Scalars['String']['output']>;
-  internal?: Maybe<AboutCorePageOrAboutCorePageBoardOrAboutCorePageLeadershipOrAboutCorePagePartnersOrAboutCorePageWhoWeAreOrAboutCorePageWorkWithUsOrAttachmentOrContactCorePageOrHomepageOrLandingPageOrNewsListingPageOrNewsPostOrPlanningCorePageOrPolicyPageOrSupportCorePageOrWebinarOrWebinarListingPage>;
+  internal?: Maybe<AttachmentOrContactCorePageOrHomepageOrLandingPageOrNewsListingPageOrNewsPostOrPlanningCorePageOrPolicyPageOrSupportCorePageOrWebinarOrWebinarListingPage>;
   linkType?: Maybe<Scalars['String']['output']>;
 };
 
@@ -2742,6 +2721,854 @@ export type MuxVideoSorting = {
   _type?: InputMaybe<SortOrder>;
 };
 
+export type NationalCurriculumInsightsAtAGlance = {
+  __typename?: 'NationalCurriculumInsightsAtAGlance';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  items?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+export type NationalCurriculumInsightsAtAGlanceFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsAtAGlanceSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsDownloadSection = {
+  __typename?: 'NationalCurriculumInsightsDownloadSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  barCtaLabel?: Maybe<Scalars['String']['output']>;
+  barHeading?: Maybe<Scalars['String']['output']>;
+  detailsHeading?: Maybe<Scalars['String']['output']>;
+  /** The selected document count and file type are appended automatically. */
+  downloadButtonLabel?: Maybe<Scalars['String']['output']>;
+  downloadsHeading?: Maybe<Scalars['String']['output']>;
+  downloadsIntroduction?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsDownloadSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  barCtaLabel?: InputMaybe<StringFilter>;
+  barHeading?: InputMaybe<StringFilter>;
+  detailsHeading?: InputMaybe<StringFilter>;
+  downloadButtonLabel?: InputMaybe<StringFilter>;
+  downloadsHeading?: InputMaybe<StringFilter>;
+  downloadsIntroduction?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsDownloadSectionOrNationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsGuidanceIntroSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPhaseNavigationSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection = NationalCurriculumInsightsDownloadSection | NationalCurriculumInsightsFaqSection | NationalCurriculumInsightsGuidanceIntroSection | NationalCurriculumInsightsHeroSection | NationalCurriculumInsightsImageTextSection | NationalCurriculumInsightsKeyStageCardsSection | NationalCurriculumInsightsNewsletterSection | NationalCurriculumInsightsOverviewSection | NationalCurriculumInsightsPhaseCardsSection | NationalCurriculumInsightsPhaseNavigationSection | NationalCurriculumInsightsPromotionalHeadingSection | NationalCurriculumInsightsQuoteSection | NationalCurriculumInsightsRichTextSection | NationalCurriculumInsightsSubjectNavigationSection | NationalCurriculumInsightsTableSection | NationalCurriculumInsightsVideoCardsSection;
+
+export type NationalCurriculumInsightsDownloadSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  barCtaLabel?: InputMaybe<SortOrder>;
+  barHeading?: InputMaybe<SortOrder>;
+  detailsHeading?: InputMaybe<SortOrder>;
+  downloadButtonLabel?: InputMaybe<SortOrder>;
+  downloadsHeading?: InputMaybe<SortOrder>;
+  downloadsIntroduction?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsFaqItem = {
+  __typename?: 'NationalCurriculumInsightsFaqItem';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  answerRaw?: Maybe<Scalars['JSON']['output']>;
+  question?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsFaqItemFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  question?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsFaqItemSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  question?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsFaqSection = {
+  __typename?: 'NationalCurriculumInsightsFaqSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  items?: Maybe<Array<Maybe<NationalCurriculumInsightsFaqItem>>>;
+};
+
+export type NationalCurriculumInsightsFaqSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsFaqSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsGuidanceIntroSection = {
+  __typename?: 'NationalCurriculumInsightsGuidanceIntroSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  bodyRaw?: Maybe<Scalars['JSON']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<ImageWithAltText>;
+  /** Optional alternative for phone and tablet screens. Leave blank to use the main heading. */
+  mobileHeading?: Maybe<Scalars['String']['output']>;
+  /** Optional short label, for example Coming soon. */
+  statusLabel?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsGuidanceIntroSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
+  mobileHeading?: InputMaybe<StringFilter>;
+  statusLabel?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsGuidanceIntroSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
+  mobileHeading?: InputMaybe<SortOrder>;
+  statusLabel?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsGuidancePage = Document & {
+  __typename?: 'NationalCurriculumInsightsGuidancePage';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']['output']>;
+  _key?: Maybe<Scalars['String']['output']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']['output']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']['output']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  modules?: Maybe<Array<Maybe<NationalCurriculumInsightsDownloadSectionOrNationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsGuidanceIntroSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPhaseNavigationSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection>>>;
+  seo?: Maybe<Seo>;
+  summary?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsGuidancePageFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  seo?: InputMaybe<SeoFilter>;
+  summary?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsGuidancePageSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  seo?: InputMaybe<SeoSorting>;
+  summary?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsHeroSection = {
+  __typename?: 'NationalCurriculumInsightsHeroSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  authorImage?: Maybe<ImageWithAltText>;
+  /** Optional byline shown on subject, phase and key-stage pages. */
+  authorName?: Maybe<Scalars['String']['output']>;
+  authorRole?: Maybe<Scalars['String']['output']>;
+  bodyRaw?: Maybe<Scalars['JSON']['output']>;
+  ctaHref?: Maybe<Scalars['String']['output']>;
+  /** Optional link shown beneath the hero introduction. */
+  ctaLabel?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<ImageWithAltText>;
+  /** Optional heading for the publication or review note shown beside the byline. */
+  statusHeading?: Maybe<Scalars['String']['output']>;
+  /** Optional publication or review message shown alongside the byline. */
+  statusMessage?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsHeroSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  authorImage?: InputMaybe<ImageWithAltTextFilter>;
+  authorName?: InputMaybe<StringFilter>;
+  authorRole?: InputMaybe<StringFilter>;
+  ctaHref?: InputMaybe<StringFilter>;
+  ctaLabel?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
+  statusHeading?: InputMaybe<StringFilter>;
+  statusMessage?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsHeroSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  authorImage?: InputMaybe<ImageWithAltTextSorting>;
+  authorName?: InputMaybe<SortOrder>;
+  authorRole?: InputMaybe<SortOrder>;
+  ctaHref?: InputMaybe<SortOrder>;
+  ctaLabel?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
+  statusHeading?: InputMaybe<SortOrder>;
+  statusMessage?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsHub = Document & {
+  __typename?: 'NationalCurriculumInsightsHub';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']['output']>;
+  _key?: Maybe<Scalars['String']['output']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']['output']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']['output']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  modules?: Maybe<Array<Maybe<NationalCurriculumInsightsDownloadSectionOrNationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsGuidanceIntroSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPhaseNavigationSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection>>>;
+  seo?: Maybe<Seo>;
+  subjects?: Maybe<Array<Maybe<NationalCurriculumInsightsSubject>>>;
+  summary?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsHubFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  seo?: InputMaybe<SeoFilter>;
+  summary?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsHubSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  seo?: InputMaybe<SeoSorting>;
+  summary?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsImageTextSection = {
+  __typename?: 'NationalCurriculumInsightsImageTextSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  background?: Maybe<Scalars['String']['output']>;
+  bodyRaw?: Maybe<Scalars['JSON']['output']>;
+  ctaHref?: Maybe<Scalars['String']['output']>;
+  ctaLabel?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<ImageWithAltText>;
+  imagePosition?: Maybe<Scalars['String']['output']>;
+  /** Use this when the guidance illustration should face the text. */
+  mirrorImage?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type NationalCurriculumInsightsImageTextSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  background?: InputMaybe<StringFilter>;
+  ctaHref?: InputMaybe<StringFilter>;
+  ctaLabel?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
+  imagePosition?: InputMaybe<StringFilter>;
+  mirrorImage?: InputMaybe<BooleanFilter>;
+};
+
+export type NationalCurriculumInsightsImageTextSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  background?: InputMaybe<SortOrder>;
+  ctaHref?: InputMaybe<SortOrder>;
+  ctaLabel?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
+  imagePosition?: InputMaybe<SortOrder>;
+  mirrorImage?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsKeyStageCard = {
+  __typename?: 'NationalCurriculumInsightsKeyStageCard';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  keyStage?: Maybe<Scalars['String']['output']>;
+  linkLabel?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsKeyStageCardFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  keyStage?: InputMaybe<StringFilter>;
+  linkLabel?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsKeyStageCardSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  keyStage?: InputMaybe<SortOrder>;
+  linkLabel?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsKeyStageCardsSection = {
+  __typename?: 'NationalCurriculumInsightsKeyStageCardsSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  cards?: Maybe<Array<Maybe<NationalCurriculumInsightsKeyStageCard>>>;
+};
+
+export type NationalCurriculumInsightsKeyStageCardsSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsKeyStageCardsSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsKeyStagePage = Document & {
+  __typename?: 'NationalCurriculumInsightsKeyStagePage';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']['output']>;
+  _key?: Maybe<Scalars['String']['output']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']['output']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']['output']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** The URL segment is derived from this value, for example KS1 becomes key-stage-1. */
+  keyStage?: Maybe<Scalars['String']['output']>;
+  modules?: Maybe<Array<Maybe<NationalCurriculumInsightsDownloadSectionOrNationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsGuidanceIntroSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPhaseNavigationSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection>>>;
+  seo?: Maybe<Seo>;
+  summary?: Maybe<Scalars['String']['output']>;
+  /** Used in Studio and as a safe fallback. Visible headings should normally come from the ordered modules. */
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsKeyStagePageFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  keyStage?: InputMaybe<StringFilter>;
+  seo?: InputMaybe<SeoFilter>;
+  summary?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsKeyStagePageReference = {
+  __typename?: 'NationalCurriculumInsightsKeyStagePageReference';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  keyStage?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+  /** This key stage points to its own independently editable page and ordered modules. */
+  page?: Maybe<NationalCurriculumInsightsKeyStagePage>;
+};
+
+export type NationalCurriculumInsightsKeyStagePageReferenceFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  keyStage?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+  page?: InputMaybe<NationalCurriculumInsightsKeyStagePageFilter>;
+};
+
+export type NationalCurriculumInsightsKeyStagePageReferenceSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  keyStage?: InputMaybe<SortOrder>;
+  label?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsKeyStagePageSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  keyStage?: InputMaybe<SortOrder>;
+  seo?: InputMaybe<SeoSorting>;
+  summary?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsNewsletterSection = {
+  __typename?: 'NationalCurriculumInsightsNewsletterSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  benefits?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  benefitsHeading?: Maybe<Scalars['String']['output']>;
+  buttonLabel?: Maybe<Scalars['String']['output']>;
+  /** National Curriculum Insights signups use the application's global newsletter form. This retained field is ignored. */
+  formId?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  illustration?: Maybe<ImageWithAltText>;
+  introduction?: Maybe<Scalars['String']['output']>;
+  privacyTextRaw?: Maybe<Scalars['JSON']['output']>;
+};
+
+export type NationalCurriculumInsightsNewsletterSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  benefitsHeading?: InputMaybe<StringFilter>;
+  buttonLabel?: InputMaybe<StringFilter>;
+  formId?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  illustration?: InputMaybe<ImageWithAltTextFilter>;
+  introduction?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsNewsletterSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  benefitsHeading?: InputMaybe<SortOrder>;
+  buttonLabel?: InputMaybe<SortOrder>;
+  formId?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  illustration?: InputMaybe<ImageWithAltTextSorting>;
+  introduction?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsOverviewSection = {
+  __typename?: 'NationalCurriculumInsightsOverviewSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  bodyRaw?: Maybe<Scalars['JSON']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsOverviewSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsOverviewSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsPage = Document & {
+  __typename?: 'NationalCurriculumInsightsPage';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']['output']>;
+  _key?: Maybe<Scalars['String']['output']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']['output']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']['output']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  keyStages?: Maybe<Array<Maybe<NationalCurriculumInsightsKeyStagePageReference>>>;
+  modules?: Maybe<Array<Maybe<NationalCurriculumInsightsDownloadSectionOrNationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsGuidanceIntroSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPhaseNavigationSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection>>>;
+  /** The subject phase that can reference this page. The subject itself is the Overview page and controls the URL. */
+  pageType?: Maybe<Scalars['String']['output']>;
+  seo?: Maybe<Seo>;
+  summary?: Maybe<Scalars['String']['output']>;
+  /** Used in Studio and as a safe fallback. Visible headings should normally come from the ordered modules. */
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsPageFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  pageType?: InputMaybe<StringFilter>;
+  seo?: InputMaybe<SeoFilter>;
+  summary?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsPageSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  pageType?: InputMaybe<SortOrder>;
+  seo?: InputMaybe<SeoSorting>;
+  summary?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsPhaseCard = {
+  __typename?: 'NationalCurriculumInsightsPhaseCard';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  linkLabel?: Maybe<Scalars['String']['output']>;
+  phase?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsPhaseCardFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  linkLabel?: InputMaybe<StringFilter>;
+  phase?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsPhaseCardSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  linkLabel?: InputMaybe<SortOrder>;
+  phase?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsPhaseCardsSection = {
+  __typename?: 'NationalCurriculumInsightsPhaseCardsSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  cards?: Maybe<Array<Maybe<NationalCurriculumInsightsPhaseCard>>>;
+};
+
+export type NationalCurriculumInsightsPhaseCardsSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsPhaseCardsSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsPhaseNavigationSection = {
+  __typename?: 'NationalCurriculumInsightsPhaseNavigationSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  overviewLabel?: Maybe<Scalars['String']['output']>;
+  primaryLabel?: Maybe<Scalars['String']['output']>;
+  secondaryLabel?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsPhaseNavigationSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  overviewLabel?: InputMaybe<StringFilter>;
+  primaryLabel?: InputMaybe<StringFilter>;
+  secondaryLabel?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsPhaseNavigationSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  overviewLabel?: InputMaybe<SortOrder>;
+  primaryLabel?: InputMaybe<SortOrder>;
+  secondaryLabel?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsPromotionalHeadingSection = {
+  __typename?: 'NationalCurriculumInsightsPromotionalHeadingSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  variant?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsPromotionalHeadingSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  variant?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsPromotionalHeadingSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  variant?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsQuoteSection = {
+  __typename?: 'NationalCurriculumInsightsQuoteSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  attribution?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<ImageWithAltText>;
+  quote?: Maybe<Scalars['String']['output']>;
+  role?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsQuoteSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  attribution?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
+  quote?: InputMaybe<StringFilter>;
+  role?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsQuoteSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  attribution?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
+  quote?: InputMaybe<SortOrder>;
+  role?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsRichTextSection = {
+  __typename?: 'NationalCurriculumInsightsRichTextSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  contentRaw?: Maybe<Scalars['JSON']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  headingStyle?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsRichTextSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  headingStyle?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsRichTextSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  headingStyle?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsSubject = Document & {
+  __typename?: 'NationalCurriculumInsightsSubject';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']['output']>;
+  _key?: Maybe<Scalars['String']['output']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']['output']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']['output']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  curriculumSubjectSlugs?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  illustration?: Maybe<ImageWithAltText>;
+  modules?: Maybe<Array<Maybe<NationalCurriculumInsightsDownloadSectionOrNationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsGuidanceIntroSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPhaseNavigationSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection>>>;
+  seo?: Maybe<Seo>;
+  slug?: Maybe<Slug>;
+  summary?: Maybe<Scalars['String']['output']>;
+  tabs?: Maybe<Array<Maybe<NationalCurriculumInsightsTab>>>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsSubjectFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  illustration?: InputMaybe<ImageWithAltTextFilter>;
+  seo?: InputMaybe<SeoFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  summary?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsSubjectNavigationSection = {
+  __typename?: 'NationalCurriculumInsightsSubjectNavigationSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  phases?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  primaryHeading?: Maybe<Scalars['String']['output']>;
+  secondaryHeading?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsSubjectNavigationSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  primaryHeading?: InputMaybe<StringFilter>;
+  secondaryHeading?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsSubjectNavigationSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  primaryHeading?: InputMaybe<SortOrder>;
+  secondaryHeading?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsSubjectSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  illustration?: InputMaybe<ImageWithAltTextSorting>;
+  seo?: InputMaybe<SeoSorting>;
+  slug?: InputMaybe<SlugSorting>;
+  summary?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsTab = {
+  __typename?: 'NationalCurriculumInsightsTab';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  kind?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+  /** The phase points to its own page and independently ordered content modules. */
+  page?: Maybe<NationalCurriculumInsightsPage>;
+};
+
+export type NationalCurriculumInsightsTabFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  kind?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+  page?: InputMaybe<NationalCurriculumInsightsPageFilter>;
+};
+
+export type NationalCurriculumInsightsTabSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  kind?: InputMaybe<SortOrder>;
+  label?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsTableSection = {
+  __typename?: 'NationalCurriculumInsightsTableSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  table?: Maybe<Table>;
+};
+
+export type NationalCurriculumInsightsTableSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  table?: InputMaybe<TableFilter>;
+};
+
+export type NationalCurriculumInsightsTableSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  table?: InputMaybe<TableSorting>;
+};
+
+export type NationalCurriculumInsightsVideoCard = {
+  __typename?: 'NationalCurriculumInsightsVideoCard';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  /** Optional display value, for example 12 mins. */
+  duration?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<ImageWithAltText>;
+  videoUrl?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsVideoCardFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  duration?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
+  videoUrl?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsVideoCardSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  description?: InputMaybe<SortOrder>;
+  duration?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
+  videoUrl?: InputMaybe<SortOrder>;
+};
+
+export type NationalCurriculumInsightsVideoCardsSection = {
+  __typename?: 'NationalCurriculumInsightsVideoCardsSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  cards?: Maybe<Array<Maybe<NationalCurriculumInsightsVideoCard>>>;
+  heading?: Maybe<Scalars['String']['output']>;
+  illustration?: Maybe<ImageWithAltText>;
+  introductionRaw?: Maybe<Scalars['JSON']['output']>;
+  posts?: Maybe<Array<Maybe<NewsPost>>>;
+};
+
+export type NationalCurriculumInsightsVideoCardsSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  illustration?: InputMaybe<ImageWithAltTextFilter>;
+};
+
+export type NationalCurriculumInsightsVideoCardsSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  illustration?: InputMaybe<ImageWithAltTextSorting>;
+};
+
 export type NavGroup = Document & {
   __typename?: 'NavGroup';
   /** Date the document was created */
@@ -2784,6 +3611,218 @@ export type NavGroupSorting = {
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
   slug?: InputMaybe<SlugSorting>;
+};
+
+export type NcAlignmentCheckerLandingPage = Document & {
+  __typename?: 'NcAlignmentCheckerLandingPage';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']['output']>;
+  _key?: Maybe<Scalars['String']['output']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']['output']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']['output']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  blocks?: Maybe<Array<Maybe<NcAlignmentCheckerLandingPageFaqsOrNcAlignmentCheckerLandingPageHeaderOrNcAlignmentCheckerLandingPageQuotesOrNcAlignmentCheckerLandingPageSubjectExpertsOrNcAlignmentCheckerLandingPageSubjectPickerCalloutOrNcAlignmentCheckerLandingPageTextAndMedia>>>;
+  seo?: Maybe<Seo>;
+};
+
+export type NcAlignmentCheckerLandingPageFaqs = {
+  __typename?: 'NcAlignmentCheckerLandingPageFaqs';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  items?: Maybe<Array<Maybe<Faq>>>;
+};
+
+export type NcAlignmentCheckerLandingPageFaqsFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+};
+
+export type NcAlignmentCheckerLandingPageFaqsOrNcAlignmentCheckerLandingPageHeaderOrNcAlignmentCheckerLandingPageQuotesOrNcAlignmentCheckerLandingPageSubjectExpertsOrNcAlignmentCheckerLandingPageSubjectPickerCalloutOrNcAlignmentCheckerLandingPageTextAndMedia = NcAlignmentCheckerLandingPageFaqs | NcAlignmentCheckerLandingPageHeader | NcAlignmentCheckerLandingPageQuotes | NcAlignmentCheckerLandingPageSubjectExperts | NcAlignmentCheckerLandingPageSubjectPickerCallout | NcAlignmentCheckerLandingPageTextAndMedia;
+
+export type NcAlignmentCheckerLandingPageFaqsSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+};
+
+export type NcAlignmentCheckerLandingPageFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  seo?: InputMaybe<SeoFilter>;
+};
+
+export type NcAlignmentCheckerLandingPageHeader = {
+  __typename?: 'NcAlignmentCheckerLandingPageHeader';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  bodyRaw?: Maybe<Scalars['JSON']['output']>;
+  icon?: Maybe<ImageWithAltText>;
+  subjectPicker?: Maybe<NcAlignmentCheckerLandingPageSubjectPicker>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type NcAlignmentCheckerLandingPageHeaderFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<ImageWithAltTextFilter>;
+  subjectPicker?: InputMaybe<NcAlignmentCheckerLandingPageSubjectPickerFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type NcAlignmentCheckerLandingPageHeaderSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  icon?: InputMaybe<ImageWithAltTextSorting>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type NcAlignmentCheckerLandingPageQuotes = {
+  __typename?: 'NcAlignmentCheckerLandingPageQuotes';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  quotes?: Maybe<Array<Maybe<Quote>>>;
+};
+
+export type NcAlignmentCheckerLandingPageQuotesFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+};
+
+export type NcAlignmentCheckerLandingPageQuotesSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+};
+
+export type NcAlignmentCheckerLandingPageSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  seo?: InputMaybe<SeoSorting>;
+};
+
+export type NcAlignmentCheckerLandingPageSubjectExperts = {
+  __typename?: 'NcAlignmentCheckerLandingPageSubjectExperts';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  bodyRaw?: Maybe<Scalars['JSON']['output']>;
+  people?: Maybe<Array<Maybe<TeamMember>>>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type NcAlignmentCheckerLandingPageSubjectExpertsFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type NcAlignmentCheckerLandingPageSubjectExpertsSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type NcAlignmentCheckerLandingPageSubjectPicker = Document & {
+  __typename?: 'NcAlignmentCheckerLandingPageSubjectPicker';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']['output']>;
+  _key?: Maybe<Scalars['String']['output']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']['output']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']['output']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  bannerLabel?: Maybe<Scalars['String']['output']>;
+  buttonText?: Maybe<Scalars['String']['output']>;
+  tag?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type NcAlignmentCheckerLandingPageSubjectPickerCallout = {
+  __typename?: 'NcAlignmentCheckerLandingPageSubjectPickerCallout';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  subjectPicker?: Maybe<NcAlignmentCheckerLandingPageSubjectPicker>;
+};
+
+export type NcAlignmentCheckerLandingPageSubjectPickerCalloutFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  subjectPicker?: InputMaybe<NcAlignmentCheckerLandingPageSubjectPickerFilter>;
+};
+
+export type NcAlignmentCheckerLandingPageSubjectPickerCalloutSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+};
+
+export type NcAlignmentCheckerLandingPageSubjectPickerFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  bannerLabel?: InputMaybe<StringFilter>;
+  buttonText?: InputMaybe<StringFilter>;
+  tag?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type NcAlignmentCheckerLandingPageSubjectPickerSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  bannerLabel?: InputMaybe<SortOrder>;
+  buttonText?: InputMaybe<SortOrder>;
+  tag?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type NcAlignmentCheckerLandingPageTextAndMedia = {
+  __typename?: 'NcAlignmentCheckerLandingPageTextAndMedia';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  bodyRaw?: Maybe<Scalars['JSON']['output']>;
+  image?: Maybe<ImageWithAltText>;
+  imagePosition?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type NcAlignmentCheckerLandingPageTextAndMediaFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
+  imagePosition?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type NcAlignmentCheckerLandingPageTextAndMediaSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
+  imagePosition?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
 };
 
 export type NewAboutCorePage = Document & {
@@ -2859,6 +3898,45 @@ export type NewAboutCorePageGetInvolvedSorting = {
   header?: InputMaybe<GetInvolvedPageHeaderSorting>;
   seo?: InputMaybe<SeoSorting>;
   workWithUs?: InputMaybe<GetInvolvedPageWorkWithUsSorting>;
+};
+
+export type NewAboutCorePageJoinResearchPanel = Document & {
+  __typename?: 'NewAboutCorePageJoinResearchPanel';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']['output']>;
+  _key?: Maybe<Scalars['String']['output']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']['output']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']['output']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  blocks?: Maybe<Array<Maybe<JoinResearchPanelPageBlogsPreviewOrJoinResearchPanelPageCalloutOrJoinResearchPanelPageContactUsOrJoinResearchPanelPageFaqsOrJoinResearchPanelPageHeaderOrJoinResearchPanelPageInfoOrJoinResearchPanelPageJourneyOrJoinResearchPanelPagePeople>>>;
+  seo?: Maybe<Seo>;
+};
+
+export type NewAboutCorePageJoinResearchPanelFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  seo?: InputMaybe<SeoFilter>;
+};
+
+export type NewAboutCorePageJoinResearchPanelSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  seo?: InputMaybe<SeoSorting>;
 };
 
 export type NewAboutCorePageMeetTheTeam = Document & {
@@ -2974,7 +4052,6 @@ export type NewAboutCorePageOaksImpact = Document & {
   _type?: Maybe<Scalars['String']['output']>;
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  caseStudiesSection?: Maybe<OaksImpactPageCaseStudiesSection>;
   header?: Maybe<OaksImpactPageHeader>;
   schoolQuotes?: Maybe<OaksImpactPageSchoolQuotesSection>;
   statsSection?: Maybe<OaksImpactPageStatsSection>;
@@ -2989,7 +4066,6 @@ export type NewAboutCorePageOaksImpactFilter = {
   _rev?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   _updatedAt?: InputMaybe<DatetimeFilter>;
-  caseStudiesSection?: InputMaybe<OaksImpactPageCaseStudiesSectionFilter>;
   header?: InputMaybe<OaksImpactPageHeaderFilter>;
   schoolQuotes?: InputMaybe<OaksImpactPageSchoolQuotesSectionFilter>;
   statsSection?: InputMaybe<OaksImpactPageStatsSectionFilter>;
@@ -3002,7 +4078,6 @@ export type NewAboutCorePageOaksImpactSorting = {
   _rev?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   _updatedAt?: InputMaybe<SortOrder>;
-  caseStudiesSection?: InputMaybe<OaksImpactPageCaseStudiesSectionSorting>;
   header?: InputMaybe<OaksImpactPageHeaderSorting>;
   schoolQuotes?: InputMaybe<OaksImpactPageSchoolQuotesSectionSorting>;
   statsSection?: InputMaybe<OaksImpactPageStatsSectionSorting>;
@@ -3066,6 +4141,36 @@ export type NewAboutCorePageWhoWeAreSorting = {
   seo?: InputMaybe<SeoSorting>;
   timeline2?: InputMaybe<WhoWeArePageTimelineSorting>;
   weAreCards?: InputMaybe<WhoWeArePageCardsSorting>;
+};
+
+export type NewCta = {
+  __typename?: 'NewCta';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  /** Use for links outside of Oak, beginning with http:// or https:// */
+  external?: Maybe<Scalars['String']['output']>;
+  /** Use for links inside of Oak, beginning with / or # */
+  internal?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+  linkType?: Maybe<Scalars['String']['output']>;
+};
+
+export type NewCtaFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  external?: InputMaybe<StringFilter>;
+  internal?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+  linkType?: InputMaybe<StringFilter>;
+};
+
+export type NewCtaSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  external?: InputMaybe<SortOrder>;
+  internal?: InputMaybe<SortOrder>;
+  label?: InputMaybe<SortOrder>;
+  linkType?: InputMaybe<SortOrder>;
 };
 
 export type NewsListingPage = Document & {
@@ -3358,23 +4463,6 @@ export type OaksCurriculaPagePartnerSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   logo?: InputMaybe<ImageWithAltTextSorting>;
-};
-
-export type OaksImpactPageCaseStudiesSection = {
-  __typename?: 'OaksImpactPageCaseStudiesSection';
-  _key?: Maybe<Scalars['String']['output']>;
-  _type?: Maybe<Scalars['String']['output']>;
-  caseStudies?: Maybe<Array<Maybe<CaseStudy>>>;
-};
-
-export type OaksImpactPageCaseStudiesSectionFilter = {
-  _key?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-};
-
-export type OaksImpactPageCaseStudiesSectionSorting = {
-  _key?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
 };
 
 export type OaksImpactPageHeader = {
@@ -3915,12 +5003,6 @@ export type QuoteSorting = {
 export type RootQuery = {
   __typename?: 'RootQuery';
   AbTest?: Maybe<AbTest>;
-  AboutCorePage?: Maybe<AboutCorePage>;
-  AboutCorePageBoard?: Maybe<AboutCorePageBoard>;
-  AboutCorePageLeadership?: Maybe<AboutCorePageLeadership>;
-  AboutCorePagePartners?: Maybe<AboutCorePagePartners>;
-  AboutCorePageWhoWeAre?: Maybe<AboutCorePageWhoWeAre>;
-  AboutCorePageWorkWithUs?: Maybe<AboutCorePageWorkWithUs>;
   AiHomepage?: Maybe<AiHomepage>;
   AiPolicyPage?: Maybe<AiPolicyPage>;
   ApiContentPage?: Maybe<ApiContentPage>;
@@ -3941,9 +5023,17 @@ export type RootQuery = {
   Illustration?: Maybe<Illustration>;
   LandingPage?: Maybe<LandingPage>;
   MuxVideoAsset?: Maybe<MuxVideoAsset>;
+  NationalCurriculumInsightsGuidancePage?: Maybe<NationalCurriculumInsightsGuidancePage>;
+  NationalCurriculumInsightsHub?: Maybe<NationalCurriculumInsightsHub>;
+  NationalCurriculumInsightsKeyStagePage?: Maybe<NationalCurriculumInsightsKeyStagePage>;
+  NationalCurriculumInsightsPage?: Maybe<NationalCurriculumInsightsPage>;
+  NationalCurriculumInsightsSubject?: Maybe<NationalCurriculumInsightsSubject>;
   NavGroup?: Maybe<NavGroup>;
+  NcAlignmentCheckerLandingPage?: Maybe<NcAlignmentCheckerLandingPage>;
+  NcAlignmentCheckerLandingPageSubjectPicker?: Maybe<NcAlignmentCheckerLandingPageSubjectPicker>;
   NewAboutCorePage?: Maybe<NewAboutCorePage>;
   NewAboutCorePageGetInvolved?: Maybe<NewAboutCorePageGetInvolved>;
+  NewAboutCorePageJoinResearchPanel?: Maybe<NewAboutCorePageJoinResearchPanel>;
   NewAboutCorePageMeetTheTeam?: Maybe<NewAboutCorePageMeetTheTeam>;
   NewAboutCorePageOaksCurricula?: Maybe<NewAboutCorePageOaksCurricula>;
   NewAboutCorePageOaksImpact?: Maybe<NewAboutCorePageOaksImpact>;
@@ -3968,12 +5058,6 @@ export type RootQuery = {
   Webinar?: Maybe<Webinar>;
   WebinarListingPage?: Maybe<WebinarListingPage>;
   allAbTest: Array<AbTest>;
-  allAboutCorePage: Array<AboutCorePage>;
-  allAboutCorePageBoard: Array<AboutCorePageBoard>;
-  allAboutCorePageLeadership: Array<AboutCorePageLeadership>;
-  allAboutCorePagePartners: Array<AboutCorePagePartners>;
-  allAboutCorePageWhoWeAre: Array<AboutCorePageWhoWeAre>;
-  allAboutCorePageWorkWithUs: Array<AboutCorePageWorkWithUs>;
   allAiHomepage: Array<AiHomepage>;
   allAiPolicyPage: Array<AiPolicyPage>;
   allApiContentPage: Array<ApiContentPage>;
@@ -3994,9 +5078,17 @@ export type RootQuery = {
   allIllustration: Array<Illustration>;
   allLandingPage: Array<LandingPage>;
   allMuxVideoAsset: Array<MuxVideoAsset>;
+  allNationalCurriculumInsightsGuidancePage: Array<NationalCurriculumInsightsGuidancePage>;
+  allNationalCurriculumInsightsHub: Array<NationalCurriculumInsightsHub>;
+  allNationalCurriculumInsightsKeyStagePage: Array<NationalCurriculumInsightsKeyStagePage>;
+  allNationalCurriculumInsightsPage: Array<NationalCurriculumInsightsPage>;
+  allNationalCurriculumInsightsSubject: Array<NationalCurriculumInsightsSubject>;
   allNavGroup: Array<NavGroup>;
+  allNcAlignmentCheckerLandingPage: Array<NcAlignmentCheckerLandingPage>;
+  allNcAlignmentCheckerLandingPageSubjectPicker: Array<NcAlignmentCheckerLandingPageSubjectPicker>;
   allNewAboutCorePage: Array<NewAboutCorePage>;
   allNewAboutCorePageGetInvolved: Array<NewAboutCorePageGetInvolved>;
+  allNewAboutCorePageJoinResearchPanel: Array<NewAboutCorePageJoinResearchPanel>;
   allNewAboutCorePageMeetTheTeam: Array<NewAboutCorePageMeetTheTeam>;
   allNewAboutCorePageOaksCurricula: Array<NewAboutCorePageOaksCurricula>;
   allNewAboutCorePageOaksImpact: Array<NewAboutCorePageOaksImpact>;
@@ -4024,36 +5116,6 @@ export type RootQuery = {
 
 
 export type RootQueryAbTestArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type RootQueryAboutCorePageArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type RootQueryAboutCorePageBoardArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type RootQueryAboutCorePageLeadershipArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type RootQueryAboutCorePagePartnersArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type RootQueryAboutCorePageWhoWeAreArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type RootQueryAboutCorePageWorkWithUsArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -4158,7 +5220,42 @@ export type RootQueryMuxVideoAssetArgs = {
 };
 
 
+export type RootQueryNationalCurriculumInsightsGuidancePageArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type RootQueryNationalCurriculumInsightsHubArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type RootQueryNationalCurriculumInsightsKeyStagePageArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type RootQueryNationalCurriculumInsightsPageArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type RootQueryNationalCurriculumInsightsSubjectArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
 export type RootQueryNavGroupArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type RootQueryNcAlignmentCheckerLandingPageArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type RootQueryNcAlignmentCheckerLandingPageSubjectPickerArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -4169,6 +5266,11 @@ export type RootQueryNewAboutCorePageArgs = {
 
 
 export type RootQueryNewAboutCorePageGetInvolvedArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type RootQueryNewAboutCorePageJoinResearchPanelArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -4293,54 +5395,6 @@ export type RootQueryAllAbTestArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<AbTestSorting>>;
   where?: InputMaybe<AbTestFilter>;
-};
-
-
-export type RootQueryAllAboutCorePageArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Array<AboutCorePageSorting>>;
-  where?: InputMaybe<AboutCorePageFilter>;
-};
-
-
-export type RootQueryAllAboutCorePageBoardArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Array<AboutCorePageBoardSorting>>;
-  where?: InputMaybe<AboutCorePageBoardFilter>;
-};
-
-
-export type RootQueryAllAboutCorePageLeadershipArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Array<AboutCorePageLeadershipSorting>>;
-  where?: InputMaybe<AboutCorePageLeadershipFilter>;
-};
-
-
-export type RootQueryAllAboutCorePagePartnersArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Array<AboutCorePagePartnersSorting>>;
-  where?: InputMaybe<AboutCorePagePartnersFilter>;
-};
-
-
-export type RootQueryAllAboutCorePageWhoWeAreArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Array<AboutCorePageWhoWeAreSorting>>;
-  where?: InputMaybe<AboutCorePageWhoWeAreFilter>;
-};
-
-
-export type RootQueryAllAboutCorePageWorkWithUsArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Array<AboutCorePageWorkWithUsSorting>>;
-  where?: InputMaybe<AboutCorePageWorkWithUsFilter>;
 };
 
 
@@ -4504,11 +5558,67 @@ export type RootQueryAllMuxVideoAssetArgs = {
 };
 
 
+export type RootQueryAllNationalCurriculumInsightsGuidancePageArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<NationalCurriculumInsightsGuidancePageSorting>>;
+  where?: InputMaybe<NationalCurriculumInsightsGuidancePageFilter>;
+};
+
+
+export type RootQueryAllNationalCurriculumInsightsHubArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<NationalCurriculumInsightsHubSorting>>;
+  where?: InputMaybe<NationalCurriculumInsightsHubFilter>;
+};
+
+
+export type RootQueryAllNationalCurriculumInsightsKeyStagePageArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<NationalCurriculumInsightsKeyStagePageSorting>>;
+  where?: InputMaybe<NationalCurriculumInsightsKeyStagePageFilter>;
+};
+
+
+export type RootQueryAllNationalCurriculumInsightsPageArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<NationalCurriculumInsightsPageSorting>>;
+  where?: InputMaybe<NationalCurriculumInsightsPageFilter>;
+};
+
+
+export type RootQueryAllNationalCurriculumInsightsSubjectArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<NationalCurriculumInsightsSubjectSorting>>;
+  where?: InputMaybe<NationalCurriculumInsightsSubjectFilter>;
+};
+
+
 export type RootQueryAllNavGroupArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<NavGroupSorting>>;
   where?: InputMaybe<NavGroupFilter>;
+};
+
+
+export type RootQueryAllNcAlignmentCheckerLandingPageArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<NcAlignmentCheckerLandingPageSorting>>;
+  where?: InputMaybe<NcAlignmentCheckerLandingPageFilter>;
+};
+
+
+export type RootQueryAllNcAlignmentCheckerLandingPageSubjectPickerArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<NcAlignmentCheckerLandingPageSubjectPickerSorting>>;
+  where?: InputMaybe<NcAlignmentCheckerLandingPageSubjectPickerFilter>;
 };
 
 
@@ -4525,6 +5635,14 @@ export type RootQueryAllNewAboutCorePageGetInvolvedArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<NewAboutCorePageGetInvolvedSorting>>;
   where?: InputMaybe<NewAboutCorePageGetInvolvedFilter>;
+};
+
+
+export type RootQueryAllNewAboutCorePageJoinResearchPanelArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<NewAboutCorePageJoinResearchPanelSorting>>;
+  where?: InputMaybe<NewAboutCorePageJoinResearchPanelFilter>;
 };
 
 
@@ -5805,6 +6923,35 @@ export type TextBlockWithHighlightSorting = {
   style?: InputMaybe<SortOrder>;
 };
 
+export type TopBanner = {
+  __typename?: 'TopBanner';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  backgroundColor?: Maybe<Scalars['String']['output']>;
+  cta?: Maybe<NewCta>;
+  displayCta?: Maybe<Scalars['Boolean']['output']>;
+  displayNewTag?: Maybe<Scalars['Boolean']['output']>;
+  messageRaw?: Maybe<Scalars['JSON']['output']>;
+};
+
+export type TopBannerFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  backgroundColor?: InputMaybe<StringFilter>;
+  cta?: InputMaybe<NewCtaFilter>;
+  displayCta?: InputMaybe<BooleanFilter>;
+  displayNewTag?: InputMaybe<BooleanFilter>;
+};
+
+export type TopBannerSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  backgroundColor?: InputMaybe<SortOrder>;
+  cta?: InputMaybe<NewCtaSorting>;
+  displayCta?: InputMaybe<SortOrder>;
+  displayNewTag?: InputMaybe<SortOrder>;
+};
+
 export type UiGraphic = Document & {
   __typename?: 'UiGraphic';
   /** Date the document was created */
@@ -6171,42 +7318,7 @@ export type AbTestedPageBySlugQueryVariables = Exact<{
 }>;
 
 
-export type AbTestedPageBySlugQuery = { __typename?: 'RootQuery', allAbTest: Array<{ __typename?: 'AbTest', posthogFeatureFlagKey?: string | null, id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, controlVariant?: { __typename?: 'LandingPage', id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, headerCta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, hero?: { __typename?: 'LandingPageHero', title?: string | null, heading?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, content?: Array<{ __typename?: 'LandingPageFormBlock', title?: string | null, bodyPortableText?: any | null, type: 'LandingPageFormBlock', form?: { __typename?: 'FormWrapper', title?: string | null } | null } | { __typename?: 'LandingPageQuoteBlock', type: 'LandingPageQuoteBlock', quote?: { __typename?: 'Quote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null } | { __typename?: 'LandingPageTextAndMediaBlock', type: 'LandingPageTextAndMediaBlock', textAndMedia?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null } | { __typename?: 'LandingPageTextBlock', bodyPortableText?: any | null, type: 'LandingPageTextBlock' } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null } | null, variants?: Array<{ __typename?: 'AbTestVariant', posthogVariant?: string | null, page?: { __typename?: 'LandingPage', _type?: string | null, id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, headerCta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, hero?: { __typename?: 'LandingPageHero', title?: string | null, heading?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, content?: Array<{ __typename?: 'LandingPageFormBlock', title?: string | null, bodyPortableText?: any | null, type: 'LandingPageFormBlock', form?: { __typename?: 'FormWrapper', title?: string | null } | null } | { __typename?: 'LandingPageQuoteBlock', type: 'LandingPageQuoteBlock', quote?: { __typename?: 'Quote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null } | { __typename?: 'LandingPageTextAndMediaBlock', type: 'LandingPageTextAndMediaBlock', textAndMedia?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null } | { __typename?: 'LandingPageTextBlock', bodyPortableText?: any | null, type: 'LandingPageTextBlock' } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null } | null } | null> | null }> };
-
-export type AboutBoardPageQueryVariables = Exact<{
-  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
-}>;
-
-
-export type AboutBoardPageQuery = { __typename?: 'RootQuery', aboutCorePage: Array<{ __typename?: 'AboutCorePage', title?: string | null, summaryPortableText?: any | null, summaryCardImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, contactSection?: { __typename?: 'AboutPageContactSection', infoPortableText?: any | null } | null }>, allAboutCorePageBoard: Array<{ __typename?: 'AboutCorePageBoard', boardHeader?: string | null, id?: string | null, heading?: string | null, introPortableText?: any | null, governancePortableText?: any | null, boardMembers?: Array<{ __typename?: 'TeamMember', name?: string | null, role?: string | null, id?: string | null, bioPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, socials?: { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null } | null } | null> | null, documents?: Array<{ __typename?: 'Attachment', title?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
-
-export type AboutLeadershipPageQueryVariables = Exact<{
-  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
-}>;
-
-
-export type AboutLeadershipPageQuery = { __typename?: 'RootQuery', aboutCorePage: Array<{ __typename?: 'AboutCorePage', title?: string | null, summaryPortableText?: any | null, summaryCardImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, contactSection?: { __typename?: 'AboutPageContactSection', infoPortableText?: any | null } | null }>, allAboutCorePageLeadership: Array<{ __typename?: 'AboutCorePageLeadership', id?: string | null, heading?: string | null, introPortableText?: any | null, leadershipTeam?: Array<{ __typename?: 'TeamMember', name?: string | null, role?: string | null, id?: string | null, bioPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, socials?: { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null } | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
-
-export type AboutPartnersPageQueryVariables = Exact<{
-  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
-}>;
-
-
-export type AboutPartnersPageQuery = { __typename?: 'RootQuery', aboutCorePage: Array<{ __typename?: 'AboutCorePage', title?: string | null, summaryPortableText?: any | null, summaryCardImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, contactSection?: { __typename?: 'AboutPageContactSection', infoPortableText?: any | null } | null }>, allAboutCorePagePartners: Array<{ __typename?: 'AboutCorePagePartners', id?: string | null, heading?: string | null, introPortableText?: any | null, techPartners?: Array<{ __typename?: 'AboutPagePartnerImage', name?: string | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null> | null, curriculumPartners?: Array<{ __typename?: 'AboutPagePartnerImage', name?: string | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
-
-export type AboutWhoWeArePageQueryVariables = Exact<{
-  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
-}>;
-
-
-export type AboutWhoWeArePageQuery = { __typename?: 'RootQuery', aboutCorePage: Array<{ __typename?: 'AboutCorePage', title?: string | null, summaryPortableText?: any | null, summaryCardImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, contactSection?: { __typename?: 'AboutPageContactSection', infoPortableText?: any | null } | null }>, allAboutCorePageWhoWeAre: Array<{ __typename?: 'AboutCorePageWhoWeAre', id?: string | null, heading?: string | null, intro?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null, timeline?: { __typename?: 'AboutPageTimeline', from?: { __typename?: 'TextBlock', title?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, to?: { __typename?: 'TextBlock', title?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, beyond?: { __typename?: 'TextBlock', title?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, principles?: Array<{ __typename?: 'TextBlock', title?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
-
-export type AboutWorkWithUsPageQueryVariables = Exact<{
-  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
-}>;
-
-
-export type AboutWorkWithUsPageQuery = { __typename?: 'RootQuery', aboutCorePage: Array<{ __typename?: 'AboutCorePage', title?: string | null, summaryPortableText?: any | null, summaryCardImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, contactSection?: { __typename?: 'AboutPageContactSection', infoPortableText?: any | null } | null }>, allAboutCorePageWorkWithUs: Array<{ __typename?: 'AboutCorePageWorkWithUs', id?: string | null, heading?: string | null, introPortableText?: any | null, cards?: { __typename?: 'AboutPageWorkWithUsCards', joinTheTeam?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, advisory?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, curriculumPartner?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, teacherResearch?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+export type AbTestedPageBySlugQuery = { __typename?: 'RootQuery', allAbTest: Array<{ __typename?: 'AbTest', posthogFeatureFlagKey?: string | null, id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, controlVariant?: { __typename?: 'LandingPage', id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, headerCta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, hero?: { __typename?: 'LandingPageHero', title?: string | null, heading?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, content?: Array<{ __typename?: 'LandingPageFormBlock', title?: string | null, bodyPortableText?: any | null, type: 'LandingPageFormBlock', form?: { __typename?: 'FormWrapper', title?: string | null } | null } | { __typename?: 'LandingPageQuoteBlock', type: 'LandingPageQuoteBlock', quote?: { __typename?: 'Quote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null } | { __typename?: 'LandingPageTextAndMediaBlock', type: 'LandingPageTextAndMediaBlock', textAndMedia?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null } | { __typename?: 'LandingPageTextBlock', bodyPortableText?: any | null, type: 'LandingPageTextBlock' } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null } | null, variants?: Array<{ __typename?: 'AbTestVariant', posthogVariant?: string | null, page?: { __typename?: 'LandingPage', _type?: string | null, id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, headerCta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, hero?: { __typename?: 'LandingPageHero', title?: string | null, heading?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, content?: Array<{ __typename?: 'LandingPageFormBlock', title?: string | null, bodyPortableText?: any | null, type: 'LandingPageFormBlock', form?: { __typename?: 'FormWrapper', title?: string | null } | null } | { __typename?: 'LandingPageQuoteBlock', type: 'LandingPageQuoteBlock', quote?: { __typename?: 'Quote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null } | { __typename?: 'LandingPageTextAndMediaBlock', type: 'LandingPageTextAndMediaBlock', textAndMedia?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null } | { __typename?: 'LandingPageTextBlock', bodyPortableText?: any | null, type: 'LandingPageTextBlock' } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null } | null } | null> | null }> };
 
 export type AllBlogPostsQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -6246,7 +7358,7 @@ export type AllWebinarsQueryVariables = Exact<{
 }>;
 
 
-export type AllWebinarsQuery = { __typename?: 'RootQuery', allWebinar: Array<{ __typename?: 'Webinar', title?: string | null, date?: any | null, id?: string | null, summaryPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null, hosts?: Array<{ __typename?: 'TeamMember', _key?: string | null, name?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null }> };
+export type AllWebinarsQuery = { __typename?: 'RootQuery', allWebinar: Array<{ __typename?: 'Webinar', title?: string | null, date?: any | null, id?: string | null, summaryPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null, hosts?: Array<{ __typename?: 'TeamMember', _key?: string | null, name?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null }> };
 
 export type AttachmentFragment = { __typename?: 'Attachment', title?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null };
 
@@ -6266,9 +7378,26 @@ export type CampaignBySlugQueryVariables = Exact<{
 }>;
 
 
-export type CampaignBySlugQuery = { __typename?: 'RootQuery', allCampaignPage: Array<{ __typename?: 'CampaignPage', title?: string | null, id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, header?: { __typename?: 'CampaignPageHeader', heading?: string | null, subheading?: string | null, hideKsSelector?: boolean | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, content?: Array<{ __typename?: 'CampaignIntro', type: 'CampaignIntro', headingPortableTextWithPromo?: any | null, bodyPortableTextWithPromo?: any | null } | { __typename?: 'CampaignPromoBanner', buttonCta?: string | null, buttonUrl?: string | null, type: 'CampaignPromoBanner', headingPortableTextWithPromo?: any | null, subheadingPortableTextWithPromo?: any | null, bodyPortableTextWithPromo?: any | null, media?: Array<{ __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null> | null } | { __typename?: 'CampaignVideoBanner', type: 'CampaignVideoBanner', headingPortableTextWithPromo?: any | null, subheadingPortableTextWithPromo?: any | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | { __typename?: 'NewsletterSignUp', heading?: string | null, buttonCta?: string | null, formId?: string | null, freeSchoolInput?: boolean | null, enableRole?: boolean | null, type: 'NewsletterSignUp', bodyPortableText?: any | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+export type CampaignBySlugQuery = { __typename?: 'RootQuery', allCampaignPage: Array<{ __typename?: 'CampaignPage', title?: string | null, id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, header?: { __typename?: 'CampaignPageHeader', heading?: string | null, subheading?: string | null, hideKsSelector?: boolean | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, content?: Array<{ __typename?: 'CampaignIntro', type: 'CampaignIntro', headingPortableTextWithPromo?: any | null, bodyPortableTextWithPromo?: any | null } | { __typename?: 'CampaignPromoBanner', buttonCta?: string | null, buttonUrl?: string | null, type: 'CampaignPromoBanner', headingPortableTextWithPromo?: any | null, subheadingPortableTextWithPromo?: any | null, bodyPortableTextWithPromo?: any | null, media?: Array<{ __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null> | null } | { __typename?: 'CampaignVideoBanner', type: 'CampaignVideoBanner', headingPortableTextWithPromo?: any | null, subheadingPortableTextWithPromo?: any | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | { __typename?: 'NewsletterSignUp', heading?: string | null, buttonCta?: string | null, formId?: string | null, freeSchoolInput?: boolean | null, enableRole?: boolean | null, type: 'NewsletterSignUp', bodyPortableText?: any | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
-export type CardFragment = { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null };
+export type CardFragment = { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null };
+
+export type CaseStudyLibraryPageQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']['input']>;
+  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type CaseStudyLibraryPageQuery = { __typename?: 'RootQuery', allCaseStudy: Array<{ __typename?: 'CaseStudy', title?: string | null, tag?: string | null, summaryRaw?: any | null, textRaw?: any | null, publishedAt?: any | null, showGetInTouchPanel?: boolean | null, slug?: { __typename?: 'Slug', current?: string | null } | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, content?: Array<{ __typename?: 'CaseStudyPageContent', heading?: string | null, label?: string | null, contentRaw?: any | null, anchorSlug?: { __typename?: 'Slug', current?: string | null } | null } | null> | null, getInTouchPanel?: { __typename?: 'GetInTouchPanel', personName?: string | null, jobRole?: string | null, institutionName?: string | null, personImage?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null }> };
+
+export type CaseStudyPageQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']['input']>;
+  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
+}>;
+
+
+export type CaseStudyPageQuery = { __typename?: 'RootQuery', allCaseStudy: Array<{ __typename?: 'CaseStudy', title?: string | null, tag?: string | null, summaryRaw?: any | null, textRaw?: any | null, publishedAt?: any | null, showGetInTouchPanel?: boolean | null, slug?: { __typename?: 'Slug', current?: string | null } | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, content?: Array<{ __typename?: 'CaseStudyPageContent', heading?: string | null, label?: string | null, contentRaw?: any | null, anchorSlug?: { __typename?: 'Slug', current?: string | null } | null } | null> | null, getInTouchPanel?: { __typename?: 'GetInTouchPanel', personName?: string | null, jobRole?: string | null, institutionName?: string | null, personImage?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null }> };
 
 export type ContactCorePageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -6277,7 +7406,7 @@ export type ContactCorePageQueryVariables = Exact<{
 
 export type ContactCorePageQuery = { __typename?: 'RootQuery', allContactCorePage: Array<{ __typename?: 'ContactCorePage', title?: string | null, heading?: string | null, id?: string | null, summaryPortableText?: any | null, bodyPortableText?: any | null, summaryCardImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
-export type CtaFragment = { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null };
+export type CtaFragment = { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null };
 
 export type CurriculumOverviewQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -6286,7 +7415,9 @@ export type CurriculumOverviewQueryVariables = Exact<{
 }>;
 
 
-export type CurriculumOverviewQuery = { __typename?: 'RootQuery', allCurriculumInfoPageOverview: Array<{ __typename?: 'CurriculumInfoPageOverview', subjectPrinciples?: Array<string | null> | null, partnerBio?: string | null, videoAuthor?: string | null, videoExplainer?: string | null, curriculumSeoTextRaw?: any | null, id?: string | null, curriculumExplainer?: { __typename?: 'CurriculumExplainer', explainerRaw?: any | null } | null, curriculumPartner?: { __typename?: 'CurriculumPartner', name?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, curriculumPartnerOverviews?: Array<{ __typename?: 'CurriculumPartnerOverview', partnerBio?: string | null, partnerBioPortableTextRaw?: any | null, curriculumPartner?: { __typename?: 'CurriculumPartner', name?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null } | null> | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null }> };
+export type CurriculumOverviewQuery = { __typename?: 'RootQuery', allCurriculumInfoPageOverview: Array<{ __typename?: 'CurriculumInfoPageOverview', subjectPrinciples?: Array<string | null> | null, partnerBio?: string | null, videoAuthor?: string | null, videoExplainer?: string | null, curriculumSeoTextRaw?: any | null, id?: string | null, curriculumExplainer?: { __typename?: 'CurriculumExplainer', explainerRaw?: any | null } | null, curriculumPartner?: { __typename?: 'CurriculumPartner', name?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, curriculumPartnerOverviews?: Array<{ __typename?: 'CurriculumPartnerOverview', partnerBio?: string | null, partnerBioPortableTextRaw?: any | null, curriculumPartner?: { __typename?: 'CurriculumPartner', name?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null } | null> | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null }> };
+
+export type FaqFragment = { __typename?: 'Faq', question?: string | null, answerRaw?: any | null };
 
 export type FileFragment = { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null };
 
@@ -6302,7 +7433,7 @@ export type HomepageQueryVariables = Exact<{
 }>;
 
 
-export type HomepageQuery = { __typename?: 'RootQuery', allHomepage: Array<{ __typename?: 'Homepage', heading?: string | null, id?: string | null, summaryPortableText?: any | null, notification?: { __typename?: 'HomepageNotification', enabled?: boolean | null, label?: string | null, heading?: string | null, subheading?: string | null, link?: { __typename?: 'Link', linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, sidebarCard1?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, sidebarCard2?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null, testimonials?: Array<{ __typename?: 'Testimonial', quote?: { __typename?: 'Quote', text?: string | null, attribution?: string | null, organisation?: string | null, role?: string | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, asset?: { __typename?: 'SanityImageAsset', url?: string | null, _id?: string | null } | null } | null } | null> | null, intro?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null, campaignPromoBanner?: { __typename?: 'CampaignPromoBanner', buttonCta?: string | null, buttonUrl?: string | null, type: 'CampaignPromoBanner', headingPortableTextWithPromo?: any | null, subheadingPortableTextWithPromo?: any | null, bodyPortableTextWithPromo?: any | null, media?: Array<{ __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null> | null } | null }> };
+export type HomepageQuery = { __typename?: 'RootQuery', allHomepage: Array<{ __typename?: 'Homepage', displayTopBanner?: boolean | null, heading?: string | null, id?: string | null, summaryPortableText?: any | null, topBanner?: { __typename?: 'TopBanner', displayNewTag?: boolean | null, displayCta?: boolean | null, backgroundColor?: string | null, messagePortableText?: any | null, cta?: { __typename?: 'NewCta', label?: string | null, linkType?: string | null, external?: string | null, internal?: string | null } | null } | null, notification?: { __typename?: 'HomepageNotification', enabled?: boolean | null, label?: string | null, heading?: string | null, subheading?: string | null, link?: { __typename?: 'Link', linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, sidebarCard2?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null, testimonials?: Array<{ __typename?: 'Testimonial', quote?: { __typename?: 'Quote', text?: string | null, attribution?: string | null, organisation?: string | null, role?: string | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, asset?: { __typename?: 'SanityImageAsset', url?: string | null, _id?: string | null } | null } | null } | null> | null, intro?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null, campaignPromoBanner?: { __typename?: 'CampaignPromoBanner', buttonCta?: string | null, buttonUrl?: string | null, type: 'CampaignPromoBanner', headingPortableTextWithPromo?: any | null, subheadingPortableTextWithPromo?: any | null, bodyPortableTextWithPromo?: any | null, media?: Array<{ __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null> | null } | null }> };
 
 export type ImageFragment = { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null };
 
@@ -6322,18 +7453,6 @@ export type ImplementationGuidesQueryVariables = Exact<{
 export type ImplementationGuidesQuery = { __typename?: 'RootQuery', allCurriculumInfoPageOverview: Array<{ __typename?: 'CurriculumInfoPageOverview', id?: string | null, implementationGuides?: { __typename?: 'ImplementationGuides', curriculumQuality?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null, whatsIncluded?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null, assessment?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null, commonQuestions?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null, equipmentList?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | null }> };
 
 type InternalLinkFields_AbTest_Fragment = { __typename?: 'AbTest', id?: string | null, contentType?: string | null };
-
-type InternalLinkFields_AboutCorePage_Fragment = { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null };
-
-type InternalLinkFields_AboutCorePageBoard_Fragment = { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null };
-
-type InternalLinkFields_AboutCorePageLeadership_Fragment = { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null };
-
-type InternalLinkFields_AboutCorePagePartners_Fragment = { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null };
-
-type InternalLinkFields_AboutCorePageWhoWeAre_Fragment = { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null };
-
-type InternalLinkFields_AboutCorePageWorkWithUs_Fragment = { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null };
 
 type InternalLinkFields_AiHomepage_Fragment = { __typename?: 'AiHomepage', id?: string | null, contentType?: string | null };
 
@@ -6373,11 +7492,27 @@ type InternalLinkFields_LandingPage_Fragment = { __typename?: 'LandingPage', id?
 
 type InternalLinkFields_MuxVideoAsset_Fragment = { __typename?: 'MuxVideoAsset', id?: string | null, contentType?: string | null };
 
+type InternalLinkFields_NationalCurriculumInsightsGuidancePage_Fragment = { __typename?: 'NationalCurriculumInsightsGuidancePage', id?: string | null, contentType?: string | null };
+
+type InternalLinkFields_NationalCurriculumInsightsHub_Fragment = { __typename?: 'NationalCurriculumInsightsHub', id?: string | null, contentType?: string | null };
+
+type InternalLinkFields_NationalCurriculumInsightsKeyStagePage_Fragment = { __typename?: 'NationalCurriculumInsightsKeyStagePage', id?: string | null, contentType?: string | null };
+
+type InternalLinkFields_NationalCurriculumInsightsPage_Fragment = { __typename?: 'NationalCurriculumInsightsPage', id?: string | null, contentType?: string | null };
+
+type InternalLinkFields_NationalCurriculumInsightsSubject_Fragment = { __typename?: 'NationalCurriculumInsightsSubject', id?: string | null, contentType?: string | null };
+
 type InternalLinkFields_NavGroup_Fragment = { __typename?: 'NavGroup', id?: string | null, contentType?: string | null };
+
+type InternalLinkFields_NcAlignmentCheckerLandingPage_Fragment = { __typename?: 'NcAlignmentCheckerLandingPage', id?: string | null, contentType?: string | null };
+
+type InternalLinkFields_NcAlignmentCheckerLandingPageSubjectPicker_Fragment = { __typename?: 'NcAlignmentCheckerLandingPageSubjectPicker', id?: string | null, contentType?: string | null };
 
 type InternalLinkFields_NewAboutCorePage_Fragment = { __typename?: 'NewAboutCorePage', id?: string | null, contentType?: string | null };
 
 type InternalLinkFields_NewAboutCorePageGetInvolved_Fragment = { __typename?: 'NewAboutCorePageGetInvolved', id?: string | null, contentType?: string | null };
+
+type InternalLinkFields_NewAboutCorePageJoinResearchPanel_Fragment = { __typename?: 'NewAboutCorePageJoinResearchPanel', id?: string | null, contentType?: string | null };
 
 type InternalLinkFields_NewAboutCorePageMeetTheTeam_Fragment = { __typename?: 'NewAboutCorePageMeetTheTeam', id?: string | null, contentType?: string | null };
 
@@ -6425,9 +7560,17 @@ type InternalLinkFields_Webinar_Fragment = { __typename?: 'Webinar', id?: string
 
 type InternalLinkFields_WebinarListingPage_Fragment = { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null };
 
-export type InternalLinkFieldsFragment = InternalLinkFields_AbTest_Fragment | InternalLinkFields_AboutCorePage_Fragment | InternalLinkFields_AboutCorePageBoard_Fragment | InternalLinkFields_AboutCorePageLeadership_Fragment | InternalLinkFields_AboutCorePagePartners_Fragment | InternalLinkFields_AboutCorePageWhoWeAre_Fragment | InternalLinkFields_AboutCorePageWorkWithUs_Fragment | InternalLinkFields_AiHomepage_Fragment | InternalLinkFields_AiPolicyPage_Fragment | InternalLinkFields_ApiContentPage_Fragment | InternalLinkFields_AssistInstructionContext_Fragment | InternalLinkFields_Attachment_Fragment | InternalLinkFields_BlogWebinarCategory_Fragment | InternalLinkFields_BrandAsset_Fragment | InternalLinkFields_CampaignPage_Fragment | InternalLinkFields_CaseStudy_Fragment | InternalLinkFields_ContactCorePage_Fragment | InternalLinkFields_CurriculumApiLandingPage_Fragment | InternalLinkFields_CurriculumCorePage_Fragment | InternalLinkFields_CurriculumExplainer_Fragment | InternalLinkFields_CurriculumInfoPageOverview_Fragment | InternalLinkFields_CurriculumPartner_Fragment | InternalLinkFields_Homepage_Fragment | InternalLinkFields_Illustration_Fragment | InternalLinkFields_LandingPage_Fragment | InternalLinkFields_MuxVideoAsset_Fragment | InternalLinkFields_NavGroup_Fragment | InternalLinkFields_NewAboutCorePage_Fragment | InternalLinkFields_NewAboutCorePageGetInvolved_Fragment | InternalLinkFields_NewAboutCorePageMeetTheTeam_Fragment | InternalLinkFields_NewAboutCorePageOaksCurricula_Fragment | InternalLinkFields_NewAboutCorePageOaksImpact_Fragment | InternalLinkFields_NewAboutCorePageWhoWeAre_Fragment | InternalLinkFields_NewsListingPage_Fragment | InternalLinkFields_NewsPost_Fragment | InternalLinkFields_PlanALessonCorePage_Fragment | InternalLinkFields_PlanALessonPageContent_Fragment | InternalLinkFields_PlanningCorePage_Fragment | InternalLinkFields_PolicyPage_Fragment | InternalLinkFields_ProgrammePage_Fragment | InternalLinkFields_SanityFileAsset_Fragment | InternalLinkFields_SanityHelpArticle_Fragment | InternalLinkFields_SanityImageAsset_Fragment | InternalLinkFields_SubjectIcon_Fragment | InternalLinkFields_SupportCorePage_Fragment | InternalLinkFields_TeamMember_Fragment | InternalLinkFields_Testimonial_Fragment | InternalLinkFields_UiGraphic_Fragment | InternalLinkFields_UiIcon_Fragment | InternalLinkFields_Video_Fragment | InternalLinkFields_Webinar_Fragment | InternalLinkFields_WebinarListingPage_Fragment;
+export type InternalLinkFieldsFragment = InternalLinkFields_AbTest_Fragment | InternalLinkFields_AiHomepage_Fragment | InternalLinkFields_AiPolicyPage_Fragment | InternalLinkFields_ApiContentPage_Fragment | InternalLinkFields_AssistInstructionContext_Fragment | InternalLinkFields_Attachment_Fragment | InternalLinkFields_BlogWebinarCategory_Fragment | InternalLinkFields_BrandAsset_Fragment | InternalLinkFields_CampaignPage_Fragment | InternalLinkFields_CaseStudy_Fragment | InternalLinkFields_ContactCorePage_Fragment | InternalLinkFields_CurriculumApiLandingPage_Fragment | InternalLinkFields_CurriculumCorePage_Fragment | InternalLinkFields_CurriculumExplainer_Fragment | InternalLinkFields_CurriculumInfoPageOverview_Fragment | InternalLinkFields_CurriculumPartner_Fragment | InternalLinkFields_Homepage_Fragment | InternalLinkFields_Illustration_Fragment | InternalLinkFields_LandingPage_Fragment | InternalLinkFields_MuxVideoAsset_Fragment | InternalLinkFields_NationalCurriculumInsightsGuidancePage_Fragment | InternalLinkFields_NationalCurriculumInsightsHub_Fragment | InternalLinkFields_NationalCurriculumInsightsKeyStagePage_Fragment | InternalLinkFields_NationalCurriculumInsightsPage_Fragment | InternalLinkFields_NationalCurriculumInsightsSubject_Fragment | InternalLinkFields_NavGroup_Fragment | InternalLinkFields_NcAlignmentCheckerLandingPage_Fragment | InternalLinkFields_NcAlignmentCheckerLandingPageSubjectPicker_Fragment | InternalLinkFields_NewAboutCorePage_Fragment | InternalLinkFields_NewAboutCorePageGetInvolved_Fragment | InternalLinkFields_NewAboutCorePageJoinResearchPanel_Fragment | InternalLinkFields_NewAboutCorePageMeetTheTeam_Fragment | InternalLinkFields_NewAboutCorePageOaksCurricula_Fragment | InternalLinkFields_NewAboutCorePageOaksImpact_Fragment | InternalLinkFields_NewAboutCorePageWhoWeAre_Fragment | InternalLinkFields_NewsListingPage_Fragment | InternalLinkFields_NewsPost_Fragment | InternalLinkFields_PlanALessonCorePage_Fragment | InternalLinkFields_PlanALessonPageContent_Fragment | InternalLinkFields_PlanningCorePage_Fragment | InternalLinkFields_PolicyPage_Fragment | InternalLinkFields_ProgrammePage_Fragment | InternalLinkFields_SanityFileAsset_Fragment | InternalLinkFields_SanityHelpArticle_Fragment | InternalLinkFields_SanityImageAsset_Fragment | InternalLinkFields_SubjectIcon_Fragment | InternalLinkFields_SupportCorePage_Fragment | InternalLinkFields_TeamMember_Fragment | InternalLinkFields_Testimonial_Fragment | InternalLinkFields_UiGraphic_Fragment | InternalLinkFields_UiIcon_Fragment | InternalLinkFields_Video_Fragment | InternalLinkFields_Webinar_Fragment | InternalLinkFields_WebinarListingPage_Fragment;
 
-export type LandingPageFragment = { __typename?: 'LandingPage', id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, headerCta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, hero?: { __typename?: 'LandingPageHero', title?: string | null, heading?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, content?: Array<{ __typename?: 'LandingPageFormBlock', title?: string | null, bodyPortableText?: any | null, type: 'LandingPageFormBlock', form?: { __typename?: 'FormWrapper', title?: string | null } | null } | { __typename?: 'LandingPageQuoteBlock', type: 'LandingPageQuoteBlock', quote?: { __typename?: 'Quote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null } | { __typename?: 'LandingPageTextAndMediaBlock', type: 'LandingPageTextAndMediaBlock', textAndMedia?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null } | { __typename?: 'LandingPageTextBlock', bodyPortableText?: any | null, type: 'LandingPageTextBlock' } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null };
+export type JoinResearchPanelPageQueryVariables = Exact<{
+  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
+  blogCategorySlug?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type JoinResearchPanelPageQuery = { __typename?: 'RootQuery', content: Array<{ __typename?: 'NewAboutCorePageJoinResearchPanel', id?: string | null, blocks?: Array<{ __typename: 'JoinResearchPanelPageBlogsPreview', title?: string | null, label?: string | null } | { __typename: 'JoinResearchPanelPageCallout', title?: string | null, items?: Array<{ __typename?: 'JoinResearchPanelPageCalloutItem', bodyRaw?: any | null, icon?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | { __typename: 'JoinResearchPanelPageContactUs', title?: string | null, button?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | { __typename: 'JoinResearchPanelPageFaqs', items?: Array<{ __typename?: 'JoinResearchPanelPageFaqsQuestion', question?: string | null, answerRaw?: any | null } | null> | null } | { __typename: 'JoinResearchPanelPageHeader', title?: string | null, bodyRaw?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, button?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | { __typename: 'JoinResearchPanelPageInfo', title?: string | null, bodyRaw?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | { __typename: 'JoinResearchPanelPageJourney', title?: string | null, steps?: Array<{ __typename?: 'JoinResearchPanelPageJourneyStep', title?: string | null, descriptionRaw?: any | null } | null> | null, button?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | { __typename: 'JoinResearchPanelPagePeople', title?: string | null, members?: Array<{ __typename?: 'JoinResearchPanelPagePeoplePerson', name?: string | null, bodyRaw?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null> | null }>, blogs: Array<{ __typename?: 'NewsPost', title?: string | null, date?: any | null, id?: string | null, summaryPortableText?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, author?: { __typename?: 'TeamMember', _key?: string | null, name?: string | null, role?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, mainImage?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null }> };
+
+export type LandingPageFragment = { __typename?: 'LandingPage', id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, headerCta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, hero?: { __typename?: 'LandingPageHero', title?: string | null, heading?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, content?: Array<{ __typename?: 'LandingPageFormBlock', title?: string | null, bodyPortableText?: any | null, type: 'LandingPageFormBlock', form?: { __typename?: 'FormWrapper', title?: string | null } | null } | { __typename?: 'LandingPageQuoteBlock', type: 'LandingPageQuoteBlock', quote?: { __typename?: 'Quote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null } | { __typename?: 'LandingPageTextAndMediaBlock', type: 'LandingPageTextAndMediaBlock', textAndMedia?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null } | { __typename?: 'LandingPageTextBlock', bodyPortableText?: any | null, type: 'LandingPageTextBlock' } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null };
 
 export type LandingPageBySlugQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -6435,9 +7578,9 @@ export type LandingPageBySlugQueryVariables = Exact<{
 }>;
 
 
-export type LandingPageBySlugQuery = { __typename?: 'RootQuery', allLandingPage: Array<{ __typename?: 'LandingPage', id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, headerCta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, hero?: { __typename?: 'LandingPageHero', title?: string | null, heading?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, content?: Array<{ __typename?: 'LandingPageFormBlock', title?: string | null, bodyPortableText?: any | null, type: 'LandingPageFormBlock', form?: { __typename?: 'FormWrapper', title?: string | null } | null } | { __typename?: 'LandingPageQuoteBlock', type: 'LandingPageQuoteBlock', quote?: { __typename?: 'Quote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null } | { __typename?: 'LandingPageTextAndMediaBlock', type: 'LandingPageTextAndMediaBlock', textAndMedia?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null } | { __typename?: 'LandingPageTextBlock', bodyPortableText?: any | null, type: 'LandingPageTextBlock' } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+export type LandingPageBySlugQuery = { __typename?: 'RootQuery', allLandingPage: Array<{ __typename?: 'LandingPage', id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, headerCta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, hero?: { __typename?: 'LandingPageHero', title?: string | null, heading?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, content?: Array<{ __typename?: 'LandingPageFormBlock', title?: string | null, bodyPortableText?: any | null, type: 'LandingPageFormBlock', form?: { __typename?: 'FormWrapper', title?: string | null } | null } | { __typename?: 'LandingPageQuoteBlock', type: 'LandingPageQuoteBlock', quote?: { __typename?: 'Quote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null } | { __typename?: 'LandingPageTextAndMediaBlock', type: 'LandingPageTextAndMediaBlock', textAndMedia?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null } | { __typename?: 'LandingPageTextBlock', bodyPortableText?: any | null, type: 'LandingPageTextBlock' } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
-export type LinkFragment = { __typename?: 'Link', linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null };
+export type LinkFragment = { __typename?: 'Link', linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null };
 
 export type MeetTheTeamPageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -6445,6 +7588,15 @@ export type MeetTheTeamPageQueryVariables = Exact<{
 
 
 export type MeetTheTeamPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageMeetTheTeam: Array<{ __typename?: 'NewAboutCorePageMeetTheTeam', id?: string | null, header?: { __typename?: 'MeetTheTeamPageHeader', introText?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, ourLeadership?: { __typename?: 'MeetTheTeamPageOurLeadership', textRaw?: any | null, leadershipTeam?: Array<{ __typename?: 'TeamMember', name?: string | null, role?: string | null, id?: string | null, bioPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, socials?: { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null } | null } | null> | null } | null, ourBoard?: { __typename?: 'MeetTheTeamPageOurBoard', textRaw?: any | null, boardMembers?: Array<{ __typename?: 'TeamMember', name?: string | null, role?: string | null, id?: string | null, bioPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, socials?: { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null } | null } | null> | null } | null, documents2?: { __typename?: 'MeetTheTeamPageDocuments', files?: Array<{ __typename?: 'Attachment', title?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | null> | null } | null, governance2?: { __typename?: 'MeetTheTeamPageGovernance', textRaw?: any | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+
+export type NcAlignmentCheckerLandingPageSubjectPickerFragment = { __typename?: 'NcAlignmentCheckerLandingPageSubjectPicker', title?: string | null, tag?: string | null, bannerLabel?: string | null, buttonText?: string | null };
+
+export type NcAlignmentCheckerLandingPageQueryVariables = Exact<{
+  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
+}>;
+
+
+export type NcAlignmentCheckerLandingPageQuery = { __typename?: 'RootQuery', allNcAlignmentCheckerLandingPage: Array<{ __typename?: 'NcAlignmentCheckerLandingPage', id?: string | null, blocks?: Array<{ __typename: 'NcAlignmentCheckerLandingPageFaqs', items?: Array<{ __typename?: 'Faq', question?: string | null, answerRaw?: any | null } | null> | null } | { __typename: 'NcAlignmentCheckerLandingPageHeader', title?: string | null, bodyRaw?: any | null, icon?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, subjectPicker?: { __typename?: 'NcAlignmentCheckerLandingPageSubjectPicker', title?: string | null, tag?: string | null, bannerLabel?: string | null, buttonText?: string | null } | null } | { __typename: 'NcAlignmentCheckerLandingPageQuotes', quotes?: Array<{ __typename?: 'Quote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null> | null } | { __typename: 'NcAlignmentCheckerLandingPageSubjectExperts', title?: string | null, bodyRaw?: any | null, people?: Array<{ __typename?: 'TeamMember', name?: string | null, role?: string | null, id?: string | null, bioPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, socials?: { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null } | null } | null> | null } | { __typename: 'NcAlignmentCheckerLandingPageSubjectPickerCallout', subjectPicker?: { __typename?: 'NcAlignmentCheckerLandingPageSubjectPicker', title?: string | null, tag?: string | null, bannerLabel?: string | null, buttonText?: string | null } | null } | { __typename: 'NcAlignmentCheckerLandingPageTextAndMedia', imagePosition?: string | null, title?: string | null, bodyRaw?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type NewsListingPageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -6460,19 +7612,12 @@ export type OaksCurriculaPageQueryVariables = Exact<{
 
 export type OaksCurriculaPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageOaksCurricula: Array<{ __typename?: 'NewAboutCorePageOaksCurricula', id?: string | null, header?: { __typename?: 'OaksCurriculaPageHeader', introText?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, guidingPrinciples?: { __typename?: 'OaksCurriculaPageGuidingPrinciples', textRaw?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, principles?: Array<{ __typename?: 'OaksCurriculaPageGuidingPrinciple', heading?: string | null, text2Raw?: any | null } | null> | null } | null, curriculumPartners?: { __typename?: 'OaksCurriculaPageCurriculumPartnersSection', textRaw?: any | null, current?: { __typename?: 'OaksCurriculaPagePartnerSection', textRaw?: any | null, partners?: Array<{ __typename?: 'OaksCurriculaPagePartner', logo?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, legacy?: { __typename?: 'OaksCurriculaPagePartnerSection', textRaw?: any | null, partners?: Array<{ __typename?: 'OaksCurriculaPagePartner', logo?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
-export type OaksImpactCaseStudyPageQueryVariables = Exact<{
-  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
-}>;
-
-
-export type OaksImpactCaseStudyPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageOaksImpact: Array<{ __typename?: 'NewAboutCorePageOaksImpact', caseStudiesSection?: { __typename?: 'OaksImpactPageCaseStudiesSection', caseStudies?: Array<{ __typename?: 'CaseStudy', textRaw?: any | null, publishedAt?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null> | null } | null }> };
-
 export type OaksImpactPageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
 }>;
 
 
-export type OaksImpactPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageOaksImpact: Array<{ __typename?: 'NewAboutCorePageOaksImpact', id?: string | null, header?: { __typename?: 'OaksImpactPageHeader', introText?: string | null, videoDescription?: string | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null, statsSection?: { __typename?: 'OaksImpactPageStatsSection', textBlock?: { __typename?: 'TextBlock', title?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, stats?: Array<{ __typename?: 'OaksImpactPageStat', heading?: string | null, textRaw?: any | null, icon?: { __typename?: 'ImageWithAltTextAndDarkMode', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, darkModeImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, caseStudiesSection?: { __typename?: 'OaksImpactPageCaseStudiesSection', caseStudies?: Array<{ __typename?: 'CaseStudy', textRaw?: any | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, schoolQuotes?: { __typename?: 'OaksImpactPageSchoolQuotesSection', heading?: string | null, cards?: Array<{ __typename?: 'OaksImpactPageSchoolQuoteCard', summary?: string | null, logo?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, quote?: { __typename?: 'OaksImpactPageSchoolQuote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null, headshot?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null }> };
+export type OaksImpactPageQuery = { __typename?: 'RootQuery', content: Array<{ __typename?: 'NewAboutCorePageOaksImpact', id?: string | null, header?: { __typename?: 'OaksImpactPageHeader', introText?: string | null, videoDescription?: string | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null, statsSection?: { __typename?: 'OaksImpactPageStatsSection', textBlock?: { __typename?: 'TextBlock', title?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, stats?: Array<{ __typename?: 'OaksImpactPageStat', heading?: string | null, textRaw?: any | null, icon?: { __typename?: 'ImageWithAltTextAndDarkMode', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, darkModeImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, schoolQuotes?: { __typename?: 'OaksImpactPageSchoolQuotesSection', heading?: string | null, cards?: Array<{ __typename?: 'OaksImpactPageSchoolQuoteCard', summary?: string | null, logo?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, quote?: { __typename?: 'OaksImpactPageSchoolQuote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null, headshot?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null }>, caseStudies: Array<{ __typename?: 'CaseStudy', title?: string | null, tag?: string | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null }> };
 
 export type PlanALessonPageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -6486,7 +7631,7 @@ export type PlanningCorePageQueryVariables = Exact<{
 }>;
 
 
-export type PlanningCorePageQuery = { __typename?: 'RootQuery', allPlanningCorePage: Array<{ __typename?: 'PlanningCorePage', title?: string | null, heading?: string | null, stepsHeading?: string | null, learnMoreHeading?: string | null, id?: string | null, summaryPortableText?: any | null, summaryCardImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, lessonElements?: { __typename?: 'PlanningPageLessonElements', _type?: string | null, introQuiz?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, video?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, slides?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, worksheet?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, exitQuiz?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null } | null, lessonElementsCTA?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, steps?: { __typename?: 'PlanningPageSteps', step1?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, step2?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, step3?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, step4?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null } | null, stepsCTA?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, learnMoreBlock1?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null, learnMoreBlock2?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+export type PlanningCorePageQuery = { __typename?: 'RootQuery', allPlanningCorePage: Array<{ __typename?: 'PlanningCorePage', title?: string | null, heading?: string | null, stepsHeading?: string | null, learnMoreHeading?: string | null, id?: string | null, summaryPortableText?: any | null, summaryCardImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, lessonElements?: { __typename?: 'PlanningPageLessonElements', _type?: string | null, introQuiz?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, video?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, slides?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, worksheet?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, exitQuiz?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null } | null, lessonElementsCTA?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, steps?: { __typename?: 'PlanningPageSteps', step1?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, step2?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, step3?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, step4?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null } | null, stepsCTA?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, learnMoreBlock1?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null, learnMoreBlock2?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type PolicyPageBySlugQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -6501,7 +7646,7 @@ export type PortableTextReferencesQueryVariables = Exact<{
 }>;
 
 
-export type PortableTextReferencesQuery = { __typename?: 'RootQuery', allDocument: Array<{ __typename?: 'AbTest', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AiHomepage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AiPolicyPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'ApiContentPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AssistInstructionContext', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', _type?: string | null, title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'BlogWebinarCategory', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'BrandAsset', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CampaignPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CaseStudy', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'ContactCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumApiLandingPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumExplainer', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumInfoPageOverview', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumPartner', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Illustration', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'MuxVideoAsset', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NavGroup', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageGetInvolved', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageMeetTheTeam', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageOaksCurricula', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageOaksImpact', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageWhoWeAre', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewsListingPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanALessonCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'PlanALessonPageContent', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'PlanningCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'ProgrammePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SanityFileAsset', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SanityHelpArticle', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null, _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SubjectIcon', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SupportCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'TeamMember', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Testimonial', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'UiGraphic', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'UiIcon', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Video', _type?: string | null, title?: string | null, id?: string | null, captions?: Array<string | null> | null, transcript?: any | null, contentType?: string | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | { __typename?: 'Webinar', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', _type?: string | null, id?: string | null, contentType?: string | null }> };
+export type PortableTextReferencesQuery = { __typename?: 'RootQuery', allDocument: Array<{ __typename?: 'AbTest', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AiHomepage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AiPolicyPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'ApiContentPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AssistInstructionContext', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', _type?: string | null, title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'BlogWebinarCategory', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'BrandAsset', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CampaignPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CaseStudy', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'ContactCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumApiLandingPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumExplainer', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumInfoPageOverview', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumPartner', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Illustration', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'MuxVideoAsset', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NationalCurriculumInsightsGuidancePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NationalCurriculumInsightsHub', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NationalCurriculumInsightsKeyStagePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NationalCurriculumInsightsPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NationalCurriculumInsightsSubject', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NavGroup', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NcAlignmentCheckerLandingPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NcAlignmentCheckerLandingPageSubjectPicker', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageGetInvolved', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageJoinResearchPanel', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageMeetTheTeam', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageOaksCurricula', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageOaksImpact', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewAboutCorePageWhoWeAre', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewsListingPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanALessonCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'PlanALessonPageContent', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'PlanningCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'ProgrammePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SanityFileAsset', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SanityHelpArticle', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null, _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SubjectIcon', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SupportCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'TeamMember', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Testimonial', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'UiGraphic', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'UiIcon', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Video', _type?: string | null, title?: string | null, id?: string | null, transcript?: any | null, contentType?: string | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | { __typename?: 'Webinar', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', _type?: string | null, id?: string | null, contentType?: string | null }> };
 
 export type ProgrammePageBySlugQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -6527,11 +7672,11 @@ export type TeamMemberBySlugQuery = { __typename?: 'RootQuery', allTeamMember: A
 
 export type TeamMemberSocialsFragment = { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null };
 
-export type TextAndMediaFragment = { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null };
+export type TextAndMediaFragment = { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null };
 
-export type TextBlockFragment = { __typename?: 'TextBlock', title?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null };
+export type TextBlockFragment = { __typename?: 'TextBlock', title?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null };
 
-export type VideoFragment = { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null };
+export type VideoFragment = { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null };
 
 export type WebinarBySlugQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -6539,9 +7684,9 @@ export type WebinarBySlugQueryVariables = Exact<{
 }>;
 
 
-export type WebinarBySlugQuery = { __typename?: 'RootQuery', allWebinar: Array<{ __typename?: 'Webinar', title?: string | null, date?: any | null, id?: string | null, summaryPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null, hosts?: Array<{ __typename?: 'TeamMember', _key?: string | null, name?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+export type WebinarBySlugQuery = { __typename?: 'RootQuery', allWebinar: Array<{ __typename?: 'Webinar', title?: string | null, date?: any | null, id?: string | null, summaryPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null, hosts?: Array<{ __typename?: 'TeamMember', _key?: string | null, name?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
-export type WebinarPreviewFieldsFragment = { __typename?: 'Webinar', title?: string | null, date?: any | null, id?: string | null, summaryPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null, hosts?: Array<{ __typename?: 'TeamMember', _key?: string | null, name?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null };
+export type WebinarPreviewFieldsFragment = { __typename?: 'Webinar', title?: string | null, date?: any | null, id?: string | null, summaryPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, video?: { __typename?: 'Video', title?: string | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null, hosts?: Array<{ __typename?: 'TeamMember', _key?: string | null, name?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null };
 
 export type WebinarsListingPageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -6694,6 +7839,12 @@ export const CardFragmentDoc = gql`
   }
 }
     ${CtaFragmentDoc}`;
+export const FaqFragmentDoc = gql`
+    fragment Faq on Faq {
+  question
+  answerRaw
+}
+    `;
 export const ImageWithAltTextAndDarkModeFragmentDoc = gql`
     fragment ImageWithAltTextAndDarkMode on ImageWithAltTextAndDarkMode {
   altText
@@ -6725,7 +7876,6 @@ export const QuoteFragmentDoc = gql`
 export const VideoFragmentDoc = gql`
     fragment Video on Video {
   title
-  captions: fieldForCaptionsDoNotUse
   transcript: transcriptRaw
   video {
     asset {
@@ -6823,6 +7973,14 @@ export const LinkFragmentDoc = gql`
   }
 }
     ${InternalLinkFieldsFragmentDoc}`;
+export const NcAlignmentCheckerLandingPageSubjectPickerFragmentDoc = gql`
+    fragment NcAlignmentCheckerLandingPageSubjectPicker on NcAlignmentCheckerLandingPageSubjectPicker {
+  title
+  tag
+  bannerLabel
+  buttonText
+}
+    `;
 export const TeamMemberSocialsFragmentDoc = gql`
     fragment TeamMemberSocials on TeamMemberSocials {
   twitterUsername
@@ -6920,225 +8078,6 @@ export const AbTestedPageBySlugDocument = gql`
   }
 }
     ${LandingPageFragmentDoc}`;
-export const AboutBoardPageDocument = gql`
-    query aboutBoardPage($isDraftFilter: Sanity_DocumentFilter) {
-  aboutCorePage: allAboutCorePage(
-    where: {_: $isDraftFilter, _id: {matches: "*aboutCorePage"}}
-    sort: {_updatedAt: DESC}
-    limit: 1
-  ) {
-    title
-    summaryPortableText: summaryRaw
-    summaryCardImage {
-      ...Image
-    }
-    contactSection {
-      infoPortableText: infoRaw
-    }
-  }
-  allAboutCorePageBoard(
-    where: {_: $isDraftFilter, _id: {matches: "*aboutCorePage.board"}}
-    sort: {_updatedAt: DESC}
-    limit: 1
-  ) {
-    id: _id
-    heading: title
-    introPortableText: introRaw
-    boardMembers {
-      ...TeamMember
-    }
-    documents {
-      ...Attachment
-    }
-    governancePortableText: governanceRaw
-    seo {
-      ...Seo
-    }
-    boardHeader
-  }
-}
-    ${ImageFragmentDoc}
-${TeamMemberFragmentDoc}
-${AttachmentFragmentDoc}
-${SeoFragmentDoc}`;
-export const AboutLeadershipPageDocument = gql`
-    query aboutLeadershipPage($isDraftFilter: Sanity_DocumentFilter) {
-  aboutCorePage: allAboutCorePage(
-    where: {_: $isDraftFilter, _id: {matches: "*aboutCorePage"}}
-    sort: {_updatedAt: DESC}
-    limit: 1
-  ) {
-    title
-    summaryPortableText: summaryRaw
-    summaryCardImage {
-      ...Image
-    }
-    contactSection {
-      infoPortableText: infoRaw
-    }
-  }
-  allAboutCorePageLeadership(
-    where: {_: $isDraftFilter, _id: {matches: "*aboutCorePage.leadership"}}
-    sort: {_updatedAt: DESC}
-    limit: 1
-  ) {
-    id: _id
-    heading: title
-    introPortableText: introRaw
-    leadershipTeam {
-      ...TeamMember
-    }
-    seo {
-      ...Seo
-    }
-  }
-}
-    ${ImageFragmentDoc}
-${TeamMemberFragmentDoc}
-${SeoFragmentDoc}`;
-export const AboutPartnersPageDocument = gql`
-    query aboutPartnersPage($isDraftFilter: Sanity_DocumentFilter) {
-  aboutCorePage: allAboutCorePage(
-    where: {_: $isDraftFilter, _id: {matches: "*aboutCorePage"}}
-    sort: {_updatedAt: DESC}
-    limit: 1
-  ) {
-    title
-    summaryPortableText: summaryRaw
-    summaryCardImage {
-      ...Image
-    }
-    contactSection {
-      infoPortableText: infoRaw
-    }
-  }
-  allAboutCorePagePartners(
-    where: {_: $isDraftFilter, _id: {matches: "*aboutCorePage.partners"}}
-    sort: {_updatedAt: DESC}
-    limit: 1
-  ) {
-    id: _id
-    heading: title
-    introPortableText: introRaw
-    techPartners {
-      name
-      asset {
-        ...ImageAsset
-      }
-    }
-    curriculumPartners {
-      name
-      asset {
-        ...ImageAsset
-      }
-    }
-    seo {
-      ...Seo
-    }
-  }
-}
-    ${ImageFragmentDoc}
-${ImageAssetFragmentDoc}
-${SeoFragmentDoc}`;
-export const AboutWhoWeArePageDocument = gql`
-    query aboutWhoWeArePage($isDraftFilter: Sanity_DocumentFilter) {
-  aboutCorePage: allAboutCorePage(
-    where: {_: $isDraftFilter, _id: {matches: "*aboutCorePage"}}
-    sort: {_updatedAt: DESC}
-    limit: 1
-  ) {
-    title
-    summaryPortableText: summaryRaw
-    summaryCardImage {
-      ...Image
-    }
-    contactSection {
-      infoPortableText: infoRaw
-    }
-  }
-  allAboutCorePageWhoWeAre(
-    where: {_: $isDraftFilter, _id: {matches: "*aboutCorePage.whoWeAre"}}
-    sort: {_updatedAt: DESC}
-    limit: 1
-  ) {
-    id: _id
-    heading: title
-    intro {
-      ...TextAndMedia
-    }
-    timeline {
-      from {
-        ...TextBlock
-      }
-      to {
-        ...TextBlock
-      }
-      beyond {
-        ...TextBlock
-      }
-      cta {
-        ...CTA
-      }
-    }
-    principles {
-      ...TextBlock
-    }
-    seo {
-      ...Seo
-    }
-  }
-}
-    ${ImageFragmentDoc}
-${TextAndMediaFragmentDoc}
-${TextBlockFragmentDoc}
-${CtaFragmentDoc}
-${SeoFragmentDoc}`;
-export const AboutWorkWithUsPageDocument = gql`
-    query aboutWorkWithUsPage($isDraftFilter: Sanity_DocumentFilter) {
-  aboutCorePage: allAboutCorePage(
-    where: {_: $isDraftFilter, _id: {matches: "*aboutCorePage"}}
-    sort: {_updatedAt: DESC}
-    limit: 1
-  ) {
-    title
-    summaryPortableText: summaryRaw
-    summaryCardImage {
-      ...Image
-    }
-    contactSection {
-      infoPortableText: infoRaw
-    }
-  }
-  allAboutCorePageWorkWithUs(
-    where: {_: $isDraftFilter, _id: {matches: "*aboutCorePage.workWithUs"}}
-    sort: {_updatedAt: DESC}
-    limit: 1
-  ) {
-    id: _id
-    heading: title
-    introPortableText: introRaw
-    cards {
-      joinTheTeam {
-        ...Card
-      }
-      advisory {
-        ...Card
-      }
-      curriculumPartner {
-        ...Card
-      }
-      teacherResearch {
-        ...Card
-      }
-    }
-    seo {
-      ...Seo
-    }
-  }
-}
-    ${ImageFragmentDoc}
-${CardFragmentDoc}
-${SeoFragmentDoc}`;
 export const AllBlogPostsDocument = gql`
     query allBlogPosts($isDraftFilter: Sanity_DocumentFilter, $limit: Int = 9999) {
   allNewsPost(
@@ -7318,6 +8257,86 @@ export const CampaignBySlugDocument = gql`
     ${ImageWithAltTextFragmentDoc}
 ${VideoFragmentDoc}
 ${SeoFragmentDoc}`;
+export const CaseStudyLibraryPageDocument = gql`
+    query caseStudyLibraryPage($slug: String, $isDraftFilter: Sanity_DocumentFilter, $limit: Int) {
+  allCaseStudy(
+    where: {_: $isDraftFilter, slug: {current: {neq: $slug}}}
+    sort: {publishedAt: DESC}
+    limit: $limit
+  ) {
+    title
+    slug {
+      current
+    }
+    tag
+    summaryRaw
+    video {
+      ...Video
+    }
+    textRaw
+    image {
+      ...ImageWithAltText
+    }
+    publishedAt
+    content {
+      heading
+      label
+      anchorSlug {
+        current
+      }
+      contentRaw
+    }
+    showGetInTouchPanel
+    getInTouchPanel {
+      personName
+      personImage {
+        ...ImageWithAltText
+      }
+      jobRole
+      institutionName
+    }
+  }
+}
+    ${VideoFragmentDoc}
+${ImageWithAltTextFragmentDoc}`;
+export const CaseStudyPageDocument = gql`
+    query caseStudyPage($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
+  allCaseStudy(where: {_: $isDraftFilter, slug: {current: {eq: $slug}}}) {
+    title
+    slug {
+      current
+    }
+    tag
+    summaryRaw
+    video {
+      ...Video
+    }
+    textRaw
+    image {
+      ...ImageWithAltText
+    }
+    publishedAt
+    content {
+      heading
+      label
+      anchorSlug {
+        current
+      }
+      contentRaw
+    }
+    showGetInTouchPanel
+    getInTouchPanel {
+      personName
+      personImage {
+        ...ImageWithAltText
+      }
+      jobRole
+      institutionName
+    }
+  }
+}
+    ${VideoFragmentDoc}
+${ImageWithAltTextFragmentDoc}`;
 export const ContactCorePageDocument = gql`
     query contactCorePage($isDraftFilter: Sanity_DocumentFilter) {
   allContactCorePage(
@@ -7415,6 +8434,19 @@ export const HomepageDocument = gql`
     limit: 1
   ) {
     id: _id
+    displayTopBanner
+    topBanner {
+      displayNewTag
+      messagePortableText: messageRaw
+      displayCta
+      cta {
+        label
+        linkType
+        external
+        internal
+      }
+      backgroundColor
+    }
     heading
     summaryPortableText: summaryRaw
     notification {
@@ -7425,9 +8457,6 @@ export const HomepageDocument = gql`
       link {
         ...Link
       }
-    }
-    sidebarCard1 {
-      ...Card
     }
     sidebarCard2 {
       ...Card
@@ -7501,6 +8530,89 @@ export const ImplementationGuidesDocument = gql`
   }
 }
     ${FileFragmentDoc}`;
+export const JoinResearchPanelPageDocument = gql`
+    query joinResearchPanelPage($isDraftFilter: Sanity_DocumentFilter, $blogCategorySlug: String) {
+  content: allNewAboutCorePageJoinResearchPanel(
+    where: {_: $isDraftFilter, _id: {matches: "*newAboutCorePage.joinResearchPanel"}}
+  ) {
+    id: _id
+    blocks {
+      __typename
+      ... on JoinResearchPanelPageHeader {
+        title
+        bodyRaw
+        image {
+          ...ImageWithAltText
+        }
+        button {
+          ...CTA
+        }
+      }
+      ... on JoinResearchPanelPageCallout {
+        title
+        items {
+          icon {
+            ...ImageWithAltText
+          }
+          bodyRaw
+        }
+      }
+      ... on JoinResearchPanelPageInfo {
+        title
+        image {
+          ...ImageWithAltText
+        }
+        bodyRaw
+      }
+      ... on JoinResearchPanelPageJourney {
+        title
+        steps {
+          title
+          descriptionRaw
+        }
+        button {
+          ...CTA
+        }
+      }
+      ... on JoinResearchPanelPagePeople {
+        title
+        members {
+          name
+          image {
+            ...ImageWithAltText
+          }
+          bodyRaw
+        }
+      }
+      ... on JoinResearchPanelPageFaqs {
+        items {
+          question
+          answerRaw
+        }
+      }
+      ... on JoinResearchPanelPageBlogsPreview {
+        title
+        label
+      }
+      ... on JoinResearchPanelPageContactUs {
+        title
+        button {
+          ...CTA
+        }
+      }
+    }
+  }
+  blogs: allNewsPost(
+    where: {category: {slug: {current: {eq: $blogCategorySlug}}}, _: $isDraftFilter}
+    sort: {date: DESC}
+    limit: 3
+  ) {
+    ...BlogPreviewFields
+  }
+}
+    ${ImageWithAltTextFragmentDoc}
+${CtaFragmentDoc}
+${BlogPreviewFieldsFragmentDoc}`;
 export const LandingPageBySlugDocument = gql`
     query landingPageBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
   allLandingPage(
@@ -7554,6 +8666,66 @@ export const MeetTheTeamPageDocument = gql`
     ${ImageWithAltTextFragmentDoc}
 ${TeamMemberFragmentDoc}
 ${AttachmentFragmentDoc}
+${SeoFragmentDoc}`;
+export const NcAlignmentCheckerLandingPageDocument = gql`
+    query ncAlignmentCheckerLandingPage($isDraftFilter: Sanity_DocumentFilter) {
+  allNcAlignmentCheckerLandingPage(
+    where: {_: $isDraftFilter, _id: {matches: "*NcAlignmentChecker.landingPage"}}
+  ) {
+    id: _id
+    blocks {
+      __typename
+      ... on NcAlignmentCheckerLandingPageHeader {
+        title
+        bodyRaw
+        icon {
+          ...ImageWithAltText
+        }
+        subjectPicker {
+          ...NcAlignmentCheckerLandingPageSubjectPicker
+        }
+      }
+      ... on NcAlignmentCheckerLandingPageTextAndMedia {
+        imagePosition
+        title
+        bodyRaw
+        image {
+          ...ImageWithAltText
+        }
+      }
+      ... on NcAlignmentCheckerLandingPageSubjectExperts {
+        title
+        bodyRaw
+        people {
+          ...TeamMember
+        }
+      }
+      ... on NcAlignmentCheckerLandingPageQuotes {
+        quotes {
+          ...Quote
+        }
+      }
+      ... on NcAlignmentCheckerLandingPageFaqs {
+        items {
+          ...Faq
+        }
+      }
+      ... on NcAlignmentCheckerLandingPageSubjectPickerCallout {
+        subjectPicker {
+          ...NcAlignmentCheckerLandingPageSubjectPicker
+        }
+      }
+    }
+    seo {
+      ...Seo
+    }
+  }
+}
+    ${ImageWithAltTextFragmentDoc}
+${NcAlignmentCheckerLandingPageSubjectPickerFragmentDoc}
+${TeamMemberFragmentDoc}
+${QuoteFragmentDoc}
+${FaqFragmentDoc}
 ${SeoFragmentDoc}`;
 export const NewsListingPageDocument = gql`
     query newsListingPage($isDraftFilter: Sanity_DocumentFilter) {
@@ -7626,35 +8798,9 @@ export const OaksCurriculaPageDocument = gql`
 }
     ${ImageWithAltTextFragmentDoc}
 ${SeoFragmentDoc}`;
-export const OaksImpactCaseStudyPageDocument = gql`
-    query oaksImpactCaseStudyPage($isDraftFilter: Sanity_DocumentFilter) {
-  allNewAboutCorePageOaksImpact(
-    where: {_: $isDraftFilter, _id: {matches: "*newAboutCorePage.oaksImpact"}}
-    sort: {_updatedAt: DESC}
-    limit: 1
-  ) {
-    caseStudiesSection {
-      caseStudies {
-        slug {
-          current
-        }
-        image {
-          ...ImageWithAltText
-        }
-        textRaw
-        video {
-          ...Video
-        }
-        publishedAt
-      }
-    }
-  }
-}
-    ${ImageWithAltTextFragmentDoc}
-${VideoFragmentDoc}`;
 export const OaksImpactPageDocument = gql`
     query oaksImpactPage($isDraftFilter: Sanity_DocumentFilter) {
-  allNewAboutCorePageOaksImpact(
+  content: allNewAboutCorePageOaksImpact(
     where: {_: $isDraftFilter, _id: {matches: "*newAboutCorePage.oaksImpact"}}
     sort: {_updatedAt: DESC}
     limit: 1
@@ -7679,20 +8825,6 @@ export const OaksImpactPageDocument = gql`
         textRaw
       }
     }
-    caseStudiesSection {
-      caseStudies {
-        video {
-          ...Video
-        }
-        slug {
-          current
-        }
-        image {
-          ...ImageWithAltText
-        }
-        textRaw
-      }
-    }
     schoolQuotes {
       heading
       cards {
@@ -7711,6 +8843,23 @@ export const OaksImpactPageDocument = gql`
         }
       }
     }
+  }
+  caseStudies: allCaseStudy(
+    where: {_: $isDraftFilter}
+    sort: {publishedAt: DESC}
+    limit: 3
+  ) {
+    video {
+      ...Video
+    }
+    slug {
+      current
+    }
+    image {
+      ...ImageWithAltText
+    }
+    title
+    tag
   }
 }
     ${VideoFragmentDoc}
@@ -8009,21 +9158,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     abTestedPageBySlug(variables?: AbTestedPageBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<AbTestedPageBySlugQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<AbTestedPageBySlugQuery>({ document: AbTestedPageBySlugDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'abTestedPageBySlug', 'query', variables);
     },
-    aboutBoardPage(variables?: AboutBoardPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<AboutBoardPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<AboutBoardPageQuery>({ document: AboutBoardPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'aboutBoardPage', 'query', variables);
-    },
-    aboutLeadershipPage(variables?: AboutLeadershipPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<AboutLeadershipPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<AboutLeadershipPageQuery>({ document: AboutLeadershipPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'aboutLeadershipPage', 'query', variables);
-    },
-    aboutPartnersPage(variables?: AboutPartnersPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<AboutPartnersPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<AboutPartnersPageQuery>({ document: AboutPartnersPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'aboutPartnersPage', 'query', variables);
-    },
-    aboutWhoWeArePage(variables?: AboutWhoWeArePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<AboutWhoWeArePageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<AboutWhoWeArePageQuery>({ document: AboutWhoWeArePageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'aboutWhoWeArePage', 'query', variables);
-    },
-    aboutWorkWithUsPage(variables?: AboutWorkWithUsPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<AboutWorkWithUsPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<AboutWorkWithUsPageQuery>({ document: AboutWorkWithUsPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'aboutWorkWithUsPage', 'query', variables);
-    },
     allBlogPosts(variables?: AllBlogPostsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<AllBlogPostsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<AllBlogPostsQuery>({ document: AllBlogPostsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'allBlogPosts', 'query', variables);
     },
@@ -8045,6 +9179,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     campaignBySlug(variables?: CampaignBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CampaignBySlugQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<CampaignBySlugQuery>({ document: CampaignBySlugDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'campaignBySlug', 'query', variables);
     },
+    caseStudyLibraryPage(variables?: CaseStudyLibraryPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CaseStudyLibraryPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CaseStudyLibraryPageQuery>({ document: CaseStudyLibraryPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'caseStudyLibraryPage', 'query', variables);
+    },
+    caseStudyPage(variables?: CaseStudyPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CaseStudyPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CaseStudyPageQuery>({ document: CaseStudyPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'caseStudyPage', 'query', variables);
+    },
     contactCorePage(variables?: ContactCorePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ContactCorePageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ContactCorePageQuery>({ document: ContactCorePageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'contactCorePage', 'query', variables);
     },
@@ -8060,20 +9200,23 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     implementationGuides(variables?: ImplementationGuidesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ImplementationGuidesQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ImplementationGuidesQuery>({ document: ImplementationGuidesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'implementationGuides', 'query', variables);
     },
+    joinResearchPanelPage(variables?: JoinResearchPanelPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<JoinResearchPanelPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<JoinResearchPanelPageQuery>({ document: JoinResearchPanelPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'joinResearchPanelPage', 'query', variables);
+    },
     landingPageBySlug(variables?: LandingPageBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LandingPageBySlugQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LandingPageBySlugQuery>({ document: LandingPageBySlugDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'landingPageBySlug', 'query', variables);
     },
     meetTheTeamPage(variables?: MeetTheTeamPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<MeetTheTeamPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<MeetTheTeamPageQuery>({ document: MeetTheTeamPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'meetTheTeamPage', 'query', variables);
     },
+    ncAlignmentCheckerLandingPage(variables?: NcAlignmentCheckerLandingPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<NcAlignmentCheckerLandingPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<NcAlignmentCheckerLandingPageQuery>({ document: NcAlignmentCheckerLandingPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'ncAlignmentCheckerLandingPage', 'query', variables);
+    },
     newsListingPage(variables?: NewsListingPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<NewsListingPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<NewsListingPageQuery>({ document: NewsListingPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'newsListingPage', 'query', variables);
     },
     oaksCurriculaPage(variables?: OaksCurriculaPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<OaksCurriculaPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<OaksCurriculaPageQuery>({ document: OaksCurriculaPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'oaksCurriculaPage', 'query', variables);
-    },
-    oaksImpactCaseStudyPage(variables?: OaksImpactCaseStudyPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<OaksImpactCaseStudyPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<OaksImpactCaseStudyPageQuery>({ document: OaksImpactCaseStudyPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'oaksImpactCaseStudyPage', 'query', variables);
     },
     oaksImpactPage(variables?: OaksImpactPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<OaksImpactPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<OaksImpactPageQuery>({ document: OaksImpactPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'oaksImpactPage', 'query', variables);

@@ -2,7 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 import { OakSpan, OakSpanProps } from "@oaknational/oak-components";
 
-import typography from "@/styles/utils/typography";
+import typography, { TypographyProps } from "@/styles/utils/typography";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 
 export type ButtonLabelProps = {
@@ -24,7 +24,7 @@ const ButtonLabelWithScreenReaderTitle: FC<ButtonLabelProps> = (props) => {
 
 export const HopePageTabButtonLabelWithScreenReaderTitle = styled(
   ButtonLabelWithScreenReaderTitle,
-)`
+)<TypographyProps>`
   display: inline-block;
   vertical-align: text-top;
   max-width: 100%;

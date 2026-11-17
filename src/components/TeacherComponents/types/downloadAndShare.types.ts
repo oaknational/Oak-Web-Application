@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { TeachWithOakShortReadTypes } from "../hooks/downloadAndShareHooks/teachWithOakShortReads.schema";
+
 import {
   preselectedDownloadType,
   preselectedResourceType,
@@ -23,7 +25,8 @@ export type Resources =
 export type ResourceType =
   | LessonShareResourceData["type"]
   | DownloadResourceType
-  | DownloadType;
+  | DownloadType
+  | TeachWithOakShortReadTypes;
 
 export type DownloadResourceType =
   LessonDownloadsPageData["downloads"][number]["type"];
@@ -87,3 +90,13 @@ export type ResourceFormProps = ResourceFormValues & {
 };
 
 export type ErrorKeysType = keyof Omit<ResourceFormProps, "onSubmit">;
+
+// Unit download existence
+
+/**
+ * `exists: undefined` means the availability check itself failed, which is distinct from
+ * the file being known to be absent.
+ */
+export type UnitDownloadExistence =
+  | { checkFailed: false; exists: boolean; fileSize?: string }
+  | { checkFailed: true; exists: undefined; fileSize?: undefined };

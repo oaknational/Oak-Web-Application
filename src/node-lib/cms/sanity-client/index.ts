@@ -2,11 +2,6 @@ import { z } from "zod";
 
 import sanityGraphqlApi from "../../sanity-graphql";
 import {
-  aboutBoardPageSchema,
-  aboutLeadershipPageSchema,
-  aboutPartnersPageSchema,
-  aboutWhoWeArePageSchema,
-  aboutWorkWithUsPageSchema,
   homePageSchema,
   contactPageSchema,
   blogPostPreviewSchema,
@@ -26,14 +21,23 @@ import {
   oaksCurriculaPageSchema,
   teamMemberSchema,
   oaksImpactPageSchema,
-  oaksImpactCaseStudyPageSchema,
+  caseStudyLibraryPageSchema,
+  caseStudyPageSchema,
+  nationalCurriculumInsightsSubjectLookupParamsSchema,
   implementationGuidesSchema,
+  joinResearchPanelPageSchema,
+  ncAlignmentCheckerLandingPageSchema,
 } from "../../../common-lib/cms-types";
 import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
 import getProxiedSanityAssetUrl from "../../../common-lib/urls/getProxiedSanityAssetUrl";
 import { getABTestSchema } from "../../../common-lib/cms-types/abTest";
 
-import { getSingleton, getBySlug, getList } from "./cmsMethods";
+import { getSingleton, getBySlug, getList, type Params } from "./cmsMethods";
+import {
+  getNationalCurriculumInsightsGuidancePage,
+  getNationalCurriculumInsightsHub,
+  getNationalCurriculumInsightsSubjectBySlug,
+} from "./nationalCurriculumInsightsGroq";
 
 import { planALessonPageSchema } from "@/common-lib/cms-types/planALessonPage";
 import { campaignPageSchema } from "@/common-lib/cms-types/campaignPage";
@@ -85,98 +89,12 @@ const getSanityClient = () => ({
     planALessonPageSchema,
     (result) => result?.allPlanALessonCorePage?.[0],
   ),
-  aboutWhoWeArePage: getSingleton(
-    sanityGraphqlApi.aboutWhoWeArePage,
-    aboutWhoWeArePageSchema,
-    (result) => {
-      const whoWeArePageData = result?.allAboutCorePageWhoWeAre?.[0];
-      const parentPageData = result?.aboutCorePage?.[0];
-
-      return whoWeArePageData && parentPageData
-        ? {
-            ...parentPageData,
-            ...whoWeArePageData,
-          }
-        : undefined;
-    },
-  ),
   whoWeArePage: getSingleton(
     sanityGraphqlApi.whoWeArePage,
     whoWeArePageSchema,
     (result) => {
       const whoWeArePageData = result?.allNewAboutCorePageWhoWeAre?.[0];
       return whoWeArePageData;
-    },
-  ),
-  aboutLeadershipPage: getSingleton(
-    sanityGraphqlApi.aboutLeadershipPage,
-    aboutLeadershipPageSchema,
-    (result) => {
-      const leadershipPageData = result?.allAboutCorePageLeadership?.[0];
-      const parentPageData = result?.aboutCorePage?.[0];
-
-      return leadershipPageData && parentPageData
-        ? {
-            ...parentPageData,
-            ...leadershipPageData,
-          }
-        : undefined;
-    },
-  ),
-  aboutBoardPage: getSingleton(
-    sanityGraphqlApi.aboutBoardPage,
-    aboutBoardPageSchema,
-    (result) => {
-      const boardPageData = result?.allAboutCorePageBoard?.[0];
-      if (boardPageData?.documents) {
-        boardPageData.documents.forEach((doc) => {
-          const asset = doc?.file?.asset;
-          const url = asset?.url;
-          const proxiedUrl = getProxiedSanityAssetUrl(url);
-
-          if (doc?.file?.asset?.url) {
-            doc.file.asset.url = proxiedUrl;
-          }
-        });
-      }
-      const parentPageData = result?.aboutCorePage?.[0];
-
-      return boardPageData && parentPageData
-        ? {
-            ...parentPageData,
-            ...boardPageData,
-          }
-        : undefined;
-    },
-  ),
-  aboutPartnersPage: getSingleton(
-    sanityGraphqlApi.aboutPartnersPage,
-    aboutPartnersPageSchema,
-    (result) => {
-      const partnersPageData = result?.allAboutCorePagePartners?.[0];
-      const parentPageData = result?.aboutCorePage?.[0];
-
-      return partnersPageData && parentPageData
-        ? {
-            ...parentPageData,
-            ...partnersPageData,
-          }
-        : undefined;
-    },
-  ),
-  aboutWorkWithUsPage: getSingleton(
-    sanityGraphqlApi.aboutWorkWithUsPage,
-    aboutWorkWithUsPageSchema,
-    (result) => {
-      const workWithUsPage = result?.allAboutCorePageWorkWithUs?.[0];
-      const parentPageData = result?.aboutCorePage?.[0];
-
-      return workWithUsPage
-        ? {
-            ...parentPageData,
-            ...workWithUsPage,
-          }
-        : undefined;
     },
   ),
   getInvolvedPage: getSingleton(
@@ -186,6 +104,19 @@ const getSanityClient = () => ({
       const whoWeArePageData = result?.allNewAboutCorePageGetInvolved?.[0];
       return whoWeArePageData;
     },
+  ),
+  joinResearchPanelPage: getSingleton(
+    sanityGraphqlApi.joinResearchPanelPage,
+    joinResearchPanelPageSchema,
+    (result) => ({
+      content: result?.content?.[0],
+      blogs: result?.blogs,
+    }),
+  ),
+  ncAlignmentCheckerLandingPage: getSingleton(
+    sanityGraphqlApi.ncAlignmentCheckerLandingPage,
+    ncAlignmentCheckerLandingPageSchema,
+    (result) => result?.allNcAlignmentCheckerLandingPage?.[0],
   ),
   contactPage: getSingleton(
     sanityGraphqlApi.contactCorePage,
@@ -222,6 +153,28 @@ const getSanityClient = () => ({
     curriculumOverviewCMSSchema,
     (result) => result?.allCurriculumInfoPageOverview?.[0],
   ),
+  nationalCurriculumInsightsHub: (params: Params = {}) =>
+    getNationalCurriculumInsightsHub(params),
+  nationalCurriculumInsightsGuidancePage: (params: Params = {}) =>
+    getNationalCurriculumInsightsGuidancePage(params),
+  nationalCurriculumInsightsSubjectBySlug: (
+    subjectSlug: string,
+    params: Params = {},
+  ) => {
+    const lookupParams =
+      nationalCurriculumInsightsSubjectLookupParamsSchema.safeParse({
+        subjectSlug,
+      });
+
+    if (!lookupParams.success) {
+      return Promise.resolve(null);
+    }
+
+    return getNationalCurriculumInsightsSubjectBySlug(
+      lookupParams.data.subjectSlug,
+      params,
+    );
+  },
   campaigns: getList(
     sanityGraphqlApi.allCampaignPages,
     z.array(campaignPageSchema),
@@ -240,18 +193,23 @@ const getSanityClient = () => ({
   oaksImpactPage: getSingleton(
     sanityGraphqlApi.oaksImpactPage,
     oaksImpactPageSchema,
-    (result) => result?.allNewAboutCorePageOaksImpact?.[0],
+    (result) => result,
+  ),
+  caseStudyLibraryPage: getList(
+    sanityGraphqlApi.caseStudyLibraryPage,
+    caseStudyLibraryPageSchema,
+    (result) => result.allCaseStudy,
+  ),
+  caseStudyPage: getSingleton(
+    sanityGraphqlApi.caseStudyPage,
+    caseStudyPageSchema,
+    (result) => result.allCaseStudy?.[0],
   ),
   implementationGuides: getSingleton(
     sanityGraphqlApi.implementationGuides,
     implementationGuidesSchema,
     (result) =>
       result?.allCurriculumInfoPageOverview?.[0]?.implementationGuides ?? {},
-  ),
-  oaksImpactCaseStudyPage: getSingleton(
-    sanityGraphqlApi.oaksImpactCaseStudyPage,
-    oaksImpactCaseStudyPageSchema,
-    (result) => result?.allNewAboutCorePageOaksImpact?.[0],
   ),
   meetTheTeamPage: getSingleton(
     sanityGraphqlApi.meetTheTeamPage,

@@ -24,6 +24,7 @@ import { OakConfig } from "../fetch_config/config_types.js";
 dotenv.config();
 
 async function main() {
+  console.log(`Using Node version: ${process.version}`);
   console.log("Writing config and secrets to temporary env file");
 
   const NODE_ENV = process.env.NODE_ENV || "development";
@@ -199,21 +200,6 @@ async function main() {
     // Disable ISR per environment, "on" sets the config to `true` all other values including undefined result in `false`.
     DISABLE_ISR: process.env.DISABLE_ISR,
     NEXT_PUBLIC_SENTRY_ENABLED: process.env.NEXT_PUBLIC_SENTRY_ENABLED,
-
-    // AI FEATURES
-    AI_SEARCH_ENABLED:
-      process.env.AI_SEARCH_ENABLED || oakConfig.oak.aiSearchEnabled,
-    AI_SEARCH_RATE_LIMIT_PER_24H:
-      process.env.AI_SEARCH_RATE_LIMIT_PER_24H ||
-      secretsFromNetwork.AI_SEARCH_RATE_LIMIT_PER_24H,
-    AI_SEARCH_KV_URL:
-      process.env.AI_SEARCH_KV_URL || secretsFromNetwork.AI_SEARCH_KV_URL,
-    AI_SEARCH_KV_TOKEN:
-      process.env.AI_SEARCH_KV_TOKEN || secretsFromNetwork.AI_SEARCH_KV_TOKEN,
-    AI_GATEWAY_URL:
-      process.env.AI_GATEWAY_URL || secretsFromNetwork.AI_GATEWAY_URL,
-    AI_GATEWAY_API_KEY:
-      process.env.AI_GATEWAY_API_KEY || secretsFromNetwork.AI_GATEWAY_API_KEY,
 
     // Seo
 

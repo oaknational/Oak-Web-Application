@@ -26,12 +26,12 @@ import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPha
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumPartners } from "@/components/GenericPagesComponents/CurriculumPartners";
 import { GuidingPrinciples } from "@/components/GenericPagesComponents/GuidingPrinciples";
-import CurricInfoCard from "@/components/CurriculumComponents/CurricInfoCard";
+import AboutUsInfoCard from "@/components/GenericPagesComponents/AboutUsInfoCard";
 import CMSClient from "@/node-lib/cms";
 import getPageProps from "@/node-lib/getPageProps";
 import { OaksCurriculaPage } from "@/common-lib/cms-types/aboutPages";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
-import { SupportYou } from "@/components/GenericPagesComponents/SupportYou";
+import { AboutUsCalloutWithCta } from "@/components/GenericPagesComponents/AboutUsCalloutWithCta";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type OaksCurriculaPageProps = {
@@ -147,7 +147,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
                 >
                   {curriculaCardsInfo.map((cardInfo) => (
                     <UnstyledLi key={cardInfo.iconName}>
-                      <CurricInfoCard
+                      <AboutUsInfoCard
                         iconName={cardInfo.iconName}
                         background="bg-primary"
                         iconHeight={"spacing-92"}
@@ -155,13 +155,14 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
                         borderColor="border-decorative4"
                       >
                         {cardInfo.text}
-                      </CurricInfoCard>
+                      </AboutUsInfoCard>
                     </UnstyledLi>
                   ))}
                 </OakFlex>
                 <GuidingPrinciples
                   $background="bg-primary"
                   accentColor="border-decorative4"
+                  title="Our guiding principles"
                   text={pageData.guidingPrinciples.textRaw}
                   imageUrl={guidingPrinciplesImageUrl}
                   imageAlt={guidingPrinciplesImageAlt}
@@ -229,12 +230,14 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
               </OakFlex>
             </NewGutterMaxWidth>
           )}
-          <SupportYou
-            link={{
-              text: "Get in touch with an expert",
-              href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
-            }}
-          />
+          <OakBox $pv={["spacing-56", "spacing-80", "spacing-80"]}>
+            <AboutUsCalloutWithCta
+              link={{
+                text: "Get in touch with an expert",
+                href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
+              }}
+            />
+          </OakBox>
         </AboutUsLayout>
       </Layout>
     </TeacherBrowseAnalyticsStoreProvider>

@@ -89,10 +89,7 @@ export function TeachersTopNavHamburger(props: Readonly<TeachersSubNavData>) {
           $height={"100%"}
           id="teachers-top-nav-hamburger"
         >
-          <TeacherBrowseAnalyticsStoreProvider
-            programmeState={null}
-            accessLevel={"homepage"}
-          >
+          <TeacherBrowseAnalyticsStoreProvider programmeState={null}>
             <HamburgerMenuContent {...props} hamburgerMenu={hamburgerMenu} />
           </TeacherBrowseAnalyticsStoreProvider>
         </OakBox>

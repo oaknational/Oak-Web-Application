@@ -37,7 +37,7 @@ export const UnitSequenceView = ({
   ks4Options,
   ks4OptionFilterDimensions,
 }: UnitSequenceViewProps) => {
-  const { yearData, threadOptions } = curriculumUnitsFormattedData;
+  const { yearData } = curriculumUnitsFormattedData;
   const { ks4OptionSlug } = curriculumSelectionSlugs;
 
   const { filters } = useBrowseFilters();
@@ -80,7 +80,7 @@ export const UnitSequenceView = ({
           </OakHeading>
         </ScreenReaderOnly>
         <ProgrammePageFiltersModalProvider>
-          <KS4OptionFocusProvider>
+          <KS4OptionFocusProvider slugs={curriculumSelectionSlugs}>
             <OakBox $display={["block", "block", "none"]}>
               {shouldDisplayFilters && (
                 <ProgrammePageFiltersMobile
@@ -111,7 +111,6 @@ export const UnitSequenceView = ({
                   ks4OptionSlug={ks4OptionSlug}
                   ks4Options={ks4Options}
                   yearData={yearData}
-                  threadOptions={threadOptions}
                 />
               </OakGridArea>
             </OakGrid>

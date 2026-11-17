@@ -403,21 +403,14 @@ describe("createTeacherProgrammeSlug", () => {
   });
   test("unit data with exam board and tier returns the correct programme slug", () => {
     const unitData = createUnit({
-      examboard: "aqa",
-      tier: "foundation",
+      examboard_slug: "aqa",
+      tier_slug: "foundation",
       year: "10",
     });
     expect(createTeacherProgrammeSlug(unitData, "aqa", "foundation")).toEqual(
       "maths-secondary-ks4-foundation-aqa",
     );
   });
-  test("unit data for ks3 returns the correct programme slug", () => {
-    const unitData = createUnit({ keystage_slug: "ks3", year: "9" });
-    expect(createTeacherProgrammeSlug(unitData, "aqa")).toEqual(
-      "maths-secondary-ks3",
-    );
-  });
-
   test("unit data for ks3 returns the correct programme slug", () => {
     const unitData = createUnit({ keystage_slug: "ks3", year: "9" });
     expect(createTeacherProgrammeSlug(unitData, "aqa")).toEqual(

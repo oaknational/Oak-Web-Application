@@ -4,8 +4,6 @@ import "jest-styled-components";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 
-import { testAboutPageBaseData } from "./about-us.fixtures";
-
 import GetInvolved, {
   GetInvolvedPageProps,
   getStaticProps,
@@ -16,6 +14,7 @@ import {
 } from "@/__tests__/__helpers__/cms";
 import CMSClient from "@/node-lib/cms";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+
 jest.mock("../../../node-lib/cms");
 jest.mock("@mux/mux-player-react/lazy", () => {
   return forwardRef((props, ref) => {
@@ -25,7 +24,6 @@ jest.mock("@mux/mux-player-react/lazy", () => {
 });
 
 const testGetInvolvedPageData: GetInvolvedPageProps["pageData"] = {
-  ...testAboutPageBaseData,
   header: {
     introText:
       "We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.",
@@ -56,8 +54,16 @@ describe("pages/about/get-involved.tsx", () => {
   });
 
   it("renders", () => {
-    const { container } = renderWithProviders()(
+    const { container, getAllByRole } = renderWithProviders()(
       <GetInvolved pageData={testGetInvolvedPageData} topNav={topNavFixture} />,
+    );
+
+    const joinThePanelButton = getAllByRole("link", {
+      name: "Join the research panel",
+    })[0];
+    expect(joinThePanelButton).toHaveAttribute(
+      "href",
+      "/about-us/get-involved/join-research-panel",
     );
 
     expect(container).toMatchSnapshot();

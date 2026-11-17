@@ -122,6 +122,11 @@ export function HamburgerMenuContent(
               <OakLI key={link.slug} $listStyle={"none"}>
                 <OakLeftAlignedButton
                   onClick={() => {
+                    if (link.slug === "teach-with-oak") {
+                      track.teachWithOakAccessed({
+                        componentType: "topnav-browse-button",
+                      });
+                    }
                     handleCloseHamburger();
                   }}
                   element={Link}

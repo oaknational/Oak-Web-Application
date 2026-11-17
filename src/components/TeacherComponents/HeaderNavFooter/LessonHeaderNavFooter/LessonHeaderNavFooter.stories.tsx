@@ -4,9 +4,12 @@ import { OakPrimaryButton } from "@oaknational/oak-components";
 
 import { LessonHeaderNavFooter } from "./LessonHeaderNavFooter";
 
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
+
 const meta: Meta<typeof LessonHeaderNavFooter> = {
   component: LessonHeaderNavFooter,
   tags: ["autodocs"],
+  decorators: [TeacherBrowseAnalyticsDecorator],
 };
 
 export default meta;
@@ -16,8 +19,8 @@ type Story = StoryObj<typeof LessonHeaderNavFooter>;
 export const Default: Story = {
   args: {
     backgroundColorLevel: 1,
-    prevHref: "www.google.com",
-    nextHref: "www.google.com",
+    prev: { href: "www.google.com" },
+    next: { href: "www.google.com" },
     viewHref: "www.google.com",
     downloadButton: <OakPrimaryButton>Action</OakPrimaryButton>,
   },
