@@ -21,5 +21,7 @@ if (process.env.SENTRY_DSN) {
     sendDefaultPii: false,
   });
 
-  console.log("Oak Web Application Sentry logging test", {environment: process.env.SENTRY_ENVIRONMENT});
+  console.log("Oak Web Application Sentry logging test", {
+    environment: process.env.SENTRY_ENVIRONMENT,
+  });
 }
