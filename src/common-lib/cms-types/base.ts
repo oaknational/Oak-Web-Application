@@ -204,3 +204,10 @@ export const seoSchema = z.object({
 });
 
 export type Seo = z.infer<typeof seoSchema>;
+
+export const faqSchema = z.object({
+  question: z.string(),
+  answerRaw: portableTextSchema,
+});
+
+export type Faq = z.infer<typeof faqSchema>;

@@ -1,3 +1,33 @@
+# [1.1279.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1278.0...v1.1279.0) (2026-11-17)
+
+
+### Bug Fixes
+
+* 'pnpx' to 'pnpm exec' so it uses the locally installed version rather than fetching latest ([7d04995](https://github.com/oaknational/Oak-Web-Application/commit/7d0499535bfc7a251ad8c99a0aa6cc558e567563))
+* clerk mock ([46c3fab](https://github.com/oaknational/Oak-Web-Application/commit/46c3fab0f0eb5eb4895003ad0cb8bc50877a761c))
+* force refresh after onboarding ([9cf6ede](https://github.com/oaknational/Oak-Web-Application/commit/9cf6edeb270f6e00ccce05c7be78b7b6c9f71276))
+* imports ([b0e7cf8](https://github.com/oaknational/Oak-Web-Application/commit/b0e7cf8ba566cb9daa0a96a2f7e368c57e57e1d6))
+* use isLoaded param in getComplexCopyrightState ([e40675f](https://github.com/oaknational/Oak-Web-Application/commit/e40675fc5e532cc7a92d9851a6a7838903fab0fd))
+
+
+### Features
+
+* add copyright function ([da06acc](https://github.com/oaknational/Oak-Web-Application/commit/da06acceca490aa0a67d4d1064c06e68a0a05659))
+* add function to filter restricted lesson data ([554d022](https://github.com/oaknational/Oak-Web-Application/commit/554d0224fbe0509ba2b0911d903aa9ee7cbf9df0))
+* add lesson page to middleware ([f053c86](https://github.com/oaknational/Oak-Web-Application/commit/f053c865f28e7c771be8ff154435234d55b130e6))
+* add nc checker landing page query and schemas ([617c42f](https://github.com/oaknational/Oak-Web-Application/commit/617c42f2d02a0b83873465e47926256b19bffa93))
+* cache handleTranscript function ([9b11b1f](https://github.com/oaknational/Oak-Web-Application/commit/9b11b1f682dc279918739d2b5e643c284d42c21c))
+* check auth state server side on lesson page ([eab2642](https://github.com/oaknational/Oak-Web-Application/commit/eab2642cd5b294e7e27f3fcda162674d6e9e0e31))
+* check complex copyright banner server side and tidy up deprecated links and code smells ([9454b9c](https://github.com/oaknational/Oak-Web-Application/commit/9454b9c5ef8ad9c61530bb70532a8ecfc7e6c63a))
+* check complex copyright banner server side and tidy up deprecated links and code smells ([23bb099](https://github.com/oaknational/Oak-Web-Application/commit/23bb09929c2376400b64033aecc2fe106ed95e85))
+* check copyright state in lesson view ([cac756d](https://github.com/oaknational/Oak-Web-Application/commit/cac756d7036661ea3cf6c2f33bf4487589bb284b))
+* create shared helper to get auth state consistently ([837b393](https://github.com/oaknational/Oak-Web-Application/commit/837b393d83f3342052a86c40586fe7388ed258f4))
+* filter lesson media server-side when restricted ([c27ab01](https://github.com/oaknational/Oak-Web-Application/commit/c27ab011408bb5c261051ce5c7293097c47acfb3))
+* reenable people in subject experts schema ([f4e0b3b](https://github.com/oaknational/Oak-Web-Application/commit/f4e0b3b64afc19b4e4281eb63973aab139311cc2))
+* remove quizzes and additional materials from lesson ([e40bc9c](https://github.com/oaknational/Oak-Web-Application/commit/e40bc9cfcf25c3aeecbd0b1a9ce8a6c6c4762f1e))
+* render page data on nc checker landing page ([d274742](https://github.com/oaknational/Oak-Web-Application/commit/d27474277cf7e8974353bd274b625ff973faf657))
+* use auth instead of currentUser to save an extra trip ([b01246f](https://github.com/oaknational/Oak-Web-Application/commit/b01246f1ccd736109815a3f11ed8d63100fd0863))
+
 # [1.1278.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1277.3...v1.1278.0) (2026-11-12)
 
 

@@ -16,6 +16,7 @@ import {
   mockLoggedOut,
   mockGeorestrictedUser,
 } from "@/__tests__/__helpers__/mockUser";
+import { signedOutLoginRequired } from "@/__tests__/__helpers__/mockCopyrightRequirements";
 
 const render = renderWithProviders();
 
@@ -291,6 +292,18 @@ describe("LessonMedia view", () => {
     const mediaClipWrapper = queryByTestId("media-clip-wrapper");
     expect(mediaClipWrapper).not.toBeInTheDocument();
     expect(restrictedContentPrompt).toBeInTheDocument();
+  });
+
+  it("uses the server-supplied copyright state over the client user state", () => {
+    setUseUserReturn(mockLoggedOut);
+    const { getByText } = render(
+      <LessonMedia
+        lesson={{ ...lesson, geoRestricted: false, loginRequired: false }}
+        isCanonical={false}
+        copyrightState={signedOutLoginRequired}
+      />,
+    );
+    expect(getByText("Sign in to continue")).toBeInTheDocument();
   });
 
   it("does not render 'RestrictedContentPrompt' when geoRestricted or loginRequired is false", () => {

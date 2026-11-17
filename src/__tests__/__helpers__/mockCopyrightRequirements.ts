@@ -1,4 +1,7 @@
-import { ComplexCopyrightStatus } from "@/utils/complexCopyright/complexCopyright.types";
+import {
+  AuthState,
+  ComplexCopyrightStatus,
+} from "@/utils/complexCopyright/complexCopyright.types";
 
 export const signedOutLoginRequired: ComplexCopyrightStatus = {
   showGeoBlocked: false,
@@ -48,4 +51,28 @@ export const defaultCopyrightRequirements: ComplexCopyrightStatus = {
 export const isLoading: ComplexCopyrightStatus = {
   ...defaultCopyrightRequirements,
   isLoaded: false,
+};
+
+export const signedOutAuthState: AuthState = {
+  isSignedIn: false,
+  isOnboarded: false,
+  isRegionAuthorised: false,
+};
+
+export const signedInNotOnboardedAuthState: AuthState = {
+  isSignedIn: true,
+  isOnboarded: false,
+  isRegionAuthorised: false,
+};
+
+export const signedInGeorestrictedAuthState: AuthState = {
+  isSignedIn: true,
+  isOnboarded: true,
+  isRegionAuthorised: false,
+};
+
+export const signedInGeoAuthenticatedAuthState: AuthState = {
+  isSignedIn: true,
+  isOnboarded: true,
+  isRegionAuthorised: true,
 };

@@ -6,28 +6,11 @@ import {
   signedOutGeoRestricted,
   signedInNotOnboarded,
   defaultCopyrightRequirements,
+  signedOutAuthState,
+  signedInNotOnboardedAuthState,
+  signedInGeorestrictedAuthState,
+  signedInGeoAuthenticatedAuthState,
 } from "@/__tests__/__helpers__/mockCopyrightRequirements";
-
-const signedOutAuthState = {
-  isSignedIn: false,
-  isOnboarded: false,
-  isRegionAuthorised: false,
-};
-const signedInNotOnboardedAuthState = {
-  isSignedIn: true,
-  isOnboarded: false,
-  isRegionAuthorised: false,
-};
-const signedInGeorestrictedAuthState = {
-  isSignedIn: true,
-  isOnboarded: true,
-  isRegionAuthorised: false,
-};
-const signedInGeoAuthenticatedAuthState = {
-  isSignedIn: true,
-  isOnboarded: true,
-  isRegionAuthorised: true,
-};
 
 describe("getComplexCopyrightState", () => {
   it("returns the correct state when signed out with resource not restricted and no login required", () => {
