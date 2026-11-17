@@ -4,7 +4,7 @@ import { TopNavProps } from "../TopNav/TopNav";
 
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import AppLayout from "@/components/AppComponents/AppLayout";
-import ErrorPage from "@/components/GenericPagesComponents/ErrorPane";
+import NotFoundPane from "@/components/GenericPagesComponents/NotFoundPane";
 
 type ErrorViewProps = {
   onBackClick?: () => void;
@@ -19,7 +19,7 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
       appVariant={"client-error"}
       topNavProps={topNav}
     >
-      <ErrorPage statusCode={statusCode} onBackClick={onBackClick} />
+      <NotFoundPane statusCode={statusCode} onBackClick={onBackClick} />
     </AppLayout>
   );
 };
