@@ -103,7 +103,9 @@ export function KS4OptionFocusScope({
 
           if (!clickedRadio) return;
           lastInteractedRadio.current = clickedRadio;
-          event.preventDefault();
+          if (event.pointerType !== "touch") {
+            event.preventDefault();
+          }
           event.currentTarget.focus({ preventScroll: true });
         }}
       >

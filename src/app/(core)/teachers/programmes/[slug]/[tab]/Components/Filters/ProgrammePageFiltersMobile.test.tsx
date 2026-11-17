@@ -277,7 +277,7 @@ describe("ProgrammePageFiltersMobile", () => {
 
   it.each(["mouse", "touch"])(
     "keeps key-stage selection unfocused for %s and supports subsequent keyboard navigation",
-    async () => {
+    async (interaction) => {
       const user = userEvent.setup();
       renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters);
 
@@ -286,7 +286,14 @@ describe("ProgrammePageFiltersMobile", () => {
       const ks4 = screen.getByRole("radio", { name: "KS4" });
       expect(ks4).toHaveFocus();
       const button = screen.getByText("KS3").parentElement!;
-      await user.click(button);
+      if (interaction === "touch") {
+        await user.pointer([
+          { keys: "[TouchA>]", target: button },
+          { keys: "[/TouchA]" },
+        ]);
+      } else {
+        await user.click(button);
+      }
 
       const ks3 = screen.getByRole("radio", { name: "KS3" });
       expect(ks3).toBeChecked();
@@ -318,7 +325,7 @@ describe("ProgrammePageFiltersMobile", () => {
 
   it.each(["mouse", "touch"])(
     "resumes keyboard navigation at the year clicked with %s",
-    async () => {
+    async (interaction) => {
       const user = userEvent.setup();
       renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters);
 
@@ -328,7 +335,14 @@ describe("ProgrammePageFiltersMobile", () => {
 
       const year10 = screen.getByRole("radio", { name: "Year 10" });
       const button = screen.getByText("Year 10").parentElement!;
-      await user.click(button);
+      if (interaction === "touch") {
+        await user.pointer([
+          { keys: "[TouchA>]", target: button },
+          { keys: "[/TouchA]" },
+        ]);
+      } else {
+        await user.click(button);
+      }
 
       expect(year10).toBeChecked();
       for (const radio of screen.getAllByRole("radio")) {

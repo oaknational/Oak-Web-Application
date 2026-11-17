@@ -511,7 +511,14 @@ describe("ProgrammeFiltersKs4Options", () => {
         expect(radios[1]!).toHaveFocus();
       } else {
         const button = radios[1]!.closest("fieldset > div")!;
-        await user.click(button);
+        if (interaction === "touch") {
+          await user.pointer([
+            { keys: "[TouchA>]", target: button },
+            { keys: "[/TouchA]" },
+          ]);
+        } else {
+          await user.click(button);
+        }
         expect(radios[1]!).not.toHaveFocus();
       }
       expect(radios[0]!).not.toHaveFocus();
