@@ -11,7 +11,6 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import { cacheData } from "@/node-lib/cache";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { CanonicalLessonMediaClips } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import {
   isEyfsPathway,
@@ -23,10 +22,10 @@ type LessonMediaHubParams = { lessonSlug: string };
 const getCachedCanonicalLessonMedia = cache(
   cacheData(
     (lessonSlug: string) =>
-      curriculumApi2023.lessonMediaClips<CanonicalLessonMediaClips>({
+      curriculumApi2023.canonicalLessonMedia({
         lessonSlug,
       }),
-    ["canonical-lesson-media-hub"],
+    ["canonical-lesson-media"],
   ),
 );
 
@@ -76,7 +75,7 @@ const CanonicalLessonMediaHubPage = async (
     allowNotFoundError(error);
   }
 
-  if (data === undefined || !data.mediaClips) {
+  if (data === undefined) {
     const { canonicalLessonRedirectData } = await getCachedCanonicalRedirect(
       `/teachers/lessons/${lessonSlug}`,
     );
@@ -125,7 +124,7 @@ const CanonicalLessonMediaHubPage = async (
 
   return (
     <CanonicalLessonHub
-      subjectSlug={firstPathway.subjectSlug}
+      subjectSlug={data.subjectSlug}
       lessonName={data.lessonTitle}
       listingTitle="Media clips appear in"
       programmesForLesson={programmesForLesson}

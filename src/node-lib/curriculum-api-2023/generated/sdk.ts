@@ -21962,6 +21962,20 @@ export type BrowseUnitRedirectQueryVariables = Exact<{
 
 export type BrowseUnitRedirectQuery = { __typename?: 'query_root', browseUnitRedirectData: Array<{ __typename?: 'published_mv_redirects_units_browse_by_keystage_18_0_0', incoming_path?: string | null, outgoing_path?: string | null, redirect_type?: any | null }> };
 
+export type CanonicalLessonMediaQueryVariables = Exact<{
+  lessonSlug: Scalars['String']['input'];
+}>;
+
+
+export type CanonicalLessonMediaQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_fields?: any | null, unit_data?: any | null, lesson_data?: any | null, actions?: any | null }> };
+
+export type LessonOverviewQueryVariables = Exact<{
+  lessonSlug: Scalars['String']['input'];
+}>;
+
+
+export type LessonOverviewQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_fields?: any | null, unit_data?: any | null, lesson_data?: any | null, actions?: any | null }> };
+
 export type CanonicalLessonRedirectQueryVariables = Exact<{
   incomingPath: Scalars['String']['input'];
 }>;
@@ -22046,13 +22060,6 @@ export type LessonMediaClipsQueryVariables = Exact<{
 
 
 export type LessonMediaClipsQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null, programme_slug_by_year?: any | null }> };
-
-export type LessonOverviewQueryVariables = Exact<{
-  lessonSlug: Scalars['String']['input'];
-}>;
-
-
-export type LessonOverviewQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_fields?: any | null, unit_data?: any | null, lesson_data?: any | null, actions?: any | null }> };
 
 export type LessonShareQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
@@ -22253,6 +22260,36 @@ export const BrowseUnitRedirectDocument = gql`
     incoming_path
     outgoing_path
     redirect_type
+  }
+}
+    `;
+export const CanonicalLessonMediaDocument = gql`
+    query canonicalLessonMedia($lessonSlug: String!) {
+  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
+    where: {lesson_slug: {_eq: $lessonSlug}}
+  ) {
+    lesson_slug
+    unit_slug
+    programme_slug
+    programme_fields
+    unit_data
+    lesson_data
+    actions
+  }
+}
+    `;
+export const LessonOverviewDocument = gql`
+    query lessonOverview($lessonSlug: String!) {
+  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
+    where: {lesson_slug: {_eq: $lessonSlug}}
+  ) {
+    lesson_slug
+    unit_slug
+    programme_slug
+    programme_fields
+    unit_data
+    lesson_data
+    actions
   }
 }
     `;
@@ -22482,21 +22519,6 @@ export const LessonMediaClipsDocument = gql`
     features
     order_in_unit
     programme_slug_by_year
-  }
-}
-    `;
-export const LessonOverviewDocument = gql`
-    query lessonOverview($lessonSlug: String!) {
-  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
-    where: {lesson_slug: {_eq: $lessonSlug}}
-  ) {
-    lesson_slug
-    unit_slug
-    programme_slug
-    programme_fields
-    unit_data
-    lesson_data
-    actions
   }
 }
     `;
@@ -23175,6 +23197,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     browseUnitRedirect(variables: BrowseUnitRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<BrowseUnitRedirectQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<BrowseUnitRedirectQuery>({ document: BrowseUnitRedirectDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'browseUnitRedirect', 'query', variables);
     },
+    canonicalLessonMedia(variables: CanonicalLessonMediaQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CanonicalLessonMediaQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CanonicalLessonMediaQuery>({ document: CanonicalLessonMediaDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'canonicalLessonMedia', 'query', variables);
+    },
+    lessonOverview(variables: LessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonOverviewQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewQuery>({ document: LessonOverviewDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonOverview', 'query', variables);
+    },
     canonicalLessonRedirect(variables: CanonicalLessonRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CanonicalLessonRedirectQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<CanonicalLessonRedirectQuery>({ document: CanonicalLessonRedirectDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'canonicalLessonRedirect', 'query', variables);
     },
@@ -23210,9 +23238,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     lessonMediaClips(variables?: LessonMediaClipsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonMediaClipsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonMediaClipsQuery>({ document: LessonMediaClipsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonMediaClips', 'query', variables);
-    },
-    lessonOverview(variables: LessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonOverviewQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewQuery>({ document: LessonOverviewDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonOverview', 'query', variables);
     },
     lessonShare(variables: LessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonShareQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonShareQuery>({ document: LessonShareDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonShare', 'query', variables);

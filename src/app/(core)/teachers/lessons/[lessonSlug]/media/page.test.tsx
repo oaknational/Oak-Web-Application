@@ -4,8 +4,8 @@ import CanonicalLessonMediaHubPage, { generateMetadata } from "./page";
 
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { lessonMediaClipsCanonicalFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
-import { CanonicalLessonMediaClips } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import canonicalLessonMediaFixture from "@/node-lib/curriculum-api-2023/fixtures/canonicalLessonMedia.fixture";
+import type { CanonicalLessonMediaData } from "@/node-lib/curriculum-api-2023/queries/canonicalLessonMedia/canonicalLessonMedia.schema";
 
 jest.mock("next/navigation", () => ({
   ...jest.requireActual("next/navigation"),
@@ -22,7 +22,7 @@ jest.mock("next/navigation", () => ({
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   __esModule: true,
   default: {
-    lessonMediaClips: jest.fn(),
+    canonicalLessonMedia: jest.fn(),
     canonicalLessonRedirectQuery: jest.fn(),
   },
 }));
@@ -30,7 +30,7 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
 const props = {
   params: Promise.resolve({ lessonSlug: "lesson-slug" }),
 };
-const fixture = lessonMediaClipsCanonicalFixture();
+const fixture = canonicalLessonMediaFixture();
 const basePathway = fixture.pathways[0]!;
 const firstPathway = {
   ...basePathway,
@@ -42,7 +42,7 @@ const firstPathway = {
   yearGroupTitle: "Year 10",
   examBoardTitle: "AQA",
   tierTitle: "Foundation",
-} satisfies CanonicalLessonMediaClips["pathways"][number];
+} satisfies CanonicalLessonMediaData["pathways"][number];
 const secondPathway = {
   ...firstPathway,
   programmeSlug: "science-secondary-year-11-edexcel-higher",
@@ -51,9 +51,9 @@ const secondPathway = {
   yearGroupTitle: "Year 11",
   examBoardTitle: "Edexcel",
   tierTitle: "Higher",
-} satisfies CanonicalLessonMediaClips["pathways"][number];
+} satisfies CanonicalLessonMediaData["pathways"][number];
 
-const mockMedia = jest.mocked(curriculumApi2023.lessonMediaClips);
+const mockMedia = jest.mocked(curriculumApi2023.canonicalLessonMedia);
 const mockRedirect = jest.mocked(
   curriculumApi2023.canonicalLessonRedirectQuery,
 );
@@ -61,7 +61,8 @@ const mockRedirect = jest.mocked(
 beforeEach(() => {
   jest.clearAllMocks();
   mockMedia.mockResolvedValue(
-    lessonMediaClipsCanonicalFixture({
+    canonicalLessonMediaFixture({
+      subjectSlug: "science",
       pathways: [firstPathway, secondPathway],
     }),
   );
@@ -115,7 +116,7 @@ describe("Canonical lesson media hub", () => {
     "redirects a single variant to its media page with clip %s",
     async (video) => {
       mockMedia.mockResolvedValue(
-        lessonMediaClipsCanonicalFixture({ pathways: [firstPathway] }),
+        canonicalLessonMediaFixture({ pathways: [firstPathway] }),
       );
 
       await expect(
@@ -131,7 +132,7 @@ describe("Canonical lesson media hub", () => {
 
   it("preserves EYFS redirects", async () => {
     mockMedia.mockResolvedValue(
-      lessonMediaClipsCanonicalFixture({
+      canonicalLessonMediaFixture({
         pathways: [
           {
             ...basePathway,
@@ -183,17 +184,7 @@ describe("Canonical lesson media hub", () => {
   });
 
   it("returns not found when there are no pathways", async () => {
-    mockMedia.mockResolvedValue(
-      lessonMediaClipsCanonicalFixture({ pathways: [] }),
-    );
-
-    await expect(CanonicalLessonMediaHubPage(props)).rejects.toThrow(
-      "NOT_FOUND",
-    );
-  });
-
-  it("returns not found when the lesson has no media clips", async () => {
-    mockMedia.mockResolvedValue({ ...fixture, mediaClips: null });
+    mockMedia.mockResolvedValue(canonicalLessonMediaFixture({ pathways: [] }));
 
     await expect(CanonicalLessonMediaHubPage(props)).rejects.toThrow(
       "NOT_FOUND",
