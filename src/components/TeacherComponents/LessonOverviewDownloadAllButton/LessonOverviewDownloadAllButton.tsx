@@ -1,22 +1,19 @@
 import { ComponentProps, FC } from "react";
 
-import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { resolveOakHref } from "@/common-lib/urls";
 import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { ComponentType } from "@/browser-lib/avo/Avo";
 
-export type LessonOverviewDownloadAllButtonProps = Pick<
-  LessonOverviewHeaderProps,
-  | "expired"
-  | "showDownloadAll"
-  | "programmeSlug"
-  | "lessonSlug"
-  | "unitSlug"
-  | "geoRestricted"
-  | "loginRequired"
-> &
-  Pick<ComponentProps<typeof LoginRequiredButton>, "sizeVariant" | "width">;
+export type LessonOverviewDownloadAllButtonProps = {
+  expired?: boolean | null;
+  lessonSlug: string;
+  programmeSlug: string;
+  showDownloadAll: boolean;
+  unitSlug: string;
+  geoRestricted?: boolean;
+  loginRequired?: boolean;
+} & Pick<ComponentProps<typeof LoginRequiredButton>, "sizeVariant" | "width">;
 
 export const LessonOverviewDownloadAllButton: FC<
   LessonOverviewDownloadAllButtonProps

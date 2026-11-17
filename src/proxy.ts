@@ -24,6 +24,7 @@ export const config: ProxyConfig = {
     "/teachers/my-library",
     // Lesson pages - server-side auth checks
     "/teachers/programmes/:slug/units/:unitSlug/lessons/:lessonSlug",
+    "/teachers/programmes/:slug/units/:unitSlug/lessons/:lessonSlug/media",
     // Enable middleware when we need to process a clerk handshake token
     {
       source: "/((?!_next).*)",

@@ -1,5 +1,6 @@
 import { mediaClipsFixture } from "@oaknational/oak-curriculum-schema";
 import { keysToCamelCase } from "zod-to-camel-case";
+import { unstable_cache } from "next/cache";
 
 import {
   getCaptionsFromFile,
@@ -8,9 +9,10 @@ import {
   populateMediaClipsWithTranscripts,
   extractIdFromUrl,
 } from "./handleTranscript";
+import { getFileFromBucket } from "./gCloudStorage";
 
-import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 
 describe("removeWebVttCharacters ", () => {
   const sentences = [
@@ -63,6 +65,14 @@ jest.mock("@/utils/gCloudStorage", () => ({
     and the phrase perpendicular height.`),
   ),
 }));
+
+jest.mock("next/cache", () => ({
+  unstable_cache: jest.fn(
+    (fn: (...args: string[]) => Promise<string | undefined>) => fn,
+  ),
+}));
+
+const mockUnstableCache = jest.mocked(unstable_cache);
 
 const mockParse = jest
   .fn()
@@ -140,6 +150,15 @@ describe("getCaptionFromFile", () => {
       "Now, in our lesson today, we're going to be using some specific mathematical terminology.",
       "For two words that we're going to be using today, in particular, our base and the phrase perpendicular height.",
     ]);
+    expect(getFileFromBucket).toHaveBeenCalledWith(
+      "oak-captions-2023-production",
+      "test.vtt",
+    );
+    expect(mockUnstableCache).toHaveBeenCalledWith(
+      expect.any(Function),
+      ["lesson-caption-file"],
+      { revalidate: 7200 },
+    );
   });
   it("getCaptionsFromFile returns undefined if there is an error", async () => {
     console.error = jest.fn();
@@ -155,7 +174,7 @@ describe("getCaptionFromFile", () => {
 describe("populateLessonWithTranscript", () => {
   it("handles lessons with transcript sentences", async () => {
     const lesson = await populateLessonWithTranscript(
-      lessonOverviewFixture({
+      teachersLessonOverviewFixture({
         transcriptSentences: "sentence 1, sentence 2",
       }),
     );
@@ -164,7 +183,10 @@ describe("populateLessonWithTranscript", () => {
   });
   it("handles lessons without transcript sentences", async () => {
     const lesson = await populateLessonWithTranscript(
-      lessonOverviewFixture({ videoTitle: "test", transcriptSentences: null }),
+      teachersLessonOverviewFixture({
+        videoTitle: "test",
+        transcriptSentences: null,
+      }),
     );
 
     expect(lesson.transcriptSentences).toEqual(["sentence 1 sentence 2"]);

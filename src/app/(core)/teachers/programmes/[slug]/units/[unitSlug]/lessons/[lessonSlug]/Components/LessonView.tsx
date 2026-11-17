@@ -33,6 +33,7 @@ import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/Teac
 import { useProgrammeState } from "@/context/TeacherBrowseAnalytics/hooks/useProgrammeState";
 import { getLessonCopyrightState } from "@/utils/complexCopyright/getLessonCopyrightState";
 import { AuthState } from "@/utils/complexCopyright/complexCopyright.types";
+import { isCopyrightRestricted } from "@/utils/complexCopyright/isCopyrightRestricted";
 
 export default function LessonView({
   props,
@@ -67,17 +68,8 @@ export default function LessonView({
 
   const copyrightState = getLessonCopyrightState(props, authState);
 
-  const {
-    showSignedOutGeoRestricted,
-    showSignedOutLoginRequired,
-    showGeoBlocked,
-    showSignedInNotOnboarded,
-  } = copyrightState;
-  const contentRestricted =
-    showSignedOutGeoRestricted ||
-    showSignedOutLoginRequired ||
-    showGeoBlocked ||
-    showSignedInNotOnboarded;
+  const { showGeoBlocked } = copyrightState;
+  const contentRestricted = isCopyrightRestricted(copyrightState);
 
   const isMathJaxLesson = hasLessonMathJax(props, props.subjectSlug, false);
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
