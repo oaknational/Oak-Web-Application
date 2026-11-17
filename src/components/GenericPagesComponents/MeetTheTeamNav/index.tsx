@@ -13,7 +13,7 @@ export default function MeetTheTeamNav({
 }: Readonly<{
   sectionRefs: Record<
     "our-leadership" | "our-board" | "documents",
-    RefObject<HTMLElement>
+    RefObject<HTMLElement | null>
   >;
 }>) {
   const { currentSectionId: currentSectionIdOrig } = useCurrentSection({

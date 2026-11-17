@@ -1,8 +1,8 @@
 import { cache } from "react";
 import { permanentRedirect } from "next/navigation";
+import { cacheLife, cacheTag } from "next/cache";
 
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { cacheData } from "@/node-lib/cache";
+import { curriculumApiWithCache } from "@/node-lib/cache";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getUnitDownloadFileExistence } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
 import errorReporter from "@/common-lib/error-reporter";
@@ -11,21 +11,28 @@ import { UnitDownloadExistence } from "@/components/TeacherComponents/types/down
 const reportError = errorReporter("unit-download-existence");
 
 export const getCachedUnitData = cache(
-  cacheData(
-    async (programmeSlug: string, unitSlug: string) => {
-      return curriculumApi2023.teachersUnitOverview({
-        programmeSlug,
-        unitSlug,
-      });
-    },
-    ["teachers-unit-overview"],
-  ),
+  async (programmeSlug: string, unitSlug: string) => {
+    return curriculumApiWithCache({
+      queryKey: "teachersUnitOverview",
+      args: [{ programmeSlug, unitSlug }],
+    });
+  },
 );
 
-const getCachedUnitDownloadFileExistence = cacheData(
-  getUnitDownloadFileExistence,
-  ["teachers-unit-download-existence"],
-);
+export const getCachedProgrammesForUnit = cache(async (unitSlug: string) => {
+  return curriculumApiWithCache({
+    queryKey: "teachersUnitProgramme",
+    args: [{ unitSlug }],
+  });
+});
+
+const getCachedUnitDownloadFileExistence = cache(async (unitFileId: string) => {
+  "use cache";
+  cacheLife("curriculum");
+  cacheTag("teachers-unit-download-existence");
+
+  return getUnitDownloadFileExistence(unitFileId);
+});
 
 export const getUnitDownloadExistence = async (
   unitFileId: string,
@@ -38,15 +45,6 @@ export const getUnitDownloadExistence = async (
     return { checkFailed: true, exists: undefined };
   }
 };
-
-export const getCachedProgrammesForUnit = cache(
-  cacheData(
-    async (unitSlug: string) => {
-      return curriculumApi2023.teachersUnitProgramme({ unitSlug });
-    },
-    ["teachers-unit-programme"],
-  ),
-);
 
 // Validate the programme slug against valid programmes for the given unit
 // If no match exists, return the first valid programme for the unit

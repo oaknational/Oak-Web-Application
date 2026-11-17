@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getAvailableProgrammeFactor } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
 import { GoogleClassroomOptions } from "@/components/GoogleClassroom/GoogleClassroomOptions";
+import { curriculumApiWithCache } from "@/node-lib/cache";
 
 async function GoogleClassroomOptionsPage({
   params,
@@ -10,8 +10,9 @@ async function GoogleClassroomOptionsPage({
   params: Promise<{ programmeSlug: string }>;
 }>) {
   const { programmeSlug } = await params;
-  const programmes = await curriculumApi2023.pupilProgrammeListingQuery({
-    baseSlug: programmeSlug,
+  const programmes = await curriculumApiWithCache({
+    queryKey: "pupilProgrammeListingQuery",
+    args: [{ baseSlug: programmeSlug }],
   });
   if (!programmes?.length) {
     notFound();

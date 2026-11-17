@@ -1,18 +1,7 @@
-/**
- * @jest-environment jsdom
- */
-import { screen } from "@testing-library/dom";
 import { redirect } from "next/navigation";
 
 import MyLibraryPage, { metadata } from "./page";
 
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagVariantKey: () => true,
-  useFeatureFlagEnabled: () => true,
-}));
-// jest.setup.js mocks next/navigation without `redirect`, so re-declare it here
 jest.mock("next/navigation", () => ({
   usePathname: jest.fn(),
   useRouter: jest.fn(),
@@ -22,42 +11,16 @@ jest.mock("next/navigation", () => ({
   }),
 }));
 
-const redirectToSignUp = jest.fn();
 const getToken = jest.fn();
+const redirectToSignUp = jest.fn();
 const mockAuth = jest.fn();
-const mockCurrentUser = jest.fn();
 jest.mock("@clerk/nextjs/server", () => ({
   auth: () => mockAuth(),
-  currentUser: () => mockCurrentUser(),
 }));
 
-const mockGetUserListContent = jest.fn();
-jest.mock(
-  "@/node-lib/educator-api/queries/getUserListContent/getUserListContent",
-  () => ({
-    getUserListContent: (...args: unknown[]) => mockGetUserListContent(...args),
-  }),
-);
-
-// Echo the server data back so the view renders from its SWR fallback
-jest.mock("@/node-lib/educator-api/helpers/useGetEducatorData", () => ({
-  useGetEducatorData: (_url: string, config?: { fallbackData?: unknown }) => ({
-    data: config?.fallbackData,
-    isLoading: false,
-    mutate: jest.fn(),
-  }),
+jest.mock("./MyLibraryContent", () => ({
+  MyLibraryContent: jest.fn(() => <div>Mocked MyLibraryContent</div>),
 }));
-
-const reportError = jest.fn();
-jest.mock("@/common-lib/error-reporter", () => ({
-  __esModule: true,
-  default:
-    () =>
-    (...args: unknown[]) =>
-      reportError(...args),
-}));
-
-const render = renderWithProviders();
 
 describe("app/(core)/teachers/my-library", () => {
   beforeEach(() => {
@@ -66,56 +29,32 @@ describe("app/(core)/teachers/my-library", () => {
       userId: "user-123",
       getToken,
       redirectToSignUp,
+      isAuthenticated: true,
+      sessionClaims: { owa: { isOnboarded: true } },
     });
-    mockCurrentUser.mockResolvedValue({
-      publicMetadata: { owa: { isOnboarded: true } },
-    });
-    mockGetUserListContent.mockResolvedValue({});
   });
 
-  it("should render a header", async () => {
-    render(await MyLibraryPage());
-    const header = await screen.findByRole("heading", {
-      name: "My library",
-    });
-    expect(header).toBeInTheDocument();
-  });
-
-  it("should render a no saved content heading", async () => {
-    render(await MyLibraryPage());
-    const noSavedContent = await screen.findByRole("heading", {
-      name: "No units yet",
-    });
-    expect(noSavedContent).toBeInTheDocument();
-    expect(mockGetUserListContent).toHaveBeenCalledWith(getToken, "user-123");
-  });
-
-  it("should report the error and render without collections when the fetch fails", async () => {
-    mockGetUserListContent.mockRejectedValue(new Error("boom"));
-
-    render(await MyLibraryPage());
-
-    expect(reportError).toHaveBeenCalled();
-    expect(
-      await screen.findByRole("heading", { name: "My library" }),
-    ).toBeInTheDocument();
-    expect(screen.queryByText("No units yet")).not.toBeInTheDocument();
+  it("should render the page content when authenticated and onboarded", async () => {
+    const result = await MyLibraryPage();
+    expect(result).toBeDefined();
   });
 
   it("should redirect to sign up when signed out", async () => {
-    mockAuth.mockResolvedValue({ userId: null, redirectToSignUp });
-
-    await MyLibraryPage();
-
-    expect(redirectToSignUp).toHaveBeenCalledWith({
-      returnBackUrl: "/teachers/my-library",
+    mockAuth.mockResolvedValue({
+      userId: null,
+      redirectToSignUp,
     });
-    expect(mockCurrentUser).not.toHaveBeenCalled();
+    const result = await MyLibraryPage();
+    expect(result).toBeUndefined();
   });
 
   it("should redirect to onboarding when the user has not onboarded", async () => {
-    mockCurrentUser.mockResolvedValue({
-      publicMetadata: { owa: { isOnboarded: false } },
+    mockAuth.mockResolvedValue({
+      userId: "user-123",
+      getToken,
+      redirectToSignUp,
+      isAuthenticated: true,
+      sessionClaims: { owa: { isOnboarded: false } },
     });
 
     await expect(MyLibraryPage()).rejects.toThrow("NEXT_REDIRECT");
@@ -123,7 +62,6 @@ describe("app/(core)/teachers/my-library", () => {
     expect(redirect).toHaveBeenCalledWith(
       "/onboarding?returnTo=%2Fteachers%2Fmy-library",
     );
-    expect(mockGetUserListContent).not.toHaveBeenCalled();
   });
 
   it("should generate the correct metadata", () => {

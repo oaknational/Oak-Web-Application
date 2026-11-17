@@ -1,12 +1,14 @@
-import { StoryFn } from "@storybook/react";
+import type { Decorator } from "@storybook/react";
 import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 
-export default function CookieConsentDecorator(Story: StoryFn) {
+const CookieConsentDecorator: Decorator = (Story) => {
   return (
     <CookieConsentProvider client={new MockOakConsentClient()}>
       <Story />
     </CookieConsentProvider>
   );
-}
+};
+
+export default CookieConsentDecorator;

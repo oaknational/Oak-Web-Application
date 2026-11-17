@@ -47,6 +47,7 @@ const curriculumApi: Pick<
   | "teachersSitemap"
   | "pupilsSitemap"
   | "lessonMediaClips"
+  | "teachersLessonMediaClips"
   | "betaLessonMediaClipsQuery"
   | "browseUnitRedirectQuery"
   | "pupilCanonicalLessonRedirectQuery"
@@ -121,6 +122,9 @@ const curriculumApi: Pick<
   lessonMediaClips: jest.fn(async () => {
     return lessonMediaClipsFixtures();
   }) as jest.Mocked<LessonMediaClipsQueryReturn>,
+  teachersLessonMediaClips: jest.fn(async () => {
+    return lessonMediaClipsFixtures();
+  }),
   unitListing: jest.fn(async () => {
     return unitListingFixture();
   }) as jest.Mocked<UnitListingQueryReturn>,

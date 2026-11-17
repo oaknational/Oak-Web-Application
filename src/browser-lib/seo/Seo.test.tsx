@@ -1,6 +1,6 @@
 import Seo from "./Seo";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 
 const mockRouterAsPath = jest.fn();
 
@@ -31,7 +31,7 @@ describe("Seo", () => {
   it("should use clean canonicalURL when explicitly provided", () => {
     mockRouterAsPath.mockReturnValue("/teachers?sid-abc=123");
 
-    const { container } = renderWithTheme(
+    const { seo } = renderWithSeo()(
       <Seo
         title="Test Page"
         description="Test description"
@@ -39,10 +39,7 @@ describe("Seo", () => {
       />,
     );
 
-    const canonical = container.querySelector('link[rel="canonical"]');
-    expect(canonical?.getAttribute("href")).toBe(
-      "https://www.thenational.academy/teachers",
-    );
+    expect(seo.canonical).toBe("https://www.thenational.academy/teachers");
   });
 
   it("should fall back to router.asPath when no canonicalURL provided", () => {
@@ -50,12 +47,11 @@ describe("Seo", () => {
       "/teachers?sid-abc=123&page=1&sid-xyz=456&sort=date",
     );
 
-    const { container } = renderWithTheme(
+    const { seo } = renderWithSeo()(
       <Seo title="Test Page" description="Test description" />,
     );
 
-    const canonical = container.querySelector('link[rel="canonical"]');
-    expect(canonical?.getAttribute("href")).toBe(
+    expect(seo.canonical).toBe(
       "https://www.thenational.academy/teachers?sid-abc=123&page=1&sid-xyz=456&sort=date",
     );
   });
@@ -63,7 +59,7 @@ describe("Seo", () => {
   it("should trim trailing slashes", () => {
     mockRouterAsPath.mockReturnValue("/teachers/");
 
-    const { container } = renderWithTheme(
+    const { seo } = renderWithSeo()(
       <Seo
         title="Test Page"
         description="Test description"
@@ -71,9 +67,6 @@ describe("Seo", () => {
       />,
     );
 
-    const canonical = container.querySelector('link[rel="canonical"]');
-    expect(canonical?.getAttribute("href")).toBe(
-      "https://www.thenational.academy/teachers",
-    );
+    expect(seo.canonical).toBe("https://www.thenational.academy/teachers");
   });
 });

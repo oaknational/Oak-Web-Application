@@ -6,7 +6,7 @@ import { FocusOn } from "react-focus-on";
 import { zIndexMap } from "@/styles/utils/zIndex";
 
 interface PopoverProps {
-  popoverRef?: React.RefObject<HTMLDivElement>;
+  popoverRef?: React.RefObject<HTMLDivElement | null>;
   children: React.ReactNode;
   isOpen?: boolean;
   onClose?: () => void;

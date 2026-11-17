@@ -1,10 +1,7 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
-import { MiddlewareConfig, NextFetchEvent, NextRequest } from "next/server";
+import { ProxyConfig, NextFetchEvent, NextRequest } from "next/server";
 
-export default async function middleware(
-  req: NextRequest,
-  event: NextFetchEvent,
-) {
+export default async function proxy(req: NextRequest, event: NextFetchEvent) {
   // Keep server-side redirects pointed at our own sign-in page rather than Clerk's account portal
   return clerkMiddleware({ signInUrl: "/sign-in", signUpUrl: "/sign-in" })(
     req,
@@ -12,7 +9,12 @@ export default async function middleware(
   );
 }
 
-export const config: MiddlewareConfig = {
+/**
+ * Clerk middleware causes page latency, we're only enabling it for API routes
+ * and pages carrying a Clerk handshake token.
+ */
+
+export const config: ProxyConfig = {
   matcher: [
     // Skip Next.js internals and all static files, unless found in search params
     //"/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",

@@ -40,7 +40,7 @@ export type SearchResultsItemProps = {
   isToggleOpen?: boolean;
   pathways: PathwaySchemaCamel[] | [];
   onClick?: (searchHit: SearchResultsItemProps) => void;
-  firstItemRef?: React.RefObject<HTMLAnchorElement> | null;
+  firstItemRef?: React.RefObject<HTMLAnchorElement | null> | null;
   legacy?: boolean;
 } & (
   | {

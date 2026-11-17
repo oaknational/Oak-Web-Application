@@ -12,7 +12,7 @@ export const onPlay = ({
   userEventCallback,
   playingClassname,
 }: {
-  mediaElRef: React.RefObject<MuxPlayerElement>;
+  mediaElRef: React.RefObject<MuxPlayerElement | null>;
   setVideoIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
   trackOnPlay: (isVideoStart: boolean) => void;
   userEventCallback: (args: VideoEventCallbackArgs) => void;
@@ -41,7 +41,7 @@ export const onPause = ({
   userEventCallback,
   playingClassname,
 }: {
-  mediaElRef: React.RefObject<MuxPlayerElement>;
+  mediaElRef: React.RefObject<MuxPlayerElement | null>;
   setVideoIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
   trackOnPause: () => void;
   userEventCallback: (args: VideoEventCallbackArgs) => void;
@@ -72,7 +72,7 @@ export const onTimeUpdate = ({
   shouldTrackEndAnalytics = true,
   playingClassname,
 }: {
-  mediaElRef: React.RefObject<MuxPlayerElement>;
+  mediaElRef: React.RefObject<MuxPlayerElement | null>;
   setEndTracked: React.Dispatch<React.SetStateAction<string | null>>;
   trackOnEnd: () => void;
   userEventCallback: (args: VideoEventCallbackArgs) => void;

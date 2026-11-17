@@ -91,7 +91,7 @@ describe("Testimonials", () => {
         fwdLabel: "Next testimonial",
         containerLabel: "Testimonials",
       },
-      {},
+      undefined,
     );
   });
 
@@ -111,7 +111,7 @@ describe("Testimonials", () => {
         authorTitle: "Teacher, Oak School",
         hasLeftBorder: false,
       },
-      {},
+      undefined,
     );
   });
 
@@ -126,7 +126,7 @@ describe("Testimonials", () => {
         authorTitle: "Principal, Oak Academy",
         hasLeftBorder: false,
       },
-      {},
+      undefined,
     );
   });
 

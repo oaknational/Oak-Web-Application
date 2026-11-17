@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactElement } from "react";
 
 import { useShare } from "@/pages-helpers/teacher/share/useShare";
 import { useTeacherNotes } from "@/pages-helpers/teacher/share/useTeacherNotes";
@@ -40,7 +40,7 @@ export type TeacherNotesButtonProps = {
 };
 
 type UseLessonReturn = {
-  teacherNotesButton: JSX.Element;
+  teacherNotesButton: ReactElement;
   TeacherNotesButtonProps: TeacherNotesButtonProps;
   teacherNoteHtml: string | undefined;
   teacherNotesOpen: boolean;

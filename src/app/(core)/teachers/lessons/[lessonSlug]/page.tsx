@@ -6,28 +6,23 @@ import { CanonicalLessonHub } from "./CanonicalLessonHub";
 import { getSortedPathways } from "./getSortedPathways";
 
 import { AppPageProps } from "@/hocs/withPageErrorHandling";
-import { cacheData } from "@/node-lib/cache";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
+import { curriculumApiWithCache } from "@/node-lib/cache";
 
-const getCachedCanonicalLesson = cache(
-  cacheData(
-    (lessonSlug: string) =>
-      curriculumApi2023.canonicalLessonOverview({
-        lessonSlug,
-      }),
-    ["canonical-lesson"],
-  ),
-);
+const getCachedCanonicalLesson = cache((lessonSlug: string) => {
+  return curriculumApiWithCache({
+    queryKey: "canonicalLessonOverview",
+    args: [{ lessonSlug }],
+  });
+});
 
-const getCachedCanonicalRedirect = cache(
-  cacheData(
-    (url: string) =>
-      curriculumApi2023.canonicalLessonRedirectQuery({ incomingPath: url }),
-    ["canonical-redirect"],
-  ),
-);
+const getCachedCanonicalRedirect = cache((url: string) => {
+  return curriculumApiWithCache({
+    queryKey: "canonicalLessonRedirectQuery",
+    args: [{ incomingPath: url }],
+  });
+});
 
 export async function generateMetadata(
   props: AppPageProps<{ lessonSlug: string }>,

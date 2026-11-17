@@ -28,6 +28,22 @@ const updateUserMetadata = jest.fn();
 const getUser = jest.fn();
 
 describe("/api/auth/onboarding", () => {
+  beforeAll(() => {
+    if (typeof Response.json !== "function") {
+      Object.defineProperty(Response, "json", {
+        configurable: true,
+        value: (body: unknown, init?: ResponseInit) =>
+          new Response(JSON.stringify(body), {
+            ...init,
+            headers: {
+              "Content-Type": "application/json",
+              ...init?.headers,
+            },
+          }),
+      });
+    }
+  });
+
   installMockClerkClient({
     updateUserMetadata,
     getUser,

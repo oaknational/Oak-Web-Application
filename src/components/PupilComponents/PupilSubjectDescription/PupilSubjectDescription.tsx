@@ -1,4 +1,5 @@
 import { OakP } from "@oaknational/oak-components";
+import { ReactElement } from "react";
 
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 import { SubjectSlugs } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
@@ -6,7 +7,7 @@ import { SubjectSlugs } from "@/node-lib/curriculum-api-2023/queries/pupilSubjec
 type OptionalSubjectDescriptionsType = {
   [key in SubjectSlugs]?: (
     programmeFields?: UnitListingBrowseData[number]["programmeFields"],
-  ) => JSX.Element;
+  ) => ReactElement;
 };
 
 const OptionalSubjectDescriptions: OptionalSubjectDescriptionsType = {

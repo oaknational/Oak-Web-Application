@@ -31,7 +31,9 @@ function GoogleClassroomProviderWrapper({
   );
 }
 
-function ClassroomLayoutAnalytics({ isPupilRoute }: { isPupilRoute: boolean }) {
+function ClassroomLayoutAnalytics() {
+  const pathname = usePathname();
+  const isPupilRoute = pathname?.includes("/classroom/pupil/") ?? false;
   const trackAddOnOpened = useGoogleClassroomAnalytics(
     (state) => state.trackAddOnOpened,
   );
@@ -50,14 +52,11 @@ function ClassroomLayoutAnalytics({ isPupilRoute }: { isPupilRoute: boolean }) {
 export default function Layout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const pathname = usePathname();
-  const isPupilRoute = pathname?.includes("/classroom/pupil/") ?? false;
-
   return (
     <Suspense fallback={null}>
       <GoogleClassroomProviderWrapper>
         <GoogleClassroomAnalyticsProvider>
-          <ClassroomLayoutAnalytics isPupilRoute={isPupilRoute} />
+          <ClassroomLayoutAnalytics />
           {children}
         </GoogleClassroomAnalyticsProvider>
       </GoogleClassroomProviderWrapper>

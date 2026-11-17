@@ -1,12 +1,12 @@
-import React from "react";
+import { cache } from "react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { constructSearchQuery } from "./helpers/constructSearchQuery";
 import SearchView from "./SearchView";
 
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { curriculumApiWithCache } from "@/node-lib/cache";
 import { AppPageProps } from "@/hocs/withPageErrorHandling";
 import { fetchResultsWithCache } from "@/context/Search/search-api/2023/fetchResults";
 import {
@@ -17,6 +17,9 @@ import {
 import { getSearchFilters } from "@/context/Search/getSearchFilters";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
+
+// We are using search params so we can't enable instant navigation as-is.
+export const instant = false;
 
 export const metadata: Metadata = {
   title: "Search for Free Teaching Resources",
@@ -29,8 +32,12 @@ export const metadata: Metadata = {
 
 const reportError = errorReporter("search-page::app");
 
+const getCachedSearchPage = cache(async () => {
+  return curriculumApiWithCache({ queryKey: "searchPage", args: [] });
+});
+
 async function SearchPage(props: Readonly<AppPageProps>) {
-  const curriculumData = await curriculumApi2023.searchPage();
+  const curriculumData = await getCachedSearchPage();
   const searchParams = await props.searchParams;
   const validatedSearchParams = searchPageParamsSchema.safeParse(searchParams);
 

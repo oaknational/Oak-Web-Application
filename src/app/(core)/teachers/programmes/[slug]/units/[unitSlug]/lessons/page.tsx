@@ -12,9 +12,10 @@ import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnal
 import { getProgrammeStateForUnit } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 
-type LessonsPageParams = { slug: string; unitSlug: string };
+// We are using dynamic route segments so we can't enable instant navigation as-is.
+export const instant = false;
 
-export const dynamic = "force-static";
+type LessonsPageParams = { slug: string; unitSlug: string };
 
 export { generateMetadata } from "./generateMetadata";
 

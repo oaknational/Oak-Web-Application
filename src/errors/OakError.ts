@@ -46,7 +46,8 @@ export type ErrorCode =
   | "graphql/timeout"
   | "graphql/request-failed"
   | "analytics/teacher-browse"
-  | "mathjax/startup";
+  | "mathjax/startup"
+  | "docx/create";
 
 type ErrorConfig = {
   // Message intended for developer's convenience. Human error messages should probably be handled in the view layer
@@ -247,6 +248,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "mathjax/startup": {
     message: "Something went wrong loading mathjax",
+    shouldNotify: true,
+  },
+  "docx/create": {
+    message: "Failed to generate docx",
     shouldNotify: true,
   },
 };

@@ -14,10 +14,7 @@ describe("global error", () => {
     // so silence the invalid nesting error here
     jest.spyOn(console, "error").mockImplementation((...args: unknown[]) => {
       const [firstArg] = args;
-      if (
-        typeof firstArg === "string" &&
-        firstArg.includes("validateDOMNesting")
-      ) {
+      if (typeof firstArg === "string" && firstArg.includes("In HTML,")) {
         return;
       }
 

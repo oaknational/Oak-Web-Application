@@ -12,7 +12,7 @@ import {
 } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import type { NationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
 import CMSClient from "@/node-lib/cms";
-import { cacheData } from "@/node-lib/cache";
+import { cmsWithCache } from "@/node-lib/cache";
 import getServerConfig from "@/node-lib/getServerConfig";
 
 export type NationalCurriculumInsightsReader = Pick<
@@ -39,34 +39,36 @@ export type NationalCurriculumInsightsRouteData = {
   activeKeyStage: NationalCurriculumInsightsKeyStage | null;
 };
 
-const cacheKeyParts = [
+const cacheScope = [
   "national-curriculum-insights",
   getServerConfig("sanityProjectId"),
   getServerConfig("sanityDataset"),
-];
-const cacheOptions = {
-  revalidate: getServerConfig("sanityRevalidateSeconds"),
-};
+].join(":");
+const cacheTags = ["national-curriculum-insights", cacheScope];
 
-const getPublishedHub = cacheData(
-  () => CMSClient.nationalCurriculumInsightsHub({ previewMode: false }),
-  [...cacheKeyParts, "hub"],
-  cacheOptions,
-);
-const getPublishedGuidancePage = cacheData(
-  () =>
-    CMSClient.nationalCurriculumInsightsGuidancePage({ previewMode: false }),
-  [...cacheKeyParts, "guidance"],
-  cacheOptions,
-);
-const getPublishedSubject = cacheData(
-  (slug: string) =>
-    CMSClient.nationalCurriculumInsightsSubjectBySlug(slug, {
-      previewMode: false,
-    }),
-  [...cacheKeyParts, "subject"],
-  cacheOptions,
-);
+async function getPublishedHub() {
+  return cmsWithCache({
+    queryKey: "nationalCurriculumInsightsHub",
+    args: [{ previewMode: false }],
+    tags: cacheTags,
+  });
+}
+
+async function getPublishedGuidancePage() {
+  return cmsWithCache({
+    queryKey: "nationalCurriculumInsightsGuidancePage",
+    args: [{ previewMode: false }],
+    tags: cacheTags,
+  });
+}
+
+async function getPublishedSubject(slug: string) {
+  return cmsWithCache({
+    queryKey: "nationalCurriculumInsightsSubjectBySlug",
+    args: [slug, { previewMode: false }],
+    tags: cacheTags,
+  });
+}
 
 // Draft reads are deduplicated within a render, but never cached across requests.
 const getHub = cache((previewMode: boolean) =>

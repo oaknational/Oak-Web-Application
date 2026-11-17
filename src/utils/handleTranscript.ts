@@ -1,17 +1,21 @@
 import { Cue, WebVTTParser } from "webvtt-parser";
+import { cacheLife, cacheTag } from "next/cache";
+import { cache } from "react";
 
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import { cacheData } from "@/node-lib/cache";
 import { getFileFromBucket } from "@/utils/gCloudStorage";
 import { formatSentences } from "@/utils/formatTranscriptSentences";
 import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 
 const CAPTIONS_BUCKET_NAME = "oak-captions-2023-production";
 
-const getCachedCaptionFile = cacheData(
-  (bucketName: string, fileName: string) =>
-    getFileFromBucket(bucketName, fileName),
-  ["lesson-caption-file"],
+const getCachedCaptionFile = cache(
+  async (bucketName: string, fileName: string) => {
+    "use cache";
+    cacheLife("default");
+    cacheTag("lesson-caption-file");
+    return await getFileFromBucket(bucketName, fileName);
+  },
 );
 
 export const getCaptionsFromFile = async (fileName: string) => {

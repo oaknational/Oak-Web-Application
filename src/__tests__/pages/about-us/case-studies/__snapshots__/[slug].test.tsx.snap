@@ -5,68 +5,6 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
   <div
     data-overlay-container="true"
   >
-    <fake-head>
-      <title>
-        TEST_TITLE_VIDEO | NEXT_PUBLIC_SEO_APP_NAME
-      </title>
-      <meta
-        content="index,follow"
-        name="robots"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_DESCRIPTION"
-        name="description"
-      />
-      <meta
-        content="summary_large_image"
-        name="twitter:card"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE"
-        name="twitter:site"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE"
-        name="twitter:creator"
-      />
-      <meta
-        content="TEST_TITLE_VIDEO | NEXT_PUBLIC_SEO_APP_NAME"
-        property="og:title"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_DESCRIPTION"
-        property="og:description"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_URL/"
-        property="og:url"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2026"
-        property="og:image"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_NAME"
-        property="og:site_name"
-      />
-      <link
-        href="NEXT_PUBLIC_SEO_APP_URL"
-        rel="canonical"
-      />
-    </fake-head>
-    <fake-head>
-      <link
-        href="/favicon.ico"
-        rel="icon"
-      />
-    </fake-head>
-    <fake-head>
-      <script
-        type="application/ld+json"
-      >
-        {"@context":"https://schema.org","@type":"Organization","name":"NEXT_PUBLIC_SEO_APP_NAME","url":"NEXT_PUBLIC_SEO_APP_URL","sameAs":["NEXT_PUBLIC_SEO_APP_FACEBOOK","NEXT_PUBLIC_SEO_APP_TWITTER"],"logo":"NEXT_PUBLIC_SEO_APP_URLNEXT_PUBLIC_SEO_APP_LOGO"}
-      </script>
-    </fake-head>
     <div
       class="sc-bdvwhi sc-gsDMPd idbbhg cvDmZS"
     >
@@ -847,7 +785,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
                               class="sc-bdvwhi kAFHfV yellow-shadow"
                             />
                             <button
-                              aria-controls=":r2:"
+                              aria-controls="_r_2_"
                               aria-expanded="false"
                               class="sc-eCIkAO sc-jrQAon bTvgVX fWKlKk internal-button"
                             >
@@ -894,7 +832,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
                               class="sc-bdvwhi kAFHfV yellow-shadow"
                             />
                             <button
-                              aria-controls=":r2:"
+                              aria-controls="_r_2_"
                               aria-expanded="false"
                               class="sc-eCIkAO sc-jrQAon bTvgVX fWKlKk internal-button"
                             >
@@ -928,7 +866,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with video 
                       <div
                         class="sc-bdvwhi sc-gsDMPd fAkWzj fHSnPP"
                         data-testid="oak-video-transcript-container"
-                        id=":r2:"
+                        id="_r_2_"
                       >
                         <div
                           class="sc-bdvwhi sc-gsDMPd gbxNuO edEJAr"
@@ -2058,68 +1996,6 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
   <div
     data-overlay-container="true"
   >
-    <fake-head>
-      <title>
-        TEST_TITLE_1 | NEXT_PUBLIC_SEO_APP_NAME
-      </title>
-      <meta
-        content="index,follow"
-        name="robots"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_DESCRIPTION"
-        name="description"
-      />
-      <meta
-        content="summary_large_image"
-        name="twitter:card"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE"
-        name="twitter:site"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE"
-        name="twitter:creator"
-      />
-      <meta
-        content="TEST_TITLE_1 | NEXT_PUBLIC_SEO_APP_NAME"
-        property="og:title"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_DESCRIPTION"
-        property="og:description"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_URL/"
-        property="og:url"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2026"
-        property="og:image"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_NAME"
-        property="og:site_name"
-      />
-      <link
-        href="NEXT_PUBLIC_SEO_APP_URL"
-        rel="canonical"
-      />
-    </fake-head>
-    <fake-head>
-      <link
-        href="/favicon.ico"
-        rel="icon"
-      />
-    </fake-head>
-    <fake-head>
-      <script
-        type="application/ld+json"
-      >
-        {"@context":"https://schema.org","@type":"Organization","name":"NEXT_PUBLIC_SEO_APP_NAME","url":"NEXT_PUBLIC_SEO_APP_URL","sameAs":["NEXT_PUBLIC_SEO_APP_FACEBOOK","NEXT_PUBLIC_SEO_APP_TWITTER"],"logo":"NEXT_PUBLIC_SEO_APP_URLNEXT_PUBLIC_SEO_APP_LOGO"}
-      </script>
-    </fake-head>
     <div
       class="sc-bdvwhi sc-gsDMPd idbbhg cvDmZS"
     >
@@ -3049,7 +2925,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                               class="sc-bdvwhi kAFHfV yellow-shadow"
                             />
                             <button
-                              aria-controls=":r0:"
+                              aria-controls="_r_0_"
                               aria-expanded="false"
                               class="sc-eCIkAO sc-jrQAon bTvgVX fWKlKk internal-button"
                             >
@@ -3096,7 +2972,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                               class="sc-bdvwhi kAFHfV yellow-shadow"
                             />
                             <button
-                              aria-controls=":r0:"
+                              aria-controls="_r_0_"
                               aria-expanded="false"
                               class="sc-eCIkAO sc-jrQAon bTvgVX fWKlKk internal-button"
                             >
@@ -3130,7 +3006,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                       <div
                         class="sc-bdvwhi sc-gsDMPd fAkWzj fHSnPP"
                         data-testid="oak-video-transcript-container"
-                        id=":r0:"
+                        id="_r_0_"
                       >
                         <div
                           class="sc-bdvwhi sc-gsDMPd gbxNuO edEJAr"
@@ -3256,7 +3132,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                                   class="sc-bdvwhi kAFHfV yellow-shadow"
                                 />
                                 <button
-                                  aria-controls=":r1:"
+                                  aria-controls="_r_1_"
                                   aria-expanded="false"
                                   class="sc-eCIkAO sc-jrQAon bTvgVX fWKlKk internal-button"
                                 >
@@ -3303,7 +3179,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                                   class="sc-bdvwhi kAFHfV yellow-shadow"
                                 />
                                 <button
-                                  aria-controls=":r1:"
+                                  aria-controls="_r_1_"
                                   aria-expanded="false"
                                   class="sc-eCIkAO sc-jrQAon bTvgVX fWKlKk internal-button"
                                 >
@@ -3337,7 +3213,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders a case study with writte
                           <div
                             class="sc-bdvwhi sc-gsDMPd fAkWzj fHSnPP"
                             data-testid="oak-video-transcript-container"
-                            id=":r1:"
+                            id="_r_1_"
                           >
                             <div
                               class="sc-bdvwhi sc-gsDMPd gbxNuO edEJAr"
@@ -4576,68 +4452,6 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
   <div
     data-overlay-container="true"
   >
-    <fake-head>
-      <title>
-        TEST_TITLE_1 | NEXT_PUBLIC_SEO_APP_NAME
-      </title>
-      <meta
-        content="index,follow"
-        name="robots"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_DESCRIPTION"
-        name="description"
-      />
-      <meta
-        content="summary_large_image"
-        name="twitter:card"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE"
-        name="twitter:site"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE"
-        name="twitter:creator"
-      />
-      <meta
-        content="TEST_TITLE_1 | NEXT_PUBLIC_SEO_APP_NAME"
-        property="og:title"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_DESCRIPTION"
-        property="og:description"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_URL/"
-        property="og:url"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2026"
-        property="og:image"
-      />
-      <meta
-        content="NEXT_PUBLIC_SEO_APP_NAME"
-        property="og:site_name"
-      />
-      <link
-        href="NEXT_PUBLIC_SEO_APP_URL"
-        rel="canonical"
-      />
-    </fake-head>
-    <fake-head>
-      <link
-        href="/favicon.ico"
-        rel="icon"
-      />
-    </fake-head>
-    <fake-head>
-      <script
-        type="application/ld+json"
-      >
-        {"@context":"https://schema.org","@type":"Organization","name":"NEXT_PUBLIC_SEO_APP_NAME","url":"NEXT_PUBLIC_SEO_APP_URL","sameAs":["NEXT_PUBLIC_SEO_APP_FACEBOOK","NEXT_PUBLIC_SEO_APP_TWITTER"],"logo":"NEXT_PUBLIC_SEO_APP_URLNEXT_PUBLIC_SEO_APP_LOGO"}
-      </script>
-    </fake-head>
     <div
       class="sc-bdvwhi sc-gsDMPd idbbhg cvDmZS"
     >
@@ -5567,7 +5381,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                               class="sc-bdvwhi kAFHfV yellow-shadow"
                             />
                             <button
-                              aria-controls=":r5:"
+                              aria-controls="_r_5_"
                               aria-expanded="false"
                               class="sc-eCIkAO sc-jrQAon bTvgVX fWKlKk internal-button"
                             >
@@ -5614,7 +5428,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                               class="sc-bdvwhi kAFHfV yellow-shadow"
                             />
                             <button
-                              aria-controls=":r5:"
+                              aria-controls="_r_5_"
                               aria-expanded="false"
                               class="sc-eCIkAO sc-jrQAon bTvgVX fWKlKk internal-button"
                             >
@@ -5648,7 +5462,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                       <div
                         class="sc-bdvwhi sc-gsDMPd fAkWzj fHSnPP"
                         data-testid="oak-video-transcript-container"
-                        id=":r5:"
+                        id="_r_5_"
                       >
                         <div
                           class="sc-bdvwhi sc-gsDMPd gbxNuO edEJAr"
@@ -5774,7 +5588,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                                   class="sc-bdvwhi kAFHfV yellow-shadow"
                                 />
                                 <button
-                                  aria-controls=":r6:"
+                                  aria-controls="_r_6_"
                                   aria-expanded="false"
                                   class="sc-eCIkAO sc-jrQAon bTvgVX fWKlKk internal-button"
                                 >
@@ -5821,7 +5635,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                                   class="sc-bdvwhi kAFHfV yellow-shadow"
                                 />
                                 <button
-                                  aria-controls=":r6:"
+                                  aria-controls="_r_6_"
                                   aria-expanded="false"
                                   class="sc-eCIkAO sc-jrQAon bTvgVX fWKlKk internal-button"
                                 >
@@ -5855,7 +5669,7 @@ exports[`pages/about-us/case-studies/[slug].tsx renders the other case studies 1
                           <div
                             class="sc-bdvwhi sc-gsDMPd fAkWzj fHSnPP"
                             data-testid="oak-video-transcript-container"
-                            id=":r6:"
+                            id="_r_6_"
                           >
                             <div
                               class="sc-bdvwhi sc-gsDMPd gbxNuO edEJAr"

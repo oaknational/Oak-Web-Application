@@ -2,6 +2,7 @@
 import { Lexend } from "next/font/google";
 import parse from "html-react-parser";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 import StyledComponentsRegistry from "./styles-registry";
 import AnalyticsWrapper from "./components/AnalyticsWrapper";
@@ -61,22 +62,24 @@ export default function RootLayout({
           <OakThemeProvider theme={oakDefaultTheme}>
             <CookieConsentProvider>
               <PHProvider>
-                <OakNotificationsProvider>
-                  <ClerkProviderWithRedirects
-                    fontFamily={lexend.style.fontFamily}
-                  >
-                    <AnalyticsWrapper>
-                      <AppHooks />
-                      <MenuProvider>
-                        <SaveCountProvider>
-                          <SimulateErrorControls errorBoundaryLevel="global" />
-                          {children}
-                          <SpeedInsightsWrapper />
-                        </SaveCountProvider>
-                      </MenuProvider>
-                    </AnalyticsWrapper>
-                  </ClerkProviderWithRedirects>
-                </OakNotificationsProvider>
+                <Suspense fallback={null}>
+                  <OakNotificationsProvider>
+                    <ClerkProviderWithRedirects
+                      fontFamily={lexend.style.fontFamily}
+                    >
+                      <AnalyticsWrapper>
+                        <AppHooks />
+                        <MenuProvider>
+                          <SaveCountProvider>
+                            <SimulateErrorControls errorBoundaryLevel="global" />
+                            {children}
+                            <SpeedInsightsWrapper />
+                          </SaveCountProvider>
+                        </MenuProvider>
+                      </AnalyticsWrapper>
+                    </ClerkProviderWithRedirects>
+                  </OakNotificationsProvider>
+                </Suspense>
               </PHProvider>
             </CookieConsentProvider>
           </OakThemeProvider>

@@ -16,12 +16,14 @@ import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
-import { cacheData } from "@/node-lib/cache";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { curriculumApiWithCache } from "@/node-lib/cache";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 import { filterRestrictedLessonData } from "@/utils/complexCopyright/filterRestrictedLessonData";
 import { getServerAuthState } from "@/utils/complexCopyright/getServerAuthState";
+
+// We are using dynamic route segments so we can't enable instant navigation as-is.
+export const instant = false;
 
 type LessonPageParams = {
   slug: string;
@@ -29,19 +31,13 @@ type LessonPageParams = {
   lessonSlug: string;
 };
 
-export const dynamic = "force-dynamic";
-
 const getCachedLessonData = cache(
-  cacheData(
-    async (programmeSlug: string, unitSlug: string, lessonSlug: string) => {
-      return curriculumApi2023.teachersLessonOverview({
-        programmeSlug,
-        unitSlug,
-        lessonSlug,
-      });
-    },
-    ["teachers-lesson-overview"],
-  ),
+  async (programmeSlug: string, unitSlug: string, lessonSlug: string) => {
+    return curriculumApiWithCache({
+      queryKey: "teachersLessonOverview",
+      args: [{ programmeSlug, unitSlug, lessonSlug }],
+    });
+  },
 );
 
 export async function generateMetadata(

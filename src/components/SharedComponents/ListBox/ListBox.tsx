@@ -48,7 +48,7 @@ const ListItem = styled(OakLI)<ListItemProps>`
 `;
 
 interface ListBoxProps extends AriaListBoxOptions<unknown> {
-  listBoxRef?: React.RefObject<HTMLUListElement>;
+  listBoxRef?: React.RefObject<HTMLUListElement | null>;
   state: ListState<unknown>;
 }
 

@@ -1,20 +1,22 @@
 import { groupBy } from "lodash";
 import { UnitsListingView } from "@oaknational/google-classroom-addon/ui";
 import { notFound } from "next/navigation";
-import React from "react";
 
 import OakError from "@/errors/OakError";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { extractBaseSlug } from "@/pages-helpers/pupil";
 import { checkAndExcludeUnitsWithAgeRestrictedLessons } from "@/pages-helpers/pupil/units-page/units-page-helper";
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 import { GoogleClassroomSubjectIconHeader } from "@/components/GoogleClassroom/GoogleClassroomSubjectIconHeader";
 import { UnitsContainer } from "@/components/TeacherComponents/UnitsContainer";
 import { GoogleClassroomUnitCards } from "@/components/GoogleClassroom/GoogleClassroomUnitCards";
+import { curriculumApiWithCache } from "@/node-lib/cache";
 
 async function getUnitsData(baseSlug: string) {
   try {
-    return await curriculumApi2023.pupilUnitListingQuery({ baseSlug });
+    return await curriculumApiWithCache({
+      queryKey: "pupilUnitListingQuery",
+      args: [{ baseSlug }],
+    });
   } catch (error) {
     if (
       error instanceof OakError &&

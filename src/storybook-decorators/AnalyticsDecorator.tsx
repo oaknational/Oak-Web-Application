@@ -1,4 +1,4 @@
-import { StoryFn } from "@storybook/react";
+import type { Decorator } from "@storybook/react";
 
 import * as Avo from "../browser-lib/avo/Avo";
 import { analyticsContext } from "../context/Analytics/AnalyticsProvider";
@@ -16,7 +16,7 @@ export const noopTrackingFns = Object.entries(trackingFns).reduce(
   },
   {} as unknown as TrackingFns,
 );
-export default function AnalyticsDecorator(Story: StoryFn) {
+const AnalyticsDecorator: Decorator = (Story) => {
   const value = {
     identify: noop,
     alias: noop,
@@ -33,4 +33,6 @@ export default function AnalyticsDecorator(Story: StoryFn) {
       <Story />
     </analyticsContext.Provider>
   );
-}
+};
+
+export default AnalyticsDecorator;

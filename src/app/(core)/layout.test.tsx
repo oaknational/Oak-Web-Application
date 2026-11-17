@@ -10,12 +10,13 @@ import OakError from "@/errors/OakError";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const mockTopNav = jest.fn().mockResolvedValue(topNavFixture);
-jest.mock("@/node-lib/curriculum-api-2023", () => ({
-  __esModule: true,
-  default: {
-    topNav: () => mockTopNav(),
-  },
-}));
+jest.mock(
+  "@/node-lib/curriculum-api-2023/queries/topNav/appRouterTopNav.query",
+  () => ({
+    __esModule: true,
+    default: () => mockTopNav(),
+  }),
+);
 
 // Unmock the mock created in jest setup to get access to the notFound function
 jest.unmock("next/navigation");

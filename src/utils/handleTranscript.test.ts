@@ -1,6 +1,5 @@
 import { mediaClipsFixture } from "@oaknational/oak-curriculum-schema";
 import { keysToCamelCase } from "zod-to-camel-case";
-import { unstable_cache } from "next/cache";
 
 import {
   getCaptionsFromFile,
@@ -67,12 +66,9 @@ jest.mock("@/utils/gCloudStorage", () => ({
 }));
 
 jest.mock("next/cache", () => ({
-  unstable_cache: jest.fn(
-    (fn: (...args: string[]) => Promise<string | undefined>) => fn,
-  ),
+  cacheLife: jest.fn(),
+  cacheTag: jest.fn(),
 }));
-
-const mockUnstableCache = jest.mocked(unstable_cache);
 
 const mockParse = jest
   .fn()
@@ -153,11 +149,6 @@ describe("getCaptionFromFile", () => {
     expect(getFileFromBucket).toHaveBeenCalledWith(
       "oak-captions-2023-production",
       "test.vtt",
-    );
-    expect(mockUnstableCache).toHaveBeenCalledWith(
-      expect.any(Function),
-      ["lesson-caption-file"],
-      { revalidate: 7200 },
     );
   });
   it("getCaptionsFromFile returns undefined if there is an error", async () => {

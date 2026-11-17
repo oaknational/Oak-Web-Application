@@ -1,8 +1,8 @@
-import { StoryFn } from "@storybook/react";
+import type { Decorator } from "@storybook/react";
 
 import { oakNotificationsContext } from "@/context/OakNotifications/OakNotificationsProvider";
 
-export default function NotificationsDecorator(Story: StoryFn) {
+const NotificationsDecorator: Decorator = (Story) => {
   const NotificationsProvider = oakNotificationsContext.Provider;
 
   const value = {
@@ -17,4 +17,6 @@ export default function NotificationsDecorator(Story: StoryFn) {
       <Story />
     </NotificationsProvider>
   );
-}
+};
+
+export default NotificationsDecorator;

@@ -15,13 +15,14 @@ import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnal
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 
+// We are using dynamic route segments so we can't enable instant navigation as-is.
+export const instant = false;
+
 type LessonDownloadsSuccessPageParams = {
   slug: string;
   unitSlug: string;
   lessonSlug: string;
 };
-
-export const dynamic = "force-static";
 
 const getSuccessData = async (
   programmeSlug: string,
