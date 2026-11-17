@@ -8,12 +8,11 @@ import { nationalCurriculumInsightsGuidanceHref } from "@/common-lib/urls/nation
 
 export const dynamic = "force-dynamic";
 
-export const generateMetadata = async (): Promise<Metadata> => {
-  const { isEnabled: previewMode } = await draftMode();
+export const generateMetadata = (): Metadata => {
   return {
     title: "Curriculum change explained: guidance",
     alternates: { canonical: nationalCurriculumInsightsGuidanceHref() },
-    ...(previewMode ? { robots: { index: false, follow: false } } : {}),
+    robots: { index: false, follow: false },
   };
 };
 

@@ -11,8 +11,15 @@ import {
 import type { NationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
 
 import { NationalCurriculumInsightsHero } from "./Hero";
+import { NationalCurriculumInsightsHeader } from "./InsightHeader";
 import { NationalCurriculumInsightsDownload } from "./Download";
+import { NationalCurriculumInsightsArticle } from "./Article";
 import {
+  NationalCurriculumInsightsConfidence,
+  NationalCurriculumInsightsPreparation,
+  NationalCurriculumInsightsChanges,
+  NationalCurriculumInsightsUnchanged,
+  NationalCurriculumInsightsChecklist,
   NationalCurriculumInsightsFaq,
   NationalCurriculumInsightsGuidanceIntro,
   NationalCurriculumInsightsImageText,
@@ -24,6 +31,7 @@ import {
   NationalCurriculumInsightsQuote,
   NationalCurriculumInsightsRichText,
   NationalCurriculumInsightsSubjectNavigation,
+  NationalCurriculumInsightsSubjectLinks,
   NationalCurriculumInsightsTable,
   NationalCurriculumInsightsVideoCards,
 } from "./Sections";
@@ -54,6 +62,8 @@ const ModuleView = ({
   data: NationalCurriculumInsightsRouteData;
 }) => {
   switch (module.__typename) {
+    case "NationalCurriculumInsightsHeaderSection":
+      return <NationalCurriculumInsightsHeader section={module} data={data} />;
     case "NationalCurriculumInsightsHeroSection":
       return <NationalCurriculumInsightsHero section={module} data={data} />;
     case "NationalCurriculumInsightsOverviewSection":
@@ -79,12 +89,70 @@ const ModuleView = ({
           data={data}
         />
       );
+    case "NationalCurriculumInsightsSubjectLinksSection":
+      return (
+        <NationalCurriculumInsightsSubjectLinks section={module} data={data} />
+      );
     case "NationalCurriculumInsightsNewsletterSection":
       return (
-        <NationalCurriculumInsightsNewsletter section={module} data={data} />
+        <NationalCurriculumInsightsNewsletter
+          section={module}
+          variant={
+            data.route.kind === "hub" || data.route.kind === "guidance"
+              ? "plain"
+              : "highlighted"
+          }
+        />
       );
     case "NationalCurriculumInsightsFaqSection":
       return <NationalCurriculumInsightsFaq section={module} data={data} />;
+    case "NationalCurriculumInsightsChangesSection":
+      return <NationalCurriculumInsightsChanges section={module} />;
+    case "NationalCurriculumInsightsUnchangedSection":
+      return <NationalCurriculumInsightsUnchanged section={module} />;
+    case "NationalCurriculumInsightsChecklistSection":
+      return (
+        <NationalCurriculumInsightsChecklist
+          section={module}
+          variant={data.activeKeyStage ? "keyStage" : "phase"}
+        />
+      );
+    case "NationalCurriculumInsightsPreparationSection":
+      return (
+        <NationalCurriculumInsightsPreparation
+          section={module}
+          variant={data.activeKeyStage ? "keyStage" : "phase"}
+        />
+      );
+    case "NationalCurriculumInsightsConfidenceSection":
+      return <NationalCurriculumInsightsConfidence section={module} />;
+    case "NationalCurriculumInsightsArticleSection": {
+      const phase = data.subject?.tabs.find(
+        ({ kind }) => kind === data.activeTab,
+      )?.label;
+      const heading = [
+        data.activeKeyStage ?? phase,
+        data.subject?.title ?? data.page?.title,
+      ]
+        .filter(Boolean)
+        .join(" ");
+      const hasDownload =
+        [...(data.page?.modules ?? []), ...(data.hub?.modules ?? [])].some(
+          ({ __typename }) =>
+            __typename === "NationalCurriculumInsightsDownloadSection",
+        ) && data.subjects.some(({ tabs }) => tabs.length > 0);
+      return (
+        <NationalCurriculumInsightsArticle
+          heading={heading}
+          hasDownload={hasDownload}
+          sections={module.sections.map((section) => ({
+            id: `insights-${section.id}`,
+            label: section.navigationLabel ?? section.heading,
+            content: <ModuleView module={section} data={data} />,
+          }))}
+        />
+      );
+    }
     case "NationalCurriculumInsightsRichTextSection":
       return <NationalCurriculumInsightsRichText section={module} />;
     case "NationalCurriculumInsightsImageTextSection":
@@ -157,10 +225,19 @@ const PageModuleList = ({
   }
 
   const heroIndex = data.page.modules.findIndex(
-    ({ __typename }) => __typename === "NationalCurriculumInsightsHeroSection",
+    ({ __typename }) =>
+      __typename === "NationalCurriculumInsightsHeaderSection",
   );
   const hero = heroIndex >= 0 ? data.page.modules[heroIndex] : null;
   const modules = data.page.modules.filter((_, index) => index !== heroIndex);
+  const sharedDownload = data.hub?.modules.find(
+    ({ __typename }) =>
+      __typename === "NationalCurriculumInsightsDownloadSection",
+  );
+  const hasPageDownload = modules.some(
+    ({ __typename }) =>
+      __typename === "NationalCurriculumInsightsDownloadSection",
+  );
 
   return (
     <>
@@ -179,13 +256,18 @@ const PageModuleList = ({
           <OakP>{data.page.summary}</OakP>
         </OakBox>
       )}
-      {modules.map((module, index) => (
-        <ModuleView
-          key={`${module.__typename}-${index}`}
-          module={module}
-          data={data}
-        />
-      ))}
+      {modules.map((module, index) => {
+        return (
+          <ModuleView
+            key={`${module.__typename}-${index}`}
+            module={module}
+            data={data}
+          />
+        );
+      })}
+      {!hasPageDownload && sharedDownload ? (
+        <ModuleView module={sharedDownload} data={data} />
+      ) : null}
     </>
   );
 };
@@ -209,15 +291,15 @@ const InsightsTabs = ({
     ? null
     : data.subject.tabs.find(({ kind }) => kind === data.activeTab);
   let tabs: InsightTab[];
-  if (isSubjectOverview) {
+  if (isSubjectOverview || phaseTab?.page.keyStages.length === 0) {
     tabs = [
       {
-        active: true,
+        active: isSubjectOverview,
         href: nationalCurriculumInsightsTabHref(data.subject.slug, "overview"),
         label: `${data.subject.title} ${section.overviewLabel}`,
       },
       ...data.subject.tabs.map(({ kind }) => ({
-        active: false,
+        active: data.activeTab === kind,
         href: nationalCurriculumInsightsTabHref(data.subject!.slug, kind),
         label: `${data.subject!.title} ${
           kind === "primary" ? section.primaryLabel : section.secondaryLabel
@@ -256,12 +338,13 @@ const InsightsTabs = ({
   return (
     <OakBox
       $width="100%"
-      $maxWidth="100%"
+      $maxWidth="spacing-1280"
+      $boxSizing="border-box"
       $overflowX="auto"
       as="nav"
       aria-label={`${data.subject.title} insights`}
       $mh="auto"
-      $ph={["spacing-16", "spacing-32"]}
+      $ph={["spacing-20", "spacing-0"]}
       $pv={["spacing-24", "spacing-64"]}
     >
       <OakTabs
@@ -298,12 +381,7 @@ export const NationalCurriculumInsightsView = ({
 
   if (data.route.kind === "guidance" && data.page) {
     return (
-      <OakFlex
-        as="main"
-        $color="text-primary"
-        $flexDirection="column"
-        $gap="spacing-40"
-      >
+      <OakFlex as="main" $color="text-primary" $flexDirection="column">
         <ModuleList
           data={data}
           modules={data.page.modules}

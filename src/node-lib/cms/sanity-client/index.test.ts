@@ -91,6 +91,7 @@ const insightsSubject = {
   ],
 };
 const insightsHub = {
+  phaseLinks: [],
   id: "nationalCurriculumInsightsHub",
   title: "National curriculum insights",
   summary: "Explore changes",

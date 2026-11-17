@@ -3,8 +3,6 @@ import {
   OakBox,
   OakCheckBox,
   OakFlex,
-  OakGrid,
-  OakGridArea,
   OakHeading,
   OakImage,
   OakP,
@@ -23,7 +21,7 @@ import {
 import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "../PortableText";
 
 import {
-  ContextualSectionProps,
+  SectionProps,
   imageUrl,
   imageAlt,
   guidancePortableTextComponents,
@@ -37,10 +35,15 @@ import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePag
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
+type NewsletterProps =
+  SectionProps<"NationalCurriculumInsightsNewsletterSection"> & {
+    variant: "plain" | "highlighted";
+  };
+
 export const NationalCurriculumInsightsNewsletter = ({
   section,
-  data,
-}: ContextualSectionProps<"NationalCurriculumInsightsNewsletterSection">) => {
+  variant,
+}: NewsletterProps) => {
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [schoolNotListed, setSchoolNotListed] = useState(false);
@@ -54,7 +57,6 @@ export const NationalCurriculumInsightsNewsletter = ({
     hubspotPortalId: INSIGHTS_NEWSLETTER_PORTAL_ID,
   });
   const { track } = useAnalytics();
-  const isGuidance = data.route.kind === "guidance";
   const {
     schools,
     schoolPickerInputValue,
@@ -114,7 +116,9 @@ export const NationalCurriculumInsightsNewsletter = ({
       $boxSizing="border-box"
       as="section"
       id="sign-up"
-      $background={isGuidance ? "bg-primary" : "bg-decorative5-very-subdued"}
+      $background={
+        variant === "plain" ? "bg-primary" : "bg-decorative5-very-subdued"
+      }
       $ph={["spacing-20", "spacing-40"]}
       $pv={["spacing-48", "spacing-40", "spacing-48"]}
       $borderRadius="border-radius-l"
@@ -125,40 +129,40 @@ export const NationalCurriculumInsightsNewsletter = ({
         $mh="auto"
         $width="100%"
         $maxWidth="spacing-1280"
-        $ph={["spacing-0", "spacing-0", "spacing-100"]}
+        $ph={[
+          "spacing-0",
+          "spacing-0",
+          variant === "plain" ? "spacing-80" : "spacing-40",
+        ]}
       >
-        <OakGrid
-          $gridTemplateColumns={[
-            "minmax(0, 1fr)",
-            "minmax(0, 1fr)",
-            "minmax(0, 8fr) minmax(0, 7fr)",
-          ]}
-          $gridTemplateRows={["auto auto auto", "auto auto auto", "auto 1fr"]}
-          $cg="spacing-40"
-          $rg={["spacing-20", "spacing-16"]}
-          $alignItems="start"
+        <OakFlex
+          $pr={["spacing-0", "spacing-0", "spacing-56"]}
+          $flexDirection={["column", "column", "row"]}
+          $gap="spacing-40"
+          $alignItems="center"
         >
-          <OakGridArea
-            $colSpan={1}
-            $colStart={1}
-            $rowStart={1}
+          <OakFlex
             $width="100%"
             $maxWidth={["100%", "spacing-800", "100%"]}
-            $mh="auto"
+            $minWidth="spacing-0"
             $flexDirection="column"
             $gap="spacing-16"
           >
             <OakFlex $alignItems="center" $gap="spacing-12">
-              <OakImage
-                src={imageUrl(
-                  section.illustration,
-                  insightsAssetUrl("newsletter"),
-                )}
-                alt={imageAlt(section.illustration)}
-                style={{ width: 60, height: 50 }}
-                $objectFit="contain"
-                aria-hidden={section.illustration.isPresentational || undefined}
-              />
+              <OakFlex $flexShrink={0}>
+                <OakImage
+                  src={imageUrl(
+                    section.illustration,
+                    insightsAssetUrl("newsletter"),
+                  )}
+                  alt={imageAlt(section.illustration)}
+                  style={{ width: 60, height: 50 }}
+                  $objectFit="contain"
+                  aria-hidden={
+                    section.illustration.isPresentational || undefined
+                  }
+                />
+              </OakFlex>
               <OakHeading
                 tag="h2"
                 id="national-curriculum-insights-newsletter-heading"
@@ -167,66 +171,45 @@ export const NationalCurriculumInsightsNewsletter = ({
                 {section.heading}
               </OakHeading>
             </OakFlex>
-            <OakP
-              $font={isGuidance ? "body-1-bold" : "heading-7"}
-              $mv="spacing-0"
-            >
-              {section.introduction}
-            </OakP>
-          </OakGridArea>
-          <OakGridArea
-            $colSpan={1}
-            $colStart={1}
-            $rowStart={[3, 2, 2]}
-            $width="100%"
-            $maxWidth={["100%", "spacing-800", "100%"]}
-            $mh="auto"
-            $flexDirection="column"
-            $gap="spacing-16"
-          >
-            <OakP $font={isGuidance ? "body-1" : "body-2"} $mv="spacing-0">
-              {section.benefitsHeading ?? "Sign up now for:"}
-            </OakP>
-            <OakUL
-              $display="flex"
-              $flexDirection="column"
-              $gap="spacing-16"
-              $ma="spacing-0"
-              $pl="spacing-24"
-            >
-              {section.benefits.map((benefit) => (
-                <li key={benefit}>
-                  <OakP
-                    $font={isGuidance ? "body-1" : "body-2"}
-                    $mv="spacing-0"
-                  >
-                    {benefit}
-                  </OakP>
-                </li>
-              ))}
-            </OakUL>
-            <PortableTextWithDefaults
-              value={section.privacyPortableText}
-              components={
-                isGuidance ? guidancePortableTextComponents : undefined
-              }
-            />
-          </OakGridArea>
+            <OakFlex $flexDirection="column" $gap="spacing-24">
+              <OakP $font="body-1" $mv="spacing-0">
+                {section.introduction}
+              </OakP>
+              <OakP $font="body-1" $mv="spacing-0">
+                {section.benefitsHeading ?? "Sign up now for:"}
+              </OakP>
+              <OakUL
+                $display="flex"
+                $flexDirection="column"
+                $gap="spacing-12"
+                $ma="spacing-0"
+                $pl="spacing-24"
+              >
+                {section.benefits.map((benefit) => (
+                  <li key={benefit}>
+                    <OakP $font="body-1" $mv="spacing-0">
+                      {benefit}
+                    </OakP>
+                  </li>
+                ))}
+              </OakUL>
+              <PortableTextWithDefaults
+                value={section.privacyPortableText}
+                components={guidancePortableTextComponents}
+              />
+            </OakFlex>
+          </OakFlex>
 
-          <OakGridArea
-            $colSpan={1}
-            $colStart={[1, 1, 2]}
-            $rowStart={[2, 3, 1]}
-            $rowSpan={[1, 1, 2]}
+          <OakFlex
             $width="100%"
             $maxWidth={["100%", "spacing-640", "spacing-480"]}
-            $mh="auto"
-            $mt={["spacing-24", "spacing-32", "spacing-0"]}
+            $flexShrink={0}
             as="form"
+            $position="relative"
+            $zIndex={0}
             onSubmit={onSubmit}
             $gap="spacing-48"
             $flexDirection="column"
-            data-form-id={section.formId ?? undefined}
           >
             <OakInputWithLabel
               label="Name"
@@ -328,8 +311,8 @@ export const NationalCurriculumInsightsNewsletter = ({
                 {successMessage}
               </OakP>
             </OakBox>
-          </OakGridArea>
-        </OakGrid>
+          </OakFlex>
+        </OakFlex>
       </OakBox>
     </OakBox>
   );

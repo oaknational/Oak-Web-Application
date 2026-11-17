@@ -63,19 +63,52 @@ describe("MultiSelect", () => {
   });
 
   it.each(["up", "down"] as const)(
-    "positions the dropdown %s without changing its size",
+    "positions the dropdown %s within the available viewport height",
     (direction) => {
+      const bounds = jest
+        .spyOn(HTMLElement.prototype, "getBoundingClientRect")
+        .mockReturnValue({ top: 300, bottom: 300 } as DOMRect);
       renderWithTheme(<ControlledMultiSelect dropdownDirection={direction} />);
       fireEvent.click(screen.getByTestId("multi-select-trigger"));
 
       expect(screen.getByTestId("multi-select-panel")).toHaveStyle({
         position: "absolute",
-        [direction === "up" ? "bottom" : "top"]: "calc(100% + 0.25rem)",
-        "max-height": "min(60rem,70vh)",
+        [direction === "up" ? "bottom" : "top"]: "0.25rem",
+        "max-height": direction === "up" ? "15rem" : "22.5rem",
         "overflow-y": "auto",
       });
+      expect(
+        screen.getByTestId("multi-select-panel").parentElement,
+      ).toHaveStyle({
+        [direction === "up" ? "top" : "bottom"]: "0rem",
+      });
+      bounds.mockRestore();
     },
   );
+
+  it("resizes the open list without changing its selections", () => {
+    const bounds = jest
+      .spyOn(HTMLElement.prototype, "getBoundingClientRect")
+      .mockReturnValue({ top: 100, bottom: 100 } as DOMRect);
+    const onChange = jest.fn();
+    renderWithTheme(<ControlledMultiSelect onChange={onChange} />);
+    fireEvent.click(screen.getByTestId("multi-select-trigger"));
+    expect(screen.getByTestId("multi-select-panel")).toHaveStyle({
+      "max-height": "30rem",
+    });
+    bounds.mockReturnValue({ top: 500, bottom: 500 } as DOMRect);
+    fireEvent.resize(window);
+    expect(screen.getByTestId("multi-select-panel")).toHaveStyle({
+      "max-height": "15rem",
+    });
+    bounds.mockReturnValue({ top: 600, bottom: 600 } as DOMRect);
+    fireEvent.scroll(document);
+    expect(screen.getByTestId("multi-select-panel")).toHaveStyle({
+      "max-height": "7.5rem",
+    });
+    expect(onChange).not.toHaveBeenCalled();
+    bounds.mockRestore();
+  });
 
   it("keeps an accessible legend for both selection layouts", () => {
     renderWithTheme(<ControlledMultiSelect placeholder="Choose items" />);
@@ -94,6 +127,7 @@ describe("MultiSelect", () => {
     renderWithTheme(<ControlledMultiSelect onChange={onChange} />);
 
     fireEvent.click(screen.getByTestId("multi-select-trigger"));
+    expect(onChange).not.toHaveBeenCalled();
     fireEvent.click(screen.getAllByRole("checkbox", { name: "One" })[0]!);
 
     expect(onChange).toHaveBeenLastCalledWith(["first-one"]);
@@ -154,10 +188,32 @@ describe("MultiSelect", () => {
     const trigger = screen.getByTestId("multi-select-trigger");
 
     fireEvent.click(trigger);
-    fireEvent.keyDown(document, { key: "Escape" });
+    fireEvent.keyDown(trigger, { key: "Escape" });
 
     expect(trigger).toHaveAttribute("aria-expanded", "false");
     expect(trigger).toHaveFocus();
+  });
+
+  it("handles Escape before a parent dialog and leaves the selection unchanged", async () => {
+    const user = userEvent.setup();
+    const onKeyDown = jest.fn();
+    const onChange = jest.fn();
+    renderWithTheme(
+      <div onKeyDown={onKeyDown}>
+        <ControlledMultiSelect onChange={onChange} />
+      </div>,
+    );
+    const trigger = screen.getByTestId("multi-select-trigger");
+    await user.click(trigger);
+    await user.tab();
+    onKeyDown.mockClear();
+    await user.keyboard("{Escape}");
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+    expect(trigger).toHaveFocus();
+    expect(onKeyDown).not.toHaveBeenCalled();
+    expect(onChange).not.toHaveBeenCalled();
+    await user.keyboard("{Escape}");
+    expect(onKeyDown).toHaveBeenCalledTimes(1);
   });
 
   it("disables selection and confirmation", () => {

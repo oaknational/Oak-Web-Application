@@ -200,6 +200,9 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     },
     outputFileTracingIncludes: {
       "**/*": ["node_modules/@swc/core/**/*", "node_modules/@swc/helpers/**/*"],
+      "/api/national-curriculum-insights/download": [
+        "./src/pages-helpers/national-curriculum-insights/docx/template.docx/**/*",
+      ],
     },
 
     // See <https://github.com/vercel/next.js/issues/40183#issuecomment-3063588870>

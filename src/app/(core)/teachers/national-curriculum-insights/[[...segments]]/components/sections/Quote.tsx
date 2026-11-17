@@ -39,7 +39,7 @@ export const NationalCurriculumInsightsQuote = ({
         $pa={["spacing-24", "spacing-48"]}
       >
         <OakQuote
-          quote={section.quote}
+          quote={section.quote.split(/\n\s*\n/)}
           authorName={section.attribution}
           authorTitle={section.role ?? undefined}
           authorImageSrc={authorImageSrc}

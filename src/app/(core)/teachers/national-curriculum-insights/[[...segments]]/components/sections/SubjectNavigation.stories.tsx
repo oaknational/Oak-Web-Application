@@ -11,6 +11,7 @@ const meta = {
     data: subjectData,
     section: {
       __typename: "NationalCurriculumInsightsSubjectNavigationSection",
+      heading: "See what’s changing in your subject",
       phases: ["primary", "secondary"],
       primaryHeading: "Primary",
       secondaryHeading: "Secondary",

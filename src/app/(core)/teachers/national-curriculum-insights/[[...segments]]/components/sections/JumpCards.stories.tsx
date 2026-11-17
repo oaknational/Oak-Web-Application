@@ -17,13 +17,11 @@ const meta = {
       cards: [
         {
           phase: "primary",
-          heading: "Primary Science",
-          linkLabel: "Explore primary changes",
+          heading: "Primary Science curriculum changes",
         },
         {
           phase: "secondary",
-          heading: "Secondary Science",
-          linkLabel: "Explore secondary changes",
+          heading: "Secondary Science curriculum changes",
         },
       ],
     },
@@ -43,13 +41,11 @@ export const KeyStages: Story = {
         cards: [
           {
             keyStage: "KS1",
-            heading: "Key stage 1",
-            linkLabel: "Explore key stage 1 changes",
+            heading: "KS1 Science curriculum changes",
           },
           {
             keyStage: "KS2",
-            heading: "Key stage 2",
-            linkLabel: "Explore key stage 2 changes",
+            heading: "KS2 Science curriculum changes",
           },
         ],
       }}

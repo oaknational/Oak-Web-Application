@@ -9,8 +9,7 @@ import {
   type NationalCurriculumInsightsTabKind,
 } from "@/common-lib/cms-types/nationalCurriculumInsights";
 
-export const nationalCurriculumInsightsPath =
-  "/teachers/national-curriculum-insights";
+export const nationalCurriculumInsightsPath = "/curriculum-change-explained";
 
 export type NationalCurriculumInsightsRoute =
   | { kind: "hub" }
@@ -91,7 +90,7 @@ export const nationalCurriculumInsightsHubHref = () =>
   nationalCurriculumInsightsPath;
 
 export const nationalCurriculumInsightsGuidanceHref = () =>
-  "/curriculum-change-explained/guidance";
+  `${nationalCurriculumInsightsPath}/guidance`;
 
 export const nationalCurriculumInsightsSubjectHref = (subjectSlug: string) =>
   `${nationalCurriculumInsightsPath}/${encodeURIComponent(
@@ -112,10 +111,13 @@ export const nationalCurriculumInsightsSubjectPhaseKeyStageHref = (
   keyStageSlug: string,
 ) => {
   const validPhase = assertPhase(phase);
+  const validKeyStage = nationalCurriculumInsightsKeyStageFromSlug(
+    assertKeyStageSlug(validPhase, keyStageSlug),
+  );
   return `${nationalCurriculumInsightsSubjectPhaseHref(
     subjectSlug,
     validPhase,
-  )}/${encodeURIComponent(assertKeyStageSlug(validPhase, keyStageSlug))}`;
+  )}/${validKeyStage.toLowerCase()}`;
 };
 
 export const nationalCurriculumInsightsTabHref = (
@@ -233,4 +235,23 @@ export const parseNationalCurriculumInsightsRoute = (
     phase: phaseResult.data,
     keyStageSlug: keyStageResult.data,
   };
+};
+
+export const parseCurriculumChangeExplainedRoute = (
+  segments: unknown,
+): NationalCurriculumInsightsRoute | null => {
+  if (!Array.isArray(segments) || segments.length !== 3) {
+    return parseNationalCurriculumInsightsRoute(segments);
+  }
+
+  const keyStage = decodeRouteSegment(segments[2]);
+  if (!keyStage || !/^ks[1-4]$/.test(keyStage)) {
+    return null;
+  }
+
+  return parseNationalCurriculumInsightsRoute([
+    segments[0],
+    segments[1],
+    `key-stage-${keyStage.slice(2)}`,
+  ]);
 };

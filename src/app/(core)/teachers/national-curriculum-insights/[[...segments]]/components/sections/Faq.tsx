@@ -6,6 +6,7 @@ import {
   OakFlex,
   OakHandDrawnHR,
   OakHeading,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "../PortableText";
@@ -20,7 +21,6 @@ export const NationalCurriculumInsightsFaq = ({
     as="section"
     $boxSizing="border-box"
     $background="bg-decorative2-very-subdued"
-    $ph={["spacing-20", "spacing-40"]}
     $pv={
       data.route.kind === "guidance"
         ? "spacing-40"
@@ -29,7 +29,7 @@ export const NationalCurriculumInsightsFaq = ({
     aria-labelledby="national-curriculum-insights-faq-heading"
     data-insights-module="faq"
   >
-    <OakBox $width="100%" $maxWidth="spacing-960" $mh="auto">
+    <OakMaxWidth $maxWidth="spacing-1280" $ph={["spacing-20", "spacing-40"]}>
       <OakBox $maxWidth="spacing-640">
         <OakHeading
           tag="h2"
@@ -73,6 +73,6 @@ export const NationalCurriculumInsightsFaq = ({
           </OakBox>
         ))}
       </OakFlex>
-    </OakBox>
+    </OakMaxWidth>
   </OakBox>
 );
