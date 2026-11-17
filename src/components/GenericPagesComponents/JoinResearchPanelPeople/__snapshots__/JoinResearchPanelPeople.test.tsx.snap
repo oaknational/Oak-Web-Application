@@ -7,27 +7,27 @@ exports[`JoinResearchPanelPeople it renders correct data 1`] = `
       class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-bdvwhi sc-jcFiBM hPWTKU kyGOgc"
+        class="sc-bdvwhi sc-cTAoCz hPWTKU gLmhut"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex gPfPxa"
+          class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc hxtfXp"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd hnIHKZ vrLXS"
+            class="sc-bdvwhi sc-jRQBiJ hnIHKZ cjhGAP"
           >
             <h2
-              class="sc-bkkgYE jihQnU"
+              class="sc-hGPAwl tmVIw"
             >
               Our research team
             </h2>
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU ddNYgu"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU kcaXxr"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd hPWTKU hGJtTC"
+                class="sc-bdvwhi sc-jRQBiJ hPWTKU gbHXKr"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd ikMIbm Bakex"
+                  class="sc-bdvwhi sc-jRQBiJ ikMIbm heSanc"
                 >
                   <span
                     class="sc-bdvwhi kNNMIi"
@@ -35,7 +35,7 @@ exports[`JoinResearchPanelPeople it renders correct data 1`] = `
                   >
                     <img
                       alt=""
-                      class="sc-jRQBiJ iumtav"
+                      class="sc-gsDMPd dtPFue"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -47,10 +47,10 @@ exports[`JoinResearchPanelPeople it renders correct data 1`] = `
                   </span>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd hPWTKU gdeCLE"
+                  class="sc-bdvwhi sc-jRQBiJ hPWTKU kQPGmt"
                 >
                   <h3
-                    class="sc-bkkgYE oUomb"
+                    class="sc-hGPAwl hbfUDj"
                   >
                     Reka Budai
                   </h3>
@@ -58,7 +58,7 @@ exports[`JoinResearchPanelPeople it renders correct data 1`] = `
                     class="sc-bdvwhi hPWTKU"
                   >
                     <p
-                      class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                      class="sc-fKVoIy sc-82983132-0 fGUYFF WxNyd"
                     >
                       Reka is a user researcher with 15+ years' experience, having worked in various education, non-profit and tech organisations in the UK and internationally. She enjoys understanding the day-to-day realities of teachers through qualitative and quantitative research and exploring how we could make our resources and tools more suitable for their needs and their pupils.
                     </p>
@@ -66,10 +66,10 @@ exports[`JoinResearchPanelPeople it renders correct data 1`] = `
                 </div>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd hPWTKU hGJtTC"
+                class="sc-bdvwhi sc-jRQBiJ hPWTKU gbHXKr"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd ikMIbm Bakex"
+                  class="sc-bdvwhi sc-jRQBiJ ikMIbm heSanc"
                 >
                   <span
                     class="sc-bdvwhi kNNMIi"
@@ -77,7 +77,7 @@ exports[`JoinResearchPanelPeople it renders correct data 1`] = `
                   >
                     <img
                       alt=""
-                      class="sc-jRQBiJ iumtav"
+                      class="sc-gsDMPd dtPFue"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -89,10 +89,10 @@ exports[`JoinResearchPanelPeople it renders correct data 1`] = `
                   </span>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd hPWTKU gdeCLE"
+                  class="sc-bdvwhi sc-jRQBiJ hPWTKU kQPGmt"
                 >
                   <h3
-                    class="sc-bkkgYE oUomb"
+                    class="sc-hGPAwl hbfUDj"
                   >
                     Laura Benton
                   </h3>
@@ -100,7 +100,7 @@ exports[`JoinResearchPanelPeople it renders correct data 1`] = `
                     class="sc-bdvwhi hPWTKU"
                   >
                     <p
-                      class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                      class="sc-fKVoIy sc-82983132-0 fGUYFF WxNyd"
                     >
                       Laura is a user researcher with an academic background and 15+ years experience conducting qualitative research with teachers and pupils to inform the design of digital education tools. Since joining Oak she has led research around the pupil experience, SEND and AI, and is also responsible for building research collaborations with academic partners.
                     </p>
