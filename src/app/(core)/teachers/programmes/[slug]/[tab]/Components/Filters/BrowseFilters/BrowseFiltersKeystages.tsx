@@ -25,10 +25,9 @@ export function BrowseFiltersKeystages({
         <OakBox>
           <OakRadioGroup
             name={"keystages" + id}
-            onChange={(e) => {
-              e.currentTarget.focus();
-              setKeystageFilter(e.target.value, data.yearOptions);
-            }}
+            onChange={(e) =>
+              setKeystageFilter(e.target.value, data.yearOptions)
+            }
             value={filters.keystages[0] ?? "all"}
             $flexDirection="row"
             $flexWrap="wrap"

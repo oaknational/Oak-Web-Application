@@ -31,10 +31,7 @@ export function BrowseFiltersTiers({
         <OakBox>
           <OakRadioGroup
             name={"tiers" + id}
-            onChange={(e) => {
-              e.currentTarget.focus();
-              setTierFilter(e.target.value);
-            }}
+            onChange={(e) => setTierFilter(e.target.value)}
             value={filters.tiers[0]}
             $flexDirection="row"
             $flexWrap="wrap"

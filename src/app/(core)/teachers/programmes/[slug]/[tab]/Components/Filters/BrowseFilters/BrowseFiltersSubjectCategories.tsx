@@ -40,10 +40,7 @@ export function BrowseFiltersSubjectCategories({
         <OakBox>
           <OakRadioGroup
             name={"subject-categories_" + id}
-            onChange={(e) => {
-              e.currentTarget.focus();
-              setSubjectCategoryFilter(e.target.value);
-            }}
+            onChange={(e) => setSubjectCategoryFilter(e.target.value)}
             value={subjectCategoryIdAsString}
             $flexDirection="row"
             $flexWrap="wrap"

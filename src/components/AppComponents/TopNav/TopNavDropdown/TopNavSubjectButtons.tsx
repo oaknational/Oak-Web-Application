@@ -50,7 +50,6 @@ const TopNavSubjectButtons = ({
   ) => {
     if (subject.children && subject.children.length > 0) {
       e.preventDefault();
-      e.currentTarget.focus();
       onExamBoardPanelOpen?.(subject);
       return;
     }

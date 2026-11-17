@@ -48,10 +48,7 @@ export function BrowseFiltersThreads({
   return (
     <OakRadioGroup
       name={`threads-${id}`}
-      onChange={(e) => {
-        e.currentTarget.focus();
-        setThreadFilter(e.target.value.trim());
-      }}
+      onChange={(e) => setThreadFilter(e.target.value.trim())}
       value={filters.threads.at(0) ?? ""}
       $gap="spacing-12"
     >

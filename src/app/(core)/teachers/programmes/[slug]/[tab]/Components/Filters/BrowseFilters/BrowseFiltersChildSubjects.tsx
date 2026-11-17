@@ -33,10 +33,7 @@ export function BrowseFiltersChildSubjects({
       {childSubjects.length > 0 && (
         <OakRadioGroup
           name={"childSubjects_" + id}
-          onChange={(e) => {
-            e.currentTarget.focus();
-            setChildSubjectFilter(e.target.value);
-          }}
+          onChange={(e) => setChildSubjectFilter(e.target.value)}
           value={String(filters.childSubjects[0]!)}
           $flexDirection="row"
           $flexWrap="wrap"
