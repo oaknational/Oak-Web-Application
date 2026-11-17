@@ -38,6 +38,12 @@ describe("middleware", () => {
     expect(mockClerkHandler).toHaveBeenCalledWith(req, mockEvent);
   });
 
+  it("runs on the lesson media page so it can resolve the user server-side", () => {
+    expect(config.matcher).toContain(
+      "/teachers/programmes/:slug/units/:unitSlug/lessons/:lessonSlug/media",
+    );
+  });
+
   it.each(["__clerk_handshake", "__clerk_handshake_nonce"])(
     "matches any page carrying a %s param so the handshake can be resolved",
     (key) => {

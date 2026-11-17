@@ -26,6 +26,7 @@ import {
   nationalCurriculumInsightsSubjectLookupParamsSchema,
   implementationGuidesSchema,
   joinResearchPanelPageSchema,
+  ncAlignmentCheckerLandingPageSchema,
 } from "../../../common-lib/cms-types";
 import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
 import getProxiedSanityAssetUrl from "../../../common-lib/urls/getProxiedSanityAssetUrl";
@@ -111,6 +112,11 @@ const getSanityClient = () => ({
       content: result?.content?.[0],
       blogs: result?.blogs,
     }),
+  ),
+  ncAlignmentCheckerLandingPage: getSingleton(
+    sanityGraphqlApi.ncAlignmentCheckerLandingPage,
+    ncAlignmentCheckerLandingPageSchema,
+    (result) => result?.allNcAlignmentCheckerLandingPage?.[0],
   ),
   contactPage: getSingleton(
     sanityGraphqlApi.contactCorePage,
