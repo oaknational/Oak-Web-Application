@@ -1,13 +1,13 @@
 "use client";
 import LayoutSiteFooter from "@/components/AppComponents/LayoutSiteFooter";
 import TopNavMinimal from "@/components/AppComponents/TopNav/TopNavMinimal";
-import ErrorPage from "@/components/GenericPagesComponents/ErrorPane";
+import NotFoundPane from "@/components/GenericPagesComponents/NotFoundPane";
 
 export default function NotFound() {
   return (
     <>
       <TopNavMinimal />
-      <ErrorPage statusCode={404} />
+      <NotFoundPane statusCode={404} />
       <LayoutSiteFooter />
     </>
   );
