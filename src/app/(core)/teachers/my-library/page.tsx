@@ -1,25 +1,16 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 
-import { MyLibraryView } from "./MyLibraryView";
+import { MyLibraryContent } from "./MyLibraryContent";
 
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import { resolveOakHref } from "@/common-lib/urls";
-import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import errorReporter from "@/common-lib/error-reporter";
-import OakError from "@/errors/OakError";
-import { getUserListContent } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent";
-import { UserlistContentApiResponse } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
 import { clerkMetadataSchema } from "@/utils/complexCopyright/getAuthState";
-
-const reportError = errorReporter("educatorApi");
 
 const title = "My library";
 const description = "Save units to your own personal library";
-
-// TD: use suspense boundary to enable streaming
-export const instant = false;
 
 export const metadata: Metadata = {
   title,
@@ -49,26 +40,10 @@ const MyLibraryPage = async () => {
     );
   }
 
-  // Fall back to fetching client-side rather than erroring the whole page
-  let savedUnits: UserlistContentApiResponse | null = null;
-  try {
-    savedUnits = await getUserListContent(getToken, userId);
-  } catch (err) {
-    void reportError(
-      new OakError({
-        code: "educator-api/failed-to-get-saved-units",
-        meta: { userId, error: err },
-      }),
-    );
-  }
-
   return (
-    <TeacherBrowseAnalyticsStoreProvider
-      programmeState={null}
-      accessLevel="my_library"
-    >
-      <MyLibraryView savedUnits={savedUnits} />
-    </TeacherBrowseAnalyticsStoreProvider>
+    <Suspense>
+      <MyLibraryContent getToken={getToken} userId={userId} />
+    </Suspense>
   );
 };
 
