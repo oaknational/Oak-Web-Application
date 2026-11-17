@@ -19,6 +19,7 @@ import CardListing, {
 export type CanonicalLessonHubProps = {
   subjectSlug: string;
   lessonName: string;
+  listingTitle?: string;
   programmesForLesson: Array<{
     subject: string;
     unitTitle: string;
@@ -33,6 +34,7 @@ export type CanonicalLessonHubProps = {
 export const CanonicalLessonHub = ({
   subjectSlug,
   lessonName,
+  listingTitle = "Lesson appears in",
   programmesForLesson,
 }: CanonicalLessonHubProps) => {
   return (
@@ -59,7 +61,7 @@ export const CanonicalLessonHub = ({
             $whiteSpace="nowrap"
             data-testid="year-heading"
           >
-            Lesson appears in
+            {listingTitle}
           </OakHeading>
         </OakBox>
         <OakGrid

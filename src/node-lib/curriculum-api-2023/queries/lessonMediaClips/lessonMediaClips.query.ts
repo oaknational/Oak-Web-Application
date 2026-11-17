@@ -9,6 +9,7 @@ import { constructLessonMediaData } from "./constructLessonMediaClips";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
+import { constructPathwayLesson } from "@/node-lib/curriculum-api-2023/helpers";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import {
   LessonMediaClipsQuery,
@@ -89,17 +90,10 @@ export const lessonMediaClipsQuery =
         ...data,
       } as T;
     } else {
-      const data = constructLessonMediaData(browseData, [
-        {
-          programmeSlug: browseData.programmeSlug,
-          unitSlug: browseData.unitSlug,
-          unitTitle: browseData.unitData.title,
-          keyStageSlug: browseData.programmeFields.keystageSlug,
-          keyStageTitle: browseData.programmeFields.keystageDescription,
-          subjectSlug: browseData.programmeFields.subjectSlug,
-          subjectTitle: browseData.programmeFields.subject,
-        },
-      ]);
+      const pathways = modifiedBrowseData.map((lesson) =>
+        constructPathwayLesson(lessonBrowseDataByKsSchema.parse(lesson)),
+      );
+      const data = constructLessonMediaData(browseData, pathways);
       canonicalLessonMediaClipsSchema.safeParse({
         ...data,
       });
