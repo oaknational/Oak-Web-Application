@@ -1,35 +1,12 @@
 import { z } from "zod";
 import {
-  lessonContentSchema as lessonContentSchemaFull,
   syntheticUnitvariantLessonsByKsSchema,
-  LessonContentCamel as LessonContentCamelFull,
   SyntheticUnitvariantLessonsByKsCamel,
   subjectSlugs,
 } from "@oaknational/oak-curriculum-schema";
 
 import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { lessonDownloadTypeSchema } from "@/common-lib/lessonDownloads";
-
-export const lessonContentSchema = lessonContentSchemaFull.omit({
-  _state: true,
-  exit_quiz: true,
-  starter_quiz: true,
-  video_duration: true,
-});
-
-type LessonContentCamel = Omit<
-  LessonContentCamelFull,
-  "state" | "exitQuiz" | "starterQuiz" | "videoDuration"
->;
-
-export type LessonOverviewContent = Omit<
-  LessonContentCamel,
-  "starterQuiz" | "exitQuiz"
-> & {
-  starterQuiz: QuizQuestion[];
-  exitQuiz: QuizQuestion[];
-};
 
 export const lessonOverviewDownloads = z.array(
   z.object({
