@@ -1,10 +1,51 @@
 "use client";
-import { OakBox } from "@oaknational/oak-components";
+import { OakBox , OakCodeRenderer } from "@oaknational/oak-components";
 
-export function NcAlignmentCheckerPage() {
+import {
+  NcAlignmentCheckerLandingPage,
+  NcAlignmentCheckerLandingPageBlock,
+  NcAlignmentCheckerLandingPageBlockType,
+} from "@/common-lib/cms-types/ncAlignmentChecker";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
+function DefaultComponent(
+  block: NcAlignmentCheckerLandingPageBlock<NcAlignmentCheckerLandingPageBlockType>,
+) {
+  return (
+    <NewGutterMaxWidth>
+      <OakCodeRenderer
+        string={"```" + JSON.stringify(block, null, 2) + "```"}
+      />
+    </NewGutterMaxWidth>
+  );
+}
+
+const pageComponents: {
+  [K in NcAlignmentCheckerLandingPageBlockType]: (
+    props: NcAlignmentCheckerLandingPageBlock<K>,
+  ) => React.ReactNode;
+} = {
+  NcAlignmentCheckerLandingPageHeader: DefaultComponent,
+  NcAlignmentCheckerLandingPageTextAndMedia: DefaultComponent,
+  NcAlignmentCheckerLandingPageSubjectExperts: DefaultComponent,
+  NcAlignmentCheckerLandingPageQuotes: DefaultComponent,
+  NcAlignmentCheckerLandingPageFaqs: DefaultComponent,
+  NcAlignmentCheckerLandingPageSubjectPickerCallout: DefaultComponent,
+};
+
+function renderBlock<K extends NcAlignmentCheckerLandingPageBlockType>(
+  block: NcAlignmentCheckerLandingPageBlock<K>,
+) {
+  return pageComponents[block.__typename](block);
+}
+
+export function NcAlignmentCheckerPage({
+  pageData,
+}: {
+  pageData: NcAlignmentCheckerLandingPage;
+}) {
   return (
     <OakBox $zIndex={"neutral"} $color={"text-primary"}>
-      NC Alignment Checker
+      {pageData.blocks?.map(renderBlock)}
     </OakBox>
   );
 }

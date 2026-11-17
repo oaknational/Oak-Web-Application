@@ -1,23 +1,13 @@
 import { filterRestrictedLessonData } from "./filterRestrictedLessonData";
 
 import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
+import {
+  signedOutAuthState,
+  signedInGeorestrictedAuthState,
+  signedInGeoAuthenticatedAuthState,
+} from "@/__tests__/__helpers__/mockCopyrightRequirements";
 
 const lessonData = teachersLessonOverviewFixture();
-const signedOutAuthState = {
-  isSignedIn: false,
-  isOnboarded: false,
-  isRegionAuthorised: false,
-};
-const signedInGeorestrictedAuthState = {
-  isSignedIn: true,
-  isOnboarded: true,
-  isRegionAuthorised: false,
-};
-const signedInGeoAuthenticatedAuthState = {
-  isSignedIn: true,
-  isOnboarded: true,
-  isRegionAuthorised: true,
-};
 const restrictedFields = {
   lessonMediaClips: null,
   videoMuxPlaybackId: null,

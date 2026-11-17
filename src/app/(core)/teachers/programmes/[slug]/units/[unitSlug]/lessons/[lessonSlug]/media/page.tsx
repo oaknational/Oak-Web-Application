@@ -16,6 +16,9 @@ import { cacheData } from "@/node-lib/cache";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { filterRestrictedLessonMediaData } from "@/utils/complexCopyright/filterRestrictedLessonMediaData";
+import { getLessonCopyrightState } from "@/utils/complexCopyright/getLessonCopyrightState";
+import { getServerAuthState } from "@/utils/complexCopyright/getServerAuthState";
 
 type LessonMediaPageParams = {
   slug: string;
@@ -23,7 +26,7 @@ type LessonMediaPageParams = {
   lessonSlug: string;
 };
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 const getCachedLessonMediaClipsData = cache(
   cacheData(
@@ -82,13 +85,18 @@ const InnerLessonMediaPage = async (
     return notFound();
   }
 
-  const mediaClipsWithTranscripts = await populateMediaClipsWithTranscripts(
-    data.mediaClips,
-  );
+  const authState = await getServerAuthState({
+    subjectSlug: data.subjectSlug,
+    geoRestricted: data.geoRestricted,
+    loginRequired: data.loginRequired,
+  });
+  const filteredData = filterRestrictedLessonMediaData(data, authState);
 
   const lessonData: LessonMediaClipsData = {
-    ...data,
-    mediaClips: mediaClipsWithTranscripts,
+    ...filteredData,
+    mediaClips: await populateMediaClipsWithTranscripts(
+      filteredData.mediaClips,
+    ),
   };
 
   const breadcrumbsSubjectPhaseSlug = getTeacherSubjectPhaseSlug({
@@ -109,6 +117,7 @@ const InnerLessonMediaPage = async (
       <LessonMedia
         isCanonical={false}
         lesson={lessonData}
+        copyrightState={getLessonCopyrightState(data, authState)}
         breadcrumbsSlot={
           <Breadcrumbs
             key="lesson-media-breadcrumbs"
