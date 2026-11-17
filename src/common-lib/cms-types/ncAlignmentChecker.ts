@@ -27,7 +27,7 @@ export type NcAlignmentCheckerLandingPageBlockType = z.infer<
 >;
 
 export const ncAlignmentCheckerLandingPageHeaderSchema = z.object({
-  _id: z.string(),
+  _key: z.string(),
   __typename: z.literal(
     ncAlignmentCheckerLandingPageBlockTypeSchema.enum
       .NcAlignmentCheckerLandingPageHeader,
@@ -39,7 +39,7 @@ export const ncAlignmentCheckerLandingPageHeaderSchema = z.object({
 });
 
 export const ncAlignmentCheckerLandingPageTextAndMediaSchema = z.object({
-  _id: z.string(),
+  _key: z.string(),
   __typename: z.literal(
     ncAlignmentCheckerLandingPageBlockTypeSchema.enum
       .NcAlignmentCheckerLandingPageTextAndMedia,
@@ -51,7 +51,7 @@ export const ncAlignmentCheckerLandingPageTextAndMediaSchema = z.object({
 });
 
 export const ncAlignmentCheckerLandingPageSubjectExpertsSchema = z.object({
-  _id: z.string(),
+  _key: z.string(),
   __typename: z.literal(
     ncAlignmentCheckerLandingPageBlockTypeSchema.enum
       .NcAlignmentCheckerLandingPageSubjectExperts,
@@ -62,7 +62,7 @@ export const ncAlignmentCheckerLandingPageSubjectExpertsSchema = z.object({
 });
 
 export const ncAlignmentCheckerLandingPageQuotesSchema = z.object({
-  _id: z.string(),
+  _key: z.string(),
   __typename: z.literal(
     ncAlignmentCheckerLandingPageBlockTypeSchema.enum
       .NcAlignmentCheckerLandingPageQuotes,
@@ -71,7 +71,7 @@ export const ncAlignmentCheckerLandingPageQuotesSchema = z.object({
 });
 
 export const ncAlignmentCheckerLandingPageFaqsSchema = z.object({
-  _id: z.string(),
+  _key: z.string(),
   __typename: z.literal(
     ncAlignmentCheckerLandingPageBlockTypeSchema.enum
       .NcAlignmentCheckerLandingPageFaqs,
@@ -81,7 +81,7 @@ export const ncAlignmentCheckerLandingPageFaqsSchema = z.object({
 
 export const ncAlignmentCheckerLandingPageSubjectPickerCalloutSchema = z.object(
   {
-    _id: z.string(),
+    _key: z.string(),
     __typename: z.literal(
       ncAlignmentCheckerLandingPageBlockTypeSchema.enum
         .NcAlignmentCheckerLandingPageSubjectPickerCallout,
