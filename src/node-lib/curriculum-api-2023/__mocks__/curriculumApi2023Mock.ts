@@ -46,7 +46,6 @@ const curriculumApi: Pick<
   | "refreshedMVTime"
   | "teachersSitemap"
   | "pupilsSitemap"
-  | "teacherPreviewLesson"
   | "lessonMediaClips"
   | "betaLessonMediaClipsQuery"
   | "teachersPreviewUnitListing"
@@ -87,15 +86,6 @@ const curriculumApi: Pick<
       browseData: lessonBrowseDataFixture({}),
       content: lessonContentFixture({}),
       additionalFiles: null,
-    };
-  }),
-  teacherPreviewLesson: jest.fn(async () => {
-    return {
-      ...lessonOverviewFixture({
-        lessonSlug: "running-as-a-team",
-        yearTitle: "Year 10",
-      }),
-      lessonId: 1,
     };
   }),
   teachersPreviewUnitListing: jest.fn(async () => {
