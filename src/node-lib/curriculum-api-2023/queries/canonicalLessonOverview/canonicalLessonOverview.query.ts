@@ -40,7 +40,7 @@ const getPathways = (
   });
 };
 
-const lessonOverviewQuery =
+const canonicalLessonOverviewQuery =
   (sdk: Sdk) =>
   async (args: { lessonSlug: string }): Promise<CanonicalLessonHubData> => {
     const { lessonSlug } = args;
@@ -79,4 +79,4 @@ const lessonOverviewQuery =
     });
   };
 
-export default lessonOverviewQuery;
+export default canonicalLessonOverviewQuery;

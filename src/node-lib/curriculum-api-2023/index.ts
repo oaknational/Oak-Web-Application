@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import sdk from "./sdk";
-import lessonOverviewQuery from "./queries/canonicalLessonOverview/canonicalLessonOverview.query";
+import canonicalLessonOverviewQuery from "./queries/canonicalLessonOverview/canonicalLessonOverview.query";
 import teachersLessonOverviewQuery from "./queries/teachersLessonOverview/teachersLessonOverview.query";
 import lessonListingQuery from "./queries/lessonListing/lessonListing.query";
 import subjectListingQuery from "./queries/subjectListing/subjectListing.query";
@@ -117,7 +117,7 @@ const curriculumApi2023 = {
   lessonDownloads: lessonDownloadsQuery(sdk),
   lessonMediaClips: lessonMediaClipsQuery(sdk),
   lessonShare: lessonShareQuery(sdk),
-  lessonOverview: lessonOverviewQuery(sdk),
+  canonicalLessonOverview: canonicalLessonOverviewQuery(sdk),
   teachersLessonOverview: teachersLessonOverviewQuery(sdk),
   pupilLessonQuery: pupilLessonQuery(sdk),
   pupilCanonicalLessonRedirectQuery: pupilCanonicalLessonRedirectQuery(sdk),

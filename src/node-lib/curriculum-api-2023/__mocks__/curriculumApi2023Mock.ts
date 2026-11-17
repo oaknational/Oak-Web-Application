@@ -4,10 +4,10 @@ import { subjectBrowseDataFixture } from "../fixtures/subjectBrowseData.fixture"
 import { LessonShareQuery } from "../queries/lessonShare/lessonShare.query";
 import { UnitListingQueryReturn } from "../queries/unitListing/unitListing.query";
 import { topNavFixture } from "../fixtures/topNav.fixture";
+import canonicalLessonHubFixture from "../fixtures/canonicalLessonHub.fixture";
 
 import programmeListingFixture from "@/node-lib/curriculum-api-2023/fixtures/programmeListing.fixture";
 import lessonListingFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
-import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import { CurriculumApi } from "@/node-lib/curriculum-api-2023";
 import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
 import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
@@ -29,6 +29,7 @@ const curriculumApi: Pick<
   CurriculumApi,
   | "curriculumPhaseOptions"
   | "curriculumOverview"
+  | "canonicalLessonOverview"
   | "subjectListingPage"
   | "lessonListing"
   | "programmeListingPage"
@@ -40,7 +41,6 @@ const curriculumApi: Pick<
   | "pupilSubjectListingQuery"
   | "pupilProgrammeListingQuery"
   | "lessonShare"
-  | "lessonOverview"
   | "lessonDownloads"
   | "unitListing"
   | "refreshedMVTime"
@@ -112,8 +112,8 @@ const curriculumApi: Pick<
   lessonShare: jest.fn(async () => {
     return lessonShareFixtures();
   }) as jest.Mocked<LessonShareQuery>,
-  lessonOverview: jest.fn(async () => {
-    return lessonOverviewFixture();
+  canonicalLessonOverview: jest.fn(async () => {
+    return canonicalLessonHubFixture();
   }),
   lessonDownloads: jest.fn(async () => {
     return lessonDownloadsFixtures();
