@@ -4,7 +4,7 @@ import { TopNavProps } from "../TopNav/TopNav";
 
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import AppLayout from "@/components/AppComponents/AppLayout";
-import Error from "@/components/GenericPagesComponents/Error";
+import ErrorPage from "@/components/GenericPagesComponents/ErrorPane";
 
 type ErrorViewProps = {
   onBackClick?: () => void;
@@ -19,7 +19,7 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
       appVariant={"client-error"}
       topNavProps={topNav}
     >
-      <Error statusCode={statusCode} onBackClick={onBackClick} />
+      <ErrorPage statusCode={statusCode} onBackClick={onBackClick} />
     </AppLayout>
   );
 };

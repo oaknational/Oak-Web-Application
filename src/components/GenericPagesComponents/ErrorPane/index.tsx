@@ -22,12 +22,15 @@ const ErrorHeading = styled(OakHeading)`
   text-shadow: ${shadow};
 `;
 
-type ErrorProps = {
+type ErrorPaneProps = {
   onBackClick?: () => void;
   statusCode?: number;
 };
 
-export default function Error({ statusCode, onBackClick }: ErrorProps) {
+export default function ErrorPane({
+  statusCode,
+  onBackClick,
+}: Readonly<ErrorPaneProps>) {
   return (
     <OakMaxWidth $alignItems={"flex-end"}>
       <OakFlex

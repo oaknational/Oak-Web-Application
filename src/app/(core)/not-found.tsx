@@ -1,6 +1,6 @@
 "use client";
-import Error from "@/components/GenericPagesComponents/Error";
+import ErrorPage from "@/components/GenericPagesComponents/ErrorPane";
 
 export default function NotFound() {
-  return <Error statusCode="404" />;
+  return <ErrorPage statusCode={404} />;
 }
