@@ -1,9 +1,9 @@
 import { ResourceType } from "../../types/downloadAndShare.types";
 
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
-import { LessonOverviewDownloads } from "@/node-lib/curriculum-api-2023/queries/canonicalLessonOverview/canonicalLessonOverview.schema";
 import { LegacyCopyrightContent } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { lessonDownloadMetadata } from "@/common-lib/lessonDownloads";
+import { TeachersLessonOverviewDownloads } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 
 export const isResourceTypeSubjectToCopyright = (resource: ResourceType) => {
   return lessonDownloadMetadata[resource]?.subjectToCopyright ?? false;
@@ -34,7 +34,7 @@ export const getResourcesWithoutLegacyCopyright = (
 
 export const getIsResourceDownloadable = (
   resource: ResourceType,
-  downloads: LessonOverviewDownloads,
+  downloads: TeachersLessonOverviewDownloads,
   copyrightContent?: LegacyCopyrightContent,
 ) => {
   const inDownloads = downloads.find((d) => d.type === resource);

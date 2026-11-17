@@ -5,6 +5,11 @@ import LessonMediaPage, { generateMetadata } from "./page";
 
 import { LessonMediaClipsData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+import {
+  mockServerUser,
+  setCurrentUser,
+  User,
+} from "@/__tests__/__helpers__/mockClerkServer";
 
 jest.mock("next/navigation", () => ({
   __esModule: true,
@@ -27,6 +32,13 @@ jest.mock("@/utils/handleTranscript", () => ({
     clips: LessonMediaClipsData["mediaClips"],
   ) => clips,
 }));
+
+jest.mock("@clerk/nextjs/server");
+
+const onboardedUser = {
+  ...mockServerUser,
+  publicMetadata: { owa: { isOnboarded: true, isRegionAuthorised: true } },
+} as User;
 
 const mockErrorReporter = jest.fn();
 jest.mock("@/common-lib/error-reporter", () => ({
@@ -68,6 +80,39 @@ const defaultParams = {
 describe("LessonMediaPage", () => {
   beforeEach(() => {
     mockLessonMediaClips.mockResolvedValue(lessonMediaFixture);
+    setCurrentUser(null);
+  });
+
+  const firstClipUrl = Object.values(lessonMediaFixture.mediaClips)[0]![0]!
+    .mediaObject.url;
+
+  const renderPage = () =>
+    LessonMediaPage({
+      params: Promise.resolve(defaultParams),
+      searchParams: Promise.resolve({}),
+    });
+
+  it("includes media clips in the payload when the lesson is unrestricted", async () => {
+    expect(JSON.stringify(await renderPage())).toContain(firstClipUrl);
+  });
+
+  it("includes media clips in the payload when the user can view restricted content", async () => {
+    mockLessonMediaClips.mockResolvedValue({
+      ...lessonMediaFixture,
+      loginRequired: true,
+    });
+    setCurrentUser(onboardedUser);
+
+    expect(JSON.stringify(await renderPage())).toContain(firstClipUrl);
+  });
+
+  it("omits media clips from the payload when the user cannot view restricted content", async () => {
+    mockLessonMediaClips.mockResolvedValue({
+      ...lessonMediaFixture,
+      loginRequired: true,
+    });
+
+    expect(JSON.stringify(await renderPage())).not.toContain(firstClipUrl);
   });
 
   it("returns 404 when media clips are missing", async () => {

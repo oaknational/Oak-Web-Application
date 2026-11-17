@@ -46,6 +46,7 @@ export type CardListingProps = CardProps & {
   subcopy?: ReactNode;
   tags?: CardListingTags;
   childCards?: Array<CardProps>;
+  headingTag?: "h3";
 };
 
 const CardListing = (props: CardListingProps) => {

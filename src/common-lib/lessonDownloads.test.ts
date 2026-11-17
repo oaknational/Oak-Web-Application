@@ -11,7 +11,6 @@ import {
 } from "./lessonDownloads";
 
 import { lessonDownloadsListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { lessonOverviewDownloads } from "@/node-lib/curriculum-api-2023/queries/canonicalLessonOverview/canonicalLessonOverview.schema";
 import { teachersLessonOverviewDownloads } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import { combinedPreselectedTypeMap } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/combinedPreselectedTypeMap";
 import { getGroupName } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/groupResources";
@@ -42,7 +41,6 @@ describe("lesson download registry", () => {
       const downloads = [{ ...format, exists: true }];
       expect(lessonDownloadTypeSchema.parse(format.type)).toBe(format.type);
       expect(lessonDownloadsListSchema.safeParse(downloads).success).toBe(true);
-      expect(lessonOverviewDownloads.safeParse(downloads).success).toBe(true);
       expect(teachersLessonOverviewDownloads.safeParse(downloads).success).toBe(
         true,
       );

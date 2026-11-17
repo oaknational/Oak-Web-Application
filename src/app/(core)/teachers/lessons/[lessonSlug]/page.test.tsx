@@ -11,11 +11,12 @@ jest.mock("next/navigation", () => ({
   unstable_rethrow: jest.fn(),
 }));
 
-const mockLessonOverview = jest.fn();
+const mockCanonicalLessonOverview = jest.fn();
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   __esModule: true,
   default: {
-    lessonOverview: (...args: unknown[]) => mockLessonOverview(...args),
+    canonicalLessonOverview: (...args: unknown[]) =>
+      mockCanonicalLessonOverview(...args),
   },
 }));
 
@@ -39,7 +40,7 @@ beforeEach(() => {
 
 describe("Canonical lesson hub page", () => {
   it("passes lesson data and variant links to the shared hub", async () => {
-    mockLessonOverview.mockResolvedValue({
+    mockCanonicalLessonOverview.mockResolvedValue({
       subjectSlug: "science",
       lessonTitle: "Lesson title",
       pathways: [
@@ -74,13 +75,13 @@ describe("Canonical lesson hub page", () => {
         ]}
       />,
     );
-    expect(mockLessonOverview).toHaveBeenCalledWith({
+    expect(mockCanonicalLessonOverview).toHaveBeenCalledWith({
       lessonSlug: "lesson-slug",
     });
   });
 
   it("propagates unexpected lesson fetch errors", async () => {
-    mockLessonOverview.mockRejectedValue(new Error("API unavailable"));
+    mockCanonicalLessonOverview.mockRejectedValue(new Error("API unavailable"));
 
     await expect(CanonicalLessonHubPage(props)).rejects.toThrow(
       "API unavailable",
@@ -88,7 +89,7 @@ describe("Canonical lesson hub page", () => {
   });
 
   it("redirects when a lesson is in one programme", async () => {
-    mockLessonOverview.mockResolvedValue({ pathways: [pathway] });
+    mockCanonicalLessonOverview.mockResolvedValue({ pathways: [pathway] });
 
     await CanonicalLessonHubPage(props);
 
@@ -100,13 +101,13 @@ describe("Canonical lesson hub page", () => {
 
 describe("generateMetadata", () => {
   it("returns empty metadata when the fetch fails", async () => {
-    mockLessonOverview.mockRejectedValue(new Error("Not found"));
+    mockCanonicalLessonOverview.mockRejectedValue(new Error("Not found"));
 
     await expect(generateMetadata(props)).resolves.toEqual({});
   });
 
   it("generates metadata with the lesson title and description", async () => {
-    mockLessonOverview.mockResolvedValue({ lessonTitle: "Title" });
+    mockCanonicalLessonOverview.mockResolvedValue({ lessonTitle: "Title" });
 
     const result = await generateMetadata(props);
 

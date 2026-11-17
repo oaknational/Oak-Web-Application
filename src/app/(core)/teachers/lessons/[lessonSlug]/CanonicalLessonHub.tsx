@@ -54,7 +54,7 @@ export const CanonicalLessonHub = ({
           $maxWidth="fit-content"
         >
           <OakHeading
-            tag="h3"
+            tag="h2"
             $font="heading-5"
             $overflow="hidden"
             $textOverflow="ellipsis"
@@ -94,6 +94,7 @@ export const CanonicalLessonHub = ({
                   tier: programme.tier,
                   pathway: programme.pathway,
                 })}
+                headingTag="h3"
               />
             </OakGridArea>
           ))}

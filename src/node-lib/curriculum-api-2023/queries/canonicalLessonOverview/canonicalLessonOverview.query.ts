@@ -1,4 +1,4 @@
-import { LessonOverviewQuery } from "../../generated/sdk";
+import { CanonicalLessonOverviewQuery } from "../../generated/sdk";
 import { constructPathwayLesson } from "../../helpers";
 import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 
@@ -12,7 +12,7 @@ import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 
 const getPathways = (
-  res: LessonOverviewQuery,
+  res: CanonicalLessonOverviewQuery,
 ): CanonicalLessonHubData["pathways"] => {
   const pathwayBrowseDataSchema = lessonBrowseDataByKsSchema.pick({
     lesson_slug: true,
@@ -40,16 +40,16 @@ const getPathways = (
   });
 };
 
-const lessonOverviewQuery =
+const canonicalLessonOverviewQuery =
   (sdk: Sdk) =>
   async (args: { lessonSlug: string }): Promise<CanonicalLessonHubData> => {
     const { lessonSlug } = args;
-    const res = await sdk.lessonOverview({
+    const res = await sdk.canonicalLessonOverview({
       lessonSlug,
     });
 
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
-      LessonOverviewQuery["browseData"][number]
+      CanonicalLessonOverviewQuery["browseData"][number]
     >({
       journey: "teacher",
       queryName: "lessonOverviewQuery",
@@ -79,4 +79,4 @@ const lessonOverviewQuery =
     });
   };
 
-export default lessonOverviewQuery;
+export default canonicalLessonOverviewQuery;
