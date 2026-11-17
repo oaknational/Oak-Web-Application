@@ -1,3 +1,10 @@
+## [1.1279.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1279.0...v1.1279.1) (2026-11-17)
+
+
+### Bug Fixes
+
+* wrap text on emab board links in search item dropdown ([f9f9298](https://github.com/oaknational/Oak-Web-Application/commit/f9f92988dbf56a757aee82e137c96526d8c49c55))
+
 # [1.1279.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1278.0...v1.1279.0) (2026-11-17)
 
 
