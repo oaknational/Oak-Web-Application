@@ -18,6 +18,9 @@ import { getSearchFilters } from "@/context/Search/getSearchFilters";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 
+// We are using search params so we can't enable instant navigation as-is.
+export const instant = false;
+
 export const metadata: Metadata = {
   title: "Search for Free Teaching Resources",
   description: "Search for Free Teaching Resources",
