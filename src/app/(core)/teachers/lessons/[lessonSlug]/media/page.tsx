@@ -115,7 +115,7 @@ const CanonicalLessonMediaHubPage = async (
       lessonSlug,
       unitSlug: pathway.unitSlug,
       programmeSlug: pathway.programmeSlug,
-      query: clipQuery,
+      ...(clipQuery ? { query: clipQuery } : {}),
     }),
   }));
 

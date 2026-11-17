@@ -1,8 +1,7 @@
-import { screen, within } from "@testing-library/react";
+import { CanonicalLessonHub } from "../CanonicalLessonHub";
 
 import CanonicalLessonMediaHubPage, { generateMetadata } from "./page";
 
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { lessonMediaClipsCanonicalFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
@@ -28,7 +27,6 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   },
 }));
 
-const render = renderWithProviders();
 const props = {
   params: Promise.resolve({ lessonSlug: "lesson-slug" }),
 };
@@ -73,80 +71,45 @@ beforeEach(() => {
 });
 
 describe("Canonical lesson media hub", () => {
-  it("shows the subject image and a card with details for each variant", async () => {
-    const page = await CanonicalLessonMediaHubPage(props);
-    const { container } = render(<>{page}</>);
+  it.each([undefined, "123"])(
+    "passes media data and variant links to the shared hub with clip %s",
+    async (video) => {
+      const page = await CanonicalLessonMediaHubPage({
+        ...props,
+        searchParams: Promise.resolve({ video }),
+      });
+      const query = video ? `?video=${video}` : "";
 
-    expect(
-      screen.getByRole("heading", { name: "Media clips appear in" }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("heading", { level: 1, name: fixture.lessonTitle }),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector('img[src*="subject-icons/science.svg"]'),
-    ).toBeInTheDocument();
-
-    const cards = screen.getAllByRole("listitem");
-    expect(cards).toHaveLength(2);
-    [firstPathway, secondPathway].forEach((pathway, index) => {
-      const card = within(cards[index]!);
-      [
-        pathway.subjectTitle,
-        pathway.unitTitle,
-        pathway.yearGroupTitle,
-        pathway.examBoardTitle,
-        pathway.tierTitle,
-      ].forEach((text) => expect(card.getByText(text)).toBeInTheDocument());
-      expect(card.getByRole("link")).toHaveAttribute(
-        "href",
-        `/teachers/programmes/${pathway.programmeSlug}/units/${pathway.unitSlug}/lessons/lesson-slug/media`,
+      expect(page).toEqual(
+        <CanonicalLessonHub
+          subjectSlug="science"
+          lessonName={fixture.lessonTitle}
+          listingTitle="Media clips appear in"
+          programmesForLesson={[
+            {
+              subject: "Science",
+              unitTitle: "Forces",
+              examboard: "AQA",
+              tier: "Foundation",
+              year: "Year 10",
+              pathway: null,
+              href: `/teachers/programmes/science-secondary-year-10-aqa-foundation/units/forces/lessons/lesson-slug/media${query}`,
+            },
+            {
+              subject: "Science",
+              unitTitle: "Motion",
+              examboard: "Edexcel",
+              tier: "Higher",
+              year: "Year 11",
+              pathway: null,
+              href: `/teachers/programmes/science-secondary-year-11-edexcel-higher/units/motion/lessons/lesson-slug/media${query}`,
+            },
+          ]}
+        />,
       );
-    });
-  });
-
-  it("shows a separate card and tag for each citizenship pathway", async () => {
-    mockMedia.mockResolvedValue(
-      lessonMediaClipsCanonicalFixture({
-        pathways: [
-          {
-            ...basePathway,
-            subjectSlug: "citizenship",
-            subjectTitle: "Citizenship",
-            programmeSlug: "citizenship-secondary-year-10-core",
-            pathwayTitle: "Core",
-          },
-          {
-            ...basePathway,
-            subjectSlug: "citizenship",
-            subjectTitle: "Citizenship",
-            programmeSlug: "citizenship-secondary-year-10-gcse",
-            pathwayTitle: "GCSE",
-          },
-        ],
-      }),
-    );
-
-    const page = await CanonicalLessonMediaHubPage(props);
-    render(<>{page}</>);
-
-    expect(screen.getAllByRole("listitem")).toHaveLength(2);
-    expect(screen.getAllByText("Citizenship")).toHaveLength(2);
-    expect(screen.getByText("Core")).toBeInTheDocument();
-    expect(screen.getByText("GCSE")).toBeInTheDocument();
-  });
-
-  it("preserves the selected clip on every variant link", async () => {
-    const page = await CanonicalLessonMediaHubPage({
-      ...props,
-      searchParams: Promise.resolve({ video: "123" }),
-    });
-    render(<>{page}</>);
-
-    screen.getAllByRole("link").forEach((link) => {
-      expect(link.getAttribute("href")).toMatch(/\/media\?video=123$/);
-    });
-  });
+      expect(mockMedia).toHaveBeenCalledWith({ lessonSlug: "lesson-slug" });
+    },
+  );
 
   it.each([undefined, "123"])(
     "redirects a single variant to its media page with clip %s",

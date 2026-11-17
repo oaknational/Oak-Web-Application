@@ -1,9 +1,5 @@
-import { screen } from "@testing-library/react";
-
+import { CanonicalLessonHub } from "./CanonicalLessonHub";
 import CanonicalLessonHubPage, { generateMetadata } from "./page";
-
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { LessonPathway } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 const mockRedirect = jest.fn();
 jest.mock("next/navigation", () => ({
@@ -13,7 +9,6 @@ jest.mock("next/navigation", () => ({
   },
   redirect: (url: string) => mockRedirect(url),
   unstable_rethrow: jest.fn(),
-  usePathname: () => "/",
 }));
 
 const mockLessonOverview = jest.fn();
@@ -24,235 +19,96 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   },
 }));
 
+const props = {
+  params: Promise.resolve({ lessonSlug: "lesson-slug" }),
+};
+const pathway = {
+  programmeSlug: "science-secondary-year-10-aqa-foundation",
+  unitSlug: "forces",
+  subjectTitle: "Science",
+  unitTitle: "Forces",
+  examBoardTitle: "AQA",
+  tierTitle: "Foundation",
+  yearGroupTitle: "Year 10",
+  pathwayTitle: null,
+};
+
+beforeEach(() => {
+  jest.clearAllMocks();
+});
+
 describe("Canonical lesson hub page", () => {
-  const render = renderWithProviders();
-
-  const renderPageWithPathways = async (
-    lessonSlug: string,
-    pathways: Partial<LessonPathway>[],
-  ) => {
+  it("passes lesson data and variant links to the shared hub", async () => {
     mockLessonOverview.mockResolvedValue({
-      subjectSlug: "maths",
+      subjectSlug: "science",
       lessonTitle: "Lesson title",
-      yearTitle: "Year 9",
-      pathways,
-    });
-
-    const page = await CanonicalLessonHubPage({
-      params: Promise.resolve({ lessonSlug }),
-    });
-
-    render(<>{page}</>);
-  };
-
-  it("returns not found when lesson data is null", async () => {
-    mockLessonOverview.mockRejectedValue(
-      new Error("NEXT_HTTP_ERROR_FALLBACK;404"),
-    );
-
-    await expect(
-      CanonicalLessonHubPage({
-        params: Promise.resolve({ lessonSlug: "lesson-slug" }),
-      }),
-    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
-  });
-  it("redirects when a lesson is in one programme", async () => {
-    mockLessonOverview.mockResolvedValue({
       pathways: [
-        {
-          programmeSlug: "english-primary-ks1",
-          unitSlug: "nursery-rhymes-reading-poetry",
-          unitTitle: "Nursery rhymes: reading poetry",
-          keyStageSlug: "ks1",
-          keyStageTitle: "Key Stage 1",
-          subjectSlug: "english",
-          subjectTitle: "English",
-          lessonCohort: "2023-2024",
-          examBoardSlug: null,
-          examBoardTitle: null,
-          tierSlug: null,
-          tierTitle: null,
-          pathwayTitle: null,
-        },
+        pathway,
+        { ...pathway, programmeSlug: "science-secondary-year-11" },
       ],
     });
 
-    await CanonicalLessonHubPage({
-      params: Promise.resolve({ lessonSlug: "lesson-slug" }),
+    expect(await CanonicalLessonHubPage(props)).toEqual(
+      <CanonicalLessonHub
+        subjectSlug="science"
+        lessonName="Lesson title"
+        programmesForLesson={[
+          {
+            subject: "Science",
+            unitTitle: "Forces",
+            examboard: "AQA",
+            tier: "Foundation",
+            year: "Year 10",
+            pathway: null,
+            href: "/teachers/programmes/science-secondary-year-10-aqa-foundation/units/forces/lessons/lesson-slug",
+          },
+          {
+            subject: "Science",
+            unitTitle: "Forces",
+            examboard: "AQA",
+            tier: "Foundation",
+            year: "Year 10",
+            pathway: null,
+            href: "/teachers/programmes/science-secondary-year-11/units/forces/lessons/lesson-slug",
+          },
+        ]}
+      />,
+    );
+    expect(mockLessonOverview).toHaveBeenCalledWith({
+      lessonSlug: "lesson-slug",
     });
-    expect(mockRedirect).toHaveBeenCalledWith(
-      "/teachers/programmes/english-primary-ks1/units/nursery-rhymes-reading-poetry/lessons/lesson-slug",
+  });
+
+  it("propagates unexpected lesson fetch errors", async () => {
+    mockLessonOverview.mockRejectedValue(new Error("API unavailable"));
+
+    await expect(CanonicalLessonHubPage(props)).rejects.toThrow(
+      "API unavailable",
     );
   });
-  it("renders a card for each examboard option", async () => {
-    const pathways: Partial<LessonPathway>[] = [
-      {
-        subjectTitle: "Mathematics",
-        unitTitle: "Algebra Basics",
-        examBoardTitle: "AQA",
-        tierTitle: null,
-        programmeSlug: "maths-ks4-aqa",
-        unitSlug: "algebra",
-      },
-      {
-        subjectTitle: "Mathematics",
-        unitTitle: "Algebra Basics",
-        examBoardTitle: "Edexcel",
-        tierTitle: null,
-        programmeSlug: "maths-ks4-edexcel",
-        unitSlug: "algebra",
-      },
-    ];
 
-    await renderPageWithPathways("examboard-options", pathways);
+  it("redirects when a lesson is in one programme", async () => {
+    mockLessonOverview.mockResolvedValue({ pathways: [pathway] });
 
-    expect(screen.getAllByTestId("card-listing-container")).toHaveLength(2);
-    expect(screen.getByText("AQA")).toBeInTheDocument();
-    expect(screen.getByText("Edexcel")).toBeInTheDocument();
-    expect(
-      screen.getAllByRole("link").map((link) => link.getAttribute("href")),
-    ).toEqual([
-      expect.stringContaining(
-        "/teachers/programmes/maths-ks4-aqa/units/algebra/lessons/examboard-options",
-      ),
-      expect.stringContaining(
-        "/teachers/programmes/maths-ks4-edexcel/units/algebra/lessons/examboard-options",
-      ),
-    ]);
-  });
+    await CanonicalLessonHubPage(props);
 
-  it("renders a card for each subject option", async () => {
-    const pathways: Partial<LessonPathway>[] = [
-      {
-        subjectTitle: "English",
-        unitTitle: "Poetry Analysis",
-        examBoardTitle: null,
-        tierTitle: null,
-        programmeSlug: "english-ks4",
-        unitSlug: "poetry",
-      },
-      {
-        subjectTitle: "Literature",
-        unitTitle: "Poetry Analysis",
-        examBoardTitle: null,
-        tierTitle: null,
-        programmeSlug: "literature-ks4",
-        unitSlug: "poetry",
-      },
-    ];
-
-    await renderPageWithPathways("subject-options", pathways);
-
-    expect(screen.getAllByTestId("card-listing-container")).toHaveLength(2);
-    expect(screen.getByText("English")).toBeInTheDocument();
-    expect(screen.getByText("Literature")).toBeInTheDocument();
-    expect(
-      screen.getAllByRole("link").map((link) => link.getAttribute("href")),
-    ).toEqual([
-      expect.stringContaining(
-        "/teachers/programmes/english-ks4/units/poetry/lessons/subject-options",
-      ),
-      expect.stringContaining(
-        "/teachers/programmes/literature-ks4/units/poetry/lessons/subject-options",
-      ),
-    ]);
-  });
-
-  it("renders a card for each tier option", async () => {
-    const pathways: Partial<LessonPathway>[] = [
-      {
-        subjectTitle: "Mathematics",
-        unitTitle: "Number Sense",
-        examBoardTitle: null,
-        tierTitle: "Foundation",
-        programmeSlug: "maths-ks4-foundation",
-        unitSlug: "numbers",
-      },
-      {
-        subjectTitle: "Mathematics",
-        unitTitle: "Number Sense",
-        examBoardTitle: null,
-        tierTitle: "Higher",
-        programmeSlug: "maths-ks4-higher",
-        unitSlug: "numbers",
-      },
-    ];
-
-    await renderPageWithPathways("tier-options", pathways);
-
-    expect(screen.getAllByTestId("card-listing-container")).toHaveLength(2);
-    expect(screen.getByText("Foundation")).toBeInTheDocument();
-    expect(screen.getByText("Higher")).toBeInTheDocument();
-    expect(
-      screen.getAllByRole("link").map((link) => link.getAttribute("href")),
-    ).toEqual([
-      expect.stringContaining(
-        "/teachers/programmes/maths-ks4-foundation/units/numbers/lessons/tier-options",
-      ),
-      expect.stringContaining(
-        "/teachers/programmes/maths-ks4-higher/units/numbers/lessons/tier-options",
-      ),
-    ]);
-  });
-  it("renders a card for each pathways option", async () => {
-    const pathways: Partial<LessonPathway>[] = [
-      {
-        subjectTitle: "Citizenship",
-        unitTitle: "Money Sense",
-        examBoardTitle: null,
-        tierTitle: null,
-        pathwayTitle: "Core",
-        programmeSlug: "citizenship-ks4-core",
-        unitSlug: "money",
-      },
-      {
-        subjectTitle: "Citizenship",
-        unitTitle: "Money Sense",
-        examBoardTitle: null,
-        tierTitle: null,
-        pathwayTitle: "GCSE",
-        programmeSlug: "citizenship-ks4-gcse",
-        unitSlug: "money",
-      },
-    ];
-
-    await renderPageWithPathways("pathway-options", pathways);
-
-    expect(screen.getAllByTestId("card-listing-container")).toHaveLength(2);
-    expect(screen.getByText("Core")).toBeInTheDocument();
-    expect(screen.getByText("GCSE")).toBeInTheDocument();
-    expect(
-      screen.getAllByRole("link").map((link) => link.getAttribute("href")),
-    ).toEqual([
-      expect.stringContaining(
-        "/teachers/programmes/citizenship-ks4-core/units/money/lessons/pathway-options",
-      ),
-      expect.stringContaining(
-        "/teachers/programmes/citizenship-ks4-gcse/units/money/lessons/pathway-options",
-      ),
-    ]);
+    expect(mockRedirect).toHaveBeenCalledWith(
+      "/teachers/programmes/science-secondary-year-10-aqa-foundation/units/forces/lessons/lesson-slug",
+    );
   });
 });
 
 describe("generateMetadata", () => {
-  it("returns empty object when fetch fails", async () => {
+  it("returns empty metadata when the fetch fails", async () => {
     mockLessonOverview.mockRejectedValue(new Error("Not found"));
 
-    const result = await generateMetadata({
-      params: Promise.resolve({ lessonSlug: "lesson-slug" }),
-    });
-
-    expect(result).toEqual({});
+    await expect(generateMetadata(props)).resolves.toEqual({});
   });
 
-  it("generates metadata with correct title and description", async () => {
-    mockLessonOverview.mockResolvedValue({
-      lessonTitle: "Title",
-    });
+  it("generates metadata with the lesson title and description", async () => {
+    mockLessonOverview.mockResolvedValue({ lessonTitle: "Title" });
 
-    const result = await generateMetadata({
-      params: Promise.resolve({ lessonSlug: "lesson-slug" }),
-    });
+    const result = await generateMetadata(props);
 
     expect(result.title).toBe("Lesson hub: Title");
     expect(result.openGraph?.title).toBe("Lesson hub: Title");
