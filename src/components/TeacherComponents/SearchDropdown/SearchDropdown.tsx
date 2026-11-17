@@ -101,7 +101,9 @@ const SearchDropdown: FC<
                       page: props.buttonLinkProps.page,
                     })}
                   >
-                    <OakSpan $font="heading-7">{buttonTitle}</OakSpan>
+                    <OakSpan $textWrap={"nowrap"} $font="heading-7">
+                      {buttonTitle}
+                    </OakSpan>
                   </StyledOakLink>
                 </OakLI>
               );
