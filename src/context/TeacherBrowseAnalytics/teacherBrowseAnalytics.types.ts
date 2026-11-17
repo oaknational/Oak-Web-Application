@@ -199,7 +199,6 @@ export type TeacherBrowseTrackFns = {
     yearGroupSlug: string;
   }) => void;
   unitDownloaded: () => void;
-  unitDownloadStarted: () => void;
   unitSequenceRefined: (props: {
     selectedThread?: { slug: string; title: string }; // TD add filters to state
     subjectCategory?: string; // TD add filters to state

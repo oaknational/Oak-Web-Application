@@ -78,4 +78,12 @@ query lessonOverview(
     lesson_id
     works_list
   }
+  restrictions: published_mv_lesson_restriction_levels_2(
+    where: { slug: { _eq: $lessonSlug } }
+  ) {
+    tpc_works_max_restriction
+    tpc_quizimages_max_restriction
+    tpc_media_max_restriction
+    tpc_downloadablefiles_max_restriction
+  }
 }

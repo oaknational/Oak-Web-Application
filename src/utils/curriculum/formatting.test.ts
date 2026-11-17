@@ -2,6 +2,7 @@ import { PortableTextBlock } from "@portabletext/types";
 
 import {
   getYearGroupTitle,
+  getYearSlugFromTitle,
   getPhaseText,
   getShortPhaseText,
   buildPageTitle,
@@ -112,6 +113,20 @@ describe("getYearGroupTitle", () => {
         ),
       ).toEqual("Year 7 units");
     });
+  });
+});
+
+describe("getYearSlugFromTitle", () => {
+  it.each([
+    ["Year 6", "year-6"],
+    ["Reception", "reception"],
+    ["All years", "all-years"],
+  ])("converts %s to %s", (title, slug) => {
+    expect(getYearSlugFromTitle(title)).toBe(slug);
+  });
+
+  it("returns undefined for an unrecognised year title", () => {
+    expect(getYearSlugFromTitle("Not a year")).toBeUndefined();
   });
 });
 

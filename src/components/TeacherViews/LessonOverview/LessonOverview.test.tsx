@@ -104,6 +104,19 @@ describe("lessonOverview.view", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
+  it("offers a lesson guide download when only its DOCX format exists", () => {
+    renderLessonOverview({
+      lesson: {
+        ...lessonOverviewFixture(),
+        isCanonical: false,
+        lessonGuideUrl: "https://example.com/guide.pdf",
+        downloads: [{ type: "lesson-guide-docx", exists: true }],
+      },
+    });
+
+    expect(screen.getByText("Download lesson guide")).toBeInTheDocument();
+  });
+
   describe("when sub-header feature flag is enabled", () => {
     beforeEach(() => {
       (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("test");

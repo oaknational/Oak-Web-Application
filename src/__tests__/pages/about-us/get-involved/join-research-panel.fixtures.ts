@@ -1,5 +1,6 @@
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 import { JoinResearchPanelPageBlock } from "@/common-lib/cms-types";
+import { mockBlogPreview } from "@/components/GenericPagesComponents/BlogsPreview/BlogsPreview.fixtures";
 
 export const joinResearchPanelHeaderBlockFixture: JoinResearchPanelPageBlock<"JoinResearchPanelPageHeader"> =
   {
@@ -33,7 +34,40 @@ export const joinResearchPanelCalloutBlockFixture: JoinResearchPanelPageBlock<"J
             url: "https://cdn.sanity.io/images/cuvjke51/production/0123c8cd16c86e1095af18a8f65d427d1c8dd2f9-80x80.svg",
           },
         },
-        bodyRaw: portableTextFromString("Join the research panel callout"),
+        bodyRaw: [
+          {
+            ...portableTextFromString("Join the research panel callout")[0],
+            _key: "key0001",
+          },
+        ],
+      },
+      {
+        icon: {
+          asset: {
+            _id: "image-b5ee98bf752dff246de88f50ad59e07131902189-80x80-svg",
+            url: "https://cdn.sanity.io/images/cuvjke51/production/b5ee98bf752dff246de88f50ad59e07131902189-80x80.svg",
+          },
+        },
+        bodyRaw: [
+          {
+            ...portableTextFromString("Join the research panel callout")[0],
+            _key: "key0002",
+          },
+        ],
+      },
+      {
+        icon: {
+          asset: {
+            _id: "image-8d46237f90341dc2f1ef9f99db370a97e3d014d9-72x54-svg",
+            url: "https://cdn.sanity.io/images/cuvjke51/production/8d46237f90341dc2f1ef9f99db370a97e3d014d9-72x54.svg",
+          },
+        },
+        bodyRaw: [
+          {
+            ...portableTextFromString("Join the research panel callout")[0],
+            _key: "key0003",
+          },
+        ],
       },
     ],
   };
@@ -90,6 +124,13 @@ export const joinResearchPanelPeopleBlockFixture: JoinResearchPanelPageBlock<"Jo
     ],
   };
 
+export const joinResearchPanelBlogsPreviewBlockFixture: JoinResearchPanelPageBlock<"JoinResearchPanelPageBlogsPreview"> =
+  {
+    __typename: "JoinResearchPanelPageBlogsPreview",
+    title: "Blogs",
+    label: "View all blogs",
+  };
+
 export const joinResearchPanelFaqsBlockFixture: JoinResearchPanelPageBlock<"JoinResearchPanelPageFaqs"> =
   {
     __typename: "JoinResearchPanelPageFaqs",
@@ -113,16 +154,20 @@ export const joinResearchPanelContactUsBlockFixture: JoinResearchPanelPageBlock<
   };
 
 export const joinResearchPanelPageFixture = {
-  blocks: [
-    joinResearchPanelHeaderBlockFixture,
-    joinResearchPanelCalloutBlockFixture,
-    joinResearchPanelInfoBlockFixture(),
-    joinResearchPanelJourneyBlockFixture,
-    joinResearchPanelInfoBlockFixture("Info 2"),
-    joinResearchPanelPeopleBlockFixture,
-    joinResearchPanelFaqsBlockFixture,
-    joinResearchPanelContactUsBlockFixture,
-  ],
+  content: {
+    blocks: [
+      joinResearchPanelHeaderBlockFixture,
+      joinResearchPanelCalloutBlockFixture,
+      joinResearchPanelInfoBlockFixture(),
+      joinResearchPanelJourneyBlockFixture,
+      joinResearchPanelInfoBlockFixture("Info 2"),
+      joinResearchPanelPeopleBlockFixture,
+      joinResearchPanelBlogsPreviewBlockFixture,
+      joinResearchPanelFaqsBlockFixture,
+      joinResearchPanelContactUsBlockFixture,
+    ],
+  },
+  blogs: [mockBlogPreview("1"), mockBlogPreview("2"), mockBlogPreview("3")],
 };
 
 export default joinResearchPanelPageFixture;

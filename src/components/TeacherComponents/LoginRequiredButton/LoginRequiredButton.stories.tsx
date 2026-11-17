@@ -4,8 +4,11 @@ import { ClerkProvider, SignIn, SignOutButton } from "@clerk/nextjs";
 
 import LoginRequiredButton from "./LoginRequiredButton";
 
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
+
 const meta: Meta<typeof LoginRequiredButton> = {
   component: LoginRequiredButton,
+  decorators: [TeacherBrowseAnalyticsDecorator],
   parameters: {
     controls: {
       include: ["signUpProps", "actionProps", "buttonVariant", "sizeVariant"],

@@ -1,44 +1,58 @@
 import elasticResponse2023 from "./elasticResponse.2023.fixture.json";
-import { fetchResults } from "./fetchResults";
+import { fetchResultsWithCache } from "./fetchResults";
 
-const mockResponse = {
+import OakError from "@/errors/OakError";
+
+const mockSuccessResponse = {
+  ok: true,
+  status: 200,
   json: jest.fn().mockResolvedValue(elasticResponse2023),
+  clone: jest.fn().mockReturnValue({
+    text: jest.fn().mockResolvedValue(JSON.stringify(elasticResponse2023)),
+  }),
 } as unknown as Response;
 
-const mockFetch = jest.spyOn(global, "fetch").mockResolvedValue(mockResponse);
+const mockFetch = jest
+  .spyOn(global, "fetch")
+  .mockResolvedValue(mockSuccessResponse);
 
-const mockHandleFetchError = jest.fn();
-
-jest.mock("@/browser-lib/getBrowserConfig", () => () => "test");
-jest.mock("@/utils/handleFetchError", () => () => mockHandleFetchError);
+jest.mock("@/browser-lib/getBrowserConfig", () => {
+  return jest.fn((key: string) => {
+    const config: Record<string, string> = {
+      clientAppBaseUrl: "http://localhost:3000",
+      searchApiUrl2023: "test",
+    };
+    return config[key] || "test";
+  });
+});
 
 describe("search-api/2023/fetchResults", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
   test("should call fetch with correct query", async () => {
-    await fetchResults({ term: "test" });
+    await fetchResultsWithCache({ term: "test" });
 
     expect(mockFetch).toHaveBeenCalledWith("test", {
       method: "POST",
-      mode: "cors",
       redirect: "follow",
       headers: new Headers({
         "Content-Type": "application/json",
+        Origin: "http://localhost:3000",
       }),
-      body: '{"term":"test"}',
+      body: '{"term":"test","legacy":"filterOutAll"}',
     });
   });
   test("should respond with transformed data", async () => {
-    const results = await fetchResults({ term: "test" });
-    expect(results).toHaveLength(4);
-    expect(results[0]).toMatchObject({
+    const { hitList } = await fetchResultsWithCache({ term: "test" });
+    expect(hitList).toHaveLength(4);
+    expect(hitList[0]).toMatchObject({
       _id: "Z38Yx44Bc8iIk5N9Klp6",
       _index: "lessons_1712737230873",
       _score: 104.29718,
     });
 
-    expect(results[0]?._source).toMatchObject({
+    expect(hitList[0]?._source).toMatchObject({
       slug: "the-relationship-between-macbeth-and-lady-macbeth",
       title: "The relationship between Macbeth and Lady Macbeth",
       programme_slug: "english-secondary-ks4-eduqas",
@@ -54,5 +68,28 @@ describe("search-api/2023/fetchResults", () => {
       pupil_lesson_outcome:
         "I can describe the relationship between Macbeth and Lady Macbeth.",
     });
+  });
+  test("should throw OakError when response is not ok", async () => {
+    const errorBody = JSON.stringify({ error: "Internal Server Error" });
+    const mockErrorResponse = {
+      ok: false,
+      status: 500,
+      clone: jest.fn().mockReturnValue({
+        text: jest.fn().mockResolvedValue(errorBody),
+      }),
+    } as unknown as Response;
+
+    mockFetch.mockResolvedValue(mockErrorResponse);
+
+    await expect(fetchResultsWithCache({ term: "test" })).rejects.toThrow(
+      OakError,
+    );
+    await expect(fetchResultsWithCache({ term: "test" })).rejects.toMatchObject(
+      {
+        code: "search/unknown",
+        originalError: 500,
+        meta: { body: errorBody },
+      },
+    );
   });
 });

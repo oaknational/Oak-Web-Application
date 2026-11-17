@@ -2,6 +2,10 @@ import { LessonResourceType } from "@/components/TeacherComponents/helpers/lesso
 import { ResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
 import { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
+import {
+  getLessonDownloadTitle,
+  getLessonDownloadTypes,
+} from "@/common-lib/lessonDownloads";
 
 /**
  * Maps each resource type to its associated download types.
@@ -11,15 +15,15 @@ export const DOWNLOAD_TYPES_BY_RESOURCE: Record<
   LessonResourceType,
   ResourceType[]
 > = {
-  "lesson-guide": ["lesson-guide-pdf"],
-  "slide-deck": ["presentation"],
+  "lesson-guide": getLessonDownloadTypes("lesson-guide"),
+  "slide-deck": getLessonDownloadTypes("slide-deck"),
   "media-clips": [],
   "lesson-details": [],
   video: [],
-  worksheet: ["worksheet-pdf", "worksheet-pptx"],
-  "starter-quiz": ["intro-quiz-answers", "intro-quiz-questions"],
-  "exit-quiz": ["exit-quiz-answers", "exit-quiz-questions"],
-  "additional-material": ["supplementary-docx", "supplementary-pdf"],
+  worksheet: getLessonDownloadTypes("worksheet"),
+  "starter-quiz": getLessonDownloadTypes("starter-quiz"),
+  "exit-quiz": getLessonDownloadTypes("exit-quiz"),
+  "additional-material": getLessonDownloadTypes("additional-material"),
 };
 
 /**
@@ -57,12 +61,12 @@ export const TRACKING_TITLES_BY_RESOURCE: Partial<
 export const DOWNLOAD_TITLES_BY_RESOURCE: Partial<
   Record<LessonResourceType, string>
 > = {
-  "lesson-guide": "lesson guide (PDF)",
-  "starter-quiz": "starter quiz questions (PDF)",
-  "exit-quiz": "exit quiz questions (PDF)",
-  worksheet: "worksheet (PPTX/PDF)",
-  "slide-deck": "lesson slides (PPTX)",
-  "additional-material": "additional material (PDF)",
+  "lesson-guide": getLessonDownloadTitle("lesson-guide"),
+  "starter-quiz": getLessonDownloadTitle("starter-quiz"),
+  "exit-quiz": getLessonDownloadTitle("exit-quiz"),
+  worksheet: getLessonDownloadTitle("worksheet"),
+  "slide-deck": getLessonDownloadTitle("slide-deck"),
+  "additional-material": getLessonDownloadTitle("additional-material"),
 };
 
 /**

@@ -45,10 +45,10 @@ const createAvoMock = () => {
     lessonShareStarted: jest.fn(),
     mediaClipsPlaylistPlayed: jest.fn(),
     programmeAccessed: jest.fn(),
+    signInStarted: jest.fn(),
     teachingMaterialsSelected: jest.fn(),
     unitAccessed: jest.fn(),
     unitDownloaded: jest.fn(),
-    unitDownloadStarted: jest.fn(),
     unitRefined: jest.fn(),
     userOnboardingCompleted: jest.fn(),
     userOnboardingProgressed: jest.fn(),
@@ -122,6 +122,29 @@ const onboardingPayload = {
 describe("TeacherBrowseAnalyticsStore", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+  });
+
+  test("signInStarted tracks without programme state", () => {
+    const { store, avo } = buildStore({
+      programmeState: null,
+      accessLevel: "homepage",
+    });
+
+    store.getState().track.signInStarted({
+      componentType: ComponentType.TOPNAV_MY_LIBRARY_BUTTON,
+    });
+
+    expect(avo.signInStarted).toHaveBeenCalledWith({
+      platform: "owa",
+      product: "teacher lesson resources",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      engagementIntent: "use",
+      componentType: "topnav_my_library_button",
+      journeyId: "journey-1",
+      accessLevel: "homepage",
+    });
+    expect(mockReportAnalyticsError).not.toHaveBeenCalled();
   });
 
   test("contentBlockNotificationDisplayed derives lesson properties from programme state", () => {
@@ -708,7 +731,6 @@ describe("TeacherBrowseAnalyticsStore", () => {
       { teachingMaterialType: TeachingMaterialType.EXIT_QUIZ },
     ],
     ["unitDownloaded", undefined],
-    ["unitDownloadStarted", undefined],
     ["curriculumExplainerExplored", undefined],
     [
       "curriculumResourcesDownloadRefined",

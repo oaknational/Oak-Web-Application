@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { match } from "path-to-regexp";
 
 export const siteAreas = {
   teachers: "TEACHERS",
@@ -8,22 +9,20 @@ export const siteAreas = {
 
 export type SelectedArea = (typeof siteAreas)[keyof typeof siteAreas];
 
+const matchPupilsArea = match("/pupils", { end: false });
+
 const useSelectedArea = () => {
   const pathname = usePathname();
-  const initialClientArea = pathname?.includes("/pupils")
-    ? siteAreas.pupils
-    : siteAreas.teachers;
-
-  const [clientArea, setClientArea] = useState<SelectedArea>(initialClientArea);
-  useEffect(() => {
-    // This prevents a hydration error. See: https://nextjs.org/docs/app/api-reference/functions/use-pathname#avoid-hydration-mismatch-with-rewrites
-    const clientArea = pathname?.includes("/pupils")
+  const areaFromPathname =
+    pathname && matchPupilsArea(pathname)
       ? siteAreas.pupils
       : siteAreas.teachers;
-    if (initialClientArea !== clientArea) {
-      setClientArea(clientArea);
-    }
-  }, [pathname, initialClientArea]);
+
+  const [clientArea, setClientArea] = useState<SelectedArea>(areaFromPathname);
+  useEffect(() => {
+    // This prevents a hydration error. See: https://nextjs.org/docs/app/api-reference/functions/use-pathname#avoid-hydration-mismatch-with-rewrites
+    setClientArea(areaFromPathname);
+  }, [areaFromPathname]);
 
   return clientArea;
 };
