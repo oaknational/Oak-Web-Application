@@ -8,7 +8,6 @@ import bugsnagNotify from "./bugsnagNotify";
 
 import { consentClient } from "@/browser-lib/cookie-consent/consentClient";
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 export type ErrorData = Record<string, unknown> & {
   severity?: Event["severity"];
@@ -60,6 +59,16 @@ function setHasBeenReported(maybeError: unknown) {
     if ("hasBeenReported" in maybeError) {
       maybeError.hasBeenReported = true;
     }
+  }
+}
+
+function initialiseServerSideSentry() {
+  if (!isBrowser && !Sentry.getClient() && process.env.SENTRY_DSN) {
+    Sentry.init({
+      dsn: process.env.SENTRY_DSN,
+      environment: process.env.SENTRY_ENVIRONMENT,
+      sendDefaultPii: false,
+    });
   }
 }
 
@@ -135,6 +144,8 @@ const errorReporter = (
     }
 
     try {
+      initialiseServerSideSentry();
+
       if (Sentry.getClient()) {
         Sentry.withScope((scope) => {
           scope.setTag("context", context);
