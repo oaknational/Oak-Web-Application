@@ -1,11 +1,14 @@
-/* istanbul ignore file */
 "use client";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import LayoutSiteFooter from "@/components/AppComponents/LayoutSiteFooter";
+import TopNavMinimal from "@/components/AppComponents/TopNav/TopNavMinimal";
+import ErrorPage from "@/components/GenericPagesComponents/ErrorPane";
 
 export default function NotFound() {
-  const router = useRouter();
-  useEffect(() => {
-    router.replace("/404");
-  }, [router]);
+  return (
+    <>
+      <TopNavMinimal />
+      <ErrorPage statusCode={404} />
+      <LayoutSiteFooter />
+    </>
+  );
 }
