@@ -44,7 +44,7 @@ jest.mock("@/utils/featureFlagChecks/server", () => ({
 }));
 
 /**
- * The default export returns `<InnerMcpPage />`, an async server component,
+ * The default export returns `<NcAlignmentChecker />`, an async server component,
  * which React 18 can't render client-side, so resolve it manually.
  */
 const renderPage = async () => {
