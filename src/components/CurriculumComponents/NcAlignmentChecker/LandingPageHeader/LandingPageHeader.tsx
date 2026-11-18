@@ -23,7 +23,7 @@ export default function NcAlignmentCheckerLandingPageHeader({
   title,
   icon,
   bodyRaw,
-}: NcAlignmentCheckerLandingPageHeaderProps) {
+}: Readonly<NcAlignmentCheckerLandingPageHeaderProps>) {
   return (
     <OakBox
       $background="bg-decorative1-main"
