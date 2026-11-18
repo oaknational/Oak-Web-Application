@@ -72,71 +72,70 @@ jest.mock("@sentry/nextjs", () => ({
 describe("common-lib/error-reporter", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.mocked(Sentry.getClient).mockReset();
+    jest
+      .mocked(Sentry.getClient)
+      .mockReturnValue({} as ReturnType<typeof Sentry.getClient>);
   });
 
-  describe("[enabled]: errorReporter()()", () => {
+  describe("Sentry initialisation", () => {
+    const originalDsn = process.env.SENTRY_DSN;
+    const originalEnvironment = process.env.SENTRY_ENVIRONMENT;
+
     beforeEach(() => {
       jest.clearAllMocks();
       jest.spyOn(consentClient, "getConsent").mockReturnValue("granted");
 
       (testError as { hasBeenReported?: boolean }).hasBeenReported = undefined;
+      process.env.SENTRY_DSN = "https://example@example.com/123";
+      process.env.SENTRY_ENVIRONMENT = "preview";
     });
 
-    describe("Sentry initialisation", () => {
-      const originalDsn = process.env.SENTRY_DSN;
-      const originalEnvironment = process.env.SENTRY_ENVIRONMENT;
-
-      beforeEach(() => {
-        process.env.SENTRY_DSN = "https://example@example.com/123";
-        process.env.SENTRY_ENVIRONMENT = "preview";
-      });
-
-      afterEach(() => {
-        if (originalDsn === undefined) {
-          delete process.env.SENTRY_DSN;
-        } else {
-          process.env.SENTRY_DSN = originalDsn;
-        }
-
-        if (originalEnvironment === undefined) {
-          delete process.env.SENTRY_ENVIRONMENT;
-        } else {
-          process.env.SENTRY_ENVIRONMENT = originalEnvironment;
-        }
-      });
-
-      it("initialises Sentry on the server when no client exists", async () => {
-        jest
-          .mocked(Sentry.getClient)
-          .mockReturnValueOnce(undefined)
-          .mockReturnValueOnce({} as ReturnType<typeof Sentry.getClient>);
-
-        await reportError(new Error("Initialisation test"));
-
-        expect(Sentry.init).toHaveBeenCalledWith({
-          dsn: process.env.SENTRY_DSN,
-          environment: "preview",
-          sendDefaultPii: false,
-        });
-      });
-
-      it("does not initialise Sentry when a client already exists", async () => {
-        await reportError(new Error("Existing client test"));
-
-        expect(Sentry.init).not.toHaveBeenCalled();
-        expect(Sentry.captureException).toHaveBeenCalled();
-      });
-
-      it("does not initialise Sentry without a DSN", async () => {
+    afterEach(() => {
+      if (originalDsn === undefined) {
         delete process.env.SENTRY_DSN;
+      } else {
+        process.env.SENTRY_DSN = originalDsn;
+      }
 
-        jest.mocked(Sentry.getClient).mockReturnValue(undefined);
+      if (originalEnvironment === undefined) {
+        delete process.env.SENTRY_ENVIRONMENT;
+      } else {
+        process.env.SENTRY_ENVIRONMENT = originalEnvironment;
+      }
+    });
 
-        await reportError(new Error("Missing DSN test"));
+    it("initialises Sentry on the server when no client exists", async () => {
+      jest
+        .mocked(Sentry.getClient)
+        .mockReturnValueOnce(undefined)
+        .mockReturnValueOnce({} as ReturnType<typeof Sentry.getClient>);
 
-        expect(Sentry.init).not.toHaveBeenCalled();
-        expect(Sentry.captureException).not.toHaveBeenCalled();
+      await reportError(new Error("Initialisation test"));
+
+      expect(Sentry.init).toHaveBeenCalledWith({
+        dsn: process.env.SENTRY_DSN,
+        environment: "preview",
+        sendDefaultPii: false,
       });
+    });
+
+    it("does not initialise Sentry when a client already exists", async () => {
+      await reportError(new Error("Existing client test"));
+
+      expect(Sentry.init).not.toHaveBeenCalled();
+      expect(Sentry.captureException).toHaveBeenCalled();
+    });
+
+    it("does not initialise Sentry without a DSN", async () => {
+      delete process.env.SENTRY_DSN;
+
+      jest.mocked(Sentry.getClient).mockReturnValue(undefined);
+
+      await reportError(new Error("Missing DSN test"));
+
+      expect(Sentry.init).not.toHaveBeenCalled();
+      expect(Sentry.captureException).not.toHaveBeenCalled();
     });
   });
 });
