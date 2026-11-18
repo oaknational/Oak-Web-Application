@@ -29,7 +29,7 @@ const getCachedNcAlignmentCheckerCms = cache(
   ),
 );
 
-const InnerMcpPage = async () => {
+const NcAlignmentCheckerServerPage = async () => {
   const cookieStore = await cookies();
   const isEnabled =
     (await isFeatureFlagEnabledServer(cookieStore, "nc-alignment-checker")) ??
@@ -52,4 +52,7 @@ const InnerMcpPage = async () => {
   return <NcAlignmentCheckerPage pageData={pageData} />;
 };
 
-export default withPageErrorHandling(InnerMcpPage, "nc-alignment-checker");
+export default withPageErrorHandling(
+  NcAlignmentCheckerServerPage,
+  "nc-alignment-checker",
+);
