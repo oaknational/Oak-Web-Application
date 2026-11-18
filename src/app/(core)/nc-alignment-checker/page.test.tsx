@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
 
-import NcAlignmentChecker from "./page";
+import NcAlignmentChecker, { generateMetadata } from "./page";
 
 import "@/__tests__/__helpers__/ResizeObserverMock";
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
@@ -91,5 +91,21 @@ describe("/nc-alignment-checker", () => {
       .mockResolvedValue(null as never);
 
     await expect(renderPage()).rejects.toThrow("NEXT_HTTP_ERROR_FALLBACK;404");
+  });
+
+  it("renders the CMS blocks when the feature flag is enabled", async () => {
+    jest.mocked(isFeatureFlagEnabledServer).mockResolvedValue(true);
+    jest.mocked(CMSClient.ncAlignmentCheckerLandingPage).mockResolvedValue({
+      blocks: [],
+      seo: {
+        title: "Test SEO Title",
+        description: "Test SEO Description",
+      },
+    } as never);
+
+    expect(await generateMetadata()).toEqual({
+      title: "Test SEO Title",
+      description: "Test SEO Description",
+    });
   });
 });
