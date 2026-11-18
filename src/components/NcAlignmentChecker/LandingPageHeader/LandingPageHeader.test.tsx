@@ -1,4 +1,6 @@
-import LandingPageHeader, { basic } from ".";
+import { basic } from "./LandingPageHeader.fixtures";
+
+import LandingPageHeader from ".";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 

@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import NcAlignmentCheckerLandingPageHeader, { basic } from ".";
+import { basic } from "./LandingPageHeader.fixtures";
+
+import NcAlignmentCheckerLandingPageHeader from ".";
 
 const meta = {
   component: NcAlignmentCheckerLandingPageHeader,
