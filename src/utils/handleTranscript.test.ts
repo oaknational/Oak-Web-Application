@@ -9,10 +9,10 @@ import {
   populateMediaClipsWithTranscripts,
   extractIdFromUrl,
 } from "./handleTranscript";
+import { getFileFromBucket } from "./gCloudStorage";
 
-import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import { getFileFromBucket } from "@/utils/gCloudStorage";
+import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 
 describe("removeWebVttCharacters ", () => {
   const sentences = [
@@ -174,7 +174,7 @@ describe("getCaptionFromFile", () => {
 describe("populateLessonWithTranscript", () => {
   it("handles lessons with transcript sentences", async () => {
     const lesson = await populateLessonWithTranscript(
-      lessonOverviewFixture({
+      teachersLessonOverviewFixture({
         transcriptSentences: "sentence 1, sentence 2",
       }),
     );
@@ -183,7 +183,10 @@ describe("populateLessonWithTranscript", () => {
   });
   it("handles lessons without transcript sentences", async () => {
     const lesson = await populateLessonWithTranscript(
-      lessonOverviewFixture({ videoTitle: "test", transcriptSentences: null }),
+      teachersLessonOverviewFixture({
+        videoTitle: "test",
+        transcriptSentences: null,
+      }),
     );
 
     expect(lesson.transcriptSentences).toEqual(["sentence 1 sentence 2"]);

@@ -1,5 +1,5 @@
 import { LessonPathway } from "../../shared.schema";
-import { LessonBrowseDataByKs } from "../lessonOverview/lessonOverview.schema";
+import { LessonBrowseDataByKs } from "../canonicalLessonOverview/canonicalLessonOverview.schema";
 
 export const constructLessonMediaData = (
   browseData: LessonBrowseDataByKs,
