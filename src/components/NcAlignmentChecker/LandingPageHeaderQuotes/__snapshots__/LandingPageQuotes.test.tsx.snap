@@ -1,0 +1,384 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`NcAlignmentCheckerLandingPageQuotes it renders correct data 1`] = `
+<body>
+  <div>
+    <div
+      data-overlay-container="true"
+    >
+      <div
+        class="sc-bdvwhi iatEdD"
+      >
+        <div
+          class="sc-bdvwhi sc-jcFiBM hPWTKU kyGOgc"
+        >
+          <div
+            class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex lfnHax"
+          >
+            <div
+              aria-label="Quotes"
+              class="sc-bdvwhi sc-gsDMPd ccjonw eMsqfE"
+              role="region"
+            >
+              <div
+                class="sc-bdvwhi sc-gsDMPd eATZRc Bakex"
+              >
+                <div
+                  activeindex="0"
+                  class="sc-bdvwhi sc-gsDMPd sc-iukzCE lonfsv Bakex cnpdNP"
+                >
+                  <div
+                    aria-live="polite"
+                    class="sc-bdvwhi sc-gsDMPd jueNsL iEFjEb"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd iQnezj Bakex"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                      >
+                        <div
+                          class="sc-bdvwhi dHZJks"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd sc-dwFTru hPWTKU kirjqU gqIbDr"
+                          >
+                            <p
+                              class="sc-hGPAwl dsYCxW"
+                            >
+                              “
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur
+                              ”
+                            </p>
+                          </div>
+                        </div>
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd hPWTKU gEAnZR"
+                        >
+                          <span
+                            class="sc-bdvwhi LoEut sc-DtpbB jfOdbe"
+                            role="presentation"
+                          >
+                            <img
+                              alt=""
+                              class="sc-jRQBiJ hssYEG"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              sizes="100vw"
+                              src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Ffix-adopt-2368-add-image-to-quote%2Ffe20f52637a818f5dcb397565b8c7a5d15fb7bba-367x382.png&w=3840&q=75"
+                              srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Ffix-adopt-2368-add-image-to-quote%2Ffe20f52637a818f5dcb397565b8c7a5d15fb7bba-367x382.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Ffix-adopt-2368-add-image-to-quote%2Ffe20f52637a818f5dcb397565b8c7a5d15fb7bba-367x382.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Ffix-adopt-2368-add-image-to-quote%2Ffe20f52637a818f5dcb397565b8c7a5d15fb7bba-367x382.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Ffix-adopt-2368-add-image-to-quote%2Ffe20f52637a818f5dcb397565b8c7a5d15fb7bba-367x382.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Ffix-adopt-2368-add-image-to-quote%2Ffe20f52637a818f5dcb397565b8c7a5d15fb7bba-367x382.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Ffix-adopt-2368-add-image-to-quote%2Ffe20f52637a818f5dcb397565b8c7a5d15fb7bba-367x382.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Ffix-adopt-2368-add-image-to-quote%2Ffe20f52637a818f5dcb397565b8c7a5d15fb7bba-367x382.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Ffix-adopt-2368-add-image-to-quote%2Ffe20f52637a818f5dcb397565b8c7a5d15fb7bba-367x382.png&w=3840&q=75 3840w"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
+                          </span>
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd hPWTKU cIPGhJ"
+                          >
+                            <p
+                              class="sc-hGPAwl jRTTvg"
+                            >
+                              Firstname Surname
+                            </p>
+                            <p
+                              class="sc-hGPAwl xxZLO"
+                            >
+                              Head at Secondary School
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-live="off"
+                    class="sc-bdvwhi sc-gsDMPd jueNsL iEFjEb"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd iQnezj Bakex"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                      >
+                        <div
+                          class="sc-bdvwhi dHZJks"
+                        >
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd sc-dwFTru hPWTKU kirjqU gqIbDr"
+                          >
+                            <p
+                              class="sc-hGPAwl dsYCxW"
+                            >
+                              “
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur
+                              ”
+                            </p>
+                          </div>
+                        </div>
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd hPWTKU gEAnZR"
+                        >
+                          <span
+                            class="sc-bdvwhi LoEut sc-DtpbB jfOdbe"
+                            role="presentation"
+                          >
+                            <img
+                              alt=""
+                              class="sc-jRQBiJ hssYEG"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              sizes="100vw"
+                              src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Ffix-adopt-2368-add-image-to-quote%2Ffe20f52637a818f5dcb397565b8c7a5d15fb7bba-367x382.png&w=3840&q=75"
+                              srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Ffix-adopt-2368-add-image-to-quote%2Ffe20f52637a818f5dcb397565b8c7a5d15fb7bba-367x382.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Ffix-adopt-2368-add-image-to-quote%2Ffe20f52637a818f5dcb397565b8c7a5d15fb7bba-367x382.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Ffix-adopt-2368-add-image-to-quote%2Ffe20f52637a818f5dcb397565b8c7a5d15fb7bba-367x382.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Ffix-adopt-2368-add-image-to-quote%2Ffe20f52637a818f5dcb397565b8c7a5d15fb7bba-367x382.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Ffix-adopt-2368-add-image-to-quote%2Ffe20f52637a818f5dcb397565b8c7a5d15fb7bba-367x382.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Ffix-adopt-2368-add-image-to-quote%2Ffe20f52637a818f5dcb397565b8c7a5d15fb7bba-367x382.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Ffix-adopt-2368-add-image-to-quote%2Ffe20f52637a818f5dcb397565b8c7a5d15fb7bba-367x382.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Ffix-adopt-2368-add-image-to-quote%2Ffe20f52637a818f5dcb397565b8c7a5d15fb7bba-367x382.png&w=3840&q=75 3840w"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
+                          </span>
+                          <div
+                            class="sc-bdvwhi sc-gsDMPd hPWTKU cIPGhJ"
+                          >
+                            <p
+                              class="sc-hGPAwl jRTTvg"
+                            >
+                              Firstname Surname
+                            </p>
+                            <p
+                              class="sc-hGPAwl xxZLO"
+                            >
+                              Head at Secondary School
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="sc-bdvwhi sc-gsDMPd hPWTKU ipyKkN"
+              >
+                <div
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU eIBEMq"
+                >
+                  <svg
+                    aria-label="Position indicator: 1 of 2: Selected item"
+                    fill="none"
+                    height="17"
+                    role="img"
+                    viewBox="0 0 16 17"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="8"
+                      cy="8.67798"
+                      fill="#222222"
+                      r="7"
+                      stroke="#222222"
+                      stroke-width="2"
+                    />
+                  </svg>
+                  <svg
+                    aria-label="Position indicator: 2 of 2: Not selected"
+                    fill="none"
+                    height="17"
+                    role="img"
+                    viewBox="0 0 16 17"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="8"
+                      cy="8.67798"
+                      fill="#FFFFFF"
+                      r="7"
+                      stroke="#222222"
+                      stroke-width="2"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="sc-bdvwhi sc-gsDMPd hPWTKU gFzTFK"
+                >
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm"
+                  >
+                    <button
+                      aria-label="Back"
+                      class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                      disabled=""
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                      >
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                        >
+                          <div
+                            class="sc-bdvwhi kREHdL shadow"
+                          />
+                          <span
+                            class="sc-bdvwhi cERAFe"
+                            data-icon-for="button"
+                          >
+                            <img
+                              alt=""
+                              class="sc-jRQBiJ hzHDoX"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/rbvzan0ozubmr4j0uqdn.svg"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
+                          </span>
+                        </div>
+                        <span
+                          class="sc-dkPwfY cSKbCa"
+                        />
+                      </div>
+                    </button>
+                  </div>
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm"
+                  >
+                    <button
+                      aria-label="Forward"
+                      class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                      >
+                        <div
+                          class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                        >
+                          <div
+                            class="sc-bdvwhi fZgcUH shadow"
+                          />
+                          <span
+                            class="sc-bdvwhi cERAFe"
+                            data-icon-for="button"
+                          >
+                            <img
+                              alt=""
+                              class="sc-jRQBiJ fZPumv"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
+                          </span>
+                        </div>
+                        <span
+                          class="sc-dkPwfY cSKbCa"
+                        />
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        aria-live="polite"
+        class="sc-bdvwhi sc-gsDMPd sc-b7a27f76-0 kjWDfr htLMtM krUohl"
+      />
+    </div>
+    <div
+      class="sc-bdvwhi gFnpsF"
+    >
+      <div
+        class="sc-bdvwhi iwVUCi"
+        data-testid="cookie-banner"
+      >
+        <div
+          class="sc-bdvwhi iIozLH"
+        >
+          <div
+            class="sc-bdvwhi sc-gsDMPd egBoar iKjTsb"
+          >
+            <div
+              class="sc-bdvwhi fIxCDL"
+            >
+              <strong
+                class="sc-dkPwfY iyMjBM"
+              >
+                This site uses cookies to store information on your computer.
+              </strong>
+               
+              Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
+            </div>
+            <div
+              class="sc-bdvwhi sc-gsDMPd hPWTKU gyKdMN"
+            >
+              <div
+                class="sc-bdvwhi sc-gsDMPd lmXuba eWbmLh"
+              >
+                <button
+                  class="sc-iwjfEg ieUBNG sc-hUpbpP eGLkYb"
+                  data-testid="cookie-banner-reject"
+                  type="button"
+                >
+                  <span
+                    class="sc-dkPwfY fgmEIT"
+                  >
+                    Reject non-essential cookies
+                  </span>
+                </button>
+              </div>
+              <div
+                class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+              >
+                <div
+                  class="sc-bdvwhi kAFHfV grey-shadow"
+                />
+                <div
+                  class="sc-bdvwhi kAFHfV yellow-shadow"
+                />
+                <button
+                  class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
+                >
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                  >
+                    <span
+                      class="sc-dkPwfY kXQhTZ"
+                    >
+                      Cookie settings
+                    </span>
+                  </div>
+                </button>
+              </div>
+              <div
+                class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+              >
+                <div
+                  class="sc-bdvwhi kAFHfV grey-shadow"
+                />
+                <div
+                  class="sc-bdvwhi kAFHfV yellow-shadow"
+                />
+                <button
+                  class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                  data-testid="cookie-banner-accept"
+                >
+                  <div
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                  >
+                    <span
+                      class="sc-dkPwfY kXQhTZ"
+                    >
+                      Accept all cookies
+                    </span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

@@ -1,0 +1,9 @@
+fragment QuoteWithImage on QuoteWithImage {
+  text
+  role
+  organisation
+  attribution
+  image {
+    ...ImageWithAltText
+  }
+}

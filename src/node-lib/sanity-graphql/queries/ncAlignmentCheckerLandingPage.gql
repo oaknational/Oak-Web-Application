@@ -46,7 +46,7 @@ query ncAlignmentCheckerLandingPage($isDraftFilter: Sanity_DocumentFilter) {
       ... on NcAlignmentCheckerLandingPageQuotes {
         _key
         quotes {
-          ...Quote
+          ...QuoteWithImage
         }
       }
       ... on NcAlignmentCheckerLandingPageFaqs {
