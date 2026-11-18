@@ -1,4 +1,4 @@
-import { basic as fixture } from "./JoinResearchPanelFaqs.fixtures";
+import { basic as fixture } from "./FaqsSection.fixtures";
 
 import JoinResearchPanelFaqs from ".";
 
