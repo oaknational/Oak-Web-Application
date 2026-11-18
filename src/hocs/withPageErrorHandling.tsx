@@ -8,13 +8,8 @@ import errorReporter, {
 import OakError from "../errors/OakError";
 import type { PageSearchParms } from "../app/(core)/teachers/programmes/[slug]/[tab]/page";
 
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-
-if (getBrowserConfig("sentryEnabled") === "true") {
-  initialiseSentry(null);
-} else {
-  initialiseBugsnag(null);
-}
+initialiseSentry(null);
+initialiseBugsnag(null);
 
 type PageParams = Record<string, string>;
 export type AppPageProps<T extends PageParams = Record<string, never>> = {
