@@ -22,7 +22,7 @@ const getCachedNcAlignmentCheckerCms = cache(
         pageData,
       };
     },
-    ["nc-alignment-checker-cms"],
+    ["nc-alignment-checker-cms-v2"],
   ),
 );
 
