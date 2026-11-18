@@ -148,30 +148,44 @@ describe("Canonical lesson media hub", () => {
     );
   });
 
-  it("keeps redirects for renamed lessons on the media route", async () => {
-    mockMedia.mockRejectedValue(
-      new OakError({ code: "curriculum-api/not-found" }),
-    );
-    mockRedirect.mockResolvedValue({
-      canonicalLessonRedirectData: {
-        incomingPath: "/teachers/lessons/lesson-slug",
-        outgoingPath: "/teachers/lessons/new-slug",
-        redirectType: 301,
-      },
-    });
+  it.each([
+    [
+      "/teachers/lessons/new-slug",
+      "/teachers/lessons/new-slug/media?video=123&redirected=true",
+    ],
+    [
+      "/teachers/programmes/programme/units/unit/lessons/new-slug",
+      "/teachers/programmes/programme/units/unit/lessons/new-slug/media?video=123&redirected=true",
+    ],
+    [
+      "/teachers/programmes/programme/units/unit/lessons",
+      "/teachers/programmes/programme/units/unit/lessons?redirected=true",
+    ],
+  ])(
+    "redirects an old media URL targeting %s",
+    async (outgoingPath, destination) => {
+      mockMedia.mockRejectedValue(
+        new OakError({ code: "curriculum-api/not-found" }),
+      );
+      mockRedirect.mockResolvedValue({
+        canonicalLessonRedirectData: {
+          incomingPath: "/teachers/lessons/lesson-slug",
+          outgoingPath,
+          redirectType: 301,
+        },
+      });
 
-    await expect(
-      CanonicalLessonMediaHubPage({
-        ...props,
-        searchParams: Promise.resolve({ video: "123" }),
-      }),
-    ).rejects.toThrow(
-      "REDIRECT:/teachers/lessons/new-slug/media?video=123&redirected=true",
-    );
-    expect(mockRedirect).toHaveBeenCalledWith({
-      incomingPath: "/teachers/lessons/lesson-slug",
-    });
-  });
+      await expect(
+        CanonicalLessonMediaHubPage({
+          ...props,
+          searchParams: Promise.resolve({ video: "123" }),
+        }),
+      ).rejects.toThrow(new Error(`REDIRECT:${destination}`));
+      expect(mockRedirect).toHaveBeenCalledWith({
+        incomingPath: "/teachers/lessons/lesson-slug",
+      });
+    },
+  );
 
   it("returns not found when the lesson has no redirect", async () => {
     mockMedia.mockRejectedValue(

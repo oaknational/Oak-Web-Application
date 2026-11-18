@@ -5,7 +5,7 @@ import { cache } from "react";
 import { CanonicalLessonHub } from "../CanonicalLessonHub";
 
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
-import { resolveOakHref } from "@/common-lib/urls";
+import { matchOakHref, resolveOakHref } from "@/common-lib/urls";
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
@@ -81,14 +81,18 @@ const CanonicalLessonMediaHubPage = async (
     );
 
     if (canonicalLessonRedirectData) {
+      const { outgoingPath } = canonicalLessonRedirectData;
+      const isLessonPath =
+        matchOakHref(outgoingPath, "lesson-overview-canonical") ||
+        matchOakHref(outgoingPath, "lesson-overview");
+      const destination = isLessonPath
+        ? `${outgoingPath.replace(/\/$/, "")}/media`
+        : outgoingPath;
       const query = new URLSearchParams({
-        ...clipQuery,
+        ...(isLessonPath ? clipQuery : {}),
         redirected: "true",
       });
-      return redirect(
-        `${canonicalLessonRedirectData.outgoingPath}/media?${query}`,
-        RedirectType.replace,
-      );
+      return redirect(`${destination}?${query}`, RedirectType.replace);
     }
 
     return notFound();
