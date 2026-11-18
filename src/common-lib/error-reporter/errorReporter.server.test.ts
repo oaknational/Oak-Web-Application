@@ -5,7 +5,7 @@
 import Bugsnag from "@bugsnag/js";
 import * as Sentry from "@sentry/nextjs";
 
-import errorReporter, { ErrorData } from "./errorReporter";
+import errorReporter from "./errorReporter";
 
 import { consentClient } from "@/browser-lib/cookie-consent/consentClient";
 
@@ -31,15 +31,7 @@ const logger = {
 };
 const reportError = errorReporter(testContext, parentMetaFields, { logger });
 
-const childMetaFields = {
-  resourceId: "resource-123",
-};
 const testError = new Error("something bad");
-const testData: ErrorData = {
-  severity: "error",
-  groupingHash: "unique-group-123",
-  ...childMetaFields,
-};
 
 const event = {
   context: undefined,
