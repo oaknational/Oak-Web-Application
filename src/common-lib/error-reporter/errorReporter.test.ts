@@ -117,6 +117,31 @@ describe("common-lib/error-reporter", () => {
       );
     });
 
+    it("reports to Bugsnag when Sentry is not initialised", async () => {
+      jest.mocked(Sentry.getClient).mockReturnValueOnce(undefined);
+
+      await reportError(new Error("test error"));
+
+      expect(Sentry.captureException).not.toHaveBeenCalled();
+      expect(mockNotify).toHaveBeenCalledTimes(1);
+    });
+
+    it("reports to Bugsnag when Sentry fails", async () => {
+      const sentryError = new Error("Sentry failed");
+
+      jest.mocked(Sentry.captureException).mockImplementationOnce(() => {
+        throw sentryError;
+      });
+
+      await reportError(new Error("test error"));
+
+      expect(consoleError).toHaveBeenCalledWith(
+        "Failed to report exception to Sentry",
+        sentryError,
+      );
+      expect(mockNotify).toHaveBeenCalledTimes(1);
+    });
+
     it("adds relevant fields to bugsnag and Sentry events", async () => {
       await reportError(testError, testData);
       expect(mockSetTag).toHaveBeenCalledWith("context", testContext);
