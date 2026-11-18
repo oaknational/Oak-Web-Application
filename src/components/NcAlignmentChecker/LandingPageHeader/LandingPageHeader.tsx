@@ -16,7 +16,7 @@ import { PortableTextWithDefaults } from "@/components/SharedComponents/Portable
 
 type NcAlignmentCheckerLandingPageHeaderProps = Omit<
   NcAlignmentCheckerLandingPageBlock<"NcAlignmentCheckerLandingPageHeader">,
-  "__typename"
+  "__typename" | "_key"
 >;
 
 export default function NcAlignmentCheckerLandingPageHeader({
