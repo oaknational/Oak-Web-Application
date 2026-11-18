@@ -5,6 +5,7 @@ import { cache } from "react";
 
 import { NcAlignmentCheckerLandingPage } from "./Components/NcAlignmentCheckerLandingPage";
 
+import { cookiesToObject } from "@/utils/cookiesToObject";
 import withPageErrorHandling from "@/hocs/withPageErrorHandling";
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import { cacheData } from "@/node-lib/cache";
@@ -32,8 +33,10 @@ const getCachedNcAlignmentCheckerCms = cache(
 const NcAlignmentCheckerServerPage = async () => {
   const cookieStore = await cookies();
   const isEnabled =
-    (await isFeatureFlagEnabledServer(cookieStore, "nc-alignment-checker")) ??
-    false;
+    (await isFeatureFlagEnabledServer(
+      cookiesToObject(cookieStore),
+      "nc-alignment-checker",
+    )) ?? false;
 
   if (!isEnabled) {
     return notFound();

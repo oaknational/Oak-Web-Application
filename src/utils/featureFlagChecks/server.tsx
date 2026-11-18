@@ -1,5 +1,3 @@
-import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
-
 import { FLAGS } from "./flags";
 import { isFeatureFlagEnabledStatic } from "./static";
 
@@ -14,11 +12,9 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
  * @returns a boolean indicating whether the feature flag is enabled
  */
 export async function isFeatureFlagEnabledServer(
-  cookies:
-    | Partial<{
-        [key: string]: string;
-      }>
-    | ReadonlyRequestCookies,
+  cookies: Partial<{
+    [key: string]: string;
+  }>,
   featureFlagKey: keyof typeof FLAGS,
 ): Promise<boolean> {
   if (isFeatureFlagEnabledStatic(featureFlagKey)) {

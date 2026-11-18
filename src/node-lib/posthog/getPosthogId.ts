@@ -1,10 +1,8 @@
-import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
-
 /**
  * Find a users `distinct_id` from cookies, if it exists
  */
 export function getPosthogIdFromCookie(
-  cookies: Partial<Record<string, string>> | ReadonlyRequestCookies,
+  cookies: Partial<Record<string, string>>,
   posthogApiKey: string,
 ): string | null {
   const posthogCookieName = `ph_${posthogApiKey}_posthog`;

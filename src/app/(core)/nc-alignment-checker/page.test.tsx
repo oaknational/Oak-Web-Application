@@ -10,7 +10,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 const render = renderWithProviders();
 
 jest.mock("next/headers", () => ({
-  cookies: jest.fn(() => Promise.resolve({})),
+  cookies: jest.fn(() => Promise.resolve({ getAll: () => [] })),
   draftMode: jest.fn(() => Promise.resolve({ isEnabled: false })),
 }));
 
