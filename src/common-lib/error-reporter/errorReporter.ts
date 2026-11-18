@@ -85,13 +85,18 @@ const errorReporter = (
       return;
     }
 
-    if (isBrowser) {
-      const consentState = consentClient.getConsent(ServicePolicyMap.BUGSNAG);
-      if (consentState !== "granted") {
-        // Do not continue if user has not given consent to send data bugsnag
-        return;
-      }
+    const canReportToBugsnag =
+      !isBrowser ||
+      consentClient.getConsent(ServicePolicyMap.BUGSNAG) === "granted";
+
+    const canReportToSentry =
+      !isBrowser ||
+      consentClient.getConsent(ServicePolicyMap.SENTRY) === "granted";
+
+    if (!canReportToBugsnag && !canReportToSentry) {
+      return;
     }
+
     // data argument can be null
     data = data || {};
     const err = errorify(maybeError);
@@ -111,30 +116,7 @@ const errorReporter = (
     metaFields.oakErrorMeta = oakErrorMeta;
 
     try {
-      await bugsnagNotify(err, (event: Event) => {
-        setHasBeenReported(maybeError);
-
-        event.context = context;
-
-        if (groupingHash) {
-          event.groupingHash = groupingHash;
-        }
-
-        if (severity) {
-          event.severity = severity;
-        }
-
-        event.addMetadata("Meta", metaFields);
-      });
-    } catch (bugsnagErr) {
-      logger.log("Failed to send error to bugsnag:");
-      logger.error(bugsnagErr);
-      logger.log("Original error:");
-      logger.error(maybeError);
-    }
-
-    try {
-      if (Sentry.getClient()) {
+      if (canReportToSentry && Sentry.getClient()) {
         Sentry.withScope((scope) => {
           scope.setTag("context", context);
 
@@ -155,6 +137,31 @@ const errorReporter = (
       }
     } catch (error) {
       logger.error("Failed to report exception to Sentry", error);
+    }
+
+    if (canReportToBugsnag) {
+      try {
+        await bugsnagNotify(err, (event: Event) => {
+          setHasBeenReported(maybeError);
+
+          event.context = context;
+
+          if (groupingHash) {
+            event.groupingHash = groupingHash;
+          }
+
+          if (severity) {
+            event.severity = severity;
+          }
+
+          event.addMetadata("Meta", metaFields);
+        });
+      } catch (bugsnagErr) {
+        logger.log("Failed to send error to bugsnag:");
+        logger.error(bugsnagErr);
+        logger.log("Original error:");
+        logger.error(maybeError);
+      }
     }
   };
 

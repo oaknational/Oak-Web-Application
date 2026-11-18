@@ -33,12 +33,11 @@ const useAppHooks = () => {
   const { posthogDistinctId } = useAnalytics();
   const pathname = usePathname();
 
-   
   useSentry({
     enabled: getConsent(ServicePolicyMap.SENTRY) === "granted",
     userId: posthogDistinctId,
   });
-   
+
   useBugsnag({
     enabled: getConsent(ServicePolicyMap.BUGSNAG) === "granted",
     userId: posthogDistinctId,

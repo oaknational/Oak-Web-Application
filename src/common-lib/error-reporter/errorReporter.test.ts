@@ -99,6 +99,24 @@ describe("common-lib/error-reporter", () => {
       expect(Sentry.captureException).toHaveBeenCalledWith(testError);
     });
 
+    it("reports to Sentry even if Bugsnag fails", async () => {
+      mockNotify.mockRejectedValueOnce(new Error("Bugsnag failed"));
+
+      await reportError(new Error("test error"));
+
+      expect(Sentry.captureException).toHaveBeenCalledWith(
+        expect.objectContaining({ message: "test error" }),
+      );
+
+      expect(consoleLog).toHaveBeenCalledWith(
+        "Failed to send error to bugsnag:",
+      );
+
+      expect(consoleError).toHaveBeenCalledWith(
+        expect.objectContaining({ message: "Bugsnag failed" }),
+      );
+    });
+
     it("adds relevant fields to bugsnag and Sentry events", async () => {
       await reportError(testError, testData);
       expect(mockSetTag).toHaveBeenCalledWith("context", testContext);
