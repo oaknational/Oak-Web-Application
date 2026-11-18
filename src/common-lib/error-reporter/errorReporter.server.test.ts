@@ -72,6 +72,10 @@ jest.mock("@sentry/nextjs", () => ({
 describe("common-lib/error-reporter", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.mocked(Sentry.getClient).mockReset();
+    jest.mocked(Sentry.getClient).mockReturnValue(
+      {} as ReturnType<typeof Sentry.getClient>,
+    );
   });
 
   describe("[enabled]: errorReporter()()", () => {
