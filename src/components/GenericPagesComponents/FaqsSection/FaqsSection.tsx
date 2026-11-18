@@ -7,6 +7,7 @@ import {
   OakHeading,
   OakSpan,
 } from "@oaknational/oak-components";
+import type { OakBoxProps } from "@oaknational/oak-components";
 
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { Faq } from "@/common-lib/cms-types";
@@ -14,17 +15,19 @@ import { PortableTextWithDefaults } from "@/components/SharedComponents/Portable
 
 export type FaqsSectionProps = {
   items: Faq[];
-};
+} & OakBoxProps;
 
-export default function FaqsSection({ items }: Readonly<FaqsSectionProps>) {
+export default function FaqsSection({
+  items,
+  ...oakBoxProps
+}: Readonly<FaqsSectionProps>) {
   return (
-    <OakBox>
+    <OakBox {...oakBoxProps}>
       <NewGutterMaxWidth>
         <OakFlex
           $flexDirection={"column"}
           $gap="spacing-32"
           $alignItems={"center"}
-          $pv={["spacing-56", "spacing-80"]}
         >
           <OakHeading tag="h2" $font={["heading-5", "heading-4"]}>
             Frequently asked questions

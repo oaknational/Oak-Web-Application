@@ -4983,13 +4983,13 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
               class="c9"
             />
             <div
-              class="c9"
+              class="c103"
             >
               <div
                 class="c70"
               >
                 <div
-                  class="c103 c156"
+                  class="c9 c156"
                 >
                   <h2
                     class="c135"
