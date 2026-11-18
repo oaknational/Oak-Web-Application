@@ -11,10 +11,6 @@ import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import { cacheData } from "@/node-lib/cache";
 import CMSClient from "@/node-lib/cms";
 
-export const metadata: Metadata = {
-  title: "NC Alignment Checker",
-};
-
 const getCachedNcAlignmentCheckerCms = cache(
   cacheData(
     async ({ isPreviewMode }: { isPreviewMode?: boolean }) => {
@@ -29,6 +25,19 @@ const getCachedNcAlignmentCheckerCms = cache(
     ["nc-alignment-checker-cms"],
   ),
 );
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { isEnabled: isPreviewMode } = await draftMode();
+  const { pageData } = await getCachedNcAlignmentCheckerCms({ isPreviewMode });
+
+  return {
+    title: pageData?.seo?.title ?? "NC Alignment Checker",
+    description: pageData?.seo?.description ?? undefined,
+    ...(pageData?.seo?.canonicalURL && {
+      alternates: { canonical: pageData.seo.canonicalURL },
+    }),
+  };
+}
 
 const NcAlignmentCheckerServerPage = async () => {
   const cookieStore = await cookies();
