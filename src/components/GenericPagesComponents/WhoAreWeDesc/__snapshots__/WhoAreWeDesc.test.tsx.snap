@@ -7,22 +7,22 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
       class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-bdvwhi sc-gsDMPd QzlgI iEQOJT"
+        class="sc-bdvwhi sc-jRQBiJ QzlgI jxizNS"
       >
         <h2
-          class="sc-bkkgYE epiDEi"
+          class="sc-hGPAwl ldMosK"
         >
           TESTING_TITLE
         </h2>
         <div
-          class="sc-bdvwhi sc-jcFiBM hPWTKU kPNYGf"
+          class="sc-bdvwhi sc-cTAoCz hPWTKU dpsQTO"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-caiMdP sc-43691944-0 hPWTKU Bakex gLKfts biEa-dg"
+            class="sc-bdvwhi sc-jRQBiJ sc-jObTYW sc-43691944-0 hPWTKU heSanc boBDfD biEa-dg"
             data-testid="who-we-are-desc-item"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU heDWJn"
             >
               <div
                 class="sc-bdvwhi wYDMs"
@@ -32,7 +32,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                 >
                   <img
                     alt="ITEM_ALT_0"
-                    class="sc-jRQBiJ hssYEG"
+                    class="sc-gsDMPd ctfyuj"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -44,15 +44,15 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                 </span>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                class="sc-bdvwhi sc-jRQBiJ hPWTKU gCDeec"
               >
                 <h3
-                  class="sc-bkkgYE kNBRNi"
+                  class="sc-hGPAwl flDsgG"
                 >
                   ITEM_TITLE_0
                 </h3>
                 <p
-                  class="sc-hGPAwl gpFakR"
+                  class="sc-fKVoIy gRmakQ"
                 >
                   ITEM_TEXT_0
                 </p>
@@ -60,11 +60,11 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-caiMdP sc-43691944-0 hPWTKU Bakex gLKfts biEa-dg"
+            class="sc-bdvwhi sc-jRQBiJ sc-jObTYW sc-43691944-0 hPWTKU heSanc boBDfD biEa-dg"
             data-testid="who-we-are-desc-item"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU heDWJn"
             >
               <div
                 class="sc-bdvwhi fuqxtI"
@@ -74,7 +74,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                 >
                   <img
                     alt="ITEM_ALT_1"
-                    class="sc-jRQBiJ hssYEG"
+                    class="sc-gsDMPd ctfyuj"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -86,15 +86,15 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                 </span>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                class="sc-bdvwhi sc-jRQBiJ hPWTKU gCDeec"
               >
                 <h3
-                  class="sc-bkkgYE kNBRNi"
+                  class="sc-hGPAwl flDsgG"
                 >
                   ITEM_TITLE_1
                 </h3>
                 <p
-                  class="sc-hGPAwl gpFakR"
+                  class="sc-fKVoIy gRmakQ"
                 >
                   ITEM_TEXT_1
                 </p>
@@ -102,11 +102,11 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-caiMdP sc-43691944-0 hPWTKU Bakex gLKfts biEa-dg"
+            class="sc-bdvwhi sc-jRQBiJ sc-jObTYW sc-43691944-0 hPWTKU heSanc boBDfD biEa-dg"
             data-testid="who-we-are-desc-item"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU heDWJn"
             >
               <div
                 class="sc-bdvwhi dYmmaV"
@@ -116,7 +116,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                 >
                   <img
                     alt="ITEM_ALT_2"
-                    class="sc-jRQBiJ hssYEG"
+                    class="sc-gsDMPd ctfyuj"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -128,15 +128,15 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                 </span>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                class="sc-bdvwhi sc-jRQBiJ hPWTKU gCDeec"
               >
                 <h3
-                  class="sc-bkkgYE kNBRNi"
+                  class="sc-hGPAwl flDsgG"
                 >
                   ITEM_TITLE_2
                 </h3>
                 <p
-                  class="sc-hGPAwl gpFakR"
+                  class="sc-fKVoIy gRmakQ"
                 >
                   ITEM_TEXT_2
                 </p>
@@ -144,11 +144,11 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-caiMdP sc-43691944-0 hPWTKU Bakex gLKfts biEa-dg"
+            class="sc-bdvwhi sc-jRQBiJ sc-jObTYW sc-43691944-0 hPWTKU heSanc boBDfD biEa-dg"
             data-testid="who-we-are-desc-item"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU heDWJn"
             >
               <div
                 class="sc-bdvwhi cdIWcZ"
@@ -158,7 +158,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                 >
                   <img
                     alt="ITEM_ALT_3"
-                    class="sc-jRQBiJ hssYEG"
+                    class="sc-gsDMPd ctfyuj"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -170,15 +170,15 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                 </span>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                class="sc-bdvwhi sc-jRQBiJ hPWTKU gCDeec"
               >
                 <h3
-                  class="sc-bkkgYE kNBRNi"
+                  class="sc-hGPAwl flDsgG"
                 >
                   ITEM_TITLE_3
                 </h3>
                 <p
-                  class="sc-hGPAwl gpFakR"
+                  class="sc-fKVoIy gRmakQ"
                 >
                   ITEM_TEXT_3
                 </p>

@@ -9,32 +9,32 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
       class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-bdvwhi sc-gsDMPd blOvSo cIPGhJ"
+        class="sc-bdvwhi sc-jRQBiJ blOvSo cBpORs"
       >
         <div
-          class="sc-bdvwhi sc-jcFiBM hPWTKU bzbAvD"
+          class="sc-bdvwhi sc-cTAoCz hPWTKU okhpS"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex hpeZVX"
+            class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc hlsTzE"
           >
             <h2
-              class="sc-bkkgYE hBiIpc"
+              class="sc-hGPAwl fNxiaY"
             >
               Collaborate with us
             </h2>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex jNiKEa"
+            class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc pEIYp"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd ccVrhi jHwmav"
+              class="sc-bdvwhi sc-jRQBiJ ccVrhi QsMXG"
             >
               <span
                 class="sc-bdvwhi LoEut sc-c614e434-0 knLxIm"
               >
                 <img
                   alt=""
-                  class="sc-jRQBiJ hssYEG"
+                  class="sc-gsDMPd ctfyuj"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"
@@ -45,36 +45,36 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
             </div>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex igtwyU"
+            class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc esaH"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU heDWJn"
             >
               <div
                 class="sc-bdvwhi isLFhD"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd iJXnQw vrLXS"
+                  class="sc-bdvwhi sc-jRQBiJ iJXnQw cjhGAP"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU bEiwCA"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU diGbx"
                   >
                     <h3
-                      class="sc-bkkgYE zCEfG"
+                      class="sc-hGPAwl jHExvK"
                     >
                       Give your feedback
                     </h3>
                     <p
-                      class="sc-hGPAwl gpFakR"
+                      class="sc-fKVoIy gRmakQ"
                     >
                       Share your story and we'll send you a gift voucher as a thanks for your time.
                     </p>
                   </div>
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU erQEnP"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU kmyWni"
                   >
                     <div
-                      class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+                      class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
                     >
                       <div
                         class="sc-bdvwhi kAFHfV grey-shadow"
@@ -83,16 +83,16 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                         class="sc-bdvwhi kAFHfV yellow-shadow"
                       />
                       <a
-                        class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
+                        class="sc-furwPO sc-iqsgXZ eQRPqU bpUfmH internal-button"
                         href="https://share.hsforms.com/2pi1ZLqVKQNyKznqJrpqsgwbvumd"
                         rel="noopener noreferrer"
                         target="_blank"
                       >
                         <div
-                          class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                          class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                         >
                           <span
-                            class="sc-dkPwfY kXQhTZ"
+                            class="sc-iCfNyT gaSeFZ"
                           >
                             Get in touch
                           </span>
@@ -101,7 +101,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                           >
                             <img
                               alt="external"
-                              class="sc-jRQBiJ eMsccW"
+                              class="sc-gsDMPd frprTL"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
@@ -119,27 +119,27 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                 class="sc-bdvwhi isLFhD"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd iJXnQw vrLXS"
+                  class="sc-bdvwhi sc-jRQBiJ iJXnQw cjhGAP"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU bEiwCA"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU diGbx"
                   >
                     <h3
-                      class="sc-bkkgYE zCEfG"
+                      class="sc-hGPAwl jHExvK"
                     >
                       Help us improve
                     </h3>
                     <p
-                      class="sc-hGPAwl gpFakR"
+                      class="sc-fKVoIy gRmakQ"
                     >
                       Teachers are at the heart of everything we build. Have your say by taking part in research.
                     </p>
                   </div>
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU erQEnP"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU kmyWni"
                   >
                     <div
-                      class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+                      class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
                     >
                       <div
                         class="sc-bdvwhi kAFHfV grey-shadow"
@@ -148,16 +148,16 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                         class="sc-bdvwhi kAFHfV yellow-shadow"
                       />
                       <a
-                        class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
+                        class="sc-furwPO sc-iqsgXZ eQRPqU bpUfmH internal-button"
                         href="https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd"
                         rel="noopener noreferrer"
                         target="_blank"
                       >
                         <div
-                          class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                          class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                         >
                           <span
-                            class="sc-dkPwfY kXQhTZ"
+                            class="sc-iCfNyT gaSeFZ"
                           >
                             Take part in research
                           </span>
@@ -166,7 +166,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                           >
                             <img
                               alt="external"
-                              class="sc-jRQBiJ eMsccW"
+                              class="sc-gsDMPd frprTL"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
