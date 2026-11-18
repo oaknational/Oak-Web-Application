@@ -47,7 +47,7 @@ const NcAlignmentCheckerServerPage = async () => {
     (await isFeatureFlagEnabledServer(
       cookiesToObject(cookieStore),
       "nc-alignment-checker",
-    )) ?? false;
+    ));
 
   if (!isEnabled) {
     return notFound();
