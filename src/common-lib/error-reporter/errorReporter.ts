@@ -62,16 +62,6 @@ function setHasBeenReported(maybeError: unknown) {
   }
 }
 
-function initialiseServerSideSentry() {
-  if (!isBrowser && !Sentry.getClient() && process.env.SENTRY_DSN) {
-    Sentry.init({
-      dsn: process.env.SENTRY_DSN,
-      environment: process.env.SENTRY_ENVIRONMENT,
-      sendDefaultPii: false,
-    });
-  }
-}
-
 type MaybeError = OakError | Error | unknown;
 
 type Logger = Pick<typeof console, "log" | "warn" | "error">;
@@ -144,8 +134,6 @@ const errorReporter = (
     }
 
     try {
-      initialiseServerSideSentry();
-
       if (Sentry.getClient()) {
         Sentry.withScope((scope) => {
           scope.setTag("context", context);
