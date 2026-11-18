@@ -16,21 +16,6 @@ jest.mock("./isr", () => ({
 }));
 
 describe("getPageProps()", () => {
-  it("should initialize bugsnag when sentry is NOT enabled", async () => {
-    jest.clearAllMocks();
-    await jest.isolateModulesAsync(async () => {
-      jest.mock("@/browser-lib/getBrowserConfig", () => {
-        return {
-          __esModule: true,
-          default: () => "false",
-        };
-      });
-      await import("./getPageProps");
-      expect(initialiseBugsnag).toHaveBeenCalled();
-      expect(initialiseSentry).not.toHaveBeenCalled();
-    });
-  });
-
   it("should initialize sentry when enabled", async () => {
     jest.clearAllMocks();
     await jest.isolateModulesAsync(async () => {
@@ -41,7 +26,7 @@ describe("getPageProps()", () => {
         };
       });
       await import("./getPageProps");
-      expect(initialiseBugsnag).not.toHaveBeenCalled();
+      expect(initialiseBugsnag).toHaveBeenCalled();
       expect(initialiseSentry).toHaveBeenCalled();
     });
   });

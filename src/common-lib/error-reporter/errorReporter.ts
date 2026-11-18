@@ -115,8 +115,8 @@ const errorReporter = (
     metaFields.originalError = originalError;
     metaFields.oakErrorMeta = oakErrorMeta;
 
-    try {
-      if (canReportToSentry && Sentry.getClient()) {
+    if (canReportToSentry && Sentry.getClient()) {
+      try {
         Sentry.withScope((scope) => {
           scope.setTag("context", context);
 
@@ -133,10 +133,11 @@ const errorReporter = (
           });
 
           Sentry.captureException(err);
+          setHasBeenReported(maybeError);
         });
+      } catch (error) {
+        logger.error("Failed to report exception to Sentry", error);
       }
-    } catch (error) {
-      logger.error("Failed to report exception to Sentry", error);
     }
 
     if (canReportToBugsnag) {
