@@ -18,8 +18,6 @@ in the next-sitemap.config.js file (not without duplicating some Next routing fu
 
 Each page is currently given a no-index metatag from config here [src/browser-lib/seo/DefaultSeo.tsx](../src/browser-lib/seo/DefaultSeo.tsx)
 
-The canonical teacher media hub (`/teachers/lessons/:lessonSlug/media`) uses `canonicalLessonMedia` to fetch validated hub metadata and variant cards, not playback or transcript data. Only variants with media clips are listed; a single variant redirects to its programme media page. The hub retains `noindex, nofollow` metadata and selected clip links.
-
 ## Title, Description, OpenGraph Data
 
 Each page should have basic meta data added via the <SEO> tag [src/browser-lib/seo/Seo.tsx](../src/browser-lib/seo/Seo.tsx).
