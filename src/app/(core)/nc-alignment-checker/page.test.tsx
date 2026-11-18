@@ -93,7 +93,7 @@ describe("/nc-alignment-checker", () => {
     await expect(renderPage()).rejects.toThrow("NEXT_HTTP_ERROR_FALLBACK;404");
   });
 
-  it("renders the CMS blocks when the feature flag is enabled", async () => {
+  it("generateMetadata returns correct metadata", async () => {
     jest.mocked(isFeatureFlagEnabledServer).mockResolvedValue(true);
     jest.mocked(CMSClient.ncAlignmentCheckerLandingPage).mockResolvedValue({
       blocks: [],
