@@ -1,57 +1,10 @@
 import { containsMathJax, hasLessonMathJax } from "./hasLessonMathJax";
 
-import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
-import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
+import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 
 describe("hasLessonMathJax", () => {
-  const basicLesson: LessonOverviewPageData = {
-    isLegacy: false,
-    lessonSlug: "example-slug",
-    lessonTitle: "Example Lesson Title",
-    tierTitle: null,
-    tierSlug: null,
-    pathwayTitle: null,
-    contentGuidance: [],
-    misconceptionsAndCommonMistakes: [],
-    teacherTips: [],
-    keyLearningPoints: [],
-    lessonKeywords: [],
-    legacyCopyrightContent: [{ copyrightInfo: "this" }],
-    supervisionLevel: null,
-    worksheetUrl: null,
-    presentationUrl: null,
-    videoMuxPlaybackId: null,
-    videoWithSignLanguageMuxPlaybackId: null,
-    transcriptSentences: null,
-    isWorksheetLandscape: null,
-    hasLegacyCopyrightMaterial: null,
-    expired: null,
-    starterQuiz: [],
-    exitQuiz: [],
-    videoTitle: null,
-    lessonCohort: null,
-    downloads: [],
-    keyStageTitle: "Example Key Stage Title",
-    keyStageSlug: "example-key-stage-slug",
-    subjectTitle: "Example Subject Title",
-    subjectSlug: "maths",
-    unitTitle: "Example Unit Title",
-    unitSlug: "example-unit-slug",
-    programmeSlug: "example-programme-slug",
-    lessonGuideUrl: null,
-    updatedAt: "2022",
-    hasMediaClips: false,
-    lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
-    additionalFiles: null,
-    lessonOutline: null,
-    lessonReleaseDate: "2022-02-01T00:00:00Z",
-    orderInUnit: 1,
-    unitTotalLessonCount: 1,
-    loginRequired: false,
-    geoRestricted: false,
-    excludedFromTeachingMaterials: false,
-    pathways: [],
-  };
+  const basicLesson = teachersLessonOverviewFixture();
 
   it("detects MathJax in keyLearningPoints", () => {
     const lessonWithMathJaxInKLP = {
@@ -82,7 +35,7 @@ describe("hasLessonMathJax", () => {
   });
 
   it("detects MathJax in multiple-choice quiz answers", () => {
-    const lessonWithMathJaxInMCQuiz: LessonOverviewPageData = {
+    const lessonWithMathJaxInMCQuiz: TeachersLessonOverviewPageData = {
       ...basicLesson,
       exitQuiz: [
         {
@@ -117,7 +70,7 @@ describe("hasLessonMathJax", () => {
   });
 
   it("detects MathJax in match quiz answers", () => {
-    const lessonWithMathJaxInMatchQuiz: LessonOverviewPageData = {
+    const lessonWithMathJaxInMatchQuiz: TeachersLessonOverviewPageData = {
       ...basicLesson,
       starterQuiz: [
         {
@@ -150,7 +103,7 @@ describe("hasLessonMathJax", () => {
   });
 
   it("detects MathJax in order quiz answers", () => {
-    const lessonWithMathJaxInOrderQuiz: LessonOverviewPageData = {
+    const lessonWithMathJaxInOrderQuiz: TeachersLessonOverviewPageData = {
       ...basicLesson,
       exitQuiz: [
         {
@@ -185,7 +138,7 @@ describe("hasLessonMathJax", () => {
   });
 
   it("detects MathJax in short-answer quiz answers", () => {
-    const lessonWithMathJaxInShortAnswerQuiz: LessonOverviewPageData = {
+    const lessonWithMathJaxInShortAnswerQuiz: TeachersLessonOverviewPageData = {
       ...basicLesson,
       starterQuiz: [
         {
@@ -216,7 +169,7 @@ describe("hasLessonMathJax", () => {
   });
 
   it("detects MathJax in exitQuiz questions and answers", () => {
-    const lessonWithMathJaxInExitQuiz: LessonOverviewPageData = {
+    const lessonWithMathJaxInExitQuiz: TeachersLessonOverviewPageData = {
       ...basicLesson,
       exitQuiz: [
         {
@@ -246,7 +199,7 @@ describe("hasLessonMathJax", () => {
   });
 
   it("detects MathJax in starterQuiz questions", () => {
-    const lessonWithMathJaxInStarterQuiz: LessonOverviewPageData = {
+    const lessonWithMathJaxInStarterQuiz: TeachersLessonOverviewPageData = {
       ...basicLesson,
       starterQuiz: [
         {

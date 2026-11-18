@@ -1,7 +1,5 @@
-import type {
-  LessonBrowseDataByKs,
-  LessonOverviewContent,
-} from "../../queries/lessonOverview/lessonOverview.schema";
+import type { LessonBrowseDataByKs } from "../../queries/canonicalLessonOverview/canonicalLessonOverview.schema";
+import type { TeachersLessonOverviewContent } from "../../queries/teachersLessonOverview/teachersLessonOverview.schema";
 
 import { isExcludedFromTeachingMaterials } from "./isExcluded";
 
@@ -19,13 +17,12 @@ describe("isExcludedFromTeachingMaterials", () => {
     }) as LessonBrowseDataByKs["lessonData"];
 
   const createContent = (
-    overrides: Partial<LessonOverviewContent> = {},
-  ): LessonOverviewContent =>
+    overrides: Partial<TeachersLessonOverviewContent> = {},
+  ): TeachersLessonOverviewContent =>
     ({
       contentGuidance: null,
-      isLegacy: false,
       ...overrides,
-    }) as LessonOverviewContent;
+    }) as TeachersLessonOverviewContent;
 
   const createContentGuidance = (label: string) => ({
     contentguidanceLabel: label,
@@ -212,21 +209,6 @@ describe("isExcludedFromTeachingMaterials", () => {
         );
 
         expect(result).toBe(true);
-      });
-
-      it("should handle undefined isLegacy as false", () => {
-        const contentWithUndefinedLegacy = createContent();
-        // Create content without isLegacy property to test undefined case
-        const { isLegacy, ...contentWithoutLegacy } =
-          contentWithUndefinedLegacy;
-
-        const result = isExcludedFromTeachingMaterials(
-          normalBrowseData,
-          emptyWorksList,
-          contentWithoutLegacy as LessonOverviewContent,
-        );
-
-        expect(result).toBe(false);
       });
     });
 
