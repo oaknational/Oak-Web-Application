@@ -4,7 +4,7 @@ import FaqsSection from "./FaqsSection";
 import { basic } from "./FaqsSection.fixtures";
 
 const meta = {
-  title: "Components/GenericPagesComponents/JoinResearchPanelFaqs",
+  title: "Components/GenericPagesComponents/FaqsSection",
   component: FaqsSection,
   tags: ["autodocs"],
 } satisfies Meta<typeof FaqsSection>;

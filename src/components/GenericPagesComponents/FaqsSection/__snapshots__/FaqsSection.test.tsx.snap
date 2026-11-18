@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
+exports[`FaqsSection it renders correct data 1`] = `
 <body>
   <div>
     <div
