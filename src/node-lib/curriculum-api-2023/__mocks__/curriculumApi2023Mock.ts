@@ -123,7 +123,9 @@ const curriculumApi: Pick<
   lessonMediaClips: jest.fn(async () => {
     return lessonMediaClipsFixtures();
   }) as jest.Mocked<LessonMediaClipsQueryReturn>,
-  canonicalLessonMedia: jest.fn(async () => canonicalLessonMediaFixture()),
+  canonicalLessonMedia: jest
+    .fn()
+    .mockResolvedValue(canonicalLessonMediaFixture()),
   unitListing: jest.fn(async () => {
     return unitListingFixture();
   }) as jest.Mocked<UnitListingQueryReturn>,
