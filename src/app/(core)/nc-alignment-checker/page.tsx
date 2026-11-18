@@ -22,7 +22,9 @@ const getCachedNcAlignmentCheckerCms = cache(
         pageData,
       };
     },
-    ["nc-alignment-checker-cms-v2"],
+    ["nc-alignment-checker-cms"],
+    // TODO: Re-address in chat with teach squad
+    { revalidate: 300 },
   ),
 );
 
