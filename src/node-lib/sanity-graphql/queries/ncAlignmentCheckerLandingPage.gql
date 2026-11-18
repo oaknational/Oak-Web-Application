@@ -16,6 +16,7 @@ query ncAlignmentCheckerLandingPage($isDraftFilter: Sanity_DocumentFilter) {
     blocks {
       __typename
       ... on NcAlignmentCheckerLandingPageHeader {
+        _key
         title
         bodyRaw
         icon {
@@ -26,6 +27,7 @@ query ncAlignmentCheckerLandingPage($isDraftFilter: Sanity_DocumentFilter) {
         }
       }
       ... on NcAlignmentCheckerLandingPageTextAndMedia {
+        _key
         imagePosition
         title
         bodyRaw
@@ -34,6 +36,7 @@ query ncAlignmentCheckerLandingPage($isDraftFilter: Sanity_DocumentFilter) {
         }
       }
       ... on NcAlignmentCheckerLandingPageSubjectExperts {
+        _key
         title
         bodyRaw
         people {
@@ -41,16 +44,19 @@ query ncAlignmentCheckerLandingPage($isDraftFilter: Sanity_DocumentFilter) {
         }
       }
       ... on NcAlignmentCheckerLandingPageQuotes {
+        _key
         quotes {
           ...Quote
         }
       }
       ... on NcAlignmentCheckerLandingPageFaqs {
+        _key
         items {
           ...Faq
         }
       }
       ... on NcAlignmentCheckerLandingPageSubjectPickerCallout {
+        _key
         subjectPicker {
           ...NcAlignmentCheckerLandingPageSubjectPicker
         }
