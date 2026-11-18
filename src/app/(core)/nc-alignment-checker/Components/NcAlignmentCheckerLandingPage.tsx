@@ -3,7 +3,7 @@ import { OakBox, OakCodeRenderer } from "@oaknational/oak-components";
 import { Fragment } from "react";
 
 import {
-  NcAlignmentCheckerLandingPage,
+  NcAlignmentCheckerLandingPage as CmsNcAlignmentCheckerLandingPage,
   NcAlignmentCheckerLandingPageBlock,
   NcAlignmentCheckerLandingPageBlockType,
 } from "@/common-lib/cms-types/ncAlignmentChecker";
@@ -39,10 +39,10 @@ function renderBlock<K extends NcAlignmentCheckerLandingPageBlockType>(
   return pageComponents[block.__typename](block);
 }
 
-export function NcAlignmentCheckerPage({
+export function NcAlignmentCheckerLandingPage({
   pageData,
 }: Readonly<{
-  pageData: NcAlignmentCheckerLandingPage;
+  pageData: CmsNcAlignmentCheckerLandingPage;
 }>) {
   return (
     <OakBox $zIndex={"neutral"} $color={"text-primary"}>

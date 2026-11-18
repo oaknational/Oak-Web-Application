@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { cookies, draftMode } from "next/headers";
 import { cache } from "react";
 
-import { NcAlignmentCheckerPage } from "./Components/NcAlignmentCheckerPage";
+import { NcAlignmentCheckerLandingPage } from "./Components/NcAlignmentCheckerLandingPage";
 
 import withPageErrorHandling from "@/hocs/withPageErrorHandling";
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
@@ -49,7 +49,7 @@ const NcAlignmentCheckerServerPage = async () => {
     return notFound();
   }
 
-  return <NcAlignmentCheckerPage pageData={pageData} />;
+  return <NcAlignmentCheckerLandingPage pageData={pageData} />;
 };
 
 export default withPageErrorHandling(
