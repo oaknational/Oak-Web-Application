@@ -8,8 +8,7 @@ import {
   OakTagFunctional,
 } from "@oaknational/oak-components";
 import { useUser } from "@clerk/nextjs";
-
-import { LessonOverviewHeaderProps } from "../LessonOverviewHeader";
+import { ActionsCamel } from "@oaknational/oak-curriculum-schema";
 
 import {
   getAvailableTeachingMaterials,
@@ -52,15 +51,14 @@ const teachingMaterials: Array<{
   },
 ];
 
-export type LessonOverviewCreateWithAiProps = Pick<
-  LessonOverviewHeaderProps,
-  | "lessonSlug"
-  | "programmeSlug"
-  | "keyStageSlug"
-  | "subjectCategories"
-  | "actions"
-  | "subjectSlug"
->;
+export type LessonOverviewCreateWithAiProps = {
+  lessonSlug: string;
+  subjectSlug: string | null;
+  keyStageSlug?: string | null;
+  programmeSlug: string;
+  subjectCategories?: Array<string | number | null> | null;
+  actions?: ActionsCamel | null;
+};
 
 export const LessonOverviewCreateWithAiDropdown = ({
   lessonSlug,

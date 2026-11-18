@@ -1,3 +1,30 @@
+# [1.1280.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1279.1...v1.1280.0) (2026-11-17)
+
+
+### Bug Fixes
+
+* async function lint error ([8a2b740](https://github.com/oaknational/Oak-Web-Application/commit/8a2b740c87ac2dffbd80c72c48421f7c527160da))
+
+
+### Features
+
+* add canonical lesson hub page in app router ([a98d5fb](https://github.com/oaknational/Oak-Web-Application/commit/a98d5fb55077de3af94d98ab6f711c2018d69428))
+* add CanonicalLessonHub component ([446fb03](https://github.com/oaknational/Oak-Web-Application/commit/446fb03534e1e59bc75efc76678bb338e1f2a701))
+* add cards for programmes ([c6a160b](https://github.com/oaknational/Oak-Web-Application/commit/c6a160bd10af90a02fdbedc4c066ca29fed9d914))
+* add metadata to canonical hub page ([02a3296](https://github.com/oaknational/Oak-Web-Application/commit/02a3296245587f294eede248b1ca2105ff064072))
+* add optional heading tag field to card listing ([acd03da](https://github.com/oaknational/Oak-Web-Application/commit/acd03da881911a88cd21865997cdf264bc268795))
+* add pathway tag to cards ([ed9f72f](https://github.com/oaknational/Oak-Web-Application/commit/ed9f72fc771595f5e53f6c619037ef336fc29d1a))
+* handle redirects on canonical lesson page ([6d718a1](https://github.com/oaknational/Oak-Web-Application/commit/6d718a1a6a52eaa9eedc58464dcec95cb2150c91))
+* redirect when lesson is in a single programme ([3c66fc3](https://github.com/oaknational/Oak-Web-Application/commit/3c66fc33f3613ff9e130871e09204fb634fcb61d))
+* sort cards by subject, year, examboard, tier then pathway ([caa4895](https://github.com/oaknational/Oak-Web-Application/commit/caa4895a5f575ea8c193462a1a39c28cc317fbce))
+
+## [1.1279.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1279.0...v1.1279.1) (2026-11-17)
+
+
+### Bug Fixes
+
+* wrap text on emab board links in search item dropdown ([f9f9298](https://github.com/oaknational/Oak-Web-Application/commit/f9f92988dbf56a757aee82e137c96526d8c49c55))
+
 # [1.1279.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1278.0...v1.1279.0) (2026-11-17)
 
 

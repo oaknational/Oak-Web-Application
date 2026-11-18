@@ -1,1 +1,0 @@
-export { LessonOverviewHeaderShareAllButton } from "./LessonOverviewHeaderShareAllButton";

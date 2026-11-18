@@ -1,4 +1,4 @@
-import { LessonOverviewContent } from "../../queries/lessonOverview/lessonOverview.schema";
+import type { TeachersLessonOverviewContent } from "../../queries/teachersLessonOverview/teachersLessonOverview.schema";
 
 const RESTRICTED_CONTENT_GUIDANCE_TYPES = [
   "Depiction or discussion of sexual violence",
@@ -8,7 +8,7 @@ const RESTRICTED_CONTENT_GUIDANCE_TYPES = [
 ] as const;
 
 export function hasRestrictedContentGuidance(
-  content: LessonOverviewContent["contentGuidance"],
+  content: TeachersLessonOverviewContent["contentGuidance"],
 ): boolean {
   if (!content || content.length === 0) {
     return false;
