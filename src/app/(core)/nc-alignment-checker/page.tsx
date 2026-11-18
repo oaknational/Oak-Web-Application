@@ -43,11 +43,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const NcAlignmentCheckerServerPage = async () => {
   const cookieStore = await cookies();
-  const isEnabled =
-    (await isFeatureFlagEnabledServer(
-      cookiesToObject(cookieStore),
-      "nc-alignment-checker",
-    )) ?? false;
+  const isEnabled = await isFeatureFlagEnabledServer(
+    cookiesToObject(cookieStore),
+    "nc-alignment-checker",
+  );
 
   if (!isEnabled) {
     return notFound();
