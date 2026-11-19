@@ -52,7 +52,7 @@ export default function JoinResearchPanelInfo({
       <OakGrid $rg="spacing-32" $pv={["spacing-56", "spacing-80"]}>
         <OakGridArea
           $colSpan={[12, 10, 6]}
-          $colStart={[1, 2, isImageLeftPositioned ? 1 : 8]}
+          $colStart={[1, 2, isImageLeftPositioned ? 1 : 7]}
           $rowStart={[1, 1, 1]}
         >
           <OakFlex
@@ -69,7 +69,7 @@ export default function JoinResearchPanelInfo({
           </OakFlex>
         </OakGridArea>
         <OakGridArea
-          $colSpan={[12, 10, 6]}
+          $colSpan={[12, 10, 5]}
           $colStart={[1, 2, isImageLeftPositioned ? 8 : 1]}
           $rowStart={[2, 2, 1]}
         >
