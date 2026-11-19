@@ -1,5 +1,5 @@
 "use client";
-import { OakBox, OakCodeRenderer } from "@oaknational/oak-components";
+import { OakFlex, OakCodeRenderer } from "@oaknational/oak-components";
 import { Fragment } from "react";
 
 import {
@@ -8,6 +8,7 @@ import {
   NcAlignmentCheckerLandingPageBlockType,
 } from "@/common-lib/cms-types/ncAlignmentChecker";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
+import FaqsSection from "@/components/GenericPagesComponents/FaqsSection";
 function DefaultComponent(
   block: NcAlignmentCheckerLandingPageBlock<NcAlignmentCheckerLandingPageBlockType>,
 ) {
@@ -29,7 +30,7 @@ const pageComponents: {
   NcAlignmentCheckerLandingPageTextAndMedia: DefaultComponent,
   NcAlignmentCheckerLandingPageSubjectExperts: DefaultComponent,
   NcAlignmentCheckerLandingPageQuotes: DefaultComponent,
-  NcAlignmentCheckerLandingPageFaqs: DefaultComponent,
+  NcAlignmentCheckerLandingPageFaqs: FaqsSection,
   NcAlignmentCheckerLandingPageSubjectPickerCallout: DefaultComponent,
 };
 
@@ -45,10 +46,15 @@ export function NcAlignmentCheckerLandingPage({
   pageData: CmsNcAlignmentCheckerLandingPage;
 }>) {
   return (
-    <OakBox $zIndex={"neutral"} $color={"text-primary"}>
+    <OakFlex
+      $zIndex={"neutral"}
+      $color={"text-primary"}
+      $gap={["spacing-56", "spacing-80", "spacing-100"]}
+      $flexDirection="column"
+    >
       {pageData.blocks?.map((block) => {
         return <Fragment key={block._key}>{renderBlock(block)}</Fragment>;
       })}
-    </OakBox>
+    </OakFlex>
   );
 }

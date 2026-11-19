@@ -21,7 +21,7 @@ import JoinResearchPanelPageHeader from "@/components/GenericPagesComponents/Joi
 import JoinResearchPanelPeople from "@/components/GenericPagesComponents/JoinResearchPanelPeople";
 import JoinResearchPanelInfo from "@/components/GenericPagesComponents/JoinResearchPanelInfo";
 import JoinResearchPanelJourney from "@/components/GenericPagesComponents/JoinResearchPanelJourney";
-import JoinResearchPanelFaqs from "@/components/GenericPagesComponents/JoinResearchPanelFaqs";
+import FaqsSection from "@/components/GenericPagesComponents/FaqsSection";
 import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
 import JoinResearchPanelCallout from "@/components/GenericPagesComponents/JoinResearchPanelCallout";
 import { SerializedBlogPostPreview } from "@/common-lib/cms-types/blog";
@@ -53,7 +53,7 @@ const pageComponents: {
   JoinResearchPanelPageFaqs: (block) => (
     <>
       <TrackScrolledTo eventKey="join_research_panel_faqs" />
-      <JoinResearchPanelFaqs items={block.items} />
+      <FaqsSection $pv={["spacing-56", "spacing-80"]} items={block.items} />
     </>
   ),
   JoinResearchPanelPageContactUs: (
