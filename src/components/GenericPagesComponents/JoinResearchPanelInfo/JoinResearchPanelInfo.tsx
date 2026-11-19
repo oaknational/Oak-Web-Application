@@ -35,17 +35,26 @@ const joinResearchPanelInfoPortableTextComponents: PortableTextComponents = {
 export type JoinResearchPanelInfoProps = Omit<
   JoinResearchPanelPageBlock<"JoinResearchPanelPageInfo">,
   "__typename"
->;
+> & {
+  imagePosition?: "left" | "right";
+};
 
 export default function JoinResearchPanelInfo({
   title,
   bodyRaw,
+  imagePosition = "left",
   image,
 }: Readonly<JoinResearchPanelInfoProps>) {
+  const isImageLeftPositioned = imagePosition === "left";
+
   return (
     <NewGutterMaxWidth>
       <OakGrid $rg="spacing-32" $pv={["spacing-56", "spacing-80"]}>
-        <OakGridArea $colSpan={[12, 10, 6]} $colStart={[1, 2, 1]}>
+        <OakGridArea
+          $colSpan={[12, 10, 6]}
+          $colStart={[1, 2, isImageLeftPositioned ? 1 : 8]}
+          $rowStart={[1, 1, 1]}
+        >
           <OakFlex
             $flexGrow={1}
             $aspectRatio={"4/3"}
@@ -59,7 +68,11 @@ export default function JoinResearchPanelInfo({
             />
           </OakFlex>
         </OakGridArea>
-        <OakGridArea $colSpan={[12, 10, 6]} $colStart={[0, 2, 8]}>
+        <OakGridArea
+          $colSpan={[12, 10, 6]}
+          $colStart={[1, 2, isImageLeftPositioned ? 8 : 1]}
+          $rowStart={[2, 2, 1]}
+        >
           <OakFlex $flexDirection="column" $flexGrow={1}>
             <OakHeading tag="h2" $font={["heading-4", "heading-3"]}>
               {title}
