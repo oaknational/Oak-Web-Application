@@ -165,4 +165,93 @@ describe("curriculum change explained routes", () => {
     );
     expect(metadata.robots).toEqual({ index: false, follow: false });
   });
+
+  it.each([
+    {
+      segments: undefined,
+      title: "National curriculum insights",
+      description: "Explore curriculum changes by subject and phase.",
+    },
+    {
+      segments: ["science"],
+      title: "Science",
+      description: "Independent overview content for Science.",
+    },
+    {
+      segments: ["science", "primary"],
+      title: "Science primary page",
+      description: "Independent primary content for Science.",
+    },
+    {
+      segments: ["science", "primary", "ks2"],
+      title: "Science key stage 2 page",
+      description: "Independent KS2 content for Science.",
+    },
+  ])(
+    "falls back to the Sanity page title and summary at $segments",
+    async ({ segments, title, description }) => {
+      expect(await generateMetadata(props(segments))).toMatchObject({
+        title,
+        description,
+        openGraph: { title, description },
+        twitter: { title, description },
+      });
+    },
+  );
+
+  it("uses the key-stage document's SEO fields for that route", async () => {
+    const subject = subjects[0]!;
+    const title = "Science curriculum changes for KS2 teachers";
+    const description = "Explore what is changing in KS2 science.";
+    const canonical = "https://www.thenational.academy/science/ks2-changes";
+    jest
+      .mocked(CMSClient.nationalCurriculumInsightsSubjectBySlug)
+      .mockResolvedValue({
+        ...subject,
+        seo: { title: "Science overview SEO title" },
+        tabs: subject.tabs.map((tab) => ({
+          ...tab,
+          page: {
+            ...tab.page,
+            seo: { title: "Science phase SEO title" },
+            keyStages: tab.page.keyStages.map((keyStage) =>
+              keyStage.keyStage === "KS2"
+                ? {
+                    ...keyStage,
+                    page: {
+                      ...keyStage.page,
+                      seo: { title, description, canonicalURL: canonical },
+                    },
+                  }
+                : keyStage,
+            ),
+          },
+        })),
+      });
+
+    expect(
+      await generateMetadata(props(["science", "primary", "ks2"])),
+    ).toMatchObject({
+      title,
+      description,
+      alternates: { canonical },
+      openGraph: { title, description },
+      twitter: { title, description },
+      robots: { index: false, follow: false },
+    });
+  });
+
+  it("uses the fallback metadata when the page is unavailable", async () => {
+    jest
+      .mocked(CMSClient.nationalCurriculumInsightsSubjectBySlug)
+      .mockResolvedValue(null);
+
+    const metadata = await generateMetadata(
+      props(["science", "primary", "ks2"]),
+    );
+
+    expect(metadata.title).toBe("Curriculum change explained");
+    expect(metadata.description).toBeUndefined();
+    expect(metadata.robots).toEqual({ index: false, follow: false });
+  });
 });

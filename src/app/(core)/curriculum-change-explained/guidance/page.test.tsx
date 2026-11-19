@@ -6,6 +6,7 @@ import CurriculumChangeGuidancePage, {
   generateMetadata,
 } from "./page";
 
+import { localNationalCurriculumInsightsFixtures } from "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/__fixtures__/nationalCurriculumInsights";
 import { getNationalCurriculumInsightsRouteData } from "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/helpers/getRouteData";
 
 jest.mock("next/headers", () => ({ draftMode: jest.fn() }));
@@ -26,6 +27,7 @@ jest.mock(
 describe("curriculum change guidance route", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.mocked(getNationalCurriculumInsightsRouteData).mockResolvedValue(null);
     jest.mocked(draftMode).mockResolvedValue({
       isEnabled: false,
       enable: jest.fn(),
@@ -37,18 +39,32 @@ describe("curriculum change guidance route", () => {
     expect(dynamic).toBe("force-dynamic");
   });
 
-  it("uses the independent guidance route and canonical URL", async () => {
-    jest
-      .mocked(getNationalCurriculumInsightsRouteData)
-      .mockResolvedValue({ hub: null } as never);
+  it("uses the independent guidance route and its Sanity metadata", async () => {
+    const page =
+      (await localNationalCurriculumInsightsFixtures.reader.nationalCurriculumInsightsGuidancePage())!;
+    const title = "Guidance for the refreshed curriculum";
+    const description = page.summary;
+    jest.mocked(getNationalCurriculumInsightsRouteData).mockResolvedValue({
+      hub: null,
+      route: { kind: "guidance" },
+      subjects: [],
+      subject: null,
+      page: { ...page, seo: { title, description: " " } },
+      activeTab: null,
+      activeKeyStage: null,
+    });
     expect(await CurriculumChangeGuidancePage()).toBeDefined();
     expect(getNationalCurriculumInsightsRouteData).toHaveBeenCalledWith(
       { kind: "guidance" },
       { previewMode: false },
     );
-    expect((await generateMetadata()).alternates?.canonical).toBe(
-      "/curriculum-change-explained/guidance",
-    );
+    expect(await generateMetadata()).toMatchObject({
+      alternates: { canonical: "/curriculum-change-explained/guidance" },
+      title,
+      description,
+      openGraph: { title, description },
+      twitter: { title, description },
+    });
   });
   it("does not expose an unpublished guidance page", async () => {
     jest.mocked(getNationalCurriculumInsightsRouteData).mockResolvedValue(null);
@@ -70,5 +86,9 @@ describe("curriculum change guidance route", () => {
       index: false,
       follow: false,
     });
+    expect(getNationalCurriculumInsightsRouteData).toHaveBeenCalledWith(
+      { kind: "guidance" },
+      { previewMode: true },
+    );
   });
 });
