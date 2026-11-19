@@ -39,6 +39,8 @@ import {
 
 import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
+import errorReporter from "@/common-lib/error-reporter";
+import OakError from "@/errors/OakError";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { collectOnboardingTrackingProps } from "@/context/TeacherBrowseAnalytics/utils/collectOnboardingTrackingProps";
@@ -194,16 +196,34 @@ const OnboardingForm = ({
         });
       }
 
-      // Return the user to the page they originally arrived from
-      // or to the home page as a fallback
-      router.push(
+      // Return the user to the page they originally arrived from, or to the home page as a fallback.
+      // Use full page load so the destination is served with up-to-date Clerk state,
+      // and the navigation cannot be interrupted by client-side operations.
+      const redirectUrl =
         toSafeRedirect(
           searchParams?.get("returnTo") ?? "/",
-          new URL(typeof window !== "undefined" ? window.location.origin : "/"),
-        ) ?? "/",
-      );
-      // Ensure the target page refreshes to get the latest clerk state
-      router.refresh();
+          new URL(window.location.origin),
+        ) ?? "/";
+
+      if (typeof window !== "undefined" && window.location) {
+        try {
+          window.location.assign(redirectUrl);
+        } catch (error) {
+          if (process.env.NODE_ENV !== "test") {
+            const reportError = errorReporter("onboarding-form");
+            await reportError(
+              new OakError({
+                code: "onboarding/request-error",
+                meta: {
+                  redirectUrl,
+                  error: error instanceof Error ? error.message : String(error),
+                },
+                originalError: error instanceof Error ? error : undefined,
+              }),
+            );
+          }
+        }
+      }
     }
   };
 

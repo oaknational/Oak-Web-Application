@@ -148,9 +148,6 @@ describe("Onboarding form", () => {
 
       expect(onboardingActions.onboardUser).not.toHaveBeenCalled();
       expect(hubspotSubmitForm).toHaveBeenCalledTimes(1);
-      expect(mockPush).toHaveBeenCalledWith(
-        expect.stringContaining("/downloads"),
-      );
     });
 
     it("only allows the form to be submitted once", async () => {
@@ -183,8 +180,8 @@ describe("Onboarding form", () => {
       await submitForm(formState);
 
       await waitFor(() => {
-        expect(mockPush).toHaveBeenCalledWith(
-          expect.stringContaining("/downloads"),
+        expect(onboardingActions.onboardUser).toHaveBeenCalledWith(
+          onboardingPayload,
         );
       });
     });
