@@ -2,12 +2,14 @@
 import { OakBox, OakCodeRenderer } from "@oaknational/oak-components";
 import { Fragment } from "react";
 
+import NcAlignmentCheckerLandingPageQuotes from "@/components/NcAlignmentChecker/LandingPageHeaderQuotes";
 import {
   NcAlignmentCheckerLandingPage as CmsNcAlignmentCheckerLandingPage,
   NcAlignmentCheckerLandingPageBlock,
   NcAlignmentCheckerLandingPageBlockType,
 } from "@/common-lib/cms-types/ncAlignmentChecker";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
+
 function DefaultComponent(
   block: NcAlignmentCheckerLandingPageBlock<NcAlignmentCheckerLandingPageBlockType>,
 ) {
@@ -28,7 +30,7 @@ const pageComponents: {
   NcAlignmentCheckerLandingPageHeader: DefaultComponent,
   NcAlignmentCheckerLandingPageTextAndMedia: DefaultComponent,
   NcAlignmentCheckerLandingPageSubjectExperts: DefaultComponent,
-  NcAlignmentCheckerLandingPageQuotes: DefaultComponent,
+  NcAlignmentCheckerLandingPageQuotes: NcAlignmentCheckerLandingPageQuotes,
   NcAlignmentCheckerLandingPageFaqs: DefaultComponent,
   NcAlignmentCheckerLandingPageSubjectPickerCallout: DefaultComponent,
 };

@@ -50,6 +50,16 @@ export const imageSchema = z.object({
 
 export type Image = z.infer<typeof imageSchema>;
 
+export const quoteWithImageSchema = z.object({
+  text: z.string(),
+  attribution: z.string().nullish(),
+  role: z.string().nullish(),
+  organisation: z.string().nullish(),
+  image: imageSchema.nullish(),
+});
+
+export type QuoteWithImage = z.infer<typeof quoteWithImageSchema>;
+
 export const imageWithAltTextAndDarkModeSchema = z.object({
   altText: z.string().min(1).nullish(),
   isPresentational: z.boolean().nullish(),
