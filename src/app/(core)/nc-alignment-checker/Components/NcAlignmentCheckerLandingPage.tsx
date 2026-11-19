@@ -7,6 +7,7 @@ import {
   NcAlignmentCheckerLandingPageBlock,
   NcAlignmentCheckerLandingPageBlockType,
 } from "@/common-lib/cms-types/ncAlignmentChecker";
+import JoinResearchPanelInfo from "@/components/GenericPagesComponents/JoinResearchPanelInfo";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 function DefaultComponent(
   block: NcAlignmentCheckerLandingPageBlock<NcAlignmentCheckerLandingPageBlockType>,
@@ -26,7 +27,7 @@ const pageComponents: {
   ) => React.ReactNode;
 } = {
   NcAlignmentCheckerLandingPageHeader: DefaultComponent,
-  NcAlignmentCheckerLandingPageTextAndMedia: DefaultComponent,
+  NcAlignmentCheckerLandingPageTextAndMedia: JoinResearchPanelInfo,
   NcAlignmentCheckerLandingPageSubjectExperts: DefaultComponent,
   NcAlignmentCheckerLandingPageQuotes: DefaultComponent,
   NcAlignmentCheckerLandingPageFaqs: DefaultComponent,
