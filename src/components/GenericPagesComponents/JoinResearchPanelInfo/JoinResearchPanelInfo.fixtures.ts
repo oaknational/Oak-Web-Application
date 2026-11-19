@@ -5,6 +5,7 @@ import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 export const joinResearchPanelInfoBlockFixture = (
   title?: string,
   body?: string,
+  imagePosition?: "left" | "right",
 ): JoinResearchPanelInfoProps => ({
   title: title ?? "Join the research panel",
   image: {
@@ -13,5 +14,6 @@ export const joinResearchPanelInfoBlockFixture = (
       url: "https://cdn.sanity.io/images/cuvjke51/production/7499298e050630504fc8eb15bb8de2c864942575-633x486.png",
     },
   },
+  imagePosition,
   bodyRaw: portableTextFromString(body ?? "Join the research panel"),
 });
