@@ -1,3 +1,38 @@
+## [1.1281.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1281.2...v1.1281.3) (2026-11-19)
+
+
+### Bug Fixes
+
+* added QuoteWithImage into ncAlignmentCheckerLandingPage query ([7e9f680](https://github.com/oaknational/Oak-Web-Application/commit/7e9f680f7183e2d0f269f08f33eb028ff2e28d2b))
+
+## [1.1281.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1281.1...v1.1281.2) (2026-11-19)
+
+
+### Bug Fixes
+
+* swap router refresh for window location assign to prevent client side sign up interruptions ([334f7a4](https://github.com/oaknational/Oak-Web-Application/commit/334f7a41d6cc4878e80b1e83ce8cbb62a2171ff0))
+
+## [1.1281.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1281.0...v1.1281.1) (2026-11-19)
+
+
+### Bug Fixes
+
+* bump oak-components to v3.30.1 which includes ([d99dcdc](https://github.com/oaknational/Oak-Web-Application/commit/d99dcdc56576eac933fde6f7c3ce13650b8bbb95))
+
+# [1.1281.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1280.1...v1.1281.0) (2026-11-19)
+
+
+### Bug Fixes
+
+* async fn with no await in curriculumApi2023Mock ([510f8e1](https://github.com/oaknational/Oak-Web-Application/commit/510f8e1ad9b24184a3cec16ffaf315ce487da8d3))
+* redirects to a unit do not append /media to url ([c2bfe81](https://github.com/oaknational/Oak-Web-Application/commit/c2bfe81936cb8174f61f6639673ff2055e4bf81b))
+
+
+### Features
+
+* canonical lesson media pages ([c17dc0d](https://github.com/oaknational/Oak-Web-Application/commit/c17dc0d6ba172517cf8cf5067981180097d73fb0))
+* canonical lesson media query ([a3f56c9](https://github.com/oaknational/Oak-Web-Application/commit/a3f56c9628a757d0e9e21159573f5d7f73580e4f))
+
 ## [1.1280.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1280.0...v1.1280.1) (2026-11-18)
 
 

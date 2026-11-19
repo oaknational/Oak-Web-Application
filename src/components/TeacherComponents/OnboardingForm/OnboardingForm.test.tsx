@@ -19,9 +19,12 @@ import { hubspotSubmitForm } from "@/browser-lib/hubspot/forms";
 import {
   mockLoggedIn,
   mockNotOnboardedUser,
+  mockUser,
 } from "@/__tests__/__helpers__/mockUser";
 import type { OnboardingSchema } from "@/common-lib/schemas/onboarding";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import OakError from "@/errors/OakError";
+import redirectPage from "@/browser-lib/redirectPage";
 
 fetchMock.doMock();
 
@@ -45,11 +48,30 @@ jest.mock("./onboardingActions", () => {
     onboardUser: jest.fn(),
   };
 });
+jest.mock("next/navigation", () => {
+  return {
+    useRouter: jest.fn(),
+    useSearchParams: jest.fn(),
+    usePathname: jest.fn(),
+  };
+});
+jest.mock("@/browser-lib/redirectPage", () => {
+  return {
+    __esModule: true,
+    default: jest.fn(),
+  };
+});
+jest.mock("@/common-lib/error-reporter", () => {
+  return jest.fn(() => jest.fn().mockResolvedValue(undefined));
+});
 jest.mock("@clerk/nextjs");
 
 type OnboardingFormState = DefaultValues<OnboardingFormProps>;
 
 const mockPush = jest.fn();
+const mockReportError = jest.fn();
+const mockRedirectPage = jest.mocked(redirectPage);
+const mockUserReload = jest.mocked(mockUser.reload);
 
 describe("Onboarding form", () => {
   beforeEach(() => {
@@ -60,6 +82,17 @@ describe("Onboarding form", () => {
       refresh: jest.fn(),
     });
     (useSearchParams as jest.Mock).mockReturnValue(new URLSearchParams());
+    mockReportError.mockClear();
+    mockReportError.mockResolvedValue(undefined);
+    (require("@/common-lib/error-reporter") as jest.Mock).mockReturnValue(
+      mockReportError,
+    );
+    mockRedirectPage.mockReset();
+    mockUserReload.mockReset();
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
   });
 
   it("should render the onboarding form with fieldset and legend", async () => {
@@ -99,6 +132,19 @@ describe("Onboarding form", () => {
     unmount();
   });
 
+  it("does not mark the user onboarded when HubSpot submission fails", async () => {
+    setUseUserReturn(mockNotOnboardedUser);
+    jest.mocked(hubspotSubmitForm).mockClear();
+    jest
+      .mocked(hubspotSubmitForm)
+      .mockRejectedValueOnce(new Error("HubSpot unavailable"));
+
+    await submitForm({});
+
+    expect(onboardingActions.onboardUser).not.toHaveBeenCalled();
+    expect(hubspotSubmitForm).toHaveBeenCalledTimes(1);
+  });
+
   it.each<[string, string, boolean]>([
     ["/onboarding/school-selection", "works in a school", true],
     ["/onboarding/role-selection", "does not work in a school", false],
@@ -131,6 +177,7 @@ describe("Onboarding form", () => {
       (useSearchParams as jest.Mock).mockReturnValue(
         new URLSearchParams("returnTo=/downloads"),
       );
+      mockUserReload.mockReset();
     });
 
     afterEach(() => {
@@ -148,9 +195,6 @@ describe("Onboarding form", () => {
 
       expect(onboardingActions.onboardUser).not.toHaveBeenCalled();
       expect(hubspotSubmitForm).toHaveBeenCalledTimes(1);
-      expect(mockPush).toHaveBeenCalledWith(
-        expect.stringContaining("/downloads"),
-      );
     });
 
     it("only allows the form to be submitted once", async () => {
@@ -183,9 +227,61 @@ describe("Onboarding form", () => {
       await submitForm(formState);
 
       await waitFor(() => {
-        expect(mockPush).toHaveBeenCalledWith(
-          expect.stringContaining("/downloads"),
+        expect(onboardingActions.onboardUser).toHaveBeenCalledWith(
+          onboardingPayload,
         );
+        expect(mockRedirectPage).toHaveBeenCalledWith(
+          "http://localhost/downloads",
+        );
+      });
+    });
+
+    it("waits for Clerk to reload before redirecting", async () => {
+      jest
+        .spyOn(onboardingActions, "onboardUser")
+        .mockResolvedValue({ owa: { isTeacher: true, isOnboarded: true } });
+
+      let finishReload!: (user: typeof mockUser) => void;
+      mockUserReload.mockImplementationOnce(
+        () =>
+          new Promise((resolve) => {
+            finishReload = resolve;
+          }),
+      );
+
+      await submitForm(formState);
+
+      await waitFor(() => expect(mockUserReload).toHaveBeenCalled());
+      expect(mockRedirectPage).not.toHaveBeenCalled();
+
+      finishReload(mockUser);
+
+      await waitFor(() =>
+        expect(mockRedirectPage).toHaveBeenCalledWith(
+          "http://localhost/downloads",
+        ),
+      );
+    });
+
+    it("reports to Bugsnag if navigation fails", async () => {
+      const navigationError = new OakError({
+        code: "onboarding/request-error",
+      });
+      jest
+        .spyOn(onboardingActions, "onboardUser")
+        .mockResolvedValue({ owa: { isTeacher: true, isOnboarded: true } });
+      mockRedirectPage.mockImplementation(() => {
+        throw navigationError;
+      });
+
+      await submitForm(formState);
+
+      await waitFor(() => {
+        expect(mockReportError).toHaveBeenCalledTimes(1);
+        const errorArg = mockReportError.mock.calls[0][0];
+        expect(errorArg).toBeInstanceOf(OakError);
+        expect(errorArg.code).toBe("onboarding/request-error");
+        expect(errorArg.meta.error).toBe(navigationError.message);
       });
     });
 
