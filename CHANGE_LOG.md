@@ -1,3 +1,10 @@
+## [1.1281.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1281.2...v1.1281.3) (2026-11-19)
+
+
+### Bug Fixes
+
+* added QuoteWithImage into ncAlignmentCheckerLandingPage query ([7e9f680](https://github.com/oaknational/Oak-Web-Application/commit/7e9f680f7183e2d0f269f08f33eb028ff2e28d2b))
+
 ## [1.1281.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1281.1...v1.1281.2) (2026-11-19)
 
 
