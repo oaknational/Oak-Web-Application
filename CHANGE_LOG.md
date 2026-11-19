@@ -1,3 +1,10 @@
+## [1.1281.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1281.1...v1.1281.2) (2026-11-19)
+
+
+### Bug Fixes
+
+* swap router refresh for window location assign to prevent client side sign up interruptions ([334f7a4](https://github.com/oaknational/Oak-Web-Application/commit/334f7a41d6cc4878e80b1e83ce8cbb62a2171ff0))
+
 ## [1.1281.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1281.0...v1.1281.1) (2026-11-19)
 
 
