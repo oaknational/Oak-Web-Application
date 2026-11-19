@@ -23,6 +23,8 @@ const getCachedNcAlignmentCheckerCms = cache(
       };
     },
     ["nc-alignment-checker-cms"],
+    // TODO: Re-address in chat with teach squad
+    { revalidate: 300 },
   ),
 );
 
@@ -41,11 +43,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const NcAlignmentCheckerServerPage = async () => {
   const cookieStore = await cookies();
-  const isEnabled =
-    (await isFeatureFlagEnabledServer(
-      cookiesToObject(cookieStore),
-      "nc-alignment-checker",
-    )) ?? false;
+  const isEnabled = await isFeatureFlagEnabledServer(
+    cookiesToObject(cookieStore),
+    "nc-alignment-checker",
+  );
 
   if (!isEnabled) {
     return notFound();

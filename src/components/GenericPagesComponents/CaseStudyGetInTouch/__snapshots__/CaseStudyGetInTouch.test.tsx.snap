@@ -3,7 +3,7 @@
 exports[`CaseStudyGetInTouch renders 1`] = `
 <div>
   <div
-    class="sc-bdvwhi sc-gsDMPd hPWTKU ebZWkb"
+    class="sc-bdvwhi sc-jRQBiJ hPWTKU dLQTlC"
   >
     <div
       class="sc-bdvwhi gJDpgH"
@@ -16,7 +16,7 @@ exports[`CaseStudyGetInTouch renders 1`] = `
         >
           <img
             alt="Example image"
-            class="sc-jRQBiJ hssYEG"
+            class="sc-gsDMPd ctfyuj"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -27,10 +27,10 @@ exports[`CaseStudyGetInTouch renders 1`] = `
       </div>
     </div>
     <div
-      class="sc-bdvwhi sc-gsDMPd hPWTKU cqpdmg"
+      class="sc-bdvwhi sc-jRQBiJ hPWTKU ekCdUF"
     >
       <h1
-        class="sc-bkkgYE fPuywJ"
+        class="sc-hGPAwl iduXYp"
       >
         Thank you to 
         John Doe
@@ -41,24 +41,24 @@ exports[`CaseStudyGetInTouch renders 1`] = `
          for sharing their feedback to inform this case study
       </h1>
       <div
-        class="sc-bdvwhi sc-gsDMPd hPWTKU vrLXS"
+        class="sc-bdvwhi sc-jRQBiJ hPWTKU cjhGAP"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd hPWTKU gjSJbJ"
+          class="sc-bdvwhi sc-jRQBiJ hPWTKU elOSJQ"
         >
           <h2
-            class="sc-bkkgYE fPuywJ"
+            class="sc-hGPAwl iduXYp"
           >
             Connect me to schools like this one
           </h2>
           <p
-            class="sc-hGPAwl gjGOEe"
+            class="sc-fKVoIy bfcvnj"
           >
             Interested in exploring how Oak could work for your school or trust? We'll connect you with educators on a similar journey, so you can ask questions, hear about their experiences and learn what has worked for them.
           </p>
         </div>
         <div
-          class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+          class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
         >
           <div
             class="sc-bdvwhi kAFHfV grey-shadow"
@@ -68,16 +68,16 @@ exports[`CaseStudyGetInTouch renders 1`] = `
           />
           <a
             aria-label="Get in touch (opens in a new tab)"
-            class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
+            class="sc-furwPO sc-iqsgXZ eQRPqU bpUfmH internal-button"
             href="#"
             rel="noreferrer"
             target="_blank"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
             >
               <span
-                class="sc-dkPwfY kXQhTZ"
+                class="sc-iCfNyT gaSeFZ"
               >
                 Get in touch
               </span>
@@ -86,7 +86,7 @@ exports[`CaseStudyGetInTouch renders 1`] = `
               >
                 <img
                   alt=""
-                  class="sc-jRQBiJ fZPumv"
+                  class="sc-gsDMPd bkRpZy"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"

@@ -4,22 +4,22 @@ exports[`OaksImpactStats renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-bdvwhi sc-gsDMPd hDgMWc Bakex"
+      class="sc-bdvwhi sc-jRQBiJ hDgMWc heSanc"
     >
       <div
         class="sc-bdvwhi iatEdD"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd hPWTKU uEbwL"
+          class="sc-bdvwhi sc-jRQBiJ hPWTKU gBzEZW"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd jnFWSW vrLXS"
+            class="sc-bdvwhi sc-jRQBiJ jnFWSW cjhGAP"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU heDWJn"
             >
               <h2
-                class="sc-bkkgYE jiXKOr"
+                class="sc-hGPAwl bJexXj"
               >
                 Oak is now used in 72% of schools
               </h2>
@@ -27,14 +27,14 @@ exports[`OaksImpactStats renders correctly 1`] = `
                 class="sc-bdvwhi bnQuZY"
               >
                 <p
-                  class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                  class="sc-fKVoIy sc-82983132-0 fGUYFF WxNyd"
                 >
                   Our latest independent evaluation shows just how valuable this support has already become for teachers and school leaders.
                 </p>
               </div>
             </div>
             <div
-              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+              class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
             >
               <div
                 class="sc-bdvwhi kAFHfV grey-shadow"
@@ -44,15 +44,15 @@ exports[`OaksImpactStats renders correctly 1`] = `
               />
               <a
                 aria-label="Read the 24/25 impact report (opens in a new tab)"
-                class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
+                class="sc-furwPO sc-iqsgXZ eQRPqU bpUfmH internal-button"
                 href="#"
                 target="_blank"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                  class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                 >
                   <span
-                    class="sc-dkPwfY kXQhTZ"
+                    class="sc-iCfNyT gaSeFZ"
                   >
                     Read the 24/25 impact report
                   </span>
@@ -61,7 +61,7 @@ exports[`OaksImpactStats renders correctly 1`] = `
                   >
                     <img
                       alt=""
-                      class="sc-jRQBiJ fZPumv"
+                      class="sc-gsDMPd bkRpZy"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -74,13 +74,13 @@ exports[`OaksImpactStats renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd hPWTKU gYQTzD"
+            class="sc-bdvwhi sc-jRQBiJ hPWTKU gndHqq"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU gQfmsJ"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU bksIto"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd kgCXAV dRICfF"
+                class="sc-bdvwhi sc-jRQBiJ kgCXAV euGiok"
               >
                 <div
                   class="sc-bdvwhi ktFRKU"
@@ -90,7 +90,7 @@ exports[`OaksImpactStats renders correctly 1`] = `
                   >
                     <img
                       alt=""
-                      class="sc-jRQBiJ hssYEG"
+                      class="sc-gsDMPd ctfyuj"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -100,7 +100,7 @@ exports[`OaksImpactStats renders correctly 1`] = `
                   </span>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd kgCXAV gPLNOl"
+                  class="sc-bdvwhi sc-jRQBiJ kgCXAV kakQWA"
                 >
                   <div
                     class="sc-bdvwhi OtRSt"
@@ -111,7 +111,7 @@ exports[`OaksImpactStats renders correctly 1`] = `
                     class="sc-bdvwhi epMMBL"
                   >
                     <p
-                      class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                      class="sc-fKVoIy sc-82983132-0 fGUYFF WxNyd"
                     >
                       Between January and July 2025 alone, almost 200,000 teachers used Oak, with over 54,000 using it every week – a 53% rise on the previous year.
                     </p>
@@ -122,7 +122,7 @@ exports[`OaksImpactStats renders correctly 1`] = `
                 class="sc-bdvwhi dXZZOh"
               />
               <div
-                class="sc-bdvwhi sc-gsDMPd kgCXAV dRICfF"
+                class="sc-bdvwhi sc-jRQBiJ kgCXAV euGiok"
               >
                 <div
                   class="sc-bdvwhi ktFRKU"
@@ -132,7 +132,7 @@ exports[`OaksImpactStats renders correctly 1`] = `
                   >
                     <img
                       alt=""
-                      class="sc-jRQBiJ hssYEG"
+                      class="sc-gsDMPd ctfyuj"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -142,7 +142,7 @@ exports[`OaksImpactStats renders correctly 1`] = `
                   </span>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd kgCXAV gPLNOl"
+                  class="sc-bdvwhi sc-jRQBiJ kgCXAV kakQWA"
                 >
                   <div
                     class="sc-bdvwhi OtRSt"
@@ -153,7 +153,7 @@ exports[`OaksImpactStats renders correctly 1`] = `
                     class="sc-bdvwhi epMMBL"
                   >
                     <p
-                      class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                      class="sc-fKVoIy sc-82983132-0 fGUYFF WxNyd"
                     >
                       85% of Oak users say it has a positive impact on their workload. Two thirds (67%) report an overall workload reduction, saving a median four hours per week.
                     </p>
@@ -164,7 +164,7 @@ exports[`OaksImpactStats renders correctly 1`] = `
                 class="sc-bdvwhi dXZZOh"
               />
               <div
-                class="sc-bdvwhi sc-gsDMPd kgCXAV dRICfF"
+                class="sc-bdvwhi sc-jRQBiJ kgCXAV euGiok"
               >
                 <div
                   class="sc-bdvwhi ktFRKU"
@@ -174,7 +174,7 @@ exports[`OaksImpactStats renders correctly 1`] = `
                   >
                     <img
                       alt=""
-                      class="sc-jRQBiJ hssYEG"
+                      class="sc-gsDMPd ctfyuj"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -184,7 +184,7 @@ exports[`OaksImpactStats renders correctly 1`] = `
                   </span>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd kgCXAV gPLNOl"
+                  class="sc-bdvwhi sc-jRQBiJ kgCXAV kakQWA"
                 >
                   <div
                     class="sc-bdvwhi OtRSt"
@@ -195,7 +195,7 @@ exports[`OaksImpactStats renders correctly 1`] = `
                     class="sc-bdvwhi epMMBL"
                   >
                     <p
-                      class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                      class="sc-fKVoIy sc-82983132-0 fGUYFF WxNyd"
                     >
                       92% of Oak users see themselves staying in a teaching role in the next two years compared to 77% of non-users, indicating higher retention could be linked to Oak usage.
                     </p>

@@ -24,6 +24,7 @@ import { mockedSiteMapResponse } from "@/node-lib/curriculum-api-2023/fixtures/p
 import { type LessonDownloadsQuery } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.query";
 import { LessonMediaClipsQueryReturn } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.query";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+import canonicalLessonMediaFixture from "@/node-lib/curriculum-api-2023/fixtures/canonicalLessonMedia.fixture";
 
 const curriculumApi: Pick<
   CurriculumApi,
@@ -47,6 +48,7 @@ const curriculumApi: Pick<
   | "teachersSitemap"
   | "pupilsSitemap"
   | "lessonMediaClips"
+  | "canonicalLessonMedia"
   | "betaLessonMediaClipsQuery"
   | "browseUnitRedirectQuery"
   | "pupilCanonicalLessonRedirectQuery"
@@ -121,6 +123,9 @@ const curriculumApi: Pick<
   lessonMediaClips: jest.fn(async () => {
     return lessonMediaClipsFixtures();
   }) as jest.Mocked<LessonMediaClipsQueryReturn>,
+  canonicalLessonMedia: jest
+    .fn()
+    .mockResolvedValue(canonicalLessonMediaFixture()),
   unitListing: jest.fn(async () => {
     return unitListingFixture();
   }) as jest.Mocked<UnitListingQueryReturn>,
