@@ -7596,7 +7596,7 @@ export type NcAlignmentCheckerLandingPageQueryVariables = Exact<{
 }>;
 
 
-export type NcAlignmentCheckerLandingPageQuery = { __typename?: 'RootQuery', allNcAlignmentCheckerLandingPage: Array<{ __typename?: 'NcAlignmentCheckerLandingPage', id?: string | null, blocks?: Array<{ __typename: 'NcAlignmentCheckerLandingPageFaqs', items?: Array<{ __typename?: 'Faq', question?: string | null, answerRaw?: any | null } | null> | null } | { __typename: 'NcAlignmentCheckerLandingPageHeader', title?: string | null, bodyRaw?: any | null, icon?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, subjectPicker?: { __typename?: 'NcAlignmentCheckerLandingPageSubjectPicker', title?: string | null, tag?: string | null, bannerLabel?: string | null, buttonText?: string | null } | null } | { __typename: 'NcAlignmentCheckerLandingPageQuotes', quotes?: Array<{ __typename?: 'Quote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null> | null } | { __typename: 'NcAlignmentCheckerLandingPageSubjectExperts', title?: string | null, bodyRaw?: any | null, people?: Array<{ __typename?: 'TeamMember', name?: string | null, role?: string | null, id?: string | null, bioPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, socials?: { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null } | null } | null> | null } | { __typename: 'NcAlignmentCheckerLandingPageSubjectPickerCallout', subjectPicker?: { __typename?: 'NcAlignmentCheckerLandingPageSubjectPicker', title?: string | null, tag?: string | null, bannerLabel?: string | null, buttonText?: string | null } | null } | { __typename: 'NcAlignmentCheckerLandingPageTextAndMedia', imagePosition?: string | null, title?: string | null, bodyRaw?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+export type NcAlignmentCheckerLandingPageQuery = { __typename?: 'RootQuery', allNcAlignmentCheckerLandingPage: Array<{ __typename?: 'NcAlignmentCheckerLandingPage', id?: string | null, blocks?: Array<{ __typename: 'NcAlignmentCheckerLandingPageFaqs', _key?: string | null, items?: Array<{ __typename?: 'Faq', question?: string | null, answerRaw?: any | null } | null> | null } | { __typename: 'NcAlignmentCheckerLandingPageHeader', _key?: string | null, title?: string | null, bodyRaw?: any | null, icon?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, subjectPicker?: { __typename?: 'NcAlignmentCheckerLandingPageSubjectPicker', title?: string | null, tag?: string | null, bannerLabel?: string | null, buttonText?: string | null } | null } | { __typename: 'NcAlignmentCheckerLandingPageQuotes', _key?: string | null, quotes?: Array<{ __typename?: 'Quote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null> | null } | { __typename: 'NcAlignmentCheckerLandingPageSubjectExperts', _key?: string | null, title?: string | null, bodyRaw?: any | null, people?: Array<{ __typename?: 'TeamMember', name?: string | null, role?: string | null, id?: string | null, bioPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, socials?: { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null } | null } | null> | null } | { __typename: 'NcAlignmentCheckerLandingPageSubjectPickerCallout', _key?: string | null, subjectPicker?: { __typename?: 'NcAlignmentCheckerLandingPageSubjectPicker', title?: string | null, tag?: string | null, bannerLabel?: string | null, buttonText?: string | null } | null } | { __typename: 'NcAlignmentCheckerLandingPageTextAndMedia', _key?: string | null, imagePosition?: string | null, title?: string | null, bodyRaw?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type NewsListingPageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -8676,6 +8676,7 @@ export const NcAlignmentCheckerLandingPageDocument = gql`
     blocks {
       __typename
       ... on NcAlignmentCheckerLandingPageHeader {
+        _key
         title
         bodyRaw
         icon {
@@ -8686,6 +8687,7 @@ export const NcAlignmentCheckerLandingPageDocument = gql`
         }
       }
       ... on NcAlignmentCheckerLandingPageTextAndMedia {
+        _key
         imagePosition
         title
         bodyRaw
@@ -8694,6 +8696,7 @@ export const NcAlignmentCheckerLandingPageDocument = gql`
         }
       }
       ... on NcAlignmentCheckerLandingPageSubjectExperts {
+        _key
         title
         bodyRaw
         people {
@@ -8701,16 +8704,19 @@ export const NcAlignmentCheckerLandingPageDocument = gql`
         }
       }
       ... on NcAlignmentCheckerLandingPageQuotes {
+        _key
         quotes {
           ...Quote
         }
       }
       ... on NcAlignmentCheckerLandingPageFaqs {
+        _key
         items {
           ...Faq
         }
       }
       ... on NcAlignmentCheckerLandingPageSubjectPickerCallout {
+        _key
         subjectPicker {
           ...NcAlignmentCheckerLandingPageSubjectPicker
         }
