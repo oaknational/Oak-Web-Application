@@ -10,9 +10,12 @@ import OakError from "../errors/OakError";
 
 import { decorateWithIsr } from "./isr";
 
-initialiseSentry(null);
-initialiseBugsnag(null);
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
+initialiseSentry(null);
+if (getBrowserConfig("bugsnagEnabled") === "true") {
+  initialiseBugsnag(null);
+}
 /**
  * This function is intended to wrap NextJS page functions (e.g. getStaticProps,
  * getServerSideProps, etc.).It takes an async getProps() function as an argument

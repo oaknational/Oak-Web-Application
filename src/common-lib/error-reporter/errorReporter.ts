@@ -8,6 +8,7 @@ import bugsnagNotify from "./bugsnagNotify";
 
 import { consentClient } from "@/browser-lib/cookie-consent/consentClient";
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 export type ErrorData = Record<string, unknown> & {
   severity?: Event["severity"];
@@ -86,8 +87,9 @@ const errorReporter = (
     }
 
     const canReportToBugsnag =
-      !isBrowser ||
-      consentClient.getConsent(ServicePolicyMap.BUGSNAG) === "granted";
+      getBrowserConfig("bugsnagEnabled") === "true" &&
+      (!isBrowser ||
+        consentClient.getConsent(ServicePolicyMap.BUGSNAG) === "granted");
 
     const canReportToSentry =
       !isBrowser ||

@@ -8,9 +8,12 @@ import errorReporter, {
 import OakError from "../errors/OakError";
 import type { PageSearchParms } from "../app/(core)/teachers/programmes/[slug]/[tab]/page";
 
-initialiseSentry(null);
-initialiseBugsnag(null);
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
+initialiseSentry(null);
+if (getBrowserConfig("bugsnagEnabled") === "true") {
+  initialiseBugsnag(null);
+}
 type PageParams = Record<string, string>;
 export type AppPageProps<T extends PageParams = Record<string, never>> = {
   params: Promise<T>;

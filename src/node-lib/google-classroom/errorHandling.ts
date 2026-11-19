@@ -5,6 +5,7 @@ import errorReporter, {
   initialiseBugsnag,
   initialiseSentry,
 } from "@/common-lib/error-reporter";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 export type { ErrorContext } from "@oaknational/google-classroom-addon/server";
 export {
@@ -24,7 +25,9 @@ export function isOakGoogleClassroomException(
 export function createClassroomErrorReporter(operation: string) {
   initialiseSentry(null);
   if (!Bugsnag.isStarted()) {
-    initialiseBugsnag(null);
+    if (getBrowserConfig("bugsnagEnabled") === "true") {
+      initialiseBugsnag(null);
+    }
   }
   return errorReporter(`classroom-auth-${operation}`);
 }

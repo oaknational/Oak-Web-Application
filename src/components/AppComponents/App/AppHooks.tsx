@@ -39,7 +39,9 @@ const useAppHooks = () => {
   });
 
   useBugsnag({
-    enabled: getConsent(ServicePolicyMap.BUGSNAG) === "granted",
+    enabled:
+      getBrowserConfig("bugsnagEnabled") === "true" &&
+      getConsent(ServicePolicyMap.BUGSNAG) === "granted",
     userId: posthogDistinctId,
   });
 
