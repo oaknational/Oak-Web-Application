@@ -21,6 +21,16 @@ export const Default: Story = {
   ),
 };
 
+export const WithRightPositionedImage: Story = {
+  args: {
+    ...joinResearchPanelInfoBlockFixture(
+      "Who can join the panel?",
+      "Join the research panel body copy goes here",
+    ),
+    imagePosition: "right",
+  },
+};
+
 export const WithListItems: Story = {
   args: {
     ...joinResearchPanelInfoBlockFixture(
