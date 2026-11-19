@@ -223,6 +223,7 @@ const OnboardingForm = ({
           );
           setSubmitError("Something went wrong. Please try again.");
           setIsSubmitting(false);
+        }
       }
     }
   };
