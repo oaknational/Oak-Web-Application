@@ -48,6 +48,7 @@ import useUtmParams from "@/hooks/useUtmParams";
 import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
 import getHubspotUserToken from "@/browser-lib/hubspot/forms/getHubspotUserToken";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
+import redirectPage from "@/browser-lib/redirectPage";
 
 const OnboardingForm = ({
   forceHideNewsletterSignUp,
@@ -207,21 +208,19 @@ const OnboardingForm = ({
 
       if (typeof window !== "undefined" && window.location) {
         try {
-          window.location.assign(redirectUrl);
+          redirectPage(redirectUrl);
         } catch (error) {
-          if (process.env.NODE_ENV !== "test") {
-            const reportError = errorReporter("onboarding-form");
-            await reportError(
-              new OakError({
-                code: "onboarding/request-error",
-                meta: {
-                  redirectUrl,
-                  error: error instanceof Error ? error.message : String(error),
-                },
-                originalError: error instanceof Error ? error : undefined,
-              }),
-            );
-          }
+          const reportError = errorReporter("onboarding-form");
+          await reportError(
+            new OakError({
+              code: "onboarding/request-error",
+              meta: {
+                redirectUrl,
+                error: error instanceof Error ? error.message : String(error),
+              },
+              originalError: error instanceof Error ? error : undefined,
+            }),
+          );
         }
       }
     }
