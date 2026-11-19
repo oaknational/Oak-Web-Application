@@ -39,9 +39,9 @@ export default function JoinResearchPanelPeople({
             </OakHeading>
             <OakGrid
               $rg={["spacing-32", "spacing-16", "spacing-16"]}
-              $cg={["spacing-32", "spacing-16", "spacing-16"]}
+              $cg={["spacing-0", "spacing-16", "spacing-16"]}
             >
-              {[...members, ...members].map((member) => {
+              {members.map((member) => {
                 const imageUrl = getProxiedSanityAssetUrl(
                   member.image?.asset?.url,
                 );
