@@ -7,7 +7,7 @@ import NcAlignmentCheckerLandingPageHeader from ".";
 const meta = {
   component: NcAlignmentCheckerLandingPageHeader,
   tags: ["autodocs"],
-  title: "Components/CurriculumComponents/NcAlignmentChecker/LandingPageHeader",
+  title: "Components/NcAlignmentChecker/LandingPageHeader",
 } satisfies Meta<typeof NcAlignmentCheckerLandingPageHeader>;
 
 export default meta;
