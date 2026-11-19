@@ -72,7 +72,6 @@ const homePageBaseSchema = z
     pupilsImage: imageSchema.nullish(),
     teachersImage: imageSchema.nullish(),
     notification: notificationSchema.nullish(),
-    sidebarCard1: cardSchema,
     sidebarCard2: cardSchema,
     sidebarForm: z
       .object({

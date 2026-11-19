@@ -223,6 +223,10 @@ export const Header = (props: LargeHeaderProps | CompactHeaderProps) => {
               $objectFit="contain"
               placeholder="empty"
               unoptimized
+              imageProps={{
+                priority: true,
+                fetchPriority: "high",
+              }}
             />
           )}
         </OakGridArea>
@@ -239,9 +243,10 @@ const CompactHeaderSubjectIcon = ({
 } & (CompactHeaderProps | LargeHeaderProps)) => {
   const isCompactLayout = isCompactHeaderProps(props);
   const iconName = isCompactLayout ? props.subjectIcon : undefined;
-  const iconBackground = isCompactLayout
-    ? (`bg-decorative${props.backgroundColorLevel}-main` as OakUiRoleToken)
-    : undefined;
+  const iconBackground =
+    isCompactLayout && props.backgroundColorLevel
+      ? (`bg-decorative${props.backgroundColorLevel}-main` as OakUiRoleToken)
+      : undefined;
 
   return iconName ? (
     <OakFlex

@@ -9,37 +9,37 @@ exports[`TeachWithOakPromoSection renders correctly 1`] = `
       class="sc-bdvwhi cqfEAN"
     >
       <div
-        class="sc-bdvwhi sc-bXTeWK hpVQPd hhvrej"
+        class="sc-bdvwhi sc-iUKrAm hpVQPd eCYZDd"
       >
         <a
-          class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fugdSh fbAqCR hsiEZu"
+          class="sc-bdvwhi sc-jRQBiJ sc-dVNjkB fugdSh fmPzBU gtYhCA"
           href="/teachers/teach-with-oak?returnTo=%2Ftest%2Furl&lessonName=Lesson+Name&unitName=Unit+Name"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
+            class="sc-bdvwhi sc-jRQBiJ sc-kYHdiH hPWTKU frNXTM"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU gCDeec"
             >
               <h2
-                class="sc-bkkgYE jxvseu"
+                class="sc-hGPAwl rcDEW"
               >
                 Ever wondered why our lessons are structured this way?
               </h2>
               <p
-                class="sc-hGPAwl elFTWr"
+                class="sc-fKVoIy iasuwO"
               >
                 See how explanation, checks for understanding, practice and feedback work together to support pupils' learning.
               </p>
             </div>
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU iSxVRe"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd hPWTKU eWbmLh"
+                class="sc-bdvwhi sc-jRQBiJ hPWTKU bBQXks"
               >
                 <span
-                  class="sc-dkPwfY hmZYGI"
+                  class="sc-iCfNyT hEdkgI"
                 >
                   See the thinking
                 </span>
@@ -48,7 +48,7 @@ exports[`TeachWithOakPromoSection renders correctly 1`] = `
                 >
                   <img
                     alt=""
-                    class="sc-jRQBiJ eMsccW"
+                    class="sc-gsDMPd frprTL"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -64,7 +64,7 @@ exports[`TeachWithOakPromoSection renders correctly 1`] = `
     </div>
     <div
       aria-live="polite"
-      class="sc-bdvwhi sc-gsDMPd sc-b7a27f76-0 kjWDfr htLMtM krUohl"
+      class="sc-bdvwhi sc-jRQBiJ sc-b7a27f76-0 kjWDfr hsWgl krUohl"
     />
   </div>
   <div
@@ -78,13 +78,13 @@ exports[`TeachWithOakPromoSection renders correctly 1`] = `
         class="sc-bdvwhi iIozLH"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd egBoar iKjTsb"
+          class="sc-bdvwhi sc-jRQBiJ egBoar FWapS"
         >
           <div
             class="sc-bdvwhi fIxCDL"
           >
             <strong
-              class="sc-dkPwfY iyMjBM"
+              class="sc-iCfNyT dApWAc"
             >
               This site uses cookies to store information on your computer.
             </strong>
@@ -92,25 +92,25 @@ exports[`TeachWithOakPromoSection renders correctly 1`] = `
             Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd hPWTKU gyKdMN"
+            class="sc-bdvwhi sc-jRQBiJ hPWTKU sLqqU"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd lmXuba eWbmLh"
+              class="sc-bdvwhi sc-jRQBiJ lmXuba bBQXks"
             >
               <button
-                class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
+                class="sc-iJKPHa dwzJJG sc-iNGDOz jUVWTt"
                 data-testid="cookie-banner-reject"
                 type="button"
               >
                 <span
-                  class="sc-dkPwfY fgmEIT"
+                  class="sc-iCfNyT fAQctr"
                 >
                   Reject non-essential cookies
                 </span>
               </button>
             </div>
             <div
-              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+              class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
             >
               <div
                 class="sc-bdvwhi kAFHfV grey-shadow"
@@ -119,13 +119,13 @@ exports[`TeachWithOakPromoSection renders correctly 1`] = `
                 class="sc-bdvwhi kAFHfV yellow-shadow"
               />
               <button
-                class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
+                class="sc-furwPO sc-iqsgXZ eQRPqU bpUfmH internal-button"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                  class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                 >
                   <span
-                    class="sc-dkPwfY kXQhTZ"
+                    class="sc-iCfNyT gaSeFZ"
                   >
                     Cookie settings
                   </span>
@@ -133,7 +133,7 @@ exports[`TeachWithOakPromoSection renders correctly 1`] = `
               </button>
             </div>
             <div
-              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+              class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
             >
               <div
                 class="sc-bdvwhi kAFHfV grey-shadow"
@@ -142,14 +142,14 @@ exports[`TeachWithOakPromoSection renders correctly 1`] = `
                 class="sc-bdvwhi kAFHfV yellow-shadow"
               />
               <button
-                class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                class="sc-furwPO sc-iqsgXZ xrJiU kpPtpO internal-button"
                 data-testid="cookie-banner-accept"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                  class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                 >
                   <span
-                    class="sc-dkPwfY kXQhTZ"
+                    class="sc-iCfNyT gaSeFZ"
                   >
                     Accept all cookies
                   </span>

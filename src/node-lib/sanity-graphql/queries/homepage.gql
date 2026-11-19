@@ -29,9 +29,10 @@ query homepage($isDraftFilter: Sanity_DocumentFilter) {
         ...Link
       }
     }
-    sidebarCard1 {
-      ...Card
-    }
+    # Disabled for now as seemingly unused and currently links to dead about us page
+    # sidebarCard1 {
+    #   ...Card
+    # }
     sidebarCard2 {
       ...Card
     }

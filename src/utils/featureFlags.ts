@@ -1,17 +1,9 @@
 import { cookies } from "next/headers";
-import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-
-function cookieAsObj(c: ReadonlyRequestCookies) {
-  const out: Record<string, string> = {};
-  for (const item of c.getAll()) {
-    out[item.name] = item.value;
-  }
-  return out;
-}
+import { cookiesToObject } from "@/utils/cookiesToObject";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -35,7 +27,7 @@ export async function getFeatureFlagValue<T extends keyof TypeMap>(
   flagName: string,
   expectedFlagType: T,
 ): Promise<TypeMap[T] | undefined> {
-  const cookieStore = cookieAsObj(await cookies());
+  const cookieStore = cookiesToObject(await cookies());
 
   const posthogUserId = getPosthogIdFromCookie(cookieStore, posthogApiKey);
   let flag: string | boolean | undefined;

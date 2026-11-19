@@ -92,7 +92,11 @@ export type FooterSection = {
 };
 const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
   return (
-    <OakFlex $flexDirection="column" $mt={["spacing-32", "spacing-0"]}>
+    <OakFlex
+      data-chromatic="ignore"
+      $flexDirection="column"
+      $mt={["spacing-32", "spacing-0"]}
+    >
       <OakHeading
         $mb="spacing-8"
         $font="heading-7"
@@ -216,7 +220,6 @@ export const LayoutSiteFooterInner: FC = memo(() => {
           type: "link",
           href: "https://jobs.thenational.academy",
           icon: "external",
-          ariaLabel: "Careers (opens in a new tab)",
         },
         {
           text: "Contact us",
@@ -228,7 +231,6 @@ export const LayoutSiteFooterInner: FC = memo(() => {
           type: "link",
           href: resolveOakHref({ page: "help" }),
           icon: "external",
-          ariaLabel: "Help (opens in a new tab)",
         },
         {
           text: "Webinars",
@@ -240,7 +242,6 @@ export const LayoutSiteFooterInner: FC = memo(() => {
           href: "https://status.thenational.academy",
           icon: "external",
           type: "link",
-          ariaLabel: "Status (opens in a new tab)",
         },
       ],
     },
@@ -419,10 +420,7 @@ export const LayoutSiteFooterInner: FC = memo(() => {
 
 const LayoutSiteFooter = () => {
   return (
-    <TeacherBrowseAnalyticsStoreProvider
-      programmeState={null}
-      accessLevel="homepage"
-    >
+    <TeacherBrowseAnalyticsStoreProvider programmeState={null}>
       <LayoutSiteFooterInner />
     </TeacherBrowseAnalyticsStoreProvider>
   );

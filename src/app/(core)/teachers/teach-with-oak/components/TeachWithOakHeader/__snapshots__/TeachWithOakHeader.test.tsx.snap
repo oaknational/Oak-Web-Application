@@ -13,17 +13,17 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
           class="sc-bdvwhi iatEdD"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm"
+            class="sc-bdvwhi sc-jRQBiJ sc-ksdwth gyHFon heSanc eZXmZx"
           >
             <a
-              class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+              class="sc-furwPO sc-bqiQyc bKSeku ivslVy"
               href="/teachers/programmes/art-primary-ks1/units/unit-slug/lessons/lesson-slug"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd hPWTKU iTbSo"
+                class="sc-bdvwhi sc-jRQBiJ hPWTKU jnrhjl"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                  class="sc-bdvwhi sc-jRQBiJ juqUen tMmkI icon-container"
                 >
                   <div
                     class="sc-bdvwhi fZgcUH shadow"
@@ -34,7 +34,7 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
                   >
                     <img
                       alt=""
-                      class="sc-jRQBiJ fZPumv"
+                      class="sc-gsDMPd bkRpZy"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -44,7 +44,7 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
                   </span>
                 </div>
                 <span
-                  class="sc-dkPwfY cSKbCa"
+                  class="sc-iCfNyT eMPvca"
                 >
                   Back to lesson
                 </span>
@@ -53,7 +53,7 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-bdvwhi sc-gsDMPd sc-ff55f964-0 hPWTKU Bakex hiKpGG"
+          class="sc-bdvwhi sc-jRQBiJ sc-ff55f964-0 hPWTKU heSanc hiKpGG"
         >
           <div
             class="sc-bdvwhi jtiAen"
@@ -62,23 +62,23 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
               class="sc-bdvwhi iatEdD"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd hRJGqe fAAUMK"
+                class="sc-bdvwhi sc-jRQBiJ hRJGqe kCUfuD"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd buPcZO wpQBF"
+                  class="sc-bdvwhi sc-jRQBiJ buPcZO gzkhZo"
                 >
                   <h1
-                    class="sc-bkkgYE iAHrRb"
+                    class="sc-hGPAwl iyNHKX"
                   >
                     <span
-                      class="sc-dkPwfY dDjAUo"
+                      class="sc-iCfNyT fhTVkg"
                       style="line-height: 1.25; box-decoration-break: clone;"
                     >
                       The thinking behind Oak lessons
                     </span>
                   </h1>
                   <p
-                    class="sc-hGPAwl gCmSLw"
+                    class="sc-fKVoIy bYtmul"
                   >
                     See how our lessons are designed to support learning - and make the most of them in your classroom.
                   </p>
@@ -91,7 +91,7 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
                   >
                     <img
                       alt=""
-                      class="sc-jRQBiJ hssYEG"
+                      class="sc-gsDMPd ctfyuj"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -109,7 +109,7 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
       </div>
       <div
         aria-live="polite"
-        class="sc-bdvwhi sc-gsDMPd sc-b7a27f76-0 kjWDfr htLMtM krUohl"
+        class="sc-bdvwhi sc-jRQBiJ sc-b7a27f76-0 kjWDfr hsWgl krUohl"
       />
     </div>
     <div
@@ -123,13 +123,13 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
           class="sc-bdvwhi iIozLH"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd egBoar iKjTsb"
+            class="sc-bdvwhi sc-jRQBiJ egBoar FWapS"
           >
             <div
               class="sc-bdvwhi fIxCDL"
             >
               <strong
-                class="sc-dkPwfY iyMjBM"
+                class="sc-iCfNyT dApWAc"
               >
                 This site uses cookies to store information on your computer.
               </strong>
@@ -137,25 +137,25 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
               Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
             </div>
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU gyKdMN"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU sLqqU"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd lmXuba eWbmLh"
+                class="sc-bdvwhi sc-jRQBiJ lmXuba bBQXks"
               >
                 <button
-                  class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
+                  class="sc-iJKPHa dwzJJG sc-iNGDOz jUVWTt"
                   data-testid="cookie-banner-reject"
                   type="button"
                 >
                   <span
-                    class="sc-dkPwfY fgmEIT"
+                    class="sc-iCfNyT fAQctr"
                   >
                     Reject non-essential cookies
                   </span>
                 </button>
               </div>
               <div
-                class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+                class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
               >
                 <div
                   class="sc-bdvwhi kAFHfV grey-shadow"
@@ -164,13 +164,13 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
                   class="sc-bdvwhi kAFHfV yellow-shadow"
                 />
                 <button
-                  class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
+                  class="sc-furwPO sc-iqsgXZ eQRPqU bpUfmH internal-button"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                   >
                     <span
-                      class="sc-dkPwfY kXQhTZ"
+                      class="sc-iCfNyT gaSeFZ"
                     >
                       Cookie settings
                     </span>
@@ -178,7 +178,7 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
                 </button>
               </div>
               <div
-                class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+                class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
               >
                 <div
                   class="sc-bdvwhi kAFHfV grey-shadow"
@@ -187,14 +187,14 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
                   class="sc-bdvwhi kAFHfV yellow-shadow"
                 />
                 <button
-                  class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                  class="sc-furwPO sc-iqsgXZ xrJiU kpPtpO internal-button"
                   data-testid="cookie-banner-accept"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                   >
                     <span
-                      class="sc-dkPwfY kXQhTZ"
+                      class="sc-iCfNyT gaSeFZ"
                     >
                       Accept all cookies
                     </span>

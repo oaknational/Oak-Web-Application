@@ -4,11 +4,11 @@ exports[`RiskAssessmentBanner renders the RiskAssessmentBanner component 1`] = `
 <body>
   <div>
     <div
-      class="sc-bdvwhi sc-gsDMPd ebsRXD enBTAV"
+      class="sc-bdvwhi sc-jRQBiJ ebsRXD fnrreg"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-bdvwhi sc-gsDMPd hCAKqr fgEwdk"
+        class="sc-bdvwhi sc-jRQBiJ hCAKqr czGDgF"
       >
         <div
           class="sc-bdvwhi hPWTKU"
@@ -19,7 +19,7 @@ exports[`RiskAssessmentBanner renders the RiskAssessmentBanner component 1`] = `
           >
             <img
               alt=""
-              class="sc-jRQBiJ fZPumv"
+              class="sc-gsDMPd bkRpZy"
               data-nimg="fill"
               decoding="async"
               loading="lazy"
@@ -29,10 +29,10 @@ exports[`RiskAssessmentBanner renders the RiskAssessmentBanner component 1`] = `
           </span>
         </div>
         <div
-          class="sc-bdvwhi sc-gsDMPd jtiAen cyldrw"
+          class="sc-bdvwhi sc-jRQBiJ jtiAen kwgPQd"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd jtiAen fitceZ"
+            class="sc-bdvwhi sc-jRQBiJ jtiAen fheNKc"
           >
             <div
               class="sc-bdvwhi bdOroj"
@@ -45,39 +45,48 @@ exports[`RiskAssessmentBanner renders the RiskAssessmentBanner component 1`] = `
                 Carry out a
                  
                 <a
-                  class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
+                  class="sc-iJKPHa kymEhS sc-iNGDOz hPscCj"
                   href="/legal/physical-activity-disclaimer"
                   target="_blank"
                 >
                   <span
-                    class="sc-dkPwfY fgmEIT"
+                    class="sc-iCfNyT fAQctr"
                   >
                     risk assessment
+                    <span
+                      class="sc-pVUti eEZcMz"
+                    >
+                       (opens in a new tab)
+                    </span>
                   </span>
                 </a>
                  
                 for all practical PE lessons. Read
                  
                 <a
-                  aria-label="Safe Practice: in PESSPA (opens in a new tab)"
-                  class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
+                  class="sc-iJKPHa kymEhS sc-iNGDOz hPscCj"
                   href="https://www.afpe.org.uk/page/Safe_Practice_in_PESSPA#"
                   target="_blank"
                 >
                   <span
-                    class="sc-dkPwfY fgmEIT"
+                    class="sc-iCfNyT fAQctr"
                   >
                     'Safe Practice: in PESSPA'
+                    <span
+                      class="sc-pVUti eEZcMz"
+                    >
+                       (opens in a new tab)
+                    </span>
                   </span>
                   <div
                     class="sc-bdvwhi hUeWJD"
                   >
                     <span
-                      class="sc-bdvwhi cqHYAi sc-fKVoIy gNZMCw"
+                      class="sc-bdvwhi cqHYAi sc-cxpUrY fiOnyh"
                     >
                       <img
                         alt=""
-                        class="sc-jRQBiJ eMsccW"
+                        class="sc-gsDMPd frprTL"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"

@@ -7,33 +7,33 @@ exports[`AboutUsCalloutWithCta renders custom content correctly 1`] = `
       class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-bdvwhi sc-jObTYW hPWTKU gKJERn"
+        class="sc-bdvwhi sc-cTAoCz hPWTKU UcKeK"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex giCKOa"
+          class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc dBDeHx"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd hPWTKU csSWlB"
+            class="sc-bdvwhi sc-jRQBiJ hPWTKU ldkUCM"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU heDWJn"
             >
               <h1
-                class="sc-bkkgYE hBiIpc"
+                class="sc-hGPAwl fNxiaY"
               >
                 Join the Oak research panel
               </h1>
               <p
-                class="sc-hGPAwl lcuFqC"
+                class="sc-fKVoIy hMPgac"
               >
                 Your feedback is essential to help us understand the realities of teaching and learning. By listening to teachers like you, we learn about your preferences, challenges and needs, and can use these insights to shape Oak curriculum resources, lessons and tools.
               </p>
             </div>
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU cIPGhJ"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU cBpORs"
             >
               <div
-                class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+                class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
               >
                 <div
                   class="sc-bdvwhi kAFHfV grey-shadow"
@@ -43,15 +43,15 @@ exports[`AboutUsCalloutWithCta renders custom content correctly 1`] = `
                 />
                 <a
                   aria-label="Join the research panel (opens in new tab)"
-                  class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                  class="sc-furwPO sc-iqsgXZ xrJiU kpPtpO internal-button"
                   href="https://example.com"
                   target="_blank"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                   >
                     <span
-                      class="sc-dkPwfY kXQhTZ"
+                      class="sc-iCfNyT gaSeFZ"
                     >
                       Join the research panel
                     </span>
@@ -60,7 +60,7 @@ exports[`AboutUsCalloutWithCta renders custom content correctly 1`] = `
                     >
                       <img
                         alt=""
-                        class="sc-jRQBiJ buswnv"
+                        class="sc-gsDMPd kvEPQa"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -75,17 +75,17 @@ exports[`AboutUsCalloutWithCta renders custom content correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-bdvwhi sc-gsDMPd sc-dPiIMO eIMKEQ Bakex fqHsID"
+          class="sc-bdvwhi sc-jRQBiJ sc-jObTYW eIMKEQ heSanc csNhJc"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd dumZsJ kkGnDS"
+            class="sc-bdvwhi sc-jRQBiJ dumZsJ bzKZFL"
           >
             <span
               class="sc-bdvwhi LoEut"
             >
               <img
                 alt=""
-                class="sc-jRQBiJ hssYEG"
+                class="sc-gsDMPd ctfyuj"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -110,33 +110,33 @@ exports[`AboutUsCalloutWithCta renders default content correctly 1`] = `
       class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-bdvwhi sc-jObTYW hPWTKU gKJERn"
+        class="sc-bdvwhi sc-cTAoCz hPWTKU UcKeK"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex giCKOa"
+          class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc dBDeHx"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd hPWTKU csSWlB"
+            class="sc-bdvwhi sc-jRQBiJ hPWTKU ldkUCM"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU heDWJn"
             >
               <h2
-                class="sc-bkkgYE hBiIpc"
+                class="sc-hGPAwl fNxiaY"
               >
                 Discover how Oak can support you
               </h2>
               <p
-                class="sc-hGPAwl lcuFqC"
+                class="sc-fKVoIy hMPgac"
               >
                 To explore the impact Oak’s curricula could have in your school or trust, fill out the form below and one of our experts will be in touch shortly.
               </p>
             </div>
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU cIPGhJ"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU cBpORs"
             >
               <div
-                class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+                class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
               >
                 <div
                   class="sc-bdvwhi kAFHfV grey-shadow"
@@ -146,15 +146,15 @@ exports[`AboutUsCalloutWithCta renders default content correctly 1`] = `
                 />
                 <a
                   aria-label="Get in touch with an expert (opens in new tab)"
-                  class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                  class="sc-furwPO sc-iqsgXZ xrJiU kpPtpO internal-button"
                   href="https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd"
                   target="_blank"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                   >
                     <span
-                      class="sc-dkPwfY kXQhTZ"
+                      class="sc-iCfNyT gaSeFZ"
                     >
                       Get in touch with an expert
                     </span>
@@ -163,7 +163,7 @@ exports[`AboutUsCalloutWithCta renders default content correctly 1`] = `
                     >
                       <img
                         alt=""
-                        class="sc-jRQBiJ buswnv"
+                        class="sc-gsDMPd kvEPQa"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -178,17 +178,17 @@ exports[`AboutUsCalloutWithCta renders default content correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-bdvwhi sc-gsDMPd sc-dPiIMO eIMKEQ Bakex fqHsID"
+          class="sc-bdvwhi sc-jRQBiJ sc-jObTYW eIMKEQ heSanc csNhJc"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd dumZsJ kkGnDS"
+            class="sc-bdvwhi sc-jRQBiJ dumZsJ bzKZFL"
           >
             <span
               class="sc-bdvwhi LoEut"
             >
               <img
                 alt=""
-                class="sc-jRQBiJ hssYEG"
+                class="sc-gsDMPd ctfyuj"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"

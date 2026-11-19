@@ -45,6 +45,7 @@ export default function JoinResearchPanelPageHeader({
       >
         <AboutUsCalloutWithCta
           headingTag="h1"
+          headingFont={["heading-3", "heading-2", "heading-2"]}
           title={title}
           text={bodyRaw}
           image={image}

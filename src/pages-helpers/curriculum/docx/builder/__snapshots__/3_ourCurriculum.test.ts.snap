@@ -705,7 +705,7 @@ exports[`3_ourCurriculum simple 1`] = `
             <wp:docPr
               id="30000"
               name=""
-              descr="A bee hive diagram showing each of Oak's 6 curriculum principles"
+              descr="A bee hive diagram showing each of Oak&apos;s 6 curriculum principles"
             >
               <a:extLst
                 xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
@@ -739,7 +739,7 @@ exports[`3_ourCurriculum simple 1`] = `
                     <pic:cNvPr
                       id="30000"
                       name=""
-                      descr="A bee hive diagram showing each of Oak's 6 curriculum principles"
+                      descr="A bee hive diagram showing each of Oak&apos;s 6 curriculum principles"
                     >
                       <a:extLst>
                         <a:ext

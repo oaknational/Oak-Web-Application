@@ -9,10 +9,10 @@ exports[`PostVideo allow override of location 1`] = `
       class="sc-bdvwhi hpbfuw"
     >
       <div
-        class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+        class="sc-bdvwhi sc-jRQBiJ hPWTKU heDWJn"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd ctjFUQ eChlAW"
+          class="sc-bdvwhi sc-jRQBiJ ctjFUQ heDWJn"
         >
           <div
             class="sc-bdvwhi rRUGc"
@@ -23,17 +23,17 @@ exports[`PostVideo allow override of location 1`] = `
           </div>
         </div>
         <div
-          class="sc-bdvwhi sc-gsDMPd eXzoht lkvGTq"
+          class="sc-bdvwhi sc-jRQBiJ eXzoht dMHPr"
         >
           <p
-            class="sc-hGPAwl gjGOEe"
+            class="sc-fKVoIy bfcvnj"
           />
         </div>
       </div>
     </div>
     <div
       aria-live="polite"
-      class="sc-bdvwhi sc-gsDMPd sc-b7a27f76-0 kjWDfr htLMtM krUohl"
+      class="sc-bdvwhi sc-jRQBiJ sc-b7a27f76-0 kjWDfr hsWgl krUohl"
     />
   </div>
   <div
@@ -47,13 +47,13 @@ exports[`PostVideo allow override of location 1`] = `
         class="sc-bdvwhi iIozLH"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd egBoar iKjTsb"
+          class="sc-bdvwhi sc-jRQBiJ egBoar FWapS"
         >
           <div
             class="sc-bdvwhi fIxCDL"
           >
             <strong
-              class="sc-dkPwfY iyMjBM"
+              class="sc-iCfNyT dApWAc"
             >
               This site uses cookies to store information on your computer.
             </strong>
@@ -61,25 +61,25 @@ exports[`PostVideo allow override of location 1`] = `
             Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd hPWTKU gyKdMN"
+            class="sc-bdvwhi sc-jRQBiJ hPWTKU sLqqU"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd lmXuba eWbmLh"
+              class="sc-bdvwhi sc-jRQBiJ lmXuba bBQXks"
             >
               <button
-                class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
+                class="sc-iJKPHa dwzJJG sc-iNGDOz jUVWTt"
                 data-testid="cookie-banner-reject"
                 type="button"
               >
                 <span
-                  class="sc-dkPwfY fgmEIT"
+                  class="sc-iCfNyT fAQctr"
                 >
                   Reject non-essential cookies
                 </span>
               </button>
             </div>
             <div
-              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+              class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
             >
               <div
                 class="sc-bdvwhi kAFHfV grey-shadow"
@@ -88,13 +88,13 @@ exports[`PostVideo allow override of location 1`] = `
                 class="sc-bdvwhi kAFHfV yellow-shadow"
               />
               <button
-                class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
+                class="sc-furwPO sc-iqsgXZ eQRPqU bpUfmH internal-button"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                  class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                 >
                   <span
-                    class="sc-dkPwfY kXQhTZ"
+                    class="sc-iCfNyT gaSeFZ"
                   >
                     Cookie settings
                   </span>
@@ -102,7 +102,7 @@ exports[`PostVideo allow override of location 1`] = `
               </button>
             </div>
             <div
-              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+              class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
             >
               <div
                 class="sc-bdvwhi kAFHfV grey-shadow"
@@ -111,14 +111,14 @@ exports[`PostVideo allow override of location 1`] = `
                 class="sc-bdvwhi kAFHfV yellow-shadow"
               />
               <button
-                class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                class="sc-furwPO sc-iqsgXZ xrJiU kpPtpO internal-button"
                 data-testid="cookie-banner-accept"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                  class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                 >
                   <span
-                    class="sc-dkPwfY kXQhTZ"
+                    class="sc-iCfNyT gaSeFZ"
                   >
                     Accept all cookies
                   </span>
@@ -142,10 +142,10 @@ exports[`PostVideo should render correctly 1`] = `
       class="sc-bdvwhi hpbfuw"
     >
       <div
-        class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+        class="sc-bdvwhi sc-jRQBiJ hPWTKU heDWJn"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd ctjFUQ eChlAW"
+          class="sc-bdvwhi sc-jRQBiJ ctjFUQ heDWJn"
         >
           <div
             class="sc-bdvwhi rRUGc"
@@ -156,17 +156,17 @@ exports[`PostVideo should render correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-bdvwhi sc-gsDMPd eXzoht lkvGTq"
+          class="sc-bdvwhi sc-jRQBiJ eXzoht dMHPr"
         >
           <p
-            class="sc-hGPAwl gjGOEe"
+            class="sc-fKVoIy bfcvnj"
           />
         </div>
       </div>
     </div>
     <div
       aria-live="polite"
-      class="sc-bdvwhi sc-gsDMPd sc-b7a27f76-0 kjWDfr htLMtM krUohl"
+      class="sc-bdvwhi sc-jRQBiJ sc-b7a27f76-0 kjWDfr hsWgl krUohl"
     />
   </div>
   <div
@@ -180,13 +180,13 @@ exports[`PostVideo should render correctly 1`] = `
         class="sc-bdvwhi iIozLH"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd egBoar iKjTsb"
+          class="sc-bdvwhi sc-jRQBiJ egBoar FWapS"
         >
           <div
             class="sc-bdvwhi fIxCDL"
           >
             <strong
-              class="sc-dkPwfY iyMjBM"
+              class="sc-iCfNyT dApWAc"
             >
               This site uses cookies to store information on your computer.
             </strong>
@@ -194,25 +194,25 @@ exports[`PostVideo should render correctly 1`] = `
             Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd hPWTKU gyKdMN"
+            class="sc-bdvwhi sc-jRQBiJ hPWTKU sLqqU"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd lmXuba eWbmLh"
+              class="sc-bdvwhi sc-jRQBiJ lmXuba bBQXks"
             >
               <button
-                class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
+                class="sc-iJKPHa dwzJJG sc-iNGDOz jUVWTt"
                 data-testid="cookie-banner-reject"
                 type="button"
               >
                 <span
-                  class="sc-dkPwfY fgmEIT"
+                  class="sc-iCfNyT fAQctr"
                 >
                   Reject non-essential cookies
                 </span>
               </button>
             </div>
             <div
-              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+              class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
             >
               <div
                 class="sc-bdvwhi kAFHfV grey-shadow"
@@ -221,13 +221,13 @@ exports[`PostVideo should render correctly 1`] = `
                 class="sc-bdvwhi kAFHfV yellow-shadow"
               />
               <button
-                class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
+                class="sc-furwPO sc-iqsgXZ eQRPqU bpUfmH internal-button"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                  class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                 >
                   <span
-                    class="sc-dkPwfY kXQhTZ"
+                    class="sc-iCfNyT gaSeFZ"
                   >
                     Cookie settings
                   </span>
@@ -235,7 +235,7 @@ exports[`PostVideo should render correctly 1`] = `
               </button>
             </div>
             <div
-              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+              class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
             >
               <div
                 class="sc-bdvwhi kAFHfV grey-shadow"
@@ -244,14 +244,14 @@ exports[`PostVideo should render correctly 1`] = `
                 class="sc-bdvwhi kAFHfV yellow-shadow"
               />
               <button
-                class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                class="sc-furwPO sc-iqsgXZ xrJiU kpPtpO internal-button"
                 data-testid="cookie-banner-accept"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                  class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                 >
                   <span
-                    class="sc-dkPwfY kXQhTZ"
+                    class="sc-iCfNyT gaSeFZ"
                   >
                     Accept all cookies
                   </span>

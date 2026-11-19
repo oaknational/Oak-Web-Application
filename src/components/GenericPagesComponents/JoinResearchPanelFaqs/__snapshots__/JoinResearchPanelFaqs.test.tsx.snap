@@ -7,30 +7,30 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
       class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-bdvwhi sc-gsDMPd hPWTKU euxzce"
+        class="sc-bdvwhi sc-jRQBiJ blOvSo hkUemn"
       >
         <h2
-          class="sc-bkkgYE kkQJKP"
+          class="sc-hGPAwl kKizZj"
         >
           Frequently asked questions
         </h2>
         <div
-          class="sc-bdvwhi sc-jObTYW hPWTKU jmGxKU"
+          class="sc-bdvwhi sc-cTAoCz hPWTKU gLmhut"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU kjGJBC gymcRh"
+            class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU bTkbpn gYGnkq"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd sc-kHOYJp iVplaw gPLNOl dIlIKd"
+              class="sc-bdvwhi sc-jRQBiJ sc-jgrLDs iVplaw kakQWA jGeWmx"
             >
               <button
                 aria-expanded="false"
-                class="sc-bdvwhi sc-gsDMPd sc-llYVjd kQWlwA kkGnDS dgTdWl sc-iJKPHa sc-bTfXSk bXudre"
+                class="sc-bdvwhi sc-jRQBiJ sc-bBHFiX kQWlwA bzKZFL iRLkaf sc-cNKpwA sc-hUpbpP cxaVrZ"
                 id="faq-0"
                 type="button"
               >
                 <span
-                  class="sc-dkPwfY hCBjKj"
+                  class="sc-iCfNyT fWIBFv"
                 >
                   Question 1
                 </span>
@@ -46,7 +46,7 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                   >
                     <img
                       alt="An arrow to indicate whether the item is open or closed"
-                      class="sc-jRQBiJ eMsccW"
+                      class="sc-gsDMPd frprTL"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -67,10 +67,10 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                   role="region"
                 >
                   <div
-                    class="sc-bdvwhi kiqxID"
+                    class="sc-bdvwhi hoEmrg"
                   >
                     <p
-                      class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                      class="sc-fKVoIy sc-82983132-0 fGUYFF WxNyd"
                     >
                       Answer 1
                     </p>
@@ -78,10 +78,10 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                 </div>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-hmjqIC hPWTKU Bakex sc-eLwIaL dgNXCU"
+                class="sc-bdvwhi sc-jRQBiJ sc-iAKZmh hPWTKU heSanc sc-khQeTG iNgLbm"
               >
                 <svg
-                  class="sc-jIkVsP ShMXb"
+                  class="sc-eCIkAO ckRims"
                   height="7"
                   preserveAspectRatio="none"
                   viewBox="0 0 195 7"
@@ -100,16 +100,16 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
               </div>
             </div>
             <div
-              class="sc-bdvwhi sc-gsDMPd sc-kHOYJp iTWvmf gPLNOl dSjuPC"
+              class="sc-bdvwhi sc-jRQBiJ sc-jgrLDs iTWvmf kakQWA fIuHCe"
             >
               <button
                 aria-expanded="false"
-                class="sc-bdvwhi sc-gsDMPd sc-llYVjd kQWlwA kkGnDS dgTdWl sc-iJKPHa sc-bTfXSk bXudre"
+                class="sc-bdvwhi sc-jRQBiJ sc-bBHFiX kQWlwA bzKZFL iRLkaf sc-cNKpwA sc-hUpbpP cxaVrZ"
                 id="faq-1"
                 type="button"
               >
                 <span
-                  class="sc-dkPwfY hCBjKj"
+                  class="sc-iCfNyT fWIBFv"
                 >
                   Question 2
                 </span>
@@ -125,7 +125,7 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                   >
                     <img
                       alt="An arrow to indicate whether the item is open or closed"
-                      class="sc-jRQBiJ eMsccW"
+                      class="sc-gsDMPd frprTL"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -146,10 +146,10 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                   role="region"
                 >
                   <div
-                    class="sc-bdvwhi kiqxID"
+                    class="sc-bdvwhi hoEmrg"
                   >
                     <p
-                      class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                      class="sc-fKVoIy sc-82983132-0 fGUYFF WxNyd"
                     >
                       Answer 2
                     </p>
@@ -157,10 +157,10 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                 </div>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-hmjqIC hPWTKU Bakex sc-eLwIaL dgNXCU"
+                class="sc-bdvwhi sc-jRQBiJ sc-iAKZmh hPWTKU heSanc sc-khQeTG iNgLbm"
               >
                 <svg
-                  class="sc-jIkVsP ShMXb"
+                  class="sc-eCIkAO ckRims"
                   height="7"
                   preserveAspectRatio="none"
                   viewBox="0 0 195 7"
@@ -179,16 +179,16 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
               </div>
             </div>
             <div
-              class="sc-bdvwhi sc-gsDMPd sc-kHOYJp eHtWvI gPLNOl jwGXHp"
+              class="sc-bdvwhi sc-jRQBiJ sc-jgrLDs eHtWvI kakQWA kHdix"
             >
               <button
                 aria-expanded="false"
-                class="sc-bdvwhi sc-gsDMPd sc-llYVjd kQWlwA kkGnDS dgTdWl sc-iJKPHa sc-bTfXSk bXudre"
+                class="sc-bdvwhi sc-jRQBiJ sc-bBHFiX kQWlwA bzKZFL iRLkaf sc-cNKpwA sc-hUpbpP cxaVrZ"
                 id="faq-2"
                 type="button"
               >
                 <span
-                  class="sc-dkPwfY hCBjKj"
+                  class="sc-iCfNyT fWIBFv"
                 >
                   Question 3
                 </span>
@@ -204,7 +204,7 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                   >
                     <img
                       alt="An arrow to indicate whether the item is open or closed"
-                      class="sc-jRQBiJ eMsccW"
+                      class="sc-gsDMPd frprTL"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -225,10 +225,10 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                   role="region"
                 >
                   <div
-                    class="sc-bdvwhi kiqxID"
+                    class="sc-bdvwhi hoEmrg"
                   >
                     <p
-                      class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                      class="sc-fKVoIy sc-82983132-0 fGUYFF WxNyd"
                     >
                       Answer 3
                     </p>
@@ -236,10 +236,10 @@ exports[`JoinResearchPanelFaqs it renders correct data 1`] = `
                 </div>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-hmjqIC hPWTKU Bakex sc-eLwIaL dgNXCU"
+                class="sc-bdvwhi sc-jRQBiJ sc-iAKZmh hPWTKU heSanc sc-khQeTG iNgLbm"
               >
                 <svg
-                  class="sc-jIkVsP ShMXb"
+                  class="sc-eCIkAO ckRims"
                   height="7"
                   preserveAspectRatio="none"
                   viewBox="0 0 195 7"

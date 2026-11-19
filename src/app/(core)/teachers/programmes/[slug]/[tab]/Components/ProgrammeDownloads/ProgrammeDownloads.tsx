@@ -128,8 +128,6 @@ export const ProgrammeDownloads = ({
     setSchool,
     shouldDisplayDetailsCompleted,
     handleEditDetailsCompletedClick,
-    hasFormErrors,
-    localStorageDetails,
     handleToggleSelectAll,
     selectAllChecked,
     hubspotLoaded,
@@ -269,9 +267,6 @@ export const ProgrammeDownloads = ({
       // Trigger the form to reevaluate errors
       form.trigger();
     };
-
-  const noResourcesSelected =
-    form.watch().resources === undefined || form.watch().resources.length === 0;
 
   // 40px padding on desktop allows the content to fill the max width, but always have inline padding
   // so it doesn't run up against the edge of the screen
@@ -491,12 +486,6 @@ export const ProgrammeDownloads = ({
                     iconName={"download"}
                     isLoading={
                       isSubmitting || !hubspotLoaded // show loading state when waiting for latest school values to be populated from hubspot
-                    }
-                    disabled={
-                      (hasFormErrors ||
-                        noResourcesSelected ||
-                        (!form.formState.isValid && !localStorageDetails)) &&
-                      hubspotLoaded
                     }
                   >
                     Download

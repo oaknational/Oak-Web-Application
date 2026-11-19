@@ -126,12 +126,16 @@ export const getAdjacentUnits = ({
       ? {
           slug: nextUnit.unitSlug,
           title: nextUnit.optionalityTitle ?? nextUnit.unitTitle,
+          yearGroupName: nextUnit.yearGroupName,
+          yearSlug: nextUnit.yearSlug,
         }
       : null,
     prevUnit: prevUnit
       ? {
           slug: prevUnit.unitSlug,
           title: prevUnit.optionalityTitle ?? prevUnit.unitTitle,
+          yearGroupName: prevUnit.yearGroupName,
+          yearSlug: prevUnit.yearSlug,
         }
       : null,
   };

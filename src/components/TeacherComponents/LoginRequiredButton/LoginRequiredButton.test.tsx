@@ -21,7 +21,7 @@ jest.mock("posthog-js/react", () => ({
 }));
 
 let mockUseComplexCopyright = defaultCopyrightRequirements;
-jest.mock("@/hooks/useComplexCopyright", () => ({
+jest.mock("@/utils/complexCopyright/useComplexCopyright", () => ({
   useComplexCopyright: () => mockUseComplexCopyright,
 }));
 
@@ -46,6 +46,21 @@ describe("LoginRequiredButton", () => {
     expect(
       screen.getByRole("button", { name: /sign up/i }),
     ).toBeInTheDocument();
+  });
+  it("should call signUpProps.onClick when the sign up button is clicked", async () => {
+    mockUseComplexCopyright = signedOutLoginRequired;
+    const onSignUpClick = jest.fn();
+    render(
+      <LoginRequiredButton
+        loginRequired={true}
+        geoRestricted={false}
+        signUpProps={{ onClick: onSignUpClick }}
+      />,
+    );
+    await userEvent
+      .setup()
+      .click(screen.getByRole("button", { name: /sign up/i }));
+    expect(onSignUpClick).toHaveBeenCalledTimes(1);
   });
   it("should render an onboarding button", async () => {
     mockUseComplexCopyright = signedInNotOnboarded;

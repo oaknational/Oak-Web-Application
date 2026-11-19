@@ -9,7 +9,7 @@ import { useMemo } from "react";
 import { usePathname } from "next/navigation";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import { useComplexCopyright } from "@/hooks/useComplexCopyright";
+import { useComplexCopyright } from "@/utils/complexCopyright/useComplexCopyright";
 
 type LinkState =
   | "loading"

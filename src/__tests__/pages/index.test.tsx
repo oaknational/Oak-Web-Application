@@ -60,7 +60,6 @@ const props: HomePageProps = {
     heading: "",
     summaryPortableText: [],
     notification: { enabled: false },
-    sidebarCard1: { title: "", bodyPortableText: [] },
     sidebarCard2: { title: "", bodyPortableText: [] },
     campaignPromoBanner: {
       headingPortableTextWithPromo: [],

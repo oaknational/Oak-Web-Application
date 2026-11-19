@@ -20,7 +20,10 @@ jest.mock(
 
 describe("RoleSelection", () => {
   beforeEach(() => {
-    (useRouter as jest.Mock).mockReturnValue({ push: jest.fn() });
+    (useRouter as jest.Mock).mockReturnValue({
+      push: jest.fn(),
+      refresh: jest.fn(),
+    });
     (useSearchParams as jest.Mock).mockReturnValue(new URLSearchParams());
   });
   it("renders a group of radio buttons in a form", () => {

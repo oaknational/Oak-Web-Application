@@ -1,0 +1,69 @@
+fragment NcAlignmentCheckerLandingPageSubjectPicker on NcAlignmentCheckerLandingPageSubjectPicker {
+  title
+  tag
+  bannerLabel
+  buttonText
+}
+
+query ncAlignmentCheckerLandingPage($isDraftFilter: Sanity_DocumentFilter) {
+  allNcAlignmentCheckerLandingPage(
+    where: {
+      _: $isDraftFilter
+      _id: { matches: "*NcAlignmentChecker.landingPage" }
+    }
+  ) {
+    id: _id
+    blocks {
+      __typename
+      ... on NcAlignmentCheckerLandingPageHeader {
+        _key
+        title
+        bodyRaw
+        icon {
+          ...ImageWithAltText
+        }
+        subjectPicker {
+          ...NcAlignmentCheckerLandingPageSubjectPicker
+        }
+      }
+      ... on NcAlignmentCheckerLandingPageTextAndMedia {
+        _key
+        imagePosition
+        title
+        bodyRaw
+        image {
+          ...ImageWithAltText
+        }
+      }
+      ... on NcAlignmentCheckerLandingPageSubjectExperts {
+        _key
+        title
+        bodyRaw
+        people {
+          ...TeamMember
+        }
+      }
+      ... on NcAlignmentCheckerLandingPageQuotes {
+        _key
+        quotes {
+          ...Quote
+        }
+      }
+      ... on NcAlignmentCheckerLandingPageFaqs {
+        _key
+        items {
+          ...Faq
+        }
+      }
+      ... on NcAlignmentCheckerLandingPageSubjectPickerCallout {
+        _key
+        subjectPicker {
+          ...NcAlignmentCheckerLandingPageSubjectPicker
+        }
+      }
+    }
+    seo {
+      ...Seo
+    }
+  }
+}

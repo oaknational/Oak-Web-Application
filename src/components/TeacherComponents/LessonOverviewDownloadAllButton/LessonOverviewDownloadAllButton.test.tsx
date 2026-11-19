@@ -6,7 +6,6 @@ import {
 import { LessonOverviewDownloadAllButton } from "./LessonOverviewDownloadAllButton";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -15,6 +14,7 @@ import {
   signedInGeoBlocked,
   signedOutLoginRequired,
 } from "@/__tests__/__helpers__/mockCopyrightRequirements";
+import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 
 const mockFeatureFlagEnabled = jest.fn();
 jest.mock("posthog-js/react", () => ({
@@ -22,11 +22,12 @@ jest.mock("posthog-js/react", () => ({
 }));
 
 let mockUseComplexCopyright = defaultCopyrightRequirements;
-jest.mock("@/hooks/useComplexCopyright", () => ({
+jest.mock("@/utils/complexCopyright/useComplexCopyright", () => ({
   useComplexCopyright: () => mockUseComplexCopyright,
 }));
 
 const mockDownloadAllButton = jest.fn();
+const mockSignInStarted = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
@@ -34,12 +35,13 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
     track: {
       lessonResourceDownloadStarted: (...args: unknown[]) =>
         mockDownloadAllButton(...args),
+      signInStarted: (...args: unknown[]) => mockSignInStarted(...args),
     },
   }),
 }));
 
 const baseProps = {
-  ...lessonOverviewFixture(),
+  ...teachersLessonOverviewFixture(),
   lessonSlug: "test-lesson",
   unitSlug: "test-unit",
   programmeSlug: "test-programme",
@@ -136,6 +138,10 @@ describe("LessonOverviewDownloadAllButton", () => {
     expect(downloadButton).not.toHaveAttribute("href");
     downloadButton.click();
     expect(mockDownloadAllButton).not.toHaveBeenCalled();
+    expect(mockSignInStarted).toHaveBeenCalledTimes(1);
+    expect(mockSignInStarted).toHaveBeenCalledWith(
+      expect.objectContaining({ componentType: "lesson_download_all_button" }),
+    );
   });
   it("does not render anything when geoBlocked", () => {
     mockUseComplexCopyright = signedInGeoBlocked;

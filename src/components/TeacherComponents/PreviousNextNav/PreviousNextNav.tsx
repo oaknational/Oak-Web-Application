@@ -22,6 +22,7 @@ export type PreviousNextNavProps = {
     href: string;
     title: string;
     index?: number;
+    onClick?: () => void;
   };
   /**
    * Properties for the Next nav item
@@ -30,6 +31,7 @@ export type PreviousNextNavProps = {
     href: string;
     title: string;
     index?: number;
+    onClick?: () => void;
   };
 };
 
@@ -44,6 +46,7 @@ export default function PreviousNextNav(props: Readonly<PreviousNextNavProps>) {
             navDirection="prev"
             navItemType={navItemType}
             href={previous.href}
+            onClick={previous.onClick}
             backgroundColorLevel={backgroundColorLevel}
             title={previous.title}
             index={
@@ -58,6 +61,7 @@ export default function PreviousNextNav(props: Readonly<PreviousNextNavProps>) {
             navDirection="next"
             navItemType={navItemType}
             href={next.href}
+            onClick={next.onClick}
             backgroundColorLevel={backgroundColorLevel}
             title={next.title}
             index={next.index ?? (currentIndex ? currentIndex + 1 : undefined)}
