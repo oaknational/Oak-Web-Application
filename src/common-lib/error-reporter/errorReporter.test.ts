@@ -6,7 +6,9 @@ import OakError from "../../errors/OakError";
 import errorReporter, { ErrorData } from "./errorReporter";
 
 import { consentClient } from "@/browser-lib/cookie-consent/consentClient";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
+jest.mock("@/browser-lib/getBrowserConfig");
 jest.mock("../../browser-lib/cookie-consent/consentClient");
 jest.mock("./errorFiltering", () => ({
   __esModule: true,
@@ -124,6 +126,15 @@ describe("common-lib/error-reporter", () => {
 
       expect(Sentry.captureException).not.toHaveBeenCalled();
       expect(mockNotify).toHaveBeenCalledTimes(1);
+    });
+
+    it("does not report to Bugsnag when disabled", async () => {
+      jest.mocked(getBrowserConfig).mockReturnValueOnce("false");
+
+      await reportError(new Error("test error"));
+
+      expect(Sentry.captureException).toHaveBeenCalled();
+      expect(mockNotify).not.toHaveBeenCalled();
     });
 
     it("reports to Bugsnag when Sentry fails", async () => {

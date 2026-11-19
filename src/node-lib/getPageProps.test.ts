@@ -31,6 +31,23 @@ describe("getPageProps()", () => {
     });
   });
 
+  it("does not initialise Bugsnag when disabled", async () => {
+    jest.clearAllMocks();
+
+    await jest.isolateModulesAsync(async () => {
+      jest.doMock("@/browser-lib/getBrowserConfig", () => ({
+        __esModule: true,
+        default: (key: string) =>
+          key === "bugsnagEnabled" ? "false" : undefined,
+      }));
+
+      await import("./getPageProps");
+
+      expect(initialiseSentry).toHaveBeenCalled();
+      expect(initialiseBugsnag).not.toHaveBeenCalled();
+    });
+  });
+
   it("should return a promise resolving to value of getProps()", async () => {
     const results = await getPageProps({
       page: "test",
