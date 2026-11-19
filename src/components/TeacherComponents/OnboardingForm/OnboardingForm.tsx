@@ -221,7 +221,8 @@ const OnboardingForm = ({
               originalError: error instanceof Error ? error : undefined,
             }),
           );
-        }
+          setSubmitError("Something went wrong. Please try again.");
+          setIsSubmitting(false);
       }
     }
   };
