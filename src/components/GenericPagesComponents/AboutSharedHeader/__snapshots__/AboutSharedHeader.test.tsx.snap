@@ -10,23 +10,23 @@ exports[`AboutSharedHeader renders correctly 1`] = `
         class="sc-bdvwhi iatEdD"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd hRJGqe McvZe"
+          class="sc-bdvwhi sc-jRQBiJ hRJGqe bfupTD"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd buPcZO kHuCld"
+            class="sc-bdvwhi sc-jRQBiJ buPcZO deBLls"
           >
             <h1
-              class="sc-bkkgYE iAHrRb"
+              class="sc-hGPAwl iyNHKX"
             >
               <span
-                class="sc-dkPwfY cphFZl"
+                class="sc-iCfNyT eqmaqV"
                 style="line-height: 1.25; box-decoration-break: clone;"
               >
                 TESTING_TITLE
               </span>
             </h1>
             <p
-              class="sc-hGPAwl gCmSLw"
+              class="sc-fKVoIy bYtmul"
             >
               TESTING_CONTENT
             </p>
@@ -39,7 +39,7 @@ exports[`AboutSharedHeader renders correctly 1`] = `
             >
               <img
                 alt="Oak logo"
-                class="sc-jRQBiJ hssYEG"
+                class="sc-gsDMPd ctfyuj"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -65,23 +65,23 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
         class="sc-bdvwhi iatEdD"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd hRJGqe McvZe"
+          class="sc-bdvwhi sc-jRQBiJ hRJGqe bfupTD"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd buPcZO kHuCld"
+            class="sc-bdvwhi sc-jRQBiJ buPcZO deBLls"
           >
             <h1
-              class="sc-bkkgYE iAHrRb"
+              class="sc-hGPAwl iyNHKX"
             >
               <span
-                class="sc-dkPwfY cphFZl"
+                class="sc-iCfNyT eqmaqV"
                 style="line-height: 1.25; box-decoration-break: clone;"
               >
                 TESTING_TITLE
               </span>
             </h1>
             <p
-              class="sc-hGPAwl gCmSLw"
+              class="sc-fKVoIy bYtmul"
             >
               TESTING_CONTENT
             </p>
@@ -95,7 +95,7 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
             >
               <img
                 alt=""
-                class="sc-jRQBiJ eMsccW"
+                class="sc-gsDMPd frprTL"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
