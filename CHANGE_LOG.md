@@ -1,3 +1,10 @@
+## [1.1281.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1281.0...v1.1281.1) (2026-11-19)
+
+
+### Bug Fixes
+
+* bump oak-components to v3.30.1 which includes ([d99dcdc](https://github.com/oaknational/Oak-Web-Application/commit/d99dcdc56576eac933fde6f7c3ce13650b8bbb95))
+
 # [1.1281.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1280.1...v1.1281.0) (2026-11-19)
 
 
