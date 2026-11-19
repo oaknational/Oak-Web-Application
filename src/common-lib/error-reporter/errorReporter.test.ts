@@ -85,6 +85,7 @@ describe("common-lib/error-reporter", () => {
   describe("[enabled]: errorReporter()()", () => {
     beforeEach(() => {
       jest.clearAllMocks();
+      jest.mocked(getBrowserConfig).mockReturnValue("true");
       jest.spyOn(consentClient, "getConsent").mockReturnValue("granted");
 
       (testError as { hasBeenReported?: boolean }).hasBeenReported = undefined;
