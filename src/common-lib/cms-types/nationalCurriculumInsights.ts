@@ -1,6 +1,12 @@
 import * as z from "zod";
 
-import { documentSchema, imageSchema, slugSchema, videoSchema } from "./base";
+import {
+  documentSchema,
+  imageSchema,
+  seoSchema,
+  slugSchema,
+  videoSchema,
+} from "./base";
 import { CTASchema } from "./cta";
 import { portableTextSchema } from "./portableText";
 
@@ -440,6 +446,7 @@ export const flattenNationalCurriculumInsightsModules = (
 const nationalCurriculumInsightsPageContentSchema = z.object({
   title: z.string().min(1),
   summary: z.string().min(1),
+  seo: seoSchema.nullish(),
   modules: z.array(nationalCurriculumInsightsModuleSchema).min(1),
 });
 
@@ -581,10 +588,8 @@ export const nationalCurriculumInsightsTabSummarySchema = z.object({
 
 export const nationalCurriculumInsightsSubjectSchema = z.object({
   pageType: z.literal("overview"),
-  title: z.string().min(1),
-  summary: z.string().min(1),
+  ...nationalCurriculumInsightsPageContentSchema.shape,
   illustration: imageSchema.nullish(),
-  modules: z.array(nationalCurriculumInsightsModuleSchema).min(1),
   slug: slugSchema,
   curriculumSubjectSlugs: z.array(z.string().min(1)).min(1),
   tabs: z
@@ -608,8 +613,7 @@ export const nationalCurriculumInsightsSubjectSummarySchema = z.object({
 
 export const nationalCurriculumInsightsHubSchema = z
   .object({
-    title: z.string().min(1),
-    summary: z.string().min(1),
+    ...nationalCurriculumInsightsPageContentSchema.shape,
     subjects: z.array(nationalCurriculumInsightsSubjectSummarySchema),
     phaseLinks: z.array(
       z.object({
@@ -620,7 +624,6 @@ export const nationalCurriculumInsightsHubSchema = z
         keyStage: nationalCurriculumInsightsKeyStageSchema.nullish(),
       }),
     ),
-    modules: z.array(nationalCurriculumInsightsModuleSchema).min(1),
     ...documentSchema.shape,
   })
   .superRefine(({ subjects }, context) => {
@@ -666,9 +669,7 @@ export const nationalCurriculumInsightsHubSchema = z
 
 export const nationalCurriculumInsightsGuidancePageSchema = z.object({
   pageType: z.literal("guidance"),
-  title: z.string().min(1),
-  summary: z.string().min(1),
-  modules: z.array(nationalCurriculumInsightsModuleSchema).min(1),
+  ...nationalCurriculumInsightsPageContentSchema.shape,
   ...documentSchema.shape,
 });
 

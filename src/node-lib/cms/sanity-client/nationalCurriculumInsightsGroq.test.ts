@@ -33,6 +33,13 @@ const moduleFixture = {
   ],
 };
 
+const keyStageSeo = {
+  title: "KS1 Science curriculum changes",
+  description: "See what is changing in KS1 science.",
+  canonicalURL:
+    "https://www.thenational.academy/curriculum-change-explained/science/primary/ks1",
+};
+
 const pageFixture = {
   id: "nationalCurriculumInsightsPage-science-primary",
   pageType: "primary",
@@ -48,6 +55,7 @@ const pageFixture = {
         keyStage: "KS1",
         title: "Science key stage 1",
         summary: "Science key stage 1 summary",
+        seo: keyStageSeo,
         modules: [moduleFixture],
       },
     },
@@ -198,6 +206,19 @@ describe("nationalCurriculumInsightsGroq", () => {
   );
 
   it.each([
+    { query: nationalCurriculumInsightsHubQuery, documentCount: 1 },
+    { query: nationalCurriculumInsightsGuidancePageQuery, documentCount: 1 },
+    { query: nationalCurriculumInsightsSubjectBySlugQuery, documentCount: 3 },
+  ])(
+    "projects SEO fields for all $documentCount page documents",
+    ({ query, documentCount }) => {
+      expect(
+        query.match(/seo \{ title, description, canonicalURL \}/g),
+      ).toHaveLength(documentCount);
+    },
+  );
+
+  it.each([
     nationalCurriculumInsightsHubQuery,
     nationalCurriculumInsightsGuidancePageQuery,
     nationalCurriculumInsightsSubjectBySlugQuery,
@@ -259,6 +280,7 @@ describe("nationalCurriculumInsightsGroq", () => {
     expect(result?.tabs.map(({ kind }) => kind)).toEqual(["primary"]);
     expect(result?.tabs[0]?.page.modules).toEqual([moduleFixture]);
     expect(result?.tabs[0]?.page.keyStages[0]?.page.keyStage).toBe("KS1");
+    expect(result?.tabs[0]?.page.keyStages[0]?.page.seo).toEqual(keyStageSeo);
     expect(result?.id).not.toBe(result?.tabs[0]?.page.id);
     expect(mockFetch).toHaveBeenCalledWith(
       nationalCurriculumInsightsSubjectBySlugQuery,
