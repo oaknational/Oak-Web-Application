@@ -1,9 +1,6 @@
 import { keysToCamelCase } from "zod-to-camel-case";
 
-import {
-  canonicalLessonMediaClipsSchema,
-  lessonMediaClipsSchema,
-} from "./lessonMediaClips.schema";
+import { lessonMediaClipsSchema } from "./lessonMediaClips.schema";
 import { constructLessonMediaData } from "./constructLessonMediaClips";
 
 import errorReporter from "@/common-lib/error-reporter";
@@ -44,18 +41,11 @@ export const lessonMediaClipsQuery =
       browseDataWhere,
     });
 
-    const canonicalLesson = !unitSlug && !programmeSlug;
-
-    if (
-      !canonicalLesson &&
-      res.browseData.length > 1 &&
-      unitSlug &&
-      programmeSlug
-    ) {
+    if (res.browseData.length > 1 && unitSlug && programmeSlug) {
       const error = new OakError({
         code: "curriculum-api/uniqueness-assumption-violated",
       });
-      errorReporter("curriculum-api-2023::lessonMediaClips")(error, {
+      void errorReporter("curriculum-api-2023::lessonMediaClips")(error, {
         severity: "warning",
         ...args,
         res,
@@ -80,31 +70,9 @@ export const lessonMediaClipsQuery =
 
     // We've already parsed this data with Zod so we can safely cast it to the correct type
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseDataByKs;
-    if (!canonicalLesson) {
-      const data = constructLessonMediaData({
-        ...browseData,
-      });
-      lessonMediaClipsSchema.safeParse({ ...data });
-      return {
-        ...data,
-      } as T;
-    } else {
-      const data = constructLessonMediaData(browseData, [
-        {
-          programmeSlug: browseData.programmeSlug,
-          unitSlug: browseData.unitSlug,
-          unitTitle: browseData.unitData.title,
-          keyStageSlug: browseData.programmeFields.keystageSlug,
-          keyStageTitle: browseData.programmeFields.keystageDescription,
-          subjectSlug: browseData.programmeFields.subjectSlug,
-          subjectTitle: browseData.programmeFields.subject,
-        },
-      ]);
-      canonicalLessonMediaClipsSchema.safeParse({
-        ...data,
-      });
-      return data as T;
-    }
+    const data = constructLessonMediaData(browseData);
+    lessonMediaClipsSchema.safeParse({ ...data });
+    return { ...data } as T;
   };
 
 export type LessonMediaClipsQueryReturn = ReturnType<
