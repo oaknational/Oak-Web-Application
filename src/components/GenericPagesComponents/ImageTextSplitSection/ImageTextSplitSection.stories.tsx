@@ -1,21 +1,21 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { joinResearchPanelInfoBlockFixture } from "./JoinResearchPanelInfo.fixtures";
+import { imageTextSplitSectionBlockFixture } from "./ImageTextSplitSection.fixtures";
 
-import JoinResearchPanelInfo from ".";
+import ImageTextSplitSection from ".";
 
 const meta = {
-  component: JoinResearchPanelInfo,
-  title: "Components/GenericPagesComponents/JoinResearchPanelInfo",
+  component: ImageTextSplitSection,
+  title: "Components/GenericPagesComponents/ImageTextSplitSection",
   tags: ["autodocs"],
-} satisfies Meta<typeof JoinResearchPanelInfo>;
+} satisfies Meta<typeof ImageTextSplitSection>;
 
 export default meta;
 
-type Story = StoryObj<typeof JoinResearchPanelInfo>;
+type Story = StoryObj<typeof ImageTextSplitSection>;
 
 export const Default: Story = {
-  args: joinResearchPanelInfoBlockFixture(
+  args: imageTextSplitSectionBlockFixture(
     "Who can join the panel?",
     "Join the research panel body copy goes here",
   ),
@@ -23,7 +23,7 @@ export const Default: Story = {
 
 export const WithRightPositionedImage: Story = {
   args: {
-    ...joinResearchPanelInfoBlockFixture(
+    ...imageTextSplitSectionBlockFixture(
       "Who can join the panel?",
       "Join the research panel body copy goes here",
     ),
@@ -33,7 +33,7 @@ export const WithRightPositionedImage: Story = {
 
 export const WithListItems: Story = {
   args: {
-    ...joinResearchPanelInfoBlockFixture(
+    ...imageTextSplitSectionBlockFixture(
       "Who can join the panel?",
       "Join the research panel body copy goes here",
     ),

@@ -11,11 +11,11 @@ import { PortableTextComponents } from "@portabletext/react";
 
 import { NewGutterMaxWidth } from "../NewGutterMaxWidth";
 
-import { JoinResearchPanelPageBlock } from "@/common-lib/cms-types";
+import { Image, PortableTextJSON } from "@/common-lib/cms-types";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
-const joinResearchPanelInfoPortableTextComponents: PortableTextComponents = {
+const imageTextSplitSectionPortableTextComponents: PortableTextComponents = {
   block: {
     normal: (props) => (
       <OakP $font={["body-2", "body-1"]} $mt={["spacing-24", "spacing-32"]}>
@@ -32,19 +32,19 @@ const joinResearchPanelInfoPortableTextComponents: PortableTextComponents = {
   },
 };
 
-export type JoinResearchPanelInfoProps = Omit<
-  JoinResearchPanelPageBlock<"JoinResearchPanelPageInfo">,
-  "__typename"
-> & {
+export type ImageTextSplitSectionProps = {
+  title: string;
+  bodyRaw: PortableTextJSON;
+  image: Image;
   imagePosition?: "left" | "right";
 };
 
-export default function JoinResearchPanelInfo({
+export default function ImageTextSplitSection({
   title,
   bodyRaw,
   imagePosition = "left",
   image,
-}: Readonly<JoinResearchPanelInfoProps>) {
+}: Readonly<ImageTextSplitSectionProps>) {
   const isImageLeftPositioned = imagePosition === "left";
 
   return (
@@ -79,7 +79,7 @@ export default function JoinResearchPanelInfo({
             </OakHeading>
             <PortableTextWithDefaults
               value={bodyRaw}
-              components={joinResearchPanelInfoPortableTextComponents}
+              components={imageTextSplitSectionPortableTextComponents}
             />
           </OakFlex>
         </OakGridArea>

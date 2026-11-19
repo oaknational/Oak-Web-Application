@@ -1,12 +1,12 @@
-import { JoinResearchPanelInfoProps } from "./index";
+import { ImageTextSplitSectionProps } from "./index";
 
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 
-export const joinResearchPanelInfoBlockFixture = (
+export const imageTextSplitSectionBlockFixture = (
   title?: string,
   body?: string,
   imagePosition?: "left" | "right",
-): JoinResearchPanelInfoProps => ({
+): ImageTextSplitSectionProps => ({
   title: title ?? "Join the research panel",
   image: {
     asset: {

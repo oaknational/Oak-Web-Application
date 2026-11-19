@@ -1996,17 +1996,19 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 .c105 {
   flex-direction: column;
   grid-column: 1/span 12;
-  grid-row: span undefined;
+  grid-row: 1/span undefined;
   grid-row: span 1;
   grid-column-start: 1;
+  grid-row-start: 1;
 }
 
 .c108 {
   flex-direction: column;
-  grid-column: span 12;
-  grid-row: span undefined;
+  grid-column: 1/span 12;
+  grid-row: 2/span undefined;
   grid-row: span 1;
-  grid-column-start: 0;
+  grid-column-start: 1;
+  grid-row-start: 2;
 }
 
 .c112 {
@@ -3491,6 +3493,18 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 }
 
 @media (min-width: 750px) {
+  .c105 {
+    grid-row-start: 1;
+  }
+}
+
+@media (min-width: 1280px) {
+  .c105 {
+    grid-row-start: 1;
+  }
+}
+
+@media (min-width: 750px) {
   .c108 {
     grid-column: 2/span 10;
   }
@@ -3498,7 +3512,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 
 @media (min-width: 1280px) {
   .c108 {
-    grid-column: 8/span 6;
+    grid-column: 8/span 5;
   }
 }
 
@@ -3511,6 +3525,18 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 @media (min-width: 1280px) {
   .c108 {
     grid-column-start: 8;
+  }
+}
+
+@media (min-width: 750px) {
+  .c108 {
+    grid-row-start: 2;
+  }
+}
+
+@media (min-width: 1280px) {
+  .c108 {
+    grid-row-start: 1;
   }
 }
 

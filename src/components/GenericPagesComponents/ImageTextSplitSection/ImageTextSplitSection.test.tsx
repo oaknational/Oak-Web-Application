@@ -1,9 +1,9 @@
 import { OakGridArea } from "@oaknational/oak-components";
 import type { ComponentProps } from "react";
 
-import { joinResearchPanelInfoBlockFixture } from "./JoinResearchPanelInfo.fixtures";
+import { imageTextSplitSectionBlockFixture } from "./ImageTextSplitSection.fixtures";
 
-import JoinResearchPanelInfo from ".";
+import ImageTextSplitSection from ".";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
@@ -20,19 +20,19 @@ jest.mock("@oaknational/oak-components", () => {
   };
 });
 
-describe("JoinResearchPanelInfo", () => {
+describe("ImageTextSplitSection", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   test("it renders correct data", () => {
-    const fixture = joinResearchPanelInfoBlockFixture(
+    const fixture = imageTextSplitSectionBlockFixture(
       "Who can join the panel?",
       "Join the research panel body copy goes here",
     );
 
     const { baseElement, getByRole } = render(
-      <JoinResearchPanelInfo {...fixture} />,
+      <ImageTextSplitSection {...fixture} />,
     );
 
     expect(baseElement).toMatchSnapshot();
@@ -40,13 +40,13 @@ describe("JoinResearchPanelInfo", () => {
   });
 
   test("it renders the grid position correctly when imagePosition is passed as 'left'", () => {
-    const fixture = joinResearchPanelInfoBlockFixture(
+    const fixture = imageTextSplitSectionBlockFixture(
       "Who can join the panel?",
       "Join the research panel body copy goes here",
       "left",
     );
 
-    render(<JoinResearchPanelInfo {...fixture} />);
+    render(<ImageTextSplitSection {...fixture} />);
 
     const [imageCall, textCall] = jest.mocked(OakGridArea).mock.calls;
 
@@ -55,13 +55,13 @@ describe("JoinResearchPanelInfo", () => {
   });
 
   test("it renders the grid position correctly when imagePosition is passed as 'right'", () => {
-    const fixture = joinResearchPanelInfoBlockFixture(
+    const fixture = imageTextSplitSectionBlockFixture(
       "Who can join the panel?",
       "Join the research panel body copy goes here",
       "right",
     );
 
-    render(<JoinResearchPanelInfo {...fixture} />);
+    render(<ImageTextSplitSection {...fixture} />);
 
     const [imageCall, textCall] = jest.mocked(OakGridArea).mock.calls;
 
@@ -70,12 +70,12 @@ describe("JoinResearchPanelInfo", () => {
   });
 
   test("it renders the grid position correctly when imagePosition is not passed", () => {
-    const fixture = joinResearchPanelInfoBlockFixture(
+    const fixture = imageTextSplitSectionBlockFixture(
       "Who can join the panel?",
       "Join the research panel body copy goes here",
     );
 
-    render(<JoinResearchPanelInfo {...fixture} />);
+    render(<ImageTextSplitSection {...fixture} />);
 
     const [imageCall, textCall] = jest.mocked(OakGridArea).mock.calls;
 

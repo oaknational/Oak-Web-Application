@@ -19,7 +19,7 @@ import {
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
 import JoinResearchPanelPageHeader from "@/components/GenericPagesComponents/JoinResearchPanelHeader";
 import JoinResearchPanelPeople from "@/components/GenericPagesComponents/JoinResearchPanelPeople";
-import JoinResearchPanelInfo from "@/components/GenericPagesComponents/JoinResearchPanelInfo";
+import ImageTextSplitSection from "@/components/GenericPagesComponents/ImageTextSplitSection";
 import JoinResearchPanelJourney from "@/components/GenericPagesComponents/JoinResearchPanelJourney";
 import JoinResearchPanelFaqs from "@/components/GenericPagesComponents/JoinResearchPanelFaqs";
 import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
@@ -38,7 +38,7 @@ const pageComponents: {
 } = {
   JoinResearchPanelPageHeader: JoinResearchPanelPageHeader,
   JoinResearchPanelPageCallout: JoinResearchPanelCallout,
-  JoinResearchPanelPageInfo: JoinResearchPanelInfo,
+  JoinResearchPanelPageInfo: ImageTextSplitSection,
   JoinResearchPanelPageJourney: JoinResearchPanelJourney,
   JoinResearchPanelPagePeople: JoinResearchPanelPeople,
   JoinResearchPanelPageBlogsPreview: (block, blogs) => (
