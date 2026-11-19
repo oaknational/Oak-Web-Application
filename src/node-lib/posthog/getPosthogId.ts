@@ -6,7 +6,9 @@ export function getPosthogIdFromCookie(
   posthogApiKey: string,
 ): string | null {
   const posthogCookieName = `ph_${posthogApiKey}_posthog`;
-  const posthogCookie = cookies[posthogCookieName];
+  const posthogCookie = (cookies as Partial<Record<string, string>>)[
+    posthogCookieName
+  ];
 
   if (posthogCookie) {
     try {
