@@ -14,7 +14,7 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { SUBJECTS, KEY_STAGES } from "./formData";
+import { SUBJECTS } from "./formData";
 import type { NcAlignmentCheckerSubjectPickerFormValues } from "./SubjectPickerForm.schema";
 import { ncAlignmentCheckerSubjectPickerFormValuesSchema } from "./SubjectPickerForm.schema";
 
@@ -30,22 +30,24 @@ export default function SubjectPickerForm({
   const router = useRouter();
   const [isNavigating, setIsNavigating] = useState(false);
 
-  const { formState, handleSubmit, control, watch, clearErrors } = useForm({
-    resolver: zodResolver(ncAlignmentCheckerSubjectPickerFormValuesSchema),
-    defaultValues: {
-      subjectSlug: "",
-      keyStageSlug: "",
-    },
-  });
+  const { formState, control, handleSubmit, watch, clearErrors, setValue } =
+    useForm({
+      resolver: zodResolver(ncAlignmentCheckerSubjectPickerFormValuesSchema),
+      defaultValues: {
+        subjectSlug: "",
+        yearOrKeyStageSlug: "",
+      },
+    });
 
   const selectedSubjectSlug = watch("subjectSlug");
+  const selectedSubject = SUBJECTS.find((s) => s.slug === selectedSubjectSlug);
 
   const onFormSubmit = async (
     data: NcAlignmentCheckerSubjectPickerFormValues,
   ) => {
     setIsNavigating(true);
     router.push(
-      `/nc-alignment-checker/${data.subjectSlug}/${data.keyStageSlug}`,
+      `/nc-alignment-checker/${data.subjectSlug}/${data.yearOrKeyStageSlug}`,
     );
   };
 
@@ -74,7 +76,6 @@ export default function SubjectPickerForm({
         <Controller
           control={control}
           name="subjectSlug"
-          rules={{ required: "Choose a subject to continue" }}
           render={({ field, fieldState }) => (
             <>
               {fieldState.error?.message && (
@@ -90,7 +91,8 @@ export default function SubjectPickerForm({
                 value={field.value}
                 onChange={(e) => {
                   field.onChange(e.target.value);
-                  clearErrors("keyStageSlug");
+                  clearErrors("yearOrKeyStageSlug");
+                  setValue("yearOrKeyStageSlug", "");
                 }}
               >
                 <OakFlex $flexWrap="wrap" $gap="spacing-8">
@@ -115,8 +117,7 @@ export default function SubjectPickerForm({
           <OakBox $pt="spacing-48">
             <Controller
               control={control}
-              name="keyStageSlug"
-              rules={{ required: "Choose a key stage to continue" }}
+              name="yearOrKeyStageSlug"
               render={({ field, fieldState }) => (
                 <>
                   {fieldState.error?.message && (
@@ -126,18 +127,20 @@ export default function SubjectPickerForm({
                   )}
                   <OakRadioGroup
                     name={field.name}
-                    label="Choose your key stage"
+                    label={`Choose your ${selectedSubject?.yearOrKeyStageQuestion.noun}`}
                     value={field.value}
                     onChange={(e) => field.onChange(e.target.value)}
                   >
                     <OakFlex $flexWrap="wrap" $gap="spacing-8">
-                      {KEY_STAGES.map((keyStage) => (
-                        <OakRadioAsButton
-                          value={keyStage.slug}
-                          displayValue={keyStage.title}
-                          key={keyStage.slug}
-                        />
-                      ))}
+                      {selectedSubject?.yearOrKeyStageQuestion.options.map(
+                        (option) => (
+                          <OakRadioAsButton
+                            value={option.slug}
+                            displayValue={option.title}
+                            key={option.slug}
+                          />
+                        ),
+                      )}
                     </OakFlex>
                   </OakRadioGroup>
                 </>
@@ -151,7 +154,7 @@ export default function SubjectPickerForm({
         {!formState.isValid && (
           <OakFieldError>
             {formState.errors.subjectSlug?.message ??
-              formState.errors.keyStageSlug?.message}
+              formState.errors.yearOrKeyStageSlug?.message}
           </OakFieldError>
         )}
       </OakFlex>

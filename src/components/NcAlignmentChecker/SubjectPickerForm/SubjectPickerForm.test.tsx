@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 
 import SubjectPickerForm from "./SubjectPickerForm";
 import { basic } from "./SubjectPickerForm.fixtures";
-import { KEY_STAGES } from "./formData";
+import { KEY_STAGES, YEAR_GROUPS } from "./formData";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
@@ -48,13 +48,36 @@ describe("SubjectPickerForm", () => {
     });
 
     const user = userEvent.setup();
-    await user.click(screen.getByRole("radio", { name: "Maths" }));
+    await user.click(screen.getByRole("radio", { name: "Science" }));
 
     const keyStageGroup = await screen.findByRole("group", {
       name: "Choose your key stage",
     });
     expect(within(keyStageGroup).getAllByRole("radio")).toHaveLength(
       KEY_STAGES.length,
+    );
+  });
+
+  it("renders the year options when Maths is chosen", async () => {
+    render(<SubjectPickerForm {...basic} />);
+
+    expect(
+      screen.queryByRole("group", { name: "Choose your year group" }),
+    ).not.toBeInTheDocument();
+    YEAR_GROUPS.forEach((yearGroup) => {
+      expect(
+        screen.queryByRole("radio", { name: yearGroup.title }),
+      ).not.toBeInTheDocument();
+    });
+
+    const user = userEvent.setup();
+    await user.click(screen.getByRole("radio", { name: "Maths" }));
+
+    const yearGroup = await screen.findByRole("group", {
+      name: "Choose your year group",
+    });
+    expect(within(yearGroup).getAllByRole("radio")).toHaveLength(
+      YEAR_GROUPS.length,
     );
   });
 
@@ -137,7 +160,7 @@ describe("SubjectPickerForm", () => {
     const user = userEvent.setup();
     render(<SubjectPickerForm {...basic} />);
 
-    await user.click(screen.getByRole("radio", { name: "Maths" }));
+    await user.click(screen.getByRole("radio", { name: "Science" }));
     await user.click(getSubmitButton());
 
     await waitFor(() => {
@@ -150,7 +173,7 @@ describe("SubjectPickerForm", () => {
     const user = userEvent.setup();
     render(<SubjectPickerForm {...basic} />);
 
-    await user.click(screen.getByRole("radio", { name: "Maths" }));
+    await user.click(screen.getByRole("radio", { name: "Science" }));
     await user.click(getSubmitButton());
     await waitFor(() => {
       expect(screen.getByRole("alert")).toHaveTextContent(KEY_STAGE_ERROR);

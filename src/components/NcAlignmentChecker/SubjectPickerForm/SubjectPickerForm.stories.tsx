@@ -27,3 +27,12 @@ export const WithErrors: Story = {
     await userEvent.click(submitButton);
   },
 };
+
+export const ShowsYearsForWhenMathsSelected: Story = {
+  args: { ...basic },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const mathsOption = canvas.getByRole("radio", { name: /Maths/i });
+    await userEvent.click(mathsOption);
+  },
+};
