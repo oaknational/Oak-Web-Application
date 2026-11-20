@@ -12,7 +12,7 @@ type SubjectPickerCalloutProps = Omit<
 
 export default function SubjectPickerCallout({
   subjectPicker: { title, tag, bannerLabel, buttonText },
-}: SubjectPickerCalloutProps) {
+}: Readonly<SubjectPickerCalloutProps>) {
   return (
     <OakBox
       $background="bg-decorative1-main"

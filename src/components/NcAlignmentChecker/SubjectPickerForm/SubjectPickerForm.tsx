@@ -26,7 +26,7 @@ export default function SubjectPickerForm({
   tag,
   bannerLabel,
   buttonText,
-}: SubjectPickerFormProps) {
+}: Readonly<SubjectPickerFormProps>) {
   const router = useRouter();
   const [isNavigating, setIsNavigating] = useState(false);
 
@@ -42,9 +42,7 @@ export default function SubjectPickerForm({
   const selectedSubjectSlug = watch("subjectSlug");
   const selectedSubject = SUBJECTS.find((s) => s.slug === selectedSubjectSlug);
 
-  const onFormSubmit = async (
-    data: NcAlignmentCheckerSubjectPickerFormValues,
-  ) => {
+  const onFormSubmit = (data: NcAlignmentCheckerSubjectPickerFormValues) => {
     setIsNavigating(true);
     router.push(
       `/nc-alignment-checker/${data.subjectSlug}/${data.yearOrKeyStageSlug}`,
