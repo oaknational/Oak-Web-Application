@@ -7,6 +7,7 @@ import {
   NcAlignmentCheckerLandingPageBlock,
   NcAlignmentCheckerLandingPageBlockType,
 } from "@/common-lib/cms-types/ncAlignmentChecker";
+import NcAlignmentCheckerLandingPageHeader from "@/components/NcAlignmentChecker/LandingPageHeader";
 import ImageTextSplitSection from "@/components/GenericPagesComponents/ImageTextSplitSection";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 
@@ -27,7 +28,7 @@ const pageComponents: {
     props: NcAlignmentCheckerLandingPageBlock<K>,
   ) => React.ReactNode;
 } = {
-  NcAlignmentCheckerLandingPageHeader: DefaultComponent,
+  NcAlignmentCheckerLandingPageHeader: NcAlignmentCheckerLandingPageHeader,
   NcAlignmentCheckerLandingPageTextAndMedia: ImageTextSplitSection,
   NcAlignmentCheckerLandingPageSubjectExperts: DefaultComponent,
   NcAlignmentCheckerLandingPageQuotes: DefaultComponent,
