@@ -1,5 +1,5 @@
 "use client";
-import { OakBox, OakCodeRenderer } from "@oaknational/oak-components";
+import { OakBox, OakCodeRenderer, OakFlex } from "@oaknational/oak-components";
 import { Fragment } from "react";
 
 import {
@@ -48,9 +48,14 @@ export function NcAlignmentCheckerLandingPage({
 }>) {
   return (
     <OakBox $zIndex={"neutral"} $color={"text-primary"}>
-      {pageData.blocks?.map((block) => {
-        return <Fragment key={block._key}>{renderBlock(block)}</Fragment>;
-      })}
+      <OakFlex
+        $flexDirection="column"
+        $gap={["spacing-80", "spacing-80", "spacing-56"]}
+      >
+        {pageData.blocks?.map((block) => {
+          return <Fragment key={block._key}>{renderBlock(block)}</Fragment>;
+        })}
+      </OakFlex>
     </OakBox>
   );
 }

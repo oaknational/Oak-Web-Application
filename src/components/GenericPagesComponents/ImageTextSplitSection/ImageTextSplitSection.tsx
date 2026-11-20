@@ -92,7 +92,7 @@ export default function ImageTextSplitSection({
 
   return (
     <NewGutterMaxWidth>
-      <OakGrid $rg="spacing-32" $pv={["spacing-56", "spacing-80"]}>
+      <OakGrid $rg="spacing-32">
         <OakGridArea
           $colSpan={[12, 10, 6]}
           $colStart={[1, 2, isImageLeftPositioned ? 1 : 7]}

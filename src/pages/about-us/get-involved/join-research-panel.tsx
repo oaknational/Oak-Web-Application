@@ -105,13 +105,18 @@ export const AboutUsJoinResearchPanel: NextPage<
         topNavProps={topNav}
       >
         <AboutUsLayout showNewsletter={false}>
-          {pageData.content.blocks.map((block, i) => {
-            return (
-              <div key={`${block.__typename}-${i}`}>
-                {renderBlock(block, pageData.blogs)}
-              </div>
-            );
-          })}
+          <OakFlex
+            $flexDirection="column"
+            $gap={["spacing-80", "spacing-80", "spacing-56"]}
+          >
+            {pageData.content.blocks.map((block, i) => {
+              return (
+                <div key={`${block.__typename}-${i}`}>
+                  {renderBlock(block, pageData.blogs)}
+                </div>
+              );
+            })}
+          </OakFlex>
         </AboutUsLayout>
       </Layout>
     </TeacherBrowseAnalyticsStoreProvider>

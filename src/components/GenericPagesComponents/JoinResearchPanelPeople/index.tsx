@@ -25,11 +25,7 @@ export default function JoinResearchPanelPeople({
     <NewGutterMaxWidth>
       <OakGrid>
         <OakGridArea $colSpan={[12, 10, 12]} $colStart={[1, 2, 1]}>
-          <OakFlex
-            $flexDirection={"column"}
-            $pb={"spacing-80"}
-            $gap={"spacing-32"}
-          >
+          <OakFlex $flexDirection={"column"} $gap={"spacing-32"}>
             <OakHeading
               tag={`h2`}
               $color={"text-primary"}
