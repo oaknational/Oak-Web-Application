@@ -1,7 +1,12 @@
 import { OakGridArea } from "@oaknational/oak-components";
 import type { ComponentProps } from "react";
 
-import { imageTextSplitSectionBlockFixture } from "./ImageTextSplitSection.fixtures";
+import {
+  imageTextSplitSectionBlockFixture,
+  imageTextSplitSectionWithBulletListFixture,
+  imageTextSplitSectionWithNumberedListFixture,
+  imageTextSplitSectionWithLinkFixture
+} from "./ImageTextSplitSection.fixtures";
 
 import ImageTextSplitSection from ".";
 
@@ -37,6 +42,36 @@ describe("ImageTextSplitSection", () => {
 
     expect(baseElement).toMatchSnapshot();
     expect(getByRole("heading", { level: 2 })).toHaveTextContent(fixture.title);
+  });
+  
+  test("renders bullet points correctly", () => {
+    const { baseElement } = render(
+      <ImageTextSplitSection
+        {...imageTextSplitSectionWithBulletListFixture()}
+      />,
+    );
+
+    expect(baseElement).toMatchSnapshot();
+  });
+
+  test("renders numbered points correctly", () => {
+    const { baseElement } = render(
+      <ImageTextSplitSection
+        {...imageTextSplitSectionWithNumberedListFixture()}
+      />,
+    );
+
+    expect(baseElement).toMatchSnapshot();
+  });
+
+  test("renders links with icon correctly", () => {
+    const { baseElement } = render(
+      <ImageTextSplitSection
+        {...imageTextSplitSectionWithLinkFixture()}
+      />,
+    );
+
+    expect(baseElement).toMatchSnapshot();
   });
 
   test("it renders the grid position correctly when imagePosition is passed as 'left'", () => {
