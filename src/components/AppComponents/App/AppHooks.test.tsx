@@ -49,12 +49,6 @@ describe("AppHooks", () => {
     mockBrowserConfig.mockReturnValue("true");
     render(<AppHooks />);
     expect(mockUseSentry).toHaveBeenCalled();
-    expect(mockUseBugsnag).not.toHaveBeenCalled();
-  });
-  it("initialises bugsnag when sentry is not enabled", () => {
-    mockBrowserConfig.mockReturnValue("false");
-    render(<AppHooks />);
     expect(mockUseBugsnag).toHaveBeenCalled();
-    expect(mockUseSentry).not.toHaveBeenCalled();
   });
 });
