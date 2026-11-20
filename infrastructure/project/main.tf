@@ -32,7 +32,10 @@ module "vercel" {
   git_repo                = "oaknational/Oak-Web-Application"
   skew_protection         = local.build_config.skew_protection
   custom_environments     = try(local.build_config.custom_environments, [])
-  enable_sentry           = true
+
+  enable_sentry            = true
+  sentry_organization_slug = "oak-national-academy"
+  sentry_team_slug         = "oak-national-academy"
 
   custom_env_vars = local.build_type == "website" ? local.all_custom_env_vars : []
 
