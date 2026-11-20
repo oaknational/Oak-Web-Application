@@ -5,7 +5,7 @@ import {
   imageTextSplitSectionBlockFixture,
   imageTextSplitSectionWithBulletListFixture,
   imageTextSplitSectionWithNumberedListFixture,
-  imageTextSplitSectionWithLinkFixture
+  imageTextSplitSectionWithLinkFixture,
 } from "./ImageTextSplitSection.fixtures";
 
 import ImageTextSplitSection from ".";
@@ -43,7 +43,7 @@ describe("ImageTextSplitSection", () => {
     expect(baseElement).toMatchSnapshot();
     expect(getByRole("heading", { level: 2 })).toHaveTextContent(fixture.title);
   });
-  
+
   test("renders bullet points correctly", () => {
     const { baseElement } = render(
       <ImageTextSplitSection
@@ -66,9 +66,7 @@ describe("ImageTextSplitSection", () => {
 
   test("renders links with icon correctly", () => {
     const { baseElement } = render(
-      <ImageTextSplitSection
-        {...imageTextSplitSectionWithLinkFixture()}
-      />,
+      <ImageTextSplitSection {...imageTextSplitSectionWithLinkFixture()} />,
     );
 
     expect(baseElement).toMatchSnapshot();
