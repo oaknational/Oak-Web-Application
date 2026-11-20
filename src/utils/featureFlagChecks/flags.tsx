@@ -9,4 +9,9 @@ export const FLAGS = {
       process.env.NEXT_PUBLIC_FORCE_FEATURE_FLAG_NC_ALIGNMENT_CHECKER ?? "false"
     );
   },
+  get "schools-journey"() {
+    return (
+      process.env.NEXT_PUBLIC_FORCE_FEATURE_FLAG_SCHOOLS_JOURNEY ?? "false"
+    );
+  },
 } as const;
