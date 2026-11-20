@@ -9,6 +9,8 @@ import {
 } from "@/common-lib/cms-types/ncAlignmentChecker";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import NcAlignmentCheckerLandingPageHeader from "@/components/NcAlignmentChecker/LandingPageHeader";
+import LandingPageSubjectPickerCallout from "@/components/NcAlignmentChecker/LandingPageSubjectPickerCallout";
+
 function DefaultComponent(
   block: NcAlignmentCheckerLandingPageBlock<NcAlignmentCheckerLandingPageBlockType>,
 ) {
@@ -31,7 +33,8 @@ const pageComponents: {
   NcAlignmentCheckerLandingPageSubjectExperts: DefaultComponent,
   NcAlignmentCheckerLandingPageQuotes: DefaultComponent,
   NcAlignmentCheckerLandingPageFaqs: DefaultComponent,
-  NcAlignmentCheckerLandingPageSubjectPickerCallout: DefaultComponent,
+  NcAlignmentCheckerLandingPageSubjectPickerCallout:
+    LandingPageSubjectPickerCallout,
 };
 
 function renderBlock<K extends NcAlignmentCheckerLandingPageBlockType>(
