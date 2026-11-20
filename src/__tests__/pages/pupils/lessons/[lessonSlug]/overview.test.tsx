@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom";
 import { fireEvent } from "@testing-library/react";
+import { StrictMode } from "react";
 
 import PupilLessonOverviewPage, {
   getStaticProps,
@@ -32,13 +33,25 @@ jest.mock("@/components/PupilComponents/pupilUtils/getWorksheetInfo", () => ({
 const routerPush = jest.fn();
 const routerReplace = jest.fn();
 const routerBack = jest.fn();
+const routerReload = jest.fn();
 jest.mock("next/router", () => ({
   useRouter: () => ({
     asPath: "/pupils/lessons/lesson-1/overview?utm=x",
     push: routerPush,
     replace: routerReplace,
     back: routerBack,
+    reload: routerReload,
   }),
+}));
+
+const mockReportError = jest.fn();
+jest.mock("@/common-lib/error-reporter", () => ({
+  __esModule: true,
+  ...jest.requireActual("@/common-lib/error-reporter"),
+  default:
+    () =>
+    (...args: unknown[]) =>
+      mockReportError(...args),
 }));
 
 const assignmentSearchParams = {
@@ -107,7 +120,7 @@ jest.mock(
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
-const renderPage = (overrides: { backUrl?: string | null } = {}) =>
+const renderPage = (overrides: Partial<PupilLessonPageProps> = {}) =>
   render(
     <PupilLessonOverviewPage
       browseData={lessonBrowseDataFixture({})}
@@ -120,6 +133,7 @@ const renderPage = (overrides: { backUrl?: string | null } = {}) =>
       variant={null}
       initialSection="overview"
       pageType="canonical"
+      {...overrides}
     />,
   );
 
@@ -129,6 +143,8 @@ describe("pages/pupils/lessons/[lessonSlug]/overview", () => {
       routerPush.mockReset();
       routerReplace.mockReset();
       routerBack.mockReset();
+      routerReload.mockReset();
+      mockReportError.mockReset();
       Object.values(analyticsFns).forEach((fn) => fn.mockReset());
       assignmentSearchParams.isClassroomAssignment = false;
       assignmentSearchParams.classroomAssignmentChecked = true;
@@ -143,6 +159,90 @@ describe("pages/pupils/lessons/[lessonSlug]/overview", () => {
       const { getByTestId } = renderPage();
       expect(getByTestId("pupil-layout")).toBeInTheDocument();
       expect(getByTestId("proceed-to-next-section")).toBeInTheDocument();
+      expect(mockReportError).not.toHaveBeenCalled();
+    });
+
+    it.each(["browseData", "lessonContent"] as const)(
+      "offers a reload instead of crashing when %s is missing",
+      (property) => {
+        const { getByRole, queryByTestId } = renderPage({
+          [property]: undefined,
+        });
+
+        expect(
+          getByRole("heading", { name: "We couldn't load this lesson" }),
+        ).toBeInTheDocument();
+        expect(
+          queryByTestId("proceed-to-next-section"),
+        ).not.toBeInTheDocument();
+        expect(mockReportError).toHaveBeenCalledTimes(1);
+        expect(mockReportError).toHaveBeenCalledWith(
+          expect.objectContaining({
+            message: "Pupil lesson overview data is missing",
+          }),
+          expect.objectContaining({
+            missingBrowseData: property === "browseData",
+            missingLessonContent: property === "lessonContent",
+          }),
+        );
+        expect(routerReload).not.toHaveBeenCalled();
+
+        fireEvent.click(getByRole("button", { name: "Reload lesson" }));
+
+        expect(routerReload).toHaveBeenCalledTimes(1);
+        expect(routerPush).not.toHaveBeenCalled();
+        expect(analyticsFns.trackLessonStarted).not.toHaveBeenCalled();
+      },
+    );
+
+    it("handles an empty page props response without mounting the lesson", () => {
+      const { getByRole, queryByTestId } = render(
+        <PupilLessonOverviewPage {...({} as PupilLessonPageProps)} />,
+      );
+
+      expect(
+        getByRole("button", { name: "Reload lesson" }),
+      ).toBeInTheDocument();
+      expect(queryByTestId("proceed-to-next-section")).not.toBeInTheDocument();
+    });
+
+    it("reports missing data only once in Strict Mode", () => {
+      const page = (
+        <StrictMode>
+          <PupilLessonOverviewPage {...({} as PupilLessonPageProps)} />
+        </StrictMode>
+      );
+      const { rerender } = render(page);
+      rerender(page);
+
+      expect(mockReportError).toHaveBeenCalledTimes(1);
+      expect(routerReload).not.toHaveBeenCalled();
+    });
+
+    it("renders the lesson when missing page data becomes available", () => {
+      const { rerender, getByTestId, queryByRole } = render(
+        <PupilLessonOverviewPage {...({} as PupilLessonPageProps)} />,
+      );
+
+      rerender(
+        <PupilLessonOverviewPage
+          browseData={lessonBrowseDataFixture({})}
+          lessonContent={lessonContentFixture({})}
+          hasWorksheet={false}
+          worksheetInfo={null}
+          hasAdditionalFiles={false}
+          additionalFiles={null}
+          variant={null}
+          initialSection="overview"
+          pageType="canonical"
+        />,
+      );
+
+      expect(
+        queryByRole("button", { name: "Reload lesson" }),
+      ).not.toBeInTheDocument();
+      expect(getByTestId("proceed-to-next-section")).toBeInTheDocument();
+      expect(mockReportError).toHaveBeenCalledTimes(1);
     });
 
     it("hides the back button when the lesson is opened from Google Classroom", () => {
