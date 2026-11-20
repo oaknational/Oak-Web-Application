@@ -6,7 +6,9 @@ import {
   OakGridArea,
   OakHeading,
   OakImage,
+  OakP,
 } from "@oaknational/oak-components";
+import { PortableTextComponents } from "@portabletext/react";
 
 import { NcAlignmentCheckerLandingPageBlock } from "@/common-lib/cms-types";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -18,6 +20,16 @@ type NcAlignmentCheckerLandingPageHeaderProps = Omit<
   NcAlignmentCheckerLandingPageBlock<"NcAlignmentCheckerLandingPageHeader">,
   "__typename" | "_key"
 >;
+
+const portableTextComponents: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => (
+      <OakP $mt="spacing-24" $font={["heading-light-7", "heading-light-6"]}>
+        {children}
+      </OakP>
+    ),
+  },
+};
 
 export default function NcAlignmentCheckerLandingPageHeader({
   title,
@@ -58,7 +70,10 @@ export default function NcAlignmentCheckerLandingPageHeader({
                 <OakHeading tag="h1" $font={["heading-4", "heading-2"]}>
                   {title}
                 </OakHeading>
-                <PortableTextWithDefaults value={bodyRaw} />
+                <PortableTextWithDefaults
+                  components={portableTextComponents}
+                  value={bodyRaw}
+                />
               </OakFlex>
             </OakFlex>
           </OakGridArea>

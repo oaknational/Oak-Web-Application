@@ -17,18 +17,18 @@ exports[`NcAlignmentCheckerLandingPageHeader renders correct data 1`] = `
             class="sc-bdvwhi ejVpib"
           >
             <ul
-              class="sc-hAcEkO dJRkLd"
+              class="sc-jHkWmS bwmIwu"
             >
               <li
-                class="sc-kYHdiH YiXOT"
+                class="sc-bQtLLP HPudz"
               >
                 <a
-                  class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                  class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                   href="/"
                   style="overflow: hidden;"
                 >
                   <span
-                    class="sc-dkPwfY fgmEIT"
+                    class="sc-iCfNyT fAQctr"
                   >
                     <div
                       class="sc-bdvwhi bzawnc"
@@ -39,14 +39,14 @@ exports[`NcAlignmentCheckerLandingPageHeader renders correct data 1`] = `
                 </a>
               </li>
               <li
-                class="sc-kYHdiH YiXOT"
+                class="sc-bQtLLP HPudz"
               >
                 <span
                   class="sc-bdvwhi gWngyq"
                 >
                   <img
                     alt=""
-                    class="sc-jRQBiJ eMsccW"
+                    class="sc-gsDMPd frprTL"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -65,20 +65,20 @@ exports[`NcAlignmentCheckerLandingPageHeader renders correct data 1`] = `
           </nav>
         </div>
         <div
-          class="sc-bdvwhi sc-jcFiBM crwNYt kyGOgc"
+          class="sc-bdvwhi sc-cTAoCz crwNYt gLmhut"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-caiMdP iGfZgI Bakex bBVKjD"
+            class="sc-bdvwhi sc-jRQBiJ sc-jObTYW iGfZgI heSanc eXAXhc"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU hYCrsw"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU ibbSGp"
             >
               <span
                 class="sc-bdvwhi bARMED"
               >
                 <img
                   alt=""
-                  class="sc-jRQBiJ hssYEG"
+                  class="sc-gsDMPd ctfyuj"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"
@@ -89,15 +89,15 @@ exports[`NcAlignmentCheckerLandingPageHeader renders correct data 1`] = `
                 />
               </span>
               <div
-                class="sc-bdvwhi sc-gsDMPd iMMhmV cIPGhJ"
+                class="sc-bdvwhi sc-jRQBiJ iMMhmV cBpORs"
               >
                 <h1
-                  class="sc-bkkgYE kasgCA"
+                  class="sc-hGPAwl ejrCco"
                 >
                   Welcome to Oak's national curriculum alignment checker
                 </h1>
                 <p
-                  class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                  class="sc-fKVoIy jSSGqp"
                 >
                   For the refreshed national curriculum, taught in schools from September 2028.
                 </p>
@@ -105,10 +105,10 @@ exports[`NcAlignmentCheckerLandingPageHeader renders correct data 1`] = `
             </div>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-caiMdP HHYqW Bakex jCSSHx"
+            class="sc-bdvwhi sc-jRQBiJ sc-jObTYW HHYqW heSanc jPvFNO"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd eATcue DcFla"
+              class="sc-bdvwhi sc-jRQBiJ eATcue kcZiin"
             >
               SUBJECT PICKER PLACEHOLDER
             </div>
