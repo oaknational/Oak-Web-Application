@@ -7,13 +7,13 @@ import { LessonItemContainer } from "./LessonItemContainer";
 import Card from "@/components/SharedComponents/Card";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import MockedTeacherBrowseAnalyticsProvider from "@/__tests__/__helpers__/MockedTeacherBrowseAnalyticsProvider";
-import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
-import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import {
   mockLinkClick,
   setupMockLinkClick,
   teardownMockLinkClick,
 } from "@/utils/mockLinkClick";
+import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
+import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 
 const resourceContainerExpanded = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -27,10 +27,10 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 describe("LessonItemContainer", () => {
-  let lessonOverview: LessonOverviewPageData;
+  let lessonOverview: TeachersLessonOverviewPageData;
 
   beforeAll(() => {
-    lessonOverview = lessonOverviewFixture();
+    lessonOverview = teachersLessonOverviewFixture();
   });
 
   beforeEach(() => {
@@ -189,7 +189,7 @@ describe("LessonItemContainer", () => {
 
     await user.click(downloadLinkButton);
     expect(mockLinkClick).toHaveBeenCalledWith(
-      "http://localhost/teachers/programmes/english-primary-ks2/units/grammar-1-simple-compound-and-adverbial-complex-sentences/lessons/lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences/downloads",
+      "http://localhost/teachers/programmes/biology-secondary-ks3/units/cells/lessons/lesson-3-structure-of-cells/downloads",
     );
     expect(onDownloadButtonClick).toHaveBeenCalledTimes(1);
   });
@@ -216,7 +216,7 @@ describe("LessonItemContainer", () => {
     const downloadLinkButton = screen.getByTestId("download-button");
     expect(downloadLinkButton).toHaveAttribute(
       "href",
-      "/teachers/programmes/english-primary-ks2/units/grammar-1-simple-compound-and-adverbial-complex-sentences/lessons/lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences/downloads?preselected=worksheet",
+      "/teachers/programmes/biology-secondary-ks3/units/cells/lessons/lesson-3-structure-of-cells/downloads?preselected=worksheet",
     );
   });
 

@@ -4,41 +4,41 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
 <body>
   <div>
     <div
-      class="sc-bdvwhi sc-gsDMPd hLDKhC eWbmLh"
+      class="sc-bdvwhi sc-jRQBiJ hLDKhC bBQXks"
     >
       <div
         class="sc-bdvwhi iatEdD"
       >
         <div
-          class="sc-bdvwhi sc-jcFiBM hPWTKU kyGOgc"
+          class="sc-bdvwhi sc-cTAoCz hPWTKU gLmhut"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex lfnHax"
+            class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc gYGnkq"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd jrKunU dBhbyK"
+              class="sc-bdvwhi sc-jRQBiJ jrKunU fFnUrH"
             >
               <h2
-                class="sc-bkkgYE jihQnU"
+                class="sc-hGPAwl tmVIw"
               >
                 How does it work?
               </h2>
               <div
-                class="sc-bdvwhi sc-gsDMPd hPWTKU jYvMVQ"
+                class="sc-bdvwhi sc-jRQBiJ hPWTKU dbhlGN"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd hPWTKU cmTLPr"
+                  class="sc-bdvwhi sc-jRQBiJ hPWTKU dQsfXW"
                 >
                   <h3
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU eCFEmk"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU ksifIJ"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd gLRlaJ gbgSUZ"
+                      class="sc-bdvwhi sc-jRQBiJ gLRlaJ tMmkI"
                     >
                       1
                     </div>
                     <div
-                      class="sc-bkkgYE oUomb"
+                      class="sc-hGPAwl hbfUDj"
                     >
                       Sign up
                     </div>
@@ -47,21 +47,21 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
                     class="sc-bdvwhi hPWTKU"
                   >
                     <p
-                      class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                      class="sc-fKVoIy sc-82983132-0 fGUYFF WxNyd"
                     >
                       Fill in our 
                       <a
-                        class="sc-iwjfEg gbbVHe sc-hUpbpP bEqcTJ"
+                        class="sc-iJKPHa kymEhS sc-iNGDOz hPscCj"
                         href="https://example.com"
                         rel="noopener noreferrer"
                         target="_blank"
                       >
                         <span
-                          class="sc-dkPwfY fgmEIT"
+                          class="sc-iCfNyT fAQctr"
                         >
                           sign-up form
                           <span
-                            class="sc-iCfNyT gvLbeW"
+                            class="sc-pVUti eEZcMz"
                           >
                              (opens in a new tab)
                           </span>
@@ -70,25 +70,25 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
                        with a few details about you.
                     </p>
                     <p
-                      class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                      class="sc-fKVoIy sc-82983132-0 fGUYFF WxNyd"
                     >
                       We'll email you if there's a research opportunity that matches your background and interests.
                     </p>
                   </div>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd hPWTKU cmTLPr"
+                  class="sc-bdvwhi sc-jRQBiJ hPWTKU dQsfXW"
                 >
                   <h3
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU eCFEmk"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU ksifIJ"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd gLRlaJ gbgSUZ"
+                      class="sc-bdvwhi sc-jRQBiJ gLRlaJ tMmkI"
                     >
                       2
                     </div>
                     <div
-                      class="sc-bkkgYE oUomb"
+                      class="sc-hGPAwl hbfUDj"
                     >
                       Take part
                     </div>
@@ -97,25 +97,25 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
                     class="sc-bdvwhi hPWTKU"
                   >
                     <p
-                      class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                      class="sc-fKVoIy sc-82983132-0 fGUYFF WxNyd"
                     >
                       You might be invited to share your teaching experiences, talk about how you use different resources, try out an early improvement idea, or give feedback on a topic we’re exploring.
                     </p>
                   </div>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd hPWTKU cmTLPr"
+                  class="sc-bdvwhi sc-jRQBiJ hPWTKU dQsfXW"
                 >
                   <h3
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU eCFEmk"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU ksifIJ"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd gLRlaJ gbgSUZ"
+                      class="sc-bdvwhi sc-jRQBiJ gLRlaJ tMmkI"
                     >
                       3
                     </div>
                     <div
-                      class="sc-bkkgYE oUomb"
+                      class="sc-hGPAwl hbfUDj"
                     >
                       What happens next
                     </div>
@@ -124,7 +124,7 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
                     class="sc-bdvwhi hPWTKU"
                   >
                     <p
-                      class="sc-hGPAwl sc-82983132-0 egPakc WxNyd"
+                      class="sc-fKVoIy sc-82983132-0 fGUYFF WxNyd"
                     >
                       You will receive a retail voucher as a thank you for your time. You will remain part of the research panel for 2 years after signing up, so you may be contacted for other research opportunities (max 2 per year) unless you tell us otherwise.
                     </p>
@@ -132,7 +132,7 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
                 </div>
               </div>
               <div
-                class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+                class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
               >
                 <div
                   class="sc-bdvwhi kAFHfV grey-shadow"
@@ -141,20 +141,20 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
                   class="sc-bdvwhi kAFHfV yellow-shadow"
                 />
                 <a
-                  class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                  class="sc-furwPO sc-iqsgXZ xrJiU kpPtpO internal-button"
                   href="https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd"
                   rel="noreferrer"
                   target="_blank"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                   >
                     <span
-                      class="sc-dkPwfY kXQhTZ"
+                      class="sc-iCfNyT gaSeFZ"
                     >
                       Join the research panel
                       <span
-                        class="sc-iCfNyT gvLbeW"
+                        class="sc-pVUti eEZcMz"
                       >
                          (opens in a new tab)
                       </span>
@@ -164,7 +164,7 @@ exports[`JoinResearchPanelJourney it renders correct data 1`] = `
                     >
                       <img
                         alt=""
-                        class="sc-jRQBiJ buswnv"
+                        class="sc-gsDMPd kvEPQa"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
