@@ -1,3 +1,14 @@
+# [1.1282.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1281.3...v1.1282.0) (2026-11-20)
+
+
+### Features
+
+* add portable text style override ([8634495](https://github.com/oaknational/Oak-Web-Application/commit/8634495f928072d8766ea32e76516191fa783a7a))
+* correct spacing for mobile ([584819f](https://github.com/oaknational/Oak-Web-Application/commit/584819f2daa4a8310b030a8721faa11955e1c5e5))
+* nc checker landing page header ([3143799](https://github.com/oaknational/Oak-Web-Application/commit/31437993a01054b9602122803b2885e02c9fa8f5))
+* remove _key from header props ([fe406b0](https://github.com/oaknational/Oak-Web-Application/commit/fe406b0b859b6f9bac18c19749f1556a24c8a739))
+* render header on landing page ([6200a15](https://github.com/oaknational/Oak-Web-Application/commit/6200a15321bb52f888bd946c8114b219d094e277))
+
 ## [1.1281.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1281.2...v1.1281.3) (2026-11-19)
 
 
