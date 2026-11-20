@@ -24,7 +24,10 @@ type NcAlignmentCheckerLandingPageHeaderProps = Omit<
 const portableTextComponents: PortableTextComponents = {
   block: {
     normal: ({ children }) => (
-      <OakP $mt="spacing-24" $font={["heading-light-7", "heading-light-6"]}>
+      <OakP
+        $mt={["spacing-12", "spacing-24"]}
+        $font={["heading-light-7", "heading-light-6"]}
+      >
         {children}
       </OakP>
     ),

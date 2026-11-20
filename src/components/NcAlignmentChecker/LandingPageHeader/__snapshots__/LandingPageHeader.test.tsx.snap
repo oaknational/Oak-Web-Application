@@ -97,7 +97,7 @@ exports[`NcAlignmentCheckerLandingPageHeader renders correct data 1`] = `
                   Welcome to Oak's national curriculum alignment checker
                 </h1>
                 <p
-                  class="sc-fKVoIy jSSGqp"
+                  class="sc-fKVoIy NxjIA"
                 >
                   For the refreshed national curriculum, taught in schools from September 2028.
                 </p>
