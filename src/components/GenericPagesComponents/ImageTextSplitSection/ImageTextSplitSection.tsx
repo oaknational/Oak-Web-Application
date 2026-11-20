@@ -3,8 +3,10 @@ import {
   OakGrid,
   OakGridArea,
   OakHeading,
+  OakIcon,
   OakImage,
   OakLI,
+  OakLink,
   OakOL,
   OakP,
   parseSpacing,
@@ -44,6 +46,32 @@ const imageTextSplitSectionPortableTextComponents: PortableTextComponents = {
     number: (props) => (
       <OakLI $font={["list-item-2", "list-item-1"]}>{props.children}</OakLI>
     ),
+  },
+  marks: {
+    link: (props) => {
+      const href = getProxiedSanityAssetUrl(props.value?.href);
+      if (!href) {
+        return null;
+      }
+
+      return (
+        <OakLink
+          href={href}
+          variant="secondary"
+          $font={["body-2-bold", "body-1-bold"]}
+        >
+          {props.children}
+          <OakIcon
+            iconName="external"
+            $display="inline-block"
+            $verticalAlign="text-top"
+            $ml="spacing-8"
+            $width="spacing-24"
+            $height="spacing-24"
+          />
+        </OakLink>
+      );
+    },
   },
 };
 
