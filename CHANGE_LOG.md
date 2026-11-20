@@ -1,3 +1,56 @@
+## [1.1281.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1281.2...v1.1281.3) (2026-11-19)
+
+
+### Bug Fixes
+
+* added QuoteWithImage into ncAlignmentCheckerLandingPage query ([7e9f680](https://github.com/oaknational/Oak-Web-Application/commit/7e9f680f7183e2d0f269f08f33eb028ff2e28d2b))
+
+## [1.1281.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1281.1...v1.1281.2) (2026-11-19)
+
+
+### Bug Fixes
+
+* swap router refresh for window location assign to prevent client side sign up interruptions ([334f7a4](https://github.com/oaknational/Oak-Web-Application/commit/334f7a41d6cc4878e80b1e83ce8cbb62a2171ff0))
+
+## [1.1281.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1281.0...v1.1281.1) (2026-11-19)
+
+
+### Bug Fixes
+
+* bump oak-components to v3.30.1 which includes ([d99dcdc](https://github.com/oaknational/Oak-Web-Application/commit/d99dcdc56576eac933fde6f7c3ce13650b8bbb95))
+
+# [1.1281.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1280.1...v1.1281.0) (2026-11-19)
+
+
+### Bug Fixes
+
+* async fn with no await in curriculumApi2023Mock ([510f8e1](https://github.com/oaknational/Oak-Web-Application/commit/510f8e1ad9b24184a3cec16ffaf315ce487da8d3))
+* redirects to a unit do not append /media to url ([c2bfe81](https://github.com/oaknational/Oak-Web-Application/commit/c2bfe81936cb8174f61f6639673ff2055e4bf81b))
+
+
+### Features
+
+* canonical lesson media pages ([c17dc0d](https://github.com/oaknational/Oak-Web-Application/commit/c17dc0d6ba172517cf8cf5067981180097d73fb0))
+* canonical lesson media query ([a3f56c9](https://github.com/oaknational/Oak-Web-Application/commit/a3f56c9628a757d0e9e21159573f5d7f73580e4f))
+
+## [1.1280.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1280.0...v1.1280.1) (2026-11-18)
+
+
+### Bug Fixes
+
+* add _key for react key lookup ([705bd60](https://github.com/oaknational/Oak-Web-Application/commit/705bd60bcb9029292f4093d033a257f4d367c356))
+* added cookiesToObject(...) to fix feature flag issue ([f11e97c](https://github.com/oaknational/Oak-Web-Application/commit/f11e97cc1f42232dd56b008ff007b9786a224442))
+* added in _id for key usage in react ([123e1be](https://github.com/oaknational/Oak-Web-Application/commit/123e1be4fcca25be4c06fa5f26aa6c6d7335ca2f))
+* added revalidate=300 for now and reverted cache key ([3379d0b](https://github.com/oaknational/Oak-Web-Application/commit/3379d0b7b1c5861a0ae185029c2b6b374ac44e94))
+* changed component name from `Error` to `ErrorPane` ([44c17e8](https://github.com/oaknational/Oak-Web-Application/commit/44c17e87998e17e16c486cf6c59a9de245de3e86))
+* missing NotFoundPane reference ([dccc67b](https://github.com/oaknational/Oak-Web-Application/commit/dccc67beb8b22abc22a3d55f5c30395828aea946))
+* moved src/app/(core)/not-found.tsx to src/app/ ([2a53676](https://github.com/oaknational/Oak-Web-Application/commit/2a536767980ff8c308808235e5dc4cf3c6f89dd6))
+* no need for nullish coalescing ([40d408c](https://github.com/oaknational/Oak-Web-Application/commit/40d408c597b4ede2c4dc21cd00e596e7715709b7))
+* nullish coalescing ([0002fce](https://github.com/oaknational/Oak-Web-Application/commit/0002fcee116fc120e7b29ae2e69ec27caf4dbf6f))
+* rename `ErrorPane` -> `NotFoundPane` ([f60060c](https://github.com/oaknational/Oak-Web-Application/commit/f60060ca22d1704d958b50c401f36a2a06d590bc))
+* replaced metadata with generateMetadata for dynamic metadata on page ([86d3f48](https://github.com/oaknational/Oak-Web-Application/commit/86d3f48172a6a466124738b0b24d44e5bd6f1acf))
+* use extracted out <Error/> component from <ErrorView/> ([453fca3](https://github.com/oaknational/Oak-Web-Application/commit/453fca3fc349e99c904f753e8a5618f0de0af78e))
+
 # [1.1280.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1279.1...v1.1280.0) (2026-11-17)
 
 
