@@ -7,7 +7,7 @@ exports[`ImageTextSplitSection it renders correct data 1`] = `
       class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-bdvwhi sc-cTAoCz blOvSo hQobsZ"
+        class="sc-bdvwhi sc-cTAoCz hPWTKU hQobsZ"
       >
         <div
           class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc gAHeRh"
@@ -63,7 +63,7 @@ exports[`ImageTextSplitSection renders bullet points correctly 1`] = `
       class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-bdvwhi sc-cTAoCz blOvSo hQobsZ"
+        class="sc-bdvwhi sc-cTAoCz hPWTKU hQobsZ"
       >
         <div
           class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc gAHeRh"
@@ -126,7 +126,7 @@ exports[`ImageTextSplitSection renders links with icon correctly 1`] = `
       class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-bdvwhi sc-cTAoCz blOvSo hQobsZ"
+        class="sc-bdvwhi sc-cTAoCz hPWTKU hQobsZ"
       >
         <div
           class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc gAHeRh"
@@ -204,7 +204,7 @@ exports[`ImageTextSplitSection renders numbered points correctly 1`] = `
       class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-bdvwhi sc-cTAoCz blOvSo hQobsZ"
+        class="sc-bdvwhi sc-cTAoCz hPWTKU hQobsZ"
       >
         <div
           class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc gAHeRh"
@@ -241,7 +241,7 @@ exports[`ImageTextSplitSection renders numbered points correctly 1`] = `
               How it works
             </h2>
             <ol
-              class="sc-kfPsKX sc-ac921bbc-0 eEPHum cCpUEA"
+              class="sc-kfPsKX sc-39672c27-0 eEPHum hOZuDY"
             >
               <li
                 class="sc-dlVwtM iVcydY"
