@@ -187,6 +187,33 @@ describe("SubjectPickerForm", () => {
     expect(screen.getByRole("alert")).toBeEmptyDOMElement();
   });
 
+  it("does not mark the subject group as invalid before submitting", () => {
+    render(<SubjectPickerForm {...basic} />);
+
+    const subjectGroup = screen.getByRole("group", {
+      name: "Choose your primary subject",
+    });
+    expect(subjectGroup).not.toHaveAttribute("aria-describedby");
+    expect(subjectGroup).not.toHaveAttribute("aria-invalid");
+  });
+
+  it("associates the subject error with the subject group", async () => {
+    const user = userEvent.setup();
+    render(<SubjectPickerForm {...basic} />);
+
+    await user.click(getSubmitButton());
+
+    const subjectGroup = screen.getByRole("group", {
+      name: "Choose your primary subject",
+    });
+    await waitFor(() => {
+      expect(subjectGroup).toHaveAccessibleDescription(
+        new RegExp(SUBJECT_ERROR),
+      );
+    });
+    expect(subjectGroup).toHaveAttribute("aria-invalid", "true");
+  });
+
   it("navigates to the selected subject and key stage", async () => {
     const user = userEvent.setup();
     render(<SubjectPickerForm {...basic} />);

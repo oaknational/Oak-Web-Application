@@ -10,7 +10,7 @@ import {
   OakFieldError,
 } from "@oaknational/oak-components";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useId, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -29,6 +29,10 @@ export default function SubjectPickerForm({
 }: Readonly<SubjectPickerFormProps>) {
   const router = useRouter();
   const [isNavigating, setIsNavigating] = useState(false);
+
+  const id = useId();
+  const subjectErrorId = `${id}-subject-error`;
+  const yearOrKeyStageErrorId = `${id}-year-or-key-stage-error`;
 
   const { formState, control, handleSubmit, watch, clearErrors, setValue } =
     useForm({
@@ -77,12 +81,16 @@ export default function SubjectPickerForm({
           render={({ field, fieldState }) => (
             <>
               {fieldState.error?.message && (
-                <OakBox $mb="spacing-8">
+                <OakBox id={subjectErrorId} $mb="spacing-8">
                   <OakFieldError>{fieldState.error.message}</OakFieldError>
                 </OakBox>
               )}
               <OakRadioGroup
                 name={field.name}
+                aria-describedby={
+                  fieldState.error?.message ? subjectErrorId : undefined
+                }
+                aria-invalid={fieldState.invalid || undefined}
                 label="Choose your primary subject"
                 $font={["heading-7", "heading-6"]}
                 $gap="spacing-16"
@@ -119,12 +127,18 @@ export default function SubjectPickerForm({
               render={({ field, fieldState }) => (
                 <>
                   {fieldState.error?.message && (
-                    <OakBox $mb="spacing-8">
+                    <OakBox id={yearOrKeyStageErrorId} $mb="spacing-8">
                       <OakFieldError>{fieldState.error.message}</OakFieldError>
                     </OakBox>
                   )}
                   <OakRadioGroup
                     name={field.name}
+                    aria-describedby={
+                      fieldState.error?.message
+                        ? yearOrKeyStageErrorId
+                        : undefined
+                    }
+                    aria-invalid={fieldState.invalid || undefined}
                     label={`Choose your ${selectedSubject?.yearOrKeyStageQuestion.noun}`}
                     value={field.value}
                     onChange={(e) => field.onChange(e.target.value)}
