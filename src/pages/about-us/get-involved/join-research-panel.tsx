@@ -107,7 +107,7 @@ export const AboutUsJoinResearchPanel: NextPage<
         <AboutUsLayout showNewsletter={false}>
           <OakFlex
             $flexDirection="column"
-            $gap={["spacing-80", "spacing-80", "spacing-56"]}
+            $gap={["spacing-56", "spacing-80", "spacing-80"]}
           >
             {pageData.content.blocks.map((block, i) => {
               return (
