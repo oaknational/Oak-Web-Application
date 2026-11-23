@@ -13,7 +13,7 @@ export function NationalCurriculumInsightsScrollMarker() {
     const observer = new IntersectionObserver(
       (entries) => {
         if (!entries.some((entry) => entry.isIntersecting)) return;
-        trackScrolledTo("teacher-checklist");
+        trackScrolledTo("preparation");
         observer.disconnect();
       },
       { threshold: 0, rootMargin: "-1px 0px 0px" },

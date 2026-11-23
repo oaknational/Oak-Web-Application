@@ -128,12 +128,6 @@ const ModuleViewContent = ({
         <NationalCurriculumInsightsChecklist
           section={module}
           variant={data.activeKeyStage ? "keyStage" : "phase"}
-          headingMarker={
-            data.route.kind === "subjectPhaseKeyStage" &&
-            module.audience === "teacher" ? (
-              <NationalCurriculumInsightsScrollMarker />
-            ) : null
-          }
         />
       );
     case "NationalCurriculumInsightsPreparationSection":
@@ -141,6 +135,12 @@ const ModuleViewContent = ({
         <NationalCurriculumInsightsPreparation
           section={module}
           variant={data.activeKeyStage ? "keyStage" : "phase"}
+          headingMarker={
+            data.route.kind === "subjectPhaseKeyStage" ||
+            data.route.kind === "subjectPhase" ? (
+              <NationalCurriculumInsightsScrollMarker />
+            ) : null
+          }
         />
       );
     case "NationalCurriculumInsightsConfidenceSection":

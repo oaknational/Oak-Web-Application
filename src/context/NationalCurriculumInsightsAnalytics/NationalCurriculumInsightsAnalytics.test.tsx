@@ -27,6 +27,13 @@ const page: NationalCurriculumInsightsAnalyticsPage = {
   keyStageSlug: "key-stage-1",
 };
 
+const phasePage: NationalCurriculumInsightsAnalyticsPage = {
+  ...page,
+  pageType: "subjectPhase",
+  keyStageTitle: null,
+  keyStageSlug: null,
+};
+
 describe("National Curriculum Insights scroll analytics", () => {
   const ncInsightsScrollMilestoneReached = jest.fn();
   const scrolledTo = jest.fn();
@@ -101,28 +108,31 @@ describe("National Curriculum Insights scroll analytics", () => {
       ),
     );
 
-  it("sends the full Avo payload only when the checklist is reached, once per visit", () => {
-    const { unmount } = renderWithTheme(renderVisit());
-    intersect(false);
-    expect(ncInsightsScrollMilestoneReached).not.toHaveBeenCalled();
-    intersect(true);
-    intersect(true);
-    expect(ncInsightsScrollMilestoneReached).toHaveBeenCalledTimes(1);
-    expect(ncInsightsScrollMilestoneReached).toHaveBeenCalledWith({
-      ...page,
-      platform: "owa",
-      product: "curriculum resources",
-      engagementIntent: "explore",
-      sectionId: "teacher-checklist",
-      measurementType: "section_visibility",
-      pageVisitId: "visit-1",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-    });
-    expect(scrolledTo).not.toHaveBeenCalled();
-    unmount();
-    expect(disconnect).toHaveBeenCalled();
-  });
+  it.each([page, phasePage])(
+    "sends the Preparation milestone once per visit on $pageType pages",
+    (currentPage) => {
+      const { unmount } = renderWithTheme(renderVisit("first", currentPage));
+      intersect(false);
+      expect(ncInsightsScrollMilestoneReached).not.toHaveBeenCalled();
+      intersect(true);
+      intersect(true);
+      expect(ncInsightsScrollMilestoneReached).toHaveBeenCalledTimes(1);
+      expect(ncInsightsScrollMilestoneReached).toHaveBeenCalledWith({
+        ...currentPage,
+        platform: "owa",
+        product: "curriculum resources",
+        engagementIntent: "explore",
+        sectionId: "preparation",
+        measurementType: "section_visibility",
+        pageVisitId: "visit-1",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+      });
+      expect(scrolledTo).not.toHaveBeenCalled();
+      unmount();
+      expect(disconnect).toHaveBeenCalled();
+    },
+  );
 
   it("keeps deduplication across rerenders and resets it for a new page visit", () => {
     const { rerender } = renderWithTheme(renderVisit());
@@ -167,7 +177,7 @@ describe("National Curriculum Insights scroll analytics", () => {
         wrapper: ({ children }) => renderVisit("first", page, children),
       },
     );
-    act(() => result.current.trackScrolledTo("teacher-checklist"));
+    act(() => result.current.trackScrolledTo("preparation"));
     expect(ncInsightsDwellTimeRecorded).not.toHaveBeenCalled();
     now = 12000;
     visibility = "hidden";
@@ -267,7 +277,7 @@ describe("National Curriculum Insights scroll analytics", () => {
       { wrapper: ({ children }) => renderVisit("first", page, children) },
     );
     try {
-      act(() => result.current.trackScrolledTo("teacher-checklist"));
+      act(() => result.current.trackScrolledTo("preparation"));
       const surveyThresholdMs = INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS * 1000;
       act(() => {
         now = surveyThresholdMs;
@@ -332,7 +342,7 @@ describe("National Curriculum Insights scroll analytics", () => {
       downloadAttemptId: "attempt-1",
     });
     act(() => {
-      result.current.trackScrolledTo("teacher-checklist");
+      result.current.trackScrolledTo("preparation");
       result.current.trackDownloadCompleted(details);
       result.current.trackDownloadCompleted(details);
     });
@@ -367,7 +377,7 @@ describe("National Curriculum Insights scroll analytics", () => {
         jest.advanceTimersByTime(milliseconds);
       });
 
-    it("fires once when the checklist is reached before four visible minutes", () => {
+    it("fires once when Preparation is reached before four visible minutes", () => {
       const { unmount } = renderWithTheme(renderVisit());
       intersect(true);
       advance(239999);
@@ -396,7 +406,7 @@ describe("National Curriculum Insights scroll analytics", () => {
       expect(ncInsightsEngagementCriteriaMet).toHaveBeenCalledTimes(1);
     });
 
-    it("waits for the checklist when dwell is reached first and reports current visible time", () => {
+    it("waits for Preparation when dwell is reached first and reports current visible time", () => {
       renderWithTheme(renderVisit());
       advance(240000);
       expect(ncInsightsDwellThresholdReached).toHaveBeenCalledTimes(1);
@@ -412,15 +422,15 @@ describe("National Curriculum Insights scroll analytics", () => {
       );
     });
 
-    it("requires the teacher checklist rather than an unrelated scroll milestone", () => {
+    it("requires Preparation rather than an unrelated scroll milestone", () => {
       const { result } = renderHook(
         () => useNationalCurriculumInsightsAnalytics(),
         { wrapper: ({ children }) => renderVisit("first", page, children) },
       );
-      act(() => result.current.trackScrolledTo("school-leader-checklist"));
+      act(() => result.current.trackScrolledTo("teacher-checklist"));
       advance(240000);
       expect(ncInsightsEngagementCriteriaMet).not.toHaveBeenCalled();
-      act(() => result.current.trackScrolledTo("teacher-checklist"));
+      act(() => result.current.trackScrolledTo("preparation"));
       expect(ncInsightsEngagementCriteriaMet).toHaveBeenCalledTimes(1);
     });
 

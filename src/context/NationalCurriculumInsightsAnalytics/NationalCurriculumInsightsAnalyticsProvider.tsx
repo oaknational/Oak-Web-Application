@@ -87,7 +87,7 @@ export function NationalCurriculumInsightsAnalyticsProvider({
     (timeElapsedSeconds: number) => {
       if (
         engagementTracked.current ||
-        !trackedMarkers.current.has("teacher-checklist") ||
+        !trackedMarkers.current.has("preparation") ||
         timeElapsedSeconds < INSIGHTS_DWELL_THRESHOLD_SECONDS
       )
         return;
@@ -210,17 +210,8 @@ export function NationalCurriculumInsightsAnalyticsProvider({
 
   const trackScrolledTo = useCallback(
     (sectionId: string) => {
-      const { subjectTitle, subjectSlug, phase, keyStageTitle, keyStageSlug } =
-        page;
-      // The scroll milestone remains limited to key-stage pages.
-      if (
-        !subjectTitle ||
-        !subjectSlug ||
-        !phase ||
-        !keyStageTitle ||
-        !keyStageSlug
-      )
-        return;
+      const { subjectTitle, subjectSlug, phase } = page;
+      if (!subjectTitle || !subjectSlug || !phase) return;
       if (trackedMarkers.current.has(sectionId)) return;
       trackedMarkers.current.add(sectionId);
       track.ncInsightsScrollMilestoneReached({
@@ -228,8 +219,6 @@ export function NationalCurriculumInsightsAnalyticsProvider({
         subjectTitle,
         subjectSlug,
         phase,
-        keyStageTitle,
-        keyStageSlug,
         sectionId,
         measurementType: "section_visibility",
         pageVisitId: getPageVisitId(),

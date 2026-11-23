@@ -32,49 +32,32 @@ const getData = async (segments?: string[]) => {
 };
 
 describe("NationalCurriculumInsightsView", () => {
-  it("places a scroll marker immediately above the teacher heading only on key-stage pages", async () => {
-    const keyStageData = await getData(["science", "primary", "key-stage-1"]);
-    const teacherChecklist = {
-      __typename: "NationalCurriculumInsightsChecklistSection" as const,
-      audience: "teacher" as const,
-      heading: "Teacher checklist",
-      items: [],
-    };
-    const makeChecklistPage = (data: typeof keyStageData) => ({
-      ...data,
-      page: {
-        ...data.page!,
-        modules: [
-          teacherChecklist,
-          {
-            ...teacherChecklist,
-            audience: "schoolLeader" as const,
-            heading: "School leader checklist",
-          },
-        ],
-      },
-    });
-    const { rerender } = renderWithTheme(
-      <NationalCurriculumInsightsView data={makeChecklistPage(keyStageData)} />,
-    );
-    expect(
-      screen.getByRole("heading", { name: "Teacher checklist" })
-        .previousElementSibling,
-    ).toHaveAttribute("aria-hidden", "true");
-    expect(
-      screen.getByRole("heading", { name: "School leader checklist" })
-        .previousElementSibling,
-    ).toBeNull();
+  it.each([
+    ["phase", ["science", "primary"]],
+    ["key-stage", ["science", "primary", "key-stage-1"]],
+  ])(
+    "places a scroll marker immediately above Preparation on %s pages",
+    async (_, segments) => {
+      const data = await getData(segments);
+      data.page!.modules = [
+        {
+          __typename: "NationalCurriculumInsightsPreparationSection",
+          heading: "Preparation",
+          steps: [],
+          attribution: "Example teacher",
+          role: "Classroom teacher",
+        },
+      ];
 
-    const phaseData = await getData(["science", "primary"]);
-    rerender(
-      <NationalCurriculumInsightsView data={makeChecklistPage(phaseData)} />,
-    );
-    expect(
-      screen.getByRole("heading", { name: "Teacher checklist" })
-        .previousElementSibling,
-    ).toBeNull();
-  });
+      renderWithTheme(<NationalCurriculumInsightsView data={data} />);
+
+      expect(
+        screen.getByRole("heading", { name: "Preparation" })
+          .previousElementSibling,
+      ).toHaveAttribute("aria-hidden", "true");
+    },
+  );
+
   it("renders phase-page key-stage cards before the phase-grouped subject links", async () => {
     const routeData = await getData(["science", "primary"]);
     const data = { ...routeData, page: { ...routeData.page! } };
