@@ -1082,8 +1082,8 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 .c165 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.25rem;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
   letter-spacing: 0.0115rem;
   text-align: left;
 }
@@ -2990,13 +2990,13 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 
 @media (min-width: 750px) {
   .c165 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 }
 
 @media (min-width: 750px) {
   .c165 {
-    line-height: 1.5rem;
+    line-height: 2rem;
   }
 }
 

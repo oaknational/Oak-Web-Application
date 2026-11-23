@@ -45,7 +45,7 @@ export default function FaqsSection({
                   header={
                     <OakSpan
                       $textAlign={"left"}
-                      $font={["heading-7", "heading-6"]}
+                      $font={["heading-6", "heading-5"]}
                     >
                       {item.question}
                     </OakSpan>
