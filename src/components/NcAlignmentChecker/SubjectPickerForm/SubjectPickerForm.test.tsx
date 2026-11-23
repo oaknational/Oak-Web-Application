@@ -228,4 +228,99 @@ describe("SubjectPickerForm", () => {
     expect(mockPush).toHaveBeenCalledWith("/nc-alignment-checker/science/ks2");
     expect(screen.getByRole("alert")).toBeEmptyDOMElement();
   });
+
+  describe("changing subject", () => {
+    it("clears the key stage when switching to Maths and does not navigate until a year is chosen", async () => {
+      const user = userEvent.setup();
+      render(<SubjectPickerForm {...basic} />);
+
+      await user.click(screen.getByRole("radio", { name: "Science" }));
+      await user.click(screen.getByRole("radio", { name: "Key stage 2" }));
+      await user.click(screen.getByRole("radio", { name: "Maths" }));
+
+      const yearGroup = await screen.findByRole("group", {
+        name: "Choose your year group",
+      });
+      expect(
+        screen.queryByRole("group", { name: "Choose your key stage" }),
+      ).not.toBeInTheDocument();
+      within(yearGroup)
+        .getAllByRole("radio")
+        .forEach((radio) => expect(radio).not.toBeChecked());
+
+      await user.click(getSubmitButton());
+
+      await waitFor(() => {
+        expect(screen.getByRole("alert")).toHaveTextContent(
+          "Choose a year group to continue",
+        );
+      });
+      expect(mockPush).not.toHaveBeenCalled();
+
+      await user.click(screen.getByRole("radio", { name: "Year 3" }));
+      await user.click(getSubmitButton());
+
+      await waitFor(() => {
+        expect(mockPush).toHaveBeenCalledTimes(1);
+      });
+      expect(mockPush).toHaveBeenCalledWith(
+        "/nc-alignment-checker/maths/year-3",
+      );
+    });
+
+    it("clears the key stage when switching between two key stage subjects", async () => {
+      const user = userEvent.setup();
+      render(<SubjectPickerForm {...basic} />);
+
+      await user.click(screen.getByRole("radio", { name: "Science" }));
+      await user.click(screen.getByRole("radio", { name: "Key stage 2" }));
+      expect(screen.getByRole("radio", { name: "Key stage 2" })).toBeChecked();
+
+      await user.click(screen.getByRole("radio", { name: "History" }));
+
+      const keyStageGroup = screen.getByRole("group", {
+        name: "Choose your key stage",
+      });
+      within(keyStageGroup)
+        .getAllByRole("radio")
+        .forEach((radio) => expect(radio).not.toBeChecked());
+
+      await user.click(getSubmitButton());
+
+      await waitFor(() => {
+        expect(screen.getByRole("alert")).toHaveTextContent(KEY_STAGE_ERROR);
+      });
+      expect(mockPush).not.toHaveBeenCalled();
+
+      await user.click(screen.getByRole("radio", { name: "Key stage 1" }));
+      await user.click(getSubmitButton());
+
+      await waitFor(() => {
+        expect(mockPush).toHaveBeenCalledTimes(1);
+      });
+      expect(mockPush).toHaveBeenCalledWith(
+        "/nc-alignment-checker/history/ks1",
+      );
+    });
+
+    it("clears an existing key stage error when the subject changes", async () => {
+      const user = userEvent.setup();
+      render(<SubjectPickerForm {...basic} />);
+
+      await user.click(screen.getByRole("radio", { name: "Science" }));
+      await user.click(getSubmitButton());
+      await waitFor(() => {
+        expect(screen.getByRole("alert")).toHaveTextContent(KEY_STAGE_ERROR);
+      });
+
+      await user.click(screen.getByRole("radio", { name: "History" }));
+
+      await waitFor(() => {
+        expect(screen.queryByText(KEY_STAGE_ERROR)).not.toBeInTheDocument();
+      });
+      expect(
+        screen.getByRole("group", { name: "Choose your key stage" }),
+      ).not.toHaveAttribute("aria-invalid");
+    });
+  });
 });

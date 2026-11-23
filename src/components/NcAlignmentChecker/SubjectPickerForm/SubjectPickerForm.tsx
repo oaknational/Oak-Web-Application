@@ -163,12 +163,10 @@ export default function SubjectPickerForm({
       </OakBox>
 
       <OakFlex role="alert" $pb="spacing-16">
-        {!formState.isValid && (
-          <OakFieldError>
-            {formState.errors.subjectSlug?.message ??
-              formState.errors.yearOrKeyStageSlug?.message}
-          </OakFieldError>
-        )}
+        <OakFieldError>
+          {formState.errors.subjectSlug?.message ??
+            formState.errors.yearOrKeyStageSlug?.message}
+        </OakFieldError>
       </OakFlex>
 
       <OakPrimaryButton
