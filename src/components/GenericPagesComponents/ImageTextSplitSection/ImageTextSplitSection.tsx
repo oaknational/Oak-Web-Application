@@ -1,4 +1,5 @@
 import {
+  OakBox,
   OakFlex,
   OakGrid,
   OakGridArea,
@@ -7,24 +8,15 @@ import {
   OakImage,
   OakLI,
   OakLink,
-  OakOL,
   OakP,
-  parseSpacing,
 } from "@oaknational/oak-components";
 import { PortableTextComponents } from "@portabletext/react";
-import styled from "styled-components";
 
 import { NewGutterMaxWidth } from "../NewGutterMaxWidth";
 
 import { Image, PortableTextJSON } from "@/common-lib/cms-types";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
-
-const StyledOL = styled(OakOL)`
-  li {
-    margin-top: ${parseSpacing("spacing-12")};
-  }
-`;
 
 const imageTextSplitSectionPortableTextComponents: PortableTextComponents = {
   block: {
@@ -35,7 +27,7 @@ const imageTextSplitSectionPortableTextComponents: PortableTextComponents = {
     ),
   },
   list: {
-    number: (props) => <StyledOL>{props.children}</StyledOL>,
+    number: (props) => <OakBox as="ol">{props.children}</OakBox>,
   },
   listItem: {
     bullet: (props) => (
@@ -44,7 +36,9 @@ const imageTextSplitSectionPortableTextComponents: PortableTextComponents = {
       </OakLI>
     ),
     number: (props) => (
-      <OakLI $font={["list-item-2", "list-item-1"]}>{props.children}</OakLI>
+      <OakLI $mt="spacing-12" $font={["list-item-2", "list-item-1"]}>
+        {props.children}
+      </OakLI>
     ),
   },
   marks: {
