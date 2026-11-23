@@ -168,6 +168,7 @@ exports[`ImageTextSplitSection renders links with icon correctly 1`] = `
               <a
                 class="sc-iJKPHa dwzJJG sc-iNGDOz gSlBZH"
                 href="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/files/cuvjke51/production/example-report.pdf"
+                target="_blank"
               >
                 <span
                   class="sc-iCfNyT fAQctr"
@@ -185,6 +186,11 @@ exports[`ImageTextSplitSection renders links with icon correctly 1`] = `
                       src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                       style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                     />
+                  </span>
+                  <span
+                    class="sc-pVUti eEZcMz"
+                  >
+                     (opens in a new tab)
                   </span>
                 </span>
               </a>
@@ -241,15 +247,15 @@ exports[`ImageTextSplitSection renders numbered points correctly 1`] = `
               How it works
             </h2>
             <ol
-              class="sc-kfPsKX sc-39672c27-0 eEPHum hOZuDY"
+              class="sc-bdvwhi hPWTKU"
             >
               <li
-                class="sc-dlVwtM iVcydY"
+                class="sc-dlVwtM jnpyCb"
               >
                 Answer a questionnaire about your current curriculum. You can save your progress and return later.
               </li>
               <li
-                class="sc-dlVwtM iVcydY"
+                class="sc-dlVwtM jnpyCb"
               >
                 Receive a personalised, downloadable report highlighting areas that may need further review, along with suggested next steps and relevant guidance.
               </li>

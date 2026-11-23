@@ -818,7 +818,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 .c70 {
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  gap: 3.5rem;
 }
 
 .c82 {
@@ -2710,7 +2710,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 
 @media (min-width: 1280px) {
   .c70 {
-    gap: 3.5rem;
+    gap: 5rem;
   }
 }
 
