@@ -59,8 +59,7 @@ query joinResearchPanelPage(
       }
       ... on JoinResearchPanelPageFaqs {
         items {
-          question
-          answerRaw
+          ...Faq
         }
       }
       ... on JoinResearchPanelPageBlogsPreview {
