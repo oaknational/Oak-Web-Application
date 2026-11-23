@@ -51,7 +51,7 @@ export function NcAlignmentCheckerLandingPage({
     <OakBox $zIndex={"neutral"} $color={"text-primary"}>
       <OakFlex
         $flexDirection="column"
-        $gap={["spacing-80", "spacing-80", "spacing-56"]}
+        $gap={["spacing-56", "spacing-80", "spacing-80"]}
       >
         {pageData.blocks?.map((block) => {
           return <Fragment key={block._key}>{renderBlock(block)}</Fragment>;
