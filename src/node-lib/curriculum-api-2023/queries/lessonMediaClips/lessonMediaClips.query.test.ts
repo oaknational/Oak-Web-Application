@@ -1,9 +1,6 @@
 import { syntheticUnitvariantLessonsByKsFixture } from "@oaknational/oak-curriculum-schema";
 
-import {
-  LessonMediaClipsData,
-  CanonicalLessonMediaClips,
-} from "./lessonMediaClips.schema";
+import { LessonMediaClipsData } from "./lessonMediaClips.schema";
 import { lessonMediaClipsQuery } from "./lessonMediaClips.query";
 
 import sdk from "@/node-lib/curriculum-api-2023/sdk";
@@ -101,36 +98,5 @@ describe("lessonMediaClips()", () => {
     expect(lesson.lessonSlug).toEqual(fixtures[0]?.lesson_slug);
     expect(lesson.unitSlug).toEqual(fixtures[0]?.unit_slug);
     expect(lesson.programmeSlug).toEqual(fixtures[0]?.programme_slug);
-  });
-
-  test("returns canonical lesson data in correct format", async () => {
-    const _syntheticUnitvariantLessonsFixture =
-      syntheticUnitvariantLessonsByKsFixture({
-        overrides: {
-          lesson_slug: "lesson-slug-test",
-          unit_slug: "unit-slug-test",
-          programme_slug: "programme-slug-test",
-          is_legacy: false,
-          lesson_data: {
-            ...syntheticUnitvariantLessonsByKsFixture().lesson_data,
-            lesson_outline: [{ lesson_outline: "test" }],
-          },
-        },
-      });
-
-    const lesson = (await lessonMediaClipsQuery({
-      ...sdk,
-      lessonMediaClips: jest.fn(() =>
-        Promise.resolve({
-          browseData: [_syntheticUnitvariantLessonsFixture],
-        }),
-      ),
-    })({
-      lessonSlug: "test",
-    })) as CanonicalLessonMediaClips;
-    expect(lesson.lessonSlug).toEqual(
-      _syntheticUnitvariantLessonsFixture.lesson_slug,
-    );
-    expect(lesson.pathways).toHaveLength(1);
   });
 });

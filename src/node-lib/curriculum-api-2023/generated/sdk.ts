@@ -21962,6 +21962,13 @@ export type BrowseUnitRedirectQueryVariables = Exact<{
 
 export type BrowseUnitRedirectQuery = { __typename?: 'query_root', browseUnitRedirectData: Array<{ __typename?: 'published_mv_redirects_units_browse_by_keystage_18_0_0', incoming_path?: string | null, outgoing_path?: string | null, redirect_type?: any | null }> };
 
+export type CanonicalLessonMediaQueryVariables = Exact<{
+  lessonSlug: Scalars['String']['input'];
+}>;
+
+
+export type CanonicalLessonMediaQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_fields?: any | null, unit_data?: any | null, lesson_data?: any | null, actions?: any | null }> };
+
 export type CanonicalLessonOverviewQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
 }>;
@@ -22231,6 +22238,21 @@ export const BrowseUnitRedirectDocument = gql`
     incoming_path
     outgoing_path
     redirect_type
+  }
+}
+    `;
+export const CanonicalLessonMediaDocument = gql`
+    query canonicalLessonMedia($lessonSlug: String!) {
+  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
+    where: {lesson_slug: {_eq: $lessonSlug}}
+  ) {
+    lesson_slug
+    unit_slug
+    programme_slug
+    programme_fields
+    unit_data
+    lesson_data
+    actions
   }
 }
     `;
@@ -23034,6 +23056,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     browseUnitRedirect(variables: BrowseUnitRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<BrowseUnitRedirectQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<BrowseUnitRedirectQuery>({ document: BrowseUnitRedirectDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'browseUnitRedirect', 'query', variables);
+    },
+    canonicalLessonMedia(variables: CanonicalLessonMediaQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CanonicalLessonMediaQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CanonicalLessonMediaQuery>({ document: CanonicalLessonMediaDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'canonicalLessonMedia', 'query', variables);
     },
     canonicalLessonOverview(variables: CanonicalLessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CanonicalLessonOverviewQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<CanonicalLessonOverviewQuery>({ document: CanonicalLessonOverviewDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'canonicalLessonOverview', 'query', variables);

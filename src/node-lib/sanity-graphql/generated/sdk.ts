@@ -3690,7 +3690,7 @@ export type NcAlignmentCheckerLandingPageQuotes = {
   __typename?: 'NcAlignmentCheckerLandingPageQuotes';
   _key?: Maybe<Scalars['String']['output']>;
   _type?: Maybe<Scalars['String']['output']>;
-  quotes?: Maybe<Array<Maybe<Quote>>>;
+  quotes?: Maybe<Array<Maybe<QuoteWithImage>>>;
 };
 
 export type NcAlignmentCheckerLandingPageQuotesFilter = {
@@ -4995,6 +4995,38 @@ export type QuoteSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   attribution?: InputMaybe<SortOrder>;
+  organisation?: InputMaybe<SortOrder>;
+  role?: InputMaybe<SortOrder>;
+  text?: InputMaybe<SortOrder>;
+};
+
+export type QuoteWithImage = {
+  __typename?: 'QuoteWithImage';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  attribution?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<ImageWithAltText>;
+  organisation?: Maybe<Scalars['String']['output']>;
+  role?: Maybe<Scalars['String']['output']>;
+  /** Quotation marks will be added automatically */
+  text?: Maybe<Scalars['String']['output']>;
+};
+
+export type QuoteWithImageFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  attribution?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
+  organisation?: InputMaybe<StringFilter>;
+  role?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+export type QuoteWithImageSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  attribution?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
   organisation?: InputMaybe<SortOrder>;
   role?: InputMaybe<SortOrder>;
   text?: InputMaybe<SortOrder>;
@@ -7596,7 +7628,7 @@ export type NcAlignmentCheckerLandingPageQueryVariables = Exact<{
 }>;
 
 
-export type NcAlignmentCheckerLandingPageQuery = { __typename?: 'RootQuery', allNcAlignmentCheckerLandingPage: Array<{ __typename?: 'NcAlignmentCheckerLandingPage', id?: string | null, blocks?: Array<{ __typename: 'NcAlignmentCheckerLandingPageFaqs', _key?: string | null, items?: Array<{ __typename?: 'Faq', question?: string | null, answerRaw?: any | null } | null> | null } | { __typename: 'NcAlignmentCheckerLandingPageHeader', _key?: string | null, title?: string | null, bodyRaw?: any | null, icon?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, subjectPicker?: { __typename?: 'NcAlignmentCheckerLandingPageSubjectPicker', title?: string | null, tag?: string | null, bannerLabel?: string | null, buttonText?: string | null } | null } | { __typename: 'NcAlignmentCheckerLandingPageQuotes', _key?: string | null, quotes?: Array<{ __typename?: 'Quote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null> | null } | { __typename: 'NcAlignmentCheckerLandingPageSubjectExperts', _key?: string | null, title?: string | null, bodyRaw?: any | null, people?: Array<{ __typename?: 'TeamMember', name?: string | null, role?: string | null, id?: string | null, bioPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, socials?: { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null } | null } | null> | null } | { __typename: 'NcAlignmentCheckerLandingPageSubjectPickerCallout', _key?: string | null, subjectPicker?: { __typename?: 'NcAlignmentCheckerLandingPageSubjectPicker', title?: string | null, tag?: string | null, bannerLabel?: string | null, buttonText?: string | null } | null } | { __typename: 'NcAlignmentCheckerLandingPageTextAndMedia', _key?: string | null, imagePosition?: string | null, title?: string | null, bodyRaw?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+export type NcAlignmentCheckerLandingPageQuery = { __typename?: 'RootQuery', allNcAlignmentCheckerLandingPage: Array<{ __typename?: 'NcAlignmentCheckerLandingPage', id?: string | null, blocks?: Array<{ __typename: 'NcAlignmentCheckerLandingPageFaqs', _key?: string | null, items?: Array<{ __typename?: 'Faq', question?: string | null, answerRaw?: any | null } | null> | null } | { __typename: 'NcAlignmentCheckerLandingPageHeader', _key?: string | null, title?: string | null, bodyRaw?: any | null, icon?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, subjectPicker?: { __typename?: 'NcAlignmentCheckerLandingPageSubjectPicker', title?: string | null, tag?: string | null, bannerLabel?: string | null, buttonText?: string | null } | null } | { __typename: 'NcAlignmentCheckerLandingPageQuotes', _key?: string | null, quotes?: Array<{ __typename?: 'QuoteWithImage', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | { __typename: 'NcAlignmentCheckerLandingPageSubjectExperts', _key?: string | null, title?: string | null, bodyRaw?: any | null, people?: Array<{ __typename?: 'TeamMember', name?: string | null, role?: string | null, id?: string | null, bioPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, socials?: { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null } | null } | null> | null } | { __typename: 'NcAlignmentCheckerLandingPageSubjectPickerCallout', _key?: string | null, subjectPicker?: { __typename?: 'NcAlignmentCheckerLandingPageSubjectPicker', title?: string | null, tag?: string | null, bannerLabel?: string | null, buttonText?: string | null } | null } | { __typename: 'NcAlignmentCheckerLandingPageTextAndMedia', _key?: string | null, imagePosition?: string | null, title?: string | null, bodyRaw?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type NewsListingPageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -7657,6 +7689,8 @@ export type ProgrammePageBySlugQueryVariables = Exact<{
 export type ProgrammePageBySlugQuery = { __typename?: 'RootQuery', allProgrammePage: Array<{ __typename?: 'ProgrammePage', bodyCopy?: string | null, bullets?: Array<string | null> | null, id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null }> };
 
 export type QuoteFragment = { __typename?: 'Quote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null };
+
+export type QuoteWithImageFragment = { __typename?: 'QuoteWithImage', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null };
 
 export type SeoFragment = { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null };
 
@@ -7981,6 +8015,17 @@ export const NcAlignmentCheckerLandingPageSubjectPickerFragmentDoc = gql`
   buttonText
 }
     `;
+export const QuoteWithImageFragmentDoc = gql`
+    fragment QuoteWithImage on QuoteWithImage {
+  text
+  role
+  organisation
+  attribution
+  image {
+    ...ImageWithAltText
+  }
+}
+    ${ImageWithAltTextFragmentDoc}`;
 export const TeamMemberSocialsFragmentDoc = gql`
     fragment TeamMemberSocials on TeamMemberSocials {
   twitterUsername
@@ -8706,7 +8751,7 @@ export const NcAlignmentCheckerLandingPageDocument = gql`
       ... on NcAlignmentCheckerLandingPageQuotes {
         _key
         quotes {
-          ...Quote
+          ...QuoteWithImage
         }
       }
       ... on NcAlignmentCheckerLandingPageFaqs {
@@ -8730,7 +8775,7 @@ export const NcAlignmentCheckerLandingPageDocument = gql`
     ${ImageWithAltTextFragmentDoc}
 ${NcAlignmentCheckerLandingPageSubjectPickerFragmentDoc}
 ${TeamMemberFragmentDoc}
-${QuoteFragmentDoc}
+${QuoteWithImageFragmentDoc}
 ${FaqFragmentDoc}
 ${SeoFragmentDoc}`;
 export const NewsListingPageDocument = gql`
