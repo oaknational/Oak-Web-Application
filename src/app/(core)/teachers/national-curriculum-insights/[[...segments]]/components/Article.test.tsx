@@ -4,7 +4,7 @@ import { OakHeading, OakP } from "@oaknational/oak-components";
 
 import { NationalCurriculumInsightsArticle } from "./Article";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithInsightsAnalytics";
 import { nationalCurriculumInsightsOpenDownloadEvent } from "@/common-lib/urls/nationalCurriculumInsightsDownload";
 
 const sections = [

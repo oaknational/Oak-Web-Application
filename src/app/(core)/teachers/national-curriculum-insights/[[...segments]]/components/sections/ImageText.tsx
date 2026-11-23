@@ -22,6 +22,7 @@ import {
   SectionMaxWidth,
 } from "./shared";
 
+import { useNationalCurriculumInsightsAnalytics } from "@/context/NationalCurriculumInsightsAnalytics/useNationalCurriculumInsightsAnalytics";
 import { getImageDimensions } from "@/components/HooksAndUtils/sanityImageBuilder";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
@@ -79,6 +80,8 @@ export const NationalCurriculumInsightsImageText = ({
   section,
   data,
 }: ImageTextProps) => {
+  const { trackCtaClicked, section: analyticsSection } =
+    useNationalCurriculumInsightsAnalytics();
   const headingId = useId();
   const isGuidance = data.route.kind === "guidance";
   const decorativeMedia =
@@ -198,6 +201,16 @@ export const NationalCurriculumInsightsImageText = ({
                 <OakPrimaryButton
                   element={Link}
                   href={section.ctaHref}
+                  onClick={() =>
+                    trackCtaClicked({
+                      sectionType: "image-text",
+                      sectionId: analyticsSection?.sectionId ?? "image-text",
+                      ctaAction: "navigate",
+                      componentType: "national_curriculum",
+                      ctaId: "image-text-cta",
+                      ctaText: section.ctaLabel!,
+                    })
+                  }
                   iconName="arrow-right"
                   isTrailingIcon
                 >
