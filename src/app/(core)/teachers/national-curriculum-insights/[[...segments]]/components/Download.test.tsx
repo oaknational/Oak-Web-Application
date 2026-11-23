@@ -98,7 +98,7 @@ describe("NationalCurriculumInsightsDownload", () => {
       secondaryLabel: "Science secondary",
     },
   ])(
-    "shows exact subject labels with $description",
+    "shows subject labels on mobile and desktop with $description",
     async ({
       primaryKeyStages,
       secondaryKeyStages,
@@ -132,6 +132,9 @@ describe("NationalCurriculumInsightsDownload", () => {
           name: /the national curriculum is changing/i,
         }),
       );
+      expect(screen.getByText(primaryLabel)).toBeInTheDocument();
+      expect(screen.getByText(secondaryLabel)).toBeInTheDocument();
+
       await user.click(
         screen.getByTestId("curriculum-insights-subjects-trigger"),
       );
@@ -139,12 +142,8 @@ describe("NationalCurriculumInsightsDownload", () => {
       const options = within(
         screen.getByTestId("curriculum-insights-subjects-panel"),
       );
-      expect(
-        options.getByLabelText(primaryLabel, { exact: true }),
-      ).toBeInTheDocument();
-      expect(
-        options.getByLabelText(secondaryLabel, { exact: true }),
-      ).toBeInTheDocument();
+      expect(options.getByText(primaryLabel)).toBeInTheDocument();
+      expect(options.getByText(secondaryLabel)).toBeInTheDocument();
     },
   );
 

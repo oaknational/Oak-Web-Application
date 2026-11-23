@@ -328,11 +328,10 @@ export const NationalCurriculumInsightsDownload = ({
               const keyStages = tabs.find(({ kind }) => kind === phase)?.page
                 .availableKeyStages;
               const detail = keyStages?.length
-                ? `(${keyStages.join(", ")})`
+                ? ` (${keyStages.join(", ")})`
                 : "";
               return {
-                label: `${title} ${phase} ${detail}`,
-                mobileLabel: `${title} ${phase}`,
+                label: `${title} ${phase}${detail}`,
                 value: `${slug}:${phase}`,
               };
             }),
