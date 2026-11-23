@@ -25,6 +25,7 @@ type KS4OptionFocusContextValue = {
   registerScope: (
     variant: KS4OptionFocusScopeVariant,
     node: HTMLDivElement | null,
+    onResume?: (slug: string) => void,
   ) => void;
 };
 
@@ -47,6 +48,7 @@ export function KS4OptionFocusProvider({
   const [pendingFocus, setPendingFocus] = useState<{
     slug: string;
     scope: KS4OptionFocusScopeVariant;
+    restoreFocus: boolean;
   } | null>(null);
   const [registeredScopes, setRegisteredScopes] = useState<
     Record<KS4OptionFocusScopeVariant, boolean>
@@ -54,10 +56,21 @@ export function KS4OptionFocusProvider({
     page: false,
     modal: false,
   });
+  const resumeCallbacks = useRef<
+    Record<KS4OptionFocusScopeVariant, ((slug: string) => void) | null>
+  >({
+    page: null,
+    modal: null,
+  });
 
   const registerScope = useCallback(
-    (variant: KS4OptionFocusScopeVariant, node: HTMLDivElement | null) => {
+    (
+      variant: KS4OptionFocusScopeVariant,
+      node: HTMLDivElement | null,
+      onResume?: (slug: string) => void,
+    ) => {
       scopeRefs.current[variant] = node;
+      resumeCallbacks.current[variant] = onResume ?? null;
       setRegisteredScopes((current) => {
         if (current[variant] === (node !== null)) {
           return current;
@@ -77,10 +90,11 @@ export function KS4OptionFocusProvider({
       setModalOpen(true);
     }
     setPendingFocus(
-      intent.restoreFocus && intent.destination.ks4OptionSlug
+      intent.destination.ks4OptionSlug
         ? {
             slug: intent.destination.ks4OptionSlug,
             scope: intent.reopenFiltersModal ? "modal" : "page",
+            restoreFocus: intent.restoreFocus,
           }
         : null,
     );
