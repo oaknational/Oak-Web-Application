@@ -27,7 +27,7 @@ import {
   NationalCurriculumInsightsVideoCards,
 } from "./Sections";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithInsightsAnalytics";
 import type {
   NationalCurriculumInsightsHeaderSection,
   NationalCurriculumInsightsModule,
@@ -35,6 +35,7 @@ import type {
 import { parseNationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { getMockAnalytics } from "@/context/Analytics/getMockAnalytics";
 
 jest.mock("@/components/GenericPagesComponents/NewsletterForm", () => ({
   useNewsletterForm: jest.fn(),
@@ -76,7 +77,8 @@ beforeEach(() => {
     onSubmit: submitNewsletter,
   });
   (useAnalytics as jest.Mock).mockReturnValue({
-    track: { newsletterSignUpCompleted },
+    ...getMockAnalytics(),
+    track: { ...getMockAnalytics().track, newsletterSignUpCompleted },
   });
 });
 

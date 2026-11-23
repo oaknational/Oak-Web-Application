@@ -3,7 +3,7 @@ import { screen } from "@testing-library/react";
 import { NationalCurriculumInsightsConfidence } from "./Confidence";
 
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithInsightsAnalytics";
 import { nationalCurriculumInsightsModuleSchema } from "@/common-lib/cms-types/nationalCurriculumInsights";
 
 const section = {

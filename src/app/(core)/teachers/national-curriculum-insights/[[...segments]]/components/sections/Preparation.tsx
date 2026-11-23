@@ -8,8 +8,10 @@ import { imageUrl, type SectionProps } from "./shared";
 export const NationalCurriculumInsightsPreparation = ({
   section,
   variant = "phase",
+  headingMarker,
 }: SectionProps<"NationalCurriculumInsightsPreparationSection"> & {
   variant?: "phase" | "keyStage";
+  headingMarker?: React.ReactNode;
 }) => {
   const headingId = `${useId()}-preparation-heading`;
   return (
@@ -21,9 +23,12 @@ export const NationalCurriculumInsightsPreparation = ({
       $gap="spacing-24"
       $width="100%"
     >
-      <OakHeading id={headingId} tag="h2" $font="heading-4">
-        {section.heading}
-      </OakHeading>
+      <OakBox>
+        {headingMarker}
+        <OakHeading id={headingId} tag="h2" $font="heading-4">
+          {section.heading}
+        </OakHeading>
+      </OakBox>
       {section.steps.map((step) => (
         <OakFlex
           key={step.id}

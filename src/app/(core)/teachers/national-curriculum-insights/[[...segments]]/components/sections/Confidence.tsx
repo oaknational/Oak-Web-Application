@@ -13,6 +13,7 @@ import { NationalCurriculumInsightsPortableText } from "../PortableText";
 
 import { guidancePortableTextComponents, type SectionProps } from "./shared";
 
+import { useNationalCurriculumInsightsAnalytics } from "@/context/NationalCurriculumInsightsAnalytics/useNationalCurriculumInsightsAnalytics";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 
@@ -37,6 +38,8 @@ const confetti = [
 export const NationalCurriculumInsightsConfidence = ({
   section,
 }: SectionProps<"NationalCurriculumInsightsConfidenceSection">) => {
+  const { trackCtaClicked, section: analyticsSection } =
+    useNationalCurriculumInsightsAnalytics();
   const headingId = `${useId()}-confidence-heading`;
   return (
     <OakFlex
@@ -123,6 +126,16 @@ export const NationalCurriculumInsightsConfidence = ({
           <OakSecondaryButton
             element={Link}
             href={getLinkHref(section.cta)}
+            onClick={() =>
+              trackCtaClicked({
+                sectionType: "confidence",
+                sectionId: analyticsSection?.sectionId ?? "confidence",
+                ctaAction: "navigate",
+                componentType: "national_curriculum",
+                ctaId: "confidence-cta",
+                ctaText: section.cta.label,
+              })
+            }
             iconName="arrow-right"
             isTrailingIcon
             width="100%"
