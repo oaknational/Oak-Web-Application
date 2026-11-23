@@ -51,6 +51,7 @@ const imageTextSplitSectionPortableTextComponents: PortableTextComponents = {
       return (
         <OakLink
           href={href}
+          target="_blank"
           variant="secondary"
           $font={["body-2-bold", "body-1-bold"]}
         >
