@@ -342,11 +342,17 @@ export const NationalCurriculumInsightsDownload = ({
               : ("bg-decorative3-main" as const),
           options: data.subjects
             .filter(({ tabs }) => tabs.some(({ kind }) => kind === phase))
-            .map(({ slug, title }) => ({
-              label: title,
-              mobileLabel: `${title} ${phase}`,
-              value: `${slug}:${phase}`,
-            })),
+            .map(({ slug, title, tabs }) => {
+              const keyStages = tabs.find(({ kind }) => kind === phase)?.page
+                .availableKeyStages;
+              const detail = keyStages?.length
+                ? ` (${keyStages.join(", ")})`
+                : "";
+              return {
+                label: `${title} ${phase}${detail}`,
+                value: `${slug}:${phase}`,
+              };
+            }),
         }))
         .filter(({ options }) => options.length > 0),
     [data.subjects],
