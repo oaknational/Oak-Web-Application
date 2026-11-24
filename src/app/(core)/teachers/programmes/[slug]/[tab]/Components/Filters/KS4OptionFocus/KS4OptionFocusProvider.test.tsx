@@ -10,6 +10,8 @@ import {
   useProgrammePageFiltersModal,
 } from "../ProgrammePageFiltersModalProvider";
 
+import { useKS4OptionFocus } from "./KS4OptionFocusProvider";
+
 import { KS4OptionFocusProvider, KS4OptionFocusScope } from "./index";
 
 import type { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
@@ -160,6 +162,21 @@ describe("KS4 navigation intent", () => {
     expect(getByTestId("modal-open")).toHaveTextContent("false");
     expect(focusSpy).not.toHaveBeenCalled();
     focusSpy.mockRestore();
+  });
+
+  it("throws an error if KS4OptionFocus is used outside of the focus provider", () => {
+    function ComponentUsingHookOutsideProvider() {
+      useKS4OptionFocus();
+      return null;
+    }
+
+    const consoleSpy = jest
+      .spyOn(console, "error")
+      .mockImplementation(() => {});
+    expect(() => render(<ComponentUsingHookOutsideProvider />)).toThrow(
+      Error("useKS4OptionFocus must be used within KS4OptionFocusProvider"),
+    );
+    consoleSpy.mockRestore();
   });
 
   describe("KS4OptionFocusScope focus restoration", () => {
