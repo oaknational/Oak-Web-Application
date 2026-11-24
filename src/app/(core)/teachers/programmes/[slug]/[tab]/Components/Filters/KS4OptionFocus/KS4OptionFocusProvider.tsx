@@ -25,7 +25,6 @@ type KS4OptionFocusContextValue = {
   registerScope: (
     variant: KS4OptionFocusScopeVariant,
     node: HTMLDivElement | null,
-    onResume?: (slug: string) => void,
   ) => void;
 };
 
@@ -56,21 +55,10 @@ export function KS4OptionFocusProvider({
     page: false,
     modal: false,
   });
-  const resumeCallbacks = useRef<
-    Record<KS4OptionFocusScopeVariant, ((slug: string) => void) | null>
-  >({
-    page: null,
-    modal: null,
-  });
 
   const registerScope = useCallback(
-    (
-      variant: KS4OptionFocusScopeVariant,
-      node: HTMLDivElement | null,
-      onResume?: (slug: string) => void,
-    ) => {
+    (variant: KS4OptionFocusScopeVariant, node: HTMLDivElement | null) => {
       scopeRefs.current[variant] = node;
-      resumeCallbacks.current[variant] = onResume ?? null;
       setRegisteredScopes((current) => {
         if (current[variant] === (node !== null)) {
           return current;
