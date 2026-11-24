@@ -34,6 +34,8 @@ import { OakInputWithLabel } from "@/components/SharedComponents/OakInputWithLab
 import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { useNationalCurriculumInsightsAnalytics } from "@/context/NationalCurriculumInsightsAnalytics/useNationalCurriculumInsightsAnalytics";
+import { getSchoolSelectionCtaProperties } from "@/context/NationalCurriculumInsightsAnalytics/ctaTracking";
 
 type NewsletterProps =
   SectionProps<"NationalCurriculumInsightsNewsletterSection"> & {
@@ -44,6 +46,8 @@ export const NationalCurriculumInsightsNewsletter = ({
   section,
   variant,
 }: NewsletterProps) => {
+  const { trackCtaClicked, section: analyticsSection } =
+    useNationalCurriculumInsightsAnalytics();
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [schoolNotListed, setSchoolNotListed] = useState(false);
@@ -233,7 +237,17 @@ export const NationalCurriculumInsightsNewsletter = ({
                   value: option,
                 }))}
                 value={role}
-                onChange={setRole}
+                onChange={(value) => {
+                  setRole(value);
+                  trackCtaClicked({
+                    sectionType: "newsletter",
+                    sectionId: analyticsSection?.sectionId ?? "newsletter",
+                    ctaId: "newsletter-role-selection",
+                    ctaText: value,
+                    ctaAction: "select",
+                    componentType: "signup_form",
+                  });
+                }}
                 error={fieldErrors.eduRole}
               />
             </OakBox>
@@ -247,7 +261,13 @@ export const NationalCurriculumInsightsNewsletter = ({
                   setSchoolNotListed(false);
                   setSchoolPickerInputValue(value);
                 }}
-                setSelectedSchool={setSelectedSchool}
+                setSelectedSchool={(value) => {
+                  setSelectedSchool(value);
+                  if (value != null)
+                    trackCtaClicked(
+                      getSchoolSelectionCtaProperties("newsletter"),
+                    );
+                }}
                 required={false}
                 withHomeschool={false}
                 placeholder="Type your school or organisation"
@@ -261,6 +281,14 @@ export const NationalCurriculumInsightsNewsletter = ({
                 checked={schoolNotListed}
                 onChange={(event) => {
                   const isChecked = event.target.checked;
+                  trackCtaClicked({
+                    sectionType: "newsletter",
+                    sectionId: analyticsSection?.sectionId ?? "newsletter",
+                    ctaId: "newsletter-school-not-listed",
+                    ctaText: "My school isn't listed",
+                    ctaAction: isChecked ? "select" : "deselect",
+                    componentType: "signup_form",
+                  });
                   setSchoolNotListed(isChecked);
                   if (isChecked) {
                     setSelectedSchool(undefined);
@@ -281,6 +309,16 @@ export const NationalCurriculumInsightsNewsletter = ({
               autocomplete="email"
             />
             <OakPrimaryButton
+              onClick={() =>
+                trackCtaClicked({
+                  sectionType: "newsletter",
+                  sectionId: analyticsSection?.sectionId ?? "newsletter",
+                  ctaId: "newsletter-submit",
+                  ctaText: section.buttonLabel,
+                  ctaAction: "submit",
+                  componentType: "signup_form",
+                })
+              }
               type="submit"
               iconName="arrow-right"
               isTrailingIcon

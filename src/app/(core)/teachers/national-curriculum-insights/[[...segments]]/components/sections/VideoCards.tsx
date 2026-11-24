@@ -27,6 +27,7 @@ import {
   portableTextComponents,
 } from "./shared";
 
+import { useNationalCurriculumInsightsAnalytics } from "@/context/NationalCurriculumInsightsAnalytics/useNationalCurriculumInsightsAnalytics";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
 type InsightsBlogPost = NonNullable<
@@ -37,6 +38,8 @@ type InsightsBlogPost = NonNullable<
 >[number];
 
 const InsightsBlogPostMedia = ({ post }: { post: InsightsBlogPost }) => {
+  const { trackCtaClicked, section: analyticsSection } =
+    useNationalCurriculumInsightsAnalytics();
   const [isPlaying, setIsPlaying] = useState(false);
 
   if (!post.video) {
@@ -78,7 +81,17 @@ const InsightsBlogPostMedia = ({ post }: { post: InsightsBlogPost }) => {
         as="button"
         type="button"
         aria-label={`Play ${post.title}`}
-        onClick={() => setIsPlaying(true)}
+        onClick={() => {
+          trackCtaClicked({
+            sectionType: "guidance-conversations",
+            sectionId: analyticsSection?.sectionId ?? "guidance-conversations",
+            ctaId: "video-play",
+            ctaText: `Play ${post.title}`,
+            ctaAction: "play",
+            componentType: "video",
+          });
+          setIsPlaying(true);
+        }}
         $position="relative"
         $display="block"
         $width="100%"
@@ -127,11 +140,23 @@ const InsightsBlogPostCard = ({
   post: InsightsBlogPost;
   episode: number;
 }) => {
+  const { trackCtaClicked, section: analyticsSection } =
+    useNationalCurriculumInsightsAnalytics();
   const card = (
     <OakFocusIndicator $width="100%" $borderRadius="border-radius-m2">
       <OakFlex
         as="a"
         href={`/blog/${post.slug}`}
+        onClick={() =>
+          trackCtaClicked({
+            sectionType: "guidance-conversations",
+            sectionId: analyticsSection?.sectionId ?? "guidance-conversations",
+            ctaAction: "navigate",
+            componentType: "national_curriculum",
+            ctaId: "related-blog-card",
+            ctaText: post.title,
+          })
+        }
         $height="100%"
         $pa="spacing-16"
         $flexDirection="column"

@@ -9,7 +9,7 @@ import type { NationalCurriculumInsightsRouteData } from "../../helpers/getRoute
 
 import { NationalCurriculumInsightsHeadlines } from "./Headlines";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithInsightsAnalytics";
 import type { NationalCurriculumInsightsModule } from "@/common-lib/cms-types/nationalCurriculumInsights";
 
 const section: Extract<

@@ -6,7 +6,13 @@ import { getNationalCurriculumInsightsRouteData } from "../helpers/getRouteData"
 import { NationalCurriculumInsightsView } from "./View";
 
 import { parseNationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithInsightsAnalytics";
+
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () =>
+    require("@/context/Analytics/getMockAnalytics").getMockAnalytics(),
+}));
 
 const getData = async (segments?: string[]) => {
   const route = parseNationalCurriculumInsightsRoute(segments);
@@ -26,6 +32,32 @@ const getData = async (segments?: string[]) => {
 };
 
 describe("NationalCurriculumInsightsView", () => {
+  it.each([
+    ["phase", ["science", "primary"]],
+    ["key-stage", ["science", "primary", "key-stage-1"]],
+  ])(
+    "places a scroll marker immediately above Preparation on %s pages",
+    async (_, segments) => {
+      const data = await getData(segments);
+      data.page!.modules = [
+        {
+          __typename: "NationalCurriculumInsightsPreparationSection",
+          heading: "Preparation",
+          steps: [],
+          attribution: "Example teacher",
+          role: "Classroom teacher",
+        },
+      ];
+
+      renderWithTheme(<NationalCurriculumInsightsView data={data} />);
+
+      expect(
+        screen.getByRole("heading", { name: "Preparation" })
+          .previousElementSibling,
+      ).toHaveAttribute("aria-hidden", "true");
+    },
+  );
+
   it("renders phase-page key-stage cards before the phase-grouped subject links", async () => {
     const routeData = await getData(["science", "primary"]);
     const data = { ...routeData, page: { ...routeData.page! } };

@@ -17,12 +17,15 @@ import { useId } from "react";
 
 import type { ContextualSectionProps } from "./shared";
 
+import { useNationalCurriculumInsightsAnalytics } from "@/context/NationalCurriculumInsightsAnalytics/useNationalCurriculumInsightsAnalytics";
 import { nationalCurriculumInsightsSubjectHref } from "@/common-lib/urls/nationalCurriculumInsights";
 
 export const NationalCurriculumInsightsSubjectLinks = ({
   section,
   data,
 }: ContextualSectionProps<"NationalCurriculumInsightsSubjectLinksSection">) => {
+  const { trackCtaClicked, section: analyticsSection } =
+    useNationalCurriculumInsightsAnalytics();
   const headingId = useId();
   const subjects = new Set(data.subjects.map(({ slug }) => slug));
   const links = section.links.filter(({ subjectSlug }) =>
@@ -79,6 +82,17 @@ export const NationalCurriculumInsightsSubjectLinks = ({
                 <OakFlex
                   as={Link}
                   href={nationalCurriculumInsightsSubjectHref(subjectSlug)}
+                  onClick={() =>
+                    trackCtaClicked({
+                      sectionType: "subject-overview-links",
+                      sectionId:
+                        analyticsSection?.sectionId ?? "subject-overview-links",
+                      ctaAction: "navigate",
+                      ctaId: "subject-link",
+                      ctaText: title,
+                      componentType: "subject_card",
+                    })
+                  }
                   $alignItems="center"
                   $gap="spacing-8"
                   $minHeight="spacing-40"

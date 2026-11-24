@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { NationalCurriculumInsightsSelect } from "./Select";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithInsightsAnalytics";
 
 const options = [
   { label: "Class teacher", value: "teacher" },

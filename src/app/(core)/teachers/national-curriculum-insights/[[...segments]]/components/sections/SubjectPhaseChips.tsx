@@ -17,6 +17,7 @@ import { normaliseSubjectIcon } from "../../helpers/subjectIcon";
 
 import type { ContextualSectionProps } from "./shared";
 
+import { useNationalCurriculumInsightsAnalytics } from "@/context/NationalCurriculumInsightsAnalytics/useNationalCurriculumInsightsAnalytics";
 import {
   nationalCurriculumInsightsSubjectPhaseHref,
   nationalCurriculumInsightsSubjectPhaseKeyStageHref,
@@ -35,6 +36,8 @@ export const NationalCurriculumInsightsSubjectPhaseChips = ({
   section,
   data,
 }: Props) => {
+  const { trackCtaClicked, section: analyticsSection } =
+    useNationalCurriculumInsightsAnalytics();
   const id = useId();
   const groups = section.phases.flatMap((phase) => {
     const links = getPhaseLinks(data).flatMap((link) => {
@@ -136,6 +139,18 @@ export const NationalCurriculumInsightsSubjectPhaseChips = ({
                       $pr="spacing-12"
                       maxWidth="100%"
                       href={href}
+                      onClick={() =>
+                        trackCtaClicked({
+                          sectionType: "subject-phase-chips",
+                          sectionId:
+                            analyticsSection?.sectionId ??
+                            "subject-phase-chips",
+                          ctaAction: "navigate",
+                          ctaId: "subject-phase-chip",
+                          ctaText: `${title} ${phase}`,
+                          componentType: "subject_card",
+                        })
+                      }
                     >
                       {title} {phase}
                     </OakSubjectIconButton>

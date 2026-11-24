@@ -1,0 +1,326 @@
+import { act, renderHook } from "@testing-library/react";
+import { StrictMode, type ReactNode } from "react";
+
+import {
+  INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS,
+  useInsightsDwellTime,
+} from "./useInsightsDwellTime";
+
+const surveyThresholdMs = INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS * 1000;
+
+describe("useInsightsDwellTime", () => {
+  let now: number;
+  let visibility: DocumentVisibilityState;
+  const record = jest.fn();
+
+  beforeEach(() => {
+    jest.useFakeTimers();
+    now = 0;
+    visibility = "visible";
+    record.mockReset();
+    jest.spyOn(performance, "now").mockImplementation(() => now);
+    jest
+      .spyOn(document, "visibilityState", "get")
+      .mockImplementation(() => visibility);
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+    jest.useRealTimers();
+  });
+
+  const setVisibility = (value: DocumentVisibilityState) => {
+    visibility = value;
+    act(() => document.dispatchEvent(new Event("visibilitychange")));
+  };
+
+  it("records elapsed seconds on navigation without sending an initial zero", () => {
+    const { unmount } = renderHook(() => useInsightsDwellTime(record));
+    expect(record).not.toHaveBeenCalled();
+    now = 12345;
+    unmount();
+    expect(record.mock.calls).toEqual([[12.345]]);
+  });
+
+  it("excludes hidden time and reports cumulative visible time", () => {
+    const { unmount } = renderHook(() => useInsightsDwellTime(record));
+    now = 10000;
+    setVisibility("hidden");
+    expect(record).toHaveBeenLastCalledWith(10);
+    now = 70000;
+    setVisibility("visible");
+    now = 75000;
+    setVisibility("hidden");
+    expect(record.mock.calls).toEqual([[10], [15]]);
+    unmount();
+    expect(record).toHaveBeenCalledTimes(2);
+  });
+
+  it("waits for a page that starts hidden to become visible", () => {
+    visibility = "hidden";
+    const { unmount } = renderHook(() => useInsightsDwellTime(record));
+    now = 90000;
+    setVisibility("visible");
+    now = 92000;
+    unmount();
+    expect(record.mock.calls).toEqual([[2]]);
+  });
+
+  it("avoids duplicate snapshots across visibilitychange, pagehide and unmount", () => {
+    const { unmount } = renderHook(() => useInsightsDwellTime(record));
+    now = 3000;
+    setVisibility("hidden");
+    act(() => window.dispatchEvent(new Event("pagehide")));
+    unmount();
+    expect(record.mock.calls).toEqual([[3]]);
+  });
+
+  it("records pagehide and resumes after a back/forward cache restore", () => {
+    const { unmount } = renderHook(() => useInsightsDwellTime(record));
+    now = 4000;
+    act(() => window.dispatchEvent(new Event("pagehide")));
+    now = 64000;
+    act(() => window.dispatchEvent(new Event("pageshow")));
+    now = 70000;
+    unmount();
+    expect(record.mock.calls).toEqual([[4], [10]]);
+  });
+
+  it("keeps the clock running across rerenders and uses the latest callback", () => {
+    const secondRecord = jest.fn();
+    const { rerender, unmount } = renderHook(
+      ({ callback }) => useInsightsDwellTime(callback),
+      { initialProps: { callback: record } },
+    );
+    now = 2000;
+    rerender({ callback: secondRecord });
+    expect(record).not.toHaveBeenCalled();
+    now = 5000;
+    unmount();
+    expect(secondRecord.mock.calls).toEqual([[5]]);
+  });
+
+  it("starts a fresh measurement for a new page visit and removes old listeners", () => {
+    const firstVisit = renderHook(() => useInsightsDwellTime(record));
+    now = 6000;
+    firstVisit.unmount();
+    const secondRecord = jest.fn();
+    const secondVisit = renderHook(() => useInsightsDwellTime(secondRecord));
+    now = 9000;
+    setVisibility("hidden");
+    secondVisit.unmount();
+    expect(record.mock.calls).toEqual([[6]]);
+    expect(secondRecord.mock.calls).toEqual([[3]]);
+  });
+
+  it("does not fabricate a snapshot during Strict Mode setup and cleanup", () => {
+    const { unmount } = renderHook(() => useInsightsDwellTime(record), {
+      wrapper: ({ children }: { children: ReactNode }) => (
+        <StrictMode>{children}</StrictMode>
+      ),
+    });
+    expect(record).not.toHaveBeenCalled();
+    now = 5000;
+    unmount();
+    expect(record.mock.calls).toEqual([[5]]);
+  });
+
+  const advance = (ms: number) =>
+    act(() => {
+      const start = now;
+      const timerStart = jest.now();
+      // Each callback must see its own deadline, rather than the end of this jump.
+      jest
+        .mocked(performance.now)
+        .mockImplementation(() => start + jest.now() - timerStart);
+      jest.advanceTimersByTime(ms);
+      now = start + ms;
+      jest.mocked(performance.now).mockImplementation(() => now);
+    });
+
+  it("records the survey threshold once while visible, without waiting for navigation", () => {
+    const { unmount } = renderHook(() => useInsightsDwellTime(record));
+    advance(surveyThresholdMs - 1);
+    expect(record).not.toHaveBeenCalled();
+    advance(1);
+    expect(record.mock.calls).toEqual([
+      [INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS],
+    ]);
+    // Hiding and unmounting at the same instant must not duplicate the snapshot.
+    setVisibility("hidden");
+    unmount();
+    advance(60000);
+    expect(record).toHaveBeenCalledTimes(1);
+  });
+
+  it("pauses the survey countdown while hidden and resumes only the remaining visible time", () => {
+    const { unmount } = renderHook(() => useInsightsDwellTime(record));
+    advance(4000);
+    setVisibility("hidden");
+    expect(record.mock.calls).toEqual([[4]]);
+    advance(60000);
+    expect(record).toHaveBeenCalledTimes(1);
+    setVisibility("visible");
+    advance(surveyThresholdMs - 4000 - 1);
+    expect(record).toHaveBeenCalledTimes(1);
+    advance(1);
+    expect(record.mock.calls).toEqual([
+      [4],
+      [INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS],
+    ]);
+    advance(1000);
+    setVisibility("hidden");
+    expect(record.mock.calls).toEqual([
+      [4],
+      [INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS],
+      [INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS + 1],
+    ]);
+    setVisibility("visible");
+    advance(10000);
+    expect(record).toHaveBeenCalledTimes(3);
+    unmount();
+    expect(record).toHaveBeenLastCalledWith(
+      INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS + 11,
+    );
+  });
+
+  it("records only one snapshot when leaving after a delayed survey timer", () => {
+    const { unmount } = renderHook(() => useInsightsDwellTime(record));
+    now = surveyThresholdMs + 2000;
+    setVisibility("hidden");
+    unmount();
+    advance(10000);
+    expect(record.mock.calls).toEqual([
+      [INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS + 2],
+    ]);
+  });
+
+  it("preserves the survey countdown across callback changes", () => {
+    const nextRecord = jest.fn();
+    const { rerender, unmount } = renderHook(
+      ({ callback }) => useInsightsDwellTime(callback),
+      { initialProps: { callback: record } },
+    );
+    advance(4000);
+    rerender({ callback: nextRecord });
+    advance(surveyThresholdMs - 4000);
+    expect(record).not.toHaveBeenCalled();
+    expect(nextRecord.mock.calls).toEqual([
+      [INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS],
+    ]);
+    unmount();
+    expect(nextRecord).toHaveBeenCalledTimes(1);
+  });
+
+  it("cancels the survey timer on navigation and starts fresh for the next visit", () => {
+    const firstVisit = renderHook(() => useInsightsDwellTime(record));
+    advance(6000);
+    firstVisit.unmount();
+    const nextRecord = jest.fn();
+    const nextVisit = renderHook(() => useInsightsDwellTime(nextRecord));
+    advance(4000);
+    expect(record.mock.calls).toEqual([[6]]);
+    expect(nextRecord).not.toHaveBeenCalled();
+    advance(surveyThresholdMs - 4000);
+    expect(nextRecord.mock.calls).toEqual([
+      [INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS],
+    ]);
+    nextVisit.unmount();
+    expect(nextRecord).toHaveBeenCalledTimes(1);
+  });
+
+  it("fires the four-minute threshold while the page is visible, once per visit", () => {
+    const threshold = jest.fn();
+    const { unmount } = renderHook(() =>
+      useInsightsDwellTime(record, threshold),
+    );
+    advance(surveyThresholdMs);
+    expect(record.mock.calls).toEqual([
+      [INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS],
+    ]);
+    advance(240000 - surveyThresholdMs - 1);
+    expect(threshold).not.toHaveBeenCalled();
+    advance(1);
+    expect(threshold.mock.calls).toEqual([[240]]);
+    expect(record.mock.calls).toEqual([
+      [INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS],
+    ]);
+    advance(120000);
+    setVisibility("hidden");
+    unmount();
+    expect(threshold.mock.calls).toEqual([[240]]);
+    expect(record.mock.calls).toEqual([
+      [INSIGHTS_SHOW_SURVEY_THRESHOLD_SECONDS],
+      [360],
+    ]);
+  });
+
+  it("pauses the threshold countdown while hidden and resumes the remaining time", () => {
+    const threshold = jest.fn();
+    renderHook(() => useInsightsDwellTime(record, threshold));
+    advance(100000);
+    setVisibility("hidden");
+    advance(600000);
+    expect(threshold).not.toHaveBeenCalled();
+    setVisibility("visible");
+    advance(139999);
+    expect(threshold).not.toHaveBeenCalled();
+    advance(1);
+    expect(threshold.mock.calls).toEqual([[240]]);
+  });
+
+  it("checks a delayed threshold on exit and does not duplicate it during cleanup", () => {
+    const threshold = jest.fn();
+    const { unmount } = renderHook(() =>
+      useInsightsDwellTime(record, threshold),
+    );
+    now = 250000; // The browser has not run the scheduled timeout yet.
+    act(() => window.dispatchEvent(new Event("pagehide")));
+    expect(threshold.mock.calls).toEqual([[250]]);
+    unmount();
+    advance(300000);
+    expect(threshold.mock.calls).toEqual([[250]]);
+  });
+
+  it("cancels the old threshold timer and starts fresh after navigation", () => {
+    const firstThreshold = jest.fn();
+    const firstVisit = renderHook(() =>
+      useInsightsDwellTime(record, firstThreshold),
+    );
+    advance(200000);
+    firstVisit.unmount();
+    const nextThreshold = jest.fn();
+    renderHook(() => useInsightsDwellTime(record, nextThreshold));
+    advance(239999);
+    expect(firstThreshold).not.toHaveBeenCalled();
+    expect(nextThreshold).not.toHaveBeenCalled();
+    advance(1);
+    expect(nextThreshold.mock.calls).toEqual([[240]]);
+  });
+
+  it("preserves the threshold countdown across callback changes", () => {
+    const firstThreshold = jest.fn();
+    const nextThreshold = jest.fn();
+    const { rerender } = renderHook(
+      ({ callback }) => useInsightsDwellTime(record, callback),
+      { initialProps: { callback: firstThreshold } },
+    );
+    advance(200000);
+    rerender({ callback: nextThreshold });
+    advance(40000);
+    expect(firstThreshold).not.toHaveBeenCalled();
+    expect(nextThreshold.mock.calls).toEqual([[240]]);
+  });
+
+  it("resumes the threshold after back/forward cache restoration", () => {
+    const threshold = jest.fn();
+    renderHook(() => useInsightsDwellTime(record, threshold));
+    advance(200000);
+    act(() => window.dispatchEvent(new Event("pagehide")));
+    advance(600000);
+    expect(threshold).not.toHaveBeenCalled();
+    act(() => window.dispatchEvent(new Event("pageshow")));
+    advance(40000);
+    expect(threshold.mock.calls).toEqual([[240]]);
+  });
+});
