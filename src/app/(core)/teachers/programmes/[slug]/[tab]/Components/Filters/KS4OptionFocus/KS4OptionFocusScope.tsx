@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useRef,
-  type ReactNode,
-} from "react";
+import { createContext, useCallback, useContext, type ReactNode } from "react";
 
 import { useKS4OptionFocus } from "./KS4OptionFocusProvider";
 import type { KS4OptionFocusScopeVariant } from "./ks4OptionFocusParams";
@@ -33,20 +27,10 @@ export function KS4OptionFocusScope({
   children: ReactNode;
 }>) {
   const { registerScope } = useKS4OptionFocus();
-  const lastInteractedRadio = useRef<HTMLInputElement | null>(null);
 
   const ref = useCallback(
     (node: HTMLDivElement | null) => {
-      registerScope(variant, node, (slug) => {
-        const radio = node?.querySelector<HTMLInputElement>(
-          `input[type="radio"][value="${slug}"]`,
-        );
-
-        if (radio) {
-          lastInteractedRadio.current = radio;
-          node?.focus({ preventScroll: true });
-        }
-      });
+      registerScope(variant, node);
     },
     [registerScope, variant],
   );
