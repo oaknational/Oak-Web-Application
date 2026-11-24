@@ -161,4 +161,43 @@ describe("KS4 navigation intent", () => {
     expect(focusSpy).not.toHaveBeenCalled();
     focusSpy.mockRestore();
   });
+
+  describe("KS4OptionFocusScope focus restoration", () => {
+    it("does not error or focus when radio element with matching value is not found", async () => {
+      const focusSpy = jest.spyOn(HTMLDivElement.prototype, "focus");
+      const { getByRole, rerender } = render(<Harness keyboard />);
+      fireEvent.click(getByRole("button", { name: "Navigate" }));
+
+      mockPathname = "/teachers/programmes/english-secondary-edexcel/units";
+      const nonExistentDestination = {
+        ...source,
+        ks4OptionSlug: "edexcel",
+      };
+      rerender(
+        <Harness slugs={nonExistentDestination} pageKey="nonexistent" />,
+      );
+
+      await waitFor(() => {
+        expect(focusSpy).not.toHaveBeenCalled();
+      });
+      focusSpy.mockRestore();
+    });
+
+    it("skips focus restoration when keyboard navigation flag is false", async () => {
+      const focusSpy = jest.spyOn(HTMLDivElement.prototype, "focus");
+      const { getByRole, rerender } = render(
+        <Harness keyboard={false} modal={true} />,
+      );
+      fireEvent.click(getByRole("button", { name: "Navigate" }));
+
+      mockPathname = destinationPath;
+      rerender(
+        <Harness slugs={destination} keyboard={false} pageKey="destination" />,
+      );
+      await waitFor(() => {
+        expect(focusSpy).not.toHaveBeenCalled();
+      });
+      focusSpy.mockRestore();
+    });
+  });
 });
