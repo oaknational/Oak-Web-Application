@@ -7,20 +7,20 @@ exports[`JoinResearchPanelInfo it renders correct data 1`] = `
       class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-bdvwhi sc-jcFiBM blOvSo kJokrU"
+        class="sc-bdvwhi sc-cTAoCz blOvSo hQobsZ"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex dgQcND"
+          class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc dwRCpA"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd jVMJEk kkGnDS"
+            class="sc-bdvwhi sc-jRQBiJ jVMJEk bzKZFL"
           >
             <span
               class="sc-bdvwhi LoEut"
             >
               <img
                 alt=""
-                class="sc-jRQBiJ iumtav"
+                class="sc-gsDMPd dtPFue"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -33,18 +33,18 @@ exports[`JoinResearchPanelInfo it renders correct data 1`] = `
           </div>
         </div>
         <div
-          class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex iSSwoE"
+          class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc hgvlEr"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd hPWTKU cvDmZS"
+            class="sc-bdvwhi sc-jRQBiJ hPWTKU hRMWZn"
           >
             <h2
-              class="sc-bkkgYE kaqcGl"
+              class="sc-hGPAwl ppSSh"
             >
               Who can join the panel?
             </h2>
             <p
-              class="sc-hGPAwl TPKYH"
+              class="sc-fKVoIy dQpOlm"
             >
               Join the research panel body copy goes here
             </p>

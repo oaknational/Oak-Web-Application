@@ -6,19 +6,19 @@ exports[`TopBanner should render the top banner component correctly 1`] = `
   role="banner"
 >
   <div
-    class="sc-bdvwhi sc-gsDMPd cKHYVb gbgSUZ"
+    class="sc-bdvwhi sc-jRQBiJ cKHYVb tMmkI"
   >
     <div
-      class="sc-bdvwhi sc-gsDMPd cGNkYI exciDE"
+      class="sc-bdvwhi sc-jRQBiJ cGNkYI iaFRyt"
     >
       <div
-        class="sc-bdvwhi sc-gsDMPd nYnOw jnKJpK"
+        class="sc-bdvwhi sc-jRQBiJ nYnOw kveLqr"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd sc-cidDfp jxcarK gbgSUZ fQmBVj"
+          class="sc-bdvwhi sc-jRQBiJ sc-efQVjI jxcarK tMmkI biBgPk"
         >
           <svg
-            class="sc-gWWZvT heUQQs"
+            class="sc-eCIkAO iPSBqF"
             height="100%"
             viewBox="0 0 56 27"
             width="100%"
@@ -29,21 +29,21 @@ exports[`TopBanner should render the top banner component correctly 1`] = `
             />
           </svg>
           <div
-            class="sc-bdvwhi sc-gsDMPd kIIdsx gbgSUZ"
+            class="sc-bdvwhi sc-jRQBiJ kIIdsx tMmkI"
           >
             <span
-              class="sc-dkPwfY gwTld"
+              class="sc-iCfNyT bIsAbJ"
             >
               New
             </span>
           </div>
         </div>
         <p
-          class="sc-hGPAwl eHjwIi"
+          class="sc-fKVoIy fjyRbn"
         >
           Oak is now used in 
           <strong
-            class="sc-dkPwfY fgmEIT"
+            class="sc-iCfNyT fAQctr"
           >
             72%
           </strong>
@@ -51,27 +51,27 @@ exports[`TopBanner should render the top banner component correctly 1`] = `
         </p>
       </div>
       <div
-        class="sc-bdvwhi sc-gsDMPd sc-ksdwth gyHFon Bakex fnQopp"
+        class="sc-bdvwhi sc-jRQBiJ sc-fotPuT gyHFon heSanc lkUtiq"
       >
         <a
-          class="sc-eCIkAO sc-bqiQyc fqeNIm iKPRnI"
+          class="sc-furwPO sc-hBUSYK bwcpMF exdzYH"
           href="/about-us/oaks-impact"
           title="Explore our impact"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd fiFqxI fzOhMJ"
+            class="sc-bdvwhi sc-jRQBiJ fiFqxI ipDmak"
           >
             <span
-              class="sc-dkPwfY hmZYGI"
+              class="sc-iCfNyT hEdkgI"
             >
               <span
-                class="sc-dkPwfY cSKbCa"
+                class="sc-iCfNyT eMPvca"
               >
                 Explore our impact
               </span>
             </span>
             <div
-              class="sc-bdvwhi sc-gsDMPd jGKTIi gbgSUZ icon-container"
+              class="sc-bdvwhi sc-jRQBiJ jGKTIi tMmkI icon-container"
             >
               <div
                 class="sc-bdvwhi jWxyY"
@@ -81,7 +81,7 @@ exports[`TopBanner should render the top banner component correctly 1`] = `
                 >
                   <img
                     alt=""
-                    class="sc-jRQBiJ gNTPxL"
+                    class="sc-gsDMPd guEUmW"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -94,7 +94,7 @@ exports[`TopBanner should render the top banner component correctly 1`] = `
                 >
                   <img
                     alt=""
-                    class="sc-jRQBiJ jkAeRD"
+                    class="sc-gsDMPd kEQsoG"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -108,7 +108,7 @@ exports[`TopBanner should render the top banner component correctly 1`] = `
                 >
                   <img
                     alt=""
-                    class="sc-jRQBiJ hUAHnf"
+                    class="sc-gsDMPd bSBZXu"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"

@@ -7,22 +7,22 @@ exports[`BlogsPreview should render the blogs preview 1`] = `
       class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-bdvwhi sc-gsDMPd bzxMon bKlFOg"
+        class="sc-bdvwhi sc-jRQBiJ bzxMon kSyKgF"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd hXyGVF kaBgcD"
+          class="sc-bdvwhi sc-jRQBiJ hXyGVF jiFEWK"
         >
           <h2
-            class="sc-bkkgYE kkQJKP"
+            class="sc-hGPAwl kKizZj"
           >
             Blogs
           </h2>
           <a
-            class="sc-iwjfEg ieUBNG sc-hUpbpP eGLkYb"
+            class="sc-iJKPHa dwzJJG sc-iNGDOz jUVWTt"
             href="/blog/categories/research-and-insights"
           >
             <span
-              class="sc-dkPwfY fgmEIT"
+              class="sc-iCfNyT fAQctr"
             >
               View all research and insights blogs
             </span>
@@ -30,11 +30,11 @@ exports[`BlogsPreview should render the blogs preview 1`] = `
               class="sc-bdvwhi hUeWJD"
             >
               <span
-                class="sc-bdvwhi cqHYAi sc-fKVoIy gNZMCw"
+                class="sc-bdvwhi cqHYAi sc-cxpUrY fiOnyh"
               >
                 <img
                   alt=""
-                  class="sc-jRQBiJ eMsccW"
+                  class="sc-gsDMPd frprTL"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"
@@ -46,27 +46,27 @@ exports[`BlogsPreview should render the blogs preview 1`] = `
           </a>
         </div>
         <ul
-          class="sc-bdvwhi sc-jcFiBM fLVUHm cwIpfY"
+          class="sc-bdvwhi sc-cTAoCz fLVUHm bvXkRt"
         >
           <li
-            class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex bBZMVA"
+            class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc fLFbyz"
           >
             <div
-              class="sc-bdvwhi sc-hiCkpJ ldqnbP ewWNTJ"
+              class="sc-bdvwhi sc-iUKrAm ldqnbP bRqLmn"
             >
               <a
-                class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
+                class="sc-bdvwhi sc-jRQBiJ sc-dVNjkB fTGdcc fmPzBU bHGmlT"
                 href="/blog/blog-1"
               >
                 <div
                   class="sc-bdvwhi hPWTKU"
                 >
                   <span
-                    class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
+                    class="sc-bdvwhi LoEut sc-xiKmI GtioE"
                   >
                     <img
                       alt=""
-                      class="sc-jRQBiJ hssYEG"
+                      class="sc-gsDMPd ctfyuj"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -78,48 +78,48 @@ exports[`BlogsPreview should render the blogs preview 1`] = `
                   </span>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
+                  class="sc-bdvwhi sc-jRQBiJ sc-kYHdiH hPWTKU frNXTM"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU gCDeec"
                   >
                     <h3
-                      class="sc-bkkgYE jxvseu"
+                      class="sc-hGPAwl rcDEW"
                     >
                       Blog 1
                     </h3>
                     <p
-                      class="sc-hGPAwl dwskbV"
+                      class="sc-fKVoIy bkaUyc"
                     >
                       1 January 2021
                     </p>
                   </div>
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU iSxVRe"
                   />
                 </div>
               </a>
             </div>
           </li>
           <li
-            class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex bBZMVA"
+            class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc fLFbyz"
           >
             <div
-              class="sc-bdvwhi sc-hiCkpJ ldqnbP ewWNTJ"
+              class="sc-bdvwhi sc-iUKrAm ldqnbP bRqLmn"
             >
               <a
-                class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
+                class="sc-bdvwhi sc-jRQBiJ sc-dVNjkB fTGdcc fmPzBU bHGmlT"
                 href="/blog/blog-2"
               >
                 <div
                   class="sc-bdvwhi hPWTKU"
                 >
                   <span
-                    class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
+                    class="sc-bdvwhi LoEut sc-xiKmI GtioE"
                   >
                     <img
                       alt=""
-                      class="sc-jRQBiJ hssYEG"
+                      class="sc-gsDMPd ctfyuj"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -131,48 +131,48 @@ exports[`BlogsPreview should render the blogs preview 1`] = `
                   </span>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
+                  class="sc-bdvwhi sc-jRQBiJ sc-kYHdiH hPWTKU frNXTM"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU gCDeec"
                   >
                     <h3
-                      class="sc-bkkgYE jxvseu"
+                      class="sc-hGPAwl rcDEW"
                     >
                       Blog 2
                     </h3>
                     <p
-                      class="sc-hGPAwl dwskbV"
+                      class="sc-fKVoIy bkaUyc"
                     >
                       1 January 2021
                     </p>
                   </div>
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU iSxVRe"
                   />
                 </div>
               </a>
             </div>
           </li>
           <li
-            class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex bBZMVA"
+            class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc fLFbyz"
           >
             <div
-              class="sc-bdvwhi sc-hiCkpJ ldqnbP ewWNTJ"
+              class="sc-bdvwhi sc-iUKrAm ldqnbP bRqLmn"
             >
               <a
-                class="sc-bdvwhi sc-gsDMPd sc-eGPZUV fTGdcc fbAqCR wPmwl"
+                class="sc-bdvwhi sc-jRQBiJ sc-dVNjkB fTGdcc fmPzBU bHGmlT"
                 href="/blog/blog-3"
               >
                 <div
                   class="sc-bdvwhi hPWTKU"
                 >
                   <span
-                    class="sc-bdvwhi LoEut sc-bilAXc fRDjkD"
+                    class="sc-bdvwhi LoEut sc-xiKmI GtioE"
                   >
                     <img
                       alt=""
-                      class="sc-jRQBiJ hssYEG"
+                      class="sc-gsDMPd ctfyuj"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -184,24 +184,24 @@ exports[`BlogsPreview should render the blogs preview 1`] = `
                   </span>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd sc-uokuf hPWTKU gktpUZ"
+                  class="sc-bdvwhi sc-jRQBiJ sc-kYHdiH hPWTKU frNXTM"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU gCDeec"
                   >
                     <h3
-                      class="sc-bkkgYE jxvseu"
+                      class="sc-hGPAwl rcDEW"
                     >
                       Blog 3
                     </h3>
                     <p
-                      class="sc-hGPAwl dwskbV"
+                      class="sc-fKVoIy bkaUyc"
                     >
                       1 January 2021
                     </p>
                   </div>
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU jwNRbT"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU iSxVRe"
                   />
                 </div>
               </a>
