@@ -84,7 +84,7 @@ export function LessonItem({
           </OakFlex>
         </OakFlex>
 
-        <OakBox>{resource.component}</OakBox>
+        <OakBox data-chromatic="ignore">{resource.component}</OakBox>
       </OakFlex>
     </OakBox>
   );

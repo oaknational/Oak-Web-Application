@@ -58,7 +58,7 @@ describe("DownloadSuccessHeader", () => {
 
     expect(
       screen.getByRole("link", {
-        name: /install the Google Fonts 'Lexend' and 'Kalam'/,
+        name: /install the Google Fonts ‘Lexend’ and ‘Kalam’./,
       }),
     ).toBeInTheDocument();
   });
@@ -67,7 +67,7 @@ describe("DownloadSuccessHeader", () => {
     render(<DownloadSuccessHeader href="/programmes" returnTo="lesson" />);
 
     const fontLink = screen.getByRole("link", {
-      name: /install the Google Fonts 'Lexend' and 'Kalam'/,
+      name: /install the Google Fonts ‘Lexend’ and ‘Kalam’./,
     });
     expect(fontLink).toHaveAttribute(
       "href",

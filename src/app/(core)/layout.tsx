@@ -21,10 +21,7 @@ export default async function CoreLayout({
 
     return (
       <>
-        <TeacherBrowseAnalyticsStoreProvider
-          programmeState={null}
-          accessLevel="homepage"
-        >
+        <TeacherBrowseAnalyticsStoreProvider programmeState={null}>
           <TopNav {...topNavProps} />
         </TeacherBrowseAnalyticsStoreProvider>
         <SimulateErrorControls errorBoundaryLevel="root" />

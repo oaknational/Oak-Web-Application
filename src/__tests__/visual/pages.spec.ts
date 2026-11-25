@@ -36,6 +36,10 @@ for (const config of visualConfigs) {
       const path = typeof entry === "string" ? entry : entry.url;
       const timeout = typeof entry === "string" ? 60_000 : entry.timeout;
 
+      test.use({
+        delay: path.includes("/teachers/lessons/") ? 5000 : 0,
+      });
+
       test(
         `[${config.id}] ${path}`,
         { tag: "@visual" },

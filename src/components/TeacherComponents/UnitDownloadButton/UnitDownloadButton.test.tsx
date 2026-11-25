@@ -33,7 +33,7 @@ jest.mock("@oaknational/oak-components", () => ({
   useMediaQuery: jest.fn(),
 }));
 
-const mockUnitDownloadStarted = jest.fn();
+const mockSignInStarted = jest.fn();
 const mockUnitDownloaded = jest.fn();
 
 const setCurrentToastProps = jest.fn();
@@ -57,7 +57,7 @@ jest.mock(
       "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider",
     ),
     useTeacherBrowseAnalytics: () => ({
-      unitDownloadStarted: mockUnitDownloadStarted,
+      signInStarted: mockSignInStarted,
       unitDownloaded: mockUnitDownloaded,
     }),
   }),
@@ -112,7 +112,7 @@ describe("UnitDownloadButton", () => {
     window.localStorage.clear();
     setUseUserReturn(mockLoggedIn);
     setBreakpoint();
-    mockUnitDownloadStarted.mockClear();
+    mockSignInStarted.mockClear();
     mockUnitDownloaded.mockClear();
     reportError.mockClear();
     setCurrentToastProps.mockClear();
@@ -307,16 +307,19 @@ describe("UnitDownloadButton", () => {
   });
 
   describe("analytics events", () => {
-    it("tracks the event when a logged out user starts the sign in flow", async () => {
+    it("tracks sign in started when a logged out user starts the sign in flow", async () => {
       setUseUserReturn(mockLoggedOut);
       renderUnitDownloadButton();
 
       await userEvent.setup().click(screen.getByText("complete unit"));
 
-      expect(mockUnitDownloadStarted).toHaveBeenCalledTimes(1);
+      expect(mockSignInStarted).toHaveBeenCalledTimes(1);
+      expect(mockSignInStarted).toHaveBeenCalledWith({
+        componentType: "unit_download_button",
+      });
     });
 
-    it("tracks the event when a user who has not onboarded starts the onboarding flow", async () => {
+    it("does not track sign in started when a user who has not onboarded starts the onboarding flow", async () => {
       setUseUserReturn(mockNotOnboardedUser);
       renderUnitDownloadButton();
 
@@ -325,10 +328,10 @@ describe("UnitDownloadButton", () => {
 
       await userEvent.setup().click(link);
 
-      expect(mockUnitDownloadStarted).toHaveBeenCalledTimes(1);
+      expect(mockSignInStarted).not.toHaveBeenCalled();
     });
 
-    it("does not track the event when an onboarded user downloads directly", async () => {
+    it("does not track sign in started when an onboarded user downloads directly", async () => {
       setUseUserReturn(mockLoggedIn);
       renderUnitDownloadButton();
 
@@ -336,7 +339,7 @@ describe("UnitDownloadButton", () => {
         .setup()
         .click(screen.getByRole("button", { name: "Download" }));
 
-      expect(mockUnitDownloadStarted).not.toHaveBeenCalled();
+      expect(mockSignInStarted).not.toHaveBeenCalled();
     });
 
     it("tracks the unit downloaded event when the download succeeds", async () => {

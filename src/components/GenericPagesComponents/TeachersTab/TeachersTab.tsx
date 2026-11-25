@@ -143,6 +143,7 @@ function HeroImage() {
         noCrop
         $objectFit="contain"
         priority
+        fetchPriority="high"
         $ba={3}
         $borderStyle={"solid"}
         $borderColor={"black"}

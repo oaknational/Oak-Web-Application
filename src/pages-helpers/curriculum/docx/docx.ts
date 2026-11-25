@@ -9,6 +9,7 @@ import { ElementCompact, type Element } from "xml-js";
 import { collapseFragments, safeXml } from "@ooxml-tools/xml";
 
 import { jsonXmlToXmlString, xmlElementToJson, xmlRootToJson } from "./xml";
+import { escapeXml } from "./utils";
 
 import { notUndefined } from "@/utils/curriculum/types";
 
@@ -204,11 +205,13 @@ export async function insertLinks<T extends Record<string, string>>(
       existingIds.push(id);
     }
 
+    const escapedUrl = escapeXml(url);
+
     return xmlElementToJson(safeXml`
       <Relationship
         Id="${id}"
         Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
-        Target="${url}"
+        Target="${escapedUrl}"
         TargetMode="External"
       />
     `);

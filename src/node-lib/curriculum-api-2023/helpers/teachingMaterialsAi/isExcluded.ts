@@ -1,8 +1,8 @@
+import type { LessonBrowseDataByKs } from "../../queries/canonicalLessonOverview/canonicalLessonOverview.schema";
 import {
-  LessonBrowseDataByKs,
-  LessonOverviewContent,
-} from "../../queries/lessonOverview/lessonOverview.schema";
-import { Restrictions } from "../../queries/teachersLessonOverview/teachersLessonOverview.schema";
+  Restrictions,
+  TeachersLessonOverviewContent,
+} from "../../queries/teachersLessonOverview/teachersLessonOverview.schema";
 
 import { isRestrictedLessonId } from "./isRestrictedLessonId";
 import { hasRestrictedContentGuidance } from "./hasRestrictedContentGuidence";
@@ -14,7 +14,7 @@ interface WorksListItem {
 // no content from these subjects can use create with AI
 export const RESTRICTED_SUBJECTS = new Set([
   "art",
-  "design-technology",
+  "religious-education",
   "french",
   "geography",
   "german",
@@ -69,7 +69,7 @@ export const getHideCreateWithAi = ({
 export const isExcludedFromTeachingMaterials = (
   browseData: LessonBrowseDataByKs["lessonData"],
   worksList: WorksListItem[], // all items are restricted or highly restricted
-  content: LessonOverviewContent,
+  content: TeachersLessonOverviewContent,
 ): boolean => {
   const excludedFromTeachingMaterials = worksList.length > 0;
   const hasRestrictedId = isRestrictedLessonId(browseData.lessonUid);

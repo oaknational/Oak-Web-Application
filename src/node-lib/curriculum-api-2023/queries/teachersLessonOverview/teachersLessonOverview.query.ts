@@ -17,7 +17,6 @@ import {
   teachersLessonContentSchema,
   TeachersLessonOverviewAdjacentLesson,
   TeachersLessonOverviewContent,
-  TeachersLessonOverviewDownloads,
   TeachersLessonOverviewPageData,
   TeachersLessonBrowseDataByKs,
   teachersLessonBrowseDataByKsSchema,
@@ -29,6 +28,7 @@ import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { formatBytes } from "@/utils/formatBytes";
 import { formatSentences } from "@/utils/formatTranscriptSentences";
+import { buildLessonOverviewDownloads } from "@/common-lib/lessonDownloads";
 
 export type TeachersLessonUnitStaticLessonList = NonNullable<
   NonNullable<LessonUnitDataByKs["supplementaryData"]>["staticLessonList"]
@@ -81,64 +81,7 @@ export function getAdjacentLessonsByOrderInUnit(
   return { previousLesson, nextLesson };
 }
 
-export const getDownloadsArray = (content: {
-  hasSlideDeckAssetObject: boolean;
-  hasStarterQuiz: boolean;
-  hasExitQuiz: boolean;
-  hasWorksheetAssetObject: boolean;
-  hasWorksheetAnswersAssetObject: boolean;
-  hasSupplementaryAssetObject: boolean;
-  hasLessonGuideObject: boolean;
-}): TeachersLessonOverviewPageData["downloads"] => {
-  const downloads: TeachersLessonOverviewDownloads = [
-    {
-      exists: content.hasSlideDeckAssetObject,
-      type: "presentation",
-    },
-    {
-      exists: content.hasStarterQuiz,
-      type: "intro-quiz-questions",
-    },
-    {
-      exists: content.hasStarterQuiz,
-      type: "intro-quiz-answers",
-    },
-    {
-      exists: content.hasExitQuiz,
-      type: "exit-quiz-questions",
-    },
-    {
-      exists: content.hasExitQuiz,
-      type: "exit-quiz-questions",
-    },
-    {
-      exists:
-        content.hasWorksheetAssetObject ||
-        content.hasWorksheetAnswersAssetObject,
-      type: "worksheet-pdf",
-    },
-    {
-      exists:
-        content.hasWorksheetAssetObject ||
-        content.hasWorksheetAnswersAssetObject,
-      type: "worksheet-pptx",
-    },
-    {
-      exists: content.hasSupplementaryAssetObject,
-      type: "supplementary-pdf",
-    },
-    {
-      exists: content.hasSupplementaryAssetObject,
-      type: "supplementary-docx",
-    },
-    {
-      exists: content.hasLessonGuideObject,
-      type: "lesson-guide-pdf",
-    },
-  ];
-
-  return downloads;
-};
+export const getDownloadsArray = buildLessonOverviewDownloads;
 
 export function getContentGuidance(
   content: TeachersLessonOverviewContent["contentGuidance"],

@@ -40,7 +40,7 @@ const props: PropsWithoutForm = {
 };
 
 let mockUseComplexCopyright = defaultCopyrightRequirements;
-jest.mock("@/hooks/useComplexCopyright", () => ({
+jest.mock("@/utils/complexCopyright/useComplexCopyright", () => ({
   useComplexCopyright: () => mockUseComplexCopyright,
 }));
 
@@ -113,7 +113,7 @@ describe("Download Page With Accordion", () => {
     expect(errorMessage).toBeInTheDocument();
   });
 
-  it("announces validation summary in a polite live region", async () => {
+  it("announces validation summary with a role of alert", async () => {
     renderWithProviders()(
       <ComponentWrapper
         {...props}
@@ -124,12 +124,7 @@ describe("Download Page With Accordion", () => {
       />,
     );
 
-    const validationSummary = screen.getByTestId("download-validation-summary");
-
-    expect(validationSummary).toBeInTheDocument();
-    expect(validationSummary).toHaveAttribute("role", "status");
-    expect(validationSummary).toHaveAttribute("aria-live", "polite");
-    expect(validationSummary).toHaveAttribute("aria-atomic", "true");
+    const validationSummary = screen.getByRole("alert");
     expect(validationSummary).toHaveTextContent(
       "To complete, correct the following:",
     );
@@ -155,9 +150,7 @@ describe("Download Page With Accordion", () => {
       />,
     );
 
-    const firstValidationSummary = screen.getByTestId(
-      "download-validation-summary",
-    );
+    const firstValidationSummary = screen.getByRole("alert");
 
     rerender(
       <ComponentWrapper
@@ -167,9 +160,7 @@ describe("Download Page With Accordion", () => {
       />,
     );
 
-    expect(screen.getByTestId("download-validation-summary")).not.toBe(
-      firstValidationSummary,
-    );
+    expect(screen.getByRole("alert")).not.toBe(firstValidationSummary);
   });
 
   it("handles api error", () => {

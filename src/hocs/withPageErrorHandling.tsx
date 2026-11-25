@@ -10,14 +10,12 @@ import type { PageSearchParms } from "../app/(core)/teachers/programmes/[slug]/[
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
-if (getBrowserConfig("sentryEnabled") === "true") {
-  initialiseSentry(null);
-} else {
+initialiseSentry(null);
+if (getBrowserConfig("bugsnagEnabled") === "true") {
   initialiseBugsnag(null);
 }
-
 type PageParams = Record<string, string>;
-export type AppPageProps<T extends PageParams> = {
+export type AppPageProps<T extends PageParams = Record<string, never>> = {
   params: Promise<T>;
   searchParams?: Promise<PageSearchParms>;
 };

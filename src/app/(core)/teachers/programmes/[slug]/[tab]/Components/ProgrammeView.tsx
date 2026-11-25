@@ -1,7 +1,6 @@
 "use client";
 
 import { OakMaxWidth, OakTabs } from "@oaknational/oak-components";
-import { useEffect, useState } from "react";
 import { notFound, usePathname, useSearchParams } from "next/navigation";
 
 import {
@@ -87,7 +86,10 @@ export const ProgrammeView = ({
 
   const validatedParams = validateSearchParams(searchParams);
 
-  const [activeTab, setActiveTab] = useState<TabSlug>(tabSlug);
+  const pathname = usePathname();
+  const pathnameTab = pathname?.split("/").pop();
+
+  const activeTab = isTabSlug(pathnameTab) ? pathnameTab : tabSlug;
 
   const { subjectSlug } = curriculumSelectionSlugs;
   const { subjectTitle, phaseTitle, examboardTitle } =
@@ -116,17 +118,6 @@ export const ProgrammeView = ({
     examboardTitle,
     tabSlug: activeTab,
   });
-
-  // Ensure the active tab matches the one in the latest pathname
-  const pathname = usePathname();
-  useEffect(() => {
-    if (pathname) {
-      const tab = pathname.split("/").pop();
-      if (isTabSlug(tab)) {
-        setActiveTab(tab);
-      }
-    }
-  }, [pathname]);
 
   const preserveKeystagesParamInUrl = (url: string) => {
     return validatedParams?.keystages

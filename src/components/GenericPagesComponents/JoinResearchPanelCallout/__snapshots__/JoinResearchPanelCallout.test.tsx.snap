@@ -4,34 +4,34 @@ exports[`JoinResearchPanelCallout it renders correct data 1`] = `
 <body>
   <div>
     <div
-      class="sc-bdvwhi sc-gsDMPd lkbYDi Bakex"
+      class="sc-bdvwhi sc-jRQBiJ lkbYDi heSanc"
     >
       <div
         class="sc-bdvwhi iatEdD"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd hPWTKU vrLXS"
+          class="sc-bdvwhi sc-jRQBiJ hPWTKU cjhGAP"
         >
           <h2
-            class="sc-bkkgYE kaqcGl"
+            class="sc-hGPAwl ppSSh"
           >
             Join the research panel callout
           </h2>
           <ul
-            class="sc-bdvwhi sc-gsDMPd eZfdqr bBYlNX"
+            class="sc-bdvwhi sc-jRQBiJ eZfdqr jIjlVW"
           >
             <li
               class="sc-aba4545a-0 iGNmWV"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd lcpAbU dErUkm"
+                class="sc-bdvwhi sc-jRQBiJ lcpAbU xafDH"
               >
                 <span
                   class="sc-bdvwhi bmbSAb"
                 >
                   <img
                     alt=""
-                    class="sc-jRQBiJ hssYEG"
+                    class="sc-gsDMPd ctfyuj"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -40,7 +40,7 @@ exports[`JoinResearchPanelCallout it renders correct data 1`] = `
                   />
                 </span>
                 <p
-                  class="sc-hGPAwl kwkXZw"
+                  class="sc-fKVoIy HtIVx"
                 >
                   Join the research panel callout
                 </p>
@@ -50,14 +50,14 @@ exports[`JoinResearchPanelCallout it renders correct data 1`] = `
               class="sc-aba4545a-0 iGNmWV"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd lcpAbU dErUkm"
+                class="sc-bdvwhi sc-jRQBiJ lcpAbU xafDH"
               >
                 <span
                   class="sc-bdvwhi bmbSAb"
                 >
                   <img
                     alt=""
-                    class="sc-jRQBiJ hssYEG"
+                    class="sc-gsDMPd ctfyuj"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -66,7 +66,7 @@ exports[`JoinResearchPanelCallout it renders correct data 1`] = `
                   />
                 </span>
                 <p
-                  class="sc-hGPAwl kwkXZw"
+                  class="sc-fKVoIy HtIVx"
                 >
                   Join the research panel callout
                 </p>
@@ -76,14 +76,14 @@ exports[`JoinResearchPanelCallout it renders correct data 1`] = `
               class="sc-aba4545a-0 iGNmWV"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd lcpAbU dErUkm"
+                class="sc-bdvwhi sc-jRQBiJ lcpAbU xafDH"
               >
                 <span
                   class="sc-bdvwhi bmbSAb"
                 >
                   <img
                     alt=""
-                    class="sc-jRQBiJ hssYEG"
+                    class="sc-gsDMPd ctfyuj"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -92,7 +92,7 @@ exports[`JoinResearchPanelCallout it renders correct data 1`] = `
                   />
                 </span>
                 <p
-                  class="sc-hGPAwl kwkXZw"
+                  class="sc-fKVoIy HtIVx"
                 >
                   Join the research panel callout
                 </p>

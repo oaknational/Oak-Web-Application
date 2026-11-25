@@ -1,14 +1,21 @@
 import { Cue, WebVTTParser } from "webvtt-parser";
 
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { cacheData } from "@/node-lib/cache";
 import { getFileFromBucket } from "@/utils/gCloudStorage";
 import { formatSentences } from "@/utils/formatTranscriptSentences";
+import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
+
+const CAPTIONS_BUCKET_NAME = "oak-captions-2023-production";
+
+const getCachedCaptionFile = cacheData(
+  (bucketName: string, fileName: string) =>
+    getFileFromBucket(bucketName, fileName),
+  ["lesson-caption-file"],
+);
 
 export const getCaptionsFromFile = async (fileName: string) => {
-  // TODO: get bucket name from config?
-  const bucketName = "oak-captions-2023-production";
-  const file = await getFileFromBucket(bucketName, fileName);
+  const file = await getCachedCaptionFile(CAPTIONS_BUCKET_NAME, fileName);
   if (file) {
     const parser = new WebVTTParser();
 
@@ -52,7 +59,7 @@ export const getTextFromCues = (cueList: Cue[]): Array<string> => {
 };
 
 export const populateLessonWithTranscript = async (
-  lesson: LessonOverviewPageData,
+  lesson: TeachersLessonOverviewPageData,
 ) => {
   const { videoTitle, transcriptSentences } = lesson;
   if (videoTitle && !transcriptSentences) {

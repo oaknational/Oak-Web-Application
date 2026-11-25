@@ -12,7 +12,6 @@ import {
 
 import { getResourcesWithoutLegacyCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
 import { useOnboardingStatus } from "../TeacherComponents/hooks/useOnboardingStatus";
-import Banners from "../SharedComponents/Banners";
 import { waitForLinkCallback } from "../SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 
 import useLessonDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck";
@@ -36,7 +35,7 @@ import { LEGACY_COHORT } from "@/config/cohort";
 import { LegacyCopyrightContent } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { LessonDownloadRegionBlocked } from "@/components/TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
 import { resolveOakHref } from "@/common-lib/urls";
-import { useComplexCopyright } from "@/hooks/useComplexCopyright";
+import { useComplexCopyright } from "@/utils/complexCopyright/useComplexCopyright";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
@@ -253,7 +252,6 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
 
   return (
     <OakBox $ph={["spacing-16", "spacing-0"]} $background={"bg-neutral"}>
-      {isDownloadSuccessful && <Banners />}
       <OakMaxWidth
         $pb="spacing-80"
         $maxWidth={["spacing-480", "spacing-960", "spacing-1280"]}

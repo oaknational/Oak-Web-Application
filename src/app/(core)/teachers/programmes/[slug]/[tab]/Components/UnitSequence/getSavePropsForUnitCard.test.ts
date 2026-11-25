@@ -1,10 +1,25 @@
 import { getSavePropsForUnitCard } from "./getSavePropsForUnitCard";
 
+import { createUnitOption } from "@/fixtures/curriculum/unitOption";
 import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
-import {
-  unitWithOptions,
-  unitWithoutOptions,
-} from "@/components/CurriculumComponents/CurricUnitCard/CurricUnitCard.fixtures";
+import { createUnit } from "@/fixtures/curriculum/unit";
+
+const unitWithOptions = createUnit({
+  slug: "something-nice",
+  unit_options: [
+    createUnitOption({
+      slug: "really-nice",
+    }),
+    createUnitOption({
+      slug: "kind-of-nice",
+    }),
+  ],
+});
+
+const unitWithoutOptions = createUnit({
+  slug: "something-nice",
+  unit_options: [],
+});
 
 const unitWithoutOptionsProps = {
   slug: unitWithoutOptions.slug,

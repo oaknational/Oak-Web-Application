@@ -20,6 +20,7 @@ function getDeploymentTestUrls() {
     "/about-us/meet-the-team",
     "/about-us/meet-the-team/john-roberts?section=leadership",
     "/about-us/get-involved",
+    "/about-us/get-involved/join-research-panel",
     // Blog pages
     "/blog",
     "/blog/how-to-design-a-unit-of-study",

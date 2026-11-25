@@ -292,6 +292,20 @@ exports[`CurriculumTab renders 1`] = `
   white-space: nowrap;
 }
 
+.c2 {
+  filter: brightness(0) saturate(100%) invert(85%) sepia(23%) saturate(120%) hue-rotate(71deg) brightness(112%) contrast(97%);
+  object-fit: contain;
+}
+
+.c26 {
+  object-fit: contain;
+}
+
+.c61 {
+  filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
+  object-fit: contain;
+}
+
 .c4 {
   display: flex;
   flex-direction: column;
@@ -491,20 +505,6 @@ exports[`CurriculumTab renders 1`] = `
 .c81:disabled {
   pointer-events: none;
   cursor: default;
-}
-
-.c2 {
-  filter: brightness(0) saturate(100%) invert(85%) sepia(23%) saturate(120%) hue-rotate(71deg) brightness(112%) contrast(97%);
-  object-fit: contain;
-}
-
-.c26 {
-  object-fit: contain;
-}
-
-.c61 {
-  filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
-  object-fit: contain;
 }
 
 .c57 {
@@ -729,14 +729,6 @@ exports[`CurriculumTab renders 1`] = `
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c80 {
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  letter-spacing: 0.0115rem;
-}
-
 .c37 {
   box-shadow: 0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
@@ -756,6 +748,14 @@ exports[`CurriculumTab renders 1`] = `
 
 .c37:has(a:active, button:active) {
   box-shadow: none;
+}
+
+.c80 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  letter-spacing: 0.0115rem;
 }
 
 .c65 {
