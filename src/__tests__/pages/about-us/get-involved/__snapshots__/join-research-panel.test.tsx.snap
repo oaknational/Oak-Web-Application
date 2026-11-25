@@ -1996,10 +1996,9 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 .c105 {
   flex-direction: column;
   grid-column: 1/span 12;
-  grid-row: 1/span undefined;
+  grid-row: span undefined;
   grid-row: span 1;
   grid-column-start: 1;
-  grid-row-start: 1;
 }
 
 .c108 {
@@ -3489,18 +3488,6 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 @media (min-width: 1280px) {
   .c105 {
     grid-column-start: 1;
-  }
-}
-
-@media (min-width: 750px) {
-  .c105 {
-    grid-row-start: 1;
-  }
-}
-
-@media (min-width: 1280px) {
-  .c105 {
-    grid-row-start: 1;
   }
 }
 

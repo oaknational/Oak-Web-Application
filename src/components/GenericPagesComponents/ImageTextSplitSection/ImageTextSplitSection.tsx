@@ -91,7 +91,6 @@ export default function ImageTextSplitSection({
         <OakGridArea
           $colSpan={[12, 10, 6]}
           $colStart={[1, 2, isImageLeftPositioned ? 1 : 7]}
-          $rowStart={[1, 1, 1]}
         >
           <OakFlex
             $flexGrow={1}
