@@ -17,7 +17,7 @@ resource "terraform_data" "workspace_validation" {
 }
 
 module "vercel" {
-  source                  = "github.com/oaknational/oak-terraform-modules//modules/vercel_project?ref=v2.0.4"
+  source                  = "github.com/oaknational/oak-terraform-modules//modules/vercel_project?ref=v2.1.0"
   build_command           = try(local.build_config.build_command, null)
   build_machine_type      = try(local.build_config.build_machine_type, "standard")
   build_type              = local.build_config.build_type
@@ -32,6 +32,10 @@ module "vercel" {
   git_repo                = "oaknational/Oak-Web-Application"
   skew_protection         = local.build_config.skew_protection
   custom_environments     = try(local.build_config.custom_environments, [])
+
+  enable_sentry            = true
+  sentry_organization_slug = "oak-national-academy"
+  sentry_team_slug         = "oak-national-academy"
 
   custom_env_vars = local.build_type == "website" ? local.all_custom_env_vars : []
 

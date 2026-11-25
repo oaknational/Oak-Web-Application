@@ -1,3 +1,10 @@
+# [1.1283.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1282.0...v1.1283.0) (2026-11-24)
+
+
+### Features
+
+* enable sentry ([#4680](https://github.com/oaknational/Oak-Web-Application/issues/4680)) ([0b852e2](https://github.com/oaknational/Oak-Web-Application/commit/0b852e24aabff976dbd60dc204dd1e84d50f4e86))
+
 # [1.1282.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1281.3...v1.1282.0) (2026-11-20)
 
 
