@@ -53,7 +53,7 @@ const pageComponents: {
   JoinResearchPanelPageFaqs: (block) => (
     <>
       <TrackScrolledTo eventKey="join_research_panel_faqs" />
-      <FaqsSection $pv={["spacing-56", "spacing-80"]} items={block.items} />
+      <FaqsSection items={block.items} />
     </>
   ),
   JoinResearchPanelPageContactUs: (
