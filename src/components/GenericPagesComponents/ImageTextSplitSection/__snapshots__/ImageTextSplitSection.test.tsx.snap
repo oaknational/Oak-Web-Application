@@ -1,0 +1,269 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`ImageTextSplitSection it renders correct data 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-bdvwhi iatEdD"
+    >
+      <div
+        class="sc-bdvwhi sc-cTAoCz hPWTKU hQobsZ"
+      >
+        <div
+          class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc dwRCpA"
+        >
+          <div
+            class="sc-bdvwhi sc-jRQBiJ jVMJEk bzKZFL"
+          >
+            <span
+              class="sc-bdvwhi LoEut"
+            >
+              <img
+                alt=""
+                class="sc-gsDMPd dtPFue"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                sizes="100vw"
+                src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=3840&q=75"
+                srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=3840&q=75 3840w"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </span>
+          </div>
+        </div>
+        <div
+          class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc jSitjF"
+        >
+          <div
+            class="sc-bdvwhi sc-jRQBiJ hPWTKU hRMWZn"
+          >
+            <h2
+              class="sc-hGPAwl ppSSh"
+            >
+              Who can join the panel?
+            </h2>
+            <p
+              class="sc-fKVoIy dQpOlm"
+            >
+              Join the research panel body copy goes here
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ImageTextSplitSection renders bullet points correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-bdvwhi iatEdD"
+    >
+      <div
+        class="sc-bdvwhi sc-cTAoCz hPWTKU hQobsZ"
+      >
+        <div
+          class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc dwRCpA"
+        >
+          <div
+            class="sc-bdvwhi sc-jRQBiJ jVMJEk bzKZFL"
+          >
+            <span
+              class="sc-bdvwhi LoEut"
+            >
+              <img
+                alt=""
+                class="sc-gsDMPd dtPFue"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                sizes="100vw"
+                src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=3840&q=75"
+                srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=3840&q=75 3840w"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </span>
+          </div>
+        </div>
+        <div
+          class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc jSitjF"
+        >
+          <div
+            class="sc-bdvwhi sc-jRQBiJ hPWTKU hRMWZn"
+          >
+            <h2
+              class="sc-hGPAwl ppSSh"
+            >
+              How it works
+            </h2>
+            <ul>
+              <li
+                class="sc-dlVwtM jnpyCb"
+              >
+                Answer a questionnaire about your current curriculum. You can save your progress and return later.
+              </li>
+              <li
+                class="sc-dlVwtM jnpyCb"
+              >
+                Receive a personalised, downloadable report highlighting areas that may need further review, along with suggested next steps and relevant guidance.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ImageTextSplitSection renders links with icon correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-bdvwhi iatEdD"
+    >
+      <div
+        class="sc-bdvwhi sc-cTAoCz hPWTKU hQobsZ"
+      >
+        <div
+          class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc dwRCpA"
+        >
+          <div
+            class="sc-bdvwhi sc-jRQBiJ jVMJEk bzKZFL"
+          >
+            <span
+              class="sc-bdvwhi LoEut"
+            >
+              <img
+                alt=""
+                class="sc-gsDMPd dtPFue"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                sizes="100vw"
+                src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=3840&q=75"
+                srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=3840&q=75 3840w"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </span>
+          </div>
+        </div>
+        <div
+          class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc jSitjF"
+        >
+          <div
+            class="sc-bdvwhi sc-jRQBiJ hPWTKU hRMWZn"
+          >
+            <h2
+              class="sc-hGPAwl ppSSh"
+            >
+              How it works
+            </h2>
+            <p
+              class="sc-fKVoIy dQpOlm"
+            >
+              <a
+                class="sc-iJKPHa dwzJJG sc-iNGDOz gSlBZH"
+                href="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/files/cuvjke51/production/example-report.pdf"
+                target="_blank"
+              >
+                <span
+                  class="sc-iCfNyT fAQctr"
+                >
+                  View an example report
+                  <span
+                    class="sc-bdvwhi gsMiOK"
+                  >
+                    <img
+                      alt=""
+                      class="sc-gsDMPd frprTL"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
+                  <span
+                    class="sc-pVUti eEZcMz"
+                  >
+                     (opens in a new tab)
+                  </span>
+                </span>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ImageTextSplitSection renders numbered points correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-bdvwhi iatEdD"
+    >
+      <div
+        class="sc-bdvwhi sc-cTAoCz hPWTKU hQobsZ"
+      >
+        <div
+          class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc dwRCpA"
+        >
+          <div
+            class="sc-bdvwhi sc-jRQBiJ jVMJEk bzKZFL"
+          >
+            <span
+              class="sc-bdvwhi LoEut"
+            >
+              <img
+                alt=""
+                class="sc-gsDMPd dtPFue"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                sizes="100vw"
+                src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=3840&q=75"
+                srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F7499298e050630504fc8eb15bb8de2c864942575-633x486.png&w=3840&q=75 3840w"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </span>
+          </div>
+        </div>
+        <div
+          class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc jSitjF"
+        >
+          <div
+            class="sc-bdvwhi sc-jRQBiJ hPWTKU hRMWZn"
+          >
+            <h2
+              class="sc-hGPAwl ppSSh"
+            >
+              How it works
+            </h2>
+            <ol
+              class="sc-bdvwhi hPWTKU"
+            >
+              <li
+                class="sc-dlVwtM jnpyCb"
+              >
+                Answer a questionnaire about your current curriculum. You can save your progress and return later.
+              </li>
+              <li
+                class="sc-dlVwtM jnpyCb"
+              >
+                Receive a personalised, downloadable report highlighting areas that may need further review, along with suggested next steps and relevant guidance.
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
