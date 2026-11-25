@@ -18,50 +18,52 @@ export type FaqsSectionProps = {
 
 export default function FaqsSection({ items }: Readonly<FaqsSectionProps>) {
   return (
-    <NewGutterMaxWidth>
-      <OakFlex
-        $flexDirection={"column"}
-        $gap="spacing-32"
-        $alignItems={"center"}
-      >
-        <OakHeading tag="h2" $font={["heading-5", "heading-4"]}>
-          Frequently asked questions
-        </OakHeading>
-        <OakGrid>
-          <OakGridArea
-            $colSpan={[12, 10, 8]}
-            $colStart={[1, 2, 3]}
-            $alignSelf={"flex-start"}
-            $flexDirection={"column"}
-          >
-            {items.map((item, i) => (
-              <OakBasicAccordion
-                key={item.question}
-                header={
-                  <OakSpan
-                    $textAlign={"left"}
-                    $font={["heading-6", "heading-5"]}
-                  >
-                    {item.question}
-                  </OakSpan>
-                }
-                id={`faq-${i}`}
-                $bl="border-solid-none"
-                $br="border-solid-none"
-                $bt={i === 0 ? "border-solid-m" : "border-solid-s"}
-                $bb={
-                  i === items.length - 1 ? "border-solid-m" : "border-solid-s"
-                }
-                $borderColor={"border-neutral-lighter"}
-              >
-                <OakBox $mt="spacing-20" $mb="spacing-2">
-                  <PortableTextWithDefaults value={item.answerRaw} />
-                </OakBox>
-              </OakBasicAccordion>
-            ))}
-          </OakGridArea>
-        </OakGrid>
-      </OakFlex>
-    </NewGutterMaxWidth>
+    <OakBox>
+      <NewGutterMaxWidth>
+        <OakFlex
+          $flexDirection={"column"}
+          $gap="spacing-32"
+          $alignItems={"center"}
+        >
+          <OakHeading tag="h2" $font={["heading-5", "heading-4"]}>
+            Frequently asked questions
+          </OakHeading>
+          <OakGrid>
+            <OakGridArea
+              $colSpan={[12, 10, 8]}
+              $colStart={[1, 2, 3]}
+              $alignSelf={"flex-start"}
+              $flexDirection={"column"}
+            >
+              {items.map((item, i) => (
+                <OakBasicAccordion
+                  key={item.question}
+                  header={
+                    <OakSpan
+                      $textAlign={"left"}
+                      $font={["heading-6", "heading-5"]}
+                    >
+                      {item.question}
+                    </OakSpan>
+                  }
+                  id={`faq-${i}`}
+                  $bl="border-solid-none"
+                  $br="border-solid-none"
+                  $bt={i === 0 ? "border-solid-m" : "border-solid-s"}
+                  $bb={
+                    i === items.length - 1 ? "border-solid-m" : "border-solid-s"
+                  }
+                  $borderColor={"border-neutral-lighter"}
+                >
+                  <OakBox $mt="spacing-20" $mb="spacing-2">
+                    <PortableTextWithDefaults value={item.answerRaw} />
+                  </OakBox>
+                </OakBasicAccordion>
+              ))}
+            </OakGridArea>
+          </OakGrid>
+        </OakFlex>
+      </NewGutterMaxWidth>
+    </OakBox>
   );
 }

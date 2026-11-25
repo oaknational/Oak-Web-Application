@@ -10,6 +10,7 @@ import {
 import NcAlignmentCheckerLandingPageHeader from "@/components/NcAlignmentChecker/LandingPageHeader";
 import ImageTextSplitSection from "@/components/GenericPagesComponents/ImageTextSplitSection";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
+import FaqsSection from "@/components/GenericPagesComponents/FaqsSection";
 
 function DefaultComponent(
   block: NcAlignmentCheckerLandingPageBlock<NcAlignmentCheckerLandingPageBlockType>,
