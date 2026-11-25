@@ -1,5 +1,5 @@
 "use client";
-import { OakFlex, OakCodeRenderer } from "@oaknational/oak-components";
+import { OakBox, OakCodeRenderer, OakFlex } from "@oaknational/oak-components";
 import { Fragment } from "react";
 
 import {
@@ -7,9 +7,9 @@ import {
   NcAlignmentCheckerLandingPageBlock,
   NcAlignmentCheckerLandingPageBlockType,
 } from "@/common-lib/cms-types/ncAlignmentChecker";
-import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import NcAlignmentCheckerLandingPageHeader from "@/components/NcAlignmentChecker/LandingPageHeader";
-import FaqsSection from "@/components/GenericPagesComponents/FaqsSection";
+import ImageTextSplitSection from "@/components/GenericPagesComponents/ImageTextSplitSection";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 
 function DefaultComponent(
   block: NcAlignmentCheckerLandingPageBlock<NcAlignmentCheckerLandingPageBlockType>,
@@ -29,7 +29,7 @@ const pageComponents: {
   ) => React.ReactNode;
 } = {
   NcAlignmentCheckerLandingPageHeader: NcAlignmentCheckerLandingPageHeader,
-  NcAlignmentCheckerLandingPageTextAndMedia: DefaultComponent,
+  NcAlignmentCheckerLandingPageTextAndMedia: ImageTextSplitSection,
   NcAlignmentCheckerLandingPageSubjectExperts: DefaultComponent,
   NcAlignmentCheckerLandingPageQuotes: DefaultComponent,
   NcAlignmentCheckerLandingPageFaqs: FaqsSection,
@@ -48,15 +48,15 @@ export function NcAlignmentCheckerLandingPage({
   pageData: CmsNcAlignmentCheckerLandingPage;
 }>) {
   return (
-    <OakFlex
-      $zIndex={"neutral"}
-      $color={"text-primary"}
-      $gap={["spacing-56", "spacing-80", "spacing-100"]}
-      $flexDirection="column"
-    >
-      {pageData.blocks?.map((block) => {
-        return <Fragment key={block._key}>{renderBlock(block)}</Fragment>;
-      })}
-    </OakFlex>
+    <OakBox $zIndex={"neutral"} $color={"text-primary"}>
+      <OakFlex
+        $flexDirection="column"
+        $gap={["spacing-56", "spacing-80", "spacing-80"]}
+      >
+        {pageData.blocks?.map((block) => {
+          return <Fragment key={block._key}>{renderBlock(block)}</Fragment>;
+        })}
+      </OakFlex>
+    </OakBox>
   );
 }

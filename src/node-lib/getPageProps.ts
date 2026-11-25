@@ -12,12 +12,10 @@ import { decorateWithIsr } from "./isr";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
-if (getBrowserConfig("sentryEnabled") === "true") {
-  initialiseSentry(null);
-} else {
+initialiseSentry(null);
+if (getBrowserConfig("bugsnagEnabled") === "true") {
   initialiseBugsnag(null);
 }
-
 /**
  * This function is intended to wrap NextJS page functions (e.g. getStaticProps,
  * getServerSideProps, etc.).It takes an async getProps() function as an argument
