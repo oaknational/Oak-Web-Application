@@ -218,6 +218,86 @@ describe("KS4 navigation intent", () => {
     });
   });
 
+  it("does not focus when KS4 option is not specified in destination", async () => {
+    function NavigationButtonNoKS4({
+      keyboard,
+      modal,
+    }: {
+      keyboard: boolean;
+      modal: boolean;
+    }) {
+      const { setNavigationIntent } = useProgrammeNavigation();
+      return (
+        <button
+          onClick={() =>
+            setNavigationIntent({
+              destination: {
+                subjectSlug: "maths",
+                phaseSlug: "secondary",
+              } as CurriculumSelectionSlugs,
+              restoreFocus: keyboard,
+              reopenFiltersModal: modal,
+            })
+          }
+        >
+          Navigate
+        </button>
+      );
+    }
+
+    function HarnessWithNoKS4Button({
+      slugs = source,
+      pageKey = "source",
+      keyboard = true,
+      modal = false,
+    }: {
+      slugs?: CurriculumSelectionSlugs;
+      pageKey?: string;
+      keyboard?: boolean;
+      modal?: boolean;
+    }) {
+      return (
+        <StrictMode>
+          <ProgrammeNavigationProvider>
+            <NavigationButtonNoKS4 keyboard={keyboard} modal={modal} />
+            <ProgrammePageFiltersModalProvider key={pageKey}>
+              <KS4OptionFocusProvider slugs={slugs}>
+                <Radios />
+              </KS4OptionFocusProvider>
+            </ProgrammePageFiltersModalProvider>
+          </ProgrammeNavigationProvider>
+        </StrictMode>
+      );
+    }
+
+    const focusSpy = jest.spyOn(HTMLInputElement.prototype, "focus");
+    const { getByRole, rerender } = render(
+      <HarnessWithNoKS4Button keyboard={true} />,
+    );
+
+    mockPathname = "/teachers/programmes/maths-secondary/units";
+    fireEvent.click(getByRole("button", { name: "Navigate" }));
+
+    rerender(
+      <HarnessWithNoKS4Button
+        slugs={
+          {
+            subjectSlug: "maths",
+            phaseSlug: "secondary",
+          } as CurriculumSelectionSlugs
+        }
+        pageKey="no-ks4"
+      />,
+    );
+
+    await waitFor(() => {
+      // No focus should occur because destination.ks4OptionSlug is undefined
+      expect(focusSpy).not.toHaveBeenCalled();
+    });
+
+    focusSpy.mockRestore();
+  });
+
   it("tracks when scope is mounted and unmounted by updating registration status", async () => {
     let capturedScope:
       | ((variant: "page" | "modal", node: HTMLDivElement | null) => void)
