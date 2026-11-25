@@ -1,3 +1,10 @@
+# [1.1285.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1284.0...v1.1285.0) (2026-11-25)
+
+
+### Features
+
+* retain last radio value when changing exam board ([67f916a](https://github.com/oaknational/Oak-Web-Application/commit/67f916a8b2a28c56ca5d234a3068b497dc8f0a1a))
+
 # [1.1284.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1283.0...v1.1284.0) (2026-11-25)
 
 
