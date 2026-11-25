@@ -343,11 +343,6 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c125 {
-  padding-bottom: 5rem;
-  font-family: --var(google-font),Lexend,sans-serif;
-}
-
 .c128 {
   overflow: hidden;
   width: 15rem;
@@ -357,7 +352,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   overflow: hidden;
 }
 
-.c130 {
+.c129 {
   position: relative;
   width: 100%;
   aspect-ratio: 2/3;
@@ -365,26 +360,26 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c132 {
+.c131 {
   background: #e3e9fb;
   border-radius: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c134 {
+.c133 {
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 2rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c138 {
+.c137 {
   padding-left: 0.25rem;
   display: inline;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c139 {
+.c138 {
   position: relative;
   width: 2rem;
   min-width: 2rem;
@@ -394,19 +389,19 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c142 {
+.c141 {
   padding: 1rem;
   margin: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c145 {
+.c144 {
   height: 100%;
   border-radius: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c147 {
+.c146 {
   height: 100%;
   padding: 1rem;
   background: #ffffff;
@@ -897,7 +892,13 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   gap: 0.75rem;
 }
 
-.c131 {
+.c127 {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.c130 {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -906,13 +907,13 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c133 {
+.c132 {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.c135 {
+.c134 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -920,25 +921,25 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   gap: 1.5rem;
 }
 
-.c148 {
+.c147 {
   display: flex;
   gap: 1rem;
 }
 
-.c152 {
+.c151 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 1rem;
 }
 
-.c153 {
+.c152 {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.c156 {
+.c155 {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -1643,7 +1644,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   color: #222222;
 }
 
-.c136 {
+.c135 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.5rem;
@@ -1651,7 +1652,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c154 {
+.c153 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.25rem;
@@ -1730,7 +1731,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   margin-top: 1rem;
 }
 
-.c155 {
+.c154 {
   font-family: --var(google-font),Lexend,sans-serif;
   color: #222222;
 }
@@ -1771,7 +1772,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   gap: 0.75rem;
 }
 
-.c141 {
+.c140 {
   width: 1.25em;
   min-width: 1.25em;
   height: 1.25em;
@@ -1797,7 +1798,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c24 .c140 {
+.c24 .c139 {
   filter: invert(21%) sepia(90%) saturate(3220%) hue-rotate(232deg) brightness(71%) contrast(127%);
   display: inline-block;
   vertical-align: text-top;
@@ -1811,7 +1812,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   color: #081676;
 }
 
-.c24:visited .c140 {
+.c24:visited .c139 {
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
 
@@ -1820,7 +1821,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   outline: 1px solid #081676;
 }
 
-.c24:active .c140 {
+.c24:active .c139 {
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
 
@@ -1829,7 +1830,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   color: #808080;
 }
 
-.c24[disabled] .c140 {
+.c24[disabled] .c139 {
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
@@ -1888,25 +1889,25 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c146 {
+.c145 {
   box-shadow: none;
 }
 
-.c146:has(a:hover, button:hover) {
+.c145:has(a:hover, button:hover) {
   box-shadow: none;
 }
 
-.c146:has(   a,   button ) {
+.c145:has(   a,   button ) {
   border-radius: 0.5rem;
   box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c146:has(   a,   button ) a,
-.c146:has(   a,   button ) button {
+.c145:has(   a,   button ) a,
+.c145:has(   a,   button ) button {
   outline: none;
 }
 
-.c146:has(a:active, button:active) {
+.c145:has(a:active, button:active) {
   box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%),0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
@@ -2048,13 +2049,6 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   grid-row: span 1;
 }
 
-.c193 {
-  flex-direction: column;
-  grid-column: span 12;
-  grid-row: span undefined;
-  grid-row: span 1;
-}
-
 .c163 {
   font: inherit;
   color: inherit;
@@ -2111,7 +2105,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   visibility: visible;
 }
 
-.c137 {
+.c136 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -2161,14 +2155,14 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   background: #ffffff;
 }
 
-.c151 {
+.c150 {
   width: auto;
   aspect-ratio: 4/3;
   background: #f2f2f2;
   border-radius: 0.5rem;
 }
 
-.c151 img {
+.c150 img {
   border-radius: inherit;
   object-fit: cover;
 }
@@ -2179,25 +2173,25 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   flex-direction: column;
 }
 
-.c149 .c150 {
+.c148 .c149 {
   height: auto;
 }
 
-.c149:hover {
+.c148:hover {
   background: #f2f2f2;
 }
 
-.c149:hover h1,
-.c149:hover h2,
-.c149:hover h3,
-.c149:hover h4,
-.c149:hover h5,
-.c149:hover h6,
-.c149:hover span {
+.c148:hover h1,
+.c148:hover h2,
+.c148:hover h3,
+.c148:hover h4,
+.c148:hover h5,
+.c148:hover h6,
+.c148:hover span {
   text-decoration: underline;
 }
 
-.c149:hover span {
+.c148:hover span {
   text-decoration-thickness: 18%;
 }
 
@@ -2771,43 +2765,43 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 }
 
 @media (min-width: 750px) {
-  .c128 {
+  .c127 {
     gap: 1rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .c128 {
+  .c127 {
     gap: 1rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c131 {
+  .c130 {
     justify-content: center;
   }
 }
 
 @media (min-width: 1280px) {
-  .c131 {
+  .c130 {
     justify-content: flex-start;
   }
 }
 
 @media (min-width: 750px) {
-  .c133 {
+  .c132 {
     gap: 0rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c135 {
+  .c134 {
     flex-direction: row;
   }
 }
 
 @media (min-width: 750px) {
-  .c135 {
+  .c134 {
     align-items: center;
   }
 }
@@ -3215,25 +3209,25 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 }
 
 @media (min-width: 750px) {
-  .c136 {
+  .c135 {
     font-weight: 600;
   }
 }
 
 @media (min-width: 750px) {
-  .c136 {
+  .c135 {
     font-size: 2rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c136 {
+  .c135 {
     line-height: 2.5rem;
   }
 }
 
 @media (min-width: 750px) {
-  .c136 {
+  .c135 {
     letter-spacing: 0.0115rem;
   }
 }
@@ -3402,8 +3396,8 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
     text-decoration-thickness: 18%;
   }
 
-  .c24:hover .c140,
-  .c24:visited:hover .c140 {
+  .c24:hover .c139,
+  .c24:visited:hover .c139 {
     filter: invert(16%) sepia(72%) saturate(7176%) hue-rotate(239deg) brightness(61%) contrast(109%);
   }
 }
@@ -3423,62 +3417,14 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 }
 
 @media (min-width: 750px) {
-  .c126 {
+  .c125 {
     row-gap: 1rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .c126 {
+  .c125 {
     row-gap: 1rem;
-  }
-}
-
-@media (min-width: 750px) {
-  .c126 {
-    column-gap: 1rem;
-  }
-}
-
-@media (min-width: 1280px) {
-  .c126 {
-    column-gap: 1rem;
-  }
-}
-
-@media (min-width: 750px) {
-  .c80 {
-    grid-column: span 6;
-  }
-}
-
-@media (min-width: 1280px) {
-  .c80 {
-    grid-column: span 5;
-  }
-}
-
-@media (min-width: 750px) {
-  .c89 {
-    grid-column: 7/span 6;
-  }
-}
-
-@media (min-width: 1280px) {
-  .c89 {
-    grid-column: 7/span 6;
-  }
-}
-
-@media (min-width: 750px) {
-  .c89 {
-    grid-column-start: 7;
-  }
-}
-
-@media (min-width: 1280px) {
-  .c89 {
-    grid-column-start: 7;
   }
 }
 
@@ -3513,8 +3459,8 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 }
 
 @media (min-width: 1280px) {
-  .c108 {
-    grid-column: 8/span 6;
+  .c90 {
+    grid-column: 7/span 6;
   }
 }
 
@@ -3527,18 +3473,6 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 @media (min-width: 1280px) {
   .c90 {
     grid-column-start: 7;
-  }
-}
-
-@media (min-width: 750px) {
-  .c108 {
-    grid-row-start: 2;
-  }
-}
-
-@media (min-width: 1280px) {
-  .c108 {
-    grid-row-start: 1;
   }
 }
 
@@ -3591,6 +3525,66 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 }
 
 @media (min-width: 750px) {
+  .c108 {
+    grid-row-start: 2;
+  }
+}
+
+@media (min-width: 1280px) {
+  .c108 {
+    grid-row-start: 1;
+  }
+}
+
+@media (min-width: 750px) {
+  .c112 {
+    grid-column: 2/span 10;
+  }
+}
+
+@media (min-width: 1280px) {
+  .c112 {
+    grid-column: 3/span 8;
+  }
+}
+
+@media (min-width: 750px) {
+  .c112 {
+    grid-column-start: 2;
+  }
+}
+
+@media (min-width: 1280px) {
+  .c112 {
+    grid-column-start: 3;
+  }
+}
+
+@media (min-width: 750px) {
+  .c124 {
+    grid-column: 2/span 10;
+  }
+}
+
+@media (min-width: 1280px) {
+  .c124 {
+    grid-column: 1/span 12;
+  }
+}
+
+@media (min-width: 750px) {
+  .c124 {
+    grid-column-start: 2;
+  }
+}
+
+@media (min-width: 1280px) {
+  .c124 {
+    grid-column-start: 1;
+  }
+}
+
+@media (min-width: 750px) {
   .c126 {
     grid-column: span 12;
   }
@@ -3609,7 +3603,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
 }
 
 @media (min-width: 750px) {
-  .c192 {
+  .c193 {
     grid-column: span 3;
   }
 }
@@ -3627,107 +3621,6 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
   }
 }
 
-<<<<<<<<< Temporary merge branch 1
-@media (min-width: 750px) {
-  .c122 {
-    row-gap: 1rem;
-  }
-}
-
-@media (min-width: 1280px) {
-  .c122 {
-    row-gap: 1rem;
-  }
-}
-
-@media (min-width: 750px) {
-  .c122 {
-    column-gap: 1rem;
-  }
-}
-
-@media (min-width: 1280px) {
-  .c122 {
-    column-gap: 1rem;
-  }
-}
-
-@media (min-width: 750px) {
-  .c78 {
-    grid-column: span 6;
-  }
-}
-
-@media (min-width: 1280px) {
-  .c78 {
-    grid-column: span 5;
-  }
-}
-
-@media (min-width: 750px) {
-  .c87 {
-    grid-column: 7/span 6;
-  }
-}
-
-@media (min-width: 1280px) {
-  .c87 {
-    grid-column: 7/span 6;
-  }
-}
-
-@media (min-width: 750px) {
-  .c87 {
-    grid-column-start: 7;
-  }
-}
-
-@media (min-width: 1280px) {
-  .c87 {
-    grid-column-start: 7;
-  }
-}
-
-@media (min-width: 750px) {
-  .c103 {
-    grid-column: span 12;
-  }
-}
-
-@media (min-width: 1280px) {
-  .c103 {
-    grid-column: span 6;
-  }
-}
-
-@media (min-width: 750px) {
-  .c104 {
-    grid-column: span 12;
-  }
-}
-
-@media (min-width: 1280px) {
-  .c104 {
-    grid-column: 8/span 6;
-  }
-}
-
-@media (min-width: 750px) {
-  .c104 {
-    grid-column-start: 0;
-  }
-}
-
-@media (min-width: 1280px) {
-  .c104 {
-    grid-column-start: 8;
-  }
-}
-
-@media (min-width: 750px) {
-  .c137 {
-    grid-column: span 3;
-=========
 @media (max-width:800px) {
   .c179 {
     grid-template-columns: repeat(1,1fr);
@@ -5348,7 +5241,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                               class="c9 c46"
                             >
                               <span
-                                class="c139"
+                                class="c138"
                               >
                                 <img
                                   alt=""
@@ -5402,7 +5295,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                               class="c9 c46"
                             >
                               <span
-                                class="c139"
+                                class="c138"
                               >
                                 <img
                                   alt=""
@@ -5456,7 +5349,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                               class="c9 c46"
                             >
                               <span
-                                class="c139"
+                                class="c138"
                               >
                                 <img
                                   alt=""
@@ -5510,7 +5403,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                               class="c9 c46"
                             >
                               <span
-                                class="c139"
+                                class="c138"
                               >
                                 <img
                                   alt=""
@@ -5564,7 +5457,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                               class="c9 c46"
                             >
                               <span
-                                class="c139"
+                                class="c138"
                               >
                                 <img
                                   alt=""
@@ -5618,7 +5511,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                               class="c9 c46"
                             >
                               <span
-                                class="c139"
+                                class="c138"
                               >
                                 <img
                                   alt=""
@@ -5672,7 +5565,7 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                               class="c9 c46"
                             >
                               <span
-                                class="c139"
+                                class="c138"
                               >
                                 <img
                                   alt=""
@@ -5846,10 +5739,10 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                             </span>
                           </span>
                           <div
-                            class="c138"
+                            class="c137"
                           >
                             <span
-                              class="c139 c140 c141"
+                              class="c138 c139 c140"
                             >
                               <img
                                 alt=""
@@ -6017,10 +5910,10 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                             </span>
                           </span>
                           <div
-                            class="c138"
+                            class="c137"
                           >
                             <span
-                              class="c139 c140 c141"
+                              class="c138 c139 c140"
                             >
                               <img
                                 alt=""
@@ -6068,10 +5961,10 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                             </span>
                           </span>
                           <div
-                            class="c138"
+                            class="c137"
                           >
                             <span
-                              class="c139 c140 c141"
+                              class="c138 c139 c140"
                             >
                               <img
                                 alt=""
@@ -6119,10 +6012,10 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                             </span>
                           </span>
                           <div
-                            class="c138"
+                            class="c137"
                           >
                             <span
-                              class="c139 c140 c141"
+                              class="c138 c139 c140"
                             >
                               <img
                                 alt=""
@@ -6149,7 +6042,6 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                   data-chromatic="ignore"
                 >
                   <h2
-                    class="c195"
                     class="c195"
                   >
                     Legal
@@ -6605,7 +6497,6 @@ exports[`pages/about/get-involved/join-research-panel.tsx renders 1`] = `
                 class="c194 c86"
               >
                 <p
-                  class="c213"
                   class="c213"
                 >
                   © Oak National Academy Limited, No 14174888
