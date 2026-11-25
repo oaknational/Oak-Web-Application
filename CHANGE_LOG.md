@@ -1,3 +1,34 @@
+# [1.1286.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1285.0...v1.1286.0) (2026-11-25)
+
+
+### Bug Fixes
+
+* add target to oakLink ([8402906](https://github.com/oaknational/Oak-Web-Application/commit/8402906fcc26eca2b29e7cf455e329a3e69d8ad9))
+* col spans and positions ([319dfa1](https://github.com/oaknational/Oak-Web-Application/commit/319dfa1ce5eb298aab821636fd662d03cfb995a1))
+* gap spacing array ([e7e03e9](https://github.com/oaknational/Oak-Web-Application/commit/e7e03e93e36db6785395a3ac6f80dca26416feef))
+* gap spacing array ([4453add](https://github.com/oaknational/Oak-Web-Application/commit/4453add8063928562966116f2a89a00fa5a0b415))
+* lint ([b97a521](https://github.com/oaknational/Oak-Web-Application/commit/b97a521451aafe5140566cad516d01b5263442d3))
+* ol spacing ([7a92b38](https://github.com/oaknational/Oak-Web-Application/commit/7a92b38c7134f6b3ef6d7e3c3a8ad38a730859f2))
+* remove padding from individual blocks andinstead use gap in nc and join research ([9ed3e2c](https://github.com/oaknational/Oak-Web-Application/commit/9ed3e2c06f2cecd8b027e02395264ea61df5d071))
+* remove unnecessary row span ([cfa0a1d](https://github.com/oaknational/Oak-Web-Application/commit/cfa0a1d6b3e647e1a9b305d767751f07aaf11727))
+* snaps ([0150480](https://github.com/oaknational/Oak-Web-Application/commit/015048059c86a9b11db6c845e157fdbf1c5bebb9))
+* snaps ([df6ca12](https://github.com/oaknational/Oak-Web-Application/commit/df6ca12d143deaec1df1bf8df5e3c6d16382c846))
+* spacing for OL ([b0a1c90](https://github.com/oaknational/Oak-Web-Application/commit/b0a1c906366a377aa29ec9f76dfeb6ec9105002a))
+* support link styles ([5dcc7c7](https://github.com/oaknational/Oak-Web-Application/commit/5dcc7c7fd4f68d7eebee2763001af0a8434d4568))
+
+
+### Features
+
+* add fixtures ([155b6f1](https://github.com/oaknational/Oak-Web-Application/commit/155b6f195f713bd2ae56c3244dd7d60d198cc99f))
+* add imagePosition to fixture ([bc06e94](https://github.com/oaknational/Oak-Web-Application/commit/bc06e94c7d232b1529dfae95aa1fe79b80d2c5f6))
+* add imagePosition to storybook ([7c1fdc6](https://github.com/oaknational/Oak-Web-Application/commit/7c1fdc6c61ccd0747ad5e39141c7c32e43832f42))
+* add tests to cover grid logic ([386af5e](https://github.com/oaknational/Oak-Web-Application/commit/386af5efd4e05a4da07b75efeaa0816251378d57))
+* add tests with fixtures ([cb21b2d](https://github.com/oaknational/Oak-Web-Application/commit/cb21b2d616756b5e220eae6e8ab2d5be06aa6a9b))
+* rename and move out to independent component ([60d2596](https://github.com/oaknational/Oak-Web-Application/commit/60d259653619941c4505c511834b6722c8fd23c1))
+* use fixtures in storybook ([becb80a](https://github.com/oaknational/Oak-Web-Application/commit/becb80a11bbb5d5077b0bddb18c565f87cb1b476))
+* use imagePosition to conditionally render img position in block ([1818b1c](https://github.com/oaknational/Oak-Web-Application/commit/1818b1c1676ecec1ae5fae9879ae6836fb321d53))
+* use join research panel text and media in nc alignment checker ([2f9201a](https://github.com/oaknational/Oak-Web-Application/commit/2f9201a75fc5aaeed653b3036434960ee79b2f14))
+
 # [1.1285.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1284.0...v1.1285.0) (2026-11-25)
 
 
