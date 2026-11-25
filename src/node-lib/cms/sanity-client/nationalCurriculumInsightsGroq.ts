@@ -218,28 +218,31 @@ const pageSummaryProjection = `{
   "availableKeyStages": coalesce(keyStages[defined(page->_id)].keyStage, [])
 }`;
 
+const pageContentProjection = `
+  title,
+  summary,
+  seo { title, description, canonicalURL },
+  ${modulesProjection}
+`;
+
 const keyStagePageProjection = `{
   "id": _id,
   "pageType": "keyStage",
   keyStage,
-  title,
-  summary,
-  ${modulesProjection}
+  ${pageContentProjection}
 }`;
 
 const pageProjection = `{
   "id": _id,
   pageType,
   downloadLayout,
-  title,
-  summary,
   "expectedKeyStages": coalesce(keyStages[].keyStage, []),
   "keyStages": coalesce(keyStages[defined(page->_id)]{
     keyStage,
     label,
     "page": page->${keyStagePageProjection}
   }, []),
-  ${modulesProjection}
+  ${pageContentProjection}
 }`;
 
 export const nationalCurriculumInsightsHubQuery = `
@@ -248,8 +251,6 @@ export const nationalCurriculumInsightsHubQuery = `
     _id in [$hubId, $draftHubId]
   ] | order(_updatedAt desc)[0] {
     "id": _id,
-    title,
-    summary,
     "phaseLinks": coalesce(phaseLinks[
       defined(subject->_id) && phase in subject->tabs[defined(page->_id)].kind &&
       (!defined(keyStage) || keyStage in subject->tabs[kind == ^.phase][0].page->keyStages[defined(page->_id)].keyStage)
@@ -272,7 +273,7 @@ export const nationalCurriculumInsightsHubQuery = `
         "page": page->${pageSummaryProjection}
       }, [])
     }, []),
-    ${modulesProjection}
+    ${pageContentProjection}
   }
 `;
 
@@ -283,8 +284,6 @@ export const nationalCurriculumInsightsSubjectBySlugQuery = `
   ] | order(_updatedAt desc)[0] {
     "id": _id,
     "pageType": "overview",
-    title,
-    summary,
     slug,
     illustration ${imageProjection},
     curriculumSubjectSlugs,
@@ -293,7 +292,7 @@ export const nationalCurriculumInsightsSubjectBySlugQuery = `
       label,
       "page": page->${pageProjection}
     }, []),
-    ${modulesProjection}
+    ${pageContentProjection}
   }
 `;
 
@@ -304,9 +303,7 @@ export const nationalCurriculumInsightsGuidancePageQuery = `
   ] | order(_updatedAt desc)[0] {
     "id": _id,
     "pageType": "guidance",
-    title,
-    summary,
-    ${modulesProjection}
+    ${pageContentProjection}
   }
 `;
 
