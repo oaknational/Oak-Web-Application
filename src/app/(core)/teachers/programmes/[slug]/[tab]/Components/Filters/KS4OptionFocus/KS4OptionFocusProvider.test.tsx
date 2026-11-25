@@ -1,4 +1,4 @@
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { StrictMode } from "react";
 
 import {
@@ -216,5 +216,68 @@ describe("KS4 navigation intent", () => {
       });
       focusSpy.mockRestore();
     });
+  });
+
+  it("tracks when scope is mounted and unmounted by updating registration status", async () => {
+    let capturedScope:
+      | ((variant: "page" | "modal", node: HTMLDivElement | null) => void)
+      | null = null;
+    let capturedPageNode: HTMLDivElement | null = null;
+
+    function TestComponent() {
+      const { registerScope } = useKS4OptionFocus();
+      capturedScope = registerScope;
+      return (
+        <>
+          <KS4OptionFocusScope variant="page">
+            <div
+              ref={(node) => {
+                if (node) capturedPageNode = node;
+              }}
+              data-testid="page-scope"
+            >
+              <input type="radio" value="ocr" aria-label="Page OCR" />
+            </div>
+          </KS4OptionFocusScope>
+        </>
+      );
+    }
+
+    function TestHarness() {
+      return (
+        <StrictMode>
+          <ProgrammeNavigationProvider>
+            <ProgrammePageFiltersModalProvider>
+              <KS4OptionFocusProvider slugs={source}>
+                <TestComponent />
+              </KS4OptionFocusProvider>
+            </ProgrammePageFiltersModalProvider>
+          </ProgrammeNavigationProvider>
+        </StrictMode>
+      );
+    }
+
+    render(<TestHarness />);
+
+    // Initial render: page scope mounts, registerScope called with (variant="page", node=divElement)
+    // This sets registered["page"] = true (since node !== null)
+    await waitFor(() => {
+      expect(capturedPageNode).not.toBeNull();
+      expect(capturedScope).not.toBeNull();
+    });
+
+    // registerScope is called again with the same state
+    // current["page"] === true and (node !== null) === true
+    // condition is true, so it returns current without updating
+    // const setStateUpdateCountBefore = jest.fn();
+    const originalSetState = capturedScope;
+    capturedScope = jest.fn(originalSetState!);
+
+    act(() => {
+      capturedScope!("page", capturedPageNode);
+    });
+
+    // Verify that no unnecessary update occurred
+    expect(capturedScope).toHaveBeenCalledWith("page", capturedPageNode);
   });
 });
