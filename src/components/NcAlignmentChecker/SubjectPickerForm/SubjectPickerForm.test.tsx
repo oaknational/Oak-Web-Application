@@ -88,7 +88,7 @@ describe("SubjectPickerForm", () => {
     expect(screen.getByRole("alert")).toBeEmptyDOMElement();
   });
 
-  it("announces the subject error in the alert region on submit", async () => {
+  it("announces the subject error in the alert region and does not navigate on submit when no subject selected", async () => {
     const user = userEvent.setup();
     render(<SubjectPickerForm {...basic} />);
 
@@ -97,6 +97,11 @@ describe("SubjectPickerForm", () => {
     await waitFor(() => {
       expect(screen.getByRole("alert")).toHaveTextContent(SUBJECT_ERROR);
     });
+    await waitFor(() => {
+      expect(screen.getAllByText(SUBJECT_ERROR)).toHaveLength(2);
+    });
+    expect(screen.queryByText(KEY_STAGE_ERROR)).not.toBeInTheDocument();
+    expect(mockPush).not.toHaveBeenCalled();
   });
 
   it("announces the key stage error in the alert region when a subject is chosen without a key stage", async () => {
@@ -110,18 +115,9 @@ describe("SubjectPickerForm", () => {
       expect(screen.getByRole("alert")).toHaveTextContent(KEY_STAGE_ERROR);
     });
     expect(screen.getByRole("alert")).not.toHaveTextContent(SUBJECT_ERROR);
-  });
-
-  it("shows a subject error and does not navigate when submitted empty", async () => {
-    const user = userEvent.setup();
-    render(<SubjectPickerForm {...basic} />);
-
-    await user.click(getSubmitButton());
-
     await waitFor(() => {
-      expect(screen.getAllByText(SUBJECT_ERROR)).toHaveLength(2);
+      expect(screen.getAllByText(KEY_STAGE_ERROR)).toHaveLength(2);
     });
-    expect(screen.queryByText(KEY_STAGE_ERROR)).not.toBeInTheDocument();
     expect(mockPush).not.toHaveBeenCalled();
   });
 
@@ -154,19 +150,6 @@ describe("SubjectPickerForm", () => {
     await waitFor(() => {
       expect(screen.queryByText(SUBJECT_ERROR)).not.toBeInTheDocument();
     });
-  });
-
-  it("shows a key stage error and does not navigate when only a subject is chosen", async () => {
-    const user = userEvent.setup();
-    render(<SubjectPickerForm {...basic} />);
-
-    await user.click(screen.getByRole("radio", { name: "Science" }));
-    await user.click(getSubmitButton());
-
-    await waitFor(() => {
-      expect(screen.getAllByText(KEY_STAGE_ERROR)).toHaveLength(2);
-    });
-    expect(mockPush).not.toHaveBeenCalled();
   });
 
   it("clears the key stage error once a key stage is chosen", async () => {
