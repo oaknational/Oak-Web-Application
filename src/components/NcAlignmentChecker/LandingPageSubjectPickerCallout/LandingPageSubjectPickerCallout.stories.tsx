@@ -2,7 +2,7 @@ import type { Meta } from "@storybook/react";
 
 import SubjectPickerCallout from "./LandingPageSubjectPickerCallout";
 
-import { basic } from "@/components/NcAlignmentChecker/SubjectPickerForm/SubjectPickerForm.fixtures";
+import { basicSubjectPickerFormFixture } from "@/components/NcAlignmentChecker/SubjectPickerForm/SubjectPickerForm.fixtures";
 
 const meta = {
   component: SubjectPickerCallout,
@@ -14,6 +14,6 @@ export default meta;
 
 export const Default = {
   args: {
-    subjectPicker: { ...basic },
+    subjectPicker: { ...basicSubjectPickerFormFixture },
   },
 };

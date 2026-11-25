@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { useRouter } from "next/navigation";
 
 import SubjectPickerForm from "./SubjectPickerForm";
-import { basic } from "./SubjectPickerForm.fixtures";
+import { basicSubjectPickerFormFixture } from "./SubjectPickerForm.fixtures";
 import { KEY_STAGES, YEAR_GROUPS } from "./formData";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -16,7 +16,9 @@ const SUBJECT_ERROR = "Choose a subject to continue";
 const KEY_STAGE_ERROR = "Choose a key stage to continue";
 
 const getSubmitButton = () =>
-  screen.getByRole("button", { name: basic.buttonText });
+  screen.getByRole("button", {
+    name: basicSubjectPickerFormFixture.buttonText,
+  });
 
 describe("SubjectPickerForm", () => {
   beforeEach(() => {
@@ -25,18 +27,25 @@ describe("SubjectPickerForm", () => {
   });
 
   it("matches snapshot and renders data", () => {
-    const { container } = render(<SubjectPickerForm {...basic} />);
+    const { container } = render(
+      <SubjectPickerForm {...basicSubjectPickerFormFixture} />,
+    );
     expect(container).toMatchSnapshot();
 
     expect(
-      screen.getByRole("heading", { level: 2, name: basic.title }),
+      screen.getByRole("heading", {
+        level: 2,
+        name: basicSubjectPickerFormFixture.title,
+      }),
     ).toBeInTheDocument();
-    expect(screen.getByText(basic.bannerLabel)).toBeInTheDocument();
+    expect(
+      screen.getByText(basicSubjectPickerFormFixture.bannerLabel),
+    ).toBeInTheDocument();
     expect(getSubmitButton()).toHaveAttribute("type", "submit");
   });
 
   it("does not render the key stage options until a subject is chosen", async () => {
-    render(<SubjectPickerForm {...basic} />);
+    render(<SubjectPickerForm {...basicSubjectPickerFormFixture} />);
 
     expect(
       screen.queryByRole("group", { name: "Choose your key stage" }),
@@ -59,7 +68,7 @@ describe("SubjectPickerForm", () => {
   });
 
   it("renders the year options when Maths is chosen", async () => {
-    render(<SubjectPickerForm {...basic} />);
+    render(<SubjectPickerForm {...basicSubjectPickerFormFixture} />);
 
     expect(
       screen.queryByRole("group", { name: "Choose your year group" }),
@@ -82,7 +91,7 @@ describe("SubjectPickerForm", () => {
   });
 
   it("renders an empty alert region on initial render", () => {
-    render(<SubjectPickerForm {...basic} />);
+    render(<SubjectPickerForm {...basicSubjectPickerFormFixture} />);
 
     expect(screen.getByRole("alert")).toBeInTheDocument();
     expect(screen.getByRole("alert")).toBeEmptyDOMElement();
@@ -90,7 +99,7 @@ describe("SubjectPickerForm", () => {
 
   it("announces the subject error in the alert region and does not navigate on submit when no subject selected", async () => {
     const user = userEvent.setup();
-    render(<SubjectPickerForm {...basic} />);
+    render(<SubjectPickerForm {...basicSubjectPickerFormFixture} />);
 
     await user.click(getSubmitButton());
 
@@ -106,7 +115,7 @@ describe("SubjectPickerForm", () => {
 
   it("announces the key stage error in the alert region when a subject is chosen without a key stage", async () => {
     const user = userEvent.setup();
-    render(<SubjectPickerForm {...basic} />);
+    render(<SubjectPickerForm {...basicSubjectPickerFormFixture} />);
 
     await user.click(screen.getByRole("radio", { name: "History" }));
     await user.click(getSubmitButton());
@@ -123,7 +132,7 @@ describe("SubjectPickerForm", () => {
 
   it("does not show a key stage error when the key stage field mounts after a failed submit", async () => {
     const user = userEvent.setup();
-    render(<SubjectPickerForm {...basic} />);
+    render(<SubjectPickerForm {...basicSubjectPickerFormFixture} />);
 
     await user.click(getSubmitButton());
     await waitFor(() => {
@@ -138,7 +147,7 @@ describe("SubjectPickerForm", () => {
 
   it("clears the subject error once a subject is chosen", async () => {
     const user = userEvent.setup();
-    render(<SubjectPickerForm {...basic} />);
+    render(<SubjectPickerForm {...basicSubjectPickerFormFixture} />);
 
     await user.click(getSubmitButton());
     await waitFor(() => {
@@ -154,7 +163,7 @@ describe("SubjectPickerForm", () => {
 
   it("clears the key stage error once a key stage is chosen", async () => {
     const user = userEvent.setup();
-    render(<SubjectPickerForm {...basic} />);
+    render(<SubjectPickerForm {...basicSubjectPickerFormFixture} />);
 
     await user.click(screen.getByRole("radio", { name: "Science" }));
     await user.click(getSubmitButton());
@@ -171,7 +180,7 @@ describe("SubjectPickerForm", () => {
   });
 
   it("does not mark the subject group as invalid before submitting", () => {
-    render(<SubjectPickerForm {...basic} />);
+    render(<SubjectPickerForm {...basicSubjectPickerFormFixture} />);
 
     const subjectGroup = screen.getByRole("group", {
       name: "Choose your primary subject",
@@ -182,7 +191,7 @@ describe("SubjectPickerForm", () => {
 
   it("associates the subject error with the subject group", async () => {
     const user = userEvent.setup();
-    render(<SubjectPickerForm {...basic} />);
+    render(<SubjectPickerForm {...basicSubjectPickerFormFixture} />);
 
     await user.click(getSubmitButton());
 
@@ -199,7 +208,7 @@ describe("SubjectPickerForm", () => {
 
   it("navigates to the selected subject and key stage", async () => {
     const user = userEvent.setup();
-    render(<SubjectPickerForm {...basic} />);
+    render(<SubjectPickerForm {...basicSubjectPickerFormFixture} />);
 
     await user.click(screen.getByRole("radio", { name: "Science" }));
     await user.click(screen.getByRole("radio", { name: "Key stage 2" }));
@@ -215,7 +224,7 @@ describe("SubjectPickerForm", () => {
   describe("changing subject", () => {
     it("clears the key stage when switching to Maths and does not navigate until a year is chosen", async () => {
       const user = userEvent.setup();
-      render(<SubjectPickerForm {...basic} />);
+      render(<SubjectPickerForm {...basicSubjectPickerFormFixture} />);
 
       await user.click(screen.getByRole("radio", { name: "Science" }));
       await user.click(screen.getByRole("radio", { name: "Key stage 2" }));
@@ -253,7 +262,7 @@ describe("SubjectPickerForm", () => {
 
     it("clears the key stage when switching between two key stage subjects", async () => {
       const user = userEvent.setup();
-      render(<SubjectPickerForm {...basic} />);
+      render(<SubjectPickerForm {...basicSubjectPickerFormFixture} />);
 
       await user.click(screen.getByRole("radio", { name: "Science" }));
       await user.click(screen.getByRole("radio", { name: "Key stage 2" }));
@@ -288,7 +297,7 @@ describe("SubjectPickerForm", () => {
 
     it("clears an existing key stage error when the subject changes", async () => {
       const user = userEvent.setup();
-      render(<SubjectPickerForm {...basic} />);
+      render(<SubjectPickerForm {...basicSubjectPickerFormFixture} />);
 
       await user.click(screen.getByRole("radio", { name: "Science" }));
       await user.click(getSubmitButton());

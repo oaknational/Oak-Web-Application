@@ -1,4 +1,4 @@
-export const basic = {
+export const basicSubjectPickerFormFixture = {
   title: "Which subject would you like to check?",
   tag: "Get started",
   bannerLabel:
