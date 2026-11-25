@@ -83,7 +83,9 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
                   {disabled ? (
                     <BreadcrumbConstrainer>{label}</BreadcrumbConstrainer>
                   ) : (
-                    <StyledLink href={href}>{label}</StyledLink>
+                    <StyledLink href={href} variant="secondary">
+                      {label}
+                    </StyledLink>
                   )}
                 </OakFocusIndicator>
               </BreadcrumbsLi>
