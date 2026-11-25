@@ -1,3 +1,17 @@
+# [1.1285.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1284.0...v1.1285.0) (2026-11-25)
+
+
+### Features
+
+* retain last radio value when changing exam board ([67f916a](https://github.com/oaknational/Oak-Web-Application/commit/67f916a8b2a28c56ca5d234a3068b497dc8f0a1a))
+
+# [1.1284.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1283.0...v1.1284.0) (2026-11-25)
+
+
+### Features
+
+* use resuable fragment and zod schema for faqs ([08ec65e](https://github.com/oaknational/Oak-Web-Application/commit/08ec65ef522760ebc7239b74fba97bea059b4ec9))
+
 # [1.1283.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1282.0...v1.1283.0) (2026-11-24)
 
 
