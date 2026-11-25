@@ -1,3 +1,18 @@
+# [1.1288.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1287.0...v1.1288.0) (2026-11-25)
+
+
+### Bug Fixes
+
+* column-gap on mobile causing overflow ([1365a89](https://github.com/oaknational/Oak-Web-Application/commit/1365a89a4a96c57c9c79fc723fdc7ecf6d8fff43))
+* fix ([4e81a57](https://github.com/oaknational/Oak-Web-Application/commit/4e81a57af4564b8f37c1f8032f6423b346ed76dc))
+* snaps ([3064aa1](https://github.com/oaknational/Oak-Web-Application/commit/3064aa1647542c9d4dd29641cf3964fedeb76d25))
+* snaps ([de38b35](https://github.com/oaknational/Oak-Web-Application/commit/de38b35583799de7e6b5d9dec228fbe8c6083647))
+
+
+### Features
+
+* support more than 2 people in the <JoinResearchPanelPeople/> component ([fa00ab5](https://github.com/oaknational/Oak-Web-Application/commit/fa00ab503bde1cabeae218c3753c4d7bc42667b1))
+
 # [1.1287.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1286.0...v1.1287.0) (2026-11-25)
 
 
