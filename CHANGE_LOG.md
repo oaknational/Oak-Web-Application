@@ -1,3 +1,10 @@
+# [1.1284.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1283.0...v1.1284.0) (2026-11-25)
+
+
+### Features
+
+* use resuable fragment and zod schema for faqs ([08ec65e](https://github.com/oaknational/Oak-Web-Application/commit/08ec65ef522760ebc7239b74fba97bea059b4ec9))
+
 # [1.1283.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1282.0...v1.1283.0) (2026-11-24)
 
 
