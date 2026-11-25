@@ -69,7 +69,7 @@ exports[`Teachers Page Page component renders 1`] = `
         </script>
       </fake-head>
       <div
-        class="sc-bdvwhi sc-gsDMPd idbbhg cvDmZS"
+        class="sc-bdvwhi sc-jRQBiJ idbbhg hRMWZn"
       >
         <header
           class="sc-bdvwhi jWxyY"
@@ -79,7 +79,7 @@ exports[`Teachers Page Page component renders 1`] = `
             class="sc-bdvwhi ifFSgR"
           >
             <div
-              class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+              class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
             >
               <div
                 class="sc-bdvwhi kAFHfV grey-shadow"
@@ -88,16 +88,16 @@ exports[`Teachers Page Page component renders 1`] = `
                 class="sc-bdvwhi kAFHfV yellow-shadow"
               />
               <a
-                class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
+                class="sc-furwPO sc-iqsgXZ eQRPqU bpUfmH internal-button"
                 data-testid="skip-link"
                 href="#main"
                 style="position: absolute; left: -10000px;"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                  class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                 >
                   <span
-                    class="sc-dkPwfY kXQhTZ"
+                    class="sc-iCfNyT gaSeFZ"
                   >
                     Skip to content
                   </span>
@@ -106,10 +106,10 @@ exports[`Teachers Page Page component renders 1`] = `
             </div>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd hZQFXJ ijSRAr"
+            class="sc-bdvwhi sc-jRQBiJ hZQFXJ cqhqtm"
           >
             <div
-              class="sc-bdvwhi sc-iqsgXZ bZiwHb gxchUF"
+              class="sc-bdvwhi sc-eggkz bZiwHb epOvRX"
             >
               <div
                 class="sc-bdvwhi kAFHfV grey-shadow"
@@ -119,14 +119,14 @@ exports[`Teachers Page Page component renders 1`] = `
               />
               <a
                 aria-current="true"
-                class="sc-eCIkAO sc-jrQAon canKaL eGeOxA internal-button"
+                class="sc-furwPO sc-iqsgXZ hYSSMU bpUfmH internal-button"
                 href="/"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                  class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                 >
                   <span
-                    class="sc-dkPwfY jASiOm"
+                    class="sc-iCfNyT cFyWQm"
                   >
                     Teachers
                   </span>
@@ -134,7 +134,7 @@ exports[`Teachers Page Page component renders 1`] = `
               </a>
             </div>
             <div
-              class="sc-bdvwhi sc-iqsgXZ bZiwHb hjfwPa"
+              class="sc-bdvwhi sc-eggkz bZiwHb iXJDXQ"
             >
               <div
                 class="sc-bdvwhi kAFHfV grey-shadow"
@@ -144,14 +144,14 @@ exports[`Teachers Page Page component renders 1`] = `
               />
               <a
                 aria-current="false"
-                class="sc-eCIkAO sc-jrQAon gjfqHX fODyRh internal-button"
+                class="sc-furwPO sc-iqsgXZ ckbaw kpPtpO internal-button"
                 href="/pupils/years"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                  class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                 >
                   <span
-                    class="sc-dkPwfY jASiOm"
+                    class="sc-iCfNyT cFyWQm"
                   >
                     Go to 
                     pupils
@@ -161,7 +161,7 @@ exports[`Teachers Page Page component renders 1`] = `
                   >
                     <img
                       alt=""
-                      class="sc-jRQBiJ eMsccW"
+                      class="sc-gsDMPd frprTL"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -174,22 +174,22 @@ exports[`Teachers Page Page component renders 1`] = `
             </div>
           </div>
           <nav
-            class="sc-bdvwhi sc-gsDMPd fgPPqL eDsKsK"
+            class="sc-bdvwhi sc-jRQBiJ fgPPqL darJbj"
           >
             <a
               aria-label="Home"
-              class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
+              class="sc-iJKPHa kymEhS sc-iNGDOz hPscCj"
               href="/"
             >
               <span
-                class="sc-dkPwfY fgmEIT"
+                class="sc-iCfNyT fAQctr"
               >
                 <span
                   class="sc-bdvwhi fBJYrN"
                 >
                   <img
                     alt=""
-                    class="sc-jRQBiJ hssYEG"
+                    class="sc-gsDMPd ctfyuj"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -202,7 +202,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 >
                   <img
                     alt=""
-                    class="sc-jRQBiJ hssYEG"
+                    class="sc-gsDMPd ctfyuj"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -213,7 +213,7 @@ exports[`Teachers Page Page component renders 1`] = `
               </span>
             </a>
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU cWjqBO"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU jiHaiL"
               data-testid="teachers-subnav"
               id="teachers-subnav"
             >
@@ -221,13 +221,13 @@ exports[`Teachers Page Page component renders 1`] = `
                 class="sc-bdvwhi hPWTKU"
               >
                 <ul
-                  class="sc-kfPsKX zyInc"
+                  class="sc-iwjfEg fzbPHh"
                 >
                   <li
-                    class="sc-ieedpP bVasfV"
+                    class="sc-dlVwtM gJeoTk"
                   >
                     <div
-                      class="sc-bdvwhi sc-iqsgXZ giIlgC gxchUF"
+                      class="sc-bdvwhi sc-eggkz giIlgC epOvRX"
                     >
                       <div
                         class="sc-bdvwhi kAFHfV grey-shadow"
@@ -238,15 +238,15 @@ exports[`Teachers Page Page component renders 1`] = `
                       <button
                         aria-expanded="false"
                         aria-haspopup="true"
-                        class="sc-eCIkAO sc-jrQAon TVMnz lhNPft internal-button"
+                        class="sc-furwPO sc-iqsgXZ fnxOkw dpugOG internal-button"
                         data-testid="teachers-primary"
                         id="teachers-primary"
                       >
                         <div
-                          class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
+                          class="sc-bdvwhi sc-jRQBiJ hPWTKU ipDmak"
                         >
                           <span
-                            class="sc-dkPwfY iVFbem"
+                            class="sc-iCfNyT gEjDNy"
                           >
                             Primary
                           </span>
@@ -255,10 +255,10 @@ exports[`Teachers Page Page component renders 1`] = `
                     </div>
                   </li>
                   <li
-                    class="sc-ieedpP bVasfV"
+                    class="sc-dlVwtM gJeoTk"
                   >
                     <div
-                      class="sc-bdvwhi sc-iqsgXZ giIlgC gxchUF"
+                      class="sc-bdvwhi sc-eggkz giIlgC epOvRX"
                     >
                       <div
                         class="sc-bdvwhi kAFHfV grey-shadow"
@@ -269,15 +269,15 @@ exports[`Teachers Page Page component renders 1`] = `
                       <button
                         aria-expanded="false"
                         aria-haspopup="true"
-                        class="sc-eCIkAO sc-jrQAon TVMnz lhNPft internal-button"
+                        class="sc-furwPO sc-iqsgXZ fnxOkw dpugOG internal-button"
                         data-testid="teachers-secondary"
                         id="teachers-secondary"
                       >
                         <div
-                          class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
+                          class="sc-bdvwhi sc-jRQBiJ hPWTKU ipDmak"
                         >
                           <span
-                            class="sc-dkPwfY iVFbem"
+                            class="sc-iCfNyT gEjDNy"
                           >
                             Secondary
                           </span>
@@ -286,10 +286,10 @@ exports[`Teachers Page Page component renders 1`] = `
                     </div>
                   </li>
                   <li
-                    class="sc-ieedpP bVasfV"
+                    class="sc-dlVwtM gJeoTk"
                   >
                     <div
-                      class="sc-bdvwhi sc-iqsgXZ giIlgC gxchUF"
+                      class="sc-bdvwhi sc-eggkz giIlgC epOvRX"
                     >
                       <div
                         class="sc-bdvwhi kAFHfV grey-shadow"
@@ -300,15 +300,15 @@ exports[`Teachers Page Page component renders 1`] = `
                       <button
                         aria-expanded="false"
                         aria-haspopup="true"
-                        class="sc-eCIkAO sc-jrQAon TVMnz lhNPft internal-button"
+                        class="sc-furwPO sc-iqsgXZ fnxOkw dpugOG internal-button"
                         data-testid="teachers-guidance"
                         id="teachers-guidance"
                       >
                         <div
-                          class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
+                          class="sc-bdvwhi sc-jRQBiJ hPWTKU ipDmak"
                         >
                           <span
-                            class="sc-dkPwfY iVFbem"
+                            class="sc-iCfNyT gEjDNy"
                           >
                             Guidance
                           </span>
@@ -317,10 +317,10 @@ exports[`Teachers Page Page component renders 1`] = `
                     </div>
                   </li>
                   <li
-                    class="sc-ieedpP bVasfV"
+                    class="sc-dlVwtM gJeoTk"
                   >
                     <div
-                      class="sc-bdvwhi sc-iqsgXZ giIlgC gxchUF"
+                      class="sc-bdvwhi sc-eggkz giIlgC epOvRX"
                     >
                       <div
                         class="sc-bdvwhi kAFHfV grey-shadow"
@@ -331,15 +331,15 @@ exports[`Teachers Page Page component renders 1`] = `
                       <button
                         aria-expanded="false"
                         aria-haspopup="true"
-                        class="sc-eCIkAO sc-jrQAon TVMnz lhNPft internal-button"
+                        class="sc-furwPO sc-iqsgXZ fnxOkw dpugOG internal-button"
                         data-testid="teachers-aboutUs"
                         id="teachers-aboutUs"
                       >
                         <div
-                          class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
+                          class="sc-bdvwhi sc-jRQBiJ hPWTKU ipDmak"
                         >
                           <span
-                            class="sc-dkPwfY iVFbem"
+                            class="sc-iCfNyT gEjDNy"
                           >
                             About us
                           </span>
@@ -348,10 +348,10 @@ exports[`Teachers Page Page component renders 1`] = `
                     </div>
                   </li>
                   <li
-                    class="sc-ieedpP bVasfV"
+                    class="sc-dlVwtM gJeoTk"
                   >
                     <div
-                      class="sc-bdvwhi sc-iqsgXZ giIlgC gxchUF"
+                      class="sc-bdvwhi sc-eggkz giIlgC epOvRX"
                     >
                       <div
                         class="sc-bdvwhi kAFHfV grey-shadow"
@@ -361,16 +361,16 @@ exports[`Teachers Page Page component renders 1`] = `
                       />
                       <a
                         aria-label="Ai experiments (this will open in a new tab)"
-                        class="sc-eCIkAO sc-jrQAon TVMnz lhNPft internal-button"
+                        class="sc-furwPO sc-iqsgXZ fnxOkw dpugOG internal-button"
                         href="https://labs.thenational.academy"
                         id="teachers-labs"
                         target="_blank"
                       >
                         <div
-                          class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
+                          class="sc-bdvwhi sc-jRQBiJ hPWTKU ipDmak"
                         >
                           <span
-                            class="sc-dkPwfY iVFbem"
+                            class="sc-iCfNyT gEjDNy"
                           >
                             Ai experiments
                           </span>
@@ -379,7 +379,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           >
                             <img
                               alt=""
-                              class="sc-jRQBiJ fZPumv"
+                              class="sc-gsDMPd bkRpZy"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
@@ -394,7 +394,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 </ul>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd hPWTKU gCyLHX"
+                class="sc-bdvwhi sc-jRQBiJ hPWTKU aUIvq"
               >
                 <form
                   action="/teachers/search"
@@ -406,12 +406,12 @@ exports[`Teachers Page Page component renders 1`] = `
                     class="sc-bdvwhi aIwlt"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd sc-cTAoCz fgcOpf eWbmLh gkqGfv"
+                      class="sc-bdvwhi sc-jRQBiJ sc-TBUBK fgcOpf bBQXks jeqvXV"
                     >
                       <input
                         aria-invalid="false"
                         aria-label="Lesson and unit search"
-                        class="sc-efQVjI iOeTAG"
+                        class="sc-dvQa-dN irFrWk"
                         name="term"
                         placeholder="Search"
                         type="search"
@@ -422,18 +422,18 @@ exports[`Teachers Page Page component renders 1`] = `
                     class="sc-bdvwhi eOvzlK"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex bTnqgZ"
+                      class="sc-bdvwhi sc-jRQBiJ sc-ksdwth gyHFon heSanc kRYzWy"
                     >
                       <button
                         aria-label="Submit search"
-                        class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                        class="sc-furwPO sc-bqiQyc bKSeku ivslVy"
                         type="submit"
                       >
                         <div
-                          class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                          class="sc-bdvwhi sc-jRQBiJ hPWTKU fWyDHF"
                         >
                           <div
-                            class="sc-bdvwhi sc-gsDMPd gCFyZH gbgSUZ icon-container"
+                            class="sc-bdvwhi sc-jRQBiJ gCFyZH tMmkI icon-container"
                           >
                             <div
                               class="sc-bdvwhi joRFWv shadow"
@@ -444,7 +444,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             >
                               <img
                                 alt=""
-                                class="sc-jRQBiJ buswnv"
+                                class="sc-gsDMPd kvEPQa"
                                 data-nimg="fill"
                                 decoding="async"
                                 loading="lazy"
@@ -454,7 +454,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             </span>
                           </div>
                           <span
-                            class="sc-dkPwfY cSKbCa"
+                            class="sc-iCfNyT eMPvca"
                           />
                         </div>
                       </button>
@@ -465,18 +465,18 @@ exports[`Teachers Page Page component renders 1`] = `
                   class="sc-bdvwhi jiFgkN"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex bTnqgZ"
+                    class="sc-bdvwhi sc-jRQBiJ sc-ksdwth gyHFon heSanc kRYzWy"
                   >
                     <a
                       aria-label="Search"
-                      class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                      class="sc-furwPO sc-bqiQyc bKSeku ivslVy"
                       href="/teachers/search"
                     >
                       <div
-                        class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                        class="sc-bdvwhi sc-jRQBiJ hPWTKU fWyDHF"
                       >
                         <div
-                          class="sc-bdvwhi sc-gsDMPd gCFyZH gbgSUZ icon-container"
+                          class="sc-bdvwhi sc-jRQBiJ gCFyZH tMmkI icon-container"
                         >
                           <div
                             class="sc-bdvwhi joRFWv shadow"
@@ -487,7 +487,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           >
                             <img
                               alt=""
-                              class="sc-jRQBiJ buswnv"
+                              class="sc-gsDMPd kvEPQa"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
@@ -497,43 +497,47 @@ exports[`Teachers Page Page component renders 1`] = `
                           </span>
                         </div>
                         <span
-                          class="sc-dkPwfY cSKbCa"
+                          class="sc-iCfNyT eMPvca"
                         />
                       </div>
                     </a>
                   </div>
                 </div>
-                <a
-                  aria-label="My library"
-                  class="sc-eCIkAO sc-hYQmIO leuZXC iqPAvY"
-                  href="/teachers/my-library"
-                >
-                  <div
-                    class="sc-bdvwhi sc-gsDMPd evZLCm igJqEq oak-save-count"
-                  >
-                    <span
-                      class="sc-bdvwhi dsdZgi"
-                      data-testid="bookmark-outlined"
-                    >
-                      <img
-                        alt=""
-                        class="sc-jRQBiJ eMsccW"
-                        data-nimg="fill"
-                        decoding="async"
-                        loading="lazy"
-                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734519491/icons/bookmark-outlined_rxe5v0.svg"
-                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                      />
-                    </span>
-                    <div
-                      class="sc-bdvwhi nQgAu"
-                    >
-                      My library
-                    </div>
-                  </div>
-                </a>
                 <div
-                  class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+                  class="sc-bdvwhi hpxhcR"
+                >
+                  <a
+                    aria-label="My library"
+                    class="sc-furwPO sc-dkqRie ldrLRx dvJbLP"
+                    href="/teachers/my-library"
+                  >
+                    <div
+                      class="sc-bdvwhi sc-jRQBiJ evZLCm jJvsor oak-save-count"
+                    >
+                      <span
+                        class="sc-bdvwhi dsdZgi"
+                        data-testid="bookmark-outlined"
+                      >
+                        <img
+                          alt=""
+                          class="sc-gsDMPd frprTL"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734519491/icons/bookmark-outlined_rxe5v0.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </span>
+                      <div
+                        class="sc-bdvwhi nQgAu"
+                      >
+                        My library
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <div
+                  class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
                 >
                   <div
                     class="sc-bdvwhi kAFHfV grey-shadow"
@@ -542,13 +546,13 @@ exports[`Teachers Page Page component renders 1`] = `
                     class="sc-bdvwhi kAFHfV yellow-shadow"
                   />
                   <button
-                    class="sc-eCIkAO sc-jrQAon jtKaqd bXRQbB internal-button"
+                    class="sc-furwPO sc-iqsgXZ eSrOBe ejiSfK internal-button"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
+                      class="sc-bdvwhi sc-jRQBiJ hPWTKU ipDmak"
                     >
                       <span
-                        class="sc-dkPwfY iVFbem"
+                        class="sc-iCfNyT gEjDNy"
                       >
                         Sign in
                       </span>
@@ -561,7 +565,7 @@ exports[`Teachers Page Page component renders 1`] = `
               class="sc-bdvwhi bppgzs"
             >
               <div
-                class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+                class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
               >
                 <div
                   class="sc-bdvwhi kAFHfV grey-shadow"
@@ -572,18 +576,18 @@ exports[`Teachers Page Page component renders 1`] = `
                 <button
                   aria-expanded="false"
                   aria-label="Open navigation menu"
-                  class="sc-eCIkAO sc-jrQAon cyLqiG eGeOxA internal-button"
+                  class="sc-furwPO sc-iqsgXZ fcqKQB bpUfmH internal-button"
                   data-testid="top-nav-hamburger-button"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU fWyDHF"
                   >
                     <span
                       class="sc-bdvwhi cERAFe"
                     >
                       <img
                         alt=""
-                        class="sc-jRQBiJ fZPumv"
+                        class="sc-gsDMPd bkRpZy"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -592,7 +596,7 @@ exports[`Teachers Page Page component renders 1`] = `
                       />
                     </span>
                     <span
-                      class="sc-dkPwfY kXQhTZ"
+                      class="sc-iCfNyT gaSeFZ"
                     />
                   </div>
                 </button>
@@ -601,7 +605,7 @@ exports[`Teachers Page Page component renders 1`] = `
           </nav>
         </header>
         <main
-          class="sc-bdvwhi sc-gsDMPd jtiAen cvDmZS"
+          class="sc-bdvwhi sc-jRQBiJ jtiAen hRMWZn"
           id="main"
         >
           <div
@@ -609,46 +613,66 @@ exports[`Teachers Page Page component renders 1`] = `
             role="banner"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd dlqybO gbgSUZ"
+              class="sc-bdvwhi sc-jRQBiJ cKHYVb tMmkI"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd cGNkYI exciDE"
+                class="sc-bdvwhi sc-jRQBiJ cGNkYI iaFRyt"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd hhNAar jnKJpK"
+                  class="sc-bdvwhi sc-jRQBiJ nYnOw kveLqr"
                 >
-                  <p
-                    class="sc-hGPAwl dsYCxW"
+                  <div
+                    class="sc-bdvwhi sc-jRQBiJ sc-efQVjI jxcarK tMmkI biBgPk"
                   >
-                    Oak is now used in 
-                    <strong>
-                      72%
-                    </strong>
-                     of schools
+                    <svg
+                      class="sc-eCIkAO iPSBqF"
+                      height="100%"
+                      viewBox="0 0 56 27"
+                      width="100%"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M6.421 0c8.661.839 17.303.834 26.16.714a89.843 89.843 0 0 1 4.834-.013c6.333.32 12.39.317 18.506-.275 0 1.26.178 2.352 0 3.44-.276 1.38-.829 2.759-1.342 4.15-.138.354-.532.706-.808 1.06-.445.248-.63.5-.553.753 1.598 1.093-.256 2.185 0 3.277.276 1.529 1.322 3.058 1.204 4.572-.138 1.771-1.046 3.543-1.973 5.312-.288.4-1.065.792-2.309 1.169-2.288.755-4.103 1.67-11.206 1.965-9.936.417-20.953.385-30.678-.09-2.447-.12-4.38-.532-5.209-.853-1.035-.458-1.52-.929-1.44-1.4C.937 18.988-.109 14.194.01 9.4c0-2.645 1.973-5.29 3.413-7.933.237-.424 1.697-.839 3-1.468Z"
+                      />
+                    </svg>
+                    <div
+                      class="sc-bdvwhi sc-jRQBiJ kIIdsx tMmkI"
+                    >
+                      <span
+                        class="sc-iCfNyT bIsAbJ"
+                      >
+                        New
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    class="sc-fKVoIy fjyRbn"
+                  >
+                    Oak is now used in 72% of schools
                   </p>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd sc-ksdwth gyHFon Bakex fnQopp"
+                  class="sc-bdvwhi sc-jRQBiJ sc-fotPuT gyHFon heSanc lkUtiq"
                 >
                   <a
-                    class="sc-eCIkAO sc-bqiQyc fqeNIm iKPRnI"
+                    class="sc-furwPO sc-hBUSYK bwcpMF exdzYH"
                     href="/about-us/oaks-impact"
                     title="Explore our impact"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd fiFqxI fzOhMJ"
+                      class="sc-bdvwhi sc-jRQBiJ fiFqxI ipDmak"
                     >
                       <span
-                        class="sc-dkPwfY hmZYGI"
+                        class="sc-iCfNyT hEdkgI"
                       >
                         <span
-                          class="sc-dkPwfY cSKbCa"
+                          class="sc-iCfNyT eMPvca"
                         >
                           Explore our impact
                         </span>
                       </span>
                       <div
-                        class="sc-bdvwhi sc-gsDMPd jGKTIi gbgSUZ icon-container"
+                        class="sc-bdvwhi sc-jRQBiJ jGKTIi tMmkI icon-container"
                       >
                         <div
                           class="sc-bdvwhi jWxyY"
@@ -658,7 +682,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           >
                             <img
                               alt=""
-                              class="sc-jRQBiJ gNTPxL"
+                              class="sc-gsDMPd guEUmW"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
@@ -671,7 +695,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           >
                             <img
                               alt=""
-                              class="sc-jRQBiJ jkAeRD"
+                              class="sc-gsDMPd kEQsoG"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
@@ -685,7 +709,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           >
                             <img
                               alt=""
-                              class="sc-jRQBiJ hUAHnf"
+                              class="sc-gsDMPd bSBZXu"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
@@ -702,19 +726,19 @@ exports[`Teachers Page Page component renders 1`] = `
             </div>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd iolTRh gEEEZl"
+            class="sc-bdvwhi sc-jRQBiJ iolTRh cgdPfs"
           >
             <div
               class="sc-bdvwhi dA-DELb"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd juCSL jfdfik"
+                class="sc-bdvwhi sc-jRQBiJ juCSL gNKbrx"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+                  class="sc-bdvwhi sc-jRQBiJ hPWTKU heDWJn"
                 >
                   <h1
-                    class="sc-bkkgYE kwGONG"
+                    class="sc-hGPAwl jAoFCW"
                   >
                     <div
                       class="sc-bdvwhi dWCVkE"
@@ -728,22 +752,23 @@ exports[`Teachers Page Page component renders 1`] = `
                     </div>
                   </h1>
                   <div
-                    class="sc-bdvwhi sc-dlVwtM feZyjk fuRyxh"
+                    class="sc-bdvwhi sc-bBHAhJ feZyjk gpRTUa"
                   >
                     Free, national curriculum-aligned resources designed by subject experts, openly available to support innovation.
                   </div>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd jtiAen eChlAW"
+                  class="sc-bdvwhi sc-jRQBiJ jtiAen heDWJn"
                 >
                   <div
-                    class="sc-bdvwhi sc-b4caafee-0 jtiAen beswLS"
+                    class="sc-bdvwhi sc-548a3d54-0 jtiAen cqbkbz"
                   >
                     <img
                       alt=""
                       class="sc-ba397cd3-0 igiEGH"
                       data-nimg="1"
                       decoding="async"
+                      fetchpriority="high"
                       height="313"
                       src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=1080&h=645&fm=webp&q=80&fit=clip&auto=format"
                       srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=640&h=382&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=1080&h=645&fm=webp&q=80&fit=clip&auto=format 2x"
@@ -756,7 +781,7 @@ exports[`Teachers Page Page component renders 1`] = `
                   class="sc-bdvwhi jtiAen"
                 >
                   <h2
-                    class="sc-bkkgYE iDnUit"
+                    class="sc-hGPAwl lmlRdd"
                   >
                     Explore curriculum plans and teaching resources
                   </h2>
@@ -775,17 +800,17 @@ exports[`Teachers Page Page component renders 1`] = `
                       data-testid="lot-picker"
                     >
                       <div
-                        class="sc-bdvwhi sc-gsDMPd gTzLfY fhpkRe"
+                        class="sc-bdvwhi sc-jRQBiJ gTzLfY bVmMlL"
                       >
                         <div
-                          class="sc-bdvwhi sc-gsDMPd jtiAen bdlsww"
+                          class="sc-bdvwhi sc-jRQBiJ jtiAen kpwWYN"
                         >
                           <div
-                            class="sc-bdvwhi sc-gsDMPd itnzEL iXPaQn"
+                            class="sc-bdvwhi sc-jRQBiJ itnzEL dNuiUC"
                             style="width: 50%;"
                           >
                             <div
-                              class="sc-bdvwhi sc-bXTeWK sc-f0455c2c-1 eRfXEK jlFrQG iNrxLE"
+                              class="sc-bdvwhi sc-iUKrAm sc-f0455c2c-1 eRfXEK dIIqHs iNrxLE"
                             >
                               <button
                                 aria-expanded="false"
@@ -797,13 +822,13 @@ exports[`Teachers Page Page component renders 1`] = `
                                   class="sc-bdvwhi cTdqVL"
                                 >
                                   <span
-                                    class="sc-dkPwfY llFgDF"
+                                    class="sc-iCfNyT dAEQzN"
                                     data-testid="subject-picker-button-heading"
                                   >
                                     Subject
                                   </span>
                                   <p
-                                    class="sc-hGPAwl xxZLO"
+                                    class="sc-fKVoIy jdJglH"
                                   >
                                     Select
                                   </p>
@@ -851,13 +876,13 @@ exports[`Teachers Page Page component renders 1`] = `
                             style="width: 50%;"
                           >
                             <div
-                              class="sc-bdvwhi sc-gsDMPd itnzEL bYYpbR"
+                              class="sc-bdvwhi sc-jRQBiJ itnzEL cqHxJI"
                             >
                               <div
-                                class="sc-bdvwhi sc-bXTeWK sc-f0455c2c-1 NRtFW jlFrQG iNrxLE"
+                                class="sc-bdvwhi sc-iUKrAm sc-f0455c2c-1 NRtFW dIIqHs iNrxLE"
                               >
                                 <div
-                                  class="sc-bdvwhi sc-gsDMPd hPWTKU jXqXXp"
+                                  class="sc-bdvwhi sc-jRQBiJ hPWTKU kZUQGY"
                                 >
                                   <button
                                     aria-expanded="false"
@@ -869,7 +894,7 @@ exports[`Teachers Page Page component renders 1`] = `
                                       class="sc-bdvwhi ggRoDJ"
                                     >
                                       <span
-                                        class="sc-dkPwfY llFgDF"
+                                        class="sc-iCfNyT dAEQzN"
                                         data-testid="phase-picker-button-heading"
                                       >
                                         School phase
@@ -882,10 +907,10 @@ exports[`Teachers Page Page component renders 1`] = `
                                     </div>
                                   </button>
                                   <div
-                                    class="sc-bdvwhi sc-gsDMPd gceOgu hGfQdd"
+                                    class="sc-bdvwhi sc-jRQBiJ gceOgu iTgips"
                                   >
                                     <div
-                                      class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+                                      class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
                                     >
                                       <div
                                         class="sc-bdvwhi kAFHfV grey-shadow"
@@ -894,14 +919,14 @@ exports[`Teachers Page Page component renders 1`] = `
                                         class="sc-bdvwhi kAFHfV yellow-shadow"
                                       />
                                       <button
-                                        class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                                        class="sc-furwPO sc-iqsgXZ xrJiU kpPtpO internal-button"
                                         data-testid="lot-picker-view-curriculum-button"
                                       >
                                         <div
-                                          class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                                          class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                                         >
                                           <span
-                                            class="sc-dkPwfY kXQhTZ"
+                                            class="sc-iCfNyT gaSeFZ"
                                           >
                                             View
                                           </span>
@@ -910,7 +935,7 @@ exports[`Teachers Page Page component renders 1`] = `
                                           >
                                             <img
                                               alt=""
-                                              class="sc-jRQBiJ buswnv"
+                                              class="sc-gsDMPd kvEPQa"
                                               data-nimg="fill"
                                               decoding="async"
                                               loading="lazy"
@@ -932,10 +957,10 @@ exports[`Teachers Page Page component renders 1`] = `
                   </nav>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd frkKSo hnYwnv"
+                  class="sc-bdvwhi sc-jRQBiJ frkKSo kdQKHK"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd fiwzWI hdQbeU"
+                    class="sc-bdvwhi sc-jRQBiJ fiwzWI cHooPB"
                   >
                     <div
                       class="sc-bdvwhi fJjfMf"
@@ -946,7 +971,7 @@ exports[`Teachers Page Page component renders 1`] = `
                       >
                         <img
                           alt=""
-                          class="sc-jRQBiJ eMsccW"
+                          class="sc-gsDMPd frprTL"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
@@ -956,13 +981,13 @@ exports[`Teachers Page Page component renders 1`] = `
                       </span>
                     </div>
                     <p
-                      class="sc-hGPAwl kxOiJj"
+                      class="sc-fKVoIy iGPSlO"
                     >
                       Teaching resources
                     </p>
                   </div>
                   <div
-                    class="sc-bdvwhi sc-gsDMPd fiwzWI hdQbeU"
+                    class="sc-bdvwhi sc-jRQBiJ fiwzWI cHooPB"
                   >
                     <div
                       class="sc-bdvwhi fJjfMf"
@@ -973,7 +998,7 @@ exports[`Teachers Page Page component renders 1`] = `
                       >
                         <img
                           alt=""
-                          class="sc-jRQBiJ eMsccW"
+                          class="sc-gsDMPd frprTL"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
@@ -983,13 +1008,13 @@ exports[`Teachers Page Page component renders 1`] = `
                       </span>
                     </div>
                     <p
-                      class="sc-hGPAwl kxOiJj"
+                      class="sc-fKVoIy iGPSlO"
                     >
                       Curriculum plans
                     </p>
                   </div>
                   <div
-                    class="sc-bdvwhi sc-gsDMPd fiwzWI hdQbeU"
+                    class="sc-bdvwhi sc-jRQBiJ fiwzWI cHooPB"
                   >
                     <div
                       class="sc-bdvwhi jEJhnM"
@@ -1000,7 +1025,7 @@ exports[`Teachers Page Page component renders 1`] = `
                       >
                         <img
                           alt=""
-                          class="sc-jRQBiJ eMsccW"
+                          class="sc-gsDMPd frprTL"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
@@ -1010,7 +1035,7 @@ exports[`Teachers Page Page component renders 1`] = `
                       </span>
                     </div>
                     <p
-                      class="sc-hGPAwl kxOiJj"
+                      class="sc-fKVoIy iGPSlO"
                     >
                       AI tools
                     </p>
@@ -1022,16 +1047,16 @@ exports[`Teachers Page Page component renders 1`] = `
               class="sc-bdvwhi gUdFHA"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd kfKAWJ tHAgC"
+                class="sc-bdvwhi sc-jRQBiJ kfKAWJ fvpLXr"
               >
                 <div
                   class="sc-bdvwhi glcwX"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU heDWJn"
                   >
                     <h1
-                      class="sc-bkkgYE kwGONG"
+                      class="sc-hGPAwl jAoFCW"
                     >
                       <div
                         class="sc-bdvwhi dWCVkE"
@@ -1045,7 +1070,7 @@ exports[`Teachers Page Page component renders 1`] = `
                       </div>
                     </h1>
                     <div
-                      class="sc-bdvwhi sc-dlVwtM feZyjk fuRyxh"
+                      class="sc-bdvwhi sc-bBHAhJ feZyjk gpRTUa"
                     >
                       Free, national curriculum-aligned resources designed by subject experts, openly available to support innovation.
                     </div>
@@ -1055,13 +1080,14 @@ exports[`Teachers Page Page component renders 1`] = `
                   class="sc-bdvwhi glcwX"
                 >
                   <div
-                    class="sc-bdvwhi sc-b4caafee-0 jtiAen beswLS"
+                    class="sc-bdvwhi sc-548a3d54-0 jtiAen cqbkbz"
                   >
                     <img
                       alt=""
                       class="sc-ba397cd3-0 igiEGH"
                       data-nimg="1"
                       decoding="async"
+                      fetchpriority="high"
                       height="313"
                       src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=1080&h=645&fm=webp&q=80&fit=clip&auto=format"
                       srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=640&h=382&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=1080&h=645&fm=webp&q=80&fit=clip&auto=format 2x"
@@ -1075,7 +1101,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 class="sc-bdvwhi jtiAen"
               >
                 <h2
-                  class="sc-bkkgYE iDnUit"
+                  class="sc-hGPAwl lmlRdd"
                 >
                   Explore curriculum plans and teaching resources
                 </h2>
@@ -1094,17 +1120,17 @@ exports[`Teachers Page Page component renders 1`] = `
                     data-testid="lot-picker"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd gTzLfY fhpkRe"
+                      class="sc-bdvwhi sc-jRQBiJ gTzLfY bVmMlL"
                     >
                       <div
-                        class="sc-bdvwhi sc-gsDMPd jtiAen bdlsww"
+                        class="sc-bdvwhi sc-jRQBiJ jtiAen kpwWYN"
                       >
                         <div
-                          class="sc-bdvwhi sc-gsDMPd itnzEL iXPaQn"
+                          class="sc-bdvwhi sc-jRQBiJ itnzEL dNuiUC"
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-bdvwhi sc-bXTeWK sc-f0455c2c-1 eRfXEK jlFrQG iNrxLE"
+                            class="sc-bdvwhi sc-iUKrAm sc-f0455c2c-1 eRfXEK dIIqHs iNrxLE"
                           >
                             <button
                               aria-expanded="false"
@@ -1116,13 +1142,13 @@ exports[`Teachers Page Page component renders 1`] = `
                                 class="sc-bdvwhi cTdqVL"
                               >
                                 <span
-                                  class="sc-dkPwfY llFgDF"
+                                  class="sc-iCfNyT dAEQzN"
                                   data-testid="subject-picker-button-heading"
                                 >
                                   Subject
                                 </span>
                                 <p
-                                  class="sc-hGPAwl xxZLO"
+                                  class="sc-fKVoIy jdJglH"
                                 >
                                   Select
                                 </p>
@@ -1170,13 +1196,13 @@ exports[`Teachers Page Page component renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-bdvwhi sc-gsDMPd itnzEL bYYpbR"
+                            class="sc-bdvwhi sc-jRQBiJ itnzEL cqHxJI"
                           >
                             <div
-                              class="sc-bdvwhi sc-bXTeWK sc-f0455c2c-1 NRtFW jlFrQG iNrxLE"
+                              class="sc-bdvwhi sc-iUKrAm sc-f0455c2c-1 NRtFW dIIqHs iNrxLE"
                             >
                               <div
-                                class="sc-bdvwhi sc-gsDMPd hPWTKU jXqXXp"
+                                class="sc-bdvwhi sc-jRQBiJ hPWTKU kZUQGY"
                               >
                                 <button
                                   aria-expanded="false"
@@ -1188,7 +1214,7 @@ exports[`Teachers Page Page component renders 1`] = `
                                     class="sc-bdvwhi ggRoDJ"
                                   >
                                     <span
-                                      class="sc-dkPwfY llFgDF"
+                                      class="sc-iCfNyT dAEQzN"
                                       data-testid="phase-picker-button-heading"
                                     >
                                       School phase
@@ -1201,10 +1227,10 @@ exports[`Teachers Page Page component renders 1`] = `
                                   </div>
                                 </button>
                                 <div
-                                  class="sc-bdvwhi sc-gsDMPd gceOgu hGfQdd"
+                                  class="sc-bdvwhi sc-jRQBiJ gceOgu iTgips"
                                 >
                                   <div
-                                    class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+                                    class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
                                   >
                                     <div
                                       class="sc-bdvwhi kAFHfV grey-shadow"
@@ -1213,14 +1239,14 @@ exports[`Teachers Page Page component renders 1`] = `
                                       class="sc-bdvwhi kAFHfV yellow-shadow"
                                     />
                                     <button
-                                      class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                                      class="sc-furwPO sc-iqsgXZ xrJiU kpPtpO internal-button"
                                       data-testid="lot-picker-view-curriculum-button"
                                     >
                                       <div
-                                        class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                                        class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                                       >
                                         <span
-                                          class="sc-dkPwfY kXQhTZ"
+                                          class="sc-iCfNyT gaSeFZ"
                                         >
                                           View
                                         </span>
@@ -1229,7 +1255,7 @@ exports[`Teachers Page Page component renders 1`] = `
                                         >
                                           <img
                                             alt=""
-                                            class="sc-jRQBiJ buswnv"
+                                            class="sc-gsDMPd kvEPQa"
                                             data-nimg="fill"
                                             decoding="async"
                                             loading="lazy"
@@ -1251,10 +1277,10 @@ exports[`Teachers Page Page component renders 1`] = `
                 </nav>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd frkKSo hnYwnv"
+                class="sc-bdvwhi sc-jRQBiJ frkKSo kdQKHK"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd fiwzWI hdQbeU"
+                  class="sc-bdvwhi sc-jRQBiJ fiwzWI cHooPB"
                 >
                   <div
                     class="sc-bdvwhi fJjfMf"
@@ -1265,7 +1291,7 @@ exports[`Teachers Page Page component renders 1`] = `
                     >
                       <img
                         alt=""
-                        class="sc-jRQBiJ eMsccW"
+                        class="sc-gsDMPd frprTL"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -1275,13 +1301,13 @@ exports[`Teachers Page Page component renders 1`] = `
                     </span>
                   </div>
                   <p
-                    class="sc-hGPAwl kxOiJj"
+                    class="sc-fKVoIy iGPSlO"
                   >
                     Teaching resources
                   </p>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd fiwzWI hdQbeU"
+                  class="sc-bdvwhi sc-jRQBiJ fiwzWI cHooPB"
                 >
                   <div
                     class="sc-bdvwhi fJjfMf"
@@ -1292,7 +1318,7 @@ exports[`Teachers Page Page component renders 1`] = `
                     >
                       <img
                         alt=""
-                        class="sc-jRQBiJ eMsccW"
+                        class="sc-gsDMPd frprTL"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -1302,13 +1328,13 @@ exports[`Teachers Page Page component renders 1`] = `
                     </span>
                   </div>
                   <p
-                    class="sc-hGPAwl kxOiJj"
+                    class="sc-fKVoIy iGPSlO"
                   >
                     Curriculum plans
                   </p>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd fiwzWI hdQbeU"
+                  class="sc-bdvwhi sc-jRQBiJ fiwzWI cHooPB"
                 >
                   <div
                     class="sc-bdvwhi jEJhnM"
@@ -1319,7 +1345,7 @@ exports[`Teachers Page Page component renders 1`] = `
                     >
                       <img
                         alt=""
-                        class="sc-jRQBiJ eMsccW"
+                        class="sc-gsDMPd frprTL"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -1329,7 +1355,7 @@ exports[`Teachers Page Page component renders 1`] = `
                     </span>
                   </div>
                   <p
-                    class="sc-hGPAwl kxOiJj"
+                    class="sc-fKVoIy iGPSlO"
                   >
                     AI tools
                   </p>
@@ -1340,16 +1366,16 @@ exports[`Teachers Page Page component renders 1`] = `
               class="sc-bdvwhi hkOFqI"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd kfKAWJ eunlcp"
+                class="sc-bdvwhi sc-jRQBiJ kfKAWJ fUPAoU"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd glcwX gQfmsJ"
+                  class="sc-bdvwhi sc-jRQBiJ glcwX bksIto"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU heDWJn"
                   >
                     <h1
-                      class="sc-bkkgYE kwGONG"
+                      class="sc-hGPAwl jAoFCW"
                     >
                       <div
                         class="sc-bdvwhi dWCVkE"
@@ -1363,7 +1389,7 @@ exports[`Teachers Page Page component renders 1`] = `
                       </div>
                     </h1>
                     <div
-                      class="sc-bdvwhi sc-dlVwtM feZyjk fuRyxh"
+                      class="sc-bdvwhi sc-bBHAhJ feZyjk gpRTUa"
                     >
                       Free, national curriculum-aligned resources designed by subject experts, openly available to support innovation.
                     </div>
@@ -1372,7 +1398,7 @@ exports[`Teachers Page Page component renders 1`] = `
                     class="sc-bdvwhi jtiAen"
                   >
                     <h2
-                      class="sc-bkkgYE iDnUit"
+                      class="sc-hGPAwl lmlRdd"
                     >
                       Explore curriculum plans and teaching resources
                     </h2>
@@ -1391,17 +1417,17 @@ exports[`Teachers Page Page component renders 1`] = `
                         data-testid="lot-picker"
                       >
                         <div
-                          class="sc-bdvwhi sc-gsDMPd gTzLfY fhpkRe"
+                          class="sc-bdvwhi sc-jRQBiJ gTzLfY bVmMlL"
                         >
                           <div
-                            class="sc-bdvwhi sc-gsDMPd jtiAen bdlsww"
+                            class="sc-bdvwhi sc-jRQBiJ jtiAen kpwWYN"
                           >
                             <div
-                              class="sc-bdvwhi sc-gsDMPd itnzEL iXPaQn"
+                              class="sc-bdvwhi sc-jRQBiJ itnzEL dNuiUC"
                               style="width: 50%;"
                             >
                               <div
-                                class="sc-bdvwhi sc-bXTeWK sc-f0455c2c-1 eRfXEK jlFrQG iNrxLE"
+                                class="sc-bdvwhi sc-iUKrAm sc-f0455c2c-1 eRfXEK dIIqHs iNrxLE"
                               >
                                 <button
                                   aria-expanded="false"
@@ -1413,13 +1439,13 @@ exports[`Teachers Page Page component renders 1`] = `
                                     class="sc-bdvwhi cTdqVL"
                                   >
                                     <span
-                                      class="sc-dkPwfY llFgDF"
+                                      class="sc-iCfNyT dAEQzN"
                                       data-testid="subject-picker-button-heading"
                                     >
                                       Subject
                                     </span>
                                     <p
-                                      class="sc-hGPAwl xxZLO"
+                                      class="sc-fKVoIy jdJglH"
                                     >
                                       Select
                                     </p>
@@ -1467,13 +1493,13 @@ exports[`Teachers Page Page component renders 1`] = `
                               style="width: 50%;"
                             >
                               <div
-                                class="sc-bdvwhi sc-gsDMPd itnzEL bYYpbR"
+                                class="sc-bdvwhi sc-jRQBiJ itnzEL cqHxJI"
                               >
                                 <div
-                                  class="sc-bdvwhi sc-bXTeWK sc-f0455c2c-1 NRtFW jlFrQG iNrxLE"
+                                  class="sc-bdvwhi sc-iUKrAm sc-f0455c2c-1 NRtFW dIIqHs iNrxLE"
                                 >
                                   <div
-                                    class="sc-bdvwhi sc-gsDMPd hPWTKU jXqXXp"
+                                    class="sc-bdvwhi sc-jRQBiJ hPWTKU kZUQGY"
                                   >
                                     <button
                                       aria-expanded="false"
@@ -1485,7 +1511,7 @@ exports[`Teachers Page Page component renders 1`] = `
                                         class="sc-bdvwhi ggRoDJ"
                                       >
                                         <span
-                                          class="sc-dkPwfY llFgDF"
+                                          class="sc-iCfNyT dAEQzN"
                                           data-testid="phase-picker-button-heading"
                                         >
                                           School phase
@@ -1498,10 +1524,10 @@ exports[`Teachers Page Page component renders 1`] = `
                                       </div>
                                     </button>
                                     <div
-                                      class="sc-bdvwhi sc-gsDMPd gceOgu hGfQdd"
+                                      class="sc-bdvwhi sc-jRQBiJ gceOgu iTgips"
                                     >
                                       <div
-                                        class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+                                        class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
                                       >
                                         <div
                                           class="sc-bdvwhi kAFHfV grey-shadow"
@@ -1510,14 +1536,14 @@ exports[`Teachers Page Page component renders 1`] = `
                                           class="sc-bdvwhi kAFHfV yellow-shadow"
                                         />
                                         <button
-                                          class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                                          class="sc-furwPO sc-iqsgXZ xrJiU kpPtpO internal-button"
                                           data-testid="lot-picker-view-curriculum-button"
                                         >
                                           <div
-                                            class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                                            class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                                           >
                                             <span
-                                              class="sc-dkPwfY kXQhTZ"
+                                              class="sc-iCfNyT gaSeFZ"
                                             >
                                               View
                                             </span>
@@ -1526,7 +1552,7 @@ exports[`Teachers Page Page component renders 1`] = `
                                             >
                                               <img
                                                 alt=""
-                                                class="sc-jRQBiJ buswnv"
+                                                class="sc-gsDMPd kvEPQa"
                                                 data-nimg="fill"
                                                 decoding="async"
                                                 loading="lazy"
@@ -1549,16 +1575,17 @@ exports[`Teachers Page Page component renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd glcwX enBTAV"
+                  class="sc-bdvwhi sc-jRQBiJ glcwX fnrreg"
                 >
                   <div
-                    class="sc-bdvwhi sc-b4caafee-0 jtiAen beswLS"
+                    class="sc-bdvwhi sc-548a3d54-0 jtiAen cqbkbz"
                   >
                     <img
                       alt=""
                       class="sc-ba397cd3-0 igiEGH"
                       data-nimg="1"
                       decoding="async"
+                      fetchpriority="high"
                       height="313"
                       src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=1080&h=645&fm=webp&q=80&fit=clip&auto=format"
                       srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=640&h=382&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/fee0c696a947cad65d15f44c614bd66e2b1bfb79-1048x628.jpg?w=1080&h=645&fm=webp&q=80&fit=clip&auto=format 2x"
@@ -1567,10 +1594,10 @@ exports[`Teachers Page Page component renders 1`] = `
                     />
                   </div>
                   <div
-                    class="sc-bdvwhi sc-gsDMPd frkKSo hnYwnv"
+                    class="sc-bdvwhi sc-jRQBiJ frkKSo kdQKHK"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd fiwzWI hdQbeU"
+                      class="sc-bdvwhi sc-jRQBiJ fiwzWI cHooPB"
                     >
                       <div
                         class="sc-bdvwhi fJjfMf"
@@ -1581,7 +1608,7 @@ exports[`Teachers Page Page component renders 1`] = `
                         >
                           <img
                             alt=""
-                            class="sc-jRQBiJ eMsccW"
+                            class="sc-gsDMPd frprTL"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -1591,13 +1618,13 @@ exports[`Teachers Page Page component renders 1`] = `
                         </span>
                       </div>
                       <p
-                        class="sc-hGPAwl kxOiJj"
+                        class="sc-fKVoIy iGPSlO"
                       >
                         Teaching resources
                       </p>
                     </div>
                     <div
-                      class="sc-bdvwhi sc-gsDMPd fiwzWI hdQbeU"
+                      class="sc-bdvwhi sc-jRQBiJ fiwzWI cHooPB"
                     >
                       <div
                         class="sc-bdvwhi fJjfMf"
@@ -1608,7 +1635,7 @@ exports[`Teachers Page Page component renders 1`] = `
                         >
                           <img
                             alt=""
-                            class="sc-jRQBiJ eMsccW"
+                            class="sc-gsDMPd frprTL"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -1618,13 +1645,13 @@ exports[`Teachers Page Page component renders 1`] = `
                         </span>
                       </div>
                       <p
-                        class="sc-hGPAwl kxOiJj"
+                        class="sc-fKVoIy iGPSlO"
                       >
                         Curriculum plans
                       </p>
                     </div>
                     <div
-                      class="sc-bdvwhi sc-gsDMPd fiwzWI hdQbeU"
+                      class="sc-bdvwhi sc-jRQBiJ fiwzWI cHooPB"
                     >
                       <div
                         class="sc-bdvwhi jEJhnM"
@@ -1635,7 +1662,7 @@ exports[`Teachers Page Page component renders 1`] = `
                         >
                           <img
                             alt=""
-                            class="sc-jRQBiJ eMsccW"
+                            class="sc-gsDMPd frprTL"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -1645,7 +1672,7 @@ exports[`Teachers Page Page component renders 1`] = `
                         </span>
                       </div>
                       <p
-                        class="sc-hGPAwl kxOiJj"
+                        class="sc-fKVoIy iGPSlO"
                       >
                         AI tools
                       </p>
@@ -1656,45 +1683,45 @@ exports[`Teachers Page Page component renders 1`] = `
             </div>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-jOxwkF dZvqSF cvDmZS"
+            class="sc-bdvwhi sc-jRQBiJ sc-dPiIMO dZvqSF hRMWZn"
           >
             <div
               class="sc-bdvwhi fROjdB"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd bpjVbf blXCbU"
+                class="sc-bdvwhi sc-jRQBiJ bpjVbf jSbEJh"
               >
                 <h2
-                  class="sc-bkkgYE bGbWBA"
+                  class="sc-hGPAwl kYYlU"
                 >
                   Stay up to date
                 </h2>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd hPWTKU dRPKud"
+                  class="sc-bdvwhi sc-jRQBiJ hPWTKU jCtwuc"
                 >
                   <div
-                    class="sc-bdvwhi sc-dlVwtM dXXguc gGdZTY"
+                    class="sc-bdvwhi sc-bBHAhJ dXXguc fGTEoL"
                   >
                     <a
                       class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                       href="/webinars"
                     >
                       <span
-                        class="sc-dkPwfY fgmEIT"
+                        class="sc-iCfNyT fAQctr"
                       >
                         All webinars
                       </span>
                     </a>
                   </div>
                   <div
-                    class="sc-bdvwhi sc-dlVwtM inpApF gGdZTY"
+                    class="sc-bdvwhi sc-bBHAhJ inpApF fGTEoL"
                   >
                     <a
                       class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
                       href="/blog"
                     >
                       <span
-                        class="sc-dkPwfY fgmEIT"
+                        class="sc-iCfNyT fAQctr"
                       >
                         All blogs
                       </span>
@@ -1703,16 +1730,16 @@ exports[`Teachers Page Page component renders 1`] = `
                 </div>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-a760817f-0 hPWTKU jMMTBg iyemNg"
+                class="sc-bdvwhi sc-jRQBiJ sc-a760817f-0 hPWTKU hhzFAB iyemNg"
               >
                 <ul
-                  class="sc-kfPsKX hKUEXo"
+                  class="sc-iwjfEg giQjFt"
                 >
                   <li
-                    class="sc-ieedpP bVasfV"
+                    class="sc-dlVwtM gJeoTk"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd gxLECK pmGvr"
+                      class="sc-bdvwhi sc-jRQBiJ gxLECK bZVTcC"
                     >
                       <div
                         class="sc-bdvwhi edZcJO"
@@ -1837,33 +1864,33 @@ exports[`Teachers Page Page component renders 1`] = `
                         </div>
                       </div>
                       <div
-                        class="sc-bdvwhi sc-gsDMPd jtiAen jMMTBg"
+                        class="sc-bdvwhi sc-jRQBiJ jtiAen hhzFAB"
                       >
                         <div
-                          class="sc-bdvwhi sc-gsDMPd jtiAen eFMdVa"
+                          class="sc-bdvwhi sc-jRQBiJ jtiAen gsAouT"
                         >
                           <span
-                            class="sc-dkPwfY leSQeG"
+                            class="sc-iCfNyT midmi"
                           >
                             <a
-                              class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
+                              class="sc-iJKPHa kymEhS sc-iNGDOz hPscCj"
                               href="/blog/categories/some-category"
                             >
                               <span
-                                class="sc-dkPwfY fgmEIT"
+                                class="sc-iCfNyT fAQctr"
                               >
                                 Some category
                               </span>
                             </a>
                           </span>
                           <p
-                            class="sc-hGPAwl fagwPP"
+                            class="sc-fKVoIy egvWSm"
                           >
                             1 December 2021
                           </p>
                         </div>
                         <h3
-                          class="sc-bkkgYE jXYjOw"
+                          class="sc-hGPAwl ekZMcs"
                         >
                           <a
                             class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
@@ -1871,14 +1898,14 @@ exports[`Teachers Page Page component renders 1`] = `
                             title="Some blog post"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Some blog post
                             </span>
                           </a>
                         </h3>
                         <p
-                          class="sc-hGPAwl eVhmCL"
+                          class="sc-fKVoIy jKJcvW"
                         >
                           <span
                             class="sc-b8a6ebf4-0 iJQpBf"
@@ -1889,14 +1916,14 @@ exports[`Teachers Page Page component renders 1`] = `
                     </div>
                   </li>
                   <li
-                    class="sc-ieedpP bVasfV"
+                    class="sc-dlVwtM gJeoTk"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd sc-ZOvtA iXoBDW Bakex"
+                      class="sc-bdvwhi sc-jRQBiJ sc-gKckzE iXoBDW heSanc"
                       focusable="false"
                     >
                       <svg
-                        class="sc-jIkVsP ShMXb"
+                        class="sc-eCIkAO ckRims"
                         height="100%"
                         preserveAspectRatio="none"
                         viewBox="0 0 866 8"
@@ -1914,7 +1941,7 @@ exports[`Teachers Page Page component renders 1`] = `
                       </svg>
                     </div>
                     <div
-                      class="sc-bdvwhi sc-gsDMPd gxLECK pmGvr"
+                      class="sc-bdvwhi sc-jRQBiJ gxLECK bZVTcC"
                     >
                       <div
                         class="sc-bdvwhi edZcJO"
@@ -2039,33 +2066,33 @@ exports[`Teachers Page Page component renders 1`] = `
                         </div>
                       </div>
                       <div
-                        class="sc-bdvwhi sc-gsDMPd jtiAen jMMTBg"
+                        class="sc-bdvwhi sc-jRQBiJ jtiAen hhzFAB"
                       >
                         <div
-                          class="sc-bdvwhi sc-gsDMPd jtiAen eFMdVa"
+                          class="sc-bdvwhi sc-jRQBiJ jtiAen gsAouT"
                         >
                           <span
-                            class="sc-dkPwfY leSQeG"
+                            class="sc-iCfNyT midmi"
                           >
                             <a
-                              class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
+                              class="sc-iJKPHa kymEhS sc-iNGDOz hPscCj"
                               href="/blog/categories/some-category"
                             >
                               <span
-                                class="sc-dkPwfY fgmEIT"
+                                class="sc-iCfNyT fAQctr"
                               >
                                 Some category
                               </span>
                             </a>
                           </span>
                           <p
-                            class="sc-hGPAwl fagwPP"
+                            class="sc-fKVoIy egvWSm"
                           >
                             1 December 2021
                           </p>
                         </div>
                         <h3
-                          class="sc-bkkgYE jXYjOw"
+                          class="sc-hGPAwl ekZMcs"
                         >
                           <a
                             class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
@@ -2073,14 +2100,14 @@ exports[`Teachers Page Page component renders 1`] = `
                             title="Some other post"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Some other post
                             </span>
                           </a>
                         </h3>
                         <p
-                          class="sc-hGPAwl eVhmCL"
+                          class="sc-fKVoIy jKJcvW"
                         >
                           <span
                             class="sc-b8a6ebf4-0 iJQpBf"
@@ -2095,32 +2122,32 @@ exports[`Teachers Page Page component renders 1`] = `
             </div>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd kzhjuJ Bakex"
+            class="sc-bdvwhi sc-jRQBiJ kzhjuJ heSanc"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd sc-jOxwkF bWuAGZ jCEHKK"
+              class="sc-bdvwhi sc-jRQBiJ sc-dPiIMO bWuAGZ lnnarX"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd euwVTq Bakex"
+                class="sc-bdvwhi sc-jRQBiJ euwVTq heSanc"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd sc-d650a570-0 WhkHR cvDmZS"
+                  class="sc-bdvwhi sc-jRQBiJ sc-d650a570-0 WhkHR hRMWZn"
                 >
                   <div
-                    class="sc-bdvwhi sc-jObTYW hPWTKU jmGxKU"
+                    class="sc-bdvwhi sc-cTAoCz hPWTKU gLmhut"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex erCqWa"
+                      class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc hnXFcZ"
                     >
                       <div
-                        class="sc-bdvwhi sc-gsDMPd kfKAWJ MPeNZ"
+                        class="sc-bdvwhi sc-jRQBiJ kfKAWJ ibtWyE"
                       >
                         <span
                           class="sc-bdvwhi PMdzg"
                         >
                           <img
                             alt=""
-                            class="sc-jRQBiJ eMsccW"
+                            class="sc-gsDMPd frprTL"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -2129,13 +2156,13 @@ exports[`Teachers Page Page component renders 1`] = `
                           />
                         </span>
                         <h2
-                          class="sc-bkkgYE Xaaow"
+                          class="sc-hGPAwl foWvUk"
                         >
                           Don’t miss out
                         </h2>
                       </div>
                       <p
-                        class="sc-hGPAwl cwzhGz"
+                        class="sc-fKVoIy cyAIYG"
                         color="text-primary"
                         id="react-use-id-test-result-newsletter-form-description"
                       >
@@ -2144,11 +2171,11 @@ exports[`Teachers Page Page component renders 1`] = `
                          teachers and get free resources and other helpful content by email. Unsubscribe at any time. Read our
                          
                         <a
-                          class="sc-iwjfEg gbbVHe sc-cxpUrY isgnTP"
+                          class="sc-iJKPHa kymEhS sc-iNGDOz hPscCj"
                           href="/legal/privacy-policy"
                         >
                           <span
-                            class="sc-dkPwfY fgmEIT"
+                            class="sc-iCfNyT fAQctr"
                           >
                             privacy policy
                           </span>
@@ -2157,21 +2184,22 @@ exports[`Teachers Page Page component renders 1`] = `
                       </p>
                     </div>
                     <div
-                      class="sc-bdvwhi sc-gsDMPd sc-dPiIMO kariTn Bakex erCqWa"
+                      class="sc-bdvwhi sc-jRQBiJ sc-jObTYW kariTn heSanc hnXFcZ"
                     >
                       <form
                         aria-describedby="react-use-id-test-result-newsletter-form-description"
-                        class="sc-bdvwhi sc-gsDMPd jtiAen cIPGhJ"
+                        aria-label="Newsletter signup"
+                        class="sc-bdvwhi sc-jRQBiJ jtiAen cBpORs"
                         novalidate=""
                       >
                         <div
-                          class="sc-bdvwhi bpjVbf"
+                          class="sc-bdvwhi jtiAen"
                         >
                           <div
-                            class="sc-bdvwhi sc-gsDMPd jtiAen cIPGhJ"
+                            class="sc-bdvwhi sc-jRQBiJ jtiAen cBpORs"
                           >
                             <div
-                              class="sc-bdvwhi sc-gsDMPd jWxyY cIPGhJ"
+                              class="sc-bdvwhi sc-jRQBiJ jWxyY cBpORs"
                             >
                               <label
                                 class="sc-bdvwhi eGhSPA"
@@ -2183,14 +2211,14 @@ exports[`Teachers Page Page component renders 1`] = `
                                 Name (required)
                               </label>
                               <div
-                                class="sc-bdvwhi sc-gsDMPd sc-clIAoS ibUPwR gEAnZR gqKaCP"
+                                class="sc-bdvwhi sc-jRQBiJ sc-bXTeWK ibUPwR ichmSg iNpbHX"
                               >
                                 <div
-                                  class="sc-bdvwhi sc-gsDMPd hPWTKU kkGnDS"
+                                  class="sc-bdvwhi sc-jRQBiJ hPWTKU bzKZFL"
                                 >
                                   <input
                                     autocomplete="name"
-                                    class="sc-efQVjI bktjgD"
+                                    class="sc-dvQa-dN laMwLJ"
                                     data-testid="text-input"
                                     id="react-use-id-test-result-newsletter-signup-name"
                                     name="name"
@@ -2204,13 +2232,13 @@ exports[`Teachers Page Page component renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="sc-bdvwhi bpjVbf"
+                          class="sc-bdvwhi bWlWvP"
                         >
                           <div
-                            class="sc-bdvwhi sc-gsDMPd jtiAen cIPGhJ"
+                            class="sc-bdvwhi sc-jRQBiJ jtiAen cBpORs"
                           >
                             <div
-                              class="sc-bdvwhi sc-gsDMPd jWxyY cIPGhJ"
+                              class="sc-bdvwhi sc-jRQBiJ jWxyY cBpORs"
                             >
                               <label
                                 class="sc-bdvwhi eGhSPA"
@@ -2222,14 +2250,14 @@ exports[`Teachers Page Page component renders 1`] = `
                                 Email (required)
                               </label>
                               <div
-                                class="sc-bdvwhi sc-gsDMPd sc-clIAoS ibUPwR gEAnZR gqKaCP"
+                                class="sc-bdvwhi sc-jRQBiJ sc-bXTeWK ibUPwR ichmSg iNpbHX"
                               >
                                 <div
-                                  class="sc-bdvwhi sc-gsDMPd hPWTKU kkGnDS"
+                                  class="sc-bdvwhi sc-jRQBiJ hPWTKU bzKZFL"
                                 >
                                   <input
                                     autocomplete="email"
-                                    class="sc-efQVjI bktjgD"
+                                    class="sc-dvQa-dN laMwLJ"
                                     data-testid="text-input"
                                     id="react-use-id-test-result-newsletter-signup-email"
                                     name="email"
@@ -2243,7 +2271,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="sc-bdvwhi kHQhzQ"
+                          class="sc-bdvwhi ibrppf"
                         >
                           <label
                             class="sc-bdvwhi jMFyqC"
@@ -2254,54 +2282,54 @@ exports[`Teachers Page Page component renders 1`] = `
                             Role
                           </label>
                           <div
-                            class="sc-bdvwhi sc-gsDMPd sc-hiwNGW wiZya enStEb drQjAO"
+                            class="sc-bdvwhi sc-jRQBiJ sc-fvxxdC wiZya GWfUG bPtZyp"
                           >
                             <select
-                              class="sc-jeqZuJ gupyXh"
+                              class="sc-cZMPup deKtQP"
                               id="react-use-id-test-result-newsletter-signup-userrole"
                               name="userRole"
                             >
                               <option
-                                class="sc-lcerzc KbDSy"
+                                class="sc-GEaMY dwaoMa"
                                 disabled=""
                                 value=""
                               >
                                 What describes you best?
                               </option>
                               <option
-                                class="sc-lcerzc fXAwTA"
+                                class="sc-GEaMY iJzhNc"
                                 value="Teacher"
                               >
                                 Teacher
                               </option>
                               <option
-                                class="sc-lcerzc fXAwTA"
+                                class="sc-GEaMY iJzhNc"
                                 value="Parent"
                               >
                                 Parent
                               </option>
                               <option
-                                class="sc-lcerzc fXAwTA"
+                                class="sc-GEaMY iJzhNc"
                                 value="Student"
                               >
                                 Pupil
                               </option>
                               <option
-                                class="sc-lcerzc fXAwTA"
+                                class="sc-GEaMY iJzhNc"
                                 value="Other"
                               >
                                 Other
                               </option>
                             </select>
                             <div
-                              class="sc-bdvwhi sc-gsDMPd sc-eJwVsk cLyMbm hmfoti hnEKkz"
+                              class="sc-bdvwhi sc-jRQBiJ sc-jUouQM cLyMbm jBEVLX cvSllc"
                             >
                               <span
                                 class="sc-bdvwhi cqHYAi"
                               >
                                 <img
                                   alt=""
-                                  class="sc-jRQBiJ eMsccW"
+                                  class="sc-gsDMPd frprTL"
                                   data-nimg="fill"
                                   decoding="async"
                                   loading="lazy"
@@ -2311,14 +2339,14 @@ exports[`Teachers Page Page component renders 1`] = `
                               </span>
                             </div>
                             <div
-                              class="sc-bdvwhi sc-gsDMPd sc-nVikz cLyMbm hmfoti kNYApR"
+                              class="sc-bdvwhi sc-jRQBiJ sc-jQrBgb cLyMbm jBEVLX ijthhD"
                             >
                               <span
                                 class="sc-bdvwhi cqHYAi"
                               >
                                 <img
                                   alt=""
-                                  class="sc-jRQBiJ eMsccW"
+                                  class="sc-gsDMPd frprTL"
                                   data-nimg="fill"
                                   decoding="async"
                                   loading="lazy"
@@ -2330,37 +2358,41 @@ exports[`Teachers Page Page component renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="sc-bdvwhi sc-iqsgXZ fFlNLS hjfwPa"
+                          class="sc-bdvwhi iAORmN"
                         >
                           <div
-                            class="sc-bdvwhi kAFHfV grey-shadow"
-                          />
-                          <div
-                            class="sc-bdvwhi kAFHfV yellow-shadow"
-                          />
-                          <button
-                            class="sc-eCIkAO sc-jrQAon cINIls fODyRh internal-button"
-                            type="submit"
+                            class="sc-bdvwhi sc-eggkz fFlNLS iXJDXQ"
                           >
                             <div
-                              class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                              class="sc-bdvwhi kAFHfV grey-shadow"
+                            />
+                            <div
+                              class="sc-bdvwhi kAFHfV yellow-shadow"
+                            />
+                            <button
+                              class="sc-furwPO sc-iqsgXZ xrJiU kpPtpO internal-button"
+                              type="submit"
                             >
-                              <span
-                                class="sc-dkPwfY kXQhTZ"
+                              <div
+                                class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                               >
-                                Sign up to the newsletter
-                              </span>
-                            </div>
-                          </button>
+                                <span
+                                  class="sc-iCfNyT gaSeFZ"
+                                >
+                                  Sign up to the newsletter
+                                </span>
+                              </div>
+                            </button>
+                          </div>
                         </div>
                         <p
                           aria-live="assertive"
-                          class="sc-hGPAwl hClGMw"
+                          class="sc-fKVoIy gdmGLR"
                           role="alert"
                         />
                         <p
                           aria-live="polite"
-                          class="sc-hGPAwl jWVoxl"
+                          class="sc-fKVoIy cKBoyw"
                         />
                       </form>
                     </div>
@@ -2374,7 +2406,7 @@ exports[`Teachers Page Page component renders 1`] = `
           class="sc-bdvwhi dBuXGv"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd fYnWSp Bakex"
+            class="sc-bdvwhi sc-jRQBiJ fYnWSp heSanc"
           >
             <svg
               aria-hidden="true"
@@ -2401,37 +2433,38 @@ exports[`Teachers Page Page component renders 1`] = `
             id="site-footer"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd sc-jOxwkF gSXAop fKSZmO"
+              class="sc-bdvwhi sc-jRQBiJ sc-dPiIMO gSXAop jzLjAr"
             >
               <div
-                class="sc-bdvwhi sc-jObTYW hPWTKU dUcAno"
+                class="sc-bdvwhi sc-cTAoCz hPWTKU gUtmsN"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
+                  class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc kWbOls"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                    class="sc-bdvwhi sc-jRQBiJ QtWkM cBpORs"
+                    data-chromatic="ignore"
                   >
                     <h2
-                      class="sc-bkkgYE bVNEJW"
+                      class="sc-hGPAwl kMvgLm"
                     >
                       Pupils
                     </h2>
                     <div
-                      class="sc-bdvwhi sc-dlVwtM kONsyo cpiTBW"
+                      class="sc-bdvwhi sc-bBHAhJ kONsyo kJuXOx"
                     >
                       <ul
                         role="list"
                       >
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/pupils/years"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Learn online
                             </span>
@@ -2444,83 +2477,89 @@ exports[`Teachers Page Page component renders 1`] = `
                     class="sc-bdvwhi dhvEAg"
                   />
                   <div
-                    class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                    class="sc-bdvwhi sc-jRQBiJ QtWkM cBpORs"
+                    data-chromatic="ignore"
                   >
                     <h2
-                      class="sc-bkkgYE bVNEJW"
+                      class="sc-hGPAwl kMvgLm"
                     >
                       Teachers
                     </h2>
                     <div
-                      class="sc-bdvwhi sc-dlVwtM kONsyo cpiTBW"
+                      class="sc-bdvwhi sc-bBHAhJ kONsyo kJuXOx"
                     >
                       <ul
                         role="list"
                       >
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/teachers/eyfs/maths"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               EYFS
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/lesson-planning"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Plan a lesson
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/teachers/teach-with-oak"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Teach with Oak
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="https://labs.thenational.academy"
                             target="_blank"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Aila, Oak’s AI lesson assistant
+                              <span
+                                class="sc-pVUti eEZcMz"
+                              >
+                                 (opens in a new tab)
+                              </span>
                             </span>
                             <div
                               class="sc-bdvwhi hUeWJD"
                             >
                               <span
-                                class="sc-bdvwhi cqHYAi sc-fKVoIy gNZMCw"
+                                class="sc-bdvwhi cqHYAi sc-cxpUrY fiOnyh"
                               >
                                 <img
                                   alt=""
-                                  class="sc-jRQBiJ eMsccW"
+                                  class="sc-gsDMPd frprTL"
                                   data-nimg="fill"
                                   decoding="async"
                                   loading="lazy"
@@ -2532,14 +2571,14 @@ exports[`Teachers Page Page component renders 1`] = `
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/blog"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Blog
                             </span>
@@ -2550,143 +2589,148 @@ exports[`Teachers Page Page component renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
+                  class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc kWbOls"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                    class="sc-bdvwhi sc-jRQBiJ QtWkM cBpORs"
+                    data-chromatic="ignore"
                   >
                     <h2
-                      class="sc-bkkgYE bVNEJW"
+                      class="sc-hGPAwl kMvgLm"
                     >
                       Oak
                     </h2>
                     <div
-                      class="sc-bdvwhi sc-dlVwtM kONsyo cpiTBW"
+                      class="sc-bdvwhi sc-bBHAhJ kONsyo kJuXOx"
                     >
                       <ul
                         role="list"
                       >
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Home
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/about-us/who-we-are"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               About us
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/about-us/oaks-curricula"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Oak's curricula
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/about-us/oaks-impact"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Oak's impact
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/about-us/case-studies"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Case studies
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/about-us/get-involved"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Get involved
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/about-us/meet-the-team"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Meet the team
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            aria-label="Careers (opens in a new tab)"
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="https://jobs.thenational.academy"
                             target="_blank"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Careers
+                              <span
+                                class="sc-pVUti eEZcMz"
+                              >
+                                 (opens in a new tab)
+                              </span>
                             </span>
                             <div
                               class="sc-bdvwhi hUeWJD"
                             >
                               <span
-                                class="sc-bdvwhi cqHYAi sc-fKVoIy gNZMCw"
+                                class="sc-bdvwhi cqHYAi sc-cxpUrY fiOnyh"
                               >
                                 <img
                                   alt=""
-                                  class="sc-jRQBiJ eMsccW"
+                                  class="sc-gsDMPd frprTL"
                                   data-nimg="fill"
                                   decoding="async"
                                   loading="lazy"
@@ -2698,42 +2742,46 @@ exports[`Teachers Page Page component renders 1`] = `
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/contact-us"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Contact us
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            aria-label="Help (opens in a new tab)"
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="https://support.thenational.academy"
                             target="_blank"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Help
+                              <span
+                                class="sc-pVUti eEZcMz"
+                              >
+                                 (opens in a new tab)
+                              </span>
                             </span>
                             <div
                               class="sc-bdvwhi hUeWJD"
                             >
                               <span
-                                class="sc-bdvwhi cqHYAi sc-fKVoIy gNZMCw"
+                                class="sc-bdvwhi cqHYAi sc-cxpUrY fiOnyh"
                               >
                                 <img
                                   alt=""
-                                  class="sc-jRQBiJ eMsccW"
+                                  class="sc-gsDMPd frprTL"
                                   data-nimg="fill"
                                   decoding="async"
                                   loading="lazy"
@@ -2745,42 +2793,46 @@ exports[`Teachers Page Page component renders 1`] = `
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/webinars"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Webinars
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            aria-label="Status (opens in a new tab)"
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="https://status.thenational.academy"
                             target="_blank"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Status
+                              <span
+                                class="sc-pVUti eEZcMz"
+                              >
+                                 (opens in a new tab)
+                              </span>
                             </span>
                             <div
                               class="sc-bdvwhi hUeWJD"
                             >
                               <span
-                                class="sc-bdvwhi cqHYAi sc-fKVoIy gNZMCw"
+                                class="sc-bdvwhi cqHYAi sc-cxpUrY fiOnyh"
                               >
                                 <img
                                   alt=""
-                                  class="sc-jRQBiJ eMsccW"
+                                  class="sc-gsDMPd frprTL"
                                   data-nimg="fill"
                                   decoding="async"
                                   loading="lazy"
@@ -2796,156 +2848,157 @@ exports[`Teachers Page Page component renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
+                  class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc kWbOls"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                    class="sc-bdvwhi sc-jRQBiJ QtWkM cBpORs"
+                    data-chromatic="ignore"
                   >
                     <h2
-                      class="sc-bkkgYE bVNEJW"
+                      class="sc-hGPAwl kMvgLm"
                     >
                       Legal
                     </h2>
                     <div
-                      class="sc-bdvwhi sc-dlVwtM kONsyo cpiTBW"
+                      class="sc-bdvwhi sc-bBHAhJ kONsyo kJuXOx"
                     >
                       <ul
                         role="list"
                       >
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/legal/terms-and-conditions"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Terms & conditions
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/legal/privacy-policy"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Privacy policy
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/legal/cookie-policy"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Cookie policy
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <button
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Manage cookie settings
                             </span>
                           </button>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/legal/copyright-notice"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Copyright notice
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/legal/accessibility-statement"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Accessibility statement
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/legal/safeguarding-statement"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Safeguarding statement
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/legal/physical-activity-disclaimer"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Physical activity disclaimer
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/legal/complaints"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Complaints
                             </span>
                           </a>
                         </li>
                         <li
-                          class="sc-ieedpP irmxny"
+                          class="sc-dlVwtM dbIuFL"
                         >
                           <a
-                            class="sc-iwjfEg ieUBNG sc-cxpUrY isgnTP"
+                            class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                             href="/legal/freedom-of-information-requests"
                           >
                             <span
-                              class="sc-dkPwfY fgmEIT"
+                              class="sc-iCfNyT fAQctr"
                             >
                               Freedom of information requests
                             </span>
@@ -2956,10 +3009,10 @@ exports[`Teachers Page Page component renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
+                  class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc kWbOls"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd QtWkM eaUsps"
+                    class="sc-bdvwhi sc-jRQBiJ QtWkM cqXzYh"
                   >
                     <div
                       class="sc-bdvwhi aIwlt"
@@ -2969,7 +3022,7 @@ exports[`Teachers Page Page component renders 1`] = `
                       >
                         <img
                           alt=""
-                          class="sc-jRQBiJ hssYEG"
+                          class="sc-gsDMPd ctfyuj"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
@@ -2979,21 +3032,21 @@ exports[`Teachers Page Page component renders 1`] = `
                       </span>
                     </div>
                     <div
-                      class="sc-bdvwhi sc-gsDMPd lpkWFL dipirq"
+                      class="sc-bdvwhi sc-jRQBiJ lpkWFL bZuDHH"
                     >
                       <div
-                        class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
+                        class="sc-bdvwhi sc-jRQBiJ sc-ksdwth gyHFon heSanc eZXmZx sc-89a82ea7-0 cMWLxp"
                       >
                         <a
                           aria-label="instagram for Oak National Academy"
-                          class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                          class="sc-furwPO sc-bqiQyc bKSeku ivslVy"
                           href="https://instagram.com/oaknational"
                         >
                           <div
-                            class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                            class="sc-bdvwhi sc-jRQBiJ hPWTKU fWyDHF"
                           >
                             <div
-                              class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                              class="sc-bdvwhi sc-jRQBiJ juqUen tMmkI icon-container"
                             >
                               <div
                                 class="sc-bdvwhi fZgcUH shadow"
@@ -3004,7 +3057,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               >
                                 <img
                                   alt=""
-                                  class="sc-jRQBiJ fZPumv"
+                                  class="sc-gsDMPd bkRpZy"
                                   data-nimg="fill"
                                   decoding="async"
                                   loading="lazy"
@@ -3014,24 +3067,24 @@ exports[`Teachers Page Page component renders 1`] = `
                               </span>
                             </div>
                             <span
-                              class="sc-dkPwfY cSKbCa"
+                              class="sc-iCfNyT eMPvca"
                             />
                           </div>
                         </a>
                       </div>
                       <div
-                        class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
+                        class="sc-bdvwhi sc-jRQBiJ sc-ksdwth gyHFon heSanc eZXmZx sc-89a82ea7-0 cMWLxp"
                       >
                         <a
                           aria-label="facebook for Oak National Academy"
-                          class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                          class="sc-furwPO sc-bqiQyc bKSeku ivslVy"
                           href="https://facebook.com/oaknationalacademy"
                         >
                           <div
-                            class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                            class="sc-bdvwhi sc-jRQBiJ hPWTKU fWyDHF"
                           >
                             <div
-                              class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                              class="sc-bdvwhi sc-jRQBiJ juqUen tMmkI icon-container"
                             >
                               <div
                                 class="sc-bdvwhi fZgcUH shadow"
@@ -3042,7 +3095,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               >
                                 <img
                                   alt=""
-                                  class="sc-jRQBiJ fZPumv"
+                                  class="sc-gsDMPd bkRpZy"
                                   data-nimg="fill"
                                   decoding="async"
                                   loading="lazy"
@@ -3052,24 +3105,24 @@ exports[`Teachers Page Page component renders 1`] = `
                               </span>
                             </div>
                             <span
-                              class="sc-dkPwfY cSKbCa"
+                              class="sc-iCfNyT eMPvca"
                             />
                           </div>
                         </a>
                       </div>
                       <div
-                        class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
+                        class="sc-bdvwhi sc-jRQBiJ sc-ksdwth gyHFon heSanc eZXmZx sc-89a82ea7-0 cMWLxp"
                       >
                         <a
                           aria-label="linkedIn for Oak National Academy"
-                          class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                          class="sc-furwPO sc-bqiQyc bKSeku ivslVy"
                           href="https://www.linkedin.com/company/oak-national-academy"
                         >
                           <div
-                            class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                            class="sc-bdvwhi sc-jRQBiJ hPWTKU fWyDHF"
                           >
                             <div
-                              class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                              class="sc-bdvwhi sc-jRQBiJ juqUen tMmkI icon-container"
                             >
                               <div
                                 class="sc-bdvwhi fZgcUH shadow"
@@ -3080,7 +3133,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               >
                                 <img
                                   alt=""
-                                  class="sc-jRQBiJ fZPumv"
+                                  class="sc-gsDMPd bkRpZy"
                                   data-nimg="fill"
                                   decoding="async"
                                   loading="lazy"
@@ -3090,7 +3143,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               </span>
                             </div>
                             <span
-                              class="sc-dkPwfY cSKbCa"
+                              class="sc-iCfNyT eMPvca"
                             />
                           </div>
                         </a>
@@ -3100,13 +3153,12 @@ exports[`Teachers Page Page component renders 1`] = `
                 </div>
               </div>
               <span
-                class="sc-bdvwhi LoEut sc-82a69116-0 kSePHC"
+                class="sc-bdvwhi LoEut sc-983d10b0-0 dXOpyh"
                 data-chromatic="ignore"
-                data-percy-hide="contents"
               >
                 <img
                   alt="Cyber Essentials Logo"
-                  class="sc-jRQBiJ hssYEG"
+                  class="sc-gsDMPd ctfyuj"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"
@@ -3117,24 +3169,24 @@ exports[`Teachers Page Page component renders 1`] = `
                 />
               </span>
               <div
-                class="sc-bdvwhi sc-gsDMPd kqRHNX EzdvD"
+                class="sc-bdvwhi sc-jRQBiJ kqRHNX YjVjS"
               >
                 <div
-                  class="sc-bdvwhi sc-gsDMPd jZUEdv fbHgES"
+                  class="sc-bdvwhi sc-jRQBiJ jZUEdv fknEgT"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
+                    class="sc-bdvwhi sc-jRQBiJ sc-ksdwth gyHFon heSanc eZXmZx sc-89a82ea7-0 cMWLxp"
                   >
                     <a
                       aria-label="instagram for Oak National Academy"
-                      class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                      class="sc-furwPO sc-bqiQyc bKSeku ivslVy"
                       href="https://instagram.com/oaknational"
                     >
                       <div
-                        class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                        class="sc-bdvwhi sc-jRQBiJ hPWTKU fWyDHF"
                       >
                         <div
-                          class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                          class="sc-bdvwhi sc-jRQBiJ juqUen tMmkI icon-container"
                         >
                           <div
                             class="sc-bdvwhi fZgcUH shadow"
@@ -3145,7 +3197,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           >
                             <img
                               alt=""
-                              class="sc-jRQBiJ fZPumv"
+                              class="sc-gsDMPd bkRpZy"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
@@ -3155,24 +3207,24 @@ exports[`Teachers Page Page component renders 1`] = `
                           </span>
                         </div>
                         <span
-                          class="sc-dkPwfY cSKbCa"
+                          class="sc-iCfNyT eMPvca"
                         />
                       </div>
                     </a>
                   </div>
                   <div
-                    class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
+                    class="sc-bdvwhi sc-jRQBiJ sc-ksdwth gyHFon heSanc eZXmZx sc-89a82ea7-0 cMWLxp"
                   >
                     <a
                       aria-label="facebook for Oak National Academy"
-                      class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                      class="sc-furwPO sc-bqiQyc bKSeku ivslVy"
                       href="https://facebook.com/oaknationalacademy"
                     >
                       <div
-                        class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                        class="sc-bdvwhi sc-jRQBiJ hPWTKU fWyDHF"
                       >
                         <div
-                          class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                          class="sc-bdvwhi sc-jRQBiJ juqUen tMmkI icon-container"
                         >
                           <div
                             class="sc-bdvwhi fZgcUH shadow"
@@ -3183,7 +3235,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           >
                             <img
                               alt=""
-                              class="sc-jRQBiJ fZPumv"
+                              class="sc-gsDMPd bkRpZy"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
@@ -3193,24 +3245,24 @@ exports[`Teachers Page Page component renders 1`] = `
                           </span>
                         </div>
                         <span
-                          class="sc-dkPwfY cSKbCa"
+                          class="sc-iCfNyT eMPvca"
                         />
                       </div>
                     </a>
                   </div>
                   <div
-                    class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-89a82ea7-0 cMWLxp"
+                    class="sc-bdvwhi sc-jRQBiJ sc-ksdwth gyHFon heSanc eZXmZx sc-89a82ea7-0 cMWLxp"
                   >
                     <a
                       aria-label="linkedIn for Oak National Academy"
-                      class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
+                      class="sc-furwPO sc-bqiQyc bKSeku ivslVy"
                       href="https://www.linkedin.com/company/oak-national-academy"
                     >
                       <div
-                        class="sc-bdvwhi sc-gsDMPd hPWTKU edHUKs"
+                        class="sc-bdvwhi sc-jRQBiJ hPWTKU fWyDHF"
                       >
                         <div
-                          class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
+                          class="sc-bdvwhi sc-jRQBiJ juqUen tMmkI icon-container"
                         >
                           <div
                             class="sc-bdvwhi fZgcUH shadow"
@@ -3221,7 +3273,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           >
                             <img
                               alt=""
-                              class="sc-jRQBiJ fZPumv"
+                              class="sc-gsDMPd bkRpZy"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
@@ -3231,7 +3283,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           </span>
                         </div>
                         <span
-                          class="sc-dkPwfY cSKbCa"
+                          class="sc-iCfNyT eMPvca"
                         />
                       </div>
                     </a>
@@ -3245,7 +3297,7 @@ exports[`Teachers Page Page component renders 1`] = `
                   >
                     <img
                       alt=""
-                      class="sc-jRQBiJ hssYEG"
+                      class="sc-gsDMPd ctfyuj"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -3255,15 +3307,15 @@ exports[`Teachers Page Page component renders 1`] = `
                   </span>
                 </div>
                 <div
-                  class="sc-bdvwhi sc-gsDMPd QtWkM cIPGhJ"
+                  class="sc-bdvwhi sc-jRQBiJ QtWkM cBpORs"
                 >
                   <p
-                    class="sc-hGPAwl jolmBg"
+                    class="sc-fKVoIy kmssyJ"
                   >
                     © Oak National Academy Limited, No 14174888
                   </p>
                   <p
-                    class="sc-hGPAwl cYCozb"
+                    class="sc-fKVoIy dFXurG"
                   >
                     1 Scott Place, 2 Hardman Street, Manchester, M3 3AA
                   </p>
@@ -3276,7 +3328,7 @@ exports[`Teachers Page Page component renders 1`] = `
           >
             <img
               alt=""
-              class="sc-jRQBiJ dqjNXU"
+              class="sc-gsDMPd HFBwR"
               data-nimg="fill"
               decoding="async"
               loading="lazy"
@@ -3288,7 +3340,7 @@ exports[`Teachers Page Page component renders 1`] = `
       </div>
       <div
         aria-live="polite"
-        class="sc-bdvwhi sc-gsDMPd sc-b7a27f76-0 kjWDfr htLMtM krUohl"
+        class="sc-bdvwhi sc-jRQBiJ sc-b7a27f76-0 kjWDfr hsWgl krUohl"
       />
     </div>
     <div
@@ -3302,13 +3354,13 @@ exports[`Teachers Page Page component renders 1`] = `
           class="sc-bdvwhi iIozLH"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd egBoar iKjTsb"
+            class="sc-bdvwhi sc-jRQBiJ egBoar FWapS"
           >
             <div
               class="sc-bdvwhi fIxCDL"
             >
               <strong
-                class="sc-dkPwfY iyMjBM"
+                class="sc-iCfNyT dApWAc"
               >
                 This site uses cookies to store information on your computer.
               </strong>
@@ -3316,25 +3368,25 @@ exports[`Teachers Page Page component renders 1`] = `
               Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
             </div>
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU gyKdMN"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU sLqqU"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd lmXuba eWbmLh"
+                class="sc-bdvwhi sc-jRQBiJ lmXuba bBQXks"
               >
                 <button
-                  class="sc-iwjfEg ieUBNG sc-cxpUrY gBbyqZ"
+                  class="sc-iJKPHa dwzJJG sc-iNGDOz jUVWTt"
                   data-testid="cookie-banner-reject"
                   type="button"
                 >
                   <span
-                    class="sc-dkPwfY fgmEIT"
+                    class="sc-iCfNyT fAQctr"
                   >
                     Reject non-essential cookies
                   </span>
                 </button>
               </div>
               <div
-                class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+                class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
               >
                 <div
                   class="sc-bdvwhi kAFHfV grey-shadow"
@@ -3343,13 +3395,13 @@ exports[`Teachers Page Page component renders 1`] = `
                   class="sc-bdvwhi kAFHfV yellow-shadow"
                 />
                 <button
-                  class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
+                  class="sc-furwPO sc-iqsgXZ eQRPqU bpUfmH internal-button"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                   >
                     <span
-                      class="sc-dkPwfY kXQhTZ"
+                      class="sc-iCfNyT gaSeFZ"
                     >
                       Cookie settings
                     </span>
@@ -3357,7 +3409,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 </button>
               </div>
               <div
-                class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+                class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
               >
                 <div
                   class="sc-bdvwhi kAFHfV grey-shadow"
@@ -3366,14 +3418,14 @@ exports[`Teachers Page Page component renders 1`] = `
                   class="sc-bdvwhi kAFHfV yellow-shadow"
                 />
                 <button
-                  class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                  class="sc-furwPO sc-iqsgXZ xrJiU kpPtpO internal-button"
                   data-testid="cookie-banner-accept"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                   >
                     <span
-                      class="sc-dkPwfY kXQhTZ"
+                      class="sc-iCfNyT gaSeFZ"
                     >
                       Accept all cookies
                     </span>

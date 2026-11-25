@@ -119,7 +119,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
           notFound: true,
         });
       });
-      it("Should return not found if no params", async () => {
+      it("Should return not found if invalid params", async () => {
         const result = await getStaticProps({
           params: { programmeSlug: "notvalidforbaseslug" },
         });

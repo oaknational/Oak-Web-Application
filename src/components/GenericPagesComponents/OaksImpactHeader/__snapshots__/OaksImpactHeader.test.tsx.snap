@@ -7,54 +7,53 @@ exports[`OaksImpactHeader renders correctly 1`] = `
       class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-bdvwhi sc-gsDMPd sc-27916d87-0 hPWTKU Bakex ewmQGB"
+        class="sc-bdvwhi sc-jRQBiJ sc-27916d87-0 hPWTKU heSanc ewmQGB"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd sc-27916d87-2 hPWTKU glYlUT gIgoRJ"
+          class="sc-bdvwhi sc-jRQBiJ sc-27916d87-2 hPWTKU hlpfkC gIgoRJ"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd bxuJyT jQMLaS"
+            class="sc-bdvwhi sc-jRQBiJ bxuJyT jLNQrj"
           >
             <h1
-              class="sc-bkkgYE hzRfgk"
+              class="sc-hGPAwl ceWSqo"
             >
               TEST_TITLE
             </h1>
           </div>
           <p
-            class="sc-hGPAwl imYBVP"
+            class="sc-fKVoIy cIcLhi"
           >
             TEST_BODY
           </p>
         </div>
         <div
-          class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
+          class="sc-bdvwhi sc-jRQBiJ hPWTKU gCDeec"
         >
           <div
             class="sc-bdvwhi sc-27916d87-1 hPWTKU kvuSGI"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU heDWJn"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd ctjFUQ eChlAW"
+                class="sc-bdvwhi sc-jRQBiJ ctjFUQ heDWJn"
               >
                 <div
                   class="sc-bdvwhi rRUGc"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
+                    class="sc-bdvwhi sc-jRQBiJ jvLJY tMmkI"
                     data-chromatic="ignore"
-                    data-percy-hide="contents"
                     style="aspect-ratio: 16/9; box-sizing: content-box;"
                   />
                 </div>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd hPWTKU edEJAr"
+                class="sc-bdvwhi sc-jRQBiJ hPWTKU kJwqHu"
               >
                 <p
-                  class="sc-hGPAwl gjGOEe"
+                  class="sc-fKVoIy bfcvnj"
                 >
                   TEST_VIDEO_DESCRIPTION
                 </p>

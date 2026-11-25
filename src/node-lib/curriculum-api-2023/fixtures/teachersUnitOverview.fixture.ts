@@ -28,7 +28,12 @@ const teachersUnitOverviewFixture = (
     examBoardTitle: null,
     examBoardSlug: null,
     lessons: [],
-    nextUnit: { slug: "unit-2", title: "Unit 2" },
+    nextUnit: {
+      slug: "unit-2",
+      title: "Unit 2",
+      yearGroupName: "Year 1",
+      yearSlug: "year-1",
+    },
     prevUnit: null,
     tierOptionToggles: [],
     subjectOptionToggles: [],

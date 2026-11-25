@@ -4,27 +4,27 @@ exports[`GuidingPrinciples renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-bdvwhi sc-gsDMPd sc-13f0991b-0 iJhTiz fkRmVO krRTRz"
+      class="sc-bdvwhi sc-jRQBiJ sc-9133d17d-0 iJhTiz hutXrr eNwOGm"
     >
       <div
-        class="sc-bdvwhi sc-gsDMPd hPWTKU euLVdi"
+        class="sc-bdvwhi sc-jRQBiJ hPWTKU lfoDgn"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd hPWTKU cIPGhJ"
+          class="sc-bdvwhi sc-jRQBiJ hPWTKU cBpORs"
         >
           <h2
-            class="sc-bkkgYE kaqcGl"
+            class="sc-hGPAwl ppSSh"
           >
-            Our guiding principles
+            TEST_TITLE
           </h2>
           <p
-            class="sc-hGPAwl fdeVcn"
+            class="sc-fKVoIy bWcjvW"
           >
-            We have crafted a set of overarching principles that describe the features important to our curricula in all subjects.
+            TEST_TEXT
           </p>
         </div>
         <div
-          class="sc-bdvwhi sc-gsDMPd dfcRJc Bakex"
+          class="sc-bdvwhi sc-jRQBiJ dfcRJc heSanc"
         >
           <img
             alt=""
@@ -40,29 +40,29 @@ exports[`GuidingPrinciples renders correctly 1`] = `
         </div>
       </div>
       <div
-        class="sc-bdvwhi sc-gsDMPd BIHjj eUEpRK"
+        class="sc-bdvwhi sc-jRQBiJ BIHjj ywJAz"
       >
         <div
           class="sc-bdvwhi tXqkF"
           data-testid="curric-quote"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd eOJaet iUvfIx"
+            class="sc-bdvwhi sc-jRQBiJ eOJaet haWUGU"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd kCtZtP iEFjEb"
+              class="sc-bdvwhi sc-jRQBiJ kCtZtP lnlSWO"
               data-testid="decorative-bar"
             />
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU cIPGhJ"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU cBpORs"
             >
               <h3
-                class="sc-bkkgYE lnhCBR"
+                class="sc-hGPAwl bvWGtF"
               >
                 Principle 1
               </h3>
               <p
-                class="sc-hGPAwl byMhet"
+                class="sc-fKVoIy qGmiY"
               >
                 Description 1
               </p>
@@ -74,22 +74,22 @@ exports[`GuidingPrinciples renders correctly 1`] = `
           data-testid="curric-quote"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd eOJaet iUvfIx"
+            class="sc-bdvwhi sc-jRQBiJ eOJaet haWUGU"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd kCtZtP iEFjEb"
+              class="sc-bdvwhi sc-jRQBiJ kCtZtP lnlSWO"
               data-testid="decorative-bar"
             />
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU cIPGhJ"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU cBpORs"
             >
               <h3
-                class="sc-bkkgYE lnhCBR"
+                class="sc-hGPAwl bvWGtF"
               >
                 Principle 2
               </h3>
               <p
-                class="sc-hGPAwl byMhet"
+                class="sc-fKVoIy qGmiY"
               >
                 Description 2
               </p>
@@ -101,22 +101,22 @@ exports[`GuidingPrinciples renders correctly 1`] = `
           data-testid="curric-quote"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd eOJaet iUvfIx"
+            class="sc-bdvwhi sc-jRQBiJ eOJaet haWUGU"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd kCtZtP iEFjEb"
+              class="sc-bdvwhi sc-jRQBiJ kCtZtP lnlSWO"
               data-testid="decorative-bar"
             />
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU cIPGhJ"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU cBpORs"
             >
               <h3
-                class="sc-bkkgYE lnhCBR"
+                class="sc-hGPAwl bvWGtF"
               >
                 Principle 3
               </h3>
               <p
-                class="sc-hGPAwl byMhet"
+                class="sc-fKVoIy qGmiY"
               >
                 Description 3
               </p>

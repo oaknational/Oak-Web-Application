@@ -1,11 +1,13 @@
 import { screen, waitFor } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
+import { useEffect, useState, type ReactNode } from "react";
+
+import {
+  ProgrammeNavigationProvider,
+  useProgrammeNavigation,
+} from "../../../../ProgrammeNavigationProvider";
 
 import { KS4OptionFocusProvider } from "./KS4OptionFocus";
-import {
-  FOCUS_KS4_OPTION_QUERY_PARAM,
-  OPEN_FILTERS_MODAL_QUERY_PARAM,
-} from "./KS4OptionFocus/ks4OptionFocusParams";
 import ProgrammePageFiltersMobile from "./ProgrammePageFiltersMobile";
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 import { ProgrammePageFiltersModalProvider } from "./ProgrammePageFiltersModalProvider";
@@ -19,12 +21,14 @@ import { createFilter } from "@/context/BrowseFilters/utils/fixtures";
 
 const useSearchParamsMock = jest.fn();
 const replaceStateMock = jest.fn();
+const routerReplaceMock = jest.fn();
 
 jest.mock("next/navigation", () => ({
   usePathname: jest.fn(() => "/"),
   useSearchParams: () => useSearchParamsMock(),
   useRouter: () => ({
     prefetch: jest.fn(),
+    replace: routerReplaceMock,
   }),
 }));
 
@@ -160,18 +164,45 @@ const ks4ExamBoardProps: ProgrammePageFiltersProps = {
 
 const render = renderWithProviders();
 
+function SeedMobileNavigation({
+  children,
+  restoreFocus,
+}: {
+  children: ReactNode;
+  restoreFocus?: boolean;
+}) {
+  const { setNavigationIntent } = useProgrammeNavigation();
+  const [ready, setReady] = useState(restoreFocus === undefined);
+  useEffect(() => {
+    if (restoreFocus !== undefined) {
+      setNavigationIntent({
+        destination: ks4ExamBoardProps.slugs,
+        restoreFocus,
+        reopenFiltersModal: true,
+      });
+      setReady(true);
+    }
+  }, [restoreFocus, setNavigationIntent]);
+  return ready ? children : null;
+}
+
 function renderMobile(
   props: ProgrammePageFiltersProps = defaultProps,
   filters: BrowseFilters = defaultFilters,
+  restoreFocus?: boolean,
 ) {
   return render(
-    <BrowseFiltersProvider defaultFilter={filters}>
-      <ProgrammePageFiltersModalProvider>
-        <KS4OptionFocusProvider>
-          <ProgrammePageFiltersMobile {...props} />
-        </KS4OptionFocusProvider>
-      </ProgrammePageFiltersModalProvider>
-    </BrowseFiltersProvider>,
+    <ProgrammeNavigationProvider>
+      <SeedMobileNavigation restoreFocus={restoreFocus}>
+        <BrowseFiltersProvider defaultFilter={filters}>
+          <ProgrammePageFiltersModalProvider>
+            <KS4OptionFocusProvider slugs={props.slugs}>
+              <ProgrammePageFiltersMobile {...props} />
+            </KS4OptionFocusProvider>
+          </ProgrammePageFiltersModalProvider>
+        </BrowseFiltersProvider>
+      </SeedMobileNavigation>
+    </ProgrammeNavigationProvider>,
   );
 }
 
@@ -215,30 +246,49 @@ describe("ProgrammePageFiltersMobile", () => {
     expect(categoryFilter2).toBeInTheDocument();
   });
 
-  it("opens the modal when ephemeral restore params are present", () => {
-    useSearchParamsMock.mockReturnValue(
-      new URLSearchParams(
-        `${FOCUS_KS4_OPTION_QUERY_PARAM}=ocr&${OPEN_FILTERS_MODAL_QUERY_PARAM}=1`,
-      ),
-    );
-
-    renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters);
+  it("opens the modal after pointer navigation without restoring radio focus", () => {
+    renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters, false);
 
     expect(
       screen.getByRole("heading", { name: "Filters", level: 1 }),
     ).toBeInTheDocument();
   });
 
-  it("restores focus to the exam board radio after opening from restore params", async () => {
-    useSearchParamsMock.mockReturnValue(
-      new URLSearchParams(
-        `${FOCUS_KS4_OPTION_QUERY_PARAM}=ocr&${OPEN_FILTERS_MODAL_QUERY_PARAM}=1`,
-      ),
-    );
+  it("opens the modal after keyboard navigation and restores focus", async () => {
+    const focusSpy = jest.spyOn(HTMLInputElement.prototype, "focus");
+    const user = userEvent.setup();
 
+    renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters, true);
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole("heading", { name: "Filters", level: 1 }),
+      ).toBeInTheDocument();
+    });
+
+    const ocrRadio = screen.getByDisplayValue("ocr");
+    const aqaRadio = screen.getByDisplayValue("aqa");
+
+    // Set initial exam board
+    await user.click(ocrRadio);
+    expect(ocrRadio).toHaveFocus();
+
+    // Set new exam board
+    await user.click(aqaRadio);
+    expect(aqaRadio).toHaveFocus();
+    expect(ocrRadio).not.toHaveFocus();
+    expect(routerReplaceMock).toHaveBeenCalled();
+    expect(focusSpy).toHaveBeenCalled();
+    // Verify focus stayed on exam board radio after navigation
+    expect(aqaRadio).toHaveFocus();
+
+    focusSpy.mockRestore();
+  });
+
+  it("restores focus to the exam board radio after keyboard navigation", async () => {
     const focusSpy = jest.spyOn(HTMLInputElement.prototype, "focus");
 
-    renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters);
+    renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters, true);
 
     await waitFor(() => {
       const ocrRadio = screen.getByDisplayValue("ocr");

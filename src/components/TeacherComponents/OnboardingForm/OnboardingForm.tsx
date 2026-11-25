@@ -31,7 +31,6 @@ import {
   onboardUser,
   setOnboardingLocalStorage,
   submitOnboardingHubspotData,
-  collectOnboardingTrackingProps,
 } from "./onboardingActions";
 import {
   decodeOnboardingDataQueryParam,
@@ -40,11 +39,16 @@ import {
 
 import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
+import errorReporter from "@/common-lib/error-reporter";
+import OakError from "@/errors/OakError";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { collectOnboardingTrackingProps } from "@/context/TeacherBrowseAnalytics/utils/collectOnboardingTrackingProps";
 import useUtmParams from "@/hooks/useUtmParams";
 import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
 import getHubspotUserToken from "@/browser-lib/hubspot/forms/getHubspotUserToken";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
+import redirectPage from "@/browser-lib/redirectPage";
 
 const OnboardingForm = ({
   forceHideNewsletterSignUp,
@@ -67,6 +71,8 @@ const OnboardingForm = ({
   const searchParams = useSearchParams();
   const utmParams = useUtmParams();
   const { posthogDistinctId } = useAnalytics();
+  const { userOnboardingCompleted, userOnboardingProgressed } =
+    useTeacherBrowseAnalytics((store) => store.track);
   const { user } = useUser();
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -74,7 +80,6 @@ const OnboardingForm = ({
   const [userSubscribedInHubspot, setUserSubscribedInHubspot] = useState<
     boolean | undefined
   >(undefined);
-  const { track } = useAnalytics();
   const { setCurrentToastProps } = useOakNotificationsContext();
   // Accumulate onboarding data from all steps
   const collectedOnboardingData = decodeOnboardingDataQueryParam(searchParams);
@@ -112,10 +117,8 @@ const OnboardingForm = ({
 
     if ("worksInSchool" in data) {
       user &&
-        posthogDistinctId &&
-        track.userOnboardingProgressed(
+        userOnboardingProgressed(
           collectOnboardingTrackingProps(
-            posthogDistinctId,
             user,
             latestOnboardingData,
             event?.nativeEvent,
@@ -130,10 +133,8 @@ const OnboardingForm = ({
       );
     } else if (isSchoolSelectData(data) && showNewsletterSignUp) {
       user &&
-        posthogDistinctId &&
-        track.userOnboardingProgressed(
+        userOnboardingProgressed(
           collectOnboardingTrackingProps(
-            posthogDistinctId,
             user,
             latestOnboardingData,
             event?.nativeEvent,
@@ -172,9 +173,8 @@ const OnboardingForm = ({
           await onboardUser({ isTeacher });
           user &&
             posthogDistinctId &&
-            track.userOnboardingCompleted(
+            userOnboardingCompleted(
               collectOnboardingTrackingProps(
-                posthogDistinctId,
                 user,
                 latestOnboardingData,
                 event?.nativeEvent,
@@ -197,14 +197,34 @@ const OnboardingForm = ({
         });
       }
 
-      // Return the user to the page they originally arrived from
-      // or to the home page as a fallback
-      router.push(
+      // Return the user to the page they originally arrived from, or to the home page as a fallback.
+      // Use full page load so the destination is served with up-to-date Clerk state,
+      // and the navigation cannot be interrupted by client-side operations.
+      const redirectUrl =
         toSafeRedirect(
           searchParams?.get("returnTo") ?? "/",
-          new URL(typeof window !== "undefined" ? window.location.origin : "/"),
-        ) ?? "/",
-      );
+          new URL(window.location.origin),
+        ) ?? "/";
+
+      if (typeof window !== "undefined" && window.location) {
+        try {
+          redirectPage(redirectUrl);
+        } catch (error) {
+          const reportError = errorReporter("onboarding-form");
+          await reportError(
+            new OakError({
+              code: "onboarding/request-error",
+              meta: {
+                redirectUrl,
+                error: error instanceof Error ? error.message : String(error),
+              },
+              originalError: error instanceof Error ? error : undefined,
+            }),
+          );
+          setSubmitError("Something went wrong. Please try again.");
+          setIsSubmitting(false);
+        }
+      }
     }
   };
 

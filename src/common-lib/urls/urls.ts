@@ -310,8 +310,6 @@ type ProgrammePageProps = {
     years?: string;
     pathways?: string;
     threads?: string;
-    focus_ks4option?: string;
-    open_filters_modal?: string;
     subject_categories?: string;
   };
 };
@@ -356,6 +354,10 @@ type TeachWithOakDownloadSuccessLinkProps = {
 type TeachWithOakLinkProps = {
   page: "teach-with-oak";
   query?: TeachWithOakQueryProps;
+};
+
+type TeachWithOakThinkingBehindOakLessonsLinkProps = {
+  page: "teach-with-oak-thinking-behind-oak-lessons";
 };
 
 type OnlyPageRequired<T> = T extends { page: string }
@@ -441,7 +443,8 @@ export type OakLinkProps =
   | FontHelpLinkProps
   | TeachWithOakLinkProps
   | TeachWithOakDownloadLinkProps
-  | TeachWithOakDownloadSuccessLinkProps;
+  | TeachWithOakDownloadSuccessLinkProps
+  | TeachWithOakThinkingBehindOakLessonsLinkProps;
 
 export type ExternalPageName =
   | "[external] Careers"
@@ -1030,6 +1033,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Teach With Oak",
     configType: "internal",
     pageType: "teach-with-oak-download-success",
+  }),
+  "teach-with-oak-thinking-behind-oak-lessons": createOakPageConfig({
+    pathPattern: "/teachers/teach-with-oak/the-thinking-behind-oak-lessons",
+    analyticsPageName: "Teach With Oak",
+    configType: "internal",
+    pageType: "teach-with-oak-thinking-behind-oak-lessons",
   }),
 };
 

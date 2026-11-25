@@ -4,18 +4,18 @@ exports[`CurriculumPartners renders correctly with default md size 1`] = `
 <body>
   <div>
     <div
-      class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+      class="sc-bdvwhi sc-jRQBiJ hPWTKU heDWJn"
     >
       <div
-        class="sc-bdvwhi sc-gsDMPd hPWTKU edEJAr"
+        class="sc-bdvwhi sc-jRQBiJ hPWTKU kJwqHu"
       >
         <h3
-          class="sc-bkkgYE kDrurA"
+          class="sc-hGPAwl btTvqc"
         >
           TEST_TITLE_MD
         </h3>
         <p
-          class="sc-hGPAwl gpFakR"
+          class="sc-fKVoIy gRmakQ"
         >
           TEST_TEXT
         </p>
@@ -24,17 +24,17 @@ exports[`CurriculumPartners renders correctly with default md size 1`] = `
         class="sc-bdvwhi hPWTKU"
       >
         <ul
-          class="sc-bdvwhi sc-jObTYW eZfdqr iEIpeO"
+          class="sc-bdvwhi sc-cTAoCz eZfdqr eqYLET"
         >
           <li
-            class="sc-ieedpP fwjgNY"
+            class="sc-dlVwtM jQSEyJ"
           >
             <span
               class="sc-bdvwhi blqSgr"
             >
               <img
                 alt="item 0"
-                class="sc-jRQBiJ hssYEG"
+                class="sc-gsDMPd ctfyuj"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -46,14 +46,14 @@ exports[`CurriculumPartners renders correctly with default md size 1`] = `
             </span>
           </li>
           <li
-            class="sc-ieedpP fwjgNY"
+            class="sc-dlVwtM jQSEyJ"
           >
             <span
               class="sc-bdvwhi blqSgr"
             >
               <img
                 alt="item 1"
-                class="sc-jRQBiJ hssYEG"
+                class="sc-gsDMPd ctfyuj"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -65,14 +65,14 @@ exports[`CurriculumPartners renders correctly with default md size 1`] = `
             </span>
           </li>
           <li
-            class="sc-ieedpP fwjgNY"
+            class="sc-dlVwtM jQSEyJ"
           >
             <span
               class="sc-bdvwhi blqSgr"
             >
               <img
                 alt="item 2"
-                class="sc-jRQBiJ hssYEG"
+                class="sc-gsDMPd ctfyuj"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -84,14 +84,14 @@ exports[`CurriculumPartners renders correctly with default md size 1`] = `
             </span>
           </li>
           <li
-            class="sc-ieedpP fwjgNY"
+            class="sc-dlVwtM jQSEyJ"
           >
             <span
               class="sc-bdvwhi blqSgr"
             >
               <img
                 alt="item 3"
-                class="sc-jRQBiJ hssYEG"
+                class="sc-gsDMPd ctfyuj"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -103,14 +103,14 @@ exports[`CurriculumPartners renders correctly with default md size 1`] = `
             </span>
           </li>
           <li
-            class="sc-ieedpP fwjgNY"
+            class="sc-dlVwtM jQSEyJ"
           >
             <span
               class="sc-bdvwhi blqSgr"
             >
               <img
                 alt="item 4"
-                class="sc-jRQBiJ hssYEG"
+                class="sc-gsDMPd ctfyuj"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -122,14 +122,14 @@ exports[`CurriculumPartners renders correctly with default md size 1`] = `
             </span>
           </li>
           <li
-            class="sc-ieedpP fwjgNY"
+            class="sc-dlVwtM jQSEyJ"
           >
             <span
               class="sc-bdvwhi blqSgr"
             >
               <img
                 alt="item 5"
-                class="sc-jRQBiJ hssYEG"
+                class="sc-gsDMPd ctfyuj"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -141,14 +141,14 @@ exports[`CurriculumPartners renders correctly with default md size 1`] = `
             </span>
           </li>
           <li
-            class="sc-ieedpP fwjgNY"
+            class="sc-dlVwtM jQSEyJ"
           >
             <span
               class="sc-bdvwhi blqSgr"
             >
               <img
                 alt="item 6"
-                class="sc-jRQBiJ hssYEG"
+                class="sc-gsDMPd ctfyuj"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -160,14 +160,14 @@ exports[`CurriculumPartners renders correctly with default md size 1`] = `
             </span>
           </li>
           <li
-            class="sc-ieedpP fwjgNY"
+            class="sc-dlVwtM jQSEyJ"
           >
             <span
               class="sc-bdvwhi blqSgr"
             >
               <img
                 alt="item 7"
-                class="sc-jRQBiJ hssYEG"
+                class="sc-gsDMPd ctfyuj"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -179,14 +179,14 @@ exports[`CurriculumPartners renders correctly with default md size 1`] = `
             </span>
           </li>
           <li
-            class="sc-ieedpP fwjgNY"
+            class="sc-dlVwtM jQSEyJ"
           >
             <span
               class="sc-bdvwhi blqSgr"
             >
               <img
                 alt="item 8"
-                class="sc-jRQBiJ hssYEG"
+                class="sc-gsDMPd ctfyuj"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -198,14 +198,14 @@ exports[`CurriculumPartners renders correctly with default md size 1`] = `
             </span>
           </li>
           <li
-            class="sc-ieedpP fwjgNY"
+            class="sc-dlVwtM jQSEyJ"
           >
             <span
               class="sc-bdvwhi blqSgr"
             >
               <img
                 alt="item 9"
-                class="sc-jRQBiJ hssYEG"
+                class="sc-gsDMPd ctfyuj"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -227,18 +227,18 @@ exports[`CurriculumPartners renders correctly with explicit sm size 1`] = `
 <body>
   <div>
     <div
-      class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+      class="sc-bdvwhi sc-jRQBiJ hPWTKU heDWJn"
     >
       <div
-        class="sc-bdvwhi sc-gsDMPd hPWTKU edEJAr"
+        class="sc-bdvwhi sc-jRQBiJ hPWTKU kJwqHu"
       >
         <h3
-          class="sc-bkkgYE kDrurA"
+          class="sc-hGPAwl btTvqc"
         >
           TEST_TITLE_SM
         </h3>
         <p
-          class="sc-hGPAwl gpFakR"
+          class="sc-fKVoIy gRmakQ"
         >
           TEST_TEXT
         </p>
@@ -247,17 +247,17 @@ exports[`CurriculumPartners renders correctly with explicit sm size 1`] = `
         class="sc-bdvwhi hPWTKU"
       >
         <ul
-          class="sc-bdvwhi sc-jObTYW eZfdqr jXTZuJ"
+          class="sc-bdvwhi sc-cTAoCz eZfdqr hJNJeE"
         >
           <li
-            class="sc-ieedpP fwjgNY"
+            class="sc-dlVwtM jQSEyJ"
           >
             <span
               class="sc-bdvwhi blqSgr"
             >
               <img
                 alt="item 0"
-                class="sc-jRQBiJ hssYEG"
+                class="sc-gsDMPd ctfyuj"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -269,14 +269,14 @@ exports[`CurriculumPartners renders correctly with explicit sm size 1`] = `
             </span>
           </li>
           <li
-            class="sc-ieedpP fwjgNY"
+            class="sc-dlVwtM jQSEyJ"
           >
             <span
               class="sc-bdvwhi blqSgr"
             >
               <img
                 alt="item 1"
-                class="sc-jRQBiJ hssYEG"
+                class="sc-gsDMPd ctfyuj"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -288,14 +288,14 @@ exports[`CurriculumPartners renders correctly with explicit sm size 1`] = `
             </span>
           </li>
           <li
-            class="sc-ieedpP fwjgNY"
+            class="sc-dlVwtM jQSEyJ"
           >
             <span
               class="sc-bdvwhi blqSgr"
             >
               <img
                 alt="item 2"
-                class="sc-jRQBiJ hssYEG"
+                class="sc-gsDMPd ctfyuj"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -307,14 +307,14 @@ exports[`CurriculumPartners renders correctly with explicit sm size 1`] = `
             </span>
           </li>
           <li
-            class="sc-ieedpP fwjgNY"
+            class="sc-dlVwtM jQSEyJ"
           >
             <span
               class="sc-bdvwhi blqSgr"
             >
               <img
                 alt="item 3"
-                class="sc-jRQBiJ hssYEG"
+                class="sc-gsDMPd ctfyuj"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -326,14 +326,14 @@ exports[`CurriculumPartners renders correctly with explicit sm size 1`] = `
             </span>
           </li>
           <li
-            class="sc-ieedpP fwjgNY"
+            class="sc-dlVwtM jQSEyJ"
           >
             <span
               class="sc-bdvwhi blqSgr"
             >
               <img
                 alt="item 4"
-                class="sc-jRQBiJ hssYEG"
+                class="sc-gsDMPd ctfyuj"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -345,14 +345,14 @@ exports[`CurriculumPartners renders correctly with explicit sm size 1`] = `
             </span>
           </li>
           <li
-            class="sc-ieedpP fwjgNY"
+            class="sc-dlVwtM jQSEyJ"
           >
             <span
               class="sc-bdvwhi blqSgr"
             >
               <img
                 alt="item 5"
-                class="sc-jRQBiJ hssYEG"
+                class="sc-gsDMPd ctfyuj"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"

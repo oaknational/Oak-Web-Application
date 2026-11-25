@@ -1,228 +1,363 @@
-import { act, waitFor } from "@testing-library/react";
-import type { ReactElement } from "react";
-import React from "react";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { StrictMode } from "react";
 
-import { ProgrammeFiltersKs4Options } from "../ProgrammeFiltersKs4Options";
+import {
+  ProgrammeNavigationProvider,
+  useProgrammeNavigation,
+} from "../../../../../ProgrammeNavigationProvider";
 import {
   ProgrammePageFiltersModalProvider,
   useProgrammePageFiltersModal,
 } from "../ProgrammePageFiltersModalProvider";
 
-import {
-  FOCUS_KS4_OPTION_QUERY_PARAM,
-  OPEN_FILTERS_MODAL_QUERY_PARAM,
-} from "./ks4OptionFocusParams";
+import { useKS4OptionFocus } from "./KS4OptionFocusProvider";
 
 import { KS4OptionFocusProvider, KS4OptionFocusScope } from "./index";
 
-import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
-import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
-import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import { BrowseFiltersProvider } from "@/context/BrowseFilters";
-import { createFilter } from "@/context/BrowseFilters/utils/fixtures";
+import type { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
-const useSearchParamsMock = jest.fn();
-const replaceStateMock = jest.fn();
-
+let mockPathname = "/teachers/programmes/english-secondary-aqa/units";
 jest.mock("next/navigation", () => ({
-  __esModule: true,
-  useRouter: () => ({
-    push: jest.fn(),
-    prefetch: jest.fn(),
-  }),
-  useSearchParams: () => useSearchParamsMock(),
-  usePathname: () => "/teachers/programmes/english-secondary-ocr/units",
+  usePathname: () => mockPathname,
 }));
 
-globalThis.history.replaceState(
-  null,
-  "",
-  "/teachers/programmes/english-secondary-ocr/units",
-);
-jest
-  .spyOn(globalThis.history, "replaceState")
-  .mockImplementation(replaceStateMock);
-
-const render = renderWithProvidersByName([
-  "oakTheme",
-  "theme",
-  "analytics",
-  "teacherBrowseAnalytics",
-]);
-
-const examBoardOptions: Ks4Option[] = [
-  { slug: "aqa", title: "AQA" },
-  { slug: "edexcel", title: "Edexcel" },
-  { slug: "ocr", title: "OCR" },
-];
-
-const defaultSlugs: CurriculumSelectionSlugs = {
+const source: CurriculumSelectionSlugs = {
   subjectSlug: "english",
   phaseSlug: "secondary",
-  ks4OptionSlug: "ocr",
+  ks4OptionSlug: "aqa",
 };
+const destination = { ...source, ks4OptionSlug: "ocr" };
+const destinationPath = "/teachers/programmes/english-secondary-ocr/units";
 
-const defaultFilters = createFilter({
-  keystages: ["ks4"],
-  years: ["10"],
-});
-
-const ks4OptionFilterDimensions = {
-  ocr: {
-    tierSlugs: ["foundation"],
-    pathwaySlugs: [],
-    childSubjectSlugs: [],
-  },
-};
-
-function renderWithProviders(ui: ReactElement) {
-  return render(
-    <BrowseFiltersProvider defaultFilter={defaultFilters}>
-      <ProgrammePageFiltersModalProvider>
-        <KS4OptionFocusProvider>{ui}</KS4OptionFocusProvider>
-      </ProgrammePageFiltersModalProvider>
-    </BrowseFiltersProvider>,
+function NavigationButton({
+  keyboard,
+  modal,
+}: {
+  keyboard: boolean;
+  modal: boolean;
+}) {
+  const { setNavigationIntent } = useProgrammeNavigation();
+  return (
+    <button
+      onClick={() =>
+        setNavigationIntent({
+          destination,
+          restoreFocus: keyboard,
+          reopenFiltersModal: modal,
+        })
+      }
+    >
+      Navigate
+    </button>
   );
 }
 
-function renderWithFocusScope(
-  variant: "page" | "modal",
-  searchParams: URLSearchParams,
-) {
-  useSearchParamsMock.mockReturnValue(searchParams);
-
-  return renderWithProviders(
-    <KS4OptionFocusScope variant={variant}>
-      <ProgrammeFiltersKs4Options
-        slugs={defaultSlugs}
-        ks4Options={examBoardOptions}
-        ks4OptionFilterDimensions={ks4OptionFilterDimensions}
-      />
-    </KS4OptionFocusScope>,
+function Radios() {
+  const { isOpen } = useProgrammePageFiltersModal();
+  return (
+    <>
+      <span data-testid="modal-open">{String(isOpen)}</span>
+      <KS4OptionFocusScope variant="page">
+        <input type="radio" value="ocr" aria-label="Page OCR" />
+      </KS4OptionFocusScope>
+      {isOpen && (
+        <KS4OptionFocusScope variant="modal">
+          <input type="radio" value="ocr" aria-label="Modal OCR" />
+        </KS4OptionFocusScope>
+      )}
+    </>
   );
 }
 
-describe("KS4OptionFocusProvider", () => {
+function Harness({
+  slugs = source,
+  pageKey = "source",
+  keyboard = true,
+  modal = false,
+}: {
+  slugs?: CurriculumSelectionSlugs;
+  pageKey?: string;
+  keyboard?: boolean;
+  modal?: boolean;
+}) {
+  return (
+    <StrictMode>
+      <ProgrammeNavigationProvider>
+        <NavigationButton keyboard={keyboard} modal={modal} />
+        <ProgrammePageFiltersModalProvider key={pageKey}>
+          <KS4OptionFocusProvider slugs={slugs}>
+            <Radios />
+          </KS4OptionFocusProvider>
+        </ProgrammePageFiltersModalProvider>
+      </ProgrammeNavigationProvider>
+    </StrictMode>
+  );
+}
+
+describe("KS4 navigation intent", () => {
   beforeEach(() => {
-    replaceStateMock.mockClear();
-    useSearchParamsMock.mockReturnValue(new URLSearchParams(""));
+    mockPathname = "/teachers/programmes/english-secondary-aqa/units";
   });
 
-  it("focuses the matching KS4 option radio on page and strips focus_ks4option", async () => {
-    const focusSpy = jest.spyOn(HTMLInputElement.prototype, "focus");
-
-    const { getAllByRole } = renderWithFocusScope(
-      "page",
-      new URLSearchParams(
-        `keystages=ks4&years=10&${FOCUS_KS4_OPTION_QUERY_PARAM}=ocr`,
-      ),
-    );
-
-    const radios = getAllByRole("radio") as HTMLInputElement[];
-    const ocrRadio = radios.find((radio) => radio.value === "ocr");
-
-    await waitFor(() => {
-      expect(focusSpy).toHaveBeenCalled();
-      expect(focusSpy.mock.instances[0]).toBe(ocrRadio);
-      expect(replaceStateMock).toHaveBeenCalledWith(
-        null,
-        "",
-        "/teachers/programmes/english-secondary-ocr/units?keystages=ks4&years=10",
+  it.each([
+    { keyboard: true, modal: false },
+    { keyboard: false, modal: false },
+    { keyboard: true, modal: true },
+    { keyboard: false, modal: true },
+  ])(
+    "restores one-time intent across a page remount (keyboard: $keyboard, modal: $modal)",
+    async ({ keyboard, modal }) => {
+      const focusSpy = jest.spyOn(HTMLInputElement.prototype, "focus");
+      const { getByRole, getByTestId, rerender } = render(
+        <Harness keyboard={keyboard} modal={modal} />,
       );
-    });
+      fireEvent.click(getByRole("button", { name: "Navigate" }));
+      expect(focusSpy).not.toHaveBeenCalled();
+      expect(getByTestId("modal-open")).toHaveTextContent("false");
 
-    focusSpy.mockRestore();
-  });
-
-  it("strips focus_ks4option without focusing when the slug is invalid", async () => {
-    const focusSpy = jest.spyOn(HTMLInputElement.prototype, "focus");
-
-    renderWithFocusScope(
-      "page",
-      new URLSearchParams(`${FOCUS_KS4_OPTION_QUERY_PARAM}=invalid-board`),
-    );
-
-    await waitFor(() => {
-      expect(replaceStateMock).toHaveBeenCalledWith(
-        null,
-        "",
-        "/teachers/programmes/english-secondary-ocr/units",
-      );
-    });
-
-    expect(focusSpy).not.toHaveBeenCalled();
-
-    focusSpy.mockRestore();
-  });
-
-  it("does not focus on page scope when open_filters_modal is present", async () => {
-    const focusSpy = jest.spyOn(HTMLInputElement.prototype, "focus");
-
-    renderWithFocusScope(
-      "page",
-      new URLSearchParams(
-        `${FOCUS_KS4_OPTION_QUERY_PARAM}=ocr&${OPEN_FILTERS_MODAL_QUERY_PARAM}=1`,
-      ),
-    );
-
-    await act(async () => {
-      await new Promise<void>((resolve) => {
-        requestAnimationFrame(() => resolve());
+      mockPathname = destinationPath;
+      rerender(<Harness slugs={destination} pageKey="destination" />);
+      await waitFor(() => {
+        expect(getByTestId("modal-open")).toHaveTextContent(String(modal));
+        if (keyboard) {
+          expect(
+            getByRole("radio", { name: modal ? "Modal OCR" : "Page OCR" }),
+          ).toHaveFocus();
+          expect(focusSpy).toHaveBeenCalledWith({ preventScroll: true });
+        }
       });
+      if (!keyboard) {
+        expect(focusSpy).not.toHaveBeenCalled();
+      }
+
+      focusSpy.mockClear();
+      rerender(<Harness slugs={destination} pageKey="revisit" />);
+      expect(getByTestId("modal-open")).toHaveTextContent("false");
+      expect(focusSpy).not.toHaveBeenCalled();
+      focusSpy.mockRestore();
+    },
+  );
+
+  it("does not restore intent on direct visits or refresh", () => {
+    mockPathname = destinationPath;
+    const focusSpy = jest.spyOn(HTMLInputElement.prototype, "focus");
+    const { getByTestId } = render(
+      <Harness slugs={destination} pageKey="direct" />,
+    );
+    expect(getByTestId("modal-open")).toHaveTextContent("false");
+    expect(focusSpy).not.toHaveBeenCalled();
+    focusSpy.mockRestore();
+  });
+
+  it("discards stale intent when navigation goes somewhere else", () => {
+    const focusSpy = jest.spyOn(HTMLInputElement.prototype, "focus");
+    const { getByRole, getByTestId, rerender } = render(<Harness modal />);
+    fireEvent.click(getByRole("button", { name: "Navigate" }));
+    mockPathname = "/teachers/programmes/maths-secondary-aqa/units";
+    rerender(
+      <Harness slugs={{ ...source, subjectSlug: "maths" }} pageKey="other" />,
+    );
+    mockPathname = destinationPath;
+    rerender(<Harness slugs={destination} pageKey="later" />);
+    expect(getByTestId("modal-open")).toHaveTextContent("false");
+    expect(focusSpy).not.toHaveBeenCalled();
+    focusSpy.mockRestore();
+  });
+
+  it("throws an error if KS4OptionFocus is used outside of the focus provider", () => {
+    function ComponentUsingHookOutsideProvider() {
+      useKS4OptionFocus();
+      return null;
+    }
+
+    const consoleSpy = jest
+      .spyOn(console, "error")
+      .mockImplementation(() => {});
+    expect(() => render(<ComponentUsingHookOutsideProvider />)).toThrow(
+      Error("useKS4OptionFocus must be used within KS4OptionFocusProvider"),
+    );
+    consoleSpy.mockRestore();
+  });
+
+  describe("KS4OptionFocusScope focus restoration", () => {
+    it("does not error or focus when radio element with matching value is not found", async () => {
+      const focusSpy = jest.spyOn(HTMLDivElement.prototype, "focus");
+      const { getByRole, rerender } = render(<Harness keyboard />);
+      fireEvent.click(getByRole("button", { name: "Navigate" }));
+
+      mockPathname = "/teachers/programmes/english-secondary-edexcel/units";
+      const nonExistentDestination = {
+        ...source,
+        ks4OptionSlug: "edexcel",
+      };
+      rerender(
+        <Harness slugs={nonExistentDestination} pageKey="nonexistent" />,
+      );
+
+      await waitFor(() => {
+        expect(focusSpy).not.toHaveBeenCalled();
+      });
+      focusSpy.mockRestore();
     });
 
-    expect(focusSpy).not.toHaveBeenCalled();
+    it("skips focus restoration when keyboard navigation flag is false", async () => {
+      const focusSpy = jest.spyOn(HTMLDivElement.prototype, "focus");
+      const { getByRole, rerender } = render(
+        <Harness keyboard={false} modal={true} />,
+      );
+      fireEvent.click(getByRole("button", { name: "Navigate" }));
+
+      mockPathname = destinationPath;
+      rerender(
+        <Harness slugs={destination} keyboard={false} pageKey="destination" />,
+      );
+      await waitFor(() => {
+        expect(focusSpy).not.toHaveBeenCalled();
+      });
+      focusSpy.mockRestore();
+    });
+  });
+
+  it("does not focus when KS4 option is not specified in destination", async () => {
+    function NavigationButtonNoKS4({
+      keyboard,
+      modal,
+    }: {
+      keyboard: boolean;
+      modal: boolean;
+    }) {
+      const { setNavigationIntent } = useProgrammeNavigation();
+      return (
+        <button
+          onClick={() =>
+            setNavigationIntent({
+              destination: {
+                subjectSlug: "maths",
+                phaseSlug: "secondary",
+              } as CurriculumSelectionSlugs,
+              restoreFocus: keyboard,
+              reopenFiltersModal: modal,
+            })
+          }
+        >
+          Navigate
+        </button>
+      );
+    }
+
+    function HarnessWithNoKS4Button({
+      slugs = source,
+      pageKey = "source",
+      keyboard = true,
+      modal = false,
+    }: {
+      slugs?: CurriculumSelectionSlugs;
+      pageKey?: string;
+      keyboard?: boolean;
+      modal?: boolean;
+    }) {
+      return (
+        <StrictMode>
+          <ProgrammeNavigationProvider>
+            <NavigationButtonNoKS4 keyboard={keyboard} modal={modal} />
+            <ProgrammePageFiltersModalProvider key={pageKey}>
+              <KS4OptionFocusProvider slugs={slugs}>
+                <Radios />
+              </KS4OptionFocusProvider>
+            </ProgrammePageFiltersModalProvider>
+          </ProgrammeNavigationProvider>
+        </StrictMode>
+      );
+    }
+
+    const focusSpy = jest.spyOn(HTMLInputElement.prototype, "focus");
+    const { getByRole, rerender } = render(
+      <HarnessWithNoKS4Button keyboard={true} />,
+    );
+
+    mockPathname = "/teachers/programmes/maths-secondary/units";
+    fireEvent.click(getByRole("button", { name: "Navigate" }));
+
+    rerender(
+      <HarnessWithNoKS4Button
+        slugs={
+          {
+            subjectSlug: "maths",
+            phaseSlug: "secondary",
+          } as CurriculumSelectionSlugs
+        }
+        pageKey="no-ks4"
+      />,
+    );
+
+    await waitFor(() => {
+      // No focus should occur because destination.ks4OptionSlug is undefined
+      expect(focusSpy).not.toHaveBeenCalled();
+    });
 
     focusSpy.mockRestore();
   });
 
-  it("focuses in modal scope after mobile modal opens and strips both ephemeral params", async () => {
-    useSearchParamsMock.mockReturnValue(
-      new URLSearchParams(
-        `keystages=ks4&${FOCUS_KS4_OPTION_QUERY_PARAM}=ocr&${OPEN_FILTERS_MODAL_QUERY_PARAM}=1`,
-      ),
-    );
+  it("tracks when scope is mounted and unmounted by updating registration status", async () => {
+    let capturedScope:
+      | ((variant: "page" | "modal", node: HTMLDivElement | null) => void)
+      | null = null;
+    let capturedPageNode: HTMLDivElement | null = null;
 
-    const focusSpy = jest.spyOn(HTMLInputElement.prototype, "focus");
-
-    const ModalHarness = () => {
-      const { isOpen } = useProgrammePageFiltersModal();
-
+    function TestComponent() {
+      const { registerScope } = useKS4OptionFocus();
+      capturedScope = registerScope;
       return (
         <>
-          <span data-testid="modal-open">{String(isOpen)}</span>
-          {isOpen && (
-            <KS4OptionFocusScope variant="modal">
-              <ProgrammeFiltersKs4Options
-                slugs={defaultSlugs}
-                ks4Options={examBoardOptions}
-                ks4OptionFilterDimensions={ks4OptionFilterDimensions}
-              />
-            </KS4OptionFocusScope>
-          )}
+          <KS4OptionFocusScope variant="page">
+            <div
+              ref={(node) => {
+                if (node) capturedPageNode = node;
+              }}
+              data-testid="page-scope"
+            >
+              <input type="radio" value="ocr" aria-label="Page OCR" />
+            </div>
+          </KS4OptionFocusScope>
         </>
       );
-    };
+    }
 
-    const { getByTestId, getAllByRole } = renderWithProviders(<ModalHarness />);
-
-    await waitFor(() => {
-      expect(getByTestId("modal-open")).toHaveTextContent("true");
-    });
-
-    const radios = getAllByRole("radio") as HTMLInputElement[];
-    const ocrRadio = radios.find((radio) => radio.value === "ocr");
-
-    await waitFor(() => {
-      expect(focusSpy).toHaveBeenCalled();
-      expect(focusSpy.mock.instances).toContain(ocrRadio);
-      expect(replaceStateMock).toHaveBeenCalledWith(
-        null,
-        "",
-        "/teachers/programmes/english-secondary-ocr/units?keystages=ks4",
+    function TestHarness() {
+      return (
+        <StrictMode>
+          <ProgrammeNavigationProvider>
+            <ProgrammePageFiltersModalProvider>
+              <KS4OptionFocusProvider slugs={source}>
+                <TestComponent />
+              </KS4OptionFocusProvider>
+            </ProgrammePageFiltersModalProvider>
+          </ProgrammeNavigationProvider>
+        </StrictMode>
       );
+    }
+
+    render(<TestHarness />);
+
+    // Initial render: page scope mounts, registerScope called with (variant="page", node=divElement)
+    // This sets registered["page"] = true (since node !== null)
+    await waitFor(() => {
+      expect(capturedPageNode).not.toBeNull();
+      expect(capturedScope).not.toBeNull();
     });
 
-    focusSpy.mockRestore();
+    // registerScope is called again with the same state
+    // current["page"] === true and (node !== null) === true
+    // condition is true, so it returns current without updating
+    // const setStateUpdateCountBefore = jest.fn();
+    const originalSetState = capturedScope;
+    capturedScope = jest.fn(originalSetState!);
+
+    act(() => {
+      capturedScope!("page", capturedPageNode);
+    });
+
+    // Verify that no unnecessary update occurred
+    expect(capturedScope).toHaveBeenCalledWith("page", capturedPageNode);
   });
 });

@@ -21,7 +21,6 @@ import {
   DOWNLOAD_TYPES,
   DownloadTypes,
 } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
-import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 
 const stale_while_revalidate_seconds = 60 * 3;
 const s_maxage_seconds = 60 * 60 * 24;
@@ -437,7 +436,7 @@ export default async function handler(
   res: NextApiResponse<Buffer>,
 ) {
   const {
-    types: typesInitial,
+    types,
     mvRefreshTime,
     subjectSlug,
     phaseSlug,
@@ -449,18 +448,6 @@ export default async function handler(
 
   const mvRefreshTimeParsed = Number.parseInt(mvRefreshTime);
   const actualMvRefreshTime = await getMvRefreshTime();
-
-  const isImplementationGuidesEnabled = await isFeatureFlagEnabledServer(
-    req.cookies,
-    "implementation-guides",
-  );
-
-  // Temp to ensure no implementation guides are included before release
-  const types = isImplementationGuidesEnabled
-    ? typesInitial
-    : typesInitial.filter(
-        (type) => type === "curriculumPlan" || type === "nationalCurriculum",
-      );
 
   // Note: Disable this check to allow 'new' documents
   if (state === "new") {

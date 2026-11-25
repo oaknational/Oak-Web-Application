@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`NcAlignmentCheckerLandingPageHeader renders correct data 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-bdvwhi drZMat"
+    >
+      <div
+        class="sc-bdvwhi iatEdD"
+      >
+        <div
+          class="sc-bdvwhi hKHXmg"
+        >
+          <nav
+            aria-label="Breadcrumb"
+            class="sc-bdvwhi ejVpib"
+          >
+            <ul
+              class="sc-jHkWmS bwmIwu"
+            >
+              <li
+                class="sc-bQtLLP HPudz"
+              >
+                <a
+                  class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
+                  href="/"
+                  style="overflow: hidden;"
+                >
+                  <span
+                    class="sc-iCfNyT fAQctr"
+                  >
+                    <div
+                      class="sc-bdvwhi bzawnc"
+                    >
+                      Home
+                    </div>
+                  </span>
+                </a>
+              </li>
+              <li
+                class="sc-bQtLLP HPudz"
+              >
+                <span
+                  class="sc-bdvwhi gWngyq"
+                >
+                  <img
+                    alt=""
+                    class="sc-gsDMPd frprTL"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
+                </span>
+                <div
+                  aria-current="page"
+                  class="sc-bdvwhi bzawnc"
+                >
+                  National curriculum alignment checker
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div
+          class="sc-bdvwhi sc-cTAoCz crwNYt gLmhut"
+        >
+          <div
+            class="sc-bdvwhi sc-jRQBiJ sc-jObTYW iGfZgI heSanc eXAXhc"
+          >
+            <div
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU ibbSGp"
+            >
+              <span
+                class="sc-bdvwhi bARMED"
+              >
+                <img
+                  alt=""
+                  class="sc-gsDMPd ctfyuj"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  sizes="100vw"
+                  src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F3c48070cafbcfbf8164a0bf315a43263fa91cc41-3410x2234.png&w=3840&q=75"
+                  srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F3c48070cafbcfbf8164a0bf315a43263fa91cc41-3410x2234.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F3c48070cafbcfbf8164a0bf315a43263fa91cc41-3410x2234.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F3c48070cafbcfbf8164a0bf315a43263fa91cc41-3410x2234.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F3c48070cafbcfbf8164a0bf315a43263fa91cc41-3410x2234.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F3c48070cafbcfbf8164a0bf315a43263fa91cc41-3410x2234.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F3c48070cafbcfbf8164a0bf315a43263fa91cc41-3410x2234.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F3c48070cafbcfbf8164a0bf315a43263fa91cc41-3410x2234.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2F3c48070cafbcfbf8164a0bf315a43263fa91cc41-3410x2234.png&w=3840&q=75 3840w"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+              <div
+                class="sc-bdvwhi sc-jRQBiJ iMMhmV cBpORs"
+              >
+                <h1
+                  class="sc-hGPAwl ejrCco"
+                >
+                  Welcome to Oak's national curriculum alignment checker
+                </h1>
+                <p
+                  class="sc-fKVoIy NxjIA"
+                >
+                  For the refreshed national curriculum, taught in schools from September 2028.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-bdvwhi sc-jRQBiJ sc-jObTYW HHYqW heSanc jPvFNO"
+          >
+            <div
+              class="sc-bdvwhi sc-jRQBiJ eATcue kcZiin"
+            >
+              SUBJECT PICKER PLACEHOLDER
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

@@ -17,7 +17,7 @@ jest.mock("@/common-lib/urls", () => ({
 }));
 
 let mockComplexCopyright = defaultCopyrightRequirements;
-jest.mock("@/hooks/useComplexCopyright", () => ({
+jest.mock("@/utils/complexCopyright/useComplexCopyright", () => ({
   useComplexCopyright: () => mockComplexCopyright,
 }));
 

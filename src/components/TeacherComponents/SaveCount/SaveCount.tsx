@@ -1,13 +1,16 @@
-import { OakSaveCount } from "@oaknational/oak-components";
+import { OakBox, OakSaveCount } from "@oaknational/oak-components";
 import { useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import useSaveCountContext from "@/context/SaveCount/useSaveCountContext";
 import { useGetEducatorData } from "@/node-lib/educator-api/helpers/useGetEducatorData";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { ComponentType } from "@/browser-lib/avo/Avo";
 
 export const SaveCount = () => {
-  const { isSignedIn } = useUser();
+  const { isLoaded, isSignedIn } = useUser();
+  const { signInStarted } = useTeacherBrowseAnalytics((store) => store.track);
 
   const {
     data: unitsCount,
@@ -32,10 +35,22 @@ export const SaveCount = () => {
   }, [isSignedIn, mutate, setSavedUnitsCount]);
 
   return (
-    <OakSaveCount
-      count={savedUnitsCount ?? undefined}
-      href={resolveOakHref({ page: "my-library" })}
-      loading={isLoading}
-    />
+    // OakSaveCount has no onClick, so catch the link click as it bubbles
+    <OakBox
+      $display="contents"
+      onClick={() => {
+        if (isLoaded && !isSignedIn) {
+          signInStarted({
+            componentType: ComponentType.TOPNAV_MY_LIBRARY_BUTTON,
+          });
+        }
+      }}
+    >
+      <OakSaveCount
+        count={savedUnitsCount ?? undefined}
+        href={resolveOakHref({ page: "my-library" })}
+        loading={isLoading}
+      />
+    </OakBox>
   );
 };

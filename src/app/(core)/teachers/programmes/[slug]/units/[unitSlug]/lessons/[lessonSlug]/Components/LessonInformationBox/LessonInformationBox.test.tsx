@@ -2,10 +2,10 @@ import { screen } from "@testing-library/dom";
 
 import LessonInformationBox from "./LessonInformationBox";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { getOakUiColor } from "@/__tests__/__helpers__/getOakUiColor";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-const render = renderWithTheme;
+const render = renderWithProviders();
 
 describe("LessonInformationBox", () => {
   it("renders equipment section", () => {

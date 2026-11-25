@@ -189,6 +189,21 @@ describe("getLessonResources", () => {
   });
 
   describe("downloadable resources", () => {
+    it("allows a lesson guide with only a DOCX download", () => {
+      const props = defaultTestProps();
+      props.data = teachersLessonOverviewFixture({
+        lessonGuideUrl: "https://example.com/guide.pdf",
+        downloads: [{ exists: true, type: "lesson-guide-docx" }],
+      });
+
+      const guide = getLessonResources(props).find(
+        (resource) => resource.resourceType === "lesson-guide",
+      );
+
+      expect(guide?.downloadable).toBe(true);
+      expect(guide?.downloadTitle).toBe("lesson guide (PDF/DOCX)");
+    });
+
     it("marks resource as downloadable when download exists", () => {
       const props = defaultTestProps();
       props.data = teachersLessonOverviewFixture({

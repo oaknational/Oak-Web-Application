@@ -14,7 +14,7 @@ import type { UnitOverviewContentProps } from "../UnitOverviewContent/UnitOvervi
 
 import CardListing from "@/components/TeacherComponents/CardListing/CardListing";
 import { resolveOakHref } from "@/common-lib/urls";
-import { useComplexCopyright } from "@/hooks/useComplexCopyright";
+import { useComplexCopyright } from "@/utils/complexCopyright/useComplexCopyright";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type LessonListProps = Pick<

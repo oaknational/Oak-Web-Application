@@ -5,14 +5,17 @@ import { useTeacherBrowseAnalytics } from "../TeacherBrowseAnalyticsProvider";
 import {
   ProgrammeState,
   ProgrammeStateLesson,
+  ProgrammeStateProgramme,
   ProgrammeStateUnit,
 } from "../teacherBrowseAnalytics.types";
+import { getProgrammeStateForProgramme } from "../utils/getProgrammeState";
 
 import { resolveOakHref } from "@/common-lib/urls";
 
 export type DerivedProgrammeState = {
   lessonState: ProgrammeStateLesson | null;
   unitState: ProgrammeStateUnit | null;
+  coreProgrammeState: ProgrammeStateProgramme | null;
   currentHref: string | null;
 };
 
@@ -56,11 +59,14 @@ export const useProgrammeState = (): DerivedProgrammeState => {
     programmeState?.browseLevel === "lesson" ? programmeState : null;
   const unitState =
     programmeState?.browseLevel !== "programme" ? programmeState : null;
+  const coreProgrammeState = programmeState
+    ? getProgrammeStateForProgramme(programmeState)
+    : null;
 
   const currentHref = useMemo(
     () => getCurrentHref(programmeState),
     [programmeState],
   );
 
-  return { currentHref, lessonState, unitState };
+  return { currentHref, lessonState, unitState, coreProgrammeState };
 };

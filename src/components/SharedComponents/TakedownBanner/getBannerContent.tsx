@@ -82,7 +82,6 @@ const getCycle2WithoutNewUnitsContent = (
             rel="external"
             isTrailingIcon
             iconName="external"
-            aria-label="help article (opens in a new tab)"
           >
             help article
           </OakLink>{" "}

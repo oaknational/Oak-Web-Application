@@ -3,7 +3,6 @@ import {
   LessonOverviewQuizQuestion,
   StemObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
 const ALLOWED_MATHJAX_SUBJECT_SLUGS = new Set([
   "maths",
@@ -71,7 +70,7 @@ const hasQuizMathJax = (
 };
 
 export const hasLessonMathJax = (
-  lessonPage: LessonOverviewPageData | TeachersLessonOverviewPageData,
+  lessonPage: TeachersLessonOverviewPageData,
   subjectSlug: string | null,
   isLegacyLicense: boolean,
 ): boolean => {

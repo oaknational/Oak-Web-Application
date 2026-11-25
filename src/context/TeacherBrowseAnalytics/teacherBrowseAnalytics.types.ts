@@ -20,6 +20,8 @@ import {
   VideoLocationValueType,
   ComponentTypeValueType,
   ActiveFilters,
+  UserOnboardingCompletedProperties,
+  UserOnboardingProgressedProperties,
 } from "@/browser-lib/avo/Avo";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
@@ -149,6 +151,16 @@ export type NullableSearchResultContext = {
   [K in keyof SearchResultContentFields]: SearchResultContentFields[K] | null;
 } & SearchResultReleaseFields;
 
+export type OnboardingTrackingProps = Omit<
+  UserOnboardingCompletedProperties & UserOnboardingProgressedProperties,
+  | "platform"
+  | "product"
+  | "engagementIntent"
+  | "eventVersion"
+  | "analyticsUseCase"
+  | "userId_"
+>;
+
 // All Track Fns used in the teacher browse journey
 export type TeacherBrowseTrackFns = {
   // NAVIGATION
@@ -187,7 +199,6 @@ export type TeacherBrowseTrackFns = {
     yearGroupSlug: string;
   }) => void;
   unitDownloaded: () => void;
-  unitDownloadStarted: () => void;
   unitSequenceRefined: (props: {
     selectedThread?: { slug: string; title: string }; // TD add filters to state
     subjectCategory?: string; // TD add filters to state

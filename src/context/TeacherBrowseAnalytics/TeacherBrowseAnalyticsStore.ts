@@ -6,6 +6,7 @@ import { TrackFns } from "../Analytics/AnalyticsProvider";
 import {
   CoreProgrammeState,
   NullableSearchResultContext,
+  OnboardingTrackingProps,
   ProgrammeState,
   ProgrammeStateLesson,
   ProgrammeStateUnit,
@@ -31,6 +32,7 @@ import type {
   ContextValueType,
 } from "@/browser-lib/avo/Avo";
 import {
+  AccessBlockTypeValueType,
   AccessLevelValueType,
   ActiveFilters,
   AnalyticsUseCaseValueType,
@@ -38,6 +40,7 @@ import {
   ComponentTypeValueType,
   DownloadResourceButtonNameValueType,
   EngagementIntent,
+  EngagementIntentValueType,
   EventVersionValueType,
   FilterTypeValueType,
   LearningTierValueType,
@@ -60,8 +63,31 @@ export type TeacherBrowseAnalyticsStore = {
   programmeState: ProgrammeState | null;
   journeyId: string | null;
   accessLevel: AccessLevelValueType;
+  posthogDistinctId: string | null;
   avo: TrackFns;
   track: {
+    contentBlockNotificationDisplayed: (props: {
+      componentType: ComponentTypeValueType;
+      accessBlockType: AccessBlockTypeValueType;
+    }) => void;
+    contentSaved: (data: {
+      keyStageTitle: KeyStageTitleValueType;
+      keyStageSlug: string;
+      subjectTitle: string;
+      subjectSlug: string;
+      contentType: string;
+      contentItemSlug: string;
+      componentType: ComponentTypeValueType;
+    }) => void;
+    contentUnsaved: (data: {
+      keyStageTitle: KeyStageTitleValueType;
+      keyStageSlug: string;
+      subjectTitle: string;
+      subjectSlug: string;
+      contentType: string;
+      contentItemSlug: string;
+      componentType: ComponentTypeValueType;
+    }) => void;
     createTeachingMaterialsInitiated: (props: { isLoggedIn: boolean }) => void;
     curriculumExplainerExplored: () => void;
     curriculumResourcesAccessed: (data: {
@@ -118,6 +144,8 @@ export type TeacherBrowseAnalyticsStore = {
       mediaClipsCount: number;
       mediaClipIndex: number;
     }) => void;
+    newsletterSignUpCompleted: () => void;
+    signInStarted: (props: { componentType: ComponentTypeValueType }) => void;
     programmeAccessed: (props: {
       componentType: ComponentTypeValueType;
       navigationType?: NavigationTypeValueType;
@@ -193,13 +221,14 @@ export type TeacherBrowseAnalyticsStore = {
       };
     }) => void;
     unitDownloaded: () => void;
-    unitDownloadStarted: () => void;
     unitRefined: (props: {
       componentType: ComponentTypeValueType;
       activeFilters: ActiveFilters;
       filterType: FilterTypeValueType;
       filterValue: string;
     }) => void;
+    userOnboardingCompleted: (props: OnboardingTrackingProps) => void;
+    userOnboardingProgressed: (props: OnboardingTrackingProps) => void;
     videoPlayed: (props: VideoTrackingProperties) => void;
     videoStarted: (props: VideoTrackingProperties) => void;
     videoPaused: (props: VideoTrackingProperties) => void;
@@ -227,10 +256,18 @@ const sharedSearchProperties: {
   navigationType: "narrow",
 };
 
+const registrationProperties: {
+  product: ProductValueType;
+  engagementIntent: EngagementIntentValueType;
+} = {
+  product: "user account management",
+  engagementIntent: "explore",
+};
+
 export const createTeacherBrowseAnalyticsStore = (
   initialState: Pick<
     TeacherBrowseAnalyticsStore,
-    "programmeState" | "avo" | "journeyId" | "accessLevel"
+    "programmeState" | "avo" | "journeyId" | "accessLevel" | "posthogDistinctId"
   >,
 ) => {
   const requireProgrammeState = (
@@ -265,6 +302,12 @@ export const createTeacherBrowseAnalyticsStore = (
     meta?: Record<string, unknown>,
   ): ProgrammeStateLesson | null => {
     if (programmeState?.browseLevel !== "lesson") {
+      meta = {
+        ...meta,
+        programmeState: programmeState,
+        accessLevel: initialState.accessLevel,
+        journeyId: initialState.journeyId,
+      };
       reportAnalyticsError({ event, programmeState, ...meta });
       return null;
     }
@@ -275,6 +318,59 @@ export const createTeacherBrowseAnalyticsStore = (
   return createStore<TeacherBrowseAnalyticsStore>()((_, get) => ({
     ...initialState,
     track: {
+      contentBlockNotificationDisplayed: ({
+        componentType,
+        accessBlockType,
+      }) => {
+        const { avo, programmeState } = get();
+
+        const unitState = requireUnitState(
+          "contentBlockNotificationDisplayed",
+          programmeState,
+          { accessBlockType },
+        );
+        if (!unitState) {
+          return;
+        }
+
+        const lessonProperties =
+          unitState.browseLevel === "lesson"
+            ? getLessonAnalyticsProperties(unitState)
+            : null;
+
+        avo.contentBlockNotificationDisplayed({
+          ...coreProperties,
+          engagementIntent: "explore",
+          componentType,
+          accessBlockType,
+          accessBlockDetails: {},
+          contentType: lessonProperties ? "lesson" : "unit",
+          unitName: unitState.unit.title,
+          unitSlug: unitState.unit.slug,
+          lessonName: lessonProperties?.lessonName ?? null,
+          lessonSlug: lessonProperties?.lessonSlug ?? null,
+          lessonReleaseCohort: lessonProperties?.lessonReleaseCohort ?? null,
+          lessonReleaseDate: lessonProperties?.lessonReleaseDate ?? null,
+        });
+      },
+      contentSaved: (data) => {
+        const { avo } = get();
+
+        avo.contentSaved({
+          ...coreProperties,
+          ...data,
+          engagementIntent: "use",
+        });
+      },
+      contentUnsaved: (data) => {
+        const { avo } = get();
+
+        avo.contentUnsaved({
+          ...coreProperties,
+          ...data,
+          engagementIntent: "use",
+        });
+      },
       createTeachingMaterialsInitiated: (data) => {
         const { avo, programmeState, journeyId } = get();
 
@@ -578,6 +674,22 @@ export const createTeacherBrowseAnalyticsStore = (
           videoLocation: "media clips",
         });
       },
+      newsletterSignUpCompleted: () => {
+        const { avo } = get();
+
+        avo.newsletterSignUpCompleted();
+      },
+      signInStarted: ({ componentType }) => {
+        const { avo, journeyId, accessLevel } = get();
+
+        avo.signInStarted({
+          ...coreProperties,
+          engagementIntent: EngagementIntent.USE,
+          componentType,
+          journeyId,
+          accessLevel,
+        });
+      },
       programmeAccessed: ({
         componentType,
         navigationType,
@@ -830,29 +942,6 @@ export const createTeacherBrowseAnalyticsStore = (
           ...analyticsProperties,
         });
       },
-      unitDownloadStarted: () => {
-        const { avo, programmeState, journeyId, accessLevel } = get();
-
-        const unitState = requireUnitState(
-          "unitDownloadStarted",
-          programmeState,
-        );
-
-        if (!unitState) {
-          return;
-        }
-
-        const analyticsProperties = getUnitAnalyticsProperties(unitState);
-
-        avo.unitDownloadStarted({
-          engagementIntent: EngagementIntent.USE,
-          componentType: ComponentType.UNIT_DOWNLOAD_BUTTON,
-          journeyId,
-          accessLevel,
-          ...coreProperties,
-          ...analyticsProperties,
-        });
-      },
       unitRefined: ({
         componentType,
         filterType,
@@ -879,6 +968,34 @@ export const createTeacherBrowseAnalyticsStore = (
           activeFilters,
           googleLoginHint: null,
           clientEnvironment: null,
+        });
+      },
+      userOnboardingCompleted: (data) => {
+        const { avo, posthogDistinctId } = get();
+
+        if (!posthogDistinctId) {
+          return;
+        }
+
+        avo.userOnboardingCompleted({
+          ...coreProperties,
+          ...registrationProperties,
+          ...data,
+          userId_: posthogDistinctId,
+        });
+      },
+      userOnboardingProgressed: (data) => {
+        const { avo, posthogDistinctId } = get();
+
+        if (!posthogDistinctId) {
+          return;
+        }
+
+        avo.userOnboardingProgressed({
+          ...coreProperties,
+          ...registrationProperties,
+          ...data,
+          userId_: posthogDistinctId,
         });
       },
       videoPlayed: (data) => {

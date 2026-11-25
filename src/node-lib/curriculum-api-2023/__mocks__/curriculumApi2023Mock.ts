@@ -4,10 +4,10 @@ import { subjectBrowseDataFixture } from "../fixtures/subjectBrowseData.fixture"
 import { LessonShareQuery } from "../queries/lessonShare/lessonShare.query";
 import { UnitListingQueryReturn } from "../queries/unitListing/unitListing.query";
 import { topNavFixture } from "../fixtures/topNav.fixture";
+import canonicalLessonHubFixture from "../fixtures/canonicalLessonHub.fixture";
 
 import programmeListingFixture from "@/node-lib/curriculum-api-2023/fixtures/programmeListing.fixture";
 import lessonListingFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
-import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import { CurriculumApi } from "@/node-lib/curriculum-api-2023";
 import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
 import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
@@ -24,11 +24,13 @@ import { mockedSiteMapResponse } from "@/node-lib/curriculum-api-2023/fixtures/p
 import { type LessonDownloadsQuery } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.query";
 import { LessonMediaClipsQueryReturn } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.query";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+import canonicalLessonMediaFixture from "@/node-lib/curriculum-api-2023/fixtures/canonicalLessonMedia.fixture";
 
 const curriculumApi: Pick<
   CurriculumApi,
   | "curriculumPhaseOptions"
   | "curriculumOverview"
+  | "canonicalLessonOverview"
   | "subjectListingPage"
   | "lessonListing"
   | "programmeListingPage"
@@ -40,17 +42,14 @@ const curriculumApi: Pick<
   | "pupilSubjectListingQuery"
   | "pupilProgrammeListingQuery"
   | "lessonShare"
-  | "lessonOverview"
   | "lessonDownloads"
   | "unitListing"
   | "refreshedMVTime"
   | "teachersSitemap"
   | "pupilsSitemap"
-  | "teacherPreviewLesson"
   | "lessonMediaClips"
+  | "canonicalLessonMedia"
   | "betaLessonMediaClipsQuery"
-  | "teachersPreviewUnitListing"
-  | "teacherPreviewLessonListing"
   | "browseUnitRedirectQuery"
   | "pupilCanonicalLessonRedirectQuery"
   | "pupilBrowseLessonRedirectQuery"
@@ -89,21 +88,6 @@ const curriculumApi: Pick<
       additionalFiles: null,
     };
   }),
-  teacherPreviewLesson: jest.fn(async () => {
-    return {
-      ...lessonOverviewFixture({
-        lessonSlug: "running-as-a-team",
-        yearTitle: "Year 10",
-      }),
-      lessonId: 1,
-    };
-  }),
-  teachersPreviewUnitListing: jest.fn(async () => {
-    return unitListingFixture();
-  }),
-  teacherPreviewLessonListing: jest.fn(async () => {
-    return lessonListingFixture();
-  }),
   betaLessonMediaClipsQuery: jest.fn(async () => {
     return {
       ...lessonMediaClipsFixtures(),
@@ -130,15 +114,18 @@ const curriculumApi: Pick<
   lessonShare: jest.fn(async () => {
     return lessonShareFixtures();
   }) as jest.Mocked<LessonShareQuery>,
-  lessonOverview: jest.fn(async () => {
-    return lessonOverviewFixture();
-  }),
+  canonicalLessonOverview: jest
+    .fn()
+    .mockResolvedValue(canonicalLessonHubFixture()),
   lessonDownloads: jest.fn(async () => {
     return lessonDownloadsFixtures();
   }) as jest.Mocked<LessonDownloadsQuery>,
   lessonMediaClips: jest.fn(async () => {
     return lessonMediaClipsFixtures();
   }) as jest.Mocked<LessonMediaClipsQueryReturn>,
+  canonicalLessonMedia: jest
+    .fn()
+    .mockResolvedValue(canonicalLessonMediaFixture()),
   unitListing: jest.fn(async () => {
     return unitListingFixture();
   }) as jest.Mocked<UnitListingQueryReturn>,
