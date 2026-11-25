@@ -86,3 +86,5 @@ jobs:
           base_url: ${{ steps.deployment.outputs.deployment-url }}
           branch_name: ${{ github.head_ref }}
           vercel_bypass_secret: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+          clerk_publishable_key: ${{ vars.CLERK_PUBLISHABLE_KEY }}
+          clerk_secret_key: ${{ secrets.CLERK_SECRET_KEY }}

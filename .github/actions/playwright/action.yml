@@ -13,6 +13,12 @@ inputs:
     description: "[optional] Vercel automation bypass secret for protected preview deployments"
     required: false
     default: ""
+  clerk_publishable_key:
+    description: "Clerk development instance publishable key (pk_test_...) for @clerk/testing"
+    required: true
+  clerk_secret_key:
+    description: "Clerk development instance secret key (sk_test_...) for @clerk/testing"
+    required: true
 
 runs:
   using: "composite"
@@ -44,6 +50,8 @@ runs:
       env:
         BASE_URL: ${{ inputs.base_url }}
         VERCEL_AUTOMATION_BYPASS_SECRET: ${{ inputs.vercel_bypass_secret }}
+        CLERK_PUBLISHABLE_KEY: ${{ inputs.clerk_publishable_key }}
+        CLERK_SECRET_KEY: ${{ inputs.clerk_secret_key }}
 
     - name: Build safe artifact suffix
       if: ${{ inputs.branch_name != '' }}

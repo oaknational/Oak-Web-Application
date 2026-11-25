@@ -15,6 +15,7 @@ export default defineConfig<ChromaticConfig>({
   testDir: "./src/__tests__/",
   testMatch: /\.spec\.ts$/,
   outputDir: "./test-results",
+  globalSetup: "./src/__tests__/e2e/global.setup.ts",
 
   /* Fail fast in CI if a test has a `.only` accidentally left in */
   forbidOnly: !!process.env.CI,
