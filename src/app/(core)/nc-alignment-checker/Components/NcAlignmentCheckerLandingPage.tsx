@@ -2,6 +2,7 @@
 import { OakBox, OakCodeRenderer, OakFlex } from "@oaknational/oak-components";
 import { Fragment } from "react";
 
+import NcAlignmentCheckerLandingPageQuotes from "@/components/NcAlignmentChecker/LandingPageHeaderQuotes";
 import {
   NcAlignmentCheckerLandingPage as CmsNcAlignmentCheckerLandingPage,
   NcAlignmentCheckerLandingPageBlock,
@@ -31,7 +32,7 @@ const pageComponents: {
   NcAlignmentCheckerLandingPageHeader: NcAlignmentCheckerLandingPageHeader,
   NcAlignmentCheckerLandingPageTextAndMedia: ImageTextSplitSection,
   NcAlignmentCheckerLandingPageSubjectExperts: DefaultComponent,
-  NcAlignmentCheckerLandingPageQuotes: DefaultComponent,
+  NcAlignmentCheckerLandingPageQuotes: NcAlignmentCheckerLandingPageQuotes,
   NcAlignmentCheckerLandingPageFaqs: DefaultComponent,
   NcAlignmentCheckerLandingPageSubjectPickerCallout: DefaultComponent,
 };

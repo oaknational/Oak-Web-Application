@@ -1,7 +1,12 @@
 import z from "zod";
 
 import { portableTextSchema } from "./portableText";
-import { imageSchema, quoteSchema, faqSchema, seoSchema } from "./base";
+import {
+  imageSchema,
+  faqSchema,
+  seoSchema,
+  quoteWithImageSchema,
+} from "./base";
 import { teamMemberSchema } from "./teamMember";
 
 // Landing Page
@@ -67,7 +72,7 @@ export const ncAlignmentCheckerLandingPageQuotesSchema = z.object({
     ncAlignmentCheckerLandingPageBlockTypeSchema.enum
       .NcAlignmentCheckerLandingPageQuotes,
   ),
-  quotes: z.array(quoteSchema),
+  quotes: z.array(quoteWithImageSchema),
 });
 
 export const ncAlignmentCheckerLandingPageFaqsSchema = z.object({
