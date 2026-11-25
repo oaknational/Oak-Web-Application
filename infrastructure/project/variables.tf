@@ -33,6 +33,7 @@ variable "env_vars" {
       NEXT_PUBLIC_CLERK_SIGN_IN_URL   = optional(string)
       NEXT_PUBLIC_CLERK_SIGN_UP_URL   = optional(string)
       NEXT_PUBLIC_CLIENT_APP_BASE_URL = optional(string)
+      NEXT_PUBLIC_BUGSNAG_ENABLED     = optional(string)
     }))
     prod = optional(object({
       OAK_CONFIG_LOCATION  = optional(string)
