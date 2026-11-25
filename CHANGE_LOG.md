@@ -1,3 +1,18 @@
+# [1.1287.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1286.0...v1.1287.0) (2026-11-25)
+
+
+### Bug Fixes
+
+* faqs section width ([6c8ca03](https://github.com/oaknational/Oak-Web-Application/commit/6c8ca03680256ecaf125a6fd368dcf22c05277aa))
+
+
+### Features
+
+* allow spacing props for Faqs Section ([f2b3208](https://github.com/oaknational/Oak-Web-Application/commit/f2b32089df92fdce0d4cb421c4f2fafeb237d768))
+* increased question font size ([4087537](https://github.com/oaknational/Oak-Web-Application/commit/408753733eeac841e3212acc831438797c9e5079))
+* remove vertical padding from faqs section ([2d5db10](https://github.com/oaknational/Oak-Web-Application/commit/2d5db10b6849b227562024158d4aca2e083f6116))
+* render faqs on landing page ([91dca70](https://github.com/oaknational/Oak-Web-Application/commit/91dca70b8f3cfd8f12f10fae059734c543301ad8))
+
 # [1.1286.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1285.0...v1.1286.0) (2026-11-25)
 
 
