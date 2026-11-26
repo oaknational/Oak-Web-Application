@@ -11,6 +11,7 @@ import NcAlignmentCheckerLandingPageHeader from "@/components/NcAlignmentChecker
 import ImageTextSplitSection from "@/components/GenericPagesComponents/ImageTextSplitSection";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import FaqsSection from "@/components/GenericPagesComponents/FaqsSection";
+import LandingPageSubjectPickerCallout from "@/components/NcAlignmentChecker/LandingPageSubjectPickerCallout";
 
 function DefaultComponent(
   block: NcAlignmentCheckerLandingPageBlock<NcAlignmentCheckerLandingPageBlockType>,
@@ -34,7 +35,8 @@ const pageComponents: {
   NcAlignmentCheckerLandingPageSubjectExperts: DefaultComponent,
   NcAlignmentCheckerLandingPageQuotes: DefaultComponent,
   NcAlignmentCheckerLandingPageFaqs: FaqsSection,
-  NcAlignmentCheckerLandingPageSubjectPickerCallout: DefaultComponent,
+  NcAlignmentCheckerLandingPageSubjectPickerCallout:
+    LandingPageSubjectPickerCallout,
 };
 
 function renderBlock<K extends NcAlignmentCheckerLandingPageBlockType>(
