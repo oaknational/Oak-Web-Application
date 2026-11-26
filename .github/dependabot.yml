@@ -14,6 +14,10 @@ updates:
     # Always increase the version requirement
     # to match the new version.
     versioning-strategy: increase
+    groups:
+      oak-agent-skills:
+        patterns:
+          - "@oaknational/oak-agent-skills"
 
   # cloud-ops: Track updates for Terraform modules from oak-terraform-modules repository.
   - package-ecosystem: "terraform"

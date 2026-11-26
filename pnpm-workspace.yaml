@@ -1,6 +1,7 @@
 minimumReleaseAge: 10080
 minimumReleaseAgeExclude:
   - "@oaknational/google-classroom-addon"
+  - "@oaknational/oak-agent-skills"
   - "@oaknational/oak-components"
   - "@oaknational/oak-consent-client"
   - "@oaknational/oak-curriculum-schema"

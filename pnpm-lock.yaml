@@ -413,6 +413,9 @@ importers:
       '@next/eslint-plugin-next':
         specifier: ^15.3.0
         version: 15.3.2
+      '@oaknational/oak-agent-skills':
+        specifier: ^0.3.0
+        version: 0.3.0
       '@playwright/test':
         specifier: ^1.61.1
         version: 1.61.1
@@ -3801,6 +3804,11 @@ packages:
       react-dom: '>=18.3.1'
       zod: '>=3.25.76'
       zustand: '>=5.0.9'
+
+  '@oaknational/oak-agent-skills@0.3.0':
+    resolution: {integrity: sha512-1Ih8XDrUtXJK0txTdMJxKiTFbBvA4cDB16GKRuYxwObdfDsML8WHe649dQVOih67akI0Eqchxmh+HbKIdAgAKg==}
+    engines: {node: '>=24.22.1 <25'}
+    hasBin: true
 
   '@oaknational/oak-components@3.30.2':
     resolution: {integrity: sha512-AOW2pzqdvnZUTB8XlGNqBeuvmH0TkZXmx7ACJKja6w5nU66Z0CqEzRm6D2a9ZvAHYpiW5f9cKwmVINtxw5IOSQ==}
@@ -19477,6 +19485,8 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       zod: 4.3.6
       zustand: 5.0.12(@types/react@18.2.79)(react@18.3.1)(use-sync-external-store@1.6.0(react@18.3.1))
+
+  '@oaknational/oak-agent-skills@0.3.0': {}
 
   '@oaknational/oak-components@3.30.2(@portabletext/react@4.0.3(react@18.3.1))(@tiptap/core@2.14.0(@tiptap/pm@2.14.0))(@tiptap/pm@2.14.0)(@types/react@18.2.79)(next-cloudinary@6.16.0(next@15.5.28(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(@types/node@22.19.17)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.28(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(@types/node@22.19.17)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.5.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
     dependencies:

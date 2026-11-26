@@ -200,6 +200,7 @@
     "@next/bundle-analyzer": "^15.5.2",
     "@next/env": "^15.3.0",
     "@next/eslint-plugin-next": "^15.3.0",
+    "@oaknational/oak-agent-skills": "^0.3.0",
     "@playwright/test": "^1.61.1",
     "@prettier/plugin-xml": "3.2.2",
     "@sanity/client": "^7.11.2",
@@ -339,5 +340,13 @@
     "Safari >= 16.0",
     "iOS >= 16.0",
     "> 1% in GB and not dead"
-  ]
+  ],
+  "oakSkills": {
+    "profiles": [
+      "base",
+      "frontend"
+    ],
+    "include": [],
+    "exclude": []
+  }
 }

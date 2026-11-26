@@ -12,6 +12,7 @@ next-env.d.ts
 out
 storybook-static
 pnpm-lock.yaml
+.agents/skills/
 
 # Test coverage
 coverage
