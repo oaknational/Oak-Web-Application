@@ -123,7 +123,7 @@ export const getLessonDownloadResources = (cycleTitles?: CycleTitleMap) =>
     intro: {
       label: "Keywords",
       group: "Audio clips",
-      icon: "audio", // TODO
+      icon: "media-clips",
       accordionLabel: "audio clips",
       downloadTitle: "Keywords",
       subjectToCopyright: false,
@@ -133,7 +133,7 @@ export const getLessonDownloadResources = (cycleTitles?: CycleTitleMap) =>
     "cycle-1": {
       label: cycleTitles?.["cycle1"] ?? "Cycle 1",
       group: "Audio clips",
-      icon: "audio", // TODO
+      icon: "media-clips",
       accordionLabel: "audio clips",
       downloadTitle: cycleTitles?.["cycle1"] ?? "Cycle 1",
       subjectToCopyright: false,
@@ -149,7 +149,7 @@ export const getLessonDownloadResources = (cycleTitles?: CycleTitleMap) =>
     "cycle-2": {
       label: cycleTitles?.["cycle2"] ?? "Cycle 2",
       group: "Audio clips",
-      icon: "audio", // TODO
+      icon: "media-clips",
       accordionLabel: "audio clips",
       downloadTitle: cycleTitles?.["cycle2"] ?? "Cycle 2",
       subjectToCopyright: false,
@@ -165,7 +165,7 @@ export const getLessonDownloadResources = (cycleTitles?: CycleTitleMap) =>
     "cycle-3": {
       label: cycleTitles?.["cycle3"] ?? "Cycle 3",
       group: "Audio clips",
-      icon: "audio", // TODO
+      icon: "media-clips",
       accordionLabel: "audio clips",
       downloadTitle: cycleTitles?.["cycle3"] ?? "Cycle 3",
       subjectToCopyright: false,
@@ -181,7 +181,7 @@ export const getLessonDownloadResources = (cycleTitles?: CycleTitleMap) =>
     "cycle-4": {
       label: cycleTitles?.["cycle4"] ?? "Cycle 4",
       group: "Audio clips",
-      icon: "audio", // TODO
+      icon: "media-clips",
       accordionLabel: "audio clips",
       downloadTitle: cycleTitles?.["cycle4"] ?? "Cycle 4",
       subjectToCopyright: false,
