@@ -61,6 +61,12 @@ export const additionalFile = z.object({
 
 export const additionalFiles = z.array(additionalFile);
 
+export const PERMITTED_AUDIO_SUBJECTS = new Set([
+  "french",
+  "spanish",
+  "german",
+]);
+
 export const downloadsAssetDataSchema = z.object({
   has_slide_deck_asset_object: z.boolean(),
   starter_quiz: z.array(quizQuestionSchema).nullable(),

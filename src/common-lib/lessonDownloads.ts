@@ -9,6 +9,13 @@ type LessonDownloadContentBase = {
   hasWorksheetAnswersAssetObject: boolean;
   hasSupplementaryAssetObject: boolean;
   hasLessonGuideObject: boolean;
+  mediaClips: {
+    hasIntro: boolean;
+    hasCycle1: boolean;
+    hasCycle2: boolean;
+    hasCycle3: boolean;
+    hasCycle4: boolean;
+  };
 };
 
 export type LessonDownloadContent = LessonDownloadContentBase &
@@ -37,6 +44,7 @@ export const lessonDownloadTypeSchema = z.enum([
   "supplementary-docx",
   "curriculum-pdf",
   "additional-files",
+  "intro-audio-clips",
 ]);
 
 export type LessonDownloadType = z.infer<typeof lessonDownloadTypeSchema>;
@@ -48,7 +56,8 @@ export type LessonDownloadFamily =
   | "worksheet"
   | "additional-material"
   | "curriculum"
-  | "additional-files";
+  | "additional-files"
+  | "intro";
 
 type DownloadResourceDefinition = {
   label: string;
@@ -91,6 +100,16 @@ export const lessonDownloadResources = {
     subjectToCopyright: true,
     availability: (content) => content.hasSlideDeckAssetObject,
     formats: [{ type: "presentation", ext: "pptx", forbidden: null }],
+  },
+  intro: {
+    label: "Keywords",
+    group: "Audio clips",
+    icon: "audio", // TODO
+    accordionLabel: "audio clips",
+    downloadTitle: "Keywords",
+    subjectToCopyright: false, // TODO: what does this mean
+    availability: (content) => content.mediaClips?.hasIntro,
+    formats: [{ type: "intro-audio-clips", ext: "mp3", label: "Keywords" }],
   },
   "starter-quiz": {
     label: "Starter quiz",

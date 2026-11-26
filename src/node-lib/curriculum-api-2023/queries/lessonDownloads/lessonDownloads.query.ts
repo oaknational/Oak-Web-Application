@@ -3,6 +3,7 @@ import { keysToCamelCase } from "zod-to-camel-case";
 import lessonDownloadsSchema, {
   downloadsAssetDataSchema,
   LessonAdditionalFilesListSchema,
+  PERMITTED_AUDIO_SUBJECTS,
 } from "./lessonDownloads.schema";
 import { constructDownloadsArray } from "./downloadUtils";
 import constructLessonDownloads from "./constructLessonDownloads";
@@ -78,6 +79,16 @@ const lessonDownloadsQuery =
         })
       : [];
 
+    const parsedBrowseData = modifiedBrowseData.map((bd) =>
+      rawSyntheticUVLessonSchema.parse(bd),
+    );
+
+    const mediaClips = PERMITTED_AUDIO_SUBJECTS.has(
+      parsedBrowseData[0]?.programme_fields.subject_slug ?? "",
+    )
+      ? parsedBrowseData[0]?.lesson_data.media_clips
+      : {};
+
     const downloadsData = {
       hasSlideDeckAssetObject: has_slide_deck_asset_object,
       hasStarterQuiz: starter_quiz ? true : false,
@@ -90,6 +101,13 @@ const lessonDownloadsQuery =
       hasLessonGuideObject: has_lesson_guide_object,
       isLegacy: is_legacy,
       lessonReleaseDate: lesson_release_date,
+      mediaClips: {
+        hasIntro: !!mediaClips?.["intro"],
+        hasCycle1: !!mediaClips?.["cycle_1"],
+        hasCycle2: !!mediaClips?.["cycle_2"],
+        hasCycle3: !!mediaClips?.["cycle_3"],
+        hasCycle4: !!mediaClips?.["cycle_4"],
+      },
     };
 
     const downloads = constructDownloadsArray(downloadsData);
@@ -106,10 +124,6 @@ const lessonDownloadsQuery =
       geoRestricted: currentLesson?.features?.agf__geo_restricted ?? false,
       loginRequired: currentLesson?.features?.agf__login_required ?? false,
     };
-
-    const parsedBrowseData = modifiedBrowseData.map((bd) =>
-      rawSyntheticUVLessonSchema.parse(bd),
-    );
 
     const lessonDownloads = constructLessonDownloads({
       downloads,
