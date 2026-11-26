@@ -13,6 +13,7 @@ import { LessonDownloadsQuery as SdkLessonDownloadsQuery } from "@/node-lib/curr
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
+import { createLearningCycleVideosTitleMap } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
 
 const lessonDownloadsQuery =
   (sdk: Sdk) =>
@@ -83,11 +84,27 @@ const lessonDownloadsQuery =
       rawSyntheticUVLessonSchema.parse(bd),
     );
 
-    const mediaClips = PERMITTED_AUDIO_SUBJECTS.has(
+    const isMFL = PERMITTED_AUDIO_SUBJECTS.has(
       parsedBrowseData[0]?.programme_fields.subject_slug ?? "",
-    )
-      ? parsedBrowseData[0]?.lesson_data.media_clips
+    );
+
+    const isPELesson =
+      parsedBrowseData[0]?.programme_fields.subject_slug ===
+      "physical-education";
+
+    const mediaClips = isMFL
+      ? (parsedBrowseData[0]?.lesson_data.media_clips ?? {})
       : {};
+
+    const lessonOutlines =
+      parsedBrowseData[0]?.lesson_data.lesson_outline ?? null;
+
+    const cycleTitleMap = createLearningCycleVideosTitleMap({
+      isMFL,
+      isPELesson,
+      learningCycleVideos: keysToCamelCase(mediaClips),
+      lessonOutlines: keysToCamelCase(lessonOutlines),
+    });
 
     const downloadsData = {
       hasSlideDeckAssetObject: has_slide_deck_asset_object,
@@ -110,7 +127,7 @@ const lessonDownloadsQuery =
       },
     };
 
-    const downloads = constructDownloadsArray(downloadsData);
+    const downloads = constructDownloadsArray(downloadsData, cycleTitleMap);
 
     // Copyright content pre-parsed
     const currentLesson = modifiedBrowseData.find(

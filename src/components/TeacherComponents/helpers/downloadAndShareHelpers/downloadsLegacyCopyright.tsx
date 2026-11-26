@@ -6,7 +6,7 @@ import { lessonDownloadMetadata } from "@/common-lib/lessonDownloads";
 import { TeachersLessonOverviewDownloads } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 
 export const isResourceTypeSubjectToCopyright = (resource: ResourceType) => {
-  return lessonDownloadMetadata[resource]?.subjectToCopyright ?? false;
+  return lessonDownloadMetadata()[resource]?.subjectToCopyright ?? false;
 };
 
 export const checkIfResourceHasLegacyCopyright = (

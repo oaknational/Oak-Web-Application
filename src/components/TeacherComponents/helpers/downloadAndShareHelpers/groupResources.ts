@@ -6,7 +6,7 @@ type AdditionalFile = LessonDownloadsPageData["additionalFiles"][number];
 
 export const getGroupName = (
   type: Download["type"] | AdditionalFile["type"],
-): string => lessonDownloadMetadata[type]?.group ?? "Lesson files";
+): string => lessonDownloadMetadata()[type]?.group ?? "Lesson files";
 
 export const groupDownloadResources = (
   downloads?: LessonDownloadsPageData["downloads"],

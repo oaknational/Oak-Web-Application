@@ -28,6 +28,30 @@ export const downloadAssetsFixture = [
   },
   {
     exists: true,
+    type: "cycle-1-audio-clips",
+    ext: "mp3",
+    label: "Cycle 1",
+  },
+  {
+    exists: true,
+    type: "cycle-2-audio-clips",
+    ext: "mp3",
+    label: "Cycle 2",
+  },
+  {
+    exists: true,
+    type: "cycle-3-audio-clips",
+    ext: "mp3",
+    label: "Cycle 3",
+  },
+  {
+    exists: true,
+    type: "cycle-4-audio-clips",
+    ext: "mp3",
+    label: "Cycle 4",
+  },
+  {
+    exists: true,
     type: "intro-quiz-questions",
     label: "Starter quiz questions",
     ext: "pdf",
@@ -121,7 +145,7 @@ describe("constructDownloadsArray()", () => {
       (download) => download.exists === true,
     );
 
-    expect(filteredDownloads).toHaveLength(8);
+    expect(filteredDownloads).toHaveLength(12);
   });
   test.each([true, false])(
     "sets exists: %s on both lesson guide pdf and docx from hasLessonGuideObject",

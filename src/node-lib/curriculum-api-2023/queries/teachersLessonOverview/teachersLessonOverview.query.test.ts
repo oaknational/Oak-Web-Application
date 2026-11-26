@@ -642,6 +642,10 @@ describe("teachersLessonOverview()", () => {
       const expectedDownloads = [
         { exists: true, type: "presentation" },
         { exists: true, type: "intro-audio-clips" },
+        { exists: true, type: "cycle-1-audio-clips" },
+        { exists: true, type: "cycle-2-audio-clips" },
+        { exists: true, type: "cycle-3-audio-clips" },
+        { exists: true, type: "cycle-4-audio-clips" },
         { exists: true, type: "intro-quiz-questions" },
         { exists: true, type: "intro-quiz-answers" },
         { exists: true, type: "exit-quiz-questions" },
@@ -678,6 +682,10 @@ describe("teachersLessonOverview()", () => {
       const expectedDownloads = [
         { exists: false, type: "presentation" },
         { exists: false, type: "intro-audio-clips" },
+        { exists: false, type: "cycle-1-audio-clips" },
+        { exists: false, type: "cycle-2-audio-clips" },
+        { exists: false, type: "cycle-3-audio-clips" },
+        { exists: false, type: "cycle-4-audio-clips" },
         { exists: false, type: "intro-quiz-questions" },
         { exists: false, type: "intro-quiz-answers" },
         { exists: false, type: "exit-quiz-questions" },
@@ -714,6 +722,10 @@ describe("teachersLessonOverview()", () => {
       const expectedDownloads = [
         { exists: false, type: "presentation" },
         { exists: false, type: "intro-audio-clips" },
+        { exists: false, type: "cycle-1-audio-clips" },
+        { exists: false, type: "cycle-2-audio-clips" },
+        { exists: false, type: "cycle-3-audio-clips" },
+        { exists: false, type: "cycle-4-audio-clips" },
         { exists: false, type: "intro-quiz-questions" },
         { exists: false, type: "intro-quiz-answers" },
         { exists: false, type: "exit-quiz-questions" },
