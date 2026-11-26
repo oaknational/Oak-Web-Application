@@ -8,7 +8,6 @@ import {
   lessonDownloadFormats,
   getLessonDownloadResources,
   lessonDownloadTypeSchema,
-  CycleTitleMap,
 } from "./lessonDownloads";
 
 import { lessonDownloadsListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
@@ -166,8 +165,8 @@ describe("lesson download registry", () => {
   });
 
   it("returns cycle titles", () => {
-    const cycles: CycleTitleMap = {
-      cycle_1: "Custom cycle 1 title",
+    const cycles = {
+      cycle1: "Custom cycle 1 title",
     };
     const downloads = buildLessonDownloads(allContent, cycles);
     const cycle1 = downloads.find((d) => d.type === "cycle-1-audio-clips");

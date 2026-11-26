@@ -92,7 +92,7 @@ export const cycleSchema = z.enum([
   "intro",
 ]);
 export type Cycle = z.infer<typeof cycleSchema>;
-export type CycleTitleMap = Partial<Record<Cycle, string>>;
+type CycleTitleMap = Record<string, string | undefined>;
 
 // Family and format order is the download-page order.
 export const getLessonDownloadResources = (cycleTitles?: CycleTitleMap) =>
@@ -131,59 +131,59 @@ export const getLessonDownloadResources = (cycleTitles?: CycleTitleMap) =>
       formats: [{ type: "intro-audio-clips", ext: "mp3", label: "Keywords" }],
     },
     "cycle-1": {
-      label: cycleTitles?.["cycle_1"] ?? "Cycle 1",
+      label: cycleTitles?.["cycle1"] ?? "Cycle 1",
       group: "Audio clips",
       icon: "audio", // TODO
       accordionLabel: "audio clips",
-      downloadTitle: cycleTitles?.["cycle_1"] ?? "Cycle 1",
+      downloadTitle: cycleTitles?.["cycle1"] ?? "Cycle 1",
       subjectToCopyright: false,
       availability: (content) => content.mediaClips?.hasCycle1,
       formats: [
         {
           type: "cycle-1-audio-clips",
           ext: "mp3",
-          label: cycleTitles?.["cycle_1"] ?? "Cycle 1",
+          label: cycleTitles?.["cycle1"] ?? "Cycle 1",
         },
       ],
     },
     "cycle-2": {
-      label: cycleTitles?.["cycle_2"] ?? "Cycle 2",
+      label: cycleTitles?.["cycle2"] ?? "Cycle 2",
       group: "Audio clips",
       icon: "audio", // TODO
       accordionLabel: "audio clips",
-      downloadTitle: cycleTitles?.["cycle_2"] ?? "Cycle 2",
+      downloadTitle: cycleTitles?.["cycle2"] ?? "Cycle 2",
       subjectToCopyright: false,
       availability: (content) => content.mediaClips?.hasCycle2,
       formats: [
         {
           type: "cycle-2-audio-clips",
           ext: "mp3",
-          label: cycleTitles?.["cycle_2"] ?? "Cycle 2",
+          label: cycleTitles?.["cycle2"] ?? "Cycle 2",
         },
       ],
     },
     "cycle-3": {
-      label: cycleTitles?.["cycle_3"] ?? "Cycle 3",
+      label: cycleTitles?.["cycle3"] ?? "Cycle 3",
       group: "Audio clips",
       icon: "audio", // TODO
       accordionLabel: "audio clips",
-      downloadTitle: cycleTitles?.["cycle_3"] ?? "Cycle 3",
+      downloadTitle: cycleTitles?.["cycle3"] ?? "Cycle 3",
       subjectToCopyright: false,
       availability: (content) => content.mediaClips?.hasCycle3,
       formats: [
         {
           type: "cycle-3-audio-clips",
           ext: "mp3",
-          label: cycleTitles?.["cycle_3"] ?? "Cycle 3",
+          label: cycleTitles?.["cycle3"] ?? "Cycle 3",
         },
       ],
     },
     "cycle-4": {
-      label: cycleTitles?.["cycle_4"] ?? "Cycle 4",
+      label: cycleTitles?.["cycle4"] ?? "Cycle 4",
       group: "Audio clips",
       icon: "audio", // TODO
       accordionLabel: "audio clips",
-      downloadTitle: cycleTitles?.["cycle_4"] ?? "Cycle 4",
+      downloadTitle: cycleTitles?.["cycle4"] ?? "Cycle 4",
       subjectToCopyright: false,
       availability: (content) => content.mediaClips?.hasCycle4,
       formats: [
