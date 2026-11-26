@@ -1,3 +1,85 @@
+# [1.1288.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1287.0...v1.1288.0) (2026-11-25)
+
+
+### Bug Fixes
+
+* column-gap on mobile causing overflow ([1365a89](https://github.com/oaknational/Oak-Web-Application/commit/1365a89a4a96c57c9c79fc723fdc7ecf6d8fff43))
+* fix ([4e81a57](https://github.com/oaknational/Oak-Web-Application/commit/4e81a57af4564b8f37c1f8032f6423b346ed76dc))
+* snaps ([3064aa1](https://github.com/oaknational/Oak-Web-Application/commit/3064aa1647542c9d4dd29641cf3964fedeb76d25))
+* snaps ([de38b35](https://github.com/oaknational/Oak-Web-Application/commit/de38b35583799de7e6b5d9dec228fbe8c6083647))
+
+
+### Features
+
+* support more than 2 people in the <JoinResearchPanelPeople/> component ([fa00ab5](https://github.com/oaknational/Oak-Web-Application/commit/fa00ab503bde1cabeae218c3753c4d7bc42667b1))
+
+# [1.1287.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1286.0...v1.1287.0) (2026-11-25)
+
+
+### Bug Fixes
+
+* faqs section width ([6c8ca03](https://github.com/oaknational/Oak-Web-Application/commit/6c8ca03680256ecaf125a6fd368dcf22c05277aa))
+
+
+### Features
+
+* allow spacing props for Faqs Section ([f2b3208](https://github.com/oaknational/Oak-Web-Application/commit/f2b32089df92fdce0d4cb421c4f2fafeb237d768))
+* increased question font size ([4087537](https://github.com/oaknational/Oak-Web-Application/commit/408753733eeac841e3212acc831438797c9e5079))
+* remove vertical padding from faqs section ([2d5db10](https://github.com/oaknational/Oak-Web-Application/commit/2d5db10b6849b227562024158d4aca2e083f6116))
+* render faqs on landing page ([91dca70](https://github.com/oaknational/Oak-Web-Application/commit/91dca70b8f3cfd8f12f10fae059734c543301ad8))
+
+# [1.1286.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1285.0...v1.1286.0) (2026-11-25)
+
+
+### Bug Fixes
+
+* add target to oakLink ([8402906](https://github.com/oaknational/Oak-Web-Application/commit/8402906fcc26eca2b29e7cf455e329a3e69d8ad9))
+* col spans and positions ([319dfa1](https://github.com/oaknational/Oak-Web-Application/commit/319dfa1ce5eb298aab821636fd662d03cfb995a1))
+* gap spacing array ([e7e03e9](https://github.com/oaknational/Oak-Web-Application/commit/e7e03e93e36db6785395a3ac6f80dca26416feef))
+* gap spacing array ([4453add](https://github.com/oaknational/Oak-Web-Application/commit/4453add8063928562966116f2a89a00fa5a0b415))
+* lint ([b97a521](https://github.com/oaknational/Oak-Web-Application/commit/b97a521451aafe5140566cad516d01b5263442d3))
+* ol spacing ([7a92b38](https://github.com/oaknational/Oak-Web-Application/commit/7a92b38c7134f6b3ef6d7e3c3a8ad38a730859f2))
+* remove padding from individual blocks andinstead use gap in nc and join research ([9ed3e2c](https://github.com/oaknational/Oak-Web-Application/commit/9ed3e2c06f2cecd8b027e02395264ea61df5d071))
+* remove unnecessary row span ([cfa0a1d](https://github.com/oaknational/Oak-Web-Application/commit/cfa0a1d6b3e647e1a9b305d767751f07aaf11727))
+* snaps ([0150480](https://github.com/oaknational/Oak-Web-Application/commit/015048059c86a9b11db6c845e157fdbf1c5bebb9))
+* snaps ([df6ca12](https://github.com/oaknational/Oak-Web-Application/commit/df6ca12d143deaec1df1bf8df5e3c6d16382c846))
+* spacing for OL ([b0a1c90](https://github.com/oaknational/Oak-Web-Application/commit/b0a1c906366a377aa29ec9f76dfeb6ec9105002a))
+* support link styles ([5dcc7c7](https://github.com/oaknational/Oak-Web-Application/commit/5dcc7c7fd4f68d7eebee2763001af0a8434d4568))
+
+
+### Features
+
+* add fixtures ([155b6f1](https://github.com/oaknational/Oak-Web-Application/commit/155b6f195f713bd2ae56c3244dd7d60d198cc99f))
+* add imagePosition to fixture ([bc06e94](https://github.com/oaknational/Oak-Web-Application/commit/bc06e94c7d232b1529dfae95aa1fe79b80d2c5f6))
+* add imagePosition to storybook ([7c1fdc6](https://github.com/oaknational/Oak-Web-Application/commit/7c1fdc6c61ccd0747ad5e39141c7c32e43832f42))
+* add tests to cover grid logic ([386af5e](https://github.com/oaknational/Oak-Web-Application/commit/386af5efd4e05a4da07b75efeaa0816251378d57))
+* add tests with fixtures ([cb21b2d](https://github.com/oaknational/Oak-Web-Application/commit/cb21b2d616756b5e220eae6e8ab2d5be06aa6a9b))
+* rename and move out to independent component ([60d2596](https://github.com/oaknational/Oak-Web-Application/commit/60d259653619941c4505c511834b6722c8fd23c1))
+* use fixtures in storybook ([becb80a](https://github.com/oaknational/Oak-Web-Application/commit/becb80a11bbb5d5077b0bddb18c565f87cb1b476))
+* use imagePosition to conditionally render img position in block ([1818b1c](https://github.com/oaknational/Oak-Web-Application/commit/1818b1c1676ecec1ae5fae9879ae6836fb321d53))
+* use join research panel text and media in nc alignment checker ([2f9201a](https://github.com/oaknational/Oak-Web-Application/commit/2f9201a75fc5aaeed653b3036434960ee79b2f14))
+
+# [1.1285.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1284.0...v1.1285.0) (2026-11-25)
+
+
+### Features
+
+* retain last radio value when changing exam board ([67f916a](https://github.com/oaknational/Oak-Web-Application/commit/67f916a8b2a28c56ca5d234a3068b497dc8f0a1a))
+
+# [1.1284.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1283.0...v1.1284.0) (2026-11-25)
+
+
+### Features
+
+* use resuable fragment and zod schema for faqs ([08ec65e](https://github.com/oaknational/Oak-Web-Application/commit/08ec65ef522760ebc7239b74fba97bea059b4ec9))
+
+# [1.1283.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1282.0...v1.1283.0) (2026-11-24)
+
+
+### Features
+
+* enable sentry ([#4680](https://github.com/oaknational/Oak-Web-Application/issues/4680)) ([0b852e2](https://github.com/oaknational/Oak-Web-Application/commit/0b852e24aabff976dbd60dc204dd1e84d50f4e86))
+
 # [1.1282.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1281.3...v1.1282.0) (2026-11-20)
 
 

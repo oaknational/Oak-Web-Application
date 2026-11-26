@@ -1,6 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { basic as fixture } from "./fixtures";
+import {
+  basic as fixture,
+  withThreeMembers as withThreeMembersFixture,
+} from "./fixtures";
 
 import JoinResearchPanelPeople from ".";
 
@@ -17,5 +20,11 @@ type Story = StoryObj<typeof JoinResearchPanelPeople>;
 export const Default: Story = {
   args: {
     ...fixture,
+  },
+};
+
+export const WithThreeMembers: Story = {
+  args: {
+    ...withThreeMembersFixture,
   },
 };

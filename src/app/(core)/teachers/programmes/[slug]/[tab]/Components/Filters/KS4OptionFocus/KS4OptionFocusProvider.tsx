@@ -47,6 +47,7 @@ export function KS4OptionFocusProvider({
   const [pendingFocus, setPendingFocus] = useState<{
     slug: string;
     scope: KS4OptionFocusScopeVariant;
+    restoreFocus: boolean;
   } | null>(null);
   const [registeredScopes, setRegisteredScopes] = useState<
     Record<KS4OptionFocusScopeVariant, boolean>
@@ -77,10 +78,11 @@ export function KS4OptionFocusProvider({
       setModalOpen(true);
     }
     setPendingFocus(
-      intent.restoreFocus && intent.destination.ks4OptionSlug
+      intent.destination.ks4OptionSlug
         ? {
             slug: intent.destination.ks4OptionSlug,
             scope: intent.reopenFiltersModal ? "modal" : "page",
+            restoreFocus: intent.restoreFocus,
           }
         : null,
     );

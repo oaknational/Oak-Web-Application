@@ -39,10 +39,7 @@ export default function JoinResearchPanelPageHeader({
           />
         </OakBox>
       </NewGutterMaxWidth>
-      <OakBox
-        $pt={"spacing-32"}
-        $pb={["spacing-56", "spacing-72", "spacing-72"]}
-      >
+      <OakBox $pt={"spacing-32"}>
         <AboutUsCalloutWithCta
           headingTag="h1"
           headingFont={["heading-3", "heading-2", "heading-2"]}
