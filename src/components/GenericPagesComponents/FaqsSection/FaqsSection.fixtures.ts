@@ -1,8 +1,8 @@
-import { JoinResearchPanelFaqsProps } from "./JoinResearchPanelFaqs";
+import { FaqsSectionProps } from "./FaqsSection";
 
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 
-export const basic: JoinResearchPanelFaqsProps = {
+export const basic: FaqsSectionProps = {
   items: [
     {
       question: "Question 1",

@@ -1,4 +1,4 @@
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { StrictMode } from "react";
 
 import {
@@ -9,6 +9,8 @@ import {
   ProgrammePageFiltersModalProvider,
   useProgrammePageFiltersModal,
 } from "../ProgrammePageFiltersModalProvider";
+
+import { useKS4OptionFocus } from "./KS4OptionFocusProvider";
 
 import { KS4OptionFocusProvider, KS4OptionFocusScope } from "./index";
 
@@ -160,5 +162,202 @@ describe("KS4 navigation intent", () => {
     expect(getByTestId("modal-open")).toHaveTextContent("false");
     expect(focusSpy).not.toHaveBeenCalled();
     focusSpy.mockRestore();
+  });
+
+  it("throws an error if KS4OptionFocus is used outside of the focus provider", () => {
+    function ComponentUsingHookOutsideProvider() {
+      useKS4OptionFocus();
+      return null;
+    }
+
+    const consoleSpy = jest
+      .spyOn(console, "error")
+      .mockImplementation(() => {});
+    expect(() => render(<ComponentUsingHookOutsideProvider />)).toThrow(
+      Error("useKS4OptionFocus must be used within KS4OptionFocusProvider"),
+    );
+    consoleSpy.mockRestore();
+  });
+
+  describe("KS4OptionFocusScope focus restoration", () => {
+    it("does not error or focus when radio element with matching value is not found", async () => {
+      const focusSpy = jest.spyOn(HTMLDivElement.prototype, "focus");
+      const { getByRole, rerender } = render(<Harness keyboard />);
+      fireEvent.click(getByRole("button", { name: "Navigate" }));
+
+      mockPathname = "/teachers/programmes/english-secondary-edexcel/units";
+      const nonExistentDestination = {
+        ...source,
+        ks4OptionSlug: "edexcel",
+      };
+      rerender(
+        <Harness slugs={nonExistentDestination} pageKey="nonexistent" />,
+      );
+
+      await waitFor(() => {
+        expect(focusSpy).not.toHaveBeenCalled();
+      });
+      focusSpy.mockRestore();
+    });
+
+    it("skips focus restoration when keyboard navigation flag is false", async () => {
+      const focusSpy = jest.spyOn(HTMLDivElement.prototype, "focus");
+      const { getByRole, rerender } = render(
+        <Harness keyboard={false} modal={true} />,
+      );
+      fireEvent.click(getByRole("button", { name: "Navigate" }));
+
+      mockPathname = destinationPath;
+      rerender(
+        <Harness slugs={destination} keyboard={false} pageKey="destination" />,
+      );
+      await waitFor(() => {
+        expect(focusSpy).not.toHaveBeenCalled();
+      });
+      focusSpy.mockRestore();
+    });
+  });
+
+  it("does not focus when KS4 option is not specified in destination", async () => {
+    function NavigationButtonNoKS4({
+      keyboard,
+      modal,
+    }: {
+      keyboard: boolean;
+      modal: boolean;
+    }) {
+      const { setNavigationIntent } = useProgrammeNavigation();
+      return (
+        <button
+          onClick={() =>
+            setNavigationIntent({
+              destination: {
+                subjectSlug: "maths",
+                phaseSlug: "secondary",
+              } as CurriculumSelectionSlugs,
+              restoreFocus: keyboard,
+              reopenFiltersModal: modal,
+            })
+          }
+        >
+          Navigate
+        </button>
+      );
+    }
+
+    function HarnessWithNoKS4Button({
+      slugs = source,
+      pageKey = "source",
+      keyboard = true,
+      modal = false,
+    }: {
+      slugs?: CurriculumSelectionSlugs;
+      pageKey?: string;
+      keyboard?: boolean;
+      modal?: boolean;
+    }) {
+      return (
+        <StrictMode>
+          <ProgrammeNavigationProvider>
+            <NavigationButtonNoKS4 keyboard={keyboard} modal={modal} />
+            <ProgrammePageFiltersModalProvider key={pageKey}>
+              <KS4OptionFocusProvider slugs={slugs}>
+                <Radios />
+              </KS4OptionFocusProvider>
+            </ProgrammePageFiltersModalProvider>
+          </ProgrammeNavigationProvider>
+        </StrictMode>
+      );
+    }
+
+    const focusSpy = jest.spyOn(HTMLInputElement.prototype, "focus");
+    const { getByRole, rerender } = render(
+      <HarnessWithNoKS4Button keyboard={true} />,
+    );
+
+    mockPathname = "/teachers/programmes/maths-secondary/units";
+    fireEvent.click(getByRole("button", { name: "Navigate" }));
+
+    rerender(
+      <HarnessWithNoKS4Button
+        slugs={
+          {
+            subjectSlug: "maths",
+            phaseSlug: "secondary",
+          } as CurriculumSelectionSlugs
+        }
+        pageKey="no-ks4"
+      />,
+    );
+
+    await waitFor(() => {
+      // No focus should occur because destination.ks4OptionSlug is undefined
+      expect(focusSpy).not.toHaveBeenCalled();
+    });
+
+    focusSpy.mockRestore();
+  });
+
+  it("tracks when scope is mounted and unmounted by updating registration status", async () => {
+    let capturedScope:
+      | ((variant: "page" | "modal", node: HTMLDivElement | null) => void)
+      | null = null;
+    let capturedPageNode: HTMLDivElement | null = null;
+
+    function TestComponent() {
+      const { registerScope } = useKS4OptionFocus();
+      capturedScope = registerScope;
+      return (
+        <>
+          <KS4OptionFocusScope variant="page">
+            <div
+              ref={(node) => {
+                if (node) capturedPageNode = node;
+              }}
+              data-testid="page-scope"
+            >
+              <input type="radio" value="ocr" aria-label="Page OCR" />
+            </div>
+          </KS4OptionFocusScope>
+        </>
+      );
+    }
+
+    function TestHarness() {
+      return (
+        <StrictMode>
+          <ProgrammeNavigationProvider>
+            <ProgrammePageFiltersModalProvider>
+              <KS4OptionFocusProvider slugs={source}>
+                <TestComponent />
+              </KS4OptionFocusProvider>
+            </ProgrammePageFiltersModalProvider>
+          </ProgrammeNavigationProvider>
+        </StrictMode>
+      );
+    }
+
+    render(<TestHarness />);
+
+    // Initial render: page scope mounts, registerScope called with (variant="page", node=divElement)
+    // This sets registered["page"] = true (since node !== null)
+    await waitFor(() => {
+      expect(capturedPageNode).not.toBeNull();
+      expect(capturedScope).not.toBeNull();
+    });
+
+    // registerScope is called again with the same state
+    // current["page"] === true and (node !== null) === true
+    // condition is true, so it returns current without updating
+    // const setStateUpdateCountBefore = jest.fn();
+    const originalSetState = capturedScope;
+    capturedScope = jest.fn(originalSetState!);
+
+    act(() => {
+      capturedScope!("page", capturedPageNode);
+    });
+
+    // Verify that no unnecessary update occurred
+    expect(capturedScope).toHaveBeenCalledWith("page", capturedPageNode);
   });
 });

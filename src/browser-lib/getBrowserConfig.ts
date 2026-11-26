@@ -434,6 +434,15 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default: "false",
     description: "Whether sentry is enabled or not",
   },
+  bugsnagEnabled: {
+    value: process.env.NEXT_PUBLIC_BUGSNAG_ENABLED,
+    envName: "NEXT_PUBLIC_BUGSNAG_ENABLED",
+    required: false,
+    availableInBrowser: true,
+    allowedValues: ["true", "false"],
+    default: "true",
+    description: "Enable Bugsnag error reporting",
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {

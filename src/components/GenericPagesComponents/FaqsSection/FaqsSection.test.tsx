@@ -1,16 +1,14 @@
-import { basic as fixture } from "./JoinResearchPanelFaqs.fixtures";
+import { basic as fixture } from "./FaqsSection.fixtures";
 
-import JoinResearchPanelFaqs from ".";
+import FaqsSection from ".";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
-describe("JoinResearchPanelFaqs", () => {
+describe("FaqsSection", () => {
   test("it renders correct data", () => {
-    const { baseElement, getByRole } = render(
-      <JoinResearchPanelFaqs {...fixture} />,
-    );
+    const { baseElement, getByRole } = render(<FaqsSection {...fixture} />);
 
     expect(baseElement).toMatchSnapshot();
     expect(getByRole("heading", { level: 2 })).toHaveTextContent(

@@ -1,5 +1,5 @@
 "use client";
-import { OakBox, OakCodeRenderer } from "@oaknational/oak-components";
+import { OakBox, OakCodeRenderer, OakFlex } from "@oaknational/oak-components";
 import { Fragment } from "react";
 
 import {
@@ -7,7 +7,11 @@ import {
   NcAlignmentCheckerLandingPageBlock,
   NcAlignmentCheckerLandingPageBlockType,
 } from "@/common-lib/cms-types/ncAlignmentChecker";
+import NcAlignmentCheckerLandingPageHeader from "@/components/NcAlignmentChecker/LandingPageHeader";
+import ImageTextSplitSection from "@/components/GenericPagesComponents/ImageTextSplitSection";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
+import FaqsSection from "@/components/GenericPagesComponents/FaqsSection";
+
 function DefaultComponent(
   block: NcAlignmentCheckerLandingPageBlock<NcAlignmentCheckerLandingPageBlockType>,
 ) {
@@ -25,11 +29,11 @@ const pageComponents: {
     props: NcAlignmentCheckerLandingPageBlock<K>,
   ) => React.ReactNode;
 } = {
-  NcAlignmentCheckerLandingPageHeader: DefaultComponent,
-  NcAlignmentCheckerLandingPageTextAndMedia: DefaultComponent,
+  NcAlignmentCheckerLandingPageHeader: NcAlignmentCheckerLandingPageHeader,
+  NcAlignmentCheckerLandingPageTextAndMedia: ImageTextSplitSection,
   NcAlignmentCheckerLandingPageSubjectExperts: DefaultComponent,
   NcAlignmentCheckerLandingPageQuotes: DefaultComponent,
-  NcAlignmentCheckerLandingPageFaqs: DefaultComponent,
+  NcAlignmentCheckerLandingPageFaqs: FaqsSection,
   NcAlignmentCheckerLandingPageSubjectPickerCallout: DefaultComponent,
 };
 
@@ -46,9 +50,14 @@ export function NcAlignmentCheckerLandingPage({
 }>) {
   return (
     <OakBox $zIndex={"neutral"} $color={"text-primary"}>
-      {pageData.blocks?.map((block) => {
-        return <Fragment key={block._key}>{renderBlock(block)}</Fragment>;
-      })}
+      <OakFlex
+        $flexDirection="column"
+        $gap={["spacing-56", "spacing-80", "spacing-80"]}
+      >
+        {pageData.blocks?.map((block) => {
+          return <Fragment key={block._key}>{renderBlock(block)}</Fragment>;
+        })}
+      </OakFlex>
     </OakBox>
   );
 }

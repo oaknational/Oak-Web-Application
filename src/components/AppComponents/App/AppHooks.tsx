@@ -33,19 +33,17 @@ const useAppHooks = () => {
   const { posthogDistinctId } = useAnalytics();
   const pathname = usePathname();
 
-  if (getBrowserConfig("sentryEnabled") === "true") {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useSentry({
-      enabled: getConsent(ServicePolicyMap.SENTRY) === "granted",
-      userId: posthogDistinctId,
-    });
-  } else {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useBugsnag({
-      enabled: getConsent(ServicePolicyMap.BUGSNAG) === "granted",
-      userId: posthogDistinctId,
-    });
-  }
+  useSentry({
+    enabled: getConsent(ServicePolicyMap.SENTRY) === "granted",
+    userId: posthogDistinctId,
+  });
+
+  useBugsnag({
+    enabled:
+      getBrowserConfig("bugsnagEnabled") === "true" &&
+      getConsent(ServicePolicyMap.BUGSNAG) === "granted",
+    userId: posthogDistinctId,
+  });
 
   useGleap({
     enabled:

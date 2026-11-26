@@ -143,6 +143,10 @@ const bugsnag: Partial<CspConfig> = {
   connectSrc: ["*.bugsnag.smartbear.com", "*.bugsnag.com"],
 };
 
+const sentry: Partial<CspConfig> = {
+  connectSrc: ["*.ingest.de.sentry.io"],
+};
+
 const localhost: Partial<CspConfig> = {
   scriptSrc: ["'unsafe-eval'", "http://localhost:*", "https://localhost:*"],
   frameAncestors: ["http://localhost:*", "https://localhost:*"],
@@ -222,6 +226,7 @@ const cspConfig: CspConfig = [
   gleap,
   google,
   bugsnag,
+  sentry,
   googleTranslate,
 ].reduce(
   (accumulator, currentValue) => mergeConfigs(accumulator, currentValue),
