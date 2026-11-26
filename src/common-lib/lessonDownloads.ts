@@ -44,11 +44,11 @@ export const lessonDownloadTypeSchema = z.enum([
   "supplementary-docx",
   "curriculum-pdf",
   "additional-files",
-  "intro-audio-clips",
-  "cycle-1-audio-clips",
-  "cycle-2-audio-clips",
-  "cycle-3-audio-clips",
-  "cycle-4-audio-clips",
+  "intro",
+  "cycle-1",
+  "cycle-2",
+  "cycle-3",
+  "cycle-4",
 ]);
 
 export type LessonDownloadType = z.infer<typeof lessonDownloadTypeSchema>;
@@ -128,7 +128,7 @@ export const getLessonDownloadResources = (cycleTitles?: CycleTitleMap) =>
       downloadTitle: "Keywords",
       subjectToCopyright: false,
       availability: (content) => content.mediaClips?.hasIntro,
-      formats: [{ type: "intro-audio-clips", ext: "mp3", label: "Keywords" }],
+      formats: [{ type: "intro", ext: "mp3", label: "Keywords" }],
     },
     "cycle-1": {
       label: cycleTitles?.["cycle1"] ?? "Cycle 1",
@@ -140,7 +140,7 @@ export const getLessonDownloadResources = (cycleTitles?: CycleTitleMap) =>
       availability: (content) => content.mediaClips?.hasCycle1,
       formats: [
         {
-          type: "cycle-1-audio-clips",
+          type: "cycle-1",
           ext: "mp3",
           label: cycleTitles?.["cycle1"] ?? "Cycle 1",
         },
@@ -156,7 +156,7 @@ export const getLessonDownloadResources = (cycleTitles?: CycleTitleMap) =>
       availability: (content) => content.mediaClips?.hasCycle2,
       formats: [
         {
-          type: "cycle-2-audio-clips",
+          type: "cycle-2",
           ext: "mp3",
           label: cycleTitles?.["cycle2"] ?? "Cycle 2",
         },
@@ -172,7 +172,7 @@ export const getLessonDownloadResources = (cycleTitles?: CycleTitleMap) =>
       availability: (content) => content.mediaClips?.hasCycle3,
       formats: [
         {
-          type: "cycle-3-audio-clips",
+          type: "cycle-3",
           ext: "mp3",
           label: cycleTitles?.["cycle3"] ?? "Cycle 3",
         },
@@ -188,7 +188,7 @@ export const getLessonDownloadResources = (cycleTitles?: CycleTitleMap) =>
       availability: (content) => content.mediaClips?.hasCycle4,
       formats: [
         {
-          type: "cycle-4-audio-clips",
+          type: "cycle-4",
           ext: "mp3",
           label: cycleTitles?.["cycle_4"] ?? "Cycle 4",
         },

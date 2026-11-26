@@ -169,7 +169,7 @@ describe("lesson download registry", () => {
       cycle1: "Custom cycle 1 title",
     };
     const downloads = buildLessonDownloads(allContent, cycles);
-    const cycle1 = downloads.find((d) => d.type === "cycle-1-audio-clips");
+    const cycle1 = downloads.find((d) => d.type === "cycle-1");
     if (!cycle1) {
       throw new Error("Could not find auio cycle data");
     }
