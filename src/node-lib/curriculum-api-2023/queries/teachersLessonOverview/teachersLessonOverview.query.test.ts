@@ -19,6 +19,7 @@ import teachersLessonOverview, {
 } from "./teachersLessonOverview.query";
 
 import sdk from "@/node-lib/curriculum-api-2023/sdk";
+import { LessonDownloadContentBase } from "@/common-lib/lessonDownloads";
 
 export const _additionalFilesFixture = keysToCamelCase(
   additionalFilesFixture().downloadable_files,
@@ -621,7 +622,7 @@ describe("teachersLessonOverview()", () => {
   });
   describe("getDownloadsArray", () => {
     it("should return correct downloads array when all content flags are true", () => {
-      const content = {
+      const content: LessonDownloadContentBase = {
         hasSlideDeckAssetObject: true,
         hasStarterQuiz: true,
         hasExitQuiz: true,
@@ -629,10 +630,18 @@ describe("teachersLessonOverview()", () => {
         hasWorksheetAnswersAssetObject: true,
         hasSupplementaryAssetObject: true,
         hasLessonGuideObject: true,
+        mediaClips: {
+          hasIntro: true,
+          hasCycle1: true,
+          hasCycle2: true,
+          hasCycle3: true,
+          hasCycle4: true,
+        },
       };
 
       const expectedDownloads = [
         { exists: true, type: "presentation" },
+        { exists: true, type: "intro-audio-clips" },
         { exists: true, type: "intro-quiz-questions" },
         { exists: true, type: "intro-quiz-answers" },
         { exists: true, type: "exit-quiz-questions" },
@@ -649,7 +658,7 @@ describe("teachersLessonOverview()", () => {
     });
 
     it("should return correct downloads array when all content flags are false", () => {
-      const content = {
+      const content: LessonDownloadContentBase = {
         hasSlideDeckAssetObject: false,
         hasStarterQuiz: false,
         hasExitQuiz: false,
@@ -657,10 +666,18 @@ describe("teachersLessonOverview()", () => {
         hasWorksheetAnswersAssetObject: false,
         hasSupplementaryAssetObject: false,
         hasLessonGuideObject: false,
+        mediaClips: {
+          hasIntro: false,
+          hasCycle1: false,
+          hasCycle2: false,
+          hasCycle3: false,
+          hasCycle4: false,
+        },
       };
 
       const expectedDownloads = [
         { exists: false, type: "presentation" },
+        { exists: false, type: "intro-audio-clips" },
         { exists: false, type: "intro-quiz-questions" },
         { exists: false, type: "intro-quiz-answers" },
         { exists: false, type: "exit-quiz-questions" },
@@ -685,10 +702,18 @@ describe("teachersLessonOverview()", () => {
         hasWorksheetAnswersAssetObject: false,
         hasSupplementaryAssetObject: false,
         hasLessonGuideObject: false,
+        mediaClips: {
+          hasIntro: false,
+          hasCycle1: false,
+          hasCycle2: false,
+          hasCycle3: false,
+          hasCycle4: false,
+        },
       };
 
       const expectedDownloads = [
         { exists: false, type: "presentation" },
+        { exists: false, type: "intro-audio-clips" },
         { exists: false, type: "intro-quiz-questions" },
         { exists: false, type: "intro-quiz-answers" },
         { exists: false, type: "exit-quiz-questions" },

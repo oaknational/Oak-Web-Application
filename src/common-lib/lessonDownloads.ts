@@ -1,7 +1,7 @@
 import type { OakIconName } from "@oaknational/oak-components";
 import { z } from "zod";
 
-type LessonDownloadContentBase = {
+export type LessonDownloadContentBase = {
   hasSlideDeckAssetObject: boolean;
   hasStarterQuiz: boolean;
   hasExitQuiz: boolean;

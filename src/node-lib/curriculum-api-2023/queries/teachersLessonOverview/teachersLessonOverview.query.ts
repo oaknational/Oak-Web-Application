@@ -171,6 +171,13 @@ export const transformedTeachersLessonOverviewData = (
       hasWorksheetAssetObject: Boolean(content.hasWorksheetAssetObject),
       hasSlideDeckAssetObject: Boolean(content.hasSlideDeckAssetObject),
       hasLessonGuideObject: Boolean(content.hasLessonGuideObject),
+      mediaClips: {
+        hasIntro: Boolean(content.mediaClips?.["intro"]),
+        hasCycle1: Boolean(content.mediaClips?.["cycle_1"]),
+        hasCycle2: Boolean(content.mediaClips?.["cycle_2"]),
+        hasCycle3: Boolean(content.mediaClips?.["cycle_3"]),
+        hasCycle4: Boolean(content.mediaClips?.["cycle_4"]),
+      },
     }),
     updatedAt: browseData.lessonData.updatedAt,
     lessonSlug: browseData.lessonSlug,

@@ -26,6 +26,13 @@ const allContent: LessonDownloadContent = {
   hasWorksheetGoogleDriveDownloadableVersion: true,
   hasSupplementaryAssetObject: true,
   hasLessonGuideObject: true,
+  mediaClips: {
+    hasIntro: true,
+    hasCycle1: false,
+    hasCycle2: false,
+    hasCycle3: false,
+    hasCycle4: false,
+  },
   isLegacy: false,
 };
 
@@ -72,6 +79,7 @@ describe("lesson download registry", () => {
   it.each([
     ["lesson guide", "lesson-guide"],
     ["slide deck", "slide-deck"],
+    ["intro", "intro"],
     ["starter quiz", "starter-quiz"],
     ["exit quiz", "exit-quiz"],
     ["worksheet", "worksheet"],
