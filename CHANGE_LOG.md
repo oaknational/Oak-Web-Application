@@ -1,3 +1,19 @@
+# [1.1289.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1288.0...v1.1289.0) (2026-11-26)
+
+
+### Bug Fixes
+
+* remove additional padding on alert region ([b88ccc9](https://github.com/oaknational/Oak-Web-Application/commit/b88ccc959d0bb7f0b9d3b0c4d050ee44d57331c5))
+
+
+### Features
+
+* add aria described by to radio groups when in error state ([d89a030](https://github.com/oaknational/Oak-Web-Application/commit/d89a0300d9c9a6b06032bab1c6cc40b9ae28cd52))
+* render form on landing page ([5ffe9c6](https://github.com/oaknational/Oak-Web-Application/commit/5ffe9c68c85c6d3a8439e7e57ce20f8b0fdb62e9))
+* shows year groups not key stages for Maths ([aa1107d](https://github.com/oaknational/Oak-Web-Application/commit/aa1107d7f565910a31d608983e79b75bcba0a746))
+* subject picker callout component ([c96cac6](https://github.com/oaknational/Oak-Web-Application/commit/c96cac667a4844869b73e268b7f6891a350fe879))
+* subject picker form component ([d4a273b](https://github.com/oaknational/Oak-Web-Application/commit/d4a273ba03bcbc3fb0be8265c887f604a3c0d7fa))
+
 # [1.1288.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1287.0...v1.1288.0) (2026-11-25)
 
 
