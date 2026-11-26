@@ -53,6 +53,10 @@ export default function SubjectPickerForm({
     );
   };
 
+  const errorMessage =
+    formState.errors.subjectSlug?.message ??
+    formState.errors.yearOrKeyStageSlug?.message;
+
   return (
     <OakFlex
       as="form"
@@ -162,11 +166,8 @@ export default function SubjectPickerForm({
         )}
       </OakBox>
 
-      <OakFlex role="alert" $pb="spacing-16">
-        <OakFieldError>
-          {formState.errors.subjectSlug?.message ??
-            formState.errors.yearOrKeyStageSlug?.message}
-        </OakFieldError>
+      <OakFlex role="alert" $pb={errorMessage ? "spacing-16" : "spacing-0"}>
+        <OakFieldError>{errorMessage}</OakFieldError>
       </OakFlex>
 
       <OakPrimaryButton

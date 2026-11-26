@@ -178,7 +178,7 @@ exports[`NcAlignmentCheckerLandingPageHeader renders correct data 1`] = `
                     class="sc-bdvwhi sc-jRQBiJ hPWTKU bxWdOl"
                   >
                     <div
-                      class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou jEjiJg"
+                      class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou gFWqXk"
                     >
                       <span
                         class="sc-pVUti eEZcMz"
@@ -220,7 +220,7 @@ exports[`NcAlignmentCheckerLandingPageHeader renders correct data 1`] = `
                       </label>
                     </div>
                     <div
-                      class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou jEjiJg"
+                      class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou gFWqXk"
                     >
                       <span
                         class="sc-pVUti eEZcMz"
@@ -262,7 +262,7 @@ exports[`NcAlignmentCheckerLandingPageHeader renders correct data 1`] = `
                       </label>
                     </div>
                     <div
-                      class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou jEjiJg"
+                      class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou gFWqXk"
                     >
                       <span
                         class="sc-pVUti eEZcMz"
@@ -304,7 +304,7 @@ exports[`NcAlignmentCheckerLandingPageHeader renders correct data 1`] = `
                       </label>
                     </div>
                     <div
-                      class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou jEjiJg"
+                      class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou gFWqXk"
                     >
                       <span
                         class="sc-pVUti eEZcMz"
@@ -346,7 +346,7 @@ exports[`NcAlignmentCheckerLandingPageHeader renders correct data 1`] = `
                       </label>
                     </div>
                     <div
-                      class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou jEjiJg"
+                      class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou gFWqXk"
                     >
                       <span
                         class="sc-pVUti eEZcMz"
@@ -388,7 +388,7 @@ exports[`NcAlignmentCheckerLandingPageHeader renders correct data 1`] = `
                       </label>
                     </div>
                     <div
-                      class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou jEjiJg"
+                      class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou gFWqXk"
                     >
                       <span
                         class="sc-pVUti eEZcMz"
@@ -430,7 +430,7 @@ exports[`NcAlignmentCheckerLandingPageHeader renders correct data 1`] = `
                       </label>
                     </div>
                     <div
-                      class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou jEjiJg"
+                      class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou gFWqXk"
                     >
                       <span
                         class="sc-pVUti eEZcMz"
@@ -475,7 +475,7 @@ exports[`NcAlignmentCheckerLandingPageHeader renders correct data 1`] = `
                 </fieldset>
               </div>
               <div
-                class="sc-bdvwhi sc-jRQBiJ jmpdpB heSanc"
+                class="sc-bdvwhi sc-jRQBiJ fWbnvc heSanc"
                 role="alert"
               />
               <div
