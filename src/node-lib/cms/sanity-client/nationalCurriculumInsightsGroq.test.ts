@@ -1,6 +1,7 @@
 import { createClient } from "@sanity/client";
 
 import {
+  getNationalCurriculumInsightsGuidancePage,
   getNationalCurriculumInsightsHub,
   getNationalCurriculumInsightsSubjectBySlug,
   nationalCurriculumInsightsHubQuery,
@@ -134,6 +135,36 @@ describe("nationalCurriculumInsightsGroq", () => {
       },
       { perspective: "published" },
     );
+  });
+
+  it("reads published guidance with blog posts and no legacy video cards", async () => {
+    const posts = [
+      {
+        id: "curriculum-conversations",
+        title: "Curriculum Conversations",
+        summary: "Practical guidance for curriculum change",
+        slug: "curriculum-conversations",
+        image: {},
+      },
+    ];
+    mockFetch.mockResolvedValueOnce({
+      id: "nationalCurriculumInsightsGuidancePage",
+      pageType: "guidance",
+      title: "Practical guidance for curriculum change",
+      summary: "Explore curriculum changes",
+      modules: [
+        {
+          __typename: "NationalCurriculumInsightsVideoCardsSection",
+          heading: "Curriculum Conversations",
+          posts,
+          cards: null,
+        },
+      ],
+    });
+
+    const result = await getNationalCurriculumInsightsGuidancePage();
+
+    expect(result?.modules[0]).toMatchObject({ posts, cards: undefined });
   });
 
   it("fetches the subject as Overview and each phase as its own page", async () => {

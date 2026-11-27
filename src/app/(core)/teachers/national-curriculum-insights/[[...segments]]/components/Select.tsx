@@ -36,47 +36,53 @@ export const NationalCurriculumInsightsSelect = ({
   error,
 }: NationalCurriculumInsightsSelectProps) => (
   <OakBox
-    $position="relative"
     $width="100%"
     role="group"
     aria-labelledby={`${id}-label`}
     aria-describedby={error ? `${id}-error` : undefined}
   >
-    <OakJauntyAngleLabel
-      as="label"
-      htmlFor={id}
-      id={`${id}-label`}
-      label={label}
-      $background={error ? "bg-error" : "bg-decorative5-main"}
-      $color={error ? "text-inverted" : "text-primary"}
-      $font="heading-7"
-      $position="absolute"
-      $left={"spacing-4"}
-      style={{ top: `-${parseSpacing("spacing-20")}` }}
-      $zIndex="in-front"
-      $borderRadius="border-radius-square"
-    />
-    <OakSelect
-      id={id}
-      name={name}
-      $display="block"
-      value={value}
-      validity={error ? "invalid" : undefined}
-      onChange={(event) => onChange(event.target.value)}
-    >
-      <OakOption asDefault value="" disabled>
-        {placeholder}
-      </OakOption>
-      {options.map((option) => (
-        <OakOption key={option.value} value={option.value}>
-          {option.label}
-        </OakOption>
-      ))}
-    </OakSelect>
-    {error ? (
-      <OakBox id={`${id}-error`} role="alert" $mt="spacing-8">
+    {error && (
+      <OakBox
+        id={`${id}-error`}
+        role="alert"
+        aria-live="assertive"
+        $mb="spacing-20"
+      >
         <OakFieldError>{error}</OakFieldError>
       </OakBox>
-    ) : null}
+    )}
+    <OakBox $position="relative">
+      <OakJauntyAngleLabel
+        as="label"
+        htmlFor={id}
+        id={`${id}-label`}
+        label={label}
+        $background={error ? "bg-error" : "bg-decorative5-main"}
+        $color={error ? "text-inverted" : "text-primary"}
+        $font="heading-7"
+        $position="absolute"
+        $left={"spacing-4"}
+        style={{ top: `-${parseSpacing("spacing-20")}` }}
+        $zIndex="in-front"
+        $borderRadius="border-radius-square"
+      />
+      <OakSelect
+        id={id}
+        name={name}
+        $display="block"
+        value={value}
+        validity={error ? "invalid" : undefined}
+        onChange={(event) => onChange(event.target.value)}
+      >
+        <OakOption asDefault value="" disabled>
+          {placeholder}
+        </OakOption>
+        {options.map((option) => (
+          <OakOption key={option.value} value={option.value}>
+            {option.label}
+          </OakOption>
+        ))}
+      </OakSelect>
+    </OakBox>
   </OakBox>
 );

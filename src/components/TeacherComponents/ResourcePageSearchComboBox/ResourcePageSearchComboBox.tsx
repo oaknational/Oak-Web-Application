@@ -61,10 +61,10 @@ const ResourcePageSearchComboBox = <T extends School>(
 
   let labelBackground: OakUiRoleToken;
 
-  if (state.isFocused) {
-    labelBackground = "bg-inverted";
-  } else if (hasError) {
+  if (hasError) {
     labelBackground = "bg-error";
+  } else if (state.isFocused) {
+    labelBackground = "bg-inverted";
   } else {
     labelBackground = "bg-decorative5-main";
   }

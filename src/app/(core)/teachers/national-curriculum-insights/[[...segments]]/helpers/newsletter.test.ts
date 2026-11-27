@@ -3,10 +3,7 @@ import {
   insightsNewsletterRoleValue,
 } from "./newsletter";
 
-import {
-  EDU_ROLES,
-  getHubspotNewsletterPayload,
-} from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
+import { getHubspotNewsletterPayload } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
 
 describe("Insights newsletter destination", () => {
   it("uses the dedicated curriculum form", () => {
@@ -16,16 +13,12 @@ describe("Insights newsletter destination", () => {
   });
 
   it.each([
-    ["MAT Principal/CEO", "MAT Principal/CEO"],
-    ["Headteacher", "Headteacher"],
-    ["Deputy/SLT", "Deputy/SLT"],
-    ["Head of Dept/Year", "Head of Department"],
-    ["Teacher/Subject Specialist", "Subject Specialist"],
-    ["Teaching Assistant", "Teaching Assistant"],
-    ["Trainee Teacher", "Trainee Teacher"],
-    ["Other", "Other"],
-  ])("maps %s to the campaign option %s", (label, value) => {
-    expect(EDU_ROLES).toContain(label);
+    ["Senior leader", "Deputy/SLT"],
+    ["Headteacher or principal", "Headteacher"],
+    ["Trust leader", "MAT Principal/CEO"],
+    ["Teaching assistant or support staff", "Teaching Assistant"],
+    ["Trainee teacher", "Trainee Teacher"],
+  ])("sends %s as %s to HubSpot", (label, value) => {
     expect(insightsNewsletterRoleValue(label)).toBe(value);
   });
 
@@ -34,7 +27,9 @@ describe("Insights newsletter destination", () => {
       name: "Example Teacher",
       email: "teacher@example.com",
       userRole: "" as const,
-      eduRole: insightsNewsletterRoleValue("Head of Dept/Year"),
+      eduRole: insightsNewsletterRoleValue(
+        "Subject lead or head of department",
+      ),
       schoolName: "Example School",
       utm_campaign: "curriculum",
     };

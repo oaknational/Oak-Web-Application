@@ -220,7 +220,8 @@ const nationalCurriculumInsightsVideoCardsSectionSchema = z
           duration: z.string().min(1).nullable().optional(),
         }),
       )
-      .optional(),
+      .nullish()
+      .transform((cards) => cards ?? undefined),
   })
   .refine(
     ({ posts, cards }) => Array.isArray(posts) || Boolean(cards?.length),

@@ -1,4 +1,5 @@
 import {
+  EDU_ROLES,
   getHubspotCurriculumDownloadsFormPayload,
   getHubspotDownloadsFormPayload,
   getHubspotNewsletterPayload,
@@ -88,6 +89,16 @@ describe("getHubspotNewsletterFormPayload()", () => {
         pageUri: "http://localhost/",
         pageName: "",
       },
+    });
+  });
+
+  test.each(EDU_ROLES)("sends %s as the HubSpot value", (eduRole) => {
+    const payload = getHubspotNewsletterPayload({
+      data: { userRole: "", eduRole },
+    });
+    expect(payload.fields).toContainEqual({
+      name: "edu_user_role_type",
+      value: eduRole,
     });
   });
 });

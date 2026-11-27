@@ -181,7 +181,7 @@ describe("Insights download submission", () => {
     ).toBeDisabled();
     await user.selectOptions(
       screen.getByRole("combobox", { name: "Role (required)" }),
-      "Headteacher",
+      "Headteacher or principal",
     );
     await user.click(
       screen.getByRole("checkbox", {
@@ -251,7 +251,7 @@ describe("Insights download submission", () => {
     ).toBeChecked();
     expect(
       screen.getByRole("combobox", { name: "Role (required)" }),
-    ).toHaveValue("Headteacher");
+    ).toHaveValue("Headteacher or principal");
     expect(
       screen.getByRole("button", { name: "Download 1 insight (.DOCX)" }),
     ).toBeEnabled();
