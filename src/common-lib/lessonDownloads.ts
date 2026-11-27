@@ -190,7 +190,7 @@ export const getLessonDownloadResources = (cycleTitles?: CycleTitleMap) =>
         {
           type: "cycle-4",
           ext: "mp3",
-          label: cycleTitles?.["cycle_4"] ?? "Cycle 4",
+          label: cycleTitles?.["cycle4"] ?? "Cycle 4",
         },
       ],
     },
