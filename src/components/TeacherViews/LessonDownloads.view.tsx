@@ -9,6 +9,7 @@ import {
   OakMaxWidth,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { getResourcesWithoutLegacyCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
 import { useOnboardingStatus } from "../TeacherComponents/hooks/useOnboardingStatus";
@@ -86,6 +87,8 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
     geoRestricted,
   } = lesson;
 
+  const audioDownloadEnabled = useFeatureFlagEnabled("teachers-audio-download");
+
   const {
     showGeoBlocked,
     showSignedOutLoginRequired,
@@ -126,6 +129,16 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
     [downloads, legacyCopyrightContent],
   );
 
+  const downloadsFilteredByFeatureFlag = useMemo(() => {
+    if (!audioDownloadEnabled) {
+      return downloadsFilteredByCopyright.filter(
+        (d) => !d.type.startsWith("cycle") && d.type !== "intro",
+      );
+    } else {
+      return downloadsFilteredByCopyright;
+    }
+  }, [downloadsFilteredByCopyright, audioDownloadEnabled]);
+
   const {
     form,
     emailFromLocalStorage,
@@ -148,7 +161,7 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
     setEmailInLocalStorage,
     hubspotLoaded,
   } = useResourceFormState({
-    downloadResources: downloadsFilteredByCopyright,
+    downloadResources: downloadsFilteredByFeatureFlag,
     additionalFilesResources: additionalFiles,
     type: "download",
   });
@@ -218,7 +231,7 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
         onwardContent,
         selectedResources,
         totalDownloadableResources:
-          (downloadsFilteredByCopyright?.length ?? 0) +
+          (downloadsFilteredByFeatureFlag?.length ?? 0) +
           (additionalFiles?.length ?? 0),
       });
     } catch {
@@ -248,7 +261,7 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
   const showNoResources =
     !hasResources ||
     Boolean(expired) ||
-    downloadsFilteredByCopyright.length === 0;
+    downloadsFilteredByFeatureFlag.length === 0;
 
   return (
     <OakBox $ph={["spacing-16", "spacing-0"]} $background={"bg-neutral"}>
@@ -314,7 +327,7 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
               !showNoResources && (
                 <DownloadCardGroup
                   control={form.control}
-                  downloads={downloadsFilteredByCopyright}
+                  downloads={downloadsFilteredByFeatureFlag}
                   additionalFiles={additionalFiles}
                   hasError={Boolean(form.errors?.resources)}
                   triggerForm={form.trigger}
@@ -341,7 +354,7 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
               </OakPrimaryButton>
             }
             showRiskAssessmentBanner={showRiskAssessmentBanner}
-            lessonDownloads={downloadsFilteredByCopyright}
+            lessonDownloads={downloadsFilteredByFeatureFlag}
             additionalFiles={additionalFiles}
             showGeoBlocked={showGeoBlocked}
           />
