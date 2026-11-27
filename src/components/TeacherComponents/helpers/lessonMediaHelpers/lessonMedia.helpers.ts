@@ -1,3 +1,8 @@
+import {
+  FeaturesCamel,
+  MediaClipsRecordCamel,
+} from "@oaknational/oak-curriculum-schema";
+
 import type {
   MediaClip,
   MediaClipListCamelCase,
@@ -88,4 +93,25 @@ export const createLearningCycleVideosTitleMap = ({
   });
 
   return learningCycleVideosTitleMap;
+};
+
+type FeaturesWithRestriciton = FeaturesCamel & {
+  agfRestrictedDownload?: boolean;
+};
+export const getMediaClipCylesForDownload = ({
+  features,
+  mediaClips,
+}: {
+  features?: FeaturesWithRestriciton | null;
+  mediaClips: MediaClipsRecordCamel | null;
+}) => {
+  const isRestrictedDownload = features?.agfRestrictedDownload;
+
+  return {
+    hasIntro: Boolean(mediaClips?.["intro"]) && !isRestrictedDownload,
+    hasCycle1: Boolean(mediaClips?.["cycle1"]) && !isRestrictedDownload,
+    hasCycle2: Boolean(mediaClips?.["cycle2"]) && !isRestrictedDownload,
+    hasCycle3: Boolean(mediaClips?.["cycle3"]) && !isRestrictedDownload,
+    hasCycle4: Boolean(mediaClips?.["cycle4"]) && !isRestrictedDownload,
+  };
 };

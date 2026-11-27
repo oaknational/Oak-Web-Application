@@ -681,11 +681,11 @@ describe("teachersLessonOverview()", () => {
 
       const expectedDownloads = [
         { exists: false, type: "presentation" },
-        { exists: false, type: "intro-audio-clips" },
-        { exists: false, type: "cycle-1-audio-clips" },
-        { exists: false, type: "cycle-2-audio-clips" },
-        { exists: false, type: "cycle-3-audio-clips" },
-        { exists: false, type: "cycle-4-audio-clips" },
+        { exists: false, type: "intro" },
+        { exists: false, type: "cycle-1" },
+        { exists: false, type: "cycle-2" },
+        { exists: false, type: "cycle-3" },
+        { exists: false, type: "cycle-4" },
         { exists: false, type: "intro-quiz-questions" },
         { exists: false, type: "intro-quiz-answers" },
         { exists: false, type: "exit-quiz-questions" },
@@ -721,11 +721,11 @@ describe("teachersLessonOverview()", () => {
 
       const expectedDownloads = [
         { exists: false, type: "presentation" },
-        { exists: false, type: "intro-audio-clips" },
-        { exists: false, type: "cycle-1-audio-clips" },
-        { exists: false, type: "cycle-2-audio-clips" },
-        { exists: false, type: "cycle-3-audio-clips" },
-        { exists: false, type: "cycle-4-audio-clips" },
+        { exists: false, type: "intro" },
+        { exists: false, type: "cycle-1" },
+        { exists: false, type: "cycle-2" },
+        { exists: false, type: "cycle-3" },
+        { exists: false, type: "cycle-4" },
         { exists: false, type: "intro-quiz-questions" },
         { exists: false, type: "intro-quiz-answers" },
         { exists: false, type: "exit-quiz-questions" },

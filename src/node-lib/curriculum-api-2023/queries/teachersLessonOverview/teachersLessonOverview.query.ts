@@ -30,7 +30,10 @@ import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/quer
 import { formatBytes } from "@/utils/formatBytes";
 import { formatSentences } from "@/utils/formatTranscriptSentences";
 import { buildLessonOverviewDownloads } from "@/common-lib/lessonDownloads";
-import { createLearningCycleVideosTitleMap } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
+import {
+  createLearningCycleVideosTitleMap,
+  getMediaClipCylesForDownload,
+} from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
 
 export type TeachersLessonUnitStaticLessonList = NonNullable<
   NonNullable<LessonUnitDataByKs["supplementaryData"]>["staticLessonList"]
@@ -142,15 +145,20 @@ export const transformedTeachersLessonOverviewData = (
       : null;
   } catch (error) {
     browseData.lessonData.mediaClips = null;
-    reportError(error);
+    void reportError(error);
   }
+
+  const mediaClipDownloads = getMediaClipCylesForDownload({
+    mediaClips,
+    features: browseData.features,
+  });
 
   const lessonOutlines = browseData.lessonData.lessonOutline ?? null;
   const cycleTitleMap = createLearningCycleVideosTitleMap({
     isMFL: PERMITTED_AUDIO_SUBJECTS.has(browseData.programmeFields.subjectSlug),
     isPELesson: browseData.programmeFields.subjectSlug === "physical-education",
-    learningCycleVideos: keysToCamelCase(mediaClips),
-    lessonOutlines: keysToCamelCase(lessonOutlines),
+    learningCycleVideos: mediaClips,
+    lessonOutlines,
   });
 
   return {
@@ -184,13 +192,7 @@ export const transformedTeachersLessonOverviewData = (
         hasWorksheetAssetObject: Boolean(content.hasWorksheetAssetObject),
         hasSlideDeckAssetObject: Boolean(content.hasSlideDeckAssetObject),
         hasLessonGuideObject: Boolean(content.hasLessonGuideObject),
-        mediaClips: {
-          hasIntro: Boolean(content.mediaClips?.["intro"]),
-          hasCycle1: Boolean(content.mediaClips?.["cycle_1"]),
-          hasCycle2: Boolean(content.mediaClips?.["cycle_2"]),
-          hasCycle3: Boolean(content.mediaClips?.["cycle_3"]),
-          hasCycle4: Boolean(content.mediaClips?.["cycle_4"]),
-        },
+        mediaClips: mediaClipDownloads,
       },
       cycleTitleMap,
     ),

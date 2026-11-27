@@ -13,7 +13,10 @@ import { LessonDownloadsQuery as SdkLessonDownloadsQuery } from "@/node-lib/curr
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
-import { createLearningCycleVideosTitleMap } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
+import {
+  createLearningCycleVideosTitleMap,
+  getMediaClipCylesForDownload,
+} from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
 
 const lessonDownloadsQuery =
   (sdk: Sdk) =>
@@ -106,6 +109,11 @@ const lessonDownloadsQuery =
       lessonOutlines: keysToCamelCase(lessonOutlines),
     });
 
+    const mediaClipDownloads = getMediaClipCylesForDownload({
+      mediaClips: keysToCamelCase(mediaClips),
+      features: keysToCamelCase(parsedBrowseData?.[0]?.features),
+    });
+
     const downloadsData = {
       hasSlideDeckAssetObject: has_slide_deck_asset_object,
       hasStarterQuiz: starter_quiz ? true : false,
@@ -118,13 +126,7 @@ const lessonDownloadsQuery =
       hasLessonGuideObject: has_lesson_guide_object,
       isLegacy: is_legacy,
       lessonReleaseDate: lesson_release_date,
-      mediaClips: {
-        hasIntro: !!mediaClips?.["intro"],
-        hasCycle1: !!mediaClips?.["cycle_1"],
-        hasCycle2: !!mediaClips?.["cycle_2"],
-        hasCycle3: !!mediaClips?.["cycle_3"],
-        hasCycle4: !!mediaClips?.["cycle_4"],
-      },
+      mediaClips: mediaClipDownloads,
     };
 
     const downloads = constructDownloadsArray(downloadsData, cycleTitleMap);

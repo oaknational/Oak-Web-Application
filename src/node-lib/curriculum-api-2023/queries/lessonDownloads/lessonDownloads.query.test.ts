@@ -82,6 +82,29 @@ describe("lessonDownloads()", () => {
 
     expect(unit.programmeSlug).toEqual("programme-slug");
   });
+  test("it returns no media clips when lesson has restricted download", async () => {
+    const response = (await lessonDownloads({
+      ...sdk,
+      lessonDownloads: jest.fn(() =>
+        Promise.resolve({
+          download_assets: [downloadAssets],
+          browse_data: [syntheticUnitvariantLessonsByKsFixture()],
+          features: {
+            agf__georestricted_download: true,
+          },
+        }),
+      ),
+    })({
+      programmeSlug: "programme-slug",
+      unitSlug: "unit-slug",
+      lessonSlug: "lesson-slug",
+    })) as LessonDownloadsPageData;
+
+    const mediaClips = response.downloads.filter(
+      (d) => d.type.startsWith("cycle") || d.type === "intro",
+    );
+    mediaClips.forEach((clip) => expect(clip.exists).toBeFalsy());
+  });
   test("returns additional files if present in the response", async () => {
     const unit = (await lessonDownloads({
       ...sdk,
