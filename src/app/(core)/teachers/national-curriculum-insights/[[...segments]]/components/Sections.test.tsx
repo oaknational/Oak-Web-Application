@@ -1,5 +1,6 @@
 import { fireEvent, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import fetchMock from "jest-fetch-mock";
 
 import { localNationalCurriculumInsightsFixtures } from "../__fixtures__/nationalCurriculumInsights";
 import {
@@ -76,6 +77,10 @@ beforeEach(() => {
   (useAnalytics as jest.Mock).mockReturnValue({
     track: { newsletterSignUpCompleted },
   });
+});
+
+afterEach(() => {
+  fetchMock.dontMock();
 });
 
 const portableText = (key: string, text: string) => [
@@ -515,7 +520,21 @@ describe("National Curriculum Insights sections", () => {
       /Enter your school or organisation or tick ‘My school isn’t listed’/,
     );
 
-    await user.type(schoolInput, "PT");
+    fetchMock.mockIf(
+      /^https:\/\/school-picker\.thenational\.academy\//,
+      JSON.stringify([
+        {
+          name: "Example Primary School",
+          urn: "101105",
+          la: "Westminster",
+          postcode: "AB1 1CD",
+        },
+      ]),
+    );
+    await user.type(schoolInput, "Example");
+    await user.click(
+      await screen.findByText("Primary School, Westminster, AB1 1CD"),
+    );
     await user.click(
       screen.getByRole("button", { name: "Join the mailing list" }),
     );
@@ -525,7 +544,7 @@ describe("National Curriculum Insights sections", () => {
         email: "jamie@example.com",
         userRole: "",
         eduRole: "Subject Specialist",
-        schoolName: "PT",
+        schoolName: "Example Primary School, Westminster, AB1 1CD",
       });
     });
     expect(newsletterSignUpCompleted).toHaveBeenCalledTimes(1);
@@ -571,7 +590,7 @@ describe("National Curriculum Insights sections", () => {
         .getAllByRole("option")
         .map((option) => option.textContent),
     ).toEqual([
-      "roles",
+      "Select your role",
       "Classroom teacher",
       "Subject lead or head of department",
       "Senior leader",
@@ -599,9 +618,6 @@ describe("National Curriculum Insights sections", () => {
     );
 
     await user.selectOptions(roleSelect, "Pupil");
-    await user.type(schoolInput, "PT");
-    await user.tab();
-    expect(schoolInput).toHaveValue("PT");
     await user.click(
       screen.getByRole("checkbox", { name: "My school isn't listed" }),
     );

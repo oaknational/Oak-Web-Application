@@ -284,7 +284,11 @@ export const NationalCurriculumInsightsNewsletter = ({
                       : undefined
                   }
                   schools={schools}
-                  label="School or organisation (required)"
+                  label={
+                    schoolNotListed
+                      ? "School or organisation (required)"
+                      : "School or organisation"
+                  }
                   schoolPickerInputValue={schoolPickerInputValue}
                   setSchoolPickerInputValue={(value) => {
                     setSchoolNotListed(false);
