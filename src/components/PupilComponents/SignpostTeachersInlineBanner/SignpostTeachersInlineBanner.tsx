@@ -1,8 +1,4 @@
-import {
-  OakBox,
-  OakInlineBanner,
-  OakSecondaryLink,
-} from "@oaknational/oak-components";
+import { OakBox, OakInlineBanner, OakLink } from "@oaknational/oak-components";
 import { useRef, useState } from "react";
 import { Transition, TransitionStatus } from "react-transition-group";
 import styled from "styled-components";
@@ -73,13 +69,14 @@ export default function SignpostTeachersInlineBanner({
             $width="100%"
             onDismiss={handleClose}
             cta={
-              <OakSecondaryLink
+              <OakLink
+                variant="secondary"
                 href="/"
                 iconName="chevron-right"
                 isTrailingIcon
               >
                 View resources
-              </OakSecondaryLink>
+              </OakLink>
             }
           />
         </ExpandInBox>
