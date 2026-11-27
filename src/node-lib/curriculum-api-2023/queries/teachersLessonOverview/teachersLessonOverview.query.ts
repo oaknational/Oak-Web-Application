@@ -148,14 +148,18 @@ export const transformedTeachersLessonOverviewData = (
     void reportError(error);
   }
 
+  const isMFL = PERMITTED_AUDIO_SUBJECTS.has(
+    browseData.programmeFields.subjectSlug,
+  );
+
   const mediaClipDownloads = getMediaClipCylesForDownload({
-    mediaClips,
+    mediaClips: isMFL ? mediaClips : null,
     features: browseData.features,
   });
 
   const lessonOutlines = browseData.lessonData.lessonOutline ?? null;
   const cycleTitleMap = createLearningCycleVideosTitleMap({
-    isMFL: PERMITTED_AUDIO_SUBJECTS.has(browseData.programmeFields.subjectSlug),
+    isMFL,
     isPELesson: browseData.programmeFields.subjectSlug === "physical-education",
     learningCycleVideos: mediaClips,
     lessonOutlines,
