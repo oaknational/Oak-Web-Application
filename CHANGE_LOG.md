@@ -1,3 +1,10 @@
+## [1.1289.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1289.0...v1.1289.1) (2026-11-27)
+
+
+### Bug Fixes
+
+* redirect the Insights hub to guidance before launch ([d043540](https://github.com/oaknational/Oak-Web-Application/commit/d0435403ef2b06965b00b5115444c07be7e7a8c1))
+
 # [1.1289.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1288.0...v1.1289.0) (2026-11-26)
 
 
