@@ -1,0 +1,161 @@
+# Written by oak-skills init. When Dependabot bumps @oaknational/oak-agent-skills, this syncs the
+# skills and pushes them to the Dependabot pull request, so it arrives ready to review.
+#
+# It needs a GitHub App installed on this repository, with its Client ID and private key in the
+# organisation's Dependabot secrets as OAK_SKILLS_APP_CLIENT_ID and OAK_SKILLS_APP_KEY. The App's
+# push makes the required checks run again on the sync commit, which a GITHUB_TOKEN push wouldn't.
+#
+# The pull request's content is untrusted, so the work is split: the sync job runs the new
+# package's code with no secrets, and the push job never runs package code and is the only one
+# with the App token. It runs on pull_request, deliberately not pull_request_target.
+name: oak-skills sync
+
+on:
+  pull_request:
+    paths:
+      - package.json
+      - pnpm-lock.yaml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: oak-skills-sync-${{ github.event.pull_request.number }}
+  # Don't cut short the run that pushes: the run its push starts skips anyway.
+  cancel-in-progress: false
+
+jobs:
+  detect:
+    name: Find a skills update
+    # Only pull requests Dependabot opened in this repository: user.login is who opened it, which
+    # zizmor's bot-conditions audit recommends. github.actor is checked too, but only so the run
+    # the App's sync commit starts skips; it isn't what keeps other pull requests out.
+    if: github.event.pull_request.user.login == 'dependabot[bot]' && github.event.pull_request.head.repo.full_name == github.repository && github.actor == 'dependabot[bot]' # zizmor: ignore[bot-conditions]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: read # fetch-metadata reads which dependencies the pull request updates
+    outputs:
+      skills-update: ${{ contains(steps.metadata.outputs.dependency-names, '@oaknational/oak-agent-skills') }}
+    steps:
+      - id: metadata
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
+
+  sync:
+    name: Sync the skills
+    # Untrusted: runs code from the new package version, so it gets no secrets and no write token.
+    needs: detect
+    if: needs.detect.outputs.skills-update == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      # Uses the pnpm version in package.json's packageManager field.
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+      # Uses the Node version in package.json's engines.node field.
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: package.json
+      # Only the root package, which holds oak-skills: a workspace's other packages aren't needed.
+      - name: Install the root package without running dependency scripts
+        run: pnpm install --frozen-lockfile --ignore-scripts --filter .
+      - name: Sync the skills
+        run: pnpm exec oak-skills sync
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: synced-skills
+          path: .agents/skills/
+          # The manifest is .agents/skills/.oak-manifest.json.
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 1
+
+  push:
+    name: Push the synced skills
+    # Trusted: never installs or runs package code, and is the only job with the App token.
+    needs: sync
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Clear the skills folder for the synced copy
+        run: rm -rf .agents/skills && mkdir -p .agents/skills .claude/skills
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: synced-skills
+          path: .agents/skills/
+      - name: Check the synced copy and recreate the Claude Code links
+        run: |
+          # Only ordinary files and folders are allowed: no links, devices or pipes.
+          if find .agents/skills ! -type d ! -type f | grep -q .; then
+            echo "The synced copy contains something other than files and folders." >&2
+            exit 1
+          fi
+          find .claude/skills -mindepth 1 -maxdepth 1 -type l | while IFS= read -r link; do
+            case "$(readlink "$link")" in
+              ../../.agents/skills/*) rm "$link" ;;
+            esac
+          done
+          for dir in .agents/skills/*/; do
+            [ -d "$dir" ] || continue
+            name="$(basename "$dir")"
+            case "$name" in
+              '' | -* | *[!a-z0-9-]*)
+                echo "Unexpected skill folder name: $name" >&2
+                exit 1
+                ;;
+            esac
+            ln -s "../../.agents/skills/$name" ".claude/skills/$name"
+          done
+      - name: Confirm nothing outside the skill folders changed
+        # --untracked-files=all lists each new file, rather than a new .claude/ folder as one entry.
+        run: |
+          if git status --porcelain --untracked-files=all | grep -vE '^.. "?\.(agents|claude)/skills/' | grep -q .; then
+            echo "The sync changed files outside .agents/skills and .claude/skills." >&2
+            git status --porcelain --untracked-files=all >&2
+            exit 1
+          fi
+      # Dependabot can only read organisation Dependabot secrets, which can't be scoped to an
+      # environment, so zizmor's secrets-outside-env audit is ignored for them.
+      - id: app
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ secrets.OAK_SKILLS_APP_CLIENT_ID }} # zizmor: ignore[secrets-outside-env]
+          private-key: ${{ secrets.OAK_SKILLS_APP_KEY }} # zizmor: ignore[secrets-outside-env]
+          permission-contents: write
+      - name: Commit and push the synced skills
+        env:
+          TOKEN: ${{ steps.app.outputs.token }}
+          APP_SLUG: ${{ steps.app.outputs.app-slug }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          REPO: ${{ github.repository }}
+        run: |
+          git add --all -- .agents/skills
+          # .claude/skills is empty when no skills are synced, and git refuses a path that matches nothing.
+          if [ -n "$(find .claude/skills -mindepth 1 -print -quit)" ] || git ls-files --error-unmatch .claude/skills >/dev/null 2>&1; then
+            git add --all -- .claude/skills
+          fi
+          if git diff --cached --quiet; then
+            echo "The skills were already in sync."
+            exit 0
+          fi
+          # The commit is authored as the App's bot user, whose ID GitHub uses in its noreply address.
+          bot_id="$(GH_TOKEN="$TOKEN" gh api "/users/${APP_SLUG}[bot]" --jq .id)"
+          case "$bot_id" in
+            '' | *[!0-9]*)
+              echo "Couldn't find the App's bot user." >&2
+              exit 1
+              ;;
+          esac
+          # [dependabot skip] lets Dependabot keep rebasing the pull request over this commit.
+          git -c user.name="${APP_SLUG}[bot]" \
+            -c user.email="${bot_id}+${APP_SLUG}[bot]@users.noreply.github.com" \
+            commit --quiet -m "chore: sync agent skills [dependabot skip]"
+          git push "https://x-access-token:${TOKEN}@github.com/${REPO}.git" "HEAD:refs/heads/${HEAD_REF}"

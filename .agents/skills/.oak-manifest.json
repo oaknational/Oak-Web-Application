@@ -1,0 +1,87 @@
+{
+  "manifestVersion": 1,
+  "package": {
+    "name": "@oaknational/oak-agent-skills",
+    "version": "0.3.0"
+  },
+  "config": {
+    "profiles": [
+      "base",
+      "frontend"
+    ],
+    "bundle": null,
+    "include": [],
+    "exclude": []
+  },
+  "skills": {
+    "oak-accessibility-review": {
+      "source": "skills/central/oak-accessibility-review",
+      "files": {
+        "SKILL.md": "3ed79aded90751316d27fd240e6e03180bf060cf6f431880986c2a9b126f8bc6",
+        "references/accessibility-checklist.md": "5990c5ef0d757d82eb2e69b82a3c4ffa2ce525bc97f36bc777ff2fe8c8aff346",
+        "references/sources.md": "2f97ffc86ad2ea24f046f1416dace62ed17527d4f48763a13ea13b6d9956f276",
+        "references/wcag-2-2-aa.md": "f94a1fb9378ca35505dde0fe8f7a44582f706e498a8b324bf7a60923beca3b4f",
+        "references/web-and-interactive.md": "ab5d8d5677ca8af67922aaf2deae9bdba4d1550ddd2a06ea3f391359124a39b3"
+      }
+    },
+    "oak-pr-create": {
+      "source": "skills/central/oak-pr-create",
+      "files": {
+        "SKILL.md": "8f41dfa083233d1aad72bfaa5762c8878e14320075e7a3eaece16f22201c1dae",
+        "references/pr-description.md": "d3f12a372bfd25c9f4b4715159cb799d9f7e88f08b6af21fc15ec0b43fd97d0f",
+        "references/testing-instructions.md": "ea2f9dea480b8f188d6f8daefec1c0a21d37ab9d590ba8fe27cd5844a76dbb62"
+      }
+    },
+    "oak-security-review": {
+      "source": "skills/central/oak-security-review",
+      "files": {
+        "SKILL.md": "9a1abacc140de037fec01b79548bb99b0c7e5f22417e282292eb9585681d73ac",
+        "references/checklist.md": "0fc397dc2892f7d08cb387205e1c82a839abff4594fc35e2a5097eb345cf1def"
+      }
+    },
+    "oak-sos-draft": {
+      "source": "skills/central/oak-sos-draft",
+      "files": {
+        "SKILL.md": "b7f8ce4374f13ce020d7b46d9bb03ccd0b7a666516c90bbb27409958465f5615"
+      }
+    },
+    "oak-tdd": {
+      "source": "skills/central/oak-tdd",
+      "files": {
+        "SKILL.md": "1bf17879f10c3ebd538972c12b16568ba8362215352e0660dd2f989d0b00bf91"
+      }
+    },
+    "oak-ticket-start": {
+      "source": "skills/central/oak-ticket-start",
+      "files": {
+        "SKILL.md": "de0e42d985031dcb4321fc7880f62accaf23e6fbd4161e878fc691c853c996f5"
+      }
+    }
+  },
+  "symlinks": [
+    {
+      "path": ".claude/skills/oak-accessibility-review",
+      "target": "../../.agents/skills/oak-accessibility-review"
+    },
+    {
+      "path": ".claude/skills/oak-pr-create",
+      "target": "../../.agents/skills/oak-pr-create"
+    },
+    {
+      "path": ".claude/skills/oak-security-review",
+      "target": "../../.agents/skills/oak-security-review"
+    },
+    {
+      "path": ".claude/skills/oak-sos-draft",
+      "target": "../../.agents/skills/oak-sos-draft"
+    },
+    {
+      "path": ".claude/skills/oak-tdd",
+      "target": "../../.agents/skills/oak-tdd"
+    },
+    {
+      "path": ".claude/skills/oak-ticket-start",
+      "target": "../../.agents/skills/oak-ticket-start"
+    }
+  ]
+}
