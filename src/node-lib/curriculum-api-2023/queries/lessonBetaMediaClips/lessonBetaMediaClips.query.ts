@@ -10,7 +10,7 @@ import { BetaLessonMediaClipsQuery } from "@/node-lib/curriculum-api-2023/genera
 import {
   LessonBrowseDataByKs,
   lessonBrowseDataByKsSchema,
-} from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+} from "@/node-lib/curriculum-api-2023/queries/canonicalLessonOverview/canonicalLessonOverview.schema";
 
 export const betaLessonMediaClipsQuery =
   (sdk: Sdk) =>

@@ -6,7 +6,6 @@ import {
 import { LessonOverviewDownloadAllButton } from "./LessonOverviewDownloadAllButton";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -15,6 +14,7 @@ import {
   signedInGeoBlocked,
   signedOutLoginRequired,
 } from "@/__tests__/__helpers__/mockCopyrightRequirements";
+import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 
 const mockFeatureFlagEnabled = jest.fn();
 jest.mock("posthog-js/react", () => ({
@@ -22,7 +22,7 @@ jest.mock("posthog-js/react", () => ({
 }));
 
 let mockUseComplexCopyright = defaultCopyrightRequirements;
-jest.mock("@/hooks/useComplexCopyright", () => ({
+jest.mock("@/utils/complexCopyright/useComplexCopyright", () => ({
   useComplexCopyright: () => mockUseComplexCopyright,
 }));
 
@@ -41,7 +41,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 const baseProps = {
-  ...lessonOverviewFixture(),
+  ...teachersLessonOverviewFixture(),
   lessonSlug: "test-lesson",
   unitSlug: "test-unit",
   programmeSlug: "test-programme",

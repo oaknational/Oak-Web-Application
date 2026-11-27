@@ -6,10 +6,10 @@ import {
   LessonItemContainerProps,
 } from "./LessonItemContainer";
 
-import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
+import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 
-const { lessonSlug, unitSlug, programmeSlug } = lessonOverviewFixture();
+const { lessonSlug, unitSlug, programmeSlug } = teachersLessonOverviewFixture();
 
 const props: LessonItemContainerProps = {
   title: "Slide deck",

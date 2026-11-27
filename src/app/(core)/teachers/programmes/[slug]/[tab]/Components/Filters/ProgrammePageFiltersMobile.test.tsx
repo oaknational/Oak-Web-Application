@@ -21,12 +21,14 @@ import { createFilter } from "@/context/BrowseFilters/utils/fixtures";
 
 const useSearchParamsMock = jest.fn();
 const replaceStateMock = jest.fn();
+const routerReplaceMock = jest.fn();
 
 jest.mock("next/navigation", () => ({
   usePathname: jest.fn(() => "/"),
   useSearchParams: () => useSearchParamsMock(),
   useRouter: () => ({
     prefetch: jest.fn(),
+    replace: routerReplaceMock,
   }),
 }));
 
@@ -250,6 +252,37 @@ describe("ProgrammePageFiltersMobile", () => {
     expect(
       screen.getByRole("heading", { name: "Filters", level: 1 }),
     ).toBeInTheDocument();
+  });
+
+  it("opens the modal after keyboard navigation and restores focus", async () => {
+    const focusSpy = jest.spyOn(HTMLInputElement.prototype, "focus");
+    const user = userEvent.setup();
+
+    renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters, true);
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole("heading", { name: "Filters", level: 1 }),
+      ).toBeInTheDocument();
+    });
+
+    const ocrRadio = screen.getByDisplayValue("ocr");
+    const aqaRadio = screen.getByDisplayValue("aqa");
+
+    // Set initial exam board
+    await user.click(ocrRadio);
+    expect(ocrRadio).toHaveFocus();
+
+    // Set new exam board
+    await user.click(aqaRadio);
+    expect(aqaRadio).toHaveFocus();
+    expect(ocrRadio).not.toHaveFocus();
+    expect(routerReplaceMock).toHaveBeenCalled();
+    expect(focusSpy).toHaveBeenCalled();
+    // Verify focus stayed on exam board radio after navigation
+    expect(aqaRadio).toHaveFocus();
+
+    focusSpy.mockRestore();
   });
 
   it("restores focus to the exam board radio after keyboard navigation", async () => {

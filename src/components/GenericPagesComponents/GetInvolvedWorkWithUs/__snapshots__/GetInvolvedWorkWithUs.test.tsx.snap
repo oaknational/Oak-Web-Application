@@ -7,37 +7,37 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
       class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-bdvwhi sc-jcFiBM blOvSo qodFJ"
+        class="sc-bdvwhi sc-cTAoCz blOvSo ebKZig"
       >
         <div
-          class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU btiRMN XjCfy"
+          class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU kDXsQM ioSZx"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd hPWTKU vrLXS"
+            class="sc-bdvwhi sc-jRQBiJ hPWTKU cjhGAP"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU heDWJn"
             >
               <h2
-                class="sc-bkkgYE hBiIpc"
+                class="sc-hGPAwl fNxiaY"
               >
                 Work with us
               </h2>
               <div
-                class="sc-bdvwhi sc-gsDMPd eExZUP QCPYN"
+                class="sc-bdvwhi sc-jRQBiJ eExZUP cexkXQ"
               >
                 <p
-                  class="sc-hGPAwl gpFakR"
+                  class="sc-fKVoIy gRmakQ"
                 >
                   TESTING_PARAGRAPH_1
                 </p>
               </div>
             </div>
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU kTugxO"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU tpmav"
             >
               <div
-                class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+                class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
               >
                 <div
                   class="sc-bdvwhi kAFHfV grey-shadow"
@@ -46,16 +46,16 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                   class="sc-bdvwhi kAFHfV yellow-shadow"
                 />
                 <a
-                  class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
+                  class="sc-furwPO sc-iqsgXZ eQRPqU bpUfmH internal-button"
                   href="https://example.com/permanent"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                   >
                     <span
-                      class="sc-dkPwfY kXQhTZ"
+                      class="sc-iCfNyT gaSeFZ"
                     >
                       Permanent roles
                     </span>
@@ -64,7 +64,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                     >
                       <img
                         alt="external"
-                        class="sc-jRQBiJ eMsccW"
+                        class="sc-gsDMPd frprTL"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -76,7 +76,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                 </a>
               </div>
               <div
-                class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+                class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
               >
                 <div
                   class="sc-bdvwhi kAFHfV grey-shadow"
@@ -85,16 +85,16 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                   class="sc-bdvwhi kAFHfV yellow-shadow"
                 />
                 <a
-                  class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
+                  class="sc-furwPO sc-iqsgXZ eQRPqU bpUfmH internal-button"
                   href="https://example.com/freelance"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                    class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                   >
                     <span
-                      class="sc-dkPwfY kXQhTZ"
+                      class="sc-iCfNyT gaSeFZ"
                     >
                       Freelance roles
                     </span>
@@ -103,7 +103,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                     >
                       <img
                         alt="external"
-                        class="sc-jRQBiJ eMsccW"
+                        class="sc-gsDMPd frprTL"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -118,20 +118,20 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU gEEEZl jfPBTl"
+          class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU cgdPfs fqAloO"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd hPWTKU dfKhGz"
+            class="sc-bdvwhi sc-jRQBiJ hPWTKU iHCSBS"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd iHFuAj Bakex"
+              class="sc-bdvwhi sc-jRQBiJ iHFuAj heSanc"
             >
               <span
                 class="sc-bdvwhi LoEut"
               >
                 <img
                   alt="Team working together"
-                  class="sc-jRQBiJ iumtav"
+                  class="sc-gsDMPd dtPFue"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"
@@ -143,7 +143,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
               </span>
             </div>
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU cqLfTA"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU ibZGxd"
             >
               <img
                 alt="Badge 1"

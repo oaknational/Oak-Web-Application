@@ -3,6 +3,7 @@ import * as z from "zod";
 import {
   assetSchema,
   attachmentSchema,
+  faqSchema,
   imageSchema,
   imageWithAltTextAndDarkModeSchema,
   quoteSchema,
@@ -245,12 +246,7 @@ export const joinResearchPanelFaqsSchema = z.object({
   __typename: z.literal(
     joinResearchPanelPageBlockTypeSchema.enum.JoinResearchPanelPageFaqs,
   ),
-  items: z.array(
-    z.object({
-      question: z.string(),
-      answerRaw: portableTextSchema,
-    }),
-  ),
+  items: z.array(faqSchema),
 });
 
 export const joinResearchPanelContactUsSchema = z.object({
@@ -280,10 +276,6 @@ export type JoinResearchPanelPageBlock<
 > = z.infer<typeof joinResearchPanelPageBlockSchema> & {
   __typename: T;
 };
-
-export type JoinResearchPanelPageBlocks = z.infer<
-  typeof joinResearchPanelPageBlockSchema
->;
 
 export const joinResearchPanelPageSchema = z.object({
   content: z.object({

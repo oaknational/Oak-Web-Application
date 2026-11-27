@@ -14,18 +14,18 @@ exports[`JoinResearchPanelHeader it renders correct data 1`] = `
           class="sc-bdvwhi ejVpib"
         >
           <ul
-            class="sc-hAcEkO dJRkLd"
+            class="sc-jHkWmS bwmIwu"
           >
             <li
-              class="sc-kYHdiH YiXOT"
+              class="sc-bQtLLP HPudz"
             >
               <a
-                class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                 href="/"
                 style="overflow: hidden;"
               >
                 <span
-                  class="sc-dkPwfY fgmEIT"
+                  class="sc-iCfNyT fAQctr"
                 >
                   <div
                     class="sc-bdvwhi bzawnc"
@@ -36,14 +36,14 @@ exports[`JoinResearchPanelHeader it renders correct data 1`] = `
               </a>
             </li>
             <li
-              class="sc-kYHdiH YiXOT"
+              class="sc-bQtLLP HPudz"
             >
               <span
                 class="sc-bdvwhi gWngyq"
               >
                 <img
                   alt=""
-                  class="sc-jRQBiJ eMsccW"
+                  class="sc-gsDMPd frprTL"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"
@@ -52,12 +52,12 @@ exports[`JoinResearchPanelHeader it renders correct data 1`] = `
                 />
               </span>
               <a
-                class="sc-iwjfEg ieUBNG sc-hUpbpP bEqcTJ"
+                class="sc-iJKPHa dwzJJG sc-iNGDOz hPscCj"
                 href="/about-us/get-involved"
                 style="overflow: hidden;"
               >
                 <span
-                  class="sc-dkPwfY fgmEIT"
+                  class="sc-iCfNyT fAQctr"
                 >
                   <div
                     class="sc-bdvwhi bzawnc"
@@ -68,14 +68,14 @@ exports[`JoinResearchPanelHeader it renders correct data 1`] = `
               </a>
             </li>
             <li
-              class="sc-kYHdiH YiXOT"
+              class="sc-bQtLLP HPudz"
             >
               <span
                 class="sc-bdvwhi gWngyq"
               >
                 <img
                   alt=""
-                  class="sc-jRQBiJ eMsccW"
+                  class="sc-gsDMPd frprTL"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"
@@ -95,39 +95,39 @@ exports[`JoinResearchPanelHeader it renders correct data 1`] = `
       </div>
     </div>
     <div
-      class="sc-bdvwhi cOJHL"
+      class="sc-bdvwhi jtYhqa"
     >
       <div
         class="sc-bdvwhi iatEdD"
       >
         <div
-          class="sc-bdvwhi sc-jcFiBM hPWTKU jslZJX"
+          class="sc-bdvwhi sc-cTAoCz hPWTKU UcKeK"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-caiMdP hPWTKU Bakex irjOXW"
+            class="sc-bdvwhi sc-jRQBiJ sc-jObTYW hPWTKU heSanc dBDeHx"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd hPWTKU csSWlB"
+              class="sc-bdvwhi sc-jRQBiJ hPWTKU ldkUCM"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
+                class="sc-bdvwhi sc-jRQBiJ hPWTKU heDWJn"
               >
                 <h1
-                  class="sc-bkkgYE jgcKke"
+                  class="sc-hGPAwl ekfPnC"
                 >
                   Join the Oak research panel
                 </h1>
                 <p
-                  class="sc-hGPAwl fKoyMR"
+                  class="sc-fKVoIy hMPgac"
                 >
                   Your feedback is essential to help us understand the realities of teaching and learning. By listening to teachers like you, we learn about your preferences, challenges and needs, and can use these insights to shape Oak curriculum resources, lessons and tools.
                 </p>
               </div>
               <div
-                class="sc-bdvwhi sc-gsDMPd hPWTKU cIPGhJ"
+                class="sc-bdvwhi sc-jRQBiJ hPWTKU cBpORs"
               >
                 <div
-                  class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+                  class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
                 >
                   <div
                     class="sc-bdvwhi kAFHfV grey-shadow"
@@ -137,15 +137,15 @@ exports[`JoinResearchPanelHeader it renders correct data 1`] = `
                   />
                   <a
                     aria-label="Join the research panel (opens in new tab)"
-                    class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
+                    class="sc-furwPO sc-iqsgXZ xrJiU kpPtpO internal-button"
                     href="https://example.com"
                     target="_blank"
                   >
                     <div
-                      class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
+                      class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
                     >
                       <span
-                        class="sc-dkPwfY kXQhTZ"
+                        class="sc-iCfNyT gaSeFZ"
                       >
                         Join the research panel
                       </span>
@@ -154,7 +154,7 @@ exports[`JoinResearchPanelHeader it renders correct data 1`] = `
                       >
                         <img
                           alt=""
-                          class="sc-jRQBiJ buswnv"
+                          class="sc-gsDMPd kvEPQa"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
@@ -169,17 +169,17 @@ exports[`JoinResearchPanelHeader it renders correct data 1`] = `
             </div>
           </div>
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-caiMdP cUChIo exNRnp ldOatf"
+            class="sc-bdvwhi sc-jRQBiJ sc-jObTYW cUChIo lfVWqI csNhJc"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd dumZsJ kkGnDS"
+              class="sc-bdvwhi sc-jRQBiJ dumZsJ bzKZFL"
             >
               <span
                 class="sc-bdvwhi LoEut"
               >
                 <img
                   alt=""
-                  class="sc-jRQBiJ hssYEG"
+                  class="sc-gsDMPd ctfyuj"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"

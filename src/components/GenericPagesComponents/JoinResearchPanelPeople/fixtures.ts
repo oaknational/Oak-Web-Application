@@ -29,3 +29,22 @@ export const basic = {
     },
   ],
 };
+
+export const withThreeMembers = {
+  title: "Our research team",
+  members: [
+    ...basic.members,
+    {
+      name: "Benton Laura",
+      bodyRaw: portableTextFromString(
+        "Laura is a user researcher with an academic background and 15+ years experience conducting qualitative research with teachers and pupils to inform the design of digital education tools. Since joining Oak she has led research around the pupil experience, SEND and AI, and is also responsible for building research collaborations with academic partners.",
+      ),
+      image: {
+        asset: {
+          url: "https://cdn.sanity.io/images/cuvjke51/production/1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422.png",
+          _id: "image-1b28197a71f5e06f82f71f328e0eb607aca8b275-632x422-png",
+        },
+      },
+    },
+  ],
+};

@@ -43,7 +43,9 @@ import {
   createLearningCycleVideosTitleMap,
 } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
-import { useComplexCopyright } from "@/hooks/useComplexCopyright";
+import { isCopyrightRestricted } from "@/utils/complexCopyright/isCopyrightRestricted";
+import { ComplexCopyrightStatus } from "@/utils/complexCopyright/complexCopyright.types";
+import { useComplexCopyright } from "@/utils/complexCopyright/useComplexCopyright";
 import { LEGACY_COHORT } from "@/config/cohort";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
@@ -66,6 +68,7 @@ type CanonicalLesson = BaseLessonMedia & {
 type NonCanonicalLesson = BaseLessonMedia & LessonPathway;
 
 type LessonMediaCommonProps = {
+  copyrightState?: ComplexCopyrightStatus;
   breadcrumbsSlot?: ReactNode;
 };
 
@@ -82,7 +85,7 @@ type LessonMediaProps =
 export const LessonMedia = (
   props: LessonMediaProps & LessonMediaCommonProps,
 ) => {
-  const { isCanonical, lesson, breadcrumbsSlot } = props;
+  const { isCanonical, lesson, breadcrumbsSlot, copyrightState } = props;
   const {
     lessonTitle,
     lessonSlug,
@@ -90,9 +93,12 @@ export const LessonMedia = (
     mediaClips,
     lessonOutline,
     actions,
-    loginRequired,
-    geoRestricted,
   } = lesson;
+  const clientCopyrightState = useComplexCopyright({
+    loginRequired: lesson.loginRequired,
+    geoRestricted: lesson.geoRestricted,
+  });
+  const effectiveCopyrightState = copyrightState ?? clientCopyrightState;
 
   const {
     contentBlockNotificationDisplayed,
@@ -102,20 +108,9 @@ export const LessonMedia = (
     videoStarted,
     videoPlayed,
   } = useTeacherBrowseAnalytics((store) => store.track);
-  const {
-    showSignedOutLoginRequired,
-    showSignedOutGeoRestricted,
-    showGeoBlocked,
-    showSignedInNotOnboarded,
-  } = useComplexCopyright({
-    loginRequired,
-    geoRestricted,
-  });
 
-  const showRestricted =
-    showSignedOutLoginRequired ||
-    showSignedOutGeoRestricted ||
-    showSignedInNotOnboarded;
+  const { showGeoBlocked } = effectiveCopyrightState;
+  const contentRestricted = isCopyrightRestricted(effectiveCopyrightState);
 
   const subjectSlug = isCanonical
     ? (lesson?.pathways[0]?.subjectSlug ?? "")
@@ -148,20 +143,18 @@ export const LessonMedia = (
 
   const listOfAllClips = useMemo(() => {
     return mediaClips
-      ? Object.keys(mediaClips)
-          .map((learningCycle) => {
-            return (
-              mediaClips[learningCycle]
-                ?.toSorted(sortMediaClipsByOrder)
-                .map((mediaClip: MediaClip) => {
-                  return {
-                    ...mediaClip,
-                    learningCycle,
-                  };
-                }) || []
-            );
-          })
-          .flat()
+      ? Object.keys(mediaClips).flatMap((learningCycle) => {
+          return (
+            mediaClips[learningCycle]
+              ?.toSorted(sortMediaClipsByOrder)
+              .map((mediaClip: MediaClip) => {
+                return {
+                  ...mediaClip,
+                  learningCycle,
+                };
+              }) || []
+          );
+        })
       : [];
   }, [mediaClips]);
 
@@ -435,7 +428,7 @@ export const LessonMedia = (
           </OakTertiaryButton>
         )}
       </OakBox>
-      {showRestricted || showGeoBlocked ? (
+      {contentRestricted ? (
         <RestrictedContentPrompt
           showGeoBlocked={showGeoBlocked}
           programmeSlug={programmeSlug}
