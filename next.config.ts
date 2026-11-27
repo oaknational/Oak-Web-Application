@@ -440,7 +440,10 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           destination: "/curriculum-change-explained/guidance",
           permanent: false,
           has: [
-            { type: "host" as const, value: "www\\.thenational\\.academy" },
+            {
+              type: "host" as const,
+              value: String.raw`www\.thenational\.academy`,
+            },
           ],
         },
       ];
