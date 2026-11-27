@@ -15,6 +15,10 @@ export const preselectedDownloadType = z.union([
     z.literal("lesson guide"),
     z.literal("additional files"),
     z.literal("intro"),
+    z.literal("cycle-1"),
+    z.literal("cycle-2"),
+    z.literal("cycle-3"),
+    z.literal("cycle-4"),
   ]),
 ]);
 
