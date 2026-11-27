@@ -14,6 +14,7 @@ import { NcAlignmentCheckerLandingPageBlock } from "@/common-lib/cms-types";
 import { resolveOakHref } from "@/common-lib/urls";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
+import SubjectPickerForm from "@/components/NcAlignmentChecker/SubjectPickerForm";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText/PortableText";
 
 type NcAlignmentCheckerLandingPageHeaderProps = Omit<
@@ -38,6 +39,7 @@ export default function NcAlignmentCheckerLandingPageHeader({
   title,
   icon,
   bodyRaw,
+  subjectPicker,
 }: Readonly<NcAlignmentCheckerLandingPageHeaderProps>) {
   return (
     <OakBox
@@ -85,16 +87,7 @@ export default function NcAlignmentCheckerLandingPageHeader({
             $colStart={[1, 1, 7]}
             $pt={["spacing-32", "spacing-40", "spacing-0"]}
           >
-            <OakFlex
-              $flexGrow={1}
-              $borderRadius="border-radius-xl"
-              $background="bg-neutral"
-              $alignItems="center"
-              $justifyContent="center"
-              $minHeight="spacing-180"
-            >
-              SUBJECT PICKER PLACEHOLDER
-            </OakFlex>
+            <SubjectPickerForm {...subjectPicker} />
           </OakGridArea>
         </OakGrid>
       </NewGutterMaxWidth>

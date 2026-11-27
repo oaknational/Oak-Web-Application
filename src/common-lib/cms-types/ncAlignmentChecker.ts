@@ -13,6 +13,8 @@ const subjectPickerSchema = z.object({
   buttonText: z.string(),
 });
 
+export type SubjectPicker = z.infer<typeof subjectPickerSchema>;
+
 export const ncAlignmentCheckerLandingPageBlockTypeSchema = z.enum([
   "NcAlignmentCheckerLandingPageHeader",
   "NcAlignmentCheckerLandingPageTextAndMedia",
