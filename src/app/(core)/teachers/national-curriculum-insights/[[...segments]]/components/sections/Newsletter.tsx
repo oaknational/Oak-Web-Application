@@ -2,6 +2,7 @@
 import {
   OakBox,
   OakCheckBox,
+  OakFieldError,
   OakFlex,
   OakGrid,
   OakGridArea,
@@ -55,6 +56,8 @@ export const NationalCurriculumInsightsNewsletter = ({
   });
   const { track } = useAnalytics();
   const isGuidance = data.route.kind === "guidance";
+  const schoolRequired = !schoolNotListed;
+  const schoolFieldError = schoolRequired ? fieldErrors.schoolOrg : undefined;
   const {
     schools,
     schoolPickerInputValue,
@@ -78,15 +81,21 @@ export const NationalCurriculumInsightsNewsletter = ({
       eduRole: role,
     });
 
-    if (!result.success) {
-      setFieldErrors(
-        Object.fromEntries(
-          result.error.issues.map((issue) => [
+    const schoolError =
+      schoolRequired && !schoolPickerInputValue.trim()
+        ? "Enter your school or organisation or tick ‘My school isn’t listed’"
+        : undefined;
+
+    if (!result.success || schoolError) {
+      setFieldErrors({
+        ...Object.fromEntries(
+          (result.error?.issues ?? []).map((issue) => [
             String(issue.path[0] ?? "form"),
             issue.message,
           ]),
         ),
-      );
+        ...(schoolError ? { schoolOrg: schoolError } : {}),
+      });
       return;
     }
 
@@ -223,6 +232,7 @@ export const NationalCurriculumInsightsNewsletter = ({
             $mh="auto"
             $mt={["spacing-24", "spacing-32", "spacing-0"]}
             as="form"
+            noValidate
             onSubmit={onSubmit}
             $gap="spacing-48"
             $flexDirection="column"
@@ -243,8 +253,8 @@ export const NationalCurriculumInsightsNewsletter = ({
               <NationalCurriculumInsightsSelect
                 id="insights-newsletter-role"
                 name="role"
-                label="Role"
-                placeholder="Select your role"
+                label="Role (required)"
+                placeholder={"Select your role"}
                 options={EDU_ROLES.map((option) => ({
                   label: option,
                   value: option,
@@ -255,20 +265,41 @@ export const NationalCurriculumInsightsNewsletter = ({
               />
             </OakBox>
             <OakFlex $flexDirection="column" $gap="spacing-12">
-              <ResourcePageSchoolPicker
-                hasError={false}
-                schools={schools}
-                label="School or organisation"
-                schoolPickerInputValue={schoolPickerInputValue}
-                setSchoolPickerInputValue={(value) => {
-                  setSchoolNotListed(false);
-                  setSchoolPickerInputValue(value);
-                }}
-                setSelectedSchool={setSelectedSchool}
-                required={false}
-                withHomeschool={false}
-                placeholder="Type your school or organisation"
-              />
+              <OakBox>
+                {schoolFieldError && (
+                  <OakBox
+                    id="insights-newsletter-school-error"
+                    role="alert"
+                    aria-live="assertive"
+                    $mb="spacing-20"
+                  >
+                    <OakFieldError>{schoolFieldError}</OakFieldError>
+                  </OakBox>
+                )}
+                <ResourcePageSchoolPicker
+                  hasError={Boolean(schoolFieldError)}
+                  errorId={
+                    schoolFieldError
+                      ? "insights-newsletter-school-error"
+                      : undefined
+                  }
+                  schools={schools}
+                  label={
+                    schoolNotListed
+                      ? "School or organisation (required)"
+                      : "School or organisation"
+                  }
+                  schoolPickerInputValue={schoolPickerInputValue}
+                  setSchoolPickerInputValue={(value) => {
+                    setSchoolNotListed(false);
+                    setSchoolPickerInputValue(value);
+                  }}
+                  setSelectedSchool={setSelectedSchool}
+                  required={schoolRequired}
+                  withHomeschool={false}
+                  placeholder="Type your school or organisation"
+                />
+              </OakBox>
               <OakCheckBox
                 checkboxBorderRadius="border-radius-square"
                 id="insights-newsletter-school-not-listed"

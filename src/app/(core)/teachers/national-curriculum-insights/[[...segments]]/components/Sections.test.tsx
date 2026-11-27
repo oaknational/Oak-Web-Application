@@ -1,5 +1,6 @@
-import { fireEvent, screen, waitFor } from "@testing-library/react";
+import { fireEvent, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import fetchMock from "jest-fetch-mock";
 
 import { localNationalCurriculumInsightsFixtures } from "../__fixtures__/nationalCurriculumInsights";
 import {
@@ -76,6 +77,10 @@ beforeEach(() => {
   (useAnalytics as jest.Mock).mockReturnValue({
     track: { newsletterSignUpCompleted },
   });
+});
+
+afterEach(() => {
+  fetchMock.dontMock();
 });
 
 const portableText = (key: string, text: string) => [
@@ -494,19 +499,44 @@ describe("National Curriculum Insights sections", () => {
     fireEvent.change(screen.getByRole("textbox", { name: /Name/ }), {
       target: { value: "Jamie Maxwell" },
     });
-    expect(screen.getByTestId("search-combobox-input")).toHaveAttribute(
+    const schoolInput = within(newsletterForm).getByTestId(
+      "search-combobox-input",
+    );
+    expect(schoolInput).toBeRequired();
+    expect(schoolInput).toHaveAttribute(
       "placeholder",
       "Type your school or organisation",
     );
-    const roleSelect = screen.getByRole("combobox", { name: "Role" });
-    await user.selectOptions(roleSelect, "Teacher/Subject Specialist");
+    const roleSelect = screen.getByRole("combobox", {
+      name: "Role (required)",
+    });
+    await user.selectOptions(roleSelect, "Classroom teacher");
     fireEvent.change(screen.getByRole("textbox", { name: /Email/ }), {
       target: { value: "jamie@example.com" },
     });
-    fireEvent.submit(
-      screen
-        .getByRole("button", { name: "Join the mailing list" })
-        .closest("form")!,
+    fireEvent.submit(newsletterForm);
+    expect(submitNewsletter).not.toHaveBeenCalled();
+    expect(schoolInput).toHaveAccessibleDescription(
+      /Enter your school or organisation or tick ‘My school isn’t listed’/,
+    );
+
+    fetchMock.mockIf(
+      /^https:\/\/school-picker\.thenational\.academy\//,
+      JSON.stringify([
+        {
+          name: "Example Primary School",
+          urn: "101105",
+          la: "Westminster",
+          postcode: "AB1 1CD",
+        },
+      ]),
+    );
+    await user.type(schoolInput, "Example");
+    await user.click(
+      await screen.findByText("Primary School, Westminster, AB1 1CD"),
+    );
+    await user.click(
+      screen.getByRole("button", { name: "Join the mailing list" }),
     );
     await waitFor(() => {
       expect(submitNewsletter).toHaveBeenCalledWith({
@@ -514,7 +544,7 @@ describe("National Curriculum Insights sections", () => {
         email: "jamie@example.com",
         userRole: "",
         eduRole: "Subject Specialist",
-        schoolName: "",
+        schoolName: "Example Primary School, Westminster, AB1 1CD",
       });
     });
     expect(newsletterSignUpCompleted).toHaveBeenCalledTimes(1);
@@ -526,7 +556,7 @@ describe("National Curriculum Insights sections", () => {
 
   it("does not track a completed newsletter signup when HubSpot rejects it", async () => {
     const user = userEvent.setup();
-    const data = await getData();
+    const data = await getData(["guidance"]);
     submitNewsletter.mockRejectedValueOnce(new Error("HubSpot unavailable"));
 
     renderWithTheme(
@@ -548,21 +578,60 @@ describe("National Curriculum Insights sections", () => {
       />,
     );
 
+    const roleSelect = screen.getByRole("combobox", {
+      name: "Role (required)",
+    });
+    const schoolInput = screen.getByRole("combobox", {
+      name: "School or organisation (required)",
+    });
+    expect(schoolInput).toBeRequired();
+    expect(
+      within(roleSelect)
+        .getAllByRole("option")
+        .map((option) => option.textContent),
+    ).toEqual([
+      "Select your role",
+      "Classroom teacher",
+      "Subject lead or head of department",
+      "Senior leader",
+      "Headteacher or principal",
+      "Trust leader",
+      "Teaching assistant or support staff",
+      "Trainee teacher",
+      "Not in a school",
+      "Pupil",
+      "Other",
+    ]);
     await user.type(screen.getByRole("textbox", { name: /Name/ }), "Jamie");
-    await user.selectOptions(
-      screen.getByRole("combobox", { name: "Role" }),
-      "Teacher/Subject Specialist",
-    );
     await user.type(
       screen.getByRole("textbox", { name: /Email/ }),
       "jamie@example.com",
     );
-    await user.click(
-      screen.getByRole("button", { name: "Join the mailing list" }),
+    const submit = screen.getByRole("button", {
+      name: "Join the mailing list",
+    });
+    await user.click(submit);
+    expect(submitNewsletter).not.toHaveBeenCalled();
+    expect(screen.getByText("Please enter your role")).toBeInTheDocument();
+    expect(schoolInput).toHaveAccessibleDescription(
+      /Enter your school or organisation or tick ‘My school isn’t listed’/,
     );
+
+    await user.selectOptions(roleSelect, "Pupil");
+    await user.click(
+      screen.getByRole("checkbox", { name: "My school isn't listed" }),
+    );
+    expect(schoolInput).not.toBeRequired();
+    expect(schoolInput).toHaveAccessibleName(
+      "School or organisation (required)",
+    );
+    await user.click(submit);
 
     expect(await screen.findByRole("alert")).toHaveTextContent(
       "We couldn't submit the form. Please try again.",
+    );
+    expect(submitNewsletter).toHaveBeenCalledWith(
+      expect.objectContaining({ eduRole: "Pupil", schoolName: "notListed" }),
     );
     expect(newsletterSignUpCompleted).not.toHaveBeenCalled();
     expect(screen.getByRole("status")).toBeEmptyDOMElement();

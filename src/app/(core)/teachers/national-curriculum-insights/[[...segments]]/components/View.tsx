@@ -298,12 +298,7 @@ export const NationalCurriculumInsightsView = ({
 
   if (data.route.kind === "guidance" && data.page) {
     return (
-      <OakFlex
-        as="main"
-        $color="text-primary"
-        $flexDirection="column"
-        $gap="spacing-40"
-      >
+      <OakFlex as="main" $color="text-primary" $flexDirection="column">
         <ModuleList
           data={data}
           modules={data.page.modules}

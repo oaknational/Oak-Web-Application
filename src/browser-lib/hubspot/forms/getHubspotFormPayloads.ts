@@ -13,13 +13,15 @@ import { oakSupportMap } from "@/components/TeacherViews/Onboarding/HowCanOakSup
 
 export const USER_ROLES = ["Teacher", "Parent", "Student", "Other"] as const;
 export const EDU_ROLES = [
-  "MAT Principal/CEO",
-  "Headteacher",
-  "Deputy/SLT",
-  "Head of Dept/Year",
-  "Teacher/Subject Specialist",
-  "Teaching Assistant",
-  "Trainee Teacher",
+  "Classroom teacher",
+  "Subject lead or head of department",
+  "Senior leader",
+  "Headteacher or principal",
+  "Trust leader",
+  "Teaching assistant or support staff",
+  "Trainee teacher",
+  "Not in a school",
+  "Pupil",
   "Other",
 ];
 export type UserRole = (typeof USER_ROLES)[number];
