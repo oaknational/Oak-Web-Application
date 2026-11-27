@@ -1,0 +1,523 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`SubjectPickerForm matches snapshot and renders data 1`] = `
+<div>
+  <div
+    data-overlay-container="true"
+  >
+    <form
+      class="sc-bdvwhi sc-jRQBiJ gCTSxs cBpORs"
+    >
+      <div
+        class="sc-bdvwhi sc-jRQBiJ kDNqfa exaZl"
+      >
+        <span
+          class="sc-bdvwhi hPWTKU"
+        >
+          Get started
+        </span>
+      </div>
+      <h2
+        class="sc-hGPAwl kKizZj"
+      >
+        Which subject would you like to check?
+      </h2>
+      <div
+        class="sc-bdvwhi sc-jRQBiJ kVsNOl fnrreg"
+        data-testid="oak-inline-banner"
+      >
+        <div
+          class="sc-bdvwhi sc-jRQBiJ hCAKqr czGDgF"
+        >
+          <div
+            class="sc-bdvwhi hPWTKU"
+          >
+            <span
+              class="sc-bdvwhi cqHYAi"
+              data-testid="inline-banner-icon"
+            >
+              <img
+                alt=""
+                class="sc-gsDMPd bkRpZy"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1709052869/icons/Icon_Info_vsx3xi.svg"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </span>
+          </div>
+          <div
+            class="sc-bdvwhi sc-jRQBiJ jtiAen kwgPQd"
+          >
+            <div
+              class="sc-bdvwhi sc-jRQBiJ jtiAen fheNKc"
+            >
+              <div
+                class="sc-bdvwhi bdOroj"
+                data-testid="inline-banner-message"
+              >
+                All national curriculum subjects and secondary key stages are coming soon.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-bdvwhi emcgxI"
+      >
+        <fieldset
+          class="sc-bdvwhi sc-jRQBiJ blJGXO gCDeec"
+        >
+          <legend
+            class="sc-ZOvtA camhTR"
+          >
+            <div
+              class="sc-bdvwhi ekemAT"
+            >
+              Choose your primary subject
+            </div>
+          </legend>
+          <div
+            class="sc-bdvwhi sc-jRQBiJ hPWTKU bxWdOl"
+          >
+            <div
+              class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou gFWqXk"
+            >
+              <span
+                class="sc-pVUti eEZcMz"
+              >
+                <div
+                  class="sc-bdvwhi sc-jRQBiJ fzUVot hufvIS"
+                >
+                  <input
+                    class="sc-jOxwkF hPlvmB"
+                    id=":r0:"
+                    name="subjectSlug"
+                    type="radio"
+                    value="art"
+                  />
+                  <div
+                    class="sc-bdvwhi sc-jRQBiJ sc-kHOYJp fbYMyq dvnHys edOIAF"
+                  />
+                </div>
+              </span>
+              <span
+                class="sc-bdvwhi cqHYAi sc-eGRVbO"
+              >
+                <img
+                  alt=""
+                  class="sc-gsDMPd frprTL"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1706616347/subject-icons/art.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+              <label
+                class="sc-ehCMcF sc-lcerzc sc-gGCErr hSUfpK jGWCdh jOAjVW"
+                for=":r0:"
+                pointer-events="none"
+              >
+                Art and design
+              </label>
+            </div>
+            <div
+              class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou gFWqXk"
+            >
+              <span
+                class="sc-pVUti eEZcMz"
+              >
+                <div
+                  class="sc-bdvwhi sc-jRQBiJ fzUVot hufvIS"
+                >
+                  <input
+                    class="sc-jOxwkF hPlvmB"
+                    id=":r1:"
+                    name="subjectSlug"
+                    type="radio"
+                    value="computing"
+                  />
+                  <div
+                    class="sc-bdvwhi sc-jRQBiJ sc-kHOYJp fbYMyq dvnHys edOIAF"
+                  />
+                </div>
+              </span>
+              <span
+                class="sc-bdvwhi cqHYAi sc-eGRVbO"
+              >
+                <img
+                  alt=""
+                  class="sc-gsDMPd frprTL"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1729171080/subject-icons/computing.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+              <label
+                class="sc-ehCMcF sc-lcerzc sc-gGCErr hSUfpK jGWCdh jOAjVW"
+                for=":r1:"
+                pointer-events="none"
+              >
+                Computing
+              </label>
+            </div>
+            <div
+              class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou gFWqXk"
+            >
+              <span
+                class="sc-pVUti eEZcMz"
+              >
+                <div
+                  class="sc-bdvwhi sc-jRQBiJ fzUVot hufvIS"
+                >
+                  <input
+                    class="sc-jOxwkF hPlvmB"
+                    id=":r2:"
+                    name="subjectSlug"
+                    type="radio"
+                    value="design-technology"
+                  />
+                  <div
+                    class="sc-bdvwhi sc-jRQBiJ sc-kHOYJp fbYMyq dvnHys edOIAF"
+                  />
+                </div>
+              </span>
+              <span
+                class="sc-bdvwhi cqHYAi sc-eGRVbO"
+              >
+                <img
+                  alt=""
+                  class="sc-gsDMPd frprTL"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1706616417/subject-icons/design-technology.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+              <label
+                class="sc-ehCMcF sc-lcerzc sc-gGCErr hSUfpK jGWCdh jOAjVW"
+                for=":r2:"
+                pointer-events="none"
+              >
+                Design and technology
+              </label>
+            </div>
+            <div
+              class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou gFWqXk"
+            >
+              <span
+                class="sc-pVUti eEZcMz"
+              >
+                <div
+                  class="sc-bdvwhi sc-jRQBiJ fzUVot hufvIS"
+                >
+                  <input
+                    class="sc-jOxwkF hPlvmB"
+                    id=":r3:"
+                    name="subjectSlug"
+                    type="radio"
+                    value="food-nutrition"
+                  />
+                  <div
+                    class="sc-bdvwhi sc-jRQBiJ sc-kHOYJp fbYMyq dvnHys edOIAF"
+                  />
+                </div>
+              </span>
+              <span
+                class="sc-bdvwhi cqHYAi sc-eGRVbO"
+              >
+                <img
+                  alt=""
+                  class="sc-gsDMPd frprTL"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734523014/subject-icons/cooking-nutrition.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+              <label
+                class="sc-ehCMcF sc-lcerzc sc-gGCErr hSUfpK jGWCdh jOAjVW"
+                for=":r3:"
+                pointer-events="none"
+              >
+                Food and nutrition
+              </label>
+            </div>
+            <div
+              class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou gFWqXk"
+            >
+              <span
+                class="sc-pVUti eEZcMz"
+              >
+                <div
+                  class="sc-bdvwhi sc-jRQBiJ fzUVot hufvIS"
+                >
+                  <input
+                    class="sc-jOxwkF hPlvmB"
+                    id=":r4:"
+                    name="subjectSlug"
+                    type="radio"
+                    value="history"
+                  />
+                  <div
+                    class="sc-bdvwhi sc-jRQBiJ sc-kHOYJp fbYMyq dvnHys edOIAF"
+                  />
+                </div>
+              </span>
+              <span
+                class="sc-bdvwhi cqHYAi sc-eGRVbO"
+              >
+                <img
+                  alt=""
+                  class="sc-gsDMPd frprTL"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1728568980/subject-icons/history.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+              <label
+                class="sc-ehCMcF sc-lcerzc sc-gGCErr hSUfpK jGWCdh jOAjVW"
+                for=":r4:"
+                pointer-events="none"
+              >
+                History
+              </label>
+            </div>
+            <div
+              class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou gFWqXk"
+            >
+              <span
+                class="sc-pVUti eEZcMz"
+              >
+                <div
+                  class="sc-bdvwhi sc-jRQBiJ fzUVot hufvIS"
+                >
+                  <input
+                    class="sc-jOxwkF hPlvmB"
+                    id=":r5:"
+                    name="subjectSlug"
+                    type="radio"
+                    value="maths"
+                  />
+                  <div
+                    class="sc-bdvwhi sc-jRQBiJ sc-kHOYJp fbYMyq dvnHys edOIAF"
+                  />
+                </div>
+              </span>
+              <span
+                class="sc-bdvwhi cqHYAi sc-eGRVbO"
+              >
+                <img
+                  alt=""
+                  class="sc-gsDMPd frprTL"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1706616421/subject-icons/maths.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+              <label
+                class="sc-ehCMcF sc-lcerzc sc-gGCErr hSUfpK jGWCdh jOAjVW"
+                for=":r5:"
+                pointer-events="none"
+              >
+                Maths
+              </label>
+            </div>
+            <div
+              class="sc-bdvwhi sc-jRQBiJ sc-ctqRxX keTjWL bVCeou gFWqXk"
+            >
+              <span
+                class="sc-pVUti eEZcMz"
+              >
+                <div
+                  class="sc-bdvwhi sc-jRQBiJ fzUVot hufvIS"
+                >
+                  <input
+                    class="sc-jOxwkF hPlvmB"
+                    id=":r6:"
+                    name="subjectSlug"
+                    type="radio"
+                    value="science"
+                  />
+                  <div
+                    class="sc-bdvwhi sc-jRQBiJ sc-kHOYJp fbYMyq dvnHys edOIAF"
+                  />
+                </div>
+              </span>
+              <span
+                class="sc-bdvwhi cqHYAi sc-eGRVbO"
+              >
+                <img
+                  alt=""
+                  class="sc-gsDMPd frprTL"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734523570/subject-icons/science.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+              <label
+                class="sc-ehCMcF sc-lcerzc sc-gGCErr hSUfpK jGWCdh jOAjVW"
+                for=":r6:"
+                pointer-events="none"
+              >
+                Science
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div
+        class="sc-bdvwhi sc-jRQBiJ fWbnvc heSanc"
+        role="alert"
+      />
+      <div
+        class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
+      >
+        <div
+          class="sc-bdvwhi kAFHfV grey-shadow"
+        />
+        <div
+          class="sc-bdvwhi kAFHfV yellow-shadow"
+        />
+        <button
+          class="sc-furwPO sc-iqsgXZ xrJiU kpPtpO internal-button"
+          type="submit"
+        >
+          <div
+            class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
+          >
+            <span
+              class="sc-iCfNyT gaSeFZ"
+            >
+              Get started
+            </span>
+            <span
+              class="sc-bdvwhi cERAFe"
+            >
+              <img
+                alt=""
+                class="sc-gsDMPd kvEPQa"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </span>
+          </div>
+        </button>
+      </div>
+    </form>
+    <div
+      aria-live="polite"
+      class="sc-bdvwhi sc-jRQBiJ sc-b7a27f76-0 kjWDfr hsWgl krUohl"
+    />
+  </div>
+  <div
+    class="sc-bdvwhi gFnpsF"
+  >
+    <div
+      class="sc-bdvwhi iwVUCi"
+      data-testid="cookie-banner"
+    >
+      <div
+        class="sc-bdvwhi iIozLH"
+      >
+        <div
+          class="sc-bdvwhi sc-jRQBiJ egBoar FWapS"
+        >
+          <div
+            class="sc-bdvwhi fIxCDL"
+          >
+            <strong
+              class="sc-iCfNyT dApWAc"
+            >
+              This site uses cookies to store information on your computer.
+            </strong>
+             
+            Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
+          </div>
+          <div
+            class="sc-bdvwhi sc-jRQBiJ hPWTKU sLqqU"
+          >
+            <div
+              class="sc-bdvwhi sc-jRQBiJ lmXuba bBQXks"
+            >
+              <button
+                class="sc-iJKPHa dwzJJG sc-iNGDOz jUVWTt"
+                data-testid="cookie-banner-reject"
+                type="button"
+              >
+                <span
+                  class="sc-iCfNyT fAQctr"
+                >
+                  Reject non-essential cookies
+                </span>
+              </button>
+            </div>
+            <div
+              class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
+            >
+              <div
+                class="sc-bdvwhi kAFHfV grey-shadow"
+              />
+              <div
+                class="sc-bdvwhi kAFHfV yellow-shadow"
+              />
+              <button
+                class="sc-furwPO sc-iqsgXZ eQRPqU bpUfmH internal-button"
+              >
+                <div
+                  class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
+                >
+                  <span
+                    class="sc-iCfNyT gaSeFZ"
+                  >
+                    Cookie settings
+                  </span>
+                </div>
+              </button>
+            </div>
+            <div
+              class="sc-bdvwhi sc-eggkz giIlgC iXJDXQ"
+            >
+              <div
+                class="sc-bdvwhi kAFHfV grey-shadow"
+              />
+              <div
+                class="sc-bdvwhi kAFHfV yellow-shadow"
+              />
+              <button
+                class="sc-furwPO sc-iqsgXZ xrJiU kpPtpO internal-button"
+                data-testid="cookie-banner-accept"
+              >
+                <div
+                  class="sc-bdvwhi sc-jRQBiJ hPWTKU fLWKpS"
+                >
+                  <span
+                    class="sc-iCfNyT gaSeFZ"
+                  >
+                    Accept all cookies
+                  </span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
