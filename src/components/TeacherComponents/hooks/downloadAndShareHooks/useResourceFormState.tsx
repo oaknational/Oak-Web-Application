@@ -294,6 +294,11 @@ const useResourceFormStateWithPreselected = (
     string[] | undefined
   >(initialAdditionalFiles);
 
+  // Remove when teachers-audio-download feature flag promoted
+  useEffect(() => {
+    setActiveResources(initialResources);
+  }, [initialResources]);
+
   const hasResources = initialResources.length > 0;
 
   // Keep selectAllChecked in sync by comparing selected resources to available resources

@@ -22,6 +22,36 @@ export const downloadAssetsFixture = [
   },
   {
     exists: true,
+    type: "intro",
+    ext: "mp3",
+    label: "Keywords",
+  },
+  {
+    exists: true,
+    type: "cycle-1",
+    ext: "mp3",
+    label: "Cycle 1",
+  },
+  {
+    exists: true,
+    type: "cycle-2",
+    ext: "mp3",
+    label: "Cycle 2",
+  },
+  {
+    exists: true,
+    type: "cycle-3",
+    ext: "mp3",
+    label: "Cycle 3",
+  },
+  {
+    exists: true,
+    type: "cycle-4",
+    ext: "mp3",
+    label: "Cycle 4",
+  },
+  {
+    exists: true,
     type: "intro-quiz-questions",
     label: "Starter quiz questions",
     ext: "pdf",
@@ -82,6 +112,13 @@ describe("constructDownloadsArray()", () => {
       hasSupplementaryAssetObject: true,
       hasLessonGuideObject: true,
       isLegacy: true,
+      mediaClips: {
+        hasIntro: true,
+        hasCycle1: true,
+        hasCycle2: true,
+        hasCycle3: true,
+        hasCycle4: true,
+      },
     });
     expect(downloads).toEqual(downloadAssetsFixture);
   });
@@ -96,12 +133,19 @@ describe("constructDownloadsArray()", () => {
       hasSupplementaryAssetObject: false,
       hasLessonGuideObject: true,
       isLegacy: true,
+      mediaClips: {
+        hasIntro: true,
+        hasCycle1: true,
+        hasCycle2: true,
+        hasCycle3: true,
+        hasCycle4: true,
+      },
     });
     const filteredDownloads = downloads.filter(
       (download) => download.exists === true,
     );
 
-    expect(filteredDownloads).toHaveLength(7);
+    expect(filteredDownloads).toHaveLength(12);
   });
   test.each([true, false])(
     "sets exists: %s on both lesson guide pdf and docx from hasLessonGuideObject",
@@ -116,6 +160,13 @@ describe("constructDownloadsArray()", () => {
         hasSupplementaryAssetObject: true,
         hasLessonGuideObject,
         isLegacy: false,
+        mediaClips: {
+          hasIntro: true,
+          hasCycle1: true,
+          hasCycle2: true,
+          hasCycle3: true,
+          hasCycle4: true,
+        },
       });
       const lessonGuides = downloads.filter((d) =>
         d.type.startsWith("lesson-guide"),

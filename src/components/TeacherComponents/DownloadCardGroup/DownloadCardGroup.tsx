@@ -3,9 +3,10 @@ import { Control, Controller } from "react-hook-form";
 import {
   OakBox,
   OakFieldset,
+  OakFlex,
   OakGrid,
-  OakHandDrawnHR,
   OakHeading,
+  OakPromoTag,
 } from "@oaknational/oak-components";
 
 import type { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
@@ -95,8 +96,9 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
     const filteredItems = groupItems.filter(
       (item) => item.exists && !item.forbidden,
     );
+
     return (
-      <OakBox key={groupTitle}>
+      <OakBox key={groupTitle} $mb={"spacing-24"}>
         <OakFieldset>
           <OakHeading
             as={"legend"}
@@ -105,7 +107,9 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
             $mb={"spacing-16"}
             $mt={"spacing-12"}
           >
-            {groupTitle}
+            <OakFlex $gap={"spacing-12"}>
+              {groupTitle} {groupTitle === "Audio clips" && <OakPromoTag />}
+            </OakFlex>
           </OakHeading>
           <OakBox>
             <OakGrid
@@ -133,10 +137,6 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
               })}
             </OakGrid>
           </OakBox>
-          <OakHandDrawnHR
-            hrColor="bg-interactive-element2"
-            $mt={"spacing-16"}
-          />
         </OakFieldset>
       </OakBox>
     );

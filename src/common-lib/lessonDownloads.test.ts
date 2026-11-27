@@ -6,7 +6,7 @@ import {
   getLessonDownloadTypes,
   LessonDownloadContent,
   lessonDownloadFormats,
-  lessonDownloadResources,
+  getLessonDownloadResources,
   lessonDownloadTypeSchema,
 } from "./lessonDownloads";
 
@@ -26,16 +26,23 @@ const allContent: LessonDownloadContent = {
   hasWorksheetGoogleDriveDownloadableVersion: true,
   hasSupplementaryAssetObject: true,
   hasLessonGuideObject: true,
+  mediaClips: {
+    hasIntro: true,
+    hasCycle1: true,
+    hasCycle2: true,
+    hasCycle3: true,
+    hasCycle4: true,
+  },
   isLegacy: false,
 };
 
 describe("lesson download registry", () => {
   it("uses unique type IDs", () => {
-    const types = lessonDownloadFormats.map(({ type }) => type);
+    const types = lessonDownloadFormats().map(({ type }) => type);
     expect(new Set(types).size).toBe(types.length);
   });
 
-  it.each(lessonDownloadFormats)(
+  it.each(lessonDownloadFormats())(
     "wires $type through schemas and UI metadata",
     ({ resource, ...format }) => {
       const downloads = [{ ...format, exists: true }];
@@ -72,6 +79,7 @@ describe("lesson download registry", () => {
   it.each([
     ["lesson guide", "lesson-guide"],
     ["slide deck", "slide-deck"],
+    ["intro", "intro"],
     ["starter quiz", "starter-quiz"],
     ["exit quiz", "exit-quiz"],
     ["worksheet", "worksheet"],
@@ -82,7 +90,7 @@ describe("lesson download registry", () => {
       getLessonDownloadTypes(family),
     );
     expect(getLessonDownloadTypes(family)).toEqual(
-      lessonDownloadResources[family].formats.map(({ type }) => type),
+      getLessonDownloadResources()[family].formats.map(({ type }) => type),
     );
   });
 
@@ -154,6 +162,18 @@ describe("lesson download registry", () => {
       type: "exit-quiz-answers",
       exists: true,
     });
+  });
+
+  it("returns cycle titles", () => {
+    const cycles = {
+      cycle1: "Custom cycle 1 title",
+    };
+    const downloads = buildLessonDownloads(allContent, cycles);
+    const cycle1 = downloads.find((d) => d.type === "cycle-1");
+    if (!cycle1) {
+      throw new Error("Could not find auio cycle data");
+    }
+    expect(cycle1.label).toEqual("Custom cycle 1 title");
   });
 
   it.each([

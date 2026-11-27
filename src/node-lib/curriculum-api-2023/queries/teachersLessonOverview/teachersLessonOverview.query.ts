@@ -12,6 +12,7 @@ import {
   isExcludedFromTeachingMaterials,
   getHideCreateWithAi,
 } from "../../helpers/teachingMaterialsAi/isExcluded";
+import { PERMITTED_AUDIO_SUBJECTS } from "../lessonDownloads/lessonDownloads.schema";
 
 import {
   teachersLessonContentSchema,
@@ -29,6 +30,10 @@ import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/quer
 import { formatBytes } from "@/utils/formatBytes";
 import { formatSentences } from "@/utils/formatTranscriptSentences";
 import { buildLessonOverviewDownloads } from "@/common-lib/lessonDownloads";
+import {
+  createLearningCycleVideosTitleMap,
+  getMediaClipCylesForDownload,
+} from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
 
 export type TeachersLessonUnitStaticLessonList = NonNullable<
   NonNullable<LessonUnitDataByKs["supplementaryData"]>["staticLessonList"]
@@ -140,8 +145,25 @@ export const transformedTeachersLessonOverviewData = (
       : null;
   } catch (error) {
     browseData.lessonData.mediaClips = null;
-    reportError(error);
+    void reportError(error);
   }
+
+  const isMFL = PERMITTED_AUDIO_SUBJECTS.has(
+    browseData.programmeFields.subjectSlug,
+  );
+
+  const mediaClipDownloads = getMediaClipCylesForDownload({
+    mediaClips: isMFL ? mediaClips : null,
+    features: browseData.features,
+  });
+
+  const lessonOutlines = browseData.lessonData.lessonOutline ?? null;
+  const cycleTitleMap = createLearningCycleVideosTitleMap({
+    isMFL,
+    isPELesson: browseData.programmeFields.subjectSlug === "physical-education",
+    learningCycleVideos: mediaClips,
+    lessonOutlines,
+  });
 
   return {
     programmeSlug: browseData.programmeSlug,
@@ -160,18 +182,24 @@ export const transformedTeachersLessonOverviewData = (
     yearGroupSlug: browseData.programmeFields.yearSlug,
     examBoardTitle: browseData.programmeFields.examboard,
     examBoardSlug: browseData.programmeFields.examboardSlug,
-    downloads: getDownloadsArray({
-      hasExitQuiz: content.exitQuiz && Boolean(content.exitQuiz.length > 1),
-      hasStarterQuiz:
-        content.starterQuiz && Boolean(content.starterQuiz.length > 1),
-      hasSupplementaryAssetObject: Boolean(content.hasSupplementaryAssetObject),
-      hasWorksheetAnswersAssetObject: Boolean(
-        content.hasWorksheetAnswersAssetObject,
-      ),
-      hasWorksheetAssetObject: Boolean(content.hasWorksheetAssetObject),
-      hasSlideDeckAssetObject: Boolean(content.hasSlideDeckAssetObject),
-      hasLessonGuideObject: Boolean(content.hasLessonGuideObject),
-    }),
+    downloads: getDownloadsArray(
+      {
+        hasExitQuiz: content.exitQuiz && Boolean(content.exitQuiz.length > 1),
+        hasStarterQuiz:
+          content.starterQuiz && Boolean(content.starterQuiz.length > 1),
+        hasSupplementaryAssetObject: Boolean(
+          content.hasSupplementaryAssetObject,
+        ),
+        hasWorksheetAnswersAssetObject: Boolean(
+          content.hasWorksheetAnswersAssetObject,
+        ),
+        hasWorksheetAssetObject: Boolean(content.hasWorksheetAssetObject),
+        hasSlideDeckAssetObject: Boolean(content.hasSlideDeckAssetObject),
+        hasLessonGuideObject: Boolean(content.hasLessonGuideObject),
+        mediaClips: mediaClipDownloads,
+      },
+      cycleTitleMap,
+    ),
     updatedAt: browseData.lessonData.updatedAt,
     lessonSlug: browseData.lessonSlug,
     lessonTitle: browseData.lessonData.title,

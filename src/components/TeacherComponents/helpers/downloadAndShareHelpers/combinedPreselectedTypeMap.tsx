@@ -3,6 +3,11 @@ import { getLessonDownloadTypes } from "@/common-lib/lessonDownloads";
 
 export const combinedPreselectedTypeMap: CombinedPreselectedTypeMap = {
   "slide deck": { downloadType: getLessonDownloadTypes("slide-deck") },
+  intro: { downloadType: getLessonDownloadTypes("intro") },
+  "cycle-1": { downloadType: getLessonDownloadTypes("cycle-1") },
+  "cycle-2": { downloadType: getLessonDownloadTypes("cycle-2") },
+  "cycle-3": { downloadType: getLessonDownloadTypes("cycle-3") },
+  "cycle-4": { downloadType: getLessonDownloadTypes("cycle-4") },
   "starter quiz": {
     downloadType: getLessonDownloadTypes("starter-quiz"),
     shareType: ["starter-quiz"],
