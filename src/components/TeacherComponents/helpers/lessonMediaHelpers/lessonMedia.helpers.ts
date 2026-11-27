@@ -108,10 +108,10 @@ export const getMediaClipCylesForDownload = ({
   const isRestrictedDownload = features?.agfRestrictedDownload;
 
   return {
-    hasIntro: Boolean(mediaClips?.["intro"]) && !isRestrictedDownload,
-    hasCycle1: Boolean(mediaClips?.["cycle1"]) && !isRestrictedDownload,
-    hasCycle2: Boolean(mediaClips?.["cycle2"]) && !isRestrictedDownload,
-    hasCycle3: Boolean(mediaClips?.["cycle3"]) && !isRestrictedDownload,
-    hasCycle4: Boolean(mediaClips?.["cycle4"]) && !isRestrictedDownload,
+    hasIntro: Boolean(mediaClips?.["intro"]?.length) && !isRestrictedDownload,
+    hasCycle1: Boolean(mediaClips?.["cycle1"]?.length) && !isRestrictedDownload,
+    hasCycle2: Boolean(mediaClips?.["cycle2"]?.length) && !isRestrictedDownload,
+    hasCycle3: Boolean(mediaClips?.["cycle3"]?.length) && !isRestrictedDownload,
+    hasCycle4: Boolean(mediaClips?.["cycle4"]?.length) && !isRestrictedDownload,
   };
 };
